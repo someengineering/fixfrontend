@@ -1,0 +1,100 @@
+{
+  "name": "fix-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@lingui/react": "^4.4.2",
+    "@mui/material": "^5.14.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.22.15",
+    "@babel/plugin-syntax-flow": "7.22.5",
+    "@babel/plugin-transform-react-jsx": "7.22.15",
+    "@lingui/cli": "^4.4.2",
+    "@lingui/macro": "^4.4.2",
+    "@storybook/addon-essentials": "7.4.0",
+    "@storybook/addon-interactions": "7.4.0",
+    "@storybook/addon-links": "7.4.0",
+    "@storybook/addon-onboarding": "1.0.8",
+    "@storybook/blocks": "7.4.0",
+    "@storybook/preset-create-react-app": "7.4.0",
+    "@storybook/react": "7.4.0",
+    "@storybook/react-webpack5": "7.4.0",
+    "@storybook/testing-library": "0.2.0",
+    "@testing-library/dom": "8.5.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.13",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "babel-plugin-macros": "3.1.0",
+    "babel-plugin-named-exports-order": "0.0.2",
+    "eslint": "^8.48.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-storybook": "^0.6.13",
+    "husky": "^8.0.0",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3",
+    "prettier-plugin-organize-imports": "^3.2.3",
+    "prop-types": "15.8.1",
+    "react-refresh": "^0.14.0",
+    "react-scripts": "5.0.1",
+    "storybook": "7.4.0",
+    "typescript": "^4.4.2",
+    "web-vitals": "^2.1.0",
+    "webpack": "5.88.2"
+  },
+  "scripts": {
+    "i18n:extract": "lingui extract",
+    "i18n:compile": "lingui compile",
+    "prestart": "yarn i18n:compile",
+    "prebuild": "yarn i18n:compile",
+    "pretest": "yarn i18n:compile",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "lint": "eslint --max-warnings=0 src/**/*.{ts,tsx}",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "lint:tsc": "tsc --noEmit",
+    "prepare": "husky install"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "plugin:storybook/recommended"
+    ],
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error"
+      ]
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "resolutions": {
+    "jackspeak": "2.1.1"
+  }
+}
