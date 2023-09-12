@@ -7,5 +7,6 @@ module.exports = {
       include: ['src'],
     },
   ],
+  compileNamespace: 'ts',
   format: 'po',
 }

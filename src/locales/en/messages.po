@@ -6,3 +6,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/shared/loading/Loading.tsx:9
+msgid "Loading..."
+msgstr "Loading..."
+
+#: src/shared/social-media-button/getNameFromOAuthType.ts:7
+msgid "Log In With {formattedName}"
+msgstr "Log In With {formattedName}"
+
+#: src/pages/auth/login/LoginPage.tsx:23
+msgid "Login"
+msgstr "Login"
+
+#: src/pages/auth/login/LoginPage.tsx:29
+msgid "Password"
+msgstr "Password"
+
+#: src/shared/social-media-button/getNameFromOAuthType.ts:7
+msgid "Sign up With {formattedName}"
+msgstr "Sign up With {formattedName}"
+
+#: src/pages/auth/login/LoginPage.tsx:26
+msgid "Username"
+msgstr "Username"
