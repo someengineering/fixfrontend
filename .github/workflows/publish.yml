@@ -25,4 +25,5 @@ jobs:
           secret_key: ${{ secrets.FIX_UI_DO_SPACES_SECRET }}
           space_name: ${{ secrets.FIX_UI_DO_SPACE_NAME }}
           space_region: ${{ secrets.FIX_UI_DO_SPACE_REGION }}
+          out_dir: fix-ui
           source: target
