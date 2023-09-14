@@ -23,6 +23,6 @@ jobs:
         with:
           access_key: ${{ secrets.FIX_UI_DO_SPACES_KEY }}
           secret_key: ${{ secrets.FIX_UI_DO_SPACES_SECRET }}
-          space_name: ${{ env.FIX_UI_DO_SPACE_NAME }}
-          space_region: ${{ env.FIX_UI_DO_SPACE_REGION }}
+          space_name: ${{ secrets.FIX_UI_DO_SPACE_NAME }}
+          space_region: ${{ secrets.FIX_UI_DO_SPACE_REGION }}
           source: target
