@@ -1,7 +1,6 @@
 import axios, { AxiosError } from 'axios'
 import { PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react'
 import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom'
-import { env } from 'src/shared/constants'
 import { authResponseToContext } from 'src/shared/utils/authResponseToContext'
 import { setAxiosWithAuth } from 'src/shared/utils/axios'
 import { getAuthData, setAuthData } from 'src/shared/utils/localstorage'
@@ -34,12 +33,6 @@ const handleRefreshToken = async (token: string) => {
 export interface AuthGuardProps {}
 
 export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
-  if (!env.apiUrl) {
-    throw new Error(
-      'apiUrl is empty, these should be provided in .env file in order for the app to work.\n' +
-        'Please add REACT_APP_SERVER in your .env files and rebuild this again',
-    )
-  }
   const [auth, setAuth] = useState(getAuthData)
   const navigate = useNavigate()
   const nextUrl = useRef<string>()
@@ -52,7 +45,7 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
   useEffect(() => {
     if (auth?.token) {
       const instance = axios.create({
-        baseURL: env.apiUrl,
+        baseURL: '/',
         headers: {
           Authorization: `${auth.tokenType} ${auth.token}`,
           Accept: 'application/json',

@@ -1,22 +1,27 @@
 name: 'publish' 
 on:
-  pull_request:
   push:
     branches:
       - main
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
 
       - name: Checkout (GitHub)
         uses: actions/checkout@v3
 
-      - name: Build and run dev container task
+      - name: Create a production build
         uses: devcontainers/ci@v0.3
         with:
-          runCmd: ./build-ci.sh
+          runCmd: PUBLIC_URL=https://cdn.some.engineering/fix-ui/${{ github.sha }} yarn build
+
+      - name: Move build to target
+        run: |
+          mv build/static/js/main.*.js build/static/js/main.js
+          mkdir -p target/${{ github.sha }}
+          cp -r build/* target/${{ github.sha }}
 
       - name: Publish to CDN 
         uses: BetaHuhn/do-spaces-action@v2
@@ -27,3 +32,37 @@ jobs:
           space_region: ${{ secrets.FIX_UI_DO_SPACE_REGION }}
           out_dir: fix-ui
           source: target
+
+      - name: Create a patch with the new version
+        # writes the file with a config map definition
+        run: |
+          echo "apiVersion: apps/v1" > fixbackend-ui-patch.yaml
+          echo "kind: StatefulSet" >> fixbackend-ui-patch.yaml
+          echo "metadata:" >> fixbackend-ui-patch.yaml
+          echo "  name: fixbackend" >> fixbackend-ui-patch.yaml
+          echo "spec:" >> fixbackend-ui-patch.yaml
+          echo "  template:" >> fixbackend-ui-patch.yaml
+          echo "    spec:" >> fixbackend-ui-patch.yaml
+          echo "      containers:" >> fixbackend-ui-patch.yaml
+          echo "        - name: fixbackend" >> fixbackend-ui-patch.yaml
+          echo "          env:" >> fixbackend-ui-patch.yaml
+          echo "            - name: FIXUI_SHA" >> fixbackend-ui-patch.yaml
+          echo "              value: \"${{ github.sha }}\"" >> fixbackend-ui-patch.yaml
+
+      - name: Authenticate with GitHub CLI
+        run: |
+          gh auth login --with-token <<< "${{ secrets.SOME_CI_PAT }}"
+
+      - name: Bump fix-ui version
+        env:
+          GITHUB_TOKEN: ${{ secrets.SOME_CI_PAT }}
+        run: |
+          git config --global user.email "ci@some.engineering"
+          git config --global user.name "Some CI"
+          git clone "https://$GITHUB_TOKEN@github.com/someengineering/setup-infra.git"
+          # update the configmap
+          mv fixbackend-ui-patch.yaml setup-infra/argocd/envs/dev/fixbackend/fixbackend-ui-patch.yaml
+          cd setup-infra
+          git add .
+          git commit -m "Bump fix-ui to ${{ github.sha }}" 
+          git push origin main
