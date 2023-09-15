@@ -1,0 +1,29 @@
+name: 'publish' 
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout (GitHub)
+        uses: actions/checkout@v3
+
+      - name: Build and run dev container task
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: ./build-ci.sh
+
+      - name: Publish to CDN 
+        uses: BetaHuhn/do-spaces-action@v2
+        with:
+          access_key: ${{ secrets.FIX_UI_DO_SPACES_KEY }}
+          secret_key: ${{ secrets.FIX_UI_DO_SPACES_SECRET }}
+          space_name: ${{ secrets.FIX_UI_DO_SPACE_NAME }}
+          space_region: ${{ secrets.FIX_UI_DO_SPACE_REGION }}
+          out_dir: fix-ui
+          source: target

@@ -1,8 +1,8 @@
 export const endPoints = {
   auth: {
     jwt: {
-      refresh: '/auth/jwt/refresh',
+      refresh: '/api/auth/jwt/refresh',
     },
-    oauthProviders: '/auth/oauth-providers',
+    oauthProviders: '/api/auth/oauth-providers',
   },
 }
