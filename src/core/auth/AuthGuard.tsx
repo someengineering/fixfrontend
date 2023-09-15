@@ -34,12 +34,6 @@ const handleRefreshToken = async (token: string) => {
 export interface AuthGuardProps { }
 
 export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
-  if (!env.apiUrl) {
-    throw new Error(
-      'apiUrl is empty, these should be provided in .env file in order for the app to work.\n' +
-      'Please add REACT_APP_SERVER in your .env files and rebuild this again',
-    )
-  }
   const [auth, setAuth] = useState(getAuthData)
   const navigate = useNavigate()
   const nextUrl = useRef<string>()
