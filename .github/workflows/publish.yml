@@ -27,3 +27,30 @@ jobs:
           space_region: ${{ secrets.FIX_UI_DO_SPACE_REGION }}
           out_dir: fix-ui
           source: target
+
+      - name: Create a conigmap with the version
+        # writes the file with a config map definition
+        run: |
+          echo "apiVersion: v1" > configmap.yaml
+          echo "kind: ConfigMap" >> configmap.yaml
+          echo "metadata:" >> configmap.yaml
+          echo "  name: fix-ui" >> configmap.yaml
+          echo "data:" >> configmap.yaml
+          echo "  version: ${{ github.sha }}" >> configmap.yaml
+
+      - name: Authenticate with GitHub CLI
+        run: |
+          gh auth login --with-token <<< "${{ secrets.SOME_CI_PAT }}"
+
+      - name: Bump fix-ui version
+        env:
+          GITHUB_TOKEN: ${{ secrets.SOME_CI_PAT }}
+        run: |
+          git config --global user.email "ci@some.engineering"
+          git config --global user.name "Some CI"
+          git clone "https://$GITHUB_TOKEN@github.com/someengineering/setup-infra.git"
+          # update the configmap
+          mv configmap.yaml setup-infra/argocd/envs/dev/fixbackend/fixbackend-ui-version.yaml
+          git add .
+          git commit -m "Bump fix-ui to ${{ github.sha }}" 
+          git push origin main
