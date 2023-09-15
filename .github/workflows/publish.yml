@@ -28,15 +28,21 @@ jobs:
           out_dir: fix-ui
           source: target
 
-      - name: Create a conigmap with the version
+      - name: Create a patch with the new version
         # writes the file with a config map definition
         run: |
-          echo "apiVersion: v1" > configmap.yaml
-          echo "kind: ConfigMap" >> configmap.yaml
-          echo "metadata:" >> configmap.yaml
-          echo "  name: fixbackend-ui-version" >> configmap.yaml
-          echo "data:" >> configmap.yaml
-          echo "  version: ${{ github.sha }}" >> configmap.yaml
+          echo "apiVersion: apps/v1" > fixbackend-ui-patch.yaml
+          echo "kind: StatefulSet" >> fixbackend-ui-patch.yaml
+          echo "metadata:" >> fixbackend-ui-patch.yaml
+          echo "  name: fixbackend" >> fixbackend-ui-patch.yaml
+          echo "spec:" >> fixbackend-ui-patch.yaml
+          echo "  template:" >> fixbackend-ui-patch.yaml
+          echo "    spec:" >> fixbackend-ui-patch.yaml
+          echo "      containers:" >> fixbackend-ui-patch.yaml
+          echo "        - name: fixbackend" >> fixbackend-ui-patch.yaml
+          echo "          env:" >> fixbackend-ui-patch.yaml
+          echo "            - name: FIXUI_SHA" >> fixbackend-ui-patch.yaml
+          echo "              value: \"${{ github.sha }}\"" >> fixbackend-ui-patch.yaml
 
       - name: Authenticate with GitHub CLI
         run: |
@@ -50,7 +56,7 @@ jobs:
           git config --global user.name "Some CI"
           git clone "https://$GITHUB_TOKEN@github.com/someengineering/setup-infra.git"
           # update the configmap
-          mv configmap.yaml setup-infra/argocd/envs/dev/fixbackend/fixbackend-ui-version.yaml
+          mv fixbackend-ui-patch.yaml setup-infra/argocd/envs/dev/fixbackend/fixbackend-ui-patch.yaml
           cd setup-infra
           git add .
           git commit -m "Bump fix-ui to ${{ github.sha }}" 
