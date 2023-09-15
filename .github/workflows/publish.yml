@@ -13,10 +13,16 @@ jobs:
       - name: Checkout (GitHub)
         uses: actions/checkout@v3
 
-      - name: Build and run dev container task
+      - name: Create a production build
         uses: devcontainers/ci@v0.3
         with:
-          runCmd: ./build-ci.sh
+          runCmd: PUBLIC_URL=https://cdn.some.engineering/fix-ui/${{ github.sha }} yarn build
+
+      - name: Move build to target
+        run: |
+          mv build/static/js/main.*.js build/static/js/main.js
+          mkdir -p target/${{ github.sha }}
+          cp -r build/* target/${{ github.sha }}
 
       - name: Publish to CDN 
         uses: BetaHuhn/do-spaces-action@v2
