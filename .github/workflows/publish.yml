@@ -34,7 +34,7 @@ jobs:
           echo "apiVersion: v1" > configmap.yaml
           echo "kind: ConfigMap" >> configmap.yaml
           echo "metadata:" >> configmap.yaml
-          echo "  name: fix-ui" >> configmap.yaml
+          echo "  name: fixbackend-ui-version" >> configmap.yaml
           echo "data:" >> configmap.yaml
           echo "  version: ${{ github.sha }}" >> configmap.yaml
 
