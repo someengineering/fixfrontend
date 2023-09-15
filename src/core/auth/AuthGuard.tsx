@@ -8,7 +8,7 @@ import { getAuthData, setAuthData } from 'src/shared/utils/localstorage'
 import { refreshTokenMutation } from './refreshToken.mutation'
 import { UserContext, UserContextRealValues, useUserProfile } from './UserContext'
 
-export interface RequireAuthProps {}
+export interface RequireAuthProps { }
 
 export function RequireAuth() {
   const user = useUserProfile()
@@ -28,16 +28,16 @@ const handleRefreshToken = async (token: string) => {
     if (accessToken) {
       return authResponseToContext(accessToken)
     }
-  } catch {}
+  } catch { }
 }
 
-export interface AuthGuardProps {}
+export interface AuthGuardProps { }
 
 export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
   if (!env.apiUrl) {
     throw new Error(
       'apiUrl is empty, these should be provided in .env file in order for the app to work.\n' +
-        'Please add REACT_APP_SERVER in your .env files and rebuild this again',
+      'Please add REACT_APP_SERVER in your .env files and rebuild this again',
     )
   }
   const [auth, setAuth] = useState(getAuthData)
@@ -52,7 +52,7 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
   useEffect(() => {
     if (auth?.token) {
       const instance = axios.create({
-        baseURL: env.apiUrl,
+        baseURL: "/",
         headers: {
           Authorization: `${auth.tokenType} ${auth.token}`,
           Accept: 'application/json',
