@@ -51,6 +51,7 @@ jobs:
           git clone "https://$GITHUB_TOKEN@github.com/someengineering/setup-infra.git"
           # update the configmap
           mv configmap.yaml setup-infra/argocd/envs/dev/fixbackend/fixbackend-ui-version.yaml
+          cd setup-infra
           git add .
           git commit -m "Bump fix-ui to ${{ github.sha }}" 
           git push origin main
