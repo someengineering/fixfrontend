@@ -1,14 +1,13 @@
 import axios, { AxiosError } from 'axios'
 import { PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react'
 import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom'
-import { env } from 'src/shared/constants'
 import { authResponseToContext } from 'src/shared/utils/authResponseToContext'
 import { setAxiosWithAuth } from 'src/shared/utils/axios'
 import { getAuthData, setAuthData } from 'src/shared/utils/localstorage'
 import { refreshTokenMutation } from './refreshToken.mutation'
 import { UserContext, UserContextRealValues, useUserProfile } from './UserContext'
 
-export interface RequireAuthProps { }
+export interface RequireAuthProps {}
 
 export function RequireAuth() {
   const user = useUserProfile()
@@ -28,10 +27,10 @@ const handleRefreshToken = async (token: string) => {
     if (accessToken) {
       return authResponseToContext(accessToken)
     }
-  } catch { }
+  } catch {}
 }
 
-export interface AuthGuardProps { }
+export interface AuthGuardProps {}
 
 export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
   const [auth, setAuth] = useState(getAuthData)
@@ -46,7 +45,7 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
   useEffect(() => {
     if (auth?.token) {
       const instance = axios.create({
-        baseURL: "/",
+        baseURL: '/',
         headers: {
           Authorization: `${auth.tokenType} ${auth.token}`,
           Accept: 'application/json',
