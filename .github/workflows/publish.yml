@@ -19,7 +19,6 @@ jobs:
 
       - name: Move build to target
         run: |
-          mv build/static/js/main.*.js build/static/js/main.js
           mkdir -p target/${{ github.sha }}
           cp -r build/* target/${{ github.sha }}
 
