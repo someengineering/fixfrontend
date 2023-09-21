@@ -89,15 +89,15 @@ interface SpinnerProps {
   isLoading?: boolean
 }
 
-const SpinnerContainer = styled(Container, { shouldForwardProp })<{ isLoading?: boolean }>(({ theme, isLoading }) =>
-  isLoading
-    ? {}
-    : {
-        [theme.breakpoints.down('md')]: {
-          display: 'none',
-        },
-      },
-)
+const SpinnerContainer = styled(Container, { shouldForwardProp })<{ isLoading?: boolean }>(({ theme, isLoading }) => ({
+  transition: theme.transitions.create(['opacity'], {
+    duration: 1000,
+    easing: theme.transitions.easing.easeInOut,
+  }),
+  [theme.breakpoints.down('md')]: {
+    opacity: isLoading ? 1 : 0,
+  },
+}))
 
 export const Spinner = ({ width = 110, isDark, isLoading }: SpinnerProps) => {
   return (

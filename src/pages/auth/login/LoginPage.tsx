@@ -33,7 +33,7 @@ export default function LoginPage() {
       <Grid
         component="form"
         container
-        spacing={3}
+        rowSpacing={3}
         maxWidth={350}
         m="0 auto"
         alignItems="stretch"

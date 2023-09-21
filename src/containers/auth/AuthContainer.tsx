@@ -19,7 +19,7 @@ const AuthWrapper = styled(Container)(({ theme }) => ({
   right: 0,
   top: 0,
   background: theme.palette.common.white,
-  height: '100vh',
+  height: '100%',
   width: '50%',
   opacity: 0,
   animationDelay: '1s',
