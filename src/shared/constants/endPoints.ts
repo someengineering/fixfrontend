@@ -1,8 +1,11 @@
 export const endPoints = {
   auth: {
     jwt: {
-      refresh: '/api/auth/jwt/refresh',
+      logout: '/api/auth/jwt/logout',
     },
     oauthProviders: '/api/auth/oauth-providers',
+  },
+  organizations: {
+    get: '/api/organizations/',
   },
 }

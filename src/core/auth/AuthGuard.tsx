@@ -1,18 +1,20 @@
 import axios, { AxiosError } from 'axios'
 import { PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react'
 import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom'
-import { StorageKeys } from 'src/shared/constants'
+import { env } from 'src/shared/constants'
 import { setAxiosWithAuth } from 'src/shared/utils/axios'
-import { cookieMatch } from 'src/shared/utils/cookieMatch'
+import { clearAllCookies, isAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData, setAuthData } from 'src/shared/utils/localstorage'
-import { UserContext, UserContextRealValues } from './UserContext'
+import { logoutMutation } from './logout.mutation'
+import { UserContext, UserContextRealValues, useUserProfile } from './UserContext'
 
 export interface RequireAuthProps {}
 
 export function RequireAuth() {
   const location = useLocation()
+  const user = useUserProfile()
 
-  if (!cookieMatch(StorageKeys.authenticated, '1')) {
+  if (!user.isAuthenticated) {
     return <Navigate to={{ pathname: '/login', search: `returnUrl=${location.pathname}${encodeURIComponent(location.search)}` }} replace />
   }
 
@@ -22,7 +24,7 @@ export function RequireAuth() {
 export interface AuthGuardProps {}
 
 export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
-  const [auth, setAuth] = useState(getAuthData)
+  const [auth, setAuth] = useState<UserContextRealValues | undefined>({ ...(getAuthData() || {}), isAuthenticated: isAuthenticated() })
   const navigate = useNavigate()
   const nextUrl = useRef<string>()
 
@@ -31,14 +33,22 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
     nextUrl.current = url
   }, [])
 
+  const handleLogout = useCallback(() => {
+    logoutMutation().finally(() => {
+      clearAllCookies()
+      setAuth({ isAuthenticated: false })
+    })
+  }, [])
+
   useEffect(() => {
     if (auth?.isAuthenticated) {
       const instance = axios.create({
-        baseURL: '/',
+        baseURL: env.apiUrl,
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
+        withCredentials: true,
       })
       instance.interceptors.response.use(
         (response) => response,
@@ -49,7 +59,7 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
               cause: 'Could not refresh token',
             })
           } else if (error?.response?.status === 403 || error?.response?.status === 401) {
-            setAuth(undefined)
+            setAuth({ isAuthenticated: false })
           }
           throw error
         },
@@ -66,5 +76,5 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
     }
   }, [auth, navigate])
 
-  return <UserContext.Provider value={{ ...auth, setAuth: handleSetAuth }}>{children}</UserContext.Provider>
+  return <UserContext.Provider value={{ ...auth, setAuth: handleSetAuth, logout: handleLogout }}>{children}</UserContext.Provider>
 }
