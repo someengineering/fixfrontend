@@ -70,7 +70,7 @@ export function Theme({ children }: ThemeProps) {
   return (
     <ThemeProvider theme={responsiveFontSizes(theme)}>
       <CssBaseline />
-      <Box sx={{ height: '100%' }}>{children}</Box>
+      <Box height="100%">{children}</Box>
     </ThemeProvider>
   )
 }
