@@ -13,6 +13,10 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/pages/auth/login/LoginPage.tsx:28
+msgid "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
+msgstr "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
+
 #: src/shared/loading/Loading.tsx:9
 msgid "Loading..."
 msgstr "Loading..."
@@ -21,11 +25,16 @@ msgstr "Loading..."
 msgid "Log In With {formattedName}"
 msgstr "Log In With {formattedName}"
 
-#: src/pages/auth/login/LoginPage.tsx:23
+#: src/pages/auth/login/LoginPage.tsx:47
+#: src/pages/auth/login/LoginPage.tsx:58
 msgid "Login"
 msgstr "Login"
 
-#: src/pages/auth/login/LoginPage.tsx:29
+#: src/pages/auth/login/LoginPage.tsx:63
+msgid "Or"
+msgstr "Or"
+
+#: src/pages/auth/login/LoginPage.tsx:54
 msgid "Password"
 msgstr "Password"
 
@@ -33,6 +42,10 @@ msgstr "Password"
 msgid "Sign up With {formattedName}"
 msgstr "Sign up With {formattedName}"
 
-#: src/pages/auth/login/LoginPage.tsx:26
+#: src/pages/auth/login/LoginPage.tsx:25
+msgid "Simple and affordable visibility into your cloud security posture."
+msgstr "Simple and affordable visibility into your cloud security posture."
+
+#: src/pages/auth/login/LoginPage.tsx:51
 msgid "Username"
 msgstr "Username"

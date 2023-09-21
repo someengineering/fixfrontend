@@ -1,23 +1,26 @@
 import { Button, styled } from '@mui/material'
+import { shouldForwardPropWithWhiteList } from 'src/shared/utils/shouldForwardProp'
 
 interface SocialMediaButtonProps {
   backgroundColor?: string
   isDark?: boolean
 }
 
-export const SocialMediaButton = styled(Button)<SocialMediaButtonProps>(({ backgroundColor = '#ffffff', isDark }) => ({
+export const SocialMediaButton = styled(Button, {
+  shouldForwardProp: shouldForwardPropWithWhiteList(['startIcon', 'variant']),
+})<SocialMediaButtonProps>(({ backgroundColor = '#ffffff', isDark }) => ({
   border: 0,
   borderRadius: 3,
   color: isDark ? '#ffffff' : '#000000',
   backgroundColor,
   cursor: 'pointer',
-  fontSize: '19px',
   m: 1,
   overflow: 'hidden',
   px: 2,
   userSelect: 'none',
   align: 'left',
-  height: '50px',
+  minHeight: '50px',
+  width: '100%',
   '&:hover': {
     backgroundColor,
   },

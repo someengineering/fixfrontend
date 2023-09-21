@@ -1,33 +1,22 @@
 import axios, { AxiosError } from 'axios'
 import { PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react'
 import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom'
-import { authResponseToContext } from 'src/shared/utils/authResponseToContext'
+import { StorageKeys } from 'src/shared/constants'
 import { setAxiosWithAuth } from 'src/shared/utils/axios'
+import { cookieMatch } from 'src/shared/utils/cookieMatch'
 import { getAuthData, setAuthData } from 'src/shared/utils/localstorage'
-import { refreshTokenMutation } from './refreshToken.mutation'
-import { UserContext, UserContextRealValues, useUserProfile } from './UserContext'
+import { UserContext, UserContextRealValues } from './UserContext'
 
 export interface RequireAuthProps {}
 
 export function RequireAuth() {
-  const user = useUserProfile()
   const location = useLocation()
 
-  if (!user.token) {
+  if (!cookieMatch(StorageKeys.authenticed, '1')) {
     return <Navigate to={{ pathname: '/login', search: `returnUrl=${location.pathname}${encodeURIComponent(location.search)}` }} replace />
   }
 
   return <Outlet />
-}
-
-const handleRefreshToken = async (token: string) => {
-  try {
-    const accessToken = await refreshTokenMutation(token)
-
-    if (accessToken) {
-      return authResponseToContext(accessToken)
-    }
-  } catch {}
 }
 
 export interface AuthGuardProps {}
@@ -43,56 +32,22 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
   }, [])
 
   useEffect(() => {
-    if (auth?.token) {
+    if (auth?.isAuthenticated) {
       const instance = axios.create({
         baseURL: '/',
         headers: {
-          Authorization: `${auth.tokenType} ${auth.token}`,
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
       })
-      instance.interceptors.request.use(async (config) => {
-        if (auth.token && auth.tokenExpireTimestamp && auth.tokenExpireTimestamp <= new Date().getTime()) {
-          const response = await handleRefreshToken(auth.token)
-          if (response) {
-            setAuth((prevAuth) => ({
-              ...prevAuth,
-              ...response,
-            }))
-            config.headers.Authorization = `${response.tokenType} ${response.token}`
-            instance.defaults.headers.common.Authorization = `${response.tokenType} ${response.token}`
-          } else {
+      instance.interceptors.response.use(
+        (response) => response,
+        async (error: AxiosError & { config: { _retry: boolean } | undefined }) => {
+          if (error?.response?.status === 403 || error?.response?.status === 401) {
             setAuth(undefined)
             throw new Error('Could not refresh token', {
               cause: 'Could not refresh token',
             })
-          }
-        }
-        return config
-      })
-      instance.interceptors.response.use(
-        (response) => response,
-        async (error: AxiosError & { config: { _retry: boolean } | undefined }) => {
-          const originalRequest = error.config ?? { headers: { Authorization: '' }, _retry: false }
-          if ((error?.response?.status === 403 || error?.response?.status === 401) && !originalRequest._retry && auth.token) {
-            originalRequest._retry = true
-            const response = await handleRefreshToken(auth.token)
-            if (response) {
-              setAuth((prevAuth) => ({
-                ...prevAuth,
-                ...response,
-              }))
-              originalRequest.headers.Authorization = `${response.tokenType} ${response.token}`
-              instance.defaults.headers.common.Authorization = `${response.tokenType} ${response.token}`
-
-              return instance(originalRequest)
-            } else {
-              setAuth(undefined)
-              throw new Error('Could not refresh token', {
-                cause: 'Could not refresh token',
-              })
-            }
           } else if (error?.response?.status === 403 || error?.response?.status === 401) {
             setAuth(undefined)
           }
@@ -101,11 +56,11 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
       )
       setAxiosWithAuth(instance)
     }
-  }, [auth?.token, auth?.tokenType, auth?.tokenExpireTimestamp])
+  }, [auth?.isAuthenticated])
 
   useEffect(() => {
     setAuthData(auth)
-    if (nextUrl.current && auth?.token) {
+    if (nextUrl.current && auth?.isAuthenticated) {
       navigate(nextUrl.current, { replace: true })
       nextUrl.current = undefined
     }

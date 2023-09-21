@@ -1,2 +1,5 @@
+export { FullPageLoading } from './FullPageLoading'
+export { FullPageLoadingProvider } from './FullPageLoadingProvider'
+export { FullPageLoadingSuspenseFallback } from './FullPageLoadingSuspenseFallback'
 export { Loading } from './Loading'
 export { Spinner } from './Spinner'
