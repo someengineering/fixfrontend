@@ -6,6 +6,7 @@ export type UserContextRealValues = {
 
 export interface UserContextValue extends Partial<UserContextRealValues> {
   setAuth: (value: UserContextRealValues, url?: string) => void
+  logout: () => void
 }
 
 export const UserContext = createContext<UserContextValue | null>(null)
