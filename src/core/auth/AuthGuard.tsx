@@ -12,7 +12,7 @@ export interface RequireAuthProps {}
 export function RequireAuth() {
   const location = useLocation()
 
-  if (!cookieMatch(StorageKeys.authenticed, '1')) {
+  if (!cookieMatch(StorageKeys.authenticated, '1')) {
     return <Navigate to={{ pathname: '/login', search: `returnUrl=${location.pathname}${encodeURIComponent(location.search)}` }} replace />
   }
 
