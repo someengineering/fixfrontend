@@ -45,17 +45,17 @@ export function Theme({ children }: ThemeProps) {
 
   const typography: ThemeOptions['typography'] = {
     fontFamily,
-    h1: { fontSize: '55px', fontWeight: 700, lineHeight: '115%', letterSpacing: '-2.75px' },
-    h2: { fontSize: '40px', fontWeight: 700, lineHeight: '115%', letterSpacing: '-2px' },
-    h3: { fontSize: '30px', fontWeight: 600, lineHeight: '115%', letterSpacing: '-1.5px' },
-    h4: { fontSize: '25px', fontWeight: 600, lineHeight: '115%', letterSpacing: '-1.25px' },
-    h5: { fontSize: '20px', fontWeight: 600, lineHeight: '115%', letterSpacing: '-1px' },
-    h6: { fontSize: '16px', fontWeight: 500, lineHeight: '115%' },
-    body1: { fontSize: '16px', fontWeight: 400, lineHeight: '30px' },
-    caption: { fontSize: '13px', fontWeight: 300, lineHeight: '19px' },
-    subtitle1: { fontSize: '12px', fontWeight: 300, lineHeight: '18.75px' },
+    h1: { fontSize: '55px', fontWeight: 700, lineHeight: 1.15, letterSpacing: '-2.75px' },
+    h2: { fontSize: '40px', fontWeight: 700, lineHeight: 1.15, letterSpacing: '-2px' },
+    h3: { fontSize: '30px', fontWeight: 600, lineHeight: 1.15, letterSpacing: '-1.5px' },
+    h4: { fontSize: '25px', fontWeight: 600, lineHeight: 1.15, letterSpacing: '-1.25px' },
+    h5: { fontSize: '20px', fontWeight: 600, lineHeight: 1.15, letterSpacing: '-1px' },
+    h6: { fontSize: '18px', fontWeight: 500, lineHeight: 1.15 },
+    body1: { fontSize: '16px', fontWeight: 400, lineHeight: 1.15 },
+    caption: { fontSize: '13px', fontWeight: 300, lineHeight: 1.15 },
+    subtitle1: { fontSize: '12px', fontWeight: 300, lineHeight: 1.15 },
     button: {
-      fontSize: 14,
+      fontSize: '14px',
       fontWeight: 600,
       fontFamily,
     },
@@ -70,7 +70,7 @@ export function Theme({ children }: ThemeProps) {
   return (
     <ThemeProvider theme={responsiveFontSizes(theme)}>
       <CssBaseline />
-      <Box sx={{ height: '100%' }}>{children}</Box>
+      <Box height="100%">{children}</Box>
     </ThemeProvider>
   )
 }

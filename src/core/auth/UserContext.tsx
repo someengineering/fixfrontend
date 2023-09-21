@@ -1,9 +1,7 @@
 import { createContext, useContext } from 'react'
 
 export type UserContextRealValues = {
-  token: string
-  tokenExpireTimestamp: number
-  tokenType: string
+  isAuthenticated: boolean
 }
 
 export interface UserContextValue extends Partial<UserContextRealValues> {

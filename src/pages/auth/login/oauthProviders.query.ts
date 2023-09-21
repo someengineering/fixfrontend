@@ -9,4 +9,5 @@ export const oauthProvidersQuery = async ({ signal }: QueryFunctionContext) => {
       signal,
     })
     .then((response) => response?.data)
+    .then((res) => new Promise<OAuthProvidersResponse>((resolve) => window.setTimeout(() => resolve(res), 3000)))
 }
