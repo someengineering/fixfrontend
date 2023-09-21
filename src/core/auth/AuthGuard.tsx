@@ -24,7 +24,7 @@ export function RequireAuth() {
 export interface AuthGuardProps {}
 
 export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
-  const [auth, setAuth] = useState<UserContextRealValues | undefined>({ ...getAuthData, isAuthenticated: isAuthenticated() })
+  const [auth, setAuth] = useState<UserContextRealValues | undefined>({ ...(getAuthData() || {}), isAuthenticated: isAuthenticated() })
   const navigate = useNavigate()
   const nextUrl = useRef<string>()
 
