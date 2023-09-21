@@ -83,11 +83,5 @@ export const FullPageLoading = ({ loadingState }: FullPageLoadingProps) => {
     <Transition nodeRef={nodeRef} in={loadingState !== LoadingStateType.HIDE} timeout={200}>
       {(state) => <FullPageLoadingContent loadingState={loadingState} transitionState={state} ref={nodeRef} />}
     </Transition>
-    // <>
-    //   <VerticalCenteredBox id="particles" className="particles" loadingState={loadingState} />
-    //   <VerticalCenteredBox loadingState={loadingState}>
-    //     <Spinner isDark />
-    //   </VerticalCenteredBox>
-    // </>
   )
 }
