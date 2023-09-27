@@ -23,7 +23,7 @@ jobs:
           mkdir -p target/${{ github.sha }}
           cp -r build/* target/${{ github.sha }}
 
-      - name: Publish the new version to CDN 
+      - name: Publish the new version to the CDN 
         uses: BetaHuhn/do-spaces-action@v2
         with:
           access_key: ${{ secrets.FIX_UI_DO_SPACES_KEY }}
@@ -33,7 +33,7 @@ jobs:
           out_dir: fix-ui
           source: target
 
-      - name: Update the edge version to CDN 
+      - name: Update the edge version to the CDN 
         uses: BetaHuhn/do-spaces-action@v2
         with:
           access_key: ${{ secrets.FIX_UI_DO_SPACES_KEY }}
