@@ -32,7 +32,7 @@ jobs:
           out_dir: fix-ui
           source: target
 
-      - name: Update the edge version to the CDN 
+      - name: Update the edge version on the CDN 
         uses: BetaHuhn/do-spaces-action@v2
         with:
           access_key: ${{ secrets.FIX_UI_DO_SPACES_KEY }}
@@ -40,7 +40,7 @@ jobs:
           space_name: ${{ secrets.FIX_UI_DO_SPACE_NAME }}
           space_region: ${{ secrets.FIX_UI_DO_SPACE_REGION }}
           out_dir: fix-ui/edge
-          source: target/${{ github.sha }}
+          source: target/${{ github.sha }}/index.html
 
       - name: Create a patch with the new version
         # writes the file with a config map definition
