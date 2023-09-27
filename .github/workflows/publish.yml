@@ -1,5 +1,6 @@
 name: 'publish' 
 on:
+  pull_request:
   push:
     branches:
       - main
@@ -22,7 +23,7 @@ jobs:
           mkdir -p target/${{ github.sha }}
           cp -r build/* target/${{ github.sha }}
 
-      - name: Publish to CDN 
+      - name: Publish the new version to CDN 
         uses: BetaHuhn/do-spaces-action@v2
         with:
           access_key: ${{ secrets.FIX_UI_DO_SPACES_KEY }}
@@ -31,6 +32,16 @@ jobs:
           space_region: ${{ secrets.FIX_UI_DO_SPACE_REGION }}
           out_dir: fix-ui
           source: target
+
+      - name: Update the edge version to CDN 
+        uses: BetaHuhn/do-spaces-action@v2
+        with:
+          access_key: ${{ secrets.FIX_UI_DO_SPACES_KEY }}
+          secret_key: ${{ secrets.FIX_UI_DO_SPACES_SECRET }}
+          space_name: ${{ secrets.FIX_UI_DO_SPACE_NAME }}
+          space_region: ${{ secrets.FIX_UI_DO_SPACE_REGION }}
+          out_dir: fix-ui/edge
+          source: target/${{ github.sha }}
 
       - name: Create a patch with the new version
         # writes the file with a config map definition
