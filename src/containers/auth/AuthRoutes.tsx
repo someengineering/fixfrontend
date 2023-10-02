@@ -1,5 +1,5 @@
 import { lazy } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
 const LoginPage = lazy(
   () =>
@@ -9,10 +9,20 @@ const LoginPage = lazy(
     ),
 )
 
+const RegisterPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "register" */
+      'src/pages/auth/register/RegisterPage'
+    ),
+)
+
 export function AuthRoutes() {
   return (
     <Routes>
-      <Route index element={<LoginPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="*" element={<Navigate to="/auth/login" />} />
     </Routes>
   )
 }

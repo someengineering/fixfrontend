@@ -1,4 +1,5 @@
-import { Button, styled } from '@mui/material'
+import { LoadingButton } from '@mui/lab'
+import { styled } from '@mui/material'
 import { shouldForwardPropWithWhiteList } from 'src/shared/utils/shouldForwardProp'
 
 interface SocialMediaButtonProps {
@@ -6,8 +7,8 @@ interface SocialMediaButtonProps {
   isDark?: boolean
 }
 
-export const SocialMediaButton = styled(Button, {
-  shouldForwardProp: shouldForwardPropWithWhiteList(['startIcon', 'variant']),
+export const SocialMediaButton = styled(LoadingButton, {
+  shouldForwardProp: shouldForwardPropWithWhiteList(['startIcon', 'variant', 'loadingPosition']),
 })<SocialMediaButtonProps>(({ backgroundColor = '#ffffff', isDark }) => ({
   border: 0,
   borderRadius: 3,

@@ -69,8 +69,8 @@ export function Theme({ children }: ThemeProps) {
 
   return (
     <ThemeProvider theme={responsiveFontSizes(theme)}>
-      <CssBaseline />
-      <Box height="100%">{children}</Box>
+      <CssBaseline enableColorScheme />
+      <Box maxHeight="100%">{children}</Box>
     </ThemeProvider>
   )
 }

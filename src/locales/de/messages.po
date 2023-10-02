@@ -13,39 +13,93 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/auth/login/LoginPage.tsx:28
+#: src/containers/panel/PanelContainer.tsx:24
+msgid "© 2023 Some Engineering Inc. All rights reserved."
+msgstr "© 2023 Some Engineering Services GMBH. Alle Rechte vorbehalten."
+
+#: src/pages/auth/register/RegisterPage.tsx:79
+msgid "Already have an account? Click here to Log in."
+msgstr "Sie haben bereits ein Konto? Klicken Sie hier, um sich einzuloggen."
+
+#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:24
+msgid "Copy"
+msgstr "Kopieren"
+
+#: src/shared/layouts/panel-layout/menuList.tsx:30
+msgid "Dashboard"
+msgstr "Armaturenbrett"
+
+#: src/pages/auth/login/LoginPage.tsx:83
+msgid "Don't have an account? Click here to Sign up."
+msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
+
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloud.tsx:32
+msgid "External Id:"
+msgstr "Externe ID:"
+
+#: src/pages/auth/login/LoginPage.tsx:40
+#: src/pages/auth/register/RegisterPage.tsx:36
 msgid "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
 msgstr "Fix ist eine Open-Source-Wiz-Alternative für die Sicherheit von Cloud-Infrastrukturen. Übernehmen Sie die Kontrolle über Cloud-Risiken mit einem Bestandsverzeichnis, Compliance-Scans und Abhilfeworkflows."
+
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloud.tsx:61
+#: src/pages/panel/panel-setup-cloud/SetupCloudButton.tsx:13
+msgid "Go To Setup"
+msgstr "Gehen Sie zum Setup"
 
 #: src/shared/loading/Loading.tsx:9
 msgid "Loading..."
 msgstr "Wird geladen..."
 
+#: src/pages/auth/login/LoginPage.tsx:59
+#: src/pages/auth/login/LoginPage.tsx:78
+msgid "Log in"
+msgstr "Anmeldung"
+
 #: src/shared/social-media-button/getNameFromOAuthType.ts:7
 msgid "Log In With {formattedName}"
 msgstr "Melden Sie sich mit {formattedName} an"
 
-#: src/pages/auth/login/LoginPage.tsx:47
-#: src/pages/auth/login/LoginPage.tsx:58
-msgid "Login"
-msgstr "Anmeldung"
+#: src/shared/layouts/panel-layout/PanelAppBar.tsx:45
+msgid "Open drawer"
+msgstr "Offene Schublade"
 
-#: src/pages/auth/login/LoginPage.tsx:63
+#: src/pages/auth/login/LoginPage.tsx:88
+#: src/pages/auth/register/RegisterPage.tsx:84
 msgid "Or"
 msgstr "Oder"
 
-#: src/pages/auth/login/LoginPage.tsx:54
+#: src/shared/layouts/panel-layout/menuList.tsx:48
+msgid "Panel Setup"
+msgstr "Panel Setup"
+
+#: src/pages/auth/login/LoginPage.tsx:66
+#: src/pages/auth/register/RegisterPage.tsx:62
 msgid "Password"
 msgstr "Passwort"
+
+#: src/pages/auth/register/RegisterPage.tsx:55
+msgid "Register"
+msgstr "Registrieren"
+
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloud.tsx:25
+msgid "Setup cloud"
+msgstr "Cloud einrichten"
+
+#: src/pages/auth/register/RegisterPage.tsx:74
+msgid "Sign up"
+msgstr "Melden Sie sich an"
 
 #: src/shared/social-media-button/getNameFromOAuthType.ts:7
 msgid "Sign up With {formattedName}"
 msgstr "Melden Sie sich bei {formattedName} an"
 
-#: src/pages/auth/login/LoginPage.tsx:25
+#: src/pages/auth/login/LoginPage.tsx:37
+#: src/pages/auth/register/RegisterPage.tsx:33
 msgid "Simple and affordable visibility into your cloud security posture."
 msgstr "Einfacher und erschwinglicher Einblick in die Sicherheitslage Ihrer Cloud."
 
-#: src/pages/auth/login/LoginPage.tsx:51
+#: src/pages/auth/login/LoginPage.tsx:63
+#: src/pages/auth/register/RegisterPage.tsx:59
 msgid "Username"
 msgstr "Nutzername"

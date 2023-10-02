@@ -1,0 +1,1 @@
+export { LoginSocialMedia } from './LoginSocialMedia'

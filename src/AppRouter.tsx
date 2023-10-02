@@ -1,21 +1,31 @@
-import { Suspense } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { AuthContainer } from './containers/auth'
-import { MainContainer } from './containers/main'
-import { AuthGuard } from './core/auth'
+import { lazy, Suspense } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { FullPageLoadingSuspenseFallback } from './shared/loading'
 
+const AuthContainer = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "auth" */
+      'src/containers/auth/AuthContainer'
+    ),
+)
+
+const PanelContainer = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "panel" */
+      'src/containers/panel/PanelContainer'
+    ),
+)
+
 export function AppRouter() {
+  const { pathname } = useLocation()
   return (
-    <BrowserRouter>
-      <AuthGuard>
-        <Suspense fallback={<FullPageLoadingSuspenseFallback />}>
-          <Routes>
-            <Route path="login/*" element={<AuthContainer />} />
-            <Route path="/*" element={<MainContainer />} />
-          </Routes>
-        </Suspense>
-      </AuthGuard>
-    </BrowserRouter>
+    <Suspense fallback={<FullPageLoadingSuspenseFallback forceFullpage withLoading={pathname.startsWith('/auth')} />}>
+      <Routes>
+        <Route path="auth/*" element={<AuthContainer />} />
+        <Route path="/*" element={<PanelContainer />} />
+      </Routes>
+    </Suspense>
   )
 }

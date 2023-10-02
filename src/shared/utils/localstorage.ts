@@ -21,3 +21,7 @@ function setStorageObject<ObjectType extends Object>(key: StorageKeys, obj?: Obj
 export const getAuthData = () => getStorageObject<UserContextRealValues>(StorageKeys.authData)
 
 export const setAuthData = (authData?: UserContextRealValues) => setStorageObject(StorageKeys.authData, authData)
+
+export const getInitiated = () => getStorageObject<boolean>(StorageKeys.initiated)
+
+export const setInitiated = (initiated?: boolean) => setStorageObject(StorageKeys.initiated, initiated)
