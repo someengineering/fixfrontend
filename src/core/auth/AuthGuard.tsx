@@ -5,8 +5,8 @@ import { env } from 'src/shared/constants'
 import { setAxiosWithAuth } from 'src/shared/utils/axios'
 import { clearAllCookies, isAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData, setAuthData } from 'src/shared/utils/localstorage'
-import { logoutMutation } from './logout.mutation'
 import { UserContext, UserContextRealValues, useUserProfile } from './UserContext'
+import { logoutMutation } from './logout.mutation'
 
 export interface RequireAuthProps {}
 
@@ -15,7 +15,9 @@ export function RequireAuth() {
   const user = useUserProfile()
 
   if (!user.isAuthenticated) {
-    return <Navigate to={{ pathname: '/login', search: `returnUrl=${location.pathname}${encodeURIComponent(location.search)}` }} replace />
+    return (
+      <Navigate to={{ pathname: '/auth/login', search: `returnUrl=${location.pathname}${encodeURIComponent(location.search)}` }} replace />
+    )
   }
 
   return <Outlet />

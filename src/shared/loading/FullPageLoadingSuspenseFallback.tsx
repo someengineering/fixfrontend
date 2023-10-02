@@ -3,19 +3,20 @@ import { useFullPageLoading } from './useFullPageLoading'
 
 export interface FullPageLoadingSuspenseFallbackProps {
   withLoading?: boolean
+  forceFullpage?: boolean
 }
 
-export const FullPageLoadingSuspenseFallback = ({ withLoading }: FullPageLoadingSuspenseFallbackProps) => {
+export const FullPageLoadingSuspenseFallback = ({ withLoading, forceFullpage }: FullPageLoadingSuspenseFallbackProps) => {
   const { hideLoading, showLoading } = useFullPageLoading()
   useEffect(() => {
-    showLoading()
+    showLoading(false, forceFullpage)
     return () => {
       if (withLoading) {
-        showLoading(withLoading)
+        showLoading(withLoading, forceFullpage)
       } else {
-        hideLoading()
+        hideLoading(withLoading, forceFullpage)
       }
     }
-  }, [showLoading, hideLoading, withLoading])
+  }, [showLoading, hideLoading, withLoading, forceFullpage])
   return <></>
 }

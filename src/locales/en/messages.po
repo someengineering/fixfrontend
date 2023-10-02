@@ -13,39 +13,93 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/auth/login/LoginPage.tsx:28
+#: src/containers/panel/PanelContainer.tsx:24
+msgid "© 2023 Some Engineering Inc. All rights reserved."
+msgstr "© 2023 Some Engineering Inc. All rights reserved."
+
+#: src/pages/auth/register/RegisterPage.tsx:79
+msgid "Already have an account? Click here to Log in."
+msgstr "Already have an account? Click here to Log in."
+
+#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:24
+msgid "Copy"
+msgstr "Copy"
+
+#: src/shared/layouts/panel-layout/menuList.tsx:30
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: src/pages/auth/login/LoginPage.tsx:83
+msgid "Don't have an account? Click here to Sign up."
+msgstr "Don't have an account? Click here to Sign up."
+
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloud.tsx:32
+msgid "External Id:"
+msgstr "External Id:"
+
+#: src/pages/auth/login/LoginPage.tsx:40
+#: src/pages/auth/register/RegisterPage.tsx:36
 msgid "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
 msgstr "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
+
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloud.tsx:61
+#: src/pages/panel/panel-setup-cloud/SetupCloudButton.tsx:13
+msgid "Go To Setup"
+msgstr "Go To Setup"
 
 #: src/shared/loading/Loading.tsx:9
 msgid "Loading..."
 msgstr "Loading..."
 
+#: src/pages/auth/login/LoginPage.tsx:59
+#: src/pages/auth/login/LoginPage.tsx:78
+msgid "Log in"
+msgstr "Log in"
+
 #: src/shared/social-media-button/getNameFromOAuthType.ts:7
 msgid "Log In With {formattedName}"
 msgstr "Log In With {formattedName}"
 
-#: src/pages/auth/login/LoginPage.tsx:47
-#: src/pages/auth/login/LoginPage.tsx:58
-msgid "Login"
-msgstr "Login"
+#: src/shared/layouts/panel-layout/PanelAppBar.tsx:45
+msgid "Open drawer"
+msgstr "Open drawer"
 
-#: src/pages/auth/login/LoginPage.tsx:63
+#: src/pages/auth/login/LoginPage.tsx:88
+#: src/pages/auth/register/RegisterPage.tsx:84
 msgid "Or"
 msgstr "Or"
 
-#: src/pages/auth/login/LoginPage.tsx:54
+#: src/shared/layouts/panel-layout/menuList.tsx:48
+msgid "Panel Setup"
+msgstr "Panel Setup"
+
+#: src/pages/auth/login/LoginPage.tsx:66
+#: src/pages/auth/register/RegisterPage.tsx:62
 msgid "Password"
 msgstr "Password"
+
+#: src/pages/auth/register/RegisterPage.tsx:55
+msgid "Register"
+msgstr "Register"
+
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloud.tsx:25
+msgid "Setup cloud"
+msgstr "Setup cloud"
+
+#: src/pages/auth/register/RegisterPage.tsx:74
+msgid "Sign up"
+msgstr "Sign up"
 
 #: src/shared/social-media-button/getNameFromOAuthType.ts:7
 msgid "Sign up With {formattedName}"
 msgstr "Sign up With {formattedName}"
 
-#: src/pages/auth/login/LoginPage.tsx:25
+#: src/pages/auth/login/LoginPage.tsx:37
+#: src/pages/auth/register/RegisterPage.tsx:33
 msgid "Simple and affordable visibility into your cloud security posture."
 msgstr "Simple and affordable visibility into your cloud security posture."
 
-#: src/pages/auth/login/LoginPage.tsx:51
+#: src/pages/auth/login/LoginPage.tsx:63
+#: src/pages/auth/register/RegisterPage.tsx:59
 msgid "Username"
 msgstr "Username"

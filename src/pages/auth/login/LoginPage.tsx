@@ -1,23 +1,35 @@
 import { t, Trans } from '@lingui/macro'
-import { Button, Divider, Grid, styled, TextField, Typography } from '@mui/material'
-import { FormEvent, Suspense } from 'react'
+import SendIcon from '@mui/icons-material/Send'
+import { LoadingButton } from '@mui/lab'
+import { Divider, Grid, styled, TextField, Typography } from '@mui/material'
+import { FormEvent, Suspense, useState } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
+import { Link, useNavigate } from 'react-router-dom'
+import { StorageKeys } from 'src/shared/constants'
 import { ErrorBoundaryFallback } from 'src/shared/error-boundary-fallback'
+import { LoginSocialMedia } from 'src/shared/login-social-media'
 import { SocialMediaButtonSkeleton } from 'src/shared/social-media-button/SocialMediaButton.skeleton'
-import { LoginSocialMedia } from './LoginSocialMedia'
 
 const LOGIN_SUSPENSE_NUMBER_OF_SOCIAL_MEDIA_BUTTON = 2
 
-const LoginButton = styled(Button)({
+const LoginButton = styled(LoadingButton)({
   minHeight: 50,
 })
 
 export default function LoginPage() {
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setIsLoading(true)
     const username: string | undefined = e.currentTarget.username
     const password: string | undefined = e.currentTarget.password
     console.log({ username, password })
+    document.cookie = `${StorageKeys.authenticated}=1`
+    navigate('/')
+  }
+  const handleClickHref = () => {
+    setIsLoading(true)
   }
   return (
     <>
@@ -44,7 +56,7 @@ export default function LoginPage() {
       >
         <Grid item>
           <Typography variant="h3" color="primary">
-            <Trans>Login</Trans>
+            <Trans>Log in</Trans>
           </Typography>
         </Grid>
         <Grid item>
@@ -54,9 +66,22 @@ export default function LoginPage() {
           <TextField required id="password" label={t`Password`} variant="outlined" fullWidth type="password" />
         </Grid>
         <Grid item>
-          <LoginButton type="submit" variant="contained" fullWidth size="large">
-            <Trans>Login</Trans>
+          <LoginButton
+            type="submit"
+            variant="contained"
+            fullWidth
+            size="large"
+            loading={isLoading}
+            loadingPosition={isLoading ? 'start' : undefined}
+            startIcon={isLoading ? <SendIcon /> : undefined}
+          >
+            <Trans>Log in</Trans>
           </LoginButton>
+        </Grid>
+        <Grid item>
+          <Link to="/auth/register">
+            <Trans>Don't have an account? Click here to Sign up.</Trans>
+          </Link>
         </Grid>
         <Grid item>
           <Divider>
@@ -71,7 +96,7 @@ export default function LoginPage() {
               </Grid>
             ))}
           >
-            <LoginSocialMedia />
+            <LoginSocialMedia isLoading={isLoading} onClick={handleClickHref} />
           </Suspense>
         </ErrorBoundary>
       </Grid>

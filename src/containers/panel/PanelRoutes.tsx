@@ -6,11 +6,11 @@ const HomePage = lazy(
   () =>
     import(
       /* webpackChunkName: "home" */
-      'src/pages/home/HomePage'
+      'src/pages/panel/panel-home/PanelHomePage'
     ),
 )
 
-export function MainRoutes() {
+export function PanelRoutes() {
   return (
     <Routes>
       <Route element={<RequireAuth />}>

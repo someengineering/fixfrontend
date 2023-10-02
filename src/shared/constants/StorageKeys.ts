@@ -1,4 +1,5 @@
 export enum StorageKeys {
-  authData = 'AUTH_DATA',
+  authData = 'fix.AUTH_DATA',
+  initiated = 'fix.INITIATED',
   authenticated = 'fix.authenticated',
 }

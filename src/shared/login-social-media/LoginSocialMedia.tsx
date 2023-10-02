@@ -4,7 +4,13 @@ import { useSearchParams } from 'react-router-dom'
 import { SocialMediaButtonFromOauthType } from 'src/shared/social-media-button'
 import { oauthProvidersQuery } from './oauthProviders.query'
 
-export const LoginSocialMedia = () => {
+interface LoginSocialMediaProps {
+  isSignup?: boolean
+  isLoading: boolean
+  onClick?: () => void
+}
+
+export const LoginSocialMedia = ({ isSignup, isLoading, onClick }: LoginSocialMediaProps) => {
   const [search] = useSearchParams()
   const { data } = useQuery(['LoginSocialMedia', search.get('returnUrl') ?? '/'], oauthProvidersQuery)
 
@@ -12,7 +18,14 @@ export const LoginSocialMedia = () => {
     <>
       {data?.map((item, i) => (
         <Grid item key={i}>
-          <SocialMediaButtonFromOauthType authUrl={item.authUrl} name={item.name} fullWidth />
+          <SocialMediaButtonFromOauthType
+            authUrl={item.authUrl}
+            name={item.name}
+            fullWidth
+            isSignup={isSignup}
+            loading={isLoading}
+            onClick={onClick}
+          />
         </Grid>
       ))}
     </>

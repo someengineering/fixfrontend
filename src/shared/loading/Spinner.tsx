@@ -1,4 +1,4 @@
-import { alpha, keyframes, styled } from '@mui/material'
+import { alpha, keyframes, styled, useTheme } from '@mui/material'
 import { LogoWhiteNoBackground } from 'src/assets/icons'
 import { shouldForwardProp } from 'src/shared/utils/shouldForwardProp'
 
@@ -100,12 +100,13 @@ const SpinnerContainer = styled(Container, { shouldForwardProp })<{ isLoading?: 
 }))
 
 export const Spinner = ({ width = 110, isDark, isLoading }: SpinnerProps) => {
+  const { palette } = useTheme()
   return (
     <SpinnerContainer isLoading={isLoading}>
       <LogoWhiteNoBackgroundStyled
         width={isLoading ? width * 0.625 : width}
         height={isLoading ? width * 0.625 : width}
-        fill={isLoading ? undefined : 'white'}
+        fill={isDark ? 'white' : palette.primary.main}
       />
       <SpinnerCircle width={width} isDark={isDark} isLoading={isLoading} />
       {isLoading ? (
