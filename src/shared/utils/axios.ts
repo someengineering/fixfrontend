@@ -6,6 +6,7 @@ export const simpleAxios = origAxios.create({
   headers: {
     Accept: 'application/json',
     'content-type': 'application/json',
+    'X-FIX-CSRF': '1',
   },
 })
 
