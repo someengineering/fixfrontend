@@ -35,7 +35,7 @@ export default function PanelSetupCloud({ onModalClose }: PanelSetupCloudProps) 
           <Suspense
             fallback={
               <Box ml={2}>
-                <Skeleton variant="circular" width={376} height={52} />
+                <Skeleton variant="rectangular" width={376} height={52} />
               </Box>
             }
           >
