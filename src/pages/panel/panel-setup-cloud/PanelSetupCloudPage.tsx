@@ -39,6 +39,22 @@ export default function PanelSetupCloudPage() {
           </Suspense>
         </ErrorBoundary>
       </Box>
+      <Box display="flex" py={2} alignItems="center">
+        <Typography variant="h5">
+          <Trans>Tenant Id:</Trans>
+        </Typography>
+        <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+          <Suspense
+            fallback={
+              <Box ml={2}>
+                <Skeleton variant="rectangular" width={376} height={52} />
+              </Box>
+            }
+          >
+            <ExternalId />
+          </Suspense>
+        </ErrorBoundary>
+      </Box>
       <List>
         {instructions.map((text, i) => (
           <ListItem sx={{ display: 'list-item', listStyleType: 'disc', pl: 0, ml: 2 }} key={i}>
