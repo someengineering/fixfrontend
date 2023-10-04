@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/macro'
-import { Box, Button, Divider, List, ListItem, Skeleton, Typography } from '@mui/material'
+import { Box, Button, List, ListItem, Skeleton, Typography } from '@mui/material'
 import { loremIpsum } from 'lorem-ipsum'
 import { Suspense, useMemo } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
@@ -7,11 +7,7 @@ import { ErrorBoundaryFallback } from 'src/shared/error-boundary-fallback'
 import { ExternalId } from './ExternalId'
 import { SetupCloudButton } from './SetupCloudButton'
 
-interface PanelSetupCloudProps {
-  onModalClose: () => void
-}
-
-export default function PanelSetupCloud({ onModalClose }: PanelSetupCloudProps) {
+export default function PanelSetupCloudPage() {
   const { instructions, mainPragraph } = useMemo(
     () => ({
       mainPragraph: loremIpsum({ count: 10 }),
@@ -66,12 +62,6 @@ export default function PanelSetupCloud({ onModalClose }: PanelSetupCloudProps) 
             <SetupCloudButton />
           </Suspense>
         </ErrorBoundary>
-      </Box>
-      <Divider />
-      <Box pt={3} display="flex" justifyContent="end">
-        <Button onClick={onModalClose} variant="outlined">
-          Skip
-        </Button>
       </Box>
     </>
   )

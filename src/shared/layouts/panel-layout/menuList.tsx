@@ -5,7 +5,6 @@ import InboxIcon from '@mui/icons-material/Inbox'
 import MailIcon from '@mui/icons-material/Mail'
 import SettingsIcon from '@mui/icons-material/Settings'
 import { ComponentType } from 'react'
-import PanelSetupCloudProps from 'src/pages/panel/panel-setup-cloud/PanelSetupCloud'
 
 export interface MenuListItem {
   name: string
@@ -46,9 +45,7 @@ export const menuList: MenuListItem[] = [
 export const bottomMenuList = [
   {
     name: t`Panel Setup`,
-    route: 'modal',
-    props: {},
-    Component: PanelSetupCloudProps,
+    route: '/setup-cloud',
     Icon: SettingsIcon,
-  } as MenuModalListItem,
+  },
 ]
