@@ -9,7 +9,7 @@ export const SetupCloudButton = () => {
     enabled: !!organizationData?.[0].id,
   })
   return (
-    <Button variant="contained" href={cloudSetupUrlData}>
+    <Button component="a" variant="contained" href={cloudSetupUrlData} target="_blank">
       <Trans>Go To Setup</Trans>
     </Button>
   )
