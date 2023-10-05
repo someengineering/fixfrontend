@@ -51,10 +51,18 @@ export default function PanelSetupCloudPage() {
         <AccordionDetails>
           <Typography variant="subtitle2" mt={1}>
             <Trans>Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template</Trans>:
-            <Button href="https://fix-aws-integration.s3.amazonaws.com/fix-aws-integration.yaml" target="_blank" variant="text">
-              https://fix-aws-integration.s3.amazonaws.com/fix-aws-integration.yaml
-            </Button>
           </Typography>
+          <Button
+            href="https://fixpublic.s3.amazonaws.com/aws/fix-role-dev-eu.yaml"
+            target="_blank"
+            variant="text"
+            sx={{ maxWidth: '100%', px: 0 }}
+          >
+            {/* TODO: fix this by getting it from somewhere instead of hard coding it */}
+            <Typography variant="subtitle2" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
+              https://fixpublic.s3.amazonaws.com/aws/fix-role-dev-eu.yaml
+            </Typography>
+          </Button>
           <Typography variant="body1" mt={1}>
             <Trans>The Stack requires the following parameters</Trans>:
           </Typography>
