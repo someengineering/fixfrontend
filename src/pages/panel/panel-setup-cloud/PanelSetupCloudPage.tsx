@@ -1,5 +1,6 @@
 import { Trans } from '@lingui/macro'
-import { Box, Button, Divider, Skeleton, Typography } from '@mui/material'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Divider, Skeleton, Typography } from '@mui/material'
 import { Suspense } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { ErrorBoundaryFallback } from 'src/shared/error-boundary-fallback'
@@ -41,37 +42,62 @@ export default function PanelSetupCloudPage() {
         </Trans>
       </Typography>
       <Divider />
-      <Typography variant="subtitle2" mt={1}>
-        <Trans>Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template</Trans>:
-        <Button href="https://fix-aws-integration.s3.amazonaws.com/fix-aws-integration.yaml" target="_blank" variant="text">
-          https://fix-aws-integration.s3.amazonaws.com/fix-aws-integration.yaml
-        </Button>
-      </Typography>
-      <Typography variant="body1" mt={1}>
-        <Trans>The Stack requires the following parameters</Trans>:
-      </Typography>
-      <Box display="flex" py={2} alignItems="center">
-        <Typography variant="body1">
-          <Trans>External Id</Trans>:
-        </Typography>
-        <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-          <Suspense
-            fallback={
-              <Box ml={2}>
-                <Skeleton variant="rectangular" width={376} height={52} />
-              </Box>
-            }
-          >
-            <ExternalId />
-          </Suspense>
-        </ErrorBoundary>
-      </Box>
-      <Box display="flex" py={2} alignItems="center">
-        <Typography variant="body1">
-          <Trans>Tenant Id</Trans>:
-        </Typography>
-        <TenantId />
-      </Box>
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="manual-setup-content" id="manual-setup-header">
+          <Typography variant="h5">
+            <Trans>Manual Setup</Trans>
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography variant="subtitle2" mt={1}>
+            <Trans>Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template</Trans>:
+            <Button href="https://fix-aws-integration.s3.amazonaws.com/fix-aws-integration.yaml" target="_blank" variant="text">
+              https://fix-aws-integration.s3.amazonaws.com/fix-aws-integration.yaml
+            </Button>
+          </Typography>
+          <Typography variant="body1" mt={1}>
+            <Trans>The Stack requires the following parameters</Trans>:
+          </Typography>
+          <div>
+            <Box
+              display={{ xs: 'inline-flex', md: 'flex' }}
+              py={2}
+              flexDirection={{ xs: 'column', md: 'row' }}
+              alignItems="center"
+              alignSelf="center"
+            >
+              <Typography variant="body1" mb={{ xs: 1, md: 0 }} alignSelf={{ xs: 'start', md: 'center' }} width={100}>
+                <Trans>External Id</Trans>:
+              </Typography>
+              <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+                <Suspense
+                  fallback={
+                    <Box ml={2}>
+                      <Skeleton variant="rectangular" width={376} height={52} />
+                    </Box>
+                  }
+                >
+                  <ExternalId />
+                </Suspense>
+              </ErrorBoundary>
+            </Box>
+          </div>
+          <div>
+            <Box
+              display={{ xs: 'inline-flex', md: 'flex' }}
+              py={2}
+              flexDirection={{ xs: 'column', md: 'row' }}
+              alignItems="center"
+              alignSelf="center"
+            >
+              <Typography variant="body1" mb={{ xs: 1, md: 0 }} alignSelf={{ xs: 'start', md: 'center' }} width={100}>
+                <Trans>Tenant Id</Trans>:
+              </Typography>
+              <TenantId />
+            </Box>
+          </div>
+        </AccordionDetails>
+      </Accordion>
     </>
   )
 }

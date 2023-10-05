@@ -24,11 +24,19 @@ export const ExternalId = () => {
   }
   return (
     <>
-      <Box display="inline-flex" ml={2} bgcolor="grey.300" alignItems="center">
+      <Box
+        display="inline-flex"
+        bgcolor="grey.300"
+        alignItems="center"
+        ml={{ xs: 0, md: 2 }}
+        mb={{ xs: 1, md: 0 }}
+        width={{ xs: 294, md: 400 }}
+      >
         <Typography
           variant="h6"
           fontFamily="Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New"
-          p={2}
+          p={{ xs: 1, md: 2 }}
+          fontSize={{ xs: 12, md: 'initial' }}
         >
           {showExternalId ? ExternalIdData : '********-****-****-****-************'}
         </Typography>
@@ -36,7 +44,7 @@ export const ExternalId = () => {
           <IconButton onClick={handleToggleShowExternalId}>{showExternalId ? <VisibilityIcon /> : <VisibilityOffIcon />}</IconButton>
         </Box>
       </Box>
-      <Box ml={2}>
+      <Box ml={2} alignSelf={{ xs: 'end', md: 'center' }}>
         <Button variant="contained" startIcon={<CopyAllIcon />} onClick={handleCopy}>
           <Trans>Copy</Trans>
         </Button>
