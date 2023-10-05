@@ -6,6 +6,7 @@ import { ErrorBoundary } from 'react-error-boundary'
 import { ErrorBoundaryFallback } from 'src/shared/error-boundary-fallback'
 import { ExternalId } from './ExternalId'
 import { SetupCloudButton } from './SetupCloudButton'
+import { TenantId } from './TenantId'
 
 export default function PanelSetupCloudPage() {
   const { instructions, mainPragraph } = useMemo(
@@ -51,7 +52,7 @@ export default function PanelSetupCloudPage() {
               </Box>
             }
           >
-            <ExternalId />
+            <TenantId />
           </Suspense>
         </ErrorBoundary>
       </Box>
