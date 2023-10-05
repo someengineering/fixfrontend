@@ -5,13 +5,14 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import { Box, Button, IconButton, Typography } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
-import { getExternalIdQuery, getOrganizationQuery } from 'src/pages/panel/shared-queries'
+import { useUserProfile } from 'src/core/auth'
+import { getExternalIdQuery } from 'src/pages/panel/shared-queries'
 
 export const ExternalId = () => {
   const [showExternalId, setShowExternalId] = useState(false)
-  const { data: organizationData } = useQuery(['organization'], getOrganizationQuery)
-  const { data: ExternalIdData } = useQuery(['organization-external-id', organizationData?.[0].id], getExternalIdQuery, {
-    enabled: !!organizationData?.[0].id,
+  const { selectedOrganization } = useUserProfile()
+  const { data: ExternalIdData } = useQuery(['organization-external-id', selectedOrganization?.id], getExternalIdQuery, {
+    enabled: !!selectedOrganization?.id,
   })
   const handleCopy = () => {
     try {
