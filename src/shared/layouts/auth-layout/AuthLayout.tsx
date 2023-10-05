@@ -1,5 +1,6 @@
-import { alpha, CardContent, Container, Stack, styled } from '@mui/material'
+import { alpha, Box, CardContent, Container, Stack, styled } from '@mui/material'
 import { ComponentType, PropsWithChildren } from 'react'
+import { LanguageButton } from 'src/shared/language-button'
 import { groupChildrenByType } from 'src/shared/utils/groupChildrenByType'
 import { AuthHeader } from './AuthHeader'
 
@@ -57,6 +58,9 @@ export function AuthLayout({ children }: AuthLayoutProps) {
 
   return (
     <AuthWrapper>
+      <Box position="fixed" top={0} right={0} mr={2} mt={2}>
+        <LanguageButton />
+      </Box>
       <AuthCardStyle>
         <AuthHeader>{brandChild}</AuthHeader>
         <CardContent>{contentChild}</CardContent>

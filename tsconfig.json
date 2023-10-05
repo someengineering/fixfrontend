@@ -17,5 +17,5 @@
     "jsx": "react-jsx",
     "baseUrl": "."
   },
-  "include": ["src", "src/shared/types/global/*.d.ts"]
+  "include": ["src", "src/shared/types/global/*.d.ts", "src/locales/*/messages.d.ts"]
 }

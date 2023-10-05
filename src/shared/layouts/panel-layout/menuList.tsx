@@ -1,13 +1,13 @@
-import { t } from '@lingui/macro'
+import { Trans } from '@lingui/macro'
 import { SvgIconComponent } from '@mui/icons-material'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import InboxIcon from '@mui/icons-material/Inbox'
 import MailIcon from '@mui/icons-material/Mail'
 import SettingsIcon from '@mui/icons-material/Settings'
-import { ComponentType } from 'react'
+import { ComponentType, ReactNode } from 'react'
 
 export interface MenuListItem {
-  name: string
+  name: ReactNode
   route: string
   Icon: SvgIconComponent
 }
@@ -17,7 +17,7 @@ type DefaultMenuModalListItemProps = {
 }
 
 export interface MenuModalListItem<T extends DefaultMenuModalListItemProps = DefaultMenuModalListItemProps> {
-  name: string
+  name: ReactNode
   route: 'modal'
   props: Partial<T>
   Component: ComponentType<T>
@@ -26,7 +26,7 @@ export interface MenuModalListItem<T extends DefaultMenuModalListItemProps = Def
 
 export const menuList: MenuListItem[] = [
   {
-    name: t`Dashboard`,
+    name: <Trans>Dashboard</Trans>,
     route: '/',
     Icon: DashboardIcon,
   },
@@ -44,7 +44,7 @@ export const menuList: MenuListItem[] = [
 
 export const bottomMenuList = [
   {
-    name: t`Panel Setup`,
+    name: <Trans>Panel Setup</Trans>,
     route: '/setup-cloud',
     Icon: SettingsIcon,
   },

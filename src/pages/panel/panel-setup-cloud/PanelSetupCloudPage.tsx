@@ -25,7 +25,7 @@ export default function PanelSetupCloudPage() {
       </Typography>
       <Box display="flex" py={2} alignItems="center">
         <Typography variant="h5">
-          <Trans>External Id:</Trans>
+          <Trans>External Id</Trans>:
         </Typography>
         <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
           <Suspense
@@ -41,7 +41,7 @@ export default function PanelSetupCloudPage() {
       </Box>
       <Box display="flex" py={2} alignItems="center">
         <Typography variant="h5">
-          <Trans>Tenant Id:</Trans>
+          <Trans>Tenant Id</Trans>:
         </Typography>
         <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
           <Suspense

@@ -19,7 +19,7 @@ const DrawerMenuItem = ({ open, Icon, name, route }: DrawerMenuItemProps) => {
     navigate(route)
   }
   return (
-    <ListItem key={name} disablePadding sx={{ display: 'block' }}>
+    <ListItem disablePadding sx={{ display: 'block' }}>
       <ListItemButton
         selected={match != null}
         href={route}
@@ -57,7 +57,7 @@ const DrawerModalMenuItem = ({ open, Icon, name, Component, props }: DrawerModal
   }
   return (
     <>
-      <ListItem key={name} disablePadding sx={{ display: 'block' }}>
+      <ListItem disablePadding sx={{ display: 'block' }}>
         <ListItemButton
           sx={{
             height: panelUI.headerHeight,

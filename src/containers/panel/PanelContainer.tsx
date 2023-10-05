@@ -1,4 +1,5 @@
 import { Trans } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
 import { Typography } from '@mui/material'
 import { Suspense } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
@@ -9,6 +10,7 @@ import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
 import { PanelRoutes } from './PanelRoutes'
 
 export default function PanelContainer() {
+  useLingui()
   return (
     <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
       <Suspense fallback={<FullPageLoadingSuspenseFallback />}>

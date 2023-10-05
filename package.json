@@ -13,6 +13,7 @@
     "@mui/material": "^5.14.11",
     "@tanstack/react-query": "^4.35.7",
     "axios": "^1.5.1",
+    "flag-icons": "^6.11.1",
     "lorem-ipsum": "^2.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -106,7 +107,7 @@
     ]
   },
   "resolutions": {
-    "jackspeak": "2.1.1"
+    "jackspeak": "2.3.5"
   },
   "engines": {
     "node": "^18.17.1",
