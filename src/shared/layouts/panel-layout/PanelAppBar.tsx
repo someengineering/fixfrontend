@@ -1,10 +1,12 @@
 import { t } from '@lingui/macro'
 import MenuIcon from '@mui/icons-material/Menu'
-import { IconButton, AppBar as MuiAppBar, Toolbar, styled } from '@mui/material'
+import { Box, IconButton, AppBar as MuiAppBar, Toolbar, styled } from '@mui/material'
 import { PropsWithChildren, MouseEvent as ReactMouseEvent } from 'react'
 import { panelUI } from 'src/shared/constants'
+import { LanguageButton } from 'src/shared/language-button'
 import { shouldForwardProp } from 'src/shared/utils/shouldForwardProp'
 import { HideOnScroll } from './HideOnScroll'
+import { UserProfileButton } from './UserProfileButton'
 
 interface PanelAppBarProps extends PropsWithChildren {
   open: boolean
@@ -36,6 +38,26 @@ const MenuIconButton = styled(IconButton, { shouldForwardProp })<{ open: boolean
   display: isDesktop && open ? 'none' : 'flex',
 }))
 
+const AppBarLogo = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexShrink: 1,
+  flexGrow: 0,
+  [theme.breakpoints.down('md')]: {
+    flexGrow: 1,
+    justifyContent: 'center',
+  },
+}))
+
+const AppBarActions = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexShrink: 1,
+  flexGrow: 0,
+  [theme.breakpoints.up('md')]: {
+    flexGrow: 1,
+    justifyContent: 'end',
+  },
+}))
+
 export const PanelAppBar = ({ children, open, isDesktop, onDrawerOpen, onDrawerToggle }: PanelAppBarProps) => {
   const Content = (
     <AppBar position="fixed" open={open} isDesktop={isDesktop}>
@@ -50,7 +72,11 @@ export const PanelAppBar = ({ children, open, isDesktop, onDrawerOpen, onDrawerT
         >
           <MenuIcon />
         </MenuIconButton>
-        {children}
+        <AppBarLogo>{children}</AppBarLogo>
+        <AppBarActions>
+          <LanguageButton whiteMode />
+          <UserProfileButton />
+        </AppBarActions>
       </Toolbar>
     </AppBar>
   )

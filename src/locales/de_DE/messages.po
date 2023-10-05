@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/containers/panel/PanelContainer.tsx:24
+#: src/containers/panel/PanelContainer.tsx:26
 msgid "© 2023 Some Engineering Inc. All rights reserved."
 msgstr "© 2023 Some Engineering Services GMBH. Alle Rechte vorbehalten."
 
@@ -21,11 +21,16 @@ msgstr "© 2023 Some Engineering Services GMBH. Alle Rechte vorbehalten."
 msgid "Already have an account? Click here to Log in."
 msgstr "Sie haben bereits ein Konto? Klicken Sie hier, um sich einzuloggen."
 
-#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:24
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:45
+msgid "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
+msgstr "Wenn Sie den Stack alternativ manuell bereitstellen möchten, können Sie die folgende CloudFormation-Vorlage verwenden"
+
+#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:41
+#: src/pages/panel/panel-setup-cloud/TenantId.tsx:36
 msgid "Copy"
 msgstr "Kopieren"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:30
+#: src/shared/layouts/panel-layout/menuList.tsx:29
 msgid "Dashboard"
 msgstr "Armaturenbrett"
 
@@ -33,19 +38,22 @@ msgstr "Armaturenbrett"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloud.tsx:32
-msgid "External Id:"
-msgstr "Externe ID:"
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:55
+msgid "External Id"
+msgstr "Externe ID"
 
 #: src/pages/auth/login/LoginPage.tsx:40
 #: src/pages/auth/register/RegisterPage.tsx:36
 msgid "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
 msgstr "Fix ist eine Open-Source-Wiz-Alternative für die Sicherheit von Cloud-Infrastrukturen. Übernehmen Sie die Kontrolle über Cloud-Risiken mit einem Bestandsverzeichnis, Compliance-Scans und Abhilfeworkflows."
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloud.tsx:61
-#: src/pages/panel/panel-setup-cloud/SetupCloudButton.tsx:13
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:28
 msgid "Go To Setup"
 msgstr "Gehen Sie zum Setup"
+
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:17
+msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
+msgstr "Im nächsten Schritt richten wir die Vertrauensstellung zwischen FIX und Ihrem AWS-Cloud-Konto ein."
 
 #: src/shared/loading/Loading.tsx:9
 msgid "Loading..."
@@ -60,16 +68,24 @@ msgstr "Anmeldung"
 msgid "Log In With {formattedName}"
 msgstr "Melden Sie sich mit {formattedName} an"
 
-#: src/shared/layouts/panel-layout/PanelAppBar.tsx:45
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:62
+msgid "Logout"
+msgstr "Ausloggen"
+
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:20
+msgid "Make sure that you are already logged into the correct AWS account, before pressing the SETUP button."
+msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS-Konto angemeldet sind, bevor Sie auf die Schaltfläche SETUP klicken."
+
+#: src/shared/layouts/panel-layout/PanelAppBar.tsx:67
 msgid "Open drawer"
-msgstr "Offene Schublade"
+msgstr "Öffene die Schublade"
 
 #: src/pages/auth/login/LoginPage.tsx:88
 #: src/pages/auth/register/RegisterPage.tsx:84
 msgid "Or"
 msgstr "Oder"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:48
+#: src/shared/layouts/panel-layout/menuList.tsx:47
 msgid "Panel Setup"
 msgstr "Panel Setup"
 
@@ -78,11 +94,15 @@ msgstr "Panel Setup"
 msgid "Password"
 msgstr "Passwort"
 
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:29
+msgid "Profile"
+msgstr "Profil"
+
 #: src/pages/auth/register/RegisterPage.tsx:55
 msgid "Register"
 msgstr "Registrieren"
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloud.tsx:25
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:14
 msgid "Setup cloud"
 msgstr "Cloud einrichten"
 
@@ -98,6 +118,18 @@ msgstr "Melden Sie sich bei {formattedName} an"
 #: src/pages/auth/register/RegisterPage.tsx:33
 msgid "Simple and affordable visibility into your cloud security posture."
 msgstr "Einfacher und erschwinglicher Einblick in die Sicherheitslage Ihrer Cloud."
+
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:71
+msgid "Tenant Id"
+msgstr "Tenant ID"
+
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:51
+msgid "The Stack requires the following parameters"
+msgstr "Der Stack erfordert die folgenden Parameter"
+
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:38
+msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to access your AWS account."
+msgstr "Dadurch wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM-Rolle in Ihrem AWS-Konto erstellt. Diese Rolle wird von FIX verwendet, um auf Ihr AWS-Konto zuzugreifen."
 
 #: src/pages/auth/login/LoginPage.tsx:63
 #: src/pages/auth/register/RegisterPage.tsx:59

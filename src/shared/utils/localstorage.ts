@@ -22,6 +22,10 @@ export const getAuthData = () => getStorageObject<UserContextRealValues>(Storage
 
 export const setAuthData = (authData?: UserContextRealValues) => setStorageObject(StorageKeys.authData, authData)
 
+export const getLocale = () => getStorageObject<string>(StorageKeys.locale)
+
+export const setLocale = (locale?: string) => setStorageObject(StorageKeys.locale, locale)
+
 export const getInitiated = () => getStorageObject<boolean>(StorageKeys.initiated)
 
 export const setInitiated = (initiated?: boolean) => setStorageObject(StorageKeys.initiated, initiated)

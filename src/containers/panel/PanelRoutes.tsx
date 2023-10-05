@@ -10,12 +10,21 @@ const HomePage = lazy(
     ),
 )
 
+const PanelSetupCloudPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "PanelSetupCloud" */
+      'src/pages/panel/panel-setup-cloud/PanelSetupCloudPage'
+    ),
+)
+
 export function PanelRoutes() {
   return (
     <Routes>
       <Route element={<RequireAuth />}>
         <Route path="/">
           <Route index element={<HomePage />} />
+          <Route path="setup-cloud" element={<PanelSetupCloudPage />} />
         </Route>
       </Route>
       <Route path="*" element={<Navigate to="/" />} />

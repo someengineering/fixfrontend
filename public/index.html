@@ -121,36 +121,36 @@
           </svg>
         </div>
       </div>
+      <script>
+        particlesJS('particles', {
+          particles: {
+            number: {
+              value: 350,
+              density: { enable: true, value_area: 1920 },
+            },
+            color: { value: '#ffffff' },
+            opacity: { value: 1 },
+            size: { value: 1, random: true },
+            line_linked: { enable: true, distance: 100, color: '#ffffff', opacity: 0.5, width: 1 },
+            move: {
+              enable: true,
+              speed: 0.5,
+              direction: 'left',
+              random: true,
+              out_mode: 'out',
+            },
+          },
+          interactivity: {
+            detect_on: 'window',
+            events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' }, resize: true },
+            modes: {
+              grab: { distance: 210, line_linked: { opacity: 0.5 } },
+              push: { particles_nb: 1 },
+            },
+          },
+        })
+      </script>
     </div>
-    <script>
-      particlesJS('particles', {
-        particles: {
-          number: {
-            value: 350,
-            density: { enable: true, value_area: 1920 },
-          },
-          color: { value: '#ffffff' },
-          opacity: { value: 1 },
-          size: { value: 1, random: true },
-          line_linked: { enable: true, distance: 100, color: '#ffffff', opacity: 0.5, width: 1 },
-          move: {
-            enable: true,
-            speed: 0.5,
-            direction: 'left',
-            random: true,
-            out_mode: 'out',
-          },
-        },
-        interactivity: {
-          detect_on: 'window',
-          events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' }, resize: true },
-          modes: {
-            grab: { distance: 210, line_linked: { opacity: 0.5 } },
-            push: { particles_nb: 1 },
-          },
-        },
-      })
-    </script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
