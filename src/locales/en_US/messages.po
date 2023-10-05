@@ -82,6 +82,10 @@ msgstr "Panel Setup"
 msgid "Password"
 msgstr "Password"
 
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:29
+msgid "Profile"
+msgstr ""
+
 #: src/pages/auth/register/RegisterPage.tsx:55
 msgid "Register"
 msgstr "Register"
