@@ -4,7 +4,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Divider, Sk
 import { Suspense } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { ErrorBoundaryFallback } from 'src/shared/error-boundary-fallback'
-import { ExternalId } from './ExternalId'
+import { ExternalId, ExternalIdSkeleton } from './ExternalId'
 import { SetupCloudButton } from './SetupCloudButton'
 import { TenantId } from './TenantId'
 
@@ -78,13 +78,7 @@ export default function PanelSetupCloudPage() {
                 <Trans>External Id</Trans>:
               </Typography>
               <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-                <Suspense
-                  fallback={
-                    <Box ml={2}>
-                      <Skeleton variant="rectangular" width={376} height={52} />
-                    </Box>
-                  }
-                >
+                <Suspense fallback={<ExternalIdSkeleton />}>
                   <ExternalId />
                 </Suspense>
               </ErrorBoundary>
