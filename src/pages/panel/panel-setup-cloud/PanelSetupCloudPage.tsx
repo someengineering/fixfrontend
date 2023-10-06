@@ -37,8 +37,8 @@ export default function PanelSetupCloudPage() {
       </Box>
       <Typography variant="body1" my={1}>
         <Trans>
-          This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to access
-          your AWS account.
+          This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform
+          security scans in your AWS account.
         </Trans>
       </Typography>
       <Divider />

@@ -32,7 +32,7 @@ msgstr "Kopieren"
 
 #: src/shared/layouts/panel-layout/menuList.tsx:29
 msgid "Dashboard"
-msgstr "Armaturenbrett"
+msgstr "Dashboard"
 
 #: src/pages/auth/login/LoginPage.tsx:83
 msgid "Don't have an account? Click here to Sign up."
@@ -40,7 +40,7 @@ msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:70
 msgid "External Id"
-msgstr "Externe ID"
+msgstr "External Id"
 
 #: src/pages/auth/login/LoginPage.tsx:40
 #: src/pages/auth/register/RegisterPage.tsx:36
@@ -54,7 +54,7 @@ msgstr "Gehen Sie zum Setup"
 
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:18
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
-msgstr "Im nächsten Schritt richten wir die Vertrauensstellung zwischen FIX und Ihrem AWS-Cloud-Konto ein."
+msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS Konto ein."
 
 #: src/shared/loading/Loading.tsx:9
 msgid "Loading..."
@@ -75,7 +75,7 @@ msgstr "Ausloggen"
 
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:21
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the SETUP button."
-msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS-Konto angemeldet sind, bevor Sie auf die Schaltfläche SETUP klicken."
+msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS Konto angemeldet sind, bevor Sie auf die Schaltfläche SETUP klicken."
 
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:48
 msgid "Manual Setup"
@@ -116,8 +116,8 @@ msgid "Sign up"
 msgstr "Melden Sie sich an"
 
 #: src/shared/social-media-button/getNameFromOAuthType.ts:7
-msgid "Sign up With {formattedName}"
-msgstr "Melden Sie sich bei {formattedName} an"
+msgid "Sign up with {formattedName}"
+msgstr "Melden Sie sich mit {formattedName} an"
 
 #: src/pages/auth/login/LoginPage.tsx:37
 #: src/pages/auth/register/RegisterPage.tsx:33
@@ -126,17 +126,17 @@ msgstr "Einfacher und erschwinglicher Einblick in die Sicherheitslage Ihrer Clou
 
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:94
 msgid "Tenant Id"
-msgstr "Tenant ID"
+msgstr "Tenant Id"
 
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:59
 msgid "The Stack requires the following parameters"
 msgstr "Der Stack erfordert die folgenden Parameter"
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:39
-msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to access your AWS account."
-msgstr "Dadurch wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM-Rolle in Ihrem AWS-Konto erstellt. Diese Rolle wird von FIX verwendet, um auf Ihr AWS-Konto zuzugreifen."
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:38
+msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
+msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM Rolle in Ihrem AWS Konto erstellt. Diese Rolle wird von FIX verwendet, um in Ihrem AWS Konto Sicherheitsscans durchzuführen."
 
 #: src/pages/auth/login/LoginPage.tsx:63
 #: src/pages/auth/register/RegisterPage.tsx:59
 msgid "Username"
-msgstr "Nutzername"
+msgstr "Benutzername"
