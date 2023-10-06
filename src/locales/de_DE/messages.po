@@ -35,7 +35,7 @@ msgstr "In die Zwischenablage kopiert!"
 msgid "Copy"
 msgstr "Kopieren"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:29
+#: src/shared/layouts/panel-layout/menuList.tsx:27
 msgid "Dashboard"
 msgstr "Dashboard"
 
@@ -95,7 +95,7 @@ msgstr "Öffene die Schublade"
 msgid "Or"
 msgstr "Oder"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:47
+#: src/shared/layouts/panel-layout/menuList.tsx:35
 msgid "Panel Setup"
 msgstr "Panel Setup"
 
