@@ -3,6 +3,7 @@ import { Divider, DrawerProps, IconButton, Drawer as MuiDrawer, styled } from '@
 import { PropsWithChildren, MouseEvent as ReactMouseEvent } from 'react'
 import { panelUI } from 'src/shared/constants'
 import { drawerClosedMixin, drawerOpenedMixin } from 'src/shared/utils/mixins'
+import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
 import { DrawerMenu } from './DrawerMenu'
 
 interface PanelAppBarProps extends PropsWithChildren {
@@ -11,20 +12,23 @@ interface PanelAppBarProps extends PropsWithChildren {
   onDrawerClose: (event: ReactMouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
-const Drawer = styled(MuiDrawer)(({ theme, open }) => ({
-  width: panelUI.drawerWidth,
-  flexShrink: 0,
-  whiteSpace: 'nowrap',
-  boxSizing: 'border-box',
-  ...(open && {
-    ...drawerOpenedMixin(theme),
-    '& .MuiDrawer-paper': drawerOpenedMixin(theme),
+const Drawer = styled(MuiDrawer, { shouldForwardProp: shouldForwardPropWithBlackList(['isDesktop']) })<{ isDesktop: boolean }>(
+  ({ theme, open, isDesktop }) => ({
+    width: panelUI.drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+    boxSizing: 'border-box',
+    ...((open || !isDesktop) && {
+      ...drawerOpenedMixin(theme),
+      '& .MuiDrawer-paper': drawerOpenedMixin(theme),
+    }),
+    ...(!open &&
+      isDesktop && {
+        ...drawerClosedMixin(theme),
+        '& .MuiDrawer-paper': drawerClosedMixin(theme),
+      }),
   }),
-  ...(!open && {
-    ...drawerClosedMixin(theme),
-    '& .MuiDrawer-paper': drawerClosedMixin(theme),
-  }),
-}))
+)
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -35,7 +39,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
 }))
 
-const DrawerContent = ({ children, onDrawerClose, open }: Omit<PanelAppBarProps, 'isDesktop'>) => {
+const DrawerContent = ({ children, onDrawerClose, open, isDesktop }: PanelAppBarProps) => {
   return (
     <>
       <DrawerHeader>
@@ -45,7 +49,7 @@ const DrawerContent = ({ children, onDrawerClose, open }: Omit<PanelAppBarProps,
         </IconButton>
       </DrawerHeader>
       <Divider />
-      <DrawerMenu open={open} />
+      <DrawerMenu open={open || !isDesktop} />
     </>
   )
 }
@@ -62,8 +66,8 @@ export const PanelDrawer = ({ children, onDrawerClose, open, isDesktop }: PanelA
       }
   return (
     <>
-      <Drawer {...drawerProps} open={open}>
-        <DrawerContent onDrawerClose={onDrawerClose} open={open}>
+      <Drawer {...drawerProps} open={open} isDesktop={isDesktop}>
+        <DrawerContent onDrawerClose={onDrawerClose} open={open} isDesktop={isDesktop}>
           {children}
         </DrawerContent>
       </Drawer>
