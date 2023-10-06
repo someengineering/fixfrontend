@@ -1,17 +1,34 @@
 import { Trans } from '@lingui/macro'
 import CopyAllIcon from '@mui/icons-material/CopyAll'
-import { Box, Button, Typography } from '@mui/material'
+import { Alert, Box, Button, Snackbar, Typography } from '@mui/material'
+import { useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 
 export const TenantId = () => {
+  const [showSnackbar, setShowSnackbar] = useState(false)
   const { selectedOrganization } = useUserProfile()
   const handleCopy = () => {
     try {
-      navigator.clipboard.writeText(selectedOrganization?.id || '')
+      navigator.clipboard.writeText(selectedOrganization?.id || '').then(() => {
+        setShowSnackbar(true)
+      })
     } catch {}
+  }
+  const handleCloseSnackbar = () => {
+    setShowSnackbar(false)
   }
   return (
     <>
+      <Snackbar
+        open={showSnackbar}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
+          <Trans>Copied to Clipboard!</Trans>
+        </Alert>
+      </Snackbar>
       <Box
         display="inline-flex"
         bgcolor="grey.300"
