@@ -6,6 +6,7 @@ import { ErrorBoundary } from 'react-error-boundary'
 import { ErrorBoundaryFallback } from 'src/shared/error-boundary-fallback'
 import { ExternalId, ExternalIdSkeleton } from './ExternalId'
 import { SetupCloudButton } from './SetupCloudButton'
+import { SetupTemplateButton, SetupTemplateButtonSkeleton } from './SetupTemplateButton'
 import { TenantId } from './TenantId'
 
 export default function PanelSetupCloudPage() {
@@ -52,17 +53,11 @@ export default function PanelSetupCloudPage() {
           <Typography variant="subtitle2" mt={1}>
             <Trans>Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template</Trans>:
           </Typography>
-          <Button
-            href="https://fixpublic.s3.amazonaws.com/aws/fix-role-dev-eu.yaml"
-            target="_blank"
-            variant="text"
-            sx={{ maxWidth: '100%', px: 0 }}
-          >
-            {/* TODO: fix this by getting it from somewhere instead of hard coding it */}
-            <Typography variant="subtitle2" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
-              https://fixpublic.s3.amazonaws.com/aws/fix-role-dev-eu.yaml
-            </Typography>
-          </Button>
+          <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+            <Suspense fallback={<SetupTemplateButtonSkeleton />}>
+              <SetupTemplateButton />
+            </Suspense>
+          </ErrorBoundary>
           <Typography variant="body1" mt={1}>
             <Trans>The Stack requires the following parameters</Trans>:
           </Typography>
