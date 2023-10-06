@@ -9,7 +9,9 @@ export default function HomePage() {
       <Button onClick={logout} size="large" variant="contained">
         Logout
       </Button>
-      <Stack component="pre">{JSON.stringify(organizations, null, '  ')}</Stack>
+      <Stack component="pre" overflow="auto">
+        {JSON.stringify(organizations, null, '  ')}
+      </Stack>
     </>
   )
 }

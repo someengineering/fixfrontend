@@ -8,6 +8,7 @@ export const endPoints = {
   organizations: {
     get: '/api/organizations/',
     cf_url: (organizationId: string) => `/api/organizations/${organizationId}/cf_url`,
+    cf_template: (organizationId: string) => `/api/organizations/${organizationId}/cf_template`,
     externalId: (organizationId: string) => `/api/organizations/${organizationId}/external_id`,
   },
 }

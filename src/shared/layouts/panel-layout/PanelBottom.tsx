@@ -1,15 +1,18 @@
-import { Box, styled } from '@mui/material'
+import { AppBar as MuiAppBar, styled } from '@mui/material'
 import { PropsWithChildren } from 'react'
 import { panelUI } from 'src/shared/constants'
-import { shouldForwardProp } from 'src/shared/utils/shouldForwardProp'
+import { shouldForwardPropWithWhiteList } from 'src/shared/utils/shouldForwardProp'
+import { HideOnScroll } from './HideOnScroll'
 
 interface PanelAppBarProps extends PropsWithChildren {
   open: boolean
   isDesktop: boolean
 }
 
-const BottomRegion = styled(Box, { shouldForwardProp })<{ open: boolean; isDesktop: boolean }>(({ theme, open, isDesktop }) => ({
-  position: 'fixed',
+const BottomRegion = styled(MuiAppBar<'footer'>, { shouldForwardProp: shouldForwardPropWithWhiteList(['component', 'position']) })<{
+  open: boolean
+  isDesktop: boolean
+}>(({ theme, open, isDesktop }) => ({
   display: 'flex',
   margin: '0 auto',
   textAlign: 'center',
@@ -18,6 +21,8 @@ const BottomRegion = styled(Box, { shouldForwardProp })<{ open: boolean; isDeskt
   padding: theme.spacing(2),
   width: isDesktop ? `calc(100% - ${theme.spacing(7)} - 1px)` : '100%',
   bottom: 0,
+  color: theme.palette.common.black,
+  top: 'auto',
   right: 0,
   height: panelUI.bottomCopyRightHeight + 'px',
   background: theme.palette.common.white,
@@ -37,9 +42,10 @@ const BottomRegion = styled(Box, { shouldForwardProp })<{ open: boolean; isDeskt
 }))
 
 export const PanelBottom = ({ children, isDesktop, open }: PanelAppBarProps) => {
-  return (
-    <BottomRegion isDesktop={isDesktop} open={open}>
+  const Content = (
+    <BottomRegion component="footer" isDesktop={isDesktop} open={open} position="fixed">
       {children}
     </BottomRegion>
   )
+  return isDesktop ? Content : <HideOnScroll direction="up">{Content}</HideOnScroll>
 }

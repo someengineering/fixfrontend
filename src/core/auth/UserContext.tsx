@@ -10,7 +10,7 @@ export type UserContextRealValues = {
 export interface UserContextValue extends Partial<UserContextRealValues> {
   setAuth: (value: UserContextRealValues, url?: string) => void
   logout: () => void
-  refreshOrganizations: () => Promise<GetOrganizationsResponse>
+  refreshOrganizations: () => Promise<GetOrganizationsResponse | undefined>
   selectOrganization: (id: string) => Promise<GetOrganizationResponse | undefined>
 }
 

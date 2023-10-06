@@ -50,10 +50,15 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
   }, [])
 
   const handleRefreshOrganizations = useCallback((instance?: AxiosInstance) => {
-    return getOrganizationMutation(instance ?? axiosWithAuth).then((data) => {
-      setAuth({ isAuthenticated: true, organizations: data, selectedOrganization: data[0] })
-      return data
-    })
+    return getOrganizationMutation(instance ?? axiosWithAuth)
+      .then((data) => {
+        setAuth({ isAuthenticated: true, organizations: data, selectedOrganization: data[0] })
+        return data
+      })
+      .catch(() => {
+        setAuth({ isAuthenticated: false, organizations: [] })
+        return undefined
+      })
   }, [])
 
   const handleSelectOrganizations = useCallback((id: string) => {
@@ -86,20 +91,15 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
         (response) => response,
         async (error: AxiosError & { config: { _retry: boolean } | undefined }) => {
           if (error?.response?.status === 403 || error?.response?.status === 401) {
-            setAuth(undefined)
-            throw new Error('Could not refresh token', {
-              cause: 'Could not refresh token',
-            })
-          } else if (error?.response?.status === 403 || error?.response?.status === 401) {
             setAuth({ isAuthenticated: false, organizations: [] })
           }
-          throw error
+          handleLogout()
         },
       )
       setAxiosWithAuth(instance)
       handleRefreshOrganizations(instance)
     }
-  }, [auth?.isAuthenticated, handleRefreshOrganizations])
+  }, [auth?.isAuthenticated, handleRefreshOrganizations, handleLogout])
 
   useEffect(() => {
     setAuthData(auth)

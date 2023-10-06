@@ -1,37 +1,52 @@
 import { Trans } from '@lingui/macro'
 import CopyAllIcon from '@mui/icons-material/CopyAll'
-import VisibilityIcon from '@mui/icons-material/Visibility'
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
-import { Box, Button, IconButton, Typography } from '@mui/material'
+import { Alert, Box, Button, Snackbar, Typography } from '@mui/material'
 import { useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 
 export const TenantId = () => {
-  const [showTenant, setShowTenant] = useState(false)
+  const [showSnackbar, setShowSnackbar] = useState(false)
   const { selectedOrganization } = useUserProfile()
   const handleCopy = () => {
     try {
-      navigator.clipboard.writeText(selectedOrganization?.id || '')
+      navigator.clipboard.writeText(selectedOrganization?.id || '').then(() => {
+        setShowSnackbar(true)
+      })
     } catch {}
   }
-  const handleToggleShowTenant = () => {
-    setShowTenant((prev) => !prev)
+  const handleCloseSnackbar = () => {
+    setShowSnackbar(false)
   }
   return (
     <>
-      <Box display="inline-flex" ml={2} bgcolor="grey.300" alignItems="center">
+      <Snackbar
+        open={showSnackbar}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
+          <Trans>Copied to Clipboard!</Trans>
+        </Alert>
+      </Snackbar>
+      <Box
+        display="inline-flex"
+        bgcolor="grey.300"
+        alignItems="center"
+        ml={{ xs: 0, md: 2 }}
+        mb={{ xs: 1, md: 0 }}
+        width={{ xs: 294, md: 400 }}
+      >
         <Typography
           variant="h6"
           fontFamily="Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New"
-          p={2}
+          p={{ xs: 1, md: 2 }}
+          fontSize={{ xs: 12, md: 'initial' }}
         >
-          {showTenant ? selectedOrganization?.id : '********-****-****-****-************'}
+          {selectedOrganization?.id}
         </Typography>
-        <Box>
-          <IconButton onClick={handleToggleShowTenant}>{showTenant ? <VisibilityIcon /> : <VisibilityOffIcon />}</IconButton>
-        </Box>
       </Box>
-      <Box ml={2}>
+      <Box ml={2} alignSelf={{ xs: 'end', md: 'center' }}>
         <Button variant="contained" startIcon={<CopyAllIcon />} onClick={handleCopy}>
           <Trans>Copy</Trans>
         </Button>

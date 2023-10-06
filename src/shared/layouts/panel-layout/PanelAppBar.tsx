@@ -16,7 +16,7 @@ interface PanelAppBarProps extends PropsWithChildren {
 }
 
 const AppBar = styled(MuiAppBar, { shouldForwardProp })<{ open: boolean; isDesktop: boolean }>(({ theme, open, isDesktop }) => ({
-  zIndex: open ? theme.zIndex.appBar : theme.zIndex.drawer + 1,
+  zIndex: open || !isDesktop ? theme.zIndex.appBar : theme.zIndex.drawer + 1,
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,

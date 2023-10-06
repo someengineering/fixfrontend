@@ -3,12 +3,13 @@ import { ReactElement } from 'react'
 
 interface HideOnScrollProps {
   children: ReactElement
+  direction?: 'down' | 'up'
 }
-export const HideOnScroll = ({ children }: HideOnScrollProps) => {
+export const HideOnScroll = ({ children, direction }: HideOnScrollProps) => {
   const trigger = useScrollTrigger()
 
   return (
-    <Slide appear={false} direction="down" in={!trigger}>
+    <Slide appear={false} direction={direction || 'down'} in={!trigger}>
       {children}
     </Slide>
   )
