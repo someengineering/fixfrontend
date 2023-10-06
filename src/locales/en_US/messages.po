@@ -65,8 +65,8 @@ msgid "Log in"
 msgstr "Log in"
 
 #: src/shared/social-media-button/getNameFromOAuthType.ts:7
-msgid "Log In With {formattedName}"
-msgstr "Log In With {formattedName}"
+msgid "Log in with {formattedName}"
+msgstr "Log in with {formattedName}"
 
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:62
 msgid "Logout"
@@ -128,8 +128,8 @@ msgid "The Stack requires the following parameters"
 msgstr "The Stack requires the following parameters"
 
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:38
-msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to access your AWS account."
-msgstr "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to access your AWS account."
+msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
+msgstr "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 
 #: src/pages/auth/login/LoginPage.tsx:63
 #: src/pages/auth/register/RegisterPage.tsx:59
