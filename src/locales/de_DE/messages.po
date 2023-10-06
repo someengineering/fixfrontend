@@ -38,7 +38,7 @@ msgstr "Dashboard"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:70
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:78
 msgid "External Id"
 msgstr "External Id"
 
@@ -66,7 +66,7 @@ msgid "Log in"
 msgstr "Anmeldung"
 
 #: src/shared/social-media-button/getNameFromOAuthType.ts:7
-msgid "Log In With {formattedName}"
+msgid "Log in with {formattedName}"
 msgstr "Melden Sie sich mit {formattedName} an"
 
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:62
@@ -124,15 +124,15 @@ msgstr "Melden Sie sich mit {formattedName} an"
 msgid "Simple and affordable visibility into your cloud security posture."
 msgstr "Einfacher und erschwinglicher Einblick in die Sicherheitslage Ihrer Cloud."
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:94
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:102
 msgid "Tenant Id"
 msgstr "Tenant Id"
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:59
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:67
 msgid "The Stack requires the following parameters"
 msgstr "Der Stack erfordert die folgenden Parameter"
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:38
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:39
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM Rolle in Ihrem AWS Konto erstellt. Diese Rolle wird von FIX verwendet, um in Ihrem AWS Konto Sicherheitsscans durchzuführen."
 
