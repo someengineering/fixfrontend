@@ -23,7 +23,7 @@ msgstr "Sie haben bereits ein Konto? Klicken Sie hier, um sich einzuloggen."
 
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:53
 msgid "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
-msgstr "Wenn Sie den Stack alternativ manuell bereitstellen möchten, können Sie die folgende CloudFormation-Vorlage verwenden"
+msgstr "Wenn Sie den Stack alternativ manuell bereitstellen möchten, können Sie folgendes CloudFormation-Template verwenden"
 
 #: src/pages/panel/panel-setup-cloud/ExternalId.tsx:49
 #: src/pages/panel/panel-setup-cloud/TenantId.tsx:34
@@ -45,7 +45,7 @@ msgstr "External Id"
 #: src/pages/auth/login/LoginPage.tsx:40
 #: src/pages/auth/register/RegisterPage.tsx:36
 msgid "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
-msgstr "Fix ist eine Open-Source-Wiz-Alternative für die Sicherheit von Cloud-Infrastrukturen. Übernehmen Sie die Kontrolle über Cloud-Risiken mit einem Bestandsverzeichnis, Compliance-Scans und Abhilfeworkflows."
+msgstr "Fix ist eine Open-Source Wiz Alternative für die Sicherheit Ihrer Cloud Infrastruktur. Übernehmen Sie die Kontrolle über Cloud-Risiken mit einem Cloud-Asset-Inventar, Compliance-Scans und Workflows."
 
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:29
 #: src/pages/panel/panel-setup-cloud/SetupCloudButton.tsx:14
