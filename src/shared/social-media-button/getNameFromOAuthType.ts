@@ -4,5 +4,5 @@ import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 
 export const getNameFromOAuthType = (name: OAuthProviderNames, isSignup?: boolean) => {
   const formattedName = snakeCaseToUFStr(name)
-  return isSignup ? t`Sign up With ${formattedName}` : t`Log In With ${formattedName}`
+  return isSignup ? t`Sign up with ${formattedName}` : t`Log in with ${formattedName}`
 }
