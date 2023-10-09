@@ -3,9 +3,8 @@ import SendIcon from '@mui/icons-material/Send'
 import { LoadingButton } from '@mui/lab'
 import { Divider, Grid, styled, TextField, Typography } from '@mui/material'
 import { FormEvent, Suspense, useState } from 'react'
-import { ErrorBoundary } from 'react-error-boundary'
 import { Link } from 'react-router-dom'
-import { ErrorBoundaryFallback } from 'src/shared/error-boundary-fallback'
+import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { LoginSocialMedia } from 'src/shared/login-social-media'
 import { SocialMediaButtonSkeleton } from 'src/shared/social-media-button/SocialMediaButton.skeleton'
 
@@ -84,7 +83,7 @@ export default function RegisterPage() {
             <Trans>Or</Trans>
           </Divider>
         </Grid>
-        <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+        <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
           <Suspense
             fallback={new Array(REGISTER_SUSPENSE_NUMBER_OF_SOCIAL_MEDIA_BUTTON).fill('').map((_, i) => (
               <Grid item key={i}>
@@ -94,7 +93,7 @@ export default function RegisterPage() {
           >
             <LoginSocialMedia isLoading={isLoading} onClick={handleClickHref} />
           </Suspense>
-        </ErrorBoundary>
+        </NetworkErrorBoundary>
       </Grid>
     </>
   )

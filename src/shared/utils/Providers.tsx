@@ -3,12 +3,11 @@ import { I18nProvider, useLingui } from '@lingui/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { PropsWithChildren, useEffect } from 'react'
-import { ErrorBoundary } from 'react-error-boundary'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthGuard } from 'src/core/auth'
 import { Theme } from 'src/core/theme'
 import { env, langs } from 'src/shared/constants'
-import { ErrorBoundaryFallback } from 'src/shared/error-boundary-fallback'
+import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { FullPageLoadingProvider } from 'src/shared/loading'
 import { getLocale, setLocale } from './localstorage'
 
@@ -50,7 +49,7 @@ export const Providers = ({ children }: PropsWithChildren) => {
     <Theme>
       <I18nProvider i18n={i18n}>
         <InnerI18nProvider>
-          <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+          <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
             <FullPageLoadingProvider>
               <QueryClientProvider client={queryClient}>
                 <BrowserRouter>
@@ -58,7 +57,7 @@ export const Providers = ({ children }: PropsWithChildren) => {
                 </BrowserRouter>
               </QueryClientProvider>
             </FullPageLoadingProvider>
-          </ErrorBoundary>
+          </NetworkErrorBoundary>
         </InnerI18nProvider>
       </I18nProvider>
     </Theme>
