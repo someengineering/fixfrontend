@@ -17,7 +17,7 @@ const queryClient = new QueryClient({
       suspense: true,
       useErrorBoundary: true,
       retry: (failureCount, error) => {
-        if (((error as AxiosError)?.status ?? 500) / 100 < 5) {
+        if ((((error as AxiosError)?.response?.status || (error as AxiosError)?.status) ?? 500) / 100 < 5) {
           return false
         }
         return failureCount < env.retryCount
