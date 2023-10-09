@@ -6,20 +6,24 @@ import { ErrorBoundary } from 'react-error-boundary'
 import { FixLogo } from 'src/assets/icons'
 import { ErrorBoundaryFallback } from 'src/shared/error-boundary-fallback'
 import { BottomRegion, ContentRegion, LogoRegion, PanelLayout } from 'src/shared/layouts/panel-layout'
-import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
+import { FullPageLoadingSuspenseFallback, LoadingSuspenseFallback } from 'src/shared/loading'
 import { PanelRoutes } from './PanelRoutes'
 
 export default function PanelContainer() {
   useLingui()
   return (
     <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-      <Suspense fallback={<FullPageLoadingSuspenseFallback />}>
+      <Suspense fallback={<FullPageLoadingSuspenseFallback forceFullpage />}>
         <PanelLayout>
           <LogoRegion>
             <FixLogo width={46} height={46} />
           </LogoRegion>
           <ContentRegion>
-            <PanelRoutes />
+            <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+              <Suspense fallback={<LoadingSuspenseFallback />}>
+                <PanelRoutes />
+              </Suspense>
+            </ErrorBoundary>
           </ContentRegion>
           <BottomRegion>
             <Typography variant="subtitle2">

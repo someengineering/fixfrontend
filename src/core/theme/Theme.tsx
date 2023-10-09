@@ -65,12 +65,21 @@ export function Theme({ children }: ThemeProps) {
     palette,
     typography,
     spacing: 8,
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          'body, html, body > #root': {
+            minHeight: '100vh',
+          },
+        },
+      },
+    },
   })
 
   return (
     <ThemeProvider theme={responsiveFontSizes(theme)}>
       <CssBaseline enableColorScheme />
-      <Box maxHeight="100%">{children}</Box>
+      <Box height="100vh">{children}</Box>
     </ThemeProvider>
   )
 }
