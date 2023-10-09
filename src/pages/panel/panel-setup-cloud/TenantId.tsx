@@ -35,12 +35,13 @@ export const TenantId = () => {
         alignItems="center"
         ml={{ xs: 0, md: 2 }}
         mb={{ xs: 1, md: 0 }}
-        width={{ xs: 294, md: 400 }}
+        width={{ xs: 300, md: 430 }}
       >
         <Typography
           variant="h6"
           fontFamily="Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New"
           p={{ xs: 1, md: 2 }}
+          whiteSpace="nowrap"
           fontSize={{ xs: 12, md: 'initial' }}
         >
           {selectedOrganization?.id}

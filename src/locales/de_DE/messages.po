@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/containers/panel/PanelContainer.tsx:26
+#: src/containers/panel/PanelContainer.tsx:30
 msgid "© 2023 Some Engineering Inc. All rights reserved."
 msgstr "© 2023 Some Engineering Services GMBH. Alle Rechte vorbehalten."
 
@@ -25,19 +25,32 @@ msgstr "Sie haben bereits ein Konto? Klicken Sie hier, um sich einzuloggen."
 msgid "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
 msgstr "Wenn Sie den Stack alternativ manuell bereitstellen möchten, können Sie folgendes CloudFormation-Template verwenden"
 
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:49
+msgid "Alternatively: Manual Cloud Setup"
+msgstr "Alternativ: Manuelles Cloud Setup"
+
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:16
+msgid "Automatic Cloud Setup"
+msgstr "Automatisches Cloud Setup"
+
 #: src/pages/panel/panel-setup-cloud/ExternalId.tsx:48
 #: src/pages/panel/panel-setup-cloud/TenantId.tsx:29
 msgid "Copied to Clipboard!"
 msgstr "In die Zwischenablage kopiert!"
 
-#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:73
-#: src/pages/panel/panel-setup-cloud/TenantId.tsx:51
+#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:75
+#: src/pages/panel/panel-setup-cloud/TenantId.tsx:52
 msgid "Copy"
 msgstr "Kopieren"
 
 #: src/shared/layouts/panel-layout/menuList.tsx:27
 msgid "Dashboard"
 msgstr "Dashboard"
+
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:30
+#: src/pages/panel/panel-setup-cloud/SetupCloudButton.tsx:14
+msgid "Deploy Stack"
+msgstr "Deploy Stack"
 
 #: src/pages/auth/login/LoginPage.tsx:83
 msgid "Don't have an account? Click here to Sign up."
@@ -52,18 +65,9 @@ msgstr "External Id"
 msgid "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
 msgstr "Fix ist eine Open-Source Wiz Alternative für die Sicherheit Ihrer Cloud Infrastruktur. Übernehmen Sie die Kontrolle über Cloud-Risiken mit einem Cloud-Asset-Inventar, Compliance-Scans und Workflows."
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:30
-#: src/pages/panel/panel-setup-cloud/SetupCloudButton.tsx:14
-msgid "Go To Setup"
-msgstr "Gehen Sie zum Setup"
-
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:19
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS Konto ein."
-
-#: src/shared/loading/Loading.tsx:9
-msgid "Loading..."
-msgstr "Wird geladen..."
 
 #: src/pages/auth/login/LoginPage.tsx:59
 #: src/pages/auth/login/LoginPage.tsx:78
@@ -81,10 +85,6 @@ msgstr "Ausloggen"
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:22
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the SETUP button."
 msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS Konto angemeldet sind, bevor Sie auf die Schaltfläche SETUP klicken."
-
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:49
-msgid "Manual Setup"
-msgstr "Manuelle Einrichtung"
 
 #: src/shared/layouts/panel-layout/PanelAppBar.tsx:67
 msgid "Open drawer"
@@ -111,10 +111,6 @@ msgstr "Profil"
 #: src/pages/auth/register/RegisterPage.tsx:55
 msgid "Register"
 msgstr "Registrieren"
-
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:16
-msgid "Setup cloud"
-msgstr "Cloud einrichten"
 
 #: src/pages/auth/register/RegisterPage.tsx:74
 msgid "Sign up"

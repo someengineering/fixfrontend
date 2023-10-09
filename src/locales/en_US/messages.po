@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/containers/panel/PanelContainer.tsx:26
+#: src/containers/panel/PanelContainer.tsx:30
 msgid "© 2023 Some Engineering Inc. All rights reserved."
 msgstr "© 2023 Some Engineering Inc. All rights reserved."
 
@@ -25,19 +25,32 @@ msgstr "Already have an account? Click here to Log in."
 msgid "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
 msgstr "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
 
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:49
+msgid "Alternatively: Manual Cloud Setup"
+msgstr "Alternatively: Manual Cloud Setup"
+
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:16
+msgid "Automatic Cloud Setup"
+msgstr "Automatic Cloud Setup"
+
 #: src/pages/panel/panel-setup-cloud/ExternalId.tsx:48
 #: src/pages/panel/panel-setup-cloud/TenantId.tsx:29
 msgid "Copied to Clipboard!"
 msgstr "Copied to Clipboard!"
 
-#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:73
-#: src/pages/panel/panel-setup-cloud/TenantId.tsx:51
+#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:75
+#: src/pages/panel/panel-setup-cloud/TenantId.tsx:52
 msgid "Copy"
 msgstr "Copy"
 
 #: src/shared/layouts/panel-layout/menuList.tsx:27
 msgid "Dashboard"
 msgstr "Dashboard"
+
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:30
+#: src/pages/panel/panel-setup-cloud/SetupCloudButton.tsx:14
+msgid "Deploy Stack"
+msgstr "Deploy Stack"
 
 #: src/pages/auth/login/LoginPage.tsx:83
 msgid "Don't have an account? Click here to Sign up."
@@ -52,18 +65,9 @@ msgstr "External Id"
 msgid "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
 msgstr "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:30
-#: src/pages/panel/panel-setup-cloud/SetupCloudButton.tsx:14
-msgid "Go To Setup"
-msgstr "Go To Setup"
-
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:19
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "In the next step we are going to set up the trust between FIX and your AWS cloud account."
-
-#: src/shared/loading/Loading.tsx:9
-msgid "Loading..."
-msgstr "Loading..."
 
 #: src/pages/auth/login/LoginPage.tsx:59
 #: src/pages/auth/login/LoginPage.tsx:78
@@ -81,10 +85,6 @@ msgstr "Logout"
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:22
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the SETUP button."
 msgstr "Make sure that you are already logged into the correct AWS account, before pressing the SETUP button."
-
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:49
-msgid "Manual Setup"
-msgstr "Manual Setup"
 
 #: src/shared/layouts/panel-layout/PanelAppBar.tsx:67
 msgid "Open drawer"
@@ -111,10 +111,6 @@ msgstr "Profile"
 #: src/pages/auth/register/RegisterPage.tsx:55
 msgid "Register"
 msgstr "Register"
-
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:16
-msgid "Setup cloud"
-msgstr "Setup cloud"
 
 #: src/pages/auth/register/RegisterPage.tsx:74
 msgid "Sign up"

@@ -13,7 +13,7 @@ export default function PanelSetupCloudPage() {
   return (
     <>
       <Typography variant="h1" color="secondary" mb={2}>
-        <Trans>Setup cloud</Trans>
+        <Trans>Automatic Cloud Setup</Trans>
       </Typography>
       <Typography variant="h6">
         <Trans>In the next step we are going to set up the trust between FIX and your AWS cloud account.</Trans>
@@ -27,7 +27,7 @@ export default function PanelSetupCloudPage() {
             fallback={
               <Skeleton variant="rounded">
                 <Button>
-                  <Trans>Go To Setup</Trans>
+                  <Trans>Deploy Stack</Trans>
                 </Button>
               </Skeleton>
             }
@@ -46,7 +46,7 @@ export default function PanelSetupCloudPage() {
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="manual-setup-content" id="manual-setup-header">
           <Typography variant="h5">
-            <Trans>Manual Setup</Trans>
+            <Trans>Alternatively: Manual Cloud Setup</Trans>
           </Typography>
         </AccordionSummary>
         <AccordionDetails>

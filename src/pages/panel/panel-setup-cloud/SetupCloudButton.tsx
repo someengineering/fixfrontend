@@ -11,7 +11,7 @@ export const SetupCloudButton = () => {
   })
   return (
     <Button component="a" variant="contained" href={cloudSetupUrlData} target="_blank">
-      <Trans>Go To Setup</Trans>
+      <Trans>Deploy Stack</Trans>
     </Button>
   )
 }
