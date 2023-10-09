@@ -1,5 +1,6 @@
 export type { GetExternalIdResponse } from './GetExternalIdResponse'
 export type { GetWorkspaceCfTemplateResponse } from './GetWorkspaceCfTemplate'
 export type { GetWorkspaceCfUrlResponse } from './GetWorkspaceCfUrl'
+export type { GetWorkspaceInventoryReportSummaryResponse } from './GetWorkspaceInventoryReportSummary'
 export type { GetWorkspaceResponse, GetWorkspacesResponse } from './GetWorkspaces'
 export type { OAuthProviderNames, OAuthProviderResponse, OAuthProvidersResponse } from './OAuthProviders'

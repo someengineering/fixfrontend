@@ -7,8 +7,11 @@ export const endPoints = {
   },
   workspaces: {
     get: '/api/workspaces/',
-    cf_url: (workspaceId: string) => `/api/workspaces/${workspaceId}/cf_url`,
-    cf_template: (workspaceId: string) => `/api/workspaces/${workspaceId}/cf_template`,
+    cfUrl: (workspaceId: string) => `/api/workspaces/${workspaceId}/cf_url`,
+    cfTemplate: (workspaceId: string) => `/api/workspaces/${workspaceId}/cf_template`,
     externalId: (workspaceId: string) => `/api/workspaces/${workspaceId}/external_id`,
+    inventory: {
+      reportSummary: (workspaceId: string) => `/api/workspaces/${workspaceId}/inventory/report-summary`,
+    },
   },
 }

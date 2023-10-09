@@ -8,6 +8,6 @@ export const getWorkspaceCfTemplateQuery = ({
   queryKey: [_, workspaceId],
 }: QueryFunctionContext<['workspace-cf-template', string | undefined]>) => {
   return workspaceId
-    ? axiosWithAuth.get<GetWorkspaceCfTemplateResponse>(endPoints.workspaces.cf_template(workspaceId), { signal }).then((res) => res.data)
+    ? axiosWithAuth.get<GetWorkspaceCfTemplateResponse>(endPoints.workspaces.cfTemplate(workspaceId), { signal }).then((res) => res.data)
     : undefined
 }

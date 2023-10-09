@@ -8,6 +8,6 @@ export const getWorkspaceCfUrlQuery = ({
   queryKey: [_, workspaceId],
 }: QueryFunctionContext<['workspace-cf-url', string | undefined]>) => {
   return workspaceId
-    ? axiosWithAuth.get<GetWorkspaceCfUrlResponse>(endPoints.workspaces.cf_url(workspaceId), { signal }).then((res) => res.data)
+    ? axiosWithAuth.get<GetWorkspaceCfUrlResponse>(endPoints.workspaces.cfUrl(workspaceId), { signal }).then((res) => res.data)
     : undefined
 }
