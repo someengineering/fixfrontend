@@ -50,7 +50,6 @@ const VerticalCenteredBox = styled(FullPageLoadingContainer, { shouldForwardProp
 
 const FullPageLoadingContent = forwardRef<HTMLDivElement, FullPageLoadingContentProps>(
   ({ loadingState, transitionState, backgroundState }, ref) => {
-    console.log({ loadingState })
     const firstTimeLoad = useRef(loadingState === LoadingStateType.SHOW || loadingState === LoadingStateType.HALF_WIDTH)
     useEffect(() => {
       try {
@@ -62,7 +61,6 @@ const FullPageLoadingContent = forwardRef<HTMLDivElement, FullPageLoadingContent
             })
             window.pJSDom[0].pJS.fn.vendors.destroypJS()
             window.pJSDom = []
-            console.warn('removed particle')
           }
           if (window.pJSDom && !window.pJSDom.length) {
             window.particlesJS('particles', {
@@ -92,7 +90,6 @@ const FullPageLoadingContent = forwardRef<HTMLDivElement, FullPageLoadingContent
                 },
               },
             })
-            console.info('particle called')
           }
         } else if (backgroundState === 'exited' || transitionState === 'exited') {
           if (window.pJSDom && window.pJSDom.length > 0) {
@@ -102,20 +99,12 @@ const FullPageLoadingContent = forwardRef<HTMLDivElement, FullPageLoadingContent
             })
             window.pJSDom[0].pJS.fn.vendors.destroypJS()
             window.pJSDom = []
-            console.warn('removed particle')
           }
         }
       } catch (err) {
         console.error(err)
       }
       firstTimeLoad.current = false
-      console.log(backgroundState !== 'exited' && transitionState !== 'exited', {
-        firstTimeLoad: firstTimeLoad.current,
-        loadingState: LoadingStateType[loadingState],
-        backgroundState,
-        transitionState,
-        particle: window.document.getElementById('particles'),
-      })
     }, [loadingState, backgroundState, transitionState])
     return (
       <>
