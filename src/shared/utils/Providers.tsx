@@ -1,12 +1,13 @@
 import { i18n } from '@lingui/core'
 import { I18nProvider, useLingui } from '@lingui/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
 import { PropsWithChildren, useEffect } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthGuard } from 'src/core/auth'
 import { Theme } from 'src/core/theme'
-import { langs } from 'src/shared/constants'
+import { env, langs } from 'src/shared/constants'
 import { ErrorBoundaryFallback } from 'src/shared/error-boundary-fallback'
 import { FullPageLoadingProvider } from 'src/shared/loading'
 import { getLocale, setLocale } from './localstorage'
@@ -16,7 +17,12 @@ const queryClient = new QueryClient({
     queries: {
       suspense: true,
       useErrorBoundary: true,
-      retry: 5,
+      retry: (failureCount, error) => {
+        if (((error as AxiosError)?.status ?? 500) / 100 < 5) {
+          return false
+        }
+        return failureCount < env.retryCount
+      },
       staleTime: 1000 * 60 * 5,
       networkMode: 'offlineFirst',
     },
