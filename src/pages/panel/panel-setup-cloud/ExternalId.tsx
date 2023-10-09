@@ -19,9 +19,9 @@ export const ExternalIdSkeleton = () => {
 export const ExternalId = () => {
   const [showExternalId, setShowExternalId] = useState(false)
   const [showSnackbar, setShowSnackbar] = useState(false)
-  const { selectedOrganization } = useUserProfile()
-  const { data: ExternalIdData } = useQuery(['organization-external-id', selectedOrganization?.id], getExternalIdQuery, {
-    enabled: !!selectedOrganization?.id,
+  const { selectedWorkspace } = useUserProfile()
+  const { data: ExternalIdData } = useQuery(['workspace-external-id', selectedWorkspace?.id], getExternalIdQuery, {
+    enabled: !!selectedWorkspace?.id,
   })
   const handleCopy = () => {
     try {

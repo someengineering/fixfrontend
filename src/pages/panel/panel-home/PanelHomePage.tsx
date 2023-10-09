@@ -2,7 +2,7 @@ import { Button, Stack } from '@mui/material'
 import { useUserProfile } from 'src/core/auth'
 
 export default function HomePage() {
-  const { organizations } = useUserProfile()
+  const { workspaces } = useUserProfile()
   const { logout } = useUserProfile()
   return (
     <>
@@ -10,7 +10,7 @@ export default function HomePage() {
         Logout
       </Button>
       <Stack component="pre" overflow="auto">
-        {JSON.stringify(organizations, null, '  ')}
+        {JSON.stringify(workspaces, null, '  ')}
       </Stack>
     </>
   )

@@ -1,7 +1,7 @@
 import { Button, Skeleton, Typography } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { useUserProfile } from 'src/core/auth'
-import { getOrganizationCfTemplateQuery } from '../shared-queries/getOrganizationCfTemplate.query'
+import { getWorkspaceCfTemplateQuery } from '../shared-queries/getWorkspaceCfTemplate.query'
 
 export const SetupTemplateButtonComponent = ({ url, isSkleton }: { url?: string; isSkleton?: boolean }) => {
   return (
@@ -22,9 +22,9 @@ export const SetupTemplateButtonSkeleton = () => {
 }
 
 export const SetupTemplateButton = () => {
-  const { selectedOrganization } = useUserProfile()
-  const { data: cfTemplateUrl } = useQuery(['organization-cf-template', selectedOrganization?.id], getOrganizationCfTemplateQuery, {
-    enabled: !!selectedOrganization?.id,
+  const { selectedWorkspace } = useUserProfile()
+  const { data: cfTemplateUrl } = useQuery(['workspace-cf-template', selectedWorkspace?.id], getWorkspaceCfTemplateQuery, {
+    enabled: !!selectedWorkspace?.id,
   })
   return <SetupTemplateButtonComponent url={cfTemplateUrl} />
 }

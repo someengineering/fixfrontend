@@ -2,12 +2,12 @@ import axios, { AxiosError, AxiosInstance } from 'axios'
 import { PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react'
 import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { env } from 'src/shared/constants'
-import { GetOrganizationResponse } from 'src/shared/types/server'
+import { GetWorkspaceResponse } from 'src/shared/types/server'
 import { axiosWithAuth, setAxiosWithAuth } from 'src/shared/utils/axios'
 import { clearAllCookies, isAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData, setAuthData } from 'src/shared/utils/localstorage'
 import { UserContext, UserContextRealValues, useUserProfile } from './UserContext'
-import { getOrganizationMutation } from './getOrganization.mutation'
+import { getWorkspacesMutation } from './getWorkspaces.mutation'
 import { logoutMutation } from './logout.mutation'
 
 export interface RequireAuthProps {}
@@ -31,8 +31,8 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
   const [auth, setAuth] = useState<UserContextRealValues | undefined>({
     ...(getAuthData() || {}),
     isAuthenticated: isAuthenticated() as false,
-    organizations: [],
-    selectedOrganization: undefined,
+    workspaces: [],
+    selectedWorkspace: undefined,
   })
   const navigate = useNavigate()
   const nextUrl = useRef<string>()
@@ -45,32 +45,32 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
   const handleLogout = useCallback(() => {
     logoutMutation().finally(() => {
       clearAllCookies()
-      setAuth({ isAuthenticated: false, organizations: [], selectedOrganization: undefined })
+      setAuth({ isAuthenticated: false, workspaces: [], selectedWorkspace: undefined })
     })
   }, [])
 
-  const handleRefreshOrganizations = useCallback((instance?: AxiosInstance) => {
-    return getOrganizationMutation(instance ?? axiosWithAuth)
+  const handleRefreshWorkspaces = useCallback((instance?: AxiosInstance) => {
+    return getWorkspacesMutation(instance ?? axiosWithAuth)
       .then((data) => {
-        setAuth({ isAuthenticated: true, organizations: data, selectedOrganization: data[0] })
+        setAuth({ isAuthenticated: true, workspaces: data, selectedWorkspace: data[0] })
         return data
       })
       .catch(() => {
-        setAuth({ isAuthenticated: false, organizations: [] })
+        setAuth({ isAuthenticated: false, workspaces: [] })
         return undefined
       })
   }, [])
 
-  const handleSelectOrganizations = useCallback((id: string) => {
-    return new Promise<GetOrganizationResponse | undefined>((resolve) => {
+  const handleSelectWorkspaces = useCallback((id: string) => {
+    return new Promise<GetWorkspaceResponse | undefined>((resolve) => {
       setAuth((prev) => {
-        const foundOrganization = prev?.organizations.find((item) => item.id === id)
-        resolve(foundOrganization)
-        return foundOrganization
+        const foundWorkspace = prev?.workspaces.find((item) => item.id === id)
+        resolve(foundWorkspace)
+        return foundWorkspace
           ? {
-              isAuthenticated: prev?.isAuthenticated ?? foundOrganization ? true : false,
-              organizations: prev?.organizations ?? [],
-              selectedOrganization: foundOrganization,
+              isAuthenticated: prev?.isAuthenticated ?? foundWorkspace ? true : false,
+              workspaces: prev?.workspaces ?? [],
+              selectedWorkspace: foundWorkspace,
             }
           : prev
       })
@@ -91,15 +91,15 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
         (response) => response,
         async (error: AxiosError & { config: { _retry: boolean } | undefined }) => {
           if (error?.response?.status === 403 || error?.response?.status === 401) {
-            setAuth({ isAuthenticated: false, organizations: [] })
+            setAuth({ isAuthenticated: false, workspaces: [] })
           }
           handleLogout()
         },
       )
       setAxiosWithAuth(instance)
-      handleRefreshOrganizations(instance)
+      handleRefreshWorkspaces(instance)
     }
-  }, [auth?.isAuthenticated, handleRefreshOrganizations, handleLogout])
+  }, [auth?.isAuthenticated, handleRefreshWorkspaces, handleLogout])
 
   useEffect(() => {
     setAuthData(auth)
@@ -115,8 +115,8 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
         ...auth,
         setAuth: handleSetAuth,
         logout: handleLogout,
-        refreshOrganizations: handleRefreshOrganizations,
-        selectOrganization: handleSelectOrganizations,
+        refreshWorkspaces: handleRefreshWorkspaces,
+        selectWorkspace: handleSelectWorkspaces,
       }}
     >
       {children}

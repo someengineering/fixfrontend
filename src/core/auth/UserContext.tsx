@@ -1,17 +1,17 @@
 import { createContext, useContext } from 'react'
-import { GetOrganizationResponse, GetOrganizationsResponse } from 'src/shared/types/server'
+import { GetWorkspaceResponse, GetWorkspacesResponse } from 'src/shared/types/server'
 
 export type UserContextRealValues = {
   isAuthenticated: boolean
-  organizations: GetOrganizationsResponse | never[]
-  selectedOrganization?: GetOrganizationResponse
+  workspaces: GetWorkspacesResponse | never[]
+  selectedWorkspace?: GetWorkspaceResponse
 }
 
 export interface UserContextValue extends Partial<UserContextRealValues> {
   setAuth: (value: UserContextRealValues, url?: string) => void
   logout: () => void
-  refreshOrganizations: () => Promise<GetOrganizationsResponse | undefined>
-  selectOrganization: (id: string) => Promise<GetOrganizationResponse | undefined>
+  refreshWorkspaces: () => Promise<GetWorkspacesResponse | undefined>
+  selectWorkspace: (id: string) => Promise<GetWorkspaceResponse | undefined>
 }
 
 export const UserContext = createContext<UserContextValue | null>(null)

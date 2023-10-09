@@ -6,10 +6,10 @@ import { useUserProfile } from 'src/core/auth'
 
 export const TenantId = () => {
   const [showSnackbar, setShowSnackbar] = useState(false)
-  const { selectedOrganization } = useUserProfile()
+  const { selectedWorkspace } = useUserProfile()
   const handleCopy = () => {
     try {
-      navigator.clipboard.writeText(selectedOrganization?.id || '').then(() => {
+      navigator.clipboard.writeText(selectedWorkspace?.id || '').then(() => {
         setShowSnackbar(true)
       })
     } catch {}
@@ -44,7 +44,7 @@ export const TenantId = () => {
           whiteSpace="nowrap"
           fontSize={{ xs: 12, md: 'initial' }}
         >
-          {selectedOrganization?.id}
+          {selectedWorkspace?.id}
         </Typography>
       </Box>
       <Box ml={2} alignSelf={{ xs: 'end', md: 'center' }}>

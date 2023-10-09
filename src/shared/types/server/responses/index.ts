@@ -1,5 +1,5 @@
 export type { GetExternalIdResponse } from './GetExternalIdResponse'
-export type { GetOrganizationCfTemplateResponse } from './GetOrganizationCfTemplate'
-export type { GetOrganizationCfUrlResponse } from './GetOrganizationCfUrl'
-export type { GetOrganizationResponse, GetOrganizationsResponse } from './GetOrganizations'
+export type { GetWorkspaceCfTemplateResponse } from './GetWorkspaceCfTemplate'
+export type { GetWorkspaceCfUrlResponse } from './GetWorkspaceCfUrl'
+export type { GetWorkspaceResponse, GetWorkspacesResponse } from './GetWorkspaces'
 export type { OAuthProviderNames, OAuthProviderResponse, OAuthProvidersResponse } from './OAuthProviders'

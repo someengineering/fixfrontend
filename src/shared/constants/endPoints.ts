@@ -5,10 +5,10 @@ export const endPoints = {
     },
     oauthProviders: '/api/auth/oauth-providers',
   },
-  organizations: {
-    get: '/api/organizations/',
-    cf_url: (organizationId: string) => `/api/organizations/${organizationId}/cf_url`,
-    cf_template: (organizationId: string) => `/api/organizations/${organizationId}/cf_template`,
-    externalId: (organizationId: string) => `/api/organizations/${organizationId}/external_id`,
+  workspaces: {
+    get: '/api/workspaces/',
+    cf_url: (workspaceId: string) => `/api/workspaces/${workspaceId}/cf_url`,
+    cf_template: (workspaceId: string) => `/api/workspaces/${workspaceId}/cf_template`,
+    externalId: (workspaceId: string) => `/api/workspaces/${workspaceId}/external_id`,
   },
 }
