@@ -1,9 +1,8 @@
 import axios, { AxiosError, AxiosInstance } from 'axios'
 import { PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react'
 import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom'
-import { env } from 'src/shared/constants'
 import { GetWorkspaceResponse } from 'src/shared/types/server'
-import { axiosWithAuth, setAxiosWithAuth } from 'src/shared/utils/axios'
+import { axiosWithAuth, defaultAxiosConfig, setAxiosWithAuth } from 'src/shared/utils/axios'
 import { clearAllCookies, isAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData, setAuthData } from 'src/shared/utils/localstorage'
 import { UserContext, UserContextRealValues, useUserProfile } from './UserContext'
@@ -43,7 +42,7 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
   }, [])
 
   const handleLogout = useCallback(() => {
-    logoutMutation().finally(() => {
+    return logoutMutation().finally(() => {
       clearAllCookies()
       setAuth({ isAuthenticated: false, workspaces: [], selectedWorkspace: undefined })
     })
@@ -80,11 +79,7 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
   useEffect(() => {
     if (auth?.isAuthenticated) {
       const instance = axios.create({
-        baseURL: env.apiUrl,
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
+        ...defaultAxiosConfig,
         withCredentials: true,
       })
       instance.interceptors.response.use(
@@ -92,8 +87,9 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
         async (error: AxiosError & { config: { _retry: boolean } | undefined }) => {
           if (error?.response?.status === 403 || error?.response?.status === 401) {
             setAuth({ isAuthenticated: false, workspaces: [] })
+            handleLogout()
           }
-          handleLogout()
+          throw error
         },
       )
       setAxiosWithAuth(instance)
