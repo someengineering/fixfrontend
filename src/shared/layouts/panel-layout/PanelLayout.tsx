@@ -30,6 +30,7 @@ export type PanelLayoutProps = PropsWithChildren<Props>
 const Main = styled(Box)(({ theme }) => ({
   background: theme.palette.common.white,
   display: 'flex',
+  flexGrow: 1,
   height: '100%',
   width: '100%',
 }))

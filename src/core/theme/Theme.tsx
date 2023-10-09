@@ -1,4 +1,4 @@
-import { Box, createTheme, CssBaseline, PaletteOptions, responsiveFontSizes, ThemeOptions, ThemeProvider } from '@mui/material'
+import { createTheme, CssBaseline, PaletteOptions, responsiveFontSizes, ThemeOptions, ThemeProvider } from '@mui/material'
 import { PropsWithChildren } from 'react'
 
 import '@fontsource-variable/nunito-sans'
@@ -68,8 +68,15 @@ export function Theme({ children }: ThemeProps) {
     components: {
       MuiCssBaseline: {
         styleOverrides: {
-          'body, html, body > #root': {
+          'body > #root': {
+            display: 'flex',
+            flexDirection: 'column',
+            flexGrow: 1,
+            height: '100%',
             minHeight: '100vh',
+            width: '100%',
+            margin: 0,
+            padding: 0,
           },
         },
       },
@@ -79,7 +86,7 @@ export function Theme({ children }: ThemeProps) {
   return (
     <ThemeProvider theme={responsiveFontSizes(theme)}>
       <CssBaseline enableColorScheme />
-      <Box height="100vh">{children}</Box>
+      {children}
     </ThemeProvider>
   )
 }

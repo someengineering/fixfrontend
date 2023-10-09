@@ -7,7 +7,7 @@ interface LoadingProps {
 
 export const LoadingSuspenseFallback = ({ width }: LoadingProps) => {
   return (
-    <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%">
+    <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%" flexGrow={1}>
       <Spinner isLoading width={width} />
     </Box>
   )
