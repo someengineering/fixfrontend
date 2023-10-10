@@ -1,9 +1,10 @@
 import { createContext, useContext } from 'react'
-import { GetWorkspaceResponse, GetWorkspacesResponse } from 'src/shared/types/server'
+import { GetCurrentUserResponse, GetWorkspaceResponse, GetWorkspacesResponse } from 'src/shared/types/server'
 
 export type UserContextRealValues = {
   isAuthenticated: boolean
   workspaces: GetWorkspacesResponse | never[]
+  currentUser?: GetCurrentUserResponse
   selectedWorkspace?: GetWorkspaceResponse
 }
 

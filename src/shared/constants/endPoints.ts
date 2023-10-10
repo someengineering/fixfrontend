@@ -5,6 +5,9 @@ export const endPoints = {
     },
     oauthProviders: '/api/auth/oauth-providers',
   },
+  users: {
+    me: '/api/users/me',
+  },
   workspaces: {
     get: '/api/workspaces/',
     cfUrl: (workspaceId: string) => `/api/workspaces/${workspaceId}/cf_url`,

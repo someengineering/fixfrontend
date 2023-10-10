@@ -6,6 +6,7 @@ import { axiosWithAuth, defaultAxiosConfig, setAxiosWithAuth } from 'src/shared/
 import { clearAllCookies, isAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData, setAuthData } from 'src/shared/utils/localstorage'
 import { UserContext, UserContextRealValues, useUserProfile } from './UserContext'
+import { getCurrentUserMutation } from './getCurrentUser.mutation'
 import { getWorkspacesMutation } from './getWorkspaces.mutation'
 import { logoutMutation } from './logout.mutation'
 
@@ -26,36 +27,45 @@ export function RequireAuth() {
 
 export interface AuthGuardProps {}
 
+const defaultAuth = { isAuthenticated: false, workspaces: [], selectedWorkspace: undefined, currentUser: undefined }
+
 export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
-  const [auth, setAuth] = useState<UserContextRealValues | undefined>({
+  const [auth, setAuth] = useState<UserContextRealValues>({
+    ...defaultAuth,
     ...(getAuthData() || {}),
     isAuthenticated: isAuthenticated() as false,
-    workspaces: [],
-    selectedWorkspace: undefined,
   })
   const navigate = useNavigate()
   const nextUrl = useRef<string>()
 
   const handleSetAuth = useCallback((data: UserContextRealValues | undefined, url?: string) => {
-    setAuth(data)
+    if (!data) {
+      setAuth(defaultAuth)
+    } else {
+      setAuth(data)
+    }
     nextUrl.current = url
   }, [])
 
   const handleLogout = useCallback(() => {
     return logoutMutation().finally(() => {
       clearAllCookies()
-      setAuth({ isAuthenticated: false, workspaces: [], selectedWorkspace: undefined })
+      setAuth(defaultAuth)
     })
   }, [])
 
   const handleRefreshWorkspaces = useCallback((instance?: AxiosInstance) => {
     return getWorkspacesMutation(instance ?? axiosWithAuth)
-      .then((data) => {
-        setAuth({ isAuthenticated: true, workspaces: data, selectedWorkspace: data[0] })
-        return data
+      .then((workspaces) => {
+        setAuth((prev) => ({
+          ...prev,
+          workspaces,
+          selectedWorkspace: workspaces.find((workspace) => workspace.id === prev.selectedWorkspace?.id) ?? workspaces[0],
+        }))
+        return workspaces
       })
       .catch(() => {
-        setAuth({ isAuthenticated: false, workspaces: [] })
+        setAuth(defaultAuth)
         return undefined
       })
   }, [])
@@ -63,12 +73,11 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
   const handleSelectWorkspaces = useCallback((id: string) => {
     return new Promise<GetWorkspaceResponse | undefined>((resolve) => {
       setAuth((prev) => {
-        const foundWorkspace = prev?.workspaces.find((item) => item.id === id)
+        const foundWorkspace = prev.workspaces.find((item) => item.id === id)
         resolve(foundWorkspace)
         return foundWorkspace
           ? {
-              isAuthenticated: prev?.isAuthenticated ?? foundWorkspace ? true : false,
-              workspaces: prev?.workspaces ?? [],
+              ...prev,
               selectedWorkspace: foundWorkspace,
             }
           : prev
@@ -86,7 +95,6 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
         (response) => response,
         async (error: AxiosError & { config: { _retry: boolean } | undefined }) => {
           if (error?.response?.status === 403 || error?.response?.status === 401) {
-            setAuth({ isAuthenticated: false, workspaces: [] })
             handleLogout()
           }
           throw error
@@ -94,6 +102,9 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
       )
       setAxiosWithAuth(instance)
       handleRefreshWorkspaces(instance)
+      getCurrentUserMutation(instance).then((currentUser) => {
+        setAuth((prev) => ({ ...prev, currentUser }))
+      })
     }
   }, [auth?.isAuthenticated, handleRefreshWorkspaces, handleLogout])
 

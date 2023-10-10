@@ -1,3 +1,4 @@
+export type { GetCurrentUserResponse } from './GetCurrentUser'
 export type { GetExternalIdResponse } from './GetExternalIdResponse'
 export type { GetWorkspaceCfTemplateResponse } from './GetWorkspaceCfTemplate'
 export type { GetWorkspaceCfUrlResponse } from './GetWorkspaceCfUrl'
