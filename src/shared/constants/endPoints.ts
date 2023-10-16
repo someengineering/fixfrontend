@@ -16,5 +16,6 @@ export const endPoints = {
     inventory: {
       reportSummary: (workspaceId: string) => `/api/workspaces/${workspaceId}/inventory/report-summary`,
     },
+    events: (workspaceId: string) => `/api/workspaces/${workspaceId}/events`,
   },
 }
