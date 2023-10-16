@@ -5,6 +5,7 @@ import { AxiosError } from 'axios'
 import { PropsWithChildren, useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthGuard } from 'src/core/auth'
+import { WebSocketEvents } from 'src/core/events'
 import { Theme } from 'src/core/theme'
 import { env, langs } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
@@ -53,7 +54,9 @@ export const Providers = ({ children }: PropsWithChildren) => {
             <FullPageLoadingProvider>
               <QueryClientProvider client={queryClient}>
                 <BrowserRouter>
-                  <AuthGuard>{children}</AuthGuard>
+                  <AuthGuard>
+                    <WebSocketEvents>{children}</WebSocketEvents>
+                  </AuthGuard>
                 </BrowserRouter>
               </QueryClientProvider>
             </FullPageLoadingProvider>
