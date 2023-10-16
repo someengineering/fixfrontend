@@ -32,7 +32,7 @@ export default function LoginPage() {
   }
   return (
     <>
-      <Typography variant="h3" color="primary" textAlign="justify" mb={2} maxWidth={550}>
+      <Typography variant="h3" color="primary.main" textAlign="justify" mb={2} maxWidth={550}>
         <Trans>Simple and affordable visibility into your cloud security posture.</Trans>
       </Typography>
       <Typography variant="h6" color="grey.700" textAlign="justify" mb={4} maxWidth={550}>
@@ -54,7 +54,7 @@ export default function LoginPage() {
         onSubmit={handleSubmit}
       >
         <Grid item>
-          <Typography variant="h3" color="primary">
+          <Typography variant="h3" color="primary.main">
             <Trans>Log in</Trans>
           </Typography>
         </Grid>

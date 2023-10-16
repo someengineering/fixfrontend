@@ -1,7 +1,9 @@
-import { createTheme, CssBaseline, PaletteOptions, responsiveFontSizes, ThemeOptions, ThemeProvider } from '@mui/material'
-import { PropsWithChildren } from 'react'
+import { createTheme, CssBaseline, PaletteOptions, responsiveFontSizes, ThemeOptions, ThemeProvider, useMediaQuery } from '@mui/material'
+import { PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
 
 import '@fontsource-variable/nunito-sans'
+import { getThemeMode, setThemeMode } from 'src/shared/utils/localstorage'
+import { ThemeContext } from './ThemeContext'
 
 createTheme({
   typography: {},
@@ -9,25 +11,49 @@ createTheme({
 
 export type ThemeProps = PropsWithChildren<{}>
 
+const themeMode = getThemeMode()
+
 export function Theme({ children }: ThemeProps) {
-  const palette: PaletteOptions = {
-    primary: {
-      main: '#1C4396',
-    },
-    secondary: {
-      main: '#648DE5',
-    },
-    error: {
-      main: '#E01A4F',
-    },
-    warning: {
-      main: '#F78400',
-    },
-    success: {
-      main: '#00AC6B',
-    },
-    background: { default: '#FFFFFF' },
-  }
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
+  const [mode, setMode] = useState<'light' | 'dark'>(themeMode?.mode ?? (prefersDarkMode ? 'dark' : 'light'))
+  const toggleColorMode = useCallback(() => {
+    setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'))
+  }, [])
+  useEffect(() => {
+    setThemeMode({ mode })
+  }, [mode])
+  const palette: PaletteOptions = useMemo(
+    () => ({
+      primary: {
+        main: '#1C4396',
+      },
+      secondary: {
+        main: '#648DE5',
+      },
+      error: {
+        main: '#E01A4F',
+      },
+      warning: {
+        main: '#F78400',
+      },
+      success: {
+        main: '#00AC6B',
+      },
+      background: { default: mode === 'dark' ? '#242424' : '#FFFFFF' },
+      common:
+        mode === 'dark'
+          ? {
+              black: '#FFFFFF',
+              white: '#242424',
+            }
+          : {
+              white: '#FFFFFF',
+              black: '#242424',
+            },
+      mode,
+    }),
+    [mode],
+  )
 
   const fontFamily = [
     'Nunito Sans Variable',
@@ -84,9 +110,11 @@ export function Theme({ children }: ThemeProps) {
   })
 
   return (
-    <ThemeProvider theme={responsiveFontSizes(theme)}>
-      <CssBaseline enableColorScheme />
-      {children}
-    </ThemeProvider>
+    <ThemeContext.Provider value={{ toggleColorMode, mode }}>
+      <ThemeProvider theme={responsiveFontSizes(theme)}>
+        <CssBaseline enableColorScheme />
+        {children}
+      </ThemeProvider>
+    </ThemeContext.Provider>
   )
 }
