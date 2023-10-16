@@ -13,23 +13,23 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/containers/panel/PanelContainer.tsx:30
+#: src/containers/panel/PanelContainer.tsx:29
 msgid "© 2023 Some Engineering Inc. All rights reserved."
 msgstr "© 2023 Some Engineering Inc. All rights reserved."
 
-#: src/pages/auth/register/RegisterPage.tsx:79
+#: src/pages/auth/register/RegisterPage.tsx:78
 msgid "Already have an account? Click here to Log in."
 msgstr "Already have an account? Click here to Log in."
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:54
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:53
 msgid "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
 msgstr "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:49
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:48
 msgid "Alternatively: Manual Cloud Setup"
 msgstr "Alternatively: Manual Cloud Setup"
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:16
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:15
 msgid "Automatic Cloud Setup"
 msgstr "Automatic Cloud Setup"
 
@@ -47,30 +47,34 @@ msgstr "Copy"
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:30
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:29
 #: src/pages/panel/panel-setup-cloud/SetupCloudButton.tsx:14
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
-#: src/pages/auth/login/LoginPage.tsx:83
+#: src/pages/auth/login/LoginPage.tsx:82
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Don't have an account? Click here to Sign up."
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:73
+#: src/shared/event-button/EventButton.tsx:143
+msgid "Events"
+msgstr "Events"
+
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:72
 msgid "External Id"
 msgstr "External Id"
 
-#: src/pages/auth/login/LoginPage.tsx:40
-#: src/pages/auth/register/RegisterPage.tsx:36
+#: src/pages/auth/login/LoginPage.tsx:39
+#: src/pages/auth/register/RegisterPage.tsx:35
 msgid "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
 msgstr "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:19
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:18
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 
-#: src/pages/auth/login/LoginPage.tsx:59
-#: src/pages/auth/login/LoginPage.tsx:78
+#: src/pages/auth/login/LoginPage.tsx:58
+#: src/pages/auth/login/LoginPage.tsx:77
 msgid "Log in"
 msgstr "Log in"
 
@@ -82,16 +86,16 @@ msgstr "Log in with {formattedName}"
 msgid "Logout"
 msgstr "Logout"
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:22
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:21
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the SETUP button."
 msgstr "Make sure that you are already logged into the correct AWS account, before pressing the SETUP button."
 
-#: src/shared/layouts/panel-layout/PanelAppBar.tsx:67
+#: src/shared/layouts/panel-layout/PanelAppBar.tsx:69
 msgid "Open drawer"
 msgstr "Open drawer"
 
-#: src/pages/auth/login/LoginPage.tsx:88
-#: src/pages/auth/register/RegisterPage.tsx:84
+#: src/pages/auth/login/LoginPage.tsx:87
+#: src/pages/auth/register/RegisterPage.tsx:83
 msgid "Or"
 msgstr "Or"
 
@@ -99,8 +103,8 @@ msgstr "Or"
 msgid "Panel Setup"
 msgstr "Panel Setup"
 
-#: src/pages/auth/login/LoginPage.tsx:66
-#: src/pages/auth/register/RegisterPage.tsx:62
+#: src/pages/auth/login/LoginPage.tsx:65
+#: src/pages/auth/register/RegisterPage.tsx:61
 msgid "Password"
 msgstr "Password"
 
@@ -108,11 +112,15 @@ msgstr "Password"
 msgid "Profile"
 msgstr "Profile"
 
-#: src/pages/auth/register/RegisterPage.tsx:55
+#: src/pages/auth/register/RegisterPage.tsx:54
 msgid "Register"
 msgstr "Register"
 
-#: src/pages/auth/register/RegisterPage.tsx:74
+#: src/shared/language-button/LanguageButton.tsx:40
+msgid "Select Language"
+msgstr "Select Language"
+
+#: src/pages/auth/register/RegisterPage.tsx:73
 msgid "Sign up"
 msgstr "Sign up"
 
@@ -120,24 +128,24 @@ msgstr "Sign up"
 msgid "Sign up with {formattedName}"
 msgstr "Sign up with {formattedName}"
 
-#: src/pages/auth/login/LoginPage.tsx:37
-#: src/pages/auth/register/RegisterPage.tsx:33
+#: src/pages/auth/login/LoginPage.tsx:36
+#: src/pages/auth/register/RegisterPage.tsx:32
 msgid "Simple and affordable visibility into your cloud security posture."
 msgstr "Simple and affordable visibility into your cloud security posture."
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:91
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:90
 msgid "Tenant Id"
 msgstr "Tenant Id"
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:62
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:61
 msgid "The Stack requires the following parameters"
 msgstr "The Stack requires the following parameters"
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:40
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:39
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 
-#: src/pages/auth/login/LoginPage.tsx:63
-#: src/pages/auth/register/RegisterPage.tsx:59
+#: src/pages/auth/login/LoginPage.tsx:62
+#: src/pages/auth/register/RegisterPage.tsx:58
 msgid "Username"
 msgstr "Username"
