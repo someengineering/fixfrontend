@@ -2,15 +2,14 @@ import { createContext, MutableRefObject, PropsWithChildren, useCallback, useEff
 import { FullPageLoading } from './FullPageLoading'
 
 export type LoadingContextValue = {
-  showLoading: (halfWidth?: boolean, forceFullpage?: boolean) => void
-  hideLoading: (halfWidth?: boolean, forceFullpage?: boolean) => void
+  showLoading: (forceFullpage?: boolean) => void
+  hideLoading: (forceFullpage?: boolean) => void
 }
 
 export enum LoadingStateType {
   SHOW,
   SHOW_NO_BACKGROUND,
   HIDE,
-  HALF_WIDTH,
 }
 
 export const LoadingContext = createContext<LoadingContextValue | null>(null)
@@ -42,21 +41,19 @@ const FullPageLoadingContainer = ({
 export const FullPageLoadingProvider = ({ children }: PropsWithChildren) => {
   const setLoadingStateRef = useRef((_: LoadingStateType, __?: boolean) => {})
   const shownLoadings = useRef<LoadingStateType[]>([])
-  const showLoading = useCallback((halfWidth?: boolean, forceFullpage?: boolean) => {
-    const state = halfWidth ? LoadingStateType.HALF_WIDTH : LoadingStateType.SHOW
+  const showLoading = useCallback((forceFullpage?: boolean) => {
+    const state = LoadingStateType.SHOW
     shownLoadings.current.push(state)
     setLoadingStateRef.current(state, forceFullpage)
   }, [])
-  const hideLoading = useCallback((halfWidth?: boolean, forceFullpage?: boolean) => {
-    const hidingState = halfWidth ? LoadingStateType.HALF_WIDTH : LoadingStateType.SHOW
+  const hideLoading = useCallback((forceFullpage?: boolean) => {
+    const hidingState = LoadingStateType.SHOW
     shownLoadings.current.splice(
       shownLoadings.current.findIndex((state) => state === hidingState),
       1,
     )
     if (!shownLoadings.current.length) {
       setLoadingStateRef.current(LoadingStateType.HIDE, forceFullpage)
-    } else if (shownLoadings.current.includes(LoadingStateType.HALF_WIDTH)) {
-      setLoadingStateRef.current(LoadingStateType.HALF_WIDTH, forceFullpage)
     } else {
       setLoadingStateRef.current(LoadingStateType.SHOW, forceFullpage)
     }

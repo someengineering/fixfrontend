@@ -53,15 +53,15 @@ export const Providers = ({ children }: PropsWithChildren) => {
         <InnerI18nProvider>
           <SnackbarProvider>
             <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-              <FullPageLoadingProvider>
-                <QueryClientProvider client={queryClient}>
-                  <BrowserRouter>
+              <QueryClientProvider client={queryClient}>
+                <BrowserRouter>
+                  <FullPageLoadingProvider>
                     <AuthGuard>
                       <WebSocketEvents>{children}</WebSocketEvents>
                     </AuthGuard>
-                  </BrowserRouter>
-                </QueryClientProvider>
-              </FullPageLoadingProvider>
+                  </FullPageLoadingProvider>
+                </BrowserRouter>
+              </QueryClientProvider>
             </NetworkErrorBoundary>
           </SnackbarProvider>
         </InnerI18nProvider>

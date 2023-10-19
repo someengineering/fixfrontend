@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { FullPageLoadingSuspenseFallback } from './shared/loading'
 
 const AuthContainer = lazy(
@@ -19,9 +19,8 @@ const PanelContainer = lazy(
 )
 
 export function AppRouter() {
-  const { pathname } = useLocation()
   return (
-    <Suspense fallback={<FullPageLoadingSuspenseFallback forceFullpage withLoading={pathname.startsWith('/auth')} />}>
+    <Suspense fallback={<FullPageLoadingSuspenseFallback forceFullpage />}>
       <Routes>
         <Route path="auth/*" element={<AuthContainer />} />
         <Route path="/*" element={<PanelContainer />} />
