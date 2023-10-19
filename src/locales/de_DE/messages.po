@@ -25,27 +25,27 @@ msgstr "© 2023 Some Engineering Services GMBH. Alle Rechte vorbehalten."
 msgid "Account Setup"
 msgstr "Account Setup"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:47
+#: src/pages/panel/panel-home/PanelHomePage.tsx:64
 msgid "Accounts"
 msgstr "Konten"
 
-#: src/pages/auth/register/RegisterPage.tsx:78
+#: src/pages/auth/register/RegisterPage.tsx:121
 msgid "Already have an account? Click here to Log in."
 msgstr "Sie haben bereits ein Konto? Klicken Sie hier, um sich einzuloggen."
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:53
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:64
 msgid "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
 msgstr "Wenn Sie den Stack alternativ manuell bereitstellen möchten, können Sie folgendes CloudFormation-Template verwenden"
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:48
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:59
 msgid "Alternatively: Manual Cloud Setup"
 msgstr "Alternativ: Manuelles Cloud Setup"
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:15
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:26
 msgid "Automatic Cloud Setup"
 msgstr "Automatisches Cloud Setup"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:40
+#: src/pages/panel/panel-home/PanelHomePage.tsx:57
 msgid "Benchmarks"
 msgstr "Benchmarks"
 
@@ -53,13 +53,13 @@ msgstr "Benchmarks"
 msgid "Cloud account created, id: {0}"
 msgstr "Cloud-Konto erstellt, ID: {0}"
 
-#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:30
-#: src/pages/panel/panel-setup-cloud/TenantId.tsx:13
+#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:31
+#: src/pages/panel/panel-setup-cloud/TenantId.tsx:14
 msgid "Copied to Clipboard!"
 msgstr "In die Zwischenablage kopiert!"
 
-#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:63
-#: src/pages/panel/panel-setup-cloud/TenantId.tsx:39
+#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:64
+#: src/pages/panel/panel-setup-cloud/TenantId.tsx:40
 msgid "Copy"
 msgstr "Kopieren"
 
@@ -67,20 +67,25 @@ msgstr "Kopieren"
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:29
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:40
 #: src/pages/panel/panel-setup-cloud/SetupCloudButton.tsx:14
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
-#: src/pages/auth/login/LoginPage.tsx:82
+#: src/pages/auth/login/LoginPage.tsx:145
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
+
+#: src/pages/auth/login/LoginPage.tsx:89
+#: src/pages/auth/register/RegisterPage.tsx:80
+msgid "Email"
+msgstr "Email"
 
 #: src/shared/event-button/EventButton.tsx:194
 msgid "Events"
 msgstr "Veranstaltungen"
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:72
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:83
 msgid "External Id"
 msgstr "External Id"
 
@@ -88,8 +93,8 @@ msgstr "External Id"
 msgid "Failed Checks"
 msgstr "Fehlgeschlagene Prüfungen"
 
-#: src/pages/auth/login/LoginPage.tsx:39
-#: src/pages/auth/register/RegisterPage.tsx:35
+#: src/pages/auth/login/LoginPage.tsx:62
+#: src/pages/auth/register/RegisterPage.tsx:54
 msgid "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
 msgstr "Fix ist eine Open-Source Wiz Alternative für die Sicherheit Ihrer Cloud Infrastruktur. Übernehmen Sie die Kontrolle über Cloud-Risiken mit einem Cloud-Asset-Inventar, Compliance-Scans und Workflows."
 
@@ -101,7 +106,7 @@ msgstr "Wie repariert man"
 msgid "Improved"
 msgstr "Verbessert"
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:18
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:29
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS Konto ein."
 
@@ -109,8 +114,8 @@ msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS 
 msgid "Infected"
 msgstr "Infiziert"
 
-#: src/pages/auth/login/LoginPage.tsx:58
-#: src/pages/auth/login/LoginPage.tsx:77
+#: src/pages/auth/login/LoginPage.tsx:81
+#: src/pages/auth/login/LoginPage.tsx:140
 msgid "Log in"
 msgstr "Anmeldung"
 
@@ -122,7 +127,7 @@ msgstr "Melden Sie sich mit {formattedName} an"
 msgid "Logout"
 msgstr "Ausloggen"
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:21
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:32
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the SETUP button."
 msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS Konto angemeldet sind, bevor Sie auf die Schaltfläche SETUP klicken."
 
@@ -138,12 +143,12 @@ msgstr "Keine Änderungen"
 msgid "Open drawer"
 msgstr "Öffene die Schublade"
 
-#: src/pages/auth/login/LoginPage.tsx:87
-#: src/pages/auth/register/RegisterPage.tsx:83
+#: src/pages/auth/login/LoginPage.tsx:150
+#: src/pages/auth/register/RegisterPage.tsx:126
 msgid "Or"
 msgstr "Oder"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:33
+#: src/pages/panel/panel-home/PanelHomePage.tsx:50
 msgid "Overall"
 msgstr "Gesamt"
 
@@ -151,8 +156,8 @@ msgstr "Gesamt"
 msgid "Overall Score"
 msgstr "Gesamtpunktzahl"
 
-#: src/pages/auth/login/LoginPage.tsx:65
-#: src/pages/auth/register/RegisterPage.tsx:61
+#: src/pages/auth/login/LoginPage.tsx:102
+#: src/pages/auth/register/RegisterPage.tsx:92
 msgid "Password"
 msgstr "Passwort"
 
@@ -160,7 +165,7 @@ msgstr "Passwort"
 msgid "Profile"
 msgstr "Profil"
 
-#: src/pages/auth/register/RegisterPage.tsx:54
+#: src/pages/auth/register/RegisterPage.tsx:73
 msgid "Register"
 msgstr "Registrieren"
 
@@ -172,7 +177,7 @@ msgstr "Risiko"
 msgid "Select Language"
 msgstr "Sprache auswählen"
 
-#: src/pages/auth/register/RegisterPage.tsx:73
+#: src/pages/auth/register/RegisterPage.tsx:116
 msgid "Sign up"
 msgstr "Melden Sie sich an"
 
@@ -180,8 +185,8 @@ msgstr "Melden Sie sich an"
 msgid "Sign up with {formattedName}"
 msgstr "Melden Sie sich mit {formattedName} an"
 
-#: src/pages/auth/login/LoginPage.tsx:36
-#: src/pages/auth/register/RegisterPage.tsx:32
+#: src/pages/auth/login/LoginPage.tsx:59
+#: src/pages/auth/register/RegisterPage.tsx:51
 msgid "Simple and affordable visibility into your cloud security posture."
 msgstr "Einfacher und erschwinglicher Einblick in die Sicherheitslage Ihrer Cloud."
 
@@ -195,15 +200,15 @@ msgstr "Seit {since}"
 #~ msgid "Task \"{0}\" with workflow \"{1}\" failed: {2}"
 #~ msgstr "Aufgabe \"{0}\" mit Workflow \"{1}\" ist fehlgeschlagen: {2}"
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:90
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:101
 msgid "Tenant Id"
 msgstr "Tenant Id"
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:61
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:72
 msgid "The Stack requires the following parameters"
 msgstr "Der Stack erfordert die folgenden Parameter"
 
-#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:39
+#: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:50
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM Rolle in Ihrem AWS Konto erstellt. Diese Rolle wird von FIX verwendet, um in Ihrem AWS Konto Sicherheitsscans durchzuführen."
 
@@ -225,5 +230,13 @@ msgstr "Top infizierte Ressourcen"
 
 #: src/pages/auth/login/LoginPage.tsx:62
 #: src/pages/auth/register/RegisterPage.tsx:58
-msgid "Username"
-msgstr "Benutzername"
+#~ msgid "Username"
+#~ msgstr "Benutzername"
+
+#: src/pages/auth/login/LoginPage.tsx:118
+msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
+msgstr "Wir haben eine E-Mail mit einem Bestätigungslink an Ihre E-Mail-Adresse gesendet. Bitte folgen Sie dem Link, um Ihr Konto zu aktivieren."
+
+#: src/pages/auth/login/LoginPage.tsx:124
+msgid "You have successfully verified your account."
+msgstr "Sie haben Ihr Konto erfolgreich verifiziert."
