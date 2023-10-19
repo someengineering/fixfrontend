@@ -2,7 +2,13 @@ export const endPoints = {
   auth: {
     jwt: {
       logout: '/api/auth/jwt/logout',
+      login: '/api/auth/jwt/login',
     },
+    register: '/api/auth/register',
+    forgotPassword: 'api/auth/forgot-password',
+    resetPassword: 'api/auth/reset-password',
+    requestVerifyToken: 'api/auth/request-verify-token',
+    verify: 'api/auth/verify',
     oauthProviders: '/api/auth/oauth-providers',
   },
   users: {
