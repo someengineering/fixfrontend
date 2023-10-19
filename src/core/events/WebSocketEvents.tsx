@@ -88,7 +88,6 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
           websocket.current.removeEventListener('close', onClose)
           websocket.current.removeEventListener('open', onOpen)
           for (let key in listeners.current) {
-            // eslint-disable-next-line react-hooks/exhaustive-deps
             websocket.current.removeEventListener('message', listeners.current[key])
           }
           listeners.current = {}

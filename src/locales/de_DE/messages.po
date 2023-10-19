@@ -13,9 +13,21 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/pages/panel/panel-home/OverallCard.tsx:87
+msgid "{0} out of {1}"
+msgstr "{0} von {1}"
+
 #: src/containers/panel/PanelContainer.tsx:29
 msgid "© 2023 Some Engineering Inc. All rights reserved."
 msgstr "© 2023 Some Engineering Services GMBH. Alle Rechte vorbehalten."
+
+#: src/shared/layouts/panel-layout/menuList.tsx:35
+msgid "Account Setup"
+msgstr "Account Setup"
+
+#: src/pages/panel/panel-home/PanelHomePage.tsx:47
+msgid "Accounts"
+msgstr "Konten"
 
 #: src/pages/auth/register/RegisterPage.tsx:78
 msgid "Already have an account? Click here to Log in."
@@ -33,13 +45,21 @@ msgstr "Alternativ: Manuelles Cloud Setup"
 msgid "Automatic Cloud Setup"
 msgstr "Automatisches Cloud Setup"
 
-#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:48
-#: src/pages/panel/panel-setup-cloud/TenantId.tsx:29
+#: src/pages/panel/panel-home/PanelHomePage.tsx:40
+msgid "Benchmarks"
+msgstr "Benchmarks"
+
+#: src/shared/event-button/EventButton.tsx:46
+msgid "Cloud account created, id: {0}"
+msgstr "Cloud-Konto erstellt, ID: {0}"
+
+#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:30
+#: src/pages/panel/panel-setup-cloud/TenantId.tsx:13
 msgid "Copied to Clipboard!"
 msgstr "In die Zwischenablage kopiert!"
 
-#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:75
-#: src/pages/panel/panel-setup-cloud/TenantId.tsx:52
+#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:63
+#: src/pages/panel/panel-setup-cloud/TenantId.tsx:39
 msgid "Copy"
 msgstr "Kopieren"
 
@@ -56,7 +76,7 @@ msgstr "Deploy Stack"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 
-#: src/shared/event-button/EventButton.tsx:143
+#: src/shared/event-button/EventButton.tsx:194
 msgid "Events"
 msgstr "Veranstaltungen"
 
@@ -64,14 +84,30 @@ msgstr "Veranstaltungen"
 msgid "External Id"
 msgstr "External Id"
 
+#: src/pages/panel/panel-home/OverallCard.tsx:85
+msgid "Failed Checks"
+msgstr "Fehlgeschlagene Prüfungen"
+
 #: src/pages/auth/login/LoginPage.tsx:39
 #: src/pages/auth/register/RegisterPage.tsx:35
 msgid "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
 msgstr "Fix ist eine Open-Source Wiz Alternative für die Sicherheit Ihrer Cloud Infrastruktur. Übernehmen Sie die Kontrolle über Cloud-Risiken mit einem Cloud-Asset-Inventar, Compliance-Scans und Workflows."
 
+#: src/pages/panel/panel-home/TopFiveChecksCard.tsx:29
+msgid "How to fix"
+msgstr "Wie repariert man"
+
+#: src/pages/panel/panel-home/OverallCard.tsx:98
+msgid "Improved"
+msgstr "Verbessert"
+
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:18
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS Konto ein."
+
+#: src/pages/panel/panel-home/OverallCard.tsx:139
+msgid "Infected"
+msgstr "Infiziert"
 
 #: src/pages/auth/login/LoginPage.tsx:58
 #: src/pages/auth/login/LoginPage.tsx:77
@@ -90,6 +126,14 @@ msgstr "Ausloggen"
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the SETUP button."
 msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS Konto angemeldet sind, bevor Sie auf die Schaltfläche SETUP klicken."
 
+#: src/pages/panel/panel-home/TopFiveChecksCard.tsx:35
+msgid "More info"
+msgstr "Mehr Info"
+
+#: src/pages/panel/panel-home/OverallCard.tsx:73
+msgid "No changes"
+msgstr "Keine Änderungen"
+
 #: src/shared/layouts/panel-layout/PanelAppBar.tsx:69
 msgid "Open drawer"
 msgstr "Öffene die Schublade"
@@ -99,9 +143,13 @@ msgstr "Öffene die Schublade"
 msgid "Or"
 msgstr "Oder"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:35
-msgid "Panel Setup"
-msgstr "Panel Setup"
+#: src/pages/panel/panel-home/PanelHomePage.tsx:33
+msgid "Overall"
+msgstr "Gesamt"
+
+#: src/pages/panel/panel-home/OverallCard.tsx:60
+msgid "Overall Score"
+msgstr "Gesamtpunktzahl"
 
 #: src/pages/auth/login/LoginPage.tsx:65
 #: src/pages/auth/register/RegisterPage.tsx:61
@@ -115,6 +163,10 @@ msgstr "Profil"
 #: src/pages/auth/register/RegisterPage.tsx:54
 msgid "Register"
 msgstr "Registrieren"
+
+#: src/pages/panel/panel-home/TopFiveChecksCard.tsx:25
+msgid "Risk"
+msgstr "Risiko"
 
 #: src/shared/language-button/LanguageButton.tsx:40
 msgid "Select Language"
@@ -133,6 +185,16 @@ msgstr "Melden Sie sich mit {formattedName} an"
 msgid "Simple and affordable visibility into your cloud security posture."
 msgstr "Einfacher und erschwinglicher Einblick in die Sicherheitslage Ihrer Cloud."
 
+#: src/pages/panel/panel-home/OverallCard.tsx:77
+#: src/pages/panel/panel-home/OverallCard.tsx:104
+#: src/pages/panel/panel-home/OverallCard.tsx:145
+msgid "Since {since}"
+msgstr "Seit {since}"
+
+#: src/shared/event-button/EventButton.tsx:41
+#~ msgid "Task \"{0}\" with workflow \"{1}\" failed: {2}"
+#~ msgstr "Aufgabe \"{0}\" mit Workflow \"{1}\" ist fehlgeschlagen: {2}"
+
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:90
 msgid "Tenant Id"
 msgstr "Tenant Id"
@@ -144,6 +206,22 @@ msgstr "Der Stack erfordert die folgenden Parameter"
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:39
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM Rolle in Ihrem AWS Konto erstellt. Diese Rolle wird von FIX verwendet, um in Ihrem AWS Konto Sicherheitsscans durchzuführen."
+
+#: src/pages/panel/panel-home/OverallCard.tsx:114
+msgid "Top Improved Accounts"
+msgstr "Top verbesserte Konten"
+
+#: src/pages/panel/panel-home/OverallCard.tsx:126
+msgid "Top Improved Resources"
+msgstr "Top verbesserte Ressourcen"
+
+#: src/pages/panel/panel-home/OverallCard.tsx:155
+msgid "Top Infected Accounts"
+msgstr "Am häufigsten infizierte Konten"
+
+#: src/pages/panel/panel-home/OverallCard.tsx:167
+msgid "Top Infected Resources"
+msgstr "Top infizierte Ressourcen"
 
 #: src/pages/auth/login/LoginPage.tsx:62
 #: src/pages/auth/register/RegisterPage.tsx:58

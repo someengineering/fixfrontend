@@ -1,0 +1,162 @@
+import { BaseType, arc, pie as d3Pie, interpolateRdYlGn, scaleSequential, select } from 'd3'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
+
+interface HeatmapProps<Keys extends string> {
+  data: {
+    [Key in Keys]: {
+      value: number
+      title: string
+    }
+  }
+  minData: number
+  maxData: number
+  minWidth: number
+  minHeight: number
+  interpolate?: (t: number) => string
+}
+
+export function PieChart<Keys extends string>({
+  data,
+  minHeight,
+  minWidth,
+  minData,
+  maxData,
+  interpolate = interpolateRdYlGn,
+}: HeatmapProps<Keys>) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  const processedData = useMemo(() => {
+    const columns = Object.keys(data) as Keys[]
+
+    const values = columns.reduce(
+      (prev, column) => [...prev, { column, ...data[column] }],
+      [] as { column: Keys; value: number; title: string }[],
+    )
+
+    return { columns, values }
+  }, [data])
+
+  const createHeatmap = useCallback(
+    (el: HTMLDivElement) => {
+      const innerRadius = el.offsetWidth / 8
+      const outerRadius = el.offsetWidth / 4
+      const labelRadius = outerRadius * 0.5 + innerRadius * 0.5
+
+      // create a tooltip
+      const tooltip = select(el)
+        .append('div')
+        .style('opacity', 0)
+        .attr('class', 'tooltip')
+        .style('position', 'fixed')
+        .style('box-shadow', '0px 5px 5px -3px rgba(0,0,0,0.2), 0px 8px 10px 1px rgba(0,0,0,0.14), 0px 3px 14px 2px rgba(0,0,0,0.12)')
+        .style('background-color', 'white')
+        .style('border-width', '2px')
+        .style('border-radius', '5px')
+        .style('padding', '5px')
+        .style('white-space', 'nowrap')
+
+      const svg = select(el)
+        .style('height', `${el.offsetWidth}px`)
+        .style('overflow', 'auto')
+        .append('svg')
+        .attr('width', el.offsetWidth)
+        .attr('height', el.offsetWidth)
+      const container = svg.append('g').attr('transform', `translate(${el.offsetWidth / 2}, ${el.offsetWidth / 2})`)
+
+      // set the color scale
+      const myColor = scaleSequential().interpolator(interpolate).domain([minData, maxData])
+
+      const mouseover = function (this: BaseType) {
+        tooltip.style('opacity', 1)
+        select(this).style('opacity', 1)
+      }
+      const mousemove = function (this: BaseType, event: MouseEvent, d: (typeof processedData.values)[number]) {
+        tooltip
+          .html(`${d.title}`)
+          .style('left', event.clientX + 20 + 'px')
+          .style('top', event.clientY + 20 + 'px')
+      }
+      const mouseleave = function (this: BaseType) {
+        tooltip.style('opacity', 0)
+        select(this).style('opacity', 0.8)
+      }
+
+      const pie = d3Pie<(typeof processedData.values)[number]>()
+
+      const arcLabel = arc().innerRadius(labelRadius).outerRadius(labelRadius)
+
+      const data_ready = pie(processedData.values)
+
+      const text = svg
+        .append('g')
+        .attr('dominant-baseline', 'middle')
+        .attr('text-anchor', 'middle')
+        .attr('fill', 'blue')
+        .attr('font-size', 15)
+        .selectAll('text')
+        .data(data_ready)
+        .join('text')
+        .attr('transform', (d) => `translate(${arcLabel.centroid(d.value)})`)
+        .selectAll('tspan')
+        .data((d) => {
+          const lines = `${title(d.data)}`.split(/\n/)
+          return d.endAngle - d.startAngle > 0.25 ? lines : lines.slice(0, 1)
+        })
+        .join('tspan')
+        .attr('x', 0)
+        .attr('y', (_, i) => `${i * 1.1}em`)
+        .attr('font-weight', (_, i) => (i ? null : 'bold'))
+        .text((d) => d)
+
+      const rect = svgWithData
+        .join('rect')
+        .attr('x', (d) => x(d.column) ?? 0)
+        .attr('y', (d) => y(d.row) ?? 0)
+        .attr('rx', 4)
+        .attr('ry', 4)
+        .attr('width', xBandwidth)
+        .attr('height', yBandwidth)
+        .style('fill', (d) => myColor(d.data.value))
+        .style('stroke-width', 4)
+        .style('stroke', 'none')
+        .style('opacity', 0.8)
+        .on('mouseover', mouseover)
+        .on('mousemove', mousemove)
+        .on('mouseleave', mouseleave)
+
+      return () => {
+        text.remove()
+        rect.remove()
+        svgWithData.remove()
+        tooltip.remove()
+        container.remove()
+        svg.remove()
+      }
+    },
+    [processedData, minWidth, minHeight, interpolate, minData, maxData],
+  )
+
+  useEffect(() => {
+    if (ref.current) {
+      const observedElemenet = ref.current
+      let cleanup = createHeatmap(observedElemenet)
+      const resizeObserver = new ResizeObserver((entries) => {
+        window.requestAnimationFrame((): void | undefined => {
+          if (!Array.isArray(entries) || !entries.length) {
+            return
+          }
+          cleanup()
+          cleanup = createHeatmap(entries[0].target as HTMLDivElement)
+        })
+      })
+      resizeObserver.observe(observedElemenet)
+      return () => {
+        cleanup()
+        resizeObserver.disconnect()
+        resizeObserver.unobserve(observedElemenet)
+      }
+    }
+  }, [createHeatmap])
+
+  return <div ref={ref} />
+}

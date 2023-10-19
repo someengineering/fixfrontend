@@ -15,18 +15,6 @@ interface Props {}
 
 export type PanelLayoutProps = PropsWithChildren<Props>
 
-// const PanelWrapper = styled(Stack)(({ theme }) => ({
-//   position: 'absolute',
-//   top: 0,
-//   left: 0,
-//   width: '100%',
-//   height: '100%',
-//   overflow: 'auto',
-//   display: 'flex',
-//   alignItems: 'center',
-//   justifyContent: 'center',
-// }))
-
 const Main = styled(Box)(({ theme }) => ({
   background: theme.palette.common.white,
   display: 'flex',

@@ -5,4 +5,5 @@ export const panelUI = {
   headerHeight: 64,
   bottomCopyRightHeight: 39,
   maxPageModalWidth: 1440,
+  snackbarAutoHideDuration: 3000,
 }

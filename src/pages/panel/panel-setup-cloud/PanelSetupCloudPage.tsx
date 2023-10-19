@@ -1,7 +1,9 @@
 import { Trans } from '@lingui/macro'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Divider, Skeleton, Typography } from '@mui/material'
-import { Suspense } from 'react'
+import { Suspense, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useEvents } from 'src/core/events'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { ExternalId, ExternalIdSkeleton } from './ExternalId'
 import { SetupCloudButton } from './SetupCloudButton'
@@ -9,6 +11,15 @@ import { SetupTemplateButton, SetupTemplateButtonSkeleton } from './SetupTemplat
 import { TenantId } from './TenantId'
 
 export default function PanelSetupCloudPage() {
+  const { addListener } = useEvents()
+  const navigate = useNavigate()
+  useEffect(() => {
+    return addListener('event-button', (ev) => {
+      if (ev.kind === 'cloud_account_created') {
+        navigate('/')
+      }
+    })
+  }, [addListener, navigate])
   return (
     <>
       <Typography variant="h1" color="secondary" mb={2}>

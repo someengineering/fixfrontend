@@ -59,6 +59,7 @@ export const iso8601DurationToString = (duration: ISO8601DurationType) => {
     return duration.minutes + ' Minutes'
   } else if (duration.seconds) {
     return duration.seconds + ' Seconds'
+  } else if (duration.duration) {
+    return duration.duration.toString() + ' Miliseconds'
   }
-  return duration.duration.toString() + ' Miliseconds'
 }

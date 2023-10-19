@@ -1,11 +1,12 @@
-import { Trans } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
 import CopyAllIcon from '@mui/icons-material/CopyAll'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
-import { Alert, Box, Button, IconButton, Skeleton, Snackbar, Typography } from '@mui/material'
+import { Box, Button, IconButton, Skeleton, Typography, useTheme } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
+import { useSnackbar } from 'src/core/snackbar'
 import { getExternalIdQuery } from 'src/pages/panel/shared-queries'
 
 export const ExternalIdSkeleton = () => {
@@ -17,40 +18,28 @@ export const ExternalIdSkeleton = () => {
 }
 
 export const ExternalId = () => {
+  const theme = useTheme()
   const [showExternalId, setShowExternalId] = useState(false)
-  const [showSnackbar, setShowSnackbar] = useState(false)
   const { selectedWorkspace } = useUserProfile()
+  const { showSnackbar } = useSnackbar()
   const { data: ExternalIdData } = useQuery(['workspace-external-id', selectedWorkspace?.id], getExternalIdQuery, {
     enabled: !!selectedWorkspace?.id,
   })
   const handleCopy = () => {
     try {
       window.navigator.clipboard.writeText(ExternalIdData || '').then(() => {
-        setShowSnackbar(true)
+        showSnackbar(t`Copied to Clipboard!`)
       })
     } catch {}
   }
   const handleToggleShowExternalId = () => {
     setShowExternalId((prev) => !prev)
   }
-  const handleCloseSnackbar = () => {
-    setShowSnackbar(false)
-  }
   return (
     <>
-      <Snackbar
-        open={showSnackbar}
-        autoHideDuration={3000}
-        onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-      >
-        <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
-          <Trans>Copied to Clipboard!</Trans>
-        </Alert>
-      </Snackbar>
       <Box
         display="inline-flex"
-        bgcolor="grey.300"
+        bgcolor={theme.palette.mode === 'light' ? 'grey.300' : 'grey.800'}
         alignItems="center"
         justifyContent="space-between"
         ml={{ xs: 0, md: 2 }}

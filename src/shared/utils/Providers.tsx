@@ -6,6 +6,7 @@ import { PropsWithChildren, useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthGuard } from 'src/core/auth'
 import { WebSocketEvents } from 'src/core/events'
+import { SnackbarProvider } from 'src/core/snackbar'
 import { Theme } from 'src/core/theme'
 import { env, langs } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
@@ -50,17 +51,19 @@ export const Providers = ({ children }: PropsWithChildren) => {
     <Theme>
       <I18nProvider i18n={i18n}>
         <InnerI18nProvider>
-          <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-            <FullPageLoadingProvider>
-              <QueryClientProvider client={queryClient}>
-                <BrowserRouter>
-                  <AuthGuard>
-                    <WebSocketEvents>{children}</WebSocketEvents>
-                  </AuthGuard>
-                </BrowserRouter>
-              </QueryClientProvider>
-            </FullPageLoadingProvider>
-          </NetworkErrorBoundary>
+          <SnackbarProvider>
+            <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+              <FullPageLoadingProvider>
+                <QueryClientProvider client={queryClient}>
+                  <BrowserRouter>
+                    <AuthGuard>
+                      <WebSocketEvents>{children}</WebSocketEvents>
+                    </AuthGuard>
+                  </BrowserRouter>
+                </QueryClientProvider>
+              </FullPageLoadingProvider>
+            </NetworkErrorBoundary>
+          </SnackbarProvider>
         </InnerI18nProvider>
       </I18nProvider>
     </Theme>

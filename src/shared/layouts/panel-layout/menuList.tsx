@@ -32,7 +32,7 @@ export const menuList: MenuListItem[] = [
 
 export const bottomMenuList = [
   {
-    name: <Trans>Panel Setup</Trans>,
+    name: <Trans>Account Setup</Trans>,
     route: '/setup-cloud',
     Icon: SettingsIcon,
   },

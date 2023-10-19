@@ -10,5 +10,9 @@ const Container = styled(Box)(({ theme }) => ({
 }))
 
 export const PanelContent = ({ children }: PropsWithChildren) => {
-  return <Container component="main">{children}</Container>
+  return (
+    <Container component="main" maxWidth="100%">
+      {children}
+    </Container>
+  )
 }

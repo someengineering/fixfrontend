@@ -3,6 +3,7 @@ export type { GetExternalIdResponse } from './GetExternalIdResponse'
 export type { GetWorkspaceCfTemplateResponse } from './GetWorkspaceCfTemplate'
 export type { GetWorkspaceCfUrlResponse } from './GetWorkspaceCfUrl'
 export type {
+  FailedChecksType,
   GetWorkspaceInventoryReportSummaryResponse,
   Account as WorkspaceAccount,
   Benchmark as WorkspaceBenchmark,

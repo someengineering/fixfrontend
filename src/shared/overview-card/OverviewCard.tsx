@@ -1,4 +1,5 @@
-import { Avatar, Card, CardContent, Stack, SvgIcon, Typography } from '@mui/material'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { Accordion, AccordionDetails, AccordionSummary, Avatar, Card, CardContent, Icon, Stack, SvgIcon, Typography } from '@mui/material'
 import { ReactNode } from 'react'
 
 interface OverviewCardProps {
@@ -7,32 +8,50 @@ interface OverviewCardProps {
   icon?: ReactNode
   iconBackgroundColor?: string
   bottomContent?: ReactNode
+  expandableContent?: ReactNode
 }
 
-const isNotReactNode = (node: ReactNode) => {
-  switch (typeof node) {
-    case 'string':
-    case 'number':
-      return false
-    default:
-      return true
-  }
-}
-
-export const OverviewCard = ({ title, value, icon, iconBackgroundColor, bottomContent }: OverviewCardProps) => {
+export const OverviewCard = ({ title, value, icon, iconBackgroundColor, bottomContent, expandableContent }: OverviewCardProps) => {
+  const bottom = bottomContent ? (
+    <Stack alignItems="center" direction="row" spacing={2} sx={{ mt: 2 }}>
+      {expandableContent ? (
+        <Accordion elevation={0} disableGutters square sx={{ background: 'none', width: '100%', '&::before': { content: 'none' } }}>
+          <AccordionSummary
+            expandIcon={
+              <Icon fontSize="small">
+                <ExpandMoreIcon />
+              </Icon>
+            }
+            sx={{ p: 0, minHeight: 0, '.MuiAccordionSummary-content': { m: 0 } }}
+          >
+            {bottomContent}
+          </AccordionSummary>
+          <AccordionDetails
+            sx={{
+              '&.MuiAccordionDetails-root': {
+                p: 0,
+              },
+            }}
+          >
+            {expandableContent}
+          </AccordionDetails>
+        </Accordion>
+      ) : (
+        bottomContent
+      )}
+    </Stack>
+  ) : null
   return (
     <Card>
       <CardContent>
         <Stack alignItems="flex-start" direction="row" justifyContent="space-between" spacing={3}>
           <Stack spacing={1}>
-            {!title || isNotReactNode(title) ? (
+            {title && (
               <Typography color="text.secondary" variant="overline">
                 {title}
               </Typography>
-            ) : (
-              title
             )}
-            {!value || !isNotReactNode(value) ? <Typography variant="h4">{value}</Typography> : value}
+            {value && <Typography variant="h5">{value}</Typography>}
           </Stack>
           <Avatar
             sx={{
@@ -44,11 +63,7 @@ export const OverviewCard = ({ title, value, icon, iconBackgroundColor, bottomCo
             <SvgIcon>{icon}</SvgIcon>
           </Avatar>
         </Stack>
-        {bottomContent && (
-          <Stack alignItems="center" direction="row" spacing={2} sx={{ mt: 2 }}>
-            {bottomContent}
-          </Stack>
-        )}
+        {bottom}
       </CardContent>
     </Card>
   )

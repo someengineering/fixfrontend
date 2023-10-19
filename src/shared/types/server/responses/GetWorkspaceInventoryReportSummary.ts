@@ -29,10 +29,34 @@ export interface Benchmark {
 
 export interface ChangedSitatuation {
   since: string
-  resource_count_by_kind_selection: {
+  accounts_selection: string[]
+  resource_count_by_kind_selection: Partial<{
     [key in string]: number
-  }
+  }>
   resource_count_by_severity: Partial<FailedChecksType>
+}
+
+export interface TopChecks {
+  categories: string[]
+  default_values: null
+  detect: {
+    resoto_cmd: string
+  }
+  id: string
+  provider: string
+  related: null
+  remediation: {
+    action: null
+    kind: string
+    text: string
+    url: string
+  }
+  result_kind: string
+  risk: string
+  service: string
+  severity: FailedChecksTypeKeys
+  title: string
+  url: null
 }
 
 export interface GetWorkspaceInventoryReportSummaryResponse {
@@ -46,4 +70,5 @@ export interface GetWorkspaceInventoryReportSummaryResponse {
   benchmarks: Benchmark[]
   changed_vulnerable: ChangedSitatuation
   changed_compliant: ChangedSitatuation
+  top_checks: TopChecks[]
 }

@@ -1,37 +1,25 @@
-import { Trans } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
 import CopyAllIcon from '@mui/icons-material/CopyAll'
-import { Alert, Box, Button, Snackbar, Typography } from '@mui/material'
-import { useState } from 'react'
+import { Box, Button, Typography, useTheme } from '@mui/material'
 import { useUserProfile } from 'src/core/auth'
+import { useSnackbar } from 'src/core/snackbar'
 
 export const TenantId = () => {
-  const [showSnackbar, setShowSnackbar] = useState(false)
+  const theme = useTheme()
+  const { showSnackbar } = useSnackbar()
   const { selectedWorkspace } = useUserProfile()
   const handleCopy = () => {
     try {
       navigator.clipboard.writeText(selectedWorkspace?.id || '').then(() => {
-        setShowSnackbar(true)
+        showSnackbar(t`Copied to Clipboard!`)
       })
     } catch {}
   }
-  const handleCloseSnackbar = () => {
-    setShowSnackbar(false)
-  }
   return (
     <>
-      <Snackbar
-        open={showSnackbar}
-        autoHideDuration={3000}
-        onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-      >
-        <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
-          <Trans>Copied to Clipboard!</Trans>
-        </Alert>
-      </Snackbar>
       <Box
         display="inline-flex"
-        bgcolor="grey.300"
+        bgcolor={theme.palette.mode === 'light' ? 'grey.300' : 'grey.800'}
         alignItems="center"
         ml={{ xs: 0, md: 2 }}
         mb={{ xs: 1, md: 0 }}

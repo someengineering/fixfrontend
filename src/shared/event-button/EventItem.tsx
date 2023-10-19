@@ -18,6 +18,55 @@ const getSeverity = (kind: WebSocketEvent['kind']): AlertProps['severity'] => {
 }
 const renderData = (data: WebSocketEvent) => {
   switch (data.kind) {
+    // case 'cloud_account_created':
+    //   return (
+    //     <>
+    //       <Typography variant="h4" mb={1} textAlign="center">
+    //         <Trans>Account created!</Trans>
+    //       </Typography>
+    //       <Box display="flex" mb={1}>
+    //         <Typography variant="caption" mr={1}>
+    //           <Trans>Cloud id:</Trans>
+    //         </Typography>
+    //         <Typography variant="caption">{data.data.cloud_account_id}</Typography>
+    //       </Box>
+    //       <Box display="flex" mb={1}>
+    //         <Typography variant="caption" mr={1}>
+    //           <Trans>AWS id:</Trans>
+    //         </Typography>
+    //         <Typography variant="caption">{data.data.aws_account_id}</Typography>
+    //       </Box>
+    //       <Box display="flex">
+    //         <Typography variant="caption" mr={1}>
+    //           <Trans>Workspace id:</Trans>
+    //         </Typography>
+    //         <Typography variant="caption">{data.data.workspace_id}</Typography>
+    //       </Box>
+    //     </>
+    //   )
+    // case 'collect-error':
+    //   return (
+    //     <>
+    //       <Typography variant="h4" mb={1} textAlign="center">
+    //         <Trans>An error occurred!</Trans>
+    //       </Typography>
+    //       <Typography variant="body1" mb={1}>
+    //         {data.data.message}
+    //       </Typography>
+    //       <Box display="flex" mb={1}>
+    //         <Typography variant="caption" mr={1}>
+    //           <Trans>Task:</Trans>
+    //         </Typography>
+    //         <Typography variant="caption">{data.data.task}</Typography>
+    //       </Box>
+    //       <Box display="flex">
+    //         <Typography variant="caption" mr={1}>
+    //           <Trans>Workflow:</Trans>
+    //         </Typography>
+    //         <Typography variant="caption">{data.data.workflow}</Typography>
+    //       </Box>
+    //     </>
+    //   )
     case 'collect-progress':
       return <EventCollectProgressItem data={data} />
   }
