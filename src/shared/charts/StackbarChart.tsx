@@ -1,6 +1,7 @@
 import { colors as muicolors } from '@mui/material'
 import { useMemo } from 'react'
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import { getMessage } from '../defined-messages'
 
 interface StackbarChartProps {
   data: {
@@ -74,10 +75,13 @@ export function StackbarChart({ data, colors }: StackbarChartProps) {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <XAxis angle={45} dataKey="name" />
         <YAxis domain={[0, total]} type="number" allowDataOverflow={true} />
-        <Tooltip />
-        <Legend />
+        <Tooltip
+          formatter={(value, name) => [value, getMessage((name as string).split(' - ').map(getMessage).join(' - '))]}
+          payloadUniqBy={({ name, value }) => name?.toString() ?? '' + value?.toString() ?? ''}
+        />
+        <Legend formatter={(value) => value.split(' - ').map(getMessage).join(' - ')} payloadUniqBy={({ value }) => value} />
         {bars}
       </BarChart>
     </ResponsiveContainer>

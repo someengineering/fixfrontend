@@ -7,6 +7,7 @@ import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon'
 import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import { Divider, Grid, Stack, SvgIcon, Typography } from '@mui/material'
 import { sortedSeverities } from 'src/shared/constants'
+import { getMessage } from 'src/shared/defined-messages'
 import { OverviewCard } from 'src/shared/overview-card'
 import { FailedChecksType, GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { iso8601DurationToString, parseISO8601Duration } from 'src/shared/utils/parseISO8601Duration'
@@ -36,7 +37,7 @@ const showSubtitle = (data: Partial<FailedChecksType<number>>) => (
       .map((key) => (
         <Stack key={key} direction="row">
           <Typography color={`${getColorBySeverity(key)}.main`} variant="body2">
-            {snakeCaseToUFStr(key)}
+            {getMessage(snakeCaseToUFStr(key))}
           </Typography>
           <Typography variant="body2">: {data[key]}</Typography>
         </Stack>
@@ -106,7 +107,9 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
               </Stack>
             ) : (
               <Stack alignItems="center" direction="row" spacing={1} height={24}>
-                <Typography variant="caption">Nothing to show here</Typography>
+                <Typography variant="caption">
+                  <Trans>Nothing to show here</Trans>
+                </Typography>
               </Stack>
             )
           }
@@ -118,7 +121,7 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
               <Stack spacing={0.5}>
                 <Divider />
                 <Typography variant="overline">
-                  <Trans>Top Improved Accounts</Trans>
+                  <Trans>Most Improved Accounts</Trans>
                 </Typography>
                 {data.changed_compliant.accounts_selection.map((accountId) => {
                   const account = data.accounts.find((acc) => accountId === acc.id)
@@ -130,7 +133,7 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
                 })}
                 <Divider />
                 <Typography variant="overline">
-                  <Trans>Top Improved Resources</Trans>
+                  <Trans>Most Improved Resources</Trans>
                 </Typography>
                 {Object.entries(data.changed_compliant.resource_count_by_kind_selection).map(([key, value]) => (
                   <Typography variant="body2" key={key}>
@@ -144,7 +147,7 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
       </Grid>
       <Grid item xs={12} sm={12} md={6} lg={4} xl={3}>
         <OverviewCard
-          title={<Trans>Infected</Trans>}
+          title={<Trans>Compliance</Trans>}
           value={
             Object.values(data.changed_vulnerable.resource_count_by_severity).length ? (
               <Stack alignItems="center" direction="row" spacing={1} height={24}>
@@ -155,7 +158,9 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
               </Stack>
             ) : (
               <Stack alignItems="center" direction="row" spacing={1} height={24}>
-                <Typography variant="caption">Nothing to show here</Typography>
+                <Typography variant="caption">
+                  <Trans>Nothing to show here</Trans>
+                </Typography>
               </Stack>
             )
           }
@@ -170,7 +175,7 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
                   <>
                     <Divider />
                     <Typography variant="overline">
-                      <Trans>Top Infected Accounts</Trans>
+                      <Trans>Top Non-Compliant Accounts</Trans>
                     </Typography>
                     {data.changed_vulnerable.accounts_selection.map((accountId) => {
                       const account = data.accounts.find((acc) => accountId === acc.id)
@@ -186,7 +191,7 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
                   <>
                     <Divider />
                     <Typography variant="overline">
-                      <Trans>Top Infected Resources</Trans>
+                      <Trans>Top Non-Compliant Resources</Trans>
                     </Typography>
                     {Object.entries(data.changed_vulnerable.resource_count_by_kind_selection).map(([key, value]) => (
                       <Typography variant="body2" key={key}>

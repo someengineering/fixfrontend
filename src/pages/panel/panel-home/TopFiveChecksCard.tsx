@@ -1,6 +1,7 @@
 import { Trans } from '@lingui/macro'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Button, Grid, Stack, Typography } from '@mui/material'
+import { getMessage } from 'src/shared/defined-messages'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 import { getColorBySeverity } from './getColor'
@@ -9,14 +10,14 @@ export const TopFiveChecksCard = ({ data }: { data?: GetWorkspaceInventoryReport
   return data ? (
     <Grid container spacing={2} my={2}>
       {data.top_checks.map((topCheck, i) => (
-        <Grid item xs={12} key={i}>
+        <Grid item xs={12} xl={4} lg={6} key={i}>
           <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Stack display="flex" justifyContent="space-between" flexDirection="row" width="100%">
                 <Typography variant="h5">{topCheck.title}</Typography>
                 <Stack spacing={2} direction="row" display="flex" justifyContent="center" alignItems="center">
                   <Typography color={getColorBySeverity(topCheck.severity)}>{topCheck.service.toUpperCase()}</Typography>
-                  <Typography color={getColorBySeverity(topCheck.severity)}>{snakeCaseToUFStr(topCheck.severity)}</Typography>
+                  <Typography color={getColorBySeverity(topCheck.severity)}>{getMessage(snakeCaseToUFStr(topCheck.severity))}</Typography>
                 </Stack>
               </Stack>
             </AccordionSummary>
