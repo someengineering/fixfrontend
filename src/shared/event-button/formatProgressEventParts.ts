@@ -8,7 +8,7 @@ export interface FormattedProgressEventParts {
   detail?: FormattedProgressEventParts[]
 }
 
-const createPart = (prevParts: FormattedProgressEventParts[], currentPath: string, prevPath: string) => {
+const createPart = (prevParts: FormattedProgressEventParts[], currentPath: string = '', prevPath: string = '') => {
   const currentFullPath = `${prevPath}>${currentPath}`
   const foundPart = prevParts.find((part) => part.path === currentFullPath)
   if (foundPart) {
@@ -31,8 +31,8 @@ const populatePart = (
   prevPath: string,
   pathIndex: number = 0,
 ) => {
-  if (pathIndex < currentPart.path.length) {
-    const part = createPart(prevParts, currentPart.path[pathIndex], prevPath)
+  if (pathIndex < (currentPart.path?.length ?? 0)) {
+    const part = createPart(prevParts, currentPart?.path?.[pathIndex], prevPath)
     if (!part.detail) {
       part.detail = []
     }

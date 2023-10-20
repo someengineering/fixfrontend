@@ -53,9 +53,7 @@ export const EventButton = () => {
         //   break
       }
     }
-    const removeListener = addListener('event-button', eventListener)
-
-    return removeListener
+    return addListener('event-button', eventListener)
   }, [addListener, send, showSnackbar])
 
   const hasNoEvents = !events.length

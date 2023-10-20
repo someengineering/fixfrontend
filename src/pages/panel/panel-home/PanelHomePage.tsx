@@ -1,9 +1,12 @@
 import { Trans } from '@lingui/macro'
-import { Box, Divider, Grid, Typography } from '@mui/material'
+import { Box, Button, Divider, Grid, Stack, Typography } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
+import { useCallback, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
+import { getWorkspaceReportSummaryQuery } from 'src/pages/panel/shared-queries'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
-import { getWorkspaceReportSummaryQuery } from '../shared-queries/getWorkspaceReportSummary.query'
+import { getInitiated } from 'src/shared/utils/localstorage'
 import { AccountCard } from './AccountCard'
 import { HeatmapCard } from './HeatmapCard'
 import { OverallCard } from './OverallCard'
@@ -40,11 +43,43 @@ const chartToShow = (data?: GetWorkspaceInventoryReportSummaryResponse) => {
 
 export default function HomePage() {
   const { selectedWorkspace } = useUserProfile()
-  const { data } = useQuery(['workspace-report-summary', selectedWorkspace?.id], getWorkspaceReportSummaryQuery, {
+  const { data } = useQuery({
+    queryKey: ['workspace-report-summary', selectedWorkspace?.id],
+    queryFn: getWorkspaceReportSummaryQuery,
     enabled: !!selectedWorkspace?.id,
   })
+  const navigate = useNavigate()
 
-  return (
+  const goToSetupCloudPage = useCallback(() => {
+    navigate('/setup-cloud')
+  }, [navigate])
+
+  useEffect(() => {
+    if (data?.accounts && !data.accounts.length && !getInitiated()) {
+    }
+  }, [data?.accounts, goToSetupCloudPage])
+
+  return data?.accounts && !data.accounts.length ? (
+    <Stack display="flex" flexGrow={1} flexDirection="column" width="100%" height="100%" justifyContent="center" alignItems="center">
+      <Typography variant="h3">There's no account configed for this workspace.</Typography>
+      <Typography variant="h5">
+        <Trans>
+          Please go to{' '}
+          <Button variant="text" onClick={goToSetupCloudPage}>
+            <Trans>Setup Accounts</Trans>
+          </Button>{' '}
+          page to setup your account first
+        </Trans>
+      </Typography>
+    </Stack>
+  ) : data?.accounts.length && !data.benchmarks.length ? (
+    <Stack display="flex" flexGrow={1} flexDirection="column" width="100%" height="100%" justifyContent="center" alignItems="center">
+      <Typography variant="h3">Please wait and be patient...</Typography>
+      <Typography variant="h5">
+        <Trans>The account has been successfully configured but the first benchmark will be run and then you will have the overview.</Trans>
+      </Typography>
+    </Stack>
+  ) : (
     <>
       <Typography variant="h3" mb={2}>
         <Trans>Overall</Trans>
@@ -70,6 +105,12 @@ export default function HomePage() {
           </Grid>
         ))}
       </Grid>
+      <Box p={4}>
+        <Divider />
+      </Box>
+      <Typography variant="h3" mb={2}>
+        <Trans>Top fixes</Trans>
+      </Typography>
       <TopFiveChecksCard data={data} />
     </>
   )

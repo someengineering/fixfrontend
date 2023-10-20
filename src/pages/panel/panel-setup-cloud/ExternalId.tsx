@@ -22,7 +22,9 @@ export const ExternalId = () => {
   const [showExternalId, setShowExternalId] = useState(false)
   const { selectedWorkspace } = useUserProfile()
   const { showSnackbar } = useSnackbar()
-  const { data: ExternalIdData } = useQuery(['workspace-external-id', selectedWorkspace?.id], getExternalIdQuery, {
+  const { data: ExternalIdData } = useQuery({
+    queryKey: ['workspace-external-id', selectedWorkspace?.id],
+    queryFn: getExternalIdQuery,
     enabled: !!selectedWorkspace?.id,
   })
   const handleCopy = () => {

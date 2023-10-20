@@ -6,7 +6,9 @@ import { getWorkspaceCfUrlQuery } from 'src/pages/panel/shared-queries'
 
 export const SetupCloudButton = () => {
   const { selectedWorkspace } = useUserProfile()
-  const { data: cloudSetupUrlData } = useQuery(['workspace-cf-url', selectedWorkspace?.id], getWorkspaceCfUrlQuery, {
+  const { data: cloudSetupUrlData } = useQuery({
+    queryKey: ['workspace-cf-url', selectedWorkspace?.id],
+    queryFn: getWorkspaceCfUrlQuery,
     enabled: !!selectedWorkspace?.id,
   })
   return (

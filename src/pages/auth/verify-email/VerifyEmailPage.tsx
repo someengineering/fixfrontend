@@ -7,9 +7,7 @@ import { verifyEmailQuery } from './verifyEmail.query'
 export default function VerifyPage() {
   const [getSearch] = useSearchParams()
   const token = getSearch.get('token') ?? undefined
-  const { data: email, error } = useQuery(['verify-email', token], verifyEmailQuery, {
-    enabled: !!token,
-  })
+  const { data: email, error } = useQuery({ queryKey: ['verify-email', token], queryFn: verifyEmailQuery, enabled: !!token })
   const navigate = useNavigate()
   useEffect(() => {
     const axiosError = ((error as AxiosError)?.response?.data as { detail: string })?.detail

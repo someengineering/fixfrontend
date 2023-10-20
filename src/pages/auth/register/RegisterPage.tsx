@@ -18,7 +18,7 @@ const RegisterButton = styled(LoadingButton)({
 })
 
 export default function RegisterPage() {
-  const { mutateAsync: register, isLoading: isRegisterLoading, error } = useMutation(registerMutation)
+  const { mutateAsync: register, isPending: isRegisterLoading, error } = useMutation({ mutationFn: registerMutation })
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { search, state } = useLocation()

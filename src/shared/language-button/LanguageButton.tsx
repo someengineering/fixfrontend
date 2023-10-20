@@ -15,7 +15,7 @@ const LanguageIconButton = styled(IconButton, { shouldForwardProp: shouldForward
   ({ theme, whiteMode }) => ({
     padding: 0,
     marginRight: theme.spacing(2),
-    color: whiteMode && theme.palette.mode === 'light' ? theme.palette.common.white : theme.palette.common.black,
+    color: whiteMode && theme.palette.mode === 'light' ? theme.palette.common.white : theme.palette.primary.main,
   }),
 )
 
@@ -36,7 +36,7 @@ export const LanguageButton = ({ iconButtonProps, whiteMode }: LanguageButtonPro
   }
 
   return (
-    <Box display="inline-flex" alignItems="center" justifyContent="center">
+    <Box display="flex" alignItems="center" justifyContent="center" mt="0 !important">
       <Tooltip title={t`Select Language`}>
         <LanguageIconButton whiteMode={whiteMode ?? false} size="large" {...(iconButtonProps ?? {})} onClick={handleOpenUserMenu}>
           <LanguageIcon fontSize="large" />

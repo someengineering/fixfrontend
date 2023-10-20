@@ -7,7 +7,7 @@ import { interpolateRdYwGn } from 'src/shared/utils/interpolateRdYwGn'
 export const HeatmapCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryResponse }) => {
   const heatmapData = useMemo(() => {
     return !data
-      ? undefined
+      ? {}
       : {
           data: data.benchmarks.reduce(
             (prev, item) => ({
@@ -29,7 +29,7 @@ export const HeatmapCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
         }
   }, [data])
   return (
-    heatmapData && (
+    heatmapData?.data && (
       <Grid container spacing={2} my={2}>
         <Grid item width="100%">
           {data?.benchmarks && (
