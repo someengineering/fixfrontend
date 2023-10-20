@@ -9,7 +9,7 @@ export const getWorkspaceReportSummaryQuery = ({
 }: QueryFunctionContext<['workspace-report-summary', string | undefined]>) => {
   return workspaceId
     ? axiosWithAuth
-        .get<GetWorkspaceInventoryReportSummaryResponse>(endPoints.workspaces.inventory.reportSummary(workspaceId) + 'f', { signal })
+        .get<GetWorkspaceInventoryReportSummaryResponse>(endPoints.workspaces.inventory.reportSummary(workspaceId), { signal })
         .then((res) => res.data)
     : undefined
 }
