@@ -38,9 +38,12 @@ export interface ChangedSitatuation {
 
 export interface TopChecks {
   categories: string[]
-  default_values: null
+  default_values: null | {
+    certificate_expiration: string
+  }
   detect: {
-    resoto_cmd: string
+    resoto_cmd?: string
+    resoto?: string
   }
   id: string
   provider: string
