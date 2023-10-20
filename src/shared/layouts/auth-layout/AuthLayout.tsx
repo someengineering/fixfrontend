@@ -60,7 +60,7 @@ export function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <AuthWrapper>
       <Stack position="fixed" top={0} right={0} mr={2} mt={2} flexDirection="row" spacing={1} justifyContent="center" alignItems="center">
-        <DarkModeSwitch hideSwitch />
+        <DarkModeSwitch hideDivider />
         <LanguageButton />
       </Stack>
       <AuthCardStyle>
