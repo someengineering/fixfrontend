@@ -5,11 +5,9 @@ import { axiosWithAuth } from 'src/shared/utils/axios'
 
 export const getExternalIdQuery = ({
   signal,
-  queryKey: [_, organizationId],
-}: QueryFunctionContext<['organization-external-id', string | undefined]>) => {
-  return organizationId
-    ? axiosWithAuth
-        .get<GetExternalIdResponse>(endPoints.organizations.externalId(organizationId), { signal })
-        .then((res) => res.data.external_id)
+  queryKey: [_, workspaceId],
+}: QueryFunctionContext<['workspace-external-id', string | undefined]>) => {
+  return workspaceId
+    ? axiosWithAuth.get<GetExternalIdResponse>(endPoints.workspaces.externalId(workspaceId), { signal }).then((res) => res.data.external_id)
     : undefined
 }

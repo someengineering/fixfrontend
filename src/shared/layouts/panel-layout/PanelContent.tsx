@@ -11,11 +11,7 @@ const Container = styled(Box)(({ theme }) => ({
 
 export const PanelContent = ({ children }: PropsWithChildren) => {
   return (
-    <Container
-      component="main"
-      maxWidth="100%"
-      sx={{ flexGrow: 1, p: 3, marginBottom: panelUI.bottomCopyRightHeight + 'px', marginTop: panelUI.headerHeight + 'px' }}
-    >
+    <Container component="main" maxWidth="100%">
       {children}
     </Container>
   )

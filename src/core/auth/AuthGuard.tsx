@@ -1,13 +1,13 @@
 import axios, { AxiosError, AxiosInstance } from 'axios'
 import { PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react'
 import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom'
-import { env } from 'src/shared/constants'
-import { GetOrganizationResponse } from 'src/shared/types/server'
-import { axiosWithAuth, setAxiosWithAuth } from 'src/shared/utils/axios'
+import { GetWorkspaceResponse } from 'src/shared/types/server'
+import { axiosWithAuth, defaultAxiosConfig, setAxiosWithAuth } from 'src/shared/utils/axios'
 import { clearAllCookies, isAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData, setAuthData } from 'src/shared/utils/localstorage'
 import { UserContext, UserContextRealValues, useUserProfile } from './UserContext'
-import { getOrganizationMutation } from './getOrganization.mutation'
+import { getCurrentUserMutation } from './getCurrentUser.mutation'
+import { getWorkspacesMutation } from './getWorkspaces.mutation'
 import { logoutMutation } from './logout.mutation'
 
 export interface RequireAuthProps {}
@@ -27,50 +27,58 @@ export function RequireAuth() {
 
 export interface AuthGuardProps {}
 
+const defaultAuth = { isAuthenticated: false, workspaces: [], selectedWorkspace: undefined, currentUser: undefined }
+
 export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
-  const [auth, setAuth] = useState<UserContextRealValues | undefined>({
+  const [auth, setAuth] = useState<UserContextRealValues>({
+    ...defaultAuth,
     ...(getAuthData() || {}),
     isAuthenticated: isAuthenticated() as false,
-    organizations: [],
-    selectedOrganization: undefined,
   })
   const navigate = useNavigate()
   const nextUrl = useRef<string>()
 
   const handleSetAuth = useCallback((data: UserContextRealValues | undefined, url?: string) => {
-    setAuth(data)
+    if (!data) {
+      setAuth(defaultAuth)
+    } else {
+      setAuth(data)
+    }
     nextUrl.current = url
   }, [])
 
   const handleLogout = useCallback(() => {
-    logoutMutation().finally(() => {
+    return logoutMutation().finally(() => {
       clearAllCookies()
-      setAuth({ isAuthenticated: false, organizations: [], selectedOrganization: undefined })
+      setAuth(defaultAuth)
     })
   }, [])
 
-  const handleRefreshOrganizations = useCallback((instance?: AxiosInstance) => {
-    return getOrganizationMutation(instance ?? axiosWithAuth)
-      .then((data) => {
-        setAuth({ isAuthenticated: true, organizations: data, selectedOrganization: data[0] })
-        return data
+  const handleRefreshWorkspaces = useCallback((instance?: AxiosInstance) => {
+    return getWorkspacesMutation(instance ?? axiosWithAuth)
+      .then((workspaces) => {
+        setAuth((prev) => ({
+          ...prev,
+          workspaces,
+          selectedWorkspace: workspaces.find((workspace) => workspace.id === prev.selectedWorkspace?.id) ?? workspaces[0],
+        }))
+        return workspaces
       })
       .catch(() => {
-        setAuth({ isAuthenticated: false, organizations: [] })
+        setAuth(defaultAuth)
         return undefined
       })
   }, [])
 
-  const handleSelectOrganizations = useCallback((id: string) => {
-    return new Promise<GetOrganizationResponse | undefined>((resolve) => {
+  const handleSelectWorkspaces = useCallback((id: string) => {
+    return new Promise<GetWorkspaceResponse | undefined>((resolve) => {
       setAuth((prev) => {
-        const foundOrganization = prev?.organizations.find((item) => item.id === id)
-        resolve(foundOrganization)
-        return foundOrganization
+        const foundWorkspace = prev.workspaces.find((item) => item.id === id)
+        resolve(foundWorkspace)
+        return foundWorkspace
           ? {
-              isAuthenticated: prev?.isAuthenticated ?? foundOrganization ? true : false,
-              organizations: prev?.organizations ?? [],
-              selectedOrganization: foundOrganization,
+              ...prev,
+              selectedWorkspace: foundWorkspace,
             }
           : prev
       })
@@ -80,26 +88,25 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
   useEffect(() => {
     if (auth?.isAuthenticated) {
       const instance = axios.create({
-        baseURL: env.apiUrl,
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
+        ...defaultAxiosConfig,
         withCredentials: true,
       })
       instance.interceptors.response.use(
         (response) => response,
         async (error: AxiosError & { config: { _retry: boolean } | undefined }) => {
           if (error?.response?.status === 403 || error?.response?.status === 401) {
-            setAuth({ isAuthenticated: false, organizations: [] })
+            handleLogout()
           }
-          handleLogout()
+          throw error
         },
       )
       setAxiosWithAuth(instance)
-      handleRefreshOrganizations(instance)
+      handleRefreshWorkspaces(instance)
+      getCurrentUserMutation(instance).then((currentUser) => {
+        setAuth((prev) => ({ ...prev, currentUser }))
+      })
     }
-  }, [auth?.isAuthenticated, handleRefreshOrganizations, handleLogout])
+  }, [auth?.isAuthenticated, handleRefreshWorkspaces, handleLogout])
 
   useEffect(() => {
     setAuthData(auth)
@@ -115,8 +122,8 @@ export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
         ...auth,
         setAuth: handleSetAuth,
         logout: handleLogout,
-        refreshOrganizations: handleRefreshOrganizations,
-        selectOrganization: handleSelectOrganizations,
+        refreshWorkspaces: handleRefreshWorkspaces,
+        selectWorkspace: handleSelectWorkspaces,
       }}
     >
       {children}

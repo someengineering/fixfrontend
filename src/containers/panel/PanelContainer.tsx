@@ -2,24 +2,27 @@ import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Typography } from '@mui/material'
 import { Suspense } from 'react'
-import { ErrorBoundary } from 'react-error-boundary'
 import { FixLogo } from 'src/assets/icons'
-import { ErrorBoundaryFallback } from 'src/shared/error-boundary-fallback'
+import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { BottomRegion, ContentRegion, LogoRegion, PanelLayout } from 'src/shared/layouts/panel-layout'
-import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
+import { FullPageLoadingSuspenseFallback, LoadingSuspenseFallback } from 'src/shared/loading'
 import { PanelRoutes } from './PanelRoutes'
 
 export default function PanelContainer() {
   useLingui()
   return (
-    <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-      <Suspense fallback={<FullPageLoadingSuspenseFallback />}>
+    <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+      <Suspense fallback={<FullPageLoadingSuspenseFallback forceFullpage />}>
         <PanelLayout>
           <LogoRegion>
             <FixLogo width={46} height={46} />
           </LogoRegion>
           <ContentRegion>
-            <PanelRoutes />
+            <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+              <Suspense fallback={<LoadingSuspenseFallback />}>
+                <PanelRoutes />
+              </Suspense>
+            </NetworkErrorBoundary>
           </ContentRegion>
           <BottomRegion>
             <Typography variant="subtitle2">
@@ -28,6 +31,6 @@ export default function PanelContainer() {
           </BottomRegion>
         </PanelLayout>
       </Suspense>
-    </ErrorBoundary>
+    </NetworkErrorBoundary>
   )
 }

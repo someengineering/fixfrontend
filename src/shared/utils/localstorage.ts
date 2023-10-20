@@ -1,4 +1,5 @@
 import { UserContextRealValues } from 'src/core/auth/UserContext'
+import { ThemeContextRealValues } from 'src/core/theme/ThemeContext'
 import { StorageKeys } from 'src/shared/constants'
 
 function getStorageObject<ReturnType extends Object = never>(key: StorageKeys) {
@@ -29,3 +30,7 @@ export const setLocale = (locale?: string) => setStorageObject(StorageKeys.local
 export const getInitiated = () => getStorageObject<boolean>(StorageKeys.initiated)
 
 export const setInitiated = (initiated?: boolean) => setStorageObject(StorageKeys.initiated, initiated)
+
+export const getThemeMode = () => getStorageObject<ThemeContextRealValues>(StorageKeys.themeMode)
+
+export const setThemeMode = (themeMode?: ThemeContextRealValues) => setStorageObject(StorageKeys.themeMode, themeMode)

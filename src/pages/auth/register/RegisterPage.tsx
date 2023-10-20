@@ -2,12 +2,14 @@ import { t, Trans } from '@lingui/macro'
 import SendIcon from '@mui/icons-material/Send'
 import { LoadingButton } from '@mui/lab'
 import { Divider, Grid, styled, TextField, Typography } from '@mui/material'
+import { useMutation } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
 import { FormEvent, Suspense, useState } from 'react'
-import { ErrorBoundary } from 'react-error-boundary'
-import { Link } from 'react-router-dom'
-import { ErrorBoundaryFallback } from 'src/shared/error-boundary-fallback'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { LoginSocialMedia } from 'src/shared/login-social-media'
 import { SocialMediaButtonSkeleton } from 'src/shared/social-media-button/SocialMediaButton.skeleton'
+import { registerMutation } from './register.mutation'
 
 const REGISTER_SUSPENSE_NUMBER_OF_SOCIAL_MEDIA_BUTTON = 2
 
@@ -16,20 +18,36 @@ const RegisterButton = styled(LoadingButton)({
 })
 
 export default function RegisterPage() {
+  const { mutateAsync: register, isLoading: isRegisterLoading, error } = useMutation(registerMutation)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const { search, state } = useLocation()
+  const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setIsLoading(true)
-    const username: string | undefined = e.currentTarget.username
-    const password: string | undefined = e.currentTarget.password
-    console.log({ username, password })
+    if (email && password) {
+      setIsLoading(true)
+      register({ email, password })
+        .then(() => {
+          navigate(
+            { search: search ? `${search}&verify=true&email=${email}` : `?verify=true&email=${email}`, pathname: '/auth/login' },
+            { state },
+          )
+        })
+        .catch(() => {
+          setIsLoading(false)
+        })
+    }
   }
   const handleClickHref = () => {
     setIsLoading(true)
   }
+  const isLoadingGeneric = isLoading || isRegisterLoading
+  const registerError = ((error as AxiosError)?.response?.data as { detail: string })?.detail
   return (
     <>
-      <Typography variant="h3" color="primary" textAlign="justify" mb={2} maxWidth={550}>
+      <Typography variant="h3" color="primary.main" textAlign="justify" mb={2} maxWidth={550}>
         <Trans>Simple and affordable visibility into your cloud security posture.</Trans>
       </Typography>
       <Typography variant="h6" color="grey.700" textAlign="justify" mb={4} maxWidth={550}>
@@ -51,31 +69,55 @@ export default function RegisterPage() {
         onSubmit={handleSubmit}
       >
         <Grid item>
-          <Typography variant="h3" color="primary">
+          <Typography variant="h3" color="primary.main">
             <Trans>Register</Trans>
           </Typography>
         </Grid>
         <Grid item>
-          <TextField required id="username" label={t`Username`} variant="outlined" fullWidth type="email" />
+          <TextField
+            required
+            id="email"
+            label={t`Email`}
+            variant="outlined"
+            fullWidth
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value ?? '')}
+          />
         </Grid>
         <Grid item>
-          <TextField required id="password" label={t`Password`} variant="outlined" fullWidth type="password" />
+          <TextField
+            required
+            id="password"
+            label={t`Password`}
+            variant="outlined"
+            fullWidth
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value ?? '')}
+          />
         </Grid>
+        {registerError && (
+          <Grid item>
+            <Typography color="error.main">{registerError}</Typography>
+          </Grid>
+        )}
         <Grid item>
           <RegisterButton
             type="submit"
             variant="contained"
             fullWidth
             size="large"
-            loading={isLoading}
-            loadingPosition={isLoading ? 'start' : undefined}
-            startIcon={isLoading ? <SendIcon /> : undefined}
+            disabled={!password || !email}
+            loading={isLoadingGeneric}
+            loadingPosition={isLoadingGeneric ? 'start' : undefined}
+            startIcon={isLoadingGeneric ? <SendIcon /> : undefined}
           >
             <Trans>Sign up</Trans>
           </RegisterButton>
         </Grid>
         <Grid item>
-          <Link to="/auth/login">
+          <Link to={{ pathname: '/auth/login', search }} state={state}>
             <Trans>Already have an account? Click here to Log in.</Trans>
           </Link>
         </Grid>
@@ -84,7 +126,7 @@ export default function RegisterPage() {
             <Trans>Or</Trans>
           </Divider>
         </Grid>
-        <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+        <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
           <Suspense
             fallback={new Array(REGISTER_SUSPENSE_NUMBER_OF_SOCIAL_MEDIA_BUTTON).fill('').map((_, i) => (
               <Grid item key={i}>
@@ -92,9 +134,9 @@ export default function RegisterPage() {
               </Grid>
             ))}
           >
-            <LoginSocialMedia isLoading={isLoading} onClick={handleClickHref} />
+            <LoginSocialMedia isLoading={isLoadingGeneric} onClick={handleClickHref} />
           </Suspense>
-        </ErrorBoundary>
+        </NetworkErrorBoundary>
       </Grid>
     </>
   )

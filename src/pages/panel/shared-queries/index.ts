@@ -1,2 +1,2 @@
 export { getExternalIdQuery } from './getExternalId.query'
-export { getOrganizationCfUrlQuery } from './getOrganizationCfUrl.query'
+export { getWorkspaceCfUrlQuery } from './getWorkspaceCfUrl.query'

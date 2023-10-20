@@ -1,4 +1,4 @@
-import { alpha, keyframes, styled, useTheme } from '@mui/material'
+import { alpha, keyframes, styled } from '@mui/material'
 import { LogoWhiteNoBackground } from 'src/assets/icons'
 import { shouldForwardProp } from 'src/shared/utils/shouldForwardProp'
 
@@ -20,7 +20,7 @@ const SpinnerCircle = styled('div', { shouldForwardProp })<{ width: number; isDa
   ({ theme, width, isDark, isLoading }) => ({
     position: 'absolute',
     backgroundColor:
-      isDark ?? theme.palette.mode === 'dark'
+      isDark && theme.palette.mode === 'dark'
         ? isLoading
           ? alpha(theme.palette.common.black, 0.2)
           : alpha(theme.palette.primary.main, 0.8)
@@ -31,7 +31,7 @@ const SpinnerCircle = styled('div', { shouldForwardProp })<{ width: number; isDa
     height: width,
     borderRadius: isLoading ? '50%' : '0',
     boxShadow: `inset 0 0 0 1px ${
-      isDark ?? theme.palette.mode === 'dark'
+      isDark && theme.palette.mode === 'dark'
         ? isLoading
           ? alpha(theme.palette.common.white, 0.1)
           : theme.palette.common.white
@@ -59,7 +59,7 @@ const SpinnerCircleMask = styled('div', { shouldForwardProp })<{ width: number; 
   overflow: 'hidden',
   transformOrigin: `${width / 2}px ${width / 2}px`,
   WebkitMaskImage: `-webkit-linear-gradient(top, ${
-    isDark ?? theme.palette.mode === 'dark'
+    isDark && theme.palette.mode === 'dark'
       ? `${alpha(theme.palette.common.black, 1)}, ${alpha(theme.palette.common.black, 0)}`
       : `${alpha(theme.palette.common.white, 1)}, ${alpha(theme.palette.common.white, 0)}`
   })`,
@@ -71,7 +71,7 @@ const SpinnerCircleMaskLine = styled('div', { shouldForwardProp })<{ width: numb
   height: width,
   borderRadius: '50%',
   boxShadow: `inset 0 0 0 1px ${
-    isDark ?? theme.palette.mode === 'dark' ? alpha(theme.palette.common.white, 0.5) : alpha(theme.palette.common.black, 0.5)
+    isDark && theme.palette.mode === 'dark' ? alpha(theme.palette.common.white, 0.5) : alpha(theme.palette.common.black, 0.5)
   }`,
 }))
 
@@ -100,14 +100,9 @@ const SpinnerContainer = styled(Container, { shouldForwardProp })<{ isLoading?: 
 }))
 
 export const Spinner = ({ width = 110, isDark, isLoading }: SpinnerProps) => {
-  const { palette } = useTheme()
   return (
     <SpinnerContainer isLoading={isLoading}>
-      <LogoWhiteNoBackgroundStyled
-        width={isLoading ? width * 0.625 : width}
-        height={isLoading ? width * 0.625 : width}
-        fill={isDark ? 'white' : palette.primary.main}
-      />
+      <LogoWhiteNoBackgroundStyled width={isLoading ? width * 0.625 : width} height={isLoading ? width * 0.625 : width} fill="white" />
       <SpinnerCircle width={width} isDark={isDark} isLoading={isLoading} />
       {isLoading ? (
         <SpinnerCircleMask width={width} isDark={isDark}>

@@ -1,19 +1,29 @@
 import { Trans } from '@lingui/macro'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Divider, Skeleton, Typography } from '@mui/material'
-import { Suspense } from 'react'
-import { ErrorBoundary } from 'react-error-boundary'
-import { ErrorBoundaryFallback } from 'src/shared/error-boundary-fallback'
+import { Suspense, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useEvents } from 'src/core/events'
+import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { ExternalId, ExternalIdSkeleton } from './ExternalId'
 import { SetupCloudButton } from './SetupCloudButton'
 import { SetupTemplateButton, SetupTemplateButtonSkeleton } from './SetupTemplateButton'
 import { TenantId } from './TenantId'
 
 export default function PanelSetupCloudPage() {
+  const { addListener } = useEvents()
+  const navigate = useNavigate()
+  useEffect(() => {
+    return addListener('event-button', (ev) => {
+      if (ev.kind === 'cloud_account_created') {
+        navigate('/')
+      }
+    })
+  }, [addListener, navigate])
   return (
     <>
       <Typography variant="h1" color="secondary" mb={2}>
-        <Trans>Setup cloud</Trans>
+        <Trans>Automatic Cloud Setup</Trans>
       </Typography>
       <Typography variant="h6">
         <Trans>In the next step we are going to set up the trust between FIX and your AWS cloud account.</Trans>
@@ -22,19 +32,19 @@ export default function PanelSetupCloudPage() {
         <Trans>Make sure that you are already logged into the correct AWS account, before pressing the SETUP button.</Trans>
       </Typography>
       <Box py={3}>
-        <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+        <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
           <Suspense
             fallback={
               <Skeleton variant="rounded">
                 <Button>
-                  <Trans>Go To Setup</Trans>
+                  <Trans>Deploy Stack</Trans>
                 </Button>
               </Skeleton>
             }
           >
             <SetupCloudButton />
           </Suspense>
-        </ErrorBoundary>
+        </NetworkErrorBoundary>
       </Box>
       <Typography variant="body1" my={1}>
         <Trans>
@@ -46,18 +56,18 @@ export default function PanelSetupCloudPage() {
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="manual-setup-content" id="manual-setup-header">
           <Typography variant="h5">
-            <Trans>Manual Setup</Trans>
+            <Trans>Alternatively: Manual Cloud Setup</Trans>
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography variant="subtitle2" mt={1}>
             <Trans>Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template</Trans>:
           </Typography>
-          <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+          <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
             <Suspense fallback={<SetupTemplateButtonSkeleton />}>
               <SetupTemplateButton />
             </Suspense>
-          </ErrorBoundary>
+          </NetworkErrorBoundary>
           <Typography variant="body1" mt={1}>
             <Trans>The Stack requires the following parameters</Trans>:
           </Typography>
@@ -72,11 +82,11 @@ export default function PanelSetupCloudPage() {
               <Typography variant="body1" mb={{ xs: 1, md: 0 }} alignSelf={{ xs: 'start', md: 'center' }} width={100}>
                 <Trans>External Id</Trans>:
               </Typography>
-              <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+              <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
                 <Suspense fallback={<ExternalIdSkeleton />}>
                   <ExternalId />
                 </Suspense>
-              </ErrorBoundary>
+              </NetworkErrorBoundary>
             </Box>
           </div>
           <div>

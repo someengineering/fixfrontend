@@ -17,11 +17,20 @@ const RegisterPage = lazy(
     ),
 )
 
+const VerifyEmailPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "verify-email" */
+      'src/pages/auth/verify-email/VerifyEmailPage'
+    ),
+)
+
 export function AuthRoutes() {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/verify-email" element={<VerifyEmailPage />} />
       <Route path="*" element={<Navigate to="/auth/login" />} />
     </Routes>
   )

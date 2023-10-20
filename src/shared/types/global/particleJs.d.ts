@@ -145,5 +145,16 @@ interface Stroke {
 declare global {
   interface Window {
     particlesJS: (elementId: string, options: ParticleJS) => void
+    pJSDom: {
+      pJS: {
+        fn: {
+          vendors: {
+            destroypJS: () => void
+          }
+          canvasClear: () => void
+          particlesEmpty: () => void
+        }
+      }
+    }[]
   }
 }

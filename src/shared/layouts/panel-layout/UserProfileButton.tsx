@@ -4,7 +4,7 @@ import { MouseEvent as MouseEventReact, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 
 export const UserProfileButton = () => {
-  const { logout, organizations, selectedOrganization, selectOrganization } = useUserProfile()
+  const { logout, workspaces, selectedWorkspace, selectWorkspace } = useUserProfile()
   const [anchorElUser, setAnchorElUser] = useState<HTMLElement>()
   const handleOpenUserMenu = (event: MouseEventReact<HTMLElement, MouseEvent>) => {
     setAnchorElUser(event.currentTarget)
@@ -19,16 +19,16 @@ export const UserProfileButton = () => {
     logout()
   }
 
-  const handleSelectOrganization = (id: string) => {
+  const handleSelectWorkspace = (id: string) => {
     handleCloseUserMenu()
-    selectOrganization(id)
+    selectWorkspace(id)
   }
 
   return (
     <>
       <Tooltip title={t`Profile`}>
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar alt={selectedOrganization?.slug} />
+          <Avatar alt={selectedWorkspace?.slug} />
         </IconButton>
       </Tooltip>
       <Menu
@@ -47,11 +47,11 @@ export const UserProfileButton = () => {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        {organizations?.map(({ slug, id }) => (
+        {workspaces?.map(({ slug, id }) => (
           <MenuItem
             key={id}
-            onClick={selectedOrganization?.id === id ? undefined : () => handleSelectOrganization(id)}
-            disabled={selectedOrganization?.id === id}
+            onClick={selectedWorkspace?.id === id ? undefined : () => handleSelectWorkspace(id)}
+            disabled={selectedWorkspace?.id === id}
           >
             <Typography textAlign="center">{slug}</Typography>
           </MenuItem>

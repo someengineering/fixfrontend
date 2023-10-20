@@ -10,6 +10,7 @@ interface PanelContentProps extends PropsWithChildren {
 
 export const PanelHeader = ({ children, bottomChild }: PanelContentProps) => {
   const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('md'))
+
   const [open, setOpen] = useState(isDesktop)
 
   const handleDrawerOpen = () => {

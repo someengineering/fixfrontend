@@ -1,13 +1,23 @@
+import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import LanguageIcon from '@mui/icons-material/Language'
-import { Box, IconButton, IconButtonProps, Menu, MenuItem, Tooltip, Typography } from '@mui/material'
+import { Box, IconButton, IconButtonProps, Menu, MenuItem, Tooltip, Typography, styled } from '@mui/material'
 import { MouseEvent as MouseEventReact, useState } from 'react'
 import { langs } from 'src/shared/constants'
+import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
 
 interface LanguageButtonProps {
   iconButtonProps?: IconButtonProps
   whiteMode?: boolean
 }
+
+const LanguageIconButton = styled(IconButton, { shouldForwardProp: shouldForwardPropWithBlackList(['whiteMode']) })<{ whiteMode: boolean }>(
+  ({ theme, whiteMode }) => ({
+    padding: 0,
+    marginRight: theme.spacing(2),
+    color: whiteMode && theme.palette.mode === 'light' ? theme.palette.common.white : theme.palette.common.black,
+  }),
+)
 
 export const LanguageButton = ({ iconButtonProps, whiteMode }: LanguageButtonProps) => {
   const { i18n } = useLingui()
@@ -27,15 +37,10 @@ export const LanguageButton = ({ iconButtonProps, whiteMode }: LanguageButtonPro
 
   return (
     <Box display="inline-flex" alignItems="center" justifyContent="center">
-      <Tooltip title="Select Language">
-        <IconButton
-          sx={{ p: 0, color: whiteMode ? 'common.white' : 'primary', mr: 2 }}
-          size="large"
-          {...(iconButtonProps ?? {})}
-          onClick={handleOpenUserMenu}
-        >
+      <Tooltip title={t`Select Language`}>
+        <LanguageIconButton whiteMode={whiteMode ?? false} size="large" {...(iconButtonProps ?? {})} onClick={handleOpenUserMenu}>
           <LanguageIcon fontSize="large" />
-        </IconButton>
+        </LanguageIconButton>
       </Tooltip>
       <Menu
         sx={{ mt: '45px' }}

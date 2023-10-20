@@ -1,49 +1,38 @@
-import { Trans } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
 import CopyAllIcon from '@mui/icons-material/CopyAll'
-import { Alert, Box, Button, Snackbar, Typography } from '@mui/material'
-import { useState } from 'react'
+import { Box, Button, Typography, useTheme } from '@mui/material'
 import { useUserProfile } from 'src/core/auth'
+import { useSnackbar } from 'src/core/snackbar'
 
 export const TenantId = () => {
-  const [showSnackbar, setShowSnackbar] = useState(false)
-  const { selectedOrganization } = useUserProfile()
+  const theme = useTheme()
+  const { showSnackbar } = useSnackbar()
+  const { selectedWorkspace } = useUserProfile()
   const handleCopy = () => {
     try {
-      navigator.clipboard.writeText(selectedOrganization?.id || '').then(() => {
-        setShowSnackbar(true)
+      navigator.clipboard.writeText(selectedWorkspace?.id || '').then(() => {
+        showSnackbar(t`Copied to Clipboard!`)
       })
     } catch {}
   }
-  const handleCloseSnackbar = () => {
-    setShowSnackbar(false)
-  }
   return (
     <>
-      <Snackbar
-        open={showSnackbar}
-        autoHideDuration={3000}
-        onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-      >
-        <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
-          <Trans>Copied to Clipboard!</Trans>
-        </Alert>
-      </Snackbar>
       <Box
         display="inline-flex"
-        bgcolor="grey.300"
+        bgcolor={theme.palette.mode === 'light' ? 'grey.300' : 'grey.800'}
         alignItems="center"
         ml={{ xs: 0, md: 2 }}
         mb={{ xs: 1, md: 0 }}
-        width={{ xs: 294, md: 400 }}
+        width={{ xs: 300, md: 430 }}
       >
         <Typography
           variant="h6"
           fontFamily="Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New"
           p={{ xs: 1, md: 2 }}
+          whiteSpace="nowrap"
           fontSize={{ xs: 12, md: 'initial' }}
         >
-          {selectedOrganization?.id}
+          {selectedWorkspace?.id}
         </Typography>
       </Box>
       <Box ml={2} alignSelf={{ xs: 'end', md: 'center' }}>
