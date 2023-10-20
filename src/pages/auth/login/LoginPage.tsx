@@ -19,7 +19,7 @@ const LoginButton = styled(LoadingButton)({
 })
 
 export default function LoginPage() {
-  const { mutateAsync: login, isLoading: isLoginLoading, error } = useMutation(loginMutation)
+  const { mutateAsync: login, isPending: isLoginLoading, error } = useMutation({ mutationFn: loginMutation })
   const { setAuth } = useUserProfile()
   const [getSearch] = useSearchParams()
   const [username, setUsername] = useState(getSearch.get('email') ?? '')
@@ -58,7 +58,7 @@ export default function LoginPage() {
       <Typography variant="h3" color="primary.main" textAlign="justify" mb={2} maxWidth={550}>
         <Trans>Simple and affordable visibility into your cloud security posture.</Trans>
       </Typography>
-      <Typography variant="h6" color="grey.700" textAlign="justify" mb={4} maxWidth={550}>
+      <Typography variant="h6" textAlign="justify" mb={4} maxWidth={550}>
         <Trans>
           Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory,
           compliance scans, and remediation workflows.

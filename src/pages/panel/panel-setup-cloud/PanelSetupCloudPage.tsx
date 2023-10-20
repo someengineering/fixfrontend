@@ -5,6 +5,7 @@ import { Suspense, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useEvents } from 'src/core/events'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
+import { setInitiated } from 'src/shared/utils/localstorage'
 import { ExternalId, ExternalIdSkeleton } from './ExternalId'
 import { SetupCloudButton } from './SetupCloudButton'
 import { SetupTemplateButton, SetupTemplateButtonSkeleton } from './SetupTemplateButton'
@@ -13,6 +14,11 @@ import { TenantId } from './TenantId'
 export default function PanelSetupCloudPage() {
   const { addListener } = useEvents()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    setInitiated(true)
+  }, [])
+
   useEffect(() => {
     return addListener('event-button', (ev) => {
       if (ev.kind === 'cloud_account_created') {
@@ -20,6 +26,7 @@ export default function PanelSetupCloudPage() {
       }
     })
   }, [addListener, navigate])
+
   return (
     <>
       <Typography variant="h1" color="secondary" mb={2}>

@@ -28,7 +28,7 @@ export type CollectProgressEvent = WebSocketGenericEvent<
       parts: {
         kind: string
         name: string
-        path: string[]
+        path?: string[]
         current: number
         total: number
       }[]
