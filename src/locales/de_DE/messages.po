@@ -50,8 +50,8 @@ msgid "Benchmarks"
 msgstr "Benchmarks"
 
 #: src/shared/event-button/EventButton.tsx:46
-msgid "Cloud account created, id: {0}"
-msgstr "Cloud-Konto erstellt, ID: {0}"
+msgid "Cloud account added, id: {0}"
+msgstr "Cloud-Konto hinzugefügt, ID: {0}"
 
 #: src/pages/panel/panel-setup-cloud/ExternalId.tsx:31
 #: src/pages/panel/panel-setup-cloud/TenantId.tsx:14
@@ -111,8 +111,8 @@ msgid "In the next step we are going to set up the trust between FIX and your AW
 msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS Konto ein."
 
 #: src/pages/panel/panel-home/OverallCard.tsx:139
-msgid "Infected"
-msgstr "Infiziert"
+msgid "Compliance"
+msgstr "Compliance"
 
 #: src/pages/auth/login/LoginPage.tsx:81
 #: src/pages/auth/login/LoginPage.tsx:140
@@ -213,20 +213,20 @@ msgid "This will deploy a CloudFormation stack that creates a new IAM role in yo
 msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM Rolle in Ihrem AWS Konto erstellt. Diese Rolle wird von FIX verwendet, um in Ihrem AWS Konto Sicherheitsscans durchzuführen."
 
 #: src/pages/panel/panel-home/OverallCard.tsx:114
-msgid "Top Improved Accounts"
-msgstr "Top verbesserte Konten"
+msgid "Most Improved Accounts"
+msgstr "Am meisten verbesserte Konten"
 
 #: src/pages/panel/panel-home/OverallCard.tsx:126
-msgid "Top Improved Resources"
-msgstr "Top verbesserte Ressourcen"
+msgid "Most Improved Resources"
+msgstr "Am meisten verbesserte Ressourcen"
 
 #: src/pages/panel/panel-home/OverallCard.tsx:155
-msgid "Top Infected Accounts"
-msgstr "Am häufigsten infizierte Konten"
+msgid "Top Non-Compliant Accounts"
+msgstr "Top Konten mit Compliance-Verstößen"
 
 #: src/pages/panel/panel-home/OverallCard.tsx:167
-msgid "Top Infected Resources"
-msgstr "Top infizierte Ressourcen"
+msgid "Top Non-Compliant Resources"
+msgstr "Top Ressourcen mit Compliance-Verstößen"
 
 #: src/pages/auth/login/LoginPage.tsx:62
 #: src/pages/auth/register/RegisterPage.tsx:58

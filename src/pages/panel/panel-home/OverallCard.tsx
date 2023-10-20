@@ -111,7 +111,7 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
             <Stack spacing={0.5}>
               <Divider />
               <Typography variant="overline">
-                <Trans>Top Improved Accounts</Trans>
+                <Trans>Most Improved Accounts</Trans>
               </Typography>
               {data.changed_compliant.accounts_selection.map((accountId) => {
                 const account = data.accounts.find((acc) => accountId === acc.id)
@@ -123,7 +123,7 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
               })}
               <Divider />
               <Typography variant="overline">
-                <Trans>Top Improved Resources</Trans>
+                <Trans>Most Improved Resources</Trans>
               </Typography>
               {Object.entries(data.changed_compliant.resource_count_by_kind_selection).map(([key, value]) => (
                 <Typography variant="body2" key={key}>
@@ -136,7 +136,7 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
       </Grid>
       <Grid item xs={12} sm={6} lg={3}>
         <OverviewCard
-          title={<Trans>Infected</Trans>}
+          title={<Trans>Compliance</Trans>}
           value={
             <Stack alignItems="center" direction="row" spacing={1} height={24}>
               <Typography variant="h4">
@@ -152,7 +152,7 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
             <Stack spacing={0.5}>
               <Divider />
               <Typography variant="overline">
-                <Trans>Top Infected Accounts</Trans>
+                <Trans>Top Non-Compliant Accounts</Trans>
               </Typography>
               {data.changed_vulnerable.accounts_selection.map((accountId) => {
                 const account = data.accounts.find((acc) => accountId === acc.id)
@@ -164,7 +164,7 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
               })}
               <Divider />
               <Typography variant="overline">
-                <Trans>Top Infected Resources</Trans>
+                <Trans>Top Non-Compliant Resources</Trans>
               </Typography>
               {Object.entries(data.changed_vulnerable.resource_count_by_kind_selection).map(([key, value]) => (
                 <Typography variant="body2" key={key}>
