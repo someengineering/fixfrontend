@@ -75,7 +75,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
         messagesToSend.current = []
       }
       const createWebSocket = () => {
-        websocket.current = new WebSocket(`${env.wsUrl}${endPoints.workspaces.events(selectedWorkspace.id)}`)
+        websocket.current = new window.WebSocket(`${env.wsUrl}/${endPoints.workspaces.events(selectedWorkspace.id)}`)
         websocket.current.addEventListener('close', onClose)
         websocket.current.addEventListener('open', onOpen)
         for (let key in listeners.current) {

@@ -2,7 +2,7 @@ import origAxios, { AxiosInstance, CreateAxiosDefaults } from 'axios'
 import { env } from 'src/shared/constants'
 
 export const defaultAxiosConfig: CreateAxiosDefaults = {
-  baseURL: env.apiUrl,
+  baseURL: `${env.apiUrl}/`,
   headers: {
     Accept: 'application/json',
     'content-type': 'application/json',
