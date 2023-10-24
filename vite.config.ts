@@ -17,13 +17,14 @@ export default defineConfig(({ mode }) => {
             target: env.VITE_SERVER,
             changeOrigin: true,
             rewrite: (path) => path,
-          },
-          '^/api/workspaces/.+/events': {
-            target: env.VITE_WS_SERVER,
-            changeOrigin: true,
             ws: true,
-            rewrite: (path) => path,
           },
+          // '^/api/workspaces/.+/events': {
+          //   target: env.VITE_WS_SERVER,
+          //   changeOrigin: true,
+          //   ws: true,
+          //   rewrite: (path) => path,
+          // },
         }
       : undefined
   return {
