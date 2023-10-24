@@ -39,7 +39,9 @@ const FullPageLoadingContainer = ({
 }
 
 export const FullPageLoadingProvider = ({ children }: PropsWithChildren) => {
-  const setLoadingStateRef = useRef((_: LoadingStateType, __?: boolean) => {})
+  const setLoadingStateRef = useRef((_: LoadingStateType, __?: boolean) => {
+    return
+  })
   const shownLoadings = useRef<LoadingStateType[]>([])
   const showLoading = useCallback((forceFullpage?: boolean) => {
     const state = LoadingStateType.SHOW
