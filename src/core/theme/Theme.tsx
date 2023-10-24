@@ -9,7 +9,7 @@ createTheme({
   typography: {},
 })
 
-export type ThemeProps = PropsWithChildren<{}>
+export type ThemeProps = PropsWithChildren
 
 const themeMode = getThemeMode()
 

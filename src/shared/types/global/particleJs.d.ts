@@ -58,7 +58,7 @@ interface Repulse {
 }
 
 interface Particles {
-  number?: Number
+  number?: ParticleNumber
   color?: Color
   shape?: Shape
   opacity?: Opacity
@@ -96,7 +96,7 @@ interface Attract {
   rotateY?: number
 }
 
-interface Number {
+interface ParticleNumber {
   value?: number
   density?: Density
 }

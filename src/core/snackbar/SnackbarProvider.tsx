@@ -48,8 +48,6 @@ export function useSnackbar(): SnackbarContextValue {
   return context
 }
 
-export interface SnackbarProviderProps {}
-
 const Snackbar = styled(MuiSnackbar, { shouldForwardProp: shouldForwardPropWithBlackList(['index']) })<{ index: number }>(
   ({ theme, index }) => ({
     marginBottom: 54 * index,
@@ -95,7 +93,7 @@ export function SnackbarElement({
   )
 }
 
-export function SnackbarProvider({ children }: PropsWithChildren<SnackbarProviderProps>) {
+export function SnackbarProvider({ children }: PropsWithChildren) {
   const [snackbars, setSnackbars] = useState<{ [key in number]: SnackbarValue }>({})
 
   const closeSnackbar = useCallback((key: number) => {
