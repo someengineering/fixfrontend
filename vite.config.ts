@@ -17,7 +17,6 @@ export default defineConfig(({ mode }) => {
             target: env.VITE_SERVER,
             changeOrigin: true,
             rewrite: (path) => path,
-            ws: true,
           },
           // '^/api/workspaces/.+/events': {
           //   target: env.VITE_WS_SERVER,
