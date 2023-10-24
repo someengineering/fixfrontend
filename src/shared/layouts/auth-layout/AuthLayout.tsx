@@ -6,14 +6,12 @@ import { groupChildrenByType } from 'src/shared/utils/groupChildrenByType'
 import { AuthHeader } from './AuthHeader'
 
 // typescript only allows string when it defined at `JSX.IntrinsicElements`
-export const BrandRegion = 'BrandRegion' as unknown as ComponentType<PropsWithChildren<{}>>
-export const ContentRegion = 'ContentRegion' as unknown as ComponentType<PropsWithChildren<{}>>
+export const BrandRegion = 'BrandRegion' as unknown as ComponentType<PropsWithChildren>
+export const ContentRegion = 'ContentRegion' as unknown as ComponentType<PropsWithChildren>
 
 const regions = [BrandRegion, ContentRegion]
 
-interface Props {}
-
-export type AuthLayoutProps = PropsWithChildren<Props>
+export type AuthLayoutProps = PropsWithChildren
 
 const AuthCardStyle = styled(Stack)({
   flex: '1 0 auto',
@@ -60,7 +58,7 @@ export function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <AuthWrapper>
       <Stack position="fixed" top={0} right={0} mr={2} mt={2} flexDirection="row" spacing={1} justifyContent="center" alignItems="center">
-        <DarkModeSwitch hideDivider />
+        <DarkModeSwitch />
         <LanguageButton />
       </Stack>
       <AuthCardStyle>
