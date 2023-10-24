@@ -1,2 +1,3 @@
 !.storybook
 public/*.min.js
+src/locales/**/messages.po

@@ -1,7 +1,7 @@
 import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
 import { Box, IconButton, styled } from '@mui/material'
-import { useThemeMode } from 'src/core/theme/ThemeContext'
+import { useThemeMode } from 'src/core/theme'
 import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
 
 const DarkModeIconButton = styled(IconButton, { shouldForwardProp: shouldForwardPropWithBlackList(['whiteMode']) })<{ whiteMode: boolean }>(

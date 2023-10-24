@@ -3,6 +3,26 @@
   "description": "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows.",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc && vite build",
+    "build-storybook": "storybook build",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "i18n:compile": "lingui compile",
+    "i18n:extract": "lingui extract",
+    "lint": "eslint . --ext ts,tsx --max-warnings 0",
+    "postinstall": "husky install",
+    "prebuild": "yarn i18n:compile",
+    "prepare": "husky install",
+    "prestart": "yarn i18n:compile",
+    "pretest": "yarn i18n:compile",
+    "preview": "vite preview",
+    "start": "vite",
+    "storybook": "storybook dev -p 6006",
+    "test": "vitest",
+    "test:ui": "vitest --ui"
+  },
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -13,7 +33,7 @@
     "@mui/material": "^5.14.14",
     "@mui/system": "^5.14.14",
     "@mui/x-tree-view": "^6.0.0-beta.0",
-    "@tanstack/react-query": "^5.0.0",
+    "@tanstack/react-query": "^5.0.5",
     "axios": "^1.5.1",
     "d3": "^7.8.5",
     "flag-icons": "^6.11.1",
@@ -26,94 +46,47 @@
     "recharts": "^2.9.0"
   },
   "devDependencies": {
-    "@babel/core": "7.23.2",
-    "@babel/plugin-proposal-private-property-in-object": "7.21.11",
-    "@babel/plugin-syntax-flow": "7.22.5",
-    "@babel/plugin-transform-react-jsx": "7.22.15",
     "@lingui/cli": "^4.5.0",
     "@lingui/macro": "^4.5.0",
+    "@lingui/swc-plugin": "^4.0.4",
+    "@lingui/vite-plugin": "^4.5.0",
     "@storybook/addon-essentials": "7.5.1",
     "@storybook/addon-interactions": "7.5.1",
     "@storybook/addon-links": "7.5.1",
     "@storybook/addon-onboarding": "1.0.8",
     "@storybook/blocks": "7.5.1",
-    "@storybook/preset-create-react-app": "7.5.1",
     "@storybook/react": "7.5.1",
-    "@storybook/react-webpack5": "7.5.1",
+    "@storybook/react-vite": "7.5.1",
     "@storybook/testing-library": "0.2.2",
-    "@testing-library/dom": "9.3.3",
+    "@testing-library/dom": "^9.3.3",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.5.1",
     "@types/d3": "^7.4.2",
-    "@types/jest": "^29.5.6",
-    "@types/node": "^20.8.7",
-    "@types/react": "^18.2.30",
-    "@types/react-dom": "^18.2.14",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react-swc": "^3.3.2",
+    "@vitest/ui": "^0.34.6",
     "babel-plugin-macros": "3.1.0",
-    "babel-plugin-named-exports-order": "0.0.2",
-    "eslint": "^8.51.0",
+    "eslint": "^8.52.0",
     "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
     "eslint-plugin-storybook": "^0.6.15",
-    "http-proxy-middleware": "^2.0.6",
     "husky": "^8.0.3",
+    "jsdom": "^22.1.0",
     "lint-staged": "^15.0.2",
     "prettier": "^3.0.3",
     "prettier-plugin-organize-imports": "^3.2.3",
-    "prop-types": "15.8.1",
+    "prop-types": "15",
     "react-refresh": "^0.14.0",
-    "react-scripts": "5.0.1",
     "storybook": "7.5.1",
     "typescript": "^5.2.2",
-    "web-vitals": "^3.5.0",
-    "webpack": "5.89.0"
-  },
-  "scripts": {
-    "i18n:extract": "lingui extract",
-    "i18n:compile": "lingui compile",
-    "prestart": "yarn i18n:compile",
-    "prebuild": "yarn i18n:compile",
-    "pretest": "yarn i18n:compile",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "lint": "eslint --max-warnings=0 src/**/*.{ts,tsx}",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
-    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
-    "lint:tsc": "tsc --noEmit",
-    "prepare": "husky install"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "plugin:storybook/recommended"
-    ],
-    "plugins": [
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": [
-        "error"
-      ]
-    }
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "engines": {
-    "node": "^18.17.1",
-    "yarn": "^1.22.19"
+    "vite": "^4.4.5",
+    "vite-plugin-svgr": "^4.1.0",
+    "vitest": "^0.34.6",
+    "web-vitals": "^3.5.0"
   }
 }

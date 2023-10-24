@@ -8,7 +8,7 @@ import {
   SnackbarOrigin,
   styled,
 } from '@mui/material'
-import { PropsWithChildren, SyntheticEvent, createContext, useCallback, useContext, useMemo, useState } from 'react'
+import { PropsWithChildren, SyntheticEvent, createContext, useCallback, useMemo, useState } from 'react'
 import { panelUI } from 'src/shared/constants'
 import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
 
@@ -39,14 +39,6 @@ export interface SnackbarContextValue {
   closeSnackbar: (key: number) => Promise<boolean>
 }
 export const SnackbarContext = createContext<SnackbarContextValue | null>(null)
-
-export function useSnackbar(): SnackbarContextValue {
-  const context = useContext(SnackbarContext)
-  if (!context) {
-    throw new Error('useSnackbar must be used inside the SnackbarProvider')
-  }
-  return context
-}
 
 const Snackbar = styled(MuiSnackbar, { shouldForwardProp: shouldForwardPropWithBlackList(['index']) })<{ index: number }>(
   ({ theme, index }) => ({

@@ -3,7 +3,7 @@ import { forwardRef, memo, useEffect, useRef } from 'react'
 import { useMatch } from 'react-router-dom'
 import { Transition, TransitionStatus } from 'react-transition-group'
 import { shouldForwardProp } from 'src/shared/utils/shouldForwardProp'
-import { LoadingStateType } from './FullPageLoadingProvider'
+import { LoadingStateType } from './LoadingContext'
 import { Spinner } from './Spinner'
 
 interface FullPageLoadingProps {

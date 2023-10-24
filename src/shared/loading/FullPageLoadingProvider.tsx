@@ -1,18 +1,6 @@
-import { createContext, MutableRefObject, PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react'
+import { MutableRefObject, PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react'
 import { FullPageLoading } from './FullPageLoading'
-
-export type LoadingContextValue = {
-  showLoading: (forceFullpage?: boolean) => void
-  hideLoading: (forceFullpage?: boolean) => void
-}
-
-export enum LoadingStateType {
-  SHOW,
-  SHOW_NO_BACKGROUND,
-  HIDE,
-}
-
-export const LoadingContext = createContext<LoadingContextValue | null>(null)
+import { LoadingContext, LoadingStateType } from './LoadingContext'
 
 const FullPageLoadingContainer = ({
   setLoadingStateRef,
