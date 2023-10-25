@@ -88,5 +88,21 @@
     "vite-plugin-svgr": "^4.1.0",
     "vitest": "^0.34.6",
     "web-vitals": "^3.5.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": "^18.17.1",
+    "yarn": "^1.22.19"
   }
 }
