@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { LoadingContext, LoadingContextValue } from './FullPageLoadingProvider'
+import { LoadingContext, LoadingContextValue } from './LoadingContext'
 
 export function useFullPageLoading(): LoadingContextValue {
   const context = useContext(LoadingContext)

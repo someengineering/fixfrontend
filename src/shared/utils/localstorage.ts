@@ -3,7 +3,7 @@ import { ThemeContextRealValues } from 'src/core/theme/ThemeContext'
 import { StorageKeys } from 'src/shared/constants'
 
 function getStorageObject<ReturnType = unknown>(key: StorageKeys) {
-  const returnDataString = localStorage.getItem(key)
+  const returnDataString = window.localStorage.getItem(key)
   if (returnDataString) {
     try {
       return JSON.parse(returnDataString) as ReturnType
@@ -15,9 +15,9 @@ function getStorageObject<ReturnType = unknown>(key: StorageKeys) {
 
 function setStorageObject<ObjectType>(key: StorageKeys, obj?: ObjectType) {
   if (obj) {
-    localStorage.setItem(key, JSON.stringify(obj))
+    window.localStorage.setItem(key, JSON.stringify(obj))
   } else {
-    localStorage.removeItem(key)
+    window.localStorage.removeItem(key)
   }
 }
 

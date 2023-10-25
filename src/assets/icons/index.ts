@@ -1,4 +1,6 @@
-export { ReactComponent as FixLogo } from './fix-logo.svg'
-export { ReactComponent as GithubSEBIcon } from './github-seb-icon.svg'
-export { ReactComponent as GoogleSEBIcon } from './google-seb-icon.svg'
-export { ReactComponent as LogoWhiteNoBackground } from './logo-white-no-background.svg'
+import FixLogo from './fix-logo.svg?react'
+import GithubSEBIcon from './github-seb-icon.svg?react'
+import GoogleSEBIcon from './google-seb-icon.svg?react'
+import LogoWhiteNoBackground from './logo-white-no-background.svg?react'
+
+export { FixLogo, GithubSEBIcon, GoogleSEBIcon, LogoWhiteNoBackground }

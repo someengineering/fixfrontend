@@ -1,2 +1,2 @@
 export { WebSocketEvents } from './WebSocketEvents'
-export { useEvents } from './WebSocketEventsContext'
+export { useEvents } from './useEvents'

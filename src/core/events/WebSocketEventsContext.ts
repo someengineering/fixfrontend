@@ -1,4 +1,4 @@
-import { MutableRefObject, createContext, useContext } from 'react'
+import { MutableRefObject, createContext } from 'react'
 import { WebSocketEvent } from 'src/shared/types/server'
 
 export type WebSocketEventsContextRealValues = {
@@ -11,11 +11,3 @@ export interface WebSocketEventsContextValue extends Partial<WebSocketEventsCont
 }
 
 export const WebSocketEventsContext = createContext<WebSocketEventsContextValue | null>(null)
-
-export function useEvents(): WebSocketEventsContextValue {
-  const context = useContext(WebSocketEventsContext)
-  if (!context) {
-    throw new Error('useUserProfile must be used inside the AuthGuard')
-  }
-  return context
-}

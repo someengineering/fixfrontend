@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react'
+import { createContext } from 'react'
 import { GetCurrentUserResponse, GetWorkspaceResponse, GetWorkspacesResponse } from 'src/shared/types/server'
 
 export type UserContextRealValues = {
@@ -16,11 +16,3 @@ export interface UserContextValue extends Partial<UserContextRealValues> {
 }
 
 export const UserContext = createContext<UserContextValue | null>(null)
-
-export function useUserProfile(): UserContextValue {
-  const context = useContext(UserContext)
-  if (!context) {
-    throw new Error('useUserProfile must be used inside the AuthGuard')
-  }
-  return context
-}
