@@ -18,6 +18,8 @@
     "prestart": "yarn i18n:compile",
     "pretest": "yarn i18n:compile",
     "preview": "vite preview",
+    "preview:https": "vite preview --https",
+    "preview:storybook": "vite preview --outDir=\"storybook-static\"",
     "start": "vite",
     "storybook": "storybook dev -p 6006",
     "test": "vitest",
