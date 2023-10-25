@@ -5,7 +5,6 @@ import { AxiosError } from 'axios'
 import { PropsWithChildren, useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthGuard } from 'src/core/auth'
-import { WebSocketEvents } from 'src/core/events'
 import { SnackbarProvider } from 'src/core/snackbar'
 import { Theme } from 'src/core/theme'
 import { env, langs } from 'src/shared/constants'
@@ -17,7 +16,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       suspense: true,
-      useErrorBoundary: true,
+      throwOnError: true,
       retry: (failureCount, error) => {
         if ((((error as AxiosError)?.response?.status || (error as AxiosError)?.status) ?? 500) / 100 < 5) {
           return false
@@ -56,9 +55,7 @@ export const Providers = ({ children }: PropsWithChildren) => {
               <QueryClientProvider client={queryClient}>
                 <BrowserRouter>
                   <FullPageLoadingProvider>
-                    <AuthGuard>
-                      <WebSocketEvents>{children}</WebSocketEvents>
-                    </AuthGuard>
+                    <AuthGuard>{children}</AuthGuard>
                   </FullPageLoadingProvider>
                 </BrowserRouter>
               </QueryClientProvider>

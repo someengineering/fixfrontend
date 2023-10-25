@@ -1,7 +1,7 @@
-import { ReactComponent as GermanyIcon } from 'flag-icons/flags/1x1/de.svg'
-import { ReactComponent as USIcon } from 'flag-icons/flags/1x1/us.svg'
-import { ReactComponent as GermanyWideIcon } from 'flag-icons/flags/4x3/de.svg'
-import { ReactComponent as USWideIcon } from 'flag-icons/flags/4x3/us.svg'
+import GermanyIcon from 'flag-icons/flags/1x1/de.svg?react'
+import USIcon from 'flag-icons/flags/1x1/us.svg?react'
+import GermanyWideIcon from 'flag-icons/flags/4x3/de.svg?react'
+import USWideIcon from 'flag-icons/flags/4x3/us.svg?react'
 import { messages as de_DE } from 'src/locales/de_DE/messages'
 import { messages as en_US } from 'src/locales/en_US/messages'
 

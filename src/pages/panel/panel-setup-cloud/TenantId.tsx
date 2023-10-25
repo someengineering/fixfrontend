@@ -13,7 +13,9 @@ export const TenantId = () => {
       navigator.clipboard.writeText(selectedWorkspace?.id || '').then(() => {
         showSnackbar(t`Copied to Clipboard!`)
       })
-    } catch {}
+    } catch {
+      /* empty */
+    }
   }
   return (
     <>
@@ -24,6 +26,7 @@ export const TenantId = () => {
         ml={{ xs: 0, md: 2 }}
         mb={{ xs: 1, md: 0 }}
         width={{ xs: 300, md: 430 }}
+        minHeight={40}
       >
         <Typography
           variant="h6"
@@ -35,8 +38,8 @@ export const TenantId = () => {
           {selectedWorkspace?.id}
         </Typography>
       </Box>
-      <Box ml={2} alignSelf={{ xs: 'end', md: 'center' }}>
-        <Button variant="contained" startIcon={<CopyAllIcon />} onClick={handleCopy}>
+      <Box ml={2} alignSelf={{ xs: 'end', md: 'stretch' }}>
+        <Button variant="contained" startIcon={<CopyAllIcon />} onClick={handleCopy} sx={{ height: { xs: 'auto', md: '100%' } }}>
           <Trans>Copy</Trans>
         </Button>
       </Box>

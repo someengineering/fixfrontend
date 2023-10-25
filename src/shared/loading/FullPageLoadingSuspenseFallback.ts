@@ -13,5 +13,5 @@ export const FullPageLoadingSuspenseFallback = ({ forceFullpage }: FullPageLoadi
       hideLoading(forceFullpage)
     }
   }, [showLoading, hideLoading, forceFullpage])
-  return <></>
+  return null
 }

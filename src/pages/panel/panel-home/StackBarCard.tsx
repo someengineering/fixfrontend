@@ -17,7 +17,7 @@ const COLORS = {
 export const StackBarCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryResponse }) => {
   const stackBarData = useMemo(() => {
     return !data
-      ? undefined
+      ? []
       : data.benchmarks
           .sort((a, b) => b.nr_of_checks - a.nr_of_checks)
           .reduce(
@@ -61,7 +61,7 @@ export const StackBarCard = ({ data }: { data?: GetWorkspaceInventoryReportSumma
             [] as { data: { value: number; name: string }[]; title: string }[],
           )
   }, [data])
-  return stackBarData && stackBarData.length > 1 ? (
+  return stackBarData.length > 1 ? (
     <Grid container spacing={2} my={2}>
       <Grid item xs={12} height={700} display="flex" alignItems="center" justifyContent="center" flexDirection="column">
         <StackbarChart colors={COLORS} data={stackBarData} />

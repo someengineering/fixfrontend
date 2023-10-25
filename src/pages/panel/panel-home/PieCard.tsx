@@ -8,7 +8,7 @@ const COLORS = { Critical: colors.red[900], High: colors.deepOrange[700], Medium
 export const PieCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryResponse }) => {
   const pieData = useMemo(() => {
     return !data
-      ? undefined
+      ? []
       : data.benchmarks.reduce(
           (prev, benchmark) => [
             ...prev,
@@ -46,14 +46,16 @@ export const PieCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryRes
           [] as { data: { value: number; name: string }[]; title: string }[],
         )
   }, [data])
-  return pieData ? (
+  return pieData.length ? (
     <Grid container spacing={2} my={2}>
       {pieData.map((item, index) => (
         <Grid
           item
           xs={12}
-          sm={6}
-          lg={3}
+          sm={12}
+          md={6}
+          lg={4}
+          xl={3}
           key={index}
           height={400}
           display="flex"

@@ -9,7 +9,7 @@ createTheme({
   typography: {},
 })
 
-export type ThemeProps = PropsWithChildren<{}>
+export type ThemeProps = PropsWithChildren
 
 const themeMode = getThemeMode()
 
@@ -25,10 +25,10 @@ export function Theme({ children }: ThemeProps) {
   const palette: PaletteOptions = useMemo(
     () => ({
       primary: {
-        main: '#1C4396',
+        main: mode === 'dark' ? '#648DE5' : '#1C4396',
       },
       secondary: {
-        main: '#648DE5',
+        main: '#B1C8FA',
       },
       error: {
         main: '#E01A4F',

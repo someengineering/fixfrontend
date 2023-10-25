@@ -5,7 +5,7 @@ import { Divider, Grid, styled, TextField, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { FormEvent, Suspense, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { LoginSocialMedia } from 'src/shared/login-social-media'
 import { SocialMediaButtonSkeleton } from 'src/shared/social-media-button/SocialMediaButton.skeleton'
@@ -18,9 +18,10 @@ const RegisterButton = styled(LoadingButton)({
 })
 
 export default function RegisterPage() {
-  const { mutateAsync: register, isLoading: isRegisterLoading, error } = useMutation(registerMutation)
+  const { mutateAsync: register, isPending: isRegisterLoading, error } = useMutation({ mutationFn: registerMutation })
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [getSearch] = useSearchParams()
   const { search, state } = useLocation()
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
@@ -28,10 +29,15 @@ export default function RegisterPage() {
     e.preventDefault()
     if (email && password) {
       setIsLoading(true)
-      register({ email, password })
+      register({ email, password, redirectUrl: window.encodeURIComponent(getSearch.get('returnUrl') ?? '/') })
         .then(() => {
           navigate(
-            { search: search ? `${search}&verify=true&email=${email}` : `?verify=true&email=${email}`, pathname: '/auth/login' },
+            {
+              search: search
+                ? `${search}&verify=true&email=${window.encodeURIComponent(email)}`
+                : `?verify=true&email=${window.encodeURIComponent(email)}`,
+              pathname: '/auth/login',
+            },
             { state },
           )
         })

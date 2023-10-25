@@ -12,7 +12,7 @@ export function groupChildrenByType(
   Children.forEach(children, (child) => {
     if (isValidElement<{ children?: ReactNode }>(child)) {
       if (componentsSet.has(child.type)) {
-        map!.set(child.type, child.props.children)
+        map?.set(child.type, child.props.children)
       }
       groupChildrenByType(child.props.children, components, map)
     }

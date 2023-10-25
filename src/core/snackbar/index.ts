@@ -1,2 +1,3 @@
-export { SnackbarContext, SnackbarElement, SnackbarProvider, useSnackbar } from './SnackbarProvider'
-export type { SnackbarContextValue, SnackbarProviderProps, SnackbarValue } from './SnackbarProvider'
+export { SnackbarContext, SnackbarElement, SnackbarProvider } from './SnackbarProvider'
+export type { SnackbarContextValue, SnackbarValue } from './SnackbarProvider'
+export { useSnackbar } from './useSnackbar'

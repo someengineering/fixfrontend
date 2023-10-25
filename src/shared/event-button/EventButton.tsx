@@ -22,7 +22,7 @@ export const EventButton = () => {
   useEffect(() => {
     const eventListener = (ev: WebSocketEvent) => {
       switch (ev.kind) {
-        case 'collect-progress':
+        case 'collect-progress': {
           const hasProgress = ev.data.message.parts.find((i) => i.current !== i.total)
           setEvents((prev) => {
             const foundIndex = prev.findIndex((item) => item.kind === ev.kind && item.data.task === ev.data.task)
@@ -42,6 +42,7 @@ export const EventButton = () => {
             return newEvents
           })
           break
+        }
         case 'cloud_account_created':
           showSnackbar(t`Cloud account added, id: ${ev.data.aws_account_id}`, { severity: 'success', autoHideDuration: null })
           break
@@ -53,9 +54,7 @@ export const EventButton = () => {
         //   break
       }
     }
-    const removeListener = addListener('event-button', eventListener)
-
-    return removeListener
+    return addListener('event-button', eventListener)
   }, [addListener, send, showSnackbar])
 
   const hasNoEvents = !events.length

@@ -1,5 +1,5 @@
 import { CSSObject, Theme } from '@mui/material'
-import { panelUI } from '../constants/panelUI'
+import { panelUI } from 'src/shared/constants'
 
 export const drawerOpenedMixin = (theme: Theme): CSSObject => ({
   width: panelUI.drawerWidth,

@@ -3,10 +3,10 @@ import MenuIcon from '@mui/icons-material/Menu'
 import { Box, IconButton, AppBar as MuiAppBar, Toolbar, styled } from '@mui/material'
 import { PropsWithChildren, MouseEvent as ReactMouseEvent } from 'react'
 import { panelUI } from 'src/shared/constants'
+import { DarkModeSwitch } from 'src/shared/dark-mode-switch'
 import { EventButton } from 'src/shared/event-button'
 import { LanguageButton } from 'src/shared/language-button'
 import { shouldForwardProp } from 'src/shared/utils/shouldForwardProp'
-import { DarkModeSwitch } from './DarkModeSwitch'
 import { HideOnScroll } from './HideOnScroll'
 import { UserProfileButton } from './UserProfileButton'
 
@@ -76,7 +76,7 @@ export const PanelAppBar = ({ children, open, isDesktop, onDrawerOpen, onDrawerT
         </MenuIconButton>
         <AppBarLogo>{children}</AppBarLogo>
         <AppBarActions>
-          <DarkModeSwitch />
+          <DarkModeSwitch whiteMode />
           <EventButton />
           <LanguageButton whiteMode />
           <UserProfileButton />

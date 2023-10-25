@@ -1,5 +1,6 @@
 import { colors as muicolors } from '@mui/material'
 import { Cell, Pie, PieChart as RchPieChart, ResponsiveContainer, Tooltip } from 'recharts'
+import { getMessage } from '../defined-messages'
 
 interface PieChartProps {
   data: {
@@ -38,7 +39,7 @@ const renderCustomizedLabel = ({
 
   return (
     <text x={x} y={y} fill="white" textAnchor="middle" dominantBaseline="middle" fontSize={13}>
-      {name}: {value}
+      {getMessage(name)}: {value}
     </text>
   )
 }
@@ -62,7 +63,7 @@ export function PieChart({ data, colors }: PieChartProps) {
             <Cell key={`cell-${index}`} fill={Array.isArray(colors) ? colors[index] : colors?.[entry.name] ?? muicolors.lightBlue[600]} />
           ))}
         </Pie>
-        <Tooltip />
+        <Tooltip formatter={(value, name) => [value, getMessage(name as string)]} />
       </RchPieChart>
     </ResponsiveContainer>
   )

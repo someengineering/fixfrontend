@@ -1,18 +1,17 @@
-import { alpha, Box, CardContent, Container, Stack, styled } from '@mui/material'
+import { alpha, CardContent, Container, Stack, styled } from '@mui/material'
 import { ComponentType, PropsWithChildren } from 'react'
+import { DarkModeSwitch } from 'src/shared/dark-mode-switch'
 import { LanguageButton } from 'src/shared/language-button'
 import { groupChildrenByType } from 'src/shared/utils/groupChildrenByType'
 import { AuthHeader } from './AuthHeader'
 
 // typescript only allows string when it defined at `JSX.IntrinsicElements`
-export const BrandRegion = 'BrandRegion' as unknown as ComponentType<PropsWithChildren<{}>>
-export const ContentRegion = 'ContentRegion' as unknown as ComponentType<PropsWithChildren<{}>>
+export const BrandRegion = 'BrandRegion' as unknown as ComponentType<PropsWithChildren>
+export const ContentRegion = 'ContentRegion' as unknown as ComponentType<PropsWithChildren>
 
 const regions = [BrandRegion, ContentRegion]
 
-interface Props {}
-
-export type AuthLayoutProps = PropsWithChildren<Props>
+export type AuthLayoutProps = PropsWithChildren
 
 const AuthCardStyle = styled(Stack)({
   flex: '1 0 auto',
@@ -58,9 +57,10 @@ export function AuthLayout({ children }: AuthLayoutProps) {
 
   return (
     <AuthWrapper>
-      <Box position="fixed" top={0} right={0} mr={2} mt={2}>
+      <Stack position="fixed" top={0} right={0} mr={2} mt={2} flexDirection="row" spacing={1} justifyContent="center" alignItems="center">
+        <DarkModeSwitch />
         <LanguageButton />
-      </Box>
+      </Stack>
       <AuthCardStyle>
         <AuthHeader>{brandChild}</AuthHeader>
         <CardContent>{contentChild}</CardContent>

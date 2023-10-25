@@ -9,9 +9,7 @@ interface EventCollectProgressItemProps {
   data: CollectProgressEvent
 }
 
-interface ShowTreeViewProps extends FormattedProgressEventParts {}
-
-const ShowTreeView = ({ current, name, path, total, detail }: ShowTreeViewProps) => {
+const ShowTreeView = ({ current, name, path, total, detail }: FormattedProgressEventParts) => {
   const done = current === total
   const color = done ? 'success' : 'primary'
   const themeColor = `${color}.main`

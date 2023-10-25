@@ -22,7 +22,9 @@ export const ExternalId = () => {
   const [showExternalId, setShowExternalId] = useState(false)
   const { selectedWorkspace } = useUserProfile()
   const { showSnackbar } = useSnackbar()
-  const { data: ExternalIdData } = useQuery(['workspace-external-id', selectedWorkspace?.id], getExternalIdQuery, {
+  const { data: ExternalIdData } = useQuery({
+    queryKey: ['workspace-external-id', selectedWorkspace?.id],
+    queryFn: getExternalIdQuery,
     enabled: !!selectedWorkspace?.id,
   })
   const handleCopy = () => {
@@ -30,7 +32,9 @@ export const ExternalId = () => {
       window.navigator.clipboard.writeText(ExternalIdData || '').then(() => {
         showSnackbar(t`Copied to Clipboard!`)
       })
-    } catch {}
+    } catch {
+      /* empty */
+    }
   }
   const handleToggleShowExternalId = () => {
     setShowExternalId((prev) => !prev)
@@ -45,6 +49,7 @@ export const ExternalId = () => {
         ml={{ xs: 0, md: 2 }}
         mb={{ xs: 1, md: 0 }}
         width={{ xs: 300, md: 430 }}
+        minHeight={40}
       >
         <Typography
           variant="h6"
@@ -59,8 +64,8 @@ export const ExternalId = () => {
           <IconButton onClick={handleToggleShowExternalId}>{showExternalId ? <VisibilityIcon /> : <VisibilityOffIcon />}</IconButton>
         </Box>
       </Box>
-      <Box ml={2} alignSelf={{ xs: 'end', md: 'center' }}>
-        <Button variant="contained" startIcon={<CopyAllIcon />} onClick={handleCopy}>
+      <Box ml={2} alignSelf={{ xs: 'end', md: 'stretch' }}>
+        <Button variant="contained" startIcon={<CopyAllIcon />} onClick={handleCopy} sx={{ height: { xs: 'auto', md: '100%' } }}>
           <Trans>Copy</Trans>
         </Button>
       </Box>

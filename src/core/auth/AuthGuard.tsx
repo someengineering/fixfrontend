@@ -1,35 +1,18 @@
 import axios, { AxiosError, AxiosInstance } from 'axios'
 import { PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react'
-import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { GetWorkspaceResponse } from 'src/shared/types/server'
 import { axiosWithAuth, defaultAxiosConfig, setAxiosWithAuth } from 'src/shared/utils/axios'
 import { clearAllCookies, isAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData, setAuthData } from 'src/shared/utils/localstorage'
-import { UserContext, UserContextRealValues, useUserProfile } from './UserContext'
+import { UserContext, UserContextRealValues } from './UserContext'
 import { getCurrentUserMutation } from './getCurrentUser.mutation'
 import { getWorkspacesMutation } from './getWorkspaces.mutation'
 import { logoutMutation } from './logout.mutation'
 
-export interface RequireAuthProps {}
-
-export function RequireAuth() {
-  const location = useLocation()
-  const user = useUserProfile()
-
-  if (!user.isAuthenticated) {
-    return (
-      <Navigate to={{ pathname: '/auth/login', search: `returnUrl=${location.pathname}${encodeURIComponent(location.search)}` }} replace />
-    )
-  }
-
-  return <Outlet />
-}
-
-export interface AuthGuardProps {}
-
 const defaultAuth = { isAuthenticated: false, workspaces: [], selectedWorkspace: undefined, currentUser: undefined }
 
-export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
+export function AuthGuard({ children }: PropsWithChildren) {
   const [auth, setAuth] = useState<UserContextRealValues>({
     ...defaultAuth,
     ...(getAuthData() || {}),
