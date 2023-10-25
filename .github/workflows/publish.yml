@@ -22,10 +22,10 @@ jobs:
         with:
           runCmd: PUBLIC_URL=https://cdn.some.engineering/fix-ui/${{ github.sha }}/ yarn build
 
-      - name: Move build to target
+      - name: Move dist to target
         run: |
           mkdir -p target/${{ github.sha }}
-          cp -r build/* target/${{ github.sha }}
+          cp -r dist/* target/${{ github.sha }}
 
       - name: Publish the new version to the CDN 
         uses: BetaHuhn/do-spaces-action@v2
