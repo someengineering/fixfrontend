@@ -27,6 +27,7 @@ export default defineConfig(({ mode }) => {
         }
       : undefined
   return {
+    base: process.env.PUBLIC_URL ?? '/',
     plugins: [react({ plugins: [['@lingui/swc-plugin', {}]] }), svgr(), lingui()],
     // build: {
     //   manifest: '/public/manifest.json',
