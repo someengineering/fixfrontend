@@ -2,16 +2,18 @@ import { UserContextRealValues } from 'src/core/auth/UserContext'
 import { ThemeContextRealValues } from 'src/core/theme/ThemeContext'
 import { StorageKeys } from 'src/shared/constants'
 
-function getStorageObject<ReturnType extends Object = never>(key: StorageKeys) {
+function getStorageObject<ReturnType = unknown>(key: StorageKeys) {
   const returnDataString = localStorage.getItem(key)
   if (returnDataString) {
     try {
       return JSON.parse(returnDataString) as ReturnType
-    } catch (_) {}
+    } catch {
+      /* empty */
+    }
   }
 }
 
-function setStorageObject<ObjectType extends Object>(key: StorageKeys, obj?: ObjectType) {
+function setStorageObject<ObjectType>(key: StorageKeys, obj?: ObjectType) {
   if (obj) {
     localStorage.setItem(key, JSON.stringify(obj))
   } else {

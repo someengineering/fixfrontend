@@ -12,7 +12,7 @@ export const SetupCloudButton = () => {
     enabled: !!selectedWorkspace?.id,
   })
   return (
-    <Button component="a" variant="contained" href={cloudSetupUrlData} target="_blank">
+    <Button component="a" variant="contained" href={cloudSetupUrlData} target="_blank" size="large">
       <Trans>Deploy Stack</Trans>
     </Button>
   )

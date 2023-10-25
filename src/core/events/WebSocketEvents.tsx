@@ -25,7 +25,9 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
       listeners.current[randomId] = (ev: MessageEvent<string>) => {
         try {
           onMessage(JSON.parse(ev.data) as WebSocketEvent)
-        } catch {}
+        } catch {
+          /* empty */
+        }
       }
       if (websocket.current) {
         websocket.current.addEventListener('message', listeners.current[randomId])
@@ -64,7 +66,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
         }
       }
       const onOpen = () => {
-        for (let { message, reject, resolve } of messagesToSend.current) {
+        for (const { message, reject, resolve } of messagesToSend.current) {
           try {
             websocket.current?.send(message)
             resolve(message)
@@ -78,7 +80,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
         websocket.current = new window.WebSocket(`${env.wsUrl}/${endPoints.workspaces.events(selectedWorkspace.id)}`)
         websocket.current.addEventListener('close', onClose)
         websocket.current.addEventListener('open', onOpen)
-        for (let key in listeners.current) {
+        for (const key in listeners.current) {
           websocket.current.addEventListener('message', listeners.current[key])
         }
       }
@@ -87,7 +89,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
         if (websocket.current) {
           websocket.current.removeEventListener('close', onClose)
           websocket.current.removeEventListener('open', onOpen)
-          for (let key in listeners.current) {
+          for (const key in listeners.current) {
             websocket.current.removeEventListener('message', listeners.current[key])
           }
           listeners.current = {}
@@ -98,7 +100,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
         websocket.current = undefined
       }
     } else if (websocket.current) {
-      for (let key in listeners.current) {
+      for (const key in listeners.current) {
         websocket.current.removeEventListener('message', listeners.current[key])
       }
       listeners.current = {}

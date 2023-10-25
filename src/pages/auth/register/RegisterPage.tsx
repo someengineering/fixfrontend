@@ -29,10 +29,15 @@ export default function RegisterPage() {
     e.preventDefault()
     if (email && password) {
       setIsLoading(true)
-      register({ email, password, redirectUrl: getSearch.get('returnUrl') ?? '/' })
+      register({ email, password, redirectUrl: window.encodeURIComponent(getSearch.get('returnUrl') ?? '/') })
         .then(() => {
           navigate(
-            { search: search ? `${search}&verify=true&email=${email}` : `?verify=true&email=${email}`, pathname: '/auth/login' },
+            {
+              search: search
+                ? `${search}&verify=true&email=${window.encodeURIComponent(email)}`
+                : `?verify=true&email=${window.encodeURIComponent(email)}`,
+              pathname: '/auth/login',
+            },
             { state },
           )
         })

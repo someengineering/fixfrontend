@@ -10,26 +10,28 @@ import { getCurrentUserMutation } from './getCurrentUser.mutation'
 import { getWorkspacesMutation } from './getWorkspaces.mutation'
 import { logoutMutation } from './logout.mutation'
 
-export interface RequireAuthProps {}
-
 export function RequireAuth() {
   const location = useLocation()
   const user = useUserProfile()
 
   if (!user.isAuthenticated) {
     return (
-      <Navigate to={{ pathname: '/auth/login', search: `returnUrl=${location.pathname}${encodeURIComponent(location.search)}` }} replace />
+      <Navigate
+        to={{
+          pathname: '/auth/login',
+          search: `returnUrl=${location.pathname}${window.encodeURIComponent(location.search)}${window.encodeURIComponent(location.hash)}`,
+        }}
+        replace
+      />
     )
   }
 
   return <Outlet />
 }
 
-export interface AuthGuardProps {}
-
 const defaultAuth = { isAuthenticated: false, workspaces: [], selectedWorkspace: undefined, currentUser: undefined }
 
-export function AuthGuard({ children }: PropsWithChildren<AuthGuardProps>) {
+export function AuthGuard({ children }: PropsWithChildren) {
   const [auth, setAuth] = useState<UserContextRealValues>({
     ...defaultAuth,
     ...(getAuthData() || {}),

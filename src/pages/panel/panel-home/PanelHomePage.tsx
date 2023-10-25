@@ -55,9 +55,10 @@ export default function HomePage() {
   }, [navigate])
 
   useEffect(() => {
-    if (data?.accounts && !data.accounts.length && !getInitiated()) {
+    if (!data?.accounts.length && !getInitiated()) {
+      goToSetupCloudPage()
     }
-  }, [data?.accounts, goToSetupCloudPage])
+  }, [data?.accounts.length, goToSetupCloudPage])
 
   return data?.accounts && !data.accounts.length ? (
     <Stack display="flex" flexGrow={1} flexDirection="column" width="100%" height="100%" justifyContent="center" alignItems="center">

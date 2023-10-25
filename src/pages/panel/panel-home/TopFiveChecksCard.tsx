@@ -10,9 +10,9 @@ export const TopFiveChecksCard = ({ data }: { data?: GetWorkspaceInventoryReport
   return data ? (
     <Grid container spacing={2} my={2}>
       {data.top_checks.map((topCheck, i) => (
-        <Grid item xs={12} xl={4} lg={6} key={i}>
+        <Grid item xs={12} xl={4} lg={6} key={i} flexDirection="column">
           <Accordion>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ height: '100%' }}>
               <Stack display="flex" justifyContent="space-between" flexDirection="row" width="100%">
                 <Typography variant="h5">{topCheck.title}</Typography>
                 <Stack spacing={2} direction="row" display="flex" justifyContent="center" alignItems="center">

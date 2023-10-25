@@ -24,7 +24,7 @@ export const clearAllCookies = () => {
     const domain = window.location.hostname.split('.')
     while (domain.length > 0) {
       const cookieBase =
-        encodeURIComponent(cookies[cookieIndex].split(';')[0].split('=')[0]) +
+        window.encodeURIComponent(cookies[cookieIndex].split(';')[0].split('=')[0]) +
         '=; expires=Thu, 01-Jan-1970 00:00:01 GMT; domain=' +
         domain.join('.') +
         ' ;path='

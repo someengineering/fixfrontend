@@ -12,7 +12,10 @@ interface LoginSocialMediaProps {
 
 export const LoginSocialMedia = ({ isSignup, isLoading, onClick }: LoginSocialMediaProps) => {
   const [search] = useSearchParams()
-  const { data } = useQuery({ queryKey: ['LoginSocialMedia', search.get('returnUrl') ?? '/'], queryFn: oauthProvidersQuery })
+  const { data } = useQuery({
+    queryKey: ['LoginSocialMedia', search.get('returnUrl') ?? '/'],
+    queryFn: oauthProvidersQuery,
+  })
 
   return (
     <>
