@@ -1,5 +1,6 @@
-import { BaseType, axisBottom, axisLeft, interpolateRdYlGn, scaleBand, scaleSequential, select } from 'd3'
+import { BaseType, axisBottom, axisLeft, scaleBand, select } from 'd3'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { colorFromRedToGreen } from 'src/shared/constants'
 
 interface HeatmapProps<ColumnsKeys extends string, RowsKeys extends string> {
   data: {
@@ -10,20 +11,14 @@ interface HeatmapProps<ColumnsKeys extends string, RowsKeys extends string> {
       }
     }
   }
-  minData: number
   minWidth: number
   minHeight: number
-  maxData: number
-  interpolate?: (t: number) => string
 }
 
 export function Heatmap<ColumnsKeys extends string, RowsKeys extends string>({
   data,
-  maxData,
-  minData,
   minHeight,
   minWidth,
-  interpolate = interpolateRdYlGn,
 }: HeatmapProps<ColumnsKeys, RowsKeys>) {
   const ref = useRef<HTMLDivElement>(null)
 
@@ -90,9 +85,6 @@ export function Heatmap<ColumnsKeys extends string, RowsKeys extends string>({
       const yBandwidth = y.bandwidth()
       container.append('g').style('font-size', 15).call(axisLeft(y).tickSize(0)).select('.domain').remove()
 
-      // Build color scale
-      const myColor = scaleSequential().interpolator(interpolate).domain([minData, maxData])
-
       const mouseover = function (this: BaseType) {
         tooltip.style('opacity', 1)
         select(this).style('opacity', 1)
@@ -141,7 +133,7 @@ export function Heatmap<ColumnsKeys extends string, RowsKeys extends string>({
         .attr('ry', 4)
         .attr('width', xBandwidth)
         .attr('height', yBandwidth)
-        .style('fill', (d) => myColor(d.data.value))
+        .style('fill', (d) => colorFromRedToGreen[d.data.value])
         .style('stroke-width', 4)
         .style('stroke', 'none')
         .style('opacity', 0.8)
@@ -158,7 +150,7 @@ export function Heatmap<ColumnsKeys extends string, RowsKeys extends string>({
         svg.remove()
       }
     },
-    [processedData, minWidth, minHeight, interpolate, minData, maxData],
+    [processedData, minWidth, minHeight],
   )
 
   useEffect(() => {

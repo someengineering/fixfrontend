@@ -12,7 +12,6 @@ interface PieChartProps {
   minWidth?: number
   minHeight?: number
   colors?: { [key in string | number]: string } | string[]
-  interpolate?: (t: number) => string
 }
 
 const RADIAN = Math.PI / 180

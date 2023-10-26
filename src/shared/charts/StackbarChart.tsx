@@ -16,7 +16,6 @@ interface StackbarChartProps {
   minWidth?: number
   minHeight?: number
   colors?: { [key in string | number]: string }
-  interpolate?: (t: number) => string
 }
 
 export function StackbarChart({ data, colors }: StackbarChartProps) {
