@@ -1,4 +1,5 @@
 export { StorageKeys } from './StorageKeys'
+export { colorFromRedToGreen } from './colorFromRedToGreen'
 export { sortedSeverities } from './consts'
 export { endPoints } from './endPoints'
 export { env } from './env'

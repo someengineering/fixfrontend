@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader, Typography, styled } from '@mui/material'
+import { colorFromRedToGreen } from 'src/shared/constants'
 import { Account } from 'src/shared/types/server'
 import { shouldForwardProp } from 'src/shared/utils/shouldForwardProp'
-import { useScaleSequentialMaterialRdYwGn } from 'src/shared/utils/useScaleSequentialMaterialRdYwGn'
+import { snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 
 const AccountCardContainer = styled(Card, { shouldForwardProp })<{ background: string }>(({ background, theme }) => ({
   background,
@@ -10,7 +11,8 @@ const AccountCardContainer = styled(Card, { shouldForwardProp })<{ background: s
 
 export const AccountCard = ({ account, score }: { account: Account; score?: number }) => {
   return (
-    <AccountCardContainer background={scale(score)}>
+    <AccountCardContainer background={score !== undefined ? colorFromRedToGreen[score] : 'info.main'}>
+      <CardHeader title={snakeCaseWordsToUFStr(account.name)} />
       <CardContent>
         <Typography>ID: {account.id}</Typography>
         <Typography>Cloud: {account.cloud.toUpperCase()}</Typography>
