@@ -1,11 +1,13 @@
 import { Trans } from '@lingui/macro'
 import { Box, Button, Divider, Grid, Stack, Typography } from '@mui/material'
 import { useQueries } from '@tanstack/react-query'
-import { useCallback, useEffect } from 'react'
+import { Suspense, useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceReportSummaryQuery } from 'src/pages/panel/shared-queries'
 import { getWorkspaceCloudAccountsQuery } from 'src/pages/panel/shared-queries/getWorkspaceCloudAccounts.query'
+import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
+import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { getInitiated } from 'src/shared/utils/localstorage'
 import { AccountCard } from './AccountCard'
@@ -42,14 +44,14 @@ const chartToShow = (data?: GetWorkspaceInventoryReportSummaryResponse) => {
   return null
 }
 
-export default function HomePage() {
+const HomePage = () => {
   const { selectedWorkspace } = useUserProfile()
   const [{ data }, { data: accounts }] = useQueries({
     queries: [
       {
-    queryKey: ['workspace-report-summary', selectedWorkspace?.id],
-    queryFn: getWorkspaceReportSummaryQuery,
-    enabled: !!selectedWorkspace?.id,
+        queryKey: ['workspace-report-summary', selectedWorkspace?.id],
+        queryFn: getWorkspaceReportSummaryQuery,
+        enabled: !!selectedWorkspace?.id,
       },
       {
         queryKey: ['workspace-cloud-accounts', selectedWorkspace?.id],
@@ -72,12 +74,14 @@ export default function HomePage() {
 
   return accounts && !accounts.length ? (
     <Stack display="flex" flexGrow={1} flexDirection="column" width="100%" height="100%" justifyContent="center" alignItems="center">
-      <Typography variant="h3">There's no account configed for this workspace.</Typography>
+      <Typography variant="h3">
+        <Trans>There's no account configured for this workspace.</Trans>
+      </Typography>
       <Typography variant="h5">
         <Trans>
           Please go to{' '}
           <Button variant="text" onClick={goToSetupCloudPage}>
-            <Trans>Setup Accounts</Trans>
+            Setup Accounts
           </Button>{' '}
           page to setup your account first
         </Trans>
@@ -85,17 +89,34 @@ export default function HomePage() {
     </Stack>
   ) : accounts?.length && !data?.benchmarks.length ? (
     <Stack display="flex" flexGrow={1} flexDirection="column" width="100%" height="100%" justifyContent="center" alignItems="center">
-      <Typography variant="h3">Please wait and be patient...</Typography>
+      <Typography variant="h3">
+        <Trans>Please wait and be patient...</Trans>
+      </Typography>
       <Typography variant="h5">
         <Trans>The account has been successfully configured but the first benchmark will be run and then you will have the overview.</Trans>
       </Typography>
     </Stack>
   ) : (
     <>
-      <Typography variant="h3" mb={2}>
-        <Trans>Overall</Trans>
-      </Typography>
-      <OverallCard data={data} />
+      <Grid container my={2}>
+        <Grid item xs={12} sm={12} md={6} lg={8} xl={9}>
+          <Typography variant="h3" mb={2}>
+            <Trans>Overall</Trans>
+          </Typography>
+          <OverallCard data={data} />
+        </Grid>
+        <Grid item xs={12} sm={12} md={6} lg={4} xl={3}>
+          <Stack display="flex" direction="row">
+            <Divider orientation="vertical" sx={{ display: { xs: 'none', md: 'block' }, mx: 2 }} flexItem />
+            <Stack>
+              <Typography variant="h3" mb={2}>
+                <Trans>Top 5 Security Enhancements</Trans>
+              </Typography>
+              <TopFiveChecksCard data={data} />
+            </Stack>
+          </Stack>
+        </Grid>
+      </Grid>
       <Box p={4}>
         <Divider />
       </Box>
@@ -119,10 +140,16 @@ export default function HomePage() {
       <Box p={4}>
         <Divider />
       </Box>
-      <Typography variant="h3" mb={2}>
-        <Trans>Top fixes</Trans>
-      </Typography>
-      <TopFiveChecksCard data={data} />
     </>
+  )
+}
+
+export default function PanelHomePage() {
+  return (
+    <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+      <Suspense fallback={<LoadingSuspenseFallback />}>
+        <HomePage />
+      </Suspense>
+    </NetworkErrorBoundary>
   )
 }
