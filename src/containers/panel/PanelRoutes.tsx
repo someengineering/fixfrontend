@@ -1,6 +1,5 @@
 import { lazy } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { RequireAuth } from 'src/core/auth'
 
 const HomePage = lazy(
   () =>
@@ -21,11 +20,9 @@ const PanelSetupCloudPage = lazy(
 export function PanelRoutes() {
   return (
     <Routes>
-      <Route element={<RequireAuth />}>
-        <Route path="/">
-          <Route index element={<HomePage />} />
-          <Route path="setup-cloud" element={<PanelSetupCloudPage />} />
-        </Route>
+      <Route path="/">
+        <Route index element={<HomePage />} />
+        <Route path="setup-cloud" element={<PanelSetupCloudPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
