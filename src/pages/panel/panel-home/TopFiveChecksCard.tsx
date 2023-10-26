@@ -10,16 +10,20 @@ export const TopFiveChecksCard = ({ data }: { data?: GetWorkspaceInventoryReport
   return data ? (
     <Grid container spacing={2} my={2}>
       {data.top_checks.map((topCheck, i) => (
-        <Grid item xs={12} xl={4} lg={6} key={i} flexDirection="column">
+        <Grid item xs={12} key={i} flexDirection="column">
           <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ height: '100%' }}>
-              <Stack display="flex" justifyContent="space-between" flexDirection="row" width="100%">
-                <Typography variant="h5">{topCheck.title}</Typography>
-                <Stack spacing={2} direction="row" display="flex" justifyContent="center" alignItems="center">
-                  <Typography color={getColorBySeverity(topCheck.severity)}>{topCheck.service.toUpperCase()}</Typography>
-                  <Typography color={getColorBySeverity(topCheck.severity)}>{getMessage(snakeCaseToUFStr(topCheck.severity))}</Typography>
-                </Stack>
-              </Stack>
+              <Grid container spacing={2} display="flex" justifyContent="space-between" flexDirection="row" width="100%">
+                <Grid item>
+                  <Typography variant="h5">{topCheck.title}</Typography>
+                </Grid>
+                <Grid item>
+                  <Stack spacing={2} direction="row" display="flex" justifyContent="center" alignItems="center">
+                    <Typography color={getColorBySeverity(topCheck.severity)}>{topCheck.service.toUpperCase()}</Typography>
+                    <Typography color={getColorBySeverity(topCheck.severity)}>{getMessage(snakeCaseToUFStr(topCheck.severity))}</Typography>
+                  </Stack>
+                </Grid>
+              </Grid>
             </AccordionSummary>
             <AccordionDetails>
               <Typography variant="h5">
