@@ -137,9 +137,6 @@ const HomePage = () => {
           </Grid>
         ))}
       </Grid>
-      <Box p={4}>
-        <Divider />
-      </Box>
     </>
   )
 }
