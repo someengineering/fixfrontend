@@ -17,7 +17,7 @@ msgstr ""
 #~ msgid "{0} out of {1}"
 #~ msgstr "{0} out of {1}"
 
-#: src/containers/panel/PanelContainer.tsx:31
+#: src/containers/panel/PanelContainer.tsx:32
 msgid "© 2023 Some Engineering Inc. All rights reserved."
 msgstr "© 2023 Some Engineering Inc. All rights reserved."
 
@@ -44,6 +44,10 @@ msgstr "Alternatively: Manual Cloud Setup"
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:33
 msgid "Automatic Cloud Setup"
 msgstr "Automatic Cloud Setup"
+
+#: src/shared/constants/consts.ts:6
+msgid "AWS Marketplace has been successfully subscribed"
+msgstr "AWS Marketplace has been successfully subscribed"
 
 #: src/pages/panel/panel-home/PanelHomePage.tsx:124
 msgid "Benchmarks"
