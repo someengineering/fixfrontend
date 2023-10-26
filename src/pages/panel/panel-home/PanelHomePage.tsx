@@ -1,10 +1,11 @@
 import { Trans } from '@lingui/macro'
 import { Box, Button, Divider, Grid, Stack, Typography } from '@mui/material'
-import { useQuery } from '@tanstack/react-query'
+import { useQueries } from '@tanstack/react-query'
 import { useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceReportSummaryQuery } from 'src/pages/panel/shared-queries'
+import { getWorkspaceCloudAccountsQuery } from 'src/pages/panel/shared-queries/getWorkspaceCloudAccounts.query'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { getInitiated } from 'src/shared/utils/localstorage'
 import { AccountCard } from './AccountCard'
@@ -43,10 +44,19 @@ const chartToShow = (data?: GetWorkspaceInventoryReportSummaryResponse) => {
 
 export default function HomePage() {
   const { selectedWorkspace } = useUserProfile()
-  const { data } = useQuery({
+  const [{ data }, { data: accounts }] = useQueries({
+    queries: [
+      {
     queryKey: ['workspace-report-summary', selectedWorkspace?.id],
     queryFn: getWorkspaceReportSummaryQuery,
     enabled: !!selectedWorkspace?.id,
+      },
+      {
+        queryKey: ['workspace-cloud-accounts', selectedWorkspace?.id],
+        queryFn: getWorkspaceCloudAccountsQuery,
+        enabled: !!selectedWorkspace?.id,
+      },
+    ],
   })
   const navigate = useNavigate()
 
@@ -55,12 +65,12 @@ export default function HomePage() {
   }, [navigate])
 
   useEffect(() => {
-    if (!data?.accounts.length && !getInitiated()) {
+    if (!accounts?.length && !getInitiated()) {
       goToSetupCloudPage()
     }
-  }, [data?.accounts.length, goToSetupCloudPage])
+  }, [accounts?.length, goToSetupCloudPage])
 
-  return data?.accounts && !data.accounts.length ? (
+  return accounts && !accounts.length ? (
     <Stack display="flex" flexGrow={1} flexDirection="column" width="100%" height="100%" justifyContent="center" alignItems="center">
       <Typography variant="h3">There's no account configed for this workspace.</Typography>
       <Typography variant="h5">
@@ -73,7 +83,7 @@ export default function HomePage() {
         </Trans>
       </Typography>
     </Stack>
-  ) : data?.accounts.length && !data.benchmarks.length ? (
+  ) : accounts?.length && !data?.benchmarks.length ? (
     <Stack display="flex" flexGrow={1} flexDirection="column" width="100%" height="100%" justifyContent="center" alignItems="center">
       <Typography variant="h3">Please wait and be patient...</Typography>
       <Typography variant="h5">
@@ -100,9 +110,9 @@ export default function HomePage() {
         <Trans>Accounts</Trans>
       </Typography>
       <Grid container spacing={2} my={2}>
-        {data?.accounts.map((item) => (
-          <Grid item key={item.id} minWidth={300}>
-            <AccountCard account={item} />
+        {accounts?.map((account) => (
+          <Grid item key={account.id} minWidth={300}>
+            <AccountCard account={account} score={data?.accounts.find((item) => item.id === account.id)?.score} />
           </Grid>
         ))}
       </Grid>

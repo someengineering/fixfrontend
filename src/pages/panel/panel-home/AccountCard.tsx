@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, Typography, styled } from '@mui/material'
-import { WorkspaceAccount } from 'src/shared/types/server'
+import { Account } from 'src/shared/types/server'
 import { shouldForwardProp } from 'src/shared/utils/shouldForwardProp'
 import { useScaleSequentialMaterialRdYwGn } from 'src/shared/utils/useScaleSequentialMaterialRdYwGn'
 
@@ -8,15 +8,13 @@ const AccountCardContainer = styled(Card, { shouldForwardProp })<{ background: s
   color: theme.palette.common.white,
 }))
 
-export const AccountCard = ({ account }: { account: WorkspaceAccount }) => {
-  const scale = useScaleSequentialMaterialRdYwGn(50, 100)
+export const AccountCard = ({ account, score }: { account: Account; score?: number }) => {
   return (
-    <AccountCardContainer background={scale(account.score)}>
-      <CardHeader title={`${account.name}`} />
+    <AccountCardContainer background={scale(score)}>
       <CardContent>
-        <Typography>Id: {account.id}</Typography>
-        <Typography>Cloud: {account.cloud}</Typography>
-        <Typography>Score: {account.score}</Typography>
+        <Typography>ID: {account.id}</Typography>
+        <Typography>Cloud: {account.cloud.toUpperCase()}</Typography>
+        {score !== undefined ? <Typography>Score: {score}</Typography> : undefined}
       </CardContent>
     </AccountCardContainer>
   )
