@@ -30,27 +30,28 @@ export function AuthGuard({ children }: PropsWithChildren) {
     nextUrl.current = url
   }, [])
 
-  const handleLogout = useCallback(() => {
-    return logoutMutation().finally(() => {
+  const handleLogout = useCallback(async () => {
+    try {
+      await logoutMutation()
+    } finally {
       clearAllCookies()
       setAuth(defaultAuth)
-    })
+    }
   }, [])
 
-  const handleRefreshWorkspaces = useCallback((instance?: AxiosInstance) => {
-    return getWorkspacesMutation(instance ?? axiosWithAuth)
-      .then((workspaces) => {
-        setAuth((prev) => ({
-          ...prev,
-          workspaces,
-          selectedWorkspace: workspaces.find((workspace) => workspace.id === prev.selectedWorkspace?.id) ?? workspaces[0],
-        }))
-        return workspaces
-      })
-      .catch(() => {
-        setAuth(defaultAuth)
-        return undefined
-      })
+  const handleRefreshWorkspaces = useCallback(async (instance?: AxiosInstance) => {
+    try {
+      const workspaces = await getWorkspacesMutation(instance ?? axiosWithAuth)
+      setAuth((prev) => ({
+        ...prev,
+        workspaces,
+        selectedWorkspace: workspaces.find((workspace) => workspace.id === prev.selectedWorkspace?.id) ?? workspaces[0],
+      }))
+      return workspaces
+    } catch {
+      setAuth(defaultAuth)
+      return undefined
+    }
   }, [])
 
   const handleSelectWorkspaces = useCallback((id: string) => {
@@ -78,7 +79,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
         (response) => response,
         async (error: AxiosError & { config: { _retry: boolean } | undefined }) => {
           if (error?.response?.status === 403 || error?.response?.status === 401) {
-            handleLogout()
+            return handleLogout()
           }
           throw error
         },
