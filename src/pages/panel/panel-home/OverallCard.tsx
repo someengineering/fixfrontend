@@ -4,9 +4,8 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import AssessmentIcon from '@mui/icons-material/Assessment'
 import ErrorIcon from '@mui/icons-material/Error'
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon'
-import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import { Divider, Grid, Stack, SvgIcon, Typography } from '@mui/material'
-import { sortedSeverities } from 'src/shared/constants'
+import { colorFromRedToGreen, sortedSeverities } from 'src/shared/constants'
 import { getMessage } from 'src/shared/defined-messages'
 import { OverviewCard } from 'src/shared/overview-card'
 import { FailedChecksType, GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
@@ -30,20 +29,17 @@ const checkDiff = (data: GetWorkspaceInventoryReportSummaryResponse) => {
   )
 }
 
-const showSubtitle = (data: Partial<FailedChecksType<number>>) => (
-  <Stack direction="row" alignItems="center" spacing={1} width="100%" height={20}>
-    {sortedSeverities
-      .filter((key) => data[key])
-      .map((key) => (
-        <Stack key={key} direction="row">
-          <Typography color={`${getColorBySeverity(key)}.main`} variant="body2">
-            {getMessage(snakeCaseToUFStr(key))}
-          </Typography>
-          <Typography variant="body2">: {data[key]}</Typography>
-        </Stack>
-      ))}
-  </Stack>
-)
+const showSubtitle = (data: Partial<FailedChecksType<number>>) =>
+  sortedSeverities
+    .filter((key) => data[key])
+    .map((key) => (
+      <Stack key={key} direction="row">
+        <Typography color={`${getColorBySeverity(key)}.main`} variant="body2">
+          {getMessage(snakeCaseToUFStr(key))}
+        </Typography>
+        <Typography variant="body2">: {data[key]}</Typography>
+      </Stack>
+    ))
 
 export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryResponse }) => {
   if (!data) {
@@ -54,13 +50,18 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
   const positive = difference >= 0
   const overallColor = hasDifference ? getColorByScore(data.overall_score) : 'info'
   const since = data?.changed_vulnerable.since ? iso8601DurationToString(parseISO8601Duration(data?.changed_vulnerable.since)) : null
+  const changedCompliantArray = Object.values(data.changed_compliant.resource_count_by_severity)
+  const hasChangedCompliant = changedCompliantArray.length
+  const changedVulnerableArray = Object.values(data.changed_vulnerable.resource_count_by_severity)
+  const hasChangedVulnerable = changedVulnerableArray.length
   return (
-    <Grid container spacing={2} my={2}>
-      <Grid item xs={12} sm={12} md={6} lg={4} xl={3}>
+    <Grid container spacing={2}>
+      <Grid item xs={12} sm={12} md={12} lg={6} xl={4}>
         <OverviewCard
+          height={180}
           title={<Trans>Overall Score</Trans>}
-          value={<>{data.overall_score}</>}
-          iconBackgroundColor={`${overallColor}.main`}
+          value={<Typography variant="h1">{data.overall_score}</Typography>}
+          iconBackgroundColor={colorFromRedToGreen[data.overall_score]}
           icon={<AssessmentIcon />}
           bottomContent={
             <>
@@ -81,8 +82,9 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
           }
         />
       </Grid>
-      <Grid item xs={12} sm={12} md={6} lg={4} xl={3}>
+      {/* <Grid item xs={12} sm={12} md={12} lg={6} xl={4}>
         <OverviewCard
+          height={180}
           title={<Trans>Failed Checks</Trans>}
           value={
             <Trans>
@@ -91,31 +93,46 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
           }
           iconBackgroundColor="error.main"
           icon={<ReportProblemIcon />}
-          bottomContent={showSubtitle(data.check_summary.failed_checks_by_severity)}
+          bottomContent={
+            <Stack direction="row" alignItems="center" spacing={1} width="100%" height={20}>
+              {showSubtitle(data.check_summary.failed_checks_by_severity)}
+            </Stack>
+          }
         />
-      </Grid>
-      <Grid item xs={12} sm={12} md={6} lg={4} xl={3}>
+      </Grid> */}
+      <Grid item xs={12} sm={12} md={12} lg={6} xl={4}>
         <OverviewCard
+          alwaysShowExpandable
+          minHeight={180}
           title={<Trans>Improved</Trans>}
           value={
-            Object.values(data.changed_compliant.resource_count_by_severity).length ? (
+            hasChangedCompliant ? (
               <Stack alignItems="center" direction="row" spacing={1} height={24}>
-                <Typography variant="h4">
-                  {Object.values(data.changed_compliant.resource_count_by_severity).reduce((a, b) => a + b, 0)}
-                </Typography>
+                <Typography variant="h4">{changedCompliantArray.reduce((a, b) => a + b, 0)}</Typography>
                 <Typography variant="caption">{since ? <Trans>Since {since}</Trans> : null}</Typography>
               </Stack>
             ) : (
-              <Stack alignItems="center" direction="row" spacing={1} height={24}>
-                <Typography variant="caption">
-                  <Trans>Nothing to show here</Trans>
-                </Typography>
+              <Stack alignItems="center" direction="row" spacing={1} height="100%" mt={2}>
+                <Stack>
+                  <Typography variant="subtitle2">
+                    <Trans>Nothing to show yet</Trans>
+                  </Typography>
+                  <Typography variant="subtitle2">
+                    <Trans>Pick one of the recommendations to the right and improve your security</Trans>
+                  </Typography>
+                </Stack>
               </Stack>
             )
           }
           iconBackgroundColor="success.main"
           icon={<InsertEmoticonIcon />}
-          bottomContent={showSubtitle(data.changed_compliant.resource_count_by_severity)}
+          bottomContent={
+            hasChangedCompliant ? (
+              <Stack direction="row" alignItems="center" spacing={1} width="100%" height={20}>
+                {showSubtitle(data.changed_compliant.resource_count_by_severity)}
+              </Stack>
+            ) : null
+          }
           expandableContent={
             data.changed_compliant.accounts_selection.length ? (
               <Stack spacing={0.5}>
@@ -145,28 +162,36 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
           }
         />
       </Grid>
-      <Grid item xs={12} sm={12} md={6} lg={4} xl={3}>
+      <Grid item xs={12} sm={12} md={12} lg={6} xl={4}>
         <OverviewCard
+          minHeight={180}
+          alwaysShowExpandable
           title={<Trans>Compliance</Trans>}
           value={
-            Object.values(data.changed_vulnerable.resource_count_by_severity).length ? (
+            hasChangedVulnerable ? (
               <Stack alignItems="center" direction="row" spacing={1} height={24}>
-                <Typography variant="h4">
-                  {Object.values(data.changed_vulnerable.resource_count_by_severity).reduce((a, b) => a + b, 0)}
-                </Typography>
+                <Typography variant="h4">{changedVulnerableArray.reduce((a, b) => a + b, 0)}</Typography>
                 <Typography variant="caption">{since ? <Trans>Since {since}</Trans> : null}</Typography>
               </Stack>
             ) : (
-              <Stack alignItems="center" direction="row" spacing={1} height={24}>
-                <Typography variant="caption">
-                  <Trans>Nothing to show here</Trans>
-                </Typography>
+              <Stack alignItems="center" direction="row" spacing={1} height="100%" mt={2}>
+                <Stack>
+                  <Typography variant="subtitle2">
+                    <Trans>Nothing to show yet</Trans>
+                  </Typography>
+                </Stack>
               </Stack>
             )
           }
           iconBackgroundColor="error.main"
           icon={<ErrorIcon />}
-          bottomContent={showSubtitle(data.changed_vulnerable.resource_count_by_severity)}
+          bottomContent={
+            hasChangedVulnerable ? (
+              <Stack direction="row" alignItems="center" spacing={1} width="100%" height={20}>
+                {showSubtitle(data.changed_vulnerable.resource_count_by_severity)}
+              </Stack>
+            ) : null
+          }
           expandableContent={
             data.changed_vulnerable.accounts_selection.length ||
             Object.entries(data.changed_vulnerable.resource_count_by_kind_selection).length ? (
