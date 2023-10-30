@@ -12,10 +12,10 @@ const AccountCardContainer = styled(Card, { shouldForwardProp })<{ background: s
 export const AccountCard = ({ account, score }: { account: Account; score?: number }) => {
   return (
     <AccountCardContainer background={score !== undefined ? colorFromRedToGreen[score] : 'info.main'}>
-      <CardHeader title={snakeCaseWordsToUFStr(account.name)} />
+      <CardHeader title={snakeCaseWordsToUFStr(account.name ?? account.id)} />
       <CardContent>
         <Typography>ID: {account.id}</Typography>
-        <Typography>Cloud: {account.cloud.toUpperCase()}</Typography>
+        <Typography>Cloud: {account.cloud?.toUpperCase()}</Typography>
         {score !== undefined ? <Typography>Score: {score}</Typography> : undefined}
       </CardContent>
     </AccountCardContainer>
