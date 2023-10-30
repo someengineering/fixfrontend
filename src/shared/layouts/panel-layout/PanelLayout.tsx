@@ -29,8 +29,8 @@ export function PanelLayout({ children }: PanelLayoutProps) {
 
   return (
     <Main>
-      <PanelHeader bottomChild={bottomChild}>{logoChild}</PanelHeader>
-      <PanelContent>{contentChild}</PanelContent>
+      <PanelHeader>{logoChild}</PanelHeader>
+      <PanelContent bottom={bottomChild}>{contentChild}</PanelContent>
     </Main>
   )
 }

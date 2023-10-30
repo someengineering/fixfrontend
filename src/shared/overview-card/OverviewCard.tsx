@@ -3,18 +3,31 @@ import { Accordion, AccordionDetails, AccordionSummary, Avatar, Card, CardConten
 import { ReactNode } from 'react'
 
 interface OverviewCardProps {
+  height?: number
+  minHeight?: number
   title?: ReactNode
   value?: ReactNode
   icon?: ReactNode
   iconBackgroundColor?: string
   bottomContent?: ReactNode
   expandableContent?: ReactNode
+  alwaysShowExpandable?: boolean
 }
 
-export const OverviewCard = ({ title, value, icon, iconBackgroundColor, bottomContent, expandableContent }: OverviewCardProps) => {
+export const OverviewCard = ({
+  height,
+  minHeight,
+  title,
+  value,
+  icon,
+  iconBackgroundColor,
+  bottomContent,
+  expandableContent,
+  alwaysShowExpandable,
+}: OverviewCardProps) => {
   const bottom = bottomContent ? (
     <Stack alignItems="center" direction="row" spacing={2} sx={{ mt: 2 }}>
-      {expandableContent ? (
+      {expandableContent && !alwaysShowExpandable ? (
         <Accordion elevation={0} disableGutters square sx={{ background: 'none', width: '100%', '&::before': { content: 'none' } }}>
           <AccordionSummary
             expandIcon={
@@ -42,16 +55,20 @@ export const OverviewCard = ({ title, value, icon, iconBackgroundColor, bottomCo
     </Stack>
   ) : null
   return (
-    <Card>
-      <CardContent>
-        <Stack alignItems="flex-start" direction="row" justifyContent="space-between" spacing={3}>
+    <Card sx={{ height: height ? `${height}px` : undefined, minHeight: minHeight ? `${minHeight}px` : undefined }}>
+      <CardContent component={Stack} direction="column" height="100%">
+        <Stack alignItems="flex-start" direction="row" justifyContent="space-between" spacing={3} flexGrow={1}>
           <Stack spacing={1}>
             {title && (
               <Typography color="text.secondary" variant="overline">
                 {title}
               </Typography>
             )}
-            {value && <Typography variant="h5">{value}</Typography>}
+            {value && (
+              <Typography variant="h5" component="span">
+                {value}
+              </Typography>
+            )}
           </Stack>
           <Avatar
             sx={{
@@ -64,6 +81,7 @@ export const OverviewCard = ({ title, value, icon, iconBackgroundColor, bottomCo
           </Avatar>
         </Stack>
         {bottom}
+        {expandableContent && alwaysShowExpandable ? expandableContent : null}
       </CardContent>
     </Card>
   )

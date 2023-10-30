@@ -1,14 +1,11 @@
 import { Theme, useMediaQuery } from '@mui/material'
-import { PropsWithChildren, ReactNode, useState } from 'react'
+import { PropsWithChildren, useState } from 'react'
 import { PanelAppBar } from './PanelAppBar'
-import { PanelBottom } from './PanelBottom'
 import { PanelDrawer } from './PanelDrawer'
 
-interface PanelContentProps extends PropsWithChildren {
-  bottomChild?: ReactNode
-}
+interface PanelContentProps extends PropsWithChildren {}
 
-export const PanelHeader = ({ children, bottomChild }: PanelContentProps) => {
+export const PanelHeader = ({ children }: PanelContentProps) => {
   const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('md'))
 
   const [open, setOpen] = useState(isDesktop)
@@ -33,9 +30,6 @@ export const PanelHeader = ({ children, bottomChild }: PanelContentProps) => {
       <PanelDrawer isDesktop={isDesktop} open={open} onDrawerClose={handleDrawerClose}>
         {children}
       </PanelDrawer>
-      <PanelBottom isDesktop={isDesktop} open={open}>
-        {bottomChild}
-      </PanelBottom>
     </>
   )
 }

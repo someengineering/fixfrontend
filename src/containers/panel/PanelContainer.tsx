@@ -7,6 +7,7 @@ import { WebSocketEvents } from 'src/core/events'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { BottomRegion, ContentRegion, LogoRegion, PanelLayout } from 'src/shared/layouts/panel-layout'
 import { FullPageLoadingSuspenseFallback, LoadingSuspenseFallback } from 'src/shared/loading'
+import { PanelInitialMessageHandler } from './PanelInitialMessageHandler'
 import { PanelRoutes } from './PanelRoutes'
 
 export default function PanelContainer() {
@@ -32,6 +33,7 @@ export default function PanelContainer() {
               </Typography>
             </BottomRegion>
           </PanelLayout>
+          <PanelInitialMessageHandler />
         </Suspense>
       </NetworkErrorBoundary>
     </WebSocketEvents>

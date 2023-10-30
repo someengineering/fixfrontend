@@ -1,5 +1,6 @@
 export { StorageKeys } from './StorageKeys'
-export { sortedSeverities } from './consts'
+export { colorFromRedToGreen } from './colorFromRedToGreen'
+export { panelMessages, sortedSeverities } from './consts'
 export { endPoints } from './endPoints'
 export { env } from './env'
 export { langs } from './langs'

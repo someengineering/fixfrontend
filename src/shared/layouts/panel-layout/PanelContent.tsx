@@ -1,18 +1,19 @@
-import { Box, styled } from '@mui/material'
-import { PropsWithChildren } from 'react'
+import { Box } from '@mui/material'
+import { PropsWithChildren, ReactNode } from 'react'
 import { panelUI } from 'src/shared/constants'
+import { PanelBottom } from './PanelBottom'
 
-const Container = styled(Box)(({ theme }) => ({
-  flexGrow: 1,
-  padding: theme.spacing(3),
-  marginBottom: panelUI.bottomCopyRightHeight + 'px',
-  marginTop: panelUI.headerHeight + 'px',
-}))
+interface PanelContent extends PropsWithChildren {
+  bottom: ReactNode
+}
 
-export const PanelContent = ({ children }: PropsWithChildren) => {
+export const PanelContent = ({ children, bottom }: PanelContent) => {
   return (
-    <Container component="main" maxWidth="100%">
-      {children}
-    </Container>
+    <Box maxWidth="100%" display="flex" flexDirection="column" flexGrow={1}>
+      <Box p={3} mb={2} mt={panelUI.headerHeight + 'px'} component="main" display="flex" flexDirection="column" flexGrow={1}>
+        {children}
+      </Box>
+      <PanelBottom>{bottom}</PanelBottom>
+    </Box>
   )
 }

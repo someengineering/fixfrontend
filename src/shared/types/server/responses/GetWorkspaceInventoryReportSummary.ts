@@ -1,9 +1,4 @@
-export interface Account {
-  id: string
-  name: string
-  cloud: string
-  score: number
-}
+import { Account } from './shared'
 
 export type FailedChecksTypeKeys = 'critical' | 'high' | 'medium' | 'low'
 
@@ -62,6 +57,10 @@ export interface TopChecks {
   url: null
 }
 
+export type WorkspaceAccountReportSummary = Omit<Account, 'account_id'> & {
+  score: number
+}
+
 export interface GetWorkspaceInventoryReportSummaryResponse {
   overall_score: number
   check_summary: {
@@ -69,7 +68,7 @@ export interface GetWorkspaceInventoryReportSummaryResponse {
     failed_checks: number
     failed_checks_by_severity: Partial<FailedChecksType>
   }
-  accounts: Account[]
+  accounts: WorkspaceAccountReportSummary[]
   benchmarks: Benchmark[]
   changed_vulnerable: ChangedSitatuation
   changed_compliant: ChangedSitatuation
