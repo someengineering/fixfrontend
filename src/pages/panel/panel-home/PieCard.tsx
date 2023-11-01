@@ -52,10 +52,8 @@ export const PieCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryRes
         <Grid
           item
           xs={12}
-          sm={12}
-          md={6}
-          lg={4}
-          xl={3}
+          lg={6}
+          xl={4}
           key={index}
           height={400}
           display="flex"

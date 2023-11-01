@@ -5,13 +5,14 @@ import AssessmentIcon from '@mui/icons-material/Assessment'
 import ErrorIcon from '@mui/icons-material/Error'
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon'
 import { Divider, Grid, Stack, SvgIcon, Typography } from '@mui/material'
+import { CircularScore } from 'src/shared/circular-score'
 import { colorFromRedToGreen, sortedSeverities } from 'src/shared/constants'
 import { getMessage } from 'src/shared/defined-messages'
 import { OverviewCard } from 'src/shared/overview-card'
 import { FailedChecksType, GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { iso8601DurationToString, parseISO8601Duration } from 'src/shared/utils/parseISO8601Duration'
 import { snakeCaseToUFStr, snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
-import { getColorByScore, getColorBySeverity } from './getColor'
+import { getColorBySeverity } from './getColor'
 
 const checkDiff = (data: GetWorkspaceInventoryReportSummaryResponse) => {
   const compliant = data.changed_compliant.resource_count_by_severity
@@ -48,7 +49,7 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
   const difference = checkDiff(data)
   const hasDifference = Boolean(difference && !Number.isNaN(difference))
   const positive = difference >= 0
-  const overallColor = hasDifference ? getColorByScore(data.overall_score) : 'info'
+  const overallColor = hasDifference ? colorFromRedToGreen[data.overall_score] : 'info'
   const since = data?.changed_vulnerable.since ? iso8601DurationToString(parseISO8601Duration(data?.changed_vulnerable.since)) : null
   const changedCompliantArray = Object.values(data.changed_compliant.resource_count_by_severity)
   const hasChangedCompliant = changedCompliantArray.length
@@ -60,18 +61,18 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
         <OverviewCard
           height={180}
           title={<Trans>Overall Score</Trans>}
-          value={<Typography variant="h1">{data.overall_score}</Typography>}
+          value={<CircularScore score={data.overall_score} />}
           iconBackgroundColor={colorFromRedToGreen[data.overall_score]}
           icon={<AssessmentIcon />}
           bottomContent={
             <>
               <Stack alignItems="center" direction="row" spacing={0.5}>
                 {hasDifference ? (
-                  <SvgIcon color={overallColor} fontSize="small">
+                  <SvgIcon sx={{ color: overallColor }} fontSize="small">
                     {positive ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
                   </SvgIcon>
                 ) : null}
-                <Typography color={`${overallColor}.main`} variant="body2">
+                <Typography color={overallColor} variant="body2">
                   {hasDifference ? difference : <Trans>No changes</Trans>}
                 </Typography>
               </Stack>

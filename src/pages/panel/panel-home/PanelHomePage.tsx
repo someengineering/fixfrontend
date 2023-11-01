@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/macro'
-import { Box, Button, Divider, Grid, Stack, Typography } from '@mui/material'
+import { Box, Button, Divider, Grid, Stack, Theme, Typography, useMediaQuery } from '@mui/material'
 import { useQueries } from '@tanstack/react-query'
 import { Suspense, useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -46,6 +46,8 @@ const chartToShow = (data?: GetWorkspaceInventoryReportSummaryResponse) => {
 
 const HomePage = () => {
   const { selectedWorkspace } = useUserProfile()
+  const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('xl'))
+  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
   const [{ data }, { data: accounts }] = useQueries({
     queries: [
       {
@@ -93,49 +95,90 @@ const HomePage = () => {
         <Trans>Security Scan in Progress</Trans>
       </Typography>
       <Typography variant="h5">
-        <Trans>Your cloud account has been added successfully! We are currently performing a security scan. This can take up to an hour depending on the size of your account. Your dashboard will be available shortly after the scan is complete.</Trans>
+        <Trans>
+          Your cloud account has been added successfully! We are currently performing a security scan. This can take up to an hour depending
+          on the size of your account. Your dashboard will be available shortly after the scan is complete.
+        </Trans>
       </Typography>
     </Stack>
   ) : (
     <>
       <Grid container my={2}>
-        <Grid item xs={12} sm={12} md={6} lg={8} xl={9}>
+        <Grid item xs={12} md={6} lg={8} xl={9}>
           <Typography variant="h3" mb={2}>
             <Trans>Overall</Trans>
           </Typography>
           <OverallCard data={data} />
-        </Grid>
-        <Grid item xs={12} sm={12} md={6} lg={4} xl={3}>
-          <Stack display="flex" direction="row">
-            <Divider orientation="vertical" sx={{ display: { xs: 'none', md: 'block' }, mx: 2 }} flexItem />
-            <Stack>
+          {isDesktop ? (
+            <>
+              <Box p={4}>
+                <Divider />
+              </Box>
               <Typography variant="h3" mb={2}>
-                <Trans>Top 5 Security Enhancements</Trans>
+                <Trans>Benchmarks</Trans>
               </Typography>
-              <TopFiveChecksCard data={data} />
-            </Stack>
-          </Stack>
+              {chartToShow(data)}
+            </>
+          ) : (
+            false
+          )}
         </Grid>
+        {!isMobile ? (
+          <Grid item md={6} lg={4} xl={3}>
+            <Stack display="flex" direction="row">
+              <Divider orientation="vertical" sx={{ display: { xs: 'none', md: 'block' }, mx: 2 }} flexItem />
+              <Stack>
+                <Typography variant="h3" mb={{ xs: 0, md: 2 }} mt={{ xs: 4, md: 0 }}>
+                  <Trans>Top 5 Security Enhancements</Trans>
+                </Typography>
+                <TopFiveChecksCard data={data} />
+              </Stack>
+            </Stack>
+          </Grid>
+        ) : (
+          false
+        )}
       </Grid>
+      {!isDesktop ? (
+        <>
+          <Box p={4}>
+            <Divider />
+          </Box>
+          <Typography variant="h3" mb={2}>
+            <Trans>Benchmarks</Trans>
+          </Typography>
+          {chartToShow(data)}
+        </>
+      ) : (
+        false
+      )}
+      {isMobile ? (
+        <>
+          <Box p={4}>
+            <Divider />
+          </Box>
+          <Typography variant="h3" mb={{ xs: 0, md: 2 }} mt={{ xs: 4, md: 0 }}>
+            <Trans>Top 5 Security Enhancements</Trans>
+          </Typography>
+          <TopFiveChecksCard data={data} />
+        </>
+      ) : (
+        false
+      )}
       <Box p={4}>
         <Divider />
       </Box>
       <Typography variant="h3" mb={2}>
-        <Trans>Benchmarks</Trans>
-      </Typography>
-      {chartToShow(data)}
-      <Box p={4}>
-        <Divider />
-      </Box>
-      <Typography variant="h3" mb={2}>
-        <Trans>Accounts</Trans>
+        <Trans>Accounts Summary</Trans>
       </Typography>
       <Grid container spacing={2} my={2}>
-        {accounts?.map((account) => (
-          <Grid item key={account.id} minWidth={300}>
-            <AccountCard account={account} score={data?.accounts.find((item) => item.id === account.id)?.score} />
-          </Grid>
-        ))}
+        {data?.accounts
+          .sort((prev, cur) => prev.score - cur.score)
+          .map((account) => (
+            <Grid item key={account.id} width={300}>
+              <AccountCard account={account} />
+            </Grid>
+          ))}
       </Grid>
     </>
   )
