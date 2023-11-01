@@ -5,6 +5,7 @@ import AssessmentIcon from '@mui/icons-material/Assessment'
 import ErrorIcon from '@mui/icons-material/Error'
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon'
 import { Divider, Grid, Stack, SvgIcon, Typography } from '@mui/material'
+import { CircularScore } from 'src/shared/circular-score'
 import { colorFromRedToGreen, sortedSeverities } from 'src/shared/constants'
 import { getMessage } from 'src/shared/defined-messages'
 import { OverviewCard } from 'src/shared/overview-card'
@@ -60,7 +61,7 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
         <OverviewCard
           height={180}
           title={<Trans>Overall Score</Trans>}
-          value={<Typography variant="h1">{data.overall_score}</Typography>}
+          value={<CircularScore score={data.overall_score} />}
           iconBackgroundColor={colorFromRedToGreen[data.overall_score]}
           icon={<AssessmentIcon />}
           bottomContent={

@@ -74,7 +74,7 @@ export const PanelAppBar = ({ children, open, isDesktop, onDrawerOpen, onDrawerT
         >
           <MenuIcon />
         </MenuIconButton>
-        <AppBarLogo>{children}</AppBarLogo>
+        {!open || !isDesktop ? <AppBarLogo>{children}</AppBarLogo> : null}
         <AppBarActions>
           <DarkModeSwitch whiteMode />
           <EventButton />
