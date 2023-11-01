@@ -1,14 +1,14 @@
 import { Box, CircularProgress, CircularProgressProps, Typography, alpha, styled } from '@mui/material'
-import { scoreToStaticColor } from 'src/shared/utils/scoreToStaticColor'
 import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
+import { colorFromRedToGreen } from '../constants'
 
 export interface CircularScoreProps extends CircularProgressProps {
   score: number
 }
 
-const CirtularLabelContainer = styled(Box, { shouldForwardProp: shouldForwardPropWithBlackList(['score']) })<{
-  scoreColor: 'error' | 'warning' | 'info' | 'success'
-}>(({ theme, scoreColor }) => ({
+const CirtularLabelContainer = styled(Box, { shouldForwardProp: shouldForwardPropWithBlackList(['scoreColor']) })<{
+  scoreColor: string
+}>(({ scoreColor }) => ({
   top: 0,
   left: 0,
   bottom: 0,
@@ -17,18 +17,18 @@ const CirtularLabelContainer = styled(Box, { shouldForwardProp: shouldForwardPro
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  background: alpha(theme.palette[scoreColor].main, 0.2),
+  background: alpha(scoreColor, 0.2),
   borderRadius: '50%',
 }))
 
 export const CircularScore = ({ score, ...props }: CircularScoreProps) => {
-  const color = scoreToStaticColor(score)
+  const color = colorFromRedToGreen[score]
   return (
     <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-      <CircularProgress variant="determinate" color={color} value={score} {...props} size={72} />
+      <CircularProgress variant="determinate" value={score} sx={{ color }} size={72} {...props} />
       <CirtularLabelContainer scoreColor={color}>
-        <Typography variant="h4" component="div" color={`${color}.main`}>
-          {Math.round(score)}
+        <Typography variant="h4" component="div" color={color}>
+          {score}
         </Typography>
       </CirtularLabelContainer>
     </Box>

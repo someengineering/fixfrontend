@@ -1,12 +1,12 @@
 import { Trans } from '@lingui/macro'
 import { Card, CardContent, CardHeader, Tooltip, Typography, TypographyProps, styled } from '@mui/material'
+import { colorFromRedToGreen } from 'src/shared/constants'
 import { WorkspaceAccountReportSummary } from 'src/shared/types/server'
-import { scoreToStaticColor } from 'src/shared/utils/scoreToStaticColor'
 import { shouldForwardProp } from 'src/shared/utils/shouldForwardProp'
 import { snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 
 const AccountCardContainer = styled(Card, { shouldForwardProp })<{ score?: number }>(({ theme, score }) => ({
-  background: theme.palette[scoreToStaticColor(score)].main,
+  background: score ? colorFromRedToGreen[score] : theme.palette.info.main,
   color: theme.palette.common.white,
   width: '100%',
   '.MuiCardHeader-content': {

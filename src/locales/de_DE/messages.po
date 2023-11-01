@@ -29,6 +29,10 @@ msgstr "Account Setup"
 msgid "Accounts"
 msgstr "Konten"
 
+#: src/pages/panel/panel-home/PanelHomePage.tsx:169
+msgid "Accounts Summary"
+msgstr "Zusammenfassung der Konten"
+
 #: src/pages/auth/register/RegisterPage.tsx:127
 msgid "Already have an account? Click here to Log in."
 msgstr "Sie haben bereits ein Konto? Klicken Sie hier, um sich einzuloggen."
@@ -49,15 +53,19 @@ msgstr "Automatisches Cloud Setup"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:124
+#: src/pages/panel/panel-home/PanelHomePage.tsx:115
+#: src/pages/panel/panel-home/PanelHomePage.tsx:145
 msgid "Benchmarks"
 msgstr "Benchmarks"
+#: src/pages/panel/panel-home/AccountCard.tsx:34
+msgid "Cloud"
+msgstr "Cloud"
 
 #: src/shared/event-button/EventButton.tsx:47
 msgid "Cloud account added, id: {0}"
 msgstr "Cloud-Konto hinzugefügt, ID: {0}"
 
-#: src/pages/panel/panel-home/OverallCard.tsx:169
+#: src/pages/panel/panel-home/OverallCard.tsx:170
 msgid "Compliance"
 msgstr "Compliance"
 
@@ -119,6 +127,11 @@ msgid "How to fix"
 msgstr "Wie repariert man"
 
 #: src/pages/panel/panel-home/OverallCard.tsx:107
+#: src/pages/panel/panel-home/AccountCard.tsx:31
+msgid "ID"
+msgstr "ID"
+
+#: src/pages/panel/panel-home/OverallCard.tsx:108
 msgid "Improved"
 msgstr "Verbessert"
 
@@ -155,20 +168,20 @@ msgstr "Mittel"
 msgid "More info"
 msgstr "Mehr Info"
 
-#: src/pages/panel/panel-home/OverallCard.tsx:141
+#: src/pages/panel/panel-home/OverallCard.tsx:142
 msgid "Most Improved Accounts"
 msgstr "Am meisten verbesserte Konten"
 
-#: src/pages/panel/panel-home/OverallCard.tsx:153
+#: src/pages/panel/panel-home/OverallCard.tsx:154
 msgid "Most Improved Resources"
 msgstr "Am meisten verbesserte Ressourcen"
 
-#: src/pages/panel/panel-home/OverallCard.tsx:75
+#: src/pages/panel/panel-home/OverallCard.tsx:76
 msgid "No changes"
 msgstr "Keine Änderungen"
 
-#: src/pages/panel/panel-home/OverallCard.tsx:118
-#: src/pages/panel/panel-home/OverallCard.tsx:180
+#: src/pages/panel/panel-home/OverallCard.tsx:119
+#: src/pages/panel/panel-home/OverallCard.tsx:181
 msgid "Nothing to show yet"
 msgstr "Noch nichts zu zeigen"
 
@@ -181,11 +194,11 @@ msgstr "Öffene die Schublade"
 msgid "Or"
 msgstr "Oder"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:104
+#: src/pages/panel/panel-home/PanelHomePage.tsx:106
 msgid "Overall"
 msgstr "Gesamt"
 
-#: src/pages/panel/panel-home/OverallCard.tsx:62
+#: src/pages/panel/panel-home/OverallCard.tsx:63
 msgid "Overall Score"
 msgstr "Gesamtpunktzahl"
 
@@ -194,15 +207,16 @@ msgstr "Gesamtpunktzahl"
 msgid "Password"
 msgstr "Passwort"
 
-#: src/pages/panel/panel-home/OverallCard.tsx:121
+#: src/pages/panel/panel-home/OverallCard.tsx:122
 msgid "Pick one of the recommendations to the right and improve your security"
 msgstr "Wählen Sie eine der Empfehlungen rechts aus und verbessern Sie Ihre Sicherheit"
 
 #: src/pages/panel/panel-home/PanelHomePage.tsx:81
+#: src/pages/panel/panel-home/PanelHomePage.tsx:83
 msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgstr "Bitte gehen Sie zur Seite <0>Setup Accounts</0>, um zunächst Ihr Konto einzurichten"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:93
+#: src/pages/panel/panel-home/PanelHomePage.tsx:95
 msgid "Please wait and be patient..."
 msgstr "Bitte warten Sie und haben Sie etwas Geduld..."
 
@@ -235,9 +249,9 @@ msgstr "Melden Sie sich mit {formattedName} an"
 msgid "Simple and affordable visibility into your cloud security posture."
 msgstr "Einfacher und erschwinglicher Einblick in die Sicherheitslage Ihrer Cloud."
 
-#: src/pages/panel/panel-home/OverallCard.tsx:79
-#: src/pages/panel/panel-home/OverallCard.tsx:112
-#: src/pages/panel/panel-home/OverallCard.tsx:174
+#: src/pages/panel/panel-home/OverallCard.tsx:80
+#: src/pages/panel/panel-home/OverallCard.tsx:113
+#: src/pages/panel/panel-home/OverallCard.tsx:175
 msgid "Since {since}"
 msgstr "Seit {since}"
 
@@ -249,7 +263,7 @@ msgstr "Seit {since}"
 msgid "Tenant Id"
 msgstr "Tenant Id"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:96
+#: src/pages/panel/panel-home/PanelHomePage.tsx:98
 msgid "The account has been successfully configured but the first benchmark will be run and then you will have the overview."
 msgstr "Das Konto wurde erfolgreich konfiguriert, aber der erste Benchmark wird ausgeführt und dann haben Sie den Überblick."
 
@@ -257,7 +271,7 @@ msgstr "Das Konto wurde erfolgreich konfiguriert, aber der erste Benchmark wird 
 msgid "The Stack requires the following parameters"
 msgstr "Der Stack erfordert die folgenden Parameter"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:78
+#: src/pages/panel/panel-home/PanelHomePage.tsx:80
 msgid "There's no account configured for this workspace."
 msgstr "Für diesen Arbeitsbereich ist kein Konto konfiguriert."
 
@@ -265,15 +279,16 @@ msgstr "Für diesen Arbeitsbereich ist kein Konto konfiguriert."
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM Rolle in Ihrem AWS Konto erstellt. Diese Rolle wird von FIX verwendet, um in Ihrem AWS Konto Sicherheitsscans durchzuführen."
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:113
+#: src/pages/panel/panel-home/PanelHomePage.tsx:129
+#: src/pages/panel/panel-home/PanelHomePage.tsx:158
 msgid "Top 5 Security Enhancements"
 msgstr "Die fünf wichtigsten Sicherheitsverbesserungen"
 
-#: src/pages/panel/panel-home/OverallCard.tsx:203
+#: src/pages/panel/panel-home/OverallCard.tsx:204
 msgid "Top Non-Compliant Accounts"
 msgstr "Top Konten mit Compliance-Verstößen"
 
-#: src/pages/panel/panel-home/OverallCard.tsx:219
+#: src/pages/panel/panel-home/OverallCard.tsx:220
 msgid "Top Non-Compliant Resources"
 msgstr "Top Ressourcen mit Compliance-Verstößen"
 

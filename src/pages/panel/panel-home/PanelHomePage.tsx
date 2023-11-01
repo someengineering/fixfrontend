@@ -47,7 +47,7 @@ const chartToShow = (data?: GetWorkspaceInventoryReportSummaryResponse) => {
 const HomePage = () => {
   const { selectedWorkspace } = useUserProfile()
   const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('xl'))
-  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('sm'))
+  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
   const [{ data }, { data: accounts }] = useQueries({
     queries: [
       {
@@ -106,7 +106,19 @@ const HomePage = () => {
             <Trans>Overall</Trans>
           </Typography>
           <OverallCard data={data} />
-          {isDesktop ? chartToShow(data) : false}
+          {isDesktop ? (
+            <>
+              <Box p={4}>
+                <Divider />
+              </Box>
+              <Typography variant="h3" mb={2}>
+                <Trans>Benchmarks</Trans>
+              </Typography>
+              {chartToShow(data)}
+            </>
+          ) : (
+            false
+          )}
         </Grid>
         {!isMobile ? (
           <Grid item md={6} lg={4} xl={3}>
@@ -124,15 +136,24 @@ const HomePage = () => {
           false
         )}
       </Grid>
-      <Box p={4}>
-        <Divider />
-      </Box>
-      <Typography variant="h3" mb={2}>
-        <Trans>Benchmarks</Trans>
-      </Typography>
-      {!isDesktop ? chartToShow(data) : false}
+      {!isDesktop ? (
+        <>
+          <Box p={4}>
+            <Divider />
+          </Box>
+          <Typography variant="h3" mb={2}>
+            <Trans>Benchmarks</Trans>
+          </Typography>
+          {chartToShow(data)}
+        </>
+      ) : (
+        false
+      )}
       {isMobile ? (
         <>
+          <Box p={4}>
+            <Divider />
+          </Box>
           <Typography variant="h3" mb={{ xs: 0, md: 2 }} mt={{ xs: 4, md: 0 }}>
             <Trans>Top 5 Security Enhancements</Trans>
           </Typography>
@@ -148,11 +169,13 @@ const HomePage = () => {
         <Trans>Accounts Summary</Trans>
       </Typography>
       <Grid container spacing={2} my={2}>
-        {data?.accounts.map((account) => (
-          <Grid item key={account.id} width={300}>
-            <AccountCard account={account} />
-          </Grid>
-        ))}
+        {data?.accounts
+          .sort((prev, cur) => prev.score - cur.score)
+          .map((account) => (
+            <Grid item key={account.id} width={300}>
+              <AccountCard account={account} />
+            </Grid>
+          ))}
       </Grid>
     </>
   )
