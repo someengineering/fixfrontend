@@ -90,10 +90,10 @@ const HomePage = () => {
   ) : accounts?.length && !data?.benchmarks.length ? (
     <Stack display="flex" flexGrow={1} flexDirection="column" width="100%" height="100%" justifyContent="center" alignItems="center">
       <Typography variant="h3">
-        <Trans>Please wait and be patient...</Trans>
+        <Trans>Security Scan in Progress</Trans>
       </Typography>
       <Typography variant="h5">
-        <Trans>The account has been successfully configured but the first benchmark will be run and then you will have the overview.</Trans>
+        <Trans>Your cloud account has been added successfully! We are currently performing a security scan. This can take up to an hour depending on the size of your account. Your dashboard will be available shortly after the scan is complete.</Trans>
       </Typography>
     </Stack>
   ) : (
