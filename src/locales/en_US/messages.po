@@ -203,8 +203,8 @@ msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgstr "Please go to <0>Setup Accounts</0> page to setup your account first"
 
 #: src/pages/panel/panel-home/PanelHomePage.tsx:93
-msgid "Please wait and be patient..."
-msgstr "Please wait and be patient..."
+msgid "Security Scan in Progress"
+msgstr "Security Scan in Progress"
 
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:29
 msgid "Profile"
@@ -250,8 +250,8 @@ msgid "Tenant Id"
 msgstr "Tenant Id"
 
 #: src/pages/panel/panel-home/PanelHomePage.tsx:96
-msgid "The account has been successfully configured but the first benchmark will be run and then you will have the overview."
-msgstr "The account has been successfully configured but the first benchmark will be run and then you will have the overview."
+msgid "Your cloud account has been added successfully! We are currently performing a security scan. This can take up to an hour depending on the size of your account. Your dashboard will be available shortly after the scan is complete."
+msgstr "Your cloud account has been added successfully! We are currently performing a security scan. This can take up to an hour depending on the size of your account. Your dashboard will be available shortly after the scan is complete."
 
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:79
 msgid "The Stack requires the following parameters"
