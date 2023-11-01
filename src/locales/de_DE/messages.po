@@ -25,11 +25,7 @@ msgstr "© 2023 Some Engineering Services GMBH. Alle Rechte vorbehalten."
 msgid "Account Setup"
 msgstr "Account Setup"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:131
-msgid "Accounts"
-msgstr "Konten"
-
-#: src/pages/panel/panel-home/PanelHomePage.tsx:169
+#: src/pages/panel/panel-home/PanelHomePage.tsx:172
 msgid "Accounts Summary"
 msgstr "Zusammenfassung der Konten"
 
@@ -53,10 +49,11 @@ msgstr "Automatisches Cloud Setup"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:115
-#: src/pages/panel/panel-home/PanelHomePage.tsx:145
+#: src/pages/panel/panel-home/PanelHomePage.tsx:118
+#: src/pages/panel/panel-home/PanelHomePage.tsx:148
 msgid "Benchmarks"
 msgstr "Benchmarks"
+
 #: src/pages/panel/panel-home/AccountCard.tsx:34
 msgid "Cloud"
 msgstr "Cloud"
@@ -126,7 +123,6 @@ msgstr "Hoch"
 msgid "How to fix"
 msgstr "Wie repariert man"
 
-#: src/pages/panel/panel-home/OverallCard.tsx:107
 #: src/pages/panel/panel-home/AccountCard.tsx:31
 msgid "ID"
 msgstr "ID"
@@ -194,7 +190,7 @@ msgstr "Öffene die Schublade"
 msgid "Or"
 msgstr "Oder"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:106
+#: src/pages/panel/panel-home/PanelHomePage.tsx:109
 msgid "Overall"
 msgstr "Gesamt"
 
@@ -215,10 +211,6 @@ msgstr "Wählen Sie eine der Empfehlungen rechts aus und verbessern Sie Ihre Sic
 msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgstr "Bitte gehen Sie zur Seite <0>Setup Accounts</0>, um zunächst Ihr Konto einzurichten"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:95
-msgid "Please wait and be patient..."
-msgstr "Bitte warten Sie und haben Sie etwas Geduld..."
-
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:29
 msgid "Profile"
 msgstr "Profil"
@@ -230,6 +222,10 @@ msgstr "Registrieren"
 #: src/pages/panel/panel-home/TopFiveChecksCard.tsx:30
 msgid "Risk"
 msgstr "Risiko"
+
+#: src/pages/panel/panel-home/PanelHomePage.tsx:95
+msgid "Security Scan in Progress"
+msgstr "Sicherheitsscan läuft"
 
 #: src/shared/language-button/LanguageButton.tsx:40
 msgid "Select Language"
@@ -262,10 +258,6 @@ msgstr "Seit {since}"
 msgid "Tenant Id"
 msgstr "Tenant Id"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:98
-msgid "The account has been successfully configured but the first benchmark will be run and then you will have the overview."
-msgstr "Das Konto wurde erfolgreich konfiguriert, aber der erste Benchmark wird ausgeführt und dann haben Sie den Überblick."
-
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:79
 msgid "The Stack requires the following parameters"
 msgstr "Der Stack erfordert die folgenden Parameter"
@@ -278,8 +270,8 @@ msgstr "Für diesen Arbeitsbereich ist kein Konto konfiguriert."
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM Rolle in Ihrem AWS Konto erstellt. Diese Rolle wird von FIX verwendet, um in Ihrem AWS Konto Sicherheitsscans durchzuführen."
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:129
-#: src/pages/panel/panel-home/PanelHomePage.tsx:158
+#: src/pages/panel/panel-home/PanelHomePage.tsx:132
+#: src/pages/panel/panel-home/PanelHomePage.tsx:161
 msgid "Top 5 Security Enhancements"
 msgstr "Die fünf wichtigsten Sicherheitsverbesserungen"
 
@@ -298,3 +290,7 @@ msgstr "Wir haben eine E-Mail mit einem Bestätigungslink an Ihre E-Mail-Adresse
 #: src/pages/auth/login/LoginPage.tsx:124
 msgid "You have successfully verified your account."
 msgstr "Sie haben Ihr Konto erfolgreich verifiziert."
+
+#: src/pages/panel/panel-home/PanelHomePage.tsx:98
+msgid "Your cloud account has been added successfully! We are currently performing a security scan. This can take up to an hour depending on the size of your account. Your dashboard will be available shortly after the scan is complete."
+msgstr "Ihr Cloud-Konto wurde erfolgreich hinzugefügt! Wir führen derzeit einen Sicherheitsscan durch. Dies kann je nach Größe Ihres Kontos bis zu eine Stunde dauern. Ihr Dashboard wird kurz nach Abschluss des Scans verfügbar sein."

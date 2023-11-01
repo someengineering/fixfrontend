@@ -25,11 +25,7 @@ msgstr "© 2023 Some Engineering Inc. All rights reserved."
 msgid "Account Setup"
 msgstr "Account Setup"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:131
-msgid "Accounts"
-msgstr "Accounts"
-
-#: src/pages/panel/panel-home/PanelHomePage.tsx:148
+#: src/pages/panel/panel-home/PanelHomePage.tsx:172
 msgid "Accounts Summary"
 msgstr "Accounts Summary"
 
@@ -53,10 +49,11 @@ msgstr "Automatic Cloud Setup"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace has been successfully subscribed"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:115
-#: src/pages/panel/panel-home/PanelHomePage.tsx:145
+#: src/pages/panel/panel-home/PanelHomePage.tsx:118
+#: src/pages/panel/panel-home/PanelHomePage.tsx:148
 msgid "Benchmarks"
 msgstr "Benchmarks"
+
 #: src/pages/panel/panel-home/AccountCard.tsx:34
 msgid "Cloud"
 msgstr "Cloud"
@@ -193,7 +190,7 @@ msgstr "Open drawer"
 msgid "Or"
 msgstr "Or"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:106
+#: src/pages/panel/panel-home/PanelHomePage.tsx:109
 msgid "Overall"
 msgstr "Overall"
 
@@ -214,10 +211,6 @@ msgstr "Pick one of the recommendations to the right and improve your security"
 msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgstr "Please go to <0>Setup Accounts</0> page to setup your account first"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:95
-msgid "Please wait and be patient..."
-msgstr "Please wait and be patient..."
-
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:29
 msgid "Profile"
 msgstr "Profile"
@@ -229,6 +222,10 @@ msgstr "Register"
 #: src/pages/panel/panel-home/TopFiveChecksCard.tsx:30
 msgid "Risk"
 msgstr "Risk"
+
+#: src/pages/panel/panel-home/PanelHomePage.tsx:95
+msgid "Security Scan in Progress"
+msgstr "Security Scan in Progress"
 
 #: src/shared/language-button/LanguageButton.tsx:40
 msgid "Select Language"
@@ -261,10 +258,6 @@ msgstr "Since {since}"
 msgid "Tenant Id"
 msgstr "Tenant Id"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:98
-msgid "The account has been successfully configured but the first benchmark will be run and then you will have the overview."
-msgstr "The account has been successfully configured but the first benchmark will be run and then you will have the overview."
-
 #: src/pages/panel/panel-setup-cloud/PanelSetupCloudPage.tsx:79
 msgid "The Stack requires the following parameters"
 msgstr "The Stack requires the following parameters"
@@ -277,8 +270,8 @@ msgstr "There's no account configured for this workspace."
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:129
-#: src/pages/panel/panel-home/PanelHomePage.tsx:158
+#: src/pages/panel/panel-home/PanelHomePage.tsx:132
+#: src/pages/panel/panel-home/PanelHomePage.tsx:161
 msgid "Top 5 Security Enhancements"
 msgstr "Top 5 Security Enhancements"
 
@@ -297,3 +290,7 @@ msgstr "We have sent an email with a confirmation link to your email address. Pl
 #: src/pages/auth/login/LoginPage.tsx:124
 msgid "You have successfully verified your account."
 msgstr "You have successfully verified your account."
+
+#: src/pages/panel/panel-home/PanelHomePage.tsx:98
+msgid "Your cloud account has been added successfully! We are currently performing a security scan. This can take up to an hour depending on the size of your account. Your dashboard will be available shortly after the scan is complete."
+msgstr "Your cloud account has been added successfully! We are currently performing a security scan. This can take up to an hour depending on the size of your account. Your dashboard will be available shortly after the scan is complete."
