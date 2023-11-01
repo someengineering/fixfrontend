@@ -1,4 +1,4 @@
-import { Paper, PaperProps, Stack, Typography, colors as muicolors } from '@mui/material'
+import { Paper, Stack, Typography, alpha, colors as muicolors, useTheme } from '@mui/material'
 import { useMemo } from 'react'
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
@@ -18,6 +18,7 @@ interface StackbarChartProps {
 }
 
 export function StackbarChart({ data, colors }: StackbarChartProps) {
+  const theme = useTheme()
   const { rawData, barChartData, total } = useMemo(() => {
     const rawData = data.reduce(
       (prev1, cur1) => ({
@@ -80,27 +81,35 @@ export function StackbarChart({ data, colors }: StackbarChartProps) {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis angle={45} dataKey="name" textAnchor="start" height={150} />
-        <YAxis domain={[0, total]} type="number" allowDataOverflow={true} />
-        <Tooltip />
+        <XAxis
+          angle={45}
+          dataKey="name"
+          textAnchor="start"
+          height={150}
+          style={{
+            fill: alpha(theme.palette.common.black, 0.8),
+          }}
+        />
+        <YAxis
+          domain={[0, total]}
+          type="number"
+          allowDataOverflow={true}
+          style={{
+            fill: alpha(theme.palette.common.black, 0.8),
+          }}
+        />
+        <Tooltip contentStyle={{ background: theme.palette.common.white }} />
         <Legend
-          content={({ payload, ...props }) => (
+          content={({ payload }) => (
             <Stack alignItems="center">
-              <Paper
-                component={Stack}
-                direction="row"
-                justifyContent="center"
-                spacing={3}
-                p={2}
-                sx={{ flexWrap: 'wrap' }}
-                {...(props as unknown as PaperProps)}
-                width="auto"
-              >
-                {payload?.map(({ value, id, color }) => (
-                  <Typography display="flex" key={id} color={color} flexDirection="row" py={1}>
-                    <div style={{ background: color, width: 16, height: 16, marginRight: 5 }} />
-                    {value}
-                  </Typography>
+              <Paper component={Stack} direction="row" justifyContent="center" spacing={3} p={2} sx={{ flexWrap: 'wrap' }} width="auto">
+                {payload?.map(({ value, color }, i) => (
+                  <Stack direction="row" py={1} spacing={1} key={i}>
+                    <div style={{ background: color, width: 16, height: 16 }} />
+                    <Typography display="flex" key={i} color={color}>
+                      {value}
+                    </Typography>
+                  </Stack>
                 ))}
               </Paper>
             </Stack>

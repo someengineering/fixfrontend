@@ -211,7 +211,6 @@ msgstr "Passwort"
 msgid "Pick one of the recommendations to the right and improve your security"
 msgstr "Wählen Sie eine der Empfehlungen rechts aus und verbessern Sie Ihre Sicherheit"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:81
 #: src/pages/panel/panel-home/PanelHomePage.tsx:83
 msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgstr "Bitte gehen Sie zur Seite <0>Setup Accounts</0>, um zunächst Ihr Konto einzurichten"
