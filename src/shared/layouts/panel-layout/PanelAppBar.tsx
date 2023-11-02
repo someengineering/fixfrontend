@@ -35,8 +35,8 @@ const AppBar = styled(MuiAppBar, { shouldForwardProp })<{ open: boolean; isDeskt
     }),
 }))
 
-const MenuIconButton = styled(IconButton, { shouldForwardProp })<{ open: boolean; isDesktop: boolean }>(({ open, isDesktop }) => ({
-  m: 2,
+const MenuIconButton = styled(IconButton, { shouldForwardProp })<{ open: boolean; isDesktop: boolean }>(({ theme, open, isDesktop }) => ({
+  margin: theme.spacing(0, 1.5, 0, -1.5),
   display: isDesktop && open ? 'none' : 'flex',
 }))
 

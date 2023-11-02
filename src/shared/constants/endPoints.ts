@@ -15,7 +15,7 @@ export const endPoints = {
     me: 'api/users/me',
   },
   workspaces: {
-    get: 'api/workspaces/',
+    self: 'api/workspaces/',
     cfUrl: (workspaceId: string) => `api/workspaces/${workspaceId}/cf_url`,
     cfTemplate: (workspaceId: string) => `api/workspaces/${workspaceId}/cf_template`,
     externalId: (workspaceId: string) => `api/workspaces/${workspaceId}/external_id`,
@@ -23,8 +23,14 @@ export const endPoints = {
       reportSummary: (workspaceId: string) => `api/workspaces/${workspaceId}/inventory/report-summary`,
     },
     events: (workspaceId: string) => `api/workspaces/${workspaceId}/events`,
-    cloudAccounts: {
-      get: (workspaceId: string) => `api/workspaces/${workspaceId}/cloud_accounts`,
+    cloudAccount: {
+      self: (workspaceId: string, cloudAccountId: string) => `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}`,
+      enable: (workspaceId: string, cloudAccountId: string) => `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}/enable`,
+      disable: (workspaceId: string, cloudAccountId: string) => `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}/disable`,
+      list: {
+        get: (workspaceId: string) => `api/workspaces/${workspaceId}/cloud_accounts`,
+        lastScan: (workspaceId: string) => `api/workspaces/${workspaceId}/cloud_accounts/lastScan`,
+      },
     },
   },
 }

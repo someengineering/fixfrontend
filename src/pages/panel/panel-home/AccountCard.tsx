@@ -3,7 +3,6 @@ import { Card, CardContent, CardHeader, Tooltip, Typography, TypographyProps, st
 import { colorFromRedToGreen } from 'src/shared/constants'
 import { WorkspaceAccountReportSummary } from 'src/shared/types/server'
 import { shouldForwardProp } from 'src/shared/utils/shouldForwardProp'
-import { snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 
 const AccountCardContainer = styled(Card, { shouldForwardProp })<{ score?: number }>(({ theme, score }) => ({
   background: score ? colorFromRedToGreen[score] : theme.palette.info.main,
@@ -25,7 +24,7 @@ const CardText = (props: Omit<TypographyProps, 'whiteSpace' | 'textOverflow' | '
 export const AccountCard = ({ account }: { account: WorkspaceAccountReportSummary }) => {
   return (
     <AccountCardContainer score={account.score}>
-      <CardHeader title={<CardText variant="h5">{snakeCaseWordsToUFStr(account.name ?? account.id)}</CardText>} />
+      <CardHeader title={<CardText variant="h5">{account.name ?? account.id}</CardText>} />
       <CardContent>
         <CardText>
           <Trans>ID</Trans>: {account.id}
