@@ -1,5 +1,3 @@
-import { Account } from './shared'
-
 export type FailedChecksTypeKeys = 'critical' | 'high' | 'medium' | 'low'
 
 export type FailedChecksType<value = number> = {
@@ -57,7 +55,10 @@ export interface TopChecks {
   url: null
 }
 
-export type WorkspaceAccountReportSummary = Omit<Account, 'account_id'> & {
+export type WorkspaceAccountReportSummary = {
+  id: string
+  name: string | null
+  cloud: string
   score: number
 }
 

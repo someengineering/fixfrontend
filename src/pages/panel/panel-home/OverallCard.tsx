@@ -11,7 +11,7 @@ import { getMessage } from 'src/shared/defined-messages'
 import { OverviewCard } from 'src/shared/overview-card'
 import { FailedChecksType, GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { iso8601DurationToString, parseISO8601Duration } from 'src/shared/utils/parseISO8601Duration'
-import { snakeCaseToUFStr, snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
+import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 import { getColorBySeverity } from './getColor'
 
 const checkDiff = (data: GetWorkspaceInventoryReportSummaryResponse) => {
@@ -155,7 +155,7 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
                 </Typography>
                 {Object.entries(data.changed_compliant.resource_count_by_kind_selection).map(([key, value]) => (
                   <Typography variant="body2" key={key}>
-                    {snakeCaseWordsToUFStr(key)}: {value}
+                    {key}: {value}
                   </Typography>
                 ))}
               </Stack>
@@ -221,7 +221,7 @@ export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummar
                     </Typography>
                     {Object.entries(data.changed_vulnerable.resource_count_by_kind_selection).map(([key, value]) => (
                       <Typography variant="body2" key={key}>
-                        {snakeCaseWordsToUFStr(key)}: {value}
+                        {key}: {value}
                       </Typography>
                     ))}
                   </>

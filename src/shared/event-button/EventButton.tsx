@@ -60,7 +60,9 @@ export const EventButton = () => {
   const hasNoEvents = !events.length
 
   useEffect(() => {
-    setOpenEvents(!hasNoEvents)
+    if (!hasNoEvents) {
+      setOpenEvents(false)
+    }
   }, [hasNoEvents])
 
   const handleToggleUserMenu = () => {

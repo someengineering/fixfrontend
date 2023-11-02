@@ -3,7 +3,7 @@ import { simpleAxios } from 'src/shared/utils/axios'
 
 export const logoutMutation = async () => {
   return simpleAxios
-    .post<undefined>(endPoints.auth.jwt.logout, {
+    .post<undefined>(endPoints.auth.jwt.logout, null, {
       withCredentials: true,
     })
     .catch(() => {})

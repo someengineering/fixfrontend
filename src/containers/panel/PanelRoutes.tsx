@@ -1,10 +1,10 @@
 import { lazy } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-const HomePage = lazy(
+const PanelHomePage = lazy(
   () =>
     import(
-      /* webpackChunkName: "home" */
+      /* webpackChunkName: "panel-home" */
       'src/pages/panel/panel-home/PanelHomePage'
     ),
 )
@@ -12,8 +12,16 @@ const HomePage = lazy(
 const PanelSetupCloudPage = lazy(
   () =>
     import(
-      /* webpackChunkName: "PanelSetupCloud" */
+      /* webpackChunkName: "panel-setup-cloud" */
       'src/pages/panel/panel-setup-cloud/PanelSetupCloudPage'
+    ),
+)
+
+const PanelAccountsPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "panel-accounts" */
+      'src/pages/panel/panel-accounts/PanelAccountsPage'
     ),
 )
 
@@ -21,7 +29,8 @@ export function PanelRoutes() {
   return (
     <Routes>
       <Route path="/">
-        <Route index element={<HomePage />} />
+        <Route index element={<PanelHomePage />} />
+        <Route path="accounts" element={<PanelAccountsPage />} />
         <Route path="setup-cloud" element={<PanelSetupCloudPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
