@@ -31,19 +31,19 @@ export const StackBarCard = ({ data }: { data?: GetWorkspaceInventoryReportSumma
                     {
                       data: [
                         {
-                          value: benchmark.account_summary[accountId].failed_checks.critical || 0,
+                          value: benchmark.account_summary[accountId].failed_checks?.critical || 0,
                           name: `${benchmark.title} - Critical`,
                         },
                         {
-                          value: benchmark.account_summary[accountId].failed_checks.high || 0,
+                          value: benchmark.account_summary[accountId].failed_checks?.high || 0,
                           name: `${benchmark.title} - High`,
                         },
                         {
-                          value: benchmark.account_summary[accountId].failed_checks.medium || 0,
+                          value: benchmark.account_summary[accountId].failed_checks?.medium || 0,
                           name: `${benchmark.title} - Medium`,
                         },
                         {
-                          value: benchmark.account_summary[accountId].failed_checks.low || 0,
+                          value: benchmark.account_summary[accountId].failed_checks?.low || 0,
                           name: `${benchmark.title} - Low`,
                         },
                         // {

@@ -20,19 +20,19 @@ export const PieCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryRes
                   {
                     data: [
                       {
-                        value: benchmark.account_summary[accountId].failed_checks.critical || 0,
+                        value: benchmark.account_summary[accountId].failed_checks?.critical || 0,
                         name: 'Critical',
                       },
                       {
-                        value: benchmark.account_summary[accountId].failed_checks.high || 0,
+                        value: benchmark.account_summary[accountId].failed_checks?.high || 0,
                         name: 'High',
                       },
                       {
-                        value: benchmark.account_summary[accountId].failed_checks.medium || 0,
+                        value: benchmark.account_summary[accountId].failed_checks?.medium || 0,
                         name: 'Medium',
                       },
                       {
-                        value: benchmark.account_summary[accountId].failed_checks.low || 0,
+                        value: benchmark.account_summary[accountId].failed_checks?.low || 0,
                         name: 'Low',
                       },
                     ],
