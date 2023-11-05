@@ -1,7 +1,8 @@
 import { lingui } from '@lingui/vite-plugin'
 import react from '@vitejs/plugin-react-swc'
 import path from 'path'
-import { defineConfig, loadEnv } from 'vite'
+import { PluginOption, ProxyOptions, defineConfig, loadEnv } from 'vite'
+import { viteMockServe } from 'vite-plugin-mock'
 import svgr from 'vite-plugin-svgr'
 
 // https://vitejs.dev/config/
@@ -10,7 +11,18 @@ export default defineConfig(({ mode }) => {
   // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
   const env = loadEnv(mode, process.cwd(), '')
 
-  const proxy =
+  const plugins: PluginOption = [react({ plugins: [['@lingui/swc-plugin', {}]] }), svgr(), lingui()]
+
+  if (env.VITE_USE_MOCK || mode === 'test') {
+    plugins.push(
+      viteMockServe({
+        mockPath: 'mock',
+        enable: true,
+      }),
+    )
+  }
+
+  const proxy: Record<string, string | ProxyOptions> =
     env.VITE_USE_PROXY === 'true'
       ? {
           '/api': {
@@ -28,7 +40,7 @@ export default defineConfig(({ mode }) => {
       : undefined
   return {
     base: process.env.PUBLIC_URL ?? '/',
-    plugins: [react({ plugins: [['@lingui/swc-plugin', {}]] }), svgr(), lingui()],
+    plugins,
     // build: {
     //   manifest: '/public/manifest.json',
     // },
