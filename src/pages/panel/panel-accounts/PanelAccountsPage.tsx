@@ -26,7 +26,7 @@ import { QueryClient, useMutation, useQuery, useQueryClient } from '@tanstack/re
 import { ChangeEvent, FormEvent, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
-import { getWorkspaceCloudAccountsQuery } from 'src/pages/panel/shared-queries/getWorkspaceCloudAccounts.query'
+import { getWorkspaceCloudAccountsQuery } from 'src/pages/panel/shared-queries'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { Modal } from 'src/shared/modal'
@@ -56,7 +56,7 @@ const ReplaceRowByAccount = (queryClient: QueryClient, id?: string) => {
           newData.accounts = [...oldData.accounts]
           newData.accounts[foundIndex] = {
             ...oldData.accounts[foundIndex],
-            name: data.name,
+            name: data.name ?? '',
           }
           return newData
         }
@@ -213,7 +213,7 @@ const AccountRow = ({ account }: { account: Account }) => {
         <Checkbox disabled checked={account.is_configured} />
       </TableCell>
       <TableCell>{account.resources}</TableCell>
-      <TableCell>{new Date(account.next_scan).toLocaleTimeString()}</TableCell>
+      <TableCell>{account?.next_scan ? new Date(account.next_scan).toLocaleTimeString() : '-'}</TableCell>
       <TableCell>
         {enableAccountIsPending || disableAccountIsPending ? (
           <Stack justifyContent="center" direction="column" padding={1} margin="1px">

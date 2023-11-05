@@ -3,7 +3,7 @@ export interface GetWorkspaceResponse {
   slug: string
   name: string
   owners: string[]
-  members: unknown[]
+  members: string[]
 }
 
 export type GetWorkspacesResponse = GetWorkspaceResponse[]

@@ -5,6 +5,6 @@ export interface Account {
   name: string | null
   enabled: boolean
   is_configured: boolean
-  resources: number
-  next_scan: string
+  resources: number | null
+  next_scan: string | null
 }
