@@ -1,0 +1,26 @@
+diff --git a/node_modules/vite-plugin-mock/dist/index.cjs b/node_modules/vite-plugin-mock/dist/index.cjs
+index ffebbee..c78c3e9 100644
+--- a/node_modules/vite-plugin-mock/dist/index.cjs
++++ b/node_modules/vite-plugin-mock/dist/index.cjs
+@@ -137,7 +137,7 @@ function createWatch(opt, config) {
+   });
+ }
+ function cleanRequireCache(opt) {
+-  if (!require.cache) {
++  if (typeof require === 'undefined' || !require.cache) {
+     return;
+   }
+   const { absConfigPath, absMockPath } = getPath(opt);
+diff --git a/node_modules/vite-plugin-mock/dist/index.mjs b/node_modules/vite-plugin-mock/dist/index.mjs
+index e402c2d..0c1d9af 100644
+--- a/node_modules/vite-plugin-mock/dist/index.mjs
++++ b/node_modules/vite-plugin-mock/dist/index.mjs
+@@ -125,7 +125,7 @@ function createWatch(opt, config) {
+   });
+ }
+ function cleanRequireCache(opt) {
+-  if (!require.cache) {
++  if (typeof require === 'undefined' || !require.cache) {
+     return;
+   }
+   const { absConfigPath, absMockPath } = getPath(opt);
