@@ -1,5 +1,5 @@
-import { UserContextRealValues } from 'src/core/auth/UserContext'
-import { ThemeContextRealValues } from 'src/core/theme/ThemeContext'
+import { UserContextRealValues } from 'src/core/auth'
+import { ThemeContextRealValues } from 'src/core/theme'
 import { StorageKeys } from 'src/shared/constants'
 
 function getStorageObject<ReturnType = unknown>(key: StorageKeys) {

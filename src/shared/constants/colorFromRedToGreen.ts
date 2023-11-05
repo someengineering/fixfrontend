@@ -34,7 +34,7 @@ export const getColor = () => {
     return ((x - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin
   }
 
-  const colorGradient: ColorList = createGradient([RED, YELLOW, GREEN]) as ColorList
+  const colorGradient: ColorList = createGradient([RED, YELLOW, GREEN])
 
   const alertScore: number = 20
   const scoreMap: ColorList = []

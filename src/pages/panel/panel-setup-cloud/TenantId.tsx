@@ -10,9 +10,12 @@ export const TenantId = () => {
   const { selectedWorkspace } = useUserProfile()
   const handleCopy = () => {
     try {
-      navigator.clipboard.writeText(selectedWorkspace?.id || '').then(() => {
-        showSnackbar(t`Copied to Clipboard!`)
-      })
+      navigator.clipboard
+        .writeText(selectedWorkspace?.id || '')
+        .then(() => {
+          void showSnackbar(t`Copied to Clipboard!`)
+        })
+        .catch(() => {})
     } catch {
       /* empty */
     }

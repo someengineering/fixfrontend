@@ -1,6 +1,6 @@
 import { Box, CircularProgress, CircularProgressProps, Typography, alpha, styled } from '@mui/material'
+import { colorFromRedToGreen } from 'src/shared/constants'
 import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
-import { colorFromRedToGreen } from '../constants'
 
 export interface CircularScoreProps extends CircularProgressProps {
   score: number

@@ -155,7 +155,16 @@ export function SnackbarProvider({ children }: PropsWithChildren) {
     <SnackbarContext.Provider value={providerValue}>
       {children}
       {Object.entries(snackbars).map(([id, { open, message, options }], i) => (
-        <SnackbarElement id={Number(id)} open={open} message={message} options={options} key={id} closeSnackbar={closeSnackbar} index={i} />
+        <SnackbarElement
+          id={Number(id)}
+          open={open}
+          message={message}
+          options={options}
+          key={id}
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
+          closeSnackbar={closeSnackbar}
+          index={i}
+        />
       ))}
     </SnackbarContext.Provider>
   )

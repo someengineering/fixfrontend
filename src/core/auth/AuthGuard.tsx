@@ -85,8 +85,8 @@ export function AuthGuard({ children }: PropsWithChildren) {
         },
       )
       setAxiosWithAuth(instance)
-      handleRefreshWorkspaces(instance)
-      getCurrentUserMutation(instance).then((currentUser) => {
+      void handleRefreshWorkspaces(instance)
+      void getCurrentUserMutation(instance).then((currentUser) => {
         setAuth((prev) => ({ ...prev, currentUser }))
       })
     }

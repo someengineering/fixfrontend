@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useSnackbar } from 'src/core/snackbar'
-import { panelMessages } from 'src/shared/constants/consts'
+import { panelMessages } from 'src/shared/constants'
 
 export const PanelInitialMessageHandler = () => {
   const [getSearch, setSearch] = useSearchParams()
@@ -10,7 +10,7 @@ export const PanelInitialMessageHandler = () => {
     const message = getSearch.get('message')
     const foundMessage = panelMessages().find((pm) => pm.message === message)
     if (foundMessage) {
-      showSnackbar(foundMessage.text, {
+      void showSnackbar(foundMessage.text, {
         severity: foundMessage.type,
       })
     }

@@ -107,7 +107,7 @@ interface Density {
 }
 
 interface Opacity {
-  value?: number | number
+  value?: number
   random?: boolean
   anim?: Anim
 }
