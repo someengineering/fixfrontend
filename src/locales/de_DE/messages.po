@@ -25,16 +25,16 @@ msgstr "© 2023 Some Engineering Services GMBH. Alle Rechte vorbehalten."
 msgid "Account Setup"
 msgstr "Account Setup"
 
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:322
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:326
 #: src/shared/layouts/panel-layout/menuList.tsx:33
 msgid "Accounts"
 msgstr "Konten"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:172
+#: src/pages/panel/panel-home/PanelHomePage.tsx:171
 msgid "Accounts Summary"
 msgstr "Zusammenfassung der Konten"
 
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:347
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:351
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -50,7 +50,7 @@ msgstr "Wenn Sie den Stack alternativ manuell bereitstellen möchten, können Si
 msgid "Alternatively: Manual Cloud Setup"
 msgstr "Alternativ: Manuelles Cloud Setup"
 
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:236
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:240
 msgid "Are you sure?"
 msgstr "Bist du sicher?"
 
@@ -62,20 +62,20 @@ msgstr "Automatisches Cloud Setup"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:118
-#: src/pages/panel/panel-home/PanelHomePage.tsx:148
+#: src/pages/panel/panel-home/PanelHomePage.tsx:117
+#: src/pages/panel/panel-home/PanelHomePage.tsx:147
 msgid "Benchmarks"
 msgstr "Benchmarks"
 
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:184
 #: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:188
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:189
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:243
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:192
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:193
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:247
 msgid "Cancel"
 msgstr "Stornieren"
 
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:263
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:326
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:267
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:330
 #: src/pages/panel/panel-home/AccountCard.tsx:33
 msgid "Cloud"
 msgstr "Cloud"
@@ -88,17 +88,17 @@ msgstr "Cloud-Konto hinzugefügt, ID: {0}"
 msgid "Compliance"
 msgstr "Compliance"
 
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:335
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:339
 msgid "Configured"
 msgstr "Konfiguriert"
 
-#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:33
-#: src/pages/panel/panel-setup-cloud/TenantId.tsx:14
+#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:35
+#: src/pages/panel/panel-setup-cloud/TenantId.tsx:16
 msgid "Copied to Clipboard!"
 msgstr "In die Zwischenablage kopiert!"
 
-#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:69
-#: src/pages/panel/panel-setup-cloud/TenantId.tsx:43
+#: src/pages/panel/panel-setup-cloud/ExternalId.tsx:72
+#: src/pages/panel/panel-setup-cloud/TenantId.tsx:46
 msgid "Copy"
 msgstr "Kopieren"
 
@@ -110,10 +110,10 @@ msgstr "Kritisch"
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:224
 #: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:228
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:229
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:254
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:232
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:233
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:258
 msgid "Delete"
 msgstr "Löschen"
 
@@ -122,7 +122,7 @@ msgstr "Löschen"
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:237
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:241
 msgid "Do you want to delete this account?"
 msgstr "Möchten Sie dieses Konto löschen?"
 
@@ -130,8 +130,8 @@ msgstr "Möchten Sie dieses Konto löschen?"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:200
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:201
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:204
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:205
 msgid "Edit"
 msgstr "Edit"
 
@@ -140,7 +140,7 @@ msgstr "Edit"
 msgid "Email"
 msgstr "Email"
 
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:344
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:348
 msgid "Enabled"
 msgstr "Ermöglicht"
 
@@ -169,8 +169,8 @@ msgstr "Hoch"
 msgid "How to fix"
 msgstr "Wie repariert man"
 
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:260
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:329
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:264
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:333
 #: src/pages/panel/panel-home/AccountCard.tsx:30
 msgid "ID"
 msgstr "ID"
@@ -220,12 +220,12 @@ msgstr "Am meisten verbesserte Konten"
 msgid "Most Improved Resources"
 msgstr "Am meisten verbesserte Ressourcen"
 
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:266
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:332
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:270
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:336
 msgid "Name"
 msgstr "Name"
 
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:341
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:345
 msgid "Next scan"
 msgstr "Nächster Scan"
 
@@ -247,7 +247,7 @@ msgstr "Öffene die Schublade"
 msgid "Or"
 msgstr "Oder"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:109
+#: src/pages/panel/panel-home/PanelHomePage.tsx:108
 msgid "Overall"
 msgstr "Gesamt"
 
@@ -264,8 +264,8 @@ msgstr "Passwort"
 msgid "Pick one of the recommendations to the right and improve your security"
 msgstr "Wählen Sie eine der Empfehlungen rechts aus und verbessern Sie Ihre Sicherheit"
 
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:309
-#: src/pages/panel/panel-home/PanelHomePage.tsx:83
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:313
+#: src/pages/panel/panel-home/PanelHomePage.tsx:82
 msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgstr "Bitte gehen Sie zur Seite <0>Setup Accounts</0>, um zunächst Ihr Konto einzurichten"
 
@@ -277,7 +277,7 @@ msgstr "Profil"
 msgid "Register"
 msgstr "Registrieren"
 
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:338
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:342
 msgid "Resources"
 msgstr "Ressourcen"
 
@@ -285,7 +285,7 @@ msgstr "Ressourcen"
 msgid "Risk"
 msgstr "Risiko"
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:95
+#: src/pages/panel/panel-home/PanelHomePage.tsx:94
 msgid "Security Scan in Progress"
 msgstr "Sicherheitsscan läuft"
 
@@ -314,6 +314,7 @@ msgstr "Seit {since}"
 
 #: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:177
 #: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:178
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:183
 msgid "Submit"
 msgstr "Einreichen"
 
@@ -329,8 +330,8 @@ msgstr "Tenant Id"
 msgid "The Stack requires the following parameters"
 msgstr "Der Stack erfordert die folgenden Parameter"
 
-#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:306
-#: src/pages/panel/panel-home/PanelHomePage.tsx:80
+#: src/pages/panel/panel-accounts/PanelAccountsPage.tsx:310
+#: src/pages/panel/panel-home/PanelHomePage.tsx:79
 msgid "There's no account configured for this workspace."
 msgstr "Für diesen Arbeitsbereich ist kein Konto konfiguriert."
 
@@ -338,8 +339,8 @@ msgstr "Für diesen Arbeitsbereich ist kein Konto konfiguriert."
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM Rolle in Ihrem AWS Konto erstellt. Diese Rolle wird von FIX verwendet, um in Ihrem AWS Konto Sicherheitsscans durchzuführen."
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:132
-#: src/pages/panel/panel-home/PanelHomePage.tsx:161
+#: src/pages/panel/panel-home/PanelHomePage.tsx:131
+#: src/pages/panel/panel-home/PanelHomePage.tsx:160
 msgid "Top 5 Security Enhancements"
 msgstr "Die fünf wichtigsten Sicherheitsverbesserungen"
 
@@ -359,6 +360,6 @@ msgstr "Wir haben eine E-Mail mit einem Bestätigungslink an Ihre E-Mail-Adresse
 msgid "You have successfully verified your account."
 msgstr "Sie haben Ihr Konto erfolgreich verifiziert."
 
-#: src/pages/panel/panel-home/PanelHomePage.tsx:98
+#: src/pages/panel/panel-home/PanelHomePage.tsx:97
 msgid "Your cloud account has been added successfully! We are currently performing a security scan. This can take up to an hour depending on the size of your account. Your dashboard will be available shortly after the scan is complete."
 msgstr "Ihr Cloud-Konto wurde erfolgreich hinzugefügt! Wir führen derzeit einen Sicherheitsscan durch. Dies kann je nach Größe Ihres Kontos bis zu eine Stunde dauern. Ihr Dashboard wird kurz nach Abschluss des Scans verfügbar sein."
