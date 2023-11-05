@@ -2,6 +2,23 @@
 
 The frontend for the FIX service
 
+## Installation
+
+This project needs [NodeJS](https://nodejs.org/en) version 18 (at least 18.17.1) and [Yarn](https://yarnpkg.com/) version 1 (at least 1.22.19) to run.
+* Download Recommended [NodeJS](https://nodejs.org/dist/v18.17.1/)
+* To install Yarn simply first install nodejs and then run `npm i -g yarn`. More info on the [Yarn's Documentation](https://classic.yarnpkg.com/en/docs/getting-started)
+
+## Enviroment variables
+
+* ``VITE_SERVER: string`` - Server address that should call the API
+* ``VITE_WS_SERVER: string`` - WS server address for events
+* ``VITE_USE_PROXY: boolean`` - Whether or not should vite use proxy to connect to api
+* ``VITE_NETWORK_RETRY_COUNT: number`` - Number of retry in case of 5xx error until give up the API call 
+* ``VITE_WEBSOCKET_RETRY_TIMEOUT: number`` - How many miliseconds before retrying request that failed with 5xx error on API call
+* ``HOST: string`` - on which host vite should create the server Eg. 127.0.0.1 or localhost
+* ``PORT: number`` - on which port vite should run the local server Eg. 80 or 8081
+* ``VITE_USE_MOCK: boolean`` - Whether or not runs the mock server instead of getting data from real server
+
 ## Available Scripts
 
 In the project directory, you can run:
