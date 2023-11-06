@@ -5,11 +5,11 @@ import { Divider, Grid, styled, TextField, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { FormEvent, Suspense, useState } from 'react'
-import { Link, useLocation, useSearchParams } from 'react-router-dom'
+import { Link, Location, useLocation, useSearchParams } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { LoginSocialMedia } from 'src/shared/login-social-media'
-import { SocialMediaButtonSkeleton } from 'src/shared/social-media-button/SocialMediaButton.skeleton'
+import { SocialMediaButtonSkeleton } from 'src/shared/social-media-button'
 import { loginMutation } from './login.mutation'
 
 const LOGIN_SUSPENSE_NUMBER_OF_SOCIAL_MEDIA_BUTTON = 2
@@ -25,7 +25,7 @@ export default function LoginPage() {
   const [username, setUsername] = useState(getSearch.get('email') ?? '')
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const { search, state } = useLocation()
+  const { search, state } = useLocation() as Location<unknown>
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (username && password) {

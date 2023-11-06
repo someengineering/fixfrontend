@@ -1,15 +1,12 @@
 import { Trans } from '@lingui/macro'
-import { Box, Button, Divider, Grid, Stack, Theme, Typography, useMediaQuery } from '@mui/material'
-import { useQueries } from '@tanstack/react-query'
-import { Suspense, useCallback, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Box, Divider, Grid, Stack, Theme, Typography, useMediaQuery } from '@mui/material'
+import { useQuery } from '@tanstack/react-query'
+import { Suspense } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceReportSummaryQuery } from 'src/pages/panel/shared-queries'
-import { getWorkspaceCloudAccountsQuery } from 'src/pages/panel/shared-queries/getWorkspaceCloudAccounts.query'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
-import { getInitiated } from 'src/shared/utils/localstorage'
 import { AccountCard } from './AccountCard'
 import { HeatmapCard } from './HeatmapCard'
 import { OverallCard } from './OverallCard'
@@ -48,53 +45,28 @@ const HomePage = () => {
   const { selectedWorkspace } = useUserProfile()
   const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('xl'))
   const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
-  const [{ data }, { data: accounts }] = useQueries({
-    queries: [
-      {
-        queryKey: ['workspace-report-summary', selectedWorkspace?.id],
-        queryFn: getWorkspaceReportSummaryQuery,
-        enabled: !!selectedWorkspace?.id,
-      },
-      {
-        queryKey: ['workspace-cloud-accounts', selectedWorkspace?.id],
-        queryFn: getWorkspaceCloudAccountsQuery,
-        enabled: !!selectedWorkspace?.id,
-      },
-    ],
+  const { data } = useQuery({
+    queryKey: ['workspace-report-summary', selectedWorkspace?.id],
+    queryFn: getWorkspaceReportSummaryQuery,
+    enabled: !!selectedWorkspace?.id,
   })
-  const navigate = useNavigate()
 
-  const goToSetupCloudPage = useCallback(() => {
-    navigate('/setup-cloud')
-  }, [navigate])
-
-  useEffect(() => {
-    if (!accounts?.length && !getInitiated()) {
-      goToSetupCloudPage()
-    }
-  }, [accounts?.length, goToSetupCloudPage])
-
-  return accounts && !accounts.length ? (
-    <Stack display="flex" flexGrow={1} flexDirection="column" width="100%" height="100%" justifyContent="center" alignItems="center">
-      <Typography variant="h3">
-        <Trans>There's no account configured for this workspace.</Trans>
-      </Typography>
-      <Typography variant="h5">
-        <Trans>
-          Please go to{' '}
-          <Button variant="text" onClick={goToSetupCloudPage}>
-            Setup Accounts
-          </Button>{' '}
-          page to setup your account first
-        </Trans>
-      </Typography>
-    </Stack>
-  ) : accounts?.length && !data?.benchmarks.length ? (
-    <Stack display="flex" flexGrow={1} flexDirection="column" width="100%" height="100%" justifyContent="center" alignItems="center">
-      <Typography variant="h3">
+  return !data?.benchmarks.length ? (
+    <Stack
+      display="flex"
+      flexGrow={1}
+      flexDirection="column"
+      width="100%"
+      height="100%"
+      justifyContent="center"
+      alignItems="center"
+      maxWidth="800px"
+      margin="0 auto"
+    >
+      <Typography variant="h3" textAlign="center">
         <Trans>Security Scan in Progress</Trans>
       </Typography>
-      <Typography variant="h5">
+      <Typography variant="h5" mt={2} textAlign="justify">
         <Trans>
           Your cloud account has been added successfully! We are currently performing a security scan. This can take up to an hour depending
           on the size of your account. Your dashboard will be available shortly after the scan is complete.

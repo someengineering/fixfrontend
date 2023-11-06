@@ -1,7 +1,7 @@
 import { StorageKeys } from 'src/shared/constants'
 
 export function cookieMatch(name: string, match: string | RegExp | ((value: string) => boolean)): boolean
-export function cookieMatch(name: string, match?: undefined | never): string | undefined
+export function cookieMatch(name: string, match?: never): string | undefined
 export function cookieMatch(name: string, match?: string | RegExp | ((value: string) => boolean)) {
   const splittedByName = window.document.cookie?.split(name + '=')
   const value = splittedByName?.[1]?.split(';')?.[0]

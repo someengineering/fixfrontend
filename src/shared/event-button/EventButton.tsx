@@ -44,7 +44,7 @@ export const EventButton = () => {
           break
         }
         case 'cloud_account_created':
-          showSnackbar(t`Cloud account added, id: ${ev.data.aws_account_id}`, { severity: 'success', autoHideDuration: null })
+          void showSnackbar(t`Cloud account added, id: ${ev.data.aws_account_id}`, { severity: 'success', autoHideDuration: null })
           break
         // case 'collect-error':
         //   showSnackbar(t`Task "${ev.data.task}" with workflow "${ev.data.workflow}" failed: ${ev.data.message}`, {

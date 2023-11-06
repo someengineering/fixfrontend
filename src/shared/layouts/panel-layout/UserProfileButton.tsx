@@ -16,12 +16,12 @@ export const UserProfileButton = () => {
 
   const handleLogout = () => {
     handleCloseUserMenu()
-    logout()
+    void logout()
   }
 
   const handleSelectWorkspace = (id: string) => {
     handleCloseUserMenu()
-    selectWorkspace(id)
+    void selectWorkspace(id)
   }
 
   return (

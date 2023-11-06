@@ -9,12 +9,10 @@ import {
   Checkbox,
   CircularProgress,
   IconButton,
-  Paper,
   Stack,
   Table,
   TableBody,
   TableCell,
-  TableContainer,
   TableHead,
   TablePagination,
   TableRow,
@@ -24,14 +22,13 @@ import {
 } from '@mui/material'
 import { QueryClient, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { ChangeEvent, FormEvent, Suspense, useCallback, useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
-import { getWorkspaceCloudAccountsQuery } from 'src/pages/panel/shared-queries/getWorkspaceCloudAccounts.query'
+import { getWorkspaceCloudAccountsQuery } from 'src/pages/panel/shared-queries'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
+import { TableViewPage } from 'src/shared/layouts/panel-layout'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { Modal } from 'src/shared/modal'
 import { Account, GetWorkspaceCloudAccountsResponse, GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
-import { getInitiated } from 'src/shared/utils/localstorage'
 import { deleteAccountMutation } from './deleteAccount.mutation'
 import { disableAccountMutation } from './disableAccount.mutation'
 import { enableAccountMutation } from './enableAccount.mutation'
@@ -56,7 +53,7 @@ const ReplaceRowByAccount = (queryClient: QueryClient, id?: string) => {
           newData.accounts = [...oldData.accounts]
           newData.accounts[foundIndex] = {
             ...oldData.accounts[foundIndex],
-            name: data.name,
+            name: data.name ?? '',
           }
           return newData
         }
@@ -89,11 +86,15 @@ const AccountRow = ({ account }: { account: Account }) => {
   })
   const [isEdit, setIsEdit] = useState(false)
   const [editedName, setEditedName] = useState(account.name)
+  const cancelEdit = useCallback(() => {
+    setIsEdit(false)
+    setEditedName(account.name)
+  }, [account.name])
   useEffect(() => {
     if (isEdit && inputRef.current) {
       const cancelMethod = (e: KeyboardEvent) => {
         if (e.key === 'Escape') {
-          setIsEdit(false)
+          cancelEdit()
         }
       }
       const currentRef = inputRef.current
@@ -102,7 +103,7 @@ const AccountRow = ({ account }: { account: Account }) => {
         currentRef.removeEventListener('keydown', cancelMethod)
       }
     }
-  }, [isEdit])
+  }, [isEdit, cancelEdit])
   const oneHourLater = new Date()
   oneHourLater.setHours(oneHourLater.getHours() + 1)
   const handleEditSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -190,7 +191,7 @@ const AccountRow = ({ account }: { account: Account }) => {
               </IconButton>
             ) : (
               <Tooltip title={<Trans>Cancel</Trans>}>
-                <IconButton aria-label={t`Cancel`} color="error" onClick={() => setIsEdit(false)}>
+                <IconButton aria-label={t`Cancel`} color="error" onClick={cancelEdit}>
                   <CancelIcon />
                 </IconButton>
               </Tooltip>
@@ -198,7 +199,7 @@ const AccountRow = ({ account }: { account: Account }) => {
           </Stack>
         ) : (
           <Stack direction="row" alignItems="center" spacing={1}>
-            <Typography flexGrow={1} onClick={() => setIsEdit(true)}>
+            <Typography flexGrow={1} onClick={() => setIsEdit(true)} sx={{ cursor: 'pointer' }}>
               {account.name}
             </Typography>
             <Tooltip title={<Trans>Edit</Trans>}>
@@ -213,7 +214,7 @@ const AccountRow = ({ account }: { account: Account }) => {
         <Checkbox disabled checked={account.is_configured} />
       </TableCell>
       <TableCell>{account.resources}</TableCell>
-      <TableCell>{new Date(account.next_scan).toLocaleTimeString()}</TableCell>
+      <TableCell>{account?.next_scan ? new Date(account.next_scan).toLocaleTimeString() : '-'}</TableCell>
       <TableCell>
         {enableAccountIsPending || disableAccountIsPending ? (
           <Stack justifyContent="center" direction="column" padding={1} margin="1px">
@@ -283,17 +284,6 @@ const AccountsPage = () => {
     queryFn: getWorkspaceCloudAccountsQuery,
     enabled: !!selectedWorkspace?.id,
   })
-  const navigate = useNavigate()
-
-  const goToSetupCloudPage = useCallback(() => {
-    navigate('/setup-cloud')
-  }, [navigate])
-
-  useEffect(() => {
-    if (!data?.length && !getInitiated()) {
-      goToSetupCloudPage()
-    }
-  }, [data?.length, goToSetupCloudPage])
 
   const handleChangePage = (_: unknown, newPage: number) => {
     setPage(newPage)
@@ -304,63 +294,10 @@ const AccountsPage = () => {
     setPage(0)
   }
 
-  return data && !data.length ? (
-    <Stack display="flex" flexGrow={1} flexDirection="column" width="100%" height="100%" justifyContent="center" alignItems="center">
-      <Typography variant="h3">
-        <Trans>There's no account configured for this workspace.</Trans>
-      </Typography>
-      <Typography variant="h5">
-        <Trans>
-          Please go to{' '}
-          <Button variant="text" onClick={goToSetupCloudPage}>
-            Setup Accounts
-          </Button>{' '}
-          page to setup your account first
-        </Trans>
-      </Typography>
-    </Stack>
-  ) : (
-    <Stack width="100%" direction="row" flexGrow={1} flexShrink={1} flexBasis={0} overflow="hidden">
-      <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-        <TableContainer sx={{ height: 'calc(100% - 52px)' }}>
-          <Table stickyHeader aria-label={t`Accounts`}>
-            <TableHead>
-              <TableRow>
-                <TableCell>
-                  <Trans>Cloud</Trans>
-                </TableCell>
-                <TableCell>
-                  <Trans>ID</Trans>
-                </TableCell>
-                <TableCell>
-                  <Trans>Name</Trans>
-                </TableCell>
-                <TableCell>
-                  <Trans>Configured</Trans>
-                </TableCell>
-                <TableCell>
-                  <Trans>Resources</Trans>
-                </TableCell>
-                <TableCell>
-                  <Trans>Next scan</Trans>
-                </TableCell>
-                <TableCell>
-                  <Trans>Enabled</Trans>
-                </TableCell>
-                <TableCell>
-                  <Trans>Actions</Trans>
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data
-                ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((account) => <AccountRow account={account} key={account.id} />)}
-            </TableBody>
-          </Table>
-        </TableContainer>
+  return (
+    <TableViewPage
+      pagination={
         <TablePagination
-          height="52px"
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
           count={data?.length ?? 0}
@@ -369,8 +306,44 @@ const AccountsPage = () => {
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
-      </Paper>
-    </Stack>
+      }
+    >
+      <Table stickyHeader aria-label={t`Accounts`}>
+        <TableHead>
+          <TableRow>
+            <TableCell>
+              <Trans>Cloud</Trans>
+            </TableCell>
+            <TableCell>
+              <Trans>ID</Trans>
+            </TableCell>
+            <TableCell>
+              <Trans>Name</Trans>
+            </TableCell>
+            <TableCell>
+              <Trans>Configured</Trans>
+            </TableCell>
+            <TableCell>
+              <Trans>Resources</Trans>
+            </TableCell>
+            <TableCell>
+              <Trans>Next scan</Trans>
+            </TableCell>
+            <TableCell>
+              <Trans>Enabled</Trans>
+            </TableCell>
+            <TableCell>
+              <Trans>Actions</Trans>
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data
+            ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((account) => <AccountRow account={account} key={account.id} />)}
+        </TableBody>
+      </Table>
+    </TableViewPage>
   )
 }
 

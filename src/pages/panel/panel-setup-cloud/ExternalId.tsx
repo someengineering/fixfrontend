@@ -29,9 +29,12 @@ export const ExternalId = () => {
   })
   const handleCopy = () => {
     try {
-      window.navigator.clipboard.writeText(ExternalIdData || '').then(() => {
-        showSnackbar(t`Copied to Clipboard!`)
-      })
+      window.navigator.clipboard
+        .writeText(ExternalIdData || '')
+        .then(() => {
+          void showSnackbar(t`Copied to Clipboard!`)
+        })
+        .catch(() => {})
     } catch {
       /* empty */
     }

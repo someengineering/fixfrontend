@@ -8,5 +8,5 @@ export type WorkspaceCloudAccountsLastScanAccount = {
 export interface GetWorkspaceCloudAccountsLastScanResponse {
   workspace_id: string
   accounts: WorkspaceCloudAccountsLastScanAccount[]
-  next_scan: string
+  next_scan: string | null
 }

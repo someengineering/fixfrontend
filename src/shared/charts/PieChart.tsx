@@ -1,6 +1,6 @@
 import { colors as muicolors } from '@mui/material'
 import { Cell, Pie, PieChart as RchPieChart, ResponsiveContainer, Tooltip } from 'recharts'
-import { getMessage } from '../defined-messages'
+import { getMessage } from 'src/shared/defined-messages'
 
 interface PieChartProps {
   data: {

@@ -15,7 +15,7 @@ export interface Benchmark {
   account_summary: {
     [key in string]: {
       score: number
-      failed_checks: Partial<FailedChecksType>
+      failed_checks: Partial<FailedChecksType> | null
     }
   }
 }
@@ -57,7 +57,7 @@ export interface TopChecks {
 
 export type WorkspaceAccountReportSummary = {
   id: string
-  name: string | null
+  name: string
   cloud: string
   score: number
 }
