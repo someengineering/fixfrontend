@@ -1,135 +1,166 @@
-export const workspaceReportSummary = {
-  overall_score: 67,
-  check_summary: { available_checks: 73, failed_checks: 60, failed_checks_by_severity: { critical: 6, medium: 34, high: 15, low: 5 } },
-  accounts: [
-    { id: '001528229927', name: 'eng-ci-konvoy', cloud: 'aws', score: 63 },
-    { id: '032597967871', name: 'eng-mesosphere-dcos', cloud: 'aws', score: 53 },
-    { id: '041488270399', name: 'eng-mesosphere-marathon', cloud: 'aws', score: 52 },
-    { id: '068564737731', name: 'eng-playground-alpha', cloud: 'aws', score: 60 },
-    { id: '110465657741', name: 'general-sales-se', cloud: 'aws', score: 32 },
-    { id: '119548413362', name: 'eng-ksphere-devx', cloud: 'aws', score: 62 },
-    { id: '139475575661', name: 'eng-production', cloud: 'aws', score: 44 },
-    { id: '149356006029', name: 'eng-secure-upload', cloud: 'aws', score: 64 },
-    { id: '159577368695', name: 'eng-scaletesting', cloud: 'aws', score: 54 },
-    { id: '222638339470', name: 'general-services', cloud: 'aws', score: 39 },
-    { id: '273854932432', name: 'mesosphere-dev', cloud: 'aws', score: 32 },
-    { id: '280927420991', name: 'eng-mesosphere-soak', cloud: 'aws', score: 54 },
-    { id: '327650738955', name: 'eng-ksphere-kudo', cloud: 'aws', score: 46 },
-    { id: '337834004759', name: 'general-support', cloud: 'aws', score: 48 },
-    { id: '355186487480', name: 'eng-ksphere-lab', cloud: 'aws', score: 58 },
-    { id: '359820441116', name: 'eng-lhub-ci', cloud: 'aws', score: 55 },
-    { id: '398053451782', name: 'sales-lead-gen', cloud: 'aws', score: 61 },
-    { id: '427504306423', name: 'mesosphere-team05', cloud: 'aws', score: 59 },
-    { id: '469115496741', name: 'mesosphere-cops', cloud: 'aws', score: 63 },
-    { id: '487579172032', name: 'eng-devprod', cloud: 'aws', score: 39 },
-    { id: '507444785254', name: 'eng-ksphere-lhub', cloud: 'aws', score: 61 },
-    { id: '540164828399', name: 'eng-mesosphere-testmatrix', cloud: 'aws', score: 56 },
-    { id: '564794917605', name: 'general-cto', cloud: 'aws', score: 59 },
-    { id: '572115487488', name: 'mesosphere-protoss-scaletesting', cloud: 'aws', score: 55 },
-    { id: '575584959047', name: 'eng-sre', cloud: 'aws', score: 44 },
-    { id: '579763146468', name: 'general-marketing', cloud: 'aws', score: 62 },
-    { id: '586712400841', name: 'eng-mesosphere-ci', cloud: 'aws', score: 48 },
-    { id: '628219675373', name: 'eng-mesosphere-storage', cloud: 'aws', score: 62 },
-    { id: '633059600857', name: 'general-root', cloud: 'aws', score: 59 },
-    { id: '666563790427', name: 'eng-lhub-airf', cloud: 'aws', score: 51 },
-    { id: '688023202711', name: 'eng-mesosphere-osc', cloud: 'aws', score: 55 },
-    { id: '711585860468', name: 'eng-ksphere-kommander', cloud: 'aws', score: 60 },
-    { id: '752466027617', name: 'someengineering-sandbox', cloud: 'aws', score: 80 },
-    { id: '781475754360', name: 'eng-ksphere-soak', cloud: 'aws', score: 59 },
-    { id: '822269771029', name: 'mesosphere-team09', cloud: 'aws', score: 46 },
-    { id: '826065706934', name: 'eng-audit', cloud: 'aws', score: 59 },
-    { id: '850970822230', name: 'eng-mesosphere-terraform', cloud: 'aws', score: 63 },
-    { id: '893936129782', name: 'sales-se-demo', cloud: 'aws', score: 58 },
-    { id: '897035003914', name: 'eng-ksphere-insights', cloud: 'aws', score: 58 },
-    { id: '913957337679', name: 'eng-mesosphere-ds', cloud: 'aws', score: 47 },
-    { id: '963533219375', name: 'mesosphere-team06', cloud: 'aws', score: 59 },
-    { id: '966122790603', name: 'eng-mesosphere-qualification', cloud: 'aws', score: 47 },
-    { id: '977260619897', name: 'eng-devprod-production', cloud: 'aws', score: 54 },
-    { id: '999867407951', name: 'eng-ksphere-platform', cloud: 'aws', score: 41 },
-    { id: 'braided-flow-431', name: 'braided-flow-431', cloud: 'gcp', score: 100 },
-    { id: 'cto-office', name: 'cto-office', cloud: 'gcp', score: 100 },
-    { id: 'eng-ksphere-platform', name: 'eng-ksphere-platform', cloud: 'gcp', score: 100 },
-    { id: 'eng-ksphere-platform-e2e', name: 'eng-ksphere-platform-e2e', cloud: 'gcp', score: 100 },
-    { id: 'eng-ksphere-platform-e2e-night', name: 'eng-ksphere-platform-e2e-night', cloud: 'gcp', score: 100 },
-    { id: 'eng-mesosphere-dcos', name: 'eng-mesosphere-dcos', cloud: 'gcp', score: 100 },
-    { id: 'Example Account', name: 'Example Account', cloud: 'example', score: 100 },
-    { id: 'gcp-dcos-launch-178319', name: 'gcp-dcos-launch-178319', cloud: 'gcp', score: 100 },
-    { id: 'konvoy-gcp-se', name: 'konvoy-gcp-se', cloud: 'gcp', score: 100 },
-    { id: 'kudobuilder', name: 'kudobuilder', cloud: 'gcp', score: 100 },
-    { id: 'maestro-229419', name: 'maestro-229419', cloud: 'gcp', score: 100 },
-    { id: 'massive-bliss-781', name: 'massive-bliss-781', cloud: 'gcp', score: 100 },
-    { id: 'mesoscon-demo', name: 'mesoscon-demo', cloud: 'gcp', score: 100 },
-    { id: 'mesosphere-segment', name: 'mesosphere-segment', cloud: 'gcp', score: 100 },
-    { id: 'mesosphere-support', name: 'mesosphere-support', cloud: 'gcp', score: 100 },
-    { id: 'pumpkin-246815', name: 'pumpkin-246815', cloud: 'gcp', score: 100 },
-    { id: 'sre-tests', name: 'sre-tests', cloud: 'gcp', score: 100 },
-    { id: 'terraform-clusters', name: 'terraform-clusters', cloud: 'gcp', score: 100 },
-  ],
-  benchmarks: [
+import { adjectives, uniqueNamesGenerator } from 'unique-names-generator'
+import { workspaceCloudAccounts } from './workspaceCloudAccounts'
+
+const howManyBench = 1
+
+const available_checks = Math.round(Math.pow(Math.random(), 3) * 1000)
+
+const generateAccountSummary = () =>
+  workspaceCloudAccounts.reduce(
+    (prev, cur) => {
+      const failed_checks = {
+        critical: Math.round((Math.random() * cur.resources) / 24),
+        high: Math.round((Math.random() * cur.resources) / 24),
+        medium: Math.round((Math.random() * cur.resources) / 24),
+        low: Math.round((Math.random() * cur.resources) / 24),
+      }
+
+      const score = Math.round(
+        ((cur.resources - (failed_checks.critical * 4 + failed_checks.high * 3 + failed_checks.medium * 2 + failed_checks.low)) /
+          cur.resources) *
+          100,
+      )
+
+      prev.account_summary[cur.id] = {
+        score,
+        failed_checks,
+      }
+
+      const account = {
+        cloud: cur.cloud,
+        id: cur.id,
+        name: cur.name,
+        score,
+      }
+
+      prev.accounts.push(account)
+
+      if (prev.worstAccountRaw.length < 3) {
+        prev.worstAccountRaw.push(account)
+      } else if (prev.bestAccountRaw.length < 3) {
+        prev.bestAccountRaw.push(account)
+      } else {
+        const foundWorst = prev.worstAccountRaw.findIndex((i) => i.score > score)
+        if (foundWorst > -1) {
+          prev.worstAccountRaw.splice(foundWorst, 1)
+          prev.worstAccountRaw.push(account)
+        } else {
+          const foundBest = prev.bestAccountRaw.findIndex((i) => i.score < score)
+          if (foundBest > -1) {
+            prev.bestAccountRaw.splice(foundBest, 1)
+            prev.bestAccountRaw.push(account)
+          }
+        }
+      }
+
+      return prev
+    },
     {
-      id: 'aws_cis_1_5',
-      title: 'AWS CIS 1.5.0',
-      framework: 'CIS',
-      version: '1.5',
-      clouds: ['aws'],
+      account_summary: {},
+      accounts: [],
+      worstAccountRaw: [],
+      bestAccountRaw: [],
+    } as {
+      account_summary: {
+        [key: string]: {
+          score: number
+          failed_checks: {
+            critical: number
+            high: number
+            medium: number
+            low: number
+          }
+        }
+      }
+      accounts: {
+        id: string
+        name: string
+        cloud: string
+        score: number
+      }[]
+      worstAccountRaw: {
+        id: string
+        name: string
+        cloud: string
+        score: number
+      }[]
+      bestAccountRaw: {
+        id: string
+        name: string
+        cloud: string
+        score: number
+      }[]
+    },
+  )
+
+const summaries = new Array(howManyBench).fill({}).map(() => generateAccountSummary())
+const { account_summary, accounts, bestAccountRaw, worstAccountRaw } = summaries[0]
+
+const worstAccount = worstAccountRaw.sort((a, b) => a.score - b.score)
+
+const bestAccount = bestAccountRaw.sort((a, b) => b.score - a.score)
+
+const failed_checks_by_severity = Object.values(account_summary).reduce(
+  (prev, cur) => ({
+    critical: prev.critical + cur.failed_checks.critical,
+    high: prev.high + cur.failed_checks.high,
+    medium: prev.medium + cur.failed_checks.medium,
+    low: prev.low + cur.failed_checks.low,
+  }),
+  {
+    critical: 0,
+    high: 0,
+    medium: 0,
+    low: 0,
+  },
+)
+
+export const workspaceReportSummary = {
+  overall_score: Math.round(accounts.reduce((prev, cur) => prev + cur.score, 0) / accounts.length),
+  check_summary: {
+    available_checks,
+    failed_checks: available_checks - Math.round(1000 - Math.pow(Math.random(), 6) * 1000),
+    failed_checks_by_severity,
+  },
+  accounts,
+  benchmarks: summaries.map(() => {
+    const cloud = Math.random() > 0.5 ? 'aws' : 'gcp'
+    const version = Math.round(Math.random() * 300) / 100
+    const name = uniqueNamesGenerator({ dictionaries: [adjectives] })
+    return {
+      id: `${cloud}-${name}-${version.toString().replace('.', '_')}`,
+      title: `${cloud.toUpperCase()} ${name.toUpperCase()} ${version}`,
+      framework: name.toUpperCase(),
+      version: version.toString(),
+      clouds: [cloud],
       description:
         'The CIS Amazon Web Services Foundations Benchmark provides prescriptive guidance for configuring security options for a subset of Amazon Web Services with an emphasis on foundational, testable, and architecture agnostic settings.',
-      nr_of_checks: 73,
-      account_summary: {
-        '001528229927': { score: 63, failed_checks: { critical: 1, medium: 22, low: 4, high: 3 } },
-        '032597967871': { score: 53, failed_checks: { critical: 2, medium: 24, low: 4, high: 6 } },
-        '041488270399': { score: 52, failed_checks: { critical: 2, medium: 25, low: 4, high: 6 } },
-        '068564737731': { score: 60, failed_checks: { critical: 1, medium: 24, low: 3, high: 4 } },
-        '110465657741': { score: 32, failed_checks: { critical: 3, high: 12, medium: 31, low: 4 } },
-        '119548413362': { score: 62, failed_checks: { critical: 1, medium: 22, low: 3, high: 4 } },
-        '139475575661': { score: 44, failed_checks: { critical: 3, medium: 28, low: 4, high: 7 } },
-        '149356006029': { score: 64, failed_checks: { critical: 1, medium: 22, low: 3, high: 3 } },
-        '159577368695': { score: 54, failed_checks: { critical: 1, medium: 25, low: 4, high: 6 } },
-        '222638339470': { score: 39, failed_checks: { critical: 3, medium: 28, low: 4, high: 10 } },
-        '273854932432': { score: 32, failed_checks: { critical: 3, medium: 27, low: 5, high: 14 } },
-        '280927420991': { score: 54, failed_checks: { critical: 2, medium: 25, low: 4, high: 5 } },
-        '327650738955': { score: 46, failed_checks: { critical: 2, medium: 24, low: 4, high: 10 } },
-        '337834004759': { score: 48, failed_checks: { critical: 2, medium: 27, low: 4, high: 7 } },
-        '355186487480': { score: 58, failed_checks: { critical: 1, medium: 23, low: 4, high: 5 } },
-        '359820441116': { score: 55, failed_checks: { critical: 1, medium: 20, low: 3, high: 9 } },
-        '398053451782': { score: 61, failed_checks: { critical: 1, medium: 23, low: 3, high: 4 } },
-        '427504306423': { score: 59, failed_checks: { critical: 2, medium: 24, low: 3, high: 3 } },
-        '469115496741': { score: 63, failed_checks: { critical: 1, medium: 22, low: 4, high: 3 } },
-        '487579172032': { score: 39, failed_checks: { critical: 2, high: 11, medium: 28, low: 4 } },
-        '507444785254': { score: 61, failed_checks: { critical: 1, medium: 24, low: 4, high: 3 } },
-        '540164828399': { score: 56, failed_checks: { critical: 1, high: 5, medium: 25, low: 4 } },
-        '564794917605': { score: 59, failed_checks: { critical: 1, medium: 23, high: 5, low: 3 } },
-        '572115487488': { score: 55, failed_checks: { critical: 1, medium: 23, low: 4, high: 7 } },
-        '575584959047': { score: 44, failed_checks: { critical: 2, medium: 24, low: 4, high: 11 } },
-        '579763146468': { score: 62, failed_checks: { critical: 1, medium: 22, high: 4, low: 3 } },
-        '586712400841': { score: 48, failed_checks: { critical: 3, medium: 25, low: 4, high: 7 } },
-        '628219675373': { score: 62, failed_checks: { critical: 2, medium: 21, low: 4, high: 3 } },
-        '633059600857': { score: 59, failed_checks: { medium: 9, low: 3, critical: 2, high: 13 } },
-        '666563790427': { score: 51, failed_checks: { critical: 2, medium: 22, low: 3, high: 9 } },
-        '688023202711': { score: 55, failed_checks: { critical: 2, medium: 24, low: 4, high: 5 } },
-        '711585860468': { score: 60, failed_checks: { critical: 1, medium: 23, low: 4, high: 4 } },
-        '752466027617': { score: 80, failed_checks: { critical: 1, medium: 7, low: 2, high: 4 } },
-        '781475754360': { score: 59, failed_checks: { critical: 1, medium: 24, low: 4, high: 4 } },
-        '822269771029': { score: 46, failed_checks: { critical: 1, medium: 26, low: 4, high: 10 } },
-        '826065706934': { score: 59, failed_checks: { critical: 2, medium: 24, low: 3, high: 3 } },
-        '850970822230': { score: 63, failed_checks: { critical: 1, medium: 22, low: 4, high: 3 } },
-        '893936129782': { score: 58, failed_checks: { critical: 1, medium: 25, low: 3, high: 4 } },
-        '897035003914': { score: 58, failed_checks: { critical: 1, medium: 25, low: 4, high: 4 } },
-        '913957337679': { score: 47, failed_checks: { critical: 2, high: 9, medium: 25, low: 4 } },
-        '963533219375': { score: 59, failed_checks: { critical: 2, medium: 24, low: 3, high: 3 } },
-        '966122790603': { score: 47, failed_checks: { critical: 2, medium: 26, low: 4, high: 8 } },
-        '977260619897': { score: 54, failed_checks: { critical: 2, medium: 26, low: 4, high: 4 } },
-        '999867407951': { score: 41, failed_checks: { critical: 2, medium: 28, low: 4, high: 10 } },
-      },
-    },
-  ],
+      nr_of_checks: available_checks,
+      account_summary,
+    }
+  }),
   changed_vulnerable: {
     since: 'P7D',
-    accounts_selection: ['041488270399', '666563790427', '110465657741'],
-    resource_count_by_severity: { high: 6231, medium: 5878, low: 76, critical: 1408 },
+    accounts_selection: worstAccount.map((i) => i.id),
+    resource_count_by_severity: {
+      high: Math.round(Math.random() * 1000),
+      medium: Math.round(Math.random() * 1000),
+      low: Math.round(Math.random() * 1000),
+      critical: Math.round(Math.random() * 1000),
+    },
     resource_count_by_kind_selection: { aws_ec2_security_group: 3463, aws_ec2_network_acl: 2682, aws_vpc: 2681 },
   },
-  changed_compliant: { since: 'P7D', accounts_selection: [], resource_count_by_severity: {}, resource_count_by_kind_selection: {} },
+  changed_compliant: {
+    since: 'P7D',
+    accounts_selection: bestAccount.map((i) => i.id),
+    resource_count_by_severity: {
+      high: Math.round(Math.random() * 1000),
+      medium: Math.round(Math.random() * 1000),
+      low: Math.round(Math.random() * 1000),
+      critical: Math.round(Math.random() * 1000),
+    },
+    resource_count_by_kind_selection: { aws_ec2_security_group: 3463, aws_ec2_network_acl: 2682, aws_vpc: 2681 },
+  },
   top_checks: [
     {
       categories: ['security', 'compliance'],
