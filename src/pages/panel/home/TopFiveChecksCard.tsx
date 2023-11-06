@@ -4,7 +4,7 @@ import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Button
 import { getMessage } from 'src/shared/defined-messages'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
-import { getColorBySeverity } from './getColor'
+import { getColorBySeverity } from './utils/getColorBySeverity'
 
 export const TopFiveChecksCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryResponse }) => {
   return data ? (

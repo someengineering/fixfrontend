@@ -6,41 +6,11 @@ import ErrorIcon from '@mui/icons-material/Error'
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon'
 import { Divider, Grid, Stack, SvgIcon, Typography } from '@mui/material'
 import { CircularScore } from 'src/shared/circular-score'
-import { colorFromRedToGreen, sortedSeverities } from 'src/shared/constants'
-import { getMessage } from 'src/shared/defined-messages'
+import { colorFromRedToGreen } from 'src/shared/constants'
 import { OverviewCard } from 'src/shared/overview-card'
-import { FailedChecksType, GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
+import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { iso8601DurationToString, parseISO8601Duration } from 'src/shared/utils/parseISO8601Duration'
-import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
-import { getColorBySeverity } from './getColor'
-
-const checkDiff = (data: GetWorkspaceInventoryReportSummaryResponse) => {
-  const compliant = data.changed_compliant.resource_count_by_severity
-  const vulnerable = data.changed_vulnerable.resource_count_by_severity
-  return Math.round(
-    ((compliant.critical ?? 0) * 4 +
-      (compliant.high ?? 0) * 3 +
-      (compliant.medium ?? 0) * 2 +
-      (compliant.low ?? 0) -
-      (vulnerable.critical ?? 0) * 4 -
-      (vulnerable.high ?? 0) * 3 -
-      (vulnerable.medium ?? 0) * 2 -
-      (vulnerable.low ?? 0)) /
-      (data.check_summary.available_checks * 4),
-  )
-}
-
-const showSubtitle = (data: Partial<FailedChecksType<number>>) =>
-  sortedSeverities
-    .filter((key) => data[key])
-    .map((key) => (
-      <Stack key={key} direction="row">
-        <Typography color={`${getColorBySeverity(key)}.main`} variant="body2">
-          {getMessage(snakeCaseToUFStr(key))}
-        </Typography>
-        <Typography variant="body2">: {data[key]}</Typography>
-      </Stack>
-    ))
+import { checkDiff, showSubtitle } from './utils'
 
 export const OverallCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryResponse }) => {
   if (!data) {

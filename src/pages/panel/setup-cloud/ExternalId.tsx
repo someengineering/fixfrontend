@@ -2,20 +2,12 @@ import { Trans, t } from '@lingui/macro'
 import CopyAllIcon from '@mui/icons-material/CopyAll'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
-import { Box, Button, IconButton, Skeleton, Typography, useTheme } from '@mui/material'
+import { Box, Button, IconButton, Typography, useTheme } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
 import { getExternalIdQuery } from 'src/pages/panel/shared-queries'
-
-export const ExternalIdSkeleton = () => {
-  return (
-    <Box ml={2}>
-      <Skeleton variant="rectangular" width={376} height={52} />
-    </Box>
-  )
-}
 
 export const ExternalId = () => {
   const theme = useTheme()

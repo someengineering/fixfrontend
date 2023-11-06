@@ -1,15 +1,8 @@
-import { Grid, colors } from '@mui/material'
+import { Grid } from '@mui/material'
 import { useMemo } from 'react'
 import { StackbarChart } from 'src/shared/charts'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
-
-const COLORS = {
-  Critical: colors.red[900],
-  High: colors.deepOrange[700],
-  Medium: colors.amber[600],
-  Low: colors.lightGreen[500],
-  Passed: colors.green[900],
-}
+import { colorsBySeverity } from './colorsBySeverity'
 
 // const calculatePassed = (failedChecks: Partial<FailedChecksType<number>>, total: number) =>
 //   total - (failedChecks.critical || 0) - (failedChecks.high || 0) - (failedChecks.medium || 0) - (failedChecks.low || 0)
@@ -64,7 +57,7 @@ export const StackBarCard = ({ data }: { data?: GetWorkspaceInventoryReportSumma
   return stackBarData.length > 1 ? (
     <Grid container spacing={2} my={2}>
       <Grid item xs={12} height={700} display="flex" alignItems="center" justifyContent="center" flexDirection="column">
-        <StackbarChart colors={COLORS} data={stackBarData} />
+        <StackbarChart colors={colorsBySeverity} data={stackBarData} />
       </Grid>
     </Grid>
   ) : null

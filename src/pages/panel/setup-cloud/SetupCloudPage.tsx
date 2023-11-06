@@ -6,12 +6,14 @@ import { useNavigate } from 'react-router-dom'
 import { useEvents } from 'src/core/events'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { setInitiated } from 'src/shared/utils/localstorage'
-import { ExternalId, ExternalIdSkeleton } from './ExternalId'
+import { ExternalId } from './ExternalId'
+import { ExternalIdSkeleton } from './ExternalId.skeleton'
 import { SetupCloudButton } from './SetupCloudButton'
-import { SetupTemplateButton, SetupTemplateButtonSkeleton } from './SetupTemplateButton'
+import { SetupTemplateButton } from './SetupTemplateButton'
+import { SetupTemplateButtonSkeleton } from './SetupTemplateButton.skeleton'
 import { TenantId } from './TenantId'
 
-export default function PanelSetupCloudPage() {
+export default function SetupCloud() {
   const { addListener } = useEvents()
   const navigate = useNavigate()
 

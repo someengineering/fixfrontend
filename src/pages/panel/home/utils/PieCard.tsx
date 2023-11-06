@@ -1,9 +1,8 @@
-import { Grid, Typography, colors } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
 import { useMemo } from 'react'
 import { PieChart } from 'src/shared/charts'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
-
-const COLORS = { Critical: colors.red[900], High: colors.deepOrange[700], Medium: colors.amber[600], Low: colors.lightGreen[500] }
+import { colorsBySeverity } from './colorsBySeverity'
 
 export const PieCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryResponse }) => {
   const pieData = useMemo(() => {
@@ -62,7 +61,7 @@ export const PieCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryRes
           flexDirection="column"
         >
           <Typography variant="h6">{item.title}</Typography>
-          <PieChart colors={COLORS} data={item.data} />
+          <PieChart colors={colorsBySeverity} data={item.data} />
         </Grid>
       ))}
     </Grid>

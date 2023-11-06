@@ -2,27 +2,27 @@ import { lazy } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { AccountCheckGuard } from 'src/shared/layouts/panel-layout'
 
-const PanelHomePage = lazy(
+const HomePage = lazy(
   () =>
     import(
-      /* webpackChunkName: "panel-home" */
-      'src/pages/panel/panel-home/PanelHomePage'
+      /* webpackChunkName: "home" */
+      'src/pages/panel/home/HomePage'
     ),
 )
 
-const PanelSetupCloudPage = lazy(
+const SetupCloudPage = lazy(
   () =>
     import(
-      /* webpackChunkName: "panel-setup-cloud" */
-      'src/pages/panel/panel-setup-cloud/PanelSetupCloudPage'
+      /* webpackChunkName: "setup-cloud" */
+      'src/pages/panel/setup-cloud/SetupCloudPage'
     ),
 )
 
-const PanelAccountsPage = lazy(
+const AccountsPage = lazy(
   () =>
     import(
-      /* webpackChunkName: "panel-accounts" */
-      'src/pages/panel/panel-accounts/PanelAccountsPage'
+      /* webpackChunkName: "accounts" */
+      'src/pages/panel/accounts/AccountsPage'
     ),
 )
 
@@ -31,10 +31,10 @@ export function PanelRoutes() {
     <Routes>
       <Route path="/">
         <Route element={<AccountCheckGuard />}>
-          <Route index element={<PanelHomePage />} />
-          <Route path="accounts" element={<PanelAccountsPage />} />
+          <Route index element={<HomePage />} />
+          <Route path="accounts" element={<AccountsPage />} />
         </Route>
-        <Route path="setup-cloud" element={<PanelSetupCloudPage />} />
+        <Route path="setup-cloud" element={<SetupCloudPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
