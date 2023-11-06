@@ -21,7 +21,7 @@ import {
   Typography,
 } from '@mui/material'
 import { QueryClient, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { ChangeEvent, FormEvent, Suspense, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, FormEvent, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceCloudAccountsQuery } from 'src/pages/panel/shared-queries'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
@@ -86,11 +86,15 @@ const AccountRow = ({ account }: { account: Account }) => {
   })
   const [isEdit, setIsEdit] = useState(false)
   const [editedName, setEditedName] = useState(account.name)
+  const cancelEdit = useCallback(() => {
+    setIsEdit(false)
+    setEditedName(account.name)
+  }, [account.name])
   useEffect(() => {
     if (isEdit && inputRef.current) {
       const cancelMethod = (e: KeyboardEvent) => {
         if (e.key === 'Escape') {
-          setIsEdit(false)
+          cancelEdit()
         }
       }
       const currentRef = inputRef.current
@@ -99,7 +103,7 @@ const AccountRow = ({ account }: { account: Account }) => {
         currentRef.removeEventListener('keydown', cancelMethod)
       }
     }
-  }, [isEdit])
+  }, [isEdit, cancelEdit])
   const oneHourLater = new Date()
   oneHourLater.setHours(oneHourLater.getHours() + 1)
   const handleEditSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -187,7 +191,7 @@ const AccountRow = ({ account }: { account: Account }) => {
               </IconButton>
             ) : (
               <Tooltip title={<Trans>Cancel</Trans>}>
-                <IconButton aria-label={t`Cancel`} color="error" onClick={() => setIsEdit(false)}>
+                <IconButton aria-label={t`Cancel`} color="error" onClick={cancelEdit}>
                   <CancelIcon />
                 </IconButton>
               </Tooltip>
@@ -195,7 +199,7 @@ const AccountRow = ({ account }: { account: Account }) => {
           </Stack>
         ) : (
           <Stack direction="row" alignItems="center" spacing={1}>
-            <Typography flexGrow={1} onClick={() => setIsEdit(true)}>
+            <Typography flexGrow={1} onClick={() => setIsEdit(true)} sx={{ cursor: 'pointer' }}>
               {account.name}
             </Typography>
             <Tooltip title={<Trans>Edit</Trans>}>
