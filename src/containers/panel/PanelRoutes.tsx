@@ -1,5 +1,6 @@
 import { lazy } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { AccountCheckGuard } from 'src/shared/layouts/panel-layout'
 
 const PanelHomePage = lazy(
   () =>
@@ -29,8 +30,10 @@ export function PanelRoutes() {
   return (
     <Routes>
       <Route path="/">
-        <Route index element={<PanelHomePage />} />
-        <Route path="accounts" element={<PanelAccountsPage />} />
+        <Route element={<AccountCheckGuard />}>
+          <Route index element={<PanelHomePage />} />
+          <Route path="accounts" element={<PanelAccountsPage />} />
+        </Route>
         <Route path="setup-cloud" element={<PanelSetupCloudPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
