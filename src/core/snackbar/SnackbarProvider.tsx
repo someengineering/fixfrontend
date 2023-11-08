@@ -7,6 +7,7 @@ import {
   Slide,
   SnackbarOrigin,
   styled,
+  useTheme,
 } from '@mui/material'
 import { PropsWithChildren, SyntheticEvent, createContext, useCallback, useMemo, useState } from 'react'
 import { panelUI } from 'src/shared/constants'
@@ -43,7 +44,10 @@ export const SnackbarContext = createContext<SnackbarContextValue | null>(null)
 const Snackbar = styled(MuiSnackbar, { shouldForwardProp: shouldForwardPropWithBlackList(['index']) })<{ index: number }>(
   ({ theme, index }) => ({
     marginBottom: 54 * index,
-    transition: theme.transitions.create(['margin-bottom', 'transform'], { duration: 225, delay: 0, easing: 'cubic-bezier(0, 0, 0.2, 1)' }),
+    transition: theme.transitions.create(['margin-bottom', 'transform'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   }),
 )
 
@@ -87,26 +91,34 @@ export function SnackbarElement({
 
 export function SnackbarProvider({ children }: PropsWithChildren) {
   const [snackbars, setSnackbars] = useState<{ [key in number]: SnackbarValue }>({})
+  const {
+    transitions: {
+      duration: { standard: standardDuration },
+    },
+  } = useTheme()
 
-  const closeSnackbar = useCallback((key: number) => {
-    return new Promise<boolean>((resolve) => {
-      setTimeout(() => {
-        setSnackbars((prev) => {
-          const newSnackBars = { ...prev }
-          if (newSnackBars[key]) {
-            delete newSnackBars[key]
-            resolve(true)
-            return newSnackBars
-          }
-          setTimeout(() => {
-            resolve(false)
+  const closeSnackbar = useCallback(
+    (key: number) => {
+      return new Promise<boolean>((resolve) => {
+        setTimeout(() => {
+          setSnackbars((prev) => {
+            const newSnackBars = { ...prev }
+            if (newSnackBars[key]) {
+              delete newSnackBars[key]
+              resolve(true)
+              return newSnackBars
+            }
+            setTimeout(() => {
+              resolve(false)
+            })
+            return prev
           })
-          return prev
-        })
-      }, 300)
-      setSnackbars((prev) => (prev[key] ? { ...prev, [key]: { ...prev[key], open: false } } : prev))
-    })
-  }, [])
+        }, standardDuration)
+        setSnackbars((prev) => (prev[key] ? { ...prev, [key]: { ...prev[key], open: false } } : prev))
+      })
+    },
+    [standardDuration],
+  )
 
   const handleShow = useCallback(
     (
