@@ -16,39 +16,23 @@ const Container = styled('div')({
   position: 'absolute',
 })
 
-const SpinnerCircle = styled('div', { shouldForwardProp })<{ width: number; isDark?: boolean; isLoading?: boolean }>(
-  ({ theme, width, isDark, isLoading }) => ({
-    position: 'absolute',
-    backgroundColor:
-      isDark && theme.palette.mode === 'dark'
-        ? isLoading
-          ? alpha(theme.palette.common.black, 0.2)
-          : alpha(theme.palette.primary.main, 0.8)
-        : alpha(theme.palette.common.white, 0.2),
-    left: '50%',
-    top: '50%',
-    width: width,
-    height: width,
-    borderRadius: isLoading ? '50%' : '0',
-    boxShadow: `inset 0 0 0 1px ${
-      isDark && theme.palette.mode === 'dark'
-        ? isLoading
-          ? alpha(theme.palette.common.white, 0.1)
-          : theme.palette.common.white
-        : isLoading
-        ? alpha(theme.palette.common.black, 0.1)
-        : theme.palette.common.black
-    }`,
-    marginLeft: -(width / 2),
-    marginTop: -(width / 2),
-    transition: theme.transitions.create(['background-color', 'border-radius', 'box-shadow'], {
-      duration: 1000,
-      easing: theme.transitions.easing.easeInOut,
-    }),
+const SpinnerCircle = styled('div', { shouldForwardProp })<{ width: number; isLoading?: boolean }>(({ theme, width, isLoading }) => ({
+  position: 'absolute',
+  backgroundColor: isLoading ? 'rgba(0, 0, 0, 0.2)' : alpha(theme.palette.primary.main, 0.8),
+  left: '50%',
+  top: '50%',
+  width: width,
+  height: width,
+  borderRadius: isLoading ? '50%' : '0',
+  boxShadow: 'inset 0 0 0 1px rgba(255, 255, 255, 0.1)',
+  marginLeft: -(width / 2),
+  marginTop: -(width / 2),
+  transition: theme.transitions.create(['background-color', 'border-radius', 'box-shadow'], {
+    duration: theme.transitions.duration.longer,
   }),
-)
+}))
 
-const SpinnerCircleMask = styled('div', { shouldForwardProp })<{ width: number; isDark?: boolean }>(({ theme, width, isDark }) => ({
+const SpinnerCircleMask = styled('div', { shouldForwardProp })<{ width: number }>(({ width }) => ({
   position: 'absolute',
   left: '50%',
   top: '50%',
@@ -58,55 +42,47 @@ const SpinnerCircleMask = styled('div', { shouldForwardProp })<{ width: number; 
   marginTop: -(width / 2),
   overflow: 'hidden',
   transformOrigin: `${width / 2}px ${width / 2}px`,
-  WebkitMaskImage: `-webkit-linear-gradient(top, ${
-    isDark && theme.palette.mode === 'dark'
-      ? `${alpha(theme.palette.common.black, 1)}, ${alpha(theme.palette.common.black, 0)}`
-      : `${alpha(theme.palette.common.white, 1)}, ${alpha(theme.palette.common.white, 0)}`
-  })`,
+  maskImage: 'linear-gradient(top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))',
+  WebkitMaskImage: '-webkit-linear-gradient(top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))',
   animation: `${rotateAnimation} 1.2s infinite linear`,
 }))
 
-const SpinnerCircleMaskLine = styled('div', { shouldForwardProp })<{ width: number; isDark?: boolean }>(({ theme, width, isDark }) => ({
+const SpinnerCircleMaskLine = styled('div', { shouldForwardProp })<{ width: number }>(({ width }) => ({
   width: width,
   height: width,
   borderRadius: '50%',
-  boxShadow: `inset 0 0 0 1px ${
-    isDark && theme.palette.mode === 'dark' ? alpha(theme.palette.common.white, 0.5) : alpha(theme.palette.common.black, 0.5)
-  }`,
+  boxShadow: 'inset 0 0 0 1px rgba(255, 255, 255, 0.5)',
 }))
 
 const LogoWhiteNoBackgroundStyled = styled(LogoWhiteNoBackground)(({ theme }) => ({
   zIndex: 1,
   transition: theme.transitions.create(['width', 'height', 'box-shadow'], {
-    duration: 1000,
-    easing: theme.transitions.easing.easeInOut,
+    duration: theme.transitions.duration.longer,
   }),
 }))
 
 interface SpinnerProps {
   width?: number
-  isDark?: boolean
   isLoading?: boolean
 }
 
 const SpinnerContainer = styled(Container, { shouldForwardProp })<{ isLoading?: boolean }>(({ theme, isLoading }) => ({
   transition: theme.transitions.create(['opacity'], {
-    duration: 1000,
-    easing: theme.transitions.easing.easeInOut,
+    duration: theme.transitions.duration.longer,
   }),
   [theme.breakpoints.down('md')]: {
     opacity: isLoading ? 1 : 0,
   },
 }))
 
-export const Spinner = ({ width = 110, isDark, isLoading }: SpinnerProps) => {
+export const Spinner = ({ width = 110, isLoading }: SpinnerProps) => {
   return (
     <SpinnerContainer isLoading={isLoading}>
       <LogoWhiteNoBackgroundStyled width={isLoading ? width * 0.625 : width} height={isLoading ? width * 0.625 : width} fill="white" />
-      <SpinnerCircle width={width} isDark={isDark} isLoading={isLoading} />
+      <SpinnerCircle width={width} isLoading={isLoading} />
       {isLoading ? (
-        <SpinnerCircleMask width={width} isDark={isDark}>
-          <SpinnerCircleMaskLine width={width} isDark={isDark} />
+        <SpinnerCircleMask width={width}>
+          <SpinnerCircleMaskLine width={width} />
         </SpinnerCircleMask>
       ) : null}
     </SpinnerContainer>
