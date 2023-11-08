@@ -16,15 +16,15 @@ export const AccountCheckGuard = () => {
   })
   const navigate = useNavigate()
 
-  const goToSetupCloudPage = useCallback(() => {
+  const handleGoToSetupCloudPage = useCallback(() => {
     navigate('/setup-cloud')
   }, [navigate])
 
   useEffect(() => {
     if (!data?.length && !getInitiated()) {
-      goToSetupCloudPage()
+      handleGoToSetupCloudPage()
     }
-  }, [data?.length, goToSetupCloudPage])
+  }, [data?.length, handleGoToSetupCloudPage])
 
   if (data && !data.length) {
     return (
@@ -35,7 +35,7 @@ export const AccountCheckGuard = () => {
         <Typography variant="h5" textAlign="center">
           <Trans>
             Please go to{' '}
-            <Button variant="text" onClick={goToSetupCloudPage}>
+            <Button variant="text" onClick={handleGoToSetupCloudPage}>
               Setup Accounts
             </Button>{' '}
             page to setup your account first

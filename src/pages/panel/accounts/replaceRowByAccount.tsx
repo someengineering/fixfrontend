@@ -1,7 +1,7 @@
 import { QueryClient } from '@tanstack/react-query'
 import { Account, GetWorkspaceCloudAccountsResponse, GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 
-export const ReplaceRowByAccount = (queryClient: QueryClient, id?: string) => {
+export const replaceRowByAccount = (queryClient: QueryClient, id?: string) => {
   return (data: Account) => {
     if (data) {
       queryClient.setQueryData(['workspace-cloud-accounts', id], (oldData: GetWorkspaceCloudAccountsResponse) => {
