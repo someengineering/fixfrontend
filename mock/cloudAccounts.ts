@@ -51,7 +51,7 @@ const cloudAccounts = (): MockMethod[] => {
       method: 'patch',
       rawResponse: responseJSONWithAuthCheck(async ({ req, res }) => {
         const { name } = (await getBodyFromRawRequest<{ name: string }>(req, res, true)) ?? {}
-        if (!name) {
+        if (name === undefined) {
           res.statusCode = 422
           res.end(
             JSON.stringify({
@@ -71,7 +71,7 @@ const cloudAccounts = (): MockMethod[] => {
           return
         }
         foundAccount.name = name
-        return foundAccount
+        return { ...foundAccount, next_scan: getNextHourTime() }
       }),
     },
     // enable cloud-account
@@ -84,7 +84,7 @@ const cloudAccounts = (): MockMethod[] => {
           return
         }
         foundAccount.enabled = true
-        return foundAccount
+        return { ...foundAccount, next_scan: getNextHourTime() }
       }),
     },
     // disable cloud-account
@@ -97,7 +97,7 @@ const cloudAccounts = (): MockMethod[] => {
           return
         }
         foundAccount.enabled = false
-        return foundAccount
+        return { ...foundAccount, next_scan: getNextHourTime() }
       }),
     },
     // delete cloud-account
