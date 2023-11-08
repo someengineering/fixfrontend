@@ -1,11 +1,12 @@
 import { Trans, t } from '@lingui/macro'
-import { Table, TableBody, TableCell, TableHead, TablePagination, TableRow } from '@mui/material'
+import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
-import { ChangeEvent, useState } from 'react'
+import { useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceCloudAccountsQuery } from 'src/pages/panel/shared-queries'
 import { TableViewPage } from 'src/shared/layouts/panel-layout'
 import { AccountRow } from './AccountRow'
+import { AccountsPagination } from './AccountsPagination'
 
 export const AccountsTable = () => {
   const [page, setPage] = useState(0)
@@ -17,27 +18,10 @@ export const AccountsTable = () => {
     enabled: !!selectedWorkspace?.id,
   })
 
-  const handleChangePage = (_: unknown, newPage: number) => {
-    setPage(newPage)
-  }
-
-  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(+event.target.value)
-    setPage(0)
-  }
-
   return (
     <TableViewPage
       pagination={
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          count={data?.length ?? 0}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
+        <AccountsPagination data={data} page={page} rowsPerPage={rowsPerPage} setPage={setPage} setRowsPerPage={setRowsPerPage} />
       }
     >
       <Table stickyHeader aria-label={t`Accounts`}>
@@ -72,7 +56,7 @@ export const AccountsTable = () => {
         <TableBody>
           {data
             ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((account) => <AccountRow account={account} key={account.id} />)}
+            .map((account, i) => <AccountRow account={account} key={`${account.id}_${i}`} />)}
         </TableBody>
       </Table>
     </TableViewPage>
