@@ -56,8 +56,7 @@ module.exports = {
         patterns: [
           {
             group: ['@mui/*', '!@mui/material', '!@mui/lab', '!@mui/x-tree-view', '!@mui/icons-material', '!@mui/icons-material/*'],
-            message:
-              'Only import usage of @mui/material and @mui/lab and @mui/x-tree-view is allowed.',
+            message: 'Only import usage of @mui/material and @mui/lab and @mui/x-tree-view is allowed.',
           },
           {
             group: ['../**'],
@@ -67,6 +66,12 @@ module.exports = {
             group: ['src/*/*/**', '!src/pages/panel/shared-queries', '!src/shared/utils/*', '!src/shared/types/*', '!src/shared/layouts/*'],
             message:
               'Every components in shared should have index.ts for re-export and import from top folder of shared is only allowed with the exception of layouts/parent, types/parent, utils/util',
+          },
+        ],
+        paths: [
+          {
+            name: '.',
+            message: 'No import should be getting from \'.\' (index.ts). This makes so sense, the import should point to the file in the same folder EG. \'./Component\'',
           },
         ],
       },

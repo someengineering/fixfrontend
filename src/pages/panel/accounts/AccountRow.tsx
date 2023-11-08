@@ -1,69 +1,25 @@
 import { Trans, t } from '@lingui/macro'
 import CancelIcon from '@mui/icons-material/Cancel'
+import CheckIcon from '@mui/icons-material/Check'
 import DeleteIcon from '@mui/icons-material/Delete'
+import DoDistorbIcon from '@mui/icons-material/DoDisturb'
 import EditIcon from '@mui/icons-material/Edit'
 import SendIcon from '@mui/icons-material/Send'
 import { LoadingButton } from '@mui/lab'
-import {
-  Button,
-  Checkbox,
-  CircularProgress,
-  IconButton,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TablePagination,
-  TableRow,
-  TextField,
-  Tooltip,
-  Typography,
-} from '@mui/material'
-import { QueryClient, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { ChangeEvent, FormEvent, Suspense, useCallback, useEffect, useRef, useState } from 'react'
+import { Button, Checkbox, CircularProgress, IconButton, Stack, TableCell, TableRow, TextField, Tooltip, Typography } from '@mui/material'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { FormEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { getWorkspaceCloudAccountsQuery } from 'src/pages/panel/shared-queries'
-import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
-import { TableViewPage } from 'src/shared/layouts/panel-layout'
-import { LoadingSuspenseFallback } from 'src/shared/loading'
+import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { Modal } from 'src/shared/modal'
-import { Account, GetWorkspaceCloudAccountsResponse, GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
+import { Account, GetWorkspaceCloudAccountsResponse } from 'src/shared/types/server'
 import { deleteAccountMutation } from './deleteAccount.mutation'
 import { disableAccountMutation } from './disableAccount.mutation'
 import { enableAccountMutation } from './enableAccount.mutation'
 import { renameAccountMutation } from './renameAccount.mutation'
+import { replaceRowByAccount } from './replaceRowByAccount'
 
-const ReplaceRowByAccount = (queryClient: QueryClient, id?: string) => {
-  return (data: Account) => {
-    if (data) {
-      queryClient.setQueryData(['workspace-cloud-accounts', id], (oldData: GetWorkspaceCloudAccountsResponse) => {
-        const foundIndex = oldData.findIndex((item) => item.id === data.id)
-        if (foundIndex > -1) {
-          const newData = [...oldData]
-          newData[foundIndex] = data
-          return newData
-        }
-        return oldData
-      })
-      queryClient.setQueryData(['workspace-report-summary', id], (oldData: GetWorkspaceInventoryReportSummaryResponse) => {
-        const foundIndex = oldData.accounts.findIndex((item) => item.id === data.account_id)
-        if (foundIndex > -1) {
-          const newData = { ...oldData }
-          newData.accounts = [...oldData.accounts]
-          newData.accounts[foundIndex] = {
-            ...oldData.accounts[foundIndex],
-            name: data.name ?? '',
-          }
-          return newData
-        }
-        return oldData
-      })
-    }
-  }
-}
-
-const AccountRow = ({ account }: { account: Account }) => {
+export const AccountRow = ({ account }: { account: Account }) => {
   const inputRef = useRef<HTMLInputElement>()
   const showModalRef = useRef<(show?: boolean) => void>()
   const { selectedWorkspace } = useUserProfile()
@@ -108,11 +64,11 @@ const AccountRow = ({ account }: { account: Account }) => {
   oneHourLater.setHours(oneHourLater.getHours() + 1)
   const handleEditSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (selectedWorkspace?.id && editedName) {
+    if (selectedWorkspace?.id) {
       renameAccount(
-        { name: editedName, workspaceId: selectedWorkspace.id, id: account.id },
+        { name: editedName || null, workspaceId: selectedWorkspace.id, id: account.id },
         {
-          onSuccess: ReplaceRowByAccount(queryClient, selectedWorkspace?.id),
+          onSuccess: replaceRowByAccount(queryClient, selectedWorkspace?.id),
           onSettled: () => setIsEdit(false),
         },
       )
@@ -123,7 +79,7 @@ const AccountRow = ({ account }: { account: Account }) => {
       return (checked ? enableAccount : disableAccount)(
         { workspaceId: selectedWorkspace.id, id: account.id },
         {
-          onSuccess: ReplaceRowByAccount(queryClient, selectedWorkspace?.id),
+          onSuccess: replaceRowByAccount(queryClient, selectedWorkspace?.id),
         },
       )
     }
@@ -155,11 +111,20 @@ const AccountRow = ({ account }: { account: Account }) => {
   }
   return (
     <TableRow>
-      <TableCell>{account.cloud.toUpperCase()}</TableCell>
+      <TableCell>
+        <CloudAvatar cloud={account.cloud} />
+      </TableCell>
       <TableCell>{account.account_id}</TableCell>
       <TableCell>
         {isEdit ? (
-          <Stack component="form" onSubmit={handleEditSubmit} direction="row" alignItems="center" spacing={1}>
+          <Stack
+            component="form"
+            name={`rename-for-${account.account_id}`}
+            onSubmit={handleEditSubmit}
+            direction="row"
+            alignItems="center"
+            spacing={1}
+          >
             <TextField
               sx={{ flexGrow: 1 }}
               defaultValue={account.name}
@@ -174,7 +139,7 @@ const AccountRow = ({ account }: { account: Account }) => {
             />
             {renameAccountIsPending ? (
               <CircularProgress size={20} />
-            ) : editedName && editedName !== account.name ? (
+            ) : editedName !== account.name ? (
               <Tooltip title={<Trans>Submit</Trans>}>
                 <IconButton aria-label={t`Submit`} color="success" type="submit">
                   <SendIcon />
@@ -200,7 +165,7 @@ const AccountRow = ({ account }: { account: Account }) => {
         ) : (
           <Stack direction="row" alignItems="center" spacing={1}>
             <Typography flexGrow={1} onClick={() => setIsEdit(true)} sx={{ cursor: 'pointer' }}>
-              {account.name}
+              {account.name ?? '-'}
             </Typography>
             <Tooltip title={<Trans>Edit</Trans>}>
               <IconButton aria-label={t`Edit`} color="primary" onClick={() => setIsEdit(true)}>
@@ -210,18 +175,21 @@ const AccountRow = ({ account }: { account: Account }) => {
           </Stack>
         )}
       </TableCell>
-      <TableCell>
-        <Checkbox disabled checked={account.is_configured} />
-      </TableCell>
-      <TableCell>{account.resources}</TableCell>
-      <TableCell>{account?.next_scan ? new Date(account.next_scan).toLocaleTimeString() : '-'}</TableCell>
+      <TableCell>{account.is_configured ? <CheckIcon color="success" /> : <DoDistorbIcon color="error" />}</TableCell>
+      <TableCell>{account.resources ?? '-'}</TableCell>
+      <TableCell>{account.next_scan ? new Date(account.next_scan).toLocaleTimeString() : '-'}</TableCell>
       <TableCell>
         {enableAccountIsPending || disableAccountIsPending ? (
           <Stack justifyContent="center" direction="column" padding={1} margin="1px">
             <CircularProgress size={20} />
           </Stack>
         ) : (
-          <Checkbox checked={account.enabled} onChange={handleEnableChange} />
+          <Checkbox
+            name={`enable-account-${account.account_id}`}
+            disabled={!account.is_configured}
+            checked={account.enabled}
+            onChange={handleEnableChange}
+          />
         )}
       </TableCell>
       <TableCell>
@@ -272,87 +240,5 @@ const AccountRow = ({ account }: { account: Account }) => {
         </Typography>
       </Modal>
     </TableRow>
-  )
-}
-
-const AccountsPage = () => {
-  const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(10)
-  const { selectedWorkspace } = useUserProfile()
-  const { data } = useQuery({
-    queryKey: ['workspace-cloud-accounts', selectedWorkspace?.id],
-    queryFn: getWorkspaceCloudAccountsQuery,
-    enabled: !!selectedWorkspace?.id,
-  })
-
-  const handleChangePage = (_: unknown, newPage: number) => {
-    setPage(newPage)
-  }
-
-  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(+event.target.value)
-    setPage(0)
-  }
-
-  return (
-    <TableViewPage
-      pagination={
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          count={data?.length ?? 0}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      }
-    >
-      <Table stickyHeader aria-label={t`Accounts`}>
-        <TableHead>
-          <TableRow>
-            <TableCell>
-              <Trans>Cloud</Trans>
-            </TableCell>
-            <TableCell>
-              <Trans>ID</Trans>
-            </TableCell>
-            <TableCell>
-              <Trans>Name</Trans>
-            </TableCell>
-            <TableCell>
-              <Trans>Configured</Trans>
-            </TableCell>
-            <TableCell>
-              <Trans>Resources</Trans>
-            </TableCell>
-            <TableCell>
-              <Trans>Next scan</Trans>
-            </TableCell>
-            <TableCell>
-              <Trans>Enabled</Trans>
-            </TableCell>
-            <TableCell>
-              <Trans>Actions</Trans>
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data
-            ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((account) => <AccountRow account={account} key={account.id} />)}
-        </TableBody>
-      </Table>
-    </TableViewPage>
-  )
-}
-
-export default function PanelAccountsPage() {
-  return (
-    <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-      <Suspense fallback={<LoadingSuspenseFallback />}>
-        <AccountsPage />
-      </Suspense>
-    </NetworkErrorBoundary>
   )
 }

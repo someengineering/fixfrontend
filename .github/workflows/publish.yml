@@ -12,11 +12,6 @@ jobs:
       - name: Checkout (GitHub)
         uses: actions/checkout@v3
 
-      - name: Create .env file
-        run: |
-          echo "VITE_NETWORK_RETRY_COUNT=5" > .env
-          echo "VITE_WEBSOCKET_RETRY_TIMEOUT=5000" >> .env
-
       - name: Create a production build
         uses: devcontainers/ci@v0.3
         with:

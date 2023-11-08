@@ -3,8 +3,6 @@ import { workspaceCloudAccounts } from './workspaceCloudAccounts'
 
 const howManyBench = 1
 
-const available_checks = howManyBench ? Math.round(Math.pow(Math.random(), 3) * 1000) : 0
-
 const generateAccountSummary = () =>
   workspaceCloudAccounts.reduce(
     (prev, cur) => {
@@ -120,30 +118,34 @@ const failed_checks_by_severity = Object.values(account_summary).reduce(
   },
 )
 
+const benchmarks = summaries.map(() => {
+  const cloud = Math.random() > 0.5 ? 'aws' : 'gcp'
+  const version = Math.round(Math.random() * 300) / 100
+  const name = uniqueNamesGenerator({ dictionaries: [adjectives] })
+  return {
+    id: `${cloud}-${name}-${version.toString().replace('.', '_')}`,
+    title: `${cloud.toUpperCase()} ${name.toUpperCase()} ${version}`,
+    framework: name.toUpperCase(),
+    version: version.toString(),
+    clouds: [cloud],
+    description:
+      'The CIS Amazon Web Services Foundations Benchmark provides prescriptive guidance for configuring security options for a subset of Amazon Web Services with an emphasis on foundational, testable, and architecture agnostic settings.',
+    nr_of_checks: Math.round(Math.random() * 1000),
+    account_summary,
+  }
+})
+
+const available_checks = benchmarks.reduce((prev, cur) => prev + cur.nr_of_checks, 0)
+
 export const workspaceReportSummary = {
   overall_score: accounts.length ? Math.round(accounts.reduce((prev, cur) => prev + cur.score, 0) / accounts.length) : 0,
   check_summary: {
     available_checks,
-    failed_checks: available_checks ? available_checks - Math.round(1000 - Math.pow(Math.random(), 6) * 1000) : 0,
+    failed_checks: available_checks ? available_checks - Math.round(available_checks - Math.random() * available_checks) : 0,
     failed_checks_by_severity,
   },
   accounts,
-  benchmarks: summaries.map(() => {
-    const cloud = Math.random() > 0.5 ? 'aws' : 'gcp'
-    const version = Math.round(Math.random() * 300) / 100
-    const name = uniqueNamesGenerator({ dictionaries: [adjectives] })
-    return {
-      id: `${cloud}-${name}-${version.toString().replace('.', '_')}`,
-      title: `${cloud.toUpperCase()} ${name.toUpperCase()} ${version}`,
-      framework: name.toUpperCase(),
-      version: version.toString(),
-      clouds: [cloud],
-      description:
-        'The CIS Amazon Web Services Foundations Benchmark provides prescriptive guidance for configuring security options for a subset of Amazon Web Services with an emphasis on foundational, testable, and architecture agnostic settings.',
-      nr_of_checks: available_checks,
-      account_summary,
-    }
-  }),
+  benchmarks,
   changed_vulnerable: {
     since: 'P7D',
     accounts_selection: worstAccount.map((i) => i.id),

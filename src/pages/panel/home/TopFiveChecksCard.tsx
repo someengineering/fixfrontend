@@ -4,11 +4,11 @@ import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Button
 import { getMessage } from 'src/shared/defined-messages'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
-import { getColorBySeverity } from './getColor'
+import { getColorBySeverity } from './utils/getColorBySeverity'
 
 export const TopFiveChecksCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryResponse }) => {
   return data ? (
-    <Grid container spacing={2} my={2}>
+    <Grid container spacing={2} my={{ xs: 2, md: 0 }}>
       {data.top_checks.map((topCheck, i) => (
         <Grid item xs={12} key={i} flexDirection="column">
           <Accordion>

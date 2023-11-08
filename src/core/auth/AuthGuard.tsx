@@ -31,13 +31,14 @@ export function AuthGuard({ children }: PropsWithChildren) {
   }, [])
 
   const handleLogout = useCallback(async () => {
+    navigate('/auth/login')
     try {
       await logoutMutation()
     } finally {
       clearAllCookies()
       setAuth(defaultAuth)
     }
-  }, [])
+  }, [navigate])
 
   const handleRefreshWorkspaces = useCallback(async (instance?: AxiosInstance) => {
     try {

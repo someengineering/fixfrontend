@@ -1,8 +1,6 @@
 import { Trans } from '@lingui/macro'
 import { SvgIconComponent } from '@mui/icons-material'
 import DashboardIcon from '@mui/icons-material/Dashboard'
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
-import SettingsIcon from '@mui/icons-material/Settings'
 import { ComponentType, ReactNode } from 'react'
 
 export interface MenuListItem {
@@ -29,17 +27,6 @@ export const menuList: MenuListItem[] = [
     route: '/',
     Icon: DashboardIcon,
   },
-  {
-    name: <Trans>Accounts</Trans>,
-    route: '/accounts',
-    Icon: ManageAccountsIcon,
-  },
 ]
 
-export const bottomMenuList = [
-  {
-    name: <Trans>Account Setup</Trans>,
-    route: '/setup-cloud',
-    Icon: SettingsIcon,
-  },
-]
+export const bottomMenuList = []

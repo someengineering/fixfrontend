@@ -91,6 +91,13 @@ export function Theme({ children }: ThemeProps) {
     palette,
     typography,
     spacing: 8,
+    transitions: {
+      duration: {
+        long: 500,
+        longer: 1000,
+        longest: 2000,
+      },
+    },
     components: {
       MuiCssBaseline: {
         styleOverrides: {

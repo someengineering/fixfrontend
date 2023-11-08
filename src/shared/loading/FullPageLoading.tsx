@@ -1,4 +1,4 @@
-import { alpha, styled } from '@mui/material'
+import { styled } from '@mui/material'
 import { forwardRef, memo, useEffect, useRef } from 'react'
 import { useMatch } from 'react-router-dom'
 import { Transition, TransitionStatus } from 'react-transition-group'
@@ -20,7 +20,6 @@ const FullPageLoadingContainer = styled('div', { shouldForwardProp })<Partial<Fu
   ({ isHalfWidth, transitionState, theme }) => ({
     position: 'fixed',
     display: transitionState !== 'exited' ? 'flex' : 'none',
-    backgroundColor: alpha(theme.palette.primary.main, 0.2),
     alignItems: 'center',
     justifyContent: 'center',
     left: 0,
@@ -29,7 +28,10 @@ const FullPageLoadingContainer = styled('div', { shouldForwardProp })<Partial<Fu
     width: isHalfWidth ? '50%' : '100%',
     opacity: transitionState === 'entering' || transitionState === 'entered' ? 1 : 0,
     textAlign: 'center',
-    transition: 'width 1s ease-in-out 1s, opacity .2s ease-in-out',
+    transition: `${theme.transitions.create('width', { duration: theme.transitions.duration.longer })}, ${theme.transitions.create(
+      'opacity',
+      { duration: theme.transitions.duration.shorter },
+    )}`,
     zIndex: isHalfWidth ? 0 : theme.zIndex.tooltip + 2,
     [theme.breakpoints.down('md')]: {
       width: '100%',
@@ -48,7 +50,7 @@ const VerticalCenteredBox = styled(FullPageLoadingContainer, { shouldForwardProp
         ? 0
         : 1,
     zIndex: isHalfWidth ? 0 : theme.zIndex.tooltip + 1,
-    transition: 'opacity .2s ease-in-out',
+    transition: theme.transitions.create('opacity', { duration: theme.transitions.duration.shorter }),
     overflow: 'hidden',
   }),
 )
@@ -124,7 +126,7 @@ const FullPageLoadingContent = forwardRef<HTMLDivElement, FullPageLoadingContent
           />
         ) : null}
         <FullPageLoadingContainer ref={ref} loadingState={loadingState} transitionState={transitionState} isHalfWidth={isHalfWidth}>
-          <Spinner isDark={loadingState !== LoadingStateType.SHOW_NO_BACKGROUND} isLoading={!isHalfWidth} />
+          <Spinner isLoading={!isHalfWidth} />
         </FullPageLoadingContainer>
       </>
     )
