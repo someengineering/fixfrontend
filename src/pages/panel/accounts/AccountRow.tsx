@@ -1,6 +1,8 @@
 import { Trans, t } from '@lingui/macro'
 import CancelIcon from '@mui/icons-material/Cancel'
+import CheckIcon from '@mui/icons-material/Check'
 import DeleteIcon from '@mui/icons-material/Delete'
+import DoDistorbIcon from '@mui/icons-material/DoDisturb'
 import EditIcon from '@mui/icons-material/Edit'
 import SendIcon from '@mui/icons-material/Send'
 import { LoadingButton } from '@mui/lab'
@@ -8,13 +10,14 @@ import { Button, Checkbox, CircularProgress, IconButton, Stack, TableCell, Table
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
+import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { Modal } from 'src/shared/modal'
 import { Account, GetWorkspaceCloudAccountsResponse } from 'src/shared/types/server'
-import { ReplaceRowByAccount } from './ReplaceRowByAccount'
 import { deleteAccountMutation } from './deleteAccount.mutation'
 import { disableAccountMutation } from './disableAccount.mutation'
 import { enableAccountMutation } from './enableAccount.mutation'
 import { renameAccountMutation } from './renameAccount.mutation'
+import { replaceRowByAccount } from './replaceRowByAccount'
 
 export const AccountRow = ({ account }: { account: Account }) => {
   const inputRef = useRef<HTMLInputElement>()
@@ -61,11 +64,11 @@ export const AccountRow = ({ account }: { account: Account }) => {
   oneHourLater.setHours(oneHourLater.getHours() + 1)
   const handleEditSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (selectedWorkspace?.id && editedName) {
+    if (selectedWorkspace?.id) {
       renameAccount(
-        { name: editedName, workspaceId: selectedWorkspace.id, id: account.id },
+        { name: editedName || null, workspaceId: selectedWorkspace.id, id: account.id },
         {
-          onSuccess: ReplaceRowByAccount(queryClient, selectedWorkspace?.id),
+          onSuccess: replaceRowByAccount(queryClient, selectedWorkspace?.id),
           onSettled: () => setIsEdit(false),
         },
       )
@@ -76,7 +79,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
       return (checked ? enableAccount : disableAccount)(
         { workspaceId: selectedWorkspace.id, id: account.id },
         {
-          onSuccess: ReplaceRowByAccount(queryClient, selectedWorkspace?.id),
+          onSuccess: replaceRowByAccount(queryClient, selectedWorkspace?.id),
         },
       )
     }
@@ -108,11 +111,20 @@ export const AccountRow = ({ account }: { account: Account }) => {
   }
   return (
     <TableRow>
-      <TableCell>{account.cloud.toUpperCase()}</TableCell>
+      <TableCell>
+        <CloudAvatar cloud={account.cloud} />
+      </TableCell>
       <TableCell>{account.account_id}</TableCell>
       <TableCell>
         {isEdit ? (
-          <Stack component="form" onSubmit={handleEditSubmit} direction="row" alignItems="center" spacing={1}>
+          <Stack
+            component="form"
+            name={`rename-for-${account.account_id}`}
+            onSubmit={handleEditSubmit}
+            direction="row"
+            alignItems="center"
+            spacing={1}
+          >
             <TextField
               sx={{ flexGrow: 1 }}
               defaultValue={account.name}
@@ -127,7 +139,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
             />
             {renameAccountIsPending ? (
               <CircularProgress size={20} />
-            ) : editedName && editedName !== account.name ? (
+            ) : editedName !== account.name ? (
               <Tooltip title={<Trans>Submit</Trans>}>
                 <IconButton aria-label={t`Submit`} color="success" type="submit">
                   <SendIcon />
@@ -153,7 +165,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
         ) : (
           <Stack direction="row" alignItems="center" spacing={1}>
             <Typography flexGrow={1} onClick={() => setIsEdit(true)} sx={{ cursor: 'pointer' }}>
-              {account.name}
+              {account.name ?? '-'}
             </Typography>
             <Tooltip title={<Trans>Edit</Trans>}>
               <IconButton aria-label={t`Edit`} color="primary" onClick={() => setIsEdit(true)}>
@@ -163,18 +175,21 @@ export const AccountRow = ({ account }: { account: Account }) => {
           </Stack>
         )}
       </TableCell>
-      <TableCell>
-        <Checkbox disabled checked={account.is_configured} />
-      </TableCell>
-      <TableCell>{account.resources}</TableCell>
-      <TableCell>{account?.next_scan ? new Date(account.next_scan).toLocaleTimeString() : '-'}</TableCell>
+      <TableCell>{account.is_configured ? <CheckIcon color="success" /> : <DoDistorbIcon color="error" />}</TableCell>
+      <TableCell>{account.resources ?? '-'}</TableCell>
+      <TableCell>{account.next_scan ? new Date(account.next_scan).toLocaleTimeString() : '-'}</TableCell>
       <TableCell>
         {enableAccountIsPending || disableAccountIsPending ? (
           <Stack justifyContent="center" direction="column" padding={1} margin="1px">
             <CircularProgress size={20} />
           </Stack>
         ) : (
-          <Checkbox checked={account.enabled} onChange={handleEnableChange} />
+          <Checkbox
+            name={`enable-account-${account.account_id}`}
+            disabled={!account.is_configured}
+            checked={account.enabled}
+            onChange={handleEnableChange}
+          />
         )}
       </TableCell>
       <TableCell>
