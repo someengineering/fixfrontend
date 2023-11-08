@@ -71,7 +71,7 @@ module.exports = {
         paths: [
           {
             name: '.',
-            message: 'Why?! :| don\'t do this',
+            message: 'No import should be getting from \'.\' (index.ts). This makes so sense, the import should point to the file in the same folder EG. \'./Component\'',
           },
         ],
       },
