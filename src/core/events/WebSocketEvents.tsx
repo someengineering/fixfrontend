@@ -8,7 +8,7 @@ const WS_CLOSE_CODE_NO_RETRY = 4001
 
 export const WebSocketEvents = ({ children }: PropsWithChildren) => {
   const { selectedWorkspace, isAuthenticated } = useUserProfile()
-  const listeners = useRef<{ [key in string]: (ev: MessageEvent) => void }>({})
+  const listeners = useRef<Record<string, (ev: MessageEvent) => void>>({})
   const messagesToSend = useRef<{ message: string; resolve: (value: string) => void; reject: (err: unknown) => void }[]>([])
   const websocket = useRef<WebSocket>()
 
@@ -62,7 +62,9 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
     if (isAuthenticated && selectedWorkspace?.id) {
       const onClose = (ev: CloseEvent) => {
         if (ev.code !== WS_CLOSE_CODE_NO_RETRY) {
-          setTimeout(createWebSocket, env.webSocketRetryTimeout)
+          if (isAuthenticated && selectedWorkspace?.id) {
+            window.setTimeout(createWebSocket, env.webSocketRetryTimeout)
+          }
         }
       }
       const onOpen = () => {
@@ -77,7 +79,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
         messagesToSend.current = []
       }
       const createWebSocket = () => {
-        websocket.current = new window.WebSocket(`${env.wsUrl}/${endPoints.workspaces.events(selectedWorkspace.id)}`)
+        websocket.current = new window.WebSocket(`${env.wsUrl}/${endPoints.workspaces.workspace(selectedWorkspace.id).events}`)
         websocket.current.addEventListener('close', onClose)
         websocket.current.addEventListener('open', onOpen)
         for (const key in listeners.current) {

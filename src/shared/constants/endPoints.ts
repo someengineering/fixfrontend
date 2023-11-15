@@ -11,26 +11,38 @@ export const endPoints = {
     verify: 'api/auth/verify',
     oauthProviders: 'api/auth/oauth-providers',
   },
-  users: {
-    me: 'api/users/me',
-  },
   workspaces: {
     self: 'api/workspaces/',
-    cfUrl: (workspaceId: string) => `api/workspaces/${workspaceId}/cf_url`,
-    cfTemplate: (workspaceId: string) => `api/workspaces/${workspaceId}/cf_template`,
-    externalId: (workspaceId: string) => `api/workspaces/${workspaceId}/external_id`,
-    inventory: {
-      reportSummary: (workspaceId: string) => `api/workspaces/${workspaceId}/inventory/report-summary`,
-    },
-    events: (workspaceId: string) => `api/workspaces/${workspaceId}/events`,
-    cloudAccount: {
-      self: (workspaceId: string, cloudAccountId: string) => `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}`,
-      enable: (workspaceId: string, cloudAccountId: string) => `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}/enable`,
-      disable: (workspaceId: string, cloudAccountId: string) => `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}/disable`,
-      list: {
-        get: (workspaceId: string) => `api/workspaces/${workspaceId}/cloud_accounts`,
-        lastScan: (workspaceId: string) => `api/workspaces/${workspaceId}/cloud_accounts/lastScan`,
+    workspace: (workspaceId: string) => ({
+      self: `api/workspaces/${workspaceId}`,
+      cfUrl: `api/workspaces/${workspaceId}/cf_url`,
+      cfTemplate: `api/workspaces/${workspaceId}/cf_template`,
+      externalId: `api/workspaces/${workspaceId}/external_id`,
+      cloudAccounts: {
+        cloudAccount: (cloudAccountId: string) => ({
+          self: `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}`,
+          enable: `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}/enable`,
+          disable: `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}/disable`,
+        }),
+        self: `api/workspaces/${workspaceId}/cloud_accounts`,
+        lastScan: `api/workspaces/${workspaceId}/cloud_accounts/lastScan`,
       },
-    },
+      inventory: {
+        reportSummary: `api/workspaces/${workspaceId}/inventory/report-summary`,
+        search: {
+          start: `/api/workspaces/${workspaceId}/inventory/search/start`,
+          table: `/api/workspaces/${workspaceId}/inventory/search/table`,
+        },
+        model: `/api/workspaces/${workspaceId}/inventory/model`,
+        property: {
+          attributes: `/api/workspaces/${workspaceId}/inventory/property/attributes`,
+          values: `/api/workspaces/${workspaceId}/inventory/property/values`,
+        },
+      },
+      events: `api/workspaces/${workspaceId}/events`,
+    }),
+  },
+  users: {
+    me: 'api/users/me',
   },
 }

@@ -1,4 +1,4 @@
-import { Alert, AlertProps, Box, Typography } from '@mui/material'
+import { Alert, AlertProps, Box, Typography, alertClasses } from '@mui/material'
 import { WebSocketEvent } from 'src/shared/types/server'
 import { EventCollectProgressItem } from './EventCollectProgressItem'
 
@@ -76,7 +76,7 @@ const renderData = (data: WebSocketEvent) => {
 export const EventItem = ({ data }: EventItemProps) => {
   return (
     <Box width="100%" p={1}>
-      <Alert variant="outlined" severity={getSeverity(data.kind)} sx={{ '.MuiAlert-message': { flexGrow: 1 } }}>
+      <Alert variant="outlined" severity={getSeverity(data.kind)} sx={{ [`.${alertClasses.message}`]: { flexGrow: 1 } }}>
         <Box display="flex" flexDirection="column" my={1} width="100%" flexGrow={1}>
           <Box display="flex" justifyContent="space-between" pb={2}>
             <Typography variant="caption" pr={2}>

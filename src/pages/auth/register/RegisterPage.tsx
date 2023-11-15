@@ -83,6 +83,8 @@ export default function RegisterPage() {
           <TextField
             required
             id="email"
+            name="email"
+            autoComplete="email"
             label={t`Email`}
             variant="outlined"
             fullWidth
@@ -95,6 +97,8 @@ export default function RegisterPage() {
           <TextField
             required
             id="password"
+            name="password"
+            autoComplete="new-password"
             label={t`Password`}
             variant="outlined"
             fullWidth

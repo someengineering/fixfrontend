@@ -1,23 +1,20 @@
 import { Trans } from '@lingui/macro'
 import { Box, Divider, Grid, Stack, Theme, Typography, useMediaQuery } from '@mui/material'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { useUserProfile } from 'src/core/auth'
-import { getWorkspaceReportSummaryQuery } from 'src/pages/panel/shared-queries'
+import { getWorkspaceInventoryReportSummaryQuery } from 'src/pages/panel/shared/queries'
+import { PieCard, chartToShow, checkDiff } from 'src/pages/panel/shared/utils'
 import { CircularScore } from 'src/shared/circular-score'
 import { colorFromRedToGreen } from 'src/shared/constants'
 import { OverallCard } from './OverallCard'
 import { TopFiveChecksCard } from './TopFiveChecksCard'
-import { checkDiff } from './utils'
-import { PieCard } from './utils/PieCard'
-import { chartToShow } from './utils/chartToShow'
 
 export const Overview = () => {
   const { selectedWorkspace } = useUserProfile()
   const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
-  const { data } = useQuery({
-    queryKey: ['workspace-report-summary', selectedWorkspace?.id],
-    queryFn: getWorkspaceReportSummaryQuery,
-    enabled: !!selectedWorkspace?.id,
+  const { data } = useSuspenseQuery({
+    queryKey: ['workspace-inventory-report-summary', selectedWorkspace?.id],
+    queryFn: getWorkspaceInventoryReportSummaryQuery,
   })
   const difference = data ? checkDiff(data) : 0
   const hasDifference = Boolean(difference && !Number.isNaN(difference))

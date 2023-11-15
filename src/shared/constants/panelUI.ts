@@ -7,4 +7,7 @@ export const panelUI = {
   tablePaginationHeight: 52,
   maxPageModalWidth: 1440,
   snackbarAutoHideDuration: 3000,
+  inputChangeDebounce: 1000,
+  tableViewMinHeight: 500,
+  inventoryTableCellMinWidth: 200,
 }

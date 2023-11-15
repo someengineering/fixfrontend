@@ -5,12 +5,12 @@ import AssessmentIcon from '@mui/icons-material/Assessment'
 import ErrorIcon from '@mui/icons-material/Error'
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon'
 import { Button, Divider, Grid, Stack, SvgIcon, Typography } from '@mui/material'
+import { showSubtitle } from 'src/pages/panel/shared/utils'
 import { CircularScore } from 'src/shared/circular-score'
 import { colorFromRedToGreen } from 'src/shared/constants'
 import { OverviewCard } from 'src/shared/overview-card'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { iso8601DurationToString, parseISO8601Duration } from 'src/shared/utils/parseISO8601Duration'
-import { showSubtitle } from './utils'
 
 interface OverallCardProps {
   data?: GetWorkspaceInventoryReportSummaryResponse

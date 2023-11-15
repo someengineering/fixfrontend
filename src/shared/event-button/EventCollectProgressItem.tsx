@@ -38,7 +38,7 @@ const ShowTreeView = ({ current, name, path, total, detail }: FormattedProgressE
 
 export const EventCollectProgressItem = ({ data }: EventCollectProgressItemProps) => {
   const formattedProgress = formatProgressEventParts(data.data.message.parts, data.data.message.name)
-  formattedProgress.name += ` (${data.data.task})`
+  // formattedProgress.name += ` (${data.data.task})`
 
   return (
     <TreeView defaultCollapseIcon={<ExpandMoreIcon />} defaultExpandIcon={<ChevronRightIcon />}>

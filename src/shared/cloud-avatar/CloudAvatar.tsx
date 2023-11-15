@@ -8,7 +8,7 @@ const CloudIcon = ({ cloud }: { cloud: string }) => {
     case 'gcp':
       return <GcpLogo width={40} height={40} />
     default:
-      return <Avatar sx={{ bgcolor: 'primary.main' }}>{cloud}</Avatar>
+      return <Avatar sx={{ bgcolor: 'primary.main' }}>{cloud.substring(0, 2).toUpperCase()}</Avatar>
   }
 }
 

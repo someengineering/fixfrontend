@@ -15,7 +15,6 @@ import { getLocale, setLocale } from './localstorage'
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      suspense: true,
       throwOnError: true,
       retry: (failureCount, error) => {
         if ((((error as AxiosError)?.response?.status || (error as AxiosError)?.status) ?? 500) / 100 < 5) {
@@ -47,9 +46,9 @@ export const InnerI18nProvider = ({ children }: PropsWithChildren) => {
 
 export const Providers = ({ children }: PropsWithChildren) => {
   return (
-    <Theme>
-      <I18nProvider i18n={i18n}>
-        <InnerI18nProvider>
+    <I18nProvider i18n={i18n}>
+      <InnerI18nProvider>
+        <Theme>
           <SnackbarProvider>
             <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
               <QueryClientProvider client={queryClient}>
@@ -61,8 +60,8 @@ export const Providers = ({ children }: PropsWithChildren) => {
               </QueryClientProvider>
             </NetworkErrorBoundary>
           </SnackbarProvider>
-        </InnerI18nProvider>
-      </I18nProvider>
-    </Theme>
+        </Theme>
+      </InnerI18nProvider>
+    </I18nProvider>
   )
 }

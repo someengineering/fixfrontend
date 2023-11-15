@@ -14,7 +14,7 @@ interface StackbarChartProps {
   maxData?: number
   minWidth?: number
   minHeight?: number
-  colors?: { [key in string | number]: string }
+  colors?: Record<string | number, string>
 }
 
 export function StackbarChart({ data, colors }: StackbarChartProps) {
@@ -25,15 +25,10 @@ export function StackbarChart({ data, colors }: StackbarChartProps) {
         ...prev1,
         [cur1.title]: {
           ...prev1[cur1.title],
-          ...cur1.data.reduce(
-            (prev2, cur2) => ({ ...prev2, [cur2.name]: cur2.value }),
-            {} as {
-              [key in string]: number
-            },
-          ),
+          ...cur1.data.reduce((prev2, cur2) => ({ ...prev2, [cur2.name]: cur2.value }), {} as Record<string, number>),
         },
       }),
-      {} as { [key in string]: { [key in string]: number } },
+      {} as Record<string, Record<string, number>>,
     )
     return {
       rawData,
