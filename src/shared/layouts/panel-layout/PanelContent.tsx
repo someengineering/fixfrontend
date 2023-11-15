@@ -9,7 +9,7 @@ interface PanelContent extends PropsWithChildren {
 
 export const PanelContent = ({ children, bottom }: PanelContent) => {
   return (
-    <Box maxWidth="100%" display="flex" flexDirection="column" flexGrow={1}>
+    <Box width="100%" display="flex" flexDirection="column" flexGrow={1} overflow="hidden">
       <Box p={3} mb={2} mt={panelUI.headerHeight + 'px'} component="main" display="flex" flexDirection="column" flexGrow={1}>
         {children}
       </Box>

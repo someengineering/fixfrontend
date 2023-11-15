@@ -1,0 +1,1299 @@
+{
+  "accounts": [
+    {
+      "id": "kudobuilder",
+      "name": "kudobuilder",
+      "cloud": "gcp"
+    },
+    {
+      "id": "110465657741",
+      "name": "general-sales-se",
+      "cloud": "aws"
+    },
+    {
+      "id": "001528229927",
+      "name": "eng-ci-konvoy",
+      "cloud": "aws"
+    },
+    {
+      "id": "487579172032",
+      "name": "eng-devprod",
+      "cloud": "aws"
+    },
+    {
+      "id": "688023202711",
+      "name": "eng-mesosphere-osc",
+      "cloud": "aws"
+    },
+    {
+      "id": "507444785254",
+      "name": "eng-ksphere-lhub",
+      "cloud": "aws"
+    },
+    {
+      "id": "572115487488",
+      "name": "mesosphere-protoss-scaletesting",
+      "cloud": "aws"
+    },
+    {
+      "id": "633059600857",
+      "name": "general-root",
+      "cloud": "aws"
+    },
+    {
+      "id": "cto-office",
+      "name": "cto-office",
+      "cloud": "gcp"
+    },
+    {
+      "id": "966122790603",
+      "name": "eng-mesosphere-qualification",
+      "cloud": "aws"
+    },
+    {
+      "id": "977260619897",
+      "name": "eng-devprod-production",
+      "cloud": "aws"
+    },
+    {
+      "id": "eng-ksphere-platform",
+      "name": "eng-ksphere-platform",
+      "cloud": "gcp"
+    },
+    {
+      "id": "041488270399",
+      "name": "eng-mesosphere-marathon",
+      "cloud": "aws"
+    },
+    {
+      "id": "konvoy-gcp-se",
+      "name": "konvoy-gcp-se",
+      "cloud": "gcp"
+    },
+    {
+      "id": "666563790427",
+      "name": "eng-lhub-airf",
+      "cloud": "aws"
+    },
+    {
+      "id": "032597967871",
+      "name": "eng-mesosphere-dcos",
+      "cloud": "aws"
+    },
+    {
+      "id": "963533219375",
+      "name": "mesosphere-team06",
+      "cloud": "aws"
+    },
+    {
+      "id": "mesosphere-support",
+      "name": "mesosphere-support",
+      "cloud": "gcp"
+    },
+    {
+      "id": "159577368695",
+      "name": "eng-scaletesting",
+      "cloud": "aws"
+    },
+    {
+      "id": "222638339470",
+      "name": "general-services",
+      "cloud": "aws"
+    },
+    {
+      "id": "826065706934",
+      "name": "eng-audit",
+      "cloud": "aws"
+    },
+    {
+      "id": "maestro-229419",
+      "name": "maestro-229419",
+      "cloud": "gcp"
+    },
+    {
+      "id": "068564737731",
+      "name": "eng-playground-alpha",
+      "cloud": "aws"
+    },
+    {
+      "id": "850970822230",
+      "name": "eng-mesosphere-terraform",
+      "cloud": "aws"
+    },
+    {
+      "id": "pumpkin-246815",
+      "name": "pumpkin-246815",
+      "cloud": "gcp"
+    },
+    {
+      "id": "579763146468",
+      "name": "general-marketing",
+      "cloud": "aws"
+    },
+    {
+      "id": "355186487480",
+      "name": "eng-ksphere-lab",
+      "cloud": "aws"
+    },
+    {
+      "id": "999867407951",
+      "name": "eng-ksphere-platform",
+      "cloud": "aws"
+    },
+    {
+      "id": "braided-flow-431",
+      "name": "braided-flow-431",
+      "cloud": "gcp"
+    },
+    {
+      "id": "terraform-clusters",
+      "name": "terraform-clusters",
+      "cloud": "gcp"
+    },
+    {
+      "id": "eng-mesosphere-dcos",
+      "name": "eng-mesosphere-dcos",
+      "cloud": "gcp"
+    },
+    {
+      "id": "897035003914",
+      "name": "eng-ksphere-insights",
+      "cloud": "aws"
+    },
+    {
+      "id": "586712400841",
+      "name": "eng-mesosphere-ci",
+      "cloud": "aws"
+    },
+    {
+      "id": "893936129782",
+      "name": "sales-se-demo",
+      "cloud": "aws"
+    },
+    {
+      "id": "Example Account",
+      "name": "Example Account",
+      "cloud": "example"
+    },
+    {
+      "id": "mesosphere-segment",
+      "name": "mesosphere-segment",
+      "cloud": "gcp"
+    },
+    {
+      "id": "119548413362",
+      "name": "eng-ksphere-devx",
+      "cloud": "aws"
+    },
+    {
+      "id": "540164828399",
+      "name": "eng-mesosphere-testmatrix",
+      "cloud": "aws"
+    },
+    {
+      "id": "massive-bliss-781",
+      "name": "massive-bliss-781",
+      "cloud": "gcp"
+    },
+    {
+      "id": "628219675373",
+      "name": "eng-mesosphere-storage",
+      "cloud": "aws"
+    },
+    {
+      "id": "781475754360",
+      "name": "eng-ksphere-soak",
+      "cloud": "aws"
+    },
+    {
+      "id": "273854932432",
+      "name": "mesosphere-dev",
+      "cloud": "aws"
+    },
+    {
+      "id": "913957337679",
+      "name": "eng-mesosphere-ds",
+      "cloud": "aws"
+    },
+    {
+      "id": "eng-ksphere-platform-e2e",
+      "name": "eng-ksphere-platform-e2e",
+      "cloud": "gcp"
+    },
+    {
+      "id": "469115496741",
+      "name": "mesosphere-cops",
+      "cloud": "aws"
+    },
+    {
+      "id": "711585860468",
+      "name": "eng-ksphere-kommander",
+      "cloud": "aws"
+    },
+    {
+      "id": "337834004759",
+      "name": "general-support",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp-dcos-launch-178319",
+      "name": "gcp-dcos-launch-178319",
+      "cloud": "gcp"
+    },
+    {
+      "id": "575584959047",
+      "name": "eng-sre",
+      "cloud": "aws"
+    },
+    {
+      "id": "359820441116",
+      "name": "eng-lhub-ci",
+      "cloud": "aws"
+    },
+    {
+      "id": "822269771029",
+      "name": "mesosphere-team09",
+      "cloud": "aws"
+    },
+    {
+      "id": "sre-tests",
+      "name": "sre-tests",
+      "cloud": "gcp"
+    },
+    {
+      "id": "mesoscon-demo",
+      "name": "mesoscon-demo",
+      "cloud": "gcp"
+    },
+    {
+      "id": "752466027617",
+      "name": "someengineering-sandbox",
+      "cloud": "aws"
+    },
+    {
+      "id": "eng-ksphere-platform-e2e-night",
+      "name": "eng-ksphere-platform-e2e-night",
+      "cloud": "gcp"
+    },
+    {
+      "id": "327650738955",
+      "name": "eng-ksphere-kudo",
+      "cloud": "aws"
+    },
+    {
+      "id": "427504306423",
+      "name": "mesosphere-team05",
+      "cloud": "aws"
+    },
+    {
+      "id": "149356006029",
+      "name": "eng-secure-upload",
+      "cloud": "aws"
+    },
+    {
+      "id": "139475575661",
+      "name": "eng-production",
+      "cloud": "aws"
+    },
+    {
+      "id": "280927420991",
+      "name": "eng-mesosphere-soak",
+      "cloud": "aws"
+    },
+    {
+      "id": "398053451782",
+      "name": "sales-lead-gen",
+      "cloud": "aws"
+    },
+    {
+      "id": "564794917605",
+      "name": "general-cto",
+      "cloud": "aws"
+    }
+  ],
+  "regions": [
+    {
+      "id": "us-east",
+      "name": "US East",
+      "cloud": "example"
+    },
+    {
+      "id": "us-west",
+      "name": "US West",
+      "cloud": "example"
+    },
+    {
+      "id": "asia-southeast1",
+      "name": "asia-southeast1",
+      "cloud": "gcp"
+    },
+    {
+      "id": "us-east5",
+      "name": "us-east5",
+      "cloud": "gcp"
+    },
+    {
+      "id": "us-south1",
+      "name": "us-south1",
+      "cloud": "gcp"
+    },
+    {
+      "id": "global",
+      "name": "global",
+      "cloud": "gcp"
+    },
+    {
+      "id": "northamerica-northeast1",
+      "name": "northamerica-northeast1",
+      "cloud": "gcp"
+    },
+    {
+      "id": "europe-west1",
+      "name": "europe-west1",
+      "cloud": "gcp"
+    },
+    {
+      "id": "me-central1",
+      "name": "me-central1",
+      "cloud": "gcp"
+    },
+    {
+      "id": "asia-northeast2",
+      "name": "asia-northeast2",
+      "cloud": "gcp"
+    },
+    {
+      "id": "us-central1",
+      "name": "us-central1",
+      "cloud": "gcp"
+    },
+    {
+      "id": "europe-west4",
+      "name": "europe-west4",
+      "cloud": "gcp"
+    },
+    {
+      "id": "europe-north1",
+      "name": "europe-north1",
+      "cloud": "gcp"
+    },
+    {
+      "id": "asia-south1",
+      "name": "asia-south1",
+      "cloud": "gcp"
+    },
+    {
+      "id": "me-west1",
+      "name": "me-west1",
+      "cloud": "gcp"
+    },
+    {
+      "id": "asia-southeast2",
+      "name": "asia-southeast2",
+      "cloud": "gcp"
+    },
+    {
+      "id": "southamerica-west1",
+      "name": "southamerica-west1",
+      "cloud": "gcp"
+    },
+    {
+      "id": "europe-west8",
+      "name": "europe-west8",
+      "cloud": "gcp"
+    },
+    {
+      "id": "us-west3",
+      "name": "us-west3",
+      "cloud": "gcp"
+    },
+    {
+      "id": "europe-west3",
+      "name": "europe-west3",
+      "cloud": "gcp"
+    },
+    {
+      "id": "us-west1",
+      "name": "us-west1",
+      "cloud": "gcp"
+    },
+    {
+      "id": "europe-west9",
+      "name": "europe-west9",
+      "cloud": "gcp"
+    },
+    {
+      "id": "europe-central2",
+      "name": "europe-central2",
+      "cloud": "gcp"
+    },
+    {
+      "id": "europe-west6",
+      "name": "europe-west6",
+      "cloud": "gcp"
+    },
+    {
+      "id": "australia-southeast1",
+      "name": "australia-southeast1",
+      "cloud": "gcp"
+    },
+    {
+      "id": "us-east4",
+      "name": "us-east4",
+      "cloud": "gcp"
+    },
+    {
+      "id": "southamerica-east1",
+      "name": "southamerica-east1",
+      "cloud": "gcp"
+    },
+    {
+      "id": "us-west2",
+      "name": "us-west2",
+      "cloud": "gcp"
+    },
+    {
+      "id": "europe-west12",
+      "name": "europe-west12",
+      "cloud": "gcp"
+    },
+    {
+      "id": "europe-west2",
+      "name": "europe-west2",
+      "cloud": "gcp"
+    },
+    {
+      "id": "asia-east2",
+      "name": "asia-east2",
+      "cloud": "gcp"
+    },
+    {
+      "id": "australia-southeast2",
+      "name": "australia-southeast2",
+      "cloud": "gcp"
+    },
+    {
+      "id": "europe-southwest1",
+      "name": "europe-southwest1",
+      "cloud": "gcp"
+    },
+    {
+      "id": "us-east1",
+      "name": "us-east1",
+      "cloud": "gcp"
+    },
+    {
+      "id": "asia-south2",
+      "name": "asia-south2",
+      "cloud": "gcp"
+    },
+    {
+      "id": "asia-northeast3",
+      "name": "asia-northeast3",
+      "cloud": "gcp"
+    },
+    {
+      "id": "northamerica-northeast2",
+      "name": "northamerica-northeast2",
+      "cloud": "gcp"
+    },
+    {
+      "id": "asia-northeast1",
+      "name": "asia-northeast1",
+      "cloud": "gcp"
+    },
+    {
+      "id": "asia-east1",
+      "name": "asia-east1",
+      "cloud": "gcp"
+    },
+    {
+      "id": "us-west4",
+      "name": "us-west4",
+      "cloud": "gcp"
+    },
+    {
+      "id": "sa-east-1",
+      "name": "sa-east-1",
+      "cloud": "aws"
+    },
+    {
+      "id": "ap-northeast-2",
+      "name": "ap-northeast-2",
+      "cloud": "aws"
+    },
+    {
+      "id": "eu-north-1",
+      "name": "eu-north-1",
+      "cloud": "aws"
+    },
+    {
+      "id": "ca-central-1",
+      "name": "ca-central-1",
+      "cloud": "aws"
+    },
+    {
+      "id": "ap-northeast-1",
+      "name": "ap-northeast-1",
+      "cloud": "aws"
+    },
+    {
+      "id": "us-east-1",
+      "name": "us-east-1",
+      "cloud": "aws"
+    },
+    {
+      "id": "eu-west-1",
+      "name": "eu-west-1",
+      "cloud": "aws"
+    },
+    {
+      "id": "ap-northeast-3",
+      "name": "ap-northeast-3",
+      "cloud": "aws"
+    },
+    {
+      "id": "us-east-1",
+      "name": "global",
+      "cloud": "aws"
+    },
+    {
+      "id": "eu-west-3",
+      "name": "eu-west-3",
+      "cloud": "aws"
+    },
+    {
+      "id": "us-west-2",
+      "name": "us-west-2",
+      "cloud": "aws"
+    },
+    {
+      "id": "ap-southeast-2",
+      "name": "ap-southeast-2",
+      "cloud": "aws"
+    },
+    {
+      "id": "ap-south-1",
+      "name": "ap-south-1",
+      "cloud": "aws"
+    },
+    {
+      "id": "eu-central-1",
+      "name": "eu-central-1",
+      "cloud": "aws"
+    },
+    {
+      "id": "eu-west-2",
+      "name": "eu-west-2",
+      "cloud": "aws"
+    },
+    {
+      "id": "us-east-2",
+      "name": "us-east-2",
+      "cloud": "aws"
+    },
+    {
+      "id": "ap-southeast-1",
+      "name": "ap-southeast-1",
+      "cloud": "aws"
+    },
+    {
+      "id": "us-west-1",
+      "name": "us-west-1",
+      "cloud": "aws"
+    }
+  ],
+  "kinds": [
+    {
+      "id": "aws_efs_access_point",
+      "name": "aws_efs_access_point",
+      "cloud": "aws"
+    },
+    {
+      "id": "example_account",
+      "name": "example_account",
+      "cloud": "example"
+    },
+    {
+      "id": "gcp_resource_policy",
+      "name": "gcp_resource_policy",
+      "cloud": "gcp"
+    },
+    {
+      "id": "gcp_vpn_tunnel",
+      "name": "gcp_vpn_tunnel",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_redshift_cluster",
+      "name": "aws_redshift_cluster",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_sql_database_instance",
+      "name": "gcp_sql_database_instance",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_sagemaker_auto_ml_job",
+      "name": "aws_sagemaker_auto_ml_job",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_sagemaker_hyper_parameter_tuning_job",
+      "name": "aws_sagemaker_hyper_parameter_tuning_job",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_sagemaker_image",
+      "name": "aws_sagemaker_image",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_target_vpn_gateway",
+      "name": "gcp_target_vpn_gateway",
+      "cloud": "gcp"
+    },
+    {
+      "id": "gcp_https_health_check",
+      "name": "gcp_https_health_check",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_sagemaker_experiment",
+      "name": "aws_sagemaker_experiment",
+      "cloud": "aws"
+    },
+    {
+      "id": "example_custom_resource",
+      "name": "example_custom_resource",
+      "cloud": "example"
+    },
+    {
+      "id": "gcp_network_endpoint_group",
+      "name": "gcp_network_endpoint_group",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_config_recorder",
+      "name": "aws_config_recorder",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_license",
+      "name": "gcp_license",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_ec2_flow_log",
+      "name": "aws_ec2_flow_log",
+      "cloud": "aws"
+    },
+    {
+      "id": "example_instance",
+      "name": "example_instance",
+      "cloud": "example"
+    },
+    {
+      "id": "aws_api_gateway_authorizer",
+      "name": "aws_api_gateway_authorizer",
+      "cloud": "aws"
+    },
+    {
+      "id": "example_region",
+      "name": "example_region",
+      "cloud": "example"
+    },
+    {
+      "id": "example_network",
+      "name": "example_network",
+      "cloud": "example"
+    },
+    {
+      "id": "aws_ecs_service",
+      "name": "aws_ecs_service",
+      "cloud": "aws"
+    },
+    {
+      "id": "example_volume",
+      "name": "example_volume",
+      "cloud": "example"
+    },
+    {
+      "id": "aws_cloudwatch_metric_filter",
+      "name": "aws_cloudwatch_metric_filter",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_sagemaker_processing_job",
+      "name": "aws_sagemaker_processing_job",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_sagemaker_domain",
+      "name": "aws_sagemaker_domain",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_beanstalk_environment",
+      "name": "aws_beanstalk_environment",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_sagemaker_user_profile",
+      "name": "aws_sagemaker_user_profile",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_sql_user",
+      "name": "gcp_sql_user",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_eks_nodegroup",
+      "name": "aws_eks_nodegroup",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_api_gateway_domain_name",
+      "name": "aws_api_gateway_domain_name",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_ssl_certificate",
+      "name": "gcp_ssl_certificate",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_alb",
+      "name": "aws_alb",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_cognito_user_pool",
+      "name": "aws_cognito_user_pool",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_sagemaker_notebook",
+      "name": "aws_sagemaker_notebook",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_sql_database",
+      "name": "gcp_sql_database",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_cognito_group",
+      "name": "aws_cognito_group",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_container_cluster",
+      "name": "gcp_container_cluster",
+      "cloud": "gcp"
+    },
+    {
+      "id": "gcp_instance_group_manager",
+      "name": "gcp_instance_group_manager",
+      "cloud": "gcp"
+    },
+    {
+      "id": "gcp_instance_template",
+      "name": "gcp_instance_template",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_beanstalk_application",
+      "name": "aws_beanstalk_application",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_sqs_queue",
+      "name": "aws_sqs_queue",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_ecs_task_definition",
+      "name": "aws_ecs_task_definition",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_sql_backup_run",
+      "name": "gcp_sql_backup_run",
+      "cloud": "gcp"
+    },
+    {
+      "id": "gcp_router",
+      "name": "gcp_router",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_ecs_cluster",
+      "name": "aws_ecs_cluster",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_sagemaker_transform_job",
+      "name": "aws_sagemaker_transform_job",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_sagemaker_model",
+      "name": "aws_sagemaker_model",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_machine_type",
+      "name": "gcp_machine_type",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_rds_cluster",
+      "name": "aws_rds_cluster",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_vpc_peering_connection",
+      "name": "aws_vpc_peering_connection",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_eks_cluster",
+      "name": "aws_eks_cluster",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_efs_file_system",
+      "name": "aws_efs_file_system",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_rds_instance",
+      "name": "aws_rds_instance",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_disk_type",
+      "name": "gcp_disk_type",
+      "cloud": "gcp"
+    },
+    {
+      "id": "gcp_project",
+      "name": "gcp_project",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_autoscaling_group",
+      "name": "aws_autoscaling_group",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_container_operation",
+      "name": "gcp_container_operation",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_api_gateway_stage",
+      "name": "aws_api_gateway_stage",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_api_gateway_rest_api",
+      "name": "aws_api_gateway_rest_api",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_ec2_reserved_instances",
+      "name": "aws_ec2_reserved_instances",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_efs_mount_target",
+      "name": "aws_efs_mount_target",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_sns_subscription",
+      "name": "aws_sns_subscription",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_instance",
+      "name": "gcp_instance",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_dynamo_db_table",
+      "name": "aws_dynamo_db_table",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_ec2_volume_type",
+      "name": "aws_ec2_volume_type",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_snapshot",
+      "name": "gcp_snapshot",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_cloudfront_distribution",
+      "name": "aws_cloudfront_distribution",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_cognito_user",
+      "name": "aws_cognito_user",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_root_user",
+      "name": "aws_root_user",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_account",
+      "name": "aws_account",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_s3_account_settings",
+      "name": "aws_s3_account_settings",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_sns_topic",
+      "name": "aws_sns_topic",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_iam_group",
+      "name": "aws_iam_group",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_cloud_trail",
+      "name": "aws_cloud_trail",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_api_gateway_resource",
+      "name": "aws_api_gateway_resource",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_address",
+      "name": "gcp_address",
+      "cloud": "gcp"
+    },
+    {
+      "id": "gcp_bucket",
+      "name": "gcp_bucket",
+      "cloud": "gcp"
+    },
+    {
+      "id": "gcp_target_tcp_proxy",
+      "name": "gcp_target_tcp_proxy",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_ec2_instance_type",
+      "name": "aws_ec2_instance_type",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_elb",
+      "name": "aws_elb",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_backend_service",
+      "name": "gcp_backend_service",
+      "cloud": "gcp"
+    },
+    {
+      "id": "gcp_health_check",
+      "name": "gcp_health_check",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_lambda_function",
+      "name": "aws_lambda_function",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_forwarding_rule",
+      "name": "gcp_forwarding_rule",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_api_gateway_deployment",
+      "name": "aws_api_gateway_deployment",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_alb_target_group",
+      "name": "aws_alb_target_group",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_cloudwatch_alarm",
+      "name": "aws_cloudwatch_alarm",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_iam_user",
+      "name": "aws_iam_user",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_vpc_endpoint",
+      "name": "aws_vpc_endpoint",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_iam_access_key",
+      "name": "aws_iam_access_key",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_route53_zone",
+      "name": "aws_route53_zone",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_ec2_nat_gateway",
+      "name": "aws_ec2_nat_gateway",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_ec2_elastic_ip",
+      "name": "aws_ec2_elastic_ip",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_disk",
+      "name": "gcp_disk",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_cloudformation_stack",
+      "name": "aws_cloudformation_stack",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_image",
+      "name": "gcp_image",
+      "cloud": "gcp"
+    },
+    {
+      "id": "gcp_machine_image",
+      "name": "gcp_machine_image",
+      "cloud": "gcp"
+    },
+    {
+      "id": "gcp_target_pool",
+      "name": "gcp_target_pool",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_cloudfront_response_headers_policy",
+      "name": "aws_cloudfront_response_headers_policy",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_cloudfront_cache_policy",
+      "name": "aws_cloudfront_cache_policy",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_network",
+      "name": "gcp_network",
+      "cloud": "gcp"
+    },
+    {
+      "id": "gcp_http_health_check",
+      "name": "gcp_http_health_check",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_sagemaker_trial",
+      "name": "aws_sagemaker_trial",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_sagemaker_training_job",
+      "name": "aws_sagemaker_training_job",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_cloudwatch_log_group",
+      "name": "aws_cloudwatch_log_group",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_instance_group",
+      "name": "gcp_instance_group",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_kms_key",
+      "name": "aws_kms_key",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_ec2_instance",
+      "name": "aws_ec2_instance",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_firewall",
+      "name": "gcp_firewall",
+      "cloud": "gcp"
+    },
+    {
+      "id": "gcp_region_quota",
+      "name": "gcp_region_quota",
+      "cloud": "gcp"
+    },
+    {
+      "id": "gcp_region",
+      "name": "gcp_region",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_athena_work_group",
+      "name": "aws_athena_work_group",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_ec2_volume",
+      "name": "aws_ec2_volume",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_region",
+      "name": "aws_region",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_ec2_network_interface",
+      "name": "aws_ec2_network_interface",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_s3_bucket",
+      "name": "aws_s3_bucket",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_iam_server_certificate",
+      "name": "aws_iam_server_certificate",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_zone",
+      "name": "gcp_zone",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_iam_policy",
+      "name": "aws_iam_policy",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_sql_operation",
+      "name": "gcp_sql_operation",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_ec2_internet_gateway",
+      "name": "aws_ec2_internet_gateway",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_vpc",
+      "name": "aws_vpc",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_ec2_network_acl",
+      "name": "aws_ec2_network_acl",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_ec2_route_table",
+      "name": "aws_ec2_route_table",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_subnetwork",
+      "name": "gcp_subnetwork",
+      "cloud": "gcp"
+    },
+    {
+      "id": "gcp_interconnect_location",
+      "name": "gcp_interconnect_location",
+      "cloud": "gcp"
+    },
+    {
+      "id": "gcp_route",
+      "name": "gcp_route",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_iam_role",
+      "name": "aws_iam_role",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_iam_instance_profile",
+      "name": "aws_iam_instance_profile",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_ec2_subnet",
+      "name": "aws_ec2_subnet",
+      "cloud": "aws"
+    },
+    {
+      "id": "gcp_operation",
+      "name": "gcp_operation",
+      "cloud": "gcp"
+    },
+    {
+      "id": "aws_ec2_security_group",
+      "name": "aws_ec2_security_group",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_service_quota",
+      "name": "aws_service_quota",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_ec2_keypair",
+      "name": "aws_ec2_keypair",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_route53_resource_record_set",
+      "name": "aws_route53_resource_record_set",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_route53_resource_record",
+      "name": "aws_route53_resource_record",
+      "cloud": "aws"
+    },
+    {
+      "id": "aws_ec2_snapshot",
+      "name": "aws_ec2_snapshot",
+      "cloud": "aws"
+    }
+  ],
+  "severity": ["info", "low", "medium", "high", "critical"]
+}

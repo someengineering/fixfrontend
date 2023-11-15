@@ -2,12 +2,10 @@ import { BaseType, arc, pie as d3Pie, interpolateRdYlGn, scaleSequential, select
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 
 interface HeatmapProps<Keys extends string> {
-  data: {
-    [Key in Keys]: {
-      value: number
-      title: string
-    }
-  }
+  data: Record<Keys, {
+    value: number
+    title: string
+  }>
   minData: number
   maxData: number
   minWidth: number

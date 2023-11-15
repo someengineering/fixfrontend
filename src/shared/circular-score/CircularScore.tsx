@@ -41,19 +41,19 @@ const CircularProgress = styled(MuiCircularProgress)(({ theme }) => ({
 
 export const CircularScore = ({ score, syntaticScore, typographyProps, containerProps, sx, ...props }: CircularScoreProps) => {
   const [scoreState, setScoreState] = useState(100)
-  const timeout = useRef<number>()
+  const timeoutRef = useRef<number>()
   useEffect(() => {
-    if (timeout.current) {
-      window.clearTimeout(timeout.current)
+    if (timeoutRef.current) {
+      window.clearTimeout(timeoutRef.current)
     }
     setScoreState(100)
-    timeout.current = window.setTimeout(() => {
+    timeoutRef.current = window.setTimeout(() => {
       setScoreState(score)
-      timeout.current = undefined
+      timeoutRef.current = undefined
     }, 10)
     return () => {
-      if (timeout.current) {
-        window.clearTimeout(timeout.current)
+      if (timeoutRef.current) {
+        window.clearTimeout(timeoutRef.current)
       }
     }
   }, [score])

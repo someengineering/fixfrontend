@@ -1,5 +1,9 @@
+import { plural, t } from '@lingui/macro'
+
 const iso8601DurationRegex =
   /(-)?P(?:([.,\d]+)Y)?(?:([.,\d]+)M)?(?:([.,\d]+)W)?(?:([.,\d]+)D)?(?:T(?:([.,\d]+)H)?(?:([.,\d]+)M)?(?:([.,\d]+)S)?)?/
+
+const customDurationRegex = /(?:([.,\d]+)yr)?(?:([.,\d]+)mo)?(?:([.,\d]+)d)?(?:T(?:([.,\d]+)h)?(?:([.,\d]+)m)?(?:([.,\d]+)s)?)?/
 
 interface ISO8601DurationType {
   negative: boolean
@@ -11,6 +15,37 @@ interface ISO8601DurationType {
   minutes: number
   seconds: number
   duration: number
+}
+
+export const parseCustomDuration = (customDuration: string) => {
+  const matches = customDuration.match(customDurationRegex) ?? []
+
+  const numberMatches = matches.map((match) => Number(match))
+
+  const parsedDuration = {
+    negative: false,
+    years: !Number.isNaN(numberMatches[1]) ? numberMatches[1] : 0,
+    months: !Number.isNaN(numberMatches[2]) ? numberMatches[2] : 0,
+    weeks: 0,
+    days: !Number.isNaN(numberMatches[3]) ? numberMatches[3] : 0,
+    hours: !Number.isNaN(numberMatches[4]) ? numberMatches[4] : 0,
+    minutes: !Number.isNaN(numberMatches[5]) ? numberMatches[5] : 0,
+    seconds: !Number.isNaN(numberMatches[6]) ? numberMatches[6] : 0,
+    duration: 0,
+  }
+
+  parsedDuration.duration =
+    (parsedDuration.negative ? -1 : 1) *
+    (parsedDuration.seconds +
+      parsedDuration.minutes * 60 +
+      parsedDuration.hours * 60 * 60 +
+      parsedDuration.days * 60 * 60 * 24 +
+      parsedDuration.weeks * 60 * 60 * 24 * 7 +
+      parsedDuration.months * 60 * 60 * 24 * 30 +
+      parsedDuration.years * 60 * 60 * 24 * 30 * 365) *
+    1000
+
+  return parsedDuration
 }
 
 export const parseISO8601Duration = (iso8601Duration: string) => {
@@ -45,21 +80,65 @@ export const parseISO8601Duration = (iso8601Duration: string) => {
 }
 
 export const iso8601DurationToString = (duration: ISO8601DurationType) => {
+  const str: string[] = []
   if (duration.years) {
-    return duration.years + ' Years'
-  } else if (duration.months) {
-    return duration.months + ' Months'
-  } else if (duration.weeks) {
-    return duration.weeks + ' Weeks'
-  } else if (duration.days) {
-    return duration.days + ' Days'
-  } else if (duration.hours) {
-    return duration.hours + ' Hours'
-  } else if (duration.minutes) {
-    return duration.minutes + ' Minutes'
-  } else if (duration.seconds) {
-    return duration.seconds + ' Seconds'
-  } else if (duration.duration) {
-    return duration.duration.toString() + ' Miliseconds'
+    str.push(
+      plural(duration.years, {
+        one: '# Year',
+        other: '# Years',
+      }),
+    )
   }
+  if (duration.months) {
+    str.push(
+      plural(duration.months, {
+        one: '# Month',
+        other: '# Months',
+      }),
+    )
+  }
+  if (duration.weeks) {
+    str.push(
+      plural(duration.weeks, {
+        one: '# Week',
+        other: '# Weeks',
+      }),
+    )
+  }
+  if (duration.days) {
+    str.push(
+      plural(duration.days, {
+        one: '# Day',
+        other: '# Days',
+      }),
+    )
+  }
+  if (duration.hours) {
+    str.push(
+      plural(duration.hours, {
+        one: '# Hour',
+        other: '# Hours',
+      }),
+    )
+  }
+  if (duration.minutes) {
+    str.push(
+      plural(duration.minutes, {
+        one: '# Minute',
+        other: '# Minutes',
+      }),
+    )
+  }
+  if (duration.seconds) {
+    str.push(
+      plural(duration.seconds, {
+        one: '# Second',
+        other: '# Seconds',
+      }),
+    )
+  }
+  if (!str.length && duration.duration) {
+    str.push(t`${duration.duration.toString()} Milliseconds`)
+  }
+  return str.join(` ${t`and`} `)
 }

@@ -13,10 +13,10 @@ export default defineConfig(({ mode }) => {
 
   const plugins: PluginOption = [react({ plugins: [['@lingui/swc-plugin', {}]] }), svgr(), lingui()]
 
-  if (env.VITE_USE_MOCK || mode === 'test') {
+  if (env.VITE_USE_MOCK === 'true' || mode === 'test') {
     plugins.push(
       viteMockServe({
-        mockPath: 'mock',
+        mockPath: 'mock-apis',
         enable: true,
       }),
     )

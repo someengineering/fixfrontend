@@ -26,6 +26,14 @@ const AccountsPage = lazy(
     ),
 )
 
+const InventoryPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "accounts" */
+      'src/pages/panel/inventory/InventoryPage'
+    ),
+)
+
 export function PanelRoutes() {
   return (
     <Routes>
@@ -33,6 +41,7 @@ export function PanelRoutes() {
         <Route element={<AccountCheckGuard />}>
           <Route index element={<HomePage />} />
           <Route path="accounts" element={<AccountsPage />} />
+          <Route path="Inventory" element={<InventoryPage />} />
         </Route>
         <Route path="setup-cloud" element={<SetupCloudPage />} />
       </Route>

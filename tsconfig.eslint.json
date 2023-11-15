@@ -3,5 +3,5 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "include": ["lingui.config.ts", "src/locales/*/messages.d.ts", ".storybook/*.ts", "mock/**/*.ts"]
+  "include": ["lingui.config.ts", "src/locales/*/messages.d.ts", ".storybook/*.ts", "mock-apis/**/*.ts"]
 }

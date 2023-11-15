@@ -3,21 +3,20 @@ import CopyAllIcon from '@mui/icons-material/CopyAll'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import { Box, Button, IconButton, Typography, useTheme } from '@mui/material'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
-import { getExternalIdQuery } from 'src/pages/panel/shared-queries'
+import { getExternalIdQuery } from 'src/pages/panel/shared/queries'
 
 export const ExternalId = () => {
   const theme = useTheme()
   const [showExternalId, setShowExternalId] = useState(false)
   const { selectedWorkspace } = useUserProfile()
   const { showSnackbar } = useSnackbar()
-  const { data: ExternalIdData } = useQuery({
+  const { data: ExternalIdData } = useSuspenseQuery({
     queryKey: ['workspace-external-id', selectedWorkspace?.id],
     queryFn: getExternalIdQuery,
-    enabled: !!selectedWorkspace?.id,
   })
   const handleCopy = () => {
     try {

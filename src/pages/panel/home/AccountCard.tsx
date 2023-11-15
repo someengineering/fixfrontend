@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/macro'
-import { Card, CardContent, CardHeader, Tooltip, Typography, TypographyProps, styled } from '@mui/material'
+import { Card, CardContent, CardHeader, Tooltip, Typography, TypographyProps, cardHeaderClasses, styled } from '@mui/material'
 import { colorFromRedToGreen } from 'src/shared/constants'
 import { WorkspaceAccountReportSummary } from 'src/shared/types/server'
 import { shouldForwardProp } from 'src/shared/utils/shouldForwardProp'
@@ -8,7 +8,7 @@ const AccountCardContainer = styled(Card, { shouldForwardProp })<{ score?: numbe
   background: score ? colorFromRedToGreen[score] : theme.palette.info.main,
   color: theme.palette.common.white,
   width: '100%',
-  '.MuiCardHeader-content': {
+  [`.${cardHeaderClasses.content}`]: {
     width: '100%',
   },
 }))

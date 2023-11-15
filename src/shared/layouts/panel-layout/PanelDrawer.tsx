@@ -1,5 +1,5 @@
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import { Divider, DrawerProps, IconButton, Drawer as MuiDrawer, styled } from '@mui/material'
+import { Divider, DrawerProps, IconButton, Drawer as MuiDrawer, drawerClasses, styled } from '@mui/material'
 import { PropsWithChildren, MouseEvent as ReactMouseEvent } from 'react'
 import { panelUI } from 'src/shared/constants'
 import { drawerClosedMixin, drawerOpenedMixin } from 'src/shared/utils/mixins'
@@ -20,12 +20,12 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: shouldForwardPropWithBlack
     boxSizing: 'border-box',
     ...((open || !isDesktop) && {
       ...drawerOpenedMixin(theme),
-      '& .MuiDrawer-paper': drawerOpenedMixin(theme),
+      [`& .${drawerClasses.paper}`]: drawerOpenedMixin(theme),
     }),
     ...(!open &&
       isDesktop && {
         ...drawerClosedMixin(theme),
-        '& .MuiDrawer-paper': drawerClosedMixin(theme),
+        [`& .${drawerClasses.paper}`]: drawerClosedMixin(theme),
       }),
   }),
 )

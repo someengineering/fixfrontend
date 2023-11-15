@@ -99,7 +99,9 @@ export const UserProfileButton = () => {
             <ListItemIcon>
               <SettingsIcon color="primary" />
             </ListItemIcon>
-            <Typography textAlign="center">Accounts</Typography>
+            <Typography textAlign="center">
+              <Trans>Accounts</Trans>
+            </Typography>
           </MenuItem>
           <MenuItem onClick={handleLogout}>
             <ListItemIcon>

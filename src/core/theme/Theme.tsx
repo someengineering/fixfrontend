@@ -2,6 +2,8 @@ import { createTheme, CssBaseline, PaletteOptions, responsiveFontSizes, ThemeOpt
 import { PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
 
 import '@fontsource-variable/nunito-sans'
+import { useLingui } from '@lingui/react'
+import { langs } from 'src/shared/constants'
 import { getThemeMode, setThemeMode } from 'src/shared/utils/localstorage'
 import { ThemeContext } from './ThemeContext'
 
@@ -14,6 +16,9 @@ export type ThemeProps = PropsWithChildren
 const themeMode = getThemeMode()
 
 export function Theme({ children }: ThemeProps) {
+  const {
+    i18n: { locale },
+  } = useLingui()
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
   const [mode, setMode] = useState<'light' | 'dark'>(themeMode?.mode ?? (prefersDarkMode ? 'dark' : 'light'))
   const toggleColorMode = useCallback(() => {
@@ -87,34 +92,37 @@ export function Theme({ children }: ThemeProps) {
     },
   }
 
-  const theme = createTheme({
-    palette,
-    typography,
-    spacing: 8,
-    transitions: {
-      duration: {
-        long: 500,
-        longer: 1000,
-        longest: 2000,
+  const theme = createTheme(
+    {
+      palette,
+      typography,
+      spacing: 8,
+      transitions: {
+        duration: {
+          long: 500,
+          longer: 1000,
+          longest: 2000,
+        },
       },
-    },
-    components: {
-      MuiCssBaseline: {
-        styleOverrides: {
-          'body > #root': {
-            display: 'flex',
-            flexDirection: 'column',
-            flexGrow: 1,
-            height: '100%',
-            minHeight: '100vh',
-            width: '100%',
-            margin: 0,
-            padding: 0,
+      components: {
+        MuiCssBaseline: {
+          styleOverrides: {
+            'body > #root': {
+              display: 'flex',
+              flexDirection: 'column',
+              flexGrow: 1,
+              height: '100%',
+              minHeight: '100vh',
+              width: '100%',
+              margin: 0,
+              padding: 0,
+            },
           },
         },
       },
     },
-  })
+    ...(langs.find((i) => i.locale === locale)?.muiLocale ?? []),
+  )
 
   return (
     <ThemeContext.Provider value={{ toggleColorMode, mode }}>

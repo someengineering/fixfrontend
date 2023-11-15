@@ -90,7 +90,7 @@ export function SnackbarElement({
 }
 
 export function SnackbarProvider({ children }: PropsWithChildren) {
-  const [snackbars, setSnackbars] = useState<{ [key in number]: SnackbarValue }>({})
+  const [snackbars, setSnackbars] = useState<Record<number, SnackbarValue>>({})
   const {
     transitions: {
       duration: { standard: standardDuration },
@@ -100,7 +100,7 @@ export function SnackbarProvider({ children }: PropsWithChildren) {
   const closeSnackbar = useCallback(
     (key: number) => {
       return new Promise<boolean>((resolve) => {
-        setTimeout(() => {
+        window.setTimeout(() => {
           setSnackbars((prev) => {
             const newSnackBars = { ...prev }
             if (newSnackBars[key]) {
@@ -108,7 +108,7 @@ export function SnackbarProvider({ children }: PropsWithChildren) {
               resolve(true)
               return newSnackBars
             }
-            setTimeout(() => {
+            window.setTimeout(() => {
               resolve(false)
             })
             return prev

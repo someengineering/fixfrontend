@@ -1,5 +1,18 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { Accordion, AccordionDetails, AccordionSummary, Avatar, Card, CardContent, Icon, Stack, SvgIcon, Typography } from '@mui/material'
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Avatar,
+  Card,
+  CardContent,
+  Icon,
+  Stack,
+  SvgIcon,
+  Typography,
+  accordionDetailsClasses,
+  accordionSummaryClasses,
+} from '@mui/material'
 import { ReactNode } from 'react'
 
 interface OverviewCardProps {
@@ -35,13 +48,13 @@ export const OverviewCard = ({
                 <ExpandMoreIcon />
               </Icon>
             }
-            sx={{ p: 0, minHeight: 0, '.MuiAccordionSummary-content': { m: 0 } }}
+            sx={{ p: 0, minHeight: 0, [`.${accordionSummaryClasses.content}`]: { m: 0 } }}
           >
             {bottomContent}
           </AccordionSummary>
           <AccordionDetails
             sx={{
-              '&.MuiAccordionDetails-root': {
+              [`&.${accordionDetailsClasses.root}`]: {
                 p: 0,
               },
             }}

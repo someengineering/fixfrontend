@@ -1,8 +1,6 @@
 export type FailedChecksTypeKeys = 'critical' | 'high' | 'medium' | 'low'
 
-export type FailedChecksType<value = number> = {
-  [key in FailedChecksTypeKeys]: value
-}
+export type FailedChecksType<value = number> = Record<FailedChecksTypeKeys, value>
 
 export interface Benchmark {
   id: string
@@ -12,20 +10,19 @@ export interface Benchmark {
   clouds: string[]
   description: string
   nr_of_checks: number
-  account_summary: {
-    [key in string]: {
+  account_summary: Record<
+    string,
+    {
       score: number
       failed_checks: Partial<FailedChecksType> | null
     }
-  }
+  >
 }
 
 export interface ChangedSitatuation {
   since: string
   accounts_selection: string[]
-  resource_count_by_kind_selection: Partial<{
-    [key in string]: number
-  }>
+  resource_count_by_kind_selection: Partial<Record<string, number>>
   resource_count_by_severity: Partial<FailedChecksType>
 }
 

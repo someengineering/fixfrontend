@@ -86,6 +86,7 @@ export default function LoginPage() {
             required
             id="email"
             name="email"
+            autoComplete="email"
             label={t`Email`}
             variant="outlined"
             fullWidth
@@ -99,6 +100,7 @@ export default function LoginPage() {
             required
             id="password"
             name="password"
+            autoComplete="current-password"
             label={t`Password`}
             variant="outlined"
             fullWidth

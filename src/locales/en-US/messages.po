@@ -1,0 +1,450 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2023-09-06 15:25+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/shared/utils/parseISO8601Duration.ts:110
+msgid "{0, plural, one {# Day} other {# Days}}"
+msgstr "{0, plural, one {# Day} other {# Days}}"
+
+#: src/shared/utils/parseISO8601Duration.ts:118
+msgid "{0, plural, one {# Hour} other {# Hours}}"
+msgstr "{0, plural, one {# Hour} other {# Hours}}"
+
+#: src/shared/utils/parseISO8601Duration.ts:126
+msgid "{0, plural, one {# Minute} other {# Minutes}}"
+msgstr "{0, plural, one {# Minute} other {# Minutes}}"
+
+#: src/shared/utils/parseISO8601Duration.ts:94
+msgid "{0, plural, one {# Month} other {# Months}}"
+msgstr "{0, plural, one {# Month} other {# Months}}"
+
+#: src/shared/utils/parseISO8601Duration.ts:134
+msgid "{0, plural, one {# Second} other {# Seconds}}"
+msgstr "{0, plural, one {# Second} other {# Seconds}}"
+
+#: src/shared/utils/parseISO8601Duration.ts:102
+msgid "{0, plural, one {# Week} other {# Weeks}}"
+msgstr "{0, plural, one {# Week} other {# Weeks}}"
+
+#: src/shared/utils/parseISO8601Duration.ts:86
+msgid "{0, plural, one {# Year} other {# Years}}"
+msgstr "{0, plural, one {# Year} other {# Years}}"
+
+#: src/shared/utils/parseISO8601Duration.ts:141
+msgid "{0} Milliseconds"
+msgstr "{0} Milliseconds"
+
+#: src/pages/panel/panel-home/OverallCard.tsx:91
+#~ msgid "{0} out of {1}"
+#~ msgstr "{0} out of {1}"
+
+#: src/containers/panel/PanelContainer.tsx:32
+msgid "© 2023 Some Engineering Inc. All rights reserved."
+msgstr "© 2023 Some Engineering Inc. All rights reserved."
+
+#: src/pages/panel/accounts/AccountsTable.tsx:31
+#: src/pages/panel/inventory/InventoryTable.tsx:54
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:66
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:103
+msgid "Accounts"
+msgstr "Accounts"
+
+#: src/pages/panel/home/Overview.tsx:103
+msgid "Accounts Summary"
+msgstr "Accounts Summary"
+
+#: src/pages/panel/accounts/AccountsTable.tsx:56
+msgid "Actions"
+msgstr "Actions"
+
+#: src/pages/panel/accounts/AccountsPage.tsx:25
+msgid "Add an account"
+msgstr "Add an account"
+
+#: src/pages/auth/register/RegisterPage.tsx:131
+msgid "Already have an account? Click here to Log in."
+msgstr "Already have an account? Click here to Log in."
+
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:73
+msgid "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
+msgstr "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
+
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:68
+msgid "Alternatively: Manual Cloud Setup"
+msgstr "Alternatively: Manual Cloud Setup"
+
+#: src/shared/utils/parseISO8601Duration.ts:143
+msgid "and"
+msgstr "and"
+
+#: src/pages/panel/accounts/AccountRow.tsx:209
+msgid "Are you sure?"
+msgstr "Are you sure?"
+
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:35
+msgid "Automatic Cloud Setup"
+msgstr "Automatic Cloud Setup"
+
+#: src/shared/constants/consts.ts:6
+msgid "AWS Marketplace has been successfully subscribed"
+msgstr "AWS Marketplace has been successfully subscribed"
+
+#: src/pages/panel/shared/utils/chartToShow.tsx:39
+msgid "Benchmarks"
+msgstr "Benchmarks"
+
+#: src/pages/panel/accounts/AccountRow.tsx:154
+#: src/pages/panel/accounts/AccountRow.tsx:158
+#: src/pages/panel/accounts/AccountRow.tsx:159
+#: src/pages/panel/accounts/AccountRow.tsx:216
+msgid "Cancel"
+msgstr "Cancel"
+
+#: src/pages/panel/accounts/AccountRow.tsx:236
+#: src/pages/panel/accounts/AccountsTable.tsx:35
+#: src/pages/panel/home/AccountCard.tsx:33
+msgid "Cloud"
+msgstr "Cloud"
+
+#: src/shared/event-button/EventButton.tsx:47
+msgid "Cloud account added, id: {0}"
+msgstr "Cloud account added, id: {0}"
+
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:62
+msgid "Clouds"
+msgstr "Clouds"
+
+#: src/pages/panel/home/OverallCard.tsx:85
+msgid "Compliance"
+msgstr "Compliance"
+
+#: src/pages/panel/accounts/AccountsTable.tsx:44
+msgid "Configured"
+msgstr "Configured"
+
+#: src/pages/panel/setup-cloud/ExternalId.tsx:26
+#: src/pages/panel/setup-cloud/TenantId.tsx:16
+msgid "Copied to Clipboard!"
+msgstr "Copied to Clipboard!"
+
+#: src/pages/panel/setup-cloud/ExternalId.tsx:63
+#: src/pages/panel/setup-cloud/TenantId.tsx:46
+msgid "Copy"
+msgstr "Copy"
+
+#: src/shared/defined-messages/getMessage.ts:5
+msgid "Critical"
+msgstr "Critical"
+
+#: src/shared/layouts/panel-layout/menuList.tsx:28
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: src/pages/panel/accounts/AccountRow.tsx:197
+#: src/pages/panel/accounts/AccountRow.tsx:201
+#: src/pages/panel/accounts/AccountRow.tsx:202
+#: src/pages/panel/accounts/AccountRow.tsx:227
+msgid "Delete"
+msgstr "Delete"
+
+#: src/pages/panel/setup-cloud/SetupCloudButton.tsx:15
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:49
+msgid "Deploy Stack"
+msgstr "Deploy Stack"
+
+#: src/pages/panel/accounts/AccountRow.tsx:210
+msgid "Do you want to delete this account?"
+msgstr "Do you want to delete this account?"
+
+#: src/pages/auth/login/LoginPage.tsx:147
+msgid "Don't have an account? Click here to Sign up."
+msgstr "Don't have an account? Click here to Sign up."
+
+#: src/pages/panel/accounts/AccountRow.tsx:170
+#: src/pages/panel/accounts/AccountRow.tsx:171
+msgid "Edit"
+msgstr "Edit"
+
+#: src/pages/auth/login/LoginPage.tsx:90
+#: src/pages/auth/register/RegisterPage.tsx:88
+msgid "Email"
+msgstr "Email"
+
+#: src/pages/panel/accounts/AccountsTable.tsx:53
+msgid "Enabled"
+msgstr "Enabled"
+
+#: src/shared/event-button/EventButton.tsx:78
+msgid "Events"
+msgstr "Events"
+
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:92
+msgid "External Id"
+msgstr "External Id"
+
+#: src/pages/panel/panel-home/OverallCard.tsx:89
+#~ msgid "Failed Checks"
+#~ msgstr "Failed Checks"
+
+#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:163
+msgid "False"
+msgstr "False"
+
+#: src/pages/auth/login/LoginPage.tsx:62
+#: src/pages/auth/register/RegisterPage.tsx:60
+msgid "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
+msgstr "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
+
+#: src/shared/defined-messages/getMessage.ts:8
+msgid "High"
+msgstr "High"
+
+#: src/pages/panel/home/TopFiveChecksCard.tsx:34
+msgid "How to fix"
+msgstr "How to fix"
+
+#: src/pages/panel/accounts/AccountRow.tsx:233
+#: src/pages/panel/accounts/AccountsTable.tsx:38
+#: src/pages/panel/home/AccountCard.tsx:30
+msgid "ID"
+msgstr "ID"
+
+#: src/pages/panel/home/OverallCard.tsx:156
+msgid "Improved"
+msgstr "Improved"
+
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:38
+msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
+msgstr "In the next step we are going to set up the trust between FIX and your AWS cloud account."
+
+#: src/shared/layouts/panel-layout/menuList.tsx:33
+msgid "Inventory"
+msgstr "Inventory"
+
+#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:118
+msgid "Key"
+msgstr "Key"
+
+#: src/pages/panel/inventory/InventoryForm.tsx:174
+msgid "Kinds"
+msgstr "Kinds"
+
+#: src/pages/auth/login/LoginPage.tsx:81
+#: src/pages/auth/login/LoginPage.tsx:142
+msgid "Log in"
+msgstr "Log in"
+
+#: src/shared/social-media-button/getNameFromOAuthType.ts:7
+msgid "Log in with {formattedName}"
+msgstr "Log in with {formattedName}"
+
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:111
+msgid "Logout"
+msgstr "Logout"
+
+#: src/shared/defined-messages/getMessage.ts:14
+msgid "Low"
+msgstr "Low"
+
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:41
+msgid "Make sure that you are already logged into the correct AWS account, before pressing the SETUP button."
+msgstr "Make sure that you are already logged into the correct AWS account, before pressing the SETUP button."
+
+#: src/shared/defined-messages/getMessage.ts:11
+msgid "Medium"
+msgstr "Medium"
+
+#: src/pages/panel/home/TopFiveChecksCard.tsx:40
+msgid "More info"
+msgstr "More info"
+
+#: src/pages/panel/home/OverallCard.tsx:190
+msgid "Most Improved Accounts"
+msgstr "Most Improved Accounts"
+
+#: src/pages/panel/home/OverallCard.tsx:201
+msgid "Most Improved Resources"
+msgstr "Most Improved Resources"
+
+#: src/pages/panel/accounts/AccountRow.tsx:239
+#: src/pages/panel/accounts/AccountsTable.tsx:41
+msgid "Name"
+msgstr "Name"
+
+#: src/pages/panel/accounts/AccountsTable.tsx:50
+msgid "Next scan"
+msgstr "Next scan"
+
+#: src/pages/panel/home/OverallCard.tsx:70
+msgid "No changes"
+msgstr "No changes"
+
+#: src/pages/panel/home/OverallCard.tsx:96
+#: src/pages/panel/home/OverallCard.tsx:167
+msgid "Nothing to show yet"
+msgstr "Nothing to show yet"
+
+#: src/shared/layouts/panel-layout/PanelAppBar.tsx:69
+msgid "Open drawer"
+msgstr "Open drawer"
+
+#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:91
+#~ msgid "Operator"
+#~ msgstr "Operator"
+
+#: src/pages/auth/login/LoginPage.tsx:152
+#: src/pages/auth/register/RegisterPage.tsx:136
+msgid "Or"
+msgstr "Or"
+
+#: src/pages/panel/home/Overview.tsx:51
+msgid "Overall"
+msgstr "Overall"
+
+#: src/pages/panel/home/OverallCard.tsx:57
+msgid "Overall Score"
+msgstr "Overall Score"
+
+#: src/pages/auth/login/LoginPage.tsx:104
+#: src/pages/auth/register/RegisterPage.tsx:102
+msgid "Password"
+msgstr "Password"
+
+#: src/pages/panel/home/OverallCard.tsx:170
+msgid "Pick one of the recommendations to the right and improve your security"
+msgstr "Pick one of the recommendations to the right and improve your security"
+
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:35
+msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
+msgstr "Please go to <0>Setup Accounts</0> page to setup your account first"
+
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:39
+msgid "Profile"
+msgstr "Profile"
+
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:70
+msgid "Regions"
+msgstr "Regions"
+
+#: src/pages/auth/register/RegisterPage.tsx:79
+msgid "Register"
+msgstr "Register"
+
+#: src/pages/panel/accounts/AccountsTable.tsx:47
+msgid "Resources"
+msgstr "Resources"
+
+#: src/pages/panel/home/TopFiveChecksCard.tsx:30
+msgid "Risk"
+msgstr "Risk"
+
+#: src/pages/panel/home/Overview.tsx:37
+msgid "Security Scan in Progress"
+msgstr "Security Scan in Progress"
+
+#: src/pages/panel/home/Overview.tsx:68
+msgid "Security Score"
+msgstr "Security Score"
+
+#: src/shared/language-button/LanguageButton.tsx:40
+msgid "Select Language"
+msgstr "Select Language"
+
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:87
+msgid "Severity"
+msgstr "Severity"
+
+#: src/pages/auth/register/RegisterPage.tsx:126
+msgid "Sign up"
+msgstr "Sign up"
+
+#: src/shared/social-media-button/getNameFromOAuthType.ts:7
+msgid "Sign up with {formattedName}"
+msgstr "Sign up with {formattedName}"
+
+#: src/pages/auth/login/LoginPage.tsx:59
+#: src/pages/auth/register/RegisterPage.tsx:57
+msgid "Simple and affordable visibility into your cloud security posture."
+msgstr "Simple and affordable visibility into your cloud security posture."
+
+#: src/pages/panel/home/OverallCard.tsx:74
+#: src/pages/panel/home/OverallCard.tsx:90
+#: src/pages/panel/home/OverallCard.tsx:161
+msgid "Since {since}"
+msgstr "Since {since}"
+
+#: src/pages/panel/accounts/AccountRow.tsx:143
+#: src/pages/panel/accounts/AccountRow.tsx:144
+#: src/pages/panel/accounts/AccountRow.tsx:149
+msgid "Submit"
+msgstr "Submit"
+
+#: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:34
+msgid "Tags"
+msgstr "Tags"
+
+#: src/shared/event-button/EventButton.tsx:41
+#~ msgid "Task \"{0}\" with workflow \"{1}\" failed: {2}"
+#~ msgstr "Task \"{0}\" with workflow \"{1}\" failed: {2}"
+
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:110
+msgid "Tenant Id"
+msgstr "Tenant Id"
+
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:81
+msgid "The Stack requires the following parameters"
+msgstr "The Stack requires the following parameters"
+
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:32
+msgid "There's no account configured for this workspace."
+msgstr "There's no account configured for this workspace."
+
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:59
+msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
+msgstr "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
+
+#: src/pages/panel/home/Overview.tsx:75
+#: src/pages/panel/home/Overview.tsx:92
+msgid "Top 5 Security Enhancements"
+msgstr "Top 5 Security Enhancements"
+
+#: src/pages/panel/home/OverallCard.tsx:119
+msgid "Top Non-Compliant Accounts"
+msgstr "Top Non-Compliant Accounts"
+
+#: src/pages/panel/home/OverallCard.tsx:135
+msgid "Top Non-Compliant Resources"
+msgstr "Top Non-Compliant Resources"
+
+#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:160
+msgid "True"
+msgstr "True"
+
+#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:178
+#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:185
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:91
+msgid "Value"
+msgstr "Value"
+
+#: src/pages/auth/login/LoginPage.tsx:120
+msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
+msgstr "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
+
+#: src/pages/auth/login/LoginPage.tsx:126
+msgid "You have successfully verified your account."
+msgstr "You have successfully verified your account."
+
+#: src/pages/panel/home/Overview.tsx:40
+msgid "Your cloud account has been added successfully! We are currently performing a security scan. This can take up to an hour depending on the size of your account. Your dashboard will be available shortly after the scan is complete."
+msgstr "Your cloud account has been added successfully! We are currently performing a security scan. This can take up to an hour depending on the size of your account. Your dashboard will be available shortly after the scan is complete."

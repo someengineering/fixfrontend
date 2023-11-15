@@ -1,4 +1,4 @@
 build/
 storybook-static/
-src/locales/
+src/locales/*/
 public/*.min.js
