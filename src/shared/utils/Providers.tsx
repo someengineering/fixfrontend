@@ -15,7 +15,6 @@ import { getLocale, setLocale } from './localstorage'
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      suspense: false,
       throwOnError: true,
       retry: (failureCount, error) => {
         if ((((error as AxiosError)?.response?.status || (error as AxiosError)?.status) ?? 500) / 100 < 5) {

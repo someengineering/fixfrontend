@@ -89,8 +89,8 @@ export const InventoryFormFilterRow = ({ kind, item, setConfig, index, preItems 
         ? numberTypes.includes(item.kindProp.kind.fqn)
           ? opTypes
           : item.kindProp.kind.fqn === 'string'
-          ? stringOPTypes
-          : booleanOPTypes
+            ? stringOPTypes
+            : booleanOPTypes
         : null,
     [item.key, item.kindProp],
   )
@@ -142,10 +142,10 @@ export const InventoryFormFilterRow = ({ kind, item, setConfig, index, preItems 
                       typeof option === 'string'
                         ? option
                         : Array.isArray(option)
-                        ? option.length
-                          ? `[${option.map((i) => i.value).join(',')}]`
-                          : null
-                        : option?.value ?? null,
+                          ? option.length
+                            ? `[${option.map((i) => i.value).join(',')}]`
+                            : null
+                          : option?.value ?? null,
                   })
                 }
                 options={getAutocompleteDataFromKey(item.key, preItems)}
@@ -197,41 +197,5 @@ export const InventoryFormFilterRow = ({ kind, item, setConfig, index, preItems 
         </IconButton>
       </Stack>
     </Stack>
-  ) // ) : !kind || !item.key || defaultKeys.includes(item.key) ? (
-  //   <Stack direction="row" spacing={1}>
-  //     <Autocomplete
-  //       disablePortal
-  //       sx={{ minWidth: 250 }}
-  //       value={item.key}
-  //       onChange={(_, key) => handleChange({ key, newType: 'simple', newFqn: 'string', op: null, value: null })}
-  //       getOptionLabel={(option) => option ?? ''}
-  //       options={defaultKeys}
-  //       renderInput={(params) => <TextField {...params} label={<Trans>Key</Trans>} />}
-  //     />
-  //     {item.key ? (
-  //       <Autocomplete
-  //         disablePortal
-  //         value={item.op && (stringOPTypes as readonly string[]).includes(item.op) ? item.op : null}
-  //         onChange={(_, op) => handleChange({ op })}
-  //         getOptionLabel={(option) => option ?? ''}
-  //         options={stringOPTypes}
-  //         renderInput={(params) => <TextField {...params} label={<Trans>Operator</Trans>} />}
-  //       />
-  //     ) : null}
-  //     {item.key && item.op ? (
-  //       <Autocomplete
-  //         sx={{ minWidth: 250 }}
-  //         onChange={(_, option) =>
-  //           handleChange({
-  //             value:
-  //               typeof option === 'string' ? option : Array.isArray(option) ? `[${option.map((i) => i.value).join(',')}]` : option?.value,
-  //           })
-  //         }
-  //         options={getAutocompleteDataFromKey(item.key, preItems)}
-  //         {...getAutoCompletePropsFromKey(item.key)}
-  //         value={getAutocompleteValueFromKey(item.key, preItems, item?.value, item.op === 'in') as AutoCompleteValue[]}
-  //         multiple={item.op === 'in'}
-  //       />
-  //     ) : null}
-  //   </Stack>
+  )
 }

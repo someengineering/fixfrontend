@@ -17,8 +17,8 @@ export default function VerifyPage() {
           ? email
             ? `?email=${window.encodeURIComponent(email)}&verified=true&returnUrl=${encodeURIComponent(redirectUrl)}`
             : axiosError
-            ? `?error=${window.encodeURIComponent(axiosError)}&returnUrl=${window.encodeURIComponent(redirectUrl)}`
-            : undefined
+              ? `?error=${window.encodeURIComponent(axiosError)}&returnUrl=${window.encodeURIComponent(redirectUrl)}`
+              : undefined
           : undefined,
       }}
     />
