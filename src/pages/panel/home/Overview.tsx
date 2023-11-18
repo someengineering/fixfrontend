@@ -4,9 +4,9 @@ import { useSuspenseQuery } from '@tanstack/react-query'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryReportSummaryQuery } from 'src/pages/panel/shared/queries'
 import { PieCard, chartToShow, checkDiff } from 'src/pages/panel/shared/utils'
-import { CircularScore } from 'src/shared/circular-score'
 import { colorFromRedToGreen } from 'src/shared/constants'
 import { OverallCard } from './OverallCard'
+import { OverallScore } from './OverallScore'
 import { TopFiveChecksCard } from './TopFiveChecksCard'
 
 export const Overview = () => {
@@ -67,9 +67,7 @@ export const Overview = () => {
                 <Typography variant="h3" mb={{ xs: 0, md: 2 }} mt={{ xs: 4, md: 0 }}>
                   <Trans>Security Score</Trans>
                 </Typography>
-                <Stack mb={4} direction="row" justifyContent="center">
-                  <CircularScore score={data.overall_score} size={150} typographyProps={{ variant: 'h1' }} />
-                </Stack>
+                <OverallScore score={data.overall_score} failedChecks={data.check_summary.failed_checks_by_severity} />
                 <Divider />
                 <Typography variant="h3" mt={{ xs: 0, md: 2 }}>
                   <Trans>Top 5 Security Enhancements</Trans>

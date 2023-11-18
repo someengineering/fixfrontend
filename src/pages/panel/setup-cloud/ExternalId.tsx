@@ -1,4 +1,4 @@
-import { Trans, t } from '@lingui/macro'
+import { Trans } from '@lingui/macro'
 import CopyAllIcon from '@mui/icons-material/CopyAll'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
@@ -6,28 +6,21 @@ import { Box, Button, IconButton, Typography, useTheme } from '@mui/material'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { useSnackbar } from 'src/core/snackbar'
 import { getExternalIdQuery } from 'src/pages/panel/shared/queries'
+import { useCopyString } from 'src/shared/utils/useCopyString'
 
 export const ExternalId = () => {
   const theme = useTheme()
   const [showExternalId, setShowExternalId] = useState(false)
   const { selectedWorkspace } = useUserProfile()
-  const { showSnackbar } = useSnackbar()
   const { data: ExternalIdData } = useSuspenseQuery({
     queryKey: ['workspace-external-id', selectedWorkspace?.id],
     queryFn: getExternalIdQuery,
   })
+  const copyString = useCopyString()
   const handleCopy = () => {
-    try {
-      window.navigator.clipboard
-        .writeText(ExternalIdData || '')
-        .then(() => {
-          void showSnackbar(t`Copied to Clipboard!`)
-        })
-        .catch(() => {})
-    } catch {
-      /* empty */
+    if (ExternalIdData) {
+      void copyString(ExternalIdData)
     }
   }
   const handleToggleShowExternalId = () => {

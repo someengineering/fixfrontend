@@ -1,24 +1,9 @@
 import { Box, Divider, Grid, Paper, Stack, Typography, styled, useTheme } from '@mui/material'
 import { useMemo, useRef, useState } from 'react'
-import { PieChart } from 'src/shared/charts'
-import { CircularScore } from 'src/shared/circular-score'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
-import { colorsBySeverity } from './colorsBySeverity'
-
-const PieChartContainer = styled(Stack, { shouldForwardProp: shouldForwardPropWithBlackList(['opacity']) })<{ opacity: number }>(
-  ({ theme, opacity }) => ({
-    width: '100%',
-    height: '100%',
-    position: 'absolute',
-    transition: theme.transitions.create('opacity'),
-    justifyContent: 'center',
-    alignItems: 'center',
-    top: 0,
-    opacity,
-  }),
-)
+import { PieScore } from './PieScore'
 
 const PieCardItemPaper = styled(Paper, { shouldForwardProp: shouldForwardPropWithBlackList(['score']) })(({ theme }) => ({
   width: '100%',
@@ -70,7 +55,16 @@ const PieCardItem = ({
     }
   }
   return (
-    <Grid item xs={12} sm={6} md={4} lg={3} xl={2} onMouseEnter={handleShowPieChart} onMouseLeave={handleHidePieChart}>
+    <Grid
+      item
+      xs={12}
+      sm={6}
+      md={4}
+      lg={3}
+      xl={2}
+      onMouseEnter={score < 100 ? handleShowPieChart : undefined}
+      onMouseLeave={score < 100 ? handleHidePieChart : undefined}
+    >
       <PieCardItemPaper>
         <Stack direction="row" spacing={1} alignItems="center" justifyContent="center" width="100%">
           <Typography variant="body1" flex={1}>
@@ -81,37 +75,7 @@ const PieCardItem = ({
         <Box py={1} width="100%">
           <Divider />
         </Box>
-        <Stack width={170} alignSelf="center" justifyContent="end" overflow="visible" flex={1}>
-          <Box position="relative" height={170}>
-            <Stack width="100%" height="100%" alignItems="center" justifyContent="center">
-              <CircularScore
-                score={score}
-                syntaticScore={showPieChart ? 0 : score}
-                size={150}
-                typographyProps={{
-                  variant: showPieChart ? 'h2' : 'h1',
-                  sx: { transition: theme.transitions.create(['font-size']) },
-                }}
-              />
-            </Stack>
-            {showPieChart ? (
-              <PieChartContainer opacity={hidingPieChart ? 0 : 1}>
-                <PieChart
-                  colors={colorsBySeverity}
-                  data={data}
-                  showLabel
-                  pieProps={{
-                    animationDuration: theme.transitions.duration.standard,
-                    innerRadius: 40,
-                    outerRadius: 80,
-                  }}
-                  width={200}
-                  height={200}
-                />
-              </PieChartContainer>
-            ) : null}
-          </Box>
-        </Stack>
+        <PieScore data={data} hidingPieChart={hidingPieChart} showPieChart={showPieChart} score={score} />
       </PieCardItemPaper>
     </Grid>
   )

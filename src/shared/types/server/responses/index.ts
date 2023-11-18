@@ -5,6 +5,7 @@ export type { GetWorkspaceCfUrlResponse } from './GetWorkspaceCfUrl'
 export type { GetWorkspaceCloudAccountsResponse } from './GetWorkspaceCloudAccounts'
 export type { GetWorkspaceCloudAccountsLastScanResponse, WorkspaceCloudAccountsLastScanAccount } from './GetWorkspaceCloudAccountsLastScan'
 export type { GetWorkspaceInventoryModelResponse } from './GetWorkspaceInventoryModel'
+export type { GetWorkspaceInventoryPropertyPathComplete } from './GetWorkspaceInventoryPropertyPathComplete'
 export type {
   FailedChecksType,
   GetWorkspaceInventoryReportSummaryResponse,

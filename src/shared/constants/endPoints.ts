@@ -37,6 +37,9 @@ export const endPoints = {
         property: {
           attributes: `/api/workspaces/${workspaceId}/inventory/property/attributes`,
           values: `/api/workspaces/${workspaceId}/inventory/property/values`,
+          path: {
+            complete: `/api/workspaces/${workspaceId}/inventory/property/path/complete`,
+          },
         },
       },
       events: `api/workspaces/${workspaceId}/events`,

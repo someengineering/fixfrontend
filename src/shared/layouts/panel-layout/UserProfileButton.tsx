@@ -4,12 +4,12 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import SettingsIcon from '@mui/icons-material/Settings'
 import { Avatar, Divider, IconButton, ListItemIcon, Menu, MenuItem, MenuList, Tooltip, Typography } from '@mui/material'
 import { MouseEvent as MouseEventReact, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
+import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 
 export const UserProfileButton = () => {
   const { logout, workspaces, selectedWorkspace, selectWorkspace } = useUserProfile()
-  const navigate = useNavigate()
+  const navigate = useAbsoluteNavigate()
   const [anchorElUser, setAnchorElUser] = useState<HTMLElement>()
   const handleOpenUserMenu = (event: MouseEventReact<HTMLElement, MouseEvent>) => {
     setAnchorElUser(event.currentTarget)

@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosInstance } from 'axios'
 import { PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { GetWorkspaceResponse } from 'src/shared/types/server'
 import { axiosWithAuth, defaultAxiosConfig, setAxiosWithAuth } from 'src/shared/utils/axios'
 import { clearAllCookies, isAuthenticated } from 'src/shared/utils/cookie'
@@ -18,7 +18,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
     ...(getAuthData() || {}),
     isAuthenticated: isAuthenticated() as false,
   })
-  const navigate = useNavigate()
+  const navigate = useAbsoluteNavigate()
   const nextUrl = useRef<string>()
 
   const handleSetAuth = useCallback((data: UserContextRealValues | undefined, url?: string) => {
@@ -31,7 +31,10 @@ export function AuthGuard({ children }: PropsWithChildren) {
   }, [])
 
   const handleLogout = useCallback(async () => {
-    navigate('/auth/login')
+    navigate({
+      pathname: '/auth/login',
+      search: `?returnUrl=${window.encodeURIComponent(window.location.pathname + window.location.search + window.location.hash)}`,
+    })
     try {
       await logoutMutation()
     } finally {

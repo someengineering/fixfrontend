@@ -11,5 +11,5 @@ export const getWorkspaceCloudAccountsLastScanQuery = ({
     ? axiosWithAuth
         .get<GetWorkspaceCloudAccountsLastScanResponse>(endPoints.workspaces.workspace(workspaceId).cloudAccounts.lastScan, { signal })
         .then((res) => res.data)
-    : undefined
+    : null
 }

@@ -2,20 +2,21 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDownCircleOutlined'
 import SearchIcon from '@mui/icons-material/Search'
 import { Box, Collapse, Divider, IconButton, TextField, styled } from '@mui/material'
 import { ChangeEvent, Suspense, useCallback, useEffect, useRef, useState } from 'react'
+import { OPType } from 'src/pages/panel/shared/constants'
 import { panelUI } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
-import { ResourceComplexKindProperty } from 'src/shared/types/server'
+import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
 import { shouldForwardProp } from 'src/shared/utils/shouldForwardProp'
 import { InventoryForm } from './InventoryForm'
 import { InventoryFormsSkeleton } from './InventoryForms.skeleton'
-import { OPType } from './utils'
+import { getArrayFromInOP } from './utils'
 
 export interface InventoryAdvanceSearchConfig {
   id: number
-  key: string | null
+  property: string | null
   op: OPType | null
   value: string | null
-  kindProp: ResourceComplexKindProperty | null
+  fqn: ResourceComplexKindSimpleTypeDefinitions | null
 }
 
 interface InventoryAdvanceSearchProps {
@@ -34,7 +35,7 @@ const StyledArrowDropDownIcon = styled(ArrowDropDownIcon, { shouldForwardProp: s
 export const InventoryAdvanceSearch = ({ value: searchCrit, onChange }: InventoryAdvanceSearchProps) => {
   const [searchCritValue, setSearchCritValue] = useState('')
   const [config, setConfig] = useState<InventoryAdvanceSearchConfig[]>([
-    { id: Math.random(), key: null, op: null, value: null, kindProp: null },
+    { id: Math.random(), property: null, op: null, value: null, fqn: null },
   ])
   const [kind, setKind] = useState<string | null>(null)
   const [showSimpleSearch, setShowSimpleSearch] = useState(true)
@@ -63,7 +64,7 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange }: Inventor
   )
 
   useEffect(() => {
-    setConfig([{ id: Math.random(), key: null, op: null, value: null, kindProp: null }])
+    setConfig([{ id: Math.random(), property: null, op: null, value: null, fqn: null }])
   }, [kind])
 
   useEffect(() => {
@@ -72,8 +73,10 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange }: Inventor
         if (typeof item === 'string' || !item) {
           return item
         }
-        if (item.key && item.op && item.value && item.kindProp?.kind.type === 'simple') {
-          return `${item.key} ${item.op} ${item.value}`
+        if (item.property && item.op && item.value && item.fqn) {
+          const value =
+            item.fqn === 'string' ? (item.op === 'in' ? JSON.stringify(getArrayFromInOP(item.value)) : `'${item.value}'`) : item.value
+          return `${item.property} ${item.op} ${value}`
         }
         return null
       })
@@ -85,27 +88,27 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange }: Inventor
 
   return (
     <>
+      <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+        <Suspense fallback={<InventoryFormsSkeleton />}>
+          <InventoryForm config={config} setConfig={setConfig} searchCrit={searchCrit} kind={kind} setKind={setKind} />
+        </Suspense>
+      </NetworkErrorBoundary>
       <Collapse in={showSimpleSearch}>
-        <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-          <Suspense fallback={<InventoryFormsSkeleton />}>
-            <InventoryForm config={config} setConfig={setConfig} searchCrit={searchCrit} kind={kind} setKind={setKind} />
-          </Suspense>
-        </NetworkErrorBoundary>
+        <TextField
+          margin="dense"
+          placeholder="all"
+          fullWidth
+          size="small"
+          inputProps={{
+            sx: {
+              ml: 1,
+            },
+          }}
+          value={searchCritValue}
+          onChange={handleChange}
+          InputProps={{ startAdornment: <SearchIcon /> }}
+        />
       </Collapse>
-      <TextField
-        margin="dense"
-        placeholder="all"
-        fullWidth
-        size="small"
-        inputProps={{
-          sx: {
-            ml: 1,
-          },
-        }}
-        value={searchCritValue}
-        onChange={handleChange}
-        InputProps={{ startAdornment: <SearchIcon /> }}
-      />
       <Box my={2}>
         <Divider>
           <IconButton onClick={() => setShowSimpleSearch((prev) => !prev)}>

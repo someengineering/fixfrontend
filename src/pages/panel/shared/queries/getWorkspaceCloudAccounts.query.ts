@@ -10,6 +10,6 @@ export const getWorkspaceCloudAccountsQuery = ({
   return workspaceId
     ? axiosWithAuth
         .get<GetWorkspaceCloudAccountsResponse>(endPoints.workspaces.workspace(workspaceId).cloudAccounts.self, { signal })
-        .then((res) => res.data)
-    : undefined
+        .then((res) => res.data) ?? []
+    : []
 }

@@ -9,5 +9,5 @@ export const getWorkspaceCfUrlQuery = ({
 }: QueryFunctionContext<['workspace-cf-url', string | undefined]>) => {
   return workspaceId
     ? axiosWithAuth.get<GetWorkspaceCfUrlResponse>(endPoints.workspaces.workspace(workspaceId).cfUrl, { signal }).then((res) => res.data)
-    : undefined
+    : ''
 }

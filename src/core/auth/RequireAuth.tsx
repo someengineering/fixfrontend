@@ -10,7 +10,7 @@ export function RequireAuth() {
       <Navigate
         to={{
           pathname: '/auth/login',
-          search: `returnUrl=${location.pathname}${window.encodeURIComponent(location.search)}${window.encodeURIComponent(location.hash)}`,
+          search: `returnUrl=${window.encodeURIComponent(`${location.pathname}${location.search}${location.hash}`)}`,
         }}
         replace
       />

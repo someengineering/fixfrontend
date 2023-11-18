@@ -3,13 +3,13 @@ import { Autocomplete, Box, Divider, Grid, Stack, TextField } from '@mui/materia
 import { useQuery } from '@tanstack/react-query'
 import { Dispatch, SetStateAction, useMemo } from 'react'
 import { useUserProfile } from 'src/core/auth'
+import { DefaultPropertiesKeys } from 'src/pages/panel/shared/constants'
 import { getWorkspaceInventorySearchStartQuery } from 'src/pages/panel/shared/queries'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { InventoryAdvanceSearchConfig } from './InventoryAdvanceSearch'
 import { InventoryFormFilterRow } from './InventoryFormFilterRow'
 import { InventoryFormTemplateObject, InventoryFormTemplates } from './InventoryFormTemplates'
 import { getArrayFromInOP } from './utils'
-import { defaultKeys } from './utils/constants'
 
 interface InventoryFormProps {
   setConfig: Dispatch<SetStateAction<InventoryAdvanceSearchConfig[]>>
@@ -21,11 +21,12 @@ interface InventoryFormProps {
 
 export const InventoryForm = ({ searchCrit, kind, setKind, config, setConfig }: InventoryFormProps) => {
   const { selectedWorkspace } = useUserProfile()
-  const { data: startData = { accounts: [], kinds: [], regions: [], severity: [] } } = useQuery({
+  const { data: originalStartData } = useQuery({
     queryKey: ['workspace-inventory-search-start', selectedWorkspace?.id],
     queryFn: getWorkspaceInventorySearchStartQuery,
     enabled: !!selectedWorkspace?.id,
   })
+  const startData = useMemo(() => originalStartData ?? { accounts: [], kinds: [], regions: [], severity: [] }, [originalStartData])
   const processedStartData = useMemo(() => {
     const clouds: string[] = []
     let biggestLength = startData.accounts.length
@@ -55,25 +56,56 @@ export const InventoryForm = ({ searchCrit, kind, setKind, config, setConfig }: 
     }
   }, [startData])
   const selectedClouds = useMemo(() => {
+    const possibleValues = [DefaultPropertiesKeys.Cloud, DefaultPropertiesKeys.Account, DefaultPropertiesKeys.Regions]
+    const result: string[] = []
     for (let index = 0; index < config.length; index++) {
       const currentConfig = config[index]
       if (typeof currentConfig !== 'string' && currentConfig) {
-        if (currentConfig.key === 'cloud' && currentConfig.value) {
-          const cloud = currentConfig.value
-          if (currentConfig.op === '=') {
-            return [cloud]
+        if (possibleValues.includes(currentConfig.property as DefaultPropertiesKeys) && currentConfig.value) {
+          let propertyIndex: '' | 'accounts' | 'regions' = ''
+          const configValue = currentConfig.value
+
+          switch (currentConfig.property as DefaultPropertiesKeys) {
+            case DefaultPropertiesKeys.Account:
+              propertyIndex = 'accounts'
+              break
+            case DefaultPropertiesKeys.Regions:
+              propertyIndex = 'regions'
+              break
+          }
+          if (currentConfig.op === '!=') {
+            result.push(
+              ...(propertyIndex
+                ? processedStartData[propertyIndex].filter(({ id }) => id !== configValue).map(({ cloud }) => cloud)
+                : processedStartData.clouds.filter((cloud) => cloud !== configValue)),
+            )
+          } else if (currentConfig.op === '=') {
+            result.push(propertyIndex ? processedStartData[propertyIndex].find(({ id }) => id === configValue)?.cloud ?? '' : configValue)
           } else if (currentConfig.op === 'in') {
-            return getArrayFromInOP(cloud)
+            const configValues = getArrayFromInOP(configValue)
+            result.push(
+              ...(propertyIndex
+                ? processedStartData[propertyIndex].filter(({ id }) => configValues.includes(id)).map(({ cloud }) => cloud)
+                : configValues),
+            )
           } else if (currentConfig.op === '~') {
-            return processedStartData.clouds.filter((i) => i.match(cloud))
+            result.push(
+              ...(propertyIndex
+                ? processedStartData[propertyIndex].filter(({ id }) => id.match(configValue)).map(({ cloud }) => cloud)
+                : processedStartData.clouds.filter((cloud) => cloud.match(configValue))),
+            )
           } else if (currentConfig.op === '!~') {
-            return processedStartData.clouds.filter((i) => !i.match(cloud))
+            result.push(
+              ...(propertyIndex
+                ? processedStartData[propertyIndex].filter(({ id }) => !id.match(configValue)).map(({ cloud }) => cloud)
+                : processedStartData.clouds.filter((cloud) => !cloud.match(configValue))),
+            )
           }
         }
       }
     }
-    return []
-  }, [config, processedStartData.clouds])
+    return [...new Set(result.filter((cloud) => cloud))]
+  }, [config, processedStartData])
   const filteredStartData = useMemo(
     () => ({
       accounts: (selectedClouds.length
@@ -111,46 +143,46 @@ export const InventoryForm = ({ searchCrit, kind, setKind, config, setConfig }: 
       if (selectAccount) {
         newValue.push({
           id: Math.random(),
-          key: 'account',
+          property: '/ancestors.account.reported.id',
           op: '=',
           value: selectAccount,
-          kindProp: defaultKeys.account,
+          fqn: 'string',
         })
       }
       if (selectCloud) {
         newValue.push({
           id: Math.random(),
-          key: 'cloud',
+          property: '/ancestors.cloud.reported.id',
           op: '=',
           value: selectCloud,
-          kindProp: defaultKeys.cloud,
+          fqn: 'string',
         })
       }
       if (selectRegion) {
         newValue.push({
           id: Math.random(),
-          key: 'region',
+          property: '/ancestors.region.reported.id',
           op: '=',
           value: selectRegion,
-          kindProp: defaultKeys.region,
+          fqn: 'string',
         })
       }
       if (selectSeverity) {
         newValue.push({
           id: Math.random(),
-          key: 'severity',
+          property: '/security.severity',
           op: 'in',
           value: selectSeverity,
-          kindProp: defaultKeys.severity,
+          fqn: 'string',
         })
       }
       if (selectTag) {
         newValue.push({
           id: Math.random(),
-          key: selectTag,
+          property: `tags.${selectTag}`,
           op: null,
           value: null,
-          kindProp: null,
+          fqn: 'string',
         })
       }
       return newValue
@@ -180,9 +212,9 @@ export const InventoryForm = ({ searchCrit, kind, setKind, config, setConfig }: 
               <Divider orientation="vertical" />
             </Box>
             <Stack spacing={1} flexGrow={1}>
-              {config.map((item, i) => (
+              {config.map((item) => (
                 <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback} key={item.id}>
-                  <InventoryFormFilterRow item={item} index={i} setConfig={setConfig} kind={kind} preItems={filteredStartData} />
+                  <InventoryFormFilterRow item={item} id={item.id} setConfig={setConfig} kind={kind} preItems={filteredStartData} />
                 </NetworkErrorBoundary>
               ))}
             </Stack>

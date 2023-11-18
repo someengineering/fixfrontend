@@ -11,5 +11,27 @@ export const getWorkspaceInventoryReportSummaryQuery = ({
     ? axiosWithAuth
         .get<GetWorkspaceInventoryReportSummaryResponse>(endPoints.workspaces.workspace(workspaceId).inventory.reportSummary, { signal })
         .then((res) => res.data)
-    : undefined
+    : ({
+        accounts: [],
+        benchmarks: [],
+        changed_compliant: {
+          accounts_selection: [],
+          resource_count_by_kind_selection: {},
+          resource_count_by_severity: {},
+          since: '',
+        },
+        changed_vulnerable: {
+          accounts_selection: [],
+          resource_count_by_kind_selection: {},
+          resource_count_by_severity: {},
+          since: '',
+        },
+        check_summary: {
+          available_checks: 0,
+          failed_checks: 0,
+          failed_checks_by_severity: {},
+        },
+        overall_score: 0,
+        top_checks: [],
+      } as GetWorkspaceInventoryReportSummaryResponse)
 }

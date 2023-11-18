@@ -1,2 +1,2 @@
-import { createContext } from 'react'
-export const OuterElementContext = createContext({})
+import { createContext, HTMLAttributes } from 'react'
+export const OuterElementContext = createContext({} as HTMLAttributes<HTMLElement>)

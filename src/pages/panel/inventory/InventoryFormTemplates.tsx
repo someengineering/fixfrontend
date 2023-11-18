@@ -1,4 +1,5 @@
 import { Autocomplete, Grid, ListItemButton, Typography } from '@mui/material'
+import { DefaultPropertiesKeys } from 'src/pages/panel/shared/constants'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { InventoryTagAutoComplete } from './InventoryTagAutoComplete'
 import { AutoCompletePreDefinedItems, getAutoCompletePropsFromKey } from './utils'
@@ -22,7 +23,7 @@ export const InventoryFormTemplates = ({ addTemplate, startData, searchCrit }: I
     <Grid container spacing={1}>
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
         <Autocomplete
-          {...getAutoCompletePropsFromKey('cloud')}
+          {...getAutoCompletePropsFromKey(DefaultPropertiesKeys.Cloud)}
           disablePortal
           fullWidth
           onChange={(_, cloud) => cloud && addTemplate({ selectCloud: cloud.value })}
@@ -32,7 +33,7 @@ export const InventoryFormTemplates = ({ addTemplate, startData, searchCrit }: I
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
         <Autocomplete
-          {...getAutoCompletePropsFromKey('account')}
+          {...getAutoCompletePropsFromKey(DefaultPropertiesKeys.Account)}
           disablePortal
           fullWidth
           onChange={(_, account) => account && addTemplate({ selectAccount: account.value })}
@@ -42,7 +43,7 @@ export const InventoryFormTemplates = ({ addTemplate, startData, searchCrit }: I
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
         <Autocomplete
-          {...getAutoCompletePropsFromKey('region')}
+          {...getAutoCompletePropsFromKey(DefaultPropertiesKeys.Regions)}
           disablePortal
           fullWidth
           onChange={(_, region) => region && addTemplate({ selectRegion: region.value })}
@@ -55,7 +56,7 @@ export const InventoryFormTemplates = ({ addTemplate, startData, searchCrit }: I
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
         <Autocomplete
-          {...getAutoCompletePropsFromKey('severity')}
+          {...getAutoCompletePropsFromKey(DefaultPropertiesKeys.Severity)}
           renderOption={(props, option, { inputValue: _, ...state }) =>
             option ? (
               <ListItemButton
