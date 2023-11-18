@@ -1,4 +1,5 @@
 export { PieCard } from './PieCard'
+export { PieScore } from './PieScore'
 export { chartToShow } from './chartToShow'
 export { checkDiff } from './checkDiff'
 export { getColorBySeverity } from './getColorBySeverity'

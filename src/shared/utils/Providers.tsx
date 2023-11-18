@@ -1,4 +1,4 @@
-import { i18n } from '@lingui/core'
+import { i18n, Messages } from '@lingui/core'
 import { I18nProvider, useLingui } from '@lingui/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { AuthGuard } from 'src/core/auth'
 import { SnackbarProvider } from 'src/core/snackbar'
 import { Theme } from 'src/core/theme'
+import { AbsoluteNavigateProvider } from 'src/shared/absolute-navigate'
 import { env, langs } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { FullPageLoadingProvider } from 'src/shared/loading'
@@ -31,10 +32,12 @@ const queryClient = new QueryClient({
   },
 })
 
-const catalog = langs.reduce((prev, lang) => ({ ...prev, [lang.locale]: lang.messages }), {})
+const catalog = langs.reduce((prev, lang) => ({ ...prev, [lang.locale]: lang.messages }), {} as Record<string, Messages>)
+
+const currentLocale = getLocale()
 
 i18n.load(catalog)
-i18n.activate(getLocale() || langs[0].locale)
+i18n.activate(currentLocale && catalog[currentLocale] ? currentLocale : langs[0].locale)
 
 export const InnerI18nProvider = ({ children }: PropsWithChildren) => {
   const { i18n } = useLingui()
@@ -53,9 +56,11 @@ export const Providers = ({ children }: PropsWithChildren) => {
             <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
               <QueryClientProvider client={queryClient}>
                 <BrowserRouter>
-                  <FullPageLoadingProvider>
-                    <AuthGuard>{children}</AuthGuard>
-                  </FullPageLoadingProvider>
+                  <AbsoluteNavigateProvider>
+                    <FullPageLoadingProvider>
+                      <AuthGuard>{children}</AuthGuard>
+                    </FullPageLoadingProvider>
+                  </AbsoluteNavigateProvider>
                 </BrowserRouter>
               </QueryClientProvider>
             </NetworkErrorBoundary>

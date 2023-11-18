@@ -1,6 +1,7 @@
 import { Box, Divider, Fade, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Modal } from '@mui/material'
 import { MouseEvent as ReactMouseEvent, useState } from 'react'
-import { useMatch, useNavigate } from 'react-router-dom'
+import { useMatch } from 'react-router-dom'
+import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { getInitiated } from 'src/shared/utils/localstorage'
 import { MenuListItem, MenuModalListItem, bottomMenuList, menuList } from './menuList'
@@ -13,7 +14,7 @@ type DrawerMenuItemProps = DrawerMenuProps & MenuListItem
 
 const DrawerMenuItem = ({ open, Icon, name, route }: DrawerMenuItemProps) => {
   const match = useMatch(route)
-  const navigate = useNavigate()
+  const navigate = useAbsoluteNavigate()
   const handleClick = (e: ReactMouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault()
     navigate(route)

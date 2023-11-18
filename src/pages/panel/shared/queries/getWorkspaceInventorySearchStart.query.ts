@@ -11,5 +11,5 @@ export const getWorkspaceInventorySearchStartQuery = ({
     ? axiosWithAuth
         .get<GetWorkspaceInventorySearchStartResponse>(endPoints.workspaces.workspace(workspaceId).inventory.search.start, { signal })
         .then((res) => res.data)
-    : undefined
+    : null
 }

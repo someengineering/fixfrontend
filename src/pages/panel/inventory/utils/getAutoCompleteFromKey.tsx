@@ -27,13 +27,13 @@ export const getAutocompleteValueFromKey = (key: string, items: AutoCompletePreD
 
 export const getAutocompleteDataFromKey = (key: string, items: AutoCompletePreDefinedItems) => {
   switch (key) {
-    case 'account':
+    case '/ancestors.account.reported.id':
       return items.accounts
-    case 'cloud':
+    case '/ancestors.cloud.reported.id':
       return items.clouds
-    case 'region':
+    case '/ancestors.region.reported.id':
       return items.regions
-    case 'severity':
+    case '/security.severity':
       return items.severities
     default:
       return [] as AutoCompleteValue[]
@@ -42,7 +42,7 @@ export const getAutocompleteDataFromKey = (key: string, items: AutoCompletePreDe
 
 export const getAutoCompletePropsFromKey = (key: string) => {
   switch (key) {
-    case 'cloud':
+    case '/ancestors.cloud.reported.id':
       return {
         renderOption: (
           props: React.HTMLAttributes<HTMLLIElement>,
@@ -61,15 +61,15 @@ export const getAutoCompletePropsFromKey = (key: string) => {
           ),
         renderInput: (params: AutocompleteRenderInputParams) => <TextField {...params} label={<Trans>Clouds</Trans>} />,
       }
-    case 'account':
+    case '/ancestors.account.reported.id':
       return {
         renderInput: (params: AutocompleteRenderInputParams) => <TextField {...params} label={<Trans>Accounts</Trans>} />,
       }
-    case 'region':
+    case '/ancestors.region.reported.id':
       return {
         renderInput: (params: AutocompleteRenderInputParams) => <TextField {...params} label={<Trans>Regions</Trans>} />,
       }
-    case 'severity':
+    case '/security.severity':
       return {
         renderOption: (
           props: React.HTMLAttributes<HTMLLIElement>,

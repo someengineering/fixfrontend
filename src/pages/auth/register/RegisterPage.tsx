@@ -5,7 +5,8 @@ import { Divider, Grid, styled, TextField, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { FormEvent, Suspense, useState } from 'react'
-import { Link, Location, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, Location, useLocation, useSearchParams } from 'react-router-dom'
+import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { LoginSocialMedia } from 'src/shared/login-social-media'
 import { SocialMediaButtonSkeleton } from 'src/shared/social-media-button'
@@ -23,7 +24,7 @@ export default function RegisterPage() {
   const [password, setPassword] = useState('')
   const [getSearch] = useSearchParams()
   const { search, state } = useLocation() as Location<unknown>
-  const navigate = useNavigate()
+  const navigate = useAbsoluteNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()

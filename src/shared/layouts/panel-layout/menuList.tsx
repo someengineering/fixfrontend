@@ -31,7 +31,7 @@ export const menuList: MenuListItem[] = [
   },
   {
     name: <Trans>Inventory</Trans>,
-    route: '/Inventory',
+    route: '/inventory',
     Icon: InventoryIcon,
   },
 ]

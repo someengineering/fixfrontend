@@ -12,7 +12,7 @@ import { FormEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { Modal } from 'src/shared/modal'
-import { Account, GetWorkspaceCloudAccountsResponse } from 'src/shared/types/server'
+import { Account, GetWorkspaceCloudAccountsResponse, GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { deleteAccountMutation } from './deleteAccount.mutation'
 import { disableAccountMutation } from './disableAccount.mutation'
 import { enableAccountMutation } from './enableAccount.mutation'
@@ -103,6 +103,34 @@ export const AccountRow = ({ account }: { account: Account }) => {
                 return newData
               }
               return oldData
+            })
+            queryClient.setQueryData(
+              ['workspace-inventory-report-summary', selectedWorkspace?.id],
+              (oldData: GetWorkspaceInventoryReportSummaryResponse) => {
+                const newData = { ...oldData }
+                const foundIndex = newData.accounts.findIndex((item) => item.id === account.account_id)
+                if (foundIndex > -1) {
+                  newData.accounts = newData.accounts.filter((item) => item.id !== account.account_id)
+                  newData.benchmarks = newData.benchmarks.map((benchmark) => {
+                    benchmark.account_summary = { ...benchmark.account_summary }
+                    delete benchmark.account_summary[account.account_id]
+                    return benchmark
+                  })
+                  newData.changed_compliant = {
+                    ...newData.changed_compliant,
+                    accounts_selection: newData.changed_compliant.accounts_selection.filter((item) => item !== account.account_id),
+                  }
+                  newData.changed_vulnerable = {
+                    ...newData.changed_vulnerable,
+                    accounts_selection: newData.changed_vulnerable.accounts_selection.filter((item) => item !== account.account_id),
+                  }
+                  return newData
+                }
+                return oldData
+              },
+            )
+            void queryClient.invalidateQueries({
+              queryKey: ['workspace-inventory-report-summary', selectedWorkspace?.id],
             })
           },
         },

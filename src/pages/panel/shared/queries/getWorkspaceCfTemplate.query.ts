@@ -11,5 +11,5 @@ export const getWorkspaceCfTemplateQuery = ({
     ? axiosWithAuth
         .get<GetWorkspaceCfTemplateResponse>(endPoints.workspaces.workspace(workspaceId).cfTemplate, { signal })
         .then((res) => res.data)
-    : undefined
+    : ''
 }

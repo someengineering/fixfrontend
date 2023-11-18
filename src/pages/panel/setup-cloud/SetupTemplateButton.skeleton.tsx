@@ -4,7 +4,7 @@ import { SetupTemplateButtonComponent } from './SetupTemplateButtonComponent'
 export const SetupTemplateButtonSkeleton = () => {
   return (
     <Skeleton>
-      <SetupTemplateButtonComponent url="https://*********.**.*********.***/***/***-****-***-**.yaml" isSkleton />
+      <SetupTemplateButtonComponent url="https://*********.**.*********.***/***/***-****-***-**.yaml" />
     </Skeleton>
   )
 }

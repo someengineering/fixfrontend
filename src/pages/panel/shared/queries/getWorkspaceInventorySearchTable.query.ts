@@ -20,5 +20,5 @@ export const getWorkspaceInventorySearchTableQuery = ({
           },
         )
         .then((res) => res.data)
-    : undefined
+    : null
 }

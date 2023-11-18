@@ -19,7 +19,7 @@ export const LoginSocialMedia = ({ isSignup, isLoading, onClick }: LoginSocialMe
 
   return (
     <>
-      {data?.map((item, i) => (
+      {data.map((item, i) => (
         <Grid item key={i}>
           <SocialMediaButtonFromOauthType
             authUrl={item.authUrl}

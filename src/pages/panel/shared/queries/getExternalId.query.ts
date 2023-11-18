@@ -3,7 +3,7 @@ import { endPoints } from 'src/shared/constants'
 import { GetExternalIdResponse } from 'src/shared/types/server'
 import { axiosWithAuth } from 'src/shared/utils/axios'
 
-export const getExternalIdQuery = ({
+export const getExternalIdQuery = async ({
   signal,
   queryKey: [_, workspaceId],
 }: QueryFunctionContext<['workspace-external-id', string | undefined]>) => {
@@ -11,5 +11,5 @@ export const getExternalIdQuery = ({
     ? axiosWithAuth
         .get<GetExternalIdResponse>(endPoints.workspaces.workspace(workspaceId).externalId, { signal })
         .then((res) => res.data.external_id)
-    : undefined
+    : ''
 }

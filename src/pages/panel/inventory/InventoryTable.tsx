@@ -23,6 +23,7 @@ export const InventoryTable = ({ searchCrit }: InventoryTableProps) => {
   const { data, isLoading } = useQuery({
     queryKey: ['workspace-inventory-search-table', selectedWorkspace?.id, `${searchCrit} limit ${page * rowsPerPage}, ${rowsPerPage}`],
     queryFn: getWorkspaceInventorySearchTableQuery,
+    enabled: !!selectedWorkspace?.id,
   })
 
   useEffect(() => {

@@ -20,7 +20,7 @@ export const AccountsTable = () => {
     <TableViewPage
       pagination={
         <TablePagination
-          dataCount={data?.length ?? 0}
+          dataCount={data.length ?? 0}
           page={page}
           rowsPerPage={rowsPerPage}
           setPage={setPage}

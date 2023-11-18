@@ -1,5 +1,6 @@
 import { Trans } from '@lingui/macro'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Button, Grid, Stack, Typography } from '@mui/material'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { getMessage } from 'src/shared/defined-messages'
@@ -17,8 +18,8 @@ export const TopFiveChecksCard = ({ data }: { data?: GetWorkspaceInventoryReport
                 <Grid item>
                   <Typography variant="h5">{topCheck.title}</Typography>
                 </Grid>
-                <Grid item>
-                  <Stack spacing={2} direction="row" display="flex" justifyContent="center" alignItems="center">
+                <Grid item alignSelf="center" flex={1}>
+                  <Stack spacing={2} direction="row" display="flex" justifyContent="end" alignItems="center">
                     <Typography color={getColorBySeverity(topCheck.severity)}>{topCheck.service.toUpperCase()}</Typography>
                     <Typography color={getColorBySeverity(topCheck.severity)}>{getMessage(snakeCaseToUFStr(topCheck.severity))}</Typography>
                   </Stack>
@@ -36,7 +37,7 @@ export const TopFiveChecksCard = ({ data }: { data?: GetWorkspaceInventoryReport
               <Typography>{topCheck.remediation.text}</Typography>
             </AccordionDetails>
             <AccordionActions>
-              <Button href={topCheck.remediation.url} target="_blank">
+              <Button href={topCheck.remediation.url} target="_blank" endIcon={<OpenInNewIcon />}>
                 <Trans>More info</Trans>
               </Button>
             </AccordionActions>

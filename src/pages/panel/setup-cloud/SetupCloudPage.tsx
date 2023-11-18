@@ -2,8 +2,8 @@ import { Trans } from '@lingui/macro'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Divider, Skeleton, Typography } from '@mui/material'
 import { Suspense, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useEvents } from 'src/core/events'
+import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { setInitiated } from 'src/shared/utils/localstorage'
 import { ExternalId } from './ExternalId'
@@ -15,7 +15,7 @@ import { TenantId } from './TenantId'
 
 export default function SetupCloud() {
   const { addListener } = useEvents()
-  const navigate = useNavigate()
+  const navigate = useAbsoluteNavigate()
 
   useEffect(() => {
     setInitiated(true)
@@ -24,7 +24,7 @@ export default function SetupCloud() {
   useEffect(() => {
     return addListener('event-button', (ev) => {
       if (ev.kind === 'cloud_account_created') {
-        navigate('/')
+        navigate('/accounts')
       }
     })
   }, [addListener, navigate])
