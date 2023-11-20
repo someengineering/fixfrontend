@@ -291,6 +291,10 @@ msgstr "No changes"
 msgid "Nothing to show yet"
 msgstr "Nothing to show yet"
 
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:32
+msgid "Oops! Something went wrong."
+msgstr "Oops! Something went wrong."
+
 #: src/shared/layouts/panel-layout/PanelAppBar.tsx:69
 msgid "Open drawer"
 msgstr "Open drawer"
@@ -431,6 +435,10 @@ msgstr "Top Non-Compliant Resources"
 msgid "True"
 msgstr "True"
 
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:58
+msgid "Try again"
+msgstr "Try again"
+
 #: src/pages/panel/inventory/InventoryFormFilterRow.tsx:159
 #: src/pages/panel/inventory/InventoryFormFilterRow.tsx:167
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:91
@@ -440,6 +448,10 @@ msgstr "Value"
 #: src/pages/auth/login/LoginPage.tsx:120
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
+
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:35
+msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
+msgstr "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 
 #: src/pages/auth/login/LoginPage.tsx:126
 msgid "You have successfully verified your account."
