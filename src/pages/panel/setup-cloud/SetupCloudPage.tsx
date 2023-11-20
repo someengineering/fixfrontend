@@ -38,7 +38,7 @@ export default function SetupCloud() {
         <Trans>In the next step we are going to set up the trust between FIX and your AWS cloud account.</Trans>
       </Typography>
       <Typography variant="h6" color="warning.main" mt={1}>
-        <Trans>Make sure that you are already logged into the correct AWS account, before pressing the SETUP button.</Trans>
+        <Trans>Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button.</Trans>
       </Typography>
       <Box py={3}>
         <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>

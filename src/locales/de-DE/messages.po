@@ -254,8 +254,8 @@ msgid "Low"
 msgstr "Niedrig"
 
 #: src/pages/panel/setup-cloud/SetupCloudPage.tsx:41
-msgid "Make sure that you are already logged into the correct AWS account, before pressing the SETUP button."
-msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS Konto angemeldet sind, bevor Sie auf die Schaltfläche SETUP klicken."
+msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
+msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS Konto angemeldet sind, bevor Sie auf die Schaltfläche DEPLOY STACK klicken."
 
 #: src/shared/defined-messages/getMessage.ts:11
 msgid "Medium"
