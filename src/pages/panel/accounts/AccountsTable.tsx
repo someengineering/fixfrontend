@@ -44,6 +44,9 @@ export const AccountsTable = () => {
               <Trans>Configured</Trans>
             </TableCell>
             <TableCell>
+              <Trans>Privileged</Trans>
+            </TableCell>
+            <TableCell>
               <Trans>Resources</Trans>
             </TableCell>
             <TableCell>

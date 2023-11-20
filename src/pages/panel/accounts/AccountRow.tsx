@@ -207,6 +207,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
         )}
       </TableCell>
       <TableCell>{account.is_configured ? <CheckIcon color="success" /> : <DoDistorbIcon color="error" />}</TableCell>
+      <TableCell>{account.priviledged ? <CheckIcon color="success" /> : <DoDistorbIcon color="error" />}</TableCell>
       <TableCell>{account.resources ?? '-'}</TableCell>
       <TableCell>{account.next_scan ? new Date(account.next_scan).toLocaleTimeString() : '-'}</TableCell>
       <TableCell>
