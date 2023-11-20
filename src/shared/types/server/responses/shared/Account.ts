@@ -10,7 +10,7 @@ export interface Account {
   api_account_alias: string | null
   api_account_name: string | null
   state: string
-  priviledged: boolean
+  privileged: boolean
   last_scan_started_at: string | null
   last_scan_finished_at: string | null
 }
