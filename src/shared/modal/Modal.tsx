@@ -1,27 +1,30 @@
 import { Divider, Modal as MuiModal, Stack, Typography, styled } from '@mui/material'
 import { MutableRefObject, PropsWithChildren, ReactNode, useEffect, useState } from 'react'
+import { panelUI } from 'src/shared/constants'
 
 interface ModalProps extends PropsWithChildren {
   title?: ReactNode
   description?: ReactNode
   actions?: ReactNode
   openRef: MutableRefObject<((show?: boolean) => void) | undefined>
+  width?: number | string
 }
 
-const ModalContent = styled(Stack)(({ theme }) => ({
+const ModalContent = styled(Stack)(({ theme, width }) => ({
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '400px',
-  maxWidth: `calc(100% - ${theme.spacing(2)}px`,
+  minWidth: width ? undefined : panelUI.minModalWidth,
+  width: width ? (typeof width === 'number' ? width + 'px' : (width as string)) : undefined,
+  maxWidth: `calc(100% - ${theme.spacing(2)}px)`,
   backgroundColor: theme.palette.background.paper,
   borderRadius: 4,
   boxShadow: theme.shadows['24'],
-  padding: theme.spacing(2, 4, 3),
+  padding: theme.spacing(2, 3, 3),
 }))
 
-export const Modal = ({ children, actions, description, title, openRef }: ModalProps) => {
+export const Modal = ({ children, actions, description, title, openRef, width }: ModalProps) => {
   const [open, setOpen] = useState(false)
   useEffect(() => {
     openRef.current = (show?: boolean) => {
@@ -33,7 +36,7 @@ export const Modal = ({ children, actions, description, title, openRef }: ModalP
   }, [openRef])
   return (
     <MuiModal aria-labelledby="modal-title" aria-describedby="modal-description" open={open} onClose={() => setOpen(false)}>
-      <ModalContent spacing={1}>
+      <ModalContent spacing={1} width={width}>
         {title && (
           <Typography id="modal-title" variant="h5">
             {title}
