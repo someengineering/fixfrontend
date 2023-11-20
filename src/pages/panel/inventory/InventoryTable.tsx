@@ -21,7 +21,7 @@ export const InventoryTable = ({ searchCrit }: InventoryTableProps) => {
   const [rows, setRows] = useState<GetWorkspaceInventorySearchTableRow[]>([])
   const [columns, setColumns] = useState<GetWorkspaceInventorySearchTableColumn[]>([])
   const { data, isLoading } = useQuery({
-    queryKey: ['workspace-inventory-search-table', selectedWorkspace?.id, `${searchCrit} limit ${page * rowsPerPage}, ${rowsPerPage}`],
+    queryKey: ['workspace-inventory-search-table', selectedWorkspace?.id, searchCrit, page * rowsPerPage, rowsPerPage],
     queryFn: getWorkspaceInventorySearchTableQuery,
     enabled: !!selectedWorkspace?.id,
   })
@@ -32,8 +32,8 @@ export const InventoryTable = ({ searchCrit }: InventoryTableProps) => {
   }, [searchCrit])
 
   useEffect(() => {
-    const [{ columns: newColumns }, ...newRows] = data ?? [{ columns: [] }]
     if (!isLoading) {
+      const [{ columns: newColumns }, ...newRows] = data ?? [{ columns: [] }]
       setColumns(newColumns)
       setRows(newRows)
     }
@@ -41,11 +41,13 @@ export const InventoryTable = ({ searchCrit }: InventoryTableProps) => {
 
   useEffect(() => {
     if (!isLoading) {
-      if (data?.length && data.length < rowsPerPage) {
-        setDataCount(data.length + page * rowsPerPage)
+      const rowsLength = (data?.length ?? 1) - 1
+      if (rowsLength < rowsPerPage) {
+        setDataCount(rowsLength + page * rowsPerPage)
       }
     }
-  }, [data, isLoading, rowsPerPage, page])
+  }, [isLoading, rowsPerPage, page, data?.length])
+
   return columns.length ? (
     <TableViewPage
       pagination={
