@@ -41,11 +41,12 @@ export const InventoryTable = ({ searchCrit }: InventoryTableProps) => {
 
   useEffect(() => {
     if (!isLoading) {
-      if (rows.length < rowsPerPage) {
-        setDataCount(rows.length + page * rowsPerPage)
+      const rowsLength = (data?.length ?? 1) - 1
+      if (rowsLength < rowsPerPage) {
+        setDataCount(rowsLength + page * rowsPerPage)
       }
     }
-  }, [isLoading, rowsPerPage, page, rows.length])
+  }, [isLoading, rowsPerPage, page, data?.length])
 
   return columns.length ? (
     <TableViewPage
