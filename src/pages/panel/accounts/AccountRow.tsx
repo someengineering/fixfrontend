@@ -13,6 +13,7 @@ import { useUserProfile } from 'src/core/auth'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { Modal } from 'src/shared/modal'
 import { Account, GetWorkspaceCloudAccountsResponse, GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
+import { getAccountName } from 'src/shared/utils/getAccountName'
 import { deleteAccountMutation } from './deleteAccount.mutation'
 import { disableAccountMutation } from './disableAccount.mutation'
 import { enableAccountMutation } from './enableAccount.mutation'
@@ -41,11 +42,12 @@ export const AccountRow = ({ account }: { account: Account }) => {
     mutationKey: ['edit-workspace-account', selectedWorkspace?.id, account.id],
   })
   const [isEdit, setIsEdit] = useState(false)
-  const [editedName, setEditedName] = useState(account.name)
+  const accountName = getAccountName(account)
+  const [editedName, setEditedName] = useState(accountName)
   const cancelEdit = useCallback(() => {
     setIsEdit(false)
-    setEditedName(account.name)
-  }, [account.name])
+    setEditedName(accountName)
+  }, [accountName])
   useEffect(() => {
     if (isEdit && inputRef.current) {
       const cancelMethod = (e: KeyboardEvent) => {
@@ -155,7 +157,8 @@ export const AccountRow = ({ account }: { account: Account }) => {
           >
             <TextField
               sx={{ flexGrow: 1 }}
-              defaultValue={account.name}
+              defaultValue={accountName === account.user_account_name ? accountName : ''}
+              placeholder={account.api_account_name || account.api_account_alias || ''}
               onChange={(e) => setEditedName(e.target.value)}
               variant="standard"
               fullWidth
@@ -167,7 +170,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
             />
             {renameAccountIsPending ? (
               <CircularProgress size={20} />
-            ) : editedName !== account.name ? (
+            ) : editedName !== accountName ? (
               <Tooltip title={<Trans>Submit</Trans>}>
                 <IconButton aria-label={t`Submit`} color="success" type="submit">
                   <SendIcon />
@@ -193,7 +196,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
         ) : (
           <Stack direction="row" alignItems="center" spacing={1}>
             <Typography flexGrow={1} onClick={() => setIsEdit(true)} sx={{ cursor: 'pointer' }}>
-              {account.name ?? '-'}
+              {accountName ?? '-'}
             </Typography>
             <Tooltip title={<Trans>Edit</Trans>}>
               <IconButton aria-label={t`Edit`} color="primary" onClick={() => setIsEdit(true)}>
@@ -264,7 +267,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
           <Trans>Cloud</Trans>: {account.cloud.toUpperCase()}
         </Typography>
         <Typography>
-          <Trans>Name</Trans>: {account.name}
+          <Trans>Name</Trans>: {accountName}
         </Typography>
       </Modal>
     </TableRow>

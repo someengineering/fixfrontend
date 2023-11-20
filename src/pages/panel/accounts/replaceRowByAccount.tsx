@@ -1,5 +1,6 @@
 import { QueryClient } from '@tanstack/react-query'
 import { Account, GetWorkspaceCloudAccountsResponse, GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
+import { getAccountName } from 'src/shared/utils/getAccountName'
 
 export const replaceRowByAccount = (queryClient: QueryClient, id?: string) => {
   return (data: Account) => {
@@ -20,7 +21,7 @@ export const replaceRowByAccount = (queryClient: QueryClient, id?: string) => {
           newData.accounts = [...oldData.accounts]
           newData.accounts[foundIndex] = {
             ...oldData.accounts[foundIndex],
-            name: data.name ?? '',
+            name: getAccountName(data) ?? '',
           }
           return newData
         }
