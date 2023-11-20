@@ -5,19 +5,14 @@ import { axiosWithAuth } from 'src/shared/utils/axios'
 
 export const getWorkspaceInventorySearchTableQuery = ({
   signal,
-  queryKey: [_, workspaceId, searchCrit],
-}: QueryFunctionContext<['workspace-inventory-search-table', string | undefined, string]>) => {
+  queryKey: [_, workspaceId, query, skip, limit],
+}: QueryFunctionContext<['workspace-inventory-search-table', string | undefined, string, number, number]>) => {
   return workspaceId
     ? axiosWithAuth
         .post<GetWorkspaceInventorySearchTableResponse>(
           endPoints.workspaces.workspace(workspaceId).inventory.search.table,
-          `query=${window.encodeURIComponent(searchCrit)}`,
-          {
-            signal,
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-            },
-          },
+          { query, skip, limit },
+          { signal },
         )
         .then((res) => res.data)
     : null
