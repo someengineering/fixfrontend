@@ -26,7 +26,7 @@ export const TablePagination = ({ dataCount, page, rowsPerPage, setPage, setRows
 
   return (
     <MuiTablePagination
-      rowsPerPageOptions={[10, 25, 100]}
+      rowsPerPageOptions={[10, 25, 50, 100]}
       component="div"
       labelDisplayedRows={dataCount < 0 ? () => `${page * rowsPerPage} - ${page * rowsPerPage + rowsPerPage}` : undefined}
       count={dataCount}
