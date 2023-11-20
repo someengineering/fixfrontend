@@ -1,7 +1,9 @@
 import { Trans } from '@lingui/macro'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Divider, Skeleton, Typography } from '@mui/material'
+import { useQueryClient } from '@tanstack/react-query'
 import { Suspense, useEffect } from 'react'
+import { useUserProfile } from 'src/core/auth'
 import { useEvents } from 'src/core/events'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
@@ -14,6 +16,9 @@ import { SetupTemplateButtonSkeleton } from './SetupTemplateButton.skeleton'
 import { TenantId } from './TenantId'
 
 export default function SetupCloud() {
+  const queryClient = useQueryClient()
+  const { selectedWorkspace } = useUserProfile()
+
   const { addListener } = useEvents()
   const navigate = useAbsoluteNavigate()
 
@@ -24,10 +29,13 @@ export default function SetupCloud() {
   useEffect(() => {
     return addListener('event-button', (ev) => {
       if (ev.kind === 'cloud_account_created') {
+        void queryClient.invalidateQueries({
+          queryKey: ['workspace-cloud-accounts', selectedWorkspace?.id],
+        })
         navigate('/accounts')
       }
     })
-  }, [addListener, navigate])
+  }, [addListener, navigate, queryClient, selectedWorkspace?.id])
 
   return (
     <>
@@ -38,7 +46,7 @@ export default function SetupCloud() {
         <Trans>In the next step we are going to set up the trust between FIX and your AWS cloud account.</Trans>
       </Typography>
       <Typography variant="h6" color="warning.main" mt={1}>
-        <Trans>Make sure that you are already logged into the correct AWS account, before pressing the SETUP button.</Trans>
+        <Trans>Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button.</Trans>
       </Typography>
       <Box py={3}>
         <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>

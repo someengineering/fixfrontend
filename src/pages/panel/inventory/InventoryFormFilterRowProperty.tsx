@@ -21,11 +21,12 @@ interface InventoryFormFilterRowPropertyProps {
     op?: OPType | null
     value?: string | null
   }) => void
+  kinds: string[]
 }
 
 const ITEMS_PER_PAGE = 50
 
-export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, onChange }: InventoryFormFilterRowPropertyProps) => {
+export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kinds, onChange }: InventoryFormFilterRowPropertyProps) => {
   const { defaultItem, isDefaultSimple } = useMemo(() => {
     const defaultItem = defaultProperties.find((i) => i.label === defaultValue)
     return {
@@ -56,6 +57,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, onC
       path,
       isDictionary ? fqn?.split(',')[1].split(']')[0].trim() ?? '' : prop,
       selectedKind,
+      JSON.stringify(kinds),
     ] as const,
     initialPageParam: {
       limit: ITEMS_PER_PAGE,
@@ -78,7 +80,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, onC
     }
   }
   const handleInputKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Tab' || e.key === 'Enter' || e.key === 'ArrowRight') {
+    if (e.key === 'Tab' || e.key === 'Enter' || e.key === 'ArrowRight' || e.key === '.') {
       handleChange(undefined, highlightedOptionRef.current)
       e.preventDefault()
       e.stopPropagation()
@@ -114,6 +116,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, onC
         setPath(newPath)
         onChange({
           property: option.label,
+          op: '=',
           fqn: option.value as ResourceComplexKindSimpleTypeDefinitions,
         })
       } else {
@@ -172,8 +175,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, onC
       renderInput={(params) => (
         <TextField
           {...params}
-          autoFocus={!!fqn}
-          focused={!!fqn}
+          focused={hasFocus && !!fqn}
           InputProps={{
             ...params.InputProps,
             endAdornment: (

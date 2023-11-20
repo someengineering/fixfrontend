@@ -64,7 +64,7 @@ msgstr "Accounts"
 msgid "Accounts Summary"
 msgstr "Accounts Summary"
 
-#: src/pages/panel/accounts/AccountsTable.tsx:56
+#: src/pages/panel/accounts/AccountsTable.tsx:59
 msgid "Actions"
 msgstr "Actions"
 
@@ -88,7 +88,7 @@ msgstr "Alternatively: Manual Cloud Setup"
 msgid "and"
 msgstr "and"
 
-#: src/pages/panel/accounts/AccountRow.tsx:237
+#: src/pages/panel/accounts/AccountRow.tsx:241
 msgid "Are you sure?"
 msgstr "Are you sure?"
 
@@ -104,14 +104,14 @@ msgstr "AWS Marketplace has been successfully subscribed"
 msgid "Benchmarks"
 msgstr "Benchmarks"
 
-#: src/pages/panel/accounts/AccountRow.tsx:182
-#: src/pages/panel/accounts/AccountRow.tsx:186
-#: src/pages/panel/accounts/AccountRow.tsx:187
-#: src/pages/panel/accounts/AccountRow.tsx:244
+#: src/pages/panel/accounts/AccountRow.tsx:185
+#: src/pages/panel/accounts/AccountRow.tsx:189
+#: src/pages/panel/accounts/AccountRow.tsx:190
+#: src/pages/panel/accounts/AccountRow.tsx:260
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/pages/panel/accounts/AccountRow.tsx:264
+#: src/pages/panel/accounts/AccountRow.tsx:280
 #: src/pages/panel/accounts/AccountsTable.tsx:35
 #: src/pages/panel/home/AccountCard.tsx:33
 msgid "Cloud"
@@ -151,10 +151,10 @@ msgstr "Critical"
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: src/pages/panel/accounts/AccountRow.tsx:225
 #: src/pages/panel/accounts/AccountRow.tsx:229
-#: src/pages/panel/accounts/AccountRow.tsx:230
-#: src/pages/panel/accounts/AccountRow.tsx:255
+#: src/pages/panel/accounts/AccountRow.tsx:233
+#: src/pages/panel/accounts/AccountRow.tsx:234
+#: src/pages/panel/accounts/AccountRow.tsx:271
 msgid "Delete"
 msgstr "Delete"
 
@@ -163,7 +163,7 @@ msgstr "Delete"
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
-#: src/pages/panel/accounts/AccountRow.tsx:238
+#: src/pages/panel/accounts/AccountRow.tsx:244
 msgid "Do you want to delete this account?"
 msgstr "Do you want to delete this account?"
 
@@ -171,8 +171,8 @@ msgstr "Do you want to delete this account?"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Don't have an account? Click here to Sign up."
 
-#: src/pages/panel/accounts/AccountRow.tsx:198
-#: src/pages/panel/accounts/AccountRow.tsx:199
+#: src/pages/panel/accounts/AccountRow.tsx:201
+#: src/pages/panel/accounts/AccountRow.tsx:202
 msgid "Edit"
 msgstr "Edit"
 
@@ -181,7 +181,7 @@ msgstr "Edit"
 msgid "Email"
 msgstr "Email"
 
-#: src/pages/panel/accounts/AccountsTable.tsx:53
+#: src/pages/panel/accounts/AccountsTable.tsx:56
 msgid "Enabled"
 msgstr "Enabled"
 
@@ -197,7 +197,7 @@ msgstr "External Id"
 #~ msgid "Failed Checks"
 #~ msgstr "Failed Checks"
 
-#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:144
+#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:152
 msgid "False"
 msgstr "False"
 
@@ -214,7 +214,7 @@ msgstr "High"
 msgid "How to fix"
 msgstr "How to fix"
 
-#: src/pages/panel/accounts/AccountRow.tsx:261
+#: src/pages/panel/accounts/AccountRow.tsx:277
 #: src/pages/panel/accounts/AccountsTable.tsx:38
 #: src/pages/panel/home/AccountCard.tsx:30
 msgid "ID"
@@ -232,7 +232,7 @@ msgstr "In the next step we are going to set up the trust between FIX and your A
 msgid "Inventory"
 msgstr "Inventory"
 
-#: src/pages/panel/inventory/InventoryForm.tsx:206
+#: src/pages/panel/inventory/InventoryForm.tsx:205
 msgid "Kinds"
 msgstr "Kinds"
 
@@ -254,8 +254,8 @@ msgid "Low"
 msgstr "Low"
 
 #: src/pages/panel/setup-cloud/SetupCloudPage.tsx:41
-msgid "Make sure that you are already logged into the correct AWS account, before pressing the SETUP button."
-msgstr "Make sure that you are already logged into the correct AWS account, before pressing the SETUP button."
+msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
+msgstr "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 
 #: src/shared/defined-messages/getMessage.ts:11
 msgid "Medium"
@@ -273,18 +273,22 @@ msgstr "Most Improved Accounts"
 msgid "Most Improved Resources"
 msgstr "Most Improved Resources"
 
-#: src/pages/panel/accounts/AccountRow.tsx:267
+#: src/pages/panel/accounts/AccountRow.tsx:283
 #: src/pages/panel/accounts/AccountsTable.tsx:41
 msgid "Name"
 msgstr "Name"
 
-#: src/pages/panel/accounts/AccountsTable.tsx:50
+#: src/pages/panel/accounts/AccountsTable.tsx:53
 msgid "Next scan"
 msgstr "Next scan"
 
 #: src/pages/panel/home/OverallCard.tsx:70
 msgid "No changes"
 msgstr "No changes"
+
+#: src/pages/panel/accounts/AccountRow.tsx:247
+msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
+msgstr "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 
 #: src/pages/panel/home/OverallCard.tsx:96
 #: src/pages/panel/home/OverallCard.tsx:167
@@ -329,11 +333,15 @@ msgstr "Pick one of the recommendations to the right and improve your security"
 msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgstr "Please go to <0>Setup Accounts</0> page to setup your account first"
 
+#: src/pages/panel/accounts/AccountsTable.tsx:47
+msgid "Privileged"
+msgstr "Privileged"
+
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:39
 msgid "Profile"
 msgstr "Profile"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:193
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:195
 msgid "Property"
 msgstr "Property"
 
@@ -345,7 +353,7 @@ msgstr "Regions"
 msgid "Register"
 msgstr "Register"
 
-#: src/pages/panel/accounts/AccountsTable.tsx:47
+#: src/pages/panel/accounts/AccountsTable.tsx:50
 msgid "Resources"
 msgstr "Resources"
 
@@ -388,13 +396,13 @@ msgstr "Simple and affordable visibility into your cloud security posture."
 msgid "Since {since}"
 msgstr "Since {since}"
 
-#: src/pages/panel/accounts/AccountRow.tsx:171
-#: src/pages/panel/accounts/AccountRow.tsx:172
-#: src/pages/panel/accounts/AccountRow.tsx:177
+#: src/pages/panel/accounts/AccountRow.tsx:174
+#: src/pages/panel/accounts/AccountRow.tsx:175
+#: src/pages/panel/accounts/AccountRow.tsx:180
 msgid "Submit"
 msgstr "Submit"
 
-#: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:68
+#: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:69
 msgid "Tags"
 msgstr "Tags"
 
@@ -431,7 +439,7 @@ msgstr "Top Non-Compliant Accounts"
 msgid "Top Non-Compliant Resources"
 msgstr "Top Non-Compliant Resources"
 
-#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:141
+#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:149
 msgid "True"
 msgstr "True"
 
@@ -439,8 +447,8 @@ msgstr "True"
 msgid "Try again"
 msgstr "Try again"
 
-#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:159
 #: src/pages/panel/inventory/InventoryFormFilterRow.tsx:167
+#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:175
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:91
 msgid "Value"
 msgstr "Value"

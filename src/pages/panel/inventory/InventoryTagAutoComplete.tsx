@@ -50,6 +50,7 @@ export const InventoryTagAutoComplete = ({ searchCrit, setSelectedTag }: Invento
   }
   return (
     <Autocomplete
+      size="small"
       disableListWrap
       fullWidth
       loading={isLoading}

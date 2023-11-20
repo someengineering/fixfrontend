@@ -13,6 +13,7 @@ import { useUserProfile } from 'src/core/auth'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { Modal } from 'src/shared/modal'
 import { Account, GetWorkspaceCloudAccountsResponse, GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
+import { getAccountName } from 'src/shared/utils/getAccountName'
 import { deleteAccountMutation } from './deleteAccount.mutation'
 import { disableAccountMutation } from './disableAccount.mutation'
 import { enableAccountMutation } from './enableAccount.mutation'
@@ -41,11 +42,12 @@ export const AccountRow = ({ account }: { account: Account }) => {
     mutationKey: ['edit-workspace-account', selectedWorkspace?.id, account.id],
   })
   const [isEdit, setIsEdit] = useState(false)
-  const [editedName, setEditedName] = useState(account.name)
+  const accountName = getAccountName(account)
+  const [editedName, setEditedName] = useState(accountName)
   const cancelEdit = useCallback(() => {
     setIsEdit(false)
-    setEditedName(account.name)
-  }, [account.name])
+    setEditedName(accountName)
+  }, [accountName])
   useEffect(() => {
     if (isEdit && inputRef.current) {
       const cancelMethod = (e: KeyboardEvent) => {
@@ -155,7 +157,8 @@ export const AccountRow = ({ account }: { account: Account }) => {
           >
             <TextField
               sx={{ flexGrow: 1 }}
-              defaultValue={account.name}
+              defaultValue={accountName === account.user_account_name ? accountName : ''}
+              placeholder={account.api_account_name || account.api_account_alias || ''}
               onChange={(e) => setEditedName(e.target.value)}
               variant="standard"
               fullWidth
@@ -167,7 +170,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
             />
             {renameAccountIsPending ? (
               <CircularProgress size={20} />
-            ) : editedName !== account.name ? (
+            ) : editedName !== accountName ? (
               <Tooltip title={<Trans>Submit</Trans>}>
                 <IconButton aria-label={t`Submit`} color="success" type="submit">
                   <SendIcon />
@@ -193,7 +196,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
         ) : (
           <Stack direction="row" alignItems="center" spacing={1}>
             <Typography flexGrow={1} onClick={() => setIsEdit(true)} sx={{ cursor: 'pointer' }}>
-              {account.name ?? '-'}
+              {accountName ?? '-'}
             </Typography>
             <Tooltip title={<Trans>Edit</Trans>}>
               <IconButton aria-label={t`Edit`} color="primary" onClick={() => setIsEdit(true)}>
@@ -204,6 +207,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
         )}
       </TableCell>
       <TableCell>{account.is_configured ? <CheckIcon color="success" /> : <DoDistorbIcon color="error" />}</TableCell>
+      <TableCell>{account.priviledged ? <CheckIcon color="success" /> : <DoDistorbIcon color="error" />}</TableCell>
       <TableCell>{account.resources ?? '-'}</TableCell>
       <TableCell>{account.next_scan ? new Date(account.next_scan).toLocaleTimeString() : '-'}</TableCell>
       <TableCell>
@@ -235,7 +239,19 @@ export const AccountRow = ({ account }: { account: Account }) => {
       </TableCell>
       <Modal
         title={<Trans>Are you sure?</Trans>}
-        description={<Trans>Do you want to delete this account?</Trans>}
+        description={
+          <>
+            <Trans>Do you want to delete this account?</Trans>
+            {!account.priviledged ? (
+              <Typography color="warning.main" width="100%" marginY={2} fontWeight="bold">
+                <Trans>
+                  Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no
+                  longer have the capability to retrieve any account names, requiring you to edit them manually.
+                </Trans>
+              </Typography>
+            ) : null}
+          </>
+        }
         openRef={showModalRef}
         actions={
           <>
@@ -264,7 +280,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
           <Trans>Cloud</Trans>: {account.cloud.toUpperCase()}
         </Typography>
         <Typography>
-          <Trans>Name</Trans>: {account.name}
+          <Trans>Name</Trans>: {accountName}
         </Typography>
       </Modal>
     </TableRow>

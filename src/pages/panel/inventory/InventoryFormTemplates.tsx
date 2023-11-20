@@ -21,9 +21,10 @@ interface InventoryFormTemplatesProps {
 export const InventoryFormTemplates = ({ addTemplate, startData, searchCrit }: InventoryFormTemplatesProps) => {
   return (
     <Grid container spacing={1}>
-      <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+      <Grid item xs={12} sm={6} md={3} lg={2}>
         <Autocomplete
           {...getAutoCompletePropsFromKey(DefaultPropertiesKeys.Cloud)}
+          size="small"
           disablePortal
           fullWidth
           onChange={(_, cloud) => cloud && addTemplate({ selectCloud: cloud.value })}
@@ -31,9 +32,10 @@ export const InventoryFormTemplates = ({ addTemplate, startData, searchCrit }: I
           options={startData.clouds}
         />
       </Grid>
-      <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+      <Grid item xs={12} sm={6} md={3} lg={2}>
         <Autocomplete
           {...getAutoCompletePropsFromKey(DefaultPropertiesKeys.Account)}
+          size="small"
           disablePortal
           fullWidth
           onChange={(_, account) => account && addTemplate({ selectAccount: account.value })}
@@ -41,9 +43,10 @@ export const InventoryFormTemplates = ({ addTemplate, startData, searchCrit }: I
           options={startData.accounts}
         />
       </Grid>
-      <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+      <Grid item xs={12} sm={6} md={3} lg={2}>
         <Autocomplete
           {...getAutoCompletePropsFromKey(DefaultPropertiesKeys.Regions)}
+          size="small"
           disablePortal
           fullWidth
           onChange={(_, region) => region && addTemplate({ selectRegion: region.value })}
@@ -51,12 +54,13 @@ export const InventoryFormTemplates = ({ addTemplate, startData, searchCrit }: I
           options={startData.regions}
         />
       </Grid>
-      <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+      <Grid item xs={12} sm={6} md={3} lg={2}>
         <InventoryTagAutoComplete searchCrit={searchCrit} setSelectedTag={(selectTag) => addTemplate({ selectTag })} />
       </Grid>
-      <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+      <Grid item xs={12} sm={6} md={3} lg={2}>
         <Autocomplete
           {...getAutoCompletePropsFromKey(DefaultPropertiesKeys.Severity)}
+          size="small"
           renderOption={(props, option, { inputValue: _, ...state }) =>
             option ? (
               <ListItemButton
