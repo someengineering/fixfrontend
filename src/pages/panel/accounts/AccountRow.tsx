@@ -238,7 +238,19 @@ export const AccountRow = ({ account }: { account: Account }) => {
       </TableCell>
       <Modal
         title={<Trans>Are you sure?</Trans>}
-        description={<Trans>Do you want to delete this account?</Trans>}
+        description={
+          <>
+            <Trans>Do you want to delete this account?</Trans>
+            {!account.priviledged ? (
+              <Typography color="warning.main" width="100%" marginY={2} fontWeight="bold">
+                <Trans>
+                  Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no
+                  longer have the capability to retrieve any account names, requiring you to edit them manually.
+                </Trans>
+              </Typography>
+            ) : null}
+          </>
+        }
         openRef={showModalRef}
         actions={
           <>
