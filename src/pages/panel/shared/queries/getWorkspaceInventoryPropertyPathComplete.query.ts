@@ -6,7 +6,7 @@ import { axiosWithAuth } from 'src/shared/utils/axios'
 
 export const getWorkspaceInventoryPropertyPathCompleteQuery = ({
   signal,
-  queryKey: [_, workspaceId, path, prop, kind],
+  queryKey: [_, workspaceId, path, prop, kind, kinds],
   pageParam: { skip = 0, limit = 50 },
 }: QueryFunctionContext<
   readonly [
@@ -15,6 +15,7 @@ export const getWorkspaceInventoryPropertyPathCompleteQuery = ({
     string, // path
     string, // prop
     string | null, // kind
+    string, // kinds
   ],
   {
     skip: number | null
@@ -23,9 +24,9 @@ export const getWorkspaceInventoryPropertyPathCompleteQuery = ({
 >) => {
   const data = {
     path,
-    prop,
-    kinds: kind ? [kind] : [],
-    fuzzy: 0,
+    prop: prop ? `.*${prop}.*` : prop,
+    kinds: kind ? [kind] : (JSON.parse(kinds) as string[]),
+    fuzzy: true,
     limit,
     skip,
   }

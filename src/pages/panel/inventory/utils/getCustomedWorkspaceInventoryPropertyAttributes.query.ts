@@ -14,6 +14,7 @@ export const getCustomedWorkspaceInventoryPropertyAttributesQuery = ({
     string, // path
     string, // prop
     string | null, // kind
+    string, // kinds
   ],
   {
     skip: number | null
