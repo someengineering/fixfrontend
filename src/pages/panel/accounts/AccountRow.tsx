@@ -207,7 +207,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
         )}
       </TableCell>
       <TableCell>{account.is_configured ? <CheckIcon color="success" /> : <DoDistorbIcon color="error" />}</TableCell>
-      <TableCell>{account.priviledged ? <CheckIcon color="success" /> : <DoDistorbIcon color="error" />}</TableCell>
+      <TableCell>{account.privileged ? <CheckIcon color="success" /> : <DoDistorbIcon color="error" />}</TableCell>
       <TableCell>{account.resources ?? '-'}</TableCell>
       <TableCell>{account.next_scan ? new Date(account.next_scan).toLocaleTimeString() : '-'}</TableCell>
       <TableCell>
@@ -242,7 +242,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
         description={
           <>
             <Trans>Do you want to delete this account?</Trans>
-            {!account.priviledged ? (
+            {!account.privileged ? (
               <Typography color="warning.main" width="100%" marginY={2} fontWeight="bold">
                 <Trans>
                   Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no
