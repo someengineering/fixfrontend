@@ -195,7 +195,7 @@ export const InventoryForm = ({ searchCrit, kind, setKind, config, setConfig }: 
         <Divider />
       </Box>
       <Grid container spacing={1} direction="row" mb={2}>
-        <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+        <Grid item xs={12} sm={6} md={3} lg={2}>
           <Autocomplete
             size="small"
             disablePortal
@@ -205,7 +205,7 @@ export const InventoryForm = ({ searchCrit, kind, setKind, config, setConfig }: 
             renderInput={(params) => <TextField {...params} label={<Trans>Kinds</Trans>} />}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={8} lg={9} xl={10}>
+        <Grid item xs={12} sm={6} md={9} lg={10}>
           <Stack spacing={1} direction="row">
             <Box>
               <Divider orientation="vertical" />
