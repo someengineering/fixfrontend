@@ -26,17 +26,14 @@ interface InventoryFormFilterRowPropertyProps {
 const ITEMS_PER_PAGE = 50
 
 export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, onChange }: InventoryFormFilterRowPropertyProps) => {
-  const { defaultItem, isDefaultSimple } = useMemo(
-    () => {
-      const defaultItem = defaultProperties.find((i) => i.label === defaultValue)
-      return {
-        defaultItem,
-        isDefaultSimple: kindSimpleTypes.includes(defaultItem?.value as ResourceComplexKindSimpleTypeDefinitions),
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  )
+  const { defaultItem, isDefaultSimple } = useMemo(() => {
+    const defaultItem = defaultProperties.find((i) => i.label === defaultValue)
+    return {
+      defaultItem,
+      isDefaultSimple: kindSimpleTypes.includes(defaultItem?.value as ResourceComplexKindSimpleTypeDefinitions),
+    }
+  }, [defaultValue])
+
   const [path, setPath] = useState<string>(() => defaultValue?.split('.').slice(0, -1).join('.') ?? '')
   const [prop, setProp] = useState<string>(() => defaultValue?.split('.').slice(-1)[0] ?? '')
   const [fqn, setFqn] = useState<string | null>(defaultItem ? (isDefaultSimple ? null : defaultItem?.value) : 'object')
@@ -131,13 +128,19 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, onC
       onChange({ property: null, op: null, value: null, fqn: null })
     }
   }
-  const autoCompleteValue = value === defaultValue ? defaultItem : flatData?.find((i) => i && i.label === value) ?? null
+  const autoCompleteValue = flatData?.find((i) => i && i.label === value) ?? (defaultValue ? defaultItem : null)
   let autoCompleteInputValue = path ? `${path}.${prop}` : prop
-  if (`${autoCompleteInputValue}.${prop}` === defaultValue) {
-    autoCompleteInputValue = defaultItem?.key ?? autoCompleteInputValue
+  if (
+    defaultItem &&
+    defaultValue === autoCompleteValue?.label &&
+    (autoCompleteInputValue === defaultValue || `${autoCompleteInputValue}.${prop}` === defaultValue)
+  ) {
+    autoCompleteInputValue = defaultItem.key
   }
+
   return (
     <Autocomplete
+      value={autoCompleteValue ?? null}
       size="small"
       disablePortal
       onChange={handleChange}
@@ -165,9 +168,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, onC
       open={hasFocus && !!fqn}
       groupBy={(item: (typeof defaultProperties)[number]) => (item.isDefaulted ? 'Default Properties' : 'Properties')}
       loading={isLoading}
-      ListboxProps={{
-        onScroll: handleScroll,
-      }}
+      ListboxProps={{ onScroll: handleScroll }}
       renderInput={(params) => (
         <TextField
           {...params}

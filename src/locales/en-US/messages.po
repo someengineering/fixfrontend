@@ -329,7 +329,7 @@ msgstr "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgid "Profile"
 msgstr "Profile"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:192
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:193
 msgid "Property"
 msgstr "Property"
 
