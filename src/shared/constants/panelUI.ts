@@ -12,4 +12,5 @@ export const panelUI = {
   tableViewMinHeight: 500,
   inventoryTableCellMinWidth: 200,
   offsetHeightToLoad: 300,
+  minModalWidth: 400,
 }

@@ -24,9 +24,9 @@ interface InventoryAdvanceSearchProps {
   onChange: (value: string) => void
 }
 
-const StyledArrowDropDownIcon = styled(ArrowDropDownIcon, { shouldForwardProp: shouldForwardProp })<{ showSimpleSearch: boolean }>(
-  ({ theme, showSimpleSearch }) => ({
-    transform: `rotate(${showSimpleSearch ? '180' : '0'}deg)`,
+const StyledArrowDropDownIcon = styled(ArrowDropDownIcon, { shouldForwardProp: shouldForwardProp })<{ showAdvanceSearch: boolean }>(
+  ({ theme, showAdvanceSearch }) => ({
+    transform: `rotate(${showAdvanceSearch ? '180' : '0'}deg)`,
     transformOrigin: 'center',
     transition: theme.transitions.create('transform'),
   }),
@@ -38,7 +38,7 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange }: Inventor
     { id: Math.random(), property: null, op: null, value: null, fqn: null },
   ])
   const [kind, setKind] = useState<string | null>(null)
-  const [showSimpleSearch, setShowSimpleSearch] = useState(true)
+  const [showAdvanceSearch, setShowAdvanceSearch] = useState(false)
 
   const timeoutRef = useRef<number>()
 
@@ -93,7 +93,7 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange }: Inventor
           <InventoryForm config={config} setConfig={setConfig} searchCrit={searchCrit} kind={kind} setKind={setKind} />
         </Suspense>
       </NetworkErrorBoundary>
-      <Collapse in={showSimpleSearch}>
+      <Collapse in={showAdvanceSearch}>
         <TextField
           margin="dense"
           placeholder="all"
@@ -111,8 +111,8 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange }: Inventor
       </Collapse>
       <Box my={2}>
         <Divider>
-          <IconButton onClick={() => setShowSimpleSearch((prev) => !prev)}>
-            <StyledArrowDropDownIcon showSimpleSearch={showSimpleSearch} />
+          <IconButton onClick={() => setShowAdvanceSearch((prev) => !prev)}>
+            <StyledArrowDropDownIcon showAdvanceSearch={showAdvanceSearch} />
           </IconButton>
         </Divider>
       </Box>

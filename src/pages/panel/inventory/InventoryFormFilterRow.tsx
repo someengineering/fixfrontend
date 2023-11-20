@@ -89,11 +89,13 @@ export const InventoryFormFilterRow = ({ kind, item, setConfig, id, preItems }: 
     [item.property, item.fqn],
   )
 
+  const kinds = useMemo(() => preItems.kinds.map((i) => i.value), [preItems.kinds])
+
   const currentValue = item.value?.[0] === '[' ? getArrayFromInOP(item.value) : item.value
 
   return (
-    <Stack direction="row" spacing={1}>
-      <InventoryFormFilterRowProperty defaultValue={item.property} onChange={handleChange} selectedKind={kind} />
+    <Stack direction="row" spacing={1} flexWrap="wrap">
+      <InventoryFormFilterRowProperty defaultValue={item.property} onChange={handleChange} selectedKind={kind} kinds={kinds} />
       {currentOpTypes ? (
         <>
           <Select
@@ -115,7 +117,7 @@ export const InventoryFormFilterRow = ({ kind, item, setConfig, id, preItems }: 
             defaultProperties.find((i) => i.label === item.property) ? (
               <Autocomplete
                 size="small"
-                sx={{ minWidth: 250 }}
+                sx={{ width: 250, maxWidth: '100%' }}
                 onChange={(_, option) =>
                   handleChange({
                     value:
@@ -136,7 +138,13 @@ export const InventoryFormFilterRow = ({ kind, item, setConfig, id, preItems }: 
                 limitTags={1}
               />
             ) : item.fqn === 'boolean' ? (
-              <Select value={item.value} onChange={(e) => handleChange({ value: e.target.value })} size="small" autoFocus={!item.value}>
+              <Select
+                sx={{ minWidth: 100 }}
+                value={item.value || ''}
+                onChange={(e) => handleChange({ value: e.target.value })}
+                size="small"
+                autoFocus={!item.value}
+              >
                 <MenuItem value="true">
                   <Trans>True</Trans>
                 </MenuItem>

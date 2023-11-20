@@ -199,7 +199,6 @@ export const InventoryForm = ({ searchCrit, kind, setKind, config, setConfig }: 
           <Autocomplete
             size="small"
             disablePortal
-            sx={{ minWidth: 250 }}
             value={kindValue}
             onChange={(_, kind) => setKind(kind?.value || null)}
             options={filteredStartData.kinds}
