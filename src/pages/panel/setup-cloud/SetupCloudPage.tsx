@@ -1,7 +1,9 @@
 import { Trans } from '@lingui/macro'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Divider, Skeleton, Typography } from '@mui/material'
+import { useQueryClient } from '@tanstack/react-query'
 import { Suspense, useEffect } from 'react'
+import { useUserProfile } from 'src/core/auth'
 import { useEvents } from 'src/core/events'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
@@ -14,6 +16,9 @@ import { SetupTemplateButtonSkeleton } from './SetupTemplateButton.skeleton'
 import { TenantId } from './TenantId'
 
 export default function SetupCloud() {
+  const queryClient = useQueryClient()
+  const { selectedWorkspace } = useUserProfile()
+
   const { addListener } = useEvents()
   const navigate = useAbsoluteNavigate()
 
@@ -24,10 +29,13 @@ export default function SetupCloud() {
   useEffect(() => {
     return addListener('event-button', (ev) => {
       if (ev.kind === 'cloud_account_created') {
+        void queryClient.invalidateQueries({
+          queryKey: ['workspace-cloud-accounts', selectedWorkspace?.id],
+        })
         navigate('/accounts')
       }
     })
-  }, [addListener, navigate])
+  }, [addListener, navigate, queryClient, selectedWorkspace?.id])
 
   return (
     <>
