@@ -139,7 +139,7 @@ export const InventoryForm = ({ searchCrit, kind, setKind, config, setConfig }: 
   const kindValue = kind ? filteredStartData.kinds.find((i) => i.value === kind) ?? null : null
   const handleAddTemplate = ({ selectAccount, selectCloud, selectRegion, selectSeverity, selectTag }: InventoryFormTemplateObject) => {
     setConfig((prev) => {
-      const newValue = [...prev]
+      const newValue = !prev[prev.length - 1].property ? prev.slice(0, prev.length - 1) : [...prev]
       if (selectAccount) {
         newValue.push({
           id: Math.random(),

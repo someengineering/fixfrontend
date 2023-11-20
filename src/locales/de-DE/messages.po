@@ -329,7 +329,7 @@ msgstr "Bitte gehen Sie zur Seite <0>Setup Accounts</0>, um zunächst Ihr Konto 
 msgid "Profile"
 msgstr "Profil"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:192
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:193
 msgid "Property"
 msgstr "Eigentum"
 

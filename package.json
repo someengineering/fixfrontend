@@ -11,8 +11,8 @@
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "i18n:compile": "lingui compile",
     "i18n:extract": "lingui extract",
-    "lint:tsc": "tsc --noEmit",
-    "lint": "eslint . --ext ts,tsx --max-warnings 0 && yarn lint:tsc",
+    "lint:tsc": "tsc-files --noEmit",
+    "lint": "eslint . --ext ts,tsx --max-warnings 0",
     "postinstall": "patch-package && husky install",
     "prebuild": "yarn i18n:compile",
     "prepare": "husky install",
@@ -93,6 +93,7 @@
     "prop-types": "15",
     "react-refresh": "^0.14.0",
     "storybook": "7.5.3",
+    "tsc-files": "^1.1.4",
     "typescript": "^5.2.2",
     "unique-names-generator": "^4.7.1",
     "vite": "^4.5.0",
@@ -115,11 +116,10 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
-      "yarn lint",
-      "yarn i18n:extract"
+      "yarn lint"
     ],
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-      "yarn format"
+      "yarn format:check"
     ]
   },
   "engines": {

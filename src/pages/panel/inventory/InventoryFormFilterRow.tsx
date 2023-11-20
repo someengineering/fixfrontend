@@ -111,7 +111,7 @@ export const InventoryFormFilterRow = ({ kind, item, setConfig, id, preItems }: 
               </MenuItem>
             ))}
           </Select>
-          {item.property ? (
+          {item.op && item.property ? (
             defaultProperties.find((i) => i.label === item.property) ? (
               <Autocomplete
                 size="small"
