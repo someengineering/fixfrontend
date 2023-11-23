@@ -5,7 +5,7 @@ import { FailedChecksType } from 'src/shared/types/server'
 import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 import { getColorBySeverity } from './getColorBySeverity'
 
-export const showSubtitle = (data: Partial<FailedChecksType<number>>) =>
+export const showSubtitle = (data: Partial<FailedChecksType>) =>
   sortedSeverities
     .filter((key) => data[key])
     .map((key) => (
