@@ -146,7 +146,8 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
             top={-8}
             zIndex="modal"
             bgcolor="background.paper"
-            pt={1}
+            p={1}
+            boxShadow={1}
           >
             <Box flex={1}>{selectedRow.row['name']}</Box>
             <IconButton onClick={onClose}>

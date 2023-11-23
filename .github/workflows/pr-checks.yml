@@ -1,0 +1,30 @@
+name: 'PR Checks'
+on: [pull_request]
+
+jobs:
+  pr-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'yarn'
+
+      - name: Install
+        run: yarn install
+
+      - name: Run tests
+        run: yarn test
+
+      - name: Run Lint
+        run: yarn lint
+
+      - name: Run Lint TSC
+        run: yarn lint:tsc
+
+      - name: Run check prettier
+        run: yarn format:check
+
+      - name: Run Build
+        run: yarn build
