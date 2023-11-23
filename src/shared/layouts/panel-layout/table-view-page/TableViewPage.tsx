@@ -22,7 +22,7 @@ export const TableViewPage = ({ children, pagination }: TableViewPageProps) => {
         mb={-4}
         minHeight={panelUI.tableViewMinHeight}
       >
-        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+        <Paper sx={{ width: '100%', overflow: 'hidden', position: 'relative' }}>
           <TableContainer sx={{ height: pagination ? `calc(100% - ${panelUI.tablePaginationHeight}px)` : '100%' }} ref={ref}>
             {children}
           </TableContainer>

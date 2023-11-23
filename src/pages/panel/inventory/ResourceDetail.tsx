@@ -1,0 +1,265 @@
+import { Trans } from '@lingui/macro'
+import CloseIcon from '@mui/icons-material/Close'
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Divider,
+  Grid,
+  IconButton,
+  Modal as MuiModal,
+  Skeleton,
+  Slide,
+  Stack,
+  Tooltip,
+  Typography,
+  styled,
+} from '@mui/material'
+import { useQuery } from '@tanstack/react-query'
+import { Fragment, ReactNode, useEffect, useState } from 'react'
+import { useUserProfile } from 'src/core/auth'
+import { getWorkspaceInventoryNodeQuery } from 'src/pages/panel/shared/queries'
+import { getColorBySeverity } from 'src/pages/panel/shared/utils'
+import { panelUI } from 'src/shared/constants'
+import { GetWorkspaceInventorySearchTableRow } from 'src/shared/types/server'
+import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
+import { snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
+
+interface ResourceDetailProps {
+  detail: GetWorkspaceInventorySearchTableRow | undefined
+  onClose: () => void
+}
+
+const Modal = styled(MuiModal)(({ theme }) => ({
+  position: 'fixed',
+  top: 0,
+  right: 0,
+  left: 'auto',
+  height: '100%',
+  width: '100%',
+
+  [theme.breakpoints.up('md')]: {
+    top: panelUI.headerHeight,
+    width: '50%',
+    height: `calc(100vh - ${panelUI.headerHeight}px)`,
+  },
+
+  [theme.breakpoints.up('xl')]: {
+    width: '33%',
+    maxWidth: 700,
+  },
+}))
+
+const GridItem = ({
+  property,
+  value,
+  color,
+  isReactNode,
+}: {
+  property: ReactNode
+  value: unknown
+  color?: string
+  isReactNode?: boolean
+}) => {
+  const isSimpleValue = isReactNode ? true : ['string', 'boolean', 'number'].includes(typeof value)
+  const stringValue = isReactNode ? '' : isSimpleValue ? (value as string | boolean | number).toString() : JSON.stringify(value)
+  return (
+    <>
+      <Grid overflow="hidden" width="100%">
+        <Tooltip arrow title={property} placement="left" slotProps={{ tooltip: { sx: { maxWidth: 'none' } } }}>
+          <Typography overflow="hidden" textOverflow="ellipsis">
+            {property}:
+          </Typography>
+        </Tooltip>
+      </Grid>
+      <Grid overflow="hidden" width="100%">
+        {isReactNode ? (
+          (value as ReactNode)
+        ) : (
+          <Tooltip
+            slotProps={{ tooltip: { sx: { maxWidth: '100vw', maxHeight: '100vh', overflow: 'auto', p: 1 } } }}
+            title={
+              isSimpleValue ? (
+                <Typography color={color}>{stringValue}</Typography>
+              ) : (
+                <Typography component="pre">{JSON.stringify(value, null, '  ')}</Typography>
+              )
+            }
+            placement="left"
+          >
+            <Typography
+              overflow="hidden"
+              textOverflow="ellipsis"
+              whiteSpace={'nowrap'}
+              component={isSimpleValue ? 'p' : 'pre'}
+              color={color}
+            >
+              {stringValue}
+            </Typography>
+          </Tooltip>
+        )}
+      </Grid>
+    </>
+  )
+}
+
+export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
+  const { selectedWorkspace } = useUserProfile()
+  const { data, isLoading } = useQuery({
+    queryKey: ['workspace-inventory-node', selectedWorkspace?.id, detail?.id],
+    queryFn: getWorkspaceInventoryNodeQuery,
+  })
+  const [selectedRow, setSelectedRow] = useState(detail)
+
+  useEffect(() => {
+    if (detail) {
+      setSelectedRow(detail)
+    }
+  }, [detail])
+
+  const { id, name, kind, ctime, age: _age, tags, ...reported } = data?.resource.reported ?? {}
+
+  return selectedRow ? (
+    <Modal open={!!detail} onClose={onClose} hideBackdrop>
+      <Slide in={!!detail} direction="left" mountOnEnter unmountOnExit>
+        <Stack
+          position="absolute"
+          top={0}
+          right={0}
+          width="100%"
+          height="100%"
+          sx={{
+            bgcolor: 'background.paper',
+            boxShadow: 24,
+          }}
+          direction="column"
+          p={1}
+          spacing={1}
+          overflow="auto"
+        >
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+            position="sticky"
+            top={-8}
+            zIndex="modal"
+            bgcolor="background.paper"
+            pt={1}
+          >
+            <Box flex={1}>{selectedRow.row['name']}</Box>
+            <IconButton onClick={onClose}>
+              <CloseIcon />
+            </IconButton>
+          </Stack>
+          {/* <Box minHeight={400} width="100%" sx={{ userSelect: 'none' }}>
+            {data ? (
+              <NetworkDiagram data={data.neighborhood} />
+            ) : isLoading ? (
+              <Skeleton height={400} width="100%" variant="rectangular" />
+            ) : null}
+          </Box> */}
+          <Accordion defaultExpanded>
+            <AccordionSummary>
+              <Trans>Basic Information</Trans>
+            </AccordionSummary>
+            <AccordionDetails>
+              {data ? (
+                <Grid gap={2} gridTemplateColumns="150px 1fr" width="100%" display="grid">
+                  <GridItem property={<Trans>Kind</Trans>} value={kind} />
+                  <GridItem property={<Trans>ID</Trans>} value={id} />
+                  <GridItem property={<Trans>Name</Trans>} value={name} />
+                  <GridItem
+                    property={<Trans>Created Time</Trans>}
+                    value={`${new Date(ctime as string).toLocaleDateString()} ${new Date(ctime as string).toLocaleTimeString()}`}
+                  />
+                  <GridItem
+                    property={<Trans>Age</Trans>}
+                    value={iso8601DurationToString(diffDateTimeToDuration(new Date(ctime as string), new Date()), 2)}
+                  />
+                </Grid>
+              ) : isLoading ? (
+                <>
+                  <Skeleton height={200} width="100%" variant="rectangular" />
+                </>
+              ) : null}
+            </AccordionDetails>
+          </Accordion>
+          {data && Object.entries(tags ?? {}).length ? (
+            <Accordion>
+              <AccordionSummary>
+                <Trans>Tags</Trans>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Grid gap={2} gridTemplateColumns="150px 1fr" width="100%" display="grid">
+                  {Object.entries(tags as Record<string, string>).map(([property, value], key) => (
+                    <GridItem key={key} property={property} value={value} />
+                  ))}
+                </Grid>
+              </AccordionDetails>
+            </Accordion>
+          ) : null}
+          <Accordion>
+            <AccordionSummary>
+              <Trans>Details</Trans>
+            </AccordionSummary>
+            <AccordionDetails>
+              {data ? (
+                <Grid gap={2} gridTemplateColumns="150px 1fr" width="100%" display="grid">
+                  {Object.entries(reported).map(([property, value], key) => (
+                    <GridItem key={key} property={property} value={value} />
+                  ))}
+                </Grid>
+              ) : isLoading ? (
+                <>
+                  <Skeleton height={400} width="100%" variant="rectangular" />
+                </>
+              ) : null}
+            </AccordionDetails>
+          </Accordion>
+          {data?.resource.security?.has_issues ? (
+            <Accordion>
+              <AccordionSummary>
+                <Trans>Security</Trans>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Grid gap={2} gridTemplateColumns="150px 1fr" display="grid">
+                  <GridItem
+                    property={<Trans>Found at</Trans>}
+                    value={`${new Date(data.resource.security.opened_at).toLocaleDateString()} ${new Date(
+                      data.resource.security.opened_at,
+                    ).toLocaleTimeString()}`}
+                  />
+                  <GridItem
+                    property={<Trans>Severity</Trans>}
+                    value={snakeCaseWordsToUFStr(data.resource.security.severity)}
+                    color={getColorBySeverity(data.resource.security.severity)}
+                  />
+                  <GridItem property={<Trans>Issues</Trans>} value={null} isReactNode />
+
+                  {data.resource.security.issues.map((issue, i) => (
+                    <Fragment key={i}>
+                      <Divider />
+                      <Divider />
+                      <GridItem property={<Trans>Check</Trans>} value={issue.check} />
+                      <GridItem
+                        property={<Trans>Found at</Trans>}
+                        value={`${new Date(issue.opened_at).toLocaleDateString()} ${new Date(issue.opened_at).toLocaleTimeString()}`}
+                      />
+                      <GridItem
+                        property={<Trans>Severity</Trans>}
+                        color={getColorBySeverity(issue.severity)}
+                        value={snakeCaseWordsToUFStr(issue.severity)}
+                      />
+                    </Fragment>
+                  ))}
+                </Grid>
+              </AccordionDetails>
+            </Accordion>
+          ) : null}
+        </Stack>
+      </Slide>
+    </Modal>
+  ) : undefined
+}

@@ -104,8 +104,12 @@ export const InventoryForm = ({ searchCrit, kind, setKind, config, setConfig }: 
         }
       }
     }
+    const selectedKindCloud = processedStartData.kinds.find((i) => i.id === kind)?.cloud
+    if (selectedKindCloud) {
+      result.push(selectedKindCloud)
+    }
     return [...new Set(result.filter((cloud) => cloud))]
-  }, [config, processedStartData])
+  }, [config, processedStartData, kind])
   const filteredStartData = useMemo(
     () => ({
       accounts: (selectedClouds.length
@@ -132,7 +136,9 @@ export const InventoryForm = ({ searchCrit, kind, setKind, config, setConfig }: 
         label: regions.find(({ name, id }) => name === region.name && id !== region.id) ? `${region.name} (${region.id})` : region.name,
       })),
       severities: processedStartData.severity.map((severity) => ({ label: severity, value: severity })),
-      clouds: processedStartData.clouds.map((cloud) => ({ label: cloud.toUpperCase(), value: cloud })),
+      clouds: selectedClouds.length
+        ? selectedClouds.map((cloud) => ({ label: cloud.toUpperCase(), value: cloud }))
+        : processedStartData.clouds.map((cloud) => ({ label: cloud.toUpperCase(), value: cloud })),
     }),
     [processedStartData, selectedClouds],
   )

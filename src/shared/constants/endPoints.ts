@@ -41,6 +41,7 @@ export const endPoints = {
             complete: `/api/workspaces/${workspaceId}/inventory/property/path/complete`,
           },
         },
+        node: (nodeId: string) => `api/workspaces/${workspaceId}/inventory/node/${nodeId}`,
       },
       events: `api/workspaces/${workspaceId}/events`,
     }),
