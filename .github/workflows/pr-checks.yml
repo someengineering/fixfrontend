@@ -19,10 +19,10 @@ jobs:
       
       - name: Add models
         run: |
-          echo "[]\n" > mock-apis/data/model.json
-          echo "{ \"accounts\": [], \"regions\": [], \"kinds\": [], \"severity\": [] }\n" > mock-apis/data/search-start.json
-          echo "[]\n" > mock-apis/data/table.json
-          echo "[]\n" > mock-apis/data/tags.json
+          echo "[]" > mock-apis/data/model.json
+          echo "{ \"accounts\": [], \"regions\": [], \"kinds\": [], \"severity\": [] }" > mock-apis/data/search-start.json
+          echo "[]" > mock-apis/data/table.json
+          echo "[]" > mock-apis/data/tags.json
 
       - name: Run tests
         run: yarn test
