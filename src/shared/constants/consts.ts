@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro'
-import { WorkspaceFailedChecksTypeKeys } from 'src/shared/types/server'
+import { SeverityType } from 'src/shared/types/server'
 
-export const sortedSeverities: WorkspaceFailedChecksTypeKeys[] = ['critical', 'high', 'medium', 'low']
+export const sortedSeverities: SeverityType[] = ['critical', 'high', 'medium', 'low']
 export const panelMessages = () =>
   [{ message: 'aws-marketplace-subscribed', text: t`AWS Marketplace has been successfully subscribed`, type: 'success' }] as const
