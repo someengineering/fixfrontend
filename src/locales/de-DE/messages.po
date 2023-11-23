@@ -13,35 +13,35 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/shared/utils/parseISO8601Duration.ts:110
+#: src/shared/utils/parseDuration.ts:139
 msgid "{0, plural, one {# Day} other {# Days}}"
 msgstr "{0, plural, one {# Tag} other {# Tage}}"
 
-#: src/shared/utils/parseISO8601Duration.ts:118
+#: src/shared/utils/parseDuration.ts:147
 msgid "{0, plural, one {# Hour} other {# Hours}}"
 msgstr "{0, plural, one {# Stunde} other {# Stunden}}"
 
-#: src/shared/utils/parseISO8601Duration.ts:126
+#: src/shared/utils/parseDuration.ts:155
 msgid "{0, plural, one {# Minute} other {# Minutes}}"
 msgstr "{0, plural, one {# Minute} other {# Minuten}}"
 
-#: src/shared/utils/parseISO8601Duration.ts:94
+#: src/shared/utils/parseDuration.ts:123
 msgid "{0, plural, one {# Month} other {# Months}}"
 msgstr "{0, plural, one {# Monat} other {# Monate}}"
 
-#: src/shared/utils/parseISO8601Duration.ts:134
+#: src/shared/utils/parseDuration.ts:163
 msgid "{0, plural, one {# Second} other {# Seconds}}"
 msgstr "{0, plural, one {# Sekunde} other {# Sekunden}}"
 
-#: src/shared/utils/parseISO8601Duration.ts:102
+#: src/shared/utils/parseDuration.ts:131
 msgid "{0, plural, one {# Week} other {# Weeks}}"
 msgstr "{0, plural, one {# Woche} other {# Wochen}}"
 
-#: src/shared/utils/parseISO8601Duration.ts:86
+#: src/shared/utils/parseDuration.ts:115
 msgid "{0, plural, one {# Year} other {# Years}}"
 msgstr "{0, plural, one {# Jahr} other {# Jahre}}"
 
-#: src/shared/utils/parseISO8601Duration.ts:141
+#: src/shared/utils/parseDuration.ts:170
 msgid "{0} Milliseconds"
 msgstr "{0} Millisekunden"
 
@@ -54,7 +54,7 @@ msgid "© 2023 Some Engineering Inc. All rights reserved."
 msgstr "© 2023 Some Engineering Services GMBH. Alle Rechte vorbehalten."
 
 #: src/pages/panel/accounts/AccountsTable.tsx:31
-#: src/pages/panel/inventory/InventoryTable.tsx:55
+#: src/pages/panel/inventory/InventoryTable.tsx:60
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:66
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:103
 msgid "Accounts"
@@ -72,6 +72,10 @@ msgstr "Aktionen"
 msgid "Add an account"
 msgstr "Füge ein Konto hinzu"
 
+#: src/pages/panel/inventory/ResourceDetail.tsx:178
+msgid "Age"
+msgstr "Alter"
+
 #: src/pages/auth/register/RegisterPage.tsx:132
 msgid "Already have an account? Click here to Log in."
 msgstr "Sie haben bereits ein Konto? Klicken Sie hier, um sich einzuloggen."
@@ -84,11 +88,11 @@ msgstr "Wenn Sie den Stack alternativ manuell bereitstellen möchten, können Si
 msgid "Alternatively: Manual Cloud Setup"
 msgstr "Alternativ: Manuelles Cloud Setup"
 
-#: src/shared/utils/parseISO8601Duration.ts:143
+#: src/shared/utils/parseDuration.ts:172
 msgid "and"
 msgstr "und"
 
-#: src/pages/panel/accounts/AccountRow.tsx:241
+#: src/pages/panel/accounts/AccountRow.tsx:242
 msgid "Are you sure?"
 msgstr "Bist du sicher?"
 
@@ -100,24 +104,32 @@ msgstr "Automatisches Cloud Setup"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
+#: src/pages/panel/inventory/ResourceDetail.tsx:165
+msgid "Basic Information"
+msgstr "Grundinformation"
+
 #: src/pages/panel/shared/utils/chartToShow.tsx:39
 msgid "Benchmarks"
 msgstr "Benchmarks"
 
-#: src/pages/panel/accounts/AccountRow.tsx:185
-#: src/pages/panel/accounts/AccountRow.tsx:189
+#: src/pages/panel/accounts/AccountRow.tsx:186
 #: src/pages/panel/accounts/AccountRow.tsx:190
-#: src/pages/panel/accounts/AccountRow.tsx:260
+#: src/pages/panel/accounts/AccountRow.tsx:191
+#: src/pages/panel/accounts/AccountRow.tsx:261
 msgid "Cancel"
 msgstr "Stornieren"
 
-#: src/pages/panel/accounts/AccountRow.tsx:280
+#: src/pages/panel/inventory/ResourceDetail.tsx:245
+msgid "Check"
+msgstr "Überprüfen"
+
+#: src/pages/panel/accounts/AccountRow.tsx:281
 #: src/pages/panel/accounts/AccountsTable.tsx:35
 #: src/pages/panel/home/AccountCard.tsx:33
 msgid "Cloud"
 msgstr "Cloud"
 
-#: src/shared/event-button/EventButton.tsx:47
+#: src/shared/event-button/EventButton.tsx:56
 msgid "Cloud account added, id: {0}"
 msgstr "Cloud-Konto hinzugefügt, ID: {0}"
 
@@ -143,6 +155,10 @@ msgstr "In die Zwischenablage kopiert!"
 msgid "Copy"
 msgstr "Kopieren"
 
+#: src/pages/panel/inventory/ResourceDetail.tsx:174
+msgid "Created Time"
+msgstr "Erstellte Zeit"
+
 #: src/shared/defined-messages/getMessage.ts:5
 msgid "Critical"
 msgstr "Kritisch"
@@ -151,10 +167,10 @@ msgstr "Kritisch"
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: src/pages/panel/accounts/AccountRow.tsx:229
-#: src/pages/panel/accounts/AccountRow.tsx:233
+#: src/pages/panel/accounts/AccountRow.tsx:230
 #: src/pages/panel/accounts/AccountRow.tsx:234
-#: src/pages/panel/accounts/AccountRow.tsx:271
+#: src/pages/panel/accounts/AccountRow.tsx:235
+#: src/pages/panel/accounts/AccountRow.tsx:272
 msgid "Delete"
 msgstr "Löschen"
 
@@ -163,7 +179,11 @@ msgstr "Löschen"
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
-#: src/pages/panel/accounts/AccountRow.tsx:244
+#: src/pages/panel/inventory/ResourceDetail.tsx:205
+msgid "Details"
+msgstr "Einzelheiten"
+
+#: src/pages/panel/accounts/AccountRow.tsx:245
 msgid "Do you want to delete this account?"
 msgstr "Möchten Sie dieses Konto löschen?"
 
@@ -171,8 +191,8 @@ msgstr "Möchten Sie dieses Konto löschen?"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 
-#: src/pages/panel/accounts/AccountRow.tsx:201
 #: src/pages/panel/accounts/AccountRow.tsx:202
+#: src/pages/panel/accounts/AccountRow.tsx:203
 msgid "Edit"
 msgstr "Edit"
 
@@ -185,7 +205,7 @@ msgstr "Email"
 msgid "Enabled"
 msgstr "Ermöglicht"
 
-#: src/shared/event-button/EventButton.tsx:78
+#: src/shared/event-button/EventButton.tsx:90
 msgid "Events"
 msgstr "Veranstaltungen"
 
@@ -206,6 +226,11 @@ msgstr "FALSCH"
 msgid "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
 msgstr "Fix ist eine Open-Source Wiz Alternative für die Sicherheit Ihrer Cloud Infrastruktur. Übernehmen Sie die Kontrolle über Cloud-Risiken mit einem Cloud-Asset-Inventar, Compliance-Scans und Workflows."
 
+#: src/pages/panel/inventory/ResourceDetail.tsx:229
+#: src/pages/panel/inventory/ResourceDetail.tsx:247
+msgid "Found at"
+msgstr "Gefunden am"
+
 #: src/shared/defined-messages/getMessage.ts:8
 msgid "High"
 msgstr "Hoch"
@@ -214,9 +239,10 @@ msgstr "Hoch"
 msgid "How to fix"
 msgstr "Wie repariert man"
 
-#: src/pages/panel/accounts/AccountRow.tsx:277
+#: src/pages/panel/accounts/AccountRow.tsx:278
 #: src/pages/panel/accounts/AccountsTable.tsx:38
 #: src/pages/panel/home/AccountCard.tsx:30
+#: src/pages/panel/inventory/ResourceDetail.tsx:171
 msgid "ID"
 msgstr "ID"
 
@@ -232,7 +258,15 @@ msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS 
 msgid "Inventory"
 msgstr "Inventar"
 
-#: src/pages/panel/inventory/InventoryForm.tsx:205
+#: src/pages/panel/inventory/ResourceDetail.tsx:239
+msgid "Issues"
+msgstr "Probleme"
+
+#: src/pages/panel/inventory/ResourceDetail.tsx:170
+msgid "Kind"
+msgstr "Art"
+
+#: src/pages/panel/inventory/InventoryForm.tsx:211
 msgid "Kinds"
 msgstr "Arten"
 
@@ -273,8 +307,9 @@ msgstr "Am meisten verbesserte Konten"
 msgid "Most Improved Resources"
 msgstr "Am meisten verbesserte Ressourcen"
 
-#: src/pages/panel/accounts/AccountRow.tsx:283
+#: src/pages/panel/accounts/AccountRow.tsx:284
 #: src/pages/panel/accounts/AccountsTable.tsx:41
+#: src/pages/panel/inventory/ResourceDetail.tsx:172
 msgid "Name"
 msgstr "Name"
 
@@ -286,7 +321,7 @@ msgstr "Nächster Scan"
 msgid "No changes"
 msgstr "Keine Änderungen"
 
-#: src/pages/panel/accounts/AccountRow.tsx:247
+#: src/pages/panel/accounts/AccountRow.tsx:248
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Sie löschen gerade ein Management- oder delegiertes Admin-Konto. Beachten Sie bitte, dass wir nach der Löschung nicht mehr in der Lage sein werden, Kontonamen abzurufen, wodurch Sie diese manuell bearbeiten müssen."
 
@@ -341,7 +376,7 @@ msgstr "Privilegiert"
 msgid "Profile"
 msgstr "Profil"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:195
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:194
 msgid "Property"
 msgstr "Eigentum"
 
@@ -361,6 +396,10 @@ msgstr "Ressourcen"
 msgid "Risk"
 msgstr "Risiko"
 
+#: src/pages/panel/inventory/ResourceDetail.tsx:224
+msgid "Security"
+msgstr "Sicherheit"
+
 #: src/pages/panel/home/Overview.tsx:37
 msgid "Security Scan in Progress"
 msgstr "Sicherheitsscan läuft"
@@ -373,6 +412,8 @@ msgstr "Sicherheitsbewertung"
 msgid "Select Language"
 msgstr "Sprache auswählen"
 
+#: src/pages/panel/inventory/ResourceDetail.tsx:235
+#: src/pages/panel/inventory/ResourceDetail.tsx:251
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:87
 msgid "Severity"
 msgstr "Schwere"
@@ -396,13 +437,14 @@ msgstr "Einfacher und erschwinglicher Einblick in die Sicherheitslage Ihrer Clou
 msgid "Since {since}"
 msgstr "Seit {since}"
 
-#: src/pages/panel/accounts/AccountRow.tsx:174
 #: src/pages/panel/accounts/AccountRow.tsx:175
-#: src/pages/panel/accounts/AccountRow.tsx:180
+#: src/pages/panel/accounts/AccountRow.tsx:176
+#: src/pages/panel/accounts/AccountRow.tsx:181
 msgid "Submit"
 msgstr "Einreichen"
 
 #: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:69
+#: src/pages/panel/inventory/ResourceDetail.tsx:192
 msgid "Tags"
 msgstr "Stichworte"
 
