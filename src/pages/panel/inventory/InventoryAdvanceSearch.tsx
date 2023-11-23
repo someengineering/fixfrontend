@@ -75,7 +75,7 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange }: Inventor
         }
         if (item.property && item.op && item.value && item.fqn) {
           const value =
-            item.fqn === 'string' ? (item.op === 'in' ? JSON.stringify(getArrayFromInOP(item.value)) : `'${item.value}'`) : item.value
+            item.fqn === 'string' ? (item.op === 'in' ? JSON.stringify(getArrayFromInOP(item.value)) : `"${item.value}"`) : item.value
           return `${item.property} ${item.op} ${value}`
         }
         return null

@@ -80,10 +80,9 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
     }
   }
   const handleInputKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Tab' || e.key === 'Enter' || e.key === 'ArrowRight' || e.key === '.') {
+    if (e.key === 'Tab' || e.key === 'Enter' || e.key === '.') {
       handleChange(undefined, highlightedOptionRef.current)
-      e.preventDefault()
-      e.stopPropagation()
+      e.currentTarget.selectionStart = e.currentTarget.selectionEnd = e.currentTarget.value.length
     }
   }
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {

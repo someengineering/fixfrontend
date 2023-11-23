@@ -1,5 +1,5 @@
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
-import { iso8601DurationToString, parseCustomDuration } from 'src/shared/utils/parseISO8601Duration'
+import { iso8601DurationToString, parseCustomDuration } from 'src/shared/utils/parseDuration'
 
 export const rowStrFromColumnKind = (value: string | number | null, kind: ResourceComplexKindSimpleTypeDefinitions) => {
   switch (kind) {

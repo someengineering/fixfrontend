@@ -5,6 +5,14 @@ export type { GetWorkspaceCfUrlResponse } from './GetWorkspaceCfUrl'
 export type { GetWorkspaceCloudAccountsResponse } from './GetWorkspaceCloudAccounts'
 export type { GetWorkspaceCloudAccountsLastScanResponse, WorkspaceCloudAccountsLastScanAccount } from './GetWorkspaceCloudAccountsLastScan'
 export type { GetWorkspaceInventoryModelResponse } from './GetWorkspaceInventoryModel'
+export type {
+  GetWorkspaceInventoryNode,
+  GetWorkspaceInventoryNodeResponse,
+  WorkspaceInventoryNodeNeighborhood,
+  WorkspaceInventoryNodeNeighborhoodEdgeType,
+  WorkspaceInventoryNodeNeighborhoodNodeType,
+  WorkspaceInventoryNodeType,
+} from './GetWorkspaceInventoryNode'
 export type { GetWorkspaceInventoryPropertyPathComplete } from './GetWorkspaceInventoryPropertyPathComplete'
 export type {
   FailedChecksType,
@@ -12,7 +20,6 @@ export type {
   WorkspaceAccountReportSummary,
   Benchmark as WorkspaceBenchmark,
   ChangedSitatuation as WorkspaceChangedSitatuation,
-  FailedChecksTypeKeys as WorkspaceFailedChecksTypeKeys,
 } from './GetWorkspaceInventoryReportSummary'
 export type {
   GetWorkspaceInventorySearchStart,

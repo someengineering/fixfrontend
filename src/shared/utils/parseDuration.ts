@@ -17,6 +17,36 @@ interface ISO8601DurationType {
   duration: number
 }
 
+const SECONDS = 1000
+const MINUTES = SECONDS * 60
+const HOURS = MINUTES * 60
+const DAYS = HOURS * 24
+const WEEKS = DAYS * 7
+const MONTHS = DAYS * 30
+const YEARS = DAYS * 365
+
+export const diffDateTimeToDuration = (dateTimeFrom: Date, dateTimeTo: Date) => {
+  const negative = dateTimeFrom > dateTimeTo
+  const start = negative ? dateTimeTo : dateTimeFrom
+  const end = negative ? dateTimeFrom : dateTimeTo
+  const duration = Math.abs(start.valueOf() - end.valueOf())
+  const years = Math.floor(duration / YEARS)
+  let soFar = years * YEARS
+  const months = Math.floor((duration - soFar) / MONTHS)
+  soFar += months * MONTHS
+  const weeks = Math.floor((duration - soFar) / WEEKS)
+  soFar += weeks * WEEKS
+  const days = Math.floor((duration - soFar) / DAYS)
+  soFar += days * DAYS
+  const hours = Math.floor((duration - soFar) / HOURS)
+  soFar += hours * HOURS
+  const minutes = Math.floor((duration - soFar) / MINUTES)
+  soFar += minutes * MINUTES
+  const seconds = Math.floor((duration - soFar) / SECONDS)
+  soFar += seconds * SECONDS
+  return { negative, years, months, weeks, days, hours, minutes, seconds, duration } as ISO8601DurationType
+}
+
 export const parseCustomDuration = (customDuration: string) => {
   const matches = customDuration.match(customDurationRegex) ?? []
 
@@ -36,14 +66,13 @@ export const parseCustomDuration = (customDuration: string) => {
 
   parsedDuration.duration =
     (parsedDuration.negative ? -1 : 1) *
-    (parsedDuration.seconds +
-      parsedDuration.minutes * 60 +
-      parsedDuration.hours * 60 * 60 +
-      parsedDuration.days * 60 * 60 * 24 +
-      parsedDuration.weeks * 60 * 60 * 24 * 7 +
-      parsedDuration.months * 60 * 60 * 24 * 30 +
-      parsedDuration.years * 60 * 60 * 24 * 30 * 365) *
-    1000
+    (parsedDuration.seconds * SECONDS +
+      parsedDuration.minutes * MINUTES +
+      parsedDuration.hours * HOURS +
+      parsedDuration.days * DAYS +
+      parsedDuration.weeks * WEEKS +
+      parsedDuration.months * MONTHS +
+      parsedDuration.years * YEARS)
 
   return parsedDuration
 }
@@ -79,7 +108,7 @@ export const parseISO8601Duration = (iso8601Duration: string) => {
   return parsedDuration
 }
 
-export const iso8601DurationToString = (duration: ISO8601DurationType) => {
+export const iso8601DurationToString = (duration: ISO8601DurationType, maxStr: 1 | 2 | 3 | 4 | 5 | 6 | 7 = 7, showTime: boolean = true) => {
   const str: string[] = []
   if (duration.years) {
     str.push(
@@ -113,7 +142,7 @@ export const iso8601DurationToString = (duration: ISO8601DurationType) => {
       }),
     )
   }
-  if (duration.hours) {
+  if (duration.hours && showTime) {
     str.push(
       plural(duration.hours, {
         one: '# Hour',
@@ -121,7 +150,7 @@ export const iso8601DurationToString = (duration: ISO8601DurationType) => {
       }),
     )
   }
-  if (duration.minutes) {
+  if (duration.minutes && showTime) {
     str.push(
       plural(duration.minutes, {
         one: '# Minute',
@@ -129,7 +158,7 @@ export const iso8601DurationToString = (duration: ISO8601DurationType) => {
       }),
     )
   }
-  if (duration.seconds) {
+  if (duration.seconds && showTime) {
     str.push(
       plural(duration.seconds, {
         one: '# Second',
@@ -137,8 +166,8 @@ export const iso8601DurationToString = (duration: ISO8601DurationType) => {
       }),
     )
   }
-  if (!str.length && duration.duration) {
+  if (!str.length && duration.duration && showTime) {
     str.push(t`${duration.duration.toString()} Milliseconds`)
   }
-  return str.join(` ${t`and`} `)
+  return str.slice(0, maxStr).join(` ${t`and`} `)
 }

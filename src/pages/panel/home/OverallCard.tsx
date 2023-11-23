@@ -10,7 +10,7 @@ import { CircularScore } from 'src/shared/circular-score'
 import { colorFromRedToGreen } from 'src/shared/constants'
 import { OverviewCard } from 'src/shared/overview-card'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
-import { iso8601DurationToString, parseISO8601Duration } from 'src/shared/utils/parseISO8601Duration'
+import { iso8601DurationToString, parseISO8601Duration } from 'src/shared/utils/parseDuration'
 
 interface OverallCardProps {
   data?: GetWorkspaceInventoryReportSummaryResponse

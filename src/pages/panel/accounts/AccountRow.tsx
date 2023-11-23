@@ -132,7 +132,8 @@ export const AccountRow = ({ account }: { account: Account }) => {
               },
             )
             void queryClient.invalidateQueries({
-              queryKey: ['workspace-inventory-report-summary', selectedWorkspace?.id],
+              predicate: (query) =>
+                (typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts')) ?? false,
             })
           },
         },

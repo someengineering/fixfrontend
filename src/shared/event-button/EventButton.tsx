@@ -1,6 +1,7 @@
 import { t } from '@lingui/macro'
 import EventIcon from '@mui/icons-material/Event'
 import { Badge, Box, Fade, IconButton, Paper, Popper, Tooltip, styled } from '@mui/material'
+import { useQueryClient } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
 import { useEvents } from 'src/core/events'
 import { useSnackbar } from 'src/core/snackbar'
@@ -14,6 +15,7 @@ const PopperContainer = styled(Popper)(({ theme }) => ({
 
 export const EventButton = () => {
   const [openEvents, setOpenEvents] = useState(false)
+  const queryClient = useQueryClient()
   const anchorEl = useRef<HTMLButtonElement>(null)
   const { showSnackbar } = useSnackbar()
   const { addListener, send } = useEvents()
@@ -34,6 +36,9 @@ export const EventButton = () => {
               if (hasProgress) {
                 newEvents[foundIndex] = ev
               } else {
+                void queryClient.invalidateQueries({
+                  predicate: (query) => (typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace')) ?? false,
+                })
                 newEvents.splice(foundIndex, 1)
               }
             } else if (hasProgress) {
@@ -44,18 +49,25 @@ export const EventButton = () => {
           break
         }
         case 'cloud_account_created':
+          void queryClient.invalidateQueries({
+            predicate: (query) =>
+              (typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts')) ?? false,
+          })
           void showSnackbar(t`Cloud account added, id: ${ev.data.aws_account_id}`, { severity: 'success', autoHideDuration: null })
           break
-        // case 'collect-error':
-        //   showSnackbar(t`Task "${ev.data.task}" with workflow "${ev.data.workflow}" failed: ${ev.data.message}`, {
-        //     severity: 'error',
-        //     autoHideDuration: null,
-        //   })
-        //   break
+        case 'collect-error':
+          void queryClient.invalidateQueries({
+            predicate: (query) => (typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace')) ?? false,
+          })
+          //   showSnackbar(t`Task "${ev.data.task}" with workflow "${ev.data.workflow}" failed: ${ev.data.message}`, {
+          //     severity: 'error',
+          //     autoHideDuration: null,
+          //   })
+          break
       }
     }
     return addListener('event-button', eventListener)
-  }, [addListener, send, showSnackbar])
+  }, [addListener, queryClient, send, showSnackbar])
 
   const hasNoEvents = !events.length
 

@@ -1,6 +1,6 @@
-export type FailedChecksTypeKeys = 'critical' | 'high' | 'medium' | 'low'
+import { SeverityType } from './shared'
 
-export type FailedChecksType<value = number> = Record<FailedChecksTypeKeys, value>
+export type FailedChecksType<value = number> = Record<SeverityType, value>
 
 export interface Benchmark {
   id: string
@@ -47,7 +47,7 @@ export interface TopChecks {
   result_kind: string
   risk: string
   service: string
-  severity: FailedChecksTypeKeys
+  severity: SeverityType
   title: string
   url: null
 }

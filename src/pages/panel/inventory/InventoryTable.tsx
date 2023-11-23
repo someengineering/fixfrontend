@@ -8,6 +8,7 @@ import { TablePagination, TableViewPage } from 'src/shared/layouts/panel-layout'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { GetWorkspaceInventorySearchTableColumn, GetWorkspaceInventorySearchTableRow } from 'src/shared/types/server'
 import { InventoryRow } from './InventoryRow'
+import { ResourceDetail } from './ResourceDetail'
 
 interface InventoryTableProps {
   searchCrit: string
@@ -25,6 +26,7 @@ export const InventoryTable = ({ searchCrit }: InventoryTableProps) => {
     queryFn: getWorkspaceInventorySearchTableQuery,
     enabled: !!selectedWorkspace?.id,
   })
+  const [selectedRow, setSelectedRow] = useState<GetWorkspaceInventorySearchTableRow>()
 
   useEffect(() => {
     setDataCount(-1)
@@ -49,36 +51,39 @@ export const InventoryTable = ({ searchCrit }: InventoryTableProps) => {
   }, [isLoading, rowsPerPage, page, data?.length])
 
   return columns.length ? (
-    <TableViewPage
-      pagination={
-        <TablePagination dataCount={dataCount} page={page} rowsPerPage={rowsPerPage} setPage={setPage} setRowsPerPage={setRowsPerPage} />
-      }
-    >
-      <Table stickyHeader aria-label={t`Accounts`}>
-        <TableHead>
-          <TableRow>
-            {columns.map((column, i) => (
-              <TableCell key={`${column.name}-${i}`}>{column.display}</TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {isLoading
-            ? rows.length && columns.length
-              ? rows.map((row, i) => (
-                  <TableRow key={`${row.id}-${i}`}>
-                    {columns.map((column, j) => (
-                      <TableCell key={`${column.name}-${row.id}-${i}-${j}`}>
-                        <Skeleton variant="rectangular" />
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))
-              : null
-            : rows?.map((row, i) => <InventoryRow key={`${row.id}-${i}`} row={row} columns={columns} />)}
-        </TableBody>
-      </Table>
-      {isLoading && (!rows.length || !columns.length) ? <LoadingSuspenseFallback /> : null}
-    </TableViewPage>
+    <>
+      <TableViewPage
+        pagination={
+          <TablePagination dataCount={dataCount} page={page} rowsPerPage={rowsPerPage} setPage={setPage} setRowsPerPage={setRowsPerPage} />
+        }
+      >
+        <Table stickyHeader aria-label={t`Accounts`}>
+          <TableHead>
+            <TableRow>
+              {columns.map((column, i) => (
+                <TableCell key={`${column.name}-${i}`}>{column.display}</TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {isLoading
+              ? rows.length && columns.length
+                ? rows.map((row, i) => (
+                    <TableRow key={`${row.id}-${i}`}>
+                      {columns.map((column, j) => (
+                        <TableCell key={`${column.name}-${row.id}-${i}-${j}`}>
+                          <Skeleton variant="rectangular" />
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  ))
+                : null
+              : rows?.map((row, i) => <InventoryRow onClick={setSelectedRow} key={`${row.id}-${i}`} row={row} columns={columns} />)}
+          </TableBody>
+        </Table>
+        {isLoading && (!rows.length || !columns.length) ? <LoadingSuspenseFallback /> : null}
+      </TableViewPage>
+      <ResourceDetail detail={selectedRow} onClose={() => setSelectedRow(undefined)} />
+    </>
   ) : null
 }
