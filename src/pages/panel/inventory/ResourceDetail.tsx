@@ -22,7 +22,6 @@ import { Fragment, ReactNode, useEffect, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { FailedChecks } from 'src/pages/panel/shared/failed-checks'
 import { getWorkspaceInventoryNodeQuery } from 'src/pages/panel/shared/queries'
-import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { GetWorkspaceInventorySearchTableRow } from 'src/shared/types/server'
 import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
@@ -110,7 +109,6 @@ const GridItem = ({
 }
 
 export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
-  const navigate = useAbsoluteNavigate()
   const { selectedWorkspace } = useUserProfile()
   const { data, isLoading } = useQuery({
     queryKey: ['workspace-inventory-node', selectedWorkspace?.id, detail?.id],
@@ -234,7 +232,7 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
                 {data.failing_checks.map((failedCheck, i) => (
                   <Fragment key={i}>
                     <Paper elevation={1}>
-                      <FailedChecks failedCheck={failedCheck} navigate={navigate} />
+                      <FailedChecks failedCheck={failedCheck} />
                     </Paper>
                     <Divider />
                   </Fragment>

@@ -8,7 +8,7 @@ import { getMessage } from 'src/shared/defined-messages'
 import { FailedCheck } from 'src/shared/types/server'
 import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 
-export const FailedChecks = ({ failedCheck, navigate }: { failedCheck: FailedCheck; navigate: NavigateFunction }) => {
+export const FailedChecks = ({ failedCheck, navigate }: { failedCheck: FailedCheck; navigate?: NavigateFunction }) => {
   return (
     <Grid item xs={12} flexDirection="column">
       <Accordion>
@@ -39,12 +39,14 @@ export const FailedChecks = ({ failedCheck, navigate }: { failedCheck: FailedChe
         </AccordionDetails>
         <AccordionActions>
           <Stack spacing={1} direction="row">
-            <Button
-              onClick={() => navigate(createInventorySearchTo(`is(${failedCheck.result_kind}) and /security.has_issues=true`))}
-              variant="outlined"
-            >
-              <Trans>Go to resources</Trans>
-            </Button>
+            {navigate && (
+              <Button
+                onClick={() => navigate(createInventorySearchTo(`is(${failedCheck.result_kind}) and /security.has_issues=true`))}
+                variant="outlined"
+              >
+                <Trans>Go to resources</Trans>
+              </Button>
+            )}
             <Button href={failedCheck.remediation.url} target="_blank" endIcon={<OpenInNewIcon />}>
               <Trans>More info</Trans>
             </Button>
