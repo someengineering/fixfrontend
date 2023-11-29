@@ -1,4 +1,4 @@
-import { SeverityType } from './shared'
+import { FailedCheck, SeverityType } from './shared'
 
 export type WorkspaceInventoryNodeType = 'node' | 'edge'
 
@@ -76,6 +76,7 @@ export interface GetWorkspaceInventoryNode {
     >
   }
   neighborhood: WorkspaceInventoryNodeNeighborhood[]
+  failing_checks: FailedCheck[]
 }
 
 export type GetWorkspaceInventoryNodeResponse = GetWorkspaceInventoryNode

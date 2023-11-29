@@ -1,4 +1,5 @@
-import { Box, Stack, StackProps, styled, useTheme } from '@mui/material'
+import { Box, ButtonBase, Stack, StackProps, styled, useTheme } from '@mui/material'
+import { MouseEventHandler } from 'react'
 import { PieChart } from 'src/shared/charts'
 import { CircularScore } from 'src/shared/circular-score'
 import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
@@ -14,23 +15,39 @@ const PieChartContainer = styled(Stack, { shouldForwardProp: shouldForwardPropWi
     alignItems: 'center',
     top: 0,
     opacity,
+    pointerEvents: 'none',
   }),
 )
 
-interface PieScoreProps extends StackProps {
-  data: { value: number; name: string }[]
+interface PieResourceCheckScoreProps extends StackProps {
+  data: {
+    value: number
+    name: string
+    description?: string
+    label?: string
+    onClick?: () => void
+  }[]
   score: number
   showPieChart: boolean
   hidingPieChart: boolean
+  onScoreClick?: MouseEventHandler<HTMLSpanElement>
 }
 
-export const PieScore = ({ data, score, showPieChart, hidingPieChart, ...props }: PieScoreProps) => {
+export const PieResourceCheckScore = ({
+  data,
+  score,
+  showPieChart,
+  hidingPieChart,
+  onScoreClick,
+  ...props
+}: PieResourceCheckScoreProps) => {
   const theme = useTheme()
   return (
     <Stack width={170} alignSelf="center" justifyContent="end" overflow="visible" flex={1} {...props}>
       <Box position="relative" height={170}>
         <Stack width="100%" height="100%" alignItems="center" justifyContent="center">
           <CircularScore
+            containerProps={onScoreClick ? { onClick: onScoreClick, component: ButtonBase } : undefined}
             score={score}
             syntaticScore={showPieChart ? 0 : score}
             size={150}
@@ -48,8 +65,8 @@ export const PieScore = ({ data, score, showPieChart, hidingPieChart, ...props }
               showLabel
               pieProps={{
                 animationDuration: theme.transitions.duration.standard,
-                innerRadius: 40,
-                outerRadius: 80,
+                innerRadius: 37,
+                outerRadius: 75,
               }}
               width={200}
               height={200}

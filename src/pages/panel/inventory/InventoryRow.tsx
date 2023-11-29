@@ -1,3 +1,5 @@
+import CheckIcon from '@mui/icons-material/Check'
+import DoDistorbIcon from '@mui/icons-material/DoDisturb'
 import { ButtonBase, ButtonBaseProps, TableCell, TableRow } from '@mui/material'
 import { panelUI } from 'src/shared/constants'
 import { GetWorkspaceInventorySearchTableColumn, GetWorkspaceInventorySearchTableRow } from 'src/shared/types/server'
@@ -23,7 +25,15 @@ export const InventoryRow = ({ row, columns, onClick }: InventoryRowProps) => {
     >
       {columns.map((column, i) => (
         <TableCell key={`${column.name}-${row.id}-${i}`} sx={{ minWidth: panelUI.inventoryTableCellMinWidth }}>
-          {rowStrFromColumnKind(row.row[column.name], column.kind) ?? '-'}
+          {typeof row.row[column.name] === 'boolean' ? (
+            row.row[column.name] ? (
+              <CheckIcon color="success" />
+            ) : (
+              <DoDistorbIcon color="error" />
+            )
+          ) : (
+            rowStrFromColumnKind(row.row[column.name], column.kind) ?? '-'
+          )}
         </TableCell>
       ))}
     </ButtonBase>

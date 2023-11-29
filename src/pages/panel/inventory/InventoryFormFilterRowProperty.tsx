@@ -9,6 +9,7 @@ import { OPType, defaultProperties, kindSimpleTypes } from 'src/pages/panel/shar
 import { getWorkspaceInventoryPropertyPathCompleteQuery } from 'src/pages/panel/shared/queries'
 import { panelUI } from 'src/shared/constants'
 // import { panelUI } from 'src/shared/constants'
+import { HTMLAttributes } from 'react'
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
 import { getCustomedWorkspaceInventoryPropertyAttributesQuery } from './utils'
 
@@ -107,20 +108,20 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       const isSimple = kindSimpleTypes.includes(option.value as ResourceComplexKindSimpleTypeDefinitions)
       setValue(option.label)
       setFqn(isSimple ? null : option.value)
+      const separatedValue = option.label.split('.')
+      const newProp = separatedValue.splice(separatedValue.length - 1, 1)[0]
+      const newPath = separatedValue.join('.')
       if (isSimple) {
-        const separatedValue = option.label.split('.')
-        const newProp = separatedValue.splice(separatedValue.length - 1, 1)[0]
-        const newPath = separatedValue.join('.')
         setProp(newProp)
         setPath(newPath)
         onChange({
-          property: option.label,
+          property: isDictionary && /[^a-zA-Z0-9]/.test(newProp) ? `${newPath}.\`${newProp}\`` : option.label,
           op: '=',
           fqn: option.value as ResourceComplexKindSimpleTypeDefinitions,
         })
       } else {
         setProp('')
-        setPath(option.label)
+        setPath(isDictionary && /[^a-zA-Z0-9]/.test(newPath) ? `${newPath}.\`${newProp}\`` : option.label)
       }
     } else {
       setValue(null)
@@ -149,7 +150,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       onHighlightChange={(_, option) => (highlightedOptionRef.current = option)}
       autoHighlight
       renderOption={(
-        props: React.HTMLAttributes<HTMLLIElement>,
+        props: HTMLAttributes<HTMLLIElement>,
         option: { key: string; label: string; value: string },
         { inputValue: _, ...state }: AutocompleteRenderOptionState,
       ) => {

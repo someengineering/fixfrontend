@@ -5,7 +5,8 @@ import AssessmentIcon from '@mui/icons-material/Assessment'
 import ErrorIcon from '@mui/icons-material/Error'
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon'
 import { Button, Divider, Grid, Stack, SvgIcon, Typography } from '@mui/material'
-import { showSubtitle } from 'src/pages/panel/shared/utils'
+import { createInventorySearchTo, showSubtitle } from 'src/pages/panel/shared/utils'
+import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { CircularScore } from 'src/shared/circular-score'
 import { colorFromRedToGreen } from 'src/shared/constants'
 import { OverviewCard } from 'src/shared/overview-card'
@@ -22,6 +23,7 @@ interface OverallCardProps {
 }
 
 export const OverallCard = ({ data, hasDifference, difference, isMobile, overallColor, positive }: OverallCardProps) => {
+  const navigate = useAbsoluteNavigate()
   if (!data) {
     return null
   }
@@ -87,7 +89,7 @@ export const OverallCard = ({ data, hasDifference, difference, isMobile, overall
             hasChangedVulnerable ? (
               <Stack alignItems="center" direction="row" spacing={1} height={24}>
                 <Typography variant="h4">{changedVulnerableArray.reduce((a, b) => a + b, 0)}</Typography>
-                <Typography variant="caption">{since ? <Trans>Since {since}</Trans> : null}</Typography>
+                <Typography variant="caption">{since ? <Trans>new non compliant resources in the past {since}</Trans> : null}</Typography>
               </Stack>
             ) : (
               <Stack alignItems="center" direction="row" spacing={1} height="100%" mt={2}>
@@ -104,7 +106,7 @@ export const OverallCard = ({ data, hasDifference, difference, isMobile, overall
           bottomContent={
             hasChangedVulnerable ? (
               <Stack direction="row" alignItems="center" spacing={1} width="100%" height={20}>
-                {showSubtitle(data.changed_vulnerable.resource_count_by_severity)}
+                {showSubtitle(data.changed_vulnerable.resource_count_by_severity, 'node_vulnerable', navigate)}
               </Stack>
             ) : null
           }
@@ -116,11 +118,19 @@ export const OverallCard = ({ data, hasDifference, difference, isMobile, overall
                   <>
                     <Divider />
                     <Typography variant="body1">
-                      <Trans>Top Non-Compliant Accounts</Trans>
+                      <Trans>Top 3 Non-Compliant Accounts</Trans>
                     </Typography>
                     <Typography variant="body1">
                       {data.changed_vulnerable.accounts_selection.map((accountId, i) => (
-                        <Button variant="text" size="small" sx={{ textTransform: 'initial' }} key={`${accountId}_${i}`}>
+                        <Button
+                          variant="text"
+                          size="small"
+                          sx={{ textTransform: 'initial' }}
+                          key={`${accountId}_${i}`}
+                          onClick={() =>
+                            navigate(createInventorySearchTo(`/ancestors.account.reported.id="${accountId}"`, 'node_vulnerable'))
+                          }
+                        >
                           {data.accounts.find((acc) => accountId === acc.id)?.name ?? accountId}
                         </Button>
                       ))}
@@ -136,7 +146,13 @@ export const OverallCard = ({ data, hasDifference, difference, isMobile, overall
                       </Typography>
                       <Typography variant="body1">
                         {Object.keys(data.changed_vulnerable.resource_count_by_kind_selection).map((key, i) => (
-                          <Button variant="text" size="small" sx={{ textTransform: 'initial' }} key={`${key}_${i}`}>
+                          <Button
+                            variant="text"
+                            size="small"
+                            sx={{ textTransform: 'initial' }}
+                            key={`${key}_${i}`}
+                            onClick={() => navigate(createInventorySearchTo(`is(${key})`, 'node_vulnerable'))}
+                          >
                             {key}
                           </Button>
                         ))}
@@ -158,7 +174,7 @@ export const OverallCard = ({ data, hasDifference, difference, isMobile, overall
             hasChangedCompliant ? (
               <Stack alignItems="center" direction="row" spacing={1} height={24}>
                 <Typography variant="h4">{changedCompliantArray.reduce((a, b) => a + b, 0)}</Typography>
-                <Typography variant="caption">{since ? <Trans>Since {since}</Trans> : null}</Typography>
+                <Typography variant="caption">{since ? <Trans>new improved resources in the past {since}</Trans> : null}</Typography>
               </Stack>
             ) : (
               <Stack alignItems="center" direction="row" spacing={1} height="100%" mt={2}>
@@ -178,7 +194,7 @@ export const OverallCard = ({ data, hasDifference, difference, isMobile, overall
           bottomContent={
             hasChangedCompliant ? (
               <Stack direction="row" alignItems="center" spacing={1} width="100%" height={20}>
-                {showSubtitle(data.changed_compliant.resource_count_by_severity)}
+                {showSubtitle(data.changed_compliant.resource_count_by_severity, 'node_compliant', navigate)}
               </Stack>
             ) : null
           }
@@ -187,11 +203,17 @@ export const OverallCard = ({ data, hasDifference, difference, isMobile, overall
               <Stack spacing={0.5}>
                 <Divider />
                 <Typography variant="body1">
-                  <Trans>Most Improved Accounts</Trans>
+                  <Trans>Top 3 Improved Accounts</Trans>
                 </Typography>
                 <Typography variant="body1">
                   {data.changed_compliant.accounts_selection.map((accountId, i) => (
-                    <Button variant="text" size="small" sx={{ textTransform: 'initial' }} key={`${accountId}_${i}`}>
+                    <Button
+                      variant="text"
+                      size="small"
+                      sx={{ textTransform: 'initial' }}
+                      key={`${accountId}_${i}`}
+                      onClick={() => navigate(createInventorySearchTo(`/ancestors.account.reported.id="${accountId}"`, 'node_compliant'))}
+                    >
                       {data.accounts.find((acc) => accountId === acc.id)?.name ?? accountId}
                     </Button>
                   ))}
@@ -202,7 +224,13 @@ export const OverallCard = ({ data, hasDifference, difference, isMobile, overall
                 </Typography>
                 <Typography variant="body1">
                   {Object.keys(data.changed_compliant.resource_count_by_kind_selection).map((key, i) => (
-                    <Button variant="text" size="small" sx={{ textTransform: 'initial' }} key={`${key}_${i}`}>
+                    <Button
+                      variant="text"
+                      size="small"
+                      sx={{ textTransform: 'initial' }}
+                      key={`${key}_${i}`}
+                      onClick={() => navigate(createInventorySearchTo(`is(${key})`, 'node_compliant'))}
+                    >
                       {key}
                     </Button>
                   ))}

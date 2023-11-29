@@ -1,5 +1,6 @@
 import { Trans } from '@lingui/macro'
 import { AutocompleteRenderInputParams, AutocompleteRenderOptionState, ListItemButton, TextField, Typography } from '@mui/material'
+import { HTMLAttributes } from 'react'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { getArrayFromInOP } from './getArrayFromInOP'
@@ -45,7 +46,7 @@ export const getAutoCompletePropsFromKey = (key: string) => {
     case '/ancestors.cloud.reported.id':
       return {
         renderOption: (
-          props: React.HTMLAttributes<HTMLLIElement>,
+          props: HTMLAttributes<HTMLLIElement>,
           option: AutoCompleteValue,
           { inputValue: _, ...state }: AutocompleteRenderOptionState,
         ) =>
@@ -72,7 +73,7 @@ export const getAutoCompletePropsFromKey = (key: string) => {
     case '/security.severity':
       return {
         renderOption: (
-          props: React.HTMLAttributes<HTMLLIElement>,
+          props: HTMLAttributes<HTMLLIElement>,
           option: AutoCompleteValue,
           { inputValue: _, ...state }: AutocompleteRenderOptionState,
         ) =>

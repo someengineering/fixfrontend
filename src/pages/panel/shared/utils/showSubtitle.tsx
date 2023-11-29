@@ -1,15 +1,22 @@
-import { Stack, Typography } from '@mui/material'
+import { ButtonBase, Stack, Typography } from '@mui/material'
+import { NavigateFunction } from 'react-router-dom'
 import { sortedSeverities } from 'src/shared/constants'
 import { getMessage } from 'src/shared/defined-messages'
 import { FailedChecksType } from 'src/shared/types/server'
 import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
+import { createInventorySearchTo } from './createInventorySearchTo'
 import { getColorBySeverity } from './getColorBySeverity'
 
-export const showSubtitle = (data: Partial<FailedChecksType>) =>
+export const showSubtitle = (data: Partial<FailedChecksType>, change: 'node_compliant' | 'node_vulnerable', navigate: NavigateFunction) =>
   sortedSeverities
     .filter((key) => data[key])
     .map((key) => (
-      <Stack key={key} direction="row">
+      <Stack
+        key={key}
+        direction="row"
+        component={ButtonBase}
+        onClick={() => navigate(createInventorySearchTo(`/security.severity=${key}`, change))}
+      >
         <Typography color={getColorBySeverity(key)} variant="body2">
           {getMessage(snakeCaseToUFStr(key))}
         </Typography>

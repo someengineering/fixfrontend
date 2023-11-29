@@ -1,4 +1,5 @@
 export type { Account } from './Account'
+export type { FailedCheck } from './FailedCheck'
 export type {
   ResourceComplexKindProperty,
   ResourceComplexKindPropertyKind,
