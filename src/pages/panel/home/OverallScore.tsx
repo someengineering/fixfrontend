@@ -9,8 +9,8 @@ import { ToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 
 interface OverallScoreProps {
   score: number
-  failedChecks: FailedChecksType
-  failedResources: FailedChecksType
+  failedChecks: Partial<FailedChecksType>
+  failedResources: Partial<FailedChecksType>
   availableResources: number
 }
 
@@ -48,11 +48,13 @@ export const OverallScore = ({ score, failedChecks, failedResources, availableRe
       <PieResourceCheckScore
         data={Object.entries(failedChecks).map(([name, value]) => ({
           name: ToUFStr(name),
-          value: value,
-          label: typeof failedResources[name] === 'number' ? numberToShortHRT(failedResources[name]) : numberToShortHRT(value),
+          value: value ?? 0,
+          label: typeof failedResources[name] === 'number' ? numberToShortHRT(failedResources[name] ?? 0) : numberToShortHRT(value ?? 0),
           description: t`We've identified ${failedResources[
             name
-          ]?.toLocaleString()} non-compliant resources out of ${availableResources.toLocaleString()} through ${value.toString()} ${name.toString()}-severity security checks.`,
+          ]?.toLocaleString()} non-compliant resources out of ${availableResources.toLocaleString()} through ${
+            value?.toString() ?? 0
+          } ${name.toString()}-severity security checks.`,
           onClick: () => navigate(createInventorySearchTo(`/security.has_issues=true and /security.severity=${name}`)),
         }))}
         hidingPieChart={hidingPieChart}
