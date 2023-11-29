@@ -1,6 +1,7 @@
 export { PieCard } from './PieCard'
-export { PieScore } from './PieScore'
+export { PieResourceCheckScore } from './PieResourceCheckScore'
 export { chartToShow } from './chartToShow'
 export { checkDiff } from './checkDiff'
+export { createInventorySearchTo } from './createInventorySearchTo'
 export { getColorBySeverity } from './getColorBySeverity'
 export { showSubtitle } from './showSubtitle'

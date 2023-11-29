@@ -12,6 +12,14 @@ export const getWorkspaceInventoryReportSummaryQuery = ({
         .get<GetWorkspaceInventoryReportSummaryResponse>(endPoints.workspaces.workspace(workspaceId).inventory.reportSummary, { signal })
         .then((res) => res.data)
     : ({
+        account_check_summary: {
+          available_checks: 0,
+          failed_checks: 0,
+          failed_checks_by_severity: {},
+          available_resources: 0,
+          failed_resources: 0,
+          failed_resources_by_severity: {},
+        },
         accounts: [],
         benchmarks: [],
         changed_compliant: {
@@ -30,6 +38,9 @@ export const getWorkspaceInventoryReportSummaryQuery = ({
           available_checks: 0,
           failed_checks: 0,
           failed_checks_by_severity: {},
+          available_resources: 0,
+          failed_resources: 0,
+          failed_resources_by_severity: {},
         },
         overall_score: 0,
         top_checks: [],

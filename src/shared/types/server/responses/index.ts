@@ -20,6 +20,7 @@ export type {
   WorkspaceAccountReportSummary,
   Benchmark as WorkspaceBenchmark,
   ChangedSitatuation as WorkspaceChangedSitatuation,
+  WorkspaceCheckSummary,
 } from './GetWorkspaceInventoryReportSummary'
 export type {
   GetWorkspaceInventorySearchStart,

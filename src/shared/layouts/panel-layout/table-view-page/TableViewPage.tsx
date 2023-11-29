@@ -4,7 +4,7 @@ import { panelUI } from 'src/shared/constants'
 import { TableViewPageScrollContext } from './useTableViewPageScroll'
 
 interface TableViewPageProps extends PropsWithChildren {
-  pagination: ReactNode
+  pagination?: ReactNode
   loading?: boolean
 }
 

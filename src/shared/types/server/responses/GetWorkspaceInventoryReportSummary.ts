@@ -1,4 +1,4 @@
-import { SeverityType } from './shared'
+import { FailedCheck, SeverityType } from './shared'
 
 export type FailedChecksType<value = number> = Record<SeverityType, value>
 
@@ -14,7 +14,8 @@ export interface Benchmark {
     string,
     {
       score: number
-      failed_checks: Partial<FailedChecksType> | null
+      failed_checks: FailedChecksType | null
+      failed_resources: FailedChecksType | null
     }
   >
 }
@@ -22,34 +23,8 @@ export interface Benchmark {
 export interface ChangedSitatuation {
   since: string
   accounts_selection: string[]
-  resource_count_by_kind_selection: Partial<Record<string, number>>
+  resource_count_by_kind_selection: Record<string, number>
   resource_count_by_severity: Partial<FailedChecksType>
-}
-
-export interface TopChecks {
-  categories: string[]
-  default_values: null | {
-    certificate_expiration: string
-  }
-  detect: {
-    resoto_cmd?: string
-    resoto?: string
-  }
-  id: string
-  provider: string
-  related: null
-  remediation: {
-    action: null
-    kind: string
-    text: string
-    url: string
-  }
-  result_kind: string
-  risk: string
-  service: string
-  severity: SeverityType
-  title: string
-  url: null
 }
 
 export type WorkspaceAccountReportSummary = {
@@ -57,18 +32,25 @@ export type WorkspaceAccountReportSummary = {
   name: string
   cloud: string
   score: number
+  resource_count: number
+}
+
+export interface WorkspaceCheckSummary {
+  available_checks: number
+  available_resources: number
+  failed_checks: number
+  failed_checks_by_severity: Partial<FailedChecksType>
+  failed_resources: number
+  failed_resources_by_severity: Partial<FailedChecksType>
 }
 
 export interface GetWorkspaceInventoryReportSummaryResponse {
   overall_score: number
-  check_summary: {
-    available_checks: number
-    failed_checks: number
-    failed_checks_by_severity: Partial<FailedChecksType>
-  }
+  check_summary: WorkspaceCheckSummary
+  account_check_summary: WorkspaceCheckSummary
   accounts: WorkspaceAccountReportSummary[]
   benchmarks: Benchmark[]
   changed_vulnerable: ChangedSitatuation
   changed_compliant: ChangedSitatuation
-  top_checks: TopChecks[]
+  top_checks: FailedCheck[]
 }

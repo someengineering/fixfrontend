@@ -48,7 +48,7 @@ export const Overview = () => {
       <Grid container my={2}>
         <Grid item xs={12} md={6}>
           <Typography variant="h3" mb={2}>
-            <Trans>Overall</Trans>
+            <Trans>Changes in the past 7 days</Trans>
           </Typography>
           <OverallCard
             data={data}
@@ -67,12 +67,17 @@ export const Overview = () => {
                 <Typography variant="h3" mb={{ xs: 0, md: 2 }} mt={{ xs: 4, md: 0 }}>
                   <Trans>Security Score</Trans>
                 </Typography>
-                <OverallScore score={data.overall_score} failedChecks={data.check_summary.failed_checks_by_severity} />
+                <OverallScore
+                  score={data.overall_score}
+                  failedChecks={data.check_summary.failed_checks_by_severity}
+                  failedResources={data.check_summary.failed_resources_by_severity}
+                  availableResources={data.check_summary.available_resources}
+                />
                 <Divider />
                 <Typography variant="h3" mt={{ xs: 0, md: 2 }}>
                   <Trans>Top 5 Security Enhancements</Trans>
                 </Typography>
-                <TopFiveChecksCard data={data} />
+                <TopFiveChecksCard failedChecks={data.top_checks} />
               </Stack>
             </Stack>
           </Grid>
@@ -89,7 +94,7 @@ export const Overview = () => {
           <Typography variant="h3" mb={{ xs: 0, md: 2 }}>
             <Trans>Top 5 Security Enhancements</Trans>
           </Typography>
-          <TopFiveChecksCard data={data} />
+          <TopFiveChecksCard failedChecks={data.top_checks} />
         </>
       ) : (
         false

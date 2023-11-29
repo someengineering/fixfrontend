@@ -2,6 +2,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDownCircleOutlined'
 import SearchIcon from '@mui/icons-material/Search'
 import { Box, Collapse, Divider, IconButton, TextField, styled } from '@mui/material'
 import { ChangeEvent, Suspense, useCallback, useEffect, useRef, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { OPType } from 'src/pages/panel/shared/constants'
 import { panelUI } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
@@ -33,7 +34,10 @@ const StyledArrowDropDownIcon = styled(ArrowDropDownIcon, { shouldForwardProp: s
 )
 
 export const InventoryAdvanceSearch = ({ value: searchCrit, onChange }: InventoryAdvanceSearchProps) => {
-  const [searchCritValue, setSearchCritValue] = useState('')
+  const initializedRef = useRef(false)
+  const [searchParams] = useSearchParams()
+  const [hideFilters, setHideFilters] = useState(() => searchParams.get('hide') === 'true')
+  const [searchCritValue, setSearchCritValue] = useState(searchCrit)
   const [config, setConfig] = useState<InventoryAdvanceSearchConfig[]>([
     { id: Math.random(), property: null, op: null, value: null, fqn: null },
   ])
@@ -56,43 +60,50 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange }: Inventor
     [onChange],
   )
 
-  const handleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      handleChangeValue(e.target.value)
-    },
-    [handleChangeValue],
-  )
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value !== searchCritValue) {
+      setHideFilters(true)
+    }
+    handleChangeValue(e.target.value)
+  }
 
   useEffect(() => {
-    setConfig([{ id: Math.random(), property: null, op: null, value: null, fqn: null }])
-  }, [kind])
+    if (initializedRef.current && !hideFilters) {
+      setConfig([{ id: Math.random(), property: null, op: null, value: null, fqn: null }])
+    }
+  }, [kind, hideFilters])
 
   useEffect(() => {
-    const configJoined = config
-      .map((item) => {
-        if (typeof item === 'string' || !item) {
-          return item
-        }
-        if (item.property && item.op && item.value && item.fqn) {
-          const value =
-            item.fqn === 'string' ? (item.op === 'in' ? JSON.stringify(getArrayFromInOP(item.value)) : `"${item.value}"`) : item.value
-          return `${item.property} ${item.op} ${value}`
-        }
-        return null
-      })
-      .filter((filter) => filter)
-      .join(' and ')
-    const result = (kind ? `is(${kind})${configJoined ? ' and ' : ''}` : '') + configJoined
-    handleChangeValue(result || 'all')
-  }, [config, handleChangeValue, kind])
+    if (initializedRef.current && !hideFilters) {
+      const configJoined = config
+        .map((item) => {
+          if (typeof item === 'string' || !item) {
+            return item
+          }
+          if (item.property && item.op && item.value && item.fqn) {
+            const value =
+              item.fqn === 'string' ? (item.op === 'in' ? JSON.stringify(getArrayFromInOP(item.value)) : `"${item.value}"`) : item.value
+            return `${item.property} ${item.op} ${value}`
+          }
+          return null
+        })
+        .filter((filter) => filter)
+        .join(' and ')
+      const result = (kind ? `is(${kind})${configJoined ? ' and ' : ''}` : '') + configJoined
+      handleChangeValue(result || 'all')
+    }
+    initializedRef.current = true
+  }, [hideFilters, config, handleChangeValue, kind])
 
   return (
     <>
-      <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-        <Suspense fallback={<InventoryFormsSkeleton />}>
-          <InventoryForm config={config} setConfig={setConfig} searchCrit={searchCrit} kind={kind} setKind={setKind} />
-        </Suspense>
-      </NetworkErrorBoundary>
+      <Collapse in={!hideFilters}>
+        <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+          <Suspense fallback={<InventoryFormsSkeleton />}>
+            <InventoryForm config={config} setConfig={setConfig} searchCrit={searchCrit} kind={kind} setKind={setKind} />
+          </Suspense>
+        </NetworkErrorBoundary>
+      </Collapse>
       <Collapse in={showAdvanceSearch}>
         <TextField
           margin="dense"

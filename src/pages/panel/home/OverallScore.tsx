@@ -1,16 +1,22 @@
+import { t } from '@lingui/macro'
 import { Stack, useTheme } from '@mui/material'
 import { useRef, useState } from 'react'
-import { PieScore } from 'src/pages/panel/shared/utils'
+import { PieResourceCheckScore, createInventorySearchTo } from 'src/pages/panel/shared/utils'
+import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { FailedChecksType } from 'src/shared/types/server'
+import { numberToShortHRT } from 'src/shared/utils/numberToShortHRT'
 import { ToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 
 interface OverallScoreProps {
   score: number
   failedChecks: Partial<FailedChecksType>
+  failedResources: Partial<FailedChecksType>
+  availableResources: number
 }
 
-export const OverallScore = ({ score, failedChecks }: OverallScoreProps) => {
+export const OverallScore = ({ score, failedChecks, failedResources, availableResources }: OverallScoreProps) => {
   const theme = useTheme()
+  const navigate = useAbsoluteNavigate()
   const [showPieChart, setShowPieChart] = useState(false)
   const [hidingPieChart, setHidingPieChart] = useState(false)
   const showPieChartTimeoutRef = useRef<number>()
@@ -39,13 +45,24 @@ export const OverallScore = ({ score, failedChecks }: OverallScoreProps) => {
   }
   return (
     <Stack mb={4} direction="row" justifyContent="center">
-      <PieScore
-        data={Object.entries(failedChecks).map(([name, value]) => ({ name: ToUFStr(name), value }))}
+      <PieResourceCheckScore
+        data={Object.entries(failedChecks).map(([name, value]) => ({
+          name: ToUFStr(name),
+          value: value ?? 0,
+          label: typeof failedResources[name] === 'number' ? numberToShortHRT(failedResources[name] ?? 0) : numberToShortHRT(value ?? 0),
+          description: t`We've identified ${failedResources[
+            name
+          ]?.toLocaleString()} non-compliant resources out of ${availableResources.toLocaleString()} through ${
+            value?.toString() ?? 0
+          } ${name.toString()}-severity security checks.`,
+          onClick: () => navigate(createInventorySearchTo(`/security.has_issues=true and /security.severity=${name}`)),
+        }))}
         hidingPieChart={hidingPieChart}
         showPieChart={showPieChart}
         score={score}
         onMouseEnter={score < 100 ? handleShowPieChart : undefined}
         onMouseLeave={score < 100 ? handleHidePieChart : undefined}
+        onScoreClick={() => navigate(createInventorySearchTo('/security.has_issues=true'))}
       />
     </Stack>
   )

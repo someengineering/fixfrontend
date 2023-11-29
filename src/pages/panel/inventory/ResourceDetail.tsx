@@ -9,6 +9,7 @@ import {
   Grid,
   IconButton,
   Modal as MuiModal,
+  Paper,
   Skeleton,
   Slide,
   Stack,
@@ -19,12 +20,13 @@ import {
 import { useQuery } from '@tanstack/react-query'
 import { Fragment, ReactNode, useEffect, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
+import { FailedChecks } from 'src/pages/panel/shared/failed-checks'
 import { getWorkspaceInventoryNodeQuery } from 'src/pages/panel/shared/queries'
-import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { panelUI } from 'src/shared/constants'
 import { GetWorkspaceInventorySearchTableRow } from 'src/shared/types/server'
 import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
-import { snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
+import { YamlHighlighter } from 'src/shared/yaml-highlighter'
+import { stringify } from 'yaml'
 
 interface ResourceDetailProps {
   detail: GetWorkspaceInventorySearchTableRow | undefined
@@ -83,7 +85,9 @@ const GridItem = ({
               isSimpleValue ? (
                 <Typography color={color}>{stringValue}</Typography>
               ) : (
-                <Typography component="pre">{JSON.stringify(value, null, '  ')}</Typography>
+                <pre>
+                  <YamlHighlighter>{stringify(value, null, '  ')}</YamlHighlighter>
+                </pre>
               )
             }
             placement="left"
@@ -225,7 +229,16 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
                 <Trans>Security</Trans>
               </AccordionSummary>
               <AccordionDetails>
-                <Grid gap={2} gridTemplateColumns="150px 1fr" display="grid">
+                {data.failing_checks.map((failedCheck, i) => (
+                  <Fragment key={i}>
+                    <Paper elevation={1}>
+                      <FailedChecks failedCheck={failedCheck} />
+                    </Paper>
+                    <Divider />
+                  </Fragment>
+                ))}
+
+                {/* <Grid gap={2} gridTemplateColumns="150px 1fr" display="grid">
                   <GridItem
                     property={<Trans>Found at</Trans>}
                     value={`${new Date(data.resource.security.opened_at).toLocaleDateString()} ${new Date(
@@ -255,7 +268,7 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
                       />
                     </Fragment>
                   ))}
-                </Grid>
+                </Grid> */}
               </AccordionDetails>
             </Accordion>
           ) : null}

@@ -54,13 +54,13 @@ msgid "© 2023 Some Engineering Inc. All rights reserved."
 msgstr "© 2023 Some Engineering Inc. All rights reserved."
 
 #: src/pages/panel/accounts/AccountsTable.tsx:31
-#: src/pages/panel/inventory/InventoryTable.tsx:60
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:66
+#: src/pages/panel/inventory/InventoryTable.tsx:84
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:67
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:103
 msgid "Accounts"
 msgstr "Accounts"
 
-#: src/pages/panel/home/Overview.tsx:101
+#: src/pages/panel/home/Overview.tsx:106
 msgid "Accounts Summary"
 msgstr "Accounts Summary"
 
@@ -72,7 +72,7 @@ msgstr "Actions"
 msgid "Add an account"
 msgstr "Add an account"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:178
+#: src/pages/panel/inventory/ResourceDetail.tsx:185
 msgid "Age"
 msgstr "Age"
 
@@ -104,7 +104,7 @@ msgstr "Automatic Cloud Setup"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace has been successfully subscribed"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:165
+#: src/pages/panel/inventory/ResourceDetail.tsx:172
 msgid "Basic Information"
 msgstr "Basic Information"
 
@@ -119,9 +119,13 @@ msgstr "Benchmarks"
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:245
-msgid "Check"
-msgstr "Check"
+#: src/pages/panel/home/Overview.tsx:51
+msgid "Changes in the past 7 days"
+msgstr "Changes in the past 7 days"
+
+#: src/pages/panel/inventory/ResourceDetail.tsx:250
+#~ msgid "Check"
+#~ msgstr "Check"
 
 #: src/pages/panel/accounts/AccountRow.tsx:281
 #: src/pages/panel/accounts/AccountsTable.tsx:35
@@ -133,11 +137,11 @@ msgstr "Cloud"
 msgid "Cloud account added, id: {0}"
 msgstr "Cloud account added, id: {0}"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:62
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:63
 msgid "Clouds"
 msgstr "Clouds"
 
-#: src/pages/panel/home/OverallCard.tsx:85
+#: src/pages/panel/home/OverallCard.tsx:87
 msgid "Compliance"
 msgstr "Compliance"
 
@@ -155,7 +159,7 @@ msgstr "Copied to Clipboard!"
 msgid "Copy"
 msgstr "Copy"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:174
+#: src/pages/panel/inventory/ResourceDetail.tsx:181
 msgid "Created Time"
 msgstr "Created Time"
 
@@ -179,7 +183,7 @@ msgstr "Delete"
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:205
+#: src/pages/panel/inventory/ResourceDetail.tsx:212
 msgid "Details"
 msgstr "Details"
 
@@ -226,27 +230,31 @@ msgstr "False"
 msgid "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
 msgstr "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:229
-#: src/pages/panel/inventory/ResourceDetail.tsx:247
-msgid "Found at"
-msgstr "Found at"
+#: src/pages/panel/inventory/ResourceDetail.tsx:234
+#: src/pages/panel/inventory/ResourceDetail.tsx:252
+#~ msgid "Found at"
+#~ msgstr "Found at"
+
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:46
+msgid "Go to resources"
+msgstr "Go to resources"
 
 #: src/shared/defined-messages/getMessage.ts:8
 msgid "High"
 msgstr "High"
 
-#: src/pages/panel/home/TopFiveChecksCard.tsx:35
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:36
 msgid "How to fix"
 msgstr "How to fix"
 
 #: src/pages/panel/accounts/AccountRow.tsx:278
 #: src/pages/panel/accounts/AccountsTable.tsx:38
 #: src/pages/panel/home/AccountCard.tsx:30
-#: src/pages/panel/inventory/ResourceDetail.tsx:171
+#: src/pages/panel/inventory/ResourceDetail.tsx:178
 msgid "ID"
 msgstr "ID"
 
-#: src/pages/panel/home/OverallCard.tsx:156
+#: src/pages/panel/home/OverallCard.tsx:172
 msgid "Improved"
 msgstr "Improved"
 
@@ -258,11 +266,11 @@ msgstr "In the next step we are going to set up the trust between FIX and your A
 msgid "Inventory"
 msgstr "Inventory"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:239
-msgid "Issues"
-msgstr "Issues"
+#: src/pages/panel/inventory/ResourceDetail.tsx:244
+#~ msgid "Issues"
+#~ msgstr "Issues"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:170
+#: src/pages/panel/inventory/ResourceDetail.tsx:177
 msgid "Kind"
 msgstr "Kind"
 
@@ -295,29 +303,33 @@ msgstr "Make sure that you are already logged into the correct AWS account, befo
 msgid "Medium"
 msgstr "Medium"
 
-#: src/pages/panel/home/TopFiveChecksCard.tsx:41
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:49
 msgid "More info"
 msgstr "More info"
 
-#: src/pages/panel/home/OverallCard.tsx:190
-msgid "Most Improved Accounts"
-msgstr "Most Improved Accounts"
-
-#: src/pages/panel/home/OverallCard.tsx:201
+#: src/pages/panel/home/OverallCard.tsx:223
 msgid "Most Improved Resources"
 msgstr "Most Improved Resources"
 
 #: src/pages/panel/accounts/AccountRow.tsx:284
 #: src/pages/panel/accounts/AccountsTable.tsx:41
-#: src/pages/panel/inventory/ResourceDetail.tsx:172
+#: src/pages/panel/inventory/ResourceDetail.tsx:179
 msgid "Name"
 msgstr "Name"
+
+#: src/pages/panel/home/OverallCard.tsx:177
+msgid "new improved resources in the past {since}"
+msgstr "new improved resources in the past {since}"
+
+#: src/pages/panel/home/OverallCard.tsx:92
+msgid "new non compliant resources in the past {since}"
+msgstr "new non compliant resources in the past {since}"
 
 #: src/pages/panel/accounts/AccountsTable.tsx:53
 msgid "Next scan"
 msgstr "Next scan"
 
-#: src/pages/panel/home/OverallCard.tsx:70
+#: src/pages/panel/home/OverallCard.tsx:72
 msgid "No changes"
 msgstr "No changes"
 
@@ -325,8 +337,8 @@ msgstr "No changes"
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 
-#: src/pages/panel/home/OverallCard.tsx:96
-#: src/pages/panel/home/OverallCard.tsx:167
+#: src/pages/panel/home/OverallCard.tsx:98
+#: src/pages/panel/home/OverallCard.tsx:183
 msgid "Nothing to show yet"
 msgstr "Nothing to show yet"
 
@@ -347,11 +359,7 @@ msgstr "Open drawer"
 msgid "Or"
 msgstr "Or"
 
-#: src/pages/panel/home/Overview.tsx:51
-msgid "Overall"
-msgstr "Overall"
-
-#: src/pages/panel/home/OverallCard.tsx:57
+#: src/pages/panel/home/OverallCard.tsx:59
 msgid "Overall Score"
 msgstr "Overall Score"
 
@@ -360,7 +368,7 @@ msgstr "Overall Score"
 msgid "Password"
 msgstr "Password"
 
-#: src/pages/panel/home/OverallCard.tsx:170
+#: src/pages/panel/home/OverallCard.tsx:186
 msgid "Pick one of the recommendations to the right and improve your security"
 msgstr "Pick one of the recommendations to the right and improve your security"
 
@@ -376,11 +384,11 @@ msgstr "Privileged"
 msgid "Profile"
 msgstr "Profile"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:194
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:195
 msgid "Property"
 msgstr "Property"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:70
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:71
 msgid "Regions"
 msgstr "Regions"
 
@@ -392,11 +400,11 @@ msgstr "Register"
 msgid "Resources"
 msgstr "Resources"
 
-#: src/pages/panel/home/TopFiveChecksCard.tsx:31
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:32
 msgid "Risk"
 msgstr "Risk"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:224
+#: src/pages/panel/inventory/ResourceDetail.tsx:231
 msgid "Security"
 msgstr "Security"
 
@@ -412,9 +420,7 @@ msgstr "Security Score"
 msgid "Select Language"
 msgstr "Select Language"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:235
-#: src/pages/panel/inventory/ResourceDetail.tsx:251
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:87
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:88
 msgid "Severity"
 msgstr "Severity"
 
@@ -431,9 +437,7 @@ msgstr "Sign up with {formattedName}"
 msgid "Simple and affordable visibility into your cloud security posture."
 msgstr "Simple and affordable visibility into your cloud security posture."
 
-#: src/pages/panel/home/OverallCard.tsx:74
-#: src/pages/panel/home/OverallCard.tsx:90
-#: src/pages/panel/home/OverallCard.tsx:161
+#: src/pages/panel/home/OverallCard.tsx:76
 msgid "Since {since}"
 msgstr "Since {since}"
 
@@ -444,7 +448,7 @@ msgid "Submit"
 msgstr "Submit"
 
 #: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:69
-#: src/pages/panel/inventory/ResourceDetail.tsx:192
+#: src/pages/panel/inventory/ResourceDetail.tsx:199
 msgid "Tags"
 msgstr "Tags"
 
@@ -468,16 +472,20 @@ msgstr "There's no account configured for this workspace."
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 
-#: src/pages/panel/home/Overview.tsx:73
-#: src/pages/panel/home/Overview.tsx:90
+#: src/pages/panel/home/OverallCard.tsx:206
+msgid "Top 3 Improved Accounts"
+msgstr "Top 3 Improved Accounts"
+
+#: src/pages/panel/home/OverallCard.tsx:121
+msgid "Top 3 Non-Compliant Accounts"
+msgstr "Top 3 Non-Compliant Accounts"
+
+#: src/pages/panel/home/Overview.tsx:78
+#: src/pages/panel/home/Overview.tsx:95
 msgid "Top 5 Security Enhancements"
 msgstr "Top 5 Security Enhancements"
 
-#: src/pages/panel/home/OverallCard.tsx:119
-msgid "Top Non-Compliant Accounts"
-msgstr "Top Non-Compliant Accounts"
-
-#: src/pages/panel/home/OverallCard.tsx:135
+#: src/pages/panel/home/OverallCard.tsx:145
 msgid "Top Non-Compliant Resources"
 msgstr "Top Non-Compliant Resources"
 
@@ -491,7 +499,7 @@ msgstr "Try again"
 
 #: src/pages/panel/inventory/InventoryFormFilterRow.tsx:167
 #: src/pages/panel/inventory/InventoryFormFilterRow.tsx:175
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:91
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:92
 msgid "Value"
 msgstr "Value"
 
@@ -502,6 +510,14 @@ msgstr "We have sent an email with a confirmation link to your email address. Pl
 #: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:35
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
+
+#: src/pages/panel/home/OverallScore.tsx:53
+#: src/pages/panel/shared/utils/PieCard.tsx:133
+#: src/pages/panel/shared/utils/PieCard.tsx:156
+#: src/pages/panel/shared/utils/PieCard.tsx:179
+#: src/pages/panel/shared/utils/PieCard.tsx:202
+msgid "We've identified {0} non-compliant resources out of {1} through {2} {3}-severity security checks."
+msgstr "We've identified {0} non-compliant resources out of {1} through {2} {3}-severity security checks."
 
 #: src/pages/auth/login/LoginPage.tsx:126
 msgid "You have successfully verified your account."
