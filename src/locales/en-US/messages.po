@@ -56,7 +56,7 @@ msgstr "© 2023 Some Engineering Inc. All rights reserved."
 #: src/pages/panel/accounts/AccountsTable.tsx:31
 #: src/pages/panel/inventory/InventoryTable.error.tsx:74
 #: src/pages/panel/inventory/InventoryTable.tsx:84
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:71
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:67
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:103
 msgid "Accounts"
 msgstr "Accounts"
@@ -142,7 +142,7 @@ msgstr "Cloud"
 msgid "Cloud account added, id: {0}"
 msgstr "Cloud account added, id: {0}"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:67
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:63
 msgid "Clouds"
 msgstr "Clouds"
 
@@ -226,7 +226,7 @@ msgstr "External Id"
 #~ msgid "Failed Checks"
 #~ msgstr "Failed Checks"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:96
+#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:152
 msgid "False"
 msgstr "False"
 
@@ -393,7 +393,7 @@ msgstr "Profile"
 msgid "Property"
 msgstr "Property"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:75
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:71
 msgid "Regions"
 msgstr "Regions"
 
@@ -426,7 +426,7 @@ msgstr "Security Score"
 msgid "Select Language"
 msgstr "Select Language"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:92
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:88
 msgid "Severity"
 msgstr "Severity"
 
@@ -495,7 +495,7 @@ msgstr "Top 5 Security Enhancements"
 msgid "Top Non-Compliant Resources"
 msgstr "Top Non-Compliant Resources"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:93
+#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:149
 msgid "True"
 msgstr "True"
 
@@ -503,8 +503,9 @@ msgstr "True"
 msgid "Try again"
 msgstr "Try again"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:106
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:96
+#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:167
+#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:175
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:92
 msgid "Value"
 msgstr "Value"
 
