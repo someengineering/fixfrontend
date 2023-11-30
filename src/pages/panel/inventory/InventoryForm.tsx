@@ -5,6 +5,7 @@ import { Dispatch, SetStateAction, useMemo } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { DefaultPropertiesKeys } from 'src/pages/panel/shared/constants'
 import { getWorkspaceInventorySearchStartQuery } from 'src/pages/panel/shared/queries'
+import { isValidProp } from 'src/pages/panel/shared/utils'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { InventoryAdvanceSearchConfig } from './InventoryAdvanceSearch'
 import { InventoryFormFilterRow } from './InventoryFormFilterRow'
@@ -185,8 +186,8 @@ export const InventoryForm = ({ searchCrit, kind, setKind, config, setConfig }: 
       if (selectTag) {
         newValue.push({
           id: Math.random(),
-          property: `tags.${selectTag}`,
-          op: null,
+          property: `tags.${isValidProp(selectTag) ? selectTag : `\`${selectTag}\``}`,
+          op: '=',
           value: null,
           fqn: 'string',
         })

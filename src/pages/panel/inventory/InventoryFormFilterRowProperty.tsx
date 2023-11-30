@@ -10,6 +10,7 @@ import { getWorkspaceInventoryPropertyPathCompleteQuery } from 'src/pages/panel/
 import { panelUI } from 'src/shared/constants'
 // import { panelUI } from 'src/shared/constants'
 import { HTMLAttributes } from 'react'
+import { isValidProp } from 'src/pages/panel/shared/utils'
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
 import { getCustomedWorkspaceInventoryPropertyAttributesQuery } from './utils'
 
@@ -67,7 +68,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>
       (lastPage?.length ?? 0) < ITEMS_PER_PAGE ? undefined : { ...lastPageParam, skip: lastPageParam.skip + ITEMS_PER_PAGE },
     queryFn: isDictionary ? getCustomedWorkspaceInventoryPropertyAttributesQuery : getWorkspaceInventoryPropertyPathCompleteQuery,
-    enabled: !!selectedWorkspace?.id,
+    enabled: !!selectedWorkspace?.id && !!kinds.length,
   })
   const flatData = useMemo(() => (data?.pages.flat().filter((i) => i) as Exclude<typeof data, null>['pages'][number]) ?? null, [data])
   const highlightedOptionRef = useRef<Exclude<typeof flatData, null>[number] | null>(null)
@@ -115,13 +116,13 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
         setProp(newProp)
         setPath(newPath)
         onChange({
-          property: isDictionary && /[^a-zA-Z0-9]/.test(newProp) ? `${newPath}.\`${newProp}\`` : option.label,
+          property: isDictionary && !isValidProp(newProp) ? `${newPath}.\`${newProp}\`` : option.label,
           op: '=',
           fqn: option.value as ResourceComplexKindSimpleTypeDefinitions,
         })
       } else {
         setProp('')
-        setPath(isDictionary && /[^a-zA-Z0-9]/.test(newPath) ? `${newPath}.\`${newProp}\`` : option.label)
+        setPath(isDictionary && !isValidProp(newPath) ? `${newPath}.\`${newProp}\`` : option.label)
       }
     } else {
       setValue(null)

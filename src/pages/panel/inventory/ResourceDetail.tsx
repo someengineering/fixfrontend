@@ -70,8 +70,8 @@ const GridItem = ({
     <>
       <Grid overflow="hidden" width="100%">
         <Tooltip arrow title={property} placement="left" slotProps={{ tooltip: { sx: { maxWidth: 'none' } } }}>
-          <Typography overflow="hidden" textOverflow="ellipsis">
-            {property}:
+          <Typography overflow="hidden" textOverflow="ellipsis" whiteSpace="nowrap">
+            {property}
           </Typography>
         </Tooltip>
       </Grid>
@@ -122,7 +122,7 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
     }
   }, [detail])
 
-  const { id, name, kind, ctime, age: _age, tags, ...reported } = data?.resource.reported ?? {}
+  const { id, name, kind, ctime, age: _age, tags } = data?.resource.reported ?? {}
 
   return selectedRow ? (
     <Modal open={!!detail} onClose={onClose} hideBackdrop>
@@ -169,9 +169,10 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
             <AccordionSummary>
               <Trans>Basic Information</Trans>
             </AccordionSummary>
+            <Divider />
             <AccordionDetails>
               {data ? (
-                <Grid gap={2} gridTemplateColumns="150px 1fr" width="100%" display="grid">
+                <Grid gap={2} gridTemplateColumns="150px 1fr" width="100%" display="grid" mt={1}>
                   <GridItem property={<Trans>Kind</Trans>} value={kind} />
                   <GridItem property={<Trans>ID</Trans>} value={id} />
                   <GridItem property={<Trans>Name</Trans>} value={name} />
@@ -196,8 +197,9 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
               <AccordionSummary>
                 <Trans>Tags</Trans>
               </AccordionSummary>
+              <Divider />
               <AccordionDetails>
-                <Grid gap={2} gridTemplateColumns="150px 1fr" width="100%" display="grid">
+                <Grid gap={2} gridTemplateColumns="50% 1fr" width="100%" display="grid" mt={1}>
                   {Object.entries(tags as Record<string, string>).map(([property, value], key) => (
                     <GridItem key={key} property={property} value={value} />
                   ))}
@@ -209,13 +211,14 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
             <AccordionSummary>
               <Trans>Details</Trans>
             </AccordionSummary>
+            <Divider />
             <AccordionDetails>
-              {data ? (
-                <Grid gap={2} gridTemplateColumns="150px 1fr" width="100%" display="grid">
-                  {Object.entries(reported).map(([property, value], key) => (
-                    <GridItem key={key} property={property} value={value} />
-                  ))}
-                </Grid>
+              {data?.resource.reported ? (
+                <Stack overflow="auto">
+                  <pre>
+                    <YamlHighlighter>{stringify(data.resource.reported, null, '  ')}</YamlHighlighter>
+                  </pre>
+                </Stack>
               ) : isLoading ? (
                 <>
                   <Skeleton height={400} width="100%" variant="rectangular" />
@@ -224,15 +227,16 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
             </AccordionDetails>
           </Accordion>
           {data?.resource.security?.has_issues ? (
-            <Accordion>
+            <Accordion defaultExpanded>
               <AccordionSummary>
                 <Trans>Security</Trans>
               </AccordionSummary>
+              <Divider />
               <AccordionDetails>
                 {data.failing_checks.map((failedCheck, i) => (
                   <Fragment key={i}>
                     <Paper elevation={1}>
-                      <FailedChecks failedCheck={failedCheck} />
+                      <FailedChecks failedCheck={failedCheck} smallText />
                     </Paper>
                     <Divider />
                   </Fragment>

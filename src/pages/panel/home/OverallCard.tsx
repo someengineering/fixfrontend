@@ -1,28 +1,18 @@
 import { Trans } from '@lingui/macro'
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
-import AssessmentIcon from '@mui/icons-material/Assessment'
 import ErrorIcon from '@mui/icons-material/Error'
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon'
-import { Button, Divider, Grid, Stack, SvgIcon, Typography } from '@mui/material'
+import { Button, Divider, Grid, Stack, Typography } from '@mui/material'
 import { createInventorySearchTo, showSubtitle } from 'src/pages/panel/shared/utils'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { CircularScore } from 'src/shared/circular-score'
-import { colorFromRedToGreen } from 'src/shared/constants'
 import { OverviewCard } from 'src/shared/overview-card'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { iso8601DurationToString, parseISO8601Duration } from 'src/shared/utils/parseDuration'
 
 interface OverallCardProps {
   data?: GetWorkspaceInventoryReportSummaryResponse
-  isMobile: boolean
-  difference: number
-  hasDifference: boolean
-  positive: boolean
-  overallColor: string
 }
 
-export const OverallCard = ({ data, hasDifference, difference, isMobile, overallColor, positive }: OverallCardProps) => {
+export const OverallCard = ({ data }: OverallCardProps) => {
   const navigate = useAbsoluteNavigate()
   if (!data) {
     return null
@@ -52,7 +42,7 @@ export const OverallCard = ({ data, hasDifference, difference, isMobile, overall
           }
         />
       </Grid> */}
-      {isMobile ? (
+      {/* {isMobile ? (
         <Grid item xs={12}>
           <OverviewCard
             height={180}
@@ -79,7 +69,7 @@ export const OverallCard = ({ data, hasDifference, difference, isMobile, overall
             }
           />
         </Grid>
-      ) : null}
+      ) : null} */}
       <Grid item xs={12}>
         <OverviewCard
           minHeight={180}

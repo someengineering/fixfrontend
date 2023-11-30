@@ -3,8 +3,7 @@ import { Box, Divider, Grid, Stack, Theme, Typography, useMediaQuery } from '@mu
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryReportSummaryQuery } from 'src/pages/panel/shared/queries'
-import { PieCard, chartToShow, checkDiff } from 'src/pages/panel/shared/utils'
-import { colorFromRedToGreen } from 'src/shared/constants'
+import { PieCard, chartToShow } from 'src/pages/panel/shared/utils'
 import { OverallCard } from './OverallCard'
 import { OverallScore } from './OverallScore'
 import { TopFiveChecksCard } from './TopFiveChecksCard'
@@ -16,10 +15,6 @@ export const Overview = () => {
     queryKey: ['workspace-inventory-report-summary', selectedWorkspace?.id],
     queryFn: getWorkspaceInventoryReportSummaryQuery,
   })
-  const difference = data ? checkDiff(data) : 0
-  const hasDifference = Boolean(difference && !Number.isNaN(difference))
-  const positive = difference >= 0
-  const overallColor = hasDifference && data ? colorFromRedToGreen[data?.overall_score] : 'info'
 
   return !data?.benchmarks.length ? (
     <Stack
@@ -46,18 +41,29 @@ export const Overview = () => {
   ) : (
     <>
       <Grid container my={2}>
+        {isMobile ? (
+          <Grid item xs={12}>
+            <Stack display="flex" direction="row">
+              <Divider orientation="vertical" sx={{ display: { xs: 'none', md: 'block' }, mx: 2 }} flexItem />
+              <Stack width="100%">
+                <Typography variant="h3" mb={{ xs: 2 }}>
+                  <Trans>Security Score</Trans>
+                </Typography>
+                <OverallScore
+                  score={data.overall_score}
+                  failedChecks={data.check_summary.failed_checks_by_severity}
+                  failedResources={data.check_summary.failed_resources_by_severity}
+                  availableResources={data.check_summary.available_resources}
+                />
+              </Stack>
+            </Stack>
+          </Grid>
+        ) : null}
         <Grid item xs={12} md={6}>
           <Typography variant="h3" mb={2}>
             <Trans>Changes in the past 7 days</Trans>
           </Typography>
-          <OverallCard
-            data={data}
-            difference={difference}
-            isMobile={isMobile}
-            hasDifference={hasDifference}
-            positive={positive}
-            overallColor={overallColor}
-          />
+          <OverallCard data={data} />
         </Grid>
         {!isMobile ? (
           <Grid item md={6}>

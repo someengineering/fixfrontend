@@ -9,7 +9,7 @@ import { DrawerMenu } from './DrawerMenu'
 interface PanelAppBarProps extends PropsWithChildren {
   open: boolean
   isDesktop: boolean
-  onDrawerClose: (event: ReactMouseEvent<HTMLButtonElement, MouseEvent>) => void
+  onDrawerClose: (event: ReactMouseEvent<HTMLElement, MouseEvent>) => void
 }
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: shouldForwardPropWithBlackList(['isDesktop']) })<{ isDesktop: boolean }>(
@@ -49,7 +49,7 @@ const DrawerContent = ({ children, onDrawerClose, open, isDesktop }: PanelAppBar
         </IconButton>
       </DrawerHeader>
       <Divider />
-      <DrawerMenu open={open || !isDesktop} />
+      <DrawerMenu onClose={isDesktop ? undefined : onDrawerClose} open={open || !isDesktop} />
     </>
   )
 }

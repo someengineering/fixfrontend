@@ -37,7 +37,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       searchCrit,
       page * rowsPerPage,
       rowsPerPage,
-      dataCount === -1,
+      page === 0 || dataCount === -1,
       history ? JSON.stringify(history) : '',
     ],
     queryFn: getWorkspaceInventorySearchTableQuery,

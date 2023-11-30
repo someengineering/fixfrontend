@@ -8,15 +8,17 @@ import { MenuListItem, MenuModalListItem, bottomMenuList, menuList } from './men
 
 interface DrawerMenuProps {
   open: boolean
+  onClose?: (event: ReactMouseEvent<HTMLElement, MouseEvent>) => void
 }
 
 type DrawerMenuItemProps = DrawerMenuProps & MenuListItem
 
-const DrawerMenuItem = ({ open, Icon, name, route }: DrawerMenuItemProps) => {
+const DrawerMenuItem = ({ open, onClose, Icon, name, route }: DrawerMenuItemProps) => {
   const match = useMatch(route)
   const navigate = useAbsoluteNavigate()
   const handleClick = (e: ReactMouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault()
+    onClose?.(e)
     navigate(route)
   }
   return (
@@ -48,9 +50,10 @@ const DrawerMenuItem = ({ open, Icon, name, route }: DrawerMenuItemProps) => {
 
 type DrawerModalMenuItemProps = DrawerMenuProps & MenuModalListItem
 
-const DrawerModalMenuItem = ({ open, Icon, name, Component, props }: DrawerModalMenuItemProps) => {
+const DrawerModalMenuItem = ({ open, onClose, Icon, name, Component, props }: DrawerModalMenuItemProps) => {
   const [modalOpen, setModalOpen] = useState(!(getInitiated() || false))
-  const handleModalOpen = () => {
+  const handleModalOpen = (event: ReactMouseEvent<HTMLDivElement, MouseEvent>) => {
+    onClose?.(event)
     setModalOpen(true)
   }
   const handleModalClose = () => {
@@ -92,12 +95,12 @@ const DrawerModalMenuItem = ({ open, Icon, name, Component, props }: DrawerModal
   )
 }
 
-export const DrawerMenu = ({ open }: DrawerMenuProps) => {
+export const DrawerMenu = ({ open, onClose }: DrawerMenuProps) => {
   const menuListMap = (item: MenuListItem | MenuModalListItem, index: number) =>
     item.route === 'modal' ? (
-      <DrawerModalMenuItem open={open} key={index} {...(item as MenuModalListItem)} route="modal" />
+      <DrawerModalMenuItem open={open} onClose={onClose} key={index} {...(item as MenuModalListItem)} route="modal" />
     ) : (
-      <DrawerMenuItem open={open} key={index} {...item} />
+      <DrawerMenuItem open={open} onClose={onClose} key={index} {...item} />
     )
   return (
     <Box display="flex" justifyContent="space-between" flexDirection="column" flexGrow={1}>
