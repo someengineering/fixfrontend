@@ -4,6 +4,7 @@ import { Button, Divider, Link, Modal, Stack, Typography, styled } from '@mui/ma
 import { useEffect } from 'react'
 import { FallbackProps } from 'react-error-boundary'
 import { DiscrodIcon } from 'src/assets/icons'
+import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { env } from 'src/shared/constants'
 
 const ModalContent = styled(Stack)(({ theme }) => ({
@@ -20,6 +21,8 @@ const ModalContent = styled(Stack)(({ theme }) => ({
 }))
 
 export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
+  const navigate = useAbsoluteNavigate()
+
   useEffect(() => {
     console.error(error)
   }, [error])
@@ -43,6 +46,18 @@ export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackPro
         </Typography>
         <Divider />
         <Stack spacing={1} justifyContent="end" direction="row">
+          <Stack justifySelf="start">
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={() => {
+                resetErrorBoundary()
+                navigate('/')
+              }}
+            >
+              <Trans>Homepage</Trans>
+            </Button>
+          </Stack>
           <Button
             onClick={resetErrorBoundary}
             variant="contained"

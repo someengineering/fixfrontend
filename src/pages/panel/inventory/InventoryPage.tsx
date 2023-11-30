@@ -1,4 +1,4 @@
-import { Suspense, useState } from 'react'
+import { Suspense, useCallback, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
@@ -16,14 +16,17 @@ export default function InventoryPage() {
     before: searchParams.get('before'),
   }
 
-  const setSearchCrit = (crit: string) => {
-    if (crit !== searchCrit) {
+  const setSearchCrit = useCallback(
+    (crit: string) => {
       setSeachParams((prev) => {
-        prev.set('q', crit)
+        if (crit !== prev.get('q')) {
+          prev.set('q', crit)
+        }
         return prev
       })
-    }
-  }
+    },
+    [setSeachParams],
+  )
 
   return (
     <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>

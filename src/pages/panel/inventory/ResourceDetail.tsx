@@ -229,7 +229,7 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
           {data?.resource.security?.has_issues ? (
             <Accordion defaultExpanded>
               <AccordionSummary>
-                <Trans>Security</Trans>
+                <Trans>Security Issues</Trans>
               </AccordionSummary>
               <Divider />
               <AccordionDetails>

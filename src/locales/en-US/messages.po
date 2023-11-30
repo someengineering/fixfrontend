@@ -56,7 +56,7 @@ msgstr "© 2023 Some Engineering Inc. All rights reserved."
 #: src/pages/panel/accounts/AccountsTable.tsx:31
 #: src/pages/panel/inventory/InventoryTable.error.tsx:74
 #: src/pages/panel/inventory/InventoryTable.tsx:79
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:67
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:79
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:103
 msgid "Accounts"
 msgstr "Accounts"
@@ -105,10 +105,6 @@ msgstr "Automatic Cloud Setup"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace has been successfully subscribed"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:127
-msgid "Bad query"
-msgstr "Bad query"
-
 #: src/pages/panel/inventory/ResourceDetail.tsx:170
 msgid "Basic Information"
 msgstr "Basic Information"
@@ -142,7 +138,7 @@ msgstr "Cloud"
 msgid "Cloud account added, id: {0}"
 msgstr "Cloud account added, id: {0}"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:63
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:75
 msgid "Clouds"
 msgstr "Clouds"
 
@@ -175,6 +171,14 @@ msgstr "Critical"
 #: src/shared/layouts/panel-layout/menuList.tsx:28
 msgid "Dashboard"
 msgstr "Dashboard"
+
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:113
+msgid "Date Picker"
+msgstr "Date Picker"
+
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:105
+msgid "Date Time Picker"
+msgstr "Date Time Picker"
 
 #: src/pages/panel/accounts/AccountRow.tsx:230
 #: src/pages/panel/accounts/AccountRow.tsx:234
@@ -226,7 +230,7 @@ msgstr "External Id"
 #~ msgid "Failed Checks"
 #~ msgstr "Failed Checks"
 
-#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:152
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:97
 msgid "False"
 msgstr "False"
 
@@ -240,13 +244,17 @@ msgstr "Fix is an open-source Wiz alternative for cloud infrastructure security.
 #~ msgid "Found at"
 #~ msgstr "Found at"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:53
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:55
 msgid "Go to resources"
 msgstr "Go to resources"
 
 #: src/shared/defined-messages/getMessage.ts:8
 msgid "High"
 msgstr "High"
+
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:58
+msgid "Homepage"
+msgstr "Homepage"
 
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:42
 msgid "How to fix"
@@ -308,7 +316,7 @@ msgstr "Make sure that you are already logged into the correct AWS account, befo
 msgid "Medium"
 msgstr "Medium"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:57
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:59
 msgid "More info"
 msgstr "More info"
 
@@ -347,7 +355,15 @@ msgstr "Note: You are about to delete a management or delegated admin account. P
 msgid "Nothing to show yet"
 msgstr "Nothing to show yet"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:32
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:91
+msgid "Null"
+msgstr "Null"
+
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:134
+msgid "Oops! It looks like your query didn't match our format. Please check and try again."
+msgstr "Oops! It looks like your query didn't match our format. Please check and try again."
+
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:35
 msgid "Oops! Something went wrong."
 msgstr "Oops! Something went wrong."
 
@@ -389,11 +405,11 @@ msgstr "Privileged"
 msgid "Profile"
 msgstr "Profile"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:196
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:197
 msgid "Property"
 msgstr "Property"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:71
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:83
 msgid "Regions"
 msgstr "Regions"
 
@@ -410,8 +426,8 @@ msgid "Risk"
 msgstr "Risk"
 
 #: src/pages/panel/inventory/ResourceDetail.tsx:232
-msgid "Security"
-msgstr "Security"
+msgid "Security Issues"
+msgstr "Security Issues"
 
 #: src/pages/panel/home/Overview.tsx:32
 msgid "Security Scan in Progress"
@@ -426,7 +442,7 @@ msgstr "Security Score"
 msgid "Select Language"
 msgstr "Select Language"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:88
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:101
 msgid "Severity"
 msgstr "Severity"
 
@@ -495,17 +511,16 @@ msgstr "Top 5 Security Enhancements"
 msgid "Top Non-Compliant Resources"
 msgstr "Top Non-Compliant Resources"
 
-#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:149
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:94
 msgid "True"
 msgstr "True"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:58
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:73
 msgid "Try again"
 msgstr "Try again"
 
-#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:167
-#: src/pages/panel/inventory/InventoryFormFilterRow.tsx:175
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:92
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:124
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:105
 msgid "Value"
 msgstr "Value"
 
@@ -513,7 +528,7 @@ msgstr "Value"
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:35
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:38
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 

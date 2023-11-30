@@ -18,12 +18,24 @@ export interface AutoCompletePreDefinedItems {
   clouds: AutoCompleteValue[]
 }
 
-export const getAutocompleteValueFromKey = (key: string, items: AutoCompletePreDefinedItems, value: string | null, isArray?: boolean) => {
+export function getAutocompleteValueFromKey<AddThemIfNotFound extends boolean>(
+  key: string,
+  items: AutoCompletePreDefinedItems,
+  value: string | null,
+  isArray?: boolean,
+  addThemIfNotFound?: AddThemIfNotFound,
+) {
   if (!value || (isArray && value === '[]')) {
     return isArray ? [] : null
   }
   const data = getAutocompleteDataFromKey(key, items)
-  return isArray ? getArrayFromInOP(value).map((item) => data.find((i) => i.value === item)) : data.find((i) => i.value === value)
+  return isArray
+    ? (getArrayFromInOP(value)
+        .map((item) => (data.find((i) => i.value === item) ?? addThemIfNotFound ? item : undefined))
+        .filter((i) => i) as AddThemIfNotFound extends true ? AutoCompleteValue[] : (AutoCompleteValue | string)[])
+    : ((data.find((i) => i.value === value) || (addThemIfNotFound ? key : undefined)) as
+        | (AddThemIfNotFound extends true ? AutoCompleteValue : AutoCompleteValue | string)
+        | null)
 }
 
 export const getAutocompleteDataFromKey = (key: string, items: AutoCompletePreDefinedItems) => {
@@ -84,7 +96,8 @@ export const getAutoCompletePropsFromKey = (key: string) => {
           ) : (
             ''
           ),
-
+        ListboxComponent: undefined,
+        ListboxProps: undefined,
         renderInput: (params: AutocompleteRenderInputParams) => <TextField {...params} label={<Trans>Severity</Trans>} />,
       }
     default:

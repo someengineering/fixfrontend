@@ -1,5 +1,8 @@
 import { i18n, Messages } from '@lingui/core'
 import { I18nProvider, useLingui } from '@lingui/react'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+// eslint-disable-next-line no-restricted-imports
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { PropsWithChildren, useEffect } from 'react'
@@ -44,7 +47,7 @@ export const InnerI18nProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     setLocale(i18n.locale)
   }, [i18n.locale])
-  return children
+  return <LocalizationProvider dateAdapter={AdapterDayjs}>{children}</LocalizationProvider>
 }
 
 export const Providers = ({ children }: PropsWithChildren) => {

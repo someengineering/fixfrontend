@@ -47,7 +47,9 @@ export const FailedChecks = ({ failedCheck, navigate, smallText }: FailedChecks)
           <Stack spacing={1} direction="row">
             {navigate && (
               <Button
-                onClick={() => navigate(createInventorySearchTo(`is(${failedCheck.result_kind}) and /security.has_issues=true`))}
+                onClick={() =>
+                  navigate(createInventorySearchTo(`/security.has_issues=true and /security.issues[*].check="${failedCheck.id}"`))
+                }
                 variant="outlined"
               >
                 <Trans>Go to resources</Trans>
