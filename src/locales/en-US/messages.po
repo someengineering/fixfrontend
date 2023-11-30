@@ -519,9 +519,9 @@ msgstr "We're sorry for the inconvenience. Our team has been notified, and the i
 
 #: src/pages/panel/home/OverallScore.tsx:53
 #: src/pages/panel/shared/utils/PieCard.tsx:133
-#: src/pages/panel/shared/utils/PieCard.tsx:158
-#: src/pages/panel/shared/utils/PieCard.tsx:181
-#: src/pages/panel/shared/utils/PieCard.tsx:205
+#: src/pages/panel/shared/utils/PieCard.tsx:156
+#: src/pages/panel/shared/utils/PieCard.tsx:179
+#: src/pages/panel/shared/utils/PieCard.tsx:202
 msgid "We've identified {0} non-compliant resources out of {1} through {2} {3}-severity security checks."
 msgstr "We've identified {0} non-compliant resources out of {1} through {2} {3}-severity security checks."
 
