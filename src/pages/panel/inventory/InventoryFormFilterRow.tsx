@@ -1,30 +1,35 @@
-import { Trans } from '@lingui/macro'
 import AddIcon from '@mui/icons-material/Add'
 import DeleteIcon from '@mui/icons-material/Delete'
-import { Autocomplete, IconButton, MenuItem, Select, Stack, TextField } from '@mui/material'
+import { IconButton, MenuItem, Select, Stack } from '@mui/material'
 import { Dispatch, SetStateAction, useCallback, useMemo } from 'react'
-import { OPType, booleanOPTypes, defaultProperties, kindNumberTypes, opTypes, stringOPTypes } from 'src/pages/panel/shared/constants'
+import { OPType, booleanOPTypes, defaultProperties, kindNumberTypes, numberOpTypes, stringOPTypes } from 'src/pages/panel/shared/constants'
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
 import { InventoryAdvanceSearchConfig } from './InventoryAdvanceSearch'
 import { InventoryFormFilterRowProperty } from './InventoryFormFilterRowProperty'
-import {
-  AutoCompletePreDefinedItems,
-  AutoCompleteValue,
-  getArrayFromInOP,
-  getAutoCompletePropsFromKey,
-  getAutocompleteDataFromKey,
-  getAutocompleteValueFromKey,
-} from './utils'
+import { InventoryFormFilterRowValues } from './InventoryFormFilterRowValues'
+import { AutoCompletePreDefinedItems, getArrayFromInOP } from './utils'
 
 interface InventoryFormFilterRowProps {
   item: InventoryAdvanceSearchConfig
   setConfig: Dispatch<SetStateAction<InventoryAdvanceSearchConfig[]>>
+  showDelete: boolean
   id: number
   kind: string | null
+  setKind: (kind: string | null) => void
   preItems: AutoCompletePreDefinedItems
+  searchCrit: string
 }
 
-export const InventoryFormFilterRow = ({ kind, item, setConfig, id, preItems }: InventoryFormFilterRowProps) => {
+export const InventoryFormFilterRow = ({
+  kind,
+  setKind,
+  showDelete,
+  item,
+  setConfig,
+  id,
+  preItems,
+  searchCrit,
+}: InventoryFormFilterRowProps) => {
   const handleAdd = useCallback(() => {
     setConfig((prev) => {
       const newConfig = [...prev]
@@ -38,6 +43,10 @@ export const InventoryFormFilterRow = ({ kind, item, setConfig, id, preItems }: 
 
   const handleRemove = useCallback(() => {
     setConfig((prev) => {
+      if (prev.length <= 1 && !prev[0]?.property) {
+        setKind(null)
+        return prev
+      }
       const newConfig = [...prev]
       const index = newConfig.findIndex((i) => i.id === id)
       if (index >= 0) {
@@ -48,7 +57,7 @@ export const InventoryFormFilterRow = ({ kind, item, setConfig, id, preItems }: 
       }
       return newConfig
     })
-  }, [id, setConfig])
+  }, [id, setConfig, setKind])
 
   const handleChange = useCallback(
     (params: {
@@ -81,8 +90,8 @@ export const InventoryFormFilterRow = ({ kind, item, setConfig, id, preItems }: 
     () =>
       item.property && item.fqn
         ? kindNumberTypes.includes(item.fqn as (typeof kindNumberTypes)[number])
-          ? opTypes
-          : item.fqn === 'string'
+          ? numberOpTypes
+          : item.fqn === 'string' || item.fqn === 'any'
             ? stringOPTypes
             : booleanOPTypes
         : null,
@@ -90,8 +99,6 @@ export const InventoryFormFilterRow = ({ kind, item, setConfig, id, preItems }: 
   )
 
   const kinds = useMemo(() => preItems.kinds.map((i) => i.value), [preItems.kinds])
-
-  const currentValue = item.value?.[0] === '[' ? getArrayFromInOP(item.value) : item.value
 
   return (
     <Stack direction="row" spacing={1} flexWrap="wrap">
@@ -114,68 +121,13 @@ export const InventoryFormFilterRow = ({ kind, item, setConfig, id, preItems }: 
             ))}
           </Select>
           {item.op && item.property ? (
-            defaultProperties.find((i) => i.label === item.property) ? (
-              <Autocomplete
-                size="small"
-                sx={{ width: 250, maxWidth: '100%' }}
-                onChange={(_, option) =>
-                  handleChange({
-                    value:
-                      typeof option === 'string'
-                        ? option
-                        : Array.isArray(option)
-                          ? option.length
-                            ? `[${option.map((i) => i.value).join(',')}]`
-                            : null
-                          : option?.value ?? null,
-                  })
-                }
-                options={getAutocompleteDataFromKey(item.property, preItems)}
-                {...getAutoCompletePropsFromKey(item.property)}
-                value={getAutocompleteValueFromKey(item.property, preItems, item?.value, item.op === 'in') as AutoCompleteValue[]}
-                multiple={item.op === 'in'}
-                autoFocus={!item.value}
-                limitTags={1}
-              />
-            ) : item.fqn === 'boolean' ? (
-              <Select
-                sx={{ minWidth: 100 }}
-                value={item.value || ''}
-                onChange={(e) => handleChange({ value: e.target.value })}
-                size="small"
-                autoFocus={!item.value}
-              >
-                <MenuItem value="true">
-                  <Trans>True</Trans>
-                </MenuItem>
-                <MenuItem value="false">
-                  <Trans>False</Trans>
-                </MenuItem>
-              </Select>
-            ) : item.op === 'in' ? (
-              <Autocomplete
-                size="small"
-                freeSolo
-                limitTags={1}
-                handleHomeEndKeys
-                sx={{ minWidth: 250 }}
-                multiple
-                options={(currentValue ?? []) as string[]}
-                getOptionLabel={(option) => option}
-                value={(currentValue ?? []) as string[]}
-                onChange={(_, option) => handleChange({ value: option.length ? `[${option.join(',')}]` : null })}
-                renderInput={(params) => <TextField {...params} label={<Trans>Value</Trans>} />}
-                autoFocus={!item.value}
-              />
-            ) : (
-              <TextField
-                size="small"
-                value={currentValue ?? ''}
-                onChange={(e) => handleChange({ value: e.target.value || null })}
-                label={<Trans>Value</Trans>}
-                autoFocus={!item.value}
-              />
-            )
+            <InventoryFormFilterRowValues
+              hasDefaultProperties={!!defaultProperties.find((i) => i.label === item.property)}
+              data={item}
+              onChange={handleChange}
+              preItems={preItems}
+              searchCrit={searchCrit}
+            />
           ) : null}
         </>
       ) : null}
@@ -183,9 +135,11 @@ export const InventoryFormFilterRow = ({ kind, item, setConfig, id, preItems }: 
         <IconButton onClick={handleAdd}>
           <AddIcon color="success" />
         </IconButton>
-        <IconButton onClick={handleRemove}>
-          <DeleteIcon color="error" />
-        </IconButton>
+        {showDelete || item.property ? (
+          <IconButton onClick={handleRemove}>
+            <DeleteIcon color="error" />
+          </IconButton>
+        ) : null}
       </Stack>
     </Stack>
   )

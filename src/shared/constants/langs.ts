@@ -1,5 +1,6 @@
 import { deDE as muiDeDE, enUS as muiEnUS } from '@mui/material/locale'
 import { deDE as muiDataGridDeDE, enUS as muiDataGridEnUS } from '@mui/x-data-grid'
+import { deDE as muiDatePickerDeDE, enUS as muiDatePickerEnUS } from '@mui/x-date-pickers'
 import GermanyIcon from 'flag-icons/flags/1x1/de.svg?react'
 import USIcon from 'flag-icons/flags/1x1/us.svg?react'
 import GermanyWideIcon from 'flag-icons/flags/4x3/de.svg?react'
@@ -13,7 +14,7 @@ export const langs = [
     IconWide: USWideIcon,
     Icon: USIcon,
     messages: enUSMessages,
-    muiLocale: [muiEnUS, muiDataGridEnUS],
+    muiLocale: [muiEnUS, muiDatePickerEnUS, muiDataGridEnUS],
   },
   {
     title: 'Deutsch',
@@ -21,6 +22,6 @@ export const langs = [
     IconWide: GermanyWideIcon,
     Icon: GermanyIcon,
     messages: deDEMessages,
-    muiLocale: [muiDeDE, muiDataGridDeDE],
+    muiLocale: [muiDeDE, muiDatePickerDeDE, muiDataGridDeDE],
   },
 ]

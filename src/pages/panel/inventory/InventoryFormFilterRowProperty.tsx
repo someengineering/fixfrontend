@@ -68,6 +68,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>
       (lastPage?.length ?? 0) < ITEMS_PER_PAGE ? undefined : { ...lastPageParam, skip: lastPageParam.skip + ITEMS_PER_PAGE },
     queryFn: isDictionary ? getCustomedWorkspaceInventoryPropertyAttributesQuery : getWorkspaceInventoryPropertyPathCompleteQuery,
+    throwOnError: false,
     enabled: !!selectedWorkspace?.id && !!kinds.length,
   })
   const flatData = useMemo(() => (data?.pages.flat().filter((i) => i) as Exclude<typeof data, null>['pages'][number]) ?? null, [data])

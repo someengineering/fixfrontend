@@ -59,6 +59,7 @@ module.exports = {
               '@mui/material/*',
               '!@mui/material/locale',
               '@mui/lab/*',
+              '@mui/x-date-pickers/*',
               '@mui/x-tree-view/*',
               '@mui/x-data-grid/*',
               '@mui/base*',
@@ -70,7 +71,7 @@ module.exports = {
               '@mui/styled-engine*',
               '@emotion*',
             ],
-            message: 'Only import usage of @mui/material, @mui/lab, @mui/x-tree-view and @mui/x-tree-view is allowed.',
+            message: 'Only import usage of @mui/material, @mui/lab, @mui/x-date-pickers, @mui/x-tree-view and @mui/x-tree-view is allowed.',
           },
           {
             group: ['../*'],

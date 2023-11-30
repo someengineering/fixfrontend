@@ -1,8 +1,10 @@
 export const booleanOPTypes = ['=', '!='] as const
 
-export const stringOPTypes = ['in', ...booleanOPTypes, '~', '!~'] as const
+export const numberOpTypes = [...booleanOPTypes, '>', '>=', '<', '<='] as const
 
-export const opTypes = [...stringOPTypes, '>', '>=', '<', '<='] as const
+export const stringOPTypes = ['in', ...numberOpTypes, '~', '!~'] as const
+
+export const opTypes = stringOPTypes
 
 export const kindNumberTypes = ['int32', 'int64', 'float', 'double', 'duration', 'datetime', 'date'] as const
 

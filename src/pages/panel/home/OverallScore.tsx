@@ -48,13 +48,16 @@ export const OverallScore = ({ score, failedChecks, failedResources, availableRe
       <PieResourceCheckScore
         data={Object.entries(failedChecks).map(([name, value]) => ({
           name: ToUFStr(name),
-          value: value ?? 0,
-          label: typeof failedResources[name] === 'number' ? numberToShortHRT(failedResources[name] ?? 0) : numberToShortHRT(value ?? 0),
-          description: t`We've identified ${failedResources[
-            name
-          ]?.toLocaleString()} non-compliant resources out of ${availableResources.toLocaleString()} through ${
-            value?.toString() ?? 0
-          } ${name.toString()}-severity security checks.`,
+          value: failedResources[name] ?? 0,
+          label: typeof failedResources[name] === 'number' ? numberToShortHRT(failedResources[name] ?? 0) : undefined,
+          description:
+            typeof failedResources[name] === 'number' && typeof value === 'number'
+              ? t`We've identified ${(
+                  failedResources[name] as number
+                ).toLocaleString()} non-compliant resources out of ${availableResources.toLocaleString()} through ${
+                  value.toString() ?? 0
+                } ${ToUFStr(name).toString()}-severity security checks.`
+              : undefined,
           onClick: () => navigate(createInventorySearchTo(`/security.has_issues=true and /security.severity=${name}`)),
         }))}
         hidingPieChart={hidingPieChart}

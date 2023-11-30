@@ -1,7 +1,7 @@
 import { t } from '@lingui/macro'
 import { Skeleton, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
 import { TablePagination, TableViewPage } from 'src/shared/layouts/panel-layout'
@@ -30,6 +30,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
   const { selectedWorkspace } = useUserProfile()
   const [rows, setRows] = useState<GetWorkspaceInventorySearchTableRow[]>([])
   const [columns, setColumns] = useState<GetWorkspaceInventorySearchTableColumn[]>([])
+  const initializedRef = useRef(false)
   const { data: serverData, isLoading } = useQuery({
     queryKey: [
       'workspace-inventory-search-table',
@@ -53,8 +54,11 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
   }, [totalCount, dataCount])
 
   useEffect(() => {
-    setDataCount(-1)
-    setPage(0)
+    if (initializedRef.current) {
+      setDataCount(-1)
+      setPage(0)
+    }
+    initializedRef.current = true
   }, [searchCrit])
 
   useEffect(() => {
@@ -64,15 +68,6 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       setRows(newRows)
     }
   }, [data, isLoading])
-
-  useEffect(() => {
-    if (!isLoading) {
-      const rowsLength = (data?.length ?? 1) - 1
-      if (rowsLength < rowsPerPage) {
-        setDataCount(rowsLength + page * rowsPerPage)
-      }
-    }
-  }, [isLoading, rowsPerPage, page, data?.length])
 
   return columns.length ? (
     <>

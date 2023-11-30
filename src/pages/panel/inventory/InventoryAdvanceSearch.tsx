@@ -1,7 +1,7 @@
 import { Trans } from '@lingui/macro'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDownCircleOutlined'
 import SearchIcon from '@mui/icons-material/Search'
-import { Box, Collapse, Divider, IconButton, TextField, styled } from '@mui/material'
+import { Box, Collapse, Divider, FormHelperText, IconButton, TextField, Typography, styled } from '@mui/material'
 import { ChangeEvent, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { OPType } from 'src/pages/panel/shared/constants'
@@ -37,8 +37,8 @@ const StyledArrowDropDownIcon = styled(ArrowDropDownIcon, { shouldForwardProp: s
 
 export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }: InventoryAdvanceSearchProps) => {
   const initializedRef = useRef(false)
-  const [searchParams] = useSearchParams()
-  const [hideFilters, setHideFilters] = useState(() => searchParams.get('hide') === 'true')
+  const [searchParams, setSearchParams] = useSearchParams()
+  const hideFilters = searchParams.get('hide') === 'true'
   const [searchCritValue, setSearchCritValue] = useState(searchCrit)
   const [config, setConfig] = useState<InventoryAdvanceSearchConfig[]>([
     { id: Math.random(), property: null, op: null, value: null, fqn: null },
@@ -63,8 +63,11 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }
   )
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value !== searchCritValue) {
-      setHideFilters(true)
+    if (e.target.value !== searchCritValue && !hideFilters) {
+      setSearchParams((prev) => {
+        prev.set('hide', 'true')
+        return prev
+      })
     }
     handleChangeValue(e.target.value)
   }
@@ -102,7 +105,9 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }
       <Collapse in={!hideFilters}>
         <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
           <Suspense fallback={<InventoryFormsSkeleton />}>
-            <InventoryForm config={config} setConfig={setConfig} searchCrit={searchCrit} kind={kind} setKind={setKind} />
+            {hideFilters ? null : (
+              <InventoryForm config={config} setConfig={setConfig} searchCrit={searchCrit} kind={kind} setKind={setKind} />
+            )}
           </Suspense>
         </NetworkErrorBoundary>
       </Collapse>
@@ -121,8 +126,14 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }
           onChange={handleChange}
           InputProps={{ startAdornment: <SearchIcon /> }}
           error={hasError}
-          helperText={hasError ? <Trans>Bad query</Trans> : null}
         />
+      </Collapse>
+      <Collapse in={hasError}>
+        <FormHelperText>
+          <Typography variant="caption" color="error" mx={1.75}>
+            <Trans>Oops! It looks like your query didn't match our format. Please check and try again.</Trans>
+          </Typography>
+        </FormHelperText>
       </Collapse>
       <Box my={2}>
         <Divider>

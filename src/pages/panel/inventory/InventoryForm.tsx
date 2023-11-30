@@ -220,7 +220,16 @@ export const InventoryForm = ({ searchCrit, kind, setKind, config, setConfig }: 
             <Stack spacing={1} flexGrow={1}>
               {config.map((item) => (
                 <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback} key={item.id}>
-                  <InventoryFormFilterRow item={item} id={item.id} setConfig={setConfig} kind={kind} preItems={filteredStartData} />
+                  <InventoryFormFilterRow
+                    item={item}
+                    id={item.id}
+                    setConfig={setConfig}
+                    showDelete={!!kind || config.length > 1}
+                    kind={kind}
+                    setKind={setKind}
+                    preItems={filteredStartData}
+                    searchCrit={searchCrit}
+                  />
                 </NetworkErrorBoundary>
               ))}
             </Stack>
