@@ -14,8 +14,8 @@ export interface Benchmark {
     string,
     {
       score: number
-      failed_checks: FailedChecksType | null
-      failed_resources: FailedChecksType | null
+      failed_checks: Partial<FailedChecksType> | null
+      failed_resources: Partial<FailedChecksType> | null
     }
   >
 }
@@ -33,6 +33,7 @@ export type WorkspaceAccountReportSummary = {
   cloud: string
   score: number
   resource_count: number
+  failed_resources_by_severity: Partial<FailedChecksType> | null
 }
 
 export interface WorkspaceCheckSummary {
@@ -47,7 +48,6 @@ export interface WorkspaceCheckSummary {
 export interface GetWorkspaceInventoryReportSummaryResponse {
   overall_score: number
   check_summary: WorkspaceCheckSummary
-  account_check_summary: WorkspaceCheckSummary
   accounts: WorkspaceAccountReportSummary[]
   benchmarks: Benchmark[]
   changed_vulnerable: ChangedSitatuation
