@@ -60,7 +60,7 @@ msgstr "© 2023 Some Engineering Inc. All rights reserved."
 msgid "Accounts"
 msgstr "Accounts"
 
-#: src/pages/panel/home/Overview.tsx:106
+#: src/pages/panel/home/Overview.tsx:112
 msgid "Accounts Summary"
 msgstr "Accounts Summary"
 
@@ -72,7 +72,7 @@ msgstr "Actions"
 msgid "Add an account"
 msgstr "Add an account"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:185
+#: src/pages/panel/inventory/ResourceDetail.tsx:184
 msgid "Age"
 msgstr "Age"
 
@@ -104,7 +104,7 @@ msgstr "Automatic Cloud Setup"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace has been successfully subscribed"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:172
+#: src/pages/panel/inventory/ResourceDetail.tsx:170
 msgid "Basic Information"
 msgstr "Basic Information"
 
@@ -119,7 +119,7 @@ msgstr "Benchmarks"
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/pages/panel/home/Overview.tsx:51
+#: src/pages/panel/home/Overview.tsx:64
 msgid "Changes in the past 7 days"
 msgstr "Changes in the past 7 days"
 
@@ -141,7 +141,7 @@ msgstr "Cloud account added, id: {0}"
 msgid "Clouds"
 msgstr "Clouds"
 
-#: src/pages/panel/home/OverallCard.tsx:87
+#: src/pages/panel/home/OverallCard.tsx:77
 msgid "Compliance"
 msgstr "Compliance"
 
@@ -159,7 +159,7 @@ msgstr "Copied to Clipboard!"
 msgid "Copy"
 msgstr "Copy"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:181
+#: src/pages/panel/inventory/ResourceDetail.tsx:180
 msgid "Created Time"
 msgstr "Created Time"
 
@@ -235,7 +235,7 @@ msgstr "Fix is an open-source Wiz alternative for cloud infrastructure security.
 #~ msgid "Found at"
 #~ msgstr "Found at"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:46
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:53
 msgid "Go to resources"
 msgstr "Go to resources"
 
@@ -243,18 +243,18 @@ msgstr "Go to resources"
 msgid "High"
 msgstr "High"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:36
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:42
 msgid "How to fix"
 msgstr "How to fix"
 
 #: src/pages/panel/accounts/AccountRow.tsx:278
 #: src/pages/panel/accounts/AccountsTable.tsx:38
 #: src/pages/panel/home/AccountCard.tsx:30
-#: src/pages/panel/inventory/ResourceDetail.tsx:178
+#: src/pages/panel/inventory/ResourceDetail.tsx:177
 msgid "ID"
 msgstr "ID"
 
-#: src/pages/panel/home/OverallCard.tsx:172
+#: src/pages/panel/home/OverallCard.tsx:162
 msgid "Improved"
 msgstr "Improved"
 
@@ -270,11 +270,11 @@ msgstr "Inventory"
 #~ msgid "Issues"
 #~ msgstr "Issues"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:177
+#: src/pages/panel/inventory/ResourceDetail.tsx:176
 msgid "Kind"
 msgstr "Kind"
 
-#: src/pages/panel/inventory/InventoryForm.tsx:211
+#: src/pages/panel/inventory/InventoryForm.tsx:212
 msgid "Kinds"
 msgstr "Kinds"
 
@@ -303,25 +303,25 @@ msgstr "Make sure that you are already logged into the correct AWS account, befo
 msgid "Medium"
 msgstr "Medium"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:49
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:57
 msgid "More info"
 msgstr "More info"
 
-#: src/pages/panel/home/OverallCard.tsx:223
+#: src/pages/panel/home/OverallCard.tsx:213
 msgid "Most Improved Resources"
 msgstr "Most Improved Resources"
 
 #: src/pages/panel/accounts/AccountRow.tsx:284
 #: src/pages/panel/accounts/AccountsTable.tsx:41
-#: src/pages/panel/inventory/ResourceDetail.tsx:179
+#: src/pages/panel/inventory/ResourceDetail.tsx:178
 msgid "Name"
 msgstr "Name"
 
-#: src/pages/panel/home/OverallCard.tsx:177
+#: src/pages/panel/home/OverallCard.tsx:167
 msgid "new improved resources in the past {since}"
 msgstr "new improved resources in the past {since}"
 
-#: src/pages/panel/home/OverallCard.tsx:92
+#: src/pages/panel/home/OverallCard.tsx:82
 msgid "new non compliant resources in the past {since}"
 msgstr "new non compliant resources in the past {since}"
 
@@ -330,15 +330,15 @@ msgid "Next scan"
 msgstr "Next scan"
 
 #: src/pages/panel/home/OverallCard.tsx:72
-msgid "No changes"
-msgstr "No changes"
+#~ msgid "No changes"
+#~ msgstr "No changes"
 
 #: src/pages/panel/accounts/AccountRow.tsx:248
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 
-#: src/pages/panel/home/OverallCard.tsx:98
-#: src/pages/panel/home/OverallCard.tsx:183
+#: src/pages/panel/home/OverallCard.tsx:88
+#: src/pages/panel/home/OverallCard.tsx:173
 msgid "Nothing to show yet"
 msgstr "Nothing to show yet"
 
@@ -360,15 +360,15 @@ msgid "Or"
 msgstr "Or"
 
 #: src/pages/panel/home/OverallCard.tsx:59
-msgid "Overall Score"
-msgstr "Overall Score"
+#~ msgid "Overall Score"
+#~ msgstr "Overall Score"
 
 #: src/pages/auth/login/LoginPage.tsx:104
 #: src/pages/auth/register/RegisterPage.tsx:103
 msgid "Password"
 msgstr "Password"
 
-#: src/pages/panel/home/OverallCard.tsx:186
+#: src/pages/panel/home/OverallCard.tsx:176
 msgid "Pick one of the recommendations to the right and improve your security"
 msgstr "Pick one of the recommendations to the right and improve your security"
 
@@ -384,7 +384,7 @@ msgstr "Privileged"
 msgid "Profile"
 msgstr "Profile"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:195
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:196
 msgid "Property"
 msgstr "Property"
 
@@ -400,19 +400,20 @@ msgstr "Register"
 msgid "Resources"
 msgstr "Resources"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:32
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:38
 msgid "Risk"
 msgstr "Risk"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:231
+#: src/pages/panel/inventory/ResourceDetail.tsx:232
 msgid "Security"
 msgstr "Security"
 
-#: src/pages/panel/home/Overview.tsx:37
+#: src/pages/panel/home/Overview.tsx:32
 msgid "Security Scan in Progress"
 msgstr "Security Scan in Progress"
 
-#: src/pages/panel/home/Overview.tsx:68
+#: src/pages/panel/home/Overview.tsx:50
+#: src/pages/panel/home/Overview.tsx:74
 msgid "Security Score"
 msgstr "Security Score"
 
@@ -438,8 +439,8 @@ msgid "Simple and affordable visibility into your cloud security posture."
 msgstr "Simple and affordable visibility into your cloud security posture."
 
 #: src/pages/panel/home/OverallCard.tsx:76
-msgid "Since {since}"
-msgstr "Since {since}"
+#~ msgid "Since {since}"
+#~ msgstr "Since {since}"
 
 #: src/pages/panel/accounts/AccountRow.tsx:175
 #: src/pages/panel/accounts/AccountRow.tsx:176
@@ -448,7 +449,7 @@ msgid "Submit"
 msgstr "Submit"
 
 #: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:69
-#: src/pages/panel/inventory/ResourceDetail.tsx:199
+#: src/pages/panel/inventory/ResourceDetail.tsx:198
 msgid "Tags"
 msgstr "Tags"
 
@@ -472,20 +473,20 @@ msgstr "There's no account configured for this workspace."
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 
-#: src/pages/panel/home/OverallCard.tsx:206
+#: src/pages/panel/home/OverallCard.tsx:196
 msgid "Top 3 Improved Accounts"
 msgstr "Top 3 Improved Accounts"
 
-#: src/pages/panel/home/OverallCard.tsx:121
+#: src/pages/panel/home/OverallCard.tsx:111
 msgid "Top 3 Non-Compliant Accounts"
 msgstr "Top 3 Non-Compliant Accounts"
 
-#: src/pages/panel/home/Overview.tsx:78
-#: src/pages/panel/home/Overview.tsx:95
+#: src/pages/panel/home/Overview.tsx:84
+#: src/pages/panel/home/Overview.tsx:101
 msgid "Top 5 Security Enhancements"
 msgstr "Top 5 Security Enhancements"
 
-#: src/pages/panel/home/OverallCard.tsx:145
+#: src/pages/panel/home/OverallCard.tsx:135
 msgid "Top Non-Compliant Resources"
 msgstr "Top Non-Compliant Resources"
 
@@ -523,6 +524,6 @@ msgstr "We've identified {0} non-compliant resources out of {1} through {2} {3}-
 msgid "You have successfully verified your account."
 msgstr "You have successfully verified your account."
 
-#: src/pages/panel/home/Overview.tsx:40
+#: src/pages/panel/home/Overview.tsx:35
 msgid "Your cloud account has been added successfully! We are currently performing a security scan. This can take up to an hour depending on the size of your account. Your dashboard will be available shortly after the scan is complete."
 msgstr "Your cloud account has been added successfully! We are currently performing a security scan. This can take up to an hour depending on the size of your account. Your dashboard will be available shortly after the scan is complete."
