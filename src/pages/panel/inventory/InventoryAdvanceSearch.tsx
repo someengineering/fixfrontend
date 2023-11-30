@@ -1,3 +1,4 @@
+import { Trans } from '@lingui/macro'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDownCircleOutlined'
 import SearchIcon from '@mui/icons-material/Search'
 import { Box, Collapse, Divider, IconButton, TextField, styled } from '@mui/material'
@@ -23,6 +24,7 @@ export interface InventoryAdvanceSearchConfig {
 interface InventoryAdvanceSearchProps {
   value: string
   onChange: (value: string) => void
+  hasError: boolean
 }
 
 const StyledArrowDropDownIcon = styled(ArrowDropDownIcon, { shouldForwardProp: shouldForwardProp })<{ showAdvanceSearch: boolean }>(
@@ -33,7 +35,7 @@ const StyledArrowDropDownIcon = styled(ArrowDropDownIcon, { shouldForwardProp: s
   }),
 )
 
-export const InventoryAdvanceSearch = ({ value: searchCrit, onChange }: InventoryAdvanceSearchProps) => {
+export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }: InventoryAdvanceSearchProps) => {
   const initializedRef = useRef(false)
   const [searchParams] = useSearchParams()
   const [hideFilters, setHideFilters] = useState(() => searchParams.get('hide') === 'true')
@@ -118,6 +120,8 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange }: Inventor
           value={searchCritValue}
           onChange={handleChange}
           InputProps={{ startAdornment: <SearchIcon /> }}
+          error={hasError}
+          helperText={hasError ? <Trans>Bad query</Trans> : null}
         />
       </Collapse>
       <Box my={2}>

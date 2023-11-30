@@ -54,6 +54,7 @@ msgid "© 2023 Some Engineering Inc. All rights reserved."
 msgstr "© 2023 Some Engineering Inc. All rights reserved."
 
 #: src/pages/panel/accounts/AccountsTable.tsx:31
+#: src/pages/panel/inventory/InventoryTable.error.tsx:74
 #: src/pages/panel/inventory/InventoryTable.tsx:84
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:67
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:103
@@ -103,6 +104,10 @@ msgstr "Automatic Cloud Setup"
 #: src/shared/constants/consts.ts:6
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace has been successfully subscribed"
+
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:124
+msgid "Bad query"
+msgstr "Bad query"
 
 #: src/pages/panel/inventory/ResourceDetail.tsx:170
 msgid "Basic Information"
