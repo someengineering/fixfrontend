@@ -8,14 +8,20 @@ import { getMessage } from 'src/shared/defined-messages'
 import { FailedCheck } from 'src/shared/types/server'
 import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 
-export const FailedChecks = ({ failedCheck, navigate }: { failedCheck: FailedCheck; navigate?: NavigateFunction }) => {
+interface FailedChecks {
+  failedCheck: FailedCheck
+  navigate?: NavigateFunction
+  smallText?: boolean
+}
+
+export const FailedChecks = ({ failedCheck, navigate, smallText }: FailedChecks) => {
   return (
     <Grid item xs={12} flexDirection="column">
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ height: '100%' }}>
           <Grid container spacing={2} display="flex" justifyContent="space-between" flexDirection="row" width="100%">
             <Grid item>
-              <Typography variant="h5">{failedCheck.title}</Typography>
+              <Typography variant={smallText ? 'h6' : 'h5'}>{failedCheck.title}</Typography>
             </Grid>
             <Grid item alignSelf="center" flex={1}>
               <Stack spacing={2} direction="row" display="flex" justifyContent="end" alignItems="center">
@@ -28,11 +34,11 @@ export const FailedChecks = ({ failedCheck, navigate }: { failedCheck: FailedChe
           </Grid>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography variant="h5">
+          <Typography variant={smallText ? 'h6' : 'h5'} fontWeight={smallText ? 800 : undefined}>
             <Trans>Risk</Trans>
           </Typography>
           <Typography>{failedCheck.risk}</Typography>
-          <Typography variant="h5" mt={2}>
+          <Typography variant={smallText ? 'h6' : 'h5'} fontWeight={smallText ? 800 : undefined} mt={2}>
             <Trans>How to fix</Trans>
           </Typography>
           <Typography>{failedCheck.remediation.text}</Typography>
