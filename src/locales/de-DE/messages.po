@@ -104,6 +104,10 @@ msgstr "Automatisches Cloud Setup"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:124
+msgid "Bad query"
+msgstr "Schlechte Abfrage"
+
 #: src/pages/panel/inventory/ResourceDetail.tsx:170
 msgid "Basic Information"
 msgstr "Grundinformation"
