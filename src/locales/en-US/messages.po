@@ -55,7 +55,7 @@ msgstr "© 2023 Some Engineering Inc. All rights reserved."
 
 #: src/pages/panel/accounts/AccountsTable.tsx:31
 #: src/pages/panel/inventory/InventoryTable.error.tsx:74
-#: src/pages/panel/inventory/InventoryTable.tsx:84
+#: src/pages/panel/inventory/InventoryTable.tsx:79
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:67
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:103
 msgid "Accounts"
