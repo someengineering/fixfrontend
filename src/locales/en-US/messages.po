@@ -105,7 +105,7 @@ msgstr "Automatic Cloud Setup"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace has been successfully subscribed"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:124
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:127
 msgid "Bad query"
 msgstr "Bad query"
 
@@ -517,11 +517,11 @@ msgstr "We have sent an email with a confirmation link to your email address. Pl
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 
-#: src/pages/panel/home/OverallScore.tsx:53
-#: src/pages/panel/shared/utils/PieCard.tsx:133
-#: src/pages/panel/shared/utils/PieCard.tsx:156
-#: src/pages/panel/shared/utils/PieCard.tsx:179
-#: src/pages/panel/shared/utils/PieCard.tsx:202
+#: src/pages/panel/home/OverallScore.tsx:55
+#: src/pages/panel/shared/utils/PieCard.tsx:134
+#: src/pages/panel/shared/utils/PieCard.tsx:158
+#: src/pages/panel/shared/utils/PieCard.tsx:182
+#: src/pages/panel/shared/utils/PieCard.tsx:206
 msgid "We've identified {0} non-compliant resources out of {1} through {2} {3}-severity security checks."
 msgstr "We've identified {0} non-compliant resources out of {1} through {2} {3}-severity security checks."
 

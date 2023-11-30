@@ -1,6 +1,5 @@
-import { Suspense, useEffect, useRef, useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { InventoryAdvanceSearch } from './InventoryAdvanceSearch'
@@ -8,26 +7,23 @@ import { InventoryTable } from './InventoryTable'
 import { InventoryTableError } from './InventoryTable.error'
 
 export default function InventoryPage() {
-  const [searchParams] = useSearchParams()
-  const initialized = useRef(false)
-  const navigate = useAbsoluteNavigate()
+  const [searchParams, setSeachParams] = useSearchParams()
   const [hasError, setHasError] = useState(false)
-  const [searchCrit, setSearchCrit] = useState(() => searchParams.get('q') || 'all')
+  const searchCrit = searchParams.get('q') || 'all'
   const history = {
     change: searchParams.get('change'),
     after: searchParams.get('after'),
     before: searchParams.get('before'),
   }
 
-  useEffect(() => {
-    if (initialized.current) {
-      navigate({
-        pathname: '/inventory',
-        search: `q=${window.encodeURIComponent(searchCrit)}`,
+  const setSearchCrit = (crit: string) => {
+    if (crit !== searchCrit) {
+      setSeachParams((prev) => {
+        prev.set('q', crit)
+        return prev
       })
     }
-    initialized.current = true
-  }, [searchCrit, navigate])
+  }
 
   return (
     <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>

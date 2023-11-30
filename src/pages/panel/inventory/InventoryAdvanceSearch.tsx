@@ -37,8 +37,8 @@ const StyledArrowDropDownIcon = styled(ArrowDropDownIcon, { shouldForwardProp: s
 
 export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }: InventoryAdvanceSearchProps) => {
   const initializedRef = useRef(false)
-  const [searchParams] = useSearchParams()
-  const [hideFilters, setHideFilters] = useState(() => searchParams.get('hide') === 'true')
+  const [searchParams, setSearchParams] = useSearchParams()
+  const hideFilters = searchParams.get('hide') === 'true'
   const [searchCritValue, setSearchCritValue] = useState(searchCrit)
   const [config, setConfig] = useState<InventoryAdvanceSearchConfig[]>([
     { id: Math.random(), property: null, op: null, value: null, fqn: null },
@@ -63,8 +63,11 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }
   )
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value !== searchCritValue) {
-      setHideFilters(true)
+    if (e.target.value !== searchCritValue && !hideFilters) {
+      setSearchParams((prev) => {
+        prev.set('hide', 'true')
+        return prev
+      })
     }
     handleChangeValue(e.target.value)
   }
