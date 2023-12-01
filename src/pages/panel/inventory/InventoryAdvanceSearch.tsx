@@ -23,7 +23,7 @@ export interface InventoryAdvanceSearchConfig {
 
 interface InventoryAdvanceSearchProps {
   value: string
-  onChange: (value: string) => void
+  onChange: (value?: string, hide?: string) => void
   hasError: boolean
 }
 
@@ -37,9 +37,9 @@ const StyledArrowDropDownIcon = styled(ArrowDropDownIcon, { shouldForwardProp: s
 
 export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }: InventoryAdvanceSearchProps) => {
   const initializedRef = useRef(false)
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams] = useSearchParams()
   const hideFilters = searchParams.get('hide') === 'true'
-  const [searchCritValue, setSearchCritValue] = useState(searchCrit)
+  const [searchCritValue, setSearchCritValue] = useState(searchCrit === 'all' || !searchCrit ? '' : searchCrit)
   const [config, setConfig] = useState<InventoryAdvanceSearchConfig[]>([
     { id: Math.random(), property: null, op: null, value: null, fqn: null },
   ])
@@ -63,23 +63,14 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }
   )
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value !== searchCritValue && !hideFilters) {
-      setSearchParams((prev) => {
-        prev.set('hide', 'true')
-        return prev
-      })
+    if (e.target.value !== searchCritValue) {
+      onChange(undefined, !e.target.value || e.target.value === 'all' ? '' : 'true')
     }
     handleChangeValue(e.target.value)
   }
 
   useEffect(() => {
-    if (initializedRef.current && !hideFilters) {
-      setConfig([{ id: Math.random(), property: null, op: null, value: null, fqn: null }])
-    }
-  }, [kind, hideFilters])
-
-  useEffect(() => {
-    if (initializedRef.current && !hideFilters) {
+    if (initializedRef.current) {
       const configJoined = config
         .map((item) => {
           if (typeof item === 'string' || !item) {
@@ -102,7 +93,7 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }
       handleChangeValue(result || 'all')
     }
     initializedRef.current = true
-  }, [hideFilters, config, handleChangeValue, kind])
+  }, [config, handleChangeValue, kind])
 
   return (
     <>
@@ -110,7 +101,7 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }
         <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
           <Suspense fallback={<InventoryFormsSkeleton />}>
             {hideFilters ? null : (
-              <InventoryForm config={config} setConfig={setConfig} searchCrit={searchCrit} kind={kind} setKind={setKind} />
+              <InventoryForm config={config} setConfig={setConfig} searchCrit={searchCrit || 'all'} kind={kind} setKind={setKind} />
             )}
           </Suspense>
         </NetworkErrorBoundary>
