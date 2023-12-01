@@ -5,19 +5,23 @@ import { panelMessages } from 'src/shared/constants'
 
 export const PanelInitialMessageHandler = () => {
   const [getSearch, setSearch] = useSearchParams()
+  const message = getSearch.get('message')
   const { showSnackbar } = useSnackbar()
   useEffect(() => {
-    const message = getSearch.get('message')
-    const foundMessage = panelMessages().find((pm) => pm.message === message)
-    if (foundMessage) {
-      void showSnackbar(foundMessage.text, {
-        severity: foundMessage.type,
+    if (message) {
+      const foundMessage = panelMessages().find((pm) => pm.message === message)
+      if (foundMessage) {
+        void showSnackbar(foundMessage.text, {
+          severity: foundMessage.type,
+        })
+      }
+      setSearch((prev) => {
+        prev.delete('message')
+        return prev
       })
     }
-    setSearch((prev) => {
-      prev.delete('message')
-      return prev
-    })
-  }, [getSearch, setSearch, showSnackbar])
+    // TODO: removed due to problem with setSeachParams changes with every route change
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [message, showSnackbar])
   return <></>
 }

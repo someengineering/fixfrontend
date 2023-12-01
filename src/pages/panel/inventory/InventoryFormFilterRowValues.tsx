@@ -66,9 +66,11 @@ export function InventoryFormFilterRowValues<HasDefaultProperties extends boolea
             })
           }
           value={
-            hasDefaultProperties
+            (hasDefaultProperties
               ? getAutocompleteValueFromKey(data.property || '', preItems, data?.value, data.op === 'in', true)
-              : currentValue
+              : typeof currentValue === 'string'
+                ? { label: currentValue, value: currentValue }
+                : currentValue?.map((value) => ({ label: value, value }))) || null
           }
           defaultOptions={hasDefaultProperties ? getAutocompleteDataFromKey(data.property || '', preItems) : undefined}
           searchCrit={searchCrit}

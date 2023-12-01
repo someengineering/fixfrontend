@@ -56,7 +56,7 @@ msgstr "© 2023 Some Engineering Inc. All rights reserved."
 #: src/pages/panel/accounts/AccountsTable.tsx:31
 #: src/pages/panel/inventory/InventoryTable.error.tsx:74
 #: src/pages/panel/inventory/InventoryTable.tsx:79
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:79
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:77
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:103
 msgid "Accounts"
 msgstr "Accounts"
@@ -73,7 +73,7 @@ msgstr "Actions"
 msgid "Add an account"
 msgstr "Add an account"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:184
+#: src/pages/panel/inventory/ResourceDetail.tsx:185
 msgid "Age"
 msgstr "Age"
 
@@ -105,7 +105,7 @@ msgstr "Automatic Cloud Setup"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace has been successfully subscribed"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:170
+#: src/pages/panel/inventory/ResourceDetail.tsx:171
 msgid "Basic Information"
 msgstr "Basic Information"
 
@@ -138,7 +138,7 @@ msgstr "Cloud"
 msgid "Cloud account added, id: {0}"
 msgstr "Cloud account added, id: {0}"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:75
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:73
 msgid "Clouds"
 msgstr "Clouds"
 
@@ -160,7 +160,7 @@ msgstr "Copied to Clipboard!"
 msgid "Copy"
 msgstr "Copy"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:180
+#: src/pages/panel/inventory/ResourceDetail.tsx:181
 msgid "Created Time"
 msgstr "Created Time"
 
@@ -172,11 +172,11 @@ msgstr "Critical"
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:113
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:115
 msgid "Date Picker"
 msgstr "Date Picker"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:105
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:107
 msgid "Date Time Picker"
 msgstr "Date Time Picker"
 
@@ -192,7 +192,7 @@ msgstr "Delete"
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:212
+#: src/pages/panel/inventory/ResourceDetail.tsx:213
 msgid "Details"
 msgstr "Details"
 
@@ -230,7 +230,7 @@ msgstr "External Id"
 #~ msgid "Failed Checks"
 #~ msgstr "Failed Checks"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:97
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:99
 msgid "False"
 msgstr "False"
 
@@ -263,7 +263,7 @@ msgstr "How to fix"
 #: src/pages/panel/accounts/AccountRow.tsx:278
 #: src/pages/panel/accounts/AccountsTable.tsx:38
 #: src/pages/panel/home/AccountCard.tsx:30
-#: src/pages/panel/inventory/ResourceDetail.tsx:177
+#: src/pages/panel/inventory/ResourceDetail.tsx:178
 msgid "ID"
 msgstr "ID"
 
@@ -283,7 +283,7 @@ msgstr "Inventory"
 #~ msgid "Issues"
 #~ msgstr "Issues"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:176
+#: src/pages/panel/inventory/ResourceDetail.tsx:177
 msgid "Kind"
 msgstr "Kind"
 
@@ -326,7 +326,7 @@ msgstr "Most Improved Resources"
 
 #: src/pages/panel/accounts/AccountRow.tsx:284
 #: src/pages/panel/accounts/AccountsTable.tsx:41
-#: src/pages/panel/inventory/ResourceDetail.tsx:178
+#: src/pages/panel/inventory/ResourceDetail.tsx:179
 msgid "Name"
 msgstr "Name"
 
@@ -355,11 +355,11 @@ msgstr "Note: You are about to delete a management or delegated admin account. P
 msgid "Nothing to show yet"
 msgstr "Nothing to show yet"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:91
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:93
 msgid "Null"
 msgstr "Null"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:134
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:138
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Oops! It looks like your query didn't match our format. Please check and try again."
 
@@ -409,7 +409,7 @@ msgstr "Profile"
 msgid "Property"
 msgstr "Property"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:83
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:81
 msgid "Regions"
 msgstr "Regions"
 
@@ -425,7 +425,7 @@ msgstr "Resources"
 msgid "Risk"
 msgstr "Risk"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:232
+#: src/pages/panel/inventory/ResourceDetail.tsx:233
 msgid "Security Issues"
 msgstr "Security Issues"
 
@@ -442,7 +442,7 @@ msgstr "Security Score"
 msgid "Select Language"
 msgstr "Select Language"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:101
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:99
 msgid "Severity"
 msgstr "Severity"
 
@@ -470,7 +470,7 @@ msgid "Submit"
 msgstr "Submit"
 
 #: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:69
-#: src/pages/panel/inventory/ResourceDetail.tsx:198
+#: src/pages/panel/inventory/ResourceDetail.tsx:199
 msgid "Tags"
 msgstr "Tags"
 
@@ -511,7 +511,7 @@ msgstr "Top 5 Security Enhancements"
 msgid "Top Non-Compliant Resources"
 msgstr "Top Non-Compliant Resources"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:94
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:96
 msgid "True"
 msgstr "True"
 
@@ -519,8 +519,8 @@ msgstr "True"
 msgid "Try again"
 msgstr "Try again"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:124
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:105
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:126
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:103
 msgid "Value"
 msgstr "Value"
 

@@ -123,9 +123,10 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
   }, [detail])
 
   const { id, name, kind, ctime, age: _age, tags } = data?.resource.reported ?? {}
+  const { tags: _tags, ...reported } = data?.resource.reported ?? {}
 
   return selectedRow ? (
-    <Modal open={!!detail} onClose={onClose} hideBackdrop>
+    <Modal open={!!detail} onClose={onClose}>
       <Slide in={!!detail} direction="left" mountOnEnter unmountOnExit>
         <Stack
           position="absolute"
@@ -216,7 +217,7 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
               {data?.resource.reported ? (
                 <Stack overflow="auto">
                   <pre>
-                    <YamlHighlighter>{stringify(data.resource.reported, null, '  ')}</YamlHighlighter>
+                    <YamlHighlighter>{stringify(reported, null, '  ')}</YamlHighlighter>
                   </pre>
                 </Stack>
               ) : isLoading ? (
