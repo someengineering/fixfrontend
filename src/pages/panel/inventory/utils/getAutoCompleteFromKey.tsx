@@ -18,12 +18,12 @@ export interface AutoCompletePreDefinedItems {
   clouds: AutoCompleteValue[]
 }
 
-export function getAutocompleteValueFromKey<AddThemIfNotFound extends boolean>(
+export function getAutocompleteValueFromKey(
   key: string,
   items: AutoCompletePreDefinedItems,
   value: string | null,
   isArray?: boolean,
-  addThemIfNotFound?: AddThemIfNotFound,
+  addThemIfNotFound?: boolean,
 ) {
   if (!value || (isArray && value === '[]')) {
     return isArray ? [] : null
@@ -31,11 +31,9 @@ export function getAutocompleteValueFromKey<AddThemIfNotFound extends boolean>(
   const data = getAutocompleteDataFromKey(key, items)
   return isArray
     ? (getArrayFromInOP(value)
-        .map((item) => (data.find((i) => i.value === item) ?? addThemIfNotFound ? item : undefined))
-        .filter((i) => i) as AddThemIfNotFound extends true ? AutoCompleteValue[] : (AutoCompleteValue | string)[])
-    : ((data.find((i) => i.value === value) || (addThemIfNotFound ? key : undefined)) as
-        | (AddThemIfNotFound extends true ? AutoCompleteValue : AutoCompleteValue | string)
-        | null)
+        .map((item) => (data.find((i) => i.value === item) ?? addThemIfNotFound ? { value: item, label: item } : undefined))
+        .filter((i) => i) as AutoCompleteValue[])
+    : data.find((i) => i.value === value) || (addThemIfNotFound ? { value: key, label: key } : undefined) || null
 }
 
 export const getAutocompleteDataFromKey = (key: string, items: AutoCompletePreDefinedItems) => {

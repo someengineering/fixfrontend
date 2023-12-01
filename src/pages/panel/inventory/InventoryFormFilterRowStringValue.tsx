@@ -18,7 +18,7 @@ interface InventoryFormFilterRowStringValueProps<Multiple extends boolean, Netwo
   propertyName: string
   isNumber: boolean
   isDouble: boolean
-  value: Multiple extends true ? AutoCompleteValue[] | string[] : AutoCompleteValue | string | null
+  value: Multiple extends true ? AutoCompleteValue[] : AutoCompleteValue | null
   onChange: (option: Multiple extends true ? AutoCompleteValue[] : AutoCompleteValue | null) => void
 }
 
@@ -76,7 +76,8 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
       void fetchNextPage()
     }
   }
-  const rawOptions = ((networkDisabled ? defaultOptions : flatData) ?? []).concat({ label: 'Null', value: 'null' })
+  const rawOptions = (networkDisabled ? defaultOptions : flatData) ?? []
+
   const optionsWithTyped =
     typed &&
     !(Array.isArray(value)
@@ -85,7 +86,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
       ? rawOptions.concat({ value: typed, label: typed })
       : rawOptions
 
-  const options =
+  const optionsWithValues =
     value && (!Array.isArray(value) || value.length)
       ? optionsWithTyped.concat(
           typeof value === 'string'
@@ -102,6 +103,10 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
                 : [],
         )
       : optionsWithTyped
+
+  const options = optionsWithValues.find((i) => i.value === 'null')
+    ? optionsWithValues
+    : optionsWithValues.concat({ label: 'Null', value: 'null' })
 
   const currentValue = (
     props.multiple && !Array.isArray(value) ? (value ? [value] : []) : !props.multiple && Array.isArray(value) ? value[0] : value
