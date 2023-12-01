@@ -36,6 +36,7 @@ export const InventoryTagAutoComplete = ({ searchCrit, setSelectedTag }: Invento
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>
       (lastPage?.length ?? 0) < ITEMS_PER_PAGE ? undefined : { ...lastPageParam, skip: lastPageParam.skip + ITEMS_PER_PAGE },
     queryFn: getWorkspaceInventoryPropertyAttributesQuery,
+    throwOnError: false,
     enabled: !!selectedWorkspace?.id,
   })
   const flatData = useMemo(() => (data?.pages.flat().filter((i) => i) as Exclude<typeof data, null>['pages'][number]) ?? null, [data])

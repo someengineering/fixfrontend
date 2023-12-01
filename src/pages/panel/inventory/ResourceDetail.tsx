@@ -113,6 +113,7 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
   const { data, isLoading } = useQuery({
     queryKey: ['workspace-inventory-node', selectedWorkspace?.id, detail?.id],
     queryFn: getWorkspaceInventoryNodeQuery,
+    throwOnError: false,
   })
   const [selectedRow, setSelectedRow] = useState(detail)
 
