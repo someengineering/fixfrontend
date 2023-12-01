@@ -3,7 +3,7 @@ import { getWorkspaceInventoryPropertyAttributesQuery } from 'src/pages/panel/sh
 
 export const getCustomedWorkspaceInventoryPropertyAttributesQuery = ({
   signal,
-  queryKey: [_, workspaceId, path, prop, kind],
+  queryKey: [_, workspaceId, path, prop, kind, type],
   pageParam,
   direction,
   meta,
@@ -14,7 +14,7 @@ export const getCustomedWorkspaceInventoryPropertyAttributesQuery = ({
     string, // path
     string, // prop
     string | null, // kind
-    string, // kinds
+    string, // type
   ],
   {
     skip: number | null
@@ -28,11 +28,11 @@ export const getCustomedWorkspaceInventoryPropertyAttributesQuery = ({
         'workspace-inventory-property-attributes',
         workspaceId,
         kind ? `is(${kind})` : 'all',
-        path.split('.').slice(-1)[0],
+        `${path.split('.').slice(-1)[0]}${prop ? `=~${prop}` : ''}`,
       ] as const,
       pageParam,
       direction,
       meta,
-    })?.then((item) => item.map((key) => ({ label: path ? `${path}.${key}` : key, key, value: prop }))) ?? null
+    })?.then((item) => item.map((key) => ({ label: path ? `${path}.${key}` : key, key, value: type }))) ?? null
   )
 }

@@ -46,18 +46,31 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
   const [value, setValue] = useState<string | null>(defaultValue || null)
   const { selectedWorkspace } = useUserProfile()
   const isDictionary = fqn?.startsWith('dictionary') ?? false
-  const {
-    data = null,
-    isLoading,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useInfiniteQuery({
+  const propertyAttributes = useInfiniteQuery({
     queryKey: [
       'workspace-inventory-property-path-complete-query',
       selectedWorkspace?.id,
       path,
-      isDictionary ? fqn?.split(',')[1].split(']')[0].trim() ?? '' : prop,
+      prop,
+      selectedKind,
+      fqn?.split(',')[1]?.split(']')[0]?.trim() ?? '',
+    ] as const,
+    initialPageParam: {
+      limit: ITEMS_PER_PAGE,
+      skip: 0,
+    },
+    getNextPageParam: (lastPage, _allPages, lastPageParam) =>
+      (lastPage?.length ?? 0) < ITEMS_PER_PAGE ? undefined : { ...lastPageParam, skip: lastPageParam.skip + ITEMS_PER_PAGE },
+    queryFn: getCustomedWorkspaceInventoryPropertyAttributesQuery,
+    throwOnError: false,
+    enabled: !!selectedWorkspace?.id && !!kinds.length && isDictionary,
+  })
+  const pathComplete = useInfiniteQuery({
+    queryKey: [
+      'workspace-inventory-property-path-complete-query',
+      selectedWorkspace?.id,
+      path,
+      prop,
       selectedKind,
       JSON.stringify(kinds),
     ] as const,
@@ -67,10 +80,11 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
     },
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>
       (lastPage?.length ?? 0) < ITEMS_PER_PAGE ? undefined : { ...lastPageParam, skip: lastPageParam.skip + ITEMS_PER_PAGE },
-    queryFn: isDictionary ? getCustomedWorkspaceInventoryPropertyAttributesQuery : getWorkspaceInventoryPropertyPathCompleteQuery,
+    queryFn: getWorkspaceInventoryPropertyPathCompleteQuery,
     throwOnError: false,
-    enabled: !!selectedWorkspace?.id && !!kinds.length,
+    enabled: !!selectedWorkspace?.id && !!kinds.length && !isDictionary,
   })
+  const { data = null, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } = isDictionary ? propertyAttributes : pathComplete
   const flatData = useMemo(() => (data?.pages.flat().filter((i) => i) as Exclude<typeof data, null>['pages'][number]) ?? null, [data])
   const highlightedOptionRef = useRef<Exclude<typeof flatData, null>[number] | null>(null)
   const handleScroll = (e: ReactUIEvent<HTMLUListElement, UIEvent>) => {
@@ -90,7 +104,9 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
   }
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
-    setFqn('object')
+    if (!isDictionary) {
+      setFqn('object')
+    }
     setValue(null)
     const separatedValue = value.split('.')
     const newProp = separatedValue.splice(separatedValue.length - 1, 1)[0]
@@ -99,7 +115,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       setProp(newProp)
     }
     if (newPath !== path) {
-      setPath(newPath)
+      setPath(newPath[newPath.length - 1] === '.' ? newPath.substring(0, newPath.length - 1) : newPath)
     }
   }
   const handleChange = (_: unknown, option: string | { key: string; label: string; value: string } | null) => {
