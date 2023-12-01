@@ -62,7 +62,7 @@ export const getAutoCompletePropsFromKey = (key: string) => {
         ) =>
           option ? (
             <ListItemButton component="li" {...props} {...state}>
-              <CloudAvatar cloud={option.value} />
+              {option.value !== null ? <CloudAvatar cloud={option.value} /> : null}
               <Typography variant="overline" ml={2}>
                 {option.label}
               </Typography>
@@ -70,6 +70,8 @@ export const getAutoCompletePropsFromKey = (key: string) => {
           ) : (
             ''
           ),
+        ListboxComponent: undefined,
+        ListboxProps: undefined,
         renderInput: (params: AutocompleteRenderInputParams) => <TextField {...params} label={<Trans>Clouds</Trans>} />,
       }
     case '/ancestors.account.reported.id':

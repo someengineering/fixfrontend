@@ -1,13 +1,16 @@
-import { Suspense, useState } from 'react'
+import { Suspense, useCallback, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
+import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { InventoryAdvanceSearch } from './InventoryAdvanceSearch'
 import { InventoryTable } from './InventoryTable'
 import { InventoryTableError } from './InventoryTable.error'
 
 export default function InventoryPage() {
-  const [searchParams, setSeachParams] = useSearchParams()
+  const [searchParams] = useSearchParams()
+  const navigate = useAbsoluteNavigate()
   const [hasError, setHasError] = useState(false)
   const searchCrit = searchParams.get('q') || 'all'
   const history = {
@@ -16,14 +19,25 @@ export default function InventoryPage() {
     before: searchParams.get('before'),
   }
 
-  const setSearchCrit = (crit: string) => {
-    setSeachParams((prev) => {
-      if (crit !== prev.get('q')) {
-        prev.set('q', crit)
+  const setSearchCrit = useCallback(
+    (crit?: string, hide?: string) => {
+      if (crit === undefined && hide === undefined) {
+        return
       }
-      return prev
-    })
-  }
+      const searchValues = getLocationSearchValues()
+      if (crit !== undefined) {
+        searchValues['q'] = window.encodeURIComponent(crit)
+      }
+      if (hide !== undefined) {
+        searchValues['hide'] = hide
+      }
+      const search = mergeLocationSearchValues(searchValues)
+      if (search !== window.location.search) {
+        navigate({ pathname: '/inventory', search })
+      }
+    },
+    [navigate],
+  )
 
   return (
     <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>

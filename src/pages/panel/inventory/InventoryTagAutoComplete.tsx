@@ -1,7 +1,7 @@
 import { Trans } from '@lingui/macro'
 import { Autocomplete, CircularProgress, TextField } from '@mui/material'
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { ReactNode, UIEvent as ReactUIEvent, useMemo } from 'react'
+import { ReactNode, UIEvent as ReactUIEvent, useMemo, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryPropertyAttributesQuery } from 'src/pages/panel/shared/queries'
 import { panelUI } from 'src/shared/constants'
@@ -15,6 +15,7 @@ interface InventoryTagAutoCompleteProps {
 const ITEMS_PER_PAGE = 50
 
 export const InventoryTagAutoComplete = ({ searchCrit, setSelectedTag }: InventoryTagAutoCompleteProps) => {
+  const [typed, setTyped] = useState('')
   const { selectedWorkspace } = useUserProfile()
   const {
     data = null,
@@ -27,7 +28,7 @@ export const InventoryTagAutoComplete = ({ searchCrit, setSelectedTag }: Invento
       'workspace-inventory-property-attributes',
       selectedWorkspace?.id,
       searchCrit.startsWith('is') ? searchCrit.split(' ')[0] : 'all',
-      'tags',
+      `tags${typed ? `=~${typed}` : ''}`,
     ] as const,
     initialPageParam: {
       limit: ITEMS_PER_PAGE,
@@ -36,6 +37,7 @@ export const InventoryTagAutoComplete = ({ searchCrit, setSelectedTag }: Invento
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>
       (lastPage?.length ?? 0) < ITEMS_PER_PAGE ? undefined : { ...lastPageParam, skip: lastPageParam.skip + ITEMS_PER_PAGE },
     queryFn: getWorkspaceInventoryPropertyAttributesQuery,
+    throwOnError: false,
     enabled: !!selectedWorkspace?.id,
   })
   const flatData = useMemo(() => (data?.pages.flat().filter((i) => i) as Exclude<typeof data, null>['pages'][number]) ?? null, [data])
@@ -56,6 +58,7 @@ export const InventoryTagAutoComplete = ({ searchCrit, setSelectedTag }: Invento
       loading={isLoading}
       onChange={(_, value) => setSelectedTag(value ?? '')}
       getOptionLabel={(option) => option ?? ''}
+      filterOptions={(option) => option}
       options={flatData ?? []}
       ListboxComponent={ListboxComponent}
       ListboxProps={{
@@ -76,6 +79,7 @@ export const InventoryTagAutoComplete = ({ searchCrit, setSelectedTag }: Invento
               </>
             ),
           }}
+          onChange={(e) => setTyped(e.target.value)}
         />
       )}
     />

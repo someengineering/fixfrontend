@@ -25,6 +25,7 @@ export const InventoryForm = ({ searchCrit, kind, setKind, config, setConfig }: 
   const { data: originalStartData } = useQuery({
     queryKey: ['workspace-inventory-search-start', selectedWorkspace?.id],
     queryFn: getWorkspaceInventorySearchStartQuery,
+    throwOnError: false,
     enabled: !!selectedWorkspace?.id,
   })
   const startData = useMemo(() => originalStartData ?? { accounts: [], kinds: [], regions: [], severity: [] }, [originalStartData])

@@ -16,21 +16,13 @@ function RenderRow({
 }: ListChildComponentProps) {
   const [props, option, { inputValue: _state, ...state }] = (data as DataItemType[])[index]
 
-  const theme = useTheme()
-
   const inlineStyle = {
     ...style,
     top: (style.top as number) + LIST_BOX_PADDING,
   }
 
   return (
-    <Tooltip
-      title={option}
-      arrow
-      enterDelay={400}
-      enterNextDelay={400}
-      slotProps={{ tooltip: { sx: { backgroundColor: theme.palette.common.black } } }}
-    >
+    <Tooltip title={option} arrow enterDelay={400} enterNextDelay={400}>
       <ListItemButton component="li" {...props} {...state} style={inlineStyle}>
         <Typography noWrap>{option}</Typography>
       </ListItemButton>
