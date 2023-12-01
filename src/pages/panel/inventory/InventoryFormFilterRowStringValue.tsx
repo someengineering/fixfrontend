@@ -79,31 +79,23 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
   const rawOptions = (networkDisabled ? defaultOptions : flatData) ?? []
 
   const optionsWithTyped =
-    typed &&
-    !(Array.isArray(value)
-      ? value.find((i) => (typeof i === 'string' ? i : i.label) === typed)
-      : (typeof value === 'string' ? value : value?.label) === typed)
+    typed && typed.toLocaleLowerCase() !== 'null' && !(Array.isArray(value) ? value.find((i) => i.label === typed) : value?.label === typed)
       ? rawOptions.concat({ value: typed, label: typed })
       : rawOptions
 
   const optionsWithValues =
     value && (!Array.isArray(value) || value.length)
       ? optionsWithTyped.concat(
-          typeof value === 'string'
-            ? !optionsWithTyped.find((i) => i.label === value)
-              ? [{ value, label: value } as AutoCompleteValue]
-              : []
-            : Array.isArray(value)
-              ? value
-                  .map((i) => (optionsWithTyped.find((j) => (typeof i === 'string' ? j.label === i : j === i)) ? undefined : i))
-                  .filter((i) => i)
-                  .map((i) => (typeof i === 'string' ? { label: i, value: i } : (i as AutoCompleteValue)))
-              : optionsWithTyped.indexOf(value) > -1
-                ? [value]
-                : [],
+          Array.isArray(value)
+            ? value
+                .map((i) => (optionsWithTyped.find((j) => (typeof i === 'string' ? j.label === i : j === i)) ? undefined : i))
+                .filter((i) => i && i.value !== 'null')
+                .map((i) => (typeof i === 'string' ? { label: i, value: i } : (i as AutoCompleteValue)))
+            : optionsWithTyped.indexOf(value) > -1
+              ? []
+              : [value],
         )
       : optionsWithTyped
-
   const options = optionsWithValues.find((i) => i.value === 'null')
     ? optionsWithValues
     : optionsWithValues.concat({ label: 'Null', value: 'null' })
