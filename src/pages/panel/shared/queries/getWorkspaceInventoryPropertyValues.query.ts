@@ -34,6 +34,6 @@ export const getWorkspaceInventoryPropertyValuesQuery = ({
             },
           },
         )
-        .then((res) => res.data)
+        .then((res) => res.data.map((i) => i.toString()))
     : null
 }

@@ -87,11 +87,10 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
     value && (!Array.isArray(value) || value.length)
       ? optionsWithTyped.concat(
           Array.isArray(value)
-            ? value
-                .map((i) => (optionsWithTyped.find((j) => (typeof i === 'string' ? j.label === i : j === i)) ? undefined : i))
-                .filter((i) => i && i.value !== 'null')
-                .map((i) => (typeof i === 'string' ? { label: i, value: i } : (i as AutoCompleteValue)))
-            : optionsWithTyped.indexOf(value) > -1
+            ? (value
+                .map((i) => (optionsWithTyped.find((j) => j === i || i.value === j.value) ? undefined : i))
+                .filter((i) => i && i.value !== 'null') as AutoCompleteValue[])
+            : optionsWithTyped.find((j) => value.value === j.value)
               ? []
               : [value],
         )
@@ -145,25 +144,10 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
       renderInput={(params) => (
         <TextField
           {...params}
-          type={isNumber ? 'number' : 'text'}
+          type={isNumber && typed !== 'null' && typed !== 'Null' ? 'number' : 'text'}
           inputProps={{
             ...params.inputProps,
             value: typed,
-            onChange: (e) => {
-              if (isNumber) {
-                const num = Number(e.currentTarget.value)
-                if (!Number.isNaN(num)) {
-                  if (isDouble) {
-                    setTyped(num.toString())
-                  } else {
-                    setTyped(Math.round(num).toString())
-                  }
-                }
-              } else {
-                setTyped(e.currentTarget.value)
-              }
-              params.inputProps.onChange?.(e as ChangeEvent<HTMLInputElement>)
-            },
           }}
           InputProps={{
             ...params.InputProps,
@@ -173,6 +157,24 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
                 {params.InputProps.endAdornment}
               </>
             ),
+          }}
+          onChange={(e) => {
+            if (isNumber) {
+              const curValue = e.currentTarget.value
+              const num = Number(curValue)
+              if (curValue === '' || curValue === 'null' || curValue === 'Null' || !Number.isNaN(num)) {
+                if (curValue === '' || curValue === 'null' || curValue === 'Null') {
+                  setTyped(curValue)
+                } else if (isDouble) {
+                  setTyped(num.toString())
+                } else {
+                  setTyped(Math.round(num).toString())
+                }
+              }
+            } else {
+              setTyped(e.currentTarget.value)
+            }
+            params.inputProps.onChange?.(e as ChangeEvent<HTMLInputElement>)
           }}
         />
       )}
