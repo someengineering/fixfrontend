@@ -106,7 +106,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
   return (
     <Autocomplete
       size="small"
-      sx={{ width: 250, maxWidth: '100%' }}
+      sx={{ minWidth: 250, maxWidth: '100%' }}
       onChange={(_, option) => {
         setTyped(typeof option === 'string' ? option : !Array.isArray(option) ? option?.label ?? '' : '')
         const newOption =
@@ -129,7 +129,6 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
               : newOption || null) as Multiple extends true ? AutoCompleteValue[] : AutoCompleteValue | null,
         )
       }}
-      limitTags={1}
       ListboxComponent={ListboxComponent}
       ListboxProps={{
         onScroll: handleScroll,
