@@ -74,9 +74,13 @@ export const InventoryFormFilterRow = ({
           ...params,
         }
         if (newConfig[index].value) {
-          if (newConfig[index].op === 'in' && !newConfig[index].value?.startsWith('[')) {
+          if ((newConfig[index].op === 'in' || newConfig[index].op === 'not in') && !newConfig[index].value?.startsWith('[')) {
             newConfig[index].value = `[${newConfig[index].value ?? ''}]`
-          } else if (newConfig[index].value?.startsWith('[') && (newConfig[index].op ?? 'in') !== 'in') {
+          } else if (
+            newConfig[index].value?.startsWith('[') &&
+            (newConfig[index].op ?? 'in') !== 'in' &&
+            (newConfig[index].op ?? 'not in') !== 'not in'
+          ) {
             newConfig[index].value = getArrayFromInOP(newConfig[index].value as string)[0]
           }
         }
