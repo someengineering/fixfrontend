@@ -83,7 +83,7 @@ export const InventoryForm = ({ searchCrit, kind, setKind, config, setConfig }: 
             )
           } else if (currentConfig.op === '=') {
             result.push(propertyIndex ? processedStartData[propertyIndex].find(({ id }) => id === configValue)?.cloud ?? '' : configValue)
-          } else if (currentConfig.op === 'in') {
+          } else if (currentConfig.op === 'in' || currentConfig.op === 'not in') {
             const configValues = getArrayFromInOP(configValue)
             result.push(
               ...(propertyIndex

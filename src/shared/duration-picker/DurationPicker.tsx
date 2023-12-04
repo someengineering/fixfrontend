@@ -81,7 +81,7 @@ export const DurationPicker = ({ onChange, value }: DurationPickerProps) => {
   return (
     <Autocomplete
       size="small"
-      sx={{ width: 250, maxWidth: '100%' }}
+      sx={{ minWidth: 250, maxWidth: '100%' }}
       options={options}
       value={autoCompleteValue}
       onChange={(_, newValues, reason) => {

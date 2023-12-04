@@ -35,7 +35,7 @@ export function InventoryFormFilterRowValues<HasDefaultProperties extends boolea
   onChange,
   searchCrit,
 }: InventoryFormFilterRowValuesProps<HasDefaultProperties>) {
-  const multiple = data.op === 'in'
+  const multiple = data.op === 'in' || data.op === 'not in'
   const currentValue = (data.value?.[0] === '[' ? getArrayFromInOP(data.value) : data.value) || (multiple ? ([] as string[]) : null)
 
   let isDouble = false
@@ -56,7 +56,7 @@ export function InventoryFormFilterRowValues<HasDefaultProperties extends boolea
       return (
         <InventoryFormFilterRowStringValue
           size="small"
-          sx={{ width: 250, maxWidth: '100%' }}
+          sx={{ minWidth: 250, maxWidth: '100%' }}
           isDouble={isDouble}
           isNumber={isNumber}
           multiple={multiple}
@@ -68,7 +68,7 @@ export function InventoryFormFilterRowValues<HasDefaultProperties extends boolea
           }
           value={
             (hasDefaultProperties
-              ? getAutocompleteValueFromKey(data.property || '', preItems, data?.value, data.op === 'in', true)
+              ? getAutocompleteValueFromKey(data.property || '', preItems, data?.value, data.op === 'in' || data.op === 'not in', true)
               : typeof currentValue === 'string'
                 ? { label: currentValue, value: currentValue }
                 : currentValue?.map((value) => ({ label: value, value }))) || null
@@ -77,7 +77,6 @@ export function InventoryFormFilterRowValues<HasDefaultProperties extends boolea
           searchCrit={searchCrit}
           propertyName={data.property || ''}
           autoFocus={!data.value}
-          limitTags={1}
           {...(hasDefaultProperties ? getAutoCompletePropsFromKey(data.property || '') : {})}
         />
       )
