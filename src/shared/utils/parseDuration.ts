@@ -3,9 +3,12 @@ import { plural, t } from '@lingui/macro'
 const iso8601DurationRegex =
   /(-)?P(?:([.,\d]+)Y)?(?:([.,\d]+)M)?(?:([.,\d]+)W)?(?:([.,\d]+)D)?(?:T(?:([.,\d]+)H)?(?:([.,\d]+)M)?(?:([.,\d]+)S)?)?/
 
-const customDurationRegex = /(?:([.,\d]+)yr)?(?:([.,\d]+)mo)?(?:([.,\d]+)d)?(?:T(?:([.,\d]+)h)?(?:([.,\d]+)m)?(?:([.,\d]+)s)?)?/
+const customDurationRegex =
+  /(?:([.,\d]+)(?:(?: )+)?(?:years|year|yr|y))?(?:(?: |and|,)+)?(?:([.,\d]+)(?:(?: )+)?(?:months|month|mo|M))?(?:(?: |and|,)+)?(?:([.,\d]+)(?:(?: )+)?(?:weeks|week|w))?(?:(?: |and|,)+)?(?:([.,\d]+)(?:(?: )+)?(?:days|day|d))?(?:(?: |and|,)+)?(?:([.,\d]+)(?:(?: )+)?(?:hours|hour|h))?(?:(?: |and|,)+)?(?:([.,\d]+)(?:(?: )+)?(?:minutes|minute|min|m))?(?:(?: |and|,)+)?(?:([.,\d]+)(?:(?: )+)?(?:seconds|second|s))?/
 
-interface ISO8601DurationType {
+const customDurationForSplitRegex = /(\d+[^\d]+)/g
+
+export interface ISO8601DurationType {
   negative: boolean
   years: number
   months: number
@@ -56,11 +59,11 @@ export const parseCustomDuration = (customDuration: string) => {
     negative: false,
     years: !Number.isNaN(numberMatches[1]) ? numberMatches[1] : 0,
     months: !Number.isNaN(numberMatches[2]) ? numberMatches[2] : 0,
-    weeks: 0,
-    days: !Number.isNaN(numberMatches[3]) ? numberMatches[3] : 0,
-    hours: !Number.isNaN(numberMatches[4]) ? numberMatches[4] : 0,
-    minutes: !Number.isNaN(numberMatches[5]) ? numberMatches[5] : 0,
-    seconds: !Number.isNaN(numberMatches[6]) ? numberMatches[6] : 0,
+    weeks: !Number.isNaN(numberMatches[3]) ? numberMatches[3] : 0,
+    days: !Number.isNaN(numberMatches[4]) ? numberMatches[4] : 0,
+    hours: !Number.isNaN(numberMatches[5]) ? numberMatches[5] : 0,
+    minutes: !Number.isNaN(numberMatches[6]) ? numberMatches[6] : 0,
+    seconds: !Number.isNaN(numberMatches[7]) ? numberMatches[7] : 0,
     duration: 0,
   }
 
@@ -75,6 +78,18 @@ export const parseCustomDuration = (customDuration: string) => {
       parsedDuration.years * YEARS)
 
   return parsedDuration
+}
+
+export const splitCustomDuration = (customDuration: string) => customDuration.match(customDurationForSplitRegex) ?? ([] as string[])
+
+export const splitedCustomDurationToAutoComplete = (customDurations: string[]) =>
+  customDurations.map((value) => ({ label: iso8601DurationToString(parseCustomDuration(value)), value }))
+
+export const durationToCustomDurationString = (duration: ISO8601DurationType) => {
+  const { days, hours, minutes, months, seconds, weeks, years } = duration
+  return `${years ? `${years}yr` : ''}${months ? `${months}mo` : ''}${weeks ? `${weeks}w` : ''}${days ? `${days}d` : ''}${
+    hours ? `${hours}h` : ''
+  }${minutes ? `${minutes}min` : ''}${seconds ? `${seconds}s` : ''}`
 }
 
 export const parseISO8601Duration = (iso8601Duration: string) => {
@@ -108,7 +123,12 @@ export const parseISO8601Duration = (iso8601Duration: string) => {
   return parsedDuration
 }
 
-export const iso8601DurationToString = (duration: ISO8601DurationType, maxStr: 1 | 2 | 3 | 4 | 5 | 6 | 7 = 7, showTime: boolean = true) => {
+export const iso8601DurationToString = (
+  duration: ISO8601DurationType,
+  maxStr: 1 | 2 | 3 | 4 | 5 | 6 | 7 = 7,
+  showTime: boolean = true,
+  joinStr?: string,
+) => {
   const str: string[] = []
   if (duration.years) {
     str.push(
@@ -169,5 +189,5 @@ export const iso8601DurationToString = (duration: ISO8601DurationType, maxStr: 1
   if (!str.length && duration.duration && showTime) {
     str.push(t`${duration.duration.toString()} Milliseconds`)
   }
-  return str.slice(0, maxStr).join(` ${t`and`} `)
+  return str.slice(0, maxStr).join(` ${joinStr ?? t`and`} `)
 }

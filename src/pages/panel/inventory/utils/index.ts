@@ -1,5 +1,5 @@
 export { getArrayFromInOP } from './getArrayFromInOP'
 export { getAutoCompletePropsFromKey, getAutocompleteDataFromKey, getAutocompleteValueFromKey } from './getAutoCompleteFromKey'
-export type { AutoCompletePreDefinedItems, AutoCompleteValue } from './getAutoCompleteFromKey'
+export type { AutoCompletePreDefinedItems } from './getAutoCompleteFromKey'
 export { getCustomedWorkspaceInventoryPropertyAttributesQuery } from './getCustomedWorkspaceInventoryPropertyAttributes.query'
 export { rowStrFromColumnKind } from './rowStrFromColumnKind'

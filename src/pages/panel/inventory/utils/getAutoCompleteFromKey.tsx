@@ -3,12 +3,8 @@ import { AutocompleteRenderInputParams, AutocompleteRenderOptionState, ListItemB
 import { HTMLAttributes } from 'react'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
+import { AutoCompleteValue } from 'src/shared/types/shared'
 import { getArrayFromInOP } from './getArrayFromInOP'
-
-export interface AutoCompleteValue {
-  value: string
-  label: string
-}
 
 export interface AutoCompletePreDefinedItems {
   accounts: AutoCompleteValue[]
