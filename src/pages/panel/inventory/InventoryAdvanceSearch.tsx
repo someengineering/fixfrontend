@@ -78,7 +78,7 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }
           }
           if (item.property && item.op && item.value && item.fqn) {
             const value =
-              item.fqn === 'string' && item.value !== 'null'
+              (item.fqn === 'string' || item.fqn === 'duration') && item.value !== 'null'
                 ? item.op === 'in' || item.op === 'not in'
                   ? JSON.stringify(getArrayFromInOP(item.value, true))
                   : `"${item.value}"`
