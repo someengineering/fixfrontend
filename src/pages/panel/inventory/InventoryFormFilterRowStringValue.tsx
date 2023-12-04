@@ -5,7 +5,7 @@ import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryPropertyValuesQuery } from 'src/pages/panel/shared/queries'
 import { panelUI } from 'src/shared/constants'
 import { ListboxComponent } from 'src/shared/react-window'
-import { AutoCompleteValue } from './utils'
+import { AutoCompleteValue } from 'src/shared/types/shared'
 
 const ITEMS_PER_PAGE = 50
 

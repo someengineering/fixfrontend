@@ -3,6 +3,7 @@ import { MenuItem, Select, TextField } from '@mui/material'
 import { DatePicker, DateTimePicker } from '@mui/x-date-pickers'
 import dayjs from 'dayjs'
 import { OPType } from 'src/pages/panel/shared/constants'
+import { DurationPicker } from 'src/shared/duration-picker'
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
 import { InventoryAdvanceSearchConfig } from './InventoryAdvanceSearch'
 import { InventoryFormFilterRowStringValue } from './InventoryFormFilterRowStringValue'
@@ -117,6 +118,8 @@ export function InventoryFormFilterRowValues<HasDefaultProperties extends boolea
           onChange={(val) => onChange({ value: val?.toISOString() ?? null })}
         />
       )
+    case 'duration':
+      return <DurationPicker value={data.value || ''} onChange={(value) => onChange({ value })} />
     default:
       return (
         <TextField
