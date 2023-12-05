@@ -9,5 +9,5 @@ export const useHasBenchmarkCheck = () => {
     queryFn: getWorkspaceInventoryReportSummaryQuery,
   })
 
-  return !!data.benchmarks.length
+  return !!data.accounts.length
 }
