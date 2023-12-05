@@ -1,4 +1,4 @@
-import { Autocomplete, AutocompleteProps, CircularProgress, TextField } from '@mui/material'
+import { Autocomplete, AutocompleteProps, CircularProgress, TextField, TypographyProps } from '@mui/material'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { ChangeEvent, ReactNode, UIEvent as ReactUIEvent, useMemo, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
@@ -137,7 +137,14 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
       filterOptions={networkDisabled ? undefined : (options) => options}
       getOptionLabel={(option) => (typeof option === 'string' ? option : option.label)}
       freeSolo
-      renderOption={(props, option, state) => [props, option.label, state] as ReactNode}
+      renderOption={(props, option, state) =>
+        [
+          props,
+          option.label,
+          state,
+          option.value === 'null' ? ({ fontStyle: 'italic', color: 'info.main' } as TypographyProps) : undefined,
+        ] as ReactNode
+      }
       value={currentValue}
       {...props}
       renderInput={(params) => (

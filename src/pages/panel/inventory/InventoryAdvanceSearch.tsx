@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import { Box, Collapse, Divider, FormHelperText, IconButton, TextField, Typography, styled } from '@mui/material'
 import { ChangeEvent, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { OPType } from 'src/pages/panel/shared/constants'
+import { OPType, stringSimpleTypes } from 'src/pages/panel/shared/constants'
 import { panelUI } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
@@ -78,7 +78,7 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }
           }
           if (item.property && item.op && item.value && item.fqn) {
             const value =
-              (item.fqn === 'string' || item.fqn === 'duration') && item.value !== 'null'
+              stringSimpleTypes.includes(item.fqn as (typeof stringSimpleTypes)[number]) && item.value !== 'null'
                 ? item.op === 'in' || item.op === 'not in'
                   ? JSON.stringify(getArrayFromInOP(item.value, true))
                   : `"${item.value}"`
