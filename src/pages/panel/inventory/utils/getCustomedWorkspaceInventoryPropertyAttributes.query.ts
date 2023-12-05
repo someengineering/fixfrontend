@@ -1,7 +1,7 @@
 import { QueryFunctionContext } from '@tanstack/react-query'
 import { getWorkspaceInventoryPropertyAttributesQuery } from 'src/pages/panel/shared/queries'
 
-export const getCustomedWorkspaceInventoryPropertyAttributesQuery = ({
+export const getCustomedWorkspaceInventoryPropertyAttributesQuery = async ({
   signal,
   queryKey: [_, workspaceId, path, prop, kind, type],
   pageParam,
@@ -21,11 +21,8 @@ export const getCustomedWorkspaceInventoryPropertyAttributesQuery = ({
     limit: number | null
   }
 >) => {
-  if (type === 'string') {
-    return [{ label: path ? `${path}.${prop}` : prop, key: prop, value: type }]
-  }
-  return (
-    getWorkspaceInventoryPropertyAttributesQuery({
+  const data =
+    (await getWorkspaceInventoryPropertyAttributesQuery({
       signal,
       queryKey: [
         'workspace-inventory-property-attributes',
@@ -36,6 +33,10 @@ export const getCustomedWorkspaceInventoryPropertyAttributesQuery = ({
       pageParam,
       direction,
       meta,
-    })?.then((item) => item.map((key) => ({ label: path ? `${path}.${key}` : key, key, value: type }))) ?? null
-  )
+    })?.then((item) => item.map((key) => ({ label: path ? `${path}.${key}` : key, key, value: type })))) ?? null
+  if (type === 'string') {
+    return (data ?? []).concat([{ label: path ? `${path}.${prop}` : prop, key: prop, value: type }])
+  } else {
+    return data
+  }
 }
