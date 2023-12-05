@@ -84,6 +84,7 @@ export const DurationPicker = ({ onChange, value }: DurationPickerProps) => {
       sx={{ minWidth: 250, maxWidth: '100%' }}
       options={options}
       value={autoCompleteValue}
+      open={!!options.filter((i) => !autoCompleteValue.includes(i)).length}
       onChange={(_, newValues, reason) => {
         if ((reason !== 'selectOption' && reason !== 'createOption') || parseCustomDuration(newValues[newValues.length - 1].value)) {
           const reversedNewValues = newValues.reverse()
@@ -119,6 +120,8 @@ export const DurationPicker = ({ onChange, value }: DurationPickerProps) => {
               const foundDur = allPossibleValues.find((item) => lowerCased.endsWith(item))
               if (foundDur) {
                 onChange(durationToCustomDurationString({ ...parsedDuration, ...removeZeroValues(parseCustomDuration(trimmed)) }))
+              }
+              if (foundDur || !/^\d/.test(value)) {
                 setTyped('')
                 params.inputProps.onChange?.({
                   ...(e as ChangeEvent<HTMLInputElement>),
