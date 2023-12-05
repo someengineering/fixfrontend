@@ -135,8 +135,20 @@ msgid "Cloud"
 msgstr "Cloud"
 
 #: src/shared/event-button/EventButton.tsx:56
-msgid "Cloud account added, id: {0}"
-msgstr "Cloud account added, id: {0}"
+msgid "Cloud account configured, id: {0}"
+msgstr "Cloud account configured, id: {0}"
+
+#: src/shared/event-button/EventButton.tsx:63
+msgid "Cloud account degraded, id: {0}"
+msgstr "Cloud account degraded, id: {0}"
+
+#: src/shared/event-button/EventButton.tsx:70
+msgid "Cloud account deleted, id: {0}"
+msgstr "Cloud account deleted, id: {0}"
+
+#: src/shared/event-button/EventButton.tsx:77
+msgid "Cloud account discovered, id: {0}"
+msgstr "Cloud account discovered, id: {0}"
 
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:80
 msgid "Clouds"
@@ -218,7 +230,7 @@ msgstr "Email"
 msgid "Enabled"
 msgstr "Enabled"
 
-#: src/shared/event-button/EventButton.tsx:90
+#: src/shared/event-button/EventButton.tsx:111
 msgid "Events"
 msgstr "Events"
 
@@ -359,7 +371,7 @@ msgstr "Nothing to show yet"
 msgid "Null"
 msgstr "Null"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:129
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:133
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Oops! It looks like your query didn't match our format. Please check and try again."
 
@@ -429,7 +441,7 @@ msgstr "Risk"
 msgid "Security Issues"
 msgstr "Security Issues"
 
-#: src/shared/layouts/panel-layout/BenchmarkCheckGuard.tsx:23
+#: src/shared/layouts/panel-layout/BenchmarkCheckGuard.tsx:24
 msgid "Security Scan in Progress"
 msgstr "Security Scan in Progress"
 
@@ -544,6 +556,6 @@ msgstr "We've identified {0} non-compliant resources out of {1} through {2} {3}-
 msgid "You have successfully verified your account."
 msgstr "You have successfully verified your account."
 
-#: src/shared/layouts/panel-layout/BenchmarkCheckGuard.tsx:26
+#: src/shared/layouts/panel-layout/BenchmarkCheckGuard.tsx:27
 msgid "Your cloud account has been added successfully! We are currently performing a security scan. This can take up to an hour depending on the size of your account. Your dashboard will be available shortly after the scan is complete."
 msgstr "Your cloud account has been added successfully! We are currently performing a security scan. This can take up to an hour depending on the size of your account. Your dashboard will be available shortly after the scan is complete."
