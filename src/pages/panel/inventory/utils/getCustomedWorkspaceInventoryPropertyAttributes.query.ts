@@ -21,6 +21,9 @@ export const getCustomedWorkspaceInventoryPropertyAttributesQuery = ({
     limit: number | null
   }
 >) => {
+  if (type === 'string') {
+    return [{ label: path ? `${path}.${prop}` : prop, key: prop, value: type }]
+  }
   return (
     getWorkspaceInventoryPropertyAttributesQuery({
       signal,
