@@ -56,12 +56,12 @@ msgstr "© 2023 Some Engineering Services GMBH. Alle Rechte vorbehalten."
 #: src/pages/panel/accounts/AccountsTable.tsx:31
 #: src/pages/panel/inventory/InventoryTable.error.tsx:74
 #: src/pages/panel/inventory/InventoryTable.tsx:79
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:75
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:84
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:103
 msgid "Accounts"
 msgstr "Konten"
 
-#: src/pages/panel/home/Overview.tsx:112
+#: src/pages/panel/home/Overview.tsx:90
 msgid "Accounts Summary"
 msgstr "Zusammenfassung der Konten"
 
@@ -73,7 +73,7 @@ msgstr "Aktionen"
 msgid "Add an account"
 msgstr "Füge ein Konto hinzu"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:187
+#: src/pages/panel/inventory/ResourceDetail.tsx:186
 msgid "Age"
 msgstr "Alter"
 
@@ -105,7 +105,7 @@ msgstr "Automatisches Cloud Setup"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:173
+#: src/pages/panel/inventory/ResourceDetail.tsx:172
 msgid "Basic Information"
 msgstr "Grundinformation"
 
@@ -120,7 +120,7 @@ msgstr "Benchmarks"
 msgid "Cancel"
 msgstr "Stornieren"
 
-#: src/pages/panel/home/Overview.tsx:64
+#: src/pages/panel/home/Overview.tsx:42
 msgid "Changes in the past 7 days"
 msgstr "Änderungen in den letzten 7 Tagen"
 
@@ -138,7 +138,7 @@ msgstr "Cloud"
 msgid "Cloud account added, id: {0}"
 msgstr "Cloud-Konto hinzugefügt, ID: {0}"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:71
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:80
 msgid "Clouds"
 msgstr "Wolken"
 
@@ -160,7 +160,7 @@ msgstr "In die Zwischenablage kopiert!"
 msgid "Copy"
 msgstr "Kopieren"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:183
+#: src/pages/panel/inventory/ResourceDetail.tsx:182
 msgid "Created Time"
 msgstr "Erstellte Zeit"
 
@@ -168,7 +168,7 @@ msgstr "Erstellte Zeit"
 msgid "Critical"
 msgstr "Kritisch"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:28
+#: src/shared/layouts/panel-layout/menuList.tsx:30
 msgid "Dashboard"
 msgstr "Dashboard"
 
@@ -192,7 +192,7 @@ msgstr "Löschen"
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:215
+#: src/pages/panel/inventory/ResourceDetail.tsx:214
 msgid "Details"
 msgstr "Einzelheiten"
 
@@ -263,7 +263,7 @@ msgstr "Wie repariert man"
 #: src/pages/panel/accounts/AccountRow.tsx:278
 #: src/pages/panel/accounts/AccountsTable.tsx:38
 #: src/pages/panel/home/AccountCard.tsx:30
-#: src/pages/panel/inventory/ResourceDetail.tsx:180
+#: src/pages/panel/inventory/ResourceDetail.tsx:179
 msgid "ID"
 msgstr "ID"
 
@@ -275,7 +275,7 @@ msgstr "Verbessert"
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS Konto ein."
 
-#: src/shared/layouts/panel-layout/menuList.tsx:33
+#: src/shared/layouts/panel-layout/menuList.tsx:35
 msgid "Inventory"
 msgstr "Inventar"
 
@@ -283,7 +283,7 @@ msgstr "Inventar"
 #~ msgid "Issues"
 #~ msgstr "Probleme"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:179
+#: src/pages/panel/inventory/ResourceDetail.tsx:178
 msgid "Kind"
 msgstr "Art"
 
@@ -326,7 +326,7 @@ msgstr "Am meisten verbesserte Ressourcen"
 
 #: src/pages/panel/accounts/AccountRow.tsx:284
 #: src/pages/panel/accounts/AccountsTable.tsx:41
-#: src/pages/panel/inventory/ResourceDetail.tsx:181
+#: src/pages/panel/inventory/ResourceDetail.tsx:180
 msgid "Name"
 msgstr "Name"
 
@@ -405,11 +405,11 @@ msgstr "Privilegiert"
 msgid "Profile"
 msgstr "Profil"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:213
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:240
 msgid "Property"
 msgstr "Eigentum"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:79
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:88
 msgid "Regions"
 msgstr "Regionen"
 
@@ -425,16 +425,16 @@ msgstr "Ressourcen"
 msgid "Risk"
 msgstr "Risiko"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:235
+#: src/pages/panel/inventory/ResourceDetail.tsx:234
 msgid "Security Issues"
 msgstr "Sicherheitsprobleme"
 
-#: src/pages/panel/home/Overview.tsx:32
+#: src/shared/layouts/panel-layout/BenchmarkCheckGuard.tsx:23
 msgid "Security Scan in Progress"
 msgstr "Sicherheitsscan läuft"
 
-#: src/pages/panel/home/Overview.tsx:50
-#: src/pages/panel/home/Overview.tsx:74
+#: src/pages/panel/home/Overview.tsx:28
+#: src/pages/panel/home/Overview.tsx:52
 msgid "Security Score"
 msgstr "Sicherheitsbewertung"
 
@@ -442,7 +442,7 @@ msgstr "Sicherheitsbewertung"
 msgid "Select Language"
 msgstr "Sprache auswählen"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:97
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:114
 msgid "Severity"
 msgstr "Schwere"
 
@@ -470,7 +470,7 @@ msgid "Submit"
 msgstr "Einreichen"
 
 #: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:72
-#: src/pages/panel/inventory/ResourceDetail.tsx:201
+#: src/pages/panel/inventory/ResourceDetail.tsx:200
 msgid "Tags"
 msgstr "Stichworte"
 
@@ -502,8 +502,8 @@ msgstr "Top 3 der verbesserten Konten"
 msgid "Top 3 Non-Compliant Accounts"
 msgstr "Top 3 der nicht konformen Konten"
 
-#: src/pages/panel/home/Overview.tsx:84
-#: src/pages/panel/home/Overview.tsx:101
+#: src/pages/panel/home/Overview.tsx:62
+#: src/pages/panel/home/Overview.tsx:79
 msgid "Top 5 Security Enhancements"
 msgstr "Die fünf wichtigsten Sicherheitsverbesserungen"
 
@@ -520,7 +520,7 @@ msgid "Try again"
 msgstr "Versuchen Sie es erneut"
 
 #: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:128
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:101
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:118
 msgid "Value"
 msgstr "Wert"
 
@@ -544,6 +544,6 @@ msgstr "Wir haben {0} nicht konforme Ressourcen von insgesamt {1} durch {2} {3}-
 msgid "You have successfully verified your account."
 msgstr "Sie haben Ihr Konto erfolgreich verifiziert."
 
-#: src/pages/panel/home/Overview.tsx:35
+#: src/shared/layouts/panel-layout/BenchmarkCheckGuard.tsx:26
 msgid "Your cloud account has been added successfully! We are currently performing a security scan. This can take up to an hour depending on the size of your account. Your dashboard will be available shortly after the scan is complete."
 msgstr "Ihr Cloud-Konto wurde erfolgreich hinzugefügt! Wir führen derzeit einen Sicherheitsscan durch. Dies kann je nach Größe Ihres Kontos bis zu eine Stunde dauern. Ihr Dashboard wird kurz nach Abschluss des Scans verfügbar sein."

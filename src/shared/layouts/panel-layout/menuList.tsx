@@ -4,11 +4,13 @@ import { SvgIconComponent } from '@mui/icons-material'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import InventoryIcon from '@mui/icons-material/Inventory'
 import { ComponentType, ReactNode } from 'react'
+import { useHasBenchmarkCheck } from './check-hooks/useHasBenchmarkCheck'
 
 export interface MenuListItem {
   name: ReactNode
   route: string
   Icon: SvgIconComponent
+  useGuard?: () => boolean
 }
 
 type DefaultMenuModalListItemProps = {
@@ -33,6 +35,7 @@ export const menuList: MenuListItem[] = [
     name: <Trans>Inventory</Trans>,
     route: '/inventory',
     Icon: InventoryIcon,
+    useGuard: useHasBenchmarkCheck,
   },
 ]
 

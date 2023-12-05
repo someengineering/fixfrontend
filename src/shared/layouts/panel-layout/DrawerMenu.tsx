@@ -13,15 +13,16 @@ interface DrawerMenuProps {
 
 type DrawerMenuItemProps = DrawerMenuProps & MenuListItem
 
-const DrawerMenuItem = ({ open, onClose, Icon, name, route }: DrawerMenuItemProps) => {
+const DrawerMenuItem = ({ open, onClose, Icon, name, route, useGuard }: DrawerMenuItemProps) => {
   const match = useMatch(route)
+  const show = useGuard?.() ?? true
   const navigate = useAbsoluteNavigate()
   const handleClick = (e: ReactMouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault()
     onClose?.(e)
     navigate(route)
   }
-  return (
+  return show ? (
     <ListItem disablePadding sx={{ display: 'block' }}>
       <ListItemButton
         selected={match != null}
@@ -45,7 +46,7 @@ const DrawerMenuItem = ({ open, onClose, Icon, name, route }: DrawerMenuItemProp
         <ListItemText primary={name} sx={{ opacity: open ? 1 : 0 }} />
       </ListItemButton>
     </ListItem>
-  )
+  ) : null
 }
 
 type DrawerModalMenuItemProps = DrawerMenuProps & MenuModalListItem
