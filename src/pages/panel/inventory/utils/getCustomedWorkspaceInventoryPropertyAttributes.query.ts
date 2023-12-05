@@ -34,7 +34,7 @@ export const getCustomedWorkspaceInventoryPropertyAttributesQuery = async ({
       direction,
       meta,
     })?.then((item) => item.map((key) => ({ label: path ? `${path}.${key}` : key, key, value: type })))) ?? null
-  if (type === 'string' && !data?.find((i) => i.key === prop)) {
+  if (type === 'string' && pageParam.skip === 0 && !data?.find((i) => i.key === prop)) {
     return (data ?? []).concat([{ label: path ? `${path}.${prop}` : prop, key: prop, value: type }])
   } else {
     return data
