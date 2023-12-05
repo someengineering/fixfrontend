@@ -60,14 +60,7 @@ export const EventButton = () => {
             predicate: (query) =>
               (typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts')) ?? false,
           })
-          void showSnackbar(t`Cloud account degraded, id: ${ev.data.aws_account_id}`, { severity: 'warning' })
-          break
-        case 'aws_account_deleted':
-          void queryClient.invalidateQueries({
-            predicate: (query) =>
-              (typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts')) ?? false,
-          })
-          void showSnackbar(t`Cloud account deleted, id: ${ev.data.aws_account_id}`, { severity: 'error' })
+          void showSnackbar(t`Cloud account degraded, id: ${ev.data.aws_account_id}`, { severity: 'warning', autoHideDuration: null })
           break
         case 'aws_account_discovered':
           void queryClient.invalidateQueries({
