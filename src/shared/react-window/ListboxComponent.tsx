@@ -1,4 +1,4 @@
-import { AutocompleteRenderOptionState, ListItemButton, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { AutocompleteRenderOptionState, ListItemButton, Tooltip, Typography, TypographyProps, useMediaQuery, useTheme } from '@mui/material'
 import { HTMLAttributes, ReactElement, ReactNode, forwardRef } from 'react'
 import { ListChildComponentProps, VariableSizeList } from 'react-window'
 import { OuterElementContext } from './helper/OuterElementContext'
@@ -7,14 +7,14 @@ import { useResetCache } from './helper/useResetCache'
 
 const LIST_BOX_PADDING = 16
 
-type DataItemType = [HTMLAttributes<HTMLLIElement>, ReactNode, AutocompleteRenderOptionState]
+type DataItemType = [HTMLAttributes<HTMLLIElement>, ReactNode, AutocompleteRenderOptionState, TypographyProps | undefined]
 
 function RenderRow({
   data,
   index,
   style: { background: _background, backgroundColor: _backgroundColor, ...style },
 }: ListChildComponentProps) {
-  const [props, option, { inputValue: _state, ...state }] = (data as DataItemType[])[index]
+  const [props, option, { inputValue: _state, ...state }, typographyProps] = (data as DataItemType[])[index]
 
   const inlineStyle = {
     ...style,
@@ -24,7 +24,9 @@ function RenderRow({
   return (
     <Tooltip title={option} arrow enterDelay={400} enterNextDelay={400}>
       <ListItemButton component="li" {...props} {...state} style={inlineStyle}>
-        <Typography noWrap>{option}</Typography>
+        <Typography noWrap {...typographyProps}>
+          {option}
+        </Typography>
       </ListItemButton>
     </Tooltip>
   )
