@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/macro'
-import { AutocompleteRenderInputParams, AutocompleteRenderOptionState, ListItemButton, TextField, Typography } from '@mui/material'
-import { HTMLAttributes } from 'react'
+import { AutocompleteRenderInputParams, AutocompleteRenderOptionState, Divider, ListItemButton, TextField, Typography } from '@mui/material'
+import { Fragment, HTMLAttributes } from 'react'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { AutoCompleteValue } from 'src/shared/types/shared'
@@ -29,7 +29,7 @@ export function getAutocompleteValueFromKey(
     ? (getArrayFromInOP(value)
         .map((item) => (data.find((i) => i.value === item) ?? addThemIfNotFound ? { value: item, label: item } : undefined))
         .filter((i) => i) as AutoCompleteValue[])
-    : data.find((i) => i.value === value) || (addThemIfNotFound ? { value: key, label: key } : undefined) || null
+    : data.find((i) => i.value === value) || (addThemIfNotFound ? { value, label: value } : undefined) || null
 }
 
 export const getAutocompleteDataFromKey = (key: string, items: AutoCompletePreDefinedItems) => {
@@ -57,12 +57,21 @@ export const getAutoCompletePropsFromKey = (key: string) => {
           { inputValue: _, ...state }: AutocompleteRenderOptionState,
         ) =>
           option ? (
-            <ListItemButton component="li" {...props} {...state}>
-              {option.value !== null ? <CloudAvatar cloud={option.value} /> : null}
-              <Typography variant="overline" ml={2}>
-                {option.label}
-              </Typography>
-            </ListItemButton>
+            <Fragment key={state.index}>
+              {option.value === 'null' ? <Divider /> : null}
+              <ListItemButton component="li" {...props} {...state}>
+                {option.value !== 'null' ? <CloudAvatar cloud={option.value} /> : null}
+                <Typography
+                  fontStyle={option.value === 'null' ? 'italic' : undefined}
+                  color={option.value === 'null' ? 'primary.main' : undefined}
+                  variant={option.value === 'null' ? undefined : 'overline'}
+                  ml={option.value === 'null' ? 7 : 2}
+                  my={option.value === 'null' ? 1 : undefined}
+                >
+                  {option.label}
+                </Typography>
+              </ListItemButton>
+            </Fragment>
           ) : (
             ''
           ),
@@ -86,9 +95,17 @@ export const getAutoCompletePropsFromKey = (key: string) => {
           { inputValue: _, ...state }: AutocompleteRenderOptionState,
         ) =>
           option ? (
-            <ListItemButton component="li" {...props} {...state}>
-              <Typography color={getColorBySeverity(option.label)}>{option.label}</Typography>
-            </ListItemButton>
+            <Fragment key={state.index}>
+              {option.value === 'null' ? <Divider /> : null}
+              <ListItemButton component="li" {...props} {...state}>
+                <Typography
+                  fontStyle={option.value === 'null' ? 'italic' : undefined}
+                  color={option.value === 'null' ? 'primary.main' : getColorBySeverity(option.label)}
+                >
+                  {option.label}
+                </Typography>
+              </ListItemButton>
+            </Fragment>
           ) : (
             ''
           ),

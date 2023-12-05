@@ -48,12 +48,26 @@ export const EventButton = () => {
           })
           break
         }
-        case 'cloud_account_created':
+        case 'aws_account_configured':
           void queryClient.invalidateQueries({
             predicate: (query) =>
               (typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts')) ?? false,
           })
-          void showSnackbar(t`Cloud account added, id: ${ev.data.aws_account_id}`, { severity: 'success', autoHideDuration: null })
+          void showSnackbar(t`Cloud account configured, id: ${ev.data.aws_account_id}`, { severity: 'success', autoHideDuration: null })
+          break
+        case 'aws_account_degraded':
+          void queryClient.invalidateQueries({
+            predicate: (query) =>
+              (typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts')) ?? false,
+          })
+          void showSnackbar(t`Cloud account degraded, id: ${ev.data.aws_account_id}`, { severity: 'warning', autoHideDuration: null })
+          break
+        case 'aws_account_discovered':
+          void queryClient.invalidateQueries({
+            predicate: (query) =>
+              (typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts')) ?? false,
+          })
+          void showSnackbar(t`Cloud account discovered, id: ${ev.data.aws_account_id}`, { severity: 'info' })
           break
         case 'collect-error':
           void queryClient.invalidateQueries({

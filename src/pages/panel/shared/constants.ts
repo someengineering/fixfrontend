@@ -1,14 +1,20 @@
 export const booleanOPTypes = ['=', '!='] as const
 
-export const numberOpTypes = [...booleanOPTypes, '>', '>=', '<', '<='] as const
+export const durationOpTypes = ['>', '>=', '<', '<='] as const
+
+export const numberOpTypes = [...booleanOPTypes, ...durationOpTypes] as const
 
 export const stringOPTypes = ['in', 'not in', ...numberOpTypes, '~', '!~'] as const
 
 export const opTypes = stringOPTypes
 
-export const kindNumberTypes = ['int32', 'int64', 'float', 'double', 'duration', 'datetime', 'date'] as const
+export const kindDurationTypes = ['duration', 'datetime', 'date'] as const
 
-export const kindSimpleTypes = ['any', 'boolean', 'string', ...kindNumberTypes] as const
+export const stringSimpleTypes = ['string', ...kindDurationTypes] as const
+
+export const kindNumberTypes = ['int32', 'int64', 'float', 'double'] as const
+
+export const kindSimpleTypes = ['any', 'boolean', ...kindNumberTypes, ...stringSimpleTypes] as const
 
 export type OPType = (typeof opTypes)[number]
 

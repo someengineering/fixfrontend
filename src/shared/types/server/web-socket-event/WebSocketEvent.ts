@@ -6,10 +6,43 @@ interface WebSocketGenericEvent<Kind extends WebSocketEventKind, Data extends ob
   data: Data
 }
 
-type WebSocketEventKind = 'cloud_account_created' | 'collect-progress' | 'collect-error'
+type WebSocketEventKind =
+  | 'aws_account_discovered'
+  | 'aws_account_configured'
+  | 'aws_account_deleted'
+  | 'aws_account_degraded'
+  | 'collect-progress'
+  | 'collect-error'
 
-export type CloudAccountCreatedEvent = WebSocketGenericEvent<
-  'cloud_account_created',
+export type AWSAccountDiscoveredEvent = WebSocketGenericEvent<
+  'aws_account_discovered',
+  {
+    cloud_account_id: string
+    workspace_id: string
+    aws_account_id: string
+  }
+>
+
+export type AWSAccountConfiguredEvent = WebSocketGenericEvent<
+  'aws_account_configured',
+  {
+    cloud_account_id: string
+    workspace_id: string
+    aws_account_id: string
+  }
+>
+
+export type AWSAccountDeletedEvent = WebSocketGenericEvent<
+  'aws_account_deleted',
+  {
+    cloud_account_id: string
+    workspace_id: string
+    aws_account_id: string
+  }
+>
+
+export type AWSAccountDegradedEvent = WebSocketGenericEvent<
+  'aws_account_degraded',
   {
     cloud_account_id: string
     workspace_id: string
@@ -45,4 +78,10 @@ export type CollectErrorEvent = WebSocketGenericEvent<
   }
 >
 
-export type WebSocketEvent = CloudAccountCreatedEvent | CollectProgressEvent | CollectErrorEvent
+export type WebSocketEvent =
+  | AWSAccountConfiguredEvent
+  | AWSAccountDegradedEvent
+  | AWSAccountDeletedEvent
+  | AWSAccountDiscoveredEvent
+  | CollectProgressEvent
+  | CollectErrorEvent

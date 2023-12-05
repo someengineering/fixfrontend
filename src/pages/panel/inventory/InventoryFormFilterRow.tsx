@@ -2,7 +2,16 @@ import AddIcon from '@mui/icons-material/Add'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { IconButton, MenuItem, Select, Stack } from '@mui/material'
 import { Dispatch, SetStateAction, useCallback, useMemo } from 'react'
-import { OPType, booleanOPTypes, defaultProperties, kindNumberTypes, numberOpTypes, stringOPTypes } from 'src/pages/panel/shared/constants'
+import {
+  OPType,
+  booleanOPTypes,
+  defaultProperties,
+  durationOpTypes,
+  kindDurationTypes,
+  kindNumberTypes,
+  numberOpTypes,
+  stringOPTypes,
+} from 'src/pages/panel/shared/constants'
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
 import { InventoryAdvanceSearchConfig } from './InventoryAdvanceSearch'
 import { InventoryFormFilterRowProperty } from './InventoryFormFilterRowProperty'
@@ -93,11 +102,13 @@ export const InventoryFormFilterRow = ({
   const currentOpTypes = useMemo(
     () =>
       item.property && item.fqn
-        ? kindNumberTypes.includes(item.fqn as (typeof kindNumberTypes)[number])
-          ? numberOpTypes
-          : item.fqn === 'string' || item.fqn === 'any'
-            ? stringOPTypes
-            : booleanOPTypes
+        ? kindDurationTypes.includes(item.fqn as (typeof kindDurationTypes)[number])
+          ? durationOpTypes
+          : kindNumberTypes.includes(item.fqn as (typeof kindNumberTypes)[number])
+            ? numberOpTypes
+            : item.fqn === 'string' || item.fqn === 'any'
+              ? stringOPTypes
+              : booleanOPTypes
         : null,
     [item.property, item.fqn],
   )
@@ -105,7 +116,7 @@ export const InventoryFormFilterRow = ({
   const kinds = useMemo(() => preItems.kinds.map((i) => i.value), [preItems.kinds])
 
   return (
-    <Stack direction="row" spacing={1} flexWrap="wrap">
+    <Stack direction="row" spacing={1}>
       <InventoryFormFilterRowProperty defaultValue={item.property} onChange={handleChange} selectedKind={kind} kinds={kinds} />
       {currentOpTypes ? (
         <>

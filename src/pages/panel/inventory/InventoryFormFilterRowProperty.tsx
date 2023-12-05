@@ -1,11 +1,20 @@
 import { Trans } from '@lingui/macro'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { Autocomplete, AutocompleteRenderOptionState, CircularProgress, ListItemButton, Stack, TextField, Typography } from '@mui/material'
+import {
+  Autocomplete,
+  AutocompleteRenderOptionState,
+  CircularProgress,
+  ListItemButton,
+  Stack,
+  TextField,
+  Tooltip,
+  Typography,
+} from '@mui/material'
 import { useInfiniteQuery } from '@tanstack/react-query'
 // import { useDebounce } from '@uidotdev/usehooks'
 import { ChangeEvent, KeyboardEvent, UIEvent as ReactUIEvent, useMemo, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { OPType, defaultProperties, kindSimpleTypes } from 'src/pages/panel/shared/constants'
+import { OPType, defaultProperties, kindDurationTypes, kindSimpleTypes } from 'src/pages/panel/shared/constants'
 import { getWorkspaceInventoryPropertyPathCompleteQuery } from 'src/pages/panel/shared/queries'
 import { panelUI } from 'src/shared/constants'
 // import { panelUI } from 'src/shared/constants'
@@ -40,6 +49,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
   const [path, setPath] = useState<string>(() => defaultValue?.split('.').slice(0, -1).join('.') ?? '')
   const [prop, setProp] = useState<string>(() => defaultValue?.split('.').slice(-1)[0] ?? '')
   const [fqn, setFqn] = useState<string | null>(defaultItem ? (isDefaultSimple ? null : defaultItem?.value) : 'object')
+  const prevFqn = useRef<string | null>(null)
   const [hasFocus, setHasFocus] = useState(false)
   // const debouncedPathAndProp = useDebounce(JSON.stringify([path, prop]), panelUI.fastInputChangeDebounce)
   // const [debouncedPath, debouncedProp] = JSON.parse(debouncedPathAndProp) as [string, string]
@@ -51,7 +61,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       'workspace-inventory-property-path-complete-query',
       selectedWorkspace?.id,
       path,
-      prop,
+      value === `${path}.${prop}` ? '' : prop,
       selectedKind,
       fqn?.split(',')[1]?.split(']')[0]?.trim() ?? '',
     ] as const,
@@ -70,7 +80,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       'workspace-inventory-property-path-complete-query',
       selectedWorkspace?.id,
       path,
-      prop,
+      !fqn ? '' : prop,
       selectedKind,
       JSON.stringify(kinds),
     ] as const,
@@ -125,6 +135,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       }
       const isSimple = kindSimpleTypes.includes(option.value as ResourceComplexKindSimpleTypeDefinitions)
       setValue(option.label)
+      prevFqn.current = fqn
       setFqn(isSimple ? null : option.value)
       const separatedValue = option.label.split('.')
       const newProp = separatedValue.splice(separatedValue.length - 1, 1)[0]
@@ -132,9 +143,10 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       if (isSimple) {
         setProp(newProp)
         setPath(newPath)
+        setHasFocus(false)
         onChange({
           property: isDictionary && !isValidProp(newProp) ? `${newPath}.\`${newProp}\`` : option.label,
-          op: '=',
+          op: kindDurationTypes.includes(option.value as (typeof kindDurationTypes)[number]) ? '>=' : '=',
           fqn: option.value as ResourceComplexKindSimpleTypeDefinitions,
         })
       } else {
@@ -149,7 +161,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       onChange({ property: null, op: null, value: null, fqn: null })
     }
   }
-  const autoCompleteValue = flatData?.find((i) => i && i.label === value) ?? (defaultValue ? defaultItem : null)
+  const autoCompleteValue = flatData?.find((i) => i && i.label === value) ?? (defaultValue ? defaultItem : null) ?? null
   let autoCompleteInputValue = path ? `${path}.${prop}` : prop
   if (
     defaultItem &&
@@ -159,9 +171,11 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
     autoCompleteInputValue = defaultItem.key
   }
 
+  const options = flatData?.length ? flatData : autoCompleteValue && !isLoading ? [autoCompleteValue] : []
+
   return (
     <Autocomplete
-      value={autoCompleteValue ?? null}
+      value={autoCompleteValue && options.indexOf(autoCompleteValue) > -1 ? autoCompleteValue : null}
       size="small"
       disablePortal
       onChange={handleChange}
@@ -174,7 +188,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       ) => {
         const isSimple = kindSimpleTypes.includes(option.value as ResourceComplexKindSimpleTypeDefinitions)
         return (
-          <ListItemButton component="li" {...props} {...state}>
+          <ListItemButton component="li" {...props} {...state} key={`${option.key}_${option.label}_${option.value}_${state.index}`}>
             <Stack direction="row" justifyContent="space-between" alignItems="center" width="100%" overflow="hidden">
               <Typography overflow="hidden" flexGrow={1} textOverflow="ellipsis" color={isSimple ? undefined : 'info.main'}>
                 {option.key}
@@ -184,35 +198,49 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
           </ListItemButton>
         )
       }}
-      sx={{ minWidth: 250 }}
-      options={flatData ?? (autoCompleteValue && !isLoading ? [autoCompleteValue] : [])}
-      open={hasFocus && !!fqn}
+      sx={{ width: 250 }}
+      slotProps={{
+        popper: {
+          sx: { width: 'fit-content!important' },
+          placement: 'bottom-start',
+        },
+      }}
+      options={options}
+      open={hasFocus}
+      onOpen={() => {
+        if (fqn === null && prevFqn.current?.startsWith('dictionary')) {
+          setFqn(prevFqn.current)
+        }
+        setHasFocus(true)
+      }}
       groupBy={(item: (typeof defaultProperties)[number]) => (item.isDefaulted ? 'Default Properties' : 'Properties')}
       loading={isLoading}
       ListboxProps={{ onScroll: handleScroll }}
       renderInput={(params) => (
-        <TextField
-          {...params}
-          focused={hasFocus && !!fqn}
-          InputProps={{
-            ...params.InputProps,
-            endAdornment: (
-              <>
-                {isLoading ? <CircularProgress color="inherit" size={20} /> : null}
-                {params.InputProps.endAdornment}
-              </>
-            ),
-          }}
-          inputProps={{
-            ...params.inputProps,
-            value: autoCompleteInputValue,
-            onKeyDown: handleInputKeyDown,
-            onFocus: () => setHasFocus(true),
-            onBlur: () => setHasFocus(false),
-          }}
-          label={<Trans>Property</Trans>}
-          onChange={handleInputChange}
-        />
+        <Tooltip title={autoCompleteInputValue}>
+          <TextField
+            {...params}
+            focused={hasFocus && !!fqn}
+            InputProps={{
+              ...params.InputProps,
+              endAdornment: (
+                <>
+                  {isLoading ? <CircularProgress color="inherit" size={20} /> : null}
+                  {params.InputProps.endAdornment}
+                </>
+              ),
+            }}
+            inputProps={{
+              ...params.inputProps,
+              value: autoCompleteInputValue,
+              onKeyDown: handleInputKeyDown,
+              onFocus: () => setHasFocus(true),
+              onBlur: () => setHasFocus(false),
+            }}
+            label={<Trans>Property</Trans>}
+            onChange={handleInputChange}
+          />
+        </Tooltip>
       )}
     />
   )
