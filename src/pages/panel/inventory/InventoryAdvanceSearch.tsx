@@ -70,6 +70,10 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }
   }
 
   useEffect(() => {
+    setSearchCritValue(searchCrit === 'all' || !searchCrit ? '' : searchCrit)
+  }, [searchCrit])
+
+  useEffect(() => {
     if (initializedRef.current) {
       const configJoined = config
         .map((item) => {
