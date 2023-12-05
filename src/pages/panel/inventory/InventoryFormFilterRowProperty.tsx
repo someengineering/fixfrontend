@@ -49,6 +49,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
   const [path, setPath] = useState<string>(() => defaultValue?.split('.').slice(0, -1).join('.') ?? '')
   const [prop, setProp] = useState<string>(() => defaultValue?.split('.').slice(-1)[0] ?? '')
   const [fqn, setFqn] = useState<string | null>(defaultItem ? (isDefaultSimple ? null : defaultItem?.value) : 'object')
+  const prevFqn = useRef<string | null>(null)
   const [hasFocus, setHasFocus] = useState(false)
   // const debouncedPathAndProp = useDebounce(JSON.stringify([path, prop]), panelUI.fastInputChangeDebounce)
   // const [debouncedPath, debouncedProp] = JSON.parse(debouncedPathAndProp) as [string, string]
@@ -60,7 +61,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       'workspace-inventory-property-path-complete-query',
       selectedWorkspace?.id,
       path,
-      prop,
+      value === `${path}.${prop}` ? '' : prop,
       selectedKind,
       fqn?.split(',')[1]?.split(']')[0]?.trim() ?? '',
     ] as const,
@@ -134,6 +135,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       }
       const isSimple = kindSimpleTypes.includes(option.value as ResourceComplexKindSimpleTypeDefinitions)
       setValue(option.label)
+      prevFqn.current = fqn
       setFqn(isSimple ? null : option.value)
       const separatedValue = option.label.split('.')
       const newProp = separatedValue.splice(separatedValue.length - 1, 1)[0]
@@ -159,14 +161,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       onChange({ property: null, op: null, value: null, fqn: null })
     }
   }
-  const autoCompleteValue =
-    flatData?.find((i) => i && i.label === value) ??
-    (defaultValue ? defaultItem : null) ??
-    (path
-      ? { label: `${path}.${prop}`, key: `${path}.${prop}`, value: fqn || 'object' }
-      : prop
-        ? { label: prop, key: prop, value: fqn || 'object' }
-        : null)
+  const autoCompleteValue = flatData?.find((i) => i && i.label === value) ?? (defaultValue ? defaultItem : null) ?? null
   let autoCompleteInputValue = path ? `${path}.${prop}` : prop
   if (
     defaultItem &&
@@ -193,7 +188,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       ) => {
         const isSimple = kindSimpleTypes.includes(option.value as ResourceComplexKindSimpleTypeDefinitions)
         return (
-          <ListItemButton component="li" {...props} {...state}>
+          <ListItemButton component="li" {...props} {...state} key={`${option.key}_${option.label}_${option.value}_${state.index}`}>
             <Stack direction="row" justifyContent="space-between" alignItems="center" width="100%" overflow="hidden">
               <Typography overflow="hidden" flexGrow={1} textOverflow="ellipsis" color={isSimple ? undefined : 'info.main'}>
                 {option.key}
@@ -212,7 +207,12 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       }}
       options={options}
       open={hasFocus}
-      onOpen={() => setHasFocus(true)}
+      onOpen={() => {
+        if (fqn === null && prevFqn.current?.startsWith('dictionary')) {
+          setFqn(prevFqn.current)
+        }
+        setHasFocus(true)
+      }}
       groupBy={(item: (typeof defaultProperties)[number]) => (item.isDefaulted ? 'Default Properties' : 'Properties')}
       loading={isLoading}
       ListboxProps={{ onScroll: handleScroll }}
