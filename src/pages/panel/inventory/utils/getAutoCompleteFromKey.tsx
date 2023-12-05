@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/macro'
 import { AutocompleteRenderInputParams, AutocompleteRenderOptionState, Divider, ListItemButton, TextField, Typography } from '@mui/material'
-import { HTMLAttributes } from 'react'
+import { Fragment, HTMLAttributes } from 'react'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { AutoCompleteValue } from 'src/shared/types/shared'
@@ -57,7 +57,7 @@ export const getAutoCompletePropsFromKey = (key: string) => {
           { inputValue: _, ...state }: AutocompleteRenderOptionState,
         ) =>
           option ? (
-            <>
+            <Fragment key={state.index}>
               {option.value === 'null' ? <Divider /> : null}
               <ListItemButton component="li" {...props} {...state}>
                 {option.value !== 'null' ? <CloudAvatar cloud={option.value} /> : null}
@@ -71,7 +71,7 @@ export const getAutoCompletePropsFromKey = (key: string) => {
                   {option.label}
                 </Typography>
               </ListItemButton>
-            </>
+            </Fragment>
           ) : (
             ''
           ),
@@ -95,7 +95,7 @@ export const getAutoCompletePropsFromKey = (key: string) => {
           { inputValue: _, ...state }: AutocompleteRenderOptionState,
         ) =>
           option ? (
-            <>
+            <Fragment key={state.index}>
               {option.value === 'null' ? <Divider /> : null}
               <ListItemButton component="li" {...props} {...state}>
                 <Typography
@@ -105,7 +105,7 @@ export const getAutoCompletePropsFromKey = (key: string) => {
                   {option.label}
                 </Typography>
               </ListItemButton>
-            </>
+            </Fragment>
           ) : (
             ''
           ),
