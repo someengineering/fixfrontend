@@ -1,1 +1,9 @@
-export type { CloudAccountCreatedEvent, CollectErrorEvent, CollectProgressEvent, WebSocketEvent } from './WebSocketEvent'
+export type {
+  AWSAccountConfiguredEvent,
+  AWSAccountDegradedEvent,
+  AWSAccountDeletedEvent,
+  AWSAccountDiscoveredEvent,
+  CollectErrorEvent,
+  CollectProgressEvent,
+  WebSocketEvent,
+} from './WebSocketEvent'

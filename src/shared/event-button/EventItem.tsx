@@ -8,10 +8,14 @@ interface EventItemProps {
 
 const getSeverity = (kind: WebSocketEvent['kind']): AlertProps['severity'] => {
   switch (kind) {
-    case 'cloud_account_created':
+    case 'aws_account_configured':
       return 'success'
+    case 'aws_account_degraded':
+      return 'warning'
+    case 'aws_account_discovered':
     case 'collect-progress':
       return 'info'
+    case 'aws_account_deleted':
     case 'collect-error':
       return 'error'
   }

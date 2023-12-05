@@ -23,7 +23,7 @@ export default function SetupCloud() {
 
   useEffect(() => {
     return addListener('event-button', (ev) => {
-      if (ev.kind === 'cloud_account_created') {
+      if (ev.kind === 'aws_account_discovered') {
         navigate('/accounts')
       }
     })
