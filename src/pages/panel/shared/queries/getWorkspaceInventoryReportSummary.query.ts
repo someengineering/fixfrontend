@@ -1,5 +1,4 @@
 import { QueryFunctionContext } from '@tanstack/react-query'
-import { AxiosError } from 'axios'
 import { endPoints } from 'src/shared/constants'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { axiosWithAuth } from 'src/shared/utils/axios'
@@ -48,12 +47,5 @@ export const getWorkspaceInventoryReportSummaryQuery = ({
     ? axiosWithAuth
         .get<GetWorkspaceInventoryReportSummaryResponse>(endPoints.workspaces.workspace(workspaceId).inventory.reportSummary, { signal })
         .then((res) => res.data)
-        .catch((e: AxiosError) => {
-          if (Math.floor(e.response?.status ?? 0) / 100 === 4) {
-            // if the response is 4xx
-            return getDefaultValue()
-          }
-          throw e
-        })
     : getDefaultValue()
 }
