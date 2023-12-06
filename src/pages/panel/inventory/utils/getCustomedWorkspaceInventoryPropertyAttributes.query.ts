@@ -28,14 +28,20 @@ export const getCustomedWorkspaceInventoryPropertyAttributesQuery = async ({
         'workspace-inventory-property-attributes',
         workspaceId,
         kind ? `is(${kind})` : 'all',
-        `${path.split('.').slice(-1)[0]}${prop ? `=~"${prop}"` : ''}`,
+        `${path.split('.').slice(-1)[0]}${prop ? `=~"${prop.replace(/․/g, '.')}"` : ''}`,
       ] as const,
       pageParam,
       direction,
       meta,
-    })?.then((item) => item.map((key) => ({ label: path ? `${path}.${key}` : key, key, value: type })))) ?? null
+    })?.then((item) =>
+      item.map((key) => ({
+        label: path ? `${path}.${key.replace(/\./g, '․')}` : key.replace(/\./g, '․'),
+        key: key,
+        value: type,
+      })),
+    )) ?? null
   if (type === 'string' && pageParam.skip === 0 && !data?.find((i) => i.key === prop)) {
-    return (data ?? []).concat([{ label: path ? `${path}.${prop}` : prop, key: prop, value: type }])
+    return (data ?? []).concat([{ label: path ? `${path}.${prop.replace(/\./g, '․')}` : prop.replace(/\./g, '․'), key: prop, value: type }])
   } else {
     return data
   }

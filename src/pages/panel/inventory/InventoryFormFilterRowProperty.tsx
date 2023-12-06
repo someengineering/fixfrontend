@@ -1,4 +1,4 @@
-import { Trans } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import {
   Autocomplete,
@@ -12,7 +12,7 @@ import {
 } from '@mui/material'
 import { useInfiniteQuery } from '@tanstack/react-query'
 // import { useDebounce } from '@uidotdev/usehooks'
-import { ChangeEvent, KeyboardEvent, UIEvent as ReactUIEvent, useMemo, useRef, useState } from 'react'
+import { ChangeEvent, KeyboardEvent, UIEvent as ReactUIEvent, useEffect, useMemo, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { OPType, defaultProperties, kindDurationTypes, kindSimpleTypes } from 'src/pages/panel/shared/constants'
 import { getWorkspaceInventoryPropertyPathCompleteQuery } from 'src/pages/panel/shared/queries'
@@ -48,6 +48,8 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
 
   const [path, setPath] = useState<string>(() => defaultValue?.split('.').slice(0, -1).join('.') ?? '')
   const [prop, setProp] = useState<string>(() => defaultValue?.split('.').slice(-1)[0] ?? '')
+  const [propIndex, setPropIndex] = useState(defaultValue?.lastIndexOf('.') ?? 0)
+  const prevPropIndex = useRef(propIndex)
   const [fqn, setFqn] = useState<string | null>(defaultItem ? (isDefaultSimple ? null : defaultItem?.value) : 'object')
   const prevFqn = useRef<string | null>(null)
   const [hasFocus, setHasFocus] = useState(false)
@@ -61,7 +63,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       'workspace-inventory-property-path-complete-query',
       selectedWorkspace?.id,
       path,
-      value === `${path}.${prop}` ? '' : prop,
+      value === `${path}.${prop}` || value === `${path}.${prop.replace(/\./g, '․')}` ? '' : prop,
       selectedKind,
       fqn?.split(',')[1]?.split(']')[0]?.trim() ?? '',
     ] as const,
@@ -97,6 +99,15 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
   const { data = null, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } = isDictionary ? propertyAttributes : pathComplete
   const flatData = useMemo(() => (data?.pages.flat().filter((i) => i) as Exclude<typeof data, null>['pages'][number]) ?? null, [data])
   const highlightedOptionRef = useRef<Exclude<typeof flatData, null>[number] | null>(null)
+
+  useEffect(() => {
+    if (prevPropIndex.current > propIndex) {
+      prevFqn.current = 'object'
+      setFqn('object')
+    }
+    prevPropIndex.current = propIndex
+  }, [propIndex])
+
   const handleScroll = (e: ReactUIEvent<HTMLUListElement, UIEvent>) => {
     if (
       hasNextPage &&
@@ -107,10 +118,27 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
     }
   }
   const handleInputKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Tab' || e.key === 'Enter' || e.key === '.') {
+    if (e.key === 'Tab' || e.key === 'Enter') {
+      if (value) {
+        return true
+      }
       handleChange(undefined, highlightedOptionRef.current)
       e.currentTarget.selectionStart = e.currentTarget.selectionEnd = e.currentTarget.value.length
+      e.preventDefault()
+      e.stopPropagation()
+      return false
     }
+    if (e.key === '.' && !isDictionary) {
+      const found = options.find((i) => i.label === e.currentTarget.value)
+      if (found) {
+        handleChange(undefined, found)
+      }
+      e.preventDefault()
+      e.stopPropagation()
+      return false
+    }
+    setValue(null)
+    return true
   }
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
@@ -119,13 +147,26 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
     }
     setValue(null)
     const separatedValue = value.split('.')
-    const newProp = separatedValue.splice(separatedValue.length - 1, 1)[0]
-    const newPath = separatedValue.join('.')
-    if (newProp !== prop) {
-      setProp(newProp)
+    if (!isDictionary || separatedValue[separatedValue.length - 1] !== '') {
+      const newProp = separatedValue.splice(separatedValue.length - 1, 1)[0]
+      if (newProp !== prop) {
+        setProp(newProp)
+      }
+    } else if (isDictionary && separatedValue.includes('․')) {
+      const newProp = separatedValue.splice(separatedValue.length - 2, 2).join('․')
+      if (newProp !== prop) {
+        setProp(newProp)
+      }
+    } else if (isDictionary) {
+      setProp('')
     }
+    const newPath = separatedValue.join('.')
     if (newPath !== path) {
       setPath(newPath[newPath.length - 1] === '.' ? newPath.substring(0, newPath.length - 1) : newPath)
+    }
+    const newPropIndex = separatedValue.filter((i) => i).length
+    if (newPropIndex !== propIndex) {
+      setPropIndex(newPropIndex)
     }
   }
   const handleChange = (_: unknown, option: string | { key: string; label: string; value: string } | null) => {
@@ -134,34 +175,39 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
         return
       }
       const isSimple = kindSimpleTypes.includes(option.value as ResourceComplexKindSimpleTypeDefinitions)
-      setValue(option.label)
       prevFqn.current = fqn
       setFqn(isSimple ? null : option.value)
       const separatedValue = option.label.split('.')
       const newProp = separatedValue.splice(separatedValue.length - 1, 1)[0]
       const newPath = separatedValue.join('.')
       if (isSimple) {
-        setProp(newProp)
+        setValue(option.label)
+        setProp(isDictionary ? option.key : newProp)
+        setPropIndex(separatedValue.length)
         setPath(newPath)
         setHasFocus(false)
         onChange({
-          property: isDictionary && !isValidProp(newProp) ? `${newPath}.\`${newProp}\`` : option.label,
+          property: isDictionary && !isValidProp(newProp) ? `${newPath}.\`${option.key}\`` : option.label,
           op: kindDurationTypes.includes(option.value as (typeof kindDurationTypes)[number]) ? '>=' : '=',
           fqn: option.value as ResourceComplexKindSimpleTypeDefinitions,
+          value: null,
         })
       } else {
         setProp('')
-        setPath(isDictionary && !isValidProp(newPath) ? `${newPath}.\`${newProp}\`` : option.label)
+        const enhancedPath = isDictionary && !isValidProp(newPath) ? `${newPath}.\`${option.key.replace(/․/g, '.')}\`` : option.label
+        setPropIndex(enhancedPath.split('.').length)
+        setPath(enhancedPath)
       }
     } else {
       setValue(null)
       setPath('')
       setProp('')
+      setPropIndex(0)
       setFqn('object')
       onChange({ property: null, op: null, value: null, fqn: null })
     }
   }
-  const autoCompleteValue = flatData?.find((i) => i && i.label === value) ?? (defaultValue ? defaultItem : null) ?? null
+  let autoCompleteValue = flatData?.find((i) => i && i.label === value) ?? (defaultValue ? defaultItem : null) ?? null
   let autoCompleteInputValue = path ? `${path}.${prop}` : prop
   if (
     defaultItem &&
@@ -172,6 +218,18 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
   }
 
   const options = flatData?.length ? flatData : autoCompleteValue && !isLoading ? [autoCompleteValue] : []
+
+  if (!autoCompleteValue && value && !options.find((i) => i.label === value)) {
+    const index =
+      options.push({
+        key: value,
+        label: value,
+        value: fqn || '',
+      }) - 1
+    autoCompleteValue = options[index]
+  }
+
+  const hasError = Boolean((prop || path) && !hasFocus && !value)
 
   return (
     <Autocomplete
@@ -220,6 +278,8 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
         <Tooltip title={autoCompleteInputValue}>
           <TextField
             {...params}
+            error={hasError}
+            helperText={hasError ? t`Invalid Value` : undefined}
             focused={hasFocus && !!fqn}
             InputProps={{
               ...params.InputProps,

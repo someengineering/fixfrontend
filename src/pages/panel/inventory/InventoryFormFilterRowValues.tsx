@@ -55,6 +55,7 @@ export function InventoryFormFilterRowValues<HasDefaultProperties extends boolea
     case 'string':
       return (
         <InventoryFormFilterRowStringValue
+          key={`${data.fqn}_${data.property}_${data.id}`}
           size="small"
           sx={{ minWidth: 250, maxWidth: '100%' }}
           isDouble={isDouble}
@@ -84,7 +85,7 @@ export function InventoryFormFilterRowValues<HasDefaultProperties extends boolea
       return (
         <Select
           sx={{ minWidth: 100 }}
-          value={data.value || ''}
+          value={['null', 'true', 'false'].includes(data.value as string) ? data.value : ''}
           onChange={(e) => onChange({ value: e.target.value })}
           size="small"
           autoFocus={!data.value}

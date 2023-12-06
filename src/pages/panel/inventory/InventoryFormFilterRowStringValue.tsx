@@ -1,3 +1,4 @@
+import { t } from '@lingui/macro'
 import { Autocomplete, AutocompleteProps, CircularProgress, TextField, TypographyProps } from '@mui/material'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { ChangeEvent, ReactNode, UIEvent as ReactUIEvent, useMemo, useState } from 'react'
@@ -34,6 +35,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
   ...props
 }: InventoryFormFilterRowStringValueProps<Multiple, NetworkDisabled>) {
   const { selectedWorkspace } = useUserProfile()
+  const [hasFocus, setHasFocus] = useState(false)
   const [typed, setTyped] = useState('')
   const {
     data = null,
@@ -103,6 +105,8 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
     props.multiple && !Array.isArray(value) ? (value ? [value] : []) : !props.multiple && Array.isArray(value) ? value[0] : value
   ) as typeof value
 
+  const hasError = Boolean(!hasFocus && typed && (Array.isArray(value) ? !value.length : !value))
+
   return (
     <Autocomplete
       size="small"
@@ -136,6 +140,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
       options={options}
       filterOptions={networkDisabled ? undefined : (options) => options}
       getOptionLabel={(option) => (typeof option === 'string' ? option : option.label)}
+      open={hasFocus}
       freeSolo
       renderOption={(props, option, state) =>
         [
@@ -150,9 +155,13 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
       renderInput={(params) => (
         <TextField
           {...params}
+          error={hasError}
+          helperText={hasError ? t`Invalid Value` : undefined}
           type={isNumber && typed !== 'null' && typed !== 'Null' ? 'number' : 'text'}
           inputProps={{
             ...params.inputProps,
+            onFocus: () => setHasFocus(true),
+            onBlur: () => setHasFocus(false),
             value: typed,
           }}
           InputProps={{

@@ -143,10 +143,6 @@ msgid "Cloud account degraded, id: {0}"
 msgstr "Cloud-Konto beeinträchtigt, ID: {0}"
 
 #: src/shared/event-button/EventButton.tsx:70
-msgid "Cloud account deleted, id: {0}"
-msgstr "Cloud-Konto gelöscht, ID: {0}"
-
-#: src/shared/event-button/EventButton.tsx:77
 msgid "Cloud account discovered, id: {0}"
 msgstr "Cloud-Konto entdeckt, ID: {0}"
 
@@ -184,11 +180,11 @@ msgstr "Kritisch"
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:115
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:116
 msgid "Date Picker"
 msgstr "Datumsauswahl"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:107
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:108
 msgid "Date Time Picker"
 msgstr "Datum-/Uhrzeitauswahl"
 
@@ -230,7 +226,7 @@ msgstr "Email"
 msgid "Enabled"
 msgstr "Ermöglicht"
 
-#: src/shared/event-button/EventButton.tsx:111
+#: src/shared/event-button/EventButton.tsx:104
 msgid "Events"
 msgstr "Veranstaltungen"
 
@@ -242,7 +238,7 @@ msgstr "External Id"
 #~ msgid "Failed Checks"
 #~ msgstr "Fehlgeschlagene Prüfungen"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:99
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:100
 msgid "False"
 msgstr "FALSCH"
 
@@ -286,6 +282,11 @@ msgstr "Verbessert"
 #: src/pages/panel/setup-cloud/SetupCloudPage.tsx:38
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS Konto ein."
+
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:282
+#: src/pages/panel/inventory/InventoryFormFilterRowStringValue.tsx:159
+msgid "Invalid Value"
+msgstr "Ungültiger Wert"
 
 #: src/shared/layouts/panel-layout/menuList.tsx:35
 msgid "Inventory"
@@ -367,7 +368,7 @@ msgstr "Sie löschen gerade ein Management- oder delegiertes Admin-Konto. Beacht
 msgid "Nothing to show yet"
 msgstr "Noch nichts zu zeigen"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:93
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:94
 msgid "Null"
 msgstr "Null"
 
@@ -417,7 +418,7 @@ msgstr "Privilegiert"
 msgid "Profile"
 msgstr "Profil"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:240
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:300
 msgid "Property"
 msgstr "Eigentum"
 
@@ -523,7 +524,7 @@ msgstr "Die fünf wichtigsten Sicherheitsverbesserungen"
 msgid "Top Non-Compliant Resources"
 msgstr "Top Ressourcen mit Compliance-Verstößen"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:96
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:97
 msgid "True"
 msgstr "WAHR"
 
@@ -531,7 +532,7 @@ msgstr "WAHR"
 msgid "Try again"
 msgstr "Versuchen Sie es erneut"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:128
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:129
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:118
 msgid "Value"
 msgstr "Wert"

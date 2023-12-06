@@ -124,9 +124,9 @@ export const InventoryFormFilterRow = ({
             size="small"
             value={item.op && (currentOpTypes as readonly string[]).includes(item.op) ? item.op : ''}
             onChange={(e) => handleChange({ op: e.target.value as OPType })}
-            autoFocus={!item.op}
+            autoFocus
             inputProps={{
-              autoFocus: !item.op,
+              autoFocus: true,
             }}
           >
             {currentOpTypes.map((op, i) => (
@@ -146,7 +146,7 @@ export const InventoryFormFilterRow = ({
           ) : null}
         </>
       ) : null}
-      <Stack direction="row" alignSelf="center" justifyContent="end" spacing={1}>
+      <Stack direction="row" alignSelf="start" justifyContent="end" spacing={1}>
         <IconButton onClick={handleAdd}>
           <AddIcon color="success" />
         </IconButton>
