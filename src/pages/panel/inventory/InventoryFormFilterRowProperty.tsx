@@ -190,6 +190,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
           property: isDictionary && !isValidProp(newProp) ? `${newPath}.\`${option.key}\`` : option.label,
           op: kindDurationTypes.includes(option.value as (typeof kindDurationTypes)[number]) ? '>=' : '=',
           fqn: option.value as ResourceComplexKindSimpleTypeDefinitions,
+          value: null,
         })
       } else {
         setProp('')
