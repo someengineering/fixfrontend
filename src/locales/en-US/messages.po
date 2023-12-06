@@ -143,10 +143,6 @@ msgid "Cloud account degraded, id: {0}"
 msgstr "Cloud account degraded, id: {0}"
 
 #: src/shared/event-button/EventButton.tsx:70
-msgid "Cloud account deleted, id: {0}"
-msgstr "Cloud account deleted, id: {0}"
-
-#: src/shared/event-button/EventButton.tsx:77
 msgid "Cloud account discovered, id: {0}"
 msgstr "Cloud account discovered, id: {0}"
 
@@ -230,7 +226,7 @@ msgstr "Email"
 msgid "Enabled"
 msgstr "Enabled"
 
-#: src/shared/event-button/EventButton.tsx:111
+#: src/shared/event-button/EventButton.tsx:104
 msgid "Events"
 msgstr "Events"
 
@@ -286,6 +282,11 @@ msgstr "Improved"
 #: src/pages/panel/setup-cloud/SetupCloudPage.tsx:38
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "In the next step we are going to set up the trust between FIX and your AWS cloud account."
+
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:281
+#: src/pages/panel/inventory/InventoryFormFilterRowStringValue.tsx:159
+msgid "Invalid Value"
+msgstr "Invalid Value"
 
 #: src/shared/layouts/panel-layout/menuList.tsx:35
 msgid "Inventory"
@@ -417,7 +418,7 @@ msgstr "Privileged"
 msgid "Profile"
 msgstr "Profile"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:240
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:299
 msgid "Property"
 msgstr "Property"
 
