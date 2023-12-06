@@ -1,7 +1,8 @@
 import { Trans } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Divider, Skeleton, Typography } from '@mui/material'
-import { Suspense, useEffect } from 'react'
+import { Suspense, useEffect, useRef } from 'react'
 import { useEvents } from 'src/core/events'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
@@ -15,10 +16,19 @@ import { TenantId } from './TenantId'
 
 export default function SetupCloud() {
   const { addListener } = useEvents()
+  const {
+    i18n: { locale },
+  } = useLingui()
   const navigate = useAbsoluteNavigate()
+  const methodToRemove = useRef<(() => void) | null>(null)
 
   useEffect(() => {
     setInitiated(true)
+    return () => {
+      if (methodToRemove.current) {
+        window.removeEventListener('resize', methodToRemove.current)
+      }
+    }
   }, [])
 
   useEffect(() => {
@@ -40,6 +50,30 @@ export default function SetupCloud() {
       <Typography variant="h6" color="warning.main" mt={1}>
         <Trans>Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button.</Trans>
       </Typography>
+      <Box mt={3} display="flex" justifyContent="start">
+        <iframe
+          height={0}
+          width="100%"
+          onLoad={(e) => {
+            const target = e.currentTarget
+            if (methodToRemove.current) {
+              window.removeEventListener('resize', methodToRemove.current)
+            }
+
+            methodToRemove.current = () => {
+              target.style.height = `${(target.clientWidth * 9) / 16}px`
+            }
+            methodToRemove.current()
+            window.addEventListener('resize', methodToRemove.current)
+          }}
+          onResize={() => methodToRemove.current?.()}
+          src={`https://www.youtube-nocookie.com/embed/yWdOBEnAytM?modestbranding=1&rel=0&iv_load_policy=3&hl=${locale}&color=white`}
+          title="FIX AWS Account Setup"
+          style={{ border: 0, maxWidth: 720, maxHeight: 405 }}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      </Box>
       <Box py={3}>
         <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
           <Suspense
