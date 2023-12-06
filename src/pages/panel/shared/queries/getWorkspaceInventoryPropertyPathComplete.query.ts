@@ -24,7 +24,7 @@ export const getWorkspaceInventoryPropertyPathCompleteQuery = ({
 >) => {
   const data = {
     path,
-    prop: prop ? `.*${prop}.*` : prop,
+    prop,
     kinds: kind ? [kind] : (JSON.parse(kinds) as string[]),
     fuzzy: true,
     limit,
