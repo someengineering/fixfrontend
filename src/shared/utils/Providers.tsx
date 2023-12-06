@@ -35,19 +35,28 @@ const queryClient = new QueryClient({
   },
 })
 
-const catalog = langs.reduce((prev, lang) => ({ ...prev, [lang.locale]: lang.messages }), {} as Record<string, Messages>)
+const catalog = Object.entries(langs).reduce(
+  (prev, [locale, { messages }]) => ({ ...prev, [locale]: messages }),
+  {} as Record<string, Messages>,
+)
 
 const currentLocale = getLocale()
 
 i18n.load(catalog)
-i18n.activate(currentLocale && catalog[currentLocale] ? currentLocale : langs[0].locale)
+i18n.activate(currentLocale && catalog[currentLocale] ? currentLocale : langs['en-US'].locale)
 
 export const InnerI18nProvider = ({ children }: PropsWithChildren) => {
   const { i18n } = useLingui()
+  const locale = i18n.locale as keyof typeof langs
   useEffect(() => {
     setLocale(i18n.locale)
   }, [i18n.locale])
-  return <LocalizationProvider dateAdapter={AdapterDayjs}>{children}</LocalizationProvider>
+
+  return (
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={langs[locale]?.dayJsAdapterLocale ?? 'en'}>
+      {children}
+    </LocalizationProvider>
+  )
 }
 
 export const Providers = ({ children }: PropsWithChildren) => {

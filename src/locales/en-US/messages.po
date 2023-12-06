@@ -180,11 +180,11 @@ msgstr "Critical"
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:115
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:116
 msgid "Date Picker"
 msgstr "Date Picker"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:107
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:108
 msgid "Date Time Picker"
 msgstr "Date Time Picker"
 
@@ -238,7 +238,7 @@ msgstr "External Id"
 #~ msgid "Failed Checks"
 #~ msgstr "Failed Checks"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:99
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:100
 msgid "False"
 msgstr "False"
 
@@ -283,7 +283,7 @@ msgstr "Improved"
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:281
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:282
 #: src/pages/panel/inventory/InventoryFormFilterRowStringValue.tsx:159
 msgid "Invalid Value"
 msgstr "Invalid Value"
@@ -368,7 +368,7 @@ msgstr "Note: You are about to delete a management or delegated admin account. P
 msgid "Nothing to show yet"
 msgstr "Nothing to show yet"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:93
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:94
 msgid "Null"
 msgstr "Null"
 
@@ -418,7 +418,7 @@ msgstr "Privileged"
 msgid "Profile"
 msgstr "Profile"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:299
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:300
 msgid "Property"
 msgstr "Property"
 
@@ -524,7 +524,7 @@ msgstr "Top 5 Security Enhancements"
 msgid "Top Non-Compliant Resources"
 msgstr "Top Non-Compliant Resources"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:96
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:97
 msgid "True"
 msgstr "True"
 
@@ -532,7 +532,7 @@ msgstr "True"
 msgid "Try again"
 msgstr "Try again"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:128
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:129
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:118
 msgid "Value"
 msgstr "Value"

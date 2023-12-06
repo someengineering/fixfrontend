@@ -135,7 +135,7 @@ export function Theme({ children }: ThemeProps) {
         },
       },
     },
-    ...(langs.find((i) => i.locale === locale)?.muiLocale ?? []),
+    ...(langs[locale as keyof typeof langs]?.muiLocale ?? []),
   )
 
   return (

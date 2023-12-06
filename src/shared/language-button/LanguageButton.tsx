@@ -58,7 +58,7 @@ export const LanguageButton = ({ iconButtonProps, whiteMode }: LanguageButtonPro
         open={Boolean(anchorElLanguage)}
         onClose={handleCloseUserMenu}
       >
-        {langs.map(({ IconWide, locale, title }) => (
+        {Object.entries(langs).map(([locale, { IconWide, title }]) => (
           <MenuItem
             key={locale}
             onClick={locale === i18n.locale ? undefined : () => handleSelectLanguage(locale)}
