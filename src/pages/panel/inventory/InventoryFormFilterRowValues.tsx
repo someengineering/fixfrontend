@@ -2,17 +2,19 @@ import { Trans } from '@lingui/macro'
 import { MenuItem, Select, TextField } from '@mui/material'
 import { DatePicker, DateTimePicker } from '@mui/x-date-pickers'
 import dayjs from 'dayjs'
+import { useRef } from 'react'
 import { OPType } from 'src/pages/panel/shared/constants'
 import { DurationPicker } from 'src/shared/duration-picker'
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
-import { InventoryAdvanceSearchConfig } from './InventoryAdvanceSearch'
 import { InventoryFormFilterRowStringValue } from './InventoryFormFilterRowStringValue'
 import {
   AutoCompletePreDefinedItems,
+  InventoryAdvanceSearchConfig,
   getArrayFromInOP,
   getAutoCompletePropsFromKey,
   getAutocompleteDataFromKey,
   getAutocompleteValueFromKey,
+  inventoryAdvanceSearchConfigToString,
 } from './utils'
 
 interface InventoryFormFilterRowValuesProps<HasDefaultProperties extends boolean> {
@@ -28,6 +30,16 @@ interface InventoryFormFilterRowValuesProps<HasDefaultProperties extends boolean
   searchCrit: string
 }
 
+const removeCurrectSearchCrit = (currentSearchCrit: string | null, searchCrit: string) => {
+  let crit = currentSearchCrit ? searchCrit.replace(currentSearchCrit, '').replace('and  and', 'and') || 'all' : searchCrit
+  if (crit.endsWith(' and ')) {
+    crit = crit.substring(0, crit.length - 5)
+  } else if (crit.startsWith(' and ')) {
+    crit = crit.substring(5)
+  }
+  return crit
+}
+
 export function InventoryFormFilterRowValues<HasDefaultProperties extends boolean>({
   data,
   hasDefaultProperties,
@@ -35,8 +47,31 @@ export function InventoryFormFilterRowValues<HasDefaultProperties extends boolea
   onChange,
   searchCrit,
 }: InventoryFormFilterRowValuesProps<HasDefaultProperties>) {
+  const prev = useRef([data, searchCrit] as const)
+  const {
+    current: [prevData, prevSearchCrit],
+  } = prev
   const multiple = data.op === 'in' || data.op === 'not in'
   const currentValue = (data.value?.[0] === '[' ? getArrayFromInOP(data.value) : data.value) || (multiple ? ([] as string[]) : null)
+
+  let dataToProcess = data
+
+  if (
+    prevData.fqn === data.fqn &&
+    prevData.id === data.id &&
+    prevData.op === data.op &&
+    prevData.property === data.property &&
+    prevData.value !== data.value &&
+    prevSearchCrit === searchCrit
+  ) {
+    dataToProcess = prevData
+  } else {
+    prev.current = [data, searchCrit]
+  }
+
+  const currentSearchCrit = inventoryAdvanceSearchConfigToString(dataToProcess)
+
+  const crit = removeCurrectSearchCrit(currentSearchCrit, searchCrit)
 
   let isDouble = false
   let isNumber = false
@@ -75,7 +110,7 @@ export function InventoryFormFilterRowValues<HasDefaultProperties extends boolea
                 : currentValue?.map((value) => ({ label: value, value }))) || null
           }
           defaultOptions={hasDefaultProperties ? getAutocompleteDataFromKey(data.property || '', preItems) : undefined}
-          searchCrit={searchCrit}
+          searchCrit={crit}
           propertyName={data.property || ''}
           autoFocus={!data.value}
           {...(hasDefaultProperties ? getAutoCompletePropsFromKey(data.property || '') : {})}

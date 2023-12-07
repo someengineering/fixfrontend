@@ -7,10 +7,9 @@ import { DefaultPropertiesKeys } from 'src/pages/panel/shared/constants'
 import { getWorkspaceInventorySearchStartQuery } from 'src/pages/panel/shared/queries'
 import { isValidProp } from 'src/pages/panel/shared/utils'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
-import { InventoryAdvanceSearchConfig } from './InventoryAdvanceSearch'
 import { InventoryFormFilterRow } from './InventoryFormFilterRow'
 import { InventoryFormTemplateObject, InventoryFormTemplates } from './InventoryFormTemplates'
-import { getArrayFromInOP } from './utils'
+import { InventoryAdvanceSearchConfig, getArrayFromInOP } from './utils'
 
 interface InventoryFormProps {
   setConfig: Dispatch<SetStateAction<InventoryAdvanceSearchConfig[]>>
