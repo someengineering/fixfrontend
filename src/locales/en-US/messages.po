@@ -81,11 +81,11 @@ msgstr "Age"
 msgid "Already have an account? Click here to Log in."
 msgstr "Already have an account? Click here to Log in."
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:73
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:107
 msgid "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
 msgstr "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:68
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:102
 msgid "Alternatively: Manual Cloud Setup"
 msgstr "Alternatively: Manual Cloud Setup"
 
@@ -97,7 +97,7 @@ msgstr "and"
 msgid "Are you sure?"
 msgstr "Are you sure?"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:35
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:45
 msgid "Automatic Cloud Setup"
 msgstr "Automatic Cloud Setup"
 
@@ -180,11 +180,11 @@ msgstr "Critical"
 msgid "Dashboard"
 msgstr "Dashboard"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:116
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:151
 msgid "Date Picker"
 msgstr "Date Picker"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:108
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:143
 msgid "Date Time Picker"
 msgstr "Date Time Picker"
 
@@ -196,7 +196,7 @@ msgid "Delete"
 msgstr "Delete"
 
 #: src/pages/panel/setup-cloud/SetupCloudButton.tsx:15
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:49
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:83
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
@@ -230,7 +230,7 @@ msgstr "Enabled"
 msgid "Events"
 msgstr "Events"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:92
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:126
 msgid "External Id"
 msgstr "External Id"
 
@@ -238,7 +238,7 @@ msgstr "External Id"
 #~ msgid "Failed Checks"
 #~ msgstr "Failed Checks"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:100
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:135
 msgid "False"
 msgstr "False"
 
@@ -279,12 +279,12 @@ msgstr "ID"
 msgid "Improved"
 msgstr "Improved"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:38
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:48
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 
 #: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:282
-#: src/pages/panel/inventory/InventoryFormFilterRowStringValue.tsx:159
+#: src/pages/panel/inventory/InventoryFormFilterRowStringValue.tsx:193
 msgid "Invalid Value"
 msgstr "Invalid Value"
 
@@ -300,7 +300,7 @@ msgstr "Inventory"
 msgid "Kind"
 msgstr "Kind"
 
-#: src/pages/panel/inventory/InventoryForm.tsx:213
+#: src/pages/panel/inventory/InventoryForm.tsx:212
 msgid "Kinds"
 msgstr "Kinds"
 
@@ -321,7 +321,7 @@ msgstr "Logout"
 msgid "Low"
 msgstr "Low"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:41
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:51
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 
@@ -368,11 +368,11 @@ msgstr "Note: You are about to delete a management or delegated admin account. P
 msgid "Nothing to show yet"
 msgstr "Nothing to show yet"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:94
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:129
 msgid "Null"
 msgstr "Null"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:133
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:109
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Oops! It looks like your query didn't match our format. Please check and try again."
 
@@ -491,11 +491,11 @@ msgstr "Tags"
 #~ msgid "Task \"{0}\" with workflow \"{1}\" failed: {2}"
 #~ msgstr "Task \"{0}\" with workflow \"{1}\" failed: {2}"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:110
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:144
 msgid "Tenant Id"
 msgstr "Tenant Id"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:81
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:115
 msgid "The Stack requires the following parameters"
 msgstr "The Stack requires the following parameters"
 
@@ -503,7 +503,7 @@ msgstr "The Stack requires the following parameters"
 msgid "There's no account configured for this workspace."
 msgstr "There's no account configured for this workspace."
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:59
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:93
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 
@@ -524,7 +524,7 @@ msgstr "Top 5 Security Enhancements"
 msgid "Top Non-Compliant Resources"
 msgstr "Top Non-Compliant Resources"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:97
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:132
 msgid "True"
 msgstr "True"
 
@@ -532,7 +532,7 @@ msgstr "True"
 msgid "Try again"
 msgstr "Try again"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:129
+#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:164
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:118
 msgid "Value"
 msgstr "Value"
