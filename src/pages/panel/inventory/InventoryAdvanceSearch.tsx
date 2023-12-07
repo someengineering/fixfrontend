@@ -4,22 +4,12 @@ import SearchIcon from '@mui/icons-material/Search'
 import { Box, Collapse, Divider, FormHelperText, IconButton, TextField, Typography, styled } from '@mui/material'
 import { ChangeEvent, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { OPType, stringSimpleTypes } from 'src/pages/panel/shared/constants'
 import { panelUI } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
-import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
 import { shouldForwardProp } from 'src/shared/utils/shouldForwardProp'
 import { InventoryForm } from './InventoryForm'
 import { InventoryFormsSkeleton } from './InventoryForms.skeleton'
-import { getArrayFromInOP } from './utils'
-
-export interface InventoryAdvanceSearchConfig {
-  id: number
-  property: string | null
-  op: OPType | null
-  value: string | null
-  fqn: ResourceComplexKindSimpleTypeDefinitions | null
-}
+import { InventoryAdvanceSearchConfig, inventoryAdvanceSearchConfigToString } from './utils'
 
 interface InventoryAdvanceSearchProps {
   value: string
@@ -76,21 +66,7 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }
   useEffect(() => {
     if (initializedRef.current) {
       const configJoined = config
-        .map((item) => {
-          if (typeof item === 'string' || !item) {
-            return item
-          }
-          if (item.property && item.op && item.value && item.fqn) {
-            const value =
-              stringSimpleTypes.includes(item.fqn as (typeof stringSimpleTypes)[number]) && item.value !== 'null'
-                ? item.op === 'in' || item.op === 'not in'
-                  ? JSON.stringify(getArrayFromInOP(item.value, true))
-                  : `"${item.value}"`
-                : item.value
-            return `${item.property} ${item.op} ${value}`
-          }
-          return null
-        })
+        .map(inventoryAdvanceSearchConfigToString)
         .filter((filter) => filter)
         .join(' and ')
       const result = (kind ? `is(${kind})${configJoined ? ' and ' : ''}` : '') + configJoined

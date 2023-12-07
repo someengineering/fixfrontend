@@ -1,7 +1,7 @@
 import { t } from '@lingui/macro'
 import { Autocomplete, AutocompleteProps, CircularProgress, TextField, TypographyProps } from '@mui/material'
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { ChangeEvent, ReactNode, UIEvent as ReactUIEvent, useMemo, useState } from 'react'
+import { ChangeEvent, ReactNode, UIEvent as ReactUIEvent, useMemo, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryPropertyValuesQuery } from 'src/pages/panel/shared/queries'
 import { panelUI } from 'src/shared/constants'
@@ -37,6 +37,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
   const { selectedWorkspace } = useUserProfile()
   const [hasFocus, setHasFocus] = useState(false)
   const [typed, setTyped] = useState('')
+  const slectedTyped = useRef('')
   const {
     data = null,
     isLoading,
@@ -47,7 +48,11 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
     queryKey: [
       'workspace-inventory-property-values',
       selectedWorkspace?.id,
-      typed ? `${searchCrit} and ${propertyName} ~ ".*${typed}.*"` : searchCrit,
+      typed &&
+      (!slectedTyped.current || slectedTyped.current !== typed) &&
+      (!value || (Array.isArray(value) ? !value.find((i) => i.label === typed) : value.label !== typed))
+        ? `${searchCrit} and ${propertyName} ~ ".*${typed}.*"`
+        : searchCrit,
       propertyName,
     ] as const,
     initialPageParam: {
@@ -112,7 +117,9 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
       size="small"
       sx={{ minWidth: 250, maxWidth: '100%' }}
       onChange={(_, option) => {
-        setTyped(typeof option === 'string' ? option : !Array.isArray(option) ? option?.label ?? '' : '')
+        const newTyped = typeof option === 'string' ? option : !Array.isArray(option) ? option?.label ?? '' : ''
+        setTyped(newTyped)
+        slectedTyped.current = newTyped
         const newOption =
           (typeof option === 'string'
             ? options.find((i) => i.label === option)
@@ -121,6 +128,9 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
                   .map((i) => (typeof i === 'string' ? options.find((j) => j.label === i) : i))
                   .filter((i) => i) as AutoCompleteValue[])
               : option) || null
+        if (!Array.isArray(option)) {
+          setHasFocus(false)
+        }
         onChange(
           (props.multiple
             ? Array.isArray(newOption)
@@ -133,10 +143,12 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
               : newOption || null) as Multiple extends true ? AutoCompleteValue[] : AutoCompleteValue | null,
         )
       }}
+      isOptionEqualToValue={(option, value) => option.value === value.value}
       ListboxComponent={ListboxComponent}
       ListboxProps={{
         onScroll: handleScroll,
       }}
+      loading={isLoading}
       options={options}
       filterOptions={
         networkDisabled
@@ -159,6 +171,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
                 if (value?.label !== e.currentTarget.innerText) {
                   const found = options.find((i) => i.label === e.currentTarget.innerText)
                   if (found) {
+                    slectedTyped.current = e.currentTarget.innerText
                     onChange(found as typeof value)
                   }
                 }
@@ -179,6 +192,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
           error={hasError}
           helperText={hasError ? t`Invalid Value` : undefined}
           type={isNumber && typed !== 'null' && typed !== 'Null' ? 'number' : 'text'}
+          focused={hasFocus}
           inputProps={{
             ...params.inputProps,
             onFocus: () => setHasFocus(true),
@@ -186,6 +200,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
               if (!props.multiple) {
                 const found = options.find((i) => i.label === typed)
                 if (found) {
+                  slectedTyped.current = typed
                   onChange(found as typeof value)
                 }
               }
@@ -202,7 +217,9 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
               </>
             ),
           }}
+          onClick={() => setHasFocus(true)}
           onChange={(e) => {
+            slectedTyped.current = ''
             if (isNumber) {
               const curValue = e.currentTarget.value
               const num = Number(curValue)

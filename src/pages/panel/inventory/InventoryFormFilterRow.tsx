@@ -13,10 +13,9 @@ import {
   stringOPTypes,
 } from 'src/pages/panel/shared/constants'
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
-import { InventoryAdvanceSearchConfig } from './InventoryAdvanceSearch'
 import { InventoryFormFilterRowProperty } from './InventoryFormFilterRowProperty'
 import { InventoryFormFilterRowValues } from './InventoryFormFilterRowValues'
-import { AutoCompletePreDefinedItems, getArrayFromInOP } from './utils'
+import { AutoCompletePreDefinedItems, InventoryAdvanceSearchConfig, getArrayFromInOP } from './utils'
 
 interface InventoryFormFilterRowProps {
   item: InventoryAdvanceSearchConfig
