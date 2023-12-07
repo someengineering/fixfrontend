@@ -138,13 +138,34 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
         onScroll: handleScroll,
       }}
       options={options}
-      filterOptions={networkDisabled ? undefined : (options) => options}
+      filterOptions={
+        networkDisabled
+          ? (options, filter) => {
+              const inputValue = filter.inputValue.toLowerCase()
+              return options.filter((i) => i.label.toLowerCase().includes(inputValue) || i.value.toLowerCase().includes(inputValue))
+            }
+          : (options) => options
+      }
       getOptionLabel={(option) => (typeof option === 'string' ? option : option.label)}
       open={hasFocus}
       freeSolo
       renderOption={(props, option, state) =>
         [
-          props,
+          {
+            ...props,
+            onClick: (e: React.MouseEvent<HTMLLIElement>) => {
+              if (typed !== e.currentTarget.innerText && !Array.isArray(value)) {
+                setTyped(e.currentTarget.innerText)
+                if (value?.label !== e.currentTarget.innerText) {
+                  const found = options.find((i) => i.label === e.currentTarget.innerText)
+                  if (found) {
+                    onChange(found as typeof value)
+                  }
+                }
+              }
+              props?.onClick?.(e)
+            },
+          },
           option.label,
           state,
           option.value === 'null' ? ({ fontStyle: 'italic', color: 'info.main' } as TypographyProps) : undefined,
@@ -161,7 +182,15 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
           inputProps={{
             ...params.inputProps,
             onFocus: () => setHasFocus(true),
-            onBlur: () => setHasFocus(false),
+            onBlur: () => {
+              if (!props.multiple) {
+                const found = options.find((i) => i.label === typed)
+                if (found) {
+                  onChange(found as typeof value)
+                }
+              }
+              setHasFocus(false)
+            },
             value: typed,
           }}
           InputProps={{
