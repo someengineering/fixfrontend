@@ -33,7 +33,9 @@ export function AuthGuard({ children }: PropsWithChildren) {
   const handleLogout = useCallback(async () => {
     navigate({
       pathname: '/auth/login',
-      search: `?returnUrl=${window.encodeURIComponent(window.location.pathname + window.location.search + window.location.hash)}`,
+      search: window.location.search.includes('returnUrl')
+        ? window.location.search
+        : `?returnUrl=${window.encodeURIComponent(window.location.pathname + window.location.search + window.location.hash)}`,
     })
     try {
       await logoutMutation()
