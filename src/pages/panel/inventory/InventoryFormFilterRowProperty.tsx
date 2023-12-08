@@ -81,8 +81,8 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
     queryKey: [
       'workspace-inventory-property-path-complete-query',
       selectedWorkspace?.id,
-      path,
-      !fqn ? '' : prop,
+      defaultValue ? '' : path,
+      !fqn || defaultValue ? '' : prop,
       selectedKind,
       JSON.stringify(kinds),
     ] as const,
