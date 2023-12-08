@@ -7,7 +7,8 @@ import { WebSocketEventsContext } from './WebSocketEventsContext'
 const WS_CLOSE_CODE_NO_RETRY = 4001
 
 export const WebSocketEvents = ({ children }: PropsWithChildren) => {
-  const { selectedWorkspace, isAuthenticated } = useUserProfile()
+  const { selectedWorkspace, isAuthenticated, logout } = useUserProfile()
+  const noRetry = useRef(false)
   const listeners = useRef<Record<string, (ev: MessageEvent) => void>>({})
   const messagesToSend = useRef<{ message: string; resolve: (value: string) => void; reject: (err: unknown) => void }[]>([])
   const websocket = useRef<WebSocket>()
@@ -24,7 +25,13 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
       const randomId = `${Math.random()}|${id}`
       listeners.current[randomId] = (ev: MessageEvent<string>) => {
         try {
-          onMessage(JSON.parse(ev.data) as WebSocketEvent)
+          const message = JSON.parse(ev.data) as WebSocketEvent | { error: 'Unauthorized' }
+          if ('error' in message && message.error === 'Unauthorized') {
+            noRetry.current = true
+            void logout()
+          } else {
+            onMessage(message as WebSocketEvent)
+          }
         } catch {
           /* empty */
         }
@@ -34,7 +41,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
       }
       return () => handleRemoveListener(randomId)
     },
-    [handleRemoveListener],
+    [handleRemoveListener, logout],
   )
 
   const handleSendData = useCallback((data: WebSocketEvent) => {
@@ -60,10 +67,12 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     if (isAuthenticated && selectedWorkspace?.id) {
+      let retryTimeout = env.webSocketRetryTimeout
       const onClose = (ev: CloseEvent) => {
-        if (ev.code !== WS_CLOSE_CODE_NO_RETRY) {
+        if (ev.code !== WS_CLOSE_CODE_NO_RETRY && !noRetry.current) {
           if (isAuthenticated && selectedWorkspace?.id) {
-            window.setTimeout(createWebSocket, env.webSocketRetryTimeout)
+            window.setTimeout(createWebSocket, retryTimeout)
+            retryTimeout *= 2
           }
         }
       }
@@ -109,7 +118,10 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
       if (websocket.current.readyState !== websocket.current.CLOSED && websocket.current.readyState !== websocket.current.CLOSING) {
         websocket.current.close(WS_CLOSE_CODE_NO_RETRY)
       }
+      noRetry.current = false
       websocket.current = undefined
+    } else {
+      noRetry.current = false
     }
   }, [selectedWorkspace?.id, isAuthenticated])
 
