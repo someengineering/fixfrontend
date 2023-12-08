@@ -1,6 +1,7 @@
 import { t } from '@lingui/macro'
 import { Autocomplete, AutocompleteProps, CircularProgress, TextField, TypographyProps } from '@mui/material'
 import { useInfiniteQuery } from '@tanstack/react-query'
+import { useDebounce } from '@uidotdev/usehooks'
 import { ChangeEvent, ReactNode, UIEvent as ReactUIEvent, useMemo, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryPropertyValuesQuery } from 'src/pages/panel/shared/queries'
@@ -37,6 +38,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
   const { selectedWorkspace } = useUserProfile()
   const [hasFocus, setHasFocus] = useState(false)
   const [typed, setTyped] = useState('')
+  const debouncedTyped = useDebounce(networkDisabled ? '' : typed, panelUI.fastInputChangeDebounce)
   const slectedTyped = useRef('')
   const {
     data = null,
@@ -48,10 +50,10 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
     queryKey: [
       'workspace-inventory-property-values',
       selectedWorkspace?.id,
-      typed &&
-      (!slectedTyped.current || slectedTyped.current !== typed) &&
-      (!value || (Array.isArray(value) ? !value.find((i) => i.label === typed) : value.label !== typed))
-        ? `${searchCrit} and ${propertyName} ~ ".*${typed}.*"`
+      debouncedTyped &&
+      (!slectedTyped.current || slectedTyped.current !== debouncedTyped) &&
+      (!value || (Array.isArray(value) ? !value.find((i) => i.label === debouncedTyped) : value.label !== debouncedTyped))
+        ? `${searchCrit} and ${propertyName} ~ ".*${debouncedTyped}.*"`
         : searchCrit,
       propertyName,
     ] as const,
@@ -112,6 +114,8 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
 
   const hasError = Boolean(!hasFocus && typed && (Array.isArray(value) ? !value.length : !value))
 
+  const autoCompleteIsLoading = isLoading || debouncedTyped !== typed
+
   return (
     <Autocomplete
       size="small"
@@ -148,8 +152,8 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
       ListboxProps={{
         onScroll: handleScroll,
       }}
-      loading={isLoading}
-      options={options}
+      loading={autoCompleteIsLoading}
+      options={autoCompleteIsLoading ? [] : options}
       filterOptions={
         networkDisabled
           ? (options, filter) => {
@@ -212,13 +216,14 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
             ...params.InputProps,
             endAdornment: (
               <>
-                {isLoading || isFetchingNextPage ? <CircularProgress color="inherit" size={20} /> : null}
+                {autoCompleteIsLoading || isFetchingNextPage ? <CircularProgress color="inherit" size={20} /> : null}
                 {params.InputProps.endAdornment}
               </>
             ),
           }}
           onClick={() => setHasFocus(true)}
           onChange={(e) => {
+            setHasFocus(true)
             slectedTyped.current = ''
             if (isNumber) {
               const curValue = e.currentTarget.value

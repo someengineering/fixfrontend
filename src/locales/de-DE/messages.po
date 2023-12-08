@@ -283,8 +283,8 @@ msgstr "Verbessert"
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS Konto ein."
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:282
-#: src/pages/panel/inventory/InventoryFormFilterRowStringValue.tsx:193
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:287
+#: src/pages/panel/inventory/InventoryFormFilterRowStringValue.tsx:197
 msgid "Invalid Value"
 msgstr "Ungültiger Wert"
 
@@ -418,7 +418,7 @@ msgstr "Privilegiert"
 msgid "Profile"
 msgstr "Profil"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:300
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:305
 msgid "Property"
 msgstr "Eigentum"
 

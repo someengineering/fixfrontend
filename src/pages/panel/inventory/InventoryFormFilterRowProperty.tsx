@@ -11,15 +11,13 @@ import {
   Typography,
 } from '@mui/material'
 import { useInfiniteQuery } from '@tanstack/react-query'
-// import { useDebounce } from '@uidotdev/usehooks'
-import { ChangeEvent, KeyboardEvent, UIEvent as ReactUIEvent, useEffect, useMemo, useRef, useState } from 'react'
+import { useDebounce } from '@uidotdev/usehooks'
+import { ChangeEvent, HTMLAttributes, KeyboardEvent, UIEvent as ReactUIEvent, useEffect, useMemo, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { OPType, defaultProperties, kindDurationTypes, kindSimpleTypes } from 'src/pages/panel/shared/constants'
 import { getWorkspaceInventoryPropertyPathCompleteQuery } from 'src/pages/panel/shared/queries'
-import { panelUI } from 'src/shared/constants'
-// import { panelUI } from 'src/shared/constants'
-import { HTMLAttributes } from 'react'
 import { isValidProp } from 'src/pages/panel/shared/utils'
+import { panelUI } from 'src/shared/constants'
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
 import { getCustomedWorkspaceInventoryPropertyAttributesQuery } from './utils'
 
@@ -53,17 +51,21 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
   const [fqn, setFqn] = useState<string | null>(defaultItem ? (isDefaultSimple ? null : defaultItem?.value) : 'object')
   const prevFqn = useRef<string | null>(null)
   const [hasFocus, setHasFocus] = useState(false)
-  // const debouncedPathAndProp = useDebounce(JSON.stringify([path, prop]), panelUI.fastInputChangeDebounce)
-  // const [debouncedPath, debouncedProp] = JSON.parse(debouncedPathAndProp) as [string, string]
+  const debouncedPathAndProp = useDebounce(JSON.stringify([path, prop]), panelUI.fastInputChangeDebounce)
+  const [debouncedPath, debouncedProp] = JSON.parse(debouncedPathAndProp) as [string, string]
   const [value, setValue] = useState<string | null>(defaultValue || null)
+
+  const isDefaultItemSelected = defaultItem?.label == `${path}.${prop}`
   const { selectedWorkspace } = useUserProfile()
   const isDictionary = fqn?.startsWith('dictionary') ?? false
   const propertyAttributes = useInfiniteQuery({
     queryKey: [
       'workspace-inventory-property-path-complete-query',
       selectedWorkspace?.id,
-      path,
-      value === `${path}.${prop}` || value === `${path}.${prop.replace(/\./g, '․')}` ? '' : prop,
+      debouncedPath,
+      value === `${debouncedPath}.${debouncedProp}` || value === `${debouncedPath}.${debouncedProp.replace(/\./g, '․')}`
+        ? ''
+        : debouncedProp,
       selectedKind,
       fqn?.split(',')[1]?.split(']')[0]?.trim() ?? '',
     ] as const,
@@ -81,8 +83,8 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
     queryKey: [
       'workspace-inventory-property-path-complete-query',
       selectedWorkspace?.id,
-      defaultValue ? '' : path,
-      !fqn || defaultValue ? '' : prop,
+      isDefaultItemSelected ? '' : debouncedPath,
+      !fqn || isDefaultItemSelected ? '' : debouncedProp,
       selectedKind,
       JSON.stringify(kinds),
     ] as const,
@@ -231,6 +233,8 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
 
   const hasError = Boolean((prop || path) && !hasFocus && !value)
 
+  const autoCompleteIsLoading = isLoading || path !== debouncedPath || prop !== debouncedProp
+
   return (
     <Autocomplete
       value={autoCompleteValue && options.indexOf(autoCompleteValue) > -1 ? autoCompleteValue : null}
@@ -263,7 +267,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
           placement: 'bottom-start',
         },
       }}
-      options={options}
+      options={autoCompleteIsLoading ? [] : options}
       open={hasFocus}
       onOpen={() => {
         if (fqn === null && prevFqn.current?.startsWith('dictionary')) {
@@ -272,7 +276,8 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
         setHasFocus(true)
       }}
       groupBy={(item: (typeof defaultProperties)[number]) => (item.isDefaulted ? 'Default Properties' : 'Properties')}
-      loading={isLoading}
+      filterOptions={(options) => options}
+      loading={autoCompleteIsLoading}
       ListboxProps={{ onScroll: handleScroll }}
       renderInput={(params) => (
         <Tooltip title={autoCompleteInputValue}>
@@ -285,7 +290,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
               ...params.InputProps,
               endAdornment: (
                 <>
-                  {isLoading ? <CircularProgress color="inherit" size={20} /> : null}
+                  {isLoading || isFetchingNextPage ? <CircularProgress color="inherit" size={20} /> : null}
                   {params.InputProps.endAdornment}
                 </>
               ),
