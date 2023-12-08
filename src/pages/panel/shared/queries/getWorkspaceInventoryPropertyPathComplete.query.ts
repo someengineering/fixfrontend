@@ -40,7 +40,13 @@ export const getWorkspaceInventoryPropertyPathCompleteQuery = ({
         )
         .then((res) => {
           const data = Object.entries(res.data ?? {}).map(([key, value]) => ({ label: path ? `${path}.${key}` : key, key, value }))
-          return (path || prop || skip ? data : defaultProperties.concat(data)) as typeof defaultProperties
+          return (
+            path || skip
+              ? data
+              : (prop ? defaultProperties.filter((i) => i.label.toLowerCase().includes(prop.toLowerCase())) : defaultProperties).concat(
+                  data,
+                )
+          ) as typeof defaultProperties
         })) ||
     null
   )
