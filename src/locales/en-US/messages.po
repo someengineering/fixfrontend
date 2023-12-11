@@ -54,7 +54,7 @@ msgid "© 2023 Some Engineering Inc. All rights reserved."
 msgstr "© 2023 Some Engineering Inc. All rights reserved."
 
 #: src/pages/panel/inventory/InventoryTable.error.tsx:74
-#: src/pages/panel/inventory/InventoryTable.tsx:90
+#: src/pages/panel/inventory/InventoryTable.tsx:79
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:84
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:103
 msgid "Accounts"
@@ -64,7 +64,7 @@ msgstr "Accounts"
 msgid "Accounts Summary"
 msgstr "Accounts Summary"
 
-#: src/pages/panel/accounts/AccountsTableConfigured.tsx:58
+#: src/pages/panel/accounts/AccountsTableItem.tsx:56
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:56
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:56
 msgid "Actions"
@@ -74,12 +74,13 @@ msgstr "Actions"
 msgid "Add an account"
 msgstr "Add an account"
 
-#: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:19
+#: src/pages/panel/accounts/AccountsTable.tsx:26
+#: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:20
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:34
 msgid "Added accounts"
 msgstr "Added accounts"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:195
+#: src/pages/panel/inventory/ResourceDetail.tsx:186
 msgid "Age"
 msgstr "Age"
 
@@ -111,7 +112,7 @@ msgstr "Automatic Cloud Setup"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace has been successfully subscribed"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:181
+#: src/pages/panel/inventory/ResourceDetail.tsx:172
 msgid "Basic Information"
 msgstr "Basic Information"
 
@@ -135,7 +136,7 @@ msgstr "Changes in the past 7 days"
 #~ msgstr "Check"
 
 #: src/pages/panel/accounts/AccountRow.tsx:318
-#: src/pages/panel/accounts/AccountsTableConfigured.tsx:40
+#: src/pages/panel/accounts/AccountsTableItem.tsx:38
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:38
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:38
 #: src/pages/panel/home/AccountCard.tsx:33
@@ -172,7 +173,7 @@ msgstr "Copied to Clipboard!"
 msgid "Copy"
 msgstr "Copy"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:191
+#: src/pages/panel/inventory/ResourceDetail.tsx:182
 msgid "Created Time"
 msgstr "Created Time"
 
@@ -204,11 +205,12 @@ msgstr "Delete"
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:223
+#: src/pages/panel/inventory/ResourceDetail.tsx:214
 msgid "Details"
 msgstr "Details"
 
-#: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:19
+#: src/pages/panel/accounts/AccountsTable.tsx:33
+#: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:20
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:34
 msgid "Discovered but unconfigured accounts"
 msgstr "Discovered but unconfigured accounts"
@@ -231,7 +233,7 @@ msgstr "Edit"
 msgid "Email"
 msgstr "Email"
 
-#: src/pages/panel/accounts/AccountsTableConfigured.tsx:55
+#: src/pages/panel/accounts/AccountsTableItem.tsx:53
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:53
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:53
 msgid "Enabled"
@@ -271,7 +273,7 @@ msgstr "Go to resources"
 msgid "High"
 msgstr "High"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:96
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:58
 msgid "Homepage"
 msgstr "Homepage"
 
@@ -280,11 +282,11 @@ msgid "How to fix"
 msgstr "How to fix"
 
 #: src/pages/panel/accounts/AccountRow.tsx:315
-#: src/pages/panel/accounts/AccountsTableConfigured.tsx:43
+#: src/pages/panel/accounts/AccountsTableItem.tsx:41
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:41
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:41
 #: src/pages/panel/home/AccountCard.tsx:30
-#: src/pages/panel/inventory/ResourceDetail.tsx:188
+#: src/pages/panel/inventory/ResourceDetail.tsx:179
 msgid "ID"
 msgstr "ID"
 
@@ -296,8 +298,8 @@ msgstr "Improved"
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:328
-#: src/pages/panel/inventory/InventoryFormFilterRowStringValue.tsx:215
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:287
+#: src/pages/panel/inventory/InventoryFormFilterRowStringValue.tsx:197
 msgid "Invalid Value"
 msgstr "Invalid Value"
 
@@ -305,15 +307,11 @@ msgstr "Invalid Value"
 msgid "Inventory"
 msgstr "Inventory"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:244
-#~ msgid "Issues"
-#~ msgstr "Issues"
-
-#: src/pages/panel/inventory/ResourceDetail.tsx:187
+#: src/pages/panel/inventory/ResourceDetail.tsx:178
 msgid "Kind"
 msgstr "Kind"
 
-#: src/pages/panel/inventory/InventoryForm.tsx:220
+#: src/pages/panel/inventory/InventoryForm.tsx:212
 msgid "Kinds"
 msgstr "Kinds"
 
@@ -351,10 +349,10 @@ msgid "Most Improved Resources"
 msgstr "Most Improved Resources"
 
 #: src/pages/panel/accounts/AccountRow.tsx:321
-#: src/pages/panel/accounts/AccountsTableConfigured.tsx:46
+#: src/pages/panel/accounts/AccountsTableItem.tsx:44
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:44
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:44
-#: src/pages/panel/inventory/ResourceDetail.tsx:189
+#: src/pages/panel/inventory/ResourceDetail.tsx:180
 msgid "Name"
 msgstr "Name"
 
@@ -366,7 +364,7 @@ msgstr "new improved resources in the past {since}"
 msgid "new non compliant resources in the past {since}"
 msgstr "new non compliant resources in the past {since}"
 
-#: src/pages/panel/accounts/AccountsTableConfigured.tsx:52
+#: src/pages/panel/accounts/AccountsTableItem.tsx:50
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:50
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:50
 msgid "Next scan"
@@ -393,7 +391,7 @@ msgstr "Null"
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Oops! It looks like your query didn't match our format. Please check and try again."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:73
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:35
 msgid "Oops! Something went wrong."
 msgstr "Oops! Something went wrong."
 
@@ -439,14 +437,14 @@ msgstr "Privileged account"
 msgid "Profile"
 msgstr "Profile"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:346
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:305
 msgid "Property"
 msgstr "Property"
 
-#: src/pages/panel/accounts/AccountsTableConfigured.tsx:20
-#: src/pages/panel/accounts/AccountsTableConfigured.tsx:36
-msgid "Recently Added accounts"
-msgstr "Recently Added accounts"
+#: src/pages/panel/accounts/AccountsTable.tsx:22
+msgid "Recently added accounts"
+msgstr "Recently added accounts"
+
 
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:88
 msgid "Regions"
@@ -456,7 +454,7 @@ msgstr "Regions"
 msgid "Register"
 msgstr "Register"
 
-#: src/pages/panel/accounts/AccountsTableConfigured.tsx:49
+#: src/pages/panel/accounts/AccountsTableItem.tsx:47
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:47
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:47
 msgid "Resources"
@@ -466,7 +464,7 @@ msgstr "Resources"
 msgid "Risk"
 msgstr "Risk"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:243
+#: src/pages/panel/inventory/ResourceDetail.tsx:234
 msgid "Security Issues"
 msgstr "Security Issues"
 
@@ -510,8 +508,8 @@ msgstr "Simple and affordable visibility into your cloud security posture."
 msgid "Submit"
 msgstr "Submit"
 
-#: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:87
-#: src/pages/panel/inventory/ResourceDetail.tsx:209
+#: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:74
+#: src/pages/panel/inventory/ResourceDetail.tsx:200
 msgid "Tags"
 msgstr "Tags"
 
@@ -561,7 +559,7 @@ msgstr "Top Non-Compliant Resources"
 msgid "True"
 msgstr "True"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:111
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:73
 msgid "Try again"
 msgstr "Try again"
 
@@ -574,7 +572,7 @@ msgstr "Value"
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:76
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:38
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 
