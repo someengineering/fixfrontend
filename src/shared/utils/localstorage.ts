@@ -1,4 +1,3 @@
-import { UserContextRealValues } from 'src/core/auth'
 import { ThemeContextRealValues } from 'src/core/theme'
 import { StorageKeys } from 'src/shared/constants'
 
@@ -21,9 +20,10 @@ function setStorageObject<ObjectType>(key: StorageKeys, obj?: ObjectType) {
   }
 }
 
-export const getAuthData = () => getStorageObject<UserContextRealValues>(StorageKeys.authData)
+export const getAuthData = () => getStorageObject<{ isAuthenticated: boolean; selectedWorkspace: string }>(StorageKeys.authData)
 
-export const setAuthData = (authData?: UserContextRealValues) => setStorageObject(StorageKeys.authData, authData)
+export const setAuthData = (authData?: { isAuthenticated: boolean; selectedWorkspace?: string }) =>
+  setStorageObject(StorageKeys.authData, authData)
 
 export const getLocale = () => getStorageObject<string>(StorageKeys.locale)
 

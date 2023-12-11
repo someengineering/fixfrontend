@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, memo, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { RequireAuth } from './core/auth'
 import { FullPageLoadingSuspenseFallback } from './shared/loading'
@@ -19,8 +19,8 @@ const PanelContainer = lazy(
     ),
 )
 
-export function AppRouter() {
-  return (
+export const AppRouter = memo(
+  () => (
     <Suspense fallback={<FullPageLoadingSuspenseFallback forceFullpage />}>
       <Routes>
         <Route path="auth/*" element={<AuthContainer />} />
@@ -29,5 +29,6 @@ export function AppRouter() {
         </Route>
       </Routes>
     </Suspense>
-  )
-}
+  ),
+  () => true,
+)

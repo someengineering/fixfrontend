@@ -11,5 +11,5 @@ export const getWorkspaceCloudAccountsQuery = ({
     ? axiosWithAuth
         .get<GetWorkspaceCloudAccountsResponse>(endPoints.workspaces.workspace(workspaceId).cloudAccounts.self, { signal })
         .then((res) => res.data) ?? []
-    : []
+    : { added: [], discovered: [], recent: [] }
 }

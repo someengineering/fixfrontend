@@ -21,17 +21,19 @@ export const AccountCheckGuard = () => {
     navigate('/setup-cloud')
   }, [navigate])
 
+  const doesNotHaveAccount = !data.added.length && !data.recent.length && !data.discovered.length
+
   useEffect(() => {
-    if (!data.length && !getInitiated()) {
+    if (doesNotHaveAccount && !getInitiated()) {
       handleGoToSetupCloudPage()
     }
-  }, [data.length, handleGoToSetupCloudPage])
+  }, [doesNotHaveAccount, handleGoToSetupCloudPage])
 
   if (!selectedWorkspace?.id) {
     return <FullPageLoadingSuspenseFallback />
   }
 
-  if (!data.length) {
+  if (doesNotHaveAccount) {
     return (
       <Stack display="flex" flexGrow={1} flexDirection="column" width="100%" height="100%" justifyContent="center" alignItems="center">
         <Typography variant="h3" textAlign="center">
