@@ -4,7 +4,7 @@ import { WebSocketEventsContext, WebSocketEventsContextValue } from './WebSocket
 export function useEvents(): WebSocketEventsContextValue {
   const context = useContext(WebSocketEventsContext)
   if (!context) {
-    throw new Error('useUserProfile must be used inside the AuthGuard')
+    throw new Error('useEvents must be used inside the WebSocketEvents')
   }
   return context
 }

@@ -13,10 +13,21 @@ import { logoutMutation } from './logout.mutation'
 const defaultAuth = { isAuthenticated: false, workspaces: [], selectedWorkspace: undefined, currentUser: undefined }
 
 export function AuthGuard({ children }: PropsWithChildren) {
-  const [auth, setAuth] = useState<UserContextRealValues>({
-    ...defaultAuth,
-    ...(getAuthData() || {}),
-    isAuthenticated: isAuthenticated() as false,
+  const [auth, setAuth] = useState<UserContextRealValues>(() => {
+    const selectedWorkspaceId = getAuthData()?.selectedWorkspace
+    return {
+      ...defaultAuth,
+      selectedWorkspace: selectedWorkspaceId
+        ? {
+            id: selectedWorkspaceId,
+            members: [],
+            name: '',
+            owners: [],
+            slug: '',
+          }
+        : undefined,
+      isAuthenticated: isAuthenticated() as false,
+    }
   })
   const navigate = useAbsoluteNavigate()
   const nextUrl = useRef<string>()
@@ -99,7 +110,10 @@ export function AuthGuard({ children }: PropsWithChildren) {
   }, [auth?.isAuthenticated, handleRefreshWorkspaces, handleLogout])
 
   useEffect(() => {
-    setAuthData(auth)
+    setAuthData({
+      isAuthenticated: auth.isAuthenticated,
+      selectedWorkspace: auth.selectedWorkspace?.id,
+    })
     if (nextUrl.current && auth?.isAuthenticated) {
       navigate(nextUrl.current, { replace: true })
       nextUrl.current = undefined

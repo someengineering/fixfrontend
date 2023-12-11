@@ -1,18 +1,28 @@
 import { Trans, t } from '@lingui/macro'
 import CancelIcon from '@mui/icons-material/Cancel'
-import CheckIcon from '@mui/icons-material/Check'
 import DeleteIcon from '@mui/icons-material/Delete'
-import DoDistorbIcon from '@mui/icons-material/DoDisturb'
 import EditIcon from '@mui/icons-material/Edit'
 import SendIcon from '@mui/icons-material/Send'
 import { LoadingButton } from '@mui/lab'
-import { Button, Checkbox, CircularProgress, IconButton, Stack, TableCell, TableRow, TextField, Tooltip, Typography } from '@mui/material'
+import {
+  Button,
+  ButtonBase,
+  Checkbox,
+  CircularProgress,
+  IconButton,
+  Stack,
+  TableCell,
+  TableRow,
+  TextField,
+  Tooltip,
+  Typography,
+} from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { Modal } from 'src/shared/modal'
-import { Account, GetWorkspaceCloudAccountsResponse, GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
+import { Account, GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { getAccountName } from 'src/shared/utils/getAccountName'
 import { deleteAccountMutation } from './deleteAccount.mutation'
 import { disableAccountMutation } from './disableAccount.mutation'
@@ -22,7 +32,8 @@ import { replaceRowByAccount } from './replaceRowByAccount'
 
 export const AccountRow = ({ account }: { account: Account }) => {
   const inputRef = useRef<HTMLInputElement>()
-  const showModalRef = useRef<(show?: boolean) => void>()
+  const showDeleteModalRef = useRef<(show?: boolean) => void>()
+  const showDegradedModalRef = useRef<(show?: boolean) => void>()
   const { selectedWorkspace } = useUserProfile()
   const queryClient = useQueryClient()
   const { mutate: renameAccount, isPending: renameAccountIsPending } = useMutation({
@@ -87,9 +98,14 @@ export const AccountRow = ({ account }: { account: Account }) => {
     }
   }
   const handleDeleteModal = () => {
-    if (showModalRef.current) {
-      showModalRef.current()
+    if (showDeleteModalRef.current) {
+      showDeleteModalRef.current()
     }
+  }
+  const handleDegradeModal = () => {
+    // if (showDegradedModalRef.current) {
+    //   showDegradedModalRef.current()
+    // }
   }
   const handleDelete = () => {
     if (selectedWorkspace?.id) {
@@ -97,7 +113,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
         { workspaceId: selectedWorkspace.id, id: account.id },
         {
           onSuccess: () => {
-            queryClient.setQueryData(['workspace-cloud-accounts', selectedWorkspace?.id], (oldData: GetWorkspaceCloudAccountsResponse) => {
+            queryClient.setQueryData(['workspace-cloud-accounts', selectedWorkspace?.id], (oldData: Account[]) => {
               const foundIndex = oldData.findIndex((item) => item.id === account.id)
               if (foundIndex > -1) {
                 const newData = [...oldData]
@@ -143,7 +159,23 @@ export const AccountRow = ({ account }: { account: Account }) => {
   return (
     <TableRow>
       <TableCell>
-        <CloudAvatar cloud={account.cloud} />
+        {account.privileged || account.state === 'degraded' ? (
+          <CloudAvatar
+            cloud={account.cloud}
+            withCrown={account.privileged}
+            tooltip={account.privileged ? <Trans>Privileged account</Trans> : null}
+            onErrorClick={handleDegradeModal}
+            error={
+              account.state === 'degraded' ? (
+                <Typography component={ButtonBase} onClick={handleDegradeModal}>
+                  <Trans>This account is degraded</Trans>
+                </Typography>
+              ) : null
+            }
+          />
+        ) : (
+          <CloudAvatar cloud={account.cloud} />
+        )}
       </TableCell>
       <TableCell>{account.account_id}</TableCell>
       <TableCell>
@@ -207,8 +239,6 @@ export const AccountRow = ({ account }: { account: Account }) => {
           </Stack>
         )}
       </TableCell>
-      <TableCell>{account.is_configured ? <CheckIcon color="success" /> : <DoDistorbIcon color="error" />}</TableCell>
-      <TableCell>{account.privileged ? <CheckIcon color="success" /> : <DoDistorbIcon color="error" />}</TableCell>
       <TableCell>{account.resources ?? '-'}</TableCell>
       <TableCell>{account.next_scan ? new Date(account.next_scan).toLocaleTimeString() : '-'}</TableCell>
       <TableCell>
@@ -239,11 +269,18 @@ export const AccountRow = ({ account }: { account: Account }) => {
         )}
       </TableCell>
       <Modal
+        title={<Trans>This account is degraded</Trans>}
+        openRef={showDegradedModalRef}
+        actions={<Button onClick={() => showDegradedModalRef.current?.(false)}>Fix</Button>}
+      >
+        <Typography>You can ...</Typography>
+      </Modal>
+      <Modal
         title={<Trans>Are you sure?</Trans>}
         description={
           <>
             <Trans>Do you want to delete this account?</Trans>
-            {!account.privileged ? (
+            {account.privileged ? (
               <Typography color="warning.main" width="100%" marginY={2} fontWeight="bold">
                 <Trans>
                   Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no
@@ -253,11 +290,11 @@ export const AccountRow = ({ account }: { account: Account }) => {
             ) : null}
           </>
         }
-        openRef={showModalRef}
+        openRef={showDeleteModalRef}
         actions={
           <>
             {deleteAccountIsPending ? null : (
-              <Button color="primary" variant="contained" onClick={() => showModalRef.current?.(false)}>
+              <Button color="primary" variant="contained" onClick={() => showDeleteModalRef.current?.(false)}>
                 <Trans>Cancel</Trans>
               </Button>
             )}

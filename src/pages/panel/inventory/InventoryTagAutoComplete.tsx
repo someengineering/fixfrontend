@@ -1,6 +1,7 @@
 import { Trans } from '@lingui/macro'
 import { Autocomplete, CircularProgress, TextField } from '@mui/material'
 import { useInfiniteQuery } from '@tanstack/react-query'
+import { useDebounce } from '@uidotdev/usehooks'
 import { ReactNode, UIEvent as ReactUIEvent, useMemo, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryPropertyAttributesQuery } from 'src/pages/panel/shared/queries'
@@ -16,6 +17,7 @@ const ITEMS_PER_PAGE = 50
 
 export const InventoryTagAutoComplete = ({ searchCrit, setSelectedTag }: InventoryTagAutoCompleteProps) => {
   const [typed, setTyped] = useState('')
+  const debouncedTyped = useDebounce(typed, panelUI.fastInputChangeDebounce)
   const { selectedWorkspace } = useUserProfile()
   const {
     data = null,
@@ -28,7 +30,7 @@ export const InventoryTagAutoComplete = ({ searchCrit, setSelectedTag }: Invento
       'workspace-inventory-property-attributes',
       selectedWorkspace?.id,
       searchCrit.startsWith('is') ? searchCrit.split(' ')[0] : 'all',
-      `tags${typed ? `=~${typed}` : ''}`,
+      `tags${debouncedTyped ? `=~${debouncedTyped}` : ''}`,
     ] as const,
     initialPageParam: {
       limit: ITEMS_PER_PAGE,

@@ -6,9 +6,10 @@ import { TableViewPageScrollContext } from './useTableViewPageScroll'
 interface TableViewPageProps extends PropsWithChildren {
   pagination?: ReactNode
   loading?: boolean
+  minHeight?: number
 }
 
-export const TableViewPage = ({ children, pagination }: TableViewPageProps) => {
+export const TableViewPage = ({ children, pagination, minHeight }: TableViewPageProps) => {
   const ref = useRef<HTMLDivElement>(null)
   return (
     <TableViewPageScrollContext.Provider value={ref}>
@@ -20,7 +21,7 @@ export const TableViewPage = ({ children, pagination }: TableViewPageProps) => {
         flexBasis={0}
         overflow="hidden"
         mb={-4}
-        minHeight={panelUI.tableViewMinHeight}
+        minHeight={minHeight ?? panelUI.tableViewMinHeight}
       >
         <Paper sx={{ width: '100%', overflow: 'hidden', position: 'relative' }}>
           <TableContainer sx={{ height: pagination ? `calc(100% - ${panelUI.tablePaginationHeight}px)` : '100%' }} ref={ref}>
