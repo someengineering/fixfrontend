@@ -18,6 +18,7 @@ import {
   styled,
 } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
 import { Fragment, ReactNode, useEffect, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { FailedChecks } from 'src/pages/panel/shared/failed-checks'
@@ -27,6 +28,7 @@ import { GetWorkspaceInventorySearchTableRow } from 'src/shared/types/server'
 import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
 import { YamlHighlighter } from 'src/shared/yaml-highlighter'
 import { stringify } from 'yaml'
+import { useInventorySendToGTM } from './utils/useInventorySendToGTM'
 
 interface ResourceDetailProps {
   detail: GetWorkspaceInventorySearchTableRow | undefined
@@ -110,12 +112,19 @@ const GridItem = ({
 
 export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
   const { selectedWorkspace } = useUserProfile()
-  const { data, isLoading } = useQuery({
+  const sendToGTM = useInventorySendToGTM()
+  const { data, isLoading, error } = useQuery({
     queryKey: ['workspace-inventory-node', selectedWorkspace?.id, detail?.id],
     queryFn: getWorkspaceInventoryNodeQuery,
     throwOnError: false,
   })
   const [selectedRow, setSelectedRow] = useState(detail)
+
+  useEffect(() => {
+    if (error) {
+      sendToGTM('getWorkspaceInventoryNodeQuery', false, error as AxiosError, detail?.id, detail?.id)
+    }
+  }, [detail?.id, error, sendToGTM])
 
   useEffect(() => {
     if (detail) {

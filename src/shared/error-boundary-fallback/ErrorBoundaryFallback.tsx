@@ -4,8 +4,12 @@ import { Button, Divider, Link, Modal, Stack, Typography, styled } from '@mui/ma
 import { useEffect } from 'react'
 import { FallbackProps } from 'react-error-boundary'
 import { DiscrodIcon } from 'src/assets/icons'
+import { useUserProfile } from 'src/core/auth'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { env } from 'src/shared/constants'
+import { useGTMDispatch } from 'src/shared/google-tag-manager'
+import { jsonToStr } from 'src/shared/utils/jsonToStr'
+import { getAuthData } from 'src/shared/utils/localstorage'
 
 const ModalContent = styled(Stack)(({ theme }) => ({
   position: 'absolute',
@@ -21,11 +25,45 @@ const ModalContent = styled(Stack)(({ theme }) => ({
 }))
 
 export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
+  const sendToGTM = useGTMDispatch()
   const navigate = useAbsoluteNavigate()
+  const { selectedWorkspace, isAuthenticated } = useUserProfile(false)
 
   useEffect(() => {
-    console.error(error)
-  }, [error])
+    if ('response' in error) {
+      const { response, name, message, cause, status, stack, config, code, toJSON } = error
+      const request = error.request as unknown
+      sendToGTM({
+        event: 'network-error',
+        api: response?.config.url || 'unknown',
+        responseData: jsonToStr(response?.data) || '',
+        responseHeader: jsonToStr(response?.data) || '',
+        responseStatus: jsonToStr(response?.status) || '',
+        response: jsonToStr(response),
+        request: jsonToStr(request),
+        name: jsonToStr(name),
+        message: jsonToStr(message),
+        cause: jsonToStr(cause),
+        status: jsonToStr(status),
+        stack: jsonToStr(stack),
+        config: jsonToStr(config),
+        code: jsonToStr(code),
+        rest: jsonToStr(toJSON()),
+        workspaceId: selectedWorkspace?.id || getAuthData()?.selectedWorkspace || 'unknown',
+        authorized: (isAuthenticated === undefined ? getAuthData()?.isAuthenticated : isAuthenticated) ?? false,
+      })
+    } else {
+      const { message, name, stack } = error as Error
+      sendToGTM({
+        event: 'error',
+        message: jsonToStr(message),
+        name: jsonToStr(name),
+        stack: jsonToStr(stack),
+        workspaceId: selectedWorkspace?.id || getAuthData()?.selectedWorkspace || 'unknown',
+        authorized: (isAuthenticated === undefined ? getAuthData()?.isAuthenticated : isAuthenticated) ?? false,
+      })
+    }
+  }, [error, isAuthenticated, selectedWorkspace?.id, sendToGTM])
 
   return (
     <Modal open onClose={resetErrorBoundary} aria-labelledby="modal-error-title" aria-describedby="modal-error-description">

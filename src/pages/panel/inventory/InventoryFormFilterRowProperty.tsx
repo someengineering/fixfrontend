@@ -12,6 +12,7 @@ import {
 } from '@mui/material'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useDebounce } from '@uidotdev/usehooks'
+import { AxiosError } from 'axios'
 import { ChangeEvent, HTMLAttributes, KeyboardEvent, UIEvent as ReactUIEvent, useEffect, useMemo, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { OPType, defaultProperties, kindDurationTypes, kindSimpleTypes } from 'src/pages/panel/shared/constants'
@@ -20,6 +21,7 @@ import { isValidProp } from 'src/pages/panel/shared/utils'
 import { panelUI } from 'src/shared/constants'
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
 import { getCustomedWorkspaceInventoryPropertyAttributesQuery } from './utils'
+import { useInventorySendToGTM } from './utils/useInventorySendToGTM'
 
 interface InventoryFormFilterRowPropertyProps {
   selectedKind: string | null
@@ -79,6 +81,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
     throwOnError: false,
     enabled: !!selectedWorkspace?.id && !!kinds.length && isDictionary,
   })
+  const kindsStr = JSON.stringify(kinds)
   const pathComplete = useInfiniteQuery({
     queryKey: [
       'workspace-inventory-property-path-complete-query',
@@ -86,7 +89,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       isDefaultItemSelected ? '' : debouncedPath,
       !fqn || isDefaultItemSelected ? '' : debouncedProp,
       selectedKind,
-      JSON.stringify(kinds),
+      kindsStr,
     ] as const,
     initialPageParam: {
       limit: ITEMS_PER_PAGE,
@@ -98,9 +101,47 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
     throwOnError: false,
     enabled: !!selectedWorkspace?.id && !!kinds.length && !isDictionary,
   })
-  const { data = null, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } = isDictionary ? propertyAttributes : pathComplete
+  const { data = null, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage, error } = isDictionary ? propertyAttributes : pathComplete
   const flatData = useMemo(() => (data?.pages.flat().filter((i) => i) as Exclude<typeof data, null>['pages'][number]) ?? null, [data])
   const highlightedOptionRef = useRef<Exclude<typeof flatData, null>[number] | null>(null)
+
+  const sendToGTM = useInventorySendToGTM()
+  useEffect(() => {
+    if (error) {
+      if (isDictionary) {
+        const prop =
+          value === `${debouncedPath}.${debouncedProp}` || value === `${debouncedPath}.${debouncedProp.replace(/\./g, '․')}`
+            ? ''
+            : debouncedProp
+        const path = debouncedPath
+        sendToGTM('getCustomedWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
+          workspaceId: selectedWorkspace?.id,
+          prop: `${path.split('.').slice(-1)[0]}${prop ? `=~"${prop.replace(/․/g, '.')}"` : ''}` ? '' : debouncedProp,
+          query: selectedKind ? `is(${selectedKind})` : 'all',
+        })
+      } else {
+        sendToGTM('getCustomedWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
+          workspaceId: selectedWorkspace?.id,
+          path: isDefaultItemSelected ? '' : debouncedPath,
+          prop: !fqn || isDefaultItemSelected ? '' : debouncedProp,
+          kinds: selectedKind ? [selectedKind] : (JSON.parse(kindsStr) as string[]),
+          fuzzy: true,
+        })
+      }
+    }
+  }, [
+    error,
+    sendToGTM,
+    debouncedPath,
+    debouncedProp,
+    isDictionary,
+    value,
+    selectedWorkspace?.id,
+    selectedKind,
+    isDefaultItemSelected,
+    fqn,
+    kindsStr,
+  ])
 
   useEffect(() => {
     if (prevPropIndex.current > propIndex) {

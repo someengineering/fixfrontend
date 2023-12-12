@@ -7,6 +7,8 @@ interface ImportMetaEnv {
   readonly VITE_NETWORK_RETRY_COUNT?: string
   readonly VITE_WEBSOCKET_RETRY_TIMEOUT?: string
   readonly VITE_DISCORD_URL?: string
+  readonly VITE_GTM_DEV_ID?: string
+  readonly VITE_GTM_PROD_ID?: string
 }
 
 interface ImportMeta {

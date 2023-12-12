@@ -1,6 +1,7 @@
 import { PropsWithChildren, useCallback, useEffect, useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { endPoints, env } from 'src/shared/constants'
+import { useGTMDispatch } from 'src/shared/google-tag-manager'
 import { WebSocketEvent } from 'src/shared/types/server'
 import { WebSocketEventsContext } from './WebSocketEventsContext'
 
@@ -8,6 +9,7 @@ const WS_CLOSE_CODE_NO_RETRY = 4001
 
 export const WebSocketEvents = ({ children }: PropsWithChildren) => {
   const { selectedWorkspace, isAuthenticated, logout } = useUserProfile()
+  const sendToGTM = useGTMDispatch()
   const noRetry = useRef(false)
   const listeners = useRef<Record<string, (ev: MessageEvent) => void>>({})
   const messagesToSend = useRef<{ message: string; resolve: (value: string) => void; reject: (err: unknown) => void }[]>([])
@@ -32,8 +34,19 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
           } else {
             onMessage(message as WebSocketEvent)
           }
-        } catch {
-          /* empty */
+        } catch (err) {
+          const { message, name, stack = 'unknown' } = err as Error
+          sendToGTM({
+            event: 'socket-error',
+            api: `${env.wsUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? 'unknown').events}`,
+            authorized: isAuthenticated ?? false,
+            message: message,
+            name,
+            stack,
+            state: 'on-message',
+            params: ev.data,
+            workspaceId: selectedWorkspace?.id ?? 'unknown',
+          })
         }
       }
       if (websocket.current) {
@@ -41,34 +54,63 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
       }
       return () => handleRemoveListener(randomId)
     },
-    [handleRemoveListener, logout],
+    [handleRemoveListener, isAuthenticated, logout, selectedWorkspace?.id, sendToGTM],
   )
 
-  const handleSendData = useCallback((data: WebSocketEvent) => {
-    const message = JSON.stringify(data)
-    return new Promise<string>((resolve, reject) => {
-      try {
-        if (websocket.current && websocket.current.readyState === websocket.current.OPEN) {
-          websocket.current.send(message)
-          resolve(message)
-        } else if (websocket.current && websocket.current.readyState === websocket.current.CONNECTING) {
-          websocket.current.addEventListener('open', () => {
-            websocket.current?.send(JSON.stringify(data))
+  const handleSendData = useCallback(
+    (data: WebSocketEvent) => {
+      const message = JSON.stringify(data)
+      return new Promise<string>((resolve, reject) => {
+        try {
+          if (websocket.current && websocket.current.readyState === websocket.current.OPEN) {
+            websocket.current.send(message)
             resolve(message)
+          } else if (websocket.current && websocket.current.readyState === websocket.current.CONNECTING) {
+            websocket.current.addEventListener('open', () => {
+              websocket.current?.send(JSON.stringify(data))
+              resolve(message)
+            })
+          } else {
+            messagesToSend.current.push({ message, resolve, reject })
+          }
+        } catch (err) {
+          const { message, name, stack = 'unknown' } = err as Error
+          sendToGTM({
+            event: 'socket-error',
+            api: `${env.wsUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? 'unknown').events}`,
+            authorized: isAuthenticated ?? false,
+            message: message,
+            name,
+            stack,
+            state: 'send-message',
+            params: message,
+            workspaceId: selectedWorkspace?.id ?? 'unknown',
           })
-        } else {
-          messagesToSend.current.push({ message, resolve, reject })
+          reject(err)
         }
-      } catch (err) {
-        reject(err)
-      }
-    })
-  }, [])
+      })
+    },
+    [isAuthenticated, selectedWorkspace?.id, sendToGTM],
+  )
 
   useEffect(() => {
     if (isAuthenticated && selectedWorkspace?.id) {
       let retryTimeout = env.webSocketRetryTimeout
       const onClose = (ev: CloseEvent) => {
+        if (ev.code !== 1000) {
+          const { stack = 'unknown', name, message } = Error('Websocket connection closed')
+          sendToGTM({
+            event: 'socket-error',
+            api: `${env.wsUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? 'unknown').events}`,
+            authorized: isAuthenticated ?? false,
+            message,
+            name,
+            stack,
+            state: 'on-open',
+            params: `reason: ${ev.reason}, code: ${ev.code}, was clean: ${ev.wasClean}`,
+            workspaceId: selectedWorkspace?.id ?? 'unknown',
+          })
+        }
         if (ev.code !== WS_CLOSE_CODE_NO_RETRY && !noRetry.current) {
           if (isAuthenticated && selectedWorkspace?.id) {
             window.setTimeout(createWebSocket, retryTimeout)
@@ -82,6 +124,18 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
             websocket.current?.send(message)
             resolve(message)
           } catch (err) {
+            const { message, name, stack = 'unknown' } = err as Error
+            sendToGTM({
+              event: 'socket-error',
+              api: `${env.wsUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? 'unknown').events}`,
+              authorized: isAuthenticated ?? false,
+              message: message,
+              name,
+              stack,
+              state: 'on-open',
+              params: message,
+              workspaceId: selectedWorkspace?.id ?? 'unknown',
+            })
             reject(err)
           }
         }
@@ -123,7 +177,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
     } else {
       noRetry.current = false
     }
-  }, [selectedWorkspace?.id, isAuthenticated])
+  }, [selectedWorkspace?.id, isAuthenticated, sendToGTM])
 
   return (
     <WebSocketEventsContext.Provider value={{ addListener: handleAddListener, websocket, send: handleSendData }}>

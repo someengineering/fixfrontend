@@ -1,7 +1,8 @@
 import { Trans } from '@lingui/macro'
 import { Autocomplete, Box, Divider, Grid, Stack, TextField } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
-import { Dispatch, SetStateAction, useMemo } from 'react'
+import { AxiosError } from 'axios'
+import { Dispatch, SetStateAction, useEffect, useMemo } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { DefaultPropertiesKeys } from 'src/pages/panel/shared/constants'
 import { getWorkspaceInventorySearchStartQuery } from 'src/pages/panel/shared/queries'
@@ -10,6 +11,7 @@ import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-bo
 import { InventoryFormFilterRow } from './InventoryFormFilterRow'
 import { InventoryFormTemplateObject, InventoryFormTemplates } from './InventoryFormTemplates'
 import { InventoryAdvanceSearchConfig, getArrayFromInOP } from './utils'
+import { useInventorySendToGTM } from './utils/useInventorySendToGTM'
 
 interface InventoryFormProps {
   setConfig: Dispatch<SetStateAction<InventoryAdvanceSearchConfig[]>>
@@ -21,12 +23,18 @@ interface InventoryFormProps {
 
 export const InventoryForm = ({ searchCrit, kind, setKind, config, setConfig }: InventoryFormProps) => {
   const { selectedWorkspace } = useUserProfile()
-  const { data: originalStartData } = useQuery({
+  const sendToGTM = useInventorySendToGTM()
+  const { data: originalStartData, error } = useQuery({
     queryKey: ['workspace-inventory-search-start', selectedWorkspace?.id],
     queryFn: getWorkspaceInventorySearchStartQuery,
     throwOnError: false,
     enabled: !!selectedWorkspace?.id,
   })
+  useEffect(() => {
+    if (error) {
+      sendToGTM('getWorkspaceInventorySearchStartQuery', false, error as AxiosError, '')
+    }
+  }, [error, sendToGTM])
   const startData = useMemo(() => originalStartData ?? { accounts: [], kinds: [], regions: [], severity: [] }, [originalStartData])
   const processedStartData = useMemo(() => {
     const clouds: string[] = []

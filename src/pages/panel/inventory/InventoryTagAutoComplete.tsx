@@ -2,11 +2,13 @@ import { Trans } from '@lingui/macro'
 import { Autocomplete, CircularProgress, TextField } from '@mui/material'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useDebounce } from '@uidotdev/usehooks'
-import { ReactNode, UIEvent as ReactUIEvent, useMemo, useState } from 'react'
+import { AxiosError } from 'axios'
+import { ReactNode, UIEvent as ReactUIEvent, useEffect, useMemo, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryPropertyAttributesQuery } from 'src/pages/panel/shared/queries'
 import { panelUI } from 'src/shared/constants'
 import { ListboxComponent } from 'src/shared/react-window'
+import { useInventorySendToGTM } from './utils/useInventorySendToGTM'
 
 interface InventoryTagAutoCompleteProps {
   searchCrit: string
@@ -21,6 +23,7 @@ export const InventoryTagAutoComplete = ({ searchCrit, setSelectedTag }: Invento
   const { selectedWorkspace } = useUserProfile()
   const {
     data = null,
+    error,
     isLoading,
     fetchNextPage,
     hasNextPage,
@@ -42,6 +45,16 @@ export const InventoryTagAutoComplete = ({ searchCrit, setSelectedTag }: Invento
     throwOnError: false,
     enabled: !!selectedWorkspace?.id,
   })
+  const sendToGTM = useInventorySendToGTM()
+  useEffect(() => {
+    if (error) {
+      sendToGTM('getWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
+        workspaceId: selectedWorkspace?.id,
+        query: searchCrit.startsWith('is') ? searchCrit.split(' ')[0] : 'all',
+        prop: `tags${debouncedTyped ? `=~${debouncedTyped}` : ''}`,
+      })
+    }
+  }, [debouncedTyped, error, searchCrit, selectedWorkspace?.id, sendToGTM])
   const flatData = useMemo(() => (data?.pages.flat().filter((i) => i) as Exclude<typeof data, null>['pages'][number]) ?? null, [data])
   const handleScroll = (e: ReactUIEvent<HTMLUListElement, UIEvent>) => {
     if (
@@ -61,7 +74,7 @@ export const InventoryTagAutoComplete = ({ searchCrit, setSelectedTag }: Invento
       onChange={(_, value) => setSelectedTag(value ?? '')}
       getOptionLabel={(option) => option ?? ''}
       filterOptions={(option) => option}
-      options={flatData ?? []}
+      options={isLoading ? [] : flatData ?? []}
       ListboxComponent={ListboxComponent}
       ListboxProps={{
         onScroll: handleScroll,

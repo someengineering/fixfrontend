@@ -11,7 +11,7 @@ const envToNumber = (value?: string) => {
 const defaultOrigin = window.location.origin
 const wsOrigin = defaultOrigin.replace('http', 'ws')
 
-export const env = {
+const env = {
   apiUrl: import.meta.env.VITE_USE_PROXY === 'true' ? defaultOrigin : import.meta.env.VITE_SERVER ?? defaultOrigin,
   wsUrl:
     import.meta.env.VITE_USE_PROXY === 'true'
@@ -20,4 +20,7 @@ export const env = {
   retryCount: envToNumber(import.meta.env.VITE_NETWORK_RETRY_COUNT) ?? 5,
   webSocketRetryTimeout: envToNumber(import.meta.env.VITE_WEBSOCKET_RETRY_TIMEOUT) ?? 5_000,
   discordUrl: import.meta.env.VITE_DISCORD_URL ?? '#',
+  gtmId: undefined as string | undefined,
 }
+
+export { env }
