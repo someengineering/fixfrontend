@@ -11,6 +11,8 @@ export interface TablePaginationProps {
   name?: string
 }
 
+const ROWS_PER_PAGE_OPTIONS = [10, 25, 50, 100]
+
 export const TablePagination = ({ dataCount, page, rowsPerPage, setPage, setRowsPerPage, name }: TablePaginationProps) => {
   const tableContainerRef = useTableViewPageScroll()
 
@@ -24,9 +26,9 @@ export const TablePagination = ({ dataCount, page, rowsPerPage, setPage, setRows
     setPage(0)
   }
 
-  return (
+  return dataCount < ROWS_PER_PAGE_OPTIONS[0] ? null : (
     <MuiTablePagination
-      rowsPerPageOptions={[10, 25, 50, 100]}
+      rowsPerPageOptions={ROWS_PER_PAGE_OPTIONS}
       component="div"
       labelDisplayedRows={dataCount < 0 ? () => `${page * rowsPerPage} - ${page * rowsPerPage + rowsPerPage}` : undefined}
       count={dataCount}
