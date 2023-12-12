@@ -179,7 +179,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
         )}
       </TableCell>
       <TableCell>{account.account_id}</TableCell>
-      <TableCell>
+      <TableCell sx={{ minWidth: 230 }}>
         {isEdit ? (
           <Stack
             component="form"
@@ -195,7 +195,6 @@ export const AccountRow = ({ account }: { account: Account }) => {
               placeholder={account.api_account_name || account.api_account_alias || ''}
               onChange={(e) => setEditedName(e.target.value)}
               variant="standard"
-              fullWidth
               autoFocus
               margin="none"
               inputProps={{ style: { padding: '0' } }}

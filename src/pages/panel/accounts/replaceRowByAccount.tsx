@@ -15,13 +15,13 @@ export const replaceRowByAccount = (queryClient: QueryClient, id?: string) => {
         }
         const foundRecentIndex = oldData.recent.findIndex((item) => item.id === data.id)
         if (foundRecentIndex > -1) {
-          const newAccounts = [...oldData.added]
+          const newAccounts = [...oldData.recent]
           newAccounts[foundRecentIndex] = data
           newData.recent = newAccounts
         }
         const foundDiscoveredIndex = oldData.discovered.findIndex((item) => item.id === data.id)
         if (foundDiscoveredIndex > -1) {
-          const newAccounts = [...oldData.added]
+          const newAccounts = [...oldData.discovered]
           newAccounts[foundDiscoveredIndex] = data
           newData.discovered = newAccounts
         }
