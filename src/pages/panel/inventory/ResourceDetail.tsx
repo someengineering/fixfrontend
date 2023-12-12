@@ -28,7 +28,7 @@ import { GetWorkspaceInventorySearchTableRow } from 'src/shared/types/server'
 import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
 import { YamlHighlighter } from 'src/shared/yaml-highlighter'
 import { stringify } from 'yaml'
-import { useInventorySendToGTM } from './utils/useInventorySendToGTM'
+import { inventorySendToGTM } from './utils'
 
 interface ResourceDetailProps {
   detail: GetWorkspaceInventorySearchTableRow | undefined
@@ -112,7 +112,6 @@ const GridItem = ({
 
 export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
   const { selectedWorkspace } = useUserProfile()
-  const sendToGTM = useInventorySendToGTM()
   const { data, isLoading, error } = useQuery({
     queryKey: ['workspace-inventory-node', selectedWorkspace?.id, detail?.id],
     queryFn: getWorkspaceInventoryNodeQuery,
@@ -122,9 +121,9 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
 
   useEffect(() => {
     if (error) {
-      sendToGTM('getWorkspaceInventoryNodeQuery', false, error as AxiosError, detail?.id, detail?.id)
+      inventorySendToGTM('getWorkspaceInventoryNodeQuery', false, error as AxiosError, detail?.id, detail?.id)
     }
-  }, [detail?.id, error, sendToGTM])
+  }, [detail?.id, error])
 
   useEffect(() => {
     if (detail) {

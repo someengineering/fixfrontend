@@ -9,7 +9,7 @@ import { getWorkspaceInventoryPropertyValuesQuery } from 'src/pages/panel/shared
 import { panelUI } from 'src/shared/constants'
 import { ListboxComponent } from 'src/shared/react-window'
 import { AutoCompleteValue } from 'src/shared/types/shared'
-import { useInventorySendToGTM } from './utils/useInventorySendToGTM'
+import { inventorySendToGTM } from './utils'
 
 const ITEMS_PER_PAGE = 50
 
@@ -70,10 +70,9 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
     throwOnError: false,
     enabled: !!(selectedWorkspace?.id && !networkDisabled),
   })
-  const sendToGTM = useInventorySendToGTM()
   useEffect(() => {
     if (error) {
-      sendToGTM('getWorkspaceInventoryPropertyValuesQuery', false, error as AxiosError, {
+      inventorySendToGTM('getWorkspaceInventoryPropertyValuesQuery', false, error as AxiosError, {
         workspaceId: selectedWorkspace?.id,
         query:
           debouncedTyped &&
@@ -84,7 +83,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
         prop: propertyName,
       })
     }
-  }, [debouncedTyped, error, propertyName, searchCrit, selectedWorkspace?.id, sendToGTM, value])
+  }, [debouncedTyped, error, propertyName, searchCrit, selectedWorkspace?.id, value])
   const flatData = useMemo(
     () =>
       data?.pages

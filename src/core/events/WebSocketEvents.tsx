@@ -37,7 +37,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
           const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
           sendToGTM({
             event: 'websocket-error',
-            api: `${env.wsUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? 'unknown').events}`,
+            api: `${env.wsUrl}/${endPoints.workspaces.workspace(workspaceId).events}`,
             message: message,
             name,
             stack,
@@ -53,46 +53,43 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
       }
       return () => handleRemoveListener(randomId)
     },
-    [handleRemoveListener, selectedWorkspace?.id],
+    [handleRemoveListener],
   )
 
-  const handleSendData = useCallback(
-    (data: WebSocketEvent) => {
-      const message = JSON.stringify(data)
-      return new Promise<string>((resolve, reject) => {
-        try {
-          if (websocket.current && websocket.current.readyState === websocket.current.OPEN) {
-            websocket.current.send(message)
+  const handleSendData = useCallback((data: WebSocketEvent) => {
+    const message = JSON.stringify(data)
+    return new Promise<string>((resolve, reject) => {
+      try {
+        if (websocket.current && websocket.current.readyState === websocket.current.OPEN) {
+          websocket.current.send(message)
+          resolve(message)
+        } else if (websocket.current && websocket.current.readyState === websocket.current.CONNECTING) {
+          websocket.current.addEventListener('open', () => {
+            websocket.current?.send(JSON.stringify(data))
             resolve(message)
-          } else if (websocket.current && websocket.current.readyState === websocket.current.CONNECTING) {
-            websocket.current.addEventListener('open', () => {
-              websocket.current?.send(JSON.stringify(data))
-              resolve(message)
-            })
-          } else {
-            messagesToSend.current.push({ message, resolve, reject })
-          }
-        } catch (err) {
-          const { message, name, stack = 'unknown' } = err as Error
-          const authorized = getIsAuthenticated()
-          const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
-          sendToGTM({
-            event: 'websocket-error',
-            api: `${env.wsUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? 'unknown').events}`,
-            authorized,
-            message: message,
-            name,
-            stack,
-            state: 'send-message',
-            params: message,
-            workspaceId,
           })
-          reject(err)
+        } else {
+          messagesToSend.current.push({ message, resolve, reject })
         }
-      })
-    },
-    [selectedWorkspace?.id],
-  )
+      } catch (err) {
+        const { message, name, stack = 'unknown' } = err as Error
+        const authorized = getIsAuthenticated()
+        const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
+        sendToGTM({
+          event: 'websocket-error',
+          api: `${env.wsUrl}/${endPoints.workspaces.workspace(workspaceId).events}`,
+          authorized,
+          message: message,
+          name,
+          stack,
+          state: 'send-message',
+          params: message,
+          workspaceId,
+        })
+        reject(err)
+      }
+    })
+  }, [])
 
   useEffect(() => {
     if (isAuthenticated && selectedWorkspace?.id) {

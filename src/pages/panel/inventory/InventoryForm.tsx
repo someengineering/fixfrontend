@@ -10,8 +10,7 @@ import { isValidProp } from 'src/pages/panel/shared/utils'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { InventoryFormFilterRow } from './InventoryFormFilterRow'
 import { InventoryFormTemplateObject, InventoryFormTemplates } from './InventoryFormTemplates'
-import { InventoryAdvanceSearchConfig, getArrayFromInOP } from './utils'
-import { useInventorySendToGTM } from './utils/useInventorySendToGTM'
+import { InventoryAdvanceSearchConfig, getArrayFromInOP, inventorySendToGTM } from './utils'
 
 interface InventoryFormProps {
   setConfig: Dispatch<SetStateAction<InventoryAdvanceSearchConfig[]>>
@@ -23,7 +22,6 @@ interface InventoryFormProps {
 
 export const InventoryForm = ({ searchCrit, kind, setKind, config, setConfig }: InventoryFormProps) => {
   const { selectedWorkspace } = useUserProfile()
-  const sendToGTM = useInventorySendToGTM()
   const { data: originalStartData, error } = useQuery({
     queryKey: ['workspace-inventory-search-start', selectedWorkspace?.id],
     queryFn: getWorkspaceInventorySearchStartQuery,
@@ -32,9 +30,9 @@ export const InventoryForm = ({ searchCrit, kind, setKind, config, setConfig }: 
   })
   useEffect(() => {
     if (error) {
-      sendToGTM('getWorkspaceInventorySearchStartQuery', false, error as AxiosError, '')
+      inventorySendToGTM('getWorkspaceInventorySearchStartQuery', false, error as AxiosError, '')
     }
-  }, [error, sendToGTM])
+  }, [error])
   const startData = useMemo(() => originalStartData ?? { accounts: [], kinds: [], regions: [], severity: [] }, [originalStartData])
   const processedStartData = useMemo(() => {
     const clouds: string[] = []

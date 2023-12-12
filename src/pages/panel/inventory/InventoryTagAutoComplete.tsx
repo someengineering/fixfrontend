@@ -8,7 +8,7 @@ import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryPropertyAttributesQuery } from 'src/pages/panel/shared/queries'
 import { panelUI } from 'src/shared/constants'
 import { ListboxComponent } from 'src/shared/react-window'
-import { useInventorySendToGTM } from './utils/useInventorySendToGTM'
+import { inventorySendToGTM } from './utils'
 
 interface InventoryTagAutoCompleteProps {
   searchCrit: string
@@ -45,16 +45,15 @@ export const InventoryTagAutoComplete = ({ searchCrit, setSelectedTag }: Invento
     throwOnError: false,
     enabled: !!selectedWorkspace?.id,
   })
-  const sendToGTM = useInventorySendToGTM()
   useEffect(() => {
     if (error) {
-      sendToGTM('getWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
+      inventorySendToGTM('getWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
         workspaceId: selectedWorkspace?.id,
         query: searchCrit.startsWith('is') ? searchCrit.split(' ')[0] : 'all',
         prop: `tags${debouncedTyped ? `=~${debouncedTyped}` : ''}`,
       })
     }
-  }, [debouncedTyped, error, searchCrit, selectedWorkspace?.id, sendToGTM])
+  }, [debouncedTyped, error, searchCrit, selectedWorkspace?.id])
   const flatData = useMemo(() => (data?.pages.flat().filter((i) => i) as Exclude<typeof data, null>['pages'][number]) ?? null, [data])
   const handleScroll = (e: ReactUIEvent<HTMLUListElement, UIEvent>) => {
     if (

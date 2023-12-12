@@ -20,8 +20,7 @@ import { getWorkspaceInventoryPropertyPathCompleteQuery } from 'src/pages/panel/
 import { isValidProp } from 'src/pages/panel/shared/utils'
 import { panelUI } from 'src/shared/constants'
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
-import { getCustomedWorkspaceInventoryPropertyAttributesQuery } from './utils'
-import { useInventorySendToGTM } from './utils/useInventorySendToGTM'
+import { getCustomedWorkspaceInventoryPropertyAttributesQuery, inventorySendToGTM } from './utils'
 
 interface InventoryFormFilterRowPropertyProps {
   selectedKind: string | null
@@ -105,7 +104,6 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
   const flatData = useMemo(() => (data?.pages.flat().filter((i) => i) as Exclude<typeof data, null>['pages'][number]) ?? null, [data])
   const highlightedOptionRef = useRef<Exclude<typeof flatData, null>[number] | null>(null)
 
-  const sendToGTM = useInventorySendToGTM()
   useEffect(() => {
     if (error) {
       if (isDictionary) {
@@ -114,13 +112,13 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
             ? ''
             : debouncedProp
         const path = debouncedPath
-        sendToGTM('getCustomedWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
+        inventorySendToGTM('getCustomedWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
           workspaceId: selectedWorkspace?.id,
           prop: `${path.split('.').slice(-1)[0]}${prop ? `=~"${prop.replace(/․/g, '.')}"` : ''}` ? '' : debouncedProp,
           query: selectedKind ? `is(${selectedKind})` : 'all',
         })
       } else {
-        sendToGTM('getCustomedWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
+        inventorySendToGTM('getCustomedWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
           workspaceId: selectedWorkspace?.id,
           path: isDefaultItemSelected ? '' : debouncedPath,
           prop: !fqn || isDefaultItemSelected ? '' : debouncedProp,
@@ -129,19 +127,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
         })
       }
     }
-  }, [
-    error,
-    sendToGTM,
-    debouncedPath,
-    debouncedProp,
-    isDictionary,
-    value,
-    selectedWorkspace?.id,
-    selectedKind,
-    isDefaultItemSelected,
-    fqn,
-    kindsStr,
-  ])
+  }, [debouncedPath, debouncedProp, error, fqn, isDefaultItemSelected, isDictionary, kindsStr, selectedKind, selectedWorkspace?.id, value])
 
   useEffect(() => {
     if (prevPropIndex.current > propIndex) {
