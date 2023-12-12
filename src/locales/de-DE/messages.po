@@ -163,13 +163,13 @@ msgstr "Wolken"
 msgid "Compliance"
 msgstr "Compliance"
 
-#: src/pages/panel/setup-cloud/TenantId.tsx:16
+#: src/pages/panel/setup-cloud/WorkspaceId.tsx:16
 #: src/shared/utils/useCopyString.ts:11
 msgid "Copied to Clipboard!"
 msgstr "In die Zwischenablage kopiert!"
 
 #: src/pages/panel/setup-cloud/ExternalId.tsx:56
-#: src/pages/panel/setup-cloud/TenantId.tsx:46
+#: src/pages/panel/setup-cloud/WorkspaceId.tsx:46
 msgid "Copy"
 msgstr "Kopieren"
 
@@ -516,10 +516,6 @@ msgstr "Stichworte"
 #~ msgid "Task \"{0}\" with workflow \"{1}\" failed: {2}"
 #~ msgstr "Aufgabe \"{0}\" mit Workflow \"{1}\" ist fehlgeschlagen: {2}"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:144
-msgid "Tenant Id"
-msgstr "Tenant Id"
-
 #: src/pages/panel/setup-cloud/SetupCloudPage.tsx:115
 msgid "The Stack requires the following parameters"
 msgstr "Der Stack erfordert die folgenden Parameter"
@@ -582,6 +578,10 @@ msgstr "Wir entschuldigen uns für die Unannehmlichkeiten. Unser Team wurde bena
 #: src/pages/panel/shared/utils/PieCard.tsx:206
 msgid "We've identified {0} non-compliant resources out of {1} through {2} {3}-severity security checks."
 msgstr "Wir haben {0} nicht konforme Ressourcen von insgesamt {1} durch {2} {3}-Severity Security-Checks identifiziert."
+
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:144
+msgid "Workspace Id"
+msgstr "Workspace Id"
 
 #: src/pages/auth/login/LoginPage.tsx:126
 msgid "You have successfully verified your account."
