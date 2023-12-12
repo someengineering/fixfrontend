@@ -395,7 +395,7 @@ msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Si
 msgid "Oops! Something went wrong."
 msgstr "Hoppla! Etwas ist schief gelaufen."
 
-#: src/shared/layouts/panel-layout/PanelAppBar.tsx:69
+#: src/shared/layouts/panel-layout/PanelAppBar.tsx:71
 msgid "Open drawer"
 msgstr "Öffene die Schublade"
 
