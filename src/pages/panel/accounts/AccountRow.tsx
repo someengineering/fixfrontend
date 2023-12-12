@@ -20,6 +20,7 @@ import {
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
+import { SetupCloudButton } from 'src/pages/panel/shared/setup-cloud-button'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { Modal } from 'src/shared/modal'
 import { Account, GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
@@ -81,7 +82,13 @@ export const AccountRow = ({ account }: { account: Account }) => {
       renameAccount(
         { name: editedName || null, workspaceId: selectedWorkspace.id, id: account.id },
         {
-          onSuccess: replaceRowByAccount(queryClient, selectedWorkspace?.id),
+          onSuccess: (data) => {
+            void queryClient.invalidateQueries({
+              predicate: (query) =>
+                (typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts')) ?? false,
+            })
+            replaceRowByAccount(queryClient, data, selectedWorkspace?.id)
+          },
           onSettled: () => setIsEdit(false),
         },
       )
@@ -92,7 +99,13 @@ export const AccountRow = ({ account }: { account: Account }) => {
       return (checked ? enableAccount : disableAccount)(
         { workspaceId: selectedWorkspace.id, id: account.id },
         {
-          onSuccess: replaceRowByAccount(queryClient, selectedWorkspace?.id),
+          onSuccess: (data) => {
+            void queryClient.invalidateQueries({
+              predicate: (query) =>
+                (typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts')) ?? false,
+            })
+            replaceRowByAccount(queryClient, data, selectedWorkspace?.id)
+          },
         },
       )
     }
@@ -103,9 +116,9 @@ export const AccountRow = ({ account }: { account: Account }) => {
     }
   }
   const handleDegradeModal = () => {
-    // if (showDegradedModalRef.current) {
-    //   showDegradedModalRef.current()
-    // }
+    if (showDegradedModalRef.current) {
+      showDegradedModalRef.current()
+    }
   }
   const handleDelete = () => {
     if (selectedWorkspace?.id) {
@@ -168,7 +181,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
             error={
               account.state === 'degraded' ? (
                 <Typography component={ButtonBase} onClick={handleDegradeModal}>
-                  <Trans>This account is degraded</Trans>
+                  <Trans>Access to your account is broken</Trans>
                 </Typography>
               ) : null
             }
@@ -178,7 +191,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
         )}
       </TableCell>
       <TableCell>{account.account_id}</TableCell>
-      <TableCell>
+      <TableCell sx={{ minWidth: 230 }}>
         {isEdit ? (
           <Stack
             component="form"
@@ -194,7 +207,6 @@ export const AccountRow = ({ account }: { account: Account }) => {
               placeholder={account.api_account_name || account.api_account_alias || ''}
               onChange={(e) => setEditedName(e.target.value)}
               variant="standard"
-              fullWidth
               autoFocus
               margin="none"
               inputProps={{ style: { padding: '0' } }}
@@ -269,11 +281,18 @@ export const AccountRow = ({ account }: { account: Account }) => {
         )}
       </TableCell>
       <Modal
-        title={<Trans>This account is degraded</Trans>}
+        title={<Trans>Access to your account is broken</Trans>}
+        width={550}
         openRef={showDegradedModalRef}
-        actions={<Button onClick={() => showDegradedModalRef.current?.(false)}>Fix</Button>}
+        actions={<SetupCloudButton variant="outlined" />}
       >
-        <Typography>You can ...</Typography>
+        <Typography>
+          <Trans>
+            This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To
+            resume security scans, please log into account {accountName} ({account.account_id}) and re-deploy the CloudFormation stack that
+            establishes the IAM role trust.
+          </Trans>
+        </Typography>
       </Modal>
       <Modal
         title={<Trans>Are you sure?</Trans>}
