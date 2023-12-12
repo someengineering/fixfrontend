@@ -273,7 +273,7 @@ msgstr "Gehen Sie zu Ressourcen"
 msgid "High"
 msgstr "Hoch"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:96
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:74
 msgid "Homepage"
 msgstr "Startseite"
 
@@ -391,7 +391,7 @@ msgstr "Null"
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Sie sie und versuchen Sie es erneut."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:73
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:51
 msgid "Oops! Something went wrong."
 msgstr "Hoppla! Etwas ist schief gelaufen."
 
@@ -554,7 +554,7 @@ msgstr "Top Ressourcen mit Compliance-Verstößen"
 msgid "True"
 msgstr "WAHR"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:111
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:89
 msgid "Try again"
 msgstr "Versuchen Sie es erneut"
 
@@ -567,7 +567,7 @@ msgstr "Wert"
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "Wir haben eine E-Mail mit einem Bestätigungslink an Ihre E-Mail-Adresse gesendet. Bitte folgen Sie dem Link, um Ihr Konto zu aktivieren."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:76
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:54
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "Wir entschuldigen uns für die Unannehmlichkeiten. Unser Team wurde benachrichtigt und das Problem wird untersucht. Bitte versuchen Sie es in ein paar Minuten noch einmal. Wenn das Problem weiterhin besteht, können Sie uns gerne <0>auf Discord</0> kontaktieren. Danke für Ihre Geduld!"
 

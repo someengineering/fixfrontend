@@ -273,7 +273,7 @@ msgstr "Go to resources"
 msgid "High"
 msgstr "High"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:96
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:74
 msgid "Homepage"
 msgstr "Homepage"
 
@@ -391,7 +391,7 @@ msgstr "Null"
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Oops! It looks like your query didn't match our format. Please check and try again."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:73
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:51
 msgid "Oops! Something went wrong."
 msgstr "Oops! Something went wrong."
 
@@ -554,7 +554,7 @@ msgstr "Top Non-Compliant Resources"
 msgid "True"
 msgstr "True"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:111
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:89
 msgid "Try again"
 msgstr "Try again"
 
@@ -567,7 +567,7 @@ msgstr "Value"
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:76
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:54
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 
