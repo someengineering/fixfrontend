@@ -12,7 +12,7 @@ import { ExternalIdSkeleton } from './ExternalId.skeleton'
 import { SetupCloudButton } from './SetupCloudButton'
 import { SetupTemplateButton } from './SetupTemplateButton'
 import { SetupTemplateButtonSkeleton } from './SetupTemplateButton.skeleton'
-import { TenantId } from './TenantId'
+import { WorkspaceId } from './WorkspaceId'
 
 export default function SetupCloud() {
   const { addListener } = useEvents()
@@ -141,9 +141,9 @@ export default function SetupCloud() {
               alignSelf="center"
             >
               <Typography variant="body1" mb={{ xs: 1, md: 0 }} alignSelf={{ xs: 'start', md: 'center' }} width={100}>
-                <Trans>Tenant Id</Trans>:
+                <Trans>Workspace Id</Trans>:
               </Typography>
-              <TenantId />
+              <WorkspaceId />
             </Box>
           </div>
         </AccordionDetails>
