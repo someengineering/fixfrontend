@@ -80,7 +80,7 @@ type DataEventError = DataEventCommonError & {
 }
 
 type DataEventSocketError = DataEventCommonError & {
-  event: 'socket-error'
+  event: 'websocket-error'
   state: 'on-message' | 'send-message' | 'on-close' | 'on-open'
   params: string
   api: string

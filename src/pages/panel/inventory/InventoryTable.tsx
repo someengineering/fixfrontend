@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
-import { useGTMDispatch } from 'src/shared/google-tag-manager'
+import { sendToGTM } from 'src/shared/google-tag-manager'
 import { TablePagination, TableViewPage } from 'src/shared/layouts/panel-layout'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import {
@@ -12,6 +12,8 @@ import {
   GetWorkspaceInventorySearchTableResponse,
   GetWorkspaceInventorySearchTableRow,
 } from 'src/shared/types/server'
+import { isAuthenticated as getIsAuthenticated } from 'src/shared/utils/cookie'
+import { getAuthData } from 'src/shared/utils/localstorage'
 import { InventoryRow } from './InventoryRow'
 import { ResourceDetail } from './ResourceDetail'
 
@@ -28,7 +30,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
   const [dataCount, setDataCount] = useState(-1)
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(10)
-  const { selectedWorkspace, isAuthenticated } = useUserProfile()
+  const { selectedWorkspace } = useUserProfile()
   const [rows, setRows] = useState<GetWorkspaceInventorySearchTableRow[]>([])
   const [columns, setColumns] = useState<GetWorkspaceInventorySearchTableColumn[]>([])
   const initializedRef = useRef(false)
@@ -45,7 +47,6 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
     queryFn: getWorkspaceInventorySearchTableQuery,
     enabled: !!selectedWorkspace?.id,
   })
-  const sendToGTM = useGTMDispatch()
   const [data, totalCount] = serverData ?? [[{ columns: [] }] as GetWorkspaceInventorySearchTableResponse, -1]
   const [selectedRow, setSelectedRow] = useState<GetWorkspaceInventorySearchTableRow>()
 
@@ -61,16 +62,15 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       setPage(0)
     }
     initializedRef.current = true
-  }, [searchCrit])
-
-  useEffect(() => {
+    const authorized = getIsAuthenticated()
+    const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
     sendToGTM({
       event: 'inventory-search',
-      authorized: isAuthenticated ?? false,
+      authorized,
       q: searchCrit,
-      workspaceId: selectedWorkspace?.id ?? 'unknown',
+      workspaceId,
     })
-  }, [isAuthenticated, searchCrit, selectedWorkspace?.id, sendToGTM])
+  }, [searchCrit])
 
   useEffect(() => {
     if (!isLoading) {

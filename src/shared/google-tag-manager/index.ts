@@ -1,3 +1,3 @@
 export { GTMProvider } from './GoogleTagManager'
-export { sendToGTM } from './sendToGTM'
+export { gtmDispatch as sendToGTM } from './gtmDispatch'
 export { useGTMDispatch } from './useGTMDispatch'

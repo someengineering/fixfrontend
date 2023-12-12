@@ -1,8 +1,10 @@
 import { PropsWithChildren, useCallback, useEffect, useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { endPoints, env } from 'src/shared/constants'
-import { useGTMDispatch } from 'src/shared/google-tag-manager'
+import { sendToGTM } from 'src/shared/google-tag-manager'
 import { WebSocketEvent } from 'src/shared/types/server'
+import { isAuthenticated as getIsAuthenticated } from 'src/shared/utils/cookie'
+import { getAuthData } from 'src/shared/utils/localstorage'
 import { WebSocketEventsContext } from './WebSocketEventsContext'
 
 const WS_CLOSE_CODE_NO_RETRY = 4001
@@ -10,7 +12,6 @@ const WS_SERVER_CLOSE_CODE_NO_RETRY = 4401
 
 export const WebSocketEvents = ({ children }: PropsWithChildren) => {
   const { selectedWorkspace, isAuthenticated, logout } = useUserProfile()
-  const sendToGTM = useGTMDispatch()
   const noRetry = useRef(false)
   const listeners = useRef<Record<string, (ev: MessageEvent) => void>>({})
   const messagesToSend = useRef<{ message: string; resolve: (value: string) => void; reject: (err: unknown) => void }[]>([])
@@ -32,16 +33,18 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
           onMessage(message)
         } catch (err) {
           const { message, name, stack = 'unknown' } = err as Error
+          const authorized = getIsAuthenticated()
+          const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
           sendToGTM({
-            event: 'socket-error',
+            event: 'websocket-error',
             api: `${env.wsUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? 'unknown').events}`,
-            authorized: isAuthenticated ?? false,
             message: message,
             name,
             stack,
             state: 'on-message',
             params: ev.data,
-            workspaceId: selectedWorkspace?.id ?? 'unknown',
+            authorized,
+            workspaceId,
           })
         }
       }
@@ -50,7 +53,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
       }
       return () => handleRemoveListener(randomId)
     },
-    [handleRemoveListener, isAuthenticated, selectedWorkspace?.id, sendToGTM],
+    [handleRemoveListener, selectedWorkspace?.id],
   )
 
   const handleSendData = useCallback(
@@ -71,22 +74,24 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
           }
         } catch (err) {
           const { message, name, stack = 'unknown' } = err as Error
+          const authorized = getIsAuthenticated()
+          const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
           sendToGTM({
-            event: 'socket-error',
+            event: 'websocket-error',
             api: `${env.wsUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? 'unknown').events}`,
-            authorized: isAuthenticated ?? false,
+            authorized,
             message: message,
             name,
             stack,
             state: 'send-message',
             params: message,
-            workspaceId: selectedWorkspace?.id ?? 'unknown',
+            workspaceId,
           })
           reject(err)
         }
       })
     },
-    [isAuthenticated, selectedWorkspace?.id, sendToGTM],
+    [selectedWorkspace?.id],
   )
 
   useEffect(() => {
@@ -95,16 +100,18 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
       const onClose = (ev: CloseEvent) => {
         if (ev.code !== 1000) {
           const { stack = 'unknown', name, message } = Error('Websocket connection closed')
+          const authorized = getIsAuthenticated()
+          const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
           sendToGTM({
-            event: 'socket-error',
+            event: 'websocket-error',
             api: `${env.wsUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? 'unknown').events}`,
-            authorized: isAuthenticated ?? false,
+            authorized,
             message,
             name,
             stack,
             state: 'on-open',
             params: `reason: ${ev.reason}, code: ${ev.code}, was clean: ${ev.wasClean}`,
-            workspaceId: selectedWorkspace?.id ?? 'unknown',
+            workspaceId,
           })
         }
         if (ev.code === WS_SERVER_CLOSE_CODE_NO_RETRY) {
@@ -123,16 +130,18 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
             resolve(message)
           } catch (err) {
             const { message, name, stack = 'unknown' } = err as Error
+            const authorized = getIsAuthenticated()
+            const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
             sendToGTM({
-              event: 'socket-error',
+              event: 'websocket-error',
               api: `${env.wsUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? 'unknown').events}`,
-              authorized: isAuthenticated ?? false,
+              authorized,
               message: message,
               name,
               stack,
               state: 'on-open',
               params: message,
-              workspaceId: selectedWorkspace?.id ?? 'unknown',
+              workspaceId,
             })
             reject(err)
           }
@@ -175,7 +184,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
     } else {
       noRetry.current = false
     }
-  }, [selectedWorkspace?.id, isAuthenticated, logout, sendToGTM])
+  }, [selectedWorkspace?.id, isAuthenticated, logout])
 
   return (
     <WebSocketEventsContext.Provider value={{ addListener: handleAddListener, websocket, send: handleSendData }}>

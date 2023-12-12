@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useEffect, useReducer } from 'react'
 
 import { DataEventTypes, SnippetsParams } from './GoogleTagManagerTypes'
+import { gtmDispatch, setGTMDispatch } from './gtmDispatch'
 import { initGTM } from './initGTM'
 import { sendToGTM } from './sendToGTM'
 
@@ -47,15 +48,20 @@ export const GTMProvider = ({ state, children }: GTMHookProviderProps) => {
 
   useEffect(() => {
     if (!state || state.injectScript == false) return
-    const mergedState = { ...store, ...state }
+    const mergedState = { ...initialState, ...state }
 
     initGTM(mergedState)
+    setGTMDispatch(dispatch)
+
+    return () => {
+      setGTMDispatch(() => {})
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(state)])
 
   return (
     <GTMContext.Provider value={store}>
-      <GTMContextDispatch.Provider value={state ? dispatch : () => {}}>{children}</GTMContextDispatch.Provider>
+      <GTMContextDispatch.Provider value={gtmDispatch}>{children}</GTMContextDispatch.Provider>
     </GTMContext.Provider>
   )
 }
