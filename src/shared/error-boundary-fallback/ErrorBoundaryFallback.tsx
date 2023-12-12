@@ -28,8 +28,8 @@ export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackPro
   const navigate = useAbsoluteNavigate()
 
   useEffect(() => {
-    if (!('isAxiosError' in error && error.isAxiosError)) {
-      const { message, name, stack } = error as Error
+    if (!('isAxiosError' in error) || !error.isAxiosError) {
+      const { message, name, stack } = error
       const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
       const authorized = isAuthenticated() || false
       sendToGTM({
