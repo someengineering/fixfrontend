@@ -1,15 +1,15 @@
 import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Divider, Skeleton, Typography } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Box, Divider, Typography } from '@mui/material'
 import { Suspense, useEffect, useRef } from 'react'
 import { useEvents } from 'src/core/events'
+import { SetupCloudButton } from 'src/pages/panel/shared/setup-cloud-button'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { setInitiated } from 'src/shared/utils/localstorage'
 import { ExternalId } from './ExternalId'
 import { ExternalIdSkeleton } from './ExternalId.skeleton'
-import { SetupCloudButton } from './SetupCloudButton'
 import { SetupTemplateButton } from './SetupTemplateButton'
 import { SetupTemplateButtonSkeleton } from './SetupTemplateButton.skeleton'
 import { TenantId } from './TenantId'
@@ -75,19 +75,7 @@ export default function SetupCloud() {
         />
       </Box>
       <Box py={3}>
-        <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-          <Suspense
-            fallback={
-              <Skeleton variant="rounded">
-                <Button>
-                  <Trans>Deploy Stack</Trans>
-                </Button>
-              </Skeleton>
-            }
-          >
-            <SetupCloudButton />
-          </Suspense>
-        </NetworkErrorBoundary>
+        <SetupCloudButton size="large" variant="contained" />
       </Box>
       <Typography variant="body1" my={1}>
         <Trans>
