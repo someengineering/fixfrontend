@@ -85,7 +85,7 @@ msgstr "Füge ein Konto hinzu"
 msgid "Added accounts"
 msgstr "Konten hinzugefügt"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:195
+#: src/pages/panel/inventory/ResourceDetail.tsx:194
 msgid "Age"
 msgstr "Alter"
 
@@ -117,7 +117,7 @@ msgstr "Automatisches Cloud Setup"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:181
+#: src/pages/panel/inventory/ResourceDetail.tsx:180
 msgid "Basic Information"
 msgstr "Grundinformation"
 
@@ -182,7 +182,7 @@ msgstr "In die Zwischenablage kopiert!"
 msgid "Copy"
 msgstr "Kopieren"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:191
+#: src/pages/panel/inventory/ResourceDetail.tsx:190
 msgid "Created Time"
 msgstr "Erstellte Zeit"
 
@@ -214,7 +214,7 @@ msgstr "Löschen"
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:223
+#: src/pages/panel/inventory/ResourceDetail.tsx:222
 msgid "Details"
 msgstr "Einzelheiten"
 
@@ -295,7 +295,7 @@ msgstr "Wie repariert man"
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:41
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:41
 #: src/pages/panel/home/AccountCard.tsx:30
-#: src/pages/panel/inventory/ResourceDetail.tsx:188
+#: src/pages/panel/inventory/ResourceDetail.tsx:187
 msgid "ID"
 msgstr "ID"
 
@@ -307,8 +307,8 @@ msgstr "Verbessert"
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS Konto ein."
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:328
-#: src/pages/panel/inventory/InventoryFormFilterRowStringValue.tsx:215
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:314
+#: src/pages/panel/inventory/InventoryFormFilterRowStringValue.tsx:214
 msgid "Invalid Value"
 msgstr "Ungültiger Wert"
 
@@ -316,11 +316,11 @@ msgstr "Ungültiger Wert"
 msgid "Inventory"
 msgstr "Inventar"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:187
+#: src/pages/panel/inventory/ResourceDetail.tsx:186
 msgid "Kind"
 msgstr "Art"
 
-#: src/pages/panel/inventory/InventoryForm.tsx:220
+#: src/pages/panel/inventory/InventoryForm.tsx:218
 msgid "Kinds"
 msgstr "Arten"
 
@@ -361,7 +361,7 @@ msgstr "Am meisten verbesserte Ressourcen"
 #: src/pages/panel/accounts/AccountsTableItem.tsx:44
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:44
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:44
-#: src/pages/panel/inventory/ResourceDetail.tsx:189
+#: src/pages/panel/inventory/ResourceDetail.tsx:188
 msgid "Name"
 msgstr "Name"
 
@@ -446,7 +446,7 @@ msgstr "Privilegiertes Konto"
 msgid "Profile"
 msgstr "Profil"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:346
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:332
 msgid "Property"
 msgstr "Eigentum"
 
@@ -472,7 +472,7 @@ msgstr "Ressourcen"
 msgid "Risk"
 msgstr "Risiko"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:243
+#: src/pages/panel/inventory/ResourceDetail.tsx:242
 msgid "Security Issues"
 msgstr "Sicherheitsprobleme"
 
@@ -516,8 +516,8 @@ msgstr "Einfacher und erschwinglicher Einblick in die Sicherheitslage Ihrer Clou
 msgid "Submit"
 msgstr "Einreichen"
 
-#: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:87
-#: src/pages/panel/inventory/ResourceDetail.tsx:209
+#: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:86
+#: src/pages/panel/inventory/ResourceDetail.tsx:208
 msgid "Tags"
 msgstr "Stichworte"
 

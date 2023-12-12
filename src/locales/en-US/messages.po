@@ -85,7 +85,7 @@ msgstr "Add an account"
 msgid "Added accounts"
 msgstr "Added accounts"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:195
+#: src/pages/panel/inventory/ResourceDetail.tsx:194
 msgid "Age"
 msgstr "Age"
 
@@ -117,7 +117,7 @@ msgstr "Automatic Cloud Setup"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace has been successfully subscribed"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:181
+#: src/pages/panel/inventory/ResourceDetail.tsx:180
 msgid "Basic Information"
 msgstr "Basic Information"
 
@@ -182,7 +182,7 @@ msgstr "Copied to Clipboard!"
 msgid "Copy"
 msgstr "Copy"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:191
+#: src/pages/panel/inventory/ResourceDetail.tsx:190
 msgid "Created Time"
 msgstr "Created Time"
 
@@ -214,7 +214,7 @@ msgstr "Delete"
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:223
+#: src/pages/panel/inventory/ResourceDetail.tsx:222
 msgid "Details"
 msgstr "Details"
 
@@ -295,7 +295,7 @@ msgstr "How to fix"
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:41
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:41
 #: src/pages/panel/home/AccountCard.tsx:30
-#: src/pages/panel/inventory/ResourceDetail.tsx:188
+#: src/pages/panel/inventory/ResourceDetail.tsx:187
 msgid "ID"
 msgstr "ID"
 
@@ -307,8 +307,8 @@ msgstr "Improved"
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:328
-#: src/pages/panel/inventory/InventoryFormFilterRowStringValue.tsx:215
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:314
+#: src/pages/panel/inventory/InventoryFormFilterRowStringValue.tsx:214
 msgid "Invalid Value"
 msgstr "Invalid Value"
 
@@ -316,11 +316,11 @@ msgstr "Invalid Value"
 msgid "Inventory"
 msgstr "Inventory"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:187
+#: src/pages/panel/inventory/ResourceDetail.tsx:186
 msgid "Kind"
 msgstr "Kind"
 
-#: src/pages/panel/inventory/InventoryForm.tsx:220
+#: src/pages/panel/inventory/InventoryForm.tsx:218
 msgid "Kinds"
 msgstr "Kinds"
 
@@ -361,7 +361,7 @@ msgstr "Most Improved Resources"
 #: src/pages/panel/accounts/AccountsTableItem.tsx:44
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:44
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:44
-#: src/pages/panel/inventory/ResourceDetail.tsx:189
+#: src/pages/panel/inventory/ResourceDetail.tsx:188
 msgid "Name"
 msgstr "Name"
 
@@ -446,7 +446,7 @@ msgstr "Privileged account"
 msgid "Profile"
 msgstr "Profile"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:346
+#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:332
 msgid "Property"
 msgstr "Property"
 
@@ -472,7 +472,7 @@ msgstr "Resources"
 msgid "Risk"
 msgstr "Risk"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:243
+#: src/pages/panel/inventory/ResourceDetail.tsx:242
 msgid "Security Issues"
 msgstr "Security Issues"
 
@@ -516,8 +516,8 @@ msgstr "Simple and affordable visibility into your cloud security posture."
 msgid "Submit"
 msgstr "Submit"
 
-#: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:87
-#: src/pages/panel/inventory/ResourceDetail.tsx:209
+#: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:86
+#: src/pages/panel/inventory/ResourceDetail.tsx:208
 msgid "Tags"
 msgstr "Tags"
 
