@@ -115,12 +115,13 @@ export const InventoryFormFilterRow = ({
   const kinds = useMemo(() => preItems.kinds.map((i) => i.value), [preItems.kinds])
 
   return (
-    <Stack direction="row" spacing={1}>
+    <Stack direction={{ xs: 'column', lg: 'row' }} spacing={1}>
       <InventoryFormFilterRowProperty defaultValue={item.property} onChange={handleChange} selectedKind={kind} kinds={kinds} />
       {currentOpTypes ? (
         <>
           <Select
             size="small"
+            sx={{ width: 100 }}
             value={item.op && (currentOpTypes as readonly string[]).includes(item.op) ? item.op : ''}
             onChange={(e) => handleChange({ op: e.target.value as OPType })}
             autoFocus
