@@ -1,6 +1,7 @@
 import { Trans } from '@lingui/macro'
 import BuildIcon from '@mui/icons-material/Build'
 import { Button, Divider, Link, Modal, Stack, Typography, styled } from '@mui/material'
+import { AxiosError } from 'axios'
 import { useEffect } from 'react'
 import { FallbackProps } from 'react-error-boundary'
 import { DiscrodIcon } from 'src/assets/icons'
@@ -28,8 +29,8 @@ export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackPro
   const navigate = useAbsoluteNavigate()
 
   useEffect(() => {
-    if (!('isAxiosError' in error) || !error.isAxiosError) {
-      const { message, name, stack } = error
+    if (!('isAxiosError' in error) || !(error as AxiosError).isAxiosError) {
+      const { message, name, stack } = error as Error
       const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
       const authorized = isAuthenticated() || false
       sendToGTM({
