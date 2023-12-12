@@ -445,7 +445,6 @@ msgstr "Property"
 msgid "Recently added accounts"
 msgstr "Recently added accounts"
 
-
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:88
 msgid "Regions"
 msgstr "Regions"
