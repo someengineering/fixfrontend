@@ -70,7 +70,7 @@ export const Providers = ({ children }: PropsWithChildren) => {
         setGtmId(envStr === 'prd' ? (env.gtmId = import.meta.env.VITE_GTM_PROD_ID) : (env.gtmId = import.meta.env.VITE_GTM_DEV_ID))
       })
       .catch(() => {})
-  })
+  }, [])
 
   return (
     <GTMProvider state={gtmId ? { id: gtmId } : undefined}>
