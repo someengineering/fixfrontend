@@ -4,7 +4,7 @@ import { Box, Button, Typography, useTheme } from '@mui/material'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
 
-export const TenantId = () => {
+export const WorkspaceId = () => {
   const theme = useTheme()
   const { showSnackbar } = useSnackbar()
   const { selectedWorkspace } = useUserProfile()
