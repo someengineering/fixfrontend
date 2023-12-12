@@ -53,8 +53,8 @@ msgstr "{0} Milliseconds"
 msgid "© 2023 Some Engineering Inc. All rights reserved."
 msgstr "© 2023 Some Engineering Inc. All rights reserved."
 
-#: src/pages/panel/accounts/AccountRow.tsx:172
-#: src/pages/panel/accounts/AccountRow.tsx:272
+#: src/pages/panel/accounts/AccountRow.tsx:184
+#: src/pages/panel/accounts/AccountRow.tsx:284
 msgid "Access to your account is broken"
 msgstr "Access to your account is broken"
 
@@ -105,7 +105,7 @@ msgstr "Alternatively: Manual Cloud Setup"
 msgid "and"
 msgstr "and"
 
-#: src/pages/panel/accounts/AccountRow.tsx:286
+#: src/pages/panel/accounts/AccountRow.tsx:298
 msgid "Are you sure?"
 msgstr "Are you sure?"
 
@@ -125,10 +125,10 @@ msgstr "Basic Information"
 msgid "Benchmarks"
 msgstr "Benchmarks"
 
-#: src/pages/panel/accounts/AccountRow.tsx:218
-#: src/pages/panel/accounts/AccountRow.tsx:222
-#: src/pages/panel/accounts/AccountRow.tsx:223
-#: src/pages/panel/accounts/AccountRow.tsx:305
+#: src/pages/panel/accounts/AccountRow.tsx:230
+#: src/pages/panel/accounts/AccountRow.tsx:234
+#: src/pages/panel/accounts/AccountRow.tsx:235
+#: src/pages/panel/accounts/AccountRow.tsx:317
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -140,7 +140,7 @@ msgstr "Changes in the past 7 days"
 #~ msgid "Check"
 #~ msgstr "Check"
 
-#: src/pages/panel/accounts/AccountRow.tsx:325
+#: src/pages/panel/accounts/AccountRow.tsx:337
 #: src/pages/panel/accounts/AccountsTableItem.tsx:38
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:38
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:38
@@ -202,10 +202,10 @@ msgstr "Date Picker"
 msgid "Date Time Picker"
 msgstr "Date Time Picker"
 
-#: src/pages/panel/accounts/AccountRow.tsx:260
-#: src/pages/panel/accounts/AccountRow.tsx:264
-#: src/pages/panel/accounts/AccountRow.tsx:265
-#: src/pages/panel/accounts/AccountRow.tsx:316
+#: src/pages/panel/accounts/AccountRow.tsx:272
+#: src/pages/panel/accounts/AccountRow.tsx:276
+#: src/pages/panel/accounts/AccountRow.tsx:277
+#: src/pages/panel/accounts/AccountRow.tsx:328
 msgid "Delete"
 msgstr "Delete"
 
@@ -224,7 +224,7 @@ msgstr "Details"
 msgid "Discovered but unconfigured accounts"
 msgstr "Discovered but unconfigured accounts"
 
-#: src/pages/panel/accounts/AccountRow.tsx:289
+#: src/pages/panel/accounts/AccountRow.tsx:301
 msgid "Do you want to delete this account?"
 msgstr "Do you want to delete this account?"
 
@@ -232,8 +232,8 @@ msgstr "Do you want to delete this account?"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Don't have an account? Click here to Sign up."
 
-#: src/pages/panel/accounts/AccountRow.tsx:234
-#: src/pages/panel/accounts/AccountRow.tsx:235
+#: src/pages/panel/accounts/AccountRow.tsx:246
+#: src/pages/panel/accounts/AccountRow.tsx:247
 msgid "Edit"
 msgstr "Edit"
 
@@ -290,7 +290,7 @@ msgstr "Homepage"
 msgid "How to fix"
 msgstr "How to fix"
 
-#: src/pages/panel/accounts/AccountRow.tsx:322
+#: src/pages/panel/accounts/AccountRow.tsx:334
 #: src/pages/panel/accounts/AccountsTableItem.tsx:41
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:41
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:41
@@ -357,7 +357,7 @@ msgstr "More info"
 msgid "Most Improved Resources"
 msgstr "Most Improved Resources"
 
-#: src/pages/panel/accounts/AccountRow.tsx:328
+#: src/pages/panel/accounts/AccountRow.tsx:340
 #: src/pages/panel/accounts/AccountsTableItem.tsx:44
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:44
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:44
@@ -383,7 +383,7 @@ msgstr "Next scan"
 #~ msgid "No changes"
 #~ msgstr "No changes"
 
-#: src/pages/panel/accounts/AccountRow.tsx:292
+#: src/pages/panel/accounts/AccountRow.tsx:304
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 
@@ -438,7 +438,7 @@ msgstr "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgid "Privileged"
 msgstr "Privileged"
 
-#: src/pages/panel/accounts/AccountRow.tsx:167
+#: src/pages/panel/accounts/AccountRow.tsx:179
 msgid "Privileged account"
 msgstr "Privileged account"
 
@@ -510,9 +510,9 @@ msgstr "Simple and affordable visibility into your cloud security posture."
 #~ msgid "Since {since}"
 #~ msgstr "Since {since}"
 
-#: src/pages/panel/accounts/AccountRow.tsx:207
-#: src/pages/panel/accounts/AccountRow.tsx:208
-#: src/pages/panel/accounts/AccountRow.tsx:213
+#: src/pages/panel/accounts/AccountRow.tsx:219
+#: src/pages/panel/accounts/AccountRow.tsx:220
+#: src/pages/panel/accounts/AccountRow.tsx:225
 msgid "Submit"
 msgstr "Submit"
 
@@ -525,7 +525,7 @@ msgstr "Tags"
 #~ msgid "Task \"{0}\" with workflow \"{1}\" failed: {2}"
 #~ msgstr "Task \"{0}\" with workflow \"{1}\" failed: {2}"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:115
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:103
 msgid "The Stack requires the following parameters"
 msgstr "The Stack requires the following parameters"
 
@@ -533,7 +533,7 @@ msgstr "The Stack requires the following parameters"
 msgid "There's no account configured for this workspace."
 msgstr "There's no account configured for this workspace."
 
-#: src/pages/panel/accounts/AccountRow.tsx:278
+#: src/pages/panel/accounts/AccountRow.tsx:290
 msgid "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 msgstr "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 
@@ -587,7 +587,7 @@ msgstr "We're sorry for the inconvenience. Our team has been notified, and the i
 msgid "We've identified {0} non-compliant resources out of {1} through {2} {3}-severity security checks."
 msgstr "We've identified {0} non-compliant resources out of {1} through {2} {3}-severity security checks."
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:144
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:132
 msgid "Workspace Id"
 msgstr "Workspace Id"
 
