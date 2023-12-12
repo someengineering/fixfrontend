@@ -17,7 +17,7 @@ const ModalContent = styled(Stack)(({ theme, width }) => ({
   transform: 'translate(-50%, -50%)',
   minWidth: width ? undefined : panelUI.minModalWidth,
   width: width ? (typeof width === 'number' ? width + 'px' : (width as string)) : undefined,
-  maxWidth: `calc(100% - ${theme.spacing(2)}px)`,
+  maxWidth: `calc(100% - ${theme.spacing(2)})`,
   backgroundColor: theme.palette.background.paper,
   borderRadius: 4,
   boxShadow: theme.shadows['24'],
