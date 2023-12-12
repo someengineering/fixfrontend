@@ -37,7 +37,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
 }: InventoryFormFilterRowStringValueProps<Multiple, NetworkDisabled>) {
   const { selectedWorkspace } = useUserProfile()
   const [hasFocus, setHasFocus] = useState(false)
-  const [typed, setTyped] = useState('')
+  const [typed, setTyped] = useState(value && !Array.isArray(value) ? value.label : '')
   const debouncedTyped = useDebounce(networkDisabled ? '' : typed, panelUI.fastInputChangeDebounce)
   const slectedTyped = useRef('')
   const {
@@ -114,7 +114,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
 
   const hasError = Boolean(!hasFocus && typed && (Array.isArray(value) ? !value.length : !value))
 
-  const autoCompleteIsLoading = isLoading || debouncedTyped !== typed
+  const autoCompleteIsLoading = isLoading || (!networkDisabled && debouncedTyped !== typed)
 
   return (
     <Autocomplete

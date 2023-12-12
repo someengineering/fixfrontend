@@ -1,7 +1,8 @@
 import { t } from '@lingui/macro'
 import MenuIcon from '@mui/icons-material/Menu'
-import { Box, IconButton, AppBar as MuiAppBar, Toolbar, styled } from '@mui/material'
+import { Box, ButtonBase, IconButton, AppBar as MuiAppBar, Toolbar, styled } from '@mui/material'
 import { PropsWithChildren, MouseEvent as ReactMouseEvent } from 'react'
+import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { DarkModeSwitch } from 'src/shared/dark-mode-switch'
 import { EventButton } from 'src/shared/event-button'
@@ -61,6 +62,7 @@ const AppBarActions = styled(Box)(({ theme }) => ({
 }))
 
 export const PanelAppBar = ({ children, open, isDesktop, onDrawerOpen, onDrawerToggle }: PanelAppBarProps) => {
+  const navigate = useAbsoluteNavigate()
   const Content = (
     <AppBar position="fixed" open={open} isDesktop={isDesktop}>
       <Toolbar>
@@ -74,7 +76,11 @@ export const PanelAppBar = ({ children, open, isDesktop, onDrawerOpen, onDrawerT
         >
           <MenuIcon />
         </MenuIconButton>
-        {!open || !isDesktop ? <AppBarLogo>{children}</AppBarLogo> : null}
+        {!open || !isDesktop ? (
+          <ButtonBase onClick={() => navigate('/')}>
+            <AppBarLogo>{children}</AppBarLogo>
+          </ButtonBase>
+        ) : null}
         <AppBarActions>
           <DarkModeSwitch whiteMode />
           <EventButton />

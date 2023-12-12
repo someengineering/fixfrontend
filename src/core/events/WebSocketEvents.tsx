@@ -5,6 +5,7 @@ import { WebSocketEvent } from 'src/shared/types/server'
 import { WebSocketEventsContext } from './WebSocketEventsContext'
 
 const WS_CLOSE_CODE_NO_RETRY = 4001
+const WS_SERVER_CLOSE_CODE_NO_RETRY = 4401
 
 export const WebSocketEvents = ({ children }: PropsWithChildren) => {
   const { selectedWorkspace, isAuthenticated, logout } = useUserProfile()
@@ -25,13 +26,8 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
       const randomId = `${Math.random()}|${id}`
       listeners.current[randomId] = (ev: MessageEvent<string>) => {
         try {
-          const message = JSON.parse(ev.data) as WebSocketEvent | { error: 'Unauthorized' }
-          if ('error' in message && message.error === 'Unauthorized') {
-            noRetry.current = true
-            void logout()
-          } else {
-            onMessage(message as WebSocketEvent)
-          }
+          const message = JSON.parse(ev.data) as WebSocketEvent
+          onMessage(message)
         } catch {
           /* empty */
         }
@@ -41,7 +37,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
       }
       return () => handleRemoveListener(randomId)
     },
-    [handleRemoveListener, logout],
+    [handleRemoveListener],
   )
 
   const handleSendData = useCallback((data: WebSocketEvent) => {
@@ -69,7 +65,9 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
     if (isAuthenticated && selectedWorkspace?.id) {
       let retryTimeout = env.webSocketRetryTimeout
       const onClose = (ev: CloseEvent) => {
-        if (ev.code !== WS_CLOSE_CODE_NO_RETRY && !noRetry.current) {
+        if (ev.code === WS_SERVER_CLOSE_CODE_NO_RETRY) {
+          void logout()
+        } else if (ev.code !== WS_CLOSE_CODE_NO_RETRY && !noRetry.current) {
           if (isAuthenticated && selectedWorkspace?.id) {
             window.setTimeout(createWebSocket, retryTimeout)
             retryTimeout *= 2
@@ -123,7 +121,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
     } else {
       noRetry.current = false
     }
-  }, [selectedWorkspace?.id, isAuthenticated])
+  }, [selectedWorkspace?.id, isAuthenticated, logout])
 
   return (
     <WebSocketEventsContext.Provider value={{ addListener: handleAddListener, websocket, send: handleSendData }}>

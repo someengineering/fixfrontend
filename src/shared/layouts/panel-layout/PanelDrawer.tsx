@@ -1,6 +1,7 @@
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import { Divider, DrawerProps, IconButton, Drawer as MuiDrawer, drawerClasses, styled } from '@mui/material'
+import { ButtonBase, Divider, DrawerProps, IconButton, Drawer as MuiDrawer, drawerClasses, styled } from '@mui/material'
 import { PropsWithChildren, MouseEvent as ReactMouseEvent } from 'react'
+import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { drawerClosedMixin, drawerOpenedMixin } from 'src/shared/utils/mixins'
 import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
@@ -40,10 +41,11 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }))
 
 const DrawerContent = ({ children, onDrawerClose, open, isDesktop }: PanelAppBarProps) => {
+  const navigate = useAbsoluteNavigate()
   return (
     <>
       <DrawerHeader>
-        <IconButton>{children}</IconButton>
+        <ButtonBase onClick={() => navigate('/')}>{children}</ButtonBase>
         <IconButton onClick={onDrawerClose}>
           <ChevronLeftIcon />
         </IconButton>
