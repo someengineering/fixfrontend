@@ -82,7 +82,13 @@ export const AccountRow = ({ account }: { account: Account }) => {
       renameAccount(
         { name: editedName || null, workspaceId: selectedWorkspace.id, id: account.id },
         {
-          onSuccess: replaceRowByAccount(queryClient, selectedWorkspace?.id),
+          onSuccess: (data) => {
+            void queryClient.invalidateQueries({
+              predicate: (query) =>
+                (typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts')) ?? false,
+            })
+            replaceRowByAccount(queryClient, data, selectedWorkspace?.id)
+          },
           onSettled: () => setIsEdit(false),
         },
       )
@@ -93,7 +99,13 @@ export const AccountRow = ({ account }: { account: Account }) => {
       return (checked ? enableAccount : disableAccount)(
         { workspaceId: selectedWorkspace.id, id: account.id },
         {
-          onSuccess: replaceRowByAccount(queryClient, selectedWorkspace?.id),
+          onSuccess: (data) => {
+            void queryClient.invalidateQueries({
+              predicate: (query) =>
+                (typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts')) ?? false,
+            })
+            replaceRowByAccount(queryClient, data, selectedWorkspace?.id)
+          },
         },
       )
     }
