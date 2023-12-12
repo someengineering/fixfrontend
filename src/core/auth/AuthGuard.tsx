@@ -116,7 +116,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
           if (error?.response?.status === 403 || error?.response?.status === 401) {
             return handleLogout()
           }
-          if (error?.isAxiosError) {
+          if ('isAxiosError' in error && error.isAxiosError) {
             const { response, name, message, cause, status, stack, config, code, toJSON } = error
             const request = error.request as unknown
             const authorized = isAuthenticated()
