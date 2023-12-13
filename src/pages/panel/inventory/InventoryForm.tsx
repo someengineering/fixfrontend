@@ -1,7 +1,8 @@
 import { Trans } from '@lingui/macro'
 import { Autocomplete, Box, Divider, Grid, Stack, TextField } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
-import { Dispatch, SetStateAction, useMemo } from 'react'
+import { AxiosError } from 'axios'
+import { Dispatch, SetStateAction, useEffect, useMemo } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { DefaultPropertiesKeys } from 'src/pages/panel/shared/constants'
 import { getWorkspaceInventorySearchStartQuery } from 'src/pages/panel/shared/queries'
@@ -9,7 +10,7 @@ import { isValidProp } from 'src/pages/panel/shared/utils'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { InventoryFormFilterRow } from './InventoryFormFilterRow'
 import { InventoryFormTemplateObject, InventoryFormTemplates } from './InventoryFormTemplates'
-import { InventoryAdvanceSearchConfig, getArrayFromInOP } from './utils'
+import { InventoryAdvanceSearchConfig, getArrayFromInOP, inventorySendToGTM } from './utils'
 
 interface InventoryFormProps {
   setConfig: Dispatch<SetStateAction<InventoryAdvanceSearchConfig[]>>
@@ -21,12 +22,17 @@ interface InventoryFormProps {
 
 export const InventoryForm = ({ searchCrit, kind, setKind, config, setConfig }: InventoryFormProps) => {
   const { selectedWorkspace } = useUserProfile()
-  const { data: originalStartData } = useQuery({
+  const { data: originalStartData, error } = useQuery({
     queryKey: ['workspace-inventory-search-start', selectedWorkspace?.id],
     queryFn: getWorkspaceInventorySearchStartQuery,
     throwOnError: false,
     enabled: !!selectedWorkspace?.id,
   })
+  useEffect(() => {
+    if (error) {
+      inventorySendToGTM('getWorkspaceInventorySearchStartQuery', false, error as AxiosError, '')
+    }
+  }, [error])
   const startData = useMemo(() => originalStartData ?? { accounts: [], kinds: [], regions: [], severity: [] }, [originalStartData])
   const processedStartData = useMemo(() => {
     const clouds: string[] = []

@@ -1,9 +1,11 @@
 import axios, { AxiosError, AxiosInstance } from 'axios'
 import { PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
+import { sendToGTM } from 'src/shared/google-tag-manager'
 import { GetWorkspaceResponse } from 'src/shared/types/server'
 import { axiosWithAuth, defaultAxiosConfig, setAxiosWithAuth } from 'src/shared/utils/axios'
 import { clearAllCookies, isAuthenticated } from 'src/shared/utils/cookie'
+import { jsonToStr } from 'src/shared/utils/jsonToStr'
 import { getAuthData, setAuthData } from 'src/shared/utils/localstorage'
 import { UserContext, UserContextRealValues } from './UserContext'
 import { getCurrentUserMutation } from './getCurrentUser.mutation'
@@ -14,7 +16,7 @@ const defaultAuth = { isAuthenticated: false, workspaces: [], selectedWorkspace:
 
 export function AuthGuard({ children }: PropsWithChildren) {
   const [auth, setAuth] = useState<UserContextRealValues>(() => {
-    const selectedWorkspaceId = getAuthData()?.selectedWorkspace
+    const selectedWorkspaceId = getAuthData()?.selectedWorkspaceId
     return {
       ...defaultAuth,
       selectedWorkspace: selectedWorkspaceId
@@ -26,7 +28,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
             slug: '',
           }
         : undefined,
-      isAuthenticated: isAuthenticated() as false,
+      isAuthenticated: isAuthenticated(),
     }
   })
   const navigate = useAbsoluteNavigate()
@@ -92,11 +94,52 @@ export function AuthGuard({ children }: PropsWithChildren) {
         ...defaultAxiosConfig,
         withCredentials: true,
       })
+      instance.interceptors.request.use(
+        (request) => request,
+        (error: AxiosError | Error) => {
+          const { message, name, stack = 'unknown' } = error ?? {}
+          const authorized = isAuthenticated()
+          const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
+          sendToGTM({
+            event: 'error',
+            message: jsonToStr(message),
+            name: jsonToStr(name),
+            stack: jsonToStr(stack),
+            workspaceId,
+            authorized,
+          })
+        },
+      )
       instance.interceptors.response.use(
         (response) => response,
         async (error: AxiosError & { config: { _retry: boolean } | undefined }) => {
           if (error?.response?.status === 403 || error?.response?.status === 401) {
             return handleLogout()
+          }
+          if ('isAxiosError' in error && error.isAxiosError) {
+            const { response, name, message, cause, status, stack, config, code, toJSON } = error
+            const request = error.request as unknown
+            const authorized = isAuthenticated()
+            const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
+            sendToGTM({
+              event: 'network-error',
+              api: response?.config.url || 'unknown',
+              responseData: jsonToStr(response?.data) || '',
+              responseHeader: jsonToStr(response?.data) || '',
+              responseStatus: jsonToStr(response?.status) || '',
+              response: jsonToStr(response),
+              request: jsonToStr(request),
+              name: jsonToStr(name),
+              message: jsonToStr(message),
+              cause: jsonToStr(cause),
+              status: jsonToStr(status),
+              stack: jsonToStr(stack),
+              config: jsonToStr(config),
+              code: jsonToStr(code),
+              rest: jsonToStr(toJSON()),
+              workspaceId,
+              authorized,
+            })
           }
           throw error
         },
@@ -112,7 +155,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
   useEffect(() => {
     setAuthData({
       isAuthenticated: auth.isAuthenticated,
-      selectedWorkspace: auth.selectedWorkspace?.id,
+      selectedWorkspaceId: auth.selectedWorkspace?.id,
     })
     if (nextUrl.current && auth?.isAuthenticated) {
       navigate(nextUrl.current, { replace: true })

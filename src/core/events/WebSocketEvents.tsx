@@ -1,7 +1,10 @@
 import { PropsWithChildren, useCallback, useEffect, useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { endPoints, env } from 'src/shared/constants'
+import { sendToGTM } from 'src/shared/google-tag-manager'
 import { WebSocketEvent } from 'src/shared/types/server'
+import { isAuthenticated as getIsAuthenticated } from 'src/shared/utils/cookie'
+import { getAuthData } from 'src/shared/utils/localstorage'
 import { WebSocketEventsContext } from './WebSocketEventsContext'
 
 const WS_CLOSE_CODE_NO_RETRY = 4001
@@ -28,8 +31,21 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
         try {
           const message = JSON.parse(ev.data) as WebSocketEvent
           onMessage(message)
-        } catch {
-          /* empty */
+        } catch (err) {
+          const { message, name, stack = 'unknown' } = err as Error
+          const authorized = getIsAuthenticated()
+          const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
+          sendToGTM({
+            event: 'websocket-error',
+            api: `${env.wsUrl}/${endPoints.workspaces.workspace(workspaceId).events}`,
+            message: message,
+            name,
+            stack,
+            state: 'on-message',
+            params: ev.data,
+            authorized,
+            workspaceId,
+          })
         }
       }
       if (websocket.current) {
@@ -56,6 +72,20 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
           messagesToSend.current.push({ message, resolve, reject })
         }
       } catch (err) {
+        const { message, name, stack = 'unknown' } = err as Error
+        const authorized = getIsAuthenticated()
+        const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
+        sendToGTM({
+          event: 'websocket-error',
+          api: `${env.wsUrl}/${endPoints.workspaces.workspace(workspaceId).events}`,
+          authorized,
+          message: message,
+          name,
+          stack,
+          state: 'send-message',
+          params: message,
+          workspaceId,
+        })
         reject(err)
       }
     })
@@ -65,6 +95,22 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
     if (isAuthenticated && selectedWorkspace?.id) {
       let retryTimeout = env.webSocketRetryTimeout
       const onClose = (ev: CloseEvent) => {
+        if (ev.code !== 1000) {
+          const { stack = 'unknown', name, message } = Error('Websocket connection closed')
+          const authorized = getIsAuthenticated()
+          const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
+          sendToGTM({
+            event: 'websocket-error',
+            api: `${env.wsUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? 'unknown').events}`,
+            authorized,
+            message,
+            name,
+            stack,
+            state: 'on-open',
+            params: `reason: ${ev.reason}, code: ${ev.code}, was clean: ${ev.wasClean}`,
+            workspaceId,
+          })
+        }
         if (ev.code === WS_SERVER_CLOSE_CODE_NO_RETRY) {
           void logout()
         } else if (ev.code !== WS_CLOSE_CODE_NO_RETRY && !noRetry.current) {
@@ -80,6 +126,20 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
             websocket.current?.send(message)
             resolve(message)
           } catch (err) {
+            const { message, name, stack = 'unknown' } = err as Error
+            const authorized = getIsAuthenticated()
+            const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
+            sendToGTM({
+              event: 'websocket-error',
+              api: `${env.wsUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? 'unknown').events}`,
+              authorized,
+              message: message,
+              name,
+              stack,
+              state: 'on-open',
+              params: message,
+              workspaceId,
+            })
             reject(err)
           }
         }

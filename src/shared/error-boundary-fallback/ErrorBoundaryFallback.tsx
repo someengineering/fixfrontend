@@ -1,11 +1,16 @@
 import { Trans } from '@lingui/macro'
 import BuildIcon from '@mui/icons-material/Build'
 import { Button, Divider, Link, Modal, Stack, Typography, styled } from '@mui/material'
+import { AxiosError } from 'axios'
 import { useEffect } from 'react'
 import { FallbackProps } from 'react-error-boundary'
 import { DiscrodIcon } from 'src/assets/icons'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { env } from 'src/shared/constants'
+import { sendToGTM } from 'src/shared/google-tag-manager'
+import { isAuthenticated } from 'src/shared/utils/cookie'
+import { jsonToStr } from 'src/shared/utils/jsonToStr'
+import { getAuthData } from 'src/shared/utils/localstorage'
 
 const ModalContent = styled(Stack)(({ theme }) => ({
   position: 'absolute',
@@ -24,7 +29,19 @@ export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackPro
   const navigate = useAbsoluteNavigate()
 
   useEffect(() => {
-    console.error(error)
+    if (!('isAxiosError' in error) || !(error as AxiosError).isAxiosError) {
+      const { message, name, stack } = error as Error
+      const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
+      const authorized = isAuthenticated() || false
+      sendToGTM({
+        event: 'error',
+        message: jsonToStr(message),
+        name: jsonToStr(name),
+        stack: jsonToStr(stack),
+        workspaceId,
+        authorized,
+      })
+    }
   }, [error])
 
   return (

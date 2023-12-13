@@ -2,12 +2,14 @@ import { t } from '@lingui/macro'
 import { Autocomplete, AutocompleteProps, CircularProgress, TextField, TypographyProps } from '@mui/material'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useDebounce } from '@uidotdev/usehooks'
-import { ChangeEvent, ReactNode, UIEvent as ReactUIEvent, useMemo, useRef, useState } from 'react'
+import { AxiosError } from 'axios'
+import { ChangeEvent, ReactNode, UIEvent as ReactUIEvent, useEffect, useMemo, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryPropertyValuesQuery } from 'src/pages/panel/shared/queries'
 import { panelUI } from 'src/shared/constants'
 import { ListboxComponent } from 'src/shared/react-window'
 import { AutoCompleteValue } from 'src/shared/types/shared'
+import { inventorySendToGTM } from './utils'
 
 const ITEMS_PER_PAGE = 50
 
@@ -46,6 +48,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
+    error,
   } = useInfiniteQuery({
     queryKey: [
       'workspace-inventory-property-values',
@@ -67,6 +70,20 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
     throwOnError: false,
     enabled: !!(selectedWorkspace?.id && !networkDisabled),
   })
+  useEffect(() => {
+    if (error) {
+      inventorySendToGTM('getWorkspaceInventoryPropertyValuesQuery', false, error as AxiosError, {
+        workspaceId: selectedWorkspace?.id,
+        query:
+          debouncedTyped &&
+          (!slectedTyped.current || slectedTyped.current !== debouncedTyped) &&
+          (!value || (Array.isArray(value) ? !value.find((i) => i.label === debouncedTyped) : value.label !== debouncedTyped))
+            ? `${searchCrit} and ${propertyName} ~ ".*${debouncedTyped}.*"`
+            : searchCrit,
+        prop: propertyName,
+      })
+    }
+  }, [debouncedTyped, error, propertyName, searchCrit, selectedWorkspace?.id, value])
   const flatData = useMemo(
     () =>
       data?.pages

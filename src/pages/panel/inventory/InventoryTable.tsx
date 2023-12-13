@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
+import { sendToGTM } from 'src/shared/google-tag-manager'
 import { TablePagination, TableViewPage } from 'src/shared/layouts/panel-layout'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import {
@@ -11,6 +12,8 @@ import {
   GetWorkspaceInventorySearchTableResponse,
   GetWorkspaceInventorySearchTableRow,
 } from 'src/shared/types/server'
+import { isAuthenticated as getIsAuthenticated } from 'src/shared/utils/cookie'
+import { getAuthData } from 'src/shared/utils/localstorage'
 import { InventoryRow } from './InventoryRow'
 import { ResourceDetail } from './ResourceDetail'
 
@@ -59,6 +62,14 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       setPage(0)
     }
     initializedRef.current = true
+    const authorized = getIsAuthenticated()
+    const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
+    sendToGTM({
+      event: 'inventory-search',
+      authorized,
+      q: searchCrit,
+      workspaceId,
+    })
   }, [searchCrit])
 
   useEffect(() => {

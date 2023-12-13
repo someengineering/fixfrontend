@@ -20,9 +20,9 @@ function setStorageObject<ObjectType>(key: StorageKeys, obj?: ObjectType) {
   }
 }
 
-export const getAuthData = () => getStorageObject<{ isAuthenticated: boolean; selectedWorkspace: string }>(StorageKeys.authData)
+export const getAuthData = () => getStorageObject<{ isAuthenticated: boolean; selectedWorkspaceId: string }>(StorageKeys.authData)
 
-export const setAuthData = (authData?: { isAuthenticated: boolean; selectedWorkspace?: string }) =>
+export const setAuthData = (authData?: { isAuthenticated: boolean; selectedWorkspaceId?: string }) =>
   setStorageObject(StorageKeys.authData, authData)
 
 export const getLocale = () => getStorageObject<string>(StorageKeys.locale)
