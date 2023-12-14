@@ -19,8 +19,8 @@ import {
 } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
-import { SetupCloudButton } from 'src/pages/panel/shared/setup-cloud-button'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { Modal } from 'src/shared/modal'
 import { Account, GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
@@ -165,6 +165,14 @@ export const AccountRow = ({ account }: { account: Account }) => {
                 (typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts')) ?? false,
             })
           },
+          onError: () => {
+            void queryClient.invalidateQueries({
+              predicate: (query) => (typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace')) ?? false,
+            })
+          },
+          onSettled: () => {
+            showDeleteModalRef.current?.(false)
+          },
         },
       )
     }
@@ -284,7 +292,11 @@ export const AccountRow = ({ account }: { account: Account }) => {
         title={<Trans>Access to your account is broken</Trans>}
         width={550}
         openRef={showDegradedModalRef}
-        actions={<SetupCloudButton variant="outlined" />}
+        actions={
+          <Button variant="outlined" component={Link} to="/setup-cloud">
+            <Trans>Deploy Stack</Trans>
+          </Button>
+        }
       >
         <Typography>
           <Trans>
