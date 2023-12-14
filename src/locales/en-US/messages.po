@@ -53,8 +53,8 @@ msgstr "{0} Milliseconds"
 msgid "© 2023 Some Engineering Inc. All rights reserved."
 msgstr "© 2023 Some Engineering Inc. All rights reserved."
 
-#: src/pages/panel/accounts/AccountRow.tsx:184
-#: src/pages/panel/accounts/AccountRow.tsx:284
+#: src/pages/panel/accounts/AccountRow.tsx:192
+#: src/pages/panel/accounts/AccountRow.tsx:292
 msgid "Access to your account is broken"
 msgstr "Access to your account is broken"
 
@@ -105,7 +105,7 @@ msgstr "Alternatively: Manual Cloud Setup"
 msgid "and"
 msgstr "and"
 
-#: src/pages/panel/accounts/AccountRow.tsx:298
+#: src/pages/panel/accounts/AccountRow.tsx:310
 msgid "Are you sure?"
 msgstr "Are you sure?"
 
@@ -125,10 +125,10 @@ msgstr "Basic Information"
 msgid "Benchmarks"
 msgstr "Benchmarks"
 
-#: src/pages/panel/accounts/AccountRow.tsx:230
-#: src/pages/panel/accounts/AccountRow.tsx:234
-#: src/pages/panel/accounts/AccountRow.tsx:235
-#: src/pages/panel/accounts/AccountRow.tsx:317
+#: src/pages/panel/accounts/AccountRow.tsx:238
+#: src/pages/panel/accounts/AccountRow.tsx:242
+#: src/pages/panel/accounts/AccountRow.tsx:243
+#: src/pages/panel/accounts/AccountRow.tsx:329
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -140,7 +140,7 @@ msgstr "Changes in the past 7 days"
 #~ msgid "Check"
 #~ msgstr "Check"
 
-#: src/pages/panel/accounts/AccountRow.tsx:337
+#: src/pages/panel/accounts/AccountRow.tsx:349
 #: src/pages/panel/accounts/AccountsTableItem.tsx:38
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:38
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:38
@@ -202,13 +202,14 @@ msgstr "Date Picker"
 msgid "Date Time Picker"
 msgstr "Date Time Picker"
 
-#: src/pages/panel/accounts/AccountRow.tsx:272
-#: src/pages/panel/accounts/AccountRow.tsx:276
-#: src/pages/panel/accounts/AccountRow.tsx:277
-#: src/pages/panel/accounts/AccountRow.tsx:328
+#: src/pages/panel/accounts/AccountRow.tsx:280
+#: src/pages/panel/accounts/AccountRow.tsx:284
+#: src/pages/panel/accounts/AccountRow.tsx:285
+#: src/pages/panel/accounts/AccountRow.tsx:340
 msgid "Delete"
 msgstr "Delete"
 
+#: src/pages/panel/accounts/AccountRow.tsx:297
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:13
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:29
 msgid "Deploy Stack"
@@ -224,7 +225,7 @@ msgstr "Details"
 msgid "Discovered but unconfigured accounts"
 msgstr "Discovered but unconfigured accounts"
 
-#: src/pages/panel/accounts/AccountRow.tsx:301
+#: src/pages/panel/accounts/AccountRow.tsx:313
 msgid "Do you want to delete this account?"
 msgstr "Do you want to delete this account?"
 
@@ -232,8 +233,8 @@ msgstr "Do you want to delete this account?"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Don't have an account? Click here to Sign up."
 
-#: src/pages/panel/accounts/AccountRow.tsx:246
-#: src/pages/panel/accounts/AccountRow.tsx:247
+#: src/pages/panel/accounts/AccountRow.tsx:254
+#: src/pages/panel/accounts/AccountRow.tsx:255
 msgid "Edit"
 msgstr "Edit"
 
@@ -282,7 +283,7 @@ msgstr "Go to resources"
 msgid "High"
 msgstr "High"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:74
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:75
 msgid "Homepage"
 msgstr "Homepage"
 
@@ -290,7 +291,7 @@ msgstr "Homepage"
 msgid "How to fix"
 msgstr "How to fix"
 
-#: src/pages/panel/accounts/AccountRow.tsx:334
+#: src/pages/panel/accounts/AccountRow.tsx:346
 #: src/pages/panel/accounts/AccountsTableItem.tsx:41
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:41
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:41
@@ -357,7 +358,7 @@ msgstr "More info"
 msgid "Most Improved Resources"
 msgstr "Most Improved Resources"
 
-#: src/pages/panel/accounts/AccountRow.tsx:340
+#: src/pages/panel/accounts/AccountRow.tsx:352
 #: src/pages/panel/accounts/AccountsTableItem.tsx:44
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:44
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:44
@@ -383,7 +384,7 @@ msgstr "Next scan"
 #~ msgid "No changes"
 #~ msgstr "No changes"
 
-#: src/pages/panel/accounts/AccountRow.tsx:304
+#: src/pages/panel/accounts/AccountRow.tsx:316
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 
@@ -400,7 +401,7 @@ msgstr "Null"
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Oops! It looks like your query didn't match our format. Please check and try again."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:51
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:52
 msgid "Oops! Something went wrong."
 msgstr "Oops! Something went wrong."
 
@@ -438,7 +439,7 @@ msgstr "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgid "Privileged"
 msgstr "Privileged"
 
-#: src/pages/panel/accounts/AccountRow.tsx:179
+#: src/pages/panel/accounts/AccountRow.tsx:187
 msgid "Privileged account"
 msgstr "Privileged account"
 
@@ -510,9 +511,9 @@ msgstr "Simple and affordable visibility into your cloud security posture."
 #~ msgid "Since {since}"
 #~ msgstr "Since {since}"
 
-#: src/pages/panel/accounts/AccountRow.tsx:219
-#: src/pages/panel/accounts/AccountRow.tsx:220
-#: src/pages/panel/accounts/AccountRow.tsx:225
+#: src/pages/panel/accounts/AccountRow.tsx:227
+#: src/pages/panel/accounts/AccountRow.tsx:228
+#: src/pages/panel/accounts/AccountRow.tsx:233
 msgid "Submit"
 msgstr "Submit"
 
@@ -533,7 +534,7 @@ msgstr "The Stack requires the following parameters"
 msgid "There's no account configured for this workspace."
 msgstr "There's no account configured for this workspace."
 
-#: src/pages/panel/accounts/AccountRow.tsx:290
+#: src/pages/panel/accounts/AccountRow.tsx:302
 msgid "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 msgstr "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 
@@ -562,7 +563,7 @@ msgstr "Top Non-Compliant Resources"
 msgid "True"
 msgstr "True"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:89
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:90
 msgid "Try again"
 msgstr "Try again"
 
@@ -575,7 +576,7 @@ msgstr "Value"
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:54
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:55
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 
