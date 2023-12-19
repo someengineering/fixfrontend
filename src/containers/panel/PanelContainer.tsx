@@ -15,7 +15,7 @@ export default function PanelContainer() {
   return (
     <WebSocketEvents>
       <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-        <Suspense fallback={<FullPageLoadingSuspenseFallback forceFullpage />}>
+        <Suspense fallback={<FullPageLoadingSuspenseFallback forceFullPage />}>
           <PanelLayout>
             <LogoRegion>
               <FixLogo width={46} height={46} />

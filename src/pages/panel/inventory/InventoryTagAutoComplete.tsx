@@ -5,7 +5,7 @@ import { useDebounce } from '@uidotdev/usehooks'
 import { AxiosError } from 'axios'
 import { ReactNode, UIEvent as ReactUIEvent, useEffect, useMemo, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { getWorkspaceInventoryPropertyAttributesQuery } from 'src/pages/panel/shared/queries'
+import { postWorkspaceInventoryPropertyAttributesQuery } from 'src/pages/panel/shared/queries'
 import { panelUI } from 'src/shared/constants'
 import { ListboxComponent } from 'src/shared/react-window'
 import { inventorySendToGTM } from './utils'
@@ -41,13 +41,13 @@ export const InventoryTagAutoComplete = ({ searchCrit, setSelectedTag }: Invento
     },
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>
       (lastPage?.length ?? 0) < ITEMS_PER_PAGE ? undefined : { ...lastPageParam, skip: lastPageParam.skip + ITEMS_PER_PAGE },
-    queryFn: getWorkspaceInventoryPropertyAttributesQuery,
+    queryFn: postWorkspaceInventoryPropertyAttributesQuery,
     throwOnError: false,
     enabled: !!selectedWorkspace?.id,
   })
   useEffect(() => {
     if (error) {
-      inventorySendToGTM('getWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
+      inventorySendToGTM('postWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
         workspaceId: selectedWorkspace?.id,
         query: searchCrit.startsWith('is') ? searchCrit.split(' ')[0] : 'all',
         prop: `tags${debouncedTyped ? `=~${debouncedTyped}` : ''}`,

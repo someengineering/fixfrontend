@@ -7,8 +7,8 @@ export enum LoadingStateType {
 }
 
 export type LoadingContextValue = {
-  showLoading: (forceFullpage?: boolean) => void
-  hideLoading: (forceFullpage?: boolean) => void
+  showLoading: (forceFullPage?: boolean) => void
+  hideLoading: (forceFullPage?: boolean) => void
 }
 
 export const LoadingContext = createContext<LoadingContextValue | null>(null)

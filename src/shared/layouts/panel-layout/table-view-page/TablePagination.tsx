@@ -1,5 +1,6 @@
 import { TablePagination as MuiTablePagination } from '@mui/material'
 import { ChangeEvent } from 'react'
+import { panelUI } from 'src/shared/constants'
 import { useTableViewPageScroll } from 'src/shared/layouts/panel-layout'
 
 export interface TablePaginationProps {
@@ -10,8 +11,6 @@ export interface TablePaginationProps {
   setRowsPerPage: (page: number) => void
   name?: string
 }
-
-const ROWS_PER_PAGE_OPTIONS = [10, 25, 50, 100]
 
 export const TablePagination = ({ dataCount, page, rowsPerPage, setPage, setRowsPerPage, name }: TablePaginationProps) => {
   const tableContainerRef = useTableViewPageScroll()
@@ -26,9 +25,9 @@ export const TablePagination = ({ dataCount, page, rowsPerPage, setPage, setRows
     setPage(0)
   }
 
-  return dataCount < ROWS_PER_PAGE_OPTIONS[0] ? null : (
+  return (
     <MuiTablePagination
-      rowsPerPageOptions={ROWS_PER_PAGE_OPTIONS}
+      rowsPerPageOptions={panelUI.tableRowsPerPages}
       component="div"
       labelDisplayedRows={dataCount < 0 ? () => `${page * rowsPerPage} - ${page * rowsPerPage + rowsPerPage}` : undefined}
       count={dataCount}
@@ -36,7 +35,9 @@ export const TablePagination = ({ dataCount, page, rowsPerPage, setPage, setRows
       page={page}
       onPageChange={handleChangePage}
       onRowsPerPageChange={handleChangeRowsPerPage}
-      SelectProps={{ name: `${name ?? 'none'}-table-per-row-select` }}
+      slotProps={{
+        select: { name: `${name ?? 'none'}-table-per-row-select` },
+      }}
     />
   )
 }

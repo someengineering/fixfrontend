@@ -46,7 +46,7 @@ const AppBarLogo = styled(Box)(({ theme }) => ({
   flexShrink: 1,
   flexGrow: 0,
   [theme.breakpoints.down('md')]: {
-    flexGrow: 1,
+    flex: 1,
     justifyContent: 'center',
   },
 }))
@@ -56,7 +56,7 @@ const AppBarActions = styled(Box)(({ theme }) => ({
   flexShrink: 1,
   flexGrow: 0,
   [theme.breakpoints.up('md')]: {
-    flexGrow: 1,
+    flex: 1,
     justifyContent: 'end',
   },
 }))
@@ -77,9 +77,9 @@ export const PanelAppBar = ({ children, open, isDesktop, onDrawerOpen, onDrawerT
           <MenuIcon />
         </MenuIconButton>
         {!open || !isDesktop ? (
-          <ButtonBase onClick={() => navigate('/')}>
-            <AppBarLogo>{children}</AppBarLogo>
-          </ButtonBase>
+          <AppBarLogo>
+            <ButtonBase onClick={() => navigate('/')}>{children}</ButtonBase>
+          </AppBarLogo>
         ) : null}
         <AppBarActions>
           <DarkModeSwitch whiteMode />

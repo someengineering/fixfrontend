@@ -1,7 +1,7 @@
 import { t } from '@lingui/macro'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { useEffect, useRef } from 'react'
-import { TablePagination, TableViewPage } from 'src/shared/layouts/panel-layout'
+import { TableViewPage } from 'src/shared/layouts/panel-layout'
 
 interface InventoryTableProps {
   searchCrit: string
@@ -70,7 +70,7 @@ export const InventoryTableError = ({ searchCrit, resetErrorBoundary, setHasErro
   }, [searchCrit, resetErrorBoundary, setHasError])
 
   return (
-    <TableViewPage pagination={<TablePagination dataCount={0} page={0} rowsPerPage={10} setPage={() => {}} setRowsPerPage={() => {}} />}>
+    <TableViewPage>
       <Table stickyHeader aria-label={t`Accounts`}>
         <TableHead>
           <TableRow>

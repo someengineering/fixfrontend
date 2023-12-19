@@ -6,7 +6,7 @@ import {
   iso8601DurationToString,
   parseCustomDuration,
   splitCustomDuration,
-  splitedCustomDurationToAutoComplete,
+  splittedCustomDurationToAutoComplete,
 } from 'src/shared/utils/parseDuration'
 
 interface DurationPickerProps {
@@ -73,7 +73,7 @@ export const DurationPicker = ({ onChange, value }: DurationPickerProps) => {
   const [typed, setTyped] = useState('')
   const parsedDuration = parseCustomDuration(value)
   const splittedValue = splitCustomDuration(durationToCustomDurationString(parsedDuration))
-  const autoCompleteValue = splitedCustomDurationToAutoComplete(splittedValue)
+  const autoCompleteValue = splittedCustomDurationToAutoComplete(splittedValue)
   const index = /[^\d]/g.exec(typed)?.index
   const options = getOptions(
     index !== undefined ? [Number(typed.substring(0, index)), typed.substring(index)] : [Number(typed), ''],

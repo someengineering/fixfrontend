@@ -1,10 +1,11 @@
 import { QueryFunctionContext } from '@tanstack/react-query'
 import { endPoints } from 'src/shared/constants'
+import { PostWorkspaceInventoryPropertyAttributesRequest, PostWorkspaceInventoryPropertyAttributesResponse } from 'src/shared/types/server'
 import { axiosWithAuth } from 'src/shared/utils/axios'
 
-export const getWorkspaceInventoryPropertyAttributesQuery = ({
+export const postWorkspaceInventoryPropertyAttributesQuery = ({
   signal,
-  queryKey: [_, workspaceId, query = 'all', prop = 'tags'],
+  queryKey: [, workspaceId, query = 'all', prop = 'tags'],
   pageParam: { skip, limit },
 }: QueryFunctionContext<
   readonly [
@@ -18,11 +19,14 @@ export const getWorkspaceInventoryPropertyAttributesQuery = ({
     limit: number | null
   }
 >) => {
+  const data: PostWorkspaceInventoryPropertyAttributesRequest = `query=${window.encodeURIComponent(
+    query ?? '',
+  )}&prop=${window.encodeURIComponent(prop ?? '')}`
   return workspaceId
     ? axiosWithAuth
-        .post<string[]>(
+        .post<PostWorkspaceInventoryPropertyAttributesResponse>(
           endPoints.workspaces.workspace(workspaceId).inventory.property.attributes,
-          `query=${window.encodeURIComponent(query ?? '')}&prop=${window.encodeURIComponent(prop ?? '')}`,
+          data,
           {
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',

@@ -1,6 +1,7 @@
 import { Trans, t } from '@lingui/macro'
 import CorporateFareIcon from '@mui/icons-material/CorporateFare'
 import LogoutIcon from '@mui/icons-material/Logout'
+import RoomPreferencesIcon from '@mui/icons-material/RoomPreferences'
 import SettingsIcon from '@mui/icons-material/Settings'
 import { Avatar, Divider, IconButton, ListItemIcon, Menu, MenuItem, MenuList, Tooltip, Typography } from '@mui/material'
 import { MouseEvent as MouseEventReact, useState } from 'react'
@@ -32,6 +33,11 @@ export const UserProfileButton = () => {
   const handleGoToAccounts = () => {
     handleCloseUserMenu()
     navigate('/accounts')
+  }
+
+  const handleGoToWorkspaceSettings = () => {
+    handleCloseUserMenu()
+    navigate('/workspace-settings')
   }
 
   return (
@@ -80,7 +86,7 @@ export const UserProfileButton = () => {
         onClose={handleCloseUserMenu}
       >
         <MenuList>
-          {workspaces?.map(({ slug, id }) => (
+          {workspaces?.map(({ name, id }) => (
             <MenuItem
               key={id}
               onClick={selectedWorkspace?.id === id ? undefined : () => handleSelectWorkspace(id)}
@@ -90,10 +96,18 @@ export const UserProfileButton = () => {
                 <CorporateFareIcon color="primary" />
               </ListItemIcon>
               <Typography textAlign="center" overflow="hidden" textOverflow="ellipsis" whiteSpace="nowrap">
-                {slug}
+                {name}
               </Typography>
             </MenuItem>
           ))}
+          <MenuItem onClick={handleGoToWorkspaceSettings}>
+            <ListItemIcon>
+              <RoomPreferencesIcon color="primary" />
+            </ListItemIcon>
+            <Typography textAlign="center">
+              <Trans>Workspace Settings</Trans>
+            </Typography>
+          </MenuItem>
           <Divider />
           <MenuItem onClick={handleGoToAccounts}>
             <ListItemIcon>

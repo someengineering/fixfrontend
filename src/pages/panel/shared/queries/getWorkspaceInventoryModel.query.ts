@@ -5,7 +5,7 @@ import { axiosWithAuth } from 'src/shared/utils/axios'
 
 export const getWorkspaceInventoryModelQuery = ({
   signal,
-  queryKey: [_, workspaceId, kind],
+  queryKey: [, workspaceId, kind],
 }: QueryFunctionContext<['workspace-inventory-model', string | undefined, string | undefined]>) => {
   const params = {
     with_bases: false,

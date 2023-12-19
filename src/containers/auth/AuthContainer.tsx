@@ -10,7 +10,7 @@ export default function AuthContainer() {
   useLingui()
   return (
     <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-      <Suspense fallback={<FullPageLoadingSuspenseFallback forceFullpage />}>
+      <Suspense fallback={<FullPageLoadingSuspenseFallback forceFullPage />}>
         <AuthLayout>
           <BrandRegion>
             <FixLogo width={128} height={128} />

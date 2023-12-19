@@ -5,7 +5,7 @@ import { useDebounce } from '@uidotdev/usehooks'
 import { AxiosError } from 'axios'
 import { ChangeEvent, ReactNode, UIEvent as ReactUIEvent, useEffect, useMemo, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { getWorkspaceInventoryPropertyValuesQuery } from 'src/pages/panel/shared/queries'
+import { postWorkspaceInventoryPropertyValuesQuery } from 'src/pages/panel/shared/queries'
 import { panelUI } from 'src/shared/constants'
 import { ListboxComponent } from 'src/shared/react-window'
 import { AutoCompleteValue } from 'src/shared/types/shared'
@@ -41,7 +41,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
   const [hasFocus, setHasFocus] = useState(false)
   const [typed, setTyped] = useState(value && !Array.isArray(value) ? value.label : '')
   const debouncedTyped = useDebounce(networkDisabled ? '' : typed, panelUI.fastInputChangeDebounce)
-  const slectedTyped = useRef('')
+  const selectedTyped = useRef('')
   const {
     data = null,
     isLoading,
@@ -54,7 +54,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
       'workspace-inventory-property-values',
       selectedWorkspace?.id,
       debouncedTyped &&
-      (!slectedTyped.current || slectedTyped.current !== debouncedTyped) &&
+      (!selectedTyped.current || selectedTyped.current !== debouncedTyped) &&
       (!value || (Array.isArray(value) ? !value.find((i) => i.label === debouncedTyped) : value.label !== debouncedTyped))
         ? `${searchCrit} and ${propertyName} ~ ".*${debouncedTyped}.*"`
         : searchCrit,
@@ -66,17 +66,17 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
     },
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>
       (lastPage?.length ?? 0) < ITEMS_PER_PAGE ? undefined : { ...lastPageParam, skip: lastPageParam.skip + ITEMS_PER_PAGE },
-    queryFn: getWorkspaceInventoryPropertyValuesQuery,
+    queryFn: postWorkspaceInventoryPropertyValuesQuery,
     throwOnError: false,
     enabled: !!(selectedWorkspace?.id && !networkDisabled),
   })
   useEffect(() => {
     if (error) {
-      inventorySendToGTM('getWorkspaceInventoryPropertyValuesQuery', false, error as AxiosError, {
+      inventorySendToGTM('postWorkspaceInventoryPropertyValuesQuery', false, error as AxiosError, {
         workspaceId: selectedWorkspace?.id,
         query:
           debouncedTyped &&
-          (!slectedTyped.current || slectedTyped.current !== debouncedTyped) &&
+          (!selectedTyped.current || selectedTyped.current !== debouncedTyped) &&
           (!value || (Array.isArray(value) ? !value.find((i) => i.label === debouncedTyped) : value.label !== debouncedTyped))
             ? `${searchCrit} and ${propertyName} ~ ".*${debouncedTyped}.*"`
             : searchCrit,
@@ -140,7 +140,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
       onChange={(_, option) => {
         const newTyped = typeof option === 'string' ? option : !Array.isArray(option) ? option?.label ?? '' : ''
         setTyped(newTyped)
-        slectedTyped.current = newTyped
+        selectedTyped.current = newTyped
         const newOption =
           (typeof option === 'string'
             ? options.find((i) => i.label === option)
@@ -192,7 +192,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
                 if (value?.label !== e.currentTarget.innerText) {
                   const found = options.find((i) => i.label === e.currentTarget.innerText)
                   if (found) {
-                    slectedTyped.current = e.currentTarget.innerText
+                    selectedTyped.current = e.currentTarget.innerText
                     onChange(found as typeof value)
                   }
                 }
@@ -221,7 +221,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
               if (!props.multiple) {
                 const found = options.find((i) => i.label === typed)
                 if (found) {
-                  slectedTyped.current = typed
+                  selectedTyped.current = typed
                   onChange(found as typeof value)
                 }
               }
@@ -241,7 +241,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
           onClick={() => setHasFocus(true)}
           onChange={(e) => {
             setHasFocus(true)
-            slectedTyped.current = ''
+            selectedTyped.current = ''
             if (isNumber) {
               const curValue = e.currentTarget.value
               const num = Number(curValue)

@@ -113,11 +113,11 @@ export function AuthGuard({ children }: PropsWithChildren) {
       instance.interceptors.response.use(
         (response) => response,
         async (error: AxiosError & { config: { _retry: boolean } | undefined }) => {
-          if (error?.response?.status === 403 || error?.response?.status === 401) {
+          if (error?.response?.status === 401) {
             return handleLogout()
           }
           if ('isAxiosError' in error && error.isAxiosError) {
-            const { response, name, message, cause, status, stack, config, code, toJSON } = error
+            const { response, name, message, cause, status, stack, config, code } = error
             const request = error.request as unknown
             const authorized = isAuthenticated()
             const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
@@ -136,7 +136,6 @@ export function AuthGuard({ children }: PropsWithChildren) {
               stack: jsonToStr(stack),
               config: jsonToStr(config),
               code: jsonToStr(code),
-              rest: jsonToStr(toJSON()),
               workspaceId,
               authorized,
             })

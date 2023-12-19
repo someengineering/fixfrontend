@@ -1,0 +1,58 @@
+import { Trans, t } from '@lingui/macro'
+import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
+import { useSuspenseQuery } from '@tanstack/react-query'
+import { useState } from 'react'
+import { useUserProfile } from 'src/core/auth'
+import { TableViewPage } from 'src/shared/layouts/panel-layout'
+import { BillingEntryRow } from './BillingEntryRow'
+import { getWorkspaceBillingEntriesQuery } from './getWorkspaceBillingEntires.query'
+
+export const WorkspaceSettingsBillingTable = () => {
+  const { selectedWorkspace } = useUserProfile()
+  const { data } = useSuspenseQuery({
+    queryKey: ['workspace-billing-entries', selectedWorkspace?.id],
+    queryFn: getWorkspaceBillingEntriesQuery,
+  })
+  const [page, setPage] = useState(0)
+  const [rowsPerPage, setRowsPerPage] = useState(10)
+  return (
+    <>
+      <Typography variant="h4">
+        <Trans>Receipts</Trans>
+      </Typography>
+      <TableViewPage
+        paginationProps={{
+          dataCount: data.length ?? 0,
+          page,
+          rowsPerPage,
+          setPage,
+          setRowsPerPage,
+        }}
+      >
+        <Table stickyHeader aria-label={t`Receipts`}>
+          <TableHead>
+            <TableRow>
+              <TableCell>
+                <Trans>Date</Trans>
+              </TableCell>
+              <TableCell>
+                <Trans>Tier</Trans>
+              </TableCell>
+              <TableCell>
+                <Trans>Download</Trans>
+              </TableCell>
+              <TableCell>
+                <Trans>Number Of Account Charged</Trans>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data
+              ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((billingEntry, i) => <BillingEntryRow billingEntry={billingEntry} key={`${billingEntry.id}_${i}`} />)}
+          </TableBody>
+        </Table>
+      </TableViewPage>
+    </>
+  )
+}

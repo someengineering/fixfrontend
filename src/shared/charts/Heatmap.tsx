@@ -155,8 +155,8 @@ export function Heatmap<ColumnsKeys extends string, RowsKeys extends string>({
 
   useEffect(() => {
     if (ref.current) {
-      const observedElemenet = ref.current
-      let cleanup = createHeatmap(observedElemenet)
+      const observedElement = ref.current
+      let cleanup = createHeatmap(observedElement)
       const resizeObserver = new ResizeObserver((entries) => {
         window.requestAnimationFrame((): void | undefined => {
           if (!Array.isArray(entries) || !entries.length) {
@@ -166,11 +166,11 @@ export function Heatmap<ColumnsKeys extends string, RowsKeys extends string>({
           cleanup = createHeatmap(entries[0].target as HTMLDivElement)
         })
       })
-      resizeObserver.observe(observedElemenet)
+      resizeObserver.observe(observedElement)
       return () => {
         cleanup()
         resizeObserver.disconnect()
-        resizeObserver.unobserve(observedElemenet)
+        resizeObserver.unobserve(observedElement)
       }
     }
   }, [createHeatmap])

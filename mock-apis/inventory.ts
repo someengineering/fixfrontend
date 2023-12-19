@@ -23,19 +23,19 @@ const inventory = (): MockMethod[] => {
   return [
     // report-summary
     {
-      url: '/api/workspaces/:wordspaceid/inventory/report-summary',
+      url: '/api/workspaces/:workspaceid/inventory/report-summary',
       method: 'get',
       rawResponse: responseJSONWithAuthCheck(workspaceReportSummary),
     },
     // search/start
     {
-      url: '/api/workspaces/:wordspaceid/inventory/search/start',
+      url: '/api/workspaces/:workspaceid/inventory/search/start',
       method: 'get',
       rawResponse: responseJSONWithAuthCheck(searchStart),
     },
     // property/attributes
     {
-      url: '/api/workspaces/:wordspaceid/inventory/property/attributes',
+      url: '/api/workspaces/:workspaceid/inventory/property/attributes',
       method: 'post',
       rawResponse: responseJSONWithAuthCheck(async ({ req, res }) => {
         const reqbody = await getBodyFromRawRequest(req, res)
@@ -78,7 +78,7 @@ const inventory = (): MockMethod[] => {
     },
     // model
     {
-      url: '/api/workspaces/:wordspaceid/inventory/model',
+      url: '/api/workspaces/:workspaceid/inventory/model',
       method: 'get',
       rawResponse: responseJSONWithAuthCheck(({ req }) => {
         const kind = getQueryFromReq<{ kind: string }>(req)?.kind ?? ''

@@ -3,14 +3,14 @@ import { Skeleton, Table, TableBody, TableCell, TableHead, TableRow } from '@mui
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { getWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
+import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
 import { sendToGTM } from 'src/shared/google-tag-manager'
-import { TablePagination, TableViewPage } from 'src/shared/layouts/panel-layout'
+import { TableViewPage } from 'src/shared/layouts/panel-layout'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import {
-  GetWorkspaceInventorySearchTableColumn,
-  GetWorkspaceInventorySearchTableResponse,
-  GetWorkspaceInventorySearchTableRow,
+  PostWorkspaceInventorySearchTableColumn,
+  PostWorkspaceInventorySearchTableResponse,
+  PostWorkspaceInventorySearchTableRow,
 } from 'src/shared/types/server'
 import { isAuthenticated as getIsAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData } from 'src/shared/utils/localstorage'
@@ -31,8 +31,8 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const { selectedWorkspace } = useUserProfile()
-  const [rows, setRows] = useState<GetWorkspaceInventorySearchTableRow[]>([])
-  const [columns, setColumns] = useState<GetWorkspaceInventorySearchTableColumn[]>([])
+  const [rows, setRows] = useState<PostWorkspaceInventorySearchTableRow[]>([])
+  const [columns, setColumns] = useState<PostWorkspaceInventorySearchTableColumn[]>([])
   const initializedRef = useRef(false)
   const { data: serverData, isLoading } = useQuery({
     queryKey: [
@@ -44,11 +44,11 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       page === 0 || dataCount === -1,
       history ? JSON.stringify(history) : '',
     ],
-    queryFn: getWorkspaceInventorySearchTableQuery,
+    queryFn: postWorkspaceInventorySearchTableQuery,
     enabled: !!selectedWorkspace?.id,
   })
-  const [data, totalCount] = serverData ?? [[{ columns: [] }] as GetWorkspaceInventorySearchTableResponse, -1]
-  const [selectedRow, setSelectedRow] = useState<GetWorkspaceInventorySearchTableRow>()
+  const [data, totalCount] = serverData ?? [[{ columns: [] }] as PostWorkspaceInventorySearchTableResponse, -1]
+  const [selectedRow, setSelectedRow] = useState<PostWorkspaceInventorySearchTableRow>()
 
   useEffect(() => {
     if (totalCount !== dataCount && dataCount === -1) {
@@ -83,9 +83,13 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
   return columns.length ? (
     <>
       <TableViewPage
-        pagination={
-          <TablePagination dataCount={dataCount} page={page} rowsPerPage={rowsPerPage} setPage={setPage} setRowsPerPage={setRowsPerPage} />
-        }
+        paginationProps={{
+          dataCount,
+          page,
+          rowsPerPage,
+          setPage,
+          setRowsPerPage,
+        }}
       >
         <Table stickyHeader aria-label={t`Accounts`}>
           <TableHead>

@@ -5,7 +5,7 @@ import { axiosWithAuth } from 'src/shared/utils/axios'
 
 export const getWorkspaceCfTemplateQuery = ({
   signal,
-  queryKey: [_, workspaceId],
+  queryKey: [, workspaceId],
 }: QueryFunctionContext<['workspace-cf-template', string | undefined]>) => {
   return workspaceId
     ? axiosWithAuth

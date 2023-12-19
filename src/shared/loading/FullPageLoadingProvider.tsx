@@ -5,14 +5,14 @@ import { LoadingContext, LoadingStateType } from './LoadingContext'
 const FullPageLoadingContainer = ({
   setLoadingStateRef,
 }: {
-  setLoadingStateRef: MutableRefObject<(loadingState: LoadingStateType, forceFullpage?: boolean) => void>
+  setLoadingStateRef: MutableRefObject<(loadingState: LoadingStateType, forceFullPage?: boolean) => void>
 }) => {
   const [loadingState, setLoadingState] = useState<LoadingStateType>(LoadingStateType.SHOW)
   const alreadyShown = useRef<boolean | undefined>(undefined)
   useEffect(() => {
-    setLoadingStateRef.current = (loadingStateToSet: LoadingStateType, forceFullpage?: boolean) => {
+    setLoadingStateRef.current = (loadingStateToSet: LoadingStateType, forceFullPage?: boolean) => {
       setLoadingState(
-        alreadyShown.current && loadingStateToSet === LoadingStateType.SHOW && !forceFullpage
+        alreadyShown.current && loadingStateToSet === LoadingStateType.SHOW && !forceFullPage
           ? LoadingStateType.SHOW_NO_BACKGROUND
           : loadingStateToSet,
       )
@@ -31,21 +31,21 @@ export const FullPageLoadingProvider = ({ children }: PropsWithChildren) => {
     return
   })
   const shownLoadings = useRef<LoadingStateType[]>([])
-  const showLoading = useCallback((forceFullpage?: boolean) => {
+  const showLoading = useCallback((forceFullPage?: boolean) => {
     const state = LoadingStateType.SHOW
     shownLoadings.current.push(state)
-    setLoadingStateRef.current(state, forceFullpage)
+    setLoadingStateRef.current(state, forceFullPage)
   }, [])
-  const hideLoading = useCallback((forceFullpage?: boolean) => {
+  const hideLoading = useCallback((forceFullPage?: boolean) => {
     const hidingState = LoadingStateType.SHOW
     shownLoadings.current.splice(
       shownLoadings.current.findIndex((state) => state === hidingState),
       1,
     )
     if (!shownLoadings.current.length) {
-      setLoadingStateRef.current(LoadingStateType.HIDE, forceFullpage)
+      setLoadingStateRef.current(LoadingStateType.HIDE, forceFullPage)
     } else {
-      setLoadingStateRef.current(LoadingStateType.SHOW, forceFullpage)
+      setLoadingStateRef.current(LoadingStateType.SHOW, forceFullPage)
     }
   }, [])
   return (

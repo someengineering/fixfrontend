@@ -27,7 +27,7 @@ export interface WorkspaceInventoryNodeNeighborhoodEdgeType {
 
 export type WorkspaceInventoryNodeNeighborhood = WorkspaceInventoryNodeNeighborhoodNodeType | WorkspaceInventoryNodeNeighborhoodEdgeType
 
-export interface GetWorkspaceInventoryNode {
+export interface WorkspaceInventoryNode {
   resource: {
     id: string
     type: WorkspaceInventoryNodeType
@@ -79,4 +79,4 @@ export interface GetWorkspaceInventoryNode {
   failing_checks: FailedCheck[]
 }
 
-export type GetWorkspaceInventoryNodeResponse = GetWorkspaceInventoryNode
+export type PostWorkspaceInventoryNodeResponse = WorkspaceInventoryNode

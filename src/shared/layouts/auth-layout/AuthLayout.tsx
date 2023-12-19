@@ -41,7 +41,7 @@ const AuthWrapper = styled(Container)(({ theme }) => ({
     },
     '100%': {
       opacity: 1,
-      ritgh: '0',
+      right: '0',
     },
   },
   [theme.breakpoints.down('md')]: {

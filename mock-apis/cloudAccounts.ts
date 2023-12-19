@@ -38,7 +38,7 @@ const cloudAccounts = (): MockMethod[] => {
   return [
     // cloud-accounts
     {
-      url: '/api/workspaces/:wordspaceid/cloud_accounts',
+      url: '/api/workspaces/:workspaceid/cloud_accounts',
       method: 'get',
       rawResponse: responseJSONWithAuthCheck(() => {
         const nextScan = getNextHourTime()
@@ -47,7 +47,7 @@ const cloudAccounts = (): MockMethod[] => {
     },
     // rename cloud-account
     {
-      url: '/api/workspaces/:wordspaceid/cloud_account/:cloudaccountid',
+      url: '/api/workspaces/:workspaceid/cloud_account/:cloudaccountid',
       method: 'patch',
       rawResponse: responseJSONWithAuthCheck(async ({ req, res }) => {
         const { name } = (await getBodyFromRawRequest<{ name: string }>(req, res, true)) ?? {}
@@ -76,7 +76,7 @@ const cloudAccounts = (): MockMethod[] => {
     },
     // enable cloud-account
     {
-      url: '/api/workspaces/:wordspaceid/cloud_account/:cloudaccountid/enable',
+      url: '/api/workspaces/:workspaceid/cloud_account/:cloudaccountid/enable',
       method: 'patch',
       rawResponse: responseJSONWithAuthCheck(({ req, res }) => {
         const foundAccount = getAccount(req, res)
@@ -89,7 +89,7 @@ const cloudAccounts = (): MockMethod[] => {
     },
     // disable cloud-account
     {
-      url: '/api/workspaces/:wordspaceid/cloud_account/:cloudaccountid/disable',
+      url: '/api/workspaces/:workspaceid/cloud_account/:cloudaccountid/disable',
       method: 'patch',
       rawResponse: responseJSONWithAuthCheck(({ req, res }) => {
         const foundAccount = getAccount(req, res)
@@ -102,7 +102,7 @@ const cloudAccounts = (): MockMethod[] => {
     },
     // delete cloud-account
     {
-      url: '/api/workspaces/:wordspaceid/cloud_account/:cloudaccountid',
+      url: '/api/workspaces/:workspaceid/cloud_account/:cloudaccountid',
       method: 'delete',
       rawResponse: responseJSONWithAuthCheck(({ req, res }) => {
         const foundAccount = getAccountIndex(req, res)

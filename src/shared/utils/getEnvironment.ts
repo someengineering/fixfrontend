@@ -1,4 +1,4 @@
-export const getEnviromentStr = async () => {
+export const getEnvironmentStr = async () => {
   return new Promise<'prd' | 'dev'>((resolve) => {
     const request = new window.XMLHttpRequest()
     request.onreadystatechange = function () {

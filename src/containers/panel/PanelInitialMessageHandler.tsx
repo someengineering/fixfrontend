@@ -20,7 +20,7 @@ export const PanelInitialMessageHandler = () => {
         return prev
       })
     }
-    // TODO: removed due to problem with setSeachParams changes with every route change
+    // TODO: removed due to problem with setSearchParams changes with every route change
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [message, showSnackbar])
   return <></>

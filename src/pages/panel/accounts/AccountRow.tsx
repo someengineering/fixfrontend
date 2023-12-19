@@ -26,9 +26,9 @@ import { Modal } from 'src/shared/modal'
 import { Account, GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { getAccountName } from 'src/shared/utils/getAccountName'
 import { deleteAccountMutation } from './deleteAccount.mutation'
-import { disableAccountMutation } from './disableAccount.mutation'
-import { enableAccountMutation } from './enableAccount.mutation'
-import { renameAccountMutation } from './renameAccount.mutation'
+import { patchAccountMutation } from './patchAccount.mutation'
+import { patchAccountDisableMutation } from './patchAccountDisable.mutation'
+import { patchAccountEnableMutation } from './patchAccountEnable.mutation'
 import { replaceRowByAccount } from './replaceRowByAccount'
 
 export const AccountRow = ({ account }: { account: Account }) => {
@@ -37,29 +37,37 @@ export const AccountRow = ({ account }: { account: Account }) => {
   const showDegradedModalRef = useRef<(show?: boolean) => void>()
   const { selectedWorkspace } = useUserProfile()
   const queryClient = useQueryClient()
+
   const { mutate: renameAccount, isPending: renameAccountIsPending } = useMutation({
-    mutationFn: renameAccountMutation,
+    mutationFn: patchAccountMutation,
     mutationKey: ['edit-workspace-account', selectedWorkspace?.id, account.id],
   })
+
   const { mutate: disableAccount, isPending: disableAccountIsPending } = useMutation({
-    mutationFn: disableAccountMutation,
+    mutationFn: patchAccountDisableMutation,
     mutationKey: ['edit-workspace-account', selectedWorkspace?.id, account.id],
   })
+
   const { mutate: enableAccount, isPending: enableAccountIsPending } = useMutation({
-    mutationFn: enableAccountMutation,
+    mutationFn: patchAccountEnableMutation,
     mutationKey: ['edit-workspace-account', selectedWorkspace?.id, account.id],
   })
+
   const { mutate: deleteAccount, isPending: deleteAccountIsPending } = useMutation({
     mutationFn: deleteAccountMutation,
     mutationKey: ['edit-workspace-account', selectedWorkspace?.id, account.id],
   })
+
   const [isEdit, setIsEdit] = useState(false)
+
   const accountName = getAccountName(account)
   const [editedName, setEditedName] = useState(accountName)
+
   const cancelEdit = useCallback(() => {
     setIsEdit(false)
     setEditedName(accountName)
   }, [accountName])
+
   useEffect(() => {
     if (isEdit && inputRef.current) {
       const cancelMethod = (e: KeyboardEvent) => {
@@ -74,8 +82,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
       }
     }
   }, [isEdit, cancelEdit])
-  const oneHourLater = new Date()
-  oneHourLater.setHours(oneHourLater.getHours() + 1)
+
   const handleEditSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (selectedWorkspace?.id) {
@@ -84,8 +91,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
         {
           onSuccess: (data) => {
             void queryClient.invalidateQueries({
-              predicate: (query) =>
-                (typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts')) ?? false,
+              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
             })
             replaceRowByAccount(queryClient, data, selectedWorkspace?.id)
           },
@@ -94,6 +100,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
       )
     }
   }
+
   const handleEnableChange = (_: unknown, checked: boolean) => {
     if (selectedWorkspace?.id) {
       return (checked ? enableAccount : disableAccount)(
@@ -101,8 +108,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
         {
           onSuccess: (data) => {
             void queryClient.invalidateQueries({
-              predicate: (query) =>
-                (typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts')) ?? false,
+              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
             })
             replaceRowByAccount(queryClient, data, selectedWorkspace?.id)
           },
@@ -110,16 +116,19 @@ export const AccountRow = ({ account }: { account: Account }) => {
       )
     }
   }
+
   const handleDeleteModal = () => {
     if (showDeleteModalRef.current) {
       showDeleteModalRef.current()
     }
   }
+
   const handleDegradeModal = () => {
     if (showDegradedModalRef.current) {
       showDegradedModalRef.current()
     }
   }
+
   const handleDelete = () => {
     if (selectedWorkspace?.id) {
       deleteAccount(
@@ -161,13 +170,12 @@ export const AccountRow = ({ account }: { account: Account }) => {
               },
             )
             void queryClient.invalidateQueries({
-              predicate: (query) =>
-                (typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts')) ?? false,
+              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
             })
           },
           onError: () => {
             void queryClient.invalidateQueries({
-              predicate: (query) => (typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace')) ?? false,
+              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace'),
             })
           },
           onSettled: () => {
@@ -177,6 +185,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
       )
     }
   }
+
   return (
     <TableRow>
       <TableCell>

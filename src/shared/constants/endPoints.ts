@@ -15,6 +15,18 @@ export const endPoints = {
     self: 'api/workspaces/',
     workspace: (workspaceId: string) => ({
       self: `api/workspaces/${workspaceId}`,
+      settings: `api/workspaces/${workspaceId}/settings`,
+      invites: {
+        list: `api/workspaces/${workspaceId}/invites/`,
+        self: (inviteId: string) => `api/workspaces/${workspaceId}/invites/${inviteId}`,
+      },
+      users: {
+        list: `api/workspaces/${workspaceId}/users/`,
+        self: (userId: string) => `api/workspaces/${workspaceId}/users/${userId}`,
+      },
+      acceptInvite: `api/workspaces/${workspaceId}/accept_invite`,
+      billing: `api/workspaces/${workspaceId}/billing`,
+      subscription: (subscriptionId: string) => `api/workspaces/${workspaceId}/subscription/${subscriptionId}`,
       cfUrl: `api/workspaces/${workspaceId}/cf_url`,
       cfTemplate: `api/workspaces/${workspaceId}/cf_template`,
       externalId: `api/workspaces/${workspaceId}/external_id`,
@@ -43,6 +55,7 @@ export const endPoints = {
         },
         node: (nodeId: string) => `api/workspaces/${workspaceId}/inventory/node/${nodeId}`,
       },
+      billingEntries: `api/workspaces/${workspaceId}/billing_entries/`,
       events: `api/workspaces/${workspaceId}/events`,
     }),
   },

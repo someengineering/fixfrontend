@@ -29,8 +29,40 @@ const AccountsPage = lazy(
 const InventoryPage = lazy(
   () =>
     import(
-      /* webpackChunkName: "accounts" */
+      /* webpackChunkName: "inventory" */
       'src/pages/panel/inventory/InventoryPage'
+    ),
+)
+
+const WorkspaceSettingsPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "workspace-settings" */
+      'src/pages/panel/workspace-settings/WorkspaceSettingsPage'
+    ),
+)
+
+const WorkspaceSettingsUsersPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "workspace-settings-users" */
+      'src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersPage'
+    ),
+)
+
+const WorkspaceSettingsBillingPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "workspace-settings-billing" */
+      'src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage'
+    ),
+)
+
+const WorkspaceSettingsExternalDirectoryPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "workspace-settings-external-directory" */
+      'src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage'
     ),
 )
 
@@ -46,9 +78,15 @@ export function PanelRoutes() {
 
           <Route path="accounts" element={<AccountsPage />} />
         </Route>
+        <Route path="workspace-settings">
+          <Route index element={<WorkspaceSettingsPage />} />
+          <Route path="users" element={<WorkspaceSettingsUsersPage />} />
+          <Route path="billing" element={<WorkspaceSettingsBillingPage />} />
+          <Route path="external-directories" element={<WorkspaceSettingsExternalDirectoryPage />} />
+        </Route>
         <Route path="setup-cloud" element={<SetupCloudPage />} />
       </Route>
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
 }

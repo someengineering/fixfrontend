@@ -1,9 +1,9 @@
 import { QueryFunctionContext } from '@tanstack/react-query'
-import { getWorkspaceInventoryPropertyAttributesQuery } from 'src/pages/panel/shared/queries'
+import { postWorkspaceInventoryPropertyAttributesQuery } from 'src/pages/panel/shared/queries'
 
-export const getCustomedWorkspaceInventoryPropertyAttributesQuery = async ({
+export const postCostumedWorkspaceInventoryPropertyAttributesQuery = async ({
   signal,
-  queryKey: [_, workspaceId, path, prop, kind, type],
+  queryKey: [, workspaceId, path, prop, kind, type],
   pageParam,
   direction,
   meta,
@@ -22,7 +22,7 @@ export const getCustomedWorkspaceInventoryPropertyAttributesQuery = async ({
   }
 >) => {
   const data =
-    (await getWorkspaceInventoryPropertyAttributesQuery({
+    (await postWorkspaceInventoryPropertyAttributesQuery({
       signal,
       queryKey: [
         'workspace-inventory-property-attributes',

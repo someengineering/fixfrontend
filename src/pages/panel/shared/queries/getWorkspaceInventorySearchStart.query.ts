@@ -5,7 +5,7 @@ import { axiosWithAuth } from 'src/shared/utils/axios'
 
 export const getWorkspaceInventorySearchStartQuery = ({
   signal,
-  queryKey: [_, workspaceId],
+  queryKey: [, workspaceId],
 }: QueryFunctionContext<['workspace-inventory-search-start', string | undefined]>) => {
   return workspaceId
     ? axiosWithAuth
