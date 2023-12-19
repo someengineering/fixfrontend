@@ -20,7 +20,7 @@ const workspaces = (): MockMethod[] => {
     },
     // cf_url
     {
-      url: '/api/workspaces/:wordspaceid/cf_url',
+      url: '/api/workspaces/:workspaceid/cf_url',
       method: 'get',
       rawResponse: responseJSONWithAuthCheck(
         'https://console.aws.amazon.com/cloudformation/home#/stacks/create/review?templateURL=https://fixpublic.s3.amazonaws.com/aws/fix-role-dev-eu.yaml&stackName=FixAccess&param_WorkspaceId=715528a6-ebc1-455f-bda3-bccaf8dc042b&param_ExternalId=5c671b17-ba88-4785-8b64-09a3998b8f33',
@@ -28,13 +28,13 @@ const workspaces = (): MockMethod[] => {
     },
     // cf_template
     {
-      url: '/api/workspaces/:wordspaceid/cf_template',
+      url: '/api/workspaces/:workspaceid/cf_template',
       method: 'get',
       rawResponse: responseJSONWithAuthCheck('https://fixpublic.s3.amazonaws.com/aws/fix-role-dev-eu.yaml'),
     },
     // external_id
     {
-      url: '/api/workspaces/:wordspaceid/external_id',
+      url: '/api/workspaces/:workspaceid/external_id',
       method: 'get',
       rawResponse: responseJSONWithAuthCheck({
         external_id: '00000000-0000-0000-0000-000000000000',

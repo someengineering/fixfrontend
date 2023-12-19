@@ -7,28 +7,28 @@ import { getAuthData } from 'src/shared/utils/localstorage'
 
 type queryFnStr =
   | 'getWorkspaceInventorySearchStartQuery'
-  | 'getWorkspaceInventoryNodeQuery'
-  | 'getCustomedWorkspaceInventoryPropertyAttributesQuery'
-  | 'getWorkspaceInventoryPropertyAttributesQuery'
-  | 'getWorkspaceInventoryPropertyPathCompleteQuery'
-  | 'getWorkspaceInventoryPropertyValuesQuery'
+  | 'postWorkspaceInventoryNodeQuery'
+  | 'postCostumedWorkspaceInventoryPropertyAttributesQuery'
+  | 'postWorkspaceInventoryPropertyAttributesQuery'
+  | 'postWorkspaceInventoryPropertyPathCompleteQuery'
+  | 'postWorkspaceInventoryPropertyValuesQuery'
 
 const queryFnStrToApi = (queryFn: queryFnStr, workspaceId: string, id?: string) => {
   switch (queryFn) {
     case 'getWorkspaceInventorySearchStartQuery':
       return endPoints.workspaces.workspace(workspaceId).inventory.search.start
 
-    case 'getWorkspaceInventoryNodeQuery':
+    case 'postWorkspaceInventoryNodeQuery':
       return endPoints.workspaces.workspace(workspaceId).inventory.node(id ?? 'unknown')
 
-    case 'getWorkspaceInventoryPropertyAttributesQuery':
-    case 'getCustomedWorkspaceInventoryPropertyAttributesQuery':
+    case 'postWorkspaceInventoryPropertyAttributesQuery':
+    case 'postCostumedWorkspaceInventoryPropertyAttributesQuery':
       return endPoints.workspaces.workspace(workspaceId).inventory.property.attributes
 
-    case 'getWorkspaceInventoryPropertyPathCompleteQuery':
+    case 'postWorkspaceInventoryPropertyPathCompleteQuery':
       return endPoints.workspaces.workspace(workspaceId).inventory.property.path.complete
 
-    case 'getWorkspaceInventoryPropertyValuesQuery':
+    case 'postWorkspaceInventoryPropertyValuesQuery':
       return endPoints.workspaces.workspace(workspaceId).inventory.property.values
 
     default:

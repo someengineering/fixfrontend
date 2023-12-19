@@ -1,12 +1,15 @@
 import { QueryFunctionContext } from '@tanstack/react-query'
 import { defaultProperties } from 'src/pages/panel/shared/constants'
 import { endPoints } from 'src/shared/constants'
-import { GetWorkspaceInventoryPropertyPathComplete } from 'src/shared/types/server'
+import {
+  PostWorkspaceInventoryPropertyPathCompleteRequest,
+  PostWorkspaceInventoryPropertyPathCompleteResponse,
+} from 'src/shared/types/server'
 import { axiosWithAuth } from 'src/shared/utils/axios'
 
-export const getWorkspaceInventoryPropertyPathCompleteQuery = ({
+export const postWorkspaceInventoryPropertyPathCompleteQuery = ({
   signal,
-  queryKey: [_, workspaceId, path, prop, kind, kinds],
+  queryKey: [, workspaceId, path, prop, kind, kinds],
   pageParam: { skip = 0, limit = 50 },
 }: QueryFunctionContext<
   readonly [
@@ -22,7 +25,7 @@ export const getWorkspaceInventoryPropertyPathCompleteQuery = ({
     limit: number | null
   }
 >) => {
-  const data = {
+  const data: PostWorkspaceInventoryPropertyPathCompleteRequest = {
     path,
     prop,
     kinds: kind ? [kind] : (JSON.parse(kinds) as string[]),
@@ -33,7 +36,7 @@ export const getWorkspaceInventoryPropertyPathCompleteQuery = ({
   return (
     (workspaceId &&
       axiosWithAuth
-        .post<GetWorkspaceInventoryPropertyPathComplete>(
+        .post<PostWorkspaceInventoryPropertyPathCompleteResponse>(
           endPoints.workspaces.workspace(workspaceId).inventory.property.path.complete,
           data,
           { signal },

@@ -2,16 +2,16 @@ import { useEffect } from 'react'
 import { useFullPageLoading } from './useFullPageLoading'
 
 export interface FullPageLoadingSuspenseFallbackProps {
-  forceFullpage?: boolean
+  forceFullPage?: boolean
 }
 
-export const FullPageLoadingSuspenseFallback = ({ forceFullpage }: FullPageLoadingSuspenseFallbackProps) => {
+export const FullPageLoadingSuspenseFallback = ({ forceFullPage }: FullPageLoadingSuspenseFallbackProps) => {
   const { hideLoading, showLoading } = useFullPageLoading()
   useEffect(() => {
-    showLoading(forceFullpage)
+    showLoading(forceFullPage)
     return () => {
-      hideLoading(forceFullpage)
+      hideLoading(forceFullPage)
     }
-  }, [showLoading, hideLoading, forceFullpage])
+  }, [showLoading, hideLoading, forceFullPage])
   return null
 }

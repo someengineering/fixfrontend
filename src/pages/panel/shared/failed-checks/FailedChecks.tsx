@@ -55,7 +55,7 @@ export const FailedChecks = ({ failedCheck, navigate, smallText }: FailedChecks)
                 <Trans>Go to resources</Trans>
               </Button>
             )}
-            <Button href={failedCheck.remediation.url} target="_blank" endIcon={<OpenInNewIcon />}>
+            <Button href={failedCheck.remediation.url} target="_blank" rel="noopener noreferrer" endIcon={<OpenInNewIcon />}>
               <Trans>More info</Trans>
             </Button>
           </Stack>

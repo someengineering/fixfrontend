@@ -1,14 +1,14 @@
 import CheckIcon from '@mui/icons-material/Check'
-import DoDistorbIcon from '@mui/icons-material/DoDisturb'
+import DoDisturbIcon from '@mui/icons-material/DoDisturb'
 import { ButtonBase, ButtonBaseProps, TableCell, TableRow } from '@mui/material'
 import { panelUI } from 'src/shared/constants'
-import { GetWorkspaceInventorySearchTableColumn, GetWorkspaceInventorySearchTableRow } from 'src/shared/types/server'
+import { PostWorkspaceInventorySearchTableColumn, PostWorkspaceInventorySearchTableRow } from 'src/shared/types/server'
 import { rowStrFromColumnKind } from './utils'
 
 interface InventoryRowProps {
-  row: GetWorkspaceInventorySearchTableRow
-  columns: GetWorkspaceInventorySearchTableColumn[]
-  onClick: (params: GetWorkspaceInventorySearchTableRow) => void
+  row: PostWorkspaceInventorySearchTableRow
+  columns: PostWorkspaceInventorySearchTableColumn[]
+  onClick: (params: PostWorkspaceInventorySearchTableRow) => void
 }
 
 export const InventoryRow = ({ row, columns, onClick }: InventoryRowProps) => {
@@ -29,7 +29,7 @@ export const InventoryRow = ({ row, columns, onClick }: InventoryRowProps) => {
             row.row[column.name] ? (
               <CheckIcon color="success" />
             ) : (
-              <DoDistorbIcon color="error" />
+              <DoDisturbIcon color="error" />
             )
           ) : (
             rowStrFromColumnKind(row.row[column.name], column.kind) ?? '-'
@@ -40,7 +40,7 @@ export const InventoryRow = ({ row, columns, onClick }: InventoryRowProps) => {
   )
 }
 
-export const InventoryRowSkleton = ({ row, columns }: InventoryRowProps) => {
+export const InventoryRowSkeleton = ({ row, columns }: InventoryRowProps) => {
   return (
     <TableRow>
       {columns.map((column, i) => (

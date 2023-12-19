@@ -30,7 +30,7 @@ interface InventoryFormFilterRowValuesProps<HasDefaultProperties extends boolean
   searchCrit: string
 }
 
-const removeCurrectSearchCrit = (currentSearchCrit: string | null, searchCrit: string) => {
+const removeCurrentSearchCrit = (currentSearchCrit: string | null, searchCrit: string) => {
   let crit = currentSearchCrit ? searchCrit.replace(currentSearchCrit, '').replace('and  and', 'and') || 'all' : searchCrit
   if (crit.endsWith(' and ')) {
     crit = crit.substring(0, crit.length - 5)
@@ -71,7 +71,7 @@ export function InventoryFormFilterRowValues<HasDefaultProperties extends boolea
 
   const currentSearchCrit = inventoryAdvanceSearchConfigToString(dataToProcess)
 
-  const crit = removeCurrectSearchCrit(currentSearchCrit, searchCrit)
+  const crit = removeCurrentSearchCrit(currentSearchCrit, searchCrit)
 
   let isDouble = false
   let isNumber = false

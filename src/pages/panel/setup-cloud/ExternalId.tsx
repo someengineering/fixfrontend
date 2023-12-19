@@ -6,7 +6,7 @@ import { Box, Button, IconButton, Typography, useTheme } from '@mui/material'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { getExternalIdQuery } from 'src/pages/panel/shared/queries'
+import { getWorkspaceExternalIdQuery } from 'src/pages/panel/shared/queries'
 import { useCopyString } from 'src/shared/utils/useCopyString'
 
 export const ExternalId = () => {
@@ -15,7 +15,7 @@ export const ExternalId = () => {
   const { selectedWorkspace } = useUserProfile()
   const { data: ExternalIdData } = useSuspenseQuery({
     queryKey: ['workspace-external-id', selectedWorkspace?.id],
-    queryFn: getExternalIdQuery,
+    queryFn: getWorkspaceExternalIdQuery,
   })
   const copyString = useCopyString()
   const handleCopy = () => {

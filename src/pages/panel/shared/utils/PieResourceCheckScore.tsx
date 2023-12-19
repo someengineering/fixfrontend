@@ -49,7 +49,7 @@ export const PieResourceCheckScore = ({
           <CircularScore
             containerProps={onScoreClick ? { onClick: onScoreClick, component: ButtonBase } : undefined}
             score={score}
-            syntaticScore={showPieChart ? 0 : score}
+            syntheticScore={showPieChart ? 0 : score}
             size={150}
             typographyProps={{
               variant: showPieChart ? 'h2' : 'h1',

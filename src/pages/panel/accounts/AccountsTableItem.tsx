@@ -1,7 +1,7 @@
 import { Trans } from '@lingui/macro'
 import { Box, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { useState } from 'react'
-import { TablePagination, TableViewPage } from 'src/shared/layouts/panel-layout'
+import { TableViewPage } from 'src/shared/layouts/panel-layout'
 import { Account } from 'src/shared/types/server'
 import { AccountRow } from './AccountRow'
 import { AccountTableTitle } from './AccountTableTitle'
@@ -20,16 +20,14 @@ export const AccountsTableItem = ({ data, title, isTop, isBottom }: AccountsTabl
     <Box mb={isBottom ? undefined : { xs: 8, sm: 5 }} mt={isTop ? undefined : { sm: 3 }}>
       <AccountTableTitle isTop={isTop}>{title}</AccountTableTitle>
       <TableViewPage
-        pagination={
-          <TablePagination
-            dataCount={data.length ?? 0}
-            page={page}
-            rowsPerPage={rowsPerPage}
-            setPage={setPage}
-            setRowsPerPage={setRowsPerPage}
-          />
-        }
-        minHeight={380}
+        paginationProps={{
+          dataCount: data.length ?? 0,
+          page,
+          rowsPerPage,
+          setPage,
+          setRowsPerPage,
+        }}
+        minHeight={0}
       >
         <Table stickyHeader aria-label={title}>
           <TableHead>

@@ -2,6 +2,7 @@ import { Box } from '@mui/material'
 import { PropsWithChildren, ReactNode } from 'react'
 import { panelUI } from 'src/shared/constants'
 import { PanelBottom } from './PanelBottom'
+import { PanelBreadcrumbs } from './PanelBreadcrumbs'
 
 interface PanelContent extends PropsWithChildren {
   bottom: ReactNode
@@ -20,6 +21,7 @@ export const PanelContent = ({ children, bottom }: PanelContent) => {
         flexGrow={1}
         position="relative"
       >
+        <PanelBreadcrumbs />
         {children}
       </Box>
       <PanelBottom>{bottom}</PanelBottom>

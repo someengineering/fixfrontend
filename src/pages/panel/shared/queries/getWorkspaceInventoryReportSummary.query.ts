@@ -37,11 +37,12 @@ const getDefaultValue = () =>
     },
     overall_score: 0,
     top_checks: [],
+    vulnerable_resources: null,
   }) as GetWorkspaceInventoryReportSummaryResponse
 
 export const getWorkspaceInventoryReportSummaryQuery = ({
   signal,
-  queryKey: [_, workspaceId],
+  queryKey: [, workspaceId],
 }: QueryFunctionContext<['workspace-inventory-report-summary', string | undefined]>) => {
   return workspaceId
     ? axiosWithAuth

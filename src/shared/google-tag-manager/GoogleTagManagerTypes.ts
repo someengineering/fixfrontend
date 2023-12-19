@@ -98,7 +98,6 @@ type DataEventNetworkError = DataEventCommonError & {
   status: string
   config: string
   code: string
-  rest: string
 }
 
 type DataEventInventorySearch = {

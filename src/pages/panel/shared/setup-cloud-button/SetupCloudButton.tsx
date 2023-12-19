@@ -31,6 +31,7 @@ const SetupCloudButtonComponent = (props: SetupCloudButtonProps) => {
       component="a"
       href={cloudSetupUrlData}
       target="_blank"
+      rel="noopener noreferrer"
     />
   )
 }

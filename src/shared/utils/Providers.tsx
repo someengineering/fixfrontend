@@ -15,7 +15,7 @@ import { env, langs } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { GTMProvider } from 'src/shared/google-tag-manager'
 import { FullPageLoadingProvider } from 'src/shared/loading'
-import { getEnviromentStr } from './getEnviroment'
+import { getEnvironmentStr } from './getEnvironment'
 import { getLocale, setLocale } from './localstorage'
 
 const queryClient = new QueryClient({
@@ -65,7 +65,7 @@ export const Providers = ({ children }: PropsWithChildren) => {
   const [gtmId, setGtmId] = useState<string>()
 
   useEffect(() => {
-    getEnviromentStr()
+    getEnvironmentStr()
       .then((envStr) => {
         setGtmId(envStr === 'prd' ? (env.gtmId = import.meta.env.VITE_GTM_PROD_ID) : (env.gtmId = import.meta.env.VITE_GTM_DEV_ID))
       })

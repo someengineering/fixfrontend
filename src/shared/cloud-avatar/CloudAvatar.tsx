@@ -2,7 +2,7 @@ import { Trans } from '@lingui/macro'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import { Avatar, Box, ButtonBase, Paper, Tooltip, Typography } from '@mui/material'
 import { ReactNode } from 'react'
-import { AwsLogo, Crown, GcpLogo } from 'src/assets/icons'
+import { AwsLogo, Crown, FixLogo, GcpLogo } from 'src/assets/icons'
 
 interface CloudAvatar {
   cloud: string
@@ -13,7 +13,9 @@ interface CloudAvatar {
 }
 
 const CloudIcon = ({ cloud }: CloudAvatar) => {
-  switch (cloud) {
+  switch (cloud.toLowerCase()) {
+    case 'fix':
+      return <FixLogo width={40} height={40} />
     case 'aws':
       return <AwsLogo width={40} height={40} />
     case 'gcp':

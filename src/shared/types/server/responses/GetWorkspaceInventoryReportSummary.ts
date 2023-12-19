@@ -15,12 +15,12 @@ export interface Benchmark {
     {
       score: number
       failed_checks: Partial<FailedChecksType> | null
-      failed_resources: Partial<FailedChecksType> | null
+      failed_resource_checks: Partial<FailedChecksType> | null
     }
   >
 }
 
-export interface ChangedSitatuation {
+export interface ChangedSituation {
   since: string
   accounts_selection: string[]
   resource_count_by_kind_selection: Record<string, number>
@@ -45,12 +45,27 @@ export interface WorkspaceCheckSummary {
   failed_resources_by_severity: Partial<FailedChecksType>
 }
 
+export interface vulnerableResource {
+  at: string
+  group: { severity: SeverityType }
+  v: number
+}
+
+export interface vulnerableResources {
+  data: vulnerableResource[]
+  end: string
+  granularity: string
+  name: string
+  start: string
+}
+
 export interface GetWorkspaceInventoryReportSummaryResponse {
   overall_score: number
   check_summary: WorkspaceCheckSummary
   accounts: WorkspaceAccountReportSummary[]
   benchmarks: Benchmark[]
-  changed_vulnerable: ChangedSitatuation
-  changed_compliant: ChangedSitatuation
+  changed_vulnerable: ChangedSituation
+  changed_compliant: ChangedSituation
   top_checks: FailedCheck[]
+  vulnerable_resources: vulnerableResources | null
 }

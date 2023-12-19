@@ -14,12 +14,12 @@ import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardPr
 
 export interface CircularScoreProps extends CircularProgressProps {
   score: number
-  syntaticScore?: number
+  syntheticScore?: number
   typographyProps?: TypographyProps
   containerProps?: BoxProps
 }
 
-const CirtularLabelContainer = styled(Box, { shouldForwardProp: shouldForwardPropWithBlackList(['scoreColor']) })<{
+const CircularLabelContainer = styled(Box, { shouldForwardProp: shouldForwardPropWithBlackList(['scoreColor']) })<{
   scoreColor: string
 }>(({ scoreColor, theme }) => ({
   top: 0,
@@ -39,7 +39,7 @@ const CircularProgress = styled(MuiCircularProgress)(({ theme }) => ({
   transition: theme.transitions.create('color'),
 }))
 
-export const CircularScore = ({ score, syntaticScore, typographyProps, containerProps, sx, ...props }: CircularScoreProps) => {
+export const CircularScore = ({ score, syntheticScore, typographyProps, containerProps, sx, ...props }: CircularScoreProps) => {
   const [scoreState, setScoreState] = useState(100)
   const timeoutRef = useRef<number>()
   useEffect(() => {
@@ -60,12 +60,12 @@ export const CircularScore = ({ score, syntaticScore, typographyProps, container
   const color = colorFromRedToGreen[scoreState]
   return (
     <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-      <CircularProgress variant="determinate" value={syntaticScore ?? scoreState} sx={{ color, ...sx }} size={72} {...props} />
-      <CirtularLabelContainer scoreColor={color} {...containerProps}>
+      <CircularProgress variant="determinate" value={syntheticScore ?? scoreState} sx={{ color, ...sx }} size={72} {...props} />
+      <CircularLabelContainer scoreColor={color} {...containerProps}>
         <Typography variant="h4" component="div" color={color} {...typographyProps}>
           {score}
         </Typography>
-      </CirtularLabelContainer>
+      </CircularLabelContainer>
     </Box>
   )
 }

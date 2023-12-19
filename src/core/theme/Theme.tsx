@@ -83,6 +83,7 @@ export function Theme({ children }: ThemeProps) {
     h5: { fontSize: '20px', fontWeight: 600, lineHeight: 1.15, letterSpacing: '-1px' },
     h6: { fontSize: '18px', fontWeight: 500, lineHeight: 1.15 },
     body1: { fontSize: '16px', fontWeight: 400, lineHeight: 1.15 },
+    body2: { fontSize: '14px', fontWeight: 400, lineHeight: 1.15 },
     caption: { fontSize: '13px', fontWeight: 300, lineHeight: 1.15 },
     subtitle1: { fontSize: '12px', fontWeight: 300, lineHeight: 1.15 },
     button: {

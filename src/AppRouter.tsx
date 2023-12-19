@@ -21,7 +21,7 @@ const PanelContainer = lazy(
 
 export const AppRouter = memo(
   () => (
-    <Suspense fallback={<FullPageLoadingSuspenseFallback forceFullpage />}>
+    <Suspense fallback={<FullPageLoadingSuspenseFallback forceFullPage />}>
       <Routes>
         <Route path="auth/*" element={<AuthContainer />} />
         <Route element={<RequireAuth />}>

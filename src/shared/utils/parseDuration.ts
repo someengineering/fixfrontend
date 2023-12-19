@@ -82,7 +82,7 @@ export const parseCustomDuration = (customDuration: string) => {
 
 export const splitCustomDuration = (customDuration: string) => customDuration.match(customDurationForSplitRegex) ?? ([] as string[])
 
-export const splitedCustomDurationToAutoComplete = (customDurations: string[]) =>
+export const splittedCustomDurationToAutoComplete = (customDurations: string[]) =>
   customDurations.map((value) => ({ label: iso8601DurationToString(parseCustomDuration(value)), value }))
 
 export const durationToCustomDurationString = (duration: ISO8601DurationType) => {

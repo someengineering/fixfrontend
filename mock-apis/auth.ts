@@ -14,7 +14,7 @@ const auth = (config: MockConfig): MockMethod[] => {
       method: 'post',
       rawResponse: async (req, res) => {
         const reqbody = await getBodyFromRawRequest(req, res)
-        const body = parseQueryString<{ username?: string; pasword?: string }>(reqbody, '%40')
+        const body = parseQueryString<{ username?: string; password?: string }>(reqbody, '%40')
         if (!body.username || body.username === 'fail') {
           res.statusCode = 400
           return res.end(

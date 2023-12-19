@@ -4,7 +4,7 @@ import { Button, Divider, Link, Modal, Stack, Typography, styled } from '@mui/ma
 import { AxiosError } from 'axios'
 import { useEffect } from 'react'
 import { FallbackProps } from 'react-error-boundary'
-import { DiscrodIcon } from 'src/assets/icons'
+import { DiscordIcon } from 'src/assets/icons'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { env } from 'src/shared/constants'
 import { sendToGTM } from 'src/shared/google-tag-manager'
@@ -55,7 +55,7 @@ export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackPro
           <Trans>
             We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few
             minutes. If the problem persists, feel free to contact us{' '}
-            <Link href={env.discordUrl} target="_blank">
+            <Link href={env.discordUrl} target="_blank" rel="noopener noreferrer">
               on Discord
             </Link>
             . Thanks for your patience!
@@ -80,8 +80,9 @@ export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackPro
             variant="contained"
             sx={{ mt: 1 }}
             color="primary"
-            startIcon={<DiscrodIcon />}
+            startIcon={<DiscordIcon />}
             href={env.discordUrl}
+            rel="noopener noreferrer"
             target="_blank"
           >
             Discord

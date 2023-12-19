@@ -1,7 +1,7 @@
 import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { Accordion, AccordionDetails, AccordionSummary, Box, Divider, Typography } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Alert, Box, Divider, Typography } from '@mui/material'
 import { Suspense, useEffect, useRef } from 'react'
 import { useEvents } from 'src/core/events'
 import { SetupCloudButton } from 'src/pages/panel/shared/setup-cloud-button'
@@ -47,9 +47,13 @@ export default function SetupCloud() {
       <Typography variant="h6">
         <Trans>In the next step we are going to set up the trust between FIX and your AWS cloud account.</Trans>
       </Typography>
-      <Typography variant="h6" color="warning.main" mt={1}>
-        <Trans>Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button.</Trans>
-      </Typography>
+      <Box mt={1}>
+        <Alert color="warning" sx={{ display: 'inline-flex' }}>
+          <Typography variant="h6" color="warning.main">
+            <Trans>Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button.</Trans>
+          </Typography>
+        </Alert>
+      </Box>
       <Box mt={3} display="flex" justifyContent="start">
         <iframe
           height={0}

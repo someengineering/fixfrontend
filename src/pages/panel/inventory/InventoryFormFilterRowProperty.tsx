@@ -16,11 +16,11 @@ import { AxiosError } from 'axios'
 import { ChangeEvent, HTMLAttributes, KeyboardEvent, UIEvent as ReactUIEvent, useEffect, useMemo, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { OPType, defaultProperties, kindDurationTypes, kindSimpleTypes } from 'src/pages/panel/shared/constants'
-import { getWorkspaceInventoryPropertyPathCompleteQuery } from 'src/pages/panel/shared/queries'
+import { postWorkspaceInventoryPropertyPathCompleteQuery } from 'src/pages/panel/shared/queries'
 import { isValidProp } from 'src/pages/panel/shared/utils'
 import { panelUI } from 'src/shared/constants'
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
-import { getCustomedWorkspaceInventoryPropertyAttributesQuery, inventorySendToGTM } from './utils'
+import { inventorySendToGTM, postCostumedWorkspaceInventoryPropertyAttributesQuery } from './utils'
 
 interface InventoryFormFilterRowPropertyProps {
   selectedKind: string | null
@@ -76,7 +76,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
     },
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>
       (lastPage?.length ?? 0) < ITEMS_PER_PAGE ? undefined : { ...lastPageParam, skip: lastPageParam.skip + ITEMS_PER_PAGE },
-    queryFn: getCustomedWorkspaceInventoryPropertyAttributesQuery,
+    queryFn: postCostumedWorkspaceInventoryPropertyAttributesQuery,
     throwOnError: false,
     enabled: !!selectedWorkspace?.id && !!kinds.length && isDictionary,
   })
@@ -96,7 +96,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
     },
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>
       (lastPage?.length ?? 0) < ITEMS_PER_PAGE ? undefined : { ...lastPageParam, skip: lastPageParam.skip + ITEMS_PER_PAGE },
-    queryFn: getWorkspaceInventoryPropertyPathCompleteQuery,
+    queryFn: postWorkspaceInventoryPropertyPathCompleteQuery,
     throwOnError: false,
     enabled: !!selectedWorkspace?.id && !!kinds.length && !isDictionary,
   })
@@ -112,13 +112,13 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
             ? ''
             : debouncedProp
         const path = debouncedPath
-        inventorySendToGTM('getCustomedWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
+        inventorySendToGTM('postCostumedWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
           workspaceId: selectedWorkspace?.id,
           prop: `${path.split('.').slice(-1)[0]}${prop ? `=~"${prop.replace(/․/g, '.')}"` : ''}` ? '' : debouncedProp,
           query: selectedKind ? `is(${selectedKind})` : 'all',
         })
       } else {
-        inventorySendToGTM('getCustomedWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
+        inventorySendToGTM('postCostumedWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
           workspaceId: selectedWorkspace?.id,
           path: isDefaultItemSelected ? '' : debouncedPath,
           prop: !fqn || isDefaultItemSelected ? '' : debouncedProp,
