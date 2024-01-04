@@ -1,7 +1,7 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import LanguageIcon from '@mui/icons-material/Language'
-import { Box, IconButton, IconButtonProps, Menu, MenuItem, Tooltip, Typography, styled } from '@mui/material'
+import { Box, IconButton, IconButtonProps, Menu, MenuItem, MenuProps, Tooltip, Typography, styled } from '@mui/material'
 import { MouseEvent as MouseEventReact, useState } from 'react'
 import { langs } from 'src/shared/constants'
 import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
@@ -9,6 +9,7 @@ import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardPr
 interface LanguageButtonProps {
   iconButtonProps?: IconButtonProps
   whiteMode?: boolean
+  menuProps?: Omit<MenuProps, 'open' | 'id' | 'anchorEl' | 'onClose'>
 }
 
 const LanguageIconButton = styled(IconButton, { shouldForwardProp: shouldForwardPropWithBlackList(['whiteMode']) })<{ whiteMode: boolean }>(
@@ -19,7 +20,7 @@ const LanguageIconButton = styled(IconButton, { shouldForwardProp: shouldForward
   }),
 )
 
-export const LanguageButton = ({ iconButtonProps, whiteMode }: LanguageButtonProps) => {
+export const LanguageButton = ({ iconButtonProps, whiteMode, menuProps }: LanguageButtonProps) => {
   const { i18n } = useLingui()
   const [anchorElLanguage, setAnchorElLanguage] = useState<HTMLElement>()
   const handleOpenUserMenu = (event: MouseEventReact<HTMLElement, MouseEvent>) => {
@@ -43,9 +44,6 @@ export const LanguageButton = ({ iconButtonProps, whiteMode }: LanguageButtonPro
         </LanguageIconButton>
       </Tooltip>
       <Menu
-        sx={{ mt: '45px' }}
-        id="language-menu"
-        anchorEl={anchorElLanguage}
         anchorOrigin={{
           vertical: 'top',
           horizontal: 'right',
@@ -55,6 +53,10 @@ export const LanguageButton = ({ iconButtonProps, whiteMode }: LanguageButtonPro
           vertical: 'top',
           horizontal: 'right',
         }}
+        {...menuProps}
+        sx={{ mt: '45px', ...(menuProps?.sx ?? {}) }}
+        id="language-menu"
+        anchorEl={anchorElLanguage}
         open={Boolean(anchorElLanguage)}
         onClose={handleCloseUserMenu}
       >

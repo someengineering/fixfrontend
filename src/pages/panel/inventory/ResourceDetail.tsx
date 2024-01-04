@@ -1,4 +1,5 @@
 import { Trans } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
 import CloseIcon from '@mui/icons-material/Close'
 import {
   Accordion,
@@ -112,6 +113,9 @@ const GridItem = ({
 
 export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
   const { selectedWorkspace } = useUserProfile()
+  const {
+    i18n: { locale },
+  } = useLingui()
   const { data, isLoading, error } = useQuery({
     queryKey: ['workspace-inventory-node', selectedWorkspace?.id, detail?.id],
     queryFn: postWorkspaceInventoryNodeQuery,
@@ -188,7 +192,9 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
                   <GridItem property={<Trans>Name</Trans>} value={name} />
                   <GridItem
                     property={<Trans>Created Time</Trans>}
-                    value={`${new Date(ctime as string).toLocaleDateString()} ${new Date(ctime as string).toLocaleTimeString()}`}
+                    value={`${new Date(ctime as string).toLocaleDateString(locale)} ${new Date(ctime as string).toLocaleTimeString(
+                      locale,
+                    )}`}
                   />
                   <GridItem
                     property={<Trans>Age</Trans>}
@@ -255,9 +261,9 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
                 {/* <Grid gap={2} gridTemplateColumns="150px 1fr" display="grid">
                   <GridItem
                     property={<Trans>Found at</Trans>}
-                    value={`${new Date(data.resource.security.opened_at).toLocaleDateString()} ${new Date(
+                    value={`${new Date(data.resource.security.opened_at).toLocaleDateString(locale)} ${new Date(
                       data.resource.security.opened_at,
-                    ).toLocaleTimeString()}`}
+                    ).toLocaleTimeString(locale)}`}
                   />
                   <GridItem
                     property={<Trans>Severity</Trans>}
@@ -273,7 +279,7 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
                       <GridItem property={<Trans>Check</Trans>} value={issue.check} />
                       <GridItem
                         property={<Trans>Found at</Trans>}
-                        value={`${new Date(issue.opened_at).toLocaleDateString()} ${new Date(issue.opened_at).toLocaleTimeString()}`}
+                        value={`${new Date(issue.opened_at).toLocaleDateString(locale)} ${new Date(issue.opened_at).toLocaleTimeString(locale)}`}
                       />
                       <GridItem
                         property={<Trans>Severity</Trans>}

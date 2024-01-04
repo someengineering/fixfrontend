@@ -1,4 +1,5 @@
 import { Trans, t } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
 import CancelIcon from '@mui/icons-material/Cancel'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
@@ -33,6 +34,9 @@ import { replaceRowByAccount } from './replaceRowByAccount'
 
 export const AccountRow = ({ account }: { account: Account }) => {
   const inputRef = useRef<HTMLInputElement>()
+  const {
+    i18n: { locale },
+  } = useLingui()
   const showDeleteModalRef = useRef<(show?: boolean) => void>()
   const showDegradedModalRef = useRef<(show?: boolean) => void>()
   const { selectedWorkspace } = useUserProfile()
@@ -269,7 +273,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
         )}
       </TableCell>
       <TableCell>{account.resources ?? '-'}</TableCell>
-      <TableCell>{account.next_scan ? new Date(account.next_scan).toLocaleTimeString() : '-'}</TableCell>
+      <TableCell>{account.next_scan ? new Date(account.next_scan).toLocaleTimeString(locale) : '-'}</TableCell>
       <TableCell>
         {enableAccountIsPending || disableAccountIsPending ? (
           <Stack justifyContent="center" direction="column" padding={1} margin="1px">

@@ -105,7 +105,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
   const rawOptions = (networkDisabled ? defaultOptions : flatData) ?? []
 
   const optionsWithTyped =
-    typed && typed.toLocaleLowerCase() !== 'null' && !(Array.isArray(value) ? value.find((i) => i.label === typed) : value?.label === typed)
+    typed && typed.toLowerCase() !== 'null' && !(Array.isArray(value) ? value.find((i) => i.label === typed) : value?.label === typed)
       ? rawOptions.concat({ value: typed, label: typed })
       : rawOptions
 

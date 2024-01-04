@@ -1,4 +1,5 @@
 import { Trans, t } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { LoadingButton } from '@mui/lab'
 import { Button, Grid, IconButton, TableCell, TableRow, Tooltip, Typography } from '@mui/material'
@@ -7,11 +8,14 @@ import { useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { Modal } from 'src/shared/modal'
-import { WorkspaceInvite, WorkspaceUser } from 'src/shared/types/server'
+import { WorkspaceUser } from 'src/shared/types/server'
 import { deleteWorkspaceUserMutation } from './deleteWorkspaceUser.mutation'
 
-export const WorkspaceSettingsUserRow = ({ workspaceUser }: { workspaceUser: WorkspaceUser & { invites: WorkspaceInvite[] } }) => {
+export const WorkspaceSettingsUserRow = ({ workspaceUser }: { workspaceUser: WorkspaceUser }) => {
   const showDeleteModalRef = useRef<(show?: boolean) => void>()
+  const {
+    i18n: { locale },
+  } = useLingui()
   const { selectedWorkspace } = useUserProfile()
   const queryClient = useQueryClient()
 
@@ -72,7 +76,7 @@ export const WorkspaceSettingsUserRow = ({ workspaceUser }: { workspaceUser: Wor
       <TableCell>{workspaceUser.name || '-'}</TableCell>
       <TableCell>{workspaceUser.email || '-'}</TableCell>
       <TableCell>{workspaceUser.roles.length ? workspaceUser.roles.join(', ') : 'Admin'}</TableCell>
-      <TableCell>{workspaceUser.last_login ? new Date(workspaceUser.last_login).toLocaleTimeString() : '-'}</TableCell>
+      <TableCell>{workspaceUser.last_login ? new Date(workspaceUser.last_login).toLocaleString(locale) : '-'}</TableCell>
       <TableCell>-</TableCell>
       <TableCell>
         {deleteWorkspaceUserIsPending ? (
