@@ -13,35 +13,35 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/shared/utils/parseDuration.ts:159
+#: src/shared/utils/parseDuration.ts:171
 msgid "{0, plural, one {# Day} other {# Days}}"
 msgstr "{0, plural, one {# Day} other {# Days}}"
 
-#: src/shared/utils/parseDuration.ts:167
+#: src/shared/utils/parseDuration.ts:179
 msgid "{0, plural, one {# Hour} other {# Hours}}"
 msgstr "{0, plural, one {# Hour} other {# Hours}}"
 
-#: src/shared/utils/parseDuration.ts:175
+#: src/shared/utils/parseDuration.ts:187
 msgid "{0, plural, one {# Minute} other {# Minutes}}"
 msgstr "{0, plural, one {# Minute} other {# Minutes}}"
 
-#: src/shared/utils/parseDuration.ts:143
+#: src/shared/utils/parseDuration.ts:155
 msgid "{0, plural, one {# Month} other {# Months}}"
 msgstr "{0, plural, one {# Month} other {# Months}}"
 
-#: src/shared/utils/parseDuration.ts:183
+#: src/shared/utils/parseDuration.ts:195
 msgid "{0, plural, one {# Second} other {# Seconds}}"
 msgstr "{0, plural, one {# Second} other {# Seconds}}"
 
-#: src/shared/utils/parseDuration.ts:151
+#: src/shared/utils/parseDuration.ts:163
 msgid "{0, plural, one {# Week} other {# Weeks}}"
 msgstr "{0, plural, one {# Week} other {# Weeks}}"
 
-#: src/shared/utils/parseDuration.ts:135
+#: src/shared/utils/parseDuration.ts:147
 msgid "{0, plural, one {# Year} other {# Years}}"
 msgstr "{0, plural, one {# Year} other {# Years}}"
 
-#: src/shared/utils/parseDuration.ts:190
+#: src/shared/utils/parseDuration.ts:202
 msgid "{0} Milliseconds"
 msgstr "{0} Milliseconds"
 
@@ -49,22 +49,26 @@ msgstr "{0} Milliseconds"
 msgid "© 2023 Some Engineering Inc. All rights reserved."
 msgstr "© 2023 Some Engineering Inc. All rights reserved."
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:20
-msgid "<0>Billing cycle: monthly</0><1>Highest security tier this billing cycle: High Security ($50 / account)</1><2>Next invoice will be available: 2023-12-01</2>"
-msgstr "<0>Billing cycle: monthly</0><1>Highest security tier this billing cycle: High Security ($50 / account)</1><2>Next invoice will be available: 2023-12-01</2>"
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:36
+msgid "<0>Billing cycle: {0}</0><1>Highest security tier this billing cycle: {title} (${1} / account)</1>"
+msgstr "<0>Billing cycle: {0}</0><1>Highest security tier this billing cycle: {title} (${1} / account)</1>"
 
-#: src/pages/panel/accounts/AccountRow.tsx:201
-#: src/pages/panel/accounts/AccountRow.tsx:301
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:43
+msgid "<0>Next invoice will be available: {0}</0>"
+msgstr "<0>Next invoice will be available: {0}</0>"
+
+#: src/pages/panel/accounts/AccountRow.tsx:205
+#: src/pages/panel/accounts/AccountRow.tsx:305
 msgid "Access to your account is broken"
 msgstr "Access to your account is broken"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:67
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:14
 msgid "Account risk score"
 msgstr "Account risk score"
 
 #: src/pages/panel/inventory/InventoryTable.error.tsx:74
 #: src/pages/panel/inventory/InventoryTable.tsx:94
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:84
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:126
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:117
 msgid "Accounts"
 msgstr "Accounts"
@@ -80,7 +84,7 @@ msgstr "Action"
 #: src/pages/panel/accounts/AccountsTableItem.tsx:54
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:54
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:54
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:80
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:61
 msgid "Actions"
 msgstr "Actions"
 
@@ -102,27 +106,27 @@ msgstr "Add external directory"
 msgid "Added accounts"
 msgstr "Added accounts"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:82
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:29
 msgid "Advanced integration for top-tier security needs and IaC support."
 msgstr "Advanced integration for top-tier security needs and IaC support."
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:194
+#: src/pages/panel/inventory/ResourceDetail.tsx:200
 msgid "Age"
 msgstr "Age"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:77
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:24
 msgid "Alerting integrations (Slack, PagerDuty, Discord)"
 msgstr "Alerting integrations (Slack, PagerDuty, Discord)"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:87
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:34
 msgid "Alerting integrations with custom HTTP webhooks"
 msgstr "Alerting integrations with custom HTTP webhooks"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:86
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:33
 msgid "All Foundational features, plus"
 msgstr "All Foundational features, plus"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:76
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:23
 msgid "All Free features, plus"
 msgstr "All Free features, plus"
 
@@ -138,17 +142,18 @@ msgstr "Alternatively if you would like to deploy the stack manually, you can us
 msgid "Alternatively: Manual Cloud Setup"
 msgstr "Alternatively: Manual Cloud Setup"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:165
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:122
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:28
 msgid "An error occurred, please try again later."
 msgstr "An error occurred, please try again later."
 
-#: src/shared/utils/parseDuration.ts:192
+#: src/shared/utils/parseDuration.ts:204
 msgid "and"
 msgstr "and"
 
-#: src/pages/panel/accounts/AccountRow.tsx:319
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:91
+#: src/pages/panel/accounts/AccountRow.tsx:323
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationRow.tsx:78
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:95
 msgid "Are you sure?"
 msgstr "Are you sure?"
 
@@ -156,11 +161,11 @@ msgstr "Are you sure?"
 msgid "Automatic Cloud Setup"
 msgstr "Automatic Cloud Setup"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:87
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:34
 msgid "Automatic inventory exports (AWS S3)"
 msgstr "Automatic inventory exports (AWS S3)"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:38
+#: src/pages/panel/workspace-settings-billing/utils/paymentMethodToLabel.ts:7
 msgid "AWS Marketplace"
 msgstr "AWS Marketplace"
 
@@ -168,11 +173,11 @@ msgstr "AWS Marketplace"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace has been successfully subscribed"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:67
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:14
 msgid "Basic asset inventory"
 msgstr "Basic asset inventory"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:180
+#: src/pages/panel/inventory/ResourceDetail.tsx:184
 msgid "Basic Information"
 msgstr "Basic Information"
 
@@ -180,29 +185,31 @@ msgstr "Basic Information"
 msgid "Benchmarks"
 msgstr "Benchmarks"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:17
-#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:14
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:33
+#: src/shared/layouts/panel-layout/menuList.tsx:67
 msgid "Billing"
 msgstr "Billing"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:84
-msgid "Billing & Invoices"
-msgstr "Billing & Invoices"
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:95
+#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:16
+msgid "Billing & Receipts"
+msgstr "Billing & Receipts"
 
-#: src/pages/panel/accounts/AccountRow.tsx:247
 #: src/pages/panel/accounts/AccountRow.tsx:251
-#: src/pages/panel/accounts/AccountRow.tsx:252
-#: src/pages/panel/accounts/AccountRow.tsx:338
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:102
+#: src/pages/panel/accounts/AccountRow.tsx:255
+#: src/pages/panel/accounts/AccountRow.tsx:256
+#: src/pages/panel/accounts/AccountRow.tsx:342
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationRow.tsx:89
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:106
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:247
-msgid "Change Payment method"
-msgstr "Change Payment method"
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:205
+msgid "Change payment method"
+msgstr "Change payment method"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:218
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:244
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:175
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:202
 msgid "Change Security Tier"
 msgstr "Change Security Tier"
 
@@ -210,7 +217,11 @@ msgstr "Change Security Tier"
 msgid "Changes in the past 7 days"
 msgstr "Changes in the past 7 days"
 
-#: src/pages/panel/accounts/AccountRow.tsx:358
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:91
+msgid "Choose Workspace"
+msgstr "Choose Workspace"
+
+#: src/pages/panel/accounts/AccountRow.tsx:362
 #: src/pages/panel/accounts/AccountsTableItem.tsx:36
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:36
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:36
@@ -230,11 +241,11 @@ msgstr "Cloud account degraded, id: {0}"
 msgid "Cloud account discovered, id: {0}"
 msgstr "Cloud account discovered, id: {0}"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:101
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:46
 msgid "cloud account per month"
 msgstr "cloud account per month"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:80
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:122
 msgid "Clouds"
 msgstr "Clouds"
 
@@ -242,22 +253,26 @@ msgstr "Clouds"
 msgid "Compliance"
 msgstr "Compliance"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:67
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:14
 msgid "Compliance scans"
 msgstr "Compliance scans"
 
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:62
+msgid "Congratulations on your subscription"
+msgstr "Congratulations on your subscription"
+
 #: src/pages/panel/setup-cloud/WorkspaceId.tsx:16
-#: src/shared/utils/useCopyString.ts:15
+#: src/shared/utils/useCopyString.ts:16
 msgid "Copied to Clipboard!"
 msgstr "Copied to Clipboard!"
 
 #: src/pages/panel/setup-cloud/ExternalId.tsx:56
 #: src/pages/panel/setup-cloud/WorkspaceId.tsx:46
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:56
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:57
 msgid "Copy"
 msgstr "Copy"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:190
+#: src/pages/panel/inventory/ResourceDetail.tsx:194
 msgid "Created Time"
 msgstr "Created Time"
 
@@ -265,19 +280,19 @@ msgstr "Created Time"
 msgid "Critical"
 msgstr "Critical"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:77
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:24
 msgid "CSV data export"
 msgstr "CSV data export"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:75
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:22
 msgid "Daily"
 msgstr "Daily"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:71
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:18
 msgid "Daily scans for secure, compliant operations."
 msgstr "Daily scans for secure, compliant operations."
 
-#: src/shared/layouts/panel-layout/menuList.tsx:30
+#: src/shared/layouts/panel-layout/menuList.tsx:35
 msgid "Dashboard"
 msgstr "Dashboard"
 
@@ -298,18 +313,22 @@ msgstr "Date Time Picker"
 msgid "Default Role"
 msgstr "Default Role"
 
-#: src/pages/panel/accounts/AccountRow.tsx:289
 #: src/pages/panel/accounts/AccountRow.tsx:293
-#: src/pages/panel/accounts/AccountRow.tsx:294
-#: src/pages/panel/accounts/AccountRow.tsx:349
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:79
+#: src/pages/panel/accounts/AccountRow.tsx:297
+#: src/pages/panel/accounts/AccountRow.tsx:298
+#: src/pages/panel/accounts/AccountRow.tsx:353
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationRow.tsx:66
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationRow.tsx:70
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationRow.tsx:71
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationRow.tsx:100
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:83
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:84
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:113
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:87
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:88
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:117
 msgid "Delete"
 msgstr "Delete"
 
-#: src/pages/panel/accounts/AccountRow.tsx:306
+#: src/pages/panel/accounts/AccountRow.tsx:310
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:13
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:29
 msgid "Deploy Stack"
@@ -319,7 +338,7 @@ msgstr "Deploy Stack"
 msgid "Description"
 msgstr "Description"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:222
+#: src/pages/panel/inventory/ResourceDetail.tsx:228
 msgid "Details"
 msgstr "Details"
 
@@ -329,11 +348,15 @@ msgstr "Details"
 msgid "Discovered but unconfigured accounts"
 msgstr "Discovered but unconfigured accounts"
 
-#: src/pages/panel/accounts/AccountRow.tsx:322
+#: src/pages/panel/accounts/AccountRow.tsx:326
 msgid "Do you want to delete this account?"
 msgstr "Do you want to delete this account?"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:94
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationRow.tsx:81
+msgid "Do you want to delete this invitation?"
+msgstr "Do you want to delete this invitation?"
+
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:98
 msgid "Do you want to delete this user?"
 msgstr "Do you want to delete this user?"
 
@@ -341,8 +364,8 @@ msgstr "Do you want to delete this user?"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Don't have an account? Click here to Sign up."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:218
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:244
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:175
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:202
 msgid "Downgrade"
 msgstr "Downgrade"
 
@@ -350,17 +373,19 @@ msgstr "Downgrade"
 msgid "Download"
 msgstr "Download"
 
-#: src/pages/panel/accounts/AccountRow.tsx:263
-#: src/pages/panel/accounts/AccountRow.tsx:264
+#: src/pages/panel/accounts/AccountRow.tsx:267
+#: src/pages/panel/accounts/AccountRow.tsx:268
 msgid "Edit"
 msgstr "Edit"
 
 #: src/pages/auth/login/LoginPage.tsx:90
 #: src/pages/auth/register/RegisterPage.tsx:89
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationRow.tsx:106
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationsTable.tsx:39
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:80
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:84
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:119
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:68
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:123
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:49
 msgid "Email"
 msgstr "Email"
 
@@ -374,15 +399,19 @@ msgstr "Enabled"
 msgid "Events"
 msgstr "Events"
 
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationRow.tsx:109
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationsTable.tsx:42
+msgid "Expires"
+msgstr "Expires"
+
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:11
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:16
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:87
-#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:16
+#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:18
 msgid "External Directories"
 msgstr "External Directories"
 
 #: src/pages/panel/setup-cloud/SetupCloudPage.tsx:118
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:63
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:64
 msgid "External Id"
 msgstr "External Id"
 
@@ -395,19 +424,19 @@ msgstr "False"
 msgid "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
 msgstr "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:67
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:14
 msgid "Fix recommendations"
 msgstr "Fix recommendations"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:49
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToLabel.ts:9
 msgid "Foundational"
 msgstr "Foundational"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:47
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToLabel.ts:7
 msgid "Free"
 msgstr "Free"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:66
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:13
 msgid "Free features"
 msgstr "Free features"
 
@@ -415,7 +444,7 @@ msgstr "Free features"
 msgid "Go to resources"
 msgstr "Go to resources"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:77
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:24
 msgid "Graph visualization"
 msgstr "Graph visualization"
 
@@ -423,7 +452,7 @@ msgstr "Graph visualization"
 msgid "High"
 msgstr "High"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:51
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToLabel.ts:11
 msgid "High Security"
 msgstr "High Security"
 
@@ -431,11 +460,11 @@ msgstr "High Security"
 msgid "Homepage"
 msgstr "Homepage"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:85
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:32
 msgid "Hourly"
 msgstr "Hourly"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:81
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:28
 msgid "Hourly scans for critical, fast-paced environments."
 msgstr "Hourly scans for critical, fast-paced environments."
 
@@ -443,16 +472,16 @@ msgstr "Hourly scans for critical, fast-paced environments."
 msgid "How to fix"
 msgstr "How to fix"
 
-#: src/pages/panel/accounts/AccountRow.tsx:355
+#: src/pages/panel/accounts/AccountRow.tsx:359
 #: src/pages/panel/accounts/AccountsTableItem.tsx:39
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:39
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:39
 #: src/pages/panel/home/AccountCard.tsx:30
-#: src/pages/panel/inventory/ResourceDetail.tsx:187
+#: src/pages/panel/inventory/ResourceDetail.tsx:191
 msgid "ID"
 msgstr "ID"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:72
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:19
 msgid "Ideal for growing businesses that need a robust security baseline."
 msgstr "Ideal for growing businesses that need a robust security baseline."
 
@@ -464,20 +493,20 @@ msgstr "Improved"
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:27
-msgid "Info: Changes to your security tier will become active immediately and be applied for the current billing cycle! Within a billing cycle you will be charged for the highest security tier that was active. Your next billing cycle starts: 2023-12-01 00:00 UTC"
-msgstr "Info: Changes to your security tier will become active immediately and be applied for the current billing cycle! Within a billing cycle you will be charged for the highest security tier that was active. Your next billing cycle starts: 2023-12-01 00:00 UTC"
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:52
+msgid "Info: Changes to your security tier will become active immediately and be applied for the current billing cycle! Within a billing cycle you will be charged for the highest security tier that was active. Your next billing cycle starts: {0} UTC"
+msgstr "Info: Changes to your security tier will become active immediately and be applied for the current billing cycle! Within a billing cycle you will be charged for the highest security tier that was active. Your next billing cycle starts: {0} UTC"
 
 #: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:314
 #: src/pages/panel/inventory/InventoryFormFilterRowStringValue.tsx:214
 msgid "Invalid Value"
 msgstr "Invalid Value"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:35
+#: src/shared/layouts/panel-layout/menuList.tsx:40
 msgid "Inventory"
 msgstr "Inventory"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:77
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:24
 msgid "Inventory search"
 msgstr "Inventory search"
 
@@ -491,11 +520,11 @@ msgstr "Invite"
 msgid "Invite External User"
 msgstr "Invite External User"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:77
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:58
 msgid "Invites"
 msgstr "Invites"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:186
+#: src/pages/panel/inventory/ResourceDetail.tsx:190
 msgid "Kind"
 msgstr "Kind"
 
@@ -503,7 +532,7 @@ msgstr "Kind"
 msgid "Kinds"
 msgstr "Kinds"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:74
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:55
 msgid "Last login"
 msgstr "Last login"
 
@@ -532,11 +561,12 @@ msgstr "Make sure that you are already logged into the correct AWS account, befo
 msgid "Medium"
 msgstr "Medium"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:65
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:12
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:37
 msgid "Monthly"
 msgstr "Monthly"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:67
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:14
 msgid "Monthly email report"
 msgstr "Monthly email report"
 
@@ -548,18 +578,18 @@ msgstr "More info"
 msgid "Most Improved Resources"
 msgstr "Most Improved Resources"
 
-#: src/pages/panel/accounts/AccountRow.tsx:361
+#: src/pages/panel/accounts/AccountRow.tsx:365
 #: src/pages/panel/accounts/AccountsTableItem.tsx:42
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:42
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:42
-#: src/pages/panel/inventory/ResourceDetail.tsx:188
+#: src/pages/panel/inventory/ResourceDetail.tsx:192
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:20
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:70
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:74
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:122
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:65
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:126
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:46
 msgid "Name"
 msgstr "Name"
 
@@ -581,7 +611,7 @@ msgstr "Next scan"
 msgid "Next Sync"
 msgstr "Next Sync"
 
-#: src/pages/panel/accounts/AccountRow.tsx:325
+#: src/pages/panel/accounts/AccountRow.tsx:329
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 
@@ -598,9 +628,13 @@ msgstr "Null"
 msgid "Number Of Account Charged"
 msgstr "Number Of Account Charged"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:101
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:46
 msgid "one cloud account included"
 msgstr "one cloud account included"
+
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:37
+msgid "One time"
+msgstr "One time"
 
 #: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:109
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
@@ -619,11 +653,11 @@ msgstr "Open drawer"
 msgid "Or"
 msgstr "Or"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:77
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:88
 msgid "Other Workspace Settings"
 msgstr "Other Workspace Settings"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:222
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:179
 msgid "Our fair-use policy allows for up to 200,000 resources per account. If your needs surpass this amount, please <0>reach out</0> to discuss your specific requirements."
 msgstr "Our fair-use policy allows for up to 200,000 resources per account. If your needs surpass this amount, please <0>reach out</0> to discuss your specific requirements."
 
@@ -632,15 +666,23 @@ msgstr "Our fair-use policy allows for up to 200,000 resources per account. If y
 msgid "Password"
 msgstr "Password"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:253
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:211
 msgid "Payment method"
 msgstr "Payment method"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:160
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:117
 msgid "Payment method changed to {paymentMethod} as {securityTier}"
 msgstr "Payment method changed to {paymentMethod} as {securityTier}"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:62
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationsTable.tsx:22
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationsTable.tsx:35
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:76
+#: src/shared/layouts/panel-layout/menuList.tsx:60
+#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:14
+msgid "Pending Invitations"
+msgstr "Pending Invitations"
+
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:9
 msgid "Perfect for individual use or small-scale proof-of-concept trials."
 msgstr "Perfect for individual use or small-scale proof-of-concept trials."
 
@@ -652,11 +694,15 @@ msgstr "Pick one of the recommendations to the right and improve your security"
 msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgstr "Please go to <0>Setup Accounts</0> page to setup your account first"
 
+#: src/pages/panel/workspace-settings-billing/utils/paymentMethodToLabel.ts:9
+msgid "Please select a payment method"
+msgstr "Please select a payment method"
+
 #: src/shared/cloud-avatar/CloudAvatar.tsx:38
 msgid "Privileged"
 msgstr "Privileged"
 
-#: src/pages/panel/accounts/AccountRow.tsx:196
+#: src/pages/panel/accounts/AccountRow.tsx:200
 msgid "Privileged account"
 msgstr "Privileged account"
 
@@ -677,11 +723,11 @@ msgstr "Receipts"
 msgid "Recently added accounts"
 msgstr "Recently added accounts"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:64
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:65
 msgid "Regenerate"
 msgstr "Regenerate"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:88
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:130
 msgid "Regions"
 msgstr "Regions"
 
@@ -689,7 +735,11 @@ msgstr "Regions"
 msgid "Register"
 msgstr "Register"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:48
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationsTable.tsx:45
+msgid "Remove"
+msgstr "Remove"
+
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:49
 msgid "Rename"
 msgstr "Rename"
 
@@ -705,16 +755,16 @@ msgstr "Risk"
 
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:90
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:101
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:128
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:71
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:132
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:52
 msgid "Roles"
 msgstr "Roles"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:124
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:69
 msgid "Scan frequency"
 msgstr "Scan frequency"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:242
+#: src/pages/panel/inventory/ResourceDetail.tsx:248
 msgid "Security Issues"
 msgstr "Security Issues"
 
@@ -727,11 +777,11 @@ msgstr "Security Scan in Progress"
 msgid "Security Score"
 msgstr "Security Score"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:264
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:222
 msgid "Security Tier"
 msgstr "Security Tier"
 
-#: src/shared/language-button/LanguageButton.tsx:40
+#: src/shared/language-button/LanguageButton.tsx:41
 msgid "Select Language"
 msgstr "Select Language"
 
@@ -739,7 +789,7 @@ msgstr "Select Language"
 msgid "Send Invite"
 msgstr "Send Invite"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:114
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:156
 msgid "Severity"
 msgstr "Severity"
 
@@ -756,27 +806,31 @@ msgstr "Sign up with {formattedName}"
 msgid "Simple and affordable visibility into your cloud security posture."
 msgstr "Simple and affordable visibility into your cloud security posture."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:61
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:8
 msgid "Single-account security overview on a monthly basis."
 msgstr "Single-account security overview on a monthly basis."
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:125
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:62
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:129
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:43
 msgid "Sources"
 msgstr "Sources"
 
-#: src/pages/panel/accounts/AccountRow.tsx:236
-#: src/pages/panel/accounts/AccountRow.tsx:237
-#: src/pages/panel/accounts/AccountRow.tsx:242
+#: src/pages/panel/accounts/AccountRow.tsx:240
+#: src/pages/panel/accounts/AccountRow.tsx:241
+#: src/pages/panel/accounts/AccountRow.tsx:246
 msgid "Submit"
 msgstr "Submit"
+
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:27
+msgid "Subscription successfully added to {0}"
+msgstr "Subscription successfully added to {0}"
 
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:25
 msgid "Successfully invited {email}"
 msgstr "Successfully invited {email}"
 
 #: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:86
-#: src/pages/panel/inventory/ResourceDetail.tsx:208
+#: src/pages/panel/inventory/ResourceDetail.tsx:214
 msgid "Tags"
 msgstr "Tags"
 
@@ -788,7 +842,7 @@ msgstr "The Stack requires the following parameters"
 msgid "There's no account configured for this workspace."
 msgstr "There's no account configured for this workspace."
 
-#: src/pages/panel/accounts/AccountRow.tsx:311
+#: src/pages/panel/accounts/AccountRow.tsx:315
 msgid "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 msgstr "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 
@@ -799,6 +853,10 @@ msgstr "This will deploy a CloudFormation stack that creates a new IAM role in y
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:39
 msgid "Tier"
 msgstr "Tier"
+
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:69
+msgid "To enhance your experience, please select the workspace where you'd like to activate your subscription"
+msgstr "To enhance your experience, please select the workspace where you'd like to activate your subscription"
 
 #: src/pages/panel/home/OverallCard.tsx:196
 msgid "Top 3 Improved Accounts"
@@ -830,20 +888,24 @@ msgstr "Try again"
 msgid "Type"
 msgstr "Type"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:218
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:244
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:175
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:202
 msgid "Upgrade"
 msgstr "Upgrade"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:29
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:81
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:92
 msgid "Users"
 msgstr "Users"
 
 #: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:164
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:118
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:160
 msgid "Value"
 msgstr "Value"
+
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:66
+msgid "We appreciate your decision to subscribe to our service through AWS Marketplace."
+msgstr "We appreciate your decision to subscribe to our service through AWS Marketplace."
 
 #: src/pages/auth/login/LoginPage.tsx:120
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
@@ -853,36 +915,38 @@ msgstr "We have sent an email with a confirmation link to your email address. Pl
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 
-#: src/pages/panel/home/OverallScore.tsx:55
-#: src/pages/panel/shared/utils/PieCard.tsx:134
-#: src/pages/panel/shared/utils/PieCard.tsx:158
-#: src/pages/panel/shared/utils/PieCard.tsx:182
-#: src/pages/panel/shared/utils/PieCard.tsx:206
+#: src/pages/panel/home/OverallScore.tsx:59
+#: src/pages/panel/shared/utils/PieCard.tsx:138
+#: src/pages/panel/shared/utils/PieCard.tsx:162
+#: src/pages/panel/shared/utils/PieCard.tsx:186
+#: src/pages/panel/shared/utils/PieCard.tsx:210
 msgid "We've identified {0} non-compliant resources out of {1} through {2} {3}-severity security checks."
 msgstr "We've identified {0} non-compliant resources out of {1} through {2} {3}-severity security checks."
 
 #: src/pages/panel/setup-cloud/SetupCloudPage.tsx:136
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:55
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:56
 msgid "Workspace Id"
 msgstr "Workspace Id"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:47
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:48
 msgid "Workspace Name"
 msgstr "Workspace Name"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:44
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:45
+#: src/shared/layouts/panel-layout/menuList.tsx:49
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:10
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:108
 msgid "Workspace Settings"
 msgstr "Workspace Settings"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:44
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:58
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:25
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:39
+#: src/shared/layouts/panel-layout/menuList.tsx:55
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:12
 msgid "Workspace Users"
 msgstr "Workspace Users"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:248
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:206
 msgid "You are about to apply changes to your billing information. Please review the new details below:"
 msgstr "You are about to apply changes to your billing information. Please review the new details below:"
 
