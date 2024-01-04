@@ -204,12 +204,12 @@ msgstr "Billing & Receipts"
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:205
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:209
 msgid "Change payment method"
 msgstr "Change payment method"
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:175
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:202
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:206
 msgid "Change Security Tier"
 msgstr "Change Security Tier"
 
@@ -365,7 +365,7 @@ msgid "Don't have an account? Click here to Sign up."
 msgstr "Don't have an account? Click here to Sign up."
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:175
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:202
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:206
 msgid "Downgrade"
 msgstr "Downgrade"
 
@@ -666,7 +666,7 @@ msgstr "Our fair-use policy allows for up to 200,000 resources per account. If y
 msgid "Password"
 msgstr "Password"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:211
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:215
 msgid "Payment method"
 msgstr "Payment method"
 
@@ -777,7 +777,7 @@ msgstr "Security Scan in Progress"
 msgid "Security Score"
 msgstr "Security Score"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:222
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:230
 msgid "Security Tier"
 msgstr "Security Tier"
 
@@ -889,7 +889,7 @@ msgid "Type"
 msgstr "Type"
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:175
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:202
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:206
 msgid "Upgrade"
 msgstr "Upgrade"
 
@@ -946,7 +946,7 @@ msgstr "Workspace Settings"
 msgid "Workspace Users"
 msgstr "Workspace Users"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:206
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:210
 msgid "You are about to apply changes to your billing information. Please review the new details below:"
 msgstr "You are about to apply changes to your billing information. Please review the new details below:"
 

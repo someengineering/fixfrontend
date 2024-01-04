@@ -26,13 +26,13 @@ import { Fragment, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
 import { Modal } from 'src/shared/modal'
-import { PaymentMethods, SecurityTier } from 'src/shared/types/server'
+import { PaymentMethod, SecurityTier } from 'src/shared/types/server'
 import { putWorkspaceBillingMutation } from './putWorkspaceBilling.mutation'
 import { paymentMethodToLabel, securityTierToDescription, securityTierToLabel } from './utils'
 
 interface ChangePaymentMethodProps {
   defaultSecurityTier: SecurityTier
-  paymentMethods: { method: PaymentMethods }[]
+  paymentMethods: PaymentMethod[]
 }
 
 const allSecurityTiers: SecurityTier[] = ['free', 'foundational', 'high_security']
@@ -106,10 +106,10 @@ export const ChangePaymentMethod = ({ paymentMethods, defaultSecurityTier }: Cha
   const showModalRef = useRef<(show?: boolean | undefined) => void>()
   const { showSnackbar } = useSnackbar()
   const queryClient = useQueryClient()
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethods>(paymentMethods[0].method)
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(paymentMethods[0])
   const [securityTier, setSecurityTier] = useState<SecurityTier>(defaultSecurityTier)
 
-  const paymentMethodOptions = paymentMethods.map(({ method: value }) => ({ label: paymentMethodToLabel(value), value }))
+  const paymentMethodOptions = paymentMethods.map((value) => ({ label: paymentMethodToLabel(value.method), value }))
 
   const { mutate: changeBilling, isPending: changeBillingIsPending } = useMutation({
     mutationFn: putWorkspaceBillingMutation,
@@ -194,10 +194,14 @@ export const ChangePaymentMethod = ({ paymentMethods, defaultSecurityTier }: Cha
             color={isUpgrade ? 'success' : 'error'}
             variant="contained"
             onClick={() => {
-              changeBilling({ payment_method: paymentMethod, security_tier: securityTier, workspaceId: selectedWorkspace?.id ?? '' })
+              changeBilling({
+                workspace_payment_method: paymentMethod,
+                security_tier: securityTier,
+                workspaceId: selectedWorkspace?.id ?? '',
+              })
             }}
             endIcon={isUpgrade ? <UpgradeIcon /> : <TrendingDownIcon />}
-            disabled={paymentMethod === 'none'}
+            disabled={paymentMethod.method === 'none'}
           >
             {isUpgrade === null ? <Trans>Change Security Tier</Trans> : isUpgrade ? <Trans>Upgrade</Trans> : <Trans>Downgrade</Trans>}
           </LoadingButton>
@@ -210,9 +214,13 @@ export const ChangePaymentMethod = ({ paymentMethods, defaultSecurityTier }: Cha
             <Typography>
               <Trans>Payment method</Trans>:
             </Typography>
-            <Select value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value as PaymentMethods)} size="small">
+            <Select
+              value={JSON.stringify(paymentMethod)}
+              onChange={(e) => setPaymentMethod(JSON.parse(e.target.value) as PaymentMethod)}
+              size="small"
+            >
               {paymentMethodOptions.map((paymentMethod, i) => (
-                <MenuItem value={paymentMethod.value} key={`${paymentMethod.value}_${i}`}>
+                <MenuItem value={JSON.stringify(paymentMethod.value)} key={`${JSON.stringify(paymentMethod.value)}_${i}`}>
                   {paymentMethod.label}
                 </MenuItem>
               ))}

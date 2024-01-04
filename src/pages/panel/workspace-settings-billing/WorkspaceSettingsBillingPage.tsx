@@ -39,7 +39,7 @@ export default function WorkspaceSettingsBillingPage() {
           Highest security tier this billing cycle: {title} (${desc.price} / account)
         </Typography>
       </Trans>
-      {!desc.monthly ? (
+      {desc.monthly ? (
         <Trans>
           <Typography>
             Next invoice will be available:{' '}

@@ -36,7 +36,7 @@ export const WorkspaceSettingsUserInvitationRow = ({ workspaceInvite }: { worksp
         {
           onSuccess: () => {
             queryClient.setQueryData(['workspace-invites', selectedWorkspace?.id], (oldData: WorkspaceInvite[]) => {
-              const foundIndex = oldData.findIndex((item) => item.id === workspaceInvite.id)
+              const foundIndex = oldData.findIndex((item) => item.invite_id === workspaceInvite.invite_id)
               if (foundIndex > -1) {
                 const newData = [...oldData]
                 newData.splice(foundIndex, 1)
