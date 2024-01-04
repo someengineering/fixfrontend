@@ -24,6 +24,6 @@
     /* Own Config */
     "baseUrl": "."
   },
-  "include": ["src", "src/shared/types/global/*.d.ts", "src/locales/*/messages.d.ts"],
+  "include": ["src", "src/shared/types/global/*.d.ts", "src/locales/*/messages.d.ts", "__mocks__"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

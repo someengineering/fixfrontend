@@ -72,7 +72,27 @@ export const Providers = ({ children }: PropsWithChildren) => {
       .catch(() => {})
   }, [])
 
-  return (
+  return import.meta.env.MODE === 'test' ? (
+    <I18nProvider i18n={i18n}>
+      <InnerI18nProvider>
+        <Theme>
+          <SnackbarProvider>
+            <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+              <QueryClientProvider client={queryClient}>
+                <BrowserRouter>
+                  <AbsoluteNavigateProvider>
+                    <FullPageLoadingProvider>
+                      <AuthGuard>{children}</AuthGuard>
+                    </FullPageLoadingProvider>
+                  </AbsoluteNavigateProvider>
+                </BrowserRouter>
+              </QueryClientProvider>
+            </NetworkErrorBoundary>
+          </SnackbarProvider>
+        </Theme>
+      </InnerI18nProvider>
+    </I18nProvider>
+  ) : (
     <GTMProvider state={gtmId ? { id: gtmId } : undefined}>
       <I18nProvider i18n={i18n}>
         <InnerI18nProvider>
