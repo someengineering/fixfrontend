@@ -1,5 +1,5 @@
 export const panelUI = {
-  drawerWidth: 240,
+  drawerWidth: 300,
   drawerWidthMobile: 57,
   drawerWidthClosed: 65,
   headerHeight: 64,
@@ -9,6 +9,7 @@ export const panelUI = {
   snackbarAutoHideDuration: 3000,
   inputChangeDebounce: 1000,
   fastInputChangeDebounce: 300,
+  fastTooltipDelay: 300,
   tableViewMinHeight: 500,
   inventoryTableCellMinWidth: 200,
   offsetHeightToLoad: 300,

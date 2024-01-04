@@ -6,7 +6,7 @@ import { PanelDrawer } from './PanelDrawer'
 interface PanelContentProps extends PropsWithChildren {}
 
 export const PanelHeader = ({ children }: PanelContentProps) => {
-  const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('md'))
+  const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('lg'))
 
   const [open, setOpen] = useState(isDesktop)
 

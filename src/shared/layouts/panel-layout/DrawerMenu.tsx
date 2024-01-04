@@ -1,5 +1,20 @@
-import { Box, Divider, Fade, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Modal } from '@mui/material'
-import { MouseEvent as ReactMouseEvent, useState } from 'react'
+import ExpandLessIcon from '@mui/icons-material/ExpandLess'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import {
+  Box,
+  Collapse,
+  Divider,
+  Fade,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Modal,
+  Tooltip,
+} from '@mui/material'
+import { MouseEvent as ReactMouseEvent, useEffect, useState } from 'react'
 import { useMatch } from 'react-router-dom'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
@@ -13,39 +28,68 @@ interface DrawerMenuProps {
 
 type DrawerMenuItemProps = DrawerMenuProps & MenuListItem
 
-const DrawerMenuItem = ({ open, onClose, Icon, name, route, useGuard }: DrawerMenuItemProps) => {
-  const match = useMatch(route)
+const menuListMap = ({ open, onClose }: DrawerMenuProps, item: MenuListItem | MenuModalListItem, index: number) =>
+  item.route === 'modal' ? (
+    <DrawerModalMenuItem open={open} onClose={onClose} key={index} {...(item as MenuModalListItem)} route="modal" />
+  ) : (
+    <DrawerMenuItem open={open} onClose={onClose} key={index} {...item} />
+  )
+
+const DrawerMenuItem = ({ open, onClose, Icon, name, route, useGuard, children }: DrawerMenuItemProps) => {
+  const match = useMatch(route + (children?.length ? '/*' : ''))
+  const [collapse, setCollapse] = useState(match === null)
   const show = useGuard?.() ?? true
   const navigate = useAbsoluteNavigate()
   const handleClick = (e: ReactMouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    setCollapse(false)
     e.preventDefault()
     onClose?.(e)
     navigate(route)
   }
+  useEffect(() => {
+    setCollapse(match === null)
+  }, [match])
   return show ? (
-    <ListItem disablePadding sx={{ display: 'block' }}>
-      <ListItemButton
-        selected={match != null}
-        href={route}
-        sx={{
-          height: panelUI.headerHeight,
-          justifyContent: open ? 'initial' : 'center',
-          px: 2.5,
-        }}
-        onClick={handleClick}
-      >
-        <ListItemIcon
+    <>
+      <ListItem disablePadding sx={{ display: 'block' }}>
+        <ListItemButton
+          selected={match !== null}
+          href={route}
           sx={{
-            minWidth: 0,
-            mr: open ? 3 : 'auto',
-            justifyContent: 'center',
+            height: panelUI.headerHeight,
+            justifyContent: open ? 'initial' : 'center',
+            px: 2.5,
           }}
+          onClick={handleClick}
         >
-          <Icon />
-        </ListItemIcon>
-        <ListItemText primary={name} sx={{ opacity: open ? 1 : 0 }} />
-      </ListItemButton>
-    </ListItem>
+          <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center' }}>
+            <Icon />
+          </ListItemIcon>
+          <Tooltip title={name} enterNextDelay={panelUI.fastTooltipDelay} enterDelay={panelUI.fastTooltipDelay}>
+            <ListItemText
+              primary={name}
+              sx={{ opacity: open ? 1 : 0 }}
+              primaryTypographyProps={{ overflow: 'hidden', textOverflow: 'ellipsis' }}
+            />
+          </Tooltip>
+          {children ? (
+            <IconButton
+              size="small"
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                setCollapse((prev) => !prev)
+              }}
+            >
+              {collapse ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+            </IconButton>
+          ) : null}
+        </ListItemButton>
+      </ListItem>
+      {children?.length ? (
+        <Collapse in={!collapse}>{children.map((item, index) => menuListMap({ open, onClose }, item, index))}</Collapse>
+      ) : null}
+    </>
   ) : null
 }
 
@@ -97,19 +141,13 @@ const DrawerModalMenuItem = ({ open, onClose, Icon, name, Component, props }: Dr
 }
 
 export const DrawerMenu = ({ open, onClose }: DrawerMenuProps) => {
-  const menuListMap = (item: MenuListItem | MenuModalListItem, index: number) =>
-    item.route === 'modal' ? (
-      <DrawerModalMenuItem open={open} onClose={onClose} key={index} {...(item as MenuModalListItem)} route="modal" />
-    ) : (
-      <DrawerMenuItem open={open} onClose={onClose} key={index} {...item} />
-    )
   return (
     <Box display="flex" justifyContent="space-between" flexDirection="column" flexGrow={1}>
-      <List>{menuList.map(menuListMap)}</List>
+      <List>{menuList.map((item, index) => menuListMap({ open, onClose }, item, index))}</List>
       <Box display="flex" flexDirection="column" flexGrow={1}>
         <Divider />
       </Box>
-      <List>{bottomMenuList.map(menuListMap)}</List>
+      <List>{bottomMenuList.map((item, index) => menuListMap({ open, onClose }, item, index))}</List>
     </Box>
   )
 }

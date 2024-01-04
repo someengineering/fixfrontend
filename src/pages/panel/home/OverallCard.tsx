@@ -95,9 +95,9 @@ export const OverallCard = ({ data }: OverallCardProps) => {
           icon={<ErrorIcon />}
           bottomContent={
             hasChangedVulnerable ? (
-              <Stack direction="row" alignItems="center" spacing={1} width="100%" height={20}>
+              <Grid container direction="row" alignItems="center" spacing={1} width="100%" pb={1}>
                 {showSubtitle(data.changed_vulnerable.resource_count_by_severity, 'node_vulnerable', navigate)}
-              </Stack>
+              </Grid>
             ) : null
           }
           expandableContent={

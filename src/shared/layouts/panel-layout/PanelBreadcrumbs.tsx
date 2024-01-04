@@ -10,8 +10,10 @@ const pathnameToTitle = (pathname: string) => {
       return t`Workspace Settings`
     case '/workspace-settings/users':
       return t`Workspace Users`
-    case '/workspace-settings/billing':
-      return t`Billing`
+    case '/workspace-settings/users/invitations':
+      return t`Pending Invitations`
+    case '/workspace-settings/billing-receipts':
+      return t`Billing & Receipts`
     case '/workspace-settings/external-directories':
       return t`External Directories`
     default:
