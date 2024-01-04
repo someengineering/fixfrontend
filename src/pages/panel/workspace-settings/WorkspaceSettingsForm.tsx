@@ -1,6 +1,6 @@
 import { LoadingButton } from '@mui/lab'
 import { Button, Skeleton, Stack, TextField, Typography } from '@mui/material'
-import { FormEvent, ReactNode, useEffect, useState } from 'react'
+import { FormEvent, MutableRefObject, ReactNode, useEffect, useRef, useState } from 'react'
 
 interface WorkspaceSettingsFormProps {
   label: ReactNode
@@ -10,10 +10,51 @@ interface WorkspaceSettingsFormProps {
   loading: boolean
   onSubmit: (value: string) => void
   readonly?: boolean
+  hide?: boolean
+  focusedRef?: MutableRefObject<((focused: boolean) => void) | undefined>
 }
 
-export const WorkspaceSettingsForm = ({ loading, label, pending, onSubmit, readonly, value, buttonName }: WorkspaceSettingsFormProps) => {
+export const WorkspaceSettingsForm = ({
+  loading,
+  label,
+  pending,
+  onSubmit,
+  readonly,
+  value,
+  buttonName,
+  hide,
+  focusedRef,
+}: WorkspaceSettingsFormProps) => {
   const [inputValue, setInputValue] = useState(value)
+  const [focused, setFocused] = useState(false)
+
+  const focusedInputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    if (focusedRef) {
+      focusedRef.current = (value: boolean) => {
+        if (value) {
+          setFocused(true)
+          let eventClosed = false
+          const clickEventListener = (e: MouseEvent) => {
+            if (e.target !== window.document.activeElement) {
+              window.removeEventListener('click', clickEventListener)
+              eventClosed = true
+              setFocused(false)
+            }
+          }
+          window.addEventListener('click', clickEventListener)
+          return () => {
+            if (!eventClosed) {
+              window.removeEventListener('click', clickEventListener)
+            }
+          }
+        } else {
+          setFocused(false)
+        }
+      }
+    }
+  }, [focusedRef])
 
   useEffect(() => {
     setInputValue(value)
@@ -47,18 +88,27 @@ export const WorkspaceSettingsForm = ({ loading, label, pending, onSubmit, reado
     >
       <Typography width={{ xs: '100%', sm: 150 }}>{label}</Typography>
       <Stack width={{ xs: '100%', sm: 400 }}>
-        <TextField
-          placeholder={value}
-          value={inputValue}
-          size="small"
-          InputProps={readonly ? { inputComponent: 'span', sx: { py: 1, px: 1.75 } } : undefined}
-          inputProps={
-            readonly
-              ? { children: value, sx: { whiteSpace: 'nowrap', overflow: 'auto', p: 0, scrollbarWidth: 0, scrollbarColor: 'transparent' } }
-              : undefined
-          }
-          onChange={readonly ? undefined : (e) => setInputValue(e.target.value)}
-        />
+        {readonly ? (
+          <TextField
+            size="small"
+            value={hide && !focused ? value.replace(/[\da-zA-Z]/g, '*') : value}
+            focused={hide ? focused : undefined}
+            onFocus={hide ? () => setFocused(true) : undefined}
+            onBlur={hide ? () => setFocused(false) : undefined}
+            aria-readonly="true"
+            InputProps={{
+              readOnly: true,
+              ref: focusedInputRef,
+            }}
+          />
+        ) : (
+          <TextField
+            placeholder={value}
+            value={inputValue}
+            size="small"
+            onChange={readonly ? undefined : (e) => setInputValue(e.target.value)}
+          />
+        )}
       </Stack>
       <LoadingButton
         variant="contained"

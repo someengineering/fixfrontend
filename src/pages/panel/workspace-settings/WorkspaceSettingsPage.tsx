@@ -1,9 +1,9 @@
 import { Trans } from '@lingui/macro'
-import FolderCopyIcon from '@mui/icons-material/FolderCopy'
 import PeopleIcon from '@mui/icons-material/People'
 import ReceiptIcon from '@mui/icons-material/Receipt'
 import { Button, Divider, Stack, Typography } from '@mui/material'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { useCopyString } from 'src/shared/utils/useCopyString'
@@ -16,6 +16,7 @@ export default function WorkspaceSettingsPage() {
   const { selectedWorkspace, refreshWorkspaces } = useUserProfile()
   const queryClient = useQueryClient()
   const copyString = useCopyString()
+  const focusedRef = useRef<(focused: boolean) => void>()
   const { mutate: workspaceSettingsMutation, isPending } = useMutation({
     mutationFn: patchWorkspaceSettingsMutation,
     onSuccess: (data) => {
@@ -65,10 +66,20 @@ export default function WorkspaceSettingsPage() {
         pending={isPending}
         loading={isLoading}
         onSubmit={() =>
-          workspaceSettingsMutation({ name: data?.name ?? '', generate_new_external_id: true, workspaceId: selectedWorkspace?.id ?? '' })
+          workspaceSettingsMutation(
+            { name: data?.name ?? '', generate_new_external_id: true, workspaceId: selectedWorkspace?.id ?? '' },
+            {
+              onSuccess: (data) => {
+                void copyString(data.external_id)
+                focusedRef.current?.(true)
+              },
+            },
+          )
         }
+        focusedRef={focusedRef}
         readonly
-        value={data?.external_id.replace(/[\da-zA-Z]/g, '*') ?? ''}
+        hide
+        value={data?.external_id ?? ''}
       />
       <Stack py={2}>
         <Divider />
@@ -80,12 +91,12 @@ export default function WorkspaceSettingsPage() {
         <Button variant="outlined" onClick={() => navigate('workspace-settings/users')} startIcon={<PeopleIcon />}>
           <Trans>Users</Trans>
         </Button>
-        <Button variant="outlined" onClick={() => navigate('workspace-settings/billing')} startIcon={<ReceiptIcon />}>
-          <Trans>Billing & Invoices</Trans>
+        <Button variant="outlined" onClick={() => navigate('workspace-settings/billing-receipts')} startIcon={<ReceiptIcon />}>
+          <Trans>Billing & Receipts</Trans>
         </Button>
-        <Button variant="outlined" onClick={() => navigate('workspace-settings/external-directories')} startIcon={<FolderCopyIcon />}>
+        {/* <Button variant="outlined" onClick={() => navigate('workspace-settings/external-directories')} startIcon={<FolderCopyIcon />}>
           <Trans>External Directories</Trans>
-        </Button>
+        </Button> */}
       </Stack>
     </Stack>
   )

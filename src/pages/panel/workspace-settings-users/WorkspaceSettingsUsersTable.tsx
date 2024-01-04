@@ -1,39 +1,20 @@
 import { Trans, t } from '@lingui/macro'
-import { Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
-import { useSuspenseQueries } from '@tanstack/react-query'
+import { Button, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
+import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { TableViewPage } from 'src/shared/layouts/panel-layout'
 import { InviteExternalUser } from './InviteExternalUser'
 import { WorkspaceSettingsUserRow } from './WorkspaceSettingsUserRow'
-import { getWorkspaceInvitesQuery } from './getWorkspaceInvites.query'
 import { getWorkspaceUsersQuery } from './getWorkspaceUsers.query'
 
 export const WorkspaceSettingsUsersTable = () => {
   const { selectedWorkspace } = useUserProfile()
-  const data = useSuspenseQueries({
-    queries: [
-      {
-        queryKey: ['workspace-users', selectedWorkspace?.id],
-        queryFn: getWorkspaceUsersQuery,
-      },
-      {
-        queryKey: ['workspace-invites', selectedWorkspace?.id],
-        queryFn: getWorkspaceInvitesQuery,
-      },
-    ],
-    combine: (data) => {
-      const [workspaceUsersResult, workspaceInvitesResult] = data
-      if (!workspaceUsersResult?.data) {
-        return []
-      }
-      return workspaceUsersResult.data.map((workspaceUser) => ({
-        ...workspaceUser,
-        invites: workspaceInvitesResult?.data?.length
-          ? workspaceInvitesResult.data.filter((i) => i.user_email === workspaceUser.email)
-          : [],
-      }))
-    },
+  const navigate = useAbsoluteNavigate()
+  const { data } = useSuspenseQuery({
+    queryKey: ['workspace-users', selectedWorkspace?.id],
+    queryFn: getWorkspaceUsersQuery,
   })
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(10)
@@ -53,7 +34,7 @@ export const WorkspaceSettingsUsersTable = () => {
           setPage,
           setRowsPerPage,
         }}
-        minHeight={0}
+        minHeight={200}
       >
         <Table stickyHeader aria-label={t`Workspace Users`}>
           <TableHead>
@@ -90,6 +71,11 @@ export const WorkspaceSettingsUsersTable = () => {
           </TableBody>
         </Table>
       </TableViewPage>
+      <Stack mt={7} alignItems="start">
+        <Button variant="outlined" onClick={() => navigate('/workspace-settings/users/invitations')}>
+          <Trans>Pending Invitations</Trans>
+        </Button>
+      </Stack>
     </>
   )
 }

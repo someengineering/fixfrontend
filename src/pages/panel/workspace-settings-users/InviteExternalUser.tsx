@@ -29,7 +29,7 @@ export const InviteExternalUser = ({ preInvite }: { preInvite?: GetWorkspaceSett
     },
     onSettled: () => {
       void queryClient.invalidateQueries({
-        queryKey: ['workspace-users'],
+        queryKey: ['workspace-invites'],
       })
       showModalRef.current?.(false)
     },
