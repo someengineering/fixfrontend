@@ -17,6 +17,48 @@ export interface AutoCompletePreDefinedItems {
 export function getAutocompleteValueFromKey(
   key: string,
   items: AutoCompletePreDefinedItems,
+  value: '' | null,
+  isArray?: false,
+  addThemIfNotFound?: boolean,
+): null
+export function getAutocompleteValueFromKey(
+  key: string,
+  items: AutoCompletePreDefinedItems,
+  value: string,
+  isArray: false,
+  addThemIfNotFound: true,
+): AutoCompleteValue
+export function getAutocompleteValueFromKey(
+  key: string,
+  items: AutoCompletePreDefinedItems,
+  value: string,
+  isArray?: false,
+  addThemIfNotFound?: false,
+): AutoCompleteValue | null
+export function getAutocompleteValueFromKey(
+  key: string,
+  items: AutoCompletePreDefinedItems,
+  value: '' | null,
+  isArray: true,
+  addThemIfNotFound?: boolean,
+): []
+export function getAutocompleteValueFromKey(
+  key: string,
+  items: AutoCompletePreDefinedItems,
+  value: string,
+  isArray: true,
+  addThemIfNotFound?: boolean,
+): AutoCompleteValue[]
+export function getAutocompleteValueFromKey(
+  key: string,
+  items: AutoCompletePreDefinedItems,
+  value: string | null,
+  isArray?: boolean,
+  addThemIfNotFound?: boolean,
+): AutoCompleteValue | AutoCompleteValue[] | null
+export function getAutocompleteValueFromKey(
+  key: string,
+  items: AutoCompletePreDefinedItems,
   value: string | null,
   isArray?: boolean,
   addThemIfNotFound?: boolean,

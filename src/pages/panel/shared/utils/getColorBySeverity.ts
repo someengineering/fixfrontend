@@ -1,6 +1,9 @@
+import { SeverityType } from 'src/shared/types/server'
 import { colorsBySeverity } from './colorsBySeverity'
 
-export const getColorBySeverity = (failedChecks: string) => {
+export function getColorBySeverity(failedChecks: SeverityType): string
+export function getColorBySeverity(failedChecks: string): string
+export function getColorBySeverity(failedChecks: string) {
   switch (failedChecks) {
     case 'critical':
       return colorsBySeverity.Critical

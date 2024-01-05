@@ -3,3 +3,7 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom/vitest'
+
+vi.mock('@lingui/core')
+vi.mock('@lingui/detect-locale')
+vi.mock('@lingui/react')

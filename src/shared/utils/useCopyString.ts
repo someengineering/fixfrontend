@@ -5,14 +5,16 @@ import { useSnackbar } from 'src/core/snackbar'
 import { sendToGTM } from 'src/shared/google-tag-manager'
 import { getAuthData } from './localstorage'
 
-export const useCopyString = () => {
+export const useCopyString = (withSnackbar = true) => {
   const { showSnackbar } = useSnackbar()
   const [, copyString] = useCopyToClipboard()
   const handleCopy = useCallback(
     async (str: string) => {
       try {
         await copyString(str)
-        await showSnackbar(t`Copied to Clipboard!`)
+        if (withSnackbar) {
+          await showSnackbar(t`Copied to Clipboard!`)
+        }
       } catch (err) {
         const { message, name, stack } = err as Error
         const { isAuthenticated, selectedWorkspaceId } = getAuthData() || {}
@@ -26,7 +28,7 @@ export const useCopyString = () => {
         })
       }
     },
-    [copyString, showSnackbar],
+    [copyString, showSnackbar, withSnackbar],
   )
   return handleCopy
 }

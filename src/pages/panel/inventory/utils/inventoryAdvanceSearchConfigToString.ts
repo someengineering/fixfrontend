@@ -10,7 +10,10 @@ export interface InventoryAdvanceSearchConfig {
   fqn: ResourceComplexKindSimpleTypeDefinitions | null
 }
 
-export const inventoryAdvanceSearchConfigToString = (config: InventoryAdvanceSearchConfig | string | null) => {
+export function inventoryAdvanceSearchConfigToString(config: null): null
+export function inventoryAdvanceSearchConfigToString(config: InventoryAdvanceSearchConfig | string): string
+export function inventoryAdvanceSearchConfigToString(config: InventoryAdvanceSearchConfig | string | null): string | null
+export function inventoryAdvanceSearchConfigToString(config: InventoryAdvanceSearchConfig | string | null) {
   if (typeof config === 'string' || !config) {
     return config
   }
