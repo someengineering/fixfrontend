@@ -1,6 +1,7 @@
-import { PaymentMethods, SecurityTier } from 'src/shared/types/server'
+import { PaymentMethod, SecurityTier } from 'src/shared/types/server'
 
 export interface GetWorkspaceBillingResponse {
-  payment_method: PaymentMethods
+  available_payment_methods: PaymentMethod[]
   security_tier: SecurityTier
+  workspace_payment_method: PaymentMethod[]
 }

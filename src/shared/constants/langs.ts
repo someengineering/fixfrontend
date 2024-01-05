@@ -1,5 +1,4 @@
 import { deDE as muiDeDE, enUS as muiEnUS } from '@mui/material/locale'
-import { deDE as muiDataGridDeDE, enUS as muiDataGridEnUS } from '@mui/x-data-grid'
 import { deDE as muiDatePickerDeDE, enUS as muiDatePickerEnUS } from '@mui/x-date-pickers'
 import 'dayjs/locale/de'
 import 'dayjs/locale/en'
@@ -17,7 +16,7 @@ export const langs = {
     IconWide: USWideIcon,
     Icon: USIcon,
     messages: enUSMessages,
-    muiLocale: [muiEnUS, muiDatePickerEnUS, muiDataGridEnUS],
+    muiLocale: [muiEnUS, muiDatePickerEnUS],
   },
   'de-DE': {
     title: 'Deutsch',
@@ -26,6 +25,6 @@ export const langs = {
     IconWide: GermanyWideIcon,
     Icon: GermanyIcon,
     messages: deDEMessages,
-    muiLocale: [muiDeDE, muiDatePickerDeDE, muiDataGridDeDE],
+    muiLocale: [muiDeDE, muiDatePickerDeDE],
   },
 }

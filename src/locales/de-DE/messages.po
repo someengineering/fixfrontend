@@ -13,58 +13,62 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/shared/utils/parseDuration.ts:159
+#: src/shared/utils/parseDuration.ts:171
 msgid "{0, plural, one {# Day} other {# Days}}"
 msgstr "{0, plural, one {# Tag} other {# Tage}}"
 
-#: src/shared/utils/parseDuration.ts:167
+#: src/shared/utils/parseDuration.ts:179
 msgid "{0, plural, one {# Hour} other {# Hours}}"
 msgstr "{0, plural, one {# Stunde} other {# Stunden}}"
 
-#: src/shared/utils/parseDuration.ts:175
+#: src/shared/utils/parseDuration.ts:187
 msgid "{0, plural, one {# Minute} other {# Minutes}}"
 msgstr "{0, plural, one {# Minute} other {# Minuten}}"
 
-#: src/shared/utils/parseDuration.ts:143
+#: src/shared/utils/parseDuration.ts:155
 msgid "{0, plural, one {# Month} other {# Months}}"
 msgstr "{0, plural, one {# Monat} other {# Monate}}"
 
-#: src/shared/utils/parseDuration.ts:183
+#: src/shared/utils/parseDuration.ts:195
 msgid "{0, plural, one {# Second} other {# Seconds}}"
 msgstr "{0, plural, one {# Sekunde} other {# Sekunden}}"
 
-#: src/shared/utils/parseDuration.ts:151
+#: src/shared/utils/parseDuration.ts:163
 msgid "{0, plural, one {# Week} other {# Weeks}}"
 msgstr "{0, plural, one {# Woche} other {# Wochen}}"
 
-#: src/shared/utils/parseDuration.ts:135
+#: src/shared/utils/parseDuration.ts:147
 msgid "{0, plural, one {# Year} other {# Years}}"
 msgstr "{0, plural, one {# Jahr} other {# Jahre}}"
 
-#: src/shared/utils/parseDuration.ts:190
+#: src/shared/utils/parseDuration.ts:202
 msgid "{0} Milliseconds"
 msgstr "{0} Millisekunden"
 
 #: src/containers/panel/PanelContainer.tsx:32
 msgid "© 2023 Some Engineering Inc. All rights reserved."
-msgstr "© 2023 Some Engineering Services GMBH. Alle Rechte vorbehalten."
+msgstr "© 2023 Some Engineering Inc. Alle Rechte vorbehalten."
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:20
-msgid "<0>Billing cycle: monthly</0><1>Highest security tier this billing cycle: High Security ($50 / account)</1><2>Next invoice will be available: 2023-12-01</2>"
-msgstr "<0>Abrechnungszeitraum: monatlich</0><1>Höchste Sicherheitsstufe in diesem Abrechnungszeitraum: Hohe Sicherheit (50 $/Konto)</1><2>Nächste Rechnung verfügbar: 01.12.2023</2>"
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:36
+msgid "<0>Billing cycle: {0}</0><1>Highest security tier this billing cycle: {title} (${1} / account)</1>"
+msgstr "<0>Abrechnungszeitraum: {0}</0><1>Höchste Sicherheitsstufe in diesem Abrechnungszeitraum: {title} (${1} / Konto)</1>"
 
-#: src/pages/panel/accounts/AccountRow.tsx:201
-#: src/pages/panel/accounts/AccountRow.tsx:301
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:43
+msgid "<0>Next invoice will be available: {0}</0>"
+msgstr "<0>Die nächste Rechnung wird verfügbar sein: {0}</0>"
+
+#: src/pages/panel/accounts/AccountRow.tsx:205
+#: src/pages/panel/accounts/AccountRow.tsx:305
 msgid "Access to your account is broken"
 msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:67
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:14
 msgid "Account risk score"
 msgstr "Risikobewertung des Kontos"
 
 #: src/pages/panel/inventory/InventoryTable.error.tsx:74
 #: src/pages/panel/inventory/InventoryTable.tsx:94
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:84
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:126
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:117
 msgid "Accounts"
 msgstr "Konten"
@@ -80,7 +84,7 @@ msgstr "Aktion"
 #: src/pages/panel/accounts/AccountsTableItem.tsx:54
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:54
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:54
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:80
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:61
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -102,27 +106,27 @@ msgstr "Externes Verzeichnis hinzufügen"
 msgid "Added accounts"
 msgstr "Konten hinzugefügt"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:82
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:29
 msgid "Advanced integration for top-tier security needs and IaC support."
 msgstr "Erweiterte Integration für höchste Sicherheitsanforderungen und IaC-Unterstützung."
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:194
+#: src/pages/panel/inventory/ResourceDetail.tsx:200
 msgid "Age"
 msgstr "Alter"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:77
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:24
 msgid "Alerting integrations (Slack, PagerDuty, Discord)"
 msgstr "Alarmierungsintegrationen (Slack, PagerDuty, Discord)"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:87
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:34
 msgid "Alerting integrations with custom HTTP webhooks"
 msgstr "Alarmierungsintegrationen mit benutzerdefinierten HTTP-Webhooks"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:86
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:33
 msgid "All Foundational features, plus"
 msgstr "Alle grundlegenden Funktionen plus"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:76
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:23
 msgid "All Free features, plus"
 msgstr "Alle kostenlosen Funktionen plus"
 
@@ -138,17 +142,18 @@ msgstr "Wenn Sie den Stack alternativ manuell bereitstellen möchten, können Si
 msgid "Alternatively: Manual Cloud Setup"
 msgstr "Alternativ: Manuelles Cloud Setup"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:165
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:122
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:28
 msgid "An error occurred, please try again later."
 msgstr "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut."
 
-#: src/shared/utils/parseDuration.ts:192
+#: src/shared/utils/parseDuration.ts:204
 msgid "and"
 msgstr "und"
 
-#: src/pages/panel/accounts/AccountRow.tsx:319
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:91
+#: src/pages/panel/accounts/AccountRow.tsx:323
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationRow.tsx:78
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:95
 msgid "Are you sure?"
 msgstr "Bist du sicher?"
 
@@ -156,11 +161,11 @@ msgstr "Bist du sicher?"
 msgid "Automatic Cloud Setup"
 msgstr "Automatisches Cloud Setup"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:87
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:34
 msgid "Automatic inventory exports (AWS S3)"
 msgstr "Automatische Bestandsexporte (AWS S3)"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:38
+#: src/pages/panel/workspace-settings-billing/utils/paymentMethodToLabel.ts:7
 msgid "AWS Marketplace"
 msgstr "AWS Marketplace"
 
@@ -168,11 +173,11 @@ msgstr "AWS Marketplace"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:67
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:14
 msgid "Basic asset inventory"
 msgstr "Grundlegende Vermögensinventur"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:180
+#: src/pages/panel/inventory/ResourceDetail.tsx:184
 msgid "Basic Information"
 msgstr "Grundinformation"
 
@@ -180,29 +185,31 @@ msgstr "Grundinformation"
 msgid "Benchmarks"
 msgstr "Benchmarks"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:17
-#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:14
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:33
+#: src/shared/layouts/panel-layout/menuList.tsx:67
 msgid "Billing"
 msgstr "Abrechnung"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:84
-msgid "Billing & Invoices"
-msgstr "Abrechnung und Rechnungen"
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:95
+#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:16
+msgid "Billing & Receipts"
+msgstr "Abrechnung und Quittungen"
 
-#: src/pages/panel/accounts/AccountRow.tsx:247
 #: src/pages/panel/accounts/AccountRow.tsx:251
-#: src/pages/panel/accounts/AccountRow.tsx:252
-#: src/pages/panel/accounts/AccountRow.tsx:338
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:102
+#: src/pages/panel/accounts/AccountRow.tsx:255
+#: src/pages/panel/accounts/AccountRow.tsx:256
+#: src/pages/panel/accounts/AccountRow.tsx:342
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationRow.tsx:89
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:106
 msgid "Cancel"
 msgstr "Stornieren"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:247
-msgid "Change Payment method"
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:209
+msgid "Change payment method"
 msgstr "Bezahlungsmethode ändern"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:218
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:244
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:175
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:206
 msgid "Change Security Tier"
 msgstr "Sicherheitsstufe ändern"
 
@@ -210,7 +217,11 @@ msgstr "Sicherheitsstufe ändern"
 msgid "Changes in the past 7 days"
 msgstr "Änderungen in den letzten 7 Tagen"
 
-#: src/pages/panel/accounts/AccountRow.tsx:358
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:91
+msgid "Choose Workspace"
+msgstr "Wählen Sie Arbeitsbereich"
+
+#: src/pages/panel/accounts/AccountRow.tsx:362
 #: src/pages/panel/accounts/AccountsTableItem.tsx:36
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:36
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:36
@@ -230,11 +241,11 @@ msgstr "Cloud-Konto beeinträchtigt, ID: {0}"
 msgid "Cloud account discovered, id: {0}"
 msgstr "Cloud-Konto entdeckt, ID: {0}"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:101
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:46
 msgid "cloud account per month"
 msgstr "Cloud-Konto pro Monat"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:80
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:122
 msgid "Clouds"
 msgstr "Wolken"
 
@@ -242,22 +253,26 @@ msgstr "Wolken"
 msgid "Compliance"
 msgstr "Compliance"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:67
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:14
 msgid "Compliance scans"
 msgstr "Compliance-Scans"
 
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:62
+msgid "Congratulations on your subscription"
+msgstr "Herzlichen Glückwunsch zu Ihrem Abonnement"
+
 #: src/pages/panel/setup-cloud/WorkspaceId.tsx:16
-#: src/shared/utils/useCopyString.ts:15
+#: src/shared/utils/useCopyString.ts:16
 msgid "Copied to Clipboard!"
 msgstr "In die Zwischenablage kopiert!"
 
 #: src/pages/panel/setup-cloud/ExternalId.tsx:56
 #: src/pages/panel/setup-cloud/WorkspaceId.tsx:46
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:56
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:57
 msgid "Copy"
 msgstr "Kopieren"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:190
+#: src/pages/panel/inventory/ResourceDetail.tsx:194
 msgid "Created Time"
 msgstr "Erstellte Zeit"
 
@@ -265,19 +280,19 @@ msgstr "Erstellte Zeit"
 msgid "Critical"
 msgstr "Kritisch"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:77
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:24
 msgid "CSV data export"
 msgstr "CSV-Datenexport"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:75
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:22
 msgid "Daily"
 msgstr "Täglich"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:71
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:18
 msgid "Daily scans for secure, compliant operations."
 msgstr "Tägliche Scans für sichere, konforme Abläufe."
 
-#: src/shared/layouts/panel-layout/menuList.tsx:30
+#: src/shared/layouts/panel-layout/menuList.tsx:35
 msgid "Dashboard"
 msgstr "Dashboard"
 
@@ -298,18 +313,22 @@ msgstr "Datum-/Uhrzeitauswahl"
 msgid "Default Role"
 msgstr "Standardrolle"
 
-#: src/pages/panel/accounts/AccountRow.tsx:289
 #: src/pages/panel/accounts/AccountRow.tsx:293
-#: src/pages/panel/accounts/AccountRow.tsx:294
-#: src/pages/panel/accounts/AccountRow.tsx:349
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:79
+#: src/pages/panel/accounts/AccountRow.tsx:297
+#: src/pages/panel/accounts/AccountRow.tsx:298
+#: src/pages/panel/accounts/AccountRow.tsx:353
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationRow.tsx:66
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationRow.tsx:70
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationRow.tsx:71
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationRow.tsx:100
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:83
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:84
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:113
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:87
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:88
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:117
 msgid "Delete"
 msgstr "Löschen"
 
-#: src/pages/panel/accounts/AccountRow.tsx:306
+#: src/pages/panel/accounts/AccountRow.tsx:310
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:13
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:29
 msgid "Deploy Stack"
@@ -319,7 +338,7 @@ msgstr "Deploy Stack"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:222
+#: src/pages/panel/inventory/ResourceDetail.tsx:228
 msgid "Details"
 msgstr "Einzelheiten"
 
@@ -329,11 +348,15 @@ msgstr "Einzelheiten"
 msgid "Discovered but unconfigured accounts"
 msgstr "Erkannte, aber nicht konfigurierte Konten"
 
-#: src/pages/panel/accounts/AccountRow.tsx:322
+#: src/pages/panel/accounts/AccountRow.tsx:326
 msgid "Do you want to delete this account?"
 msgstr "Möchten Sie dieses Konto löschen?"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:94
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationRow.tsx:81
+msgid "Do you want to delete this invitation?"
+msgstr "Möchten Sie diese Einladung löschen?"
+
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:98
 msgid "Do you want to delete this user?"
 msgstr "Möchten Sie diesen Benutzer löschen?"
 
@@ -341,8 +364,8 @@ msgstr "Möchten Sie diesen Benutzer löschen?"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:218
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:244
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:175
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:206
 msgid "Downgrade"
 msgstr "Downgrade"
 
@@ -350,17 +373,19 @@ msgstr "Downgrade"
 msgid "Download"
 msgstr "Herunterladen"
 
-#: src/pages/panel/accounts/AccountRow.tsx:263
-#: src/pages/panel/accounts/AccountRow.tsx:264
+#: src/pages/panel/accounts/AccountRow.tsx:267
+#: src/pages/panel/accounts/AccountRow.tsx:268
 msgid "Edit"
 msgstr "Edit"
 
 #: src/pages/auth/login/LoginPage.tsx:90
 #: src/pages/auth/register/RegisterPage.tsx:89
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationRow.tsx:106
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationsTable.tsx:39
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:80
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:84
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:119
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:68
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:123
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:49
 msgid "Email"
 msgstr "Email"
 
@@ -374,15 +399,19 @@ msgstr "Ermöglicht"
 msgid "Events"
 msgstr "Veranstaltungen"
 
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationRow.tsx:109
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationsTable.tsx:42
+msgid "Expires"
+msgstr "Läuft ab"
+
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:11
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:16
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:87
-#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:16
+#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:18
 msgid "External Directories"
 msgstr "Externe Verzeichnisse"
 
 #: src/pages/panel/setup-cloud/SetupCloudPage.tsx:118
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:63
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:64
 msgid "External Id"
 msgstr "External Id"
 
@@ -395,19 +424,19 @@ msgstr "FALSCH"
 msgid "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
 msgstr "Fix ist eine Open-Source Wiz Alternative für die Sicherheit Ihrer Cloud Infrastruktur. Übernehmen Sie die Kontrolle über Cloud-Risiken mit einem Cloud-Asset-Inventar, Compliance-Scans und Workflows."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:67
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:14
 msgid "Fix recommendations"
 msgstr "Fix-Empfehlungen"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:49
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToLabel.ts:9
 msgid "Foundational"
 msgstr "Grundlegend"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:47
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToLabel.ts:7
 msgid "Free"
 msgstr "Frei"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:66
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:13
 msgid "Free features"
 msgstr "Kostenlose Funktionen"
 
@@ -415,7 +444,7 @@ msgstr "Kostenlose Funktionen"
 msgid "Go to resources"
 msgstr "Gehen Sie zu Ressourcen"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:77
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:24
 msgid "Graph visualization"
 msgstr "Diagrammvisualisierung"
 
@@ -423,7 +452,7 @@ msgstr "Diagrammvisualisierung"
 msgid "High"
 msgstr "Hoch"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:51
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToLabel.ts:11
 msgid "High Security"
 msgstr "Hohe Sicherheit"
 
@@ -431,11 +460,11 @@ msgstr "Hohe Sicherheit"
 msgid "Homepage"
 msgstr "Startseite"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:85
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:32
 msgid "Hourly"
 msgstr "Stündlich"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:81
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:28
 msgid "Hourly scans for critical, fast-paced environments."
 msgstr "Stündliche Scans für kritische, schnelllebige Umgebungen."
 
@@ -443,16 +472,16 @@ msgstr "Stündliche Scans für kritische, schnelllebige Umgebungen."
 msgid "How to fix"
 msgstr "Wie repariert man"
 
-#: src/pages/panel/accounts/AccountRow.tsx:355
+#: src/pages/panel/accounts/AccountRow.tsx:359
 #: src/pages/panel/accounts/AccountsTableItem.tsx:39
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:39
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:39
 #: src/pages/panel/home/AccountCard.tsx:30
-#: src/pages/panel/inventory/ResourceDetail.tsx:187
+#: src/pages/panel/inventory/ResourceDetail.tsx:191
 msgid "ID"
 msgstr "ID"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:72
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:19
 msgid "Ideal for growing businesses that need a robust security baseline."
 msgstr "Ideal für wachsende Unternehmen, die eine robuste Sicherheitsbasis benötigen."
 
@@ -464,20 +493,20 @@ msgstr "Verbessert"
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS Konto ein."
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:27
-msgid "Info: Changes to your security tier will become active immediately and be applied for the current billing cycle! Within a billing cycle you will be charged for the highest security tier that was active. Your next billing cycle starts: 2023-12-01 00:00 UTC"
-msgstr "Info: Änderungen an Ihrer Sicherheitsstufe werden sofort aktiv und für den aktuellen Abrechnungszeitraum übernommen! Innerhalb eines Abrechnungszeitraums wird Ihnen die höchste aktive Sicherheitsstufe in Rechnung gestellt. Ihr nächster Abrechnungszeitraum beginnt: 01.12.2023 00:00 UTC"
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:52
+msgid "Info: Changes to your security tier will become active immediately and be applied for the current billing cycle! Within a billing cycle you will be charged for the highest security tier that was active. Your next billing cycle starts: {0} UTC"
+msgstr "Info: Änderungen an Ihrer Sicherheitsstufe werden sofort aktiv und für den aktuellen Abrechnungszeitraum übernommen! Innerhalb eines Abrechnungszeitraums wird Ihnen die höchste aktive Sicherheitsstufe in Rechnung gestellt. Ihr nächster Abrechnungszeitraum beginnt: {0} UTC"
 
 #: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:314
 #: src/pages/panel/inventory/InventoryFormFilterRowStringValue.tsx:214
 msgid "Invalid Value"
 msgstr "Ungültiger Wert"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:35
+#: src/shared/layouts/panel-layout/menuList.tsx:40
 msgid "Inventory"
 msgstr "Inventar"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:77
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:24
 msgid "Inventory search"
 msgstr "Inventarsuche"
 
@@ -491,11 +520,11 @@ msgstr "Einladen"
 msgid "Invite External User"
 msgstr "Externen Benutzer einladen"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:77
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:58
 msgid "Invites"
 msgstr "Lädt ein"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:186
+#: src/pages/panel/inventory/ResourceDetail.tsx:190
 msgid "Kind"
 msgstr "Art"
 
@@ -503,7 +532,7 @@ msgstr "Art"
 msgid "Kinds"
 msgstr "Arten"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:74
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:55
 msgid "Last login"
 msgstr "Letzte Anmeldung"
 
@@ -532,11 +561,12 @@ msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS Konto angemeldet
 msgid "Medium"
 msgstr "Mittel"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:65
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:12
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:37
 msgid "Monthly"
 msgstr "Monatlich"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:67
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:14
 msgid "Monthly email report"
 msgstr "Monatlicher E-Mail-Bericht"
 
@@ -548,18 +578,18 @@ msgstr "Mehr Info"
 msgid "Most Improved Resources"
 msgstr "Am meisten verbesserte Ressourcen"
 
-#: src/pages/panel/accounts/AccountRow.tsx:361
+#: src/pages/panel/accounts/AccountRow.tsx:365
 #: src/pages/panel/accounts/AccountsTableItem.tsx:42
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:42
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:42
-#: src/pages/panel/inventory/ResourceDetail.tsx:188
+#: src/pages/panel/inventory/ResourceDetail.tsx:192
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:20
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:70
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:74
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:122
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:65
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:126
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:46
 msgid "Name"
 msgstr "Name"
 
@@ -581,7 +611,7 @@ msgstr "Nächster Scan"
 msgid "Next Sync"
 msgstr "Nächste Synchronisierung"
 
-#: src/pages/panel/accounts/AccountRow.tsx:325
+#: src/pages/panel/accounts/AccountRow.tsx:329
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Sie löschen gerade ein Management- oder delegiertes Admin-Konto. Beachten Sie bitte, dass wir nach der Löschung nicht mehr in der Lage sein werden, Kontonamen abzurufen, wodurch Sie diese manuell bearbeiten müssen."
 
@@ -598,9 +628,13 @@ msgstr "Null"
 msgid "Number Of Account Charged"
 msgstr "Anzahl der belasteten Konten"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:101
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:46
 msgid "one cloud account included"
 msgstr "ein Cloud-Konto inklusive"
+
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:37
+msgid "One time"
+msgstr "Einmal"
 
 #: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:109
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
@@ -619,11 +653,11 @@ msgstr "Öffene die Schublade"
 msgid "Or"
 msgstr "Oder"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:77
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:88
 msgid "Other Workspace Settings"
 msgstr "Andere Arbeitsbereichseinstellungen"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:222
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:179
 msgid "Our fair-use policy allows for up to 200,000 resources per account. If your needs surpass this amount, please <0>reach out</0> to discuss your specific requirements."
 msgstr "Unsere Fair-Use-Richtlinie ermöglicht bis zu 200.000 Ressourcen pro Konto. Wenn Ihr Bedarf diesen Betrag übersteigt, <0>kontaktieren Sie uns bitte</0>, um Ihre spezifischen Anforderungen zu besprechen."
 
@@ -632,15 +666,23 @@ msgstr "Unsere Fair-Use-Richtlinie ermöglicht bis zu 200.000 Ressourcen pro Kon
 msgid "Password"
 msgstr "Passwort"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:253
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:215
 msgid "Payment method"
 msgstr "Bezahlverfahren"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:160
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:117
 msgid "Payment method changed to {paymentMethod} as {securityTier}"
 msgstr "Die Zahlungsmethode wurde als {securityTier} in {paymentMethod} geändert"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:62
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationsTable.tsx:22
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationsTable.tsx:35
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:76
+#: src/shared/layouts/panel-layout/menuList.tsx:60
+#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:14
+msgid "Pending Invitations"
+msgstr "Ausstehende Einladungen"
+
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:9
 msgid "Perfect for individual use or small-scale proof-of-concept trials."
 msgstr "Perfekt für den Einzelgebrauch oder kleine Proof-of-Concept-Versuche."
 
@@ -652,11 +694,15 @@ msgstr "Wählen Sie eine der Empfehlungen rechts aus und verbessern Sie Ihre Sic
 msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgstr "Bitte gehen Sie zur Seite <0>Setup Accounts</0>, um zunächst Ihr Konto einzurichten"
 
+#: src/pages/panel/workspace-settings-billing/utils/paymentMethodToLabel.ts:9
+msgid "Please select a payment method"
+msgstr "Bitte Zahlungsart wählen"
+
 #: src/shared/cloud-avatar/CloudAvatar.tsx:38
 msgid "Privileged"
 msgstr "Privilegiert"
 
-#: src/pages/panel/accounts/AccountRow.tsx:196
+#: src/pages/panel/accounts/AccountRow.tsx:200
 msgid "Privileged account"
 msgstr "Privilegiertes Konto"
 
@@ -677,11 +723,11 @@ msgstr "Quittungen"
 msgid "Recently added accounts"
 msgstr "Kürzlich hinzugefügte Konten"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:64
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:65
 msgid "Regenerate"
 msgstr "Regenerieren"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:88
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:130
 msgid "Regions"
 msgstr "Regionen"
 
@@ -689,7 +735,11 @@ msgstr "Regionen"
 msgid "Register"
 msgstr "Registrieren"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:48
+#: src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationsTable.tsx:45
+msgid "Remove"
+msgstr "Entfernen"
+
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:49
 msgid "Rename"
 msgstr "Umbenennen"
 
@@ -705,16 +755,16 @@ msgstr "Risiko"
 
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:90
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:101
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:128
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:71
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:132
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:52
 msgid "Roles"
 msgstr "Rollen"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:124
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:69
 msgid "Scan frequency"
 msgstr "Scanfrequenz"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:242
+#: src/pages/panel/inventory/ResourceDetail.tsx:248
 msgid "Security Issues"
 msgstr "Sicherheitsprobleme"
 
@@ -727,11 +777,11 @@ msgstr "Sicherheitsscan läuft"
 msgid "Security Score"
 msgstr "Sicherheitsbewertung"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:264
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:230
 msgid "Security Tier"
 msgstr "Sicherheitsstufe"
 
-#: src/shared/language-button/LanguageButton.tsx:40
+#: src/shared/language-button/LanguageButton.tsx:41
 msgid "Select Language"
 msgstr "Sprache auswählen"
 
@@ -739,7 +789,7 @@ msgstr "Sprache auswählen"
 msgid "Send Invite"
 msgstr "Sende Einladung"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:114
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:156
 msgid "Severity"
 msgstr "Schwere"
 
@@ -756,27 +806,31 @@ msgstr "Melden Sie sich mit {formattedName} an"
 msgid "Simple and affordable visibility into your cloud security posture."
 msgstr "Einfacher und erschwinglicher Einblick in die Sicherheitslage Ihrer Cloud."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:61
+#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:8
 msgid "Single-account security overview on a monthly basis."
 msgstr "Monatlicher Sicherheitsüberblick für Einzelkonten."
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:125
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:62
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:129
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:43
 msgid "Sources"
 msgstr "Quellen"
 
-#: src/pages/panel/accounts/AccountRow.tsx:236
-#: src/pages/panel/accounts/AccountRow.tsx:237
-#: src/pages/panel/accounts/AccountRow.tsx:242
+#: src/pages/panel/accounts/AccountRow.tsx:240
+#: src/pages/panel/accounts/AccountRow.tsx:241
+#: src/pages/panel/accounts/AccountRow.tsx:246
 msgid "Submit"
 msgstr "Einreichen"
+
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:27
+msgid "Subscription successfully added to {0}"
+msgstr "Abonnement erfolgreich zu {0} hinzugefügt"
 
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:25
 msgid "Successfully invited {email}"
 msgstr "{email} erfolgreich eingeladen"
 
 #: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:86
-#: src/pages/panel/inventory/ResourceDetail.tsx:208
+#: src/pages/panel/inventory/ResourceDetail.tsx:214
 msgid "Tags"
 msgstr "Stichworte"
 
@@ -788,7 +842,7 @@ msgstr "Der Stack erfordert die folgenden Parameter"
 msgid "There's no account configured for this workspace."
 msgstr "Für diesen Arbeitsbereich ist kein Konto konfiguriert."
 
-#: src/pages/panel/accounts/AccountRow.tsx:311
+#: src/pages/panel/accounts/AccountRow.tsx:315
 msgid "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 msgstr "Dieses Konto befindet sich derzeit in einem nicht-funktionalen Zustand, möglicherweise aufgrund einer Fehlkonfiguration. Fix konnte nicht auf das Konto zugreifen. Um die Sicherheitsscans fortzusetzen, loggen Sie sich bitte in das Konto {accountName} ({0}) ein und erzeugen Sie den CloudFormation-Stacks, der die IAM Vertrauensstellung herstellt, erneut."
 
@@ -799,6 +853,10 @@ msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:39
 msgid "Tier"
 msgstr "Stufe"
+
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:69
+msgid "To enhance your experience, please select the workspace where you'd like to activate your subscription"
+msgstr "Um Ihr Erlebnis zu verbessern, wählen Sie bitte den Arbeitsbereich aus, in dem Sie Ihr Abonnement aktivieren möchten"
 
 #: src/pages/panel/home/OverallCard.tsx:196
 msgid "Top 3 Improved Accounts"
@@ -830,20 +888,24 @@ msgstr "Versuchen Sie es erneut"
 msgid "Type"
 msgstr "Typ"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:218
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:244
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:175
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:206
 msgid "Upgrade"
 msgstr "Aktualisierung"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:29
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:81
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:92
 msgid "Users"
 msgstr "Benutzer"
 
 #: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:164
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:118
+#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:160
 msgid "Value"
 msgstr "Wert"
+
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:66
+msgid "We appreciate your decision to subscribe to our service through AWS Marketplace."
+msgstr "Wir freuen uns über Ihre Entscheidung, unseren Service über AWS Marketplace zu abonnieren."
 
 #: src/pages/auth/login/LoginPage.tsx:120
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
@@ -853,36 +915,38 @@ msgstr "Wir haben eine E-Mail mit einem Bestätigungslink an Ihre E-Mail-Adresse
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "Wir entschuldigen uns für die Unannehmlichkeiten. Unser Team wurde benachrichtigt und das Problem wird untersucht. Bitte versuchen Sie es in ein paar Minuten noch einmal. Wenn das Problem weiterhin besteht, können Sie uns gerne <0>auf Discord</0> kontaktieren. Danke für Ihre Geduld!"
 
-#: src/pages/panel/home/OverallScore.tsx:55
-#: src/pages/panel/shared/utils/PieCard.tsx:134
-#: src/pages/panel/shared/utils/PieCard.tsx:158
-#: src/pages/panel/shared/utils/PieCard.tsx:182
-#: src/pages/panel/shared/utils/PieCard.tsx:206
+#: src/pages/panel/home/OverallScore.tsx:59
+#: src/pages/panel/shared/utils/PieCard.tsx:138
+#: src/pages/panel/shared/utils/PieCard.tsx:162
+#: src/pages/panel/shared/utils/PieCard.tsx:186
+#: src/pages/panel/shared/utils/PieCard.tsx:210
 msgid "We've identified {0} non-compliant resources out of {1} through {2} {3}-severity security checks."
 msgstr "Wir haben {0} nicht konforme Ressourcen von insgesamt {1} durch {2} {3}-Severity Security-Checks identifiziert."
 
 #: src/pages/panel/setup-cloud/SetupCloudPage.tsx:136
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:55
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:56
 msgid "Workspace Id"
 msgstr "Workspace Id"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:47
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:48
 msgid "Workspace Name"
 msgstr "Arbeitsbereichsname"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:44
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:45
+#: src/shared/layouts/panel-layout/menuList.tsx:49
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:10
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:108
 msgid "Workspace Settings"
 msgstr "Arbeitsbereichseinstellungen"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:44
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:58
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:25
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:39
+#: src/shared/layouts/panel-layout/menuList.tsx:55
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:12
 msgid "Workspace Users"
 msgstr "Workspace-Benutzer"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:248
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:210
 msgid "You are about to apply changes to your billing information. Please review the new details below:"
 msgstr "Sie sind dabei, Änderungen an Ihren Zahlungsinformationen vorzunehmen. Bitte lesen Sie die neuen Details unten:"
 

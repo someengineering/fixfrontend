@@ -15,8 +15,10 @@ import {
   MenuItem,
   Select,
   Stack,
+  Theme,
   Typography,
   alpha,
+  useMediaQuery,
 } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
@@ -24,72 +26,15 @@ import { Fragment, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
 import { Modal } from 'src/shared/modal'
-import { PaymentMethods, SecurityTier } from 'src/shared/types/server'
+import { PaymentMethod, SecurityTier } from 'src/shared/types/server'
 import { putWorkspaceBillingMutation } from './putWorkspaceBilling.mutation'
+import { paymentMethodToLabel, securityTierToDescription, securityTierToLabel } from './utils'
 
 interface ChangePaymentMethodProps {
   defaultSecurityTier: SecurityTier
-  defaultPaymentMethod: PaymentMethods
+  paymentMethods: PaymentMethod[]
 }
 
-const paymentMethodToLabel = (paymentMethod: PaymentMethods) => {
-  switch (paymentMethod) {
-    case 'aws_marketplace':
-      return t`AWS Marketplace`
-    default:
-      return paymentMethod
-  }
-}
-
-const securityTierToLabel = (securityTier: SecurityTier) => {
-  switch (securityTier) {
-    case 'free':
-      return t`Free`
-    case 'foundational':
-      return t`Foundational`
-    case 'high_security':
-      return t`High Security`
-    default:
-      return securityTier
-  }
-}
-
-const securityTierToDescription = (securityTier: SecurityTier) => {
-  switch (securityTier) {
-    case 'free':
-      return {
-        description: t`Single-account security overview on a monthly basis.`,
-        targetCustomer: t`Perfect for individual use or small-scale proof-of-concept trials.`,
-        price: 0,
-        oneTime: true,
-        scanFrequency: t`Monthly`,
-        featuresTitle: t`Free features`,
-        features: [t`Basic asset inventory`, t`Compliance scans`, t`Account risk score`, t`Fix recommendations`, t`Monthly email report`],
-      }
-    case 'foundational':
-      return {
-        description: t`Daily scans for secure, compliant operations.`,
-        targetCustomer: t`Ideal for growing businesses that need a robust security baseline.`,
-        price: 5,
-        monthly: true,
-        scanFrequency: t`Daily`,
-        featuresTitle: t`All Free features, plus`,
-        features: [t`Alerting integrations (Slack, PagerDuty, Discord)`, t`Graph visualization`, t`Inventory search`, t`CSV data export`],
-      }
-    case 'high_security':
-      return {
-        description: t`Hourly scans for critical, fast-paced environments.`,
-        targetCustomer: t`Advanced integration for top-tier security needs and IaC support.`,
-        price: 50,
-        monthly: true,
-        scanFrequency: t`Hourly`,
-        featuresTitle: t`All Foundational features, plus`,
-        features: [t`Alerting integrations with custom HTTP webhooks`, t`Automatic inventory exports (AWS S3)`],
-      }
-  }
-}
-
-const allPaymentMethods: PaymentMethods[] = ['aws_marketplace']
 const allSecurityTiers: SecurityTier[] = ['free', 'foundational', 'high_security']
 
 const SecurityTierComp = ({ securityTier }: { securityTier: SecurityTier }) => {
@@ -144,15 +89,27 @@ const SecurityTierComp = ({ securityTier }: { securityTier: SecurityTier }) => {
   )
 }
 
-export const ChangePaymentMethod = ({ defaultPaymentMethod, defaultSecurityTier }: ChangePaymentMethodProps) => {
+const PaymentMethodDivider = () => {
+  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('lg'))
+
+  return (
+    <Divider
+      key={isMobile.toString()}
+      orientation={isMobile ? 'horizontal' : 'vertical'}
+      sx={isMobile ? { width: '100%', maxWidth: 336 } : undefined}
+    />
+  )
+}
+
+export const ChangePaymentMethod = ({ paymentMethods, defaultSecurityTier }: ChangePaymentMethodProps) => {
   const { selectedWorkspace } = useUserProfile()
   const showModalRef = useRef<(show?: boolean | undefined) => void>()
   const { showSnackbar } = useSnackbar()
   const queryClient = useQueryClient()
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethods>(defaultPaymentMethod)
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(paymentMethods[0])
   const [securityTier, setSecurityTier] = useState<SecurityTier>(defaultSecurityTier)
 
-  const paymentMethodOptions = allPaymentMethods.map((value) => ({ label: paymentMethodToLabel(value), value }))
+  const paymentMethodOptions = paymentMethods.map((value) => ({ label: paymentMethodToLabel(value.method), value }))
 
   const { mutate: changeBilling, isPending: changeBillingIsPending } = useMutation({
     mutationFn: putWorkspaceBillingMutation,
@@ -182,7 +139,7 @@ export const ChangePaymentMethod = ({ defaultPaymentMethod, defaultSecurityTier 
       <Stack direction={{ xs: 'column', lg: 'row' }} alignItems={{ xs: 'center', lg: 'stretch' }} justifyContent="center">
         {allSecurityTiers.map((curSecurityTier, i) => (
           <Fragment key={curSecurityTier}>
-            {i ? <Divider orientation="vertical" /> : null}
+            {i ? <PaymentMethodDivider /> : null}
             <ButtonBase
               LinkComponent={Stack}
               sx={{
@@ -237,14 +194,19 @@ export const ChangePaymentMethod = ({ defaultPaymentMethod, defaultSecurityTier 
             color={isUpgrade ? 'success' : 'error'}
             variant="contained"
             onClick={() => {
-              changeBilling({ payment_method: paymentMethod, security_tier: securityTier, workspaceId: selectedWorkspace?.id ?? '' })
+              changeBilling({
+                workspace_payment_method: paymentMethod,
+                security_tier: securityTier,
+                workspaceId: selectedWorkspace?.id ?? '',
+              })
             }}
             endIcon={isUpgrade ? <UpgradeIcon /> : <TrendingDownIcon />}
+            disabled={paymentMethod.method === 'none'}
           >
             {isUpgrade === null ? <Trans>Change Security Tier</Trans> : isUpgrade ? <Trans>Upgrade</Trans> : <Trans>Downgrade</Trans>}
           </LoadingButton>
         }
-        title={t`Change Payment method`}
+        title={t`Change payment method`}
         description={<Trans>You are about to apply changes to your billing information. Please review the new details below:</Trans>}
       >
         <Stack spacing={1}>
@@ -252,9 +214,13 @@ export const ChangePaymentMethod = ({ defaultPaymentMethod, defaultSecurityTier 
             <Typography>
               <Trans>Payment method</Trans>:
             </Typography>
-            <Select value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value as PaymentMethods)} size="small">
+            <Select
+              value={JSON.stringify(paymentMethod)}
+              onChange={(e) => setPaymentMethod(JSON.parse(e.target.value) as PaymentMethod)}
+              size="small"
+            >
               {paymentMethodOptions.map((paymentMethod, i) => (
-                <MenuItem value={paymentMethod.value} key={`${paymentMethod.value}_${i}`}>
+                <MenuItem value={JSON.stringify(paymentMethod.value)} key={`${JSON.stringify(paymentMethod.value)}_${i}`}>
                   {paymentMethod.label}
                 </MenuItem>
               ))}

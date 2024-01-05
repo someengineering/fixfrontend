@@ -1,4 +1,4 @@
-import { alpha, keyframes, styled } from '@mui/material'
+import { keyframes, styled } from '@mui/material'
 import { LogoWhiteNoBackground } from 'src/assets/icons'
 import { shouldForwardProp } from 'src/shared/utils/shouldForwardProp'
 
@@ -18,7 +18,7 @@ const Container = styled('div')({
 
 const SpinnerCircle = styled('div', { shouldForwardProp })<{ width: number; isLoading?: boolean }>(({ theme, width, isLoading }) => ({
   position: 'absolute',
-  backgroundColor: isLoading ? 'rgba(0, 0, 0, 0.2)' : alpha(theme.palette.primary.main, 0.8),
+  backgroundColor: isLoading ? 'rgba(0, 0, 0, 0.2)' : 'rgba(28, 67, 150, 0.8)',
   left: '50%',
   top: '50%',
   width: width,

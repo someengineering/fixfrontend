@@ -126,7 +126,7 @@ const FullPageLoadingContent = forwardRef<HTMLDivElement, FullPageLoadingContent
           />
         ) : null}
         <FullPageLoadingContainer ref={ref} loadingState={loadingState} transitionState={transitionState} isHalfWidth={isHalfWidth}>
-          <Spinner isLoading={!isHalfWidth} />
+          <Spinner isLoading={!loadingState} />
         </FullPageLoadingContainer>
       </>
     )
@@ -136,9 +136,12 @@ const FullPageLoadingContent = forwardRef<HTMLDivElement, FullPageLoadingContent
 export const FullPageLoading = memo(
   ({ loadingState }: FullPageLoadingProps) => {
     const nodeRef = useRef<HTMLDivElement>(null)
-    const isHalfWidth = Boolean(useMatch('/auth/*') && loadingState === LoadingStateType.HIDE)
+    const authMatch = useMatch('/auth/*')
+    const subscriptionMatch = useMatch('/subscription/*')
+    const isHalfWidth = Boolean(authMatch && loadingState === LoadingStateType.HIDE)
+    const loadingStateWithSub = !!subscriptionMatch
     return (
-      <Transition nodeRef={nodeRef} in={loadingState !== LoadingStateType.HIDE || isHalfWidth} timeout={200}>
+      <Transition nodeRef={nodeRef} in={loadingState !== LoadingStateType.HIDE || isHalfWidth || loadingStateWithSub} timeout={200}>
         {(state) => (
           <Transition nodeRef={nodeRef} in={loadingState !== LoadingStateType.SHOW_NO_BACKGROUND} timeout={200}>
             {(backgroundState) => (

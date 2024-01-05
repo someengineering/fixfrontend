@@ -19,12 +19,21 @@ const PanelContainer = lazy(
     ),
 )
 
+const SubscriptionContainer = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "subscription" */
+      'src/containers/subscription/SubscriptionContainer'
+    ),
+)
+
 export const AppRouter = memo(
   () => (
     <Suspense fallback={<FullPageLoadingSuspenseFallback forceFullPage />}>
       <Routes>
-        <Route path="auth/*" element={<AuthContainer />} />
+        <Route path="/auth/*" element={<AuthContainer />} />
         <Route element={<RequireAuth />}>
+          <Route path="/subscription/*" element={<SubscriptionContainer />} />
           <Route path="/*" element={<PanelContainer />} />
         </Route>
       </Routes>

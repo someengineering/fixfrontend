@@ -1,4 +1,4 @@
-import { ButtonBase, Stack, Typography } from '@mui/material'
+import { ButtonBase, Grid, Typography } from '@mui/material'
 import { NavigateFunction } from 'react-router-dom'
 import { sortedSeverities } from 'src/shared/constants'
 import { getMessage } from 'src/shared/defined-messages'
@@ -11,15 +11,10 @@ export const showSubtitle = (data: Partial<FailedChecksType>, change: 'node_comp
   sortedSeverities
     .filter((key) => data[key])
     .map((key) => (
-      <Stack
-        key={key}
-        direction="row"
-        component={ButtonBase}
-        onClick={() => navigate(createInventorySearchTo(`/security.severity=${key}`, change))}
-      >
+      <Grid item key={key} component={ButtonBase} onClick={() => navigate(createInventorySearchTo(`/security.severity=${key}`, change))}>
         <Typography color={getColorBySeverity(key)} variant="body2">
           {getMessage(snakeCaseToUFStr(key))}
         </Typography>
         <Typography variant="body2">: {data[key]}</Typography>
-      </Stack>
+      </Grid>
     ))

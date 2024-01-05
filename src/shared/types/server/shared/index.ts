@@ -1,1 +1,1 @@
-export type { PaymentMethods, SecurityTier } from './Payment'
+export type { PaymentMethod, PaymentMethods, SecurityTier } from './Payment'

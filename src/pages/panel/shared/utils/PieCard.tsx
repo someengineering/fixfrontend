@@ -1,4 +1,5 @@
 import { t } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
 import { Box, ButtonBase, Divider, Grid, Paper, Stack, Typography, styled, useTheme } from '@mui/material'
 import { useMemo, useRef, useState } from 'react'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
@@ -105,6 +106,9 @@ const PieCardItem = ({
 
 export const PieCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryResponse }) => {
   const navigate = useAbsoluteNavigate()
+  const {
+    i18n: { locale },
+  } = useLingui()
   const pieData = useMemo(() => {
     return !data
       ? []
@@ -126,15 +130,15 @@ export const PieCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryRes
                         name: 'Critical',
                         label:
                           typeof account.failed_resources_by_severity?.critical === 'number'
-                            ? numberToShortHRT(account.failed_resources_by_severity.critical)
+                            ? numberToShortHRT(account.failed_resources_by_severity.critical, locale)
                             : undefined,
                         description:
                           typeof account.failed_resources_by_severity?.critical === 'number' &&
                           typeof account_summary.failed_checks?.critical === 'number'
                             ? t`We've identified ${
-                                account.failed_resources_by_severity.critical.toLocaleString() ?? '0'
-                              } non-compliant resources out of ${account.resource_count.toLocaleString()} through ${
-                                account_summary.failed_checks.critical.toLocaleString() ?? '0'
+                                account.failed_resources_by_severity.critical.toLocaleString(locale) ?? '0'
+                              } non-compliant resources out of ${account.resource_count.toLocaleString(locale)} through ${
+                                account_summary.failed_checks.critical.toLocaleString(locale) ?? '0'
                               } ${'Critical'.toString()}-severity security checks.`
                             : undefined,
                         onClick: () => {
@@ -150,15 +154,15 @@ export const PieCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryRes
                         name: 'High',
                         label:
                           typeof account.failed_resources_by_severity?.high === 'number'
-                            ? numberToShortHRT(account.failed_resources_by_severity.high)
+                            ? numberToShortHRT(account.failed_resources_by_severity.high, locale)
                             : undefined,
                         description:
                           typeof account.failed_resources_by_severity?.high === 'number' &&
                           typeof account_summary.failed_checks?.high === 'number'
                             ? t`We've identified ${
-                                account.failed_resources_by_severity.high.toLocaleString() ?? '0'
-                              } non-compliant resources out of ${account.resource_count.toLocaleString()} through ${
-                                account_summary.failed_checks.high.toLocaleString() ?? '0'
+                                account.failed_resources_by_severity.high.toLocaleString(locale) ?? '0'
+                              } non-compliant resources out of ${account.resource_count.toLocaleString(locale)} through ${
+                                account_summary.failed_checks.high.toLocaleString(locale) ?? '0'
                               } ${'High'.toString()}-severity security checks.`
                             : undefined,
                         onClick: () => {
@@ -174,15 +178,15 @@ export const PieCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryRes
                         name: 'Medium',
                         label:
                           typeof account.failed_resources_by_severity?.medium === 'number'
-                            ? numberToShortHRT(account.failed_resources_by_severity.medium)
+                            ? numberToShortHRT(account.failed_resources_by_severity.medium, locale)
                             : undefined,
                         description:
                           typeof account.failed_resources_by_severity?.medium === 'number' &&
                           typeof account_summary.failed_checks?.medium === 'number'
                             ? t`We've identified ${
-                                account.failed_resources_by_severity.medium.toLocaleString() ?? '0'
-                              } non-compliant resources out of ${account.resource_count.toLocaleString()} through ${
-                                account_summary.failed_checks.medium.toLocaleString() ?? '0'
+                                account.failed_resources_by_severity.medium.toLocaleString(locale) ?? '0'
+                              } non-compliant resources out of ${account.resource_count.toLocaleString(locale)} through ${
+                                account_summary.failed_checks.medium.toLocaleString(locale) ?? '0'
                               } ${'Medium'.toString()}-severity security checks.`
                             : undefined,
                         onClick: () => {
@@ -198,15 +202,15 @@ export const PieCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryRes
                         name: 'Low',
                         label:
                           typeof account.failed_resources_by_severity?.low === 'number'
-                            ? numberToShortHRT(account.failed_resources_by_severity.low)
+                            ? numberToShortHRT(account.failed_resources_by_severity.low, locale)
                             : undefined,
                         description:
                           typeof account.failed_resources_by_severity?.low === 'number' &&
                           typeof account_summary.failed_checks?.low === 'number'
                             ? t`We've identified ${
-                                account.failed_resources_by_severity.low.toLocaleString() ?? '0'
-                              } non-compliant resources out of ${account.resource_count.toLocaleString()} through ${
-                                account_summary.failed_checks.low.toLocaleString() ?? '0'
+                                account.failed_resources_by_severity.low.toLocaleString(locale) ?? '0'
+                              } non-compliant resources out of ${account.resource_count.toLocaleString(locale)} through ${
+                                account_summary.failed_checks.low.toLocaleString(locale) ?? '0'
                               } ${'Low'.toString()}-severity security checks.`
                             : undefined,
                         onClick: () => {
@@ -242,7 +246,7 @@ export const PieCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryRes
             cloud: string
           }[],
         )
-  }, [data, navigate])
+  }, [data, navigate, locale])
   return pieData.length ? (
     <Grid container spacing={3} my={2}>
       {pieData.map((item, index) => (

@@ -1,6 +1,6 @@
 import { lazy } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { AccountCheckGuard, BenchmarkCheckGuard } from 'src/shared/layouts/panel-layout'
+import { AccountCheckGuard, BenchmarkCheckGuard, SubscriptionCheckGuard } from 'src/shared/layouts/panel-layout'
 
 const HomePage = lazy(
   () =>
@@ -50,6 +50,14 @@ const WorkspaceSettingsUsersPage = lazy(
     ),
 )
 
+const WorkspaceSettingsUserInvitesPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "workspace-settings-user-invites" */
+      'src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationsPage'
+    ),
+)
+
 const WorkspaceSettingsBillingPage = lazy(
   () =>
     import(
@@ -69,24 +77,29 @@ const WorkspaceSettingsExternalDirectoryPage = lazy(
 export function PanelRoutes() {
   return (
     <Routes>
-      <Route path="/">
-        <Route element={<AccountCheckGuard />}>
-          <Route element={<BenchmarkCheckGuard />}>
-            <Route index element={<HomePage />} />
-            <Route path="inventory" element={<InventoryPage />} />
-          </Route>
+      <Route element={<SubscriptionCheckGuard />}>
+        <Route path="/">
+          <Route element={<AccountCheckGuard />}>
+            <Route element={<BenchmarkCheckGuard />}>
+              <Route index element={<HomePage />} />
+              <Route path="inventory" element={<InventoryPage />} />
+            </Route>
 
-          <Route path="accounts" element={<AccountsPage />} />
+            <Route path="accounts" element={<AccountsPage />} />
+          </Route>
+          <Route path="workspace-settings">
+            <Route index element={<WorkspaceSettingsPage />} />
+            <Route path="users">
+              <Route index element={<WorkspaceSettingsUsersPage />} />
+              <Route path="invitations" element={<WorkspaceSettingsUserInvitesPage />} />
+            </Route>
+            <Route path="billing-receipts" element={<WorkspaceSettingsBillingPage />} />
+            <Route path="external-directories" element={<WorkspaceSettingsExternalDirectoryPage />} />
+          </Route>
+          <Route path="setup-cloud" element={<SetupCloudPage />} />
         </Route>
-        <Route path="workspace-settings">
-          <Route index element={<WorkspaceSettingsPage />} />
-          <Route path="users" element={<WorkspaceSettingsUsersPage />} />
-          <Route path="billing" element={<WorkspaceSettingsBillingPage />} />
-          <Route path="external-directories" element={<WorkspaceSettingsExternalDirectoryPage />} />
-        </Route>
-        <Route path="setup-cloud" element={<SetupCloudPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
-      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
 }

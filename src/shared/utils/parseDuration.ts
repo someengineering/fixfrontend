@@ -29,25 +29,8 @@ const MONTHS = DAYS * 30
 const YEARS = DAYS * 365
 
 export const diffDateTimeToDuration = (dateTimeFrom: Date, dateTimeTo: Date) => {
-  const negative = dateTimeFrom > dateTimeTo
-  const start = negative ? dateTimeTo : dateTimeFrom
-  const end = negative ? dateTimeFrom : dateTimeTo
-  const duration = Math.abs(start.valueOf() - end.valueOf())
-  const years = Math.floor(duration / YEARS)
-  let soFar = years * YEARS
-  const months = Math.floor((duration - soFar) / MONTHS)
-  soFar += months * MONTHS
-  const weeks = Math.floor((duration - soFar) / WEEKS)
-  soFar += weeks * WEEKS
-  const days = Math.floor((duration - soFar) / DAYS)
-  soFar += days * DAYS
-  const hours = Math.floor((duration - soFar) / HOURS)
-  soFar += hours * HOURS
-  const minutes = Math.floor((duration - soFar) / MINUTES)
-  soFar += minutes * MINUTES
-  const seconds = Math.floor((duration - soFar) / SECONDS)
-  soFar += seconds * SECONDS
-  return { negative, years, months, weeks, days, hours, minutes, seconds, duration } as ISO8601DurationType
+  const duration = dateTimeTo.valueOf() - dateTimeFrom.valueOf()
+  return getISO8601DurationFromTimestamp(duration)
 }
 
 export const parseCustomDuration = (customDuration: string) => {
@@ -85,11 +68,40 @@ export const splitCustomDuration = (customDuration: string) => customDuration.ma
 export const splittedCustomDurationToAutoComplete = (customDurations: string[]) =>
   customDurations.map((value) => ({ label: iso8601DurationToString(parseCustomDuration(value)), value }))
 
-export const durationToCustomDurationString = (duration: ISO8601DurationType) => {
-  const { days, hours, minutes, months, seconds, weeks, years } = duration
+export const durationToCustomDurationString = (duration: Partial<Omit<ISO8601DurationType, 'negative'>>) => {
+  const { days, hours, minutes, months, seconds, weeks, years } =
+    !duration.days &&
+    !duration.hours &&
+    !duration.minutes &&
+    !duration.months &&
+    !duration.seconds &&
+    !duration.weeks &&
+    !duration.years &&
+    duration.duration
+      ? getISO8601DurationFromTimestamp(duration.duration)
+      : duration
   return `${years ? `${years}yr` : ''}${months ? `${months}mo` : ''}${weeks ? `${weeks}w` : ''}${days ? `${days}d` : ''}${
     hours ? `${hours}h` : ''
   }${minutes ? `${minutes}min` : ''}${seconds ? `${seconds}s` : ''}`
+}
+
+export const getISO8601DurationFromTimestamp = (timestamp: number) => {
+  const absTimestamp = Math.abs(timestamp)
+  const years = Math.floor(absTimestamp / YEARS)
+  let soFar = years * YEARS
+  const months = Math.floor((absTimestamp - soFar) / MONTHS)
+  soFar += months * MONTHS
+  const weeks = Math.floor((absTimestamp - soFar) / WEEKS)
+  soFar += weeks * WEEKS
+  const days = Math.floor((absTimestamp - soFar) / DAYS)
+  soFar += days * DAYS
+  const hours = Math.floor((absTimestamp - soFar) / HOURS)
+  soFar += hours * HOURS
+  const minutes = Math.floor((absTimestamp - soFar) / MINUTES)
+  soFar += minutes * MINUTES
+  const seconds = Math.floor((absTimestamp - soFar) / SECONDS)
+  soFar += seconds * SECONDS
+  return { negative: timestamp < 0, years, months, weeks, days, hours, minutes, seconds, duration: absTimestamp } as ISO8601DurationType
 }
 
 export const parseISO8601Duration = (iso8601Duration: string) => {
@@ -124,7 +136,7 @@ export const parseISO8601Duration = (iso8601Duration: string) => {
 }
 
 export const iso8601DurationToString = (
-  duration: ISO8601DurationType,
+  duration: Partial<Omit<ISO8601DurationType, 'negative'>>,
   maxStr: 1 | 2 | 3 | 4 | 5 | 6 | 7 = 7,
   showTime: boolean = true,
   joinStr?: string,

@@ -33,6 +33,10 @@ export const getInitiated = () => getStorageObject<boolean>(StorageKeys.initiate
 
 export const setInitiated = (initiated?: boolean) => setStorageObject(StorageKeys.initiated, initiated)
 
+export const getSubscriptionId = () => getStorageObject<string>(StorageKeys.subscriptionId)
+
+export const setSubscriptionId = (subscriptionId?: string) => setStorageObject(StorageKeys.subscriptionId, subscriptionId)
+
 export const getThemeMode = () => getStorageObject<ThemeContextRealValues>(StorageKeys.themeMode)
 
 export const setThemeMode = (themeMode?: ThemeContextRealValues) => setStorageObject(StorageKeys.themeMode, themeMode)

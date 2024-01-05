@@ -1,11 +1,12 @@
 import { t } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
 import { Stack, useTheme } from '@mui/material'
 import { useRef, useState } from 'react'
 import { PieResourceCheckScore, createInventorySearchTo } from 'src/pages/panel/shared/utils'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { FailedChecksType } from 'src/shared/types/server'
 import { numberToShortHRT } from 'src/shared/utils/numberToShortHRT'
-import { ToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
+import { wordToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 
 interface OverallScoreProps {
   score: number
@@ -20,6 +21,9 @@ export const OverallScore = ({ score, failedChecks, failedResources, availableRe
   const [showPieChart, setShowPieChart] = useState(false)
   const [hidingPieChart, setHidingPieChart] = useState(false)
   const showPieChartTimeoutRef = useRef<number>()
+  const {
+    i18n: { locale },
+  } = useLingui()
   const handleShowPieChart = () => {
     if (hidingPieChart) {
       setHidingPieChart(false)
@@ -47,16 +51,16 @@ export const OverallScore = ({ score, failedChecks, failedResources, availableRe
     <Stack mb={4} direction="row" justifyContent="center">
       <PieResourceCheckScore
         data={Object.entries(failedChecks).map(([name, value]) => ({
-          name: ToUFStr(name),
+          name: wordToUFStr(name),
           value: failedResources[name] ?? 0,
-          label: typeof failedResources[name] === 'number' ? numberToShortHRT(failedResources[name] ?? 0) : undefined,
+          label: typeof failedResources[name] === 'number' ? numberToShortHRT(failedResources[name] ?? 0, locale) : undefined,
           description:
             typeof failedResources[name] === 'number' && typeof value === 'number'
-              ? t`We've identified ${(
-                  failedResources[name] as number
-                ).toLocaleString()} non-compliant resources out of ${availableResources.toLocaleString()} through ${
+              ? t`We've identified ${(failedResources[name] as number).toLocaleString(
+                  locale,
+                )} non-compliant resources out of ${availableResources.toLocaleString(locale)} through ${
                   value.toString() ?? 0
-                } ${ToUFStr(name).toString()}-severity security checks.`
+                } ${wordToUFStr(name).toString()}-severity security checks.`
               : undefined,
           onClick: () => navigate(createInventorySearchTo(`/security.has_issues=true and /security.severity=${name}`)),
         }))}

@@ -1,3 +1,4 @@
+import { useLingui } from '@lingui/react'
 import { Popover as MuiPopover, Paper, PopoverOrigin, Typography, colors as muicolors, popoverClasses, styled } from '@mui/material'
 import { useRef, useState } from 'react'
 import { Cell, Pie, PieProps, PieChart as RchPieChart } from 'recharts'
@@ -28,6 +29,9 @@ const RADIAN = Math.PI / 180
 
 export function PieChart({ data, showLabel, colors, pieProps = {}, width = 400, height = 400 }: PieChartProps) {
   const containerRef = useRef<HTMLElement | undefined>()
+  const {
+    i18n: { locale },
+  } = useLingui()
   const [popoverData, setPopoverData] = useState<{ origin: PopoverOrigin; content: string; anchor?: HTMLElement }>({
     content: '',
     origin: { horizontal: 'center', vertical: 'top' },
@@ -56,7 +60,7 @@ export function PieChart({ data, showLabel, colors, pieProps = {}, width = 400, 
     label?: string
     onClick?: () => void
   }) => {
-    const textToShow = label ?? value.toLocaleString()
+    const textToShow = label ?? value.toLocaleString(locale)
     const textLength = textToShow.length
     if (midAngle - endAngle < (textLength > 1 ? textLength * 5 : 6) || !textLength) {
       return null

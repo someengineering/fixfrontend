@@ -115,7 +115,7 @@ export const DurationPicker = ({ onChange, value }: DurationPickerProps) => {
             },
             onChange: (e) => {
               const value = e.currentTarget.value
-              const trimmed = value.trim().toLocaleLowerCase()
+              const trimmed = value.trim().toLowerCase()
               const lowerCased = trimmed.toLowerCase()
               const foundDur = allPossibleValues.find((item) => lowerCased.endsWith(item))
               if (foundDur) {

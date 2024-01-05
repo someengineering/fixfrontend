@@ -1,6 +1,6 @@
 export type WorkspaceUser = {
   id: string
-  sources: string[]
+  sources: { source: string }[]
   name: string
   email: string
   roles: string[]

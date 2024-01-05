@@ -2,7 +2,11 @@ import { Trans } from '@lingui/macro'
 // eslint-disable-next-line no-restricted-imports
 import { SvgIconComponent } from '@mui/icons-material'
 import DashboardIcon from '@mui/icons-material/Dashboard'
+import InsertInvitationIcon from '@mui/icons-material/InsertInvitation'
 import InventoryIcon from '@mui/icons-material/Inventory'
+import PeopleIcon from '@mui/icons-material/People'
+import ReceiptIcon from '@mui/icons-material/Receipt'
+import RoomPreferencesIcon from '@mui/icons-material/RoomPreferences'
 import { ComponentType, ReactNode } from 'react'
 import { useHasBenchmarkCheck } from './check-hooks/useHasBenchmarkCheck'
 
@@ -11,6 +15,7 @@ export interface MenuListItem {
   route: string
   Icon: SvgIconComponent
   useGuard?: () => boolean
+  children?: MenuListItem[]
 }
 
 type DefaultMenuModalListItemProps = {
@@ -39,4 +44,34 @@ export const menuList: MenuListItem[] = [
   },
 ]
 
-export const bottomMenuList = []
+export const bottomMenuList: MenuListItem[] = [
+  {
+    name: <Trans>Workspace Settings</Trans>,
+    route: '/workspace-settings',
+    Icon: RoomPreferencesIcon,
+    children: [
+      {
+        Icon: PeopleIcon,
+        name: <Trans>Workspace Users</Trans>,
+        route: '/workspace-settings/users',
+        children: [
+          {
+            Icon: InsertInvitationIcon,
+            name: <Trans>Pending Invitations</Trans>,
+            route: '/workspace-settings/users/invitations',
+          },
+        ],
+      },
+      {
+        Icon: ReceiptIcon,
+        name: <Trans>Billing</Trans>,
+        route: '/workspace-settings/billing-receipts',
+      },
+      // {
+      //   Icon: FolderCopyIcon,
+      //   name: <Trans>External Directories</Trans>,
+      //   route: '/workspace-settings/external-directories',
+      // },
+    ],
+  },
+]
