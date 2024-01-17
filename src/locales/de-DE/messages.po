@@ -62,6 +62,10 @@ msgstr "<0>Die nächste Rechnung wird verfügbar sein: {0}</0>"
 msgid "Access to your account is broken"
 msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 
+#: src/pages/panel/inventory/ResourceDetail.tsx:200
+msgid "Account"
+msgstr "Konto"
+
 #: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:14
 msgid "Account risk score"
 msgstr "Risikobewertung des Kontos"
@@ -110,7 +114,7 @@ msgstr "Konten hinzugefügt"
 msgid "Advanced integration for top-tier security needs and IaC support."
 msgstr "Erweiterte Integration für höchste Sicherheitsanforderungen und IaC-Unterstützung."
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:200
+#: src/pages/panel/inventory/ResourceDetail.tsx:209
 msgid "Age"
 msgstr "Alter"
 
@@ -177,7 +181,7 @@ msgstr "AWS Marketplace wurde erfolgreich abonniert"
 msgid "Basic asset inventory"
 msgstr "Grundlegende Vermögensinventur"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:184
+#: src/pages/panel/inventory/ResourceDetail.tsx:190
 msgid "Basic Information"
 msgstr "Grundinformation"
 
@@ -226,6 +230,7 @@ msgstr "Wählen Sie Arbeitsbereich"
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:36
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:36
 #: src/pages/panel/home/AccountCard.tsx:33
+#: src/pages/panel/inventory/ResourceDetail.tsx:199
 msgid "Cloud"
 msgstr "Cloud"
 
@@ -272,7 +277,7 @@ msgstr "In die Zwischenablage kopiert!"
 msgid "Copy"
 msgstr "Kopieren"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:194
+#: src/pages/panel/inventory/ResourceDetail.tsx:203
 msgid "Created Time"
 msgstr "Erstellte Zeit"
 
@@ -338,7 +343,7 @@ msgstr "Deploy Stack"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:228
+#: src/pages/panel/inventory/ResourceDetail.tsx:237
 msgid "Details"
 msgstr "Einzelheiten"
 
@@ -477,7 +482,7 @@ msgstr "Wie repariert man"
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:39
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:39
 #: src/pages/panel/home/AccountCard.tsx:30
-#: src/pages/panel/inventory/ResourceDetail.tsx:191
+#: src/pages/panel/inventory/ResourceDetail.tsx:197
 msgid "ID"
 msgstr "ID"
 
@@ -524,7 +529,7 @@ msgstr "Externen Benutzer einladen"
 msgid "Invites"
 msgstr "Lädt ein"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:190
+#: src/pages/panel/inventory/ResourceDetail.tsx:196
 msgid "Kind"
 msgstr "Art"
 
@@ -582,7 +587,7 @@ msgstr "Am meisten verbesserte Ressourcen"
 #: src/pages/panel/accounts/AccountsTableItem.tsx:42
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:42
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:42
-#: src/pages/panel/inventory/ResourceDetail.tsx:192
+#: src/pages/panel/inventory/ResourceDetail.tsx:198
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:20
@@ -727,6 +732,10 @@ msgstr "Kürzlich hinzugefügte Konten"
 msgid "Regenerate"
 msgstr "Regenerieren"
 
+#: src/pages/panel/inventory/ResourceDetail.tsx:201
+msgid "Region"
+msgstr "Region"
+
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:130
 msgid "Regions"
 msgstr "Regionen"
@@ -764,7 +773,7 @@ msgstr "Rollen"
 msgid "Scan frequency"
 msgstr "Scanfrequenz"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:248
+#: src/pages/panel/inventory/ResourceDetail.tsx:257
 msgid "Security Issues"
 msgstr "Sicherheitsprobleme"
 
@@ -830,7 +839,7 @@ msgid "Successfully invited {email}"
 msgstr "{email} erfolgreich eingeladen"
 
 #: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:86
-#: src/pages/panel/inventory/ResourceDetail.tsx:214
+#: src/pages/panel/inventory/ResourceDetail.tsx:223
 msgid "Tags"
 msgstr "Stichworte"
 
@@ -916,12 +925,9 @@ msgid "We're sorry for the inconvenience. Our team has been notified, and the is
 msgstr "Wir entschuldigen uns für die Unannehmlichkeiten. Unser Team wurde benachrichtigt und das Problem wird untersucht. Bitte versuchen Sie es in ein paar Minuten noch einmal. Wenn das Problem weiterhin besteht, können Sie uns gerne <0>auf Discord</0> kontaktieren. Danke für Ihre Geduld!"
 
 #: src/pages/panel/home/OverallScore.tsx:59
-#: src/pages/panel/shared/utils/PieCard.tsx:138
-#: src/pages/panel/shared/utils/PieCard.tsx:162
-#: src/pages/panel/shared/utils/PieCard.tsx:186
-#: src/pages/panel/shared/utils/PieCard.tsx:210
-msgid "We've identified {0} non-compliant resources out of {1} through {2} {3}-severity security checks."
-msgstr "Wir haben {0} nicht konforme Ressourcen von insgesamt {1} durch {2} {3}-Severity Security-Checks identifiziert."
+#: src/pages/panel/shared/utils/PieCard.tsx:40
+msgid "We've identified {0} non-compliant resources out of {1} {2}-severity security checks."
+msgstr "Wir haben {0} nicht konforme Ressourcen von insgesamt {1} {2}-Severity Security-Checks identifiziert"
 
 #: src/pages/panel/setup-cloud/SetupCloudPage.tsx:136
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:56

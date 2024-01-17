@@ -58,9 +58,7 @@ export const OverallScore = ({ score, failedChecks, failedResources, availableRe
             typeof failedResources[name] === 'number' && typeof value === 'number'
               ? t`We've identified ${(failedResources[name] as number).toLocaleString(
                   locale,
-                )} non-compliant resources out of ${availableResources.toLocaleString(locale)} through ${
-                  value.toString() ?? 0
-                } ${wordToUFStr(name).toString()}-severity security checks.`
+                )} non-compliant resources out of ${availableResources.toLocaleString(locale)} ${wordToUFStr(name).toString()}-severity security checks.`
               : undefined,
           onClick: () => navigate(createInventorySearchTo(`/security.has_issues=true and /security.severity=${name}`)),
         }))}

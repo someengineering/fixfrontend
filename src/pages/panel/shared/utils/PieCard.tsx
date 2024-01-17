@@ -2,11 +2,13 @@ import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Box, ButtonBase, Divider, Grid, Paper, Stack, Typography, styled, useTheme } from '@mui/material'
 import { useMemo, useRef, useState } from 'react'
+import { NavigateFunction } from 'react-router-dom'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
-import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
+import { FailedChecksType, GetWorkspaceInventoryReportSummaryResponse, WorkspaceAccountReportSummary } from 'src/shared/types/server'
 import { numberToShortHRT } from 'src/shared/utils/numberToShortHRT'
 import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
+import { wordToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 import { PieResourceCheckScore } from './PieResourceCheckScore'
 import { createInventorySearchTo } from './createInventorySearchTo'
 
@@ -20,6 +22,39 @@ const PieCardItemPaper = styled(Paper, { shouldForwardProp: shouldForwardPropWit
   // background: alpha(colorFromRedToGreen[score], 0.1),
   padding: theme.spacing(2),
 }))
+
+const createPieDataFromName = (
+  name: 'critical' | 'high' | 'medium' | 'low',
+  accountFailedResources: Partial<FailedChecksType<number>> | null,
+  resourceCount: number,
+  locale: string,
+  navigate: NavigateFunction,
+  accountId: string,
+) => {
+  const accountFailedResource = accountFailedResources?.[name]
+  const label = wordToUFStr(name)
+  return {
+    value: accountFailedResource ?? 0,
+    name: label,
+    label: typeof accountFailedResource === 'number' ? numberToShortHRT(accountFailedResource, locale) : undefined,
+    description: t`We've identified ${
+      accountFailedResource?.toLocaleString(locale) ?? '0'
+    } non-compliant resources out of ${resourceCount?.toLocaleString(locale)} ${label.toString()}-severity security checks.`,
+    onClick: () => {
+      navigate(
+        createInventorySearchTo(
+          `/security.has_issues=true and /ancestors.account.reported.id="${accountId}" and /security.severity=${name}`,
+        ),
+      )
+    },
+  }
+}
+
+const createPieDataFromNonCompliance = (account: WorkspaceAccountReportSummary, locale: string, navigate: NavigateFunction) => {
+  return (['critical', 'high', 'medium', 'low'] as const).map((name) =>
+    createPieDataFromName(name, account.failed_resources_by_severity, account.resource_count, locale, navigate, account.id),
+  )
+}
 
 const PieCardItem = ({
   id,
@@ -115,128 +150,13 @@ export const PieCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryRes
       : data.accounts.reduce(
           (prev, account) => [
             ...prev,
-            ...data.benchmarks.reduce(
-              (prev, benchmark) => {
-                const account_summary = benchmark.account_summary[account.id]
-                if (!account_summary) {
-                  return prev
-                }
-                return [
-                  ...prev,
-                  {
-                    data: [
-                      {
-                        value: account.failed_resources_by_severity?.critical ?? 0,
-                        name: 'Critical',
-                        label:
-                          typeof account.failed_resources_by_severity?.critical === 'number'
-                            ? numberToShortHRT(account.failed_resources_by_severity.critical, locale)
-                            : undefined,
-                        description:
-                          typeof account.failed_resources_by_severity?.critical === 'number' &&
-                          typeof account_summary.failed_checks?.critical === 'number'
-                            ? t`We've identified ${
-                                account.failed_resources_by_severity.critical.toLocaleString(locale) ?? '0'
-                              } non-compliant resources out of ${account.resource_count.toLocaleString(locale)} through ${
-                                account_summary.failed_checks.critical.toLocaleString(locale) ?? '0'
-                              } ${'Critical'.toString()}-severity security checks.`
-                            : undefined,
-                        onClick: () => {
-                          navigate(
-                            createInventorySearchTo(
-                              `/security.has_issues=true and /ancestors.account.reported.id="${account.id}" and /security.severity=critical`,
-                            ),
-                          )
-                        },
-                      },
-                      {
-                        value: account.failed_resources_by_severity?.high ?? 0,
-                        name: 'High',
-                        label:
-                          typeof account.failed_resources_by_severity?.high === 'number'
-                            ? numberToShortHRT(account.failed_resources_by_severity.high, locale)
-                            : undefined,
-                        description:
-                          typeof account.failed_resources_by_severity?.high === 'number' &&
-                          typeof account_summary.failed_checks?.high === 'number'
-                            ? t`We've identified ${
-                                account.failed_resources_by_severity.high.toLocaleString(locale) ?? '0'
-                              } non-compliant resources out of ${account.resource_count.toLocaleString(locale)} through ${
-                                account_summary.failed_checks.high.toLocaleString(locale) ?? '0'
-                              } ${'High'.toString()}-severity security checks.`
-                            : undefined,
-                        onClick: () => {
-                          navigate(
-                            createInventorySearchTo(
-                              `/security.has_issues=true and /ancestors.account.reported.id="${account.id}" and /security.severity=high`,
-                            ),
-                          )
-                        },
-                      },
-                      {
-                        value: account.failed_resources_by_severity?.medium ?? 0,
-                        name: 'Medium',
-                        label:
-                          typeof account.failed_resources_by_severity?.medium === 'number'
-                            ? numberToShortHRT(account.failed_resources_by_severity.medium, locale)
-                            : undefined,
-                        description:
-                          typeof account.failed_resources_by_severity?.medium === 'number' &&
-                          typeof account_summary.failed_checks?.medium === 'number'
-                            ? t`We've identified ${
-                                account.failed_resources_by_severity.medium.toLocaleString(locale) ?? '0'
-                              } non-compliant resources out of ${account.resource_count.toLocaleString(locale)} through ${
-                                account_summary.failed_checks.medium.toLocaleString(locale) ?? '0'
-                              } ${'Medium'.toString()}-severity security checks.`
-                            : undefined,
-                        onClick: () => {
-                          navigate(
-                            createInventorySearchTo(
-                              `/security.has_issues=true and /ancestors.account.reported.id="${account.id}" and /security.severity=medium`,
-                            ),
-                          )
-                        },
-                      },
-                      {
-                        value: account.failed_resources_by_severity?.low ?? 0,
-                        name: 'Low',
-                        label:
-                          typeof account.failed_resources_by_severity?.low === 'number'
-                            ? numberToShortHRT(account.failed_resources_by_severity.low, locale)
-                            : undefined,
-                        description:
-                          typeof account.failed_resources_by_severity?.low === 'number' &&
-                          typeof account_summary.failed_checks?.low === 'number'
-                            ? t`We've identified ${
-                                account.failed_resources_by_severity.low.toLocaleString(locale) ?? '0'
-                              } non-compliant resources out of ${account.resource_count.toLocaleString(locale)} through ${
-                                account_summary.failed_checks.low.toLocaleString(locale) ?? '0'
-                              } ${'Low'.toString()}-severity security checks.`
-                            : undefined,
-                        onClick: () => {
-                          navigate(
-                            createInventorySearchTo(
-                              `/security.has_issues=true and /ancestors.account.reported.id="${account.id}" and /security.severity=low`,
-                            ),
-                          )
-                        },
-                      },
-                    ],
-                    id: account.id,
-                    title: account.name ? `${account.name} (${account.id})` : account.id,
-                    cloud: account.cloud,
-                    score: account.score ?? -1,
-                  },
-                ]
-              },
-              [] as {
-                id: string
-                data: { value: number; name: string; label?: string; description?: string; onClick: () => void }[]
-                title: string
-                score: number
-                cloud: string
-              }[],
-            ),
+            {
+              data: createPieDataFromNonCompliance(account, locale, navigate),
+              id: account.id,
+              title: account.name ? `${account.name} (${account.id})` : account.id,
+              cloud: account.cloud,
+              score: account.score ?? -1,
+            },
           ],
           [] as {
             id: string

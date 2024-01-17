@@ -1,4 +1,6 @@
 build/
+.swc/
+coverage/
 storybook-static/
 src/locales/*/
 public/*.min.js

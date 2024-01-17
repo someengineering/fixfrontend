@@ -65,15 +65,7 @@ export interface WorkspaceInventoryNode {
       descendant_count?: number
       exported_age?: string
     }
-    ancestors: Record<
-      string,
-      {
-        reported: {
-          name: string
-          id: string
-        }
-      }
-    >
+    ancestors: Record<string, { reported: { name: string; id: string } }>
   }
   neighborhood: WorkspaceInventoryNodeNeighborhood[]
   failing_checks: FailedCheck[]

@@ -15,6 +15,6 @@ export function rowStrFromColumnKind(value: string | number | boolean | null, ki
     case 'duration':
       return iso8601DurationToString(parseCustomDuration((value ?? '').toString()))
     default:
-      return value
+      return typeof value === 'object' ? null : value
   }
 }
