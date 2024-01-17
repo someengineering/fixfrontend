@@ -16,7 +16,7 @@ export const DarkModeSwitch = ({ whiteMode }: { whiteMode?: boolean }) => {
   const isDark = mode === 'dark'
   return (
     <Box display="flex" justifyContent="center" alignItems="center" px={2}>
-      <DarkModeIconButton onClick={toggleColorMode} whiteMode={whiteMode ?? false}>
+      <DarkModeIconButton onClick={() => toggleColorMode()} whiteMode={whiteMode ?? false}>
         {isDark ? <Brightness7Icon fontSize="large" /> : <Brightness4Icon fontSize="large" />}
       </DarkModeIconButton>
     </Box>

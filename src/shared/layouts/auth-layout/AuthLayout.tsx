@@ -1,4 +1,4 @@
-import { alpha, CardContent, Container, Stack, styled } from '@mui/material'
+import { alpha, CardContent, Container, Stack, styled, Theme, useMediaQuery } from '@mui/material'
 import { ComponentType, PropsWithChildren } from 'react'
 import { DarkModeSwitch } from 'src/shared/dark-mode-switch'
 import { LanguageButton } from 'src/shared/language-button'
@@ -8,8 +8,9 @@ import { AuthHeader } from './AuthHeader'
 // typescript only allows string when it defined at `JSX.IntrinsicElements`
 export const BrandRegion = 'BrandRegion' as unknown as ComponentType<PropsWithChildren>
 export const ContentRegion = 'ContentRegion' as unknown as ComponentType<PropsWithChildren>
+export const LeftRegion = 'LeftRegion' as unknown as ComponentType<PropsWithChildren>
 
-const regions = [BrandRegion, ContentRegion]
+const regions = [BrandRegion, ContentRegion, LeftRegion]
 
 export type AuthLayoutProps = PropsWithChildren
 
@@ -18,7 +19,56 @@ const AuthCardStyle = styled(Stack)({
   justifyContent: 'center',
   alignItems: 'center',
   textAlign: 'center',
+  minHeight: '100%',
 })
+
+const AuthDescWrapper = styled(Stack)(({ theme }) => ({
+  position: 'fixed',
+  left: 0,
+  top: 0,
+  opacity: 0,
+  height: '100%',
+  width: '50%',
+  justifyContent: 'center',
+  background: theme.palette.mode === 'light' ? '#eef7ff' : '#132e69',
+  animationDelay: '1s',
+  animationDuration: '1s',
+  animationFillMode: 'forwards',
+  animationName: 'fadeIn',
+  animationTimingFunction: 'ease-in-out',
+  alignItems: 'center',
+  '& > *': {
+    width: '80%',
+    position: 'relative',
+    opacity: 0,
+    animationDelay: '1s',
+    animationDuration: '1s',
+    animationFillMode: 'forwards',
+    animationName: 'fadeInTop',
+    animationTimingFunction: 'ease-in-out',
+    background: `${alpha(theme.palette.background.default, 0.9)} !important`,
+  },
+  '@keyframes fadeInTop': {
+    '0%': {
+      opacity: 0,
+      top: '-50%',
+    },
+    '100%': {
+      opacity: 1,
+      top: 0,
+    },
+  },
+  '@keyframes fadeIn': {
+    '0%': {
+      opacity: 0,
+      left: '-50%',
+    },
+    '100%': {
+      opacity: 1,
+      left: 0,
+    },
+  },
+}))
 
 const AuthWrapper = styled(Container)(({ theme }) => ({
   position: 'fixed',
@@ -41,7 +91,7 @@ const AuthWrapper = styled(Container)(({ theme }) => ({
     },
     '100%': {
       opacity: 1,
-      right: '0',
+      right: 0,
     },
   },
   [theme.breakpoints.down('md')]: {
@@ -51,20 +101,26 @@ const AuthWrapper = styled(Container)(({ theme }) => ({
 }))
 
 export function AuthLayout({ children }: AuthLayoutProps) {
+  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
   const map = groupChildrenByType(children, regions)
   const brandChild = map.get(BrandRegion)
   const contentChild = map.get(ContentRegion)
+  const leftChild = map.get(LeftRegion)
 
   return (
-    <AuthWrapper>
-      <Stack position="fixed" top={0} right={0} mr={2} mt={2} flexDirection="row" spacing={1} justifyContent="center" alignItems="center">
-        <DarkModeSwitch />
-        <LanguageButton />
-      </Stack>
-      <AuthCardStyle>
-        <AuthHeader>{brandChild}</AuthHeader>
-        <CardContent>{contentChild}</CardContent>
-      </AuthCardStyle>
-    </AuthWrapper>
+    <>
+      {!isMobile ? <AuthDescWrapper spacing={4}>{leftChild}</AuthDescWrapper> : undefined}
+      <AuthWrapper>
+        <Stack position="fixed" top={0} right={0} mr={2} mt={2} direction="row" spacing={1} justifyContent="center" alignItems="center">
+          <DarkModeSwitch />
+          <LanguageButton />
+        </Stack>
+        <AuthCardStyle>
+          <AuthHeader>{brandChild}</AuthHeader>
+          <Stack spacing={2}>{isMobile ? leftChild : undefined}</Stack>
+          <CardContent>{contentChild}</CardContent>
+        </AuthCardStyle>
+      </AuthWrapper>
+    </>
   )
 }

@@ -21,8 +21,8 @@ export function Theme({ children }: ThemeProps) {
   } = useLingui()
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
   const [mode, setMode] = useState<'light' | 'dark'>(themeMode?.mode ?? (prefersDarkMode ? 'dark' : 'light'))
-  const toggleColorMode = useCallback(() => {
-    setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'))
+  const toggleColorMode = useCallback((themeMode?: 'light' | 'dark') => {
+    setMode((prevMode) => themeMode ?? (prevMode === 'light' ? 'dark' : 'light'))
   }, [])
   useEffect(() => {
     setThemeMode({ mode })
