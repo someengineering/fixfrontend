@@ -136,6 +136,9 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
   }, [detail])
 
   const { id, name, kind, ctime, age: _age, tags } = data?.resource.reported ?? {}
+  const { name: cloud } = data?.resource.ancestors.cloud?.reported ?? {}
+  const { name: account } = data?.resource.ancestors.account?.reported ?? {}
+  const { name: region } = data?.resource.ancestors.region?.reported ?? {}
   const { tags: _tags, ...reported } = data?.resource.reported ?? {}
 
   return selectedRow ? (
@@ -167,7 +170,7 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
             p={1}
             boxShadow={1}
           >
-            <Box flex={1}>{selectedRow.row['name']}</Box>
+            <Box flex={1}>{typeof selectedRow.row['name'] === 'object' ? '' : selectedRow.row['name']}</Box>
             <IconButton onClick={onClose}>
               <CloseIcon />
             </IconButton>
@@ -190,6 +193,9 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
                   <GridItem property={<Trans>Kind</Trans>} value={kind} />
                   <GridItem property={<Trans>ID</Trans>} value={id} />
                   <GridItem property={<Trans>Name</Trans>} value={name} />
+                  <GridItem property={<Trans>Cloud</Trans>} value={cloud} />
+                  <GridItem property={<Trans>Account</Trans>} value={account} />
+                  <GridItem property={<Trans>Region</Trans>} value={region} />
                   <GridItem
                     property={<Trans>Created Time</Trans>}
                     value={`${new Date(ctime as string).toLocaleDateString(locale)} ${new Date(ctime as string).toLocaleTimeString(

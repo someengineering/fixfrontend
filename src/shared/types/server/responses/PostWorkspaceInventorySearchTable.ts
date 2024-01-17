@@ -2,7 +2,7 @@ import { ResourceComplexKindSimpleTypeDefinitions } from './shared'
 
 export interface PostWorkspaceInventorySearchTableRow {
   id: string
-  row: Record<string, string | number | boolean | null>
+  row: Record<string, string | number | boolean | null | object>
 }
 
 export interface PostWorkspaceInventorySearchTableColumn {

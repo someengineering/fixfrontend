@@ -3,6 +3,7 @@ import { rowStrFromColumnKind } from './rowStrFromColumnKind'
 test('rowStrFromColumnKind should return correct value from column kind', () => {
   const bool = rowStrFromColumnKind(true, 'boolean')
   const anyStr = rowStrFromColumnKind('anyStr', 'any')
+  const anyObj = rowStrFromColumnKind({ cloud: ['str'] } as unknown as null, 'any')
   const date = rowStrFromColumnKind(123, 'date')
   const datetime = rowStrFromColumnKind(123, 'datetime')
   const double = rowStrFromColumnKind(123.45, 'double')
@@ -13,6 +14,7 @@ test('rowStrFromColumnKind should return correct value from column kind', () => 
   const str = rowStrFromColumnKind('str', 'string')
   expect(bool).toBe(true)
   expect(anyStr).toBe('anyStr')
+  expect(anyObj).toStrictEqual(null)
   expect(date).toBe(123)
   expect(datetime).toBe(123)
   expect(double).toBe(123.45)
