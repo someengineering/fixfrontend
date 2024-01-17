@@ -137,11 +137,11 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
 
   const { id, name, kind, ctime, age: _age, tags } = data?.resource.reported ?? {}
   const cloudObj = data?.resource.ancestors.cloud?.reported
-  const cloud = `${cloudObj?.name} (${cloudObj?.id})`
+  const cloud = cloudObj ? `${cloudObj?.name} (${cloudObj?.id})` : '-'
   const accountObj = data?.resource.ancestors.account?.reported
-  const account = `${accountObj?.name} (${accountObj?.id})`
+  const account = accountObj ? `${accountObj?.name} (${accountObj?.id})` : '-'
   const regionObj = data?.resource.ancestors.region?.reported
-  const region = `${regionObj?.name} (${regionObj?.id})`
+  const region = regionObj ? `${regionObj.name} (${regionObj.id})` : '-'
   const { tags: _tags, ...reported } = data?.resource.reported ?? {}
 
   return selectedRow ? (

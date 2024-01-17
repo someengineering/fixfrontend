@@ -62,6 +62,10 @@ msgstr "<0>Die nächste Rechnung wird verfügbar sein: {0}</0>"
 msgid "Access to your account is broken"
 msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 
+#: src/pages/panel/inventory/ResourceDetail.tsx:200
+msgid "Account"
+msgstr "Konto"
+
 #: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:14
 msgid "Account risk score"
 msgstr "Risikobewertung des Kontos"
@@ -226,6 +230,7 @@ msgstr "Wählen Sie Arbeitsbereich"
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:36
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:36
 #: src/pages/panel/home/AccountCard.tsx:33
+#: src/pages/panel/inventory/ResourceDetail.tsx:199
 msgid "Cloud"
 msgstr "Cloud"
 
@@ -726,6 +731,10 @@ msgstr "Kürzlich hinzugefügte Konten"
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:65
 msgid "Regenerate"
 msgstr "Regenerieren"
+
+#: src/pages/panel/inventory/ResourceDetail.tsx:201
+msgid "Region"
+msgstr "Region"
 
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:130
 msgid "Regions"

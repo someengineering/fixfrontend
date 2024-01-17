@@ -62,6 +62,10 @@ msgstr "<0>Next invoice will be available: {0}</0>"
 msgid "Access to your account is broken"
 msgstr "Access to your account is broken"
 
+#: src/pages/panel/inventory/ResourceDetail.tsx:197
+msgid "Account"
+msgstr "Account"
+
 #: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:14
 msgid "Account risk score"
 msgstr "Account risk score"
@@ -726,6 +730,10 @@ msgstr "Recently added accounts"
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:65
 msgid "Regenerate"
 msgstr "Regenerate"
+
+#: src/pages/panel/inventory/ResourceDetail.tsx:198
+msgid "Region"
+msgstr "Region"
 
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:130
 msgid "Regions"
