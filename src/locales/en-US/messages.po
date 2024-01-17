@@ -62,7 +62,7 @@ msgstr "<0>Next invoice will be available: {0}</0>"
 msgid "Access to your account is broken"
 msgstr "Access to your account is broken"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:197
+#: src/pages/panel/inventory/ResourceDetail.tsx:200
 msgid "Account"
 msgstr "Account"
 
@@ -114,7 +114,7 @@ msgstr "Added accounts"
 msgid "Advanced integration for top-tier security needs and IaC support."
 msgstr "Advanced integration for top-tier security needs and IaC support."
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:200
+#: src/pages/panel/inventory/ResourceDetail.tsx:209
 msgid "Age"
 msgstr "Age"
 
@@ -181,7 +181,7 @@ msgstr "AWS Marketplace has been successfully subscribed"
 msgid "Basic asset inventory"
 msgstr "Basic asset inventory"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:184
+#: src/pages/panel/inventory/ResourceDetail.tsx:190
 msgid "Basic Information"
 msgstr "Basic Information"
 
@@ -230,6 +230,7 @@ msgstr "Choose Workspace"
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:36
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:36
 #: src/pages/panel/home/AccountCard.tsx:33
+#: src/pages/panel/inventory/ResourceDetail.tsx:199
 msgid "Cloud"
 msgstr "Cloud"
 
@@ -276,7 +277,7 @@ msgstr "Copied to Clipboard!"
 msgid "Copy"
 msgstr "Copy"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:194
+#: src/pages/panel/inventory/ResourceDetail.tsx:203
 msgid "Created Time"
 msgstr "Created Time"
 
@@ -342,7 +343,7 @@ msgstr "Deploy Stack"
 msgid "Description"
 msgstr "Description"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:228
+#: src/pages/panel/inventory/ResourceDetail.tsx:237
 msgid "Details"
 msgstr "Details"
 
@@ -481,7 +482,7 @@ msgstr "How to fix"
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:39
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:39
 #: src/pages/panel/home/AccountCard.tsx:30
-#: src/pages/panel/inventory/ResourceDetail.tsx:191
+#: src/pages/panel/inventory/ResourceDetail.tsx:197
 msgid "ID"
 msgstr "ID"
 
@@ -528,7 +529,7 @@ msgstr "Invite External User"
 msgid "Invites"
 msgstr "Invites"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:190
+#: src/pages/panel/inventory/ResourceDetail.tsx:196
 msgid "Kind"
 msgstr "Kind"
 
@@ -586,7 +587,7 @@ msgstr "Most Improved Resources"
 #: src/pages/panel/accounts/AccountsTableItem.tsx:42
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:42
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:42
-#: src/pages/panel/inventory/ResourceDetail.tsx:192
+#: src/pages/panel/inventory/ResourceDetail.tsx:198
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:20
@@ -731,7 +732,7 @@ msgstr "Recently added accounts"
 msgid "Regenerate"
 msgstr "Regenerate"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:198
+#: src/pages/panel/inventory/ResourceDetail.tsx:201
 msgid "Region"
 msgstr "Region"
 
@@ -772,7 +773,7 @@ msgstr "Roles"
 msgid "Scan frequency"
 msgstr "Scan frequency"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:248
+#: src/pages/panel/inventory/ResourceDetail.tsx:257
 msgid "Security Issues"
 msgstr "Security Issues"
 
@@ -838,7 +839,7 @@ msgid "Successfully invited {email}"
 msgstr "Successfully invited {email}"
 
 #: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:86
-#: src/pages/panel/inventory/ResourceDetail.tsx:214
+#: src/pages/panel/inventory/ResourceDetail.tsx:223
 msgid "Tags"
 msgstr "Tags"
 
@@ -924,12 +925,9 @@ msgid "We're sorry for the inconvenience. Our team has been notified, and the is
 msgstr "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 
 #: src/pages/panel/home/OverallScore.tsx:59
-#: src/pages/panel/shared/utils/PieCard.tsx:138
-#: src/pages/panel/shared/utils/PieCard.tsx:162
-#: src/pages/panel/shared/utils/PieCard.tsx:186
-#: src/pages/panel/shared/utils/PieCard.tsx:210
-msgid "We've identified {0} non-compliant resources out of {1} through {2} {3}-severity security checks."
-msgstr "We've identified {0} non-compliant resources out of {1} through {2} {3}-severity security checks."
+#: src/pages/panel/shared/utils/PieCard.tsx:40
+msgid "We've identified {0} non-compliant resources out of {1} {2}-severity security checks."
+msgstr "We've identified {0} non-compliant resources out of {1} {2}-severity security checks."
 
 #: src/pages/panel/setup-cloud/SetupCloudPage.tsx:136
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:56

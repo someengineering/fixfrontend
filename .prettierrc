@@ -1,7 +1,14 @@
 {
     "singleQuote": true,
     "printWidth": 140,
-    "trailingComma": "all",
     "semi": false,
+    "overrides": [
+        {
+            "files": "**/*.json",
+            "options": {
+                "trailingComma": "none"
+            }
+        }
+    ],
     "plugins": ["prettier-plugin-organize-imports"]
 }
