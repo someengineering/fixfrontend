@@ -14,7 +14,7 @@
     "lint:tsc:org": "tsc --noEmit",
     "lint:tsc": "tsc-files --noEmit",
     "lint": "eslint . --ext ts,tsx --max-warnings 0",
-    "postinstall": "patch-package && husky install",
+    "postinstall": "husky install",
     "prebuild": "yarn i18n:compile",
     "prepare": "husky install",
     "prestart": "yarn i18n:compile",
