@@ -66,7 +66,7 @@ msgstr "A few minutes to first results"
 msgid "Access to your account is broken"
 msgstr "Access to your account is broken"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:200
+#: src/pages/panel/inventory/ResourceDetail.tsx:207
 msgid "Account"
 msgstr "Account"
 
@@ -119,7 +119,7 @@ msgstr "Added accounts"
 msgid "Advanced integration for top-tier security needs and IaC support."
 msgstr "Advanced integration for top-tier security needs and IaC support."
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:209
+#: src/pages/panel/inventory/ResourceDetail.tsx:216
 msgid "Age"
 msgstr "Age"
 
@@ -186,7 +186,7 @@ msgstr "AWS Marketplace has been successfully subscribed"
 msgid "Basic asset inventory"
 msgstr "Basic asset inventory"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:190
+#: src/pages/panel/inventory/ResourceDetail.tsx:196
 msgid "Basic Information"
 msgstr "Basic Information"
 
@@ -235,7 +235,7 @@ msgstr "Choose Workspace"
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:36
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:36
 #: src/pages/panel/home/AccountCard.tsx:33
-#: src/pages/panel/inventory/ResourceDetail.tsx:199
+#: src/pages/panel/inventory/ResourceDetail.tsx:206
 msgid "Cloud"
 msgstr "Cloud"
 
@@ -286,7 +286,7 @@ msgstr "Copied to Clipboard!"
 msgid "Copy"
 msgstr "Copy"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:203
+#: src/pages/panel/inventory/ResourceDetail.tsx:210
 msgid "Created Time"
 msgstr "Created Time"
 
@@ -352,7 +352,7 @@ msgstr "Deploy Stack"
 msgid "Description"
 msgstr "Description"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:237
+#: src/pages/panel/inventory/ResourceDetail.tsx:277
 msgid "Details"
 msgstr "Details"
 
@@ -494,7 +494,7 @@ msgstr "How to fix"
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:39
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:39
 #: src/pages/panel/home/AccountCard.tsx:30
-#: src/pages/panel/inventory/ResourceDetail.tsx:197
+#: src/pages/panel/inventory/ResourceDetail.tsx:204
 msgid "ID"
 msgstr "ID"
 
@@ -541,7 +541,7 @@ msgstr "Invite External User"
 msgid "Invites"
 msgstr "Invites"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:196
+#: src/pages/panel/inventory/ResourceDetail.tsx:203
 msgid "Kind"
 msgstr "Kind"
 
@@ -603,7 +603,7 @@ msgstr "Most Improved Resources"
 #: src/pages/panel/accounts/AccountsTableItem.tsx:42
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:42
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:42
-#: src/pages/panel/inventory/ResourceDetail.tsx:198
+#: src/pages/panel/inventory/ResourceDetail.tsx:205
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:20
@@ -668,6 +668,10 @@ msgstr "Oops! Something went wrong."
 #: src/shared/layouts/panel-layout/PanelAppBar.tsx:71
 msgid "Open drawer"
 msgstr "Open drawer"
+
+#: src/pages/panel/inventory/ResourceDetail.tsx:225
+msgid "Open resource {name} in AWS Console"
+msgstr "Open resource {name} in AWS Console"
 
 #: src/pages/auth/login/LoginPage.tsx:143
 #: src/pages/auth/register/RegisterPage.tsx:128
@@ -748,7 +752,7 @@ msgstr "Recently added accounts"
 msgid "Regenerate"
 msgstr "Regenerate"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:201
+#: src/pages/panel/inventory/ResourceDetail.tsx:208
 msgid "Region"
 msgstr "Region"
 
@@ -793,7 +797,7 @@ msgstr "Scan frequency"
 msgid "Secure read-only access"
 msgstr "Secure read-only access"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:257
+#: src/pages/panel/inventory/ResourceDetail.tsx:297
 msgid "Security Issues"
 msgstr "Security Issues"
 
@@ -809,6 +813,11 @@ msgstr "Security Score"
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:230
 msgid "Security Tier"
 msgstr "Security Tier"
+
+#: src/pages/panel/inventory/ResourceDetail.tsx:236
+#: src/pages/panel/inventory/ResourceDetail.tsx:247
+msgid "See this Resource in AWS Console"
+msgstr "See this Resource in AWS Console"
 
 #: src/shared/language-button/LanguageButton.tsx:41
 msgid "Select Language"
@@ -854,7 +863,7 @@ msgid "Successfully invited {email}"
 msgstr "Successfully invited {email}"
 
 #: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:86
-#: src/pages/panel/inventory/ResourceDetail.tsx:223
+#: src/pages/panel/inventory/ResourceDetail.tsx:263
 msgid "Tags"
 msgstr "Tags"
 
@@ -877,6 +886,10 @@ msgstr "This will deploy a CloudFormation stack that creates a new IAM role in y
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:39
 msgid "Tier"
 msgstr "Tier"
+
+#: src/pages/panel/inventory/ResourceDetail.tsx:242
+msgid "To access this resource, please ensure that you are logged into the AWS account: {account}"
+msgstr "To access this resource, please ensure that you are logged into the AWS account: {account}"
 
 #: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:69
 msgid "To enhance your experience, please select the workspace where you'd like to activate your subscription"

@@ -14,5 +14,6 @@ export const panelUI = {
   inventoryTableCellMinWidth: 200,
   offsetHeightToLoad: 300,
   minModalWidth: 400,
+  minLargeModalWidth: 700,
   tableRowsPerPages: [10, 25, 50, 100],
 }
