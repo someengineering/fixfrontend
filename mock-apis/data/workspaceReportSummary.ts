@@ -1,20 +1,44 @@
 import { adjectives, uniqueNamesGenerator } from 'unique-names-generator'
-import { workspaceCloudAccounts } from './workspaceCloudAccounts'
+import { allAccounts } from './workspaceCloudAccounts'
 
-const howManyBench = 1
+const howManyBench = 3
+
+type SeverityType = 'critical' | 'high' | 'medium' | 'low'
+type FailedChecksType<value = number> = Record<SeverityType, value>
 
 const generateAccountSummary = () =>
-  workspaceCloudAccounts.reduce(
+  allAccounts().reduce(
     (prev, cur) => {
-      const failed_checks = {
+      const failed_resource_checks: Partial<FailedChecksType> = {
         critical: Math.round((Math.random() * cur.resources) / 24),
         high: Math.round((Math.random() * cur.resources) / 24),
         medium: Math.round((Math.random() * cur.resources) / 24),
         low: Math.round((Math.random() * cur.resources) / 24),
       }
 
+      if (!failed_resource_checks.critical) delete failed_resource_checks.critical
+      if (!failed_resource_checks.high) delete failed_resource_checks.high
+      if (!failed_resource_checks.medium) delete failed_resource_checks.medium
+      if (!failed_resource_checks.low) delete failed_resource_checks.low
+
+      const failed_checks: Partial<FailedChecksType> = {
+        critical: Math.round(Math.random() * 20),
+        high: Math.round(Math.random() * 20),
+        medium: Math.round(Math.random() * 20),
+        low: Math.round(Math.random() * 20),
+      }
+
+      if (!failed_checks.critical) delete failed_checks.critical
+      if (!failed_checks.high) delete failed_checks.high
+      if (!failed_checks.medium) delete failed_checks.medium
+      if (!failed_checks.low) delete failed_checks.low
+
       const score = Math.round(
-        ((cur.resources - (failed_checks.critical * 4 + failed_checks.high * 3 + failed_checks.medium * 2 + failed_checks.low)) /
+        ((cur.resources -
+          ((failed_checks.critical ?? 0) * 4 +
+            (failed_checks.high ?? 0) * 3 +
+            (failed_checks.medium ?? 0) * 2 +
+            (failed_checks.low ?? 0))) /
           cur.resources) *
           100,
       )
@@ -22,12 +46,15 @@ const generateAccountSummary = () =>
       prev.account_summary[cur.id] = {
         score,
         failed_checks,
+        failed_resource_checks,
       }
 
       const account = {
-        cloud: cur.cloud,
         id: cur.id,
-        name: cur.name,
+        name: cur.user_account_name || cur.api_account_name || cur.api_account_alias,
+        cloud: cur.cloud,
+        resource_count: cur.resources,
+        failed_resources_by_severity: failed_checks,
         score,
       }
 
@@ -59,34 +86,37 @@ const generateAccountSummary = () =>
       worstAccountRaw: [],
       bestAccountRaw: [],
     } as {
-      account_summary: {
-        [key: string]: {
+      account_summary: Record<
+        string,
+        {
           score: number
-          failed_checks: {
-            critical: number
-            high: number
-            medium: number
-            low: number
-          }
+          failed_checks: Partial<FailedChecksType> | null
+          failed_resource_checks: Partial<FailedChecksType> | null
         }
-      }
+      >
       accounts: {
         id: string
         name: string
         cloud: string
         score: number
+        resource_count: number
+        failed_resources_by_severity: Partial<FailedChecksType>
       }[]
       worstAccountRaw: {
         id: string
         name: string
         cloud: string
         score: number
+        resource_count: number
+        failed_resources_by_severity: Partial<FailedChecksType>
       }[]
       bestAccountRaw: {
         id: string
         name: string
         cloud: string
         score: number
+        resource_count: number
+        failed_resources_by_severity: Partial<FailedChecksType>
       }[]
     },
   )
@@ -105,10 +135,10 @@ const bestAccount = bestAccountRaw.sort((a, b) => b.score - a.score)
 
 const failed_checks_by_severity = Object.values(account_summary).reduce(
   (prev, cur) => ({
-    critical: prev.critical + cur.failed_checks.critical,
-    high: prev.high + cur.failed_checks.high,
-    medium: prev.medium + cur.failed_checks.medium,
-    low: prev.low + cur.failed_checks.low,
+    critical: prev.critical + (cur.failed_checks?.critical ?? 0),
+    high: prev.high + (cur.failed_checks?.high ?? 0),
+    medium: prev.medium + (cur.failed_checks?.medium ?? 0),
+    low: prev.low + (cur.failed_checks?.low ?? 0),
   }),
   {
     critical: 0,

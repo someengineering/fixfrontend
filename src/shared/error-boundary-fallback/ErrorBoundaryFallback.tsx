@@ -6,11 +6,12 @@ import { useEffect } from 'react'
 import { FallbackProps } from 'react-error-boundary'
 import { DiscordIcon } from 'src/assets/icons'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { env } from 'src/shared/constants'
+import { GTMEventNames, env } from 'src/shared/constants'
 import { sendToGTM } from 'src/shared/google-tag-manager'
 import { isAuthenticated } from 'src/shared/utils/cookie'
 import { jsonToStr } from 'src/shared/utils/jsonToStr'
 import { getAuthData } from 'src/shared/utils/localstorage'
+import { TrackJS } from 'trackjs'
 
 const ModalContent = styled(Stack)(({ theme }) => ({
   position: 'absolute',
@@ -30,11 +31,14 @@ export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackPro
 
   useEffect(() => {
     if (!('isAxiosError' in error) || !(error as AxiosError).isAxiosError) {
+      if (TrackJS.isInstalled()) {
+        TrackJS.track(error as Error)
+      }
       const { message, name, stack } = error as Error
       const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
       const authorized = isAuthenticated() || false
       sendToGTM({
-        event: 'error',
+        event: GTMEventNames.Error,
         message: jsonToStr(message),
         name: jsonToStr(name),
         stack: jsonToStr(stack),

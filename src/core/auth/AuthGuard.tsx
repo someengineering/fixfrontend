@@ -1,12 +1,14 @@
 import axios, { AxiosError, AxiosInstance } from 'axios'
 import { PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
+import { GTMEventNames } from 'src/shared/constants'
 import { sendToGTM } from 'src/shared/google-tag-manager'
 import { GetWorkspaceResponse } from 'src/shared/types/server'
 import { axiosWithAuth, defaultAxiosConfig, setAxiosWithAuth } from 'src/shared/utils/axios'
 import { clearAllCookies, isAuthenticated } from 'src/shared/utils/cookie'
 import { jsonToStr } from 'src/shared/utils/jsonToStr'
 import { getAuthData, setAuthData } from 'src/shared/utils/localstorage'
+import { TrackJS } from 'trackjs'
 import { UserContext, UserContextRealValues } from './UserContext'
 import { getCurrentUserMutation } from './getCurrentUser.mutation'
 import { getWorkspacesMutation } from './getWorkspaces.mutation'
@@ -97,17 +99,22 @@ export function AuthGuard({ children }: PropsWithChildren) {
       instance.interceptors.request.use(
         (request) => request,
         (error: AxiosError | Error) => {
-          const { message, name, stack = 'unknown' } = error ?? {}
-          const authorized = isAuthenticated()
-          const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
-          sendToGTM({
-            event: 'error',
-            message: jsonToStr(message),
-            name: jsonToStr(name),
-            stack: jsonToStr(stack),
-            workspaceId,
-            authorized,
-          })
+          if ((error as AxiosError)?.code !== 'ERR_CANCELED') {
+            if (TrackJS.isInstalled()) {
+              TrackJS.track(error)
+            }
+            const { message, name, stack = 'unknown' } = error ?? {}
+            const authorized = isAuthenticated()
+            const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
+            sendToGTM({
+              event: GTMEventNames.Error,
+              message: jsonToStr(message),
+              name: jsonToStr(name),
+              stack: jsonToStr(stack),
+              workspaceId,
+              authorized,
+            })
+          }
         },
       )
       instance.interceptors.response.use(
@@ -116,13 +123,16 @@ export function AuthGuard({ children }: PropsWithChildren) {
           if (error?.response?.status === 401) {
             return handleLogout()
           }
-          if ('isAxiosError' in error && error.isAxiosError) {
+          if ('isAxiosError' in error && error.isAxiosError && error.code !== 'ERR_CANCELED') {
+            if (TrackJS.isInstalled()) {
+              TrackJS.track(error)
+            }
             const { response, name, message, cause, status, stack, config, code } = error
             const request = error.request as unknown
             const authorized = isAuthenticated()
             const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
             sendToGTM({
-              event: 'network-error',
+              event: GTMEventNames.NetworkError,
               api: response?.config.url || 'unknown',
               responseData: jsonToStr(response?.data) || '',
               responseHeader: jsonToStr(response?.data) || '',

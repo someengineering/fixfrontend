@@ -2,7 +2,9 @@ import { t } from '@lingui/macro'
 import { useCopyToClipboard } from '@uidotdev/usehooks'
 import { useCallback } from 'react'
 import { useSnackbar } from 'src/core/snackbar'
+import { GTMEventNames } from 'src/shared/constants'
 import { sendToGTM } from 'src/shared/google-tag-manager'
+import { TrackJS } from 'trackjs'
 import { getAuthData } from './localstorage'
 
 export const useCopyString = (withSnackbar = true) => {
@@ -16,10 +18,13 @@ export const useCopyString = (withSnackbar = true) => {
           await showSnackbar(t`Copied to Clipboard!`)
         }
       } catch (err) {
+        if (TrackJS.isInstalled()) {
+          TrackJS.track(err as Error)
+        }
         const { message, name, stack } = err as Error
         const { isAuthenticated, selectedWorkspaceId } = getAuthData() || {}
         sendToGTM({
-          event: 'error',
+          event: GTMEventNames.Error,
           message,
           name,
           stack: stack || '',

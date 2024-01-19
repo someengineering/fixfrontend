@@ -55,11 +55,11 @@ export const querySplittedToJSON = <T extends Record<string, unknown>>(query: st
 export const getQueryFromReq = <T extends Record<string, string>>(req: IncomingMessage) => parseQueryString<T>(req.url?.split('?')[1] ?? '')
 
 export const getTokenInfo = (cookie: string) => {
-  const cookies = parseQueryString<{ 'fix.auth'?: string }>(cookie, '; ')
-  if (!cookies['fix.auth']) {
+  const cookies = parseQueryString<{ session_token?: string }>(cookie, '; ')
+  if (!cookies['session_token']) {
     return false
   }
-  return decodeURIComponent(cookies['fix.auth'])
+  return decodeURIComponent(cookies['session_token'])
 }
 
 export const responseWithAuthCheck = (callback: (params: { email: string; req: IncomingMessage; res: ServerResponse }) => void) => {

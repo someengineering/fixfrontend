@@ -8,7 +8,14 @@ const config: StorybookConfig = {
   },
   framework: {
     name: '@storybook/react-vite',
-    options: {},
+    options: {
+      builder: {
+        viteConfigPath: './vite.config.test.ts',
+      },
+    },
+  },
+  env: {
+    VITE_USE_MOCK: 'true',
   },
   docs: {
     autodocs: 'tag',

@@ -1,3 +1,4 @@
+export { GTMEventNames } from './GTMEventNames'
 export { StorageKeys } from './StorageKeys'
 export { colorFromRedToGreen } from './colorFromRedToGreen'
 export { panelMessages, sortedSeverities } from './consts'

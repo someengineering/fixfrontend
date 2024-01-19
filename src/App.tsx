@@ -1,5 +1,5 @@
 import { AppRouter } from './AppRouter'
-import { Providers } from './shared/utils/Providers'
+import { Providers } from './shared/providers'
 
 export const App = () => {
   return (

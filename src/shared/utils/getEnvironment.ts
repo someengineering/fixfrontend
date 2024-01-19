@@ -1,22 +1,7 @@
-export const getEnvironmentStr = async () => {
-  return new Promise<'prd' | 'dev'>((resolve) => {
-    const request = new window.XMLHttpRequest()
-    request.onreadystatechange = function () {
-      if (request.readyState === window.XMLHttpRequest.DONE) {
-        resolve(
-          request
-            .getAllResponseHeaders()
-            .split('\n')
-            .find((i) => i.startsWith('fix-environment'))
-            ?.substring(17)
-            .startsWith('prd')
-            ? 'prd'
-            : 'dev',
-        )
-      }
-    }
+import { endPoints } from 'src/shared/constants'
+import { GetInfoResponse } from 'src/shared/types/server'
+import { simpleAxios } from './axios'
 
-    request.open('HEAD', window.document.location.href, true)
-    request.send(null)
-  })
+export const getEnvironmentStr = async () => {
+  return simpleAxios.get<GetInfoResponse>(endPoints.info).then((res) => res.data)
 }

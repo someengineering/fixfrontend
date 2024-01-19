@@ -39,6 +39,7 @@ const AuthDescWrapper = styled(Stack)(({ theme }) => ({
   alignItems: 'center',
   '& > *': {
     width: '80%',
+    maxWidth: 600,
     position: 'relative',
     opacity: 0,
     animationDelay: '1s',
@@ -78,6 +79,7 @@ const AuthWrapper = styled(Container)(({ theme }) => ({
   background: theme.palette.common.white,
   height: '100%',
   width: '50%',
+  maxWidth: '100% !important',
   opacity: 0,
   animationDelay: '1s',
   animationDuration: '1s',

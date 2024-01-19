@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
+import { GTMEventNames } from 'src/shared/constants'
 import { sendToGTM } from 'src/shared/google-tag-manager'
 import { TableViewPage } from 'src/shared/layouts/panel-layout'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
@@ -65,7 +66,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
     const authorized = getIsAuthenticated()
     const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
     sendToGTM({
-      event: 'inventory-search',
+      event: GTMEventNames.InventorySearch,
       authorized,
       q: searchCrit,
       workspaceId,

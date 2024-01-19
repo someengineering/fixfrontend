@@ -2,7 +2,7 @@ import { lingui } from '@lingui/vite-plugin'
 import react from '@vitejs/plugin-react-swc'
 import path from 'path'
 import { PluginOption, ProxyOptions, defineConfig, loadEnv } from 'vite'
-import { viteMockServe } from 'vite-plugin-mock'
+import mockDevServerPlugin from 'vite-plugin-mock-dev-server'
 import svgr from 'vite-plugin-svgr'
 
 // https://vitejs.dev/config/
@@ -13,11 +13,16 @@ export default defineConfig(({ mode }) => {
 
   const plugins: PluginOption = [react({ plugins: [['@lingui/swc-plugin', {}]] }), svgr(), lingui()]
 
-  if (env.VITE_USE_MOCK === 'true' || mode === 'test') {
+  if (env.VITE_USE_MOCK === 'true') {
     plugins.push(
-      viteMockServe({
-        mockPath: 'mock-apis',
-        enable: true,
+      mockDevServerPlugin({
+        prefix: '/api',
+        wsPrefix: '^/api/workspaces/[a-z0-9\\-]+/events',
+        include: ['mock-apis/**/*.mock.ts'],
+        log: 'debug',
+        build: {
+          log: 'debug',
+        },
       }),
     )
   }
@@ -28,32 +33,29 @@ export default defineConfig(({ mode }) => {
           '/api': {
             target: env.VITE_SERVER,
             changeOrigin: true,
-            rewrite: (path) => path,
           },
-          // '^/api/workspaces/.+/events': {
-          //   target: env.VITE_WS_SERVER,
-          //   changeOrigin: true,
-          //   ws: true,
-          //   rewrite: (path) => path,
-          // },
+          [`^/api/workspaces/[a-z0-9\\-]+/events`]: {
+            target: env.VITE_WS_SERVER,
+            changeOrigin: true,
+            ws: true,
+          },
         }
       : undefined
+
+  const serverOptions = {
+    port: Number(env.PORT),
+    host: env.HOST,
+    proxy,
+  }
+
   return {
     base: process.env.PUBLIC_URL ?? '/',
     plugins,
     // build: {
     //   manifest: '/public/manifest.json',
     // },
-    test: {
-      globals: true,
-      environment: 'jsdom',
-      setupFiles: './src/setupTests.ts',
-    },
-    server: {
-      port: Number(env.PORT),
-      host: env.HOST,
-      proxy,
-    },
+    server: serverOptions,
+    preview: serverOptions,
     resolve: {
       alias: [{ find: 'src', replacement: path.resolve(__dirname, 'src') }],
     },

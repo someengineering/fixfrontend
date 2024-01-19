@@ -1,3 +1,5 @@
+import { GTMEventNames } from 'src/shared/constants'
+
 /**
  * The shape of the dataLayer
  */
@@ -64,7 +66,7 @@ type DataEventCommonError = {
 }
 
 type DataEventPage = {
-  event: 'page'
+  event: GTMEventNames.Page
   language: string
   path: string
   search: string
@@ -76,18 +78,18 @@ type DataEventPage = {
 }
 
 type DataEventError = DataEventCommonError & {
-  event: 'error'
+  event: GTMEventNames.Error
 }
 
 type DataEventSocketError = DataEventCommonError & {
-  event: 'websocket-error'
+  event: GTMEventNames.WebsocketError
   state: 'on-message' | 'send-message' | 'on-close' | 'on-open'
   params: string
   api: string
 }
 
 type DataEventNetworkError = DataEventCommonError & {
-  event: 'network-error'
+  event: GTMEventNames.NetworkError
   api: string
   responseData: string
   responseHeader: string
@@ -101,14 +103,14 @@ type DataEventNetworkError = DataEventCommonError & {
 }
 
 type DataEventInventorySearch = {
-  event: 'inventory-search'
+  event: GTMEventNames.InventorySearch
   q: string
   workspaceId: string
   authorized: boolean
 }
 
 type DataEventInventoryError = DataEventCommonError & {
-  event: 'inventory-error'
+  event: GTMEventNames.InventoryError
   isAdvanceSearch: boolean
   api: string
   params: unknown
@@ -118,12 +120,12 @@ type DataEventInventoryError = DataEventCommonError & {
 }
 
 type DataEventLogin = {
-  event: 'login'
+  event: GTMEventNames.Login
   username: string
 }
 
 type DataEventSignup = {
-  event: 'signup'
+  event: GTMEventNames.Signup
   username: string
 }
 
