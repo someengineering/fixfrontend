@@ -64,6 +64,8 @@ export interface WorkspaceInventoryNode {
       descendant_summary?: Record<string, number>
       descendant_count?: number
       exported_age?: string
+      provider_link?: string
+      [key: string]: unknown
     }
     ancestors: Record<string, { reported: { name: string; id: string } }>
   }

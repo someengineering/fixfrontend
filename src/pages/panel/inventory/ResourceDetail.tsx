@@ -1,11 +1,14 @@
 import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import CloseIcon from '@mui/icons-material/Close'
+import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Alert,
   Box,
+  Button,
   Divider,
   Grid,
   IconButton,
@@ -20,11 +23,12 @@ import {
 } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { Fragment, ReactNode, useEffect, useState } from 'react'
+import { Fragment, ReactNode, useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { FailedChecks } from 'src/pages/panel/shared/failed-checks'
 import { postWorkspaceInventoryNodeQuery } from 'src/pages/panel/shared/queries'
 import { panelUI } from 'src/shared/constants'
+import { Modal as PopupModal } from 'src/shared/modal'
 import { PostWorkspaceInventorySearchTableRow } from 'src/shared/types/server'
 import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
 import { YamlHighlighter } from 'src/shared/yaml-highlighter'
@@ -112,6 +116,7 @@ const GridItem = ({
 }
 
 export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
+  const openResourceModalRef = useRef<(show?: boolean | undefined) => void>()
   const { selectedWorkspace } = useUserProfile()
   const {
     i18n: { locale },
@@ -142,6 +147,7 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
   const account = accountObj ? `${accountObj?.name} (${accountObj?.id})` : '-'
   const regionObj = data?.resource.ancestors.region?.reported
   const region = regionObj ? `${regionObj.name} (${regionObj.id})` : '-'
+  const provider_link = data?.resource.metadata.provider_link
   const { tags: _tags, ...reported } = data?.resource.reported ?? {}
 
   return selectedRow ? (
@@ -192,24 +198,58 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
             <Divider />
             <AccordionDetails>
               {data ? (
-                <Grid gap={2} gridTemplateColumns="150px 1fr" width="100%" display="grid" mt={1}>
-                  <GridItem property={<Trans>Kind</Trans>} value={kind} />
-                  <GridItem property={<Trans>ID</Trans>} value={id} />
-                  <GridItem property={<Trans>Name</Trans>} value={name} />
-                  <GridItem property={<Trans>Cloud</Trans>} value={cloud} />
-                  <GridItem property={<Trans>Account</Trans>} value={account} />
-                  <GridItem property={<Trans>Region</Trans>} value={region} />
-                  <GridItem
-                    property={<Trans>Created Time</Trans>}
-                    value={`${new Date(ctime as string).toLocaleDateString(locale)} ${new Date(ctime as string).toLocaleTimeString(
-                      locale,
-                    )}`}
-                  />
-                  <GridItem
-                    property={<Trans>Age</Trans>}
-                    value={iso8601DurationToString(diffDateTimeToDuration(new Date(ctime as string), new Date()), 2)}
-                  />
-                </Grid>
+                <>
+                  <Grid gap={2} gridTemplateColumns="150px 1fr" width="100%" display="grid" mt={1}>
+                    <GridItem property={<Trans>Kind</Trans>} value={kind} />
+                    <GridItem property={<Trans>ID</Trans>} value={id} />
+                    <GridItem property={<Trans>Name</Trans>} value={name} />
+                    <GridItem property={<Trans>Cloud</Trans>} value={cloud} />
+                    <GridItem property={<Trans>Account</Trans>} value={account} />
+                    <GridItem property={<Trans>Region</Trans>} value={region} />
+                    <GridItem
+                      property={<Trans>Created Time</Trans>}
+                      value={`${new Date(ctime as string).toLocaleDateString(locale)} ${new Date(ctime as string).toLocaleTimeString(
+                        locale,
+                      )}`}
+                    />
+                    <GridItem
+                      property={<Trans>Age</Trans>}
+                      value={iso8601DurationToString(diffDateTimeToDuration(new Date(ctime as string), new Date()), 2)}
+                    />
+                  </Grid>
+                  <Stack direction="row" justifyContent="end" mt={2}>
+                    {provider_link ? (
+                      <>
+                        <PopupModal
+                          openRef={openResourceModalRef}
+                          title={<Trans>Open resource {name} in AWS Console</Trans>}
+                          width={panelUI.minLargeModalWidth}
+                          actions={
+                            <Button
+                              variant="outlined"
+                              href={provider_link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => openResourceModalRef.current?.(false)}
+                              endIcon={<OpenInNewIcon />}
+                            >
+                              <Trans>See this Resource in AWS Console</Trans>
+                            </Button>
+                          }
+                        >
+                          <Alert color="warning">
+                            <Typography>
+                              <Trans>To access this resource, please ensure that you are logged into the AWS account: {account}</Trans>
+                            </Typography>
+                          </Alert>
+                        </PopupModal>
+                        <Button variant="contained" onClick={() => openResourceModalRef.current?.(true)} endIcon={<OpenInNewIcon />}>
+                          <Trans>See this Resource in AWS Console</Trans>
+                        </Button>
+                      </>
+                    ) : null}
+                  </Stack>
+                </>
               ) : isLoading ? (
                 <>
                   <Skeleton height={200} width="100%" variant="rectangular" />
