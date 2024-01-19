@@ -75,7 +75,7 @@ msgid "Account risk score"
 msgstr "Account risk score"
 
 #: src/pages/panel/inventory/InventoryTable.error.tsx:74
-#: src/pages/panel/inventory/InventoryTable.tsx:94
+#: src/pages/panel/inventory/InventoryTable.tsx:95
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:126
 #: src/shared/language-button/LanguageButton.stories.tsx:20
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:117
@@ -276,7 +276,7 @@ msgid "Connect your AWS account"
 msgstr "Connect your AWS account"
 
 #: src/pages/panel/setup-cloud/WorkspaceId.tsx:16
-#: src/shared/utils/useCopyString.ts:16
+#: src/shared/utils/useCopyString.ts:18
 msgid "Copied to Clipboard!"
 msgstr "Copied to Clipboard!"
 
@@ -473,7 +473,7 @@ msgstr "High"
 msgid "High Security"
 msgstr "High Security"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:75
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:79
 msgid "Homepage"
 msgstr "Homepage"
 
@@ -661,7 +661,7 @@ msgstr "One time"
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Oops! It looks like your query didn't match our format. Please check and try again."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:52
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:56
 msgid "Oops! Something went wrong."
 msgstr "Oops! Something went wrong."
 
@@ -903,7 +903,7 @@ msgstr "Top Non-Compliant Resources"
 msgid "True"
 msgstr "True"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:91
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:95
 msgid "Try again"
 msgstr "Try again"
 
@@ -935,7 +935,7 @@ msgstr "We appreciate your decision to subscribe to our service through AWS Mark
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:55
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:59
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 
