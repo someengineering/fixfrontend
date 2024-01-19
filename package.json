@@ -102,7 +102,7 @@
     "typescript": "^5.3.3",
     "unique-names-generator": "^4.7.1",
     "uuid": "^9.0.1",
-    "vite": "^5.0.11",
+    "vite": "^5.0.12",
     "vite-plugin-mock-dev-server": "^1.4.7",
     "vite-plugin-svgr": "^4.2.0",
     "vitest": "^1.2.1",
