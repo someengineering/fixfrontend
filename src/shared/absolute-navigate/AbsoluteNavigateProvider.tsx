@@ -2,6 +2,7 @@ import { useLingui } from '@lingui/react'
 import { PropsWithChildren, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useThemeMode } from 'src/core/theme'
+import { GTMEventNames } from 'src/shared/constants'
 import { sendToGTM } from 'src/shared/google-tag-manager'
 import { getAuthData } from 'src/shared/utils/localstorage'
 import { AbsoluteNavigateInnerProvider } from './AbsoluteNavigateInnerProvider'
@@ -17,7 +18,7 @@ export const AbsoluteNavigateProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     const { isAuthenticated, selectedWorkspaceId } = getAuthData() || {}
     sendToGTM({
-      event: 'page',
+      event: GTMEventNames.Page,
       hash: location.hash,
       language: locale.replace('-', '_'),
       path: location.pathname,

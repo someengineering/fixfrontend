@@ -1,4 +1,5 @@
 import { AxiosError, AxiosHeaders } from 'axios'
+import { GTMEventNames } from 'src/shared/constants'
 // eslint-disable-next-line no-restricted-imports
 import { setGTMDispatch } from 'src/shared/google-tag-manager/gtmDispatch'
 import { inventorySendToGTM } from './inventorySendToGTM'
@@ -13,7 +14,7 @@ test('inventorySendToGTM should send to GTM correctly', () => {
   inventorySendToGTM('postWorkspaceInventoryNodeQuery', true, err, params, 'id')
   expect(spy).toHaveBeenCalledOnce()
   expect(spy).toBeCalledWith({
-    event: 'inventory-error',
+    event: GTMEventNames.InventoryError,
     api: 'api/workspaces/unknown/inventory/node/id',
     authorized: false,
     isAdvanceSearch: true,

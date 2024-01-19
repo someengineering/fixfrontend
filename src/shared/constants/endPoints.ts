@@ -1,4 +1,5 @@
 export const endPoints = {
+  info: 'api/info',
   auth: {
     jwt: {
       logout: 'api/auth/jwt/logout',

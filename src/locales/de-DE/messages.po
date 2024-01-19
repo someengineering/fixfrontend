@@ -75,7 +75,7 @@ msgid "Account risk score"
 msgstr "Risikobewertung des Kontos"
 
 #: src/pages/panel/inventory/InventoryTable.error.tsx:74
-#: src/pages/panel/inventory/InventoryTable.tsx:94
+#: src/pages/panel/inventory/InventoryTable.tsx:95
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:126
 #: src/shared/language-button/LanguageButton.stories.tsx:20
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:117
@@ -276,7 +276,7 @@ msgid "Connect your AWS account"
 msgstr "Verbinden Sie Ihr AWS-Konto"
 
 #: src/pages/panel/setup-cloud/WorkspaceId.tsx:16
-#: src/shared/utils/useCopyString.ts:16
+#: src/shared/utils/useCopyString.ts:18
 msgid "Copied to Clipboard!"
 msgstr "In die Zwischenablage kopiert!"
 
@@ -473,7 +473,7 @@ msgstr "Hoch"
 msgid "High Security"
 msgstr "Hohe Sicherheit"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:75
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:79
 msgid "Homepage"
 msgstr "Startseite"
 
@@ -661,7 +661,7 @@ msgstr "Einmal"
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Sie sie und versuchen Sie es erneut."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:52
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:56
 msgid "Oops! Something went wrong."
 msgstr "Hoppla! Etwas ist schief gelaufen."
 
@@ -916,7 +916,7 @@ msgstr "Top Ressourcen mit Compliance-Verstößen"
 msgid "True"
 msgstr "WAHR"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:91
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:95
 msgid "Try again"
 msgstr "Versuchen Sie es erneut"
 
@@ -948,7 +948,7 @@ msgstr "Wir freuen uns über Ihre Entscheidung, unseren Service über AWS Market
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "Wir haben eine E-Mail mit einem Bestätigungslink an Ihre E-Mail-Adresse gesendet. Bitte folgen Sie dem Link, um Ihr Konto zu aktivieren."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:55
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:59
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "Wir entschuldigen uns für die Unannehmlichkeiten. Unser Team wurde benachrichtigt und das Problem wird untersucht. Bitte versuchen Sie es in ein paar Minuten noch einmal. Wenn das Problem weiterhin besteht, können Sie uns gerne <0>auf Discord</0> kontaktieren. Danke für Ihre Geduld!"
 

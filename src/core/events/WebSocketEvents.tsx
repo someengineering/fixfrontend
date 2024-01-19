@@ -1,10 +1,11 @@
 import { PropsWithChildren, useCallback, useEffect, useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { endPoints, env } from 'src/shared/constants'
+import { GTMEventNames, endPoints, env } from 'src/shared/constants'
 import { sendToGTM } from 'src/shared/google-tag-manager'
 import { WebSocketEvent } from 'src/shared/types/server'
 import { isAuthenticated as getIsAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData } from 'src/shared/utils/localstorage'
+import { TrackJS } from 'trackjs'
 import { WebSocketEventsContext } from './WebSocketEventsContext'
 
 const WS_CLOSE_CODE_NO_RETRY = 4001
@@ -32,11 +33,14 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
           const message = JSON.parse(ev.data) as WebSocketEvent
           onMessage(message)
         } catch (err) {
+          if (TrackJS.isInstalled()) {
+            TrackJS.track(err as Error)
+          }
           const { message, name, stack = 'unknown' } = err as Error
           const authorized = getIsAuthenticated()
           const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
           sendToGTM({
-            event: 'websocket-error',
+            event: GTMEventNames.WebsocketError,
             api: `${env.wsUrl}/${endPoints.workspaces.workspace(workspaceId).events}`,
             message: message,
             name,
@@ -72,11 +76,14 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
           messagesToSend.current.push({ message, resolve, reject })
         }
       } catch (err) {
+        if (TrackJS.isInstalled()) {
+          TrackJS.track(err as Error)
+        }
         const { message, name, stack = 'unknown' } = err as Error
         const authorized = getIsAuthenticated()
         const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
         sendToGTM({
-          event: 'websocket-error',
+          event: GTMEventNames.WebsocketError,
           api: `${env.wsUrl}/${endPoints.workspaces.workspace(workspaceId).events}`,
           authorized,
           message: message,
@@ -96,11 +103,15 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
       let retryTimeout = env.webSocketRetryTimeout
       const onClose = (ev: CloseEvent) => {
         if (ev.code !== 1000) {
-          const { stack = 'unknown', name, message } = Error('Websocket connection closed')
+          const err = Error('Websocket connection closed')
+          if (TrackJS.isInstalled()) {
+            TrackJS.track(err)
+          }
+          const { stack = 'unknown', name, message } = err
           const authorized = getIsAuthenticated()
           const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
           sendToGTM({
-            event: 'websocket-error',
+            event: GTMEventNames.WebsocketError,
             api: `${env.wsUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? 'unknown').events}`,
             authorized,
             message,
@@ -126,11 +137,14 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
             websocket.current?.send(message)
             resolve(message)
           } catch (err) {
+            if (TrackJS.isInstalled()) {
+              TrackJS.track(err as Error)
+            }
             const { message, name, stack = 'unknown' } = err as Error
             const authorized = getIsAuthenticated()
             const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
             sendToGTM({
-              event: 'websocket-error',
+              event: GTMEventNames.WebsocketError,
               api: `${env.wsUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? 'unknown').events}`,
               authorized,
               message: message,

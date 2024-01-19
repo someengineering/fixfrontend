@@ -12,7 +12,10 @@ const defaultOrigin = window.location.origin
 const wsOrigin = defaultOrigin.replace('http', 'ws')
 
 const env = {
-  apiUrl: import.meta.env.VITE_USE_PROXY === 'true' ? defaultOrigin : import.meta.env.VITE_SERVER ?? defaultOrigin,
+  apiUrl:
+    import.meta.env.VITE_USE_PROXY === 'true' && import.meta.env.MODE !== 'test'
+      ? defaultOrigin
+      : import.meta.env.VITE_SERVER ?? defaultOrigin,
   wsUrl:
     import.meta.env.VITE_USE_PROXY === 'true'
       ? wsOrigin
@@ -21,6 +24,7 @@ const env = {
   webSocketRetryTimeout: envToNumber(import.meta.env.VITE_WEBSOCKET_RETRY_TIMEOUT) ?? 5_000,
   discordUrl: import.meta.env.VITE_DISCORD_URL ?? '#',
   gtmId: undefined as string | undefined,
+  aws_marketplace_url: undefined as string | undefined,
 }
 
 export { env }

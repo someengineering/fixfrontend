@@ -27,7 +27,7 @@ module.exports = {
       },
     },
     {
-      files: ['vite.config.ts'],
+      files: ['vite.config.ts', 'vite.config.test.ts'],
       parserOptions: {
         project: './tsconfig.node.json',
       },

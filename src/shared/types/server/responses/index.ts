@@ -1,4 +1,5 @@
 export type { GetCurrentUserResponse } from './GetCurrentUser'
+export type { GetInfoResponse } from './GetInfo'
 export type { GetWorkspaceBillingResponse } from './GetWorkspaceBilling'
 export type { GetWorkspaceBillingEntriesResponse, WorkspaceBillingEntry } from './GetWorkspaceBillingEntries'
 export type { GetWorkspaceCfTemplateResponse } from './GetWorkspaceCfTemplate'

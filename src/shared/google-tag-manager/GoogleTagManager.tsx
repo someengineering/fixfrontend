@@ -1,5 +1,4 @@
 import { ReactNode, createContext, useEffect, useReducer } from 'react'
-
 import { DataEventTypes, SnippetsParams } from './GoogleTagManagerTypes'
 import { gtmDispatch, setGTMDispatch } from './gtmDispatch'
 import { initGTM } from './initGTM'

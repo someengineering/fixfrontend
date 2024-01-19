@@ -9,6 +9,7 @@ interface ImportMetaEnv {
   readonly VITE_DISCORD_URL?: string
   readonly VITE_GTM_DEV_ID?: string
   readonly VITE_GTM_PROD_ID?: string
+  readonly VITE_TRACKJS_TOKEN?: string
 }
 
 interface ImportMeta {

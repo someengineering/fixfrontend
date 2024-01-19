@@ -19,6 +19,10 @@ This project needs [NodeJS](https://nodejs.org/en) version 18 (at least 18.17.1)
 - `HOST: string` - on which host vite should create the server Eg. 127.0.0.1 or localhost
 - `PORT: number` - on which port vite should run the local server Eg. 80 or 8081
 - `VITE_USE_MOCK: boolean` - Whether or not runs the mock server instead of getting data from real server
+- `VITE_DISCORD_URL: string` - Discord URL
+- `VITE_GTM_DEV_ID: string` - Google Analytics token for development
+- `VITE_GTM_PROD_ID: string` - Google Analytics token for production
+- `VITE_TRACKJS_TOKEN: string` - TrackJS token
 
 ## Available Scripts
 
