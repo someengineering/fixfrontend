@@ -25,7 +25,7 @@ export const Providers = ({ children }: PropsWithChildren) => {
           )
         })
         .catch(() => {})
-      if (!TrackJS.isInstalled()) {
+      if (!TrackJS.isInstalled() && import.meta.env.MODE !== 'development') {
         TrackJS.install({
           token: import.meta.env.VITE_TRACKJS_TOKEN ?? '',
           application: 'fix',
