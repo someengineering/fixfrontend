@@ -27,6 +27,7 @@ import { Fragment, ReactNode, useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { FailedChecks } from 'src/pages/panel/shared/failed-checks'
 import { postWorkspaceInventoryNodeQuery } from 'src/pages/panel/shared/queries'
+import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { panelUI } from 'src/shared/constants'
 import { Modal as PopupModal } from 'src/shared/modal'
 import { PostWorkspaceInventorySearchTableRow } from 'src/shared/types/server'
@@ -75,7 +76,7 @@ const GridItem = ({
   const stringValue = isReactNode ? '' : isSimpleValue ? (value as string | boolean | number).toString() : JSON.stringify(value)
   return (
     <>
-      <Grid overflow="hidden" width="100%">
+      <Grid overflow="hidden" width="100%" alignItems="center" height="100%" display="flex">
         <Tooltip arrow title={property} placement="left" slotProps={{ tooltip: { sx: { maxWidth: 'none' } } }}>
           <Typography overflow="hidden" textOverflow="ellipsis" whiteSpace="nowrap">
             {property}
@@ -141,12 +142,10 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
   }, [detail])
 
   const { id, name, kind, ctime, age: _age, tags } = data?.resource.reported ?? {}
-  const cloudObj = data?.resource.ancestors.cloud?.reported
-  const cloud = cloudObj ? `${cloudObj?.name} (${cloudObj?.id})` : '-'
+  const cloud = data?.resource.ancestors.cloud?.reported?.name ?? '-'
   const accountObj = data?.resource.ancestors.account?.reported
   const account = accountObj ? `${accountObj?.name} (${accountObj?.id})` : '-'
-  const regionObj = data?.resource.ancestors.region?.reported
-  const region = regionObj ? `${regionObj.name} (${regionObj.id})` : '-'
+  const region = data?.resource.ancestors.region?.reported?.name ?? '-'
   const provider_link = data?.resource.metadata.provider_link
   const { tags: _tags, ...reported } = data?.resource.reported ?? {}
 
@@ -203,7 +202,20 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
                     <GridItem property={<Trans>Kind</Trans>} value={kind} />
                     <GridItem property={<Trans>ID</Trans>} value={id} />
                     <GridItem property={<Trans>Name</Trans>} value={name} />
-                    <GridItem property={<Trans>Cloud</Trans>} value={cloud} />
+                    <GridItem
+                      property={<Trans>Cloud</Trans>}
+                      value={
+                        cloud !== '-' ? (
+                          <Stack direction="row" spacing={2} alignItems="center">
+                            <CloudAvatar cloud={cloud} />
+                            <Typography>{cloud.toUpperCase()}</Typography>
+                          </Stack>
+                        ) : (
+                          '-'
+                        )
+                      }
+                      isReactNode={cloud !== '-'}
+                    />
                     <GridItem property={<Trans>Account</Trans>} value={account} />
                     <GridItem property={<Trans>Region</Trans>} value={region} />
                     <GridItem
