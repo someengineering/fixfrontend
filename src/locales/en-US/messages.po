@@ -119,6 +119,10 @@ msgstr "Added accounts"
 msgid "Advanced integration for top-tier security needs and IaC support."
 msgstr "Advanced integration for top-tier security needs and IaC support."
 
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:102
+msgid "Advanced search query"
+msgstr "Advanced search query"
+
 #: src/pages/panel/inventory/ResourceDetail.tsx:228
 msgid "Age"
 msgstr "Age"
@@ -657,7 +661,7 @@ msgstr "one cloud account included"
 msgid "One time"
 msgstr "One time"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:109
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:137
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Oops! It looks like your query didn't match our format. Please check and try again."
 
