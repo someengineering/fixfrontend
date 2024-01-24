@@ -1,10 +1,10 @@
-import { t } from '@lingui/macro'
-import { Skeleton, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
+import { Trans, t } from '@lingui/macro'
+import { Skeleton, Stack, Table, TableBody, TableCell, TableHead, TableRow, Tooltip } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
-import { GTMEventNames } from 'src/shared/constants'
+import { GTMEventNames, panelUI } from 'src/shared/constants'
 import { sendToGTM } from 'src/shared/google-tag-manager'
 import { TableViewPage } from 'src/shared/layouts/panel-layout'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
@@ -15,6 +15,7 @@ import {
 } from 'src/shared/types/server'
 import { isAuthenticated as getIsAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData } from 'src/shared/utils/localstorage'
+import { DownloadCSVButton } from './DownloadCSVButton'
 import { InventoryRow } from './InventoryRow'
 import { ResourceDetail } from './ResourceDetail'
 
@@ -91,6 +92,17 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
           setPage,
           setRowsPerPage,
         }}
+        headerToolbar={
+          <Stack px={1} alignItems="end" width="100%">
+            {totalCount > panelUI.maxCSVDownload ? (
+              <Tooltip title={<Trans>Only first {panelUI.maxCSVDownload} items will be downloaded</Trans>}>
+                <DownloadCSVButton query={searchCrit} warning />
+              </Tooltip>
+            ) : (
+              <DownloadCSVButton query={searchCrit} />
+            )}
+          </Stack>
+        }
       >
         <Table stickyHeader aria-label={t`Accounts`}>
           <TableHead>
