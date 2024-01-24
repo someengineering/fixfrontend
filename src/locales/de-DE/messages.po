@@ -66,7 +66,7 @@ msgstr "In wenigen Minuten bis zum ersten Ergebnis"
 msgid "Access to your account is broken"
 msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:219
+#: src/pages/panel/inventory/ResourceDetail.tsx:213
 msgid "Account"
 msgstr "Konto"
 
@@ -119,7 +119,7 @@ msgstr "Konten hinzugefügt"
 msgid "Advanced integration for top-tier security needs and IaC support."
 msgstr "Erweiterte Integration für höchste Sicherheitsanforderungen und IaC-Unterstützung."
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:228
+#: src/pages/panel/inventory/ResourceDetail.tsx:222
 msgid "Age"
 msgstr "Alter"
 
@@ -186,7 +186,7 @@ msgstr "AWS Marketplace wurde erfolgreich abonniert"
 msgid "Basic asset inventory"
 msgstr "Grundlegende Vermögensinventur"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:195
+#: src/pages/panel/inventory/ResourceDetail.tsx:198
 msgid "Basic Information"
 msgstr "Grundinformation"
 
@@ -235,7 +235,7 @@ msgstr "Wählen Sie Arbeitsbereich"
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:36
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:36
 #: src/pages/panel/home/AccountCard.tsx:33
-#: src/pages/panel/inventory/ResourceDetail.tsx:206
+#: src/pages/panel/inventory/ResourceDetail.tsx:209
 msgid "Cloud"
 msgstr "Cloud"
 
@@ -286,7 +286,7 @@ msgstr "In die Zwischenablage kopiert!"
 msgid "Copy"
 msgstr "Kopieren"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:222
+#: src/pages/panel/inventory/ResourceDetail.tsx:216
 msgid "Created Time"
 msgstr "Erstellte Zeit"
 
@@ -352,7 +352,7 @@ msgstr "Deploy Stack"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:289
+#: src/pages/panel/inventory/ResourceDetail.tsx:283
 msgid "Details"
 msgstr "Einzelheiten"
 
@@ -494,7 +494,7 @@ msgstr "Wie repariert man"
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:39
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:39
 #: src/pages/panel/home/AccountCard.tsx:30
-#: src/pages/panel/inventory/ResourceDetail.tsx:203
+#: src/pages/panel/inventory/ResourceDetail.tsx:206
 msgid "ID"
 msgstr "ID"
 
@@ -541,7 +541,7 @@ msgstr "Externen Benutzer einladen"
 msgid "Invites"
 msgstr "Lädt ein"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:202
+#: src/pages/panel/inventory/ResourceDetail.tsx:205
 msgid "Kind"
 msgstr "Art"
 
@@ -603,7 +603,7 @@ msgstr "Am meisten verbesserte Ressourcen"
 #: src/pages/panel/accounts/AccountsTableItem.tsx:42
 #: src/pages/panel/accounts/AccountsTableRecentlyAdded.tsx:42
 #: src/pages/panel/accounts/AccountsTableUnconfigured.tsx:42
-#: src/pages/panel/inventory/ResourceDetail.tsx:204
+#: src/pages/panel/inventory/ResourceDetail.tsx:207
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:20
@@ -669,7 +669,7 @@ msgstr "Hoppla! Etwas ist schief gelaufen."
 msgid "Open drawer"
 msgstr "Öffene die Schublade"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:237
+#: src/pages/panel/inventory/ResourceDetail.tsx:231
 msgid "Open resource {name} in AWS Console"
 msgstr "Öffnen Sie die Ressource {name} in der AWS-Konsole"
 
@@ -752,7 +752,7 @@ msgstr "Kürzlich hinzugefügte Konten"
 msgid "Regenerate"
 msgstr "Regenerieren"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:220
+#: src/pages/panel/inventory/ResourceDetail.tsx:214
 msgid "Region"
 msgstr "Region"
 
@@ -797,7 +797,7 @@ msgstr "Scanfrequenz"
 msgid "Secure read-only access"
 msgstr "Sicherer Lesezugriff"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:309
+#: src/pages/panel/inventory/ResourceDetail.tsx:303
 msgid "Security Issues"
 msgstr "Sicherheitsprobleme"
 
@@ -814,8 +814,8 @@ msgstr "Sicherheitsbewertung"
 msgid "Security Tier"
 msgstr "Sicherheitsstufe"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:248
-#: src/pages/panel/inventory/ResourceDetail.tsx:259
+#: src/pages/panel/inventory/ResourceDetail.tsx:242
+#: src/pages/panel/inventory/ResourceDetail.tsx:253
 msgid "See this Resource in AWS Console"
 msgstr "Sehen Sie sich diese Ressource in der AWS-Konsole an"
 
@@ -863,7 +863,7 @@ msgid "Successfully invited {email}"
 msgstr "{email} erfolgreich eingeladen"
 
 #: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:86
-#: src/pages/panel/inventory/ResourceDetail.tsx:275
+#: src/pages/panel/inventory/ResourceDetail.tsx:269
 msgid "Tags"
 msgstr "Stichworte"
 
@@ -887,7 +887,7 @@ msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM 
 msgid "Tier"
 msgstr "Stufe"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:254
+#: src/pages/panel/inventory/ResourceDetail.tsx:248
 msgid "To access this resource, please ensure that you are logged into the AWS account: {account}"
 msgstr "Um auf diese Ressource zuzugreifen, stellen Sie bitte sicher, dass Sie beim AWS-Konto angemeldet sind: {account}"
 
