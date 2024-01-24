@@ -67,6 +67,7 @@ export const DownloadCSVButton = forwardRef(
     return (
       <Button
         {...tooltipProps}
+        variant="outlined"
         startIcon={progress < 0 && isPending ? <CircularProgress color="inherit" size={16} /> : isPending ? null : <DownloadIcon />}
         endIcon={warning ? <WarningAmberIcon /> : null}
         onClick={handleClick}

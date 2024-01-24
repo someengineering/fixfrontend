@@ -27,7 +27,9 @@ export const TableViewPage = ({ children, paginationProps, minHeight, headerTool
         minHeight={minHeight ?? panelUI.tableViewMinHeight}
       >
         <Paper sx={{ width: '100%', overflow: 'hidden', position: 'relative' }}>
-          {headerToolbar ? <Toolbar sx={{ height: panelUI.headerHeight }}>{headerToolbar}</Toolbar> : null}
+          {headerToolbar ? (
+            <Toolbar sx={{ height: panelUI.headerHeight, bgcolor: 'background.default', p: '0!important' }}>{headerToolbar}</Toolbar>
+          ) : null}
           <TableContainer
             sx={{
               height:

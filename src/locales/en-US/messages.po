@@ -387,7 +387,7 @@ msgstr "Downgrade"
 msgid "Download"
 msgstr "Download"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:77
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:78
 msgid "Download CSV"
 msgstr "Download CSV"
 
