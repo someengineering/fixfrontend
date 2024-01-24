@@ -1,7 +1,6 @@
 import CheckIcon from '@mui/icons-material/Check'
 import DoDisturbIcon from '@mui/icons-material/DoDisturb'
 import { ButtonBase, ButtonBaseProps, TableCell, TableRow } from '@mui/material'
-import { panelUI } from 'src/shared/constants'
 import { PostWorkspaceInventorySearchTableColumn, PostWorkspaceInventorySearchTableRow } from 'src/shared/types/server'
 import { rowStrFromColumnKind } from './utils'
 
@@ -24,7 +23,7 @@ export const InventoryRow = ({ row, columns, onClick }: InventoryRowProps) => {
       onClick={handleClick}
     >
       {columns.map((column, i) => (
-        <TableCell key={`${column.name}-${row.id}-${i}`} sx={{ minWidth: panelUI.inventoryTableCellMinWidth }}>
+        <TableCell key={`${column.name}-${row.id}-${i}`} sx={{ whiteSpace: 'nowrap' }}>
           {typeof row.row[column.name] === 'boolean' ? (
             row.row[column.name] ? (
               <CheckIcon color="success" />

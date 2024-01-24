@@ -1,5 +1,4 @@
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
-import { iso8601DurationToString, parseCustomDuration } from 'src/shared/utils/parseDuration'
 
 export function rowStrFromColumnKind(value: string | number | boolean | null, kind: 'duration'): string
 export function rowStrFromColumnKind<ValueType extends string | number | boolean | null>(
@@ -12,8 +11,8 @@ export function rowStrFromColumnKind(
 ): string | number | boolean | null
 export function rowStrFromColumnKind(value: string | number | boolean | null, kind: ResourceComplexKindSimpleTypeDefinitions) {
   switch (kind) {
-    case 'duration':
-      return iso8601DurationToString(parseCustomDuration((value ?? '').toString()))
+    // case 'duration':
+    //   return iso8601DurationToString(parseCustomDuration((value ?? '').toString()))
     default:
       return typeof value === 'object' ? null : value
   }
