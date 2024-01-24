@@ -8,7 +8,6 @@ import {
   AccordionDetails,
   AccordionSummary,
   Alert,
-  Box,
   Button,
   Divider,
   Grid,
@@ -143,10 +142,10 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
   }, [detail])
 
   const { id, name, kind, ctime, age: _age, tags } = data?.resource.reported ?? {}
-  const cloud = kind === 'cloud' && name ? name : data?.resource.ancestors?.cloud?.reported?.name ?? '-'
-  const accountObj = data?.resource.ancestors.account?.reported
+  const cloud = data?.resource.ancestors?.cloud?.reported?.name ?? '-'
+  const accountObj = data?.resource.ancestors?.account?.reported
   const account = accountObj ? `${accountObj?.name} (${accountObj?.id})` : '-'
-  const region = data?.resource.ancestors.region?.reported?.name ?? '-'
+  const region = data?.resource.ancestors?.region?.reported?.name ?? '-'
   const provider_link = data?.resource.metadata.provider_link
   const { tags: _tags, ...reported } = data?.resource.reported ?? {}
 
@@ -179,7 +178,10 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
             p={1}
             boxShadow={1}
           >
-            <Box flex={1}>{typeof selectedRow.row['name'] === 'object' ? '' : selectedRow.row['name']}</Box>
+            <Stack direction="row" alignItems="center" gap={1} flex={1}>
+              {cloud !== '-' ? <CloudAvatar cloud={cloud} /> : null}
+              {typeof selectedRow.row['name'] === 'object' ? '' : selectedRow.row['name']}
+            </Stack>
             <IconButton onClick={onClose}>
               <CloseIcon />
             </IconButton>
@@ -205,16 +207,7 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
                     <GridItem property={<Trans>Name</Trans>} value={name} />
                     <GridItem
                       property={<Trans>Cloud</Trans>}
-                      value={
-                        cloud !== '-' ? (
-                          <Stack direction="row" spacing={2} alignItems="center">
-                            <CloudAvatar cloud={cloud} />
-                            <Typography>{cloud.toUpperCase()}</Typography>
-                          </Stack>
-                        ) : (
-                          '-'
-                        )
-                      }
+                      value={cloud !== '-' ? <Typography>{cloud.toUpperCase()}</Typography> : '-'}
                       isReactNode={cloud !== '-'}
                     />
                     <GridItem property={<Trans>Account</Trans>} value={account} />

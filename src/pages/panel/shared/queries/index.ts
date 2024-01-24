@@ -10,3 +10,4 @@ export { postWorkspaceInventoryPropertyAttributesQuery } from './postWorkspaceIn
 export { postWorkspaceInventoryPropertyPathCompleteQuery } from './postWorkspaceInventoryPropertyPathComplete.query'
 export { postWorkspaceInventoryPropertyValuesQuery } from './postWorkspaceInventoryPropertyValues.query'
 export { postWorkspaceInventorySearchTableQuery } from './postWorkspaceInventorySearchTable.query'
+export { postWorkspaceInventorySearchTableDownloadMutation } from './postWorkspaceInventorySearchTableDownload.mutation'
