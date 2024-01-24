@@ -1,6 +1,7 @@
 import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import CloseIcon from '@mui/icons-material/Close'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import {
   Accordion,
@@ -193,7 +194,7 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
             ) : null}
           </Box> */}
           <Accordion defaultExpanded>
-            <AccordionSummary>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Trans>Basic Information</Trans>
             </AccordionSummary>
             <Divider />
@@ -264,7 +265,7 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
           </Accordion>
           {data && Object.entries(tags ?? {}).length ? (
             <Accordion>
-              <AccordionSummary>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Trans>Tags</Trans>
               </AccordionSummary>
               <Divider />
@@ -278,7 +279,7 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
             </Accordion>
           ) : null}
           <Accordion>
-            <AccordionSummary>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Trans>Details</Trans>
             </AccordionSummary>
             <Divider />
@@ -298,7 +299,7 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
           </Accordion>
           {data?.resource.security?.has_issues ? (
             <Accordion defaultExpanded>
-              <AccordionSummary>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Trans>Security Issues</Trans>
               </AccordionSummary>
               <Divider />
