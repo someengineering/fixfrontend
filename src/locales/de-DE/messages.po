@@ -75,7 +75,7 @@ msgid "Account risk score"
 msgstr "Risikobewertung des Kontos"
 
 #: src/pages/panel/inventory/InventoryTable.error.tsx:74
-#: src/pages/panel/inventory/InventoryTable.tsx:95
+#: src/pages/panel/inventory/InventoryTable.tsx:107
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:126
 #: src/shared/language-button/LanguageButton.stories.tsx:20
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:117
@@ -387,6 +387,10 @@ msgstr "Downgrade"
 msgid "Download"
 msgstr "Herunterladen"
 
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:77
+msgid "Download CSV"
+msgstr "CSV herunterladen"
+
 #: src/pages/panel/accounts/AccountRow.tsx:267
 #: src/pages/panel/accounts/AccountRow.tsx:268
 msgid "Edit"
@@ -656,6 +660,10 @@ msgstr "ein Cloud-Konto inklusive"
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:37
 msgid "One time"
 msgstr "Einmal"
+
+#: src/pages/panel/inventory/InventoryTable.tsx:98
+msgid "Only first {0} items will be downloaded"
+msgstr "Es werden nur die ersten {0} Elemente heruntergeladen"
 
 #: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:109
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
