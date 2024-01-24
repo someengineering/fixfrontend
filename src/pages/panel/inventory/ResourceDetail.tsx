@@ -143,7 +143,7 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
   }, [detail])
 
   const { id, name, kind, ctime, age: _age, tags } = data?.resource.reported ?? {}
-  const cloud = data?.resource.ancestors.cloud?.reported?.name ?? '-'
+  const cloud = kind === 'cloud' && name ? name : data?.resource.ancestors?.cloud?.reported?.name ?? '-'
   const accountObj = data?.resource.ancestors.account?.reported
   const account = accountObj ? `${accountObj?.name} (${accountObj?.id})` : '-'
   const region = data?.resource.ancestors.region?.reported?.name ?? '-'
