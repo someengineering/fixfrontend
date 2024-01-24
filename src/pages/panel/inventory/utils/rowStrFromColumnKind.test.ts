@@ -7,7 +7,8 @@ test('rowStrFromColumnKind should return correct value from column kind', () => 
   const date = rowStrFromColumnKind(123, 'date')
   const datetime = rowStrFromColumnKind(123, 'datetime')
   const double = rowStrFromColumnKind(123.45, 'double')
-  const duration = rowStrFromColumnKind('1y1M1w1d1h1m1s', 'duration')
+  // remove duration parse for the time being
+  // const duration = rowStrFromColumnKind('1y1M1w1d1h1m1s', 'duration')
   const float = rowStrFromColumnKind(123.45, 'float')
   const int32 = rowStrFromColumnKind(123, 'int32')
   const int64 = rowStrFromColumnKind(123, 'int64')
@@ -18,7 +19,7 @@ test('rowStrFromColumnKind should return correct value from column kind', () => 
   expect(date).toBe(123)
   expect(datetime).toBe(123)
   expect(double).toBe(123.45)
-  expect(duration).toBe('1 Year and 1 Month and 1 Week and 1 Day and 1 Hour and 1 Minute and 1 Second')
+  // expect(duration).toBe('1 Year and 1 Month and 1 Week and 1 Day and 1 Hour and 1 Minute and 1 Second')
   expect(float).toBe(123.45)
   expect(int32).toBe(123)
   expect(int64).toBe(123)

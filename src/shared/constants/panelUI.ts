@@ -11,7 +11,6 @@ export const panelUI = {
   fastInputChangeDebounce: 300,
   fastTooltipDelay: 300,
   tableViewMinHeight: 500,
-  inventoryTableCellMinWidth: 200,
   offsetHeightToLoad: 300,
   minModalWidth: 400,
   minLargeModalWidth: 700,
