@@ -1,6 +1,7 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
+  readonly VITE_FIX_LANDING_PAGE_URL?: string
   readonly VITE_SERVER?: string
   readonly VITE_WS_SERVER?: string
   readonly VITE_USE_PROXY?: string

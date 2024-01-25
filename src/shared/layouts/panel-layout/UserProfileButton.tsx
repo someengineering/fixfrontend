@@ -4,14 +4,17 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import RoomPreferencesIcon from '@mui/icons-material/RoomPreferences'
 import SettingsIcon from '@mui/icons-material/Settings'
 import { Avatar, Divider, IconButton, ListItemIcon, Menu, MenuItem, MenuList, Tooltip, Typography } from '@mui/material'
-import { MouseEvent as MouseEventReact, useState } from 'react'
+import { MouseEvent as MouseEventReact, useState, useTransition } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
+import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
 
 export const UserProfileButton = () => {
   const { logout, workspaces, selectedWorkspace, selectWorkspace } = useUserProfile()
   const navigate = useAbsoluteNavigate()
   const [anchorElUser, setAnchorElUser] = useState<HTMLElement>()
+  const [isPending, startTransition] = useTransition()
+
   const handleOpenUserMenu = (event: MouseEventReact<HTMLElement, MouseEvent>) => {
     setAnchorElUser(event.currentTarget)
   }
@@ -22,12 +25,16 @@ export const UserProfileButton = () => {
 
   const handleLogout = () => {
     handleCloseUserMenu()
-    void logout()
+    startTransition(() => {
+      void logout()
+    })
   }
 
   const handleSelectWorkspace = (id: string) => {
     handleCloseUserMenu()
-    void selectWorkspace(id)
+    startTransition(() => {
+      void selectWorkspace(id)
+    })
   }
 
   const handleGoToAccounts = () => {
@@ -42,6 +49,7 @@ export const UserProfileButton = () => {
 
   return (
     <>
+      {isPending ? <FullPageLoadingSuspenseFallback forceFullPage /> : null}
       <Tooltip title={t`Profile`}>
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} color="primary">
           <Avatar alt={selectedWorkspace?.slug} sx={{ bgcolor: 'primary.main' }} />

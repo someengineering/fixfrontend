@@ -7,10 +7,11 @@ import { AuthHeader } from './AuthHeader'
 
 // typescript only allows string when it defined at `JSX.IntrinsicElements`
 export const BrandRegion = 'BrandRegion' as unknown as ComponentType<PropsWithChildren>
-export const ContentRegion = 'ContentRegion' as unknown as ComponentType<PropsWithChildren>
 export const LeftRegion = 'LeftRegion' as unknown as ComponentType<PropsWithChildren>
+export const ContentRegion = 'ContentRegion' as unknown as ComponentType<PropsWithChildren>
+export const FooterRegion = 'FooterRegion' as unknown as ComponentType<PropsWithChildren>
 
-const regions = [BrandRegion, ContentRegion, LeftRegion]
+const regions = [BrandRegion, LeftRegion, ContentRegion, FooterRegion]
 
 export type AuthLayoutProps = PropsWithChildren
 
@@ -107,6 +108,7 @@ export function AuthLayout({ children }: AuthLayoutProps) {
   const map = groupChildrenByType(children, regions)
   const brandChild = map.get(BrandRegion)
   const contentChild = map.get(ContentRegion)
+  const footerChild = map.get(FooterRegion)
   const leftChild = map.get(LeftRegion)
 
   return (
@@ -118,9 +120,14 @@ export function AuthLayout({ children }: AuthLayoutProps) {
           <LanguageButton />
         </Stack>
         <AuthCardStyle>
-          <AuthHeader>{brandChild}</AuthHeader>
-          <Stack spacing={2}>{isMobile ? leftChild : undefined}</Stack>
-          <CardContent>{contentChild}</CardContent>
+          <Stack flexGrow={1} justifyContent="center">
+            <AuthHeader>{brandChild}</AuthHeader>
+            <Stack spacing={2}>{isMobile ? leftChild : undefined}</Stack>
+            <CardContent>{contentChild}</CardContent>
+          </Stack>
+          <Stack p={2} mb={2}>
+            {footerChild}
+          </Stack>
         </AuthCardStyle>
       </AuthWrapper>
     </>

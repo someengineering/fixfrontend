@@ -12,12 +12,13 @@ const defaultOrigin = window.location.origin
 const wsOrigin = defaultOrigin.replace('http', 'ws')
 
 const env = {
+  landingPageUrl: import.meta.env.VITE_FIX_LANDING_PAGE_URL ?? defaultOrigin,
   apiUrl:
     import.meta.env.VITE_USE_PROXY === 'true' && import.meta.env.MODE !== 'test'
       ? defaultOrigin
       : import.meta.env.VITE_SERVER ?? defaultOrigin,
   wsUrl:
-    import.meta.env.VITE_USE_PROXY === 'true'
+    import.meta.env.VITE_USE_PROXY === 'true' && import.meta.env.MODE !== 'test'
       ? wsOrigin
       : import.meta.env.VITE_WS_SERVER ?? import.meta.env.VITE_SERVER?.replace('http', 'ws') ?? wsOrigin,
   retryCount: envToNumber(import.meta.env.VITE_NETWORK_RETRY_COUNT) ?? 5,
