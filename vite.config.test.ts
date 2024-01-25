@@ -24,7 +24,7 @@ export default defineConfig(({ mode }) => {
         log: 'debug',
         build: {
           log: 'debug',
-          serverPort: Number(env.PORT),
+          serverPort: env.PORT ? Number(env.PORT) : undefined,
         },
       }),
     ],
@@ -46,8 +46,8 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
-      port: Number(env.PORT),
-      host: env.HOST,
+      port: env.PORT ? Number(env.PORT) : undefined,
+      host: env.HOST ?? undefined,
       proxy: {
         '/api': {
           target: env.VITE_SERVER,
@@ -61,8 +61,8 @@ export default defineConfig(({ mode }) => {
       },
     },
     preview: {
-      port: Number(env.PORT),
-      host: env.HOST,
+      port: env.PORT ? Number(env.PORT) : undefined,
+      host: env.HOST ?? undefined,
       proxy: {
         '/api': {
           target: env.VITE_SERVER,

@@ -29,7 +29,7 @@ export default function PanelContainer() {
             </ContentRegion>
             <BottomRegion>
               <Typography variant="subtitle2">
-                <Trans>© 2023 Some Engineering Inc. All rights reserved.</Trans>
+                <Trans>© 2024 Some Engineering Inc. All rights reserved.</Trans>
               </Typography>
             </BottomRegion>
           </PanelLayout>

@@ -46,8 +46,8 @@ msgid "{0} Milliseconds"
 msgstr "{0} Millisekunden"
 
 #: src/containers/panel/PanelContainer.tsx:32
-msgid "© 2023 Some Engineering Inc. All rights reserved."
-msgstr "© 2023 Some Engineering Inc. Alle Rechte vorbehalten."
+msgid "© 2024 Some Engineering Inc. All rights reserved."
+msgstr "© 2024 Some Engineering Inc. Alle Rechte vorbehalten."
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:36
 msgid "<0>Billing cycle: {0}</0><1>Highest security tier this billing cycle: {title} (${1} / account)</1>"
@@ -57,7 +57,7 @@ msgstr "<0>Abrechnungszeitraum: {0}</0><1>Höchste Sicherheitsstufe in diesem Ab
 msgid "<0>Next invoice will be available: {0}</0>"
 msgstr "<0>Die nächste Rechnung wird verfügbar sein: {0}</0>"
 
-#: src/containers/auth/AuthContainer.tsx:60
+#: src/containers/auth/AuthContainer.tsx:61
 msgid "A few minutes to first results"
 msgstr "In wenigen Minuten bis zum ersten Ergebnis"
 
@@ -78,7 +78,7 @@ msgstr "Risikobewertung des Kontos"
 #: src/pages/panel/inventory/InventoryTable.tsx:107
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:126
 #: src/shared/language-button/LanguageButton.stories.tsx:20
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:117
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:125
 msgid "Accounts"
 msgstr "Konten"
 
@@ -226,6 +226,10 @@ msgstr "Sicherheitsstufe ändern"
 msgid "Changes in the past 7 days"
 msgstr "Änderungen in den letzten 7 Tagen"
 
+#: src/containers/auth/AuthContainer.tsx:82
+msgid "Checkout our <0>Privacy policy</0> and our <1>Terms and conditions</1>"
+msgstr "Schauen Sie sich unsere <0>Datenschutzerklärung</0> und unsere <1>Allgemeinen Geschäftsbedingungen</1> an"
+
 #: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:91
 msgid "Choose Workspace"
 msgstr "Wählen Sie Arbeitsbereich"
@@ -271,7 +275,7 @@ msgstr "Compliance-Scans"
 msgid "Congratulations on your subscription"
 msgstr "Herzlichen Glückwunsch zu Ihrem Abonnement"
 
-#: src/containers/auth/AuthContainer.tsx:26
+#: src/containers/auth/AuthContainer.tsx:27
 msgid "Connect your AWS account"
 msgstr "Verbinden Sie Ihr AWS-Konto"
 
@@ -441,7 +445,7 @@ msgstr "FALSCH"
 msgid "Fix recommendations"
 msgstr "Fix-Empfehlungen"
 
-#: src/containers/auth/AuthContainer.tsx:49
+#: src/containers/auth/AuthContainer.tsx:50
 msgid "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
 msgstr "Fix scannt Ihre Infrastruktur- und Ressourcenkonfigurationen mithilfe des schreibgeschützten API-Zugriffs. Keine Agenten erforderlich."
 
@@ -457,7 +461,7 @@ msgstr "Frei"
 msgid "Free features"
 msgstr "Kostenlose Funktionen"
 
-#: src/containers/auth/AuthContainer.tsx:66
+#: src/containers/auth/AuthContainer.tsx:67
 msgid "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
 msgstr "Erhalten Sie Ihre fünf wichtigsten Empfehlungen zur Verbesserung Ihrer Sicherheit, sobald der erste Scan abgeschlossen ist, normalerweise innerhalb von 10 Minuten."
 
@@ -566,11 +570,11 @@ msgstr "Anmeldung"
 msgid "Log in with {formattedName}"
 msgstr "Melden Sie sich mit {formattedName} an"
 
-#: src/containers/auth/AuthContainer.tsx:32
+#: src/containers/auth/AuthContainer.tsx:33
 msgid "Login into the AWS account you want to secure. Deploy a CloudFormation stack that creates a new IAM role for FIX."
 msgstr "Melden Sie sich bei dem AWS-Konto an, das Sie sichern möchten. Stellen Sie einen CloudFormation-Stack bereit, der eine neue IAM-Rolle für FIX erstellt."
 
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:125
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:133
 msgid "Logout"
 msgstr "Ausloggen"
 
@@ -739,7 +743,7 @@ msgstr "Privilegiert"
 msgid "Privileged account"
 msgstr "Privilegiertes Konto"
 
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:45
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:53
 msgid "Profile"
 msgstr "Profil"
 
@@ -801,7 +805,7 @@ msgstr "Rollen"
 msgid "Scan frequency"
 msgstr "Scanfrequenz"
 
-#: src/containers/auth/AuthContainer.tsx:43
+#: src/containers/auth/AuthContainer.tsx:44
 msgid "Secure read-only access"
 msgstr "Sicherer Lesezugriff"
 
@@ -977,7 +981,7 @@ msgstr "Arbeitsbereichsname"
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:45
 #: src/shared/layouts/panel-layout/menuList.tsx:49
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:10
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:108
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:116
 msgid "Workspace Settings"
 msgstr "Arbeitsbereichseinstellungen"
 

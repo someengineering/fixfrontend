@@ -11,18 +11,19 @@ This project needs [NodeJS](https://nodejs.org/en) version 18 (at least 18.17.1)
 
 ## Environment variables
 
-- `VITE_SERVER: string` - Server address that should call the API
-- `VITE_WS_SERVER: string` - WS server address for events
-- `VITE_USE_PROXY: boolean` - Whether or not should vite use proxy to connect to api
-- `VITE_NETWORK_RETRY_COUNT: number` - Number of retry in case of 5xx error until give up the API call
-- `VITE_WEBSOCKET_RETRY_TIMEOUT: number` - How many milliseconds before retrying request that failed with 5xx error on API call
-- `HOST: string` - on which host vite should create the server Eg. 127.0.0.1 or localhost
-- `PORT: number` - on which port vite should run the local server Eg. 80 or 8081
-- `VITE_USE_MOCK: boolean` - Whether or not runs the mock server instead of getting data from real server
-- `VITE_DISCORD_URL: string` - Discord URL
-- `VITE_GTM_DEV_ID: string` - Google Analytics token for development
-- `VITE_GTM_PROD_ID: string` - Google Analytics token for production
-- `VITE_TRACKJS_TOKEN: string` - TrackJS token
+- `VITE_FIX_LANDING_PAGE_URL: string` - URL to main landing page (Default: `location.origin`)
+- `VITE_SERVER: string` - Server address that should call the API (Default: `location.origin`, ignore on test env or `VITE_USE_PROXY=true`)
+- `VITE_WS_SERVER: string` - WS server address for events (Default: `location.origin.replace('http', 'ws')`, ignore on test env or `VITE_USE_PROXY=true`)
+- `VITE_USE_PROXY: boolean` - Whether or not should vite use proxy to connect to api (Default: `false`)
+- `VITE_NETWORK_RETRY_COUNT: number` - Number of retry in case of 5xx error until give up the API call (Default: `5`)
+- `VITE_WEBSOCKET_RETRY_TIMEOUT: number` - How many milliseconds before retrying request that failed with 5xx error on API call (Default: `5000`)
+- `HOST: string` - on which host vite should create the server Eg. 127.0.0.1 or localhost (Default: `localhost`)
+- `PORT: number` - on which port vite should run the local server Eg. 80 or 8081 (Default: `5173`)
+- `VITE_USE_MOCK: boolean` - Whether or not runs the mock server instead of getting data from real server (Default: `false`)
+- `VITE_DISCORD_URL: string` - Discord URL (Default: `#`)
+- `VITE_GTM_DEV_ID: string` - Google Analytics token for development (Default: `undefined`, if empty it won't install GTM)
+- `VITE_GTM_PROD_ID: string` - Google Analytics token for production (Default: `undefined`, if empty it won't install GTM)
+- `VITE_TRACKJS_TOKEN: string` - TrackJS token (Default: `undefined`, if empty it won't install TrackJS)
 
 ## Available Scripts
 

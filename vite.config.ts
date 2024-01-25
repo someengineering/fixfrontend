@@ -43,8 +43,8 @@ export default defineConfig(({ mode }) => {
       : undefined
 
   const serverOptions = {
-    port: Number(env.PORT),
-    host: env.HOST,
+    port: env.PORT ? Number(env.PORT) : undefined,
+    host: env.HOST ?? undefined,
     proxy,
   }
 

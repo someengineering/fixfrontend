@@ -46,8 +46,8 @@ msgid "{0} Milliseconds"
 msgstr "{0} Milliseconds"
 
 #: src/containers/panel/PanelContainer.tsx:32
-msgid "© 2023 Some Engineering Inc. All rights reserved."
-msgstr "© 2023 Some Engineering Inc. All rights reserved."
+msgid "© 2024 Some Engineering Inc. All rights reserved."
+msgstr "© 2024 Some Engineering Inc. All rights reserved."
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:36
 msgid "<0>Billing cycle: {0}</0><1>Highest security tier this billing cycle: {title} (${1} / account)</1>"
@@ -57,7 +57,7 @@ msgstr "<0>Billing cycle: {0}</0><1>Highest security tier this billing cycle: {t
 msgid "<0>Next invoice will be available: {0}</0>"
 msgstr "<0>Next invoice will be available: {0}</0>"
 
-#: src/containers/auth/AuthContainer.tsx:60
+#: src/containers/auth/AuthContainer.tsx:61
 msgid "A few minutes to first results"
 msgstr "A few minutes to first results"
 
@@ -78,7 +78,7 @@ msgstr "Account risk score"
 #: src/pages/panel/inventory/InventoryTable.tsx:107
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:126
 #: src/shared/language-button/LanguageButton.stories.tsx:20
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:117
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:125
 msgid "Accounts"
 msgstr "Accounts"
 
@@ -226,6 +226,10 @@ msgstr "Change Security Tier"
 msgid "Changes in the past 7 days"
 msgstr "Changes in the past 7 days"
 
+#: src/containers/auth/AuthContainer.tsx:82
+msgid "Checkout our <0>Privacy policy</0> and our <1>Terms and conditions</1>"
+msgstr "Checkout our <0>Privacy policy</0> and our <1>Terms and conditions</1>"
+
 #: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:91
 msgid "Choose Workspace"
 msgstr "Choose Workspace"
@@ -271,7 +275,7 @@ msgstr "Compliance scans"
 msgid "Congratulations on your subscription"
 msgstr "Congratulations on your subscription"
 
-#: src/containers/auth/AuthContainer.tsx:26
+#: src/containers/auth/AuthContainer.tsx:27
 msgid "Connect your AWS account"
 msgstr "Connect your AWS account"
 
@@ -441,7 +445,7 @@ msgstr "False"
 msgid "Fix recommendations"
 msgstr "Fix recommendations"
 
-#: src/containers/auth/AuthContainer.tsx:49
+#: src/containers/auth/AuthContainer.tsx:50
 msgid "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
 msgstr "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
 
@@ -457,7 +461,7 @@ msgstr "Free"
 msgid "Free features"
 msgstr "Free features"
 
-#: src/containers/auth/AuthContainer.tsx:66
+#: src/containers/auth/AuthContainer.tsx:67
 msgid "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
 msgstr "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
 
@@ -566,11 +570,11 @@ msgstr "Log in"
 msgid "Log in with {formattedName}"
 msgstr "Log in with {formattedName}"
 
-#: src/containers/auth/AuthContainer.tsx:32
+#: src/containers/auth/AuthContainer.tsx:33
 msgid "Login into the AWS account you want to secure. Deploy a CloudFormation stack that creates a new IAM role for FIX."
 msgstr "Login into the AWS account you want to secure. Deploy a CloudFormation stack that creates a new IAM role for FIX."
 
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:125
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:133
 msgid "Logout"
 msgstr "Logout"
 
@@ -739,7 +743,7 @@ msgstr "Privileged"
 msgid "Privileged account"
 msgstr "Privileged account"
 
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:45
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:53
 msgid "Profile"
 msgstr "Profile"
 
@@ -801,7 +805,7 @@ msgstr "Roles"
 msgid "Scan frequency"
 msgstr "Scan frequency"
 
-#: src/containers/auth/AuthContainer.tsx:43
+#: src/containers/auth/AuthContainer.tsx:44
 msgid "Secure read-only access"
 msgstr "Secure read-only access"
 
@@ -977,7 +981,7 @@ msgstr "Workspace Name"
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:45
 #: src/shared/layouts/panel-layout/menuList.tsx:49
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:10
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:108
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:116
 msgid "Workspace Settings"
 msgstr "Workspace Settings"
 
