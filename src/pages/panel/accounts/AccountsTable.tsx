@@ -1,5 +1,4 @@
 import { t } from '@lingui/macro'
-import { Stack } from '@mui/material'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceCloudAccountsQuery } from 'src/pages/panel/shared/queries'
@@ -13,7 +12,7 @@ export const AccountsTable = () => {
   })
 
   return (
-    <Stack direction="column" minHeight="100%">
+    <>
       {data.recent.length ? (
         <AccountsTableItem
           data={data.recent}
@@ -33,6 +32,6 @@ export const AccountsTable = () => {
           title={t`Discovered but unconfigured accounts`}
         />
       ) : null}
-    </Stack>
+    </>
   )
 }

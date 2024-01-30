@@ -122,6 +122,9 @@ export function Theme({ children }: ThemeProps) {
         },
         MuiCssBaseline: {
           styleOverrides: {
+            html: {
+              scrollBehavior: 'smooth',
+            },
             'body > #root': {
               display: 'flex',
               flexDirection: 'column',

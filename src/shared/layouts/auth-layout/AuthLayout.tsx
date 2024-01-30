@@ -122,8 +122,8 @@ export function AuthLayout({ children }: AuthLayoutProps) {
         <AuthCardStyle>
           <Stack flexGrow={1} justifyContent="center">
             <AuthHeader>{brandChild}</AuthHeader>
-            <Stack spacing={2}>{isMobile ? leftChild : undefined}</Stack>
             <CardContent>{contentChild}</CardContent>
+            <Stack spacing={2}>{isMobile ? leftChild : undefined}</Stack>
           </Stack>
           <Stack p={2} mb={2}>
             {footerChild}

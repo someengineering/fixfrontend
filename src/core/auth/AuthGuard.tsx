@@ -5,7 +5,7 @@ import { GTMEventNames } from 'src/shared/constants'
 import { sendToGTM } from 'src/shared/google-tag-manager'
 import { GetWorkspaceResponse } from 'src/shared/types/server'
 import { axiosWithAuth, defaultAxiosConfig, setAxiosWithAuth } from 'src/shared/utils/axios'
-import { clearAllCookies, isAuthenticated } from 'src/shared/utils/cookie'
+import { clearAllCookies, isAuthenticated as isCookieAuthenticated } from 'src/shared/utils/cookie'
 import { jsonToStr } from 'src/shared/utils/jsonToStr'
 import { getAuthData, setAuthData } from 'src/shared/utils/localstorage'
 import { TrackJS } from 'trackjs'
@@ -18,7 +18,10 @@ const defaultAuth = { isAuthenticated: false, workspaces: [], selectedWorkspace:
 
 export function AuthGuard({ children }: PropsWithChildren) {
   const [auth, setAuth] = useState<UserContextRealValues>(() => {
-    const selectedWorkspaceId = getAuthData()?.selectedWorkspaceId
+    const isAuthenticated = isCookieAuthenticated()
+    const selectedWorkspaceId = isAuthenticated
+      ? window.location.hash?.substring(1) || getAuthData()?.selectedWorkspaceId || undefined
+      : undefined
     return {
       ...defaultAuth,
       selectedWorkspace: selectedWorkspaceId
@@ -30,7 +33,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
             slug: '',
           }
         : undefined,
-      isAuthenticated: isAuthenticated(),
+      isAuthenticated,
     }
   })
   const navigate = useAbsoluteNavigate()
@@ -104,7 +107,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
               TrackJS.track(error)
             }
             const { message, name, stack = 'unknown' } = error ?? {}
-            const authorized = isAuthenticated()
+            const authorized = isCookieAuthenticated()
             const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
             sendToGTM({
               event: GTMEventNames.Error,
@@ -129,7 +132,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
             }
             const { response, name, message, cause, status, stack, config, code } = error
             const request = error.request as unknown
-            const authorized = isAuthenticated()
+            const authorized = isCookieAuthenticated()
             const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
             sendToGTM({
               event: GTMEventNames.NetworkError,

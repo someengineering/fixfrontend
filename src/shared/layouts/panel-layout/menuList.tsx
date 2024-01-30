@@ -2,8 +2,8 @@ import { Trans } from '@lingui/macro'
 // eslint-disable-next-line no-restricted-imports
 import { SvgIconComponent } from '@mui/icons-material'
 import DashboardIcon from '@mui/icons-material/Dashboard'
-import InsertInvitationIcon from '@mui/icons-material/InsertInvitation'
 import InventoryIcon from '@mui/icons-material/Inventory'
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
 import PeopleIcon from '@mui/icons-material/People'
 import ReceiptIcon from '@mui/icons-material/Receipt'
 import RoomPreferencesIcon from '@mui/icons-material/RoomPreferences'
@@ -51,16 +51,14 @@ export const bottomMenuList: MenuListItem[] = [
     Icon: RoomPreferencesIcon,
     children: [
       {
+        Icon: ManageAccountsIcon,
+        name: <Trans>Accounts</Trans>,
+        route: '/workspace-settings/accounts',
+      },
+      {
         Icon: PeopleIcon,
-        name: <Trans>Workspace Users</Trans>,
+        name: <Trans>Users</Trans>,
         route: '/workspace-settings/users',
-        children: [
-          {
-            Icon: InsertInvitationIcon,
-            name: <Trans>Pending Invitations</Trans>,
-            route: '/workspace-settings/users/invitations',
-          },
-        ],
       },
       {
         Icon: ReceiptIcon,

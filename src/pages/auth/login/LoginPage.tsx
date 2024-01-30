@@ -9,6 +9,7 @@ import { Link, Location, useLocation, useSearchParams } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { LoginSocialMedia } from 'src/shared/login-social-media'
+import { PasswordTextField } from 'src/shared/password-text-field'
 import { SocialMediaButtonSkeleton } from 'src/shared/social-media-button'
 import { loginMutation } from './login.mutation'
 
@@ -37,6 +38,7 @@ export default function LoginPage() {
             {
               isAuthenticated: true,
               workspaces: [],
+              selectedWorkspace: { id: returnUrl.split('#')[1], members: [], name: '', owners: [], slug: '' },
             },
             returnUrl,
           )
@@ -87,7 +89,7 @@ export default function LoginPage() {
           />
         </Grid>
         <Grid item>
-          <TextField
+          <PasswordTextField
             required
             id="password"
             name="password"
@@ -95,7 +97,6 @@ export default function LoginPage() {
             label={t`Password`}
             variant="outlined"
             fullWidth
-            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value ?? '')}
           />

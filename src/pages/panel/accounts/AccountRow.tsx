@@ -306,7 +306,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
         width={550}
         openRef={showDegradedModalRef}
         actions={
-          <Button variant="outlined" component={Link} to="/setup-cloud">
+          <Button variant="outlined" component={Link} to="/workspace-settings/accounts/setup-cloud">
             <Trans>Deploy Stack</Trans>
           </Button>
         }

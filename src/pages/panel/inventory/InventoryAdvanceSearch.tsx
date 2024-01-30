@@ -52,6 +52,15 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }
     [onChange],
   )
 
+  useEffect(
+    () => () => {
+      if (timeoutRef.current) {
+        window.clearTimeout(timeoutRef.current)
+      }
+    },
+    [],
+  )
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value !== searchCritValue) {
       onChange(undefined, !e.target.value || e.target.value === 'all' ? '' : 'true')

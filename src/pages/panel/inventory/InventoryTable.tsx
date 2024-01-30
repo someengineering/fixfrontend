@@ -4,9 +4,10 @@ import { useQuery } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
+import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { GTMEventNames, panelUI } from 'src/shared/constants'
 import { sendToGTM } from 'src/shared/google-tag-manager'
-import { TableViewPage } from 'src/shared/layouts/panel-layout'
+import { TableView } from 'src/shared/layouts/panel-layout'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import {
   PostWorkspaceInventorySearchTableColumn,
@@ -15,9 +16,9 @@ import {
 } from 'src/shared/types/server'
 import { isAuthenticated as getIsAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData } from 'src/shared/utils/localstorage'
+import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { DownloadCSVButton } from './DownloadCSVButton'
 import { InventoryRow } from './InventoryRow'
-import { ResourceDetail } from './ResourceDetail'
 
 interface InventoryTableProps {
   searchCrit: string
@@ -30,6 +31,7 @@ interface InventoryTableProps {
 
 export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => {
   const [dataCount, setDataCount] = useState(-1)
+  const navigate = useAbsoluteNavigate()
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const { selectedWorkspace } = useUserProfile()
@@ -50,7 +52,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
     enabled: !!selectedWorkspace?.id,
   })
   const [data, totalCount] = serverData ?? [[{ columns: [] }] as PostWorkspaceInventorySearchTableResponse, -1]
-  const [selectedRow, setSelectedRow] = useState<PostWorkspaceInventorySearchTableRow>()
+  const searchValues = getLocationSearchValues(window.location.search)
 
   useEffect(() => {
     if (totalCount !== dataCount && dataCount === -1) {
@@ -84,14 +86,16 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
 
   return columns.length ? (
     <>
-      <TableViewPage
+      <TableView
         paginationProps={{
           dataCount,
           page,
           rowsPerPage,
           setPage,
           setRowsPerPage,
+          id: 'InventoryTable',
         }}
+        stickyPagination
         headerToolbar={
           <Stack px={1} alignItems="end" width="100%">
             {totalCount > panelUI.maxCSVDownload ? (
@@ -108,7 +112,9 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
           <TableHead>
             <TableRow>
               {columns.map((column, i) => (
-                <TableCell key={`${column.name}-${i}`}>{column.display}</TableCell>
+                <TableCell key={`${column.name}-${i}`} sx={{ top: -25 }}>
+                  {column.display}
+                </TableCell>
               ))}
             </TableRow>
           </TableHead>
@@ -125,12 +131,26 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
                     </TableRow>
                   ))
                 : null
-              : rows?.map((row, i) => <InventoryRow onClick={setSelectedRow} key={`${row.id}-${i}`} row={row} columns={columns} />)}
+              : rows?.map((row, i) => (
+                  <InventoryRow
+                    onClick={(item) =>
+                      navigate({
+                        pathname: `/inventory/resource-detail/${item.id}`,
+                        search:
+                          typeof item.row.name === 'string'
+                            ? mergeLocationSearchValues({ ...searchValues, name: item.row.name })
+                            : window.location.search,
+                      })
+                    }
+                    key={`${row.id}-${i}`}
+                    row={row}
+                    columns={columns}
+                  />
+                ))}
           </TableBody>
         </Table>
         {isLoading && (!rows.length || !columns.length) ? <LoadingSuspenseFallback /> : null}
-      </TableViewPage>
-      <ResourceDetail detail={selectedRow} onClose={() => setSelectedRow(undefined)} />
+      </TableView>
     </>
   ) : null
 }

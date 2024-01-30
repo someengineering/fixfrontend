@@ -3,38 +3,45 @@ import { Button, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typogr
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { TableViewPage } from 'src/shared/layouts/panel-layout'
+import { panelUI } from 'src/shared/constants'
+import { TableView } from 'src/shared/layouts/panel-layout'
 import { InviteExternalUser } from './InviteExternalUser'
 import { WorkspaceSettingsUserRow } from './WorkspaceSettingsUserRow'
 import { getWorkspaceUsersQuery } from './getWorkspaceUsers.query'
 
 export const WorkspaceSettingsUsersTable = () => {
   const { selectedWorkspace } = useUserProfile()
-  const navigate = useAbsoluteNavigate()
   const { data } = useSuspenseQuery({
     queryKey: ['workspace-users', selectedWorkspace?.id],
     queryFn: getWorkspaceUsersQuery,
   })
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(10)
+  const [rowsPerPage, setRowsPerPage] = useState(5)
   return (
     <>
-      <Stack pb={2} justifyContent="space-between" direction="row">
+      <Stack pb={2} justifyContent="space-between" direction={{ xs: 'column', md: 'row' }} spacing={2}>
         <Typography variant="h3">
           <Trans>Workspace Users</Trans>
         </Typography>
-        <InviteExternalUser />
+        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+          <Button href="#pending-invitations" variant="outlined">
+            <Trans>Pending Invitations</Trans>
+          </Button>
+          <InviteExternalUser />
+        </Stack>
       </Stack>
-      <TableViewPage
+      <TableView
         paginationProps={{
           dataCount: data.length ?? 0,
           page,
+          pages: [5, ...panelUI.tableRowsPerPages],
           rowsPerPage,
           setPage,
           setRowsPerPage,
+          id: 'WorkspaceSettingsUsersTable',
         }}
         minHeight={200}
+        stickyPagination
       >
         <Table stickyHeader aria-label={t`Workspace Users`}>
           <TableHead>
@@ -70,12 +77,7 @@ export const WorkspaceSettingsUsersTable = () => {
               ))}
           </TableBody>
         </Table>
-      </TableViewPage>
-      <Stack mt={7} alignItems="start">
-        <Button variant="outlined" onClick={() => navigate('/workspace-settings/users/invitations')}>
-          <Trans>Pending Invitations</Trans>
-        </Button>
-      </Stack>
+      </TableView>
     </>
   )
 }

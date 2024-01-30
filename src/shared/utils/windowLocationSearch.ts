@@ -13,3 +13,9 @@ export const mergeLocationSearchValues = (search: Record<string, string>) =>
     .map(([key, value]) => (value ? `${key}=${value}` : null))
     .filter((i) => i)
     .join('&')}`
+
+export const removeLocationSearchValues = (search: Record<string, string>, id: string) =>
+  `?${Object.entries(search)
+    .map(([key, value]) => (value && key !== id ? `${key}=${value}` : null))
+    .filter((i) => i)
+    .join('&')}`

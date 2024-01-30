@@ -1,7 +1,6 @@
 import { Trans, t } from '@lingui/macro'
 import CorporateFareIcon from '@mui/icons-material/CorporateFare'
 import LogoutIcon from '@mui/icons-material/Logout'
-import RoomPreferencesIcon from '@mui/icons-material/RoomPreferences'
 import SettingsIcon from '@mui/icons-material/Settings'
 import { Avatar, Divider, IconButton, ListItemIcon, Menu, MenuItem, MenuList, Tooltip, Typography } from '@mui/material'
 import { MouseEvent as MouseEventReact, useState, useTransition } from 'react'
@@ -33,18 +32,19 @@ export const UserProfileButton = () => {
   const handleSelectWorkspace = (id: string) => {
     handleCloseUserMenu()
     startTransition(() => {
-      void selectWorkspace(id)
+      void selectWorkspace(id).then((workspace) => {
+        if (workspace?.id) {
+          window.setTimeout(() => {
+            navigate({ pathname: window.location.pathname, hash: `#${workspace.id}`, search: window.location.search }, { replace: true })
+          })
+        }
+      })
     })
   }
 
   const handleGoToAccounts = () => {
     handleCloseUserMenu()
-    navigate('/accounts')
-  }
-
-  const handleGoToWorkspaceSettings = () => {
-    handleCloseUserMenu()
-    navigate('/workspace-settings')
+    navigate('/user-settings')
   }
 
   return (
@@ -108,21 +108,13 @@ export const UserProfileButton = () => {
               </Typography>
             </MenuItem>
           ))}
-          <MenuItem onClick={handleGoToWorkspaceSettings}>
-            <ListItemIcon>
-              <RoomPreferencesIcon color="primary" />
-            </ListItemIcon>
-            <Typography textAlign="center">
-              <Trans>Workspace Settings</Trans>
-            </Typography>
-          </MenuItem>
           <Divider />
           <MenuItem onClick={handleGoToAccounts}>
             <ListItemIcon>
               <SettingsIcon color="primary" />
             </ListItemIcon>
             <Typography textAlign="center">
-              <Trans>Accounts</Trans>
+              <Trans>User Settings</Trans>
             </Typography>
           </MenuItem>
           <MenuItem onClick={handleLogout}>
