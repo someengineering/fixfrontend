@@ -24,22 +24,19 @@ import {
 import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { Fragment, ReactNode, useEffect, useRef, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { FailedChecks } from 'src/pages/panel/shared/failed-checks'
 import { postWorkspaceInventoryNodeQuery } from 'src/pages/panel/shared/queries'
+import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { panelUI } from 'src/shared/constants'
 import { Modal as PopupModal } from 'src/shared/modal'
-import { PostWorkspaceInventorySearchTableRow } from 'src/shared/types/server'
 import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
+import { getLocationSearchValues, removeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { YamlHighlighter } from 'src/shared/yaml-highlighter'
 import { stringify } from 'yaml'
 import { inventorySendToGTM } from './utils'
-
-interface ResourceDetailProps {
-  detail: PostWorkspaceInventorySearchTableRow | undefined
-  onClose: () => void
-}
 
 const Modal = styled(MuiModal)(({ theme }) => ({
   position: 'fixed',
@@ -116,32 +113,47 @@ const GridItem = ({
   )
 }
 
-export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
+export const ResourceDetail = () => {
+  const { resourceDetailId } = useParams()
+  const navigate = useAbsoluteNavigate()
   const openResourceModalRef = useRef<(show?: boolean | undefined) => void>()
   const { selectedWorkspace } = useUserProfile()
   const {
     i18n: { locale },
   } = useLingui()
   const { data, isLoading, error } = useQuery({
-    queryKey: ['workspace-inventory-node', selectedWorkspace?.id, detail?.id],
+    queryKey: ['workspace-inventory-node', selectedWorkspace?.id, resourceDetailId],
     queryFn: postWorkspaceInventoryNodeQuery,
     throwOnError: false,
+    enabled: !!resourceDetailId,
   })
-  const [selectedRow, setSelectedRow] = useState(detail)
+  const [selectedRow, setSelectedRow] = useState(resourceDetailId)
 
   useEffect(() => {
     if (error) {
-      inventorySendToGTM('postWorkspaceInventoryNodeQuery', false, error as AxiosError, detail?.id, detail?.id)
+      inventorySendToGTM('postWorkspaceInventoryNodeQuery', false, error as AxiosError, resourceDetailId, resourceDetailId)
     }
-  }, [detail?.id, error])
+  }, [resourceDetailId, error])
 
   useEffect(() => {
-    if (detail) {
-      setSelectedRow(detail)
+    if (resourceDetailId) {
+      setSelectedRow(resourceDetailId)
     }
-  }, [detail])
+  }, [resourceDetailId])
 
-  const { id, name, kind, ctime, age: _age, tags } = data?.resource.reported ?? {}
+  const handleClose = () => {
+    const search = getLocationSearchValues(window.location.search)
+    navigate({ pathname: '/inventory', search: removeLocationSearchValues(search, 'name') })
+  }
+
+  const {
+    id,
+    name = getLocationSearchValues(window.location.search)?.name || '',
+    kind,
+    ctime,
+    age: _age,
+    tags,
+  } = data?.resource.reported ?? {}
   const cloud = data?.resource.ancestors?.cloud?.reported?.name ?? '-'
   const accountObj = data?.resource.ancestors?.account?.reported
   const account = accountObj ? `${accountObj?.name} (${accountObj?.id})` : '-'
@@ -150,8 +162,8 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
   const { tags: _tags, ...reported } = data?.resource.reported ?? {}
 
   return selectedRow ? (
-    <Modal open={!!detail} onClose={onClose}>
-      <Slide in={!!detail} direction="left" mountOnEnter unmountOnExit>
+    <Modal open={!!resourceDetailId} onClose={handleClose}>
+      <Slide in={!!resourceDetailId} direction="left" mountOnEnter unmountOnExit>
         <Stack
           position="absolute"
           top={0}
@@ -180,9 +192,9 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
           >
             <Stack direction="row" alignItems="center" gap={1} flex={1}>
               {cloud !== '-' ? <CloudAvatar cloud={cloud} /> : null}
-              {typeof selectedRow.row['name'] === 'object' ? '' : selectedRow.row['name']}
+              {name}
             </Stack>
-            <IconButton onClick={onClose}>
+            <IconButton onClick={handleClose}>
               <CloseIcon />
             </IconButton>
           </Stack>

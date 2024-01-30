@@ -50,11 +50,11 @@ const WorkspaceSettingsUsersPage = lazy(
     ),
 )
 
-const WorkspaceSettingsUserInvitesPage = lazy(
+const UserSettingsPage = lazy(
   () =>
     import(
-      /* webpackChunkName: "workspace-settings-user-invites" */
-      'src/pages/panel/workspace-settings-user-invitations/WorkspaceSettingsUserInvitationsPage'
+      /* webpackChunkName: "user-settings" */
+      'src/pages/panel/user-settings/UserSettingsPage'
     ),
 )
 
@@ -82,21 +82,25 @@ export function PanelRoutes() {
           <Route element={<AccountCheckGuard />}>
             <Route element={<BenchmarkCheckGuard />}>
               <Route index element={<HomePage />} />
-              <Route path="inventory" element={<InventoryPage />} />
+              <Route path="inventory">
+                <Route index element={<InventoryPage />} />
+                <Route path="resource-detail/:resourceDetailId" element={<InventoryPage />} />
+              </Route>
             </Route>
-
-            <Route path="accounts" element={<AccountsPage />} />
+            <Route path="workspace-settings">
+              <Route path="accounts" element={<AccountsPage />} />
+            </Route>
           </Route>
+          <Route path="user-settings" element={<UserSettingsPage />} />
           <Route path="workspace-settings">
             <Route index element={<WorkspaceSettingsPage />} />
-            <Route path="users">
-              <Route index element={<WorkspaceSettingsUsersPage />} />
-              <Route path="invitations" element={<WorkspaceSettingsUserInvitesPage />} />
-            </Route>
+            <Route path="users" element={<WorkspaceSettingsUsersPage />} />
             <Route path="billing-receipts" element={<WorkspaceSettingsBillingPage />} />
             <Route path="external-directories" element={<WorkspaceSettingsExternalDirectoryPage />} />
+            <Route path="accounts">
+              <Route path="setup-cloud" element={<SetupCloudPage />} />
+            </Route>
           </Route>
-          <Route path="setup-cloud" element={<SetupCloudPage />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>

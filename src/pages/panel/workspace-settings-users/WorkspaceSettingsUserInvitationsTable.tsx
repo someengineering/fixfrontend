@@ -3,7 +3,8 @@ import { Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } f
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { TableViewPage } from 'src/shared/layouts/panel-layout'
+import { panelUI } from 'src/shared/constants'
+import { TableView } from 'src/shared/layouts/panel-layout'
 import { WorkspaceSettingsUserInvitationRow } from './WorkspaceSettingsUserInvitationRow'
 import { getWorkspaceInvitesQuery } from './getWorkspaceInvites.query'
 
@@ -14,23 +15,26 @@ export const WorkspaceSettingsUserInvitationsTable = () => {
     queryFn: getWorkspaceInvitesQuery,
   })
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(10)
+  const [rowsPerPage, setRowsPerPage] = useState(5)
   return (
     <>
-      <Stack pb={2} justifyContent="space-between" direction="row">
+      <Stack pb={2} justifyContent="space-between" direction="row" id="pending-invitations">
         <Typography variant="h3">
           <Trans>Pending Invitations</Trans>
         </Typography>
       </Stack>
-      <TableViewPage
+      <TableView
         paginationProps={{
           dataCount: data.length ?? 0,
           page,
+          pages: [5, ...panelUI.tableRowsPerPages],
           rowsPerPage,
           setPage,
           setRowsPerPage,
+          id: 'WorkspaceSettingsUserInvitationsTable',
         }}
         minHeight={200}
+        stickyPagination
       >
         <Table stickyHeader aria-label={t`Pending Invitations`}>
           <TableHead>
@@ -57,7 +61,7 @@ export const WorkspaceSettingsUserInvitationsTable = () => {
               ))}
           </TableBody>
         </Table>
-      </TableViewPage>
+      </TableView>
     </>
   )
 }

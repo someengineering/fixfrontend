@@ -1,23 +1,42 @@
 import { TablePagination as MuiTablePagination } from '@mui/material'
 import { ChangeEvent } from 'react'
 import { panelUI } from 'src/shared/constants'
-import { useTableViewPageScroll } from 'src/shared/layouts/panel-layout'
+// eslint-disable-next-line no-restricted-imports
+import { usePageScroll } from '../usePageScroll'
 
 export interface TablePaginationProps {
   dataCount: number
   page: number
+  pages?: number[]
   rowsPerPage: number
   setPage: (page: number) => void
   setRowsPerPage: (page: number) => void
   name?: string
+  id?: string
 }
 
-export const TablePagination = ({ dataCount, page, rowsPerPage, setPage, setRowsPerPage, name }: TablePaginationProps) => {
-  const tableContainerRef = useTableViewPageScroll()
+export const TablePagination = ({
+  dataCount,
+  page,
+  pages = panelUI.tableRowsPerPages,
+  rowsPerPage,
+  setPage,
+  setRowsPerPage,
+  id,
+  name,
+}: TablePaginationProps) => {
+  const tableContainerRef = usePageScroll()
 
   const handleChangePage = (_: unknown, newPage: number) => {
     setPage(newPage)
-    tableContainerRef.current?.scrollTo({ top: 0, behavior: 'smooth' })
+    let top = 0
+    if (id) {
+      const newTop = window.document.getElementById(id)?.offsetTop
+      if (newTop) {
+        top = newTop
+      }
+    }
+    tableContainerRef.current?.scrollTo({ top, behavior: 'smooth' })
   }
 
   const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
@@ -27,7 +46,7 @@ export const TablePagination = ({ dataCount, page, rowsPerPage, setPage, setRows
 
   return (
     <MuiTablePagination
-      rowsPerPageOptions={panelUI.tableRowsPerPages}
+      rowsPerPageOptions={pages}
       component="div"
       labelDisplayedRows={dataCount < 0 ? () => `${page * rowsPerPage} - ${page * rowsPerPage + rowsPerPage}` : undefined}
       count={dataCount}

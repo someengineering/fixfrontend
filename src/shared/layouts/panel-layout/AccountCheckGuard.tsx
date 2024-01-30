@@ -18,7 +18,7 @@ export const AccountCheckGuard = () => {
   const navigate = useAbsoluteNavigate()
 
   const handleGoToSetupCloudPage = useCallback(() => {
-    navigate('/setup-cloud')
+    navigate('/workspace-settings/accounts/setup-cloud')
   }, [navigate])
 
   const doesNotHaveAccount = !data.added.length && !data.recent.length && !data.discovered.length

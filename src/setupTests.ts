@@ -11,7 +11,7 @@ global.window = {
     ...global.location,
     hostname: 'localhost',
     pathname: '/',
-    origin: 'http://localhost:8081',
+    origin: `${import.meta.env.VITE_SERVER}`,
   },
   localStorage: (() => {
     let items = {} as Record<string, string>

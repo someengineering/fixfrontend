@@ -9,6 +9,7 @@ import { Link, Location, useLocation, useSearchParams } from 'react-router-dom'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { LoginSocialMedia } from 'src/shared/login-social-media'
+import { PasswordTextField } from 'src/shared/password-text-field'
 import { SocialMediaButtonSkeleton } from 'src/shared/social-media-button'
 import { registerMutation } from './register.mutation'
 
@@ -86,7 +87,7 @@ export default function RegisterPage() {
           />
         </Grid>
         <Grid item>
-          <TextField
+          <PasswordTextField
             required
             id="password"
             name="password"
@@ -94,7 +95,6 @@ export default function RegisterPage() {
             label={t`Password`}
             variant="outlined"
             fullWidth
-            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value ?? '')}
           />
