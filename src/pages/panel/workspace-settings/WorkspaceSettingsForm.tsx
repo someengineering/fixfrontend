@@ -1,124 +1,77 @@
-import { LoadingButton } from '@mui/lab'
-import { Button, Skeleton, Stack, TextField, Typography } from '@mui/material'
-import { FormEvent, MutableRefObject, ReactNode, useEffect, useRef, useState } from 'react'
+import { Trans } from '@lingui/macro'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useRef } from 'react'
+import { useUserProfile } from 'src/core/auth'
+import { useCopyString } from 'src/shared/utils/useCopyString'
+import { WorkspaceSettingsFormItem } from './WorkspaceSettingsFormItem'
+import { getWorkspaceSettingsQuery } from './getWorkspaceSettings.query'
+import { patchWorkspaceSettingsMutation } from './patchWorkspaceSettings.mutation'
 
-interface WorkspaceSettingsFormProps {
-  label: ReactNode
-  buttonName: ReactNode
-  value: string
-  pending?: boolean
-  loading: boolean
-  onSubmit: (value: string) => void
-  readonly?: boolean
-  hide?: boolean
-  focusedRef?: MutableRefObject<((focused: boolean) => void) | undefined>
-}
-
-export const WorkspaceSettingsForm = ({
-  loading,
-  label,
-  pending,
-  onSubmit,
-  readonly,
-  value,
-  buttonName,
-  hide,
-  focusedRef,
-}: WorkspaceSettingsFormProps) => {
-  const [inputValue, setInputValue] = useState(value)
-  const [focused, setFocused] = useState(false)
-
-  const focusedInputRef = useRef<HTMLInputElement>(null)
-
-  useEffect(() => {
-    if (focusedRef) {
-      focusedRef.current = (value: boolean) => {
-        if (value) {
-          setFocused(true)
-          let eventClosed = false
-          const clickEventListener = (e: MouseEvent) => {
-            if (e.target !== window.document.activeElement) {
-              window.removeEventListener('click', clickEventListener)
-              eventClosed = true
-              setFocused(false)
-            }
-          }
-          window.addEventListener('click', clickEventListener)
-          return () => {
-            if (!eventClosed) {
-              window.removeEventListener('click', clickEventListener)
-            }
-          }
-        } else {
-          setFocused(false)
-        }
+export const WorkspaceSettingsForm = () => {
+  const { selectedWorkspace, refreshWorkspaces } = useUserProfile()
+  const queryClient = useQueryClient()
+  const copyString = useCopyString()
+  const focusedRef = useRef<(focused: boolean) => void>()
+  const { mutate: workspaceSettingsMutation, isPending } = useMutation({
+    mutationFn: patchWorkspaceSettingsMutation,
+    onSuccess: (data) => {
+      if (Object.keys(data).length) {
+        queryClient.setQueryData(['workspace-settings', selectedWorkspace?.id ?? ''], () => data)
+        queryClient.setQueryData(['workspace-external-id', selectedWorkspace?.id ?? ''], () => data.external_id)
+      } else {
+        void queryClient.invalidateQueries({
+          predicate: (query) => query.queryKey[0] === 'workspace-settings' || query.queryKey[0] === 'workspace-external-id',
+        })
       }
-    }
-  }, [focusedRef])
-
-  useEffect(() => {
-    setInputValue(value)
-  }, [value])
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    onSubmit(inputValue)
-  }
-
-  return loading ? (
-    <Stack direction={{ xs: 'column', md: 'row' }} alignItems="center" spacing={1}>
-      <Typography width={150}>{label}</Typography>
-      <Skeleton>
-        <Stack width={400}>
-          <TextField />
-        </Stack>
-      </Skeleton>
-      <Button variant="contained" type="submit" disabled>
-        {buttonName}
-      </Button>
-    </Stack>
-  ) : (
-    <Stack
-      direction={{ xs: 'column', sm: 'row' }}
-      width={{ xs: '100%', sm: undefined }}
-      spacing={1}
-      alignItems={{ xs: 'end', sm: 'center' }}
-      component={readonly ? 'div' : 'form'}
-      onSubmit={readonly ? undefined : handleSubmit}
-    >
-      <Typography width={{ xs: '100%', sm: 150 }}>{label}</Typography>
-      <Stack width={{ xs: '100%', sm: 400 }}>
-        {readonly ? (
-          <TextField
-            size="small"
-            value={hide && !focused ? value.replace(/[\da-zA-Z]/g, '*') : value}
-            focused={hide ? focused : undefined}
-            onFocus={hide ? () => setFocused(true) : undefined}
-            onBlur={hide ? () => setFocused(false) : undefined}
-            aria-readonly="true"
-            InputProps={{
-              readOnly: true,
-              ref: focusedInputRef,
-            }}
-          />
-        ) : (
-          <TextField
-            placeholder={value}
-            value={inputValue}
-            size="small"
-            onChange={readonly ? undefined : (e) => setInputValue(e.target.value)}
-          />
-        )}
-      </Stack>
-      <LoadingButton
-        variant="contained"
-        type={readonly ? 'button' : 'submit'}
-        onClick={readonly ? () => onSubmit(inputValue) : undefined}
-        disabled={!readonly && inputValue === value}
-        loading={pending}
-      >
-        {buttonName}
-      </LoadingButton>
-    </Stack>
+    },
+    onSettled: () => {
+      void refreshWorkspaces()
+    },
+  })
+  const { data, isLoading } = useQuery({
+    queryKey: ['workspace-settings', selectedWorkspace?.id ?? ''],
+    queryFn: getWorkspaceSettingsQuery,
+    enabled: !!selectedWorkspace,
+  })
+  return (
+    <>
+      <WorkspaceSettingsFormItem
+        label={<Trans>Workspace Name</Trans>}
+        buttonName={<Trans>Rename</Trans>}
+        isPending={isPending}
+        isLoading={isLoading}
+        onSubmit={(name) => workspaceSettingsMutation({ name, generate_new_external_id: false, workspaceId: selectedWorkspace?.id ?? '' })}
+        value={data?.name ?? ''}
+      />
+      <WorkspaceSettingsFormItem
+        label={<Trans>Workspace Id</Trans>}
+        buttonName={<Trans>Copy</Trans>}
+        isLoading={isLoading}
+        onSubmit={(id) => void copyString(id)}
+        readonly
+        value={data?.id ?? ''}
+      />
+      <WorkspaceSettingsFormItem
+        label={<Trans>External Id</Trans>}
+        buttonName={<Trans>Regenerate</Trans>}
+        isPending={isPending}
+        isLoading={isLoading}
+        onSubmit={() =>
+          workspaceSettingsMutation(
+            { name: data?.name ?? '', generate_new_external_id: true, workspaceId: selectedWorkspace?.id ?? '' },
+            {
+              onSuccess: (data) => {
+                void copyString(data.external_id)
+                focusedRef.current?.(true)
+              },
+            },
+          )
+        }
+        focusedRef={focusedRef}
+        readonly
+        hide
+        value={data?.external_id ?? ''}
+      />
+    </>
   )
 }

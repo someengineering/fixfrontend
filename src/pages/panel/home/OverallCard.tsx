@@ -108,7 +108,7 @@ export const OverallCard = ({ data }: OverallCardProps) => {
                   <>
                     <Divider />
                     <Typography variant="body1">
-                      <Trans>Top 3 Non-Compliant Accounts</Trans>
+                      <Trans>Most Non-Compliant Accounts</Trans>
                     </Typography>
                     <Typography variant="body1">
                       {data.changed_vulnerable.accounts_selection.map((accountId, i) => (
@@ -193,7 +193,7 @@ export const OverallCard = ({ data }: OverallCardProps) => {
               <Stack spacing={0.5}>
                 <Divider />
                 <Typography variant="body1">
-                  <Trans>Top 3 Improved Accounts</Trans>
+                  <Trans>Most Improved Accounts</Trans>
                 </Typography>
                 <Typography variant="body1">
                   {data.changed_compliant.accounts_selection.map((accountId, i) => (

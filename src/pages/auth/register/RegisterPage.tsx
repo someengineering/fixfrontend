@@ -48,9 +48,6 @@ export default function RegisterPage() {
         })
     }
   }
-  const handleClickHref = () => {
-    setIsLoading(true)
-  }
   const isLoadingGeneric = isLoading || isRegisterLoading
   const registerError = ((error as AxiosError)?.response?.data as { detail: string })?.detail
   return (
@@ -136,7 +133,7 @@ export default function RegisterPage() {
               </Grid>
             ))}
           >
-            <LoginSocialMedia isLoading={isLoadingGeneric} onClick={handleClickHref} />
+            <LoginSocialMedia isLoading={isLoadingGeneric} />
           </Suspense>
         </NetworkErrorBoundary>
       </Grid>

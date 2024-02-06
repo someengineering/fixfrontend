@@ -20,7 +20,6 @@ export const WorkspaceSettingsUserInvitationRow = ({ workspaceInvite }: { worksp
 
   const { mutate: deleteWorkspaceUser, isPending: deleteWorkspaceUserIsPending } = useMutation({
     mutationFn: deleteWorkspaceInviteMutation,
-    mutationKey: ['delete-workspace-invites', selectedWorkspace?.id],
   })
 
   const handleDeleteModal = () => {
@@ -32,7 +31,7 @@ export const WorkspaceSettingsUserInvitationRow = ({ workspaceInvite }: { worksp
   const handleDelete = () => {
     if (selectedWorkspace?.id) {
       deleteWorkspaceUser(
-        { workspaceId: selectedWorkspace.id, inviteId: workspaceInvite.user_email },
+        { workspaceId: selectedWorkspace.id, inviteId: workspaceInvite.invite_id },
         {
           onSuccess: () => {
             queryClient.setQueryData(['workspace-invites', selectedWorkspace?.id], (oldData: WorkspaceInvite[]) => {

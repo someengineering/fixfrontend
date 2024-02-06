@@ -3,7 +3,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import { IconButton, InputAdornment, InputProps, TextField, TextFieldProps } from '@mui/material'
 import { useState } from 'react'
 
-interface PasswordTextFieldProps extends Omit<TextFieldProps, 'type' | 'InputProps'> {
+export interface PasswordTextFieldProps extends Omit<TextFieldProps, 'type' | 'InputProps'> {
   InputProps?: Omit<InputProps, 'endAdornment'>
 }
 

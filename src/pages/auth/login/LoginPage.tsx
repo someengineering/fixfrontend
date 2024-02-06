@@ -48,9 +48,6 @@ export default function LoginPage() {
         })
     }
   }
-  const handleClickHref = () => {
-    setIsLoading(true)
-  }
   const isLoadingGeneric = isLoading || isLoginLoading
   const isVerify = getSearch.get('verify') === 'true'
   const isVerified = getSearch.get('verified') === 'true'
@@ -152,7 +149,7 @@ export default function LoginPage() {
               </Grid>
             ))}
           >
-            <LoginSocialMedia isLoading={isLoadingGeneric} onClick={handleClickHref} />
+            <LoginSocialMedia isLoading={isLoadingGeneric} />
           </Suspense>
         </NetworkErrorBoundary>
       </Grid>
