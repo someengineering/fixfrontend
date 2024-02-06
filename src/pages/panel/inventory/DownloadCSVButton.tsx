@@ -1,24 +1,25 @@
 import { Trans } from '@lingui/macro'
 import DownloadIcon from '@mui/icons-material/Download'
-import WarningAmberIcon from '@mui/icons-material/WarningAmber'
-import { Button, CircularProgress, LinearProgress } from '@mui/material'
+import { Box, Button, CircularProgress, LinearProgress, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { ForwardedRef, forwardRef, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventorySearchTableDownloadMutation } from 'src/pages/panel/shared/queries'
-import { GTMEventNames } from 'src/shared/constants'
+import { GTMEventNames, panelUI } from 'src/shared/constants'
 import { sendToGTM } from 'src/shared/google-tag-manager'
+import { Modal } from 'src/shared/modal'
 import { jsonToStr } from 'src/shared/utils/jsonToStr'
 import { TrackJS } from 'trackjs'
 
 interface DownloadCSVButtonProps {
   query: string
-  warning?: boolean
+  hasWarning?: boolean
 }
 
 export const DownloadCSVButton = forwardRef(
-  ({ query, warning, ...tooltipProps }: DownloadCSVButtonProps, ref: ForwardedRef<HTMLButtonElement | null>) => {
+  ({ query, hasWarning, ...tooltipProps }: DownloadCSVButtonProps, ref: ForwardedRef<HTMLButtonElement | null>) => {
+    const warningModal = useRef<(show?: boolean | undefined) => void>()
     const { selectedWorkspace } = useUserProfile()
     const [progress, setProgress] = useState(-1)
     const { mutateAsync, isPending } = useMutation({
@@ -63,20 +64,61 @@ export const DownloadCSVButton = forwardRef(
             })
           }
         })
+        .finally(() => warningModal.current?.(false))
     }
-    return (
+    const downloadButton = (
       <Button
         {...tooltipProps}
         variant="outlined"
-        startIcon={progress < 0 && isPending ? <CircularProgress color="inherit" size={16} /> : isPending ? null : <DownloadIcon />}
-        endIcon={warning ? <WarningAmberIcon /> : null}
+        startIcon={
+          progress < 0 && isPending ? <CircularProgress color="inherit" value={progress || undefined} size={16} /> : <DownloadIcon />
+        }
         onClick={handleClick}
         disabled={isPending}
-        color={warning ? 'warning' : 'primary'}
         ref={ref}
       >
-        {progress >= 0 && isPending ? <LinearProgress valueBuffer={100} value={progress} /> : <Trans>Download CSV</Trans>}
+        <Box width={120}>
+          {progress >= 0 && isPending ? (
+            <LinearProgress variant={progress > 0 ? 'determinate' : 'indeterminate'} value={progress} />
+          ) : (
+            <Trans>Download CSV</Trans>
+          )}
+        </Box>
       </Button>
+    )
+    return (
+      <>
+        {hasWarning ? (
+          <>
+            <Button
+              variant="outlined"
+              startIcon={<DownloadIcon />}
+              disabled={isPending}
+              ref={ref}
+              onClick={() => warningModal.current?.(true)}
+            >
+              <Trans>Download CSV</Trans>
+            </Button>
+            <Modal
+              openRef={warningModal}
+              title={
+                <Typography variant="h4" color="warning.main">
+                  <Trans>Warning</Trans>
+                </Typography>
+              }
+              actions={downloadButton}
+            >
+              <Typography>
+                <Trans>
+                  Because the data is over {panelUI.maxCSVDownload} Only first {panelUI.maxCSVDownload} items will be downloaded
+                </Trans>
+              </Typography>
+            </Modal>
+          </>
+        ) : (
+          downloadButton
+        )}
+      </>
     )
   },
 )

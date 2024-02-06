@@ -3,6 +3,7 @@ import { useLingui } from '@lingui/react'
 import { Typography } from '@mui/material'
 import { Suspense } from 'react'
 import { FixLogo } from 'src/assets/icons'
+import { useUserProfile } from 'src/core/auth'
 import { WebSocketEvents } from 'src/core/events'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { BottomRegion, ContentRegion, LogoRegion, PanelLayout } from 'src/shared/layouts/panel-layout'
@@ -11,8 +12,9 @@ import { PanelInitialMessageHandler } from './PanelInitialMessageHandler'
 import { PanelRoutes } from './PanelRoutes'
 
 export default function PanelContainer() {
+  const { selectedWorkspace, workspaces } = useUserProfile()
   useLingui()
-  return (
+  return selectedWorkspace && workspaces?.length ? (
     <WebSocketEvents>
       <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
         <Suspense fallback={<FullPageLoadingSuspenseFallback forceFullPage />}>
@@ -37,5 +39,7 @@ export default function PanelContainer() {
         </Suspense>
       </NetworkErrorBoundary>
     </WebSocketEvents>
+  ) : (
+    <FullPageLoadingSuspenseFallback forceFullPage />
   )
 }

@@ -1,4 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http'
+import { MockRequest } from 'vite-plugin-mock-dev-server'
 
 export function getBodyFromRawRequest(req: IncomingMessage, res: ServerResponse<IncomingMessage>, isJSON?: false): Promise<string>
 export function getBodyFromRawRequest<T extends object = object>(
@@ -11,6 +12,9 @@ export async function getBodyFromRawRequest<T = object>(
   res: ServerResponse<IncomingMessage>,
   isJSON: boolean = false,
 ) {
+  if (req.readableEnded) {
+    return (req as MockRequest).body as unknown as typeof isJSON extends true ? T : string
+  }
   let reqbody = ''
   await new Promise((resolve) => {
     req.on('data', (chunk) => {
@@ -83,20 +87,20 @@ export function responseJSONWithAuthCheck<T extends string | number | unknown[] 
 ): (req: IncomingMessage, res: ServerResponse) => Promise<void>
 export function responseJSONWithAuthCheck<T extends string | number | unknown[] | Record<string, unknown>>(
   json: T | ((params: { req: IncomingMessage; res: ServerResponse; email: string }) => T | undefined | Promise<T | undefined>),
-): (req: IncomingMessage, res: ServerResponse) => Promise<T | undefined> {
+): (req: IncomingMessage, res: ServerResponse) => Promise<void> {
   return async (req: IncomingMessage, res: ServerResponse) => {
     const email = req.headers.cookie
     if (!email) {
       res.statusCode = 401
       res.end(JSON.stringify({ detail: 'Unauthorized' }))
-      return typeof json === 'function' ? await json({ req, res, email: '' }) : json
+      // return typeof json === 'function' ? await json({ req, res, email: '' }) : json
     } else {
       res.statusCode = 200
       const data = typeof json === 'function' ? await json({ req, res, email }) : json
       if (data !== undefined || data !== null) {
         res.end(typeof data === 'object' ? JSON.stringify(data) : data)
       }
-      return data
+      // return data
     }
   }
 }

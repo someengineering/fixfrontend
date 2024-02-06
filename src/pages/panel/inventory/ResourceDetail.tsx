@@ -202,7 +202,7 @@ export const ResourceDetail = () => {
             {data ? (
               <NetworkDiagram data={data.neighborhood} />
             ) : isLoading ? (
-              <Skeleton height={400} width="100%" variant="rectangular" />
+              <Skeleton height={400} width="100%" variant="rounded" />
             ) : null}
           </Box> */}
           <Accordion defaultExpanded>
@@ -270,7 +270,7 @@ export const ResourceDetail = () => {
                 </>
               ) : isLoading ? (
                 <>
-                  <Skeleton height={200} width="100%" variant="rectangular" />
+                  <Skeleton height={200} width="100%" variant="rounded" />
                 </>
               ) : null}
             </AccordionDetails>
@@ -304,7 +304,7 @@ export const ResourceDetail = () => {
                 </Stack>
               ) : isLoading ? (
                 <>
-                  <Skeleton height={400} width="100%" variant="rectangular" />
+                  <Skeleton height={400} width="100%" variant="rounded" />
                 </>
               ) : null}
             </AccordionDetails>

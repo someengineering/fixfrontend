@@ -44,22 +44,18 @@ export const AccountRow = ({ account }: { account: Account }) => {
 
   const { mutate: renameAccount, isPending: renameAccountIsPending } = useMutation({
     mutationFn: patchAccountMutation,
-    mutationKey: ['edit-workspace-account', selectedWorkspace?.id, account.id],
   })
 
   const { mutate: disableAccount, isPending: disableAccountIsPending } = useMutation({
     mutationFn: patchAccountDisableMutation,
-    mutationKey: ['edit-workspace-account', selectedWorkspace?.id, account.id],
   })
 
   const { mutate: enableAccount, isPending: enableAccountIsPending } = useMutation({
     mutationFn: patchAccountEnableMutation,
-    mutationKey: ['edit-workspace-account', selectedWorkspace?.id, account.id],
   })
 
   const { mutate: deleteAccount, isPending: deleteAccountIsPending } = useMutation({
     mutationFn: deleteAccountMutation,
-    mutationKey: ['edit-workspace-account', selectedWorkspace?.id, account.id],
   })
 
   const [isEdit, setIsEdit] = useState(false)

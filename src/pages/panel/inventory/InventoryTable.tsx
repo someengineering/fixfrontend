@@ -1,5 +1,5 @@
-import { Trans, t } from '@lingui/macro'
-import { Skeleton, Stack, Table, TableBody, TableCell, TableHead, TableRow, Tooltip } from '@mui/material'
+import { t } from '@lingui/macro'
+import { Skeleton, Stack, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
@@ -98,13 +98,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
         stickyPagination
         headerToolbar={
           <Stack px={1} alignItems="end" width="100%">
-            {totalCount > panelUI.maxCSVDownload ? (
-              <Tooltip title={<Trans>Only first {panelUI.maxCSVDownload} items will be downloaded</Trans>}>
-                <DownloadCSVButton query={searchCrit} warning />
-              </Tooltip>
-            ) : (
-              <DownloadCSVButton query={searchCrit} />
-            )}
+            <DownloadCSVButton query={searchCrit} hasWarning={dataCount > panelUI.maxCSVDownload} />
           </Stack>
         }
       >
@@ -125,7 +119,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
                     <TableRow key={`${row.id}-${i}`}>
                       {columns.map((column, j) => (
                         <TableCell key={`${column.name}-${row.id}-${i}-${j}`}>
-                          <Skeleton variant="rectangular" />
+                          <Skeleton variant="rounded" />
                         </TableCell>
                       ))}
                     </TableRow>

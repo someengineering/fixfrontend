@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosInstance } from 'axios'
-import { PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react'
+import { PropsWithChildren, SetStateAction, useCallback, useEffect, useRef, useState } from 'react'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { GTMEventNames } from 'src/shared/constants'
 import { sendToGTM } from 'src/shared/google-tag-manager'
@@ -10,8 +10,8 @@ import { jsonToStr } from 'src/shared/utils/jsonToStr'
 import { getAuthData, setAuthData } from 'src/shared/utils/localstorage'
 import { TrackJS } from 'trackjs'
 import { UserContext, UserContextRealValues } from './UserContext'
-import { getCurrentUserMutation } from './getCurrentUser.mutation'
-import { getWorkspacesMutation } from './getWorkspaces.mutation'
+import { getCurrentUserQuery } from './getCurrentUser.query'
+import { getWorkspacesQuery } from './getWorkspaces.query'
 import { logoutMutation } from './logout.mutation'
 
 const defaultAuth = { isAuthenticated: false, workspaces: [], selectedWorkspace: undefined, currentUser: undefined }
@@ -36,10 +36,11 @@ export function AuthGuard({ children }: PropsWithChildren) {
       isAuthenticated,
     }
   })
+
   const navigate = useAbsoluteNavigate()
   const nextUrl = useRef<string>()
 
-  const handleSetAuth = useCallback((data: UserContextRealValues | undefined, url?: string) => {
+  const handleSetAuth = useCallback((data: SetStateAction<UserContextRealValues> | undefined, url?: string) => {
     if (!data) {
       setAuth(defaultAuth)
     } else {
@@ -65,12 +66,20 @@ export function AuthGuard({ children }: PropsWithChildren) {
 
   const handleRefreshWorkspaces = useCallback(async (instance?: AxiosInstance) => {
     try {
-      const workspaces = await getWorkspacesMutation(instance ?? axiosWithAuth)
-      setAuth((prev) => ({
-        ...prev,
-        workspaces,
-        selectedWorkspace: workspaces.find((workspace) => workspace.id === prev.selectedWorkspace?.id) ?? workspaces[0],
-      }))
+      const workspaces = await getWorkspacesQuery(instance ?? axiosWithAuth)
+      setAuth((prev) => {
+        const selectedWorkspace =
+          (prev.selectedWorkspace?.id ? workspaces.find((workspace) => workspace.id === prev.selectedWorkspace?.id) : workspaces[0]) ??
+          workspaces[0]
+        window.setTimeout(() => {
+          window.location.hash = selectedWorkspace?.id ?? ''
+        })
+        return {
+          ...prev,
+          workspaces,
+          selectedWorkspace,
+        }
+      })
       return workspaces
     } catch {
       setAuth(defaultAuth)
@@ -94,7 +103,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
   }, [])
 
   useEffect(() => {
-    if (auth?.isAuthenticated) {
+    if (auth.isAuthenticated) {
       const instance = axios.create({
         ...defaultAxiosConfig,
         withCredentials: true,
@@ -158,18 +167,18 @@ export function AuthGuard({ children }: PropsWithChildren) {
       )
       setAxiosWithAuth(instance)
       void handleRefreshWorkspaces(instance)
-      void getCurrentUserMutation(instance).then((currentUser) => {
+      void getCurrentUserQuery(instance).then((currentUser) => {
         setAuth((prev) => ({ ...prev, currentUser }))
       })
     }
-  }, [auth?.isAuthenticated, handleRefreshWorkspaces, handleLogout])
+  }, [auth.isAuthenticated, handleRefreshWorkspaces, handleLogout, navigate])
 
   useEffect(() => {
     setAuthData({
       isAuthenticated: auth.isAuthenticated,
       selectedWorkspaceId: auth.selectedWorkspace?.id,
     })
-    if (nextUrl.current && auth?.isAuthenticated) {
+    if (nextUrl.current && auth.isAuthenticated) {
       navigate(nextUrl.current, { replace: true })
       nextUrl.current = undefined
     }

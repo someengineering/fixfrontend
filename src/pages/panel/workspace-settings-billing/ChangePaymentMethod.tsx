@@ -116,7 +116,6 @@ export const ChangePaymentMethod = ({ paymentMethods, defaultSecurityTier }: Cha
     onSuccess: () => {
       void showSnackbar(t`Payment method changed to ${paymentMethod} as ${securityTier}`, { severity: 'success' })
     },
-    mutationKey: ['put-workspace-billing', selectedWorkspace?.id],
     onError: (err) => {
       const { response: { data } = { data: { message: '' } } } = err as AxiosError
       void showSnackbar((data as { message: string } | undefined)?.message ?? t`An error occurred, please try again later.`, {
