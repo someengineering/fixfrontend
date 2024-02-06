@@ -43,8 +43,8 @@ export const WorkspaceSettingsConnectedServices = () => {
       <WorkspaceSettingsEmailService
         isLoading={isLoading}
         isConnected={!!data?.email}
-        defaultName={data?.email.name}
-        defaultEmail={data?.email.email}
+        defaultName={data?.email?.name}
+        defaultEmail={data?.email?.email}
       />
     </>
   )
