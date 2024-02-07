@@ -8,7 +8,7 @@ import { useHasBenchmarkCheck } from './check-hooks'
 export const BenchmarkCheckGuard = () => {
   const hasBenchmark = useHasBenchmarkCheck()
 
-  return !hasBenchmark ? (
+  return hasBenchmark ? (
     <Outlet />
   ) : (
     <Stack
