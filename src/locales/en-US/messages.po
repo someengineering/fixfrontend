@@ -61,7 +61,11 @@ msgstr "<0>Billing cycle: {0}</0><1>Highest security tier this billing cycle: {t
 msgid "<0>Next invoice will be available: {0}</0>"
 msgstr "<0>Next invoice will be available: {0}</0>"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:88
+#: src/containers/auth/AuthContainer.tsx:82
+msgid "<0>Privacy policy</0> | <1>Terms and conditions</1>"
+msgstr "<0>Privacy policy</0> | <1>Terms and conditions</1>"
+
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:87
 msgid "<0>To ensure you receive timely alerts and notifications directly to your email, we require your email address.<1/>Please note that it is possible to define multiple email addresses.</0>"
 msgstr "<0>To ensure you receive timely alerts and notifications directly to your email, we require your email address.<1/>Please note that it is possible to define multiple email addresses.</0>"
 
@@ -271,10 +275,6 @@ msgstr "Changes in the past 7 days"
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:40
 msgid "Changing your email or password will log you out of your current session. Please make sure to update your login credentials in any saved sessions or devices."
 msgstr "Changing your email or password will log you out of your current session. Please make sure to update your login credentials in any saved sessions or devices."
-
-#: src/containers/auth/AuthContainer.tsx:82
-msgid "Checkout our <0>Privacy policy</0> and our <1>Terms and conditions</1>"
-msgstr "Checkout our <0>Privacy policy</0> and our <1>Terms and conditions</1>"
 
 #: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:100
 msgid "Choose Workspace"
