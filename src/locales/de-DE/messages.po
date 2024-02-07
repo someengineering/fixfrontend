@@ -65,7 +65,7 @@ msgstr "<0>Die nächste Rechnung wird verfügbar sein: {0}</0>"
 msgid "<0>Privacy policy</0> | <1>Terms and conditions</1>"
 msgstr "<0>Datenschutzerklärung</0> | <1>Allgemeine Geschäftsbedingungen</1>"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:87
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:88
 msgid "<0>To ensure you receive timely alerts and notifications directly to your email, we require your email address.<1/>Please note that it is possible to define multiple email addresses.</0>"
 msgstr "<0>Um sicherzustellen, dass Sie zeitnahe Benachrichtigungen und Benachrichtigungen direkt an Ihre E-Mail-Adresse erhalten, benötigen wir Ihre E-Mail-Adresse.<1/>Bitte beachten Sie, dass es möglich ist, mehrere E-Mail-Adressen zu definieren.</0>"
 
@@ -76,6 +76,10 @@ msgstr "<0>Wir verwenden die Events API V2 für Benachrichtigungen über PagerDu
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:78
 msgid "<0>We utilize incoming webhooks to deliver notifications to your Microsoft Teams channels.<1/>To manually add a webhook:<2><3>In Microsoft Teams, click on More options (⋯) next to the channel name and then select Connectors.</3><4>Browse through the list of Connectors to find Incoming Webhook, and click Add.</4><5>Provide a name for the webhook, upload an image to represent data from the webhook, and click Create.</5><6>Copy the webhook URL to your clipboard and keep it safe. This URL is necessary for TrackJS to send notifications.</6><7>Click Done.</7><8>In the text box provided below, paste the Webhook URL you copied and enter the name of the channel.</8></2>More from <9>Microsoft Teams Documentation</9></0>"
 msgstr "<0>Wir nutzen eingehende Webhooks, um Benachrichtigungen an Ihre Microsoft Teams-Kanäle zu übermitteln.<1/>So fügen Sie manuell einen Webhook hinzu:<2><3>Klicken Sie in Microsoft Teams auf Weitere Optionen (⋯) neben dem Kanalnamen und dann Wählen Sie Connectors aus.</3><4>Durchsuchen Sie die Liste der Connectors, um den eingehenden Webhook zu finden, und klicken Sie auf Hinzufügen.</4><5>Geben Sie einen Namen für den Webhook ein, laden Sie ein Bild hoch, um die Daten vom Webhook darzustellen, und Klicken Sie auf „Erstellen“.</5><6>Kopieren Sie die Webhook-URL in Ihre Zwischenablage und bewahren Sie sie sicher auf. Diese URL ist erforderlich, damit TrackJS Benachrichtigungen senden kann.</6><7>Klicken Sie auf „Fertig“.</7><8>Fügen Sie in das unten bereitgestellte Textfeld die Webhook-URL ein, die Sie kopiert haben, und geben Sie den Namen des Kanals ein.</8></2>Mehr aus der <9>Microsoft Teams-Dokumentation</9></0>"
+
+#: src/shared/layouts/panel-layout/BenchmarkCheckGuard.tsx:25
+msgid "<0>Your cloud account has been successfully added!</0><1>Thank you for deploying the CloudFormation stack in your AWS account. Here’s what’s happening behind the scenes:</1><2><3>Initial Trust Establishment (5-15 minutes): After deployment, a cross-account trust for the role included in the stack is established between your and Fix's AWS accounts. Due to AWS's distributed infrastructure, this step can take anywhere from 5 to 15 minutes as we wait for the trust to become active across their network. During this time, our backend continuously probes to confirm when the trust is operational.</3><4>First Security Scan (2-10 minutes): Once the trust is established, we proceed with the initial security scan of your environment. Depending on the size and complexity of your cloud account, this scan can take anywhere from 2 to 10 minutes.</4><5>Email Notification: You won't have to wait in front of your browser to know when we're done. After the first security scan is completed, we'll notify you by email.</5></2><6>What to Expect Next:</6><7><8>Dashboard Availability: Your dashboard and inventory will be available shortly after the completion of the initial security scan. This gives you a comprehensive view of your security posture and any findings we have identified.</8><9>Subsequent Scans: After the initial scan, subsequent security scans will also take 2 to 10 minutes each, without the initial delay, since the trust has to be established only once.</9></7><10>We appreciate your patience during this setup process. If you have any questions or need assistance, please do not hesitate to contact us directly <11>on our Discord server<12/></11>.</10>"
+msgstr "<0>Ihr Cloud-Konto wurde erfolgreich hinzugefügt!</0><1>Vielen Dank, dass Sie den CloudFormation-Stack in Ihrem AWS-Konto bereitgestellt haben. Hier ist, was im Hintergrund geschieht:</1><2><3>Erstmalige Vertrauensstellung (5-15 Minuten): Nach der Bereitstellung wird zwischen Ihrem und Fix's AWS-Konten ein Cross-Account-Vertrauen für die im Stack enthaltene Rolle hergestellt. Aufgrund der verteilten Infrastruktur von AWS kann dieser Schritt zwischen 5 und 15 Minuten dauern, da wir darauf warten, dass die Vertrauensstellung im gesamten Netzwerk aktiv wird. Während dieser Zeit überprüft unser Backend kontinuierlich, wann der Zugriff funktionsfähig ist.</3><4>Erster Sicherheitsscan (2-10 Minuten): Sobald die Vertrauensstellung hergestellt ist, führen wir den ersten Sicherheitsscan Ihrer Umgebung durch. Abhängig von der Größe und Komplexität Ihres Cloud-Kontos kann dieser Scan zwischen 2 und 10 Minuten dauern.</4><5>E-Mail-Benachrichtigung: Sie müssen nicht vor Ihrem Browser warten, um zu wissen, wann wir fertig sind. Nachdem der erste Sicherheitsscan abgeschlossen ist, werden wir Sie per E-Mail benachrichtigen.</5></2><6>Was Sie als Nächstes erwarten können:</6><7><8>Dashboard-Verfügbarkeit: Ihr Dashboard und Inventar werden kurz nach Abschluss des ersten Sicherheitsscans verfügbar sein. Dies gibt Ihnen einen umfassenden Überblick über Ihre Sicherheitslage.</8><9>Nachfolgende Scans: Nach dem ersten Scan werden auch nachfolgende Sicherheitsscans jeweils 2 bis 10 Minuten dauern, ohne die anfängliche Verzögerung, da die Vertrauensstellung nur einmal hergestellt werden muss.</9></7><10>Wir danken Ihnen für Ihre Geduld während dieses Einrichtungsprozesses. Wenn Sie Fragen haben oder Hilfe benötigen, zögern Sie bitte nicht, uns direkt auf <11>unserem Discord-Server<12/></11>zu kontaktieren.</10>"
 
 #: src/containers/auth/AuthContainer.tsx:61
 msgid "A few minutes to first results"
@@ -222,7 +226,7 @@ msgstr "Grundlegende Vermögensinventur"
 msgid "Basic Information"
 msgstr "Grundinformation"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:116
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:114
 msgid "Because the data is over {0} Only first {1} items will be downloaded"
 msgstr "Da die Daten über {0} liegen, werden nur die ersten {1} Elemente heruntergeladen"
 
@@ -490,8 +494,8 @@ msgstr "Downgrade"
 msgid "Download"
 msgstr "Herunterladen"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:88
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:104
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:86
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:102
 msgid "Download CSV"
 msgstr "CSV herunterladen"
 
@@ -934,10 +938,6 @@ msgstr "Sicherer Lesezugriff"
 msgid "Security Issues"
 msgstr "Sicherheitsprobleme"
 
-#: src/shared/layouts/panel-layout/BenchmarkCheckGuard.tsx:24
-msgid "Security Scan in Progress"
-msgstr "Sicherheitsscan läuft"
-
 #: src/pages/panel/home/Overview.tsx:28
 #: src/pages/panel/home/Overview.tsx:52
 msgid "Security Score"
@@ -1095,7 +1095,7 @@ msgstr "Benutzer"
 msgid "Value"
 msgstr "Wert"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:110
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:108
 msgid "Warning"
 msgstr "Warnung"
 
@@ -1155,10 +1155,6 @@ msgstr "Sie sind dabei, Änderungen an Ihren Zahlungsinformationen vorzunehmen. 
 #: src/pages/auth/login/LoginPage.tsx:115
 msgid "You have successfully verified your account."
 msgstr "Sie haben Ihr Konto erfolgreich verifiziert."
-
-#: src/shared/layouts/panel-layout/BenchmarkCheckGuard.tsx:27
-msgid "Your cloud account has been added successfully! We are currently performing a security scan. This can take up to an hour depending on the size of your account. Your dashboard will be available shortly after the scan is complete."
-msgstr "Ihr Cloud-Konto wurde erfolgreich hinzugefügt! Wir führen derzeit einen Sicherheitsscan durch. Dies kann je nach Größe Ihres Kontos bis zu eine Stunde dauern. Ihr Dashboard wird kurz nach Abschluss des Scans verfügbar sein."
 
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:49
 msgid "Your new email address will become active once you have verified it by clicking on the confirmation link we have sent to your inbox."
