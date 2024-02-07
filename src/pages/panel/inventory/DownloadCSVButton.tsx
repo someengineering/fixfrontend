@@ -1,7 +1,7 @@
 import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import DownloadIcon from '@mui/icons-material/Download'
-import { Box, Button, CircularProgress, LinearProgress, Typography } from '@mui/material'
+import { Button, LinearProgress, Stack, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { ForwardedRef, forwardRef, useRef, useState } from 'react'
@@ -71,23 +71,21 @@ export const DownloadCSVButton = forwardRef(
         .finally(() => warningModal.current?.(false))
     }
     const downloadButton = (
-      <Button
-        {...tooltipProps}
-        variant="outlined"
-        startIcon={
-          progress < 0 && isPending ? <CircularProgress color="inherit" value={progress || undefined} size={16} /> : <DownloadIcon />
-        }
-        onClick={handleClick}
-        disabled={isPending}
-        ref={ref}
-      >
-        <Box width={120}>
-          {progress >= 0 && isPending ? (
-            <LinearProgress variant={progress > 0 ? 'determinate' : 'indeterminate'} value={progress} />
+      <Button {...tooltipProps} variant="outlined" startIcon={<DownloadIcon />} onClick={handleClick} disabled={isPending} ref={ref}>
+        <Stack
+          minWidth={isPending ? 160 : 0}
+          height={isPending ? 25 : 'auto'}
+          sx={{ transition: ({ transitions }) => transitions.create('min-width') }}
+          alignItems="center"
+          justifyContent="center"
+          flex="1 0 auto"
+        >
+          {isPending ? (
+            <LinearProgress variant={progress >= 0 ? 'determinate' : 'indeterminate'} value={progress} sx={{ width: '100%' }} />
           ) : (
             <Trans>Download CSV</Trans>
           )}
-        </Box>
+        </Stack>
       </Button>
     )
     return (
@@ -106,7 +104,7 @@ export const DownloadCSVButton = forwardRef(
             <Modal
               openRef={warningModal}
               title={
-                <Typography variant="h4" color="warning.main">
+                <Typography component="span" variant="h5" color="warning.main">
                   <Trans>Warning</Trans>
                 </Typography>
               }
