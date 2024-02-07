@@ -1,5 +1,7 @@
 import { Trans, t } from '@lingui/macro'
+import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import PowerIcon from '@mui/icons-material/Power'
+import SettingsIcon from '@mui/icons-material/Settings'
 import { LoadingButton } from '@mui/lab'
 import { Box, Button, Stack, TextField, Typography, useTheme } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
@@ -13,21 +15,21 @@ import { putWorkspaceNotificationAddPagerdutyMutation } from './putWorkspaceNoti
 
 interface WorkspaceSettingsPagerdutyServiceProps {
   isConnected?: boolean
-  config?: string
+  defaultName?: string
   isLoading?: boolean
 }
 
-export const WorkspaceSettingsPagerdutyService = ({ isConnected, config, isLoading }: WorkspaceSettingsPagerdutyServiceProps) => {
+export const WorkspaceSettingsPagerdutyService = ({ isConnected, defaultName, isLoading }: WorkspaceSettingsPagerdutyServiceProps) => {
   const theme = useTheme()
   const { selectedWorkspace } = useUserProfile()
   const { mutate, isPending } = useMutation({ mutationFn: putWorkspaceNotificationAddPagerdutyMutation })
   const [integrationKey, setIntegrationKey] = useState('')
-  const [name, setName] = useState(config ?? '')
+  const [name, setName] = useState(defaultName ?? '')
   useEffect(() => {
-    if (config) {
-      setName(config)
+    if (defaultName) {
+      setName(defaultName)
     }
-  }, [config])
+  }, [defaultName])
   const queryClient = useQueryClient()
   const modalRef = useRef<(show?: boolean | undefined) => void>()
   const handleConnect = () => {
@@ -57,12 +59,11 @@ export const WorkspaceSettingsPagerdutyService = ({ isConnected, config, isLoadi
       ) : null}
       <LoadingButton
         loadingPosition={isLoading && !isConnected ? 'start' : undefined}
-        startIcon={isConnected ? undefined : <PowerIcon />}
+        startIcon={isConnected ? <SettingsIcon /> : <PowerIcon />}
         loading={isLoading}
         variant="contained"
         sx={{ flexShrink: 0 }}
-        onClick={!isConnected ? () => modalRef.current?.(true) : undefined}
-        disabled={isLoading || isConnected}
+        onClick={() => modalRef.current?.(true)}
       >
         {isConnected ? <Trans>Configure</Trans> : <Trans>Connect</Trans>}
       </LoadingButton>
@@ -83,6 +84,16 @@ export const WorkspaceSettingsPagerdutyService = ({ isConnected, config, isLoadi
                 <li>For the integration type, select "PagerDuty Events API V2" and click "Add".</li>
                 <li>Provide a name for the integration for easy reference and copy the "Integration Key".</li>
               </ol>
+              For more information please visit{' '}
+              <Button
+                size="small"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://support.pagerduty.com/docs/services-and-integrations#section-events-API-v2"
+                endIcon={<OpenInNewIcon />}
+              >
+                PagerDuty Services and Integrations
+              </Button>
             </Typography>
           </Trans>
         }

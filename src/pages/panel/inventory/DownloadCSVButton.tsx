@@ -1,6 +1,7 @@
 import { Trans } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
 import DownloadIcon from '@mui/icons-material/Download'
-import { Box, Button, CircularProgress, LinearProgress, Typography } from '@mui/material'
+import { Button, LinearProgress, Stack, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { ForwardedRef, forwardRef, useRef, useState } from 'react'
@@ -19,6 +20,9 @@ interface DownloadCSVButtonProps {
 
 export const DownloadCSVButton = forwardRef(
   ({ query, hasWarning, ...tooltipProps }: DownloadCSVButtonProps, ref: ForwardedRef<HTMLButtonElement | null>) => {
+    const {
+      i18n: { locale },
+    } = useLingui()
     const warningModal = useRef<(show?: boolean | undefined) => void>()
     const { selectedWorkspace } = useUserProfile()
     const [progress, setProgress] = useState(-1)
@@ -67,23 +71,21 @@ export const DownloadCSVButton = forwardRef(
         .finally(() => warningModal.current?.(false))
     }
     const downloadButton = (
-      <Button
-        {...tooltipProps}
-        variant="outlined"
-        startIcon={
-          progress < 0 && isPending ? <CircularProgress color="inherit" value={progress || undefined} size={16} /> : <DownloadIcon />
-        }
-        onClick={handleClick}
-        disabled={isPending}
-        ref={ref}
-      >
-        <Box width={120}>
-          {progress >= 0 && isPending ? (
-            <LinearProgress variant={progress > 0 ? 'determinate' : 'indeterminate'} value={progress} />
+      <Button {...tooltipProps} variant="outlined" startIcon={<DownloadIcon />} onClick={handleClick} disabled={isPending} ref={ref}>
+        <Stack
+          minWidth={isPending ? 160 : 0}
+          height={isPending ? 25 : 'auto'}
+          sx={{ transition: ({ transitions }) => transitions.create('min-width') }}
+          alignItems="center"
+          justifyContent="center"
+          flex="1 0 auto"
+        >
+          {isPending ? (
+            <LinearProgress variant={progress >= 0 ? 'determinate' : 'indeterminate'} value={progress} sx={{ width: '100%' }} />
           ) : (
             <Trans>Download CSV</Trans>
           )}
-        </Box>
+        </Stack>
       </Button>
     )
     return (
@@ -102,7 +104,7 @@ export const DownloadCSVButton = forwardRef(
             <Modal
               openRef={warningModal}
               title={
-                <Typography variant="h4" color="warning.main">
+                <Typography component="span" variant="h5" color="warning.main">
                   <Trans>Warning</Trans>
                 </Typography>
               }
@@ -110,7 +112,8 @@ export const DownloadCSVButton = forwardRef(
             >
               <Typography>
                 <Trans>
-                  Because the data is over {panelUI.maxCSVDownload} Only first {panelUI.maxCSVDownload} items will be downloaded
+                  Because the data is over {panelUI.maxCSVDownload.toLocaleString(locale)} Only first{' '}
+                  {panelUI.maxCSVDownload.toLocaleString(locale)} items will be downloaded
                 </Trans>
               </Typography>
             </Modal>
