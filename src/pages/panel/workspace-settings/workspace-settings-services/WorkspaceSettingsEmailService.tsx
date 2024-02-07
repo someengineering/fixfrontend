@@ -1,6 +1,7 @@
 import { Trans, t } from '@lingui/macro'
 import EmailIcon from '@mui/icons-material/Email'
 import PowerIcon from '@mui/icons-material/Power'
+import SettingsIcon from '@mui/icons-material/Settings'
 import { LoadingButton } from '@mui/lab'
 import { Autocomplete, Box, Button, Stack, TextField, Typography } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
@@ -71,7 +72,7 @@ export const WorkspaceSettingsEmailService = ({
       ) : null}
       <LoadingButton
         loadingPosition={isLoading && !isConnected ? 'start' : undefined}
-        startIcon={isConnected ? undefined : <PowerIcon />}
+        startIcon={isConnected ? <SettingsIcon /> : <PowerIcon />}
         loading={isLoading}
         variant="contained"
         sx={{ flexShrink: 0 }}

@@ -1,4 +1,5 @@
 import { Trans } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
 import DownloadIcon from '@mui/icons-material/Download'
 import { Box, Button, CircularProgress, LinearProgress, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
@@ -19,6 +20,9 @@ interface DownloadCSVButtonProps {
 
 export const DownloadCSVButton = forwardRef(
   ({ query, hasWarning, ...tooltipProps }: DownloadCSVButtonProps, ref: ForwardedRef<HTMLButtonElement | null>) => {
+    const {
+      i18n: { locale },
+    } = useLingui()
     const warningModal = useRef<(show?: boolean | undefined) => void>()
     const { selectedWorkspace } = useUserProfile()
     const [progress, setProgress] = useState(-1)
@@ -110,7 +114,8 @@ export const DownloadCSVButton = forwardRef(
             >
               <Typography>
                 <Trans>
-                  Because the data is over {panelUI.maxCSVDownload} Only first {panelUI.maxCSVDownload} items will be downloaded
+                  Because the data is over {panelUI.maxCSVDownload.toLocaleString(locale)} Only first{' '}
+                  {panelUI.maxCSVDownload.toLocaleString(locale)} items will be downloaded
                 </Trans>
               </Typography>
             </Modal>

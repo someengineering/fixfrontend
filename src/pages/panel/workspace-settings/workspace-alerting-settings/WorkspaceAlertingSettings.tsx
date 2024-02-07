@@ -1,5 +1,6 @@
 import { Trans, t } from '@lingui/macro'
 import {
+  Alert,
   Autocomplete,
   Box,
   Checkbox,
@@ -138,11 +139,13 @@ export const WorkspaceAlertingSettings = () => {
     }
   }
   const isLoading = isReportInfoLoading || isNotificationsLoading || isAlertingSettingsLoading
+
+  const hasData = Boolean(notifications && Object.keys(notifications).length)
   return isLoading ? (
     <Box height={200} width="100%">
       <LoadingSuspenseFallback />
     </Box>
-  ) : (
+  ) : hasData ? (
     <TableContainer component={Paper}>
       <Table aria-label={t`Workspace Alerting Settings`}>
         <TableHead>
@@ -261,5 +264,14 @@ export const WorkspaceAlertingSettings = () => {
         </TableBody>
       </Table>
     </TableContainer>
+  ) : (
+    <Stack>
+      <Alert color="warning">
+        <Trans>
+          Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is
+          necessary to configure alerting settings.
+        </Trans>
+      </Alert>
+    </Stack>
   )
 }

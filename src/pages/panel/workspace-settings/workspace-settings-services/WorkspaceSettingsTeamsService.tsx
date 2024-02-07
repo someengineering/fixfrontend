@@ -1,5 +1,8 @@
 import { Trans, t } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
+import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import PowerIcon from '@mui/icons-material/Power'
+import SettingsIcon from '@mui/icons-material/Settings'
 import { LoadingButton } from '@mui/lab'
 import { Box, Button, Stack, TextField, Typography, useTheme } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
@@ -13,21 +16,24 @@ import { putWorkspaceNotificationAddTeamsMutation } from './putWorkspaceNotifica
 
 interface WorkspaceSettingsTeamsServiceProps {
   isConnected?: boolean
-  config?: string
+  defaultName?: string
   isLoading?: boolean
 }
 
-export const WorkspaceSettingsTeamsService = ({ isConnected, config, isLoading }: WorkspaceSettingsTeamsServiceProps) => {
+export const WorkspaceSettingsTeamsService = ({ isConnected, defaultName, isLoading }: WorkspaceSettingsTeamsServiceProps) => {
   const theme = useTheme()
+  const {
+    i18n: { locale },
+  } = useLingui()
   const { selectedWorkspace } = useUserProfile()
   const { mutate, isPending } = useMutation({ mutationFn: putWorkspaceNotificationAddTeamsMutation })
   const [webhookUrl, setWebhookUrl] = useState('')
-  const [name, setName] = useState(config ?? '')
+  const [name, setName] = useState(defaultName ?? '')
   useEffect(() => {
-    if (config) {
-      setName(config)
+    if (defaultName) {
+      setName(defaultName)
     }
-  }, [config])
+  }, [defaultName])
   const queryClient = useQueryClient()
   const modalRef = useRef<(show?: boolean | undefined) => void>()
   const handleConnect = () => {
@@ -56,12 +62,11 @@ export const WorkspaceSettingsTeamsService = ({ isConnected, config, isLoading }
       ) : null}
       <LoadingButton
         loadingPosition={isLoading && !isConnected ? 'start' : undefined}
-        startIcon={isConnected ? undefined : <PowerIcon />}
+        startIcon={isConnected ? <SettingsIcon /> : <PowerIcon />}
         loading={isLoading}
         variant="contained"
         sx={{ flexShrink: 0 }}
-        onClick={!isConnected ? () => modalRef.current?.(true) : undefined}
-        disabled={isLoading || isConnected}
+        onClick={() => modalRef.current?.(true)}
       >
         {isConnected ? <Trans>Configure</Trans> : <Trans>Connect</Trans>}
       </LoadingButton>
@@ -83,6 +88,16 @@ export const WorkspaceSettingsTeamsService = ({ isConnected, config, isLoading }
                 <li>Click Done.</li>
                 <li>In the text box provided below, paste the Webhook URL you copied and enter the name of the channel.</li>
               </ol>
+              More from{' '}
+              <Button
+                size="small"
+                target="_blank"
+                rel="noopener noreferrer"
+                href={`https://learn.microsoft.com/${locale.toLowerCase()}/microsoftteams/platform/webhooks-and-connectors/how-to/connectors-using?tabs=cURL#setting-up-a-custom-incoming-webhook`}
+                endIcon={<OpenInNewIcon />}
+              >
+                Microsoft Teams Documentation
+              </Button>
             </Typography>
           </Trans>
         }
