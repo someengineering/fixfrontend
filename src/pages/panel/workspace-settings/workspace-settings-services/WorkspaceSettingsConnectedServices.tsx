@@ -38,8 +38,8 @@ export const WorkspaceSettingsConnectedServices = () => {
     <>
       <WorkspaceSettingsSlackService isLoading={isLoading} isConnected={!!data?.slack} />
       <WorkspaceSettingsDiscordService isLoading={isLoading} isConnected={!!data?.discord} />
-      <WorkspaceSettingsTeamsService isLoading={isLoading} isConnected={!!data?.teams} defaultName={data?.slack?.name} />
-      <WorkspaceSettingsPagerdutyService isLoading={isLoading} isConnected={!!data?.pagerduty} defaultName={data?.slack?.name} />
+      <WorkspaceSettingsTeamsService isLoading={isLoading} isConnected={!!data?.teams} defaultName={data?.teams?.name} />
+      <WorkspaceSettingsPagerdutyService isLoading={isLoading} isConnected={!!data?.pagerduty} defaultName={data?.pagerduty?.name} />
       <WorkspaceSettingsEmailService
         isLoading={isLoading}
         isConnected={!!data?.email}
