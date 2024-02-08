@@ -27,9 +27,12 @@ export const BenchmarkCheckGuard = () => {
           Your cloud account has been successfully added!
         </Typography>
         <Typography variant="h5" textAlign="left" width="100%" mt={2}>
-          Thank you for deploying the CloudFormation stack in your AWS account. Here’s what’s happening behind the scenes:
+          Thank you for deploying the CloudFormation stack in your AWS account.
         </Typography>
-        <Stack spacing={1} component="ul">
+        <Typography variant="h6" textAlign="left" width="100%" mt={4}>
+          Here’s what’s happening behind the scenes:
+        </Typography>
+        <Stack spacing={1} component="ul" mt={0.5}>
           <Typography component="li" textAlign="left" width="100%">
             Initial Trust Establishment (5-15 minutes): After deployment, a cross-account trust for the role included in the stack is
             established between your and Fix's AWS accounts. Due to AWS's distributed infrastructure, this step can take anywhere from 5 to
@@ -45,10 +48,10 @@ export const BenchmarkCheckGuard = () => {
             completed, we'll notify you by email.
           </Typography>
         </Stack>
-        <Typography variant="h5" textAlign="left" width="100%" mt={2}>
+        <Typography variant="h6" textAlign="left" width="100%" mt={2}>
           What to Expect Next:
         </Typography>
-        <Stack spacing={1} component="ul">
+        <Stack spacing={1} component="ul" mt={0.5}>
           <Typography component="li" textAlign="left" width="100%">
             Dashboard Availability: Your dashboard and inventory will be available shortly after the completion of the initial security
             scan. This gives you a comprehensive view of your security posture and any findings we have identified.
