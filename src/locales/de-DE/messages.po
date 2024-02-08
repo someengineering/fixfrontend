@@ -587,7 +587,7 @@ msgstr "Hoch"
 msgid "High Security"
 msgstr "Hohe Sicherheit"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:79
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:81
 msgid "Homepage"
 msgstr "Startseite"
 
@@ -1052,7 +1052,7 @@ msgstr "Top-Sicherheitsverbesserungen"
 msgid "True"
 msgstr "WAHR"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:95
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:97
 msgid "Try again"
 msgstr "Versuchen Sie es erneut"
 
