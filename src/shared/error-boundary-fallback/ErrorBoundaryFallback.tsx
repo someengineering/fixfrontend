@@ -27,7 +27,7 @@ const ModalContent = styled(Stack)(({ theme }) => ({
 }))
 
 export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
-  const navigate = useAbsoluteNavigate()
+  const navigate = useAbsoluteNavigate(true)
 
   useEffect(() => {
     if (!('isAxiosError' in error) || !(error as AxiosError).isAxiosError) {
@@ -73,7 +73,9 @@ export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackPro
               color="primary"
               onClick={() => {
                 resetErrorBoundary()
-                navigate('/')
+                if (navigate) {
+                  navigate('/')
+                }
               }}
             >
               <Trans>Homepage</Trans>
