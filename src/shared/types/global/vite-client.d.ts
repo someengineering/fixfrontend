@@ -11,6 +11,7 @@ interface ImportMetaEnv {
   readonly VITE_GTM_DEV_ID?: string
   readonly VITE_GTM_PROD_ID?: string
   readonly VITE_TRACKJS_TOKEN?: string
+  readonly VITE_MUI_LICENSE_KEY?: string
 }
 
 interface ImportMeta {

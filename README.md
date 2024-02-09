@@ -24,6 +24,7 @@ This project needs [NodeJS](https://nodejs.org/en) version 18 (at least 18.17.1)
 - `VITE_GTM_DEV_ID: string` - Google Analytics token for development (Default: `undefined`, if empty it won't install GTM)
 - `VITE_GTM_PROD_ID: string` - Google Analytics token for production (Default: `undefined`, if empty it won't install GTM)
 - `VITE_TRACKJS_TOKEN: string` - TrackJS token (Default: `undefined`, if empty it won't install TrackJS)
+- `VITE_MUI_LICENSE_KEY: string` - MUI premium license key (Default: `undefined`, if empty it won't install the license for MUI)
 
 ## Available Scripts
 
