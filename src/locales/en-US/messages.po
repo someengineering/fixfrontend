@@ -276,10 +276,6 @@ msgstr "Change Security Tier"
 msgid "Changes in the past 7 days"
 msgstr "Changes in the past 7 days"
 
-#: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:40
-#~ msgid "Changing your email or password will log you out of your current session. Please make sure to update your login credentials in any saved sessions or devices."
-#~ msgstr "Changing your email or password will log you out of your current session. Please make sure to update your login credentials in any saved sessions or devices."
-
 #: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:100
 msgid "Choose Workspace"
 msgstr "Choose Workspace"
