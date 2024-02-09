@@ -6,6 +6,7 @@ import { Outlet } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceCloudAccountsQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
+import { AddAccountButton } from 'src/shared/add-account-button'
 import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
 import { getInitiated } from 'src/shared/utils/localstorage'
 
@@ -35,19 +36,24 @@ export const AccountCheckGuard = () => {
 
   if (doesNotHaveAccount) {
     return (
-      <Stack display="flex" flexGrow={1} flexDirection="column" width="100%" height="100%" justifyContent="center" alignItems="center">
-        <Typography variant="h3" textAlign="center">
-          <Trans>There's no account configured for this workspace.</Trans>
-        </Typography>
-        <Typography variant="h5" textAlign="center">
-          <Trans>
-            Please go to{' '}
-            <Button variant="text" onClick={handleGoToSetupCloudPage}>
-              Setup Accounts
-            </Button>{' '}
-            page to setup your account first
-          </Trans>
-        </Typography>
+      <Stack flexGrow={1} flexDirection="column" width="100%" height="100%" justifyContent="center" alignItems="center">
+        <Stack alignSelf="start" alignItems="end" flexGrow={0} flexShrink={0} width="100%">
+          <AddAccountButton />
+        </Stack>
+        <Stack flexDirection="column" width="100%" height="100%" justifyContent="center" alignItems="center" flexGrow={1} flexShrink={0}>
+          <Typography variant="h3" textAlign="center">
+            <Trans>There's no account configured for this workspace.</Trans>
+          </Typography>
+          <Typography variant="h5" textAlign="center">
+            <Trans>
+              Please go to{' '}
+              <Button variant="text" onClick={handleGoToSetupCloudPage}>
+                Setup Accounts
+              </Button>{' '}
+              page to setup your account first
+            </Trans>
+          </Typography>
+        </Stack>
       </Stack>
     )
   }

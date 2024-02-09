@@ -101,6 +101,7 @@ msgstr "Account risk score"
 #: src/pages/panel/inventory/InventoryTable.error.tsx:73
 #: src/pages/panel/inventory/InventoryTable.tsx:105
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:126
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:42
 #: src/shared/layouts/panel-layout/menuList.tsx:55
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:12
 msgid "Accounts"
@@ -119,7 +120,7 @@ msgstr "Action"
 msgid "Actions"
 msgstr "Actions"
 
-#: src/pages/panel/accounts/AddAccountButton.tsx:16
+#: src/shared/add-account-button/AddAccountButton.tsx:16
 msgid "Add an account"
 msgstr "Add an account"
 
@@ -151,7 +152,7 @@ msgstr "Alerting integrations (Slack, PagerDuty, Discord)"
 msgid "Alerting integrations with custom HTTP webhooks"
 msgstr "Alerting integrations with custom HTTP webhooks"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:30
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:31
 msgid "Alerting Settings"
 msgstr "Alerting Settings"
 
@@ -244,7 +245,7 @@ msgstr "Benchmarks"
 msgid "Billing"
 msgstr "Billing"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:44
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:48
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:20
 msgid "Billing & Receipts"
 msgstr "Billing & Receipts"
@@ -277,8 +278,8 @@ msgid "Changes in the past 7 days"
 msgstr "Changes in the past 7 days"
 
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:40
-msgid "Changing your email or password will log you out of your current session. Please make sure to update your login credentials in any saved sessions or devices."
-msgstr "Changing your email or password will log you out of your current session. Please make sure to update your login credentials in any saved sessions or devices."
+#~ msgid "Changing your email or password will log you out of your current session. Please make sure to update your login credentials in any saved sessions or devices."
+#~ msgstr "Changing your email or password will log you out of your current session. Please make sure to update your login credentials in any saved sessions or devices."
 
 #: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:100
 msgid "Choose Workspace"
@@ -361,7 +362,7 @@ msgstr "Connect your AWS account"
 msgid "Connected Accounts"
 msgstr "Connected Accounts"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:23
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:24
 msgid "Connected Services"
 msgstr "Connected Services"
 
@@ -506,8 +507,8 @@ msgstr "Edit"
 
 #: src/pages/auth/login/LoginPage.tsx:80
 #: src/pages/auth/register/RegisterPage.tsx:78
-#: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:56
-#: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:76
+#: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:49
+#: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:69
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:79
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:83
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:105
@@ -814,7 +815,7 @@ msgstr "Open resource {name} in AWS Console"
 msgid "Or"
 msgstr "Or"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:37
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:38
 msgid "Other Workspace Settings"
 msgstr "Other Workspace Settings"
 
@@ -850,7 +851,7 @@ msgstr "Perfect for individual use or small-scale proof-of-concept trials."
 msgid "Pick one of the recommendations to the right and improve your security"
 msgstr "Pick one of the recommendations to the right and improve your security"
 
-#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:43
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:48
 msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgstr "Please go to <0>Setup Accounts</0> page to setup your account first"
 
@@ -1015,7 +1016,7 @@ msgstr "Tags"
 msgid "The Stack requires the following parameters"
 msgstr "The Stack requires the following parameters"
 
-#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:40
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:45
 msgid "There's no account configured for this workspace."
 msgstr "There's no account configured for this workspace."
 
@@ -1061,7 +1062,7 @@ msgstr "Try again"
 msgid "Type"
 msgstr "Type"
 
-#: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:61
+#: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:54
 msgid "Update Email"
 msgstr "Update Email"
 
@@ -1084,7 +1085,7 @@ msgid "User Settings Notification"
 msgstr "User Settings Notification"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:27
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:41
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:45
 #: src/shared/layouts/panel-layout/menuList.tsx:60
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:16
 msgid "Users"
@@ -1137,7 +1138,7 @@ msgstr "Workspace Id"
 msgid "Workspace Name"
 msgstr "Workspace Name"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:16
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:17
 #: src/shared/layouts/panel-layout/menuList.tsx:49
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:10
 msgid "Workspace Settings"
@@ -1156,6 +1157,6 @@ msgstr "You are about to apply changes to your billing information. Please revie
 msgid "You have successfully verified your account."
 msgstr "You have successfully verified your account."
 
-#: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:49
+#: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:41
 msgid "Your new email address will become active once you have verified it by clicking on the confirmation link we have sent to your inbox."
 msgstr "Your new email address will become active once you have verified it by clicking on the confirmation link we have sent to your inbox."
