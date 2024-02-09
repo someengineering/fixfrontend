@@ -4,15 +4,17 @@ import {
   PostWorkspaceInventorySearchTableHistory,
   PostWorkspaceInventorySearchTableRequest,
   PostWorkspaceInventorySearchTableResponse,
+  PostWorkspaceInventorySearchTableSort,
 } from 'src/shared/types/server'
 import { axiosWithAuth } from 'src/shared/utils/axios'
 
 export const postWorkspaceInventorySearchTableQuery = ({
   signal,
-  queryKey: [, workspaceId, query, skip, limit, count, history],
-}: QueryFunctionContext<['workspace-inventory-search-table', string | undefined, string, number, number, boolean, string]>) => {
+  queryKey: [, workspaceId, query, skip, limit, count, sort, history],
+}: QueryFunctionContext<['workspace-inventory-search-table', string | undefined, string, number, number, boolean, string, string]>) => {
   const data: PostWorkspaceInventorySearchTableRequest = {
     ...(history ? { history: JSON.parse(history) as PostWorkspaceInventorySearchTableHistory } : {}),
+    ...(sort ? { sort: JSON.parse(sort) as PostWorkspaceInventorySearchTableSort[] } : {}),
     count,
     limit,
     query,

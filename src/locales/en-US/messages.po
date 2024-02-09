@@ -99,7 +99,6 @@ msgid "Account risk score"
 msgstr "Account risk score"
 
 #: src/pages/panel/inventory/InventoryTable.error.tsx:73
-#: src/pages/panel/inventory/InventoryTable.tsx:105
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:126
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:42
 #: src/shared/layouts/panel-layout/menuList.tsx:55
@@ -495,8 +494,8 @@ msgstr "Downgrade"
 msgid "Download"
 msgstr "Download"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:86
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:102
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:74
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:107
 msgid "Download CSV"
 msgstr "Download CSV"
 
@@ -1096,7 +1095,7 @@ msgstr "Users"
 msgid "Value"
 msgstr "Value"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:108
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:84
 msgid "Warning"
 msgstr "Warning"
 

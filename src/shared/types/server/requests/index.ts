@@ -6,6 +6,7 @@ export type { PostWorkspaceInventoryPropertyValuesRequest } from './PostWorkspac
 export type {
   PostWorkspaceInventorySearchTableHistory,
   PostWorkspaceInventorySearchTableRequest,
+  PostWorkspaceInventorySearchTableSort,
 } from './PostWorkspaceInventorySearchTable'
 export type { PostWorkspaceInviteRequest } from './PostWorkspaceInvite'
 export type { PutNotificationUserRequest } from './PutNotificationUser'
