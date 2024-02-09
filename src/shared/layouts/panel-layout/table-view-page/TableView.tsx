@@ -25,7 +25,7 @@ export const TableView = forwardRef<HTMLDivElement | null, TableViewProps>(
         {shouldHavePagination ? (
           <Stack height={panelUI.tablePaginationHeight + 'px'} position={stickyPagination ? 'sticky' : undefined} bottom={0}>
             <Paper elevation={9}>
-              <TablePagination {...paginationProps} pages={pages.filter((page) => page <= paginationProps?.dataCount)} />
+              <TablePagination {...paginationProps} pages={pages} />
             </Paper>
           </Stack>
         ) : null}

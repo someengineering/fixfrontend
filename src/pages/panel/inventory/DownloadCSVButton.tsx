@@ -1,7 +1,7 @@
 import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import DownloadIcon from '@mui/icons-material/Download'
-import { Button, LinearProgress, Stack, Typography } from '@mui/material'
+import { Button, CircularProgress, IconButton, LinearProgress, Stack, Tooltip, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { ForwardedRef, forwardRef, useRef, useState } from 'react'
@@ -70,37 +70,13 @@ export const DownloadCSVButton = forwardRef(
         })
         .finally(() => warningModal.current?.(false))
     }
-    const downloadButton = (
-      <Button {...tooltipProps} variant="outlined" startIcon={<DownloadIcon />} onClick={handleClick} disabled={isPending} ref={ref}>
-        <Stack
-          minWidth={isPending ? 160 : 0}
-          height={isPending ? 25 : 'auto'}
-          sx={{ transition: ({ transitions }) => transitions.create('min-width') }}
-          alignItems="center"
-          justifyContent="center"
-          flex="1 0 auto"
-        >
-          {isPending ? (
-            <LinearProgress variant={progress >= 0 ? 'determinate' : 'indeterminate'} value={progress} sx={{ width: '100%' }} />
-          ) : (
-            <Trans>Download CSV</Trans>
-          )}
-        </Stack>
-      </Button>
-    )
     return (
-      <>
+      <Tooltip title={<Trans>Download CSV</Trans>}>
         {hasWarning ? (
           <>
-            <Button
-              variant="outlined"
-              startIcon={<DownloadIcon />}
-              disabled={isPending}
-              ref={ref}
-              onClick={() => warningModal.current?.(true)}
-            >
-              <Trans>Download CSV</Trans>
-            </Button>
+            <IconButton onClick={() => warningModal.current?.(true)} disabled={isPending}>
+              <DownloadIcon />
+            </IconButton>
             <Modal
               openRef={warningModal}
               title={
@@ -108,7 +84,31 @@ export const DownloadCSVButton = forwardRef(
                   <Trans>Warning</Trans>
                 </Typography>
               }
-              actions={downloadButton}
+              actions={
+                <Button
+                  {...tooltipProps}
+                  variant="outlined"
+                  startIcon={<DownloadIcon />}
+                  onClick={handleClick}
+                  disabled={isPending}
+                  ref={ref}
+                >
+                  <Stack
+                    minWidth={isPending ? 160 : 0}
+                    height={isPending ? 25 : 'auto'}
+                    sx={{ transition: ({ transitions }) => transitions.create('min-width') }}
+                    alignItems="center"
+                    justifyContent="center"
+                    flex="1 0 auto"
+                  >
+                    {isPending ? (
+                      <LinearProgress variant={progress >= 0 ? 'determinate' : 'indeterminate'} value={progress} sx={{ width: '100%' }} />
+                    ) : (
+                      <Trans>Download CSV</Trans>
+                    )}
+                  </Stack>
+                </Button>
+              }
             >
               <Typography>
                 <Trans>
@@ -119,9 +119,11 @@ export const DownloadCSVButton = forwardRef(
             </Modal>
           </>
         ) : (
-          downloadButton
+          <IconButton {...tooltipProps} onClick={handleClick} disabled={isPending} ref={ref}>
+            {isPending ? <CircularProgress size={16} /> : <DownloadIcon />}
+          </IconButton>
         )}
-      </>
+      </Tooltip>
     )
   },
 )

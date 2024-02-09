@@ -1,5 +1,5 @@
-import { t } from '@lingui/macro'
-import { Skeleton, Stack, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
+import { ButtonBase, Stack } from '@mui/material'
+import { GridColDef, GridRow, GridRowProps, GridSortItem } from '@mui/x-data-grid-premium'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
@@ -7,18 +7,18 @@ import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/q
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { GTMEventNames, panelUI } from 'src/shared/constants'
 import { sendToGTM } from 'src/shared/google-tag-manager'
-import { TableView } from 'src/shared/layouts/panel-layout'
+import { AdvancedTableView } from 'src/shared/layouts/panel-layout'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import {
   PostWorkspaceInventorySearchTableColumn,
   PostWorkspaceInventorySearchTableResponse,
   PostWorkspaceInventorySearchTableRow,
+  PostWorkspaceInventorySearchTableSort,
 } from 'src/shared/types/server'
 import { isAuthenticated as getIsAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData } from 'src/shared/utils/localstorage'
 import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { DownloadCSVButton } from './DownloadCSVButton'
-import { InventoryRow } from './InventoryRow'
 
 interface InventoryTableProps {
   searchCrit: string
@@ -29,14 +29,26 @@ interface InventoryTableProps {
   }
 }
 
+type RowType = PostWorkspaceInventorySearchTableRow['row'] & {
+  INTERNAL_ID: string
+}
+
+type ColType = GridColDef & PostWorkspaceInventorySearchTableColumn
+
 export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => {
   const [dataCount, setDataCount] = useState(-1)
   const navigate = useAbsoluteNavigate()
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const { selectedWorkspace } = useUserProfile()
-  const [rows, setRows] = useState<PostWorkspaceInventorySearchTableRow[]>([])
-  const [columns, setColumns] = useState<PostWorkspaceInventorySearchTableColumn[]>([])
+  const [rows, setRows] = useState<RowType[]>([])
+  const [columns, setColumns] = useState<ColType[]>([])
+  const [sorting, setSorting] = useState<PostWorkspaceInventorySearchTableSort[]>([
+    ...(history ? [{ direction: 'asc', path: '/changed_at' } as PostWorkspaceInventorySearchTableSort] : []),
+    { direction: 'asc', path: '/reported.kind' },
+    { direction: 'asc', path: '/reported.name' },
+    { direction: 'asc', path: '/reported.id' },
+  ])
   const initializedRef = useRef(false)
   const { data: serverData, isLoading } = useQuery({
     queryKey: [
@@ -46,6 +58,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       page * rowsPerPage,
       rowsPerPage,
       page === 0 || dataCount === -1,
+      JSON.stringify(sorting),
       history ? JSON.stringify(history) : '',
     ],
     queryFn: postWorkspaceInventorySearchTableQuery,
@@ -79,72 +92,101 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
   useEffect(() => {
     if (!isLoading) {
       const [{ columns: newColumns }, ...newRows] = data ?? [{ columns: [] }]
-      setColumns(newColumns)
-      setRows(newRows)
+      setColumns(
+        newColumns.map((i) => ({
+          ...i,
+          field: i.name,
+          headerName: i.display,
+          flex: 1,
+          minWidth: 100,
+        })),
+      )
+      setRows(newRows.map(({ row, id }) => ({ INTERNAL_ID: id, ...row })))
     }
   }, [data, isLoading])
 
-  return columns.length ? (
-    <>
-      <TableView
-        paginationProps={{
-          dataCount,
-          page,
-          rowsPerPage,
-          setPage,
-          setRowsPerPage,
-          id: 'InventoryTable',
-        }}
-        stickyPagination
-        headerToolbar={
-          <Stack px={1} alignItems="end" width="100%">
-            <DownloadCSVButton query={searchCrit} hasWarning={dataCount > panelUI.maxCSVDownload} />
-          </Stack>
+  return isLoading && !rows.length && !columns.length ? (
+    <LoadingSuspenseFallback />
+  ) : columns.length ? (
+    <AdvancedTableView
+      loading={Boolean(isLoading && rows.length && columns.length)}
+      autoHeight
+      columns={columns}
+      rows={rows}
+      pageSizeOptions={panelUI.tableRowsPerPages}
+      filterMode="server"
+      sortingMode="server"
+      rowSelection={false}
+      disableRowGrouping
+      disableAggregation
+      disableColumnFilter
+      sortModel={
+        sorting
+          .map((sort) => {
+            const column = columns.find((column) => column.path === sort.path)
+            if (column) {
+              return {
+                field: column.field,
+                sort: sort.direction,
+              }
+            }
+          })
+          .filter((i) => i) as GridSortItem[]
+      }
+      onSortModelChange={(model) =>
+        setSorting(
+          model
+            .map((sort) => {
+              if (sort.sort) {
+                const column = columns.find((column) => sort.field === column.field)
+                if (column) {
+                  return { direction: sort.sort, path: column.path }
+                }
+              }
+            })
+            .filter((i) => i) as PostWorkspaceInventorySearchTableSort[],
+        )
+      }
+      pagination={dataCount > 10}
+      paginationModel={{ page, pageSize: rowsPerPage }}
+      onPaginationModelChange={(model) => {
+        if (model.pageSize !== rowsPerPage) {
+          setRowsPerPage(model.pageSize)
         }
-      >
-        <Table stickyHeader aria-label={t`Accounts`}>
-          <TableHead>
-            <TableRow>
-              {columns.map((column, i) => (
-                <TableCell key={`${column.name}-${i}`} sx={{ top: -25 }}>
-                  {column.display}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {isLoading
-              ? rows.length && columns.length
-                ? rows.map((row, i) => (
-                    <TableRow key={`${row.id}-${i}`}>
-                      {columns.map((column, j) => (
-                        <TableCell key={`${column.name}-${row.id}-${i}-${j}`}>
-                          <Skeleton variant="rounded" />
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                  ))
-                : null
-              : rows?.map((row, i) => (
-                  <InventoryRow
-                    onClick={(item) =>
-                      navigate({
-                        pathname: `/inventory/resource-detail/${item.id}`,
-                        search:
-                          typeof item.row.name === 'string'
-                            ? mergeLocationSearchValues({ ...searchValues, name: item.row.name })
-                            : window.location.search,
-                      })
-                    }
-                    key={`${row.id}-${i}`}
-                    row={row}
-                    columns={columns}
-                  />
-                ))}
-          </TableBody>
-        </Table>
-        {isLoading && (!rows.length || !columns.length) ? <LoadingSuspenseFallback /> : null}
-      </TableView>
-    </>
+        if (model.page !== page) {
+          setPage(model.page)
+        }
+      }}
+      paginationMode="server"
+      rowCount={dataCount}
+      getRowId={(row: RowType) => row.INTERNAL_ID}
+      headerToolbar={
+        <Stack px={1} alignItems="end" width="100%">
+          <DownloadCSVButton query={searchCrit} hasWarning={dataCount > panelUI.maxCSVDownload} />
+        </Stack>
+      }
+      slots={{
+        row: (rowProps: GridRowProps) => (
+          <ButtonBase
+            onClick={() =>
+              navigate({
+                pathname: `/inventory/resource-detail/${(rowProps.row as RowType)?.INTERNAL_ID}`,
+                search:
+                  typeof (rowProps.row as RowType)?.name === 'string'
+                    ? mergeLocationSearchValues({ ...searchValues, name: (rowProps.row as RowType)?.name as string })
+                    : window.location.search,
+              })
+            }
+          >
+            <GridRow {...rowProps} />
+          </ButtonBase>
+        ),
+      }}
+      slotProps={{
+        row: {
+          style: { cursor: 'pointer' },
+        },
+      }}
+    />
   ) : null
 }

@@ -14,12 +14,12 @@ type UserSettingsFormEmailProps = Omit<
 >
 
 export const UserSettingsFormEmail = ({ ...rest }: UserSettingsFormEmailProps) => {
-  const { logout, currentUser } = useUserProfile()
+  const { currentUser } = useUserProfile()
   const { data, isLoading } = useQuery({
     queryKey: ['users-me', currentUser?.id],
     queryFn: getUsersMeQuery,
   })
-  const { mutateAsync, isPending, error } = useMutation({ mutationFn: patchUsersMeMutation })
+  const { mutateAsync, isPending, error, isSuccess } = useMutation({ mutationFn: patchUsersMeMutation })
   const [email, setEmail] = useState('')
   useEffect(() => {
     if (data?.email) {
@@ -27,37 +27,30 @@ export const UserSettingsFormEmail = ({ ...rest }: UserSettingsFormEmailProps) =
     }
   }, [data])
   const handleSubmit = () => {
-    void mutateAsync({ email }).then(logout)
+    void mutateAsync({ email })
   }
   const formError = error
     ? ((error as AxiosError)?.response?.data as { detail: string })?.detail ?? t`Something went wrong please try again later.`
     : undefined
   return (
     <>
-      <Stack direction="row" pb={2}>
-        <Alert variant="outlined" color="info">
-          *{' '}
-          <Trans>
-            Changing your email or password will log you out of your current session. Please make sure to update your login credentials in
-            any saved sessions or devices.
-          </Trans>
-        </Alert>
-      </Stack>
-      <Stack direction="row" pb={2}>
-        <Alert variant="outlined" color="warning">
-          *{' '}
-          <Trans>
-            Your new email address will become active once you have verified it by clicking on the confirmation link we have sent to your
-            inbox.
-          </Trans>
-        </Alert>
-      </Stack>
+      {isSuccess ? (
+        <Stack direction="row" pb={2}>
+          <Alert variant="outlined" color="warning">
+            *{' '}
+            <Trans>
+              Your new email address will become active once you have verified it by clicking on the confirmation link we have sent to your
+              inbox.
+            </Trans>
+          </Alert>
+        </Stack>
+      ) : undefined}
       <UserSettingsFormContentContainer
         title={<Trans>Email</Trans>}
         isLoading={isLoading}
         onSubmit={handleSubmit}
         isPending={isPending}
-        buttonDisabled={!email}
+        buttonDisabled={!email || email === data?.email}
         buttonContent={<Trans>Update Email</Trans>}
       >
         <TextField

@@ -26,6 +26,7 @@ const env = {
   discordUrl: import.meta.env.VITE_DISCORD_URL ?? '#',
   gtmId: undefined as string | undefined,
   aws_marketplace_url: undefined as string | undefined,
+  muiLicenseKey: import.meta.env.VITE_MUI_LICENSE_KEY,
 }
 
 export { env }
