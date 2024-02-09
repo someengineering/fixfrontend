@@ -146,3 +146,5 @@ export type SendToGTMParams = {
   dataLayerName: keyof typeof window
   data: DataEventTypes
 }
+
+export type GTMConfigParams = Record<string, unknown>
