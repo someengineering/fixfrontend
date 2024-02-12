@@ -35,7 +35,7 @@ interface ChangePaymentMethodProps {
   paymentMethods: PaymentMethod[]
 }
 
-const allSecurityTiers: SecurityTier[] = ['free', 'foundational', 'high_security']
+const allSecurityTiers: SecurityTier[] = ['free', 'plus', 'business']
 
 const SecurityTierComp = ({ securityTier }: { securityTier: SecurityTier }) => {
   const label = securityTierToLabel(securityTier)
@@ -56,7 +56,7 @@ const SecurityTierComp = ({ securityTier }: { securityTier: SecurityTier }) => {
         {desc.targetCustomer}
       </Typography>
       <Stack direction="row" my={1.5} spacing={desc.oneTime ? 1.25 : 0.75} alignItems="baseline">
-        <Typography variant="h2">{desc.price.toString()}$</Typography>
+        <Typography variant="h2">${desc.price.toString()}</Typography>
         {priceDesc ? (
           <Typography variant="body2" fontWeight={600}>
             {priceDesc}*
