@@ -8,6 +8,7 @@ import {
   AccordionDetails,
   AccordionSummary,
   Alert,
+  Box,
   Button,
   Divider,
   Grid,
@@ -29,6 +30,7 @@ import { useUserProfile } from 'src/core/auth'
 import { FailedChecks } from 'src/pages/panel/shared/failed-checks'
 import { postWorkspaceInventoryNodeQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
+import { NetworkDiagram } from 'src/shared/charts'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { panelUI } from 'src/shared/constants'
 import { Modal as PopupModal } from 'src/shared/modal'
@@ -75,7 +77,7 @@ const GridItem = ({
     <>
       <Grid overflow="hidden" width="100%" alignItems="center" height="100%" display="flex">
         <Tooltip arrow title={property} placement="left" slotProps={{ tooltip: { sx: { maxWidth: 'none' } } }}>
-          <Typography overflow="hidden" textOverflow="ellipsis" whiteSpace="nowrap">
+          <Typography overflow="hidden" textOverflow="ellipsis" whiteSpace="nowrap" color="primary.main">
             {property}
           </Typography>
         </Tooltip>
@@ -198,13 +200,13 @@ export const ResourceDetail = () => {
               <CloseIcon />
             </IconButton>
           </Stack>
-          {/* <Box minHeight={400} width="100%" sx={{ userSelect: 'none' }}>
+          <Box minHeight={400} width="100%" sx={{ userSelect: 'none' }}>
             {data ? (
-              <NetworkDiagram data={data.neighborhood} />
+              <NetworkDiagram data={data.neighborhood} mainId={data.resource.id} />
             ) : isLoading ? (
               <Skeleton height={400} width="100%" variant="rounded" />
             ) : null}
-          </Box> */}
+          </Box>
           <Accordion defaultExpanded>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Trans>Basic Information</Trans>
