@@ -91,7 +91,7 @@ msgstr "3-monatige Historie"
 
 #: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:44
 msgid "6-month history"
-msgstr "Cloud-Asset-Inventar"
+msgstr "6-monatige Historie"
 
 #: src/containers/auth/AuthContainer.tsx:61
 msgid "A few minutes to first results"
