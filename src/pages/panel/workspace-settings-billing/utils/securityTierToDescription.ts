@@ -13,7 +13,7 @@ export const securityTierToDescription = (securityTier: SecurityTier) => {
         featuresTitle: t`Free features`,
         features: [t`Basic asset inventory`, t`Compliance scans`, t`Account risk score`, t`Fix recommendations`, t`Monthly email report`],
       }
-    case 'foundational':
+    case 'plus':
       return {
         description: t`Daily scans for secure, compliant operations.`,
         targetCustomer: t`Ideal for growing businesses that need a robust security baseline.`,
@@ -23,7 +23,7 @@ export const securityTierToDescription = (securityTier: SecurityTier) => {
         featuresTitle: t`All Free features, plus`,
         features: [t`Alerting integrations (Slack, PagerDuty, Discord)`, t`Graph visualization`, t`Inventory search`, t`CSV data export`],
       }
-    case 'high_security':
+    case 'business':
       return {
         description: t`Hourly scans for critical, fast-paced environments.`,
         targetCustomer: t`Advanced integration for top-tier security needs and IaC support.`,

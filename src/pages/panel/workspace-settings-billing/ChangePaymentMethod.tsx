@@ -35,7 +35,7 @@ interface ChangePaymentMethodProps {
   paymentMethods: PaymentMethod[]
 }
 
-const allSecurityTiers: SecurityTier[] = ['free', 'foundational', 'high_security']
+const allSecurityTiers: SecurityTier[] = ['free', 'plus', 'business']
 
 const SecurityTierComp = ({ securityTier }: { securityTier: SecurityTier }) => {
   const label = securityTierToLabel(securityTier)
