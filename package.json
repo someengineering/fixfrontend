@@ -30,6 +30,7 @@
     "test:ui": "yarn test --ui"
   },
   "dependencies": {
+    "@dagrejs/dagre": "^1.0.4",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@fontsource-variable/nunito-sans": "^5.0.9",
