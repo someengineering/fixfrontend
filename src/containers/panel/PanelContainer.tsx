@@ -2,7 +2,7 @@ import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Typography } from '@mui/material'
 import { Suspense } from 'react'
-import { FixLogo } from 'src/assets/icons'
+import { FixBetaLogo } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { WebSocketEvents } from 'src/core/events'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
@@ -20,7 +20,7 @@ export default function PanelContainer() {
         <Suspense fallback={<FullPageLoadingSuspenseFallback forceFullPage />}>
           <PanelLayout>
             <LogoRegion>
-              <FixLogo width={46} height={46} />
+              <FixBetaLogo width={46} height={46} />
             </LogoRegion>
             <ContentRegion>
               <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
