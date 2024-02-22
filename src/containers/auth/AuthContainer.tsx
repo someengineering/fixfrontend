@@ -5,7 +5,7 @@ import PersonIcon from '@mui/icons-material/Person'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import { Card, CardContent, CardHeader, Link, Typography } from '@mui/material'
 import { Suspense } from 'react'
-import { FixLogo } from 'src/assets/icons'
+import { FixBetaLogo } from 'src/assets/icons'
 import { env } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { AuthLayout, BrandRegion, ContentRegion, FooterRegion, LeftRegion } from 'src/shared/layouts/auth-layout'
@@ -72,7 +72,7 @@ export default function AuthContainer() {
             </Card>
           </LeftRegion>
           <BrandRegion>
-            <FixLogo width={128} height={128} />
+            <FixBetaLogo width={128} height={128} />
           </BrandRegion>
           <ContentRegion>
             <AuthRoutes />
