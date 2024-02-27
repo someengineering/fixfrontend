@@ -3,6 +3,7 @@ import { DataEventTypes, SnippetsParams } from './GoogleTagManagerTypes'
 import { gtmDispatch, setGTMDispatch } from './gtmDispatch'
 import { initGTM } from './initGTM'
 import { sendToGTM } from './sendToGTM'
+import { userId } from './setGTMConfig'
 
 declare global {
   interface Window {
@@ -35,6 +36,7 @@ export const GTMContext = createContext<SnippetsParams | undefined>(initialState
 export const GTMContextDispatch = createContext<((data: DataEventTypes) => void) | undefined>(undefined)
 
 function dataReducer(state: SnippetsParams, data: DataEventTypes) {
+  data.user_id = userId
   sendToGTM({ data, dataLayerName: state?.dataLayerName ?? '' })
   return state
 }
