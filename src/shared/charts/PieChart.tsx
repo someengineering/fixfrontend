@@ -135,6 +135,7 @@ export function PieChart({ data, showLabel, colors, pieProps = {}, width = 400, 
           disableRestoreFocus
           disableEnforceFocus
           disableAutoFocus
+          hideBackdrop
         >
           <Paper sx={{ p: 2 }}>
             <Typography variant="body2">{popoverData?.content}</Typography>
