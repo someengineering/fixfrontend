@@ -51,9 +51,19 @@ export default defineConfig(({ mode }) => {
   return {
     base: process.env.PUBLIC_URL ?? '/',
     plugins,
-    // build: {
-    //   manifest: '/public/manifest.json',
-    // },
+    build: {
+      //   manifest: '/public/manifest.json',
+      sourcemap: true,
+      rollupOptions: {
+        onwarn(warning, defaultHandler) {
+          if (warning.code === 'SOURCEMAP_ERROR') {
+            return
+          }
+
+          defaultHandler(warning)
+        },
+      },
+    },
     server: serverOptions,
     preview: serverOptions,
     resolve: {
