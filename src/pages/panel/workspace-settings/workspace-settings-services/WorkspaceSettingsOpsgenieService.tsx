@@ -1,5 +1,4 @@
 import { Trans, t } from '@lingui/macro'
-import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import PowerIcon from '@mui/icons-material/Power'
 import SettingsIcon from '@mui/icons-material/Settings'
 import { LoadingButton } from '@mui/lab'
@@ -93,10 +92,6 @@ export const WorkspaceSettingsOpsgenieService = ({ isConnected, defaultName, isL
                   <strong>Copy API Key:</strong> Find and copy the API Key in the integration settings.
                 </li>
               </ol>
-              More from{' '}
-              <Button size="small" target="_blank" rel="noopener noreferrer" href="#" endIcon={<OpenInNewIcon />}>
-                Opsgenie Documentation
-              </Button>
             </Typography>
           </Trans>
         }

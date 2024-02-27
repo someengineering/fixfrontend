@@ -77,9 +77,9 @@ msgstr "<0>Wir verwenden die Events API V2 für Benachrichtigungen über PagerDu
 msgid "<0>We utilize incoming webhooks to deliver notifications to your Microsoft Teams channels.<1/>To manually add a webhook:<2><3>In Microsoft Teams, click on More options (⋯) next to the channel name and then select Connectors.</3><4>Browse through the list of Connectors to find Incoming Webhook, and click Add.</4><5>Provide a name for the webhook, upload an image to represent data from the webhook, and click Create.</5><6>Copy the webhook URL to your clipboard and keep it safe. This URL is necessary for TrackJS to send notifications.</6><7>Click Done.</7><8>In the text box provided below, paste the Webhook URL you copied and enter the name of the channel.</8></2>More from <9>Microsoft Teams Documentation</9></0>"
 msgstr "<0>Wir nutzen eingehende Webhooks, um Benachrichtigungen an Ihre Microsoft Teams-Kanäle zu übermitteln.<1/>So fügen Sie manuell einen Webhook hinzu:<2><3>Klicken Sie in Microsoft Teams auf Weitere Optionen (⋯) neben dem Kanalnamen und dann Wählen Sie Connectors aus.</3><4>Durchsuchen Sie die Liste der Connectors, um den eingehenden Webhook zu finden, und klicken Sie auf Hinzufügen.</4><5>Geben Sie einen Namen für den Webhook ein, laden Sie ein Bild hoch, um die Daten vom Webhook darzustellen, und Klicken Sie auf „Erstellen“.</5><6>Kopieren Sie die Webhook-URL in Ihre Zwischenablage und bewahren Sie sie sicher auf. Diese URL ist erforderlich, damit TrackJS Benachrichtigungen senden kann.</6><7>Klicken Sie auf „Fertig“.</7><8>Fügen Sie in das unten bereitgestellte Textfeld die Webhook-URL ein, die Sie kopiert haben, und geben Sie den Namen des Kanals ein.</8></2>Mehr aus der <9>Microsoft Teams-Dokumentation</9></0>"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:71
-msgid "<0>We utilize the OpsGenie API integration for notifications and alerts.<1/>To set up this Integration, please follow these instructions:<2><3><4>Navigate to the Dashboard:</4> Find and click on the “Teams” section from the sidebar once logged in.</3><5><6>Select Your Team:</6> Choose the team you want to integrate with. Within the team dashboard, go to the “Integrations” tab.</5><7><8>Add Integration:</8> Click on the “+ New Integration” button. Select “API” as the integration type, give it the name “Fix,” and press Continue.</7><9><10>Turn Integration on:</10> When the Integration has been created, it is disabled by default - click “Turn on Integration”.</9><11><12>Copy API Key:</12> Find and copy the API Key in the integration settings.</11></2>More from <13>Opsgenie Documentation</13></0>"
-msgstr "<0>Wir nutzen die OpsGenie-API-Integration für Benachrichtigungen und Warnungen.<1/>Um diese Integration einzurichten, folgen Sie bitte diesen Anweisungen:<2><3><4>Navigieren Sie zum Dashboard:</4> Suchen und klicken Sie Klicken Sie nach der Anmeldung auf den Abschnitt „Teams“ in der Seitenleiste.</3><5><6>Wählen Sie Ihr Team aus:</6> Wählen Sie das Team aus, in das Sie sich integrieren möchten. Gehen Sie im Team-Dashboard zur Registerkarte „Integrationen“.</5><7><8>Integration hinzufügen:</8> Klicken Sie auf die Schaltfläche „+ Neue Integration“. Wählen Sie „API“ als Integrationstyp, geben Sie ihm den Namen „Fix“ und klicken Sie auf „Weiter“.</7><9><10>Integration aktivieren:</10> Wenn die Integration erstellt wurde, wird sie deaktiviert Standardmäßig – klicken Sie auf „Integration aktivieren“.</9><11><12>API-Schlüssel kopieren:</12> Suchen und kopieren Sie den API-Schlüssel in den Integrationseinstellungen.</11></2>Mehr von <13>Opsgenie-Dokumentation</13></0>"
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:70
+msgid "<0>We utilize the OpsGenie API integration for notifications and alerts.<1/>To set up this Integration, please follow these instructions:<2><3><4>Navigate to the Dashboard:</4> Find and click on the “Teams” section from the sidebar once logged in.</3><5><6>Select Your Team:</6> Choose the team you want to integrate with. Within the team dashboard, go to the “Integrations” tab.</5><7><8>Add Integration:</8> Click on the “+ New Integration” button. Select “API” as the integration type, give it the name “Fix,” and press Continue.</7><9><10>Turn Integration on:</10> When the Integration has been created, it is disabled by default - click “Turn on Integration”.</9><11><12>Copy API Key:</12> Find and copy the API Key in the integration settings.</11></2></0>"
+msgstr "<0>Wir nutzen die OpsGenie-API-Integration für Benachrichtigungen und Warnungen.<1/>Um diese Integration einzurichten, folgen Sie bitte diesen Anweisungen:<2><3><4>Navigieren Sie zum Dashboard:</4> Suchen und klicken Sie Klicken Sie nach der Anmeldung auf den Abschnitt „Teams“ in der Seitenleiste.</3><5><6>Wählen Sie Ihr Team aus:</6> Wählen Sie das Team aus, in das Sie sich integrieren möchten. Gehen Sie im Team-Dashboard zur Registerkarte „Integrationen“.</5><7><8>Integration hinzufügen:</8> Klicken Sie auf die Schaltfläche „+ Neue Integration“. Wählen Sie „API“ als Integrationstyp, geben Sie ihm den Namen „Fix“ und klicken Sie auf „Weiter“.</7><9><10>Integration aktivieren:</10> Wenn die Integration erstellt wurde, wird sie deaktiviert Standardmäßig – klicken Sie auf „Integration aktivieren“.</9><11><12>API-Schlüssel kopieren:</12> Suchen und kopieren Sie den API-Schlüssel in den Integrationseinstellungen.</11></2></0>"
 
 #: src/shared/layouts/panel-layout/BenchmarkCheckGuard.tsx:25
 msgid "<0>Your cloud account has been successfully added!</0><1>Thank you for deploying the CloudFormation stack in your AWS account.</1><2>Here’s what’s happening behind the scenes:</2><3><4>Initial Trust Establishment (5-15 minutes): After deployment, a cross-account trust for the role included in the stack is established between your and Fix's AWS accounts. Due to AWS's distributed infrastructure, this step can take anywhere from 5 to 15 minutes as we wait for the trust to become active across their network. During this time, our backend continuously probes to confirm when the trust is operational.</4><5>First Security Scan (2-10 minutes): Once the trust is established, we proceed with the initial security scan of your environment. Depending on the size and complexity of your cloud account, this scan can take anywhere from 2 to 10 minutes.</5><6>Email Notification: You won't have to wait in front of your browser to know when we're done. After the first security scan is completed, we'll notify you by email.</6></3><7>What to Expect Next:</7><8><9>Dashboard Availability: Your dashboard and inventory will be available shortly after the completion of the initial security scan. This gives you a comprehensive view of your security posture and any findings we have identified.</9><10>Subsequent Scans: After the initial scan, subsequent security scans will also take 2 to 10 minutes each, without the initial delay, since the trust has to be established only once.</10></8><11>We appreciate your patience during this setup process. If you have any questions or need assistance, please do not hesitate to contact us directly <12>on our Discord server<13/></12>.</11>"
@@ -185,7 +185,7 @@ msgstr "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut."
 msgid "and"
 msgstr "und"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:150
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:145
 msgid "API Key"
 msgstr "API-Schlüssel"
 
@@ -259,7 +259,7 @@ msgstr "Business"
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:105
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsDisconnectServiceModal.tsx:57
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:93
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:107
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:102
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:99
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:111
 msgid "Cancel"
@@ -318,7 +318,7 @@ msgid "Compliance"
 msgstr "Compliance"
 
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:73
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:63
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:62
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:62
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:74
 msgid "Configure"
@@ -332,8 +332,8 @@ msgstr "Herzlichen Glückwunsch zu Ihrem Abonnement"
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsDiscordService.tsx:40
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:73
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:104
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:63
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:118
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:62
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:113
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:62
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:110
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsSlackService.tsx:40
@@ -342,7 +342,7 @@ msgstr "Herzlichen Glückwunsch zu Ihrem Abonnement"
 msgid "Connect"
 msgstr "Verbinden"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:69
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:68
 msgid "Connect Opsgenie"
 msgstr "Verbinden Sie Opsgenie"
 
@@ -753,7 +753,7 @@ msgstr "Die meisten nicht konformen Konten"
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:125
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:53
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:114
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:128
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:123
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:120
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:132
 #: src/shared/charts/NetworkDiagram.tsx:321
@@ -1157,7 +1157,7 @@ msgstr "Wir entschuldigen uns für die Unannehmlichkeiten. Unser Team wurde bena
 msgid "We've identified {0} non-compliant resources out of {1} {2}-severity security checks."
 msgstr "Wir haben {0} nicht konforme Ressourcen von insgesamt {1} {2}-Severity Security-Checks identifiziert"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:139
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:134
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:143
 msgid "Webhook URL"
 msgstr "Webhook-URL"
