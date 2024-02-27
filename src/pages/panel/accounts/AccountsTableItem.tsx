@@ -56,7 +56,7 @@ export const AccountsTableItem = ({ data, title, isTop, isBottom, isConfigured }
               </TableCell>
               {isConfigured ? (
                 <TableCell>
-                  <Trans>Security Benchmark Scan</Trans>
+                  <Trans>Security Scan</Trans>
                 </TableCell>
               ) : null}
               <TableCell>

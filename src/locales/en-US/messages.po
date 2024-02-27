@@ -943,8 +943,8 @@ msgid "Secure read-only access"
 msgstr "Secure read-only access"
 
 #: src/pages/panel/accounts/AccountsTableItem.tsx:59
-msgid "Security Benchmark Scan"
-msgstr "Security Benchmark Scan"
+msgid "Security Scan"
+msgstr "Security Scan"
 
 #: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:19
 msgid "Security benchmarks"
