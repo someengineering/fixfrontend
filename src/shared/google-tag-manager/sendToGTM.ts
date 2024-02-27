@@ -7,7 +7,7 @@ export const sendToGTM = ({ dataLayerName, data }: SendToGTMParams): void => {
   } else {
     console.warn(`dataLayer ${dataLayerName} does not exist`)
   }
-  if ('gtag' in window) {
+  if ('gtag' in window && 'event' in data) {
     const { event, ...rest } = data
     window.gtag('event', event, rest)
   } else {
