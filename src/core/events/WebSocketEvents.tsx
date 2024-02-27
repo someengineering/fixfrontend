@@ -103,7 +103,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
       let retryTimeout = env.webSocketRetryTimeout
       const onClose = (ev: CloseEvent) => {
         if (ev.code !== 1000) {
-          const err = Error('Websocket connection closed')
+          const err = new Error('Websocket connection closed')
           if (TrackJS.isInstalled()) {
             TrackJS.track(err)
           }
