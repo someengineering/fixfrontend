@@ -106,10 +106,6 @@ msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 msgid "Account"
 msgstr "Konto"
 
-#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:14
-#~ msgid "Account risk score"
-#~ msgstr "Risikobewertung des Kontos"
-
 #: src/pages/panel/inventory/InventoryTable.error.tsx:73
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:126
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:42
@@ -147,10 +143,6 @@ msgstr "Externes Verzeichnis hinzufügen"
 msgid "Added accounts"
 msgstr "Konten hinzugefügt"
 
-#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:29
-#~ msgid "Advanced integration for top-tier security needs and IaC support."
-#~ msgstr "Erweiterte Integration für höchste Sicherheitsanforderungen und IaC-Unterstützung."
-
 #: src/pages/panel/inventory/ResourceDetail.tsx:236
 #: src/shared/charts/NetworkDiagram.tsx:323
 msgid "Age"
@@ -160,25 +152,9 @@ msgstr "Alter"
 msgid "Alerting integrations (PagerDuty, Slack, Discord, Teams)"
 msgstr "Alarmierungsintegrationen (PagerDuty, Slack, Discord, Teams)"
 
-#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:24
-#~ msgid "Alerting integrations (Slack, PagerDuty, Discord)"
-#~ msgstr "Alarmierungsintegrationen (Slack, PagerDuty, Discord)"
-
-#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:34
-#~ msgid "Alerting integrations with custom HTTP webhooks"
-#~ msgstr "Alarmierungsintegrationen mit benutzerdefinierten HTTP-Webhooks"
-
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:31
 msgid "Alerting Settings"
 msgstr "Benachrichtigungseinstellungen"
-
-#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:33
-#~ msgid "All Foundational features, plus"
-#~ msgstr "Alle grundlegenden Funktionen plus"
-
-#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:23
-#~ msgid "All Free features, plus"
-#~ msgstr "Alle kostenlosen Funktionen plus"
 
 #: src/pages/auth/register/RegisterPage.tsx:120
 msgid "Already have an account? Click here to Log in."
@@ -227,10 +203,6 @@ msgstr "Cloud-Asset-Inventar"
 msgid "Automatic Cloud Setup"
 msgstr "Automatisches Cloud Setup"
 
-#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:34
-#~ msgid "Automatic inventory exports (AWS S3)"
-#~ msgstr "Automatische Bestandsexporte (AWS S3)"
-
 #: src/pages/panel/workspace-settings-billing/utils/paymentMethodToLabel.ts:7
 msgid "AWS Marketplace"
 msgstr "AWS Marketplace"
@@ -238,10 +210,6 @@ msgstr "AWS Marketplace"
 #: src/shared/constants/consts.ts:6
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
-
-#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:14
-#~ msgid "Basic asset inventory"
-#~ msgstr "Grundlegendes Cloud-Asset-Inventar"
 
 #: src/pages/panel/inventory/ResourceDetail.tsx:212
 msgid "Basic Information"
@@ -340,10 +308,6 @@ msgstr "Wolken"
 msgid "Compliance"
 msgstr "Compliance"
 
-#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:14
-#~ msgid "Compliance scans"
-#~ msgstr "Compliance-Scans"
-
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:81
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:68
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:71
@@ -408,10 +372,6 @@ msgstr "Erstellte Zeit"
 #: src/shared/defined-messages/getMessage.ts:5
 msgid "Critical"
 msgstr "Kritisch"
-
-#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:24
-#~ msgid "CSV data export"
-#~ msgstr "CSV-Datenexport"
 
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:270
 msgid "Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is necessary to configure alerting settings."
@@ -596,10 +556,6 @@ msgstr "Nein"
 msgid "Features"
 msgstr "Funktionen"
 
-#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:14
-#~ msgid "Fix recommendations"
-#~ msgstr "Fix-Empfehlungen"
-
 #: src/containers/auth/AuthContainer.tsx:50
 msgid "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
 msgstr "Fix scannt Ihre Infrastruktur- und Ressourcenkonfigurationen mithilfe des schreibgeschützten API-Zugriffs. Keine Agenten erforderlich."
@@ -628,10 +584,6 @@ msgstr "Erhalten Sie Ihre fünf wichtigsten Empfehlungen zur Verbesserung Ihrer 
 msgid "Go to resources"
 msgstr "Gehen Sie zu Ressourcen"
 
-#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:24
-#~ msgid "Graph visualization"
-#~ msgstr "Diagrammvisualisierung"
-
 #: src/shared/defined-messages/getMessage.ts:8
 msgid "High"
 msgstr "Hoch"
@@ -659,10 +611,6 @@ msgstr "Wie repariert man"
 #: src/shared/charts/NetworkDiagram.tsx:319
 msgid "ID"
 msgstr "ID"
-
-#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:19
-#~ msgid "Ideal for growing businesses that need a robust security baseline."
-#~ msgstr "Ideal für wachsende Unternehmen, die eine robuste Sicherheitsbasis benötigen."
 
 #: src/pages/panel/home/OverallCard.tsx:162
 msgid "Improved"
@@ -897,10 +845,6 @@ msgstr "Die Zahlungsmethode wurde als {securityTier} in {paymentMethod} geänder
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:18
 msgid "Pending Invitations"
 msgstr "Ausstehende Einladungen"
-
-#: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:9
-#~ msgid "Perfect for individual use or small-scale proof-of-concept trials."
-#~ msgstr "Perfekt für den Einzelgebrauch oder kleine Proof-of-Concept-Versuche."
 
 #: src/pages/panel/home/OverallCard.tsx:176
 msgid "Pick one of the recommendations to the right and improve your security"
