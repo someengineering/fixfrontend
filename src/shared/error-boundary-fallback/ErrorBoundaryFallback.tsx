@@ -19,7 +19,7 @@ const ModalContent = styled(Stack)(({ theme }) => ({
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '600px',
-  maxWidth: `calc(100% - ${theme.spacing(2)}px)`,
+  maxWidth: `calc(100% - ${theme.spacing(2)})`,
   backgroundColor: theme.palette.background.paper,
   borderRadius: 4,
   boxShadow: theme.shadows[24],
@@ -66,8 +66,8 @@ export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackPro
           </Trans>
         </Typography>
         <Divider />
-        <Stack spacing={1} justifyContent="end" direction="row">
-          <Stack justifySelf="start">
+        <Stack spacing={{ sm: 1 }} justifyContent="end" direction="row" flexWrap="wrap">
+          <Stack justifySelf="start" mb={{ xs: 1, sm: 0 }} mr={{ xs: 1, sm: 0 }}>
             <Button
               variant="outlined"
               color="primary"
@@ -84,16 +84,16 @@ export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackPro
           <Button
             onClick={resetErrorBoundary}
             variant="contained"
-            sx={{ mt: 1 }}
             color="primary"
             startIcon={<DiscordIcon />}
             href={env.discordUrl}
             rel="noopener noreferrer"
+            sx={{ mb: { xs: 1, sm: 0 }, mr: { xs: 1, sm: 0 } }}
             target="_blank"
           >
             Discord
           </Button>
-          <Button onClick={resetErrorBoundary} variant="outlined" sx={{ mt: 1 }} color="warning">
+          <Button onClick={resetErrorBoundary} variant="outlined" color="warning" sx={{ mb: { xs: 1, sm: 0 }, mr: { xs: 1, sm: 0 } }}>
             <Trans>Try again</Trans>
           </Button>
         </Stack>
