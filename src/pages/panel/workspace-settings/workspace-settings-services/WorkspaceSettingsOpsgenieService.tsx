@@ -3,7 +3,7 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import PowerIcon from '@mui/icons-material/Power'
 import SettingsIcon from '@mui/icons-material/Settings'
 import { LoadingButton } from '@mui/lab'
-import { Box, Button, Stack, TextField, Typography, useTheme } from '@mui/material'
+import { Button, Stack, TextField, Typography, useTheme } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
 import { OpsgenieLogo } from 'src/assets/icons'
@@ -48,11 +48,8 @@ export const WorkspaceSettingsOpsgenieService = ({ isConnected, defaultName, isL
   }
   return (
     <Stack direction="row" spacing={2} alignItems="center" justifyContent={{ xs: 'space-between', sm: 'start' }}>
-      <Stack width={150} direction="row" spacing={1} alignItems="center">
-        <Box width={30}>
-          <OpsgenieLogo fill={theme.palette.common.black} />
-        </Box>
-        <Typography variant="h5">Opsgenie</Typography>
+      <Stack width={150} justifyContent="center">
+        <OpsgenieLogo fill={theme.palette.common.black} width={120} />
       </Stack>
       {isConnected ? <WorkspaceSettingsDisconnectServiceModal isLoading={isLoading} channel="opsgenie" name="Opsgenie" /> : null}
       <LoadingButton
@@ -73,8 +70,29 @@ export const WorkspaceSettingsOpsgenieService = ({ isConnected, defaultName, isL
         description={
           <Trans>
             <Typography component="div">
-              We utilize incoming webhooks to deliver notifications to your Opsgenie channels.
+              We utilize the OpsGenie API integration for notifications and alerts.
               <br />
+              To set up this Integration, please follow these instructions:
+              <ol>
+                <li>
+                  <strong>Navigate to the Dashboard:</strong> Find and click on the “Teams” section from the sidebar once logged in.
+                </li>
+                <li>
+                  <strong>Select Your Team:</strong> Choose the team you want to integrate with. Within the team dashboard, go to the
+                  “Integrations” tab.
+                </li>
+                <li>
+                  <strong>Add Integration:</strong> Click on the “+ New Integration” button. Select “API” as the integration type, give it
+                  the name “Fix,” and press Continue.
+                </li>
+                <li>
+                  <strong>Turn Integration on:</strong> When the Integration has been created, it is disabled by default - click “Turn on
+                  Integration”.
+                </li>
+                <li>
+                  <strong>Copy API Key:</strong> Find and copy the API Key in the integration settings.
+                </li>
+              </ol>
               More from{' '}
               <Button size="small" target="_blank" rel="noopener noreferrer" href="#" endIcon={<OpenInNewIcon />}>
                 Opsgenie Documentation

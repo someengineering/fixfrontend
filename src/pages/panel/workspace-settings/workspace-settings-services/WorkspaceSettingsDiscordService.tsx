@@ -1,7 +1,7 @@
 import { Trans } from '@lingui/macro'
 import PowerIcon from '@mui/icons-material/Power'
 import { LoadingButton } from '@mui/lab'
-import { Box, Stack, useTheme } from '@mui/material'
+import { Stack, useTheme } from '@mui/material'
 import { DiscordWithTextLogo } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { endPoints } from 'src/shared/constants'
@@ -18,9 +18,9 @@ export const WorkspaceSettingsDiscordService = ({ isConnected, isLoading }: Work
   const theme = useTheme()
   return (
     <Stack direction="row" spacing={2} alignItems="center" justifyContent={{ xs: 'space-between', sm: 'start' }}>
-      <Box width={150}>
+      <Stack width={150} justifyContent="center">
         <DiscordWithTextLogo fill={theme.palette.common.black} width={120} />
-      </Box>
+      </Stack>
       {isConnected ? (
         <>
           <WorkspaceSettingsDisconnectServiceModal channel="discord" isLoading={isLoading} name="Discord" />
