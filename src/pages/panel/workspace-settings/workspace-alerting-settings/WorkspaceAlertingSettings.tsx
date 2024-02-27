@@ -23,7 +23,7 @@ import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceNotificationsQuery } from 'src/pages/panel/shared/queries'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
-import { SeverityType } from 'src/shared/types/server'
+import { NotificationChannel, SeverityType } from 'src/shared/types/server'
 import { snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 import { getWorkspaceAlertingSettingsQuery } from './getWorkspaceAlertingSettings.query'
 import { getWorkspaceInventoryReportInfoQuery } from './getWorkspaceInventoryReportInfo.query'
@@ -40,8 +40,8 @@ interface WorkspaceAlertingSettingsCheckboxProps {
   benchmark: string
   checked: boolean
   isPending: boolean
-  name: string
-  onChange: (benchmark: string, name: string, checked: boolean) => void
+  name: NotificationChannel
+  onChange: (benchmark: string, name: NotificationChannel, checked: boolean) => void
 }
 
 const WorkspaceAlertingSettingsCheckbox = ({ benchmark, checked, isPending, name, onChange }: WorkspaceAlertingSettingsCheckboxProps) => {
@@ -110,7 +110,7 @@ export const WorkspaceAlertingSettings = () => {
     }
     selectedSeverities.current[benchmark] = severity
   }
-  const handleCheckboxChange = (benchmark: string, channel: string, checked: boolean) => {
+  const handleCheckboxChange = (benchmark: string, channel: NotificationChannel, checked: boolean) => {
     if (alertingSettings && selectedWorkspace?.id) {
       if (alertingSettings[benchmark] || checked) {
         const channels = alertingSettings[benchmark]
@@ -161,6 +161,7 @@ export const WorkspaceAlertingSettings = () => {
             {notifications?.teams ? <TableCell>Teams</TableCell> : undefined}
             {notifications?.discord ? <TableCell>Discord</TableCell> : undefined}
             {notifications?.pagerduty ? <TableCell>PagerDuty</TableCell> : undefined}
+            {notifications?.opsgenie ? <TableCell>Opsgenie</TableCell> : undefined}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -255,6 +256,17 @@ export const WorkspaceAlertingSettings = () => {
                     checked={(alertingSettings?.[benchmark]?.channels.indexOf('pagerduty') ?? -1) > -1}
                     isPending={isPending}
                     name="pagerduty"
+                    onChange={handleCheckboxChange}
+                  />
+                </TableCell>
+              ) : undefined}
+              {notifications?.opsgenie ? (
+                <TableCell>
+                  <WorkspaceAlertingSettingsCheckbox
+                    benchmark={benchmark}
+                    checked={(alertingSettings?.[benchmark]?.channels.indexOf('opsgenie') ?? -1) > -1}
+                    isPending={isPending}
+                    name="opsgenie"
                     onChange={handleCheckboxChange}
                   />
                 </TableCell>

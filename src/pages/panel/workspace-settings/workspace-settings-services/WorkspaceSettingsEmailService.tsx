@@ -9,8 +9,8 @@ import { useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { Modal } from 'src/shared/modal'
 import { WorkspaceSettingsDisconnectServiceModal } from './WorkspaceSettingsDisconnectServiceModal'
-import { deleteWorkspaceNotificationEmailMutation } from './deleteWorkspaceNotificationEmail.mutation'
-import { putWorkspaceNotificationAddEmailMutation } from './putWorkspaceNotificationAddEmail.mutation'
+import { WorkspaceSettingsTestService } from './WorkspaceSettingsTestService'
+import { putWorkspaceNotificationAddMutation } from './putWorkspaceNotificationAdd.mutation'
 
 interface WorkspaceSettingsEmailServiceProps {
   isConnected?: boolean
@@ -26,7 +26,7 @@ export const WorkspaceSettingsEmailService = ({
   isLoading,
 }: WorkspaceSettingsEmailServiceProps) => {
   const { selectedWorkspace } = useUserProfile()
-  const { mutate, isPending } = useMutation({ mutationFn: putWorkspaceNotificationAddEmailMutation })
+  const { mutate, isPending } = useMutation({ mutationFn: putWorkspaceNotificationAddMutation })
   const [typedEmail, setTypedEmail] = useState('')
   const [email, setEmail] = useState(defaultEmail ?? [])
   const [name, setName] = useState(defaultName ?? '')
@@ -42,7 +42,7 @@ export const WorkspaceSettingsEmailService = ({
   const modalRef = useRef<(show?: boolean | undefined) => void>()
   const handleConnect = () => {
     mutate(
-      { workspaceId: selectedWorkspace?.id ?? '', email, name },
+      { workspaceId: selectedWorkspace?.id ?? '', email, name, channel: 'email' },
       {
         onSettled: () => {
           void queryClient.invalidateQueries({
@@ -61,15 +61,7 @@ export const WorkspaceSettingsEmailService = ({
         </Box>
         <Typography variant="h5">Email</Typography>
       </Stack>
-      {isConnected ? (
-        <>
-          <WorkspaceSettingsDisconnectServiceModal
-            isLoading={isLoading}
-            mutationFn={deleteWorkspaceNotificationEmailMutation}
-            name="Email"
-          />
-        </>
-      ) : null}
+      {isConnected ? <WorkspaceSettingsDisconnectServiceModal isLoading={isLoading} channel="email" name="Email" /> : null}
       <LoadingButton
         loadingPosition={isLoading && !isConnected ? 'start' : undefined}
         startIcon={isConnected ? <SettingsIcon /> : <PowerIcon />}
@@ -80,6 +72,7 @@ export const WorkspaceSettingsEmailService = ({
       >
         {isConnected ? <Trans>Configure</Trans> : <Trans>Connect</Trans>}
       </LoadingButton>
+      {isConnected ? <WorkspaceSettingsTestService channel="email" isLoading={isLoading} /> : null}
       <Modal
         onSubmit={handleConnect}
         openRef={modalRef}

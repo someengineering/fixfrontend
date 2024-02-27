@@ -8,6 +8,7 @@ import GcpLogo from './gcp-logo.svg?react'
 import GithubSEBIcon from './github-seb-icon.svg?react'
 import GoogleSEBIcon from './google-seb-icon.svg?react'
 import LogoWhiteNoBackground from './logo-white-no-background.svg?react'
+import OpsgenieLogo from './opsgenie-logo.svg?react'
 import PagerdutyLogo from './pagerduty-logo.svg?react'
 import SlackWithTextLogo from './slack-with-text-logo.svg?react'
 import TeamsLogo from './teams-logo.svg?react'
@@ -23,6 +24,7 @@ export {
   GithubSEBIcon,
   GoogleSEBIcon,
   LogoWhiteNoBackground,
+  OpsgenieLogo,
   PagerdutyLogo,
   SlackWithTextLogo,
   TeamsLogo,

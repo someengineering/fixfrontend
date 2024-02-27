@@ -6,7 +6,7 @@ import { SlackWithTextLogo } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { endPoints } from 'src/shared/constants'
 import { WorkspaceSettingsDisconnectServiceModal } from './WorkspaceSettingsDisconnectServiceModal'
-import { deleteWorkspaceNotificationSlackMutation } from './deleteWorkspaceNotificationSlack.mutation'
+import { WorkspaceSettingsTestService } from './WorkspaceSettingsTestService'
 
 interface WorkspaceSettingsSlackServiceProps {
   isConnected?: boolean
@@ -22,12 +22,15 @@ export const WorkspaceSettingsSlackService = ({ isConnected, isLoading }: Worksp
         <SlackWithTextLogo fill={theme.palette.common.black} width={100} />
       </Box>
       {isConnected ? (
-        <WorkspaceSettingsDisconnectServiceModal isLoading={isLoading} mutationFn={deleteWorkspaceNotificationSlackMutation} name="Slack" />
+        <>
+          <WorkspaceSettingsDisconnectServiceModal isLoading={isLoading} channel="slack" name="Slack" />
+          <WorkspaceSettingsTestService channel="slack" isLoading={isLoading} />
+        </>
       ) : (
         <LoadingButton
           loadingPosition={isLoading ? 'start' : undefined}
           startIcon={<PowerIcon />}
-          href={endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').notification.add.slack}
+          href={endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').notification.add('slack')}
           loading={isLoading}
           variant="contained"
           color="primary"

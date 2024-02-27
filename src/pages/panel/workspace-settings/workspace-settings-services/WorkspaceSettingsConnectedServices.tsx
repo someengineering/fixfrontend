@@ -7,6 +7,7 @@ import { useSnackbar } from 'src/core/snackbar'
 import { getWorkspaceNotificationsQuery } from 'src/pages/panel/shared/queries'
 import { WorkspaceSettingsDiscordService } from './WorkspaceSettingsDiscordService'
 import { WorkspaceSettingsEmailService } from './WorkspaceSettingsEmailService'
+import { WorkspaceSettingsOpsgenieService } from './WorkspaceSettingsOpsgenieService'
 import { WorkspaceSettingsPagerdutyService } from './WorkspaceSettingsPagerdutyService'
 import { WorkspaceSettingsSlackService } from './WorkspaceSettingsSlackService'
 import { WorkspaceSettingsTeamsService } from './WorkspaceSettingsTeamsService'
@@ -46,6 +47,7 @@ export const WorkspaceSettingsConnectedServices = () => {
         defaultName={data?.email?.name}
         defaultEmail={data?.email?.email}
       />
+      <WorkspaceSettingsOpsgenieService defaultName={data?.opsgenie?.name} isConnected={!!data?.opsgenie} isLoading={isLoading} />
     </>
   )
 }

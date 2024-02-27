@@ -6,7 +6,7 @@ import { DiscordWithTextLogo } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { endPoints } from 'src/shared/constants'
 import { WorkspaceSettingsDisconnectServiceModal } from './WorkspaceSettingsDisconnectServiceModal'
-import { deleteWorkspaceNotificationDiscordMutation } from './deleteWorkspaceNotificationDiscord.mutation'
+import { WorkspaceSettingsTestService } from './WorkspaceSettingsTestService'
 
 interface WorkspaceSettingsDiscordServiceProps {
   isConnected?: boolean
@@ -22,16 +22,15 @@ export const WorkspaceSettingsDiscordService = ({ isConnected, isLoading }: Work
         <DiscordWithTextLogo fill={theme.palette.common.black} width={120} />
       </Box>
       {isConnected ? (
-        <WorkspaceSettingsDisconnectServiceModal
-          isLoading={isLoading}
-          mutationFn={deleteWorkspaceNotificationDiscordMutation}
-          name="Discord"
-        />
+        <>
+          <WorkspaceSettingsDisconnectServiceModal channel="discord" isLoading={isLoading} name="Discord" />
+          <WorkspaceSettingsTestService channel="discord" isLoading={isLoading} />
+        </>
       ) : (
         <LoadingButton
           loadingPosition={isLoading ? 'start' : undefined}
           startIcon={<PowerIcon />}
-          href={endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').notification.add.discord}
+          href={endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').notification.add('discord')}
           loading={isLoading}
           variant="contained"
           color="primary"

@@ -6,19 +6,21 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { Modal } from 'src/shared/modal'
+import { NotificationChannel } from 'src/shared/types/server'
+import { deleteWorkspaceNotificationMutation } from './deleteWorkspaceNotification.mutation'
 
 interface WorkspaceSettingsDisconnectServiceModalProps {
-  mutationFn: (data: { workspaceId: string }) => Promise<undefined>
+  channel: NotificationChannel
   name: string
   isLoading?: boolean
 }
 
-export const WorkspaceSettingsDisconnectServiceModal = ({ mutationFn, name, isLoading }: WorkspaceSettingsDisconnectServiceModalProps) => {
+export const WorkspaceSettingsDisconnectServiceModal = ({ name, channel, isLoading }: WorkspaceSettingsDisconnectServiceModalProps) => {
   const { selectedWorkspace } = useUserProfile()
   const disconnectModalRef = useRef<(show?: boolean | undefined) => void>()
   const queryClient = useQueryClient()
   const { mutate, isPending } = useMutation({
-    mutationFn,
+    mutationFn: deleteWorkspaceNotificationMutation,
     onSettled: () => {
       void queryClient.invalidateQueries({
         predicate: (query) => query.queryKey[0] === 'workspace-notifications',
@@ -28,7 +30,7 @@ export const WorkspaceSettingsDisconnectServiceModal = ({ mutationFn, name, isLo
   })
   const handleDisconnect = () => {
     if (selectedWorkspace?.id) {
-      mutate({ workspaceId: selectedWorkspace.id })
+      mutate({ workspaceId: selectedWorkspace.id, channel })
     }
   }
 

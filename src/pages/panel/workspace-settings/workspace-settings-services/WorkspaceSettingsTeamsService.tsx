@@ -11,8 +11,8 @@ import { TeamsLogo } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { Modal } from 'src/shared/modal'
 import { WorkspaceSettingsDisconnectServiceModal } from './WorkspaceSettingsDisconnectServiceModal'
-import { deleteWorkspaceNotificationTeamsMutation } from './deleteWorkspaceNotificationTeams.mutation'
-import { putWorkspaceNotificationAddTeamsMutation } from './putWorkspaceNotificationAddTeams.mutation'
+import { WorkspaceSettingsTestService } from './WorkspaceSettingsTestService'
+import { putWorkspaceNotificationAddMutation } from './putWorkspaceNotificationAdd.mutation'
 
 interface WorkspaceSettingsTeamsServiceProps {
   isConnected?: boolean
@@ -26,7 +26,7 @@ export const WorkspaceSettingsTeamsService = ({ isConnected, defaultName, isLoad
     i18n: { locale },
   } = useLingui()
   const { selectedWorkspace } = useUserProfile()
-  const { mutate, isPending } = useMutation({ mutationFn: putWorkspaceNotificationAddTeamsMutation })
+  const { mutate, isPending } = useMutation({ mutationFn: putWorkspaceNotificationAddMutation })
   const [webhookUrl, setWebhookUrl] = useState('')
   const [name, setName] = useState(defaultName ?? '')
   useEffect(() => {
@@ -38,7 +38,7 @@ export const WorkspaceSettingsTeamsService = ({ isConnected, defaultName, isLoad
   const modalRef = useRef<(show?: boolean | undefined) => void>()
   const handleConnect = () => {
     mutate(
-      { workspaceId: selectedWorkspace?.id ?? '', webhook_url: webhookUrl, name },
+      { workspaceId: selectedWorkspace?.id ?? '', webhook_url: webhookUrl, name, channel: 'teams' },
       {
         onSettled: () => {
           void queryClient.invalidateQueries({
@@ -58,7 +58,10 @@ export const WorkspaceSettingsTeamsService = ({ isConnected, defaultName, isLoad
         <Typography variant="h5">Teams</Typography>
       </Stack>
       {isConnected ? (
-        <WorkspaceSettingsDisconnectServiceModal isLoading={isLoading} mutationFn={deleteWorkspaceNotificationTeamsMutation} name="Teams" />
+        <>
+          <WorkspaceSettingsDisconnectServiceModal isLoading={isLoading} channel="teams" name="Teams" />
+          <WorkspaceSettingsTestService channel="teams" isLoading={isLoading} />
+        </>
       ) : null}
       <LoadingButton
         loadingPosition={isLoading && !isConnected ? 'start' : undefined}
