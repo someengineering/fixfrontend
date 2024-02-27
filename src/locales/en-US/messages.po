@@ -97,8 +97,8 @@ msgstr "6-month history"
 msgid "A few minutes to first results"
 msgstr "A few minutes to first results"
 
-#: src/pages/panel/accounts/AccountRow.tsx:201
-#: src/pages/panel/accounts/AccountRow.tsx:301
+#: src/pages/panel/accounts/AccountRow.tsx:227
+#: src/pages/panel/accounts/AccountRow.tsx:343
 msgid "Access to your account is broken"
 msgstr "Access to your account is broken"
 
@@ -122,7 +122,7 @@ msgstr "Accounts Summary"
 msgid "Action"
 msgstr "Action"
 
-#: src/pages/panel/accounts/AccountsTableItem.tsx:57
+#: src/pages/panel/accounts/AccountsTableItem.tsx:63
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:68
 msgid "Actions"
 msgstr "Actions"
@@ -139,7 +139,7 @@ msgstr "Add Directory"
 msgid "Add external directory"
 msgstr "Add external directory"
 
-#: src/pages/panel/accounts/AccountsTable.tsx:25
+#: src/pages/panel/accounts/AccountsTable.tsx:30
 msgid "Added accounts"
 msgstr "Added accounts"
 
@@ -189,7 +189,7 @@ msgstr "Are you sure you want to disconnect {name}?"
 msgid "Are you sure you want to remove the {name} account {0}?"
 msgstr "Are you sure you want to remove the {name} account {0}?"
 
-#: src/pages/panel/accounts/AccountRow.tsx:319
+#: src/pages/panel/accounts/AccountRow.tsx:361
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:77
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:94
 msgid "Are you sure?"
@@ -242,10 +242,10 @@ msgstr "Billing & Receipts"
 msgid "Business"
 msgstr "Business"
 
-#: src/pages/panel/accounts/AccountRow.tsx:247
-#: src/pages/panel/accounts/AccountRow.tsx:251
-#: src/pages/panel/accounts/AccountRow.tsx:252
-#: src/pages/panel/accounts/AccountRow.tsx:338
+#: src/pages/panel/accounts/AccountRow.tsx:273
+#: src/pages/panel/accounts/AccountRow.tsx:277
+#: src/pages/panel/accounts/AccountRow.tsx:278
+#: src/pages/panel/accounts/AccountRow.tsx:380
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:68
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:88
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:105
@@ -273,8 +273,8 @@ msgstr "Changes in the past 7 days"
 msgid "Choose Workspace"
 msgstr "Choose Workspace"
 
-#: src/pages/panel/accounts/AccountRow.tsx:358
-#: src/pages/panel/accounts/AccountsTableItem.tsx:39
+#: src/pages/panel/accounts/AccountRow.tsx:400
+#: src/pages/panel/accounts/AccountsTableItem.tsx:40
 #: src/pages/panel/home/AccountCard.tsx:33
 #: src/pages/panel/inventory/ResourceDetail.tsx:223
 msgid "Cloud"
@@ -414,10 +414,10 @@ msgstr "Date Time Picker"
 msgid "Default Role"
 msgstr "Default Role"
 
-#: src/pages/panel/accounts/AccountRow.tsx:289
-#: src/pages/panel/accounts/AccountRow.tsx:293
-#: src/pages/panel/accounts/AccountRow.tsx:294
-#: src/pages/panel/accounts/AccountRow.tsx:349
+#: src/pages/panel/accounts/AccountRow.tsx:331
+#: src/pages/panel/accounts/AccountRow.tsx:335
+#: src/pages/panel/accounts/AccountRow.tsx:336
+#: src/pages/panel/accounts/AccountRow.tsx:391
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:79
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:65
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:69
@@ -434,7 +434,7 @@ msgstr "Delete"
 msgid "Delete Provider"
 msgstr "Delete Provider"
 
-#: src/pages/panel/accounts/AccountRow.tsx:306
+#: src/pages/panel/accounts/AccountRow.tsx:348
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:13
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:29
 msgid "Deploy Stack"
@@ -458,11 +458,11 @@ msgstr "Disconnect"
 msgid "Disconnect Service"
 msgstr "Disconnect Service"
 
-#: src/pages/panel/accounts/AccountsTable.tsx:32
+#: src/pages/panel/accounts/AccountsTable.tsx:39
 msgid "Discovered but unconfigured accounts"
 msgstr "Discovered but unconfigured accounts"
 
-#: src/pages/panel/accounts/AccountRow.tsx:322
+#: src/pages/panel/accounts/AccountRow.tsx:364
 msgid "Do you want to delete this account?"
 msgstr "Do you want to delete this account?"
 
@@ -492,8 +492,8 @@ msgstr "Download"
 msgid "Download CSV"
 msgstr "Download CSV"
 
-#: src/pages/panel/accounts/AccountRow.tsx:263
-#: src/pages/panel/accounts/AccountRow.tsx:264
+#: src/pages/panel/accounts/AccountRow.tsx:289
+#: src/pages/panel/accounts/AccountRow.tsx:290
 msgid "Edit"
 msgstr "Edit"
 
@@ -515,7 +515,7 @@ msgstr "Email"
 msgid "Email alerts"
 msgstr "Email alerts"
 
-#: src/pages/panel/accounts/AccountsTableItem.tsx:54
+#: src/pages/panel/accounts/AccountsTableItem.tsx:55
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:49
 msgid "Enabled"
 msgstr "Enabled"
@@ -604,8 +604,8 @@ msgstr "Hourly scans for critical, fast-paced environments."
 msgid "How to fix"
 msgstr "How to fix"
 
-#: src/pages/panel/accounts/AccountRow.tsx:355
-#: src/pages/panel/accounts/AccountsTableItem.tsx:42
+#: src/pages/panel/accounts/AccountRow.tsx:397
+#: src/pages/panel/accounts/AccountsTableItem.tsx:43
 #: src/pages/panel/home/AccountCard.tsx:30
 #: src/pages/panel/inventory/ResourceDetail.tsx:220
 #: src/shared/charts/NetworkDiagram.tsx:319
@@ -726,8 +726,8 @@ msgstr "Most Improved Resources"
 msgid "Most Non-Compliant Accounts"
 msgstr "Most Non-Compliant Accounts"
 
-#: src/pages/panel/accounts/AccountRow.tsx:361
-#: src/pages/panel/accounts/AccountsTableItem.tsx:45
+#: src/pages/panel/accounts/AccountRow.tsx:403
+#: src/pages/panel/accounts/AccountsTableItem.tsx:46
 #: src/pages/panel/inventory/ResourceDetail.tsx:221
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
@@ -760,7 +760,7 @@ msgstr "new non compliant resources in the past {since}"
 msgid "New Password"
 msgstr "New Password"
 
-#: src/pages/panel/accounts/AccountsTableItem.tsx:51
+#: src/pages/panel/accounts/AccountsTableItem.tsx:52
 msgid "Next scan"
 msgstr "Next scan"
 
@@ -768,7 +768,7 @@ msgstr "Next scan"
 msgid "Next Sync"
 msgstr "Next Sync"
 
-#: src/pages/panel/accounts/AccountRow.tsx:325
+#: src/pages/panel/accounts/AccountRow.tsx:367
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 
@@ -866,7 +866,7 @@ msgstr "Plus"
 msgid "Privileged"
 msgstr "Privileged"
 
-#: src/pages/panel/accounts/AccountRow.tsx:196
+#: src/pages/panel/accounts/AccountRow.tsx:222
 msgid "Privileged account"
 msgstr "Privileged account"
 
@@ -919,7 +919,7 @@ msgstr "Remove"
 msgid "Rename"
 msgstr "Rename"
 
-#: src/pages/panel/accounts/AccountsTableItem.tsx:48
+#: src/pages/panel/accounts/AccountsTableItem.tsx:49
 msgid "Resources"
 msgstr "Resources"
 
@@ -941,6 +941,10 @@ msgstr "Scan frequency"
 #: src/containers/auth/AuthContainer.tsx:44
 msgid "Secure read-only access"
 msgstr "Secure read-only access"
+
+#: src/pages/panel/accounts/AccountsTableItem.tsx:59
+msgid "Security Scan"
+msgstr "Security Scan"
 
 #: src/pages/panel/workspace-settings-billing/utils/securityTierToDescription.ts:19
 msgid "Security benchmarks"
@@ -1004,9 +1008,9 @@ msgstr "Something went wrong please try again later."
 msgid "Sources"
 msgstr "Sources"
 
-#: src/pages/panel/accounts/AccountRow.tsx:236
-#: src/pages/panel/accounts/AccountRow.tsx:237
-#: src/pages/panel/accounts/AccountRow.tsx:242
+#: src/pages/panel/accounts/AccountRow.tsx:262
+#: src/pages/panel/accounts/AccountRow.tsx:263
+#: src/pages/panel/accounts/AccountRow.tsx:268
 msgid "Submit"
 msgstr "Submit"
 
@@ -1035,7 +1039,7 @@ msgstr "The Stack requires the following parameters"
 msgid "There's no account configured for this workspace."
 msgstr "There's no account configured for this workspace."
 
-#: src/pages/panel/accounts/AccountRow.tsx:311
+#: src/pages/panel/accounts/AccountRow.tsx:353
 msgid "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 msgstr "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 

@@ -56,7 +56,9 @@ export const DownloadCSVButton = forwardRef(
         })
         .catch((error) => {
           if (!axios.isAxiosError(error)) {
-            TrackJS.track(error as Error)
+            if (TrackJS.isInstalled()) {
+              TrackJS.track(error as Error)
+            }
             const { message, name, stack = 'unknown' } = (error as Error) ?? {}
             sendToGTM({
               event: GTMEventNames.Error,
