@@ -1,3 +1,5 @@
+import { NotificationChannel } from 'src/shared/types/server'
+
 export const endPoints = {
   auth: {
     forgotPassword: 'api/auth/forgot-password',
@@ -70,18 +72,9 @@ export const endPoints = {
         settings: `api/workspaces/${workspaceId}/alerting/setting`,
       },
       notification: {
-        add: {
-          discord: `api/workspaces/${workspaceId}/notification/add/discord`,
-          email: `api/workspaces/${workspaceId}/notification/add/email`,
-          pagerduty: `api/workspaces/${workspaceId}/notification/add/pagerduty`,
-          slack: `api/workspaces/${workspaceId}/notification/add/slack`,
-          teams: `api/workspaces/${workspaceId}/notification/add/teams`,
-        },
-        discord: `api/workspaces/${workspaceId}/notification/discord`,
-        email: `api/workspaces/${workspaceId}/notification/email`,
-        pagerduty: `api/workspaces/${workspaceId}/notification/pagerduty`,
-        slack: `api/workspaces/${workspaceId}/notification/slack`,
-        teams: `api/workspaces/${workspaceId}/notification/teams`,
+        self: (channel: NotificationChannel) => `api/workspaces/${workspaceId}/notification/${channel}`,
+        add: (channel: NotificationChannel) => `api/workspaces/${workspaceId}/notification/add/${channel}`,
+        test: (channel: NotificationChannel) => `api/workspaces/${workspaceId}/notification/${channel}/test`,
         list: `api/workspaces/${workspaceId}/notifications`,
       },
       self: `api/workspaces/${workspaceId}`,
