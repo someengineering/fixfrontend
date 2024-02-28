@@ -77,7 +77,7 @@ msgstr "<0>We use the Events API V2 for notifications through PagerDuty.<1/>To c
 msgid "<0>We utilize incoming webhooks to deliver notifications to your Microsoft Teams channels.<1/>To manually add a webhook:<2><3>In Microsoft Teams, click on More options (⋯) next to the channel name and then select Connectors.</3><4>Browse through the list of Connectors to find Incoming Webhook, and click Add.</4><5>Provide a name for the webhook, upload an image to represent data from the webhook, and click Create.</5><6>Copy the webhook URL to your clipboard and keep it safe. This URL is necessary for TrackJS to send notifications.</6><7>Click Done.</7><8>In the text box provided below, paste the Webhook URL you copied and enter the name of the channel.</8></2>More from <9>Microsoft Teams Documentation</9></0>"
 msgstr "<0>We utilize incoming webhooks to deliver notifications to your Microsoft Teams channels.<1/>To manually add a webhook:<2><3>In Microsoft Teams, click on More options (⋯) next to the channel name and then select Connectors.</3><4>Browse through the list of Connectors to find Incoming Webhook, and click Add.</4><5>Provide a name for the webhook, upload an image to represent data from the webhook, and click Create.</5><6>Copy the webhook URL to your clipboard and keep it safe. This URL is necessary for TrackJS to send notifications.</6><7>Click Done.</7><8>In the text box provided below, paste the Webhook URL you copied and enter the name of the channel.</8></2>More from <9>Microsoft Teams Documentation</9></0>"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:70
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:69
 msgid "<0>We utilize the OpsGenie API integration for notifications and alerts.<1/>To set up this Integration, please follow these instructions:<2><3><4>Navigate to the Dashboard:</4> Find and click on the “Teams” section from the sidebar once logged in.</3><5><6>Select Your Team:</6> Choose the team you want to integrate with. Within the team dashboard, go to the “Integrations” tab.</5><7><8>Add Integration:</8> Click on the “+ New Integration” button. Select “API” as the integration type, give it the name “Fix,” and press Continue.</7><9><10>Turn Integration on:</10> When the Integration has been created, it is disabled by default - click “Turn on Integration”.</9><11><12>Copy API Key:</12> Find and copy the API Key in the integration settings.</11></2></0>"
 msgstr "<0>We utilize the OpsGenie API integration for notifications and alerts.<1/>To set up this Integration, please follow these instructions:<2><3><4>Navigate to the Dashboard:</4> Find and click on the “Teams” section from the sidebar once logged in.</3><5><6>Select Your Team:</6> Choose the team you want to integrate with. Within the team dashboard, go to the “Integrations” tab.</5><7><8>Add Integration:</8> Click on the “+ New Integration” button. Select “API” as the integration type, give it the name “Fix,” and press Continue.</7><9><10>Turn Integration on:</10> When the Integration has been created, it is disabled by default - click “Turn on Integration”.</9><11><12>Copy API Key:</12> Find and copy the API Key in the integration settings.</11></2></0>"
 
@@ -176,7 +176,7 @@ msgstr "Alternatively: Manual Cloud Setup"
 msgid "An error occurred while connecting to {0}"
 msgstr "An error occurred while connecting to {0}"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:121
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:124
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:27
 msgid "An error occurred, please try again later."
 msgstr "An error occurred, please try again later."
@@ -185,7 +185,7 @@ msgstr "An error occurred, please try again later."
 msgid "and"
 msgstr "and"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:145
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:133
 msgid "API Key"
 msgstr "API Key"
 
@@ -259,18 +259,18 @@ msgstr "Business"
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:105
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsDisconnectServiceModal.tsx:57
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:93
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:102
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:101
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:99
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:111
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:208
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:225
 msgid "Change payment method"
 msgstr "Change payment method"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:174
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:205
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:180
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:221
 msgid "Change Security Tier"
 msgstr "Change Security Tier"
 
@@ -301,7 +301,7 @@ msgstr "Cloud account degraded, id: {0}"
 msgid "Cloud account discovered, id: {0}"
 msgstr "Cloud account discovered, id: {0}"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:46
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:49
 msgid "cloud account per month"
 msgstr "cloud account per month"
 
@@ -318,7 +318,7 @@ msgid "Compliance"
 msgstr "Compliance"
 
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:73
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:62
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:61
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:62
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:74
 msgid "Configure"
@@ -332,8 +332,8 @@ msgstr "Congratulations on your subscription"
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsDiscordService.tsx:40
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:73
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:104
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:62
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:113
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:61
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:112
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:62
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:110
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsSlackService.tsx:40
@@ -342,7 +342,7 @@ msgstr "Congratulations on your subscription"
 msgid "Connect"
 msgstr "Connect"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:68
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:67
 msgid "Connect Opsgenie"
 msgstr "Connect Opsgenie"
 
@@ -494,8 +494,8 @@ msgstr "Do you want to delete this user?"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Don't have an account? Click here to Sign up."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:174
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:205
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:180
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:221
 msgid "Downgrade"
 msgstr "Downgrade"
 
@@ -753,7 +753,7 @@ msgstr "Most Non-Compliant Accounts"
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:125
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:53
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:114
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:123
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:122
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:120
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:132
 #: src/shared/charts/NetworkDiagram.tsx:321
@@ -772,8 +772,8 @@ msgstr "new improved resources in the past {since}"
 msgid "new non compliant resources in the past {since}"
 msgstr "new non compliant resources in the past {since}"
 
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:30
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:46
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:28
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:44
 msgid "New Password"
 msgstr "New Password"
 
@@ -806,7 +806,7 @@ msgstr "Null"
 msgid "Number Of Account Charged"
 msgstr "Number Of Account Charged"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:46
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:49
 msgid "one cloud account included"
 msgstr "one cloud account included"
 
@@ -839,7 +839,7 @@ msgstr "Or"
 msgid "Other Workspace Settings"
 msgstr "Other Workspace Settings"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:178
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:184
 msgid "Our fair-use policy allows for up to 200,000 resources per account. If your needs surpass this amount, please <0>reach out</0> to discuss your specific requirements."
 msgstr "Our fair-use policy allows for up to 200,000 resources per account. If your needs surpass this amount, please <0>reach out</0> to discuss your specific requirements."
 
@@ -848,13 +848,17 @@ msgstr "Our fair-use policy allows for up to 200,000 resources per account. If y
 msgid "Password"
 msgstr "Password"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:214
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:243
 msgid "Payment method"
 msgstr "Payment method"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:117
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:120
 msgid "Payment method changed to {paymentMethod} as {securityTier}"
 msgstr "Payment method changed to {paymentMethod} as {securityTier}"
+
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:225
+msgid "Payment Method Required"
+msgstr "Payment Method Required"
 
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:23
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:39
@@ -951,7 +955,7 @@ msgstr "Risk"
 msgid "Roles"
 msgstr "Roles"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:69
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:72
 msgid "Scan frequency"
 msgstr "Scan frequency"
 
@@ -976,7 +980,7 @@ msgstr "Security Scan"
 msgid "Security Score"
 msgstr "Security Score"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:229
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:258
 msgid "Security Tier"
 msgstr "Security Tier"
 
@@ -1016,7 +1020,7 @@ msgid "Single-account security overview on a monthly basis."
 msgstr "Single-account security overview on a monthly basis."
 
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:33
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:25
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:23
 msgid "Something went wrong please try again later."
 msgstr "Something went wrong please try again later."
 
@@ -1076,6 +1080,10 @@ msgstr "Tier"
 msgid "To access this resource, please ensure that you are logged into the AWS account: {account}"
 msgstr "To access this resource, please ensure that you are logged into the AWS account: {account}"
 
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:204
+msgid "To AWS Marketplace"
+msgstr "To AWS Marketplace"
+
 #: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:78
 msgid "To enhance your experience, please select the workspace where you'd like to activate your subscription"
 msgstr "To enhance your experience, please select the workspace where you'd like to activate your subscription"
@@ -1106,12 +1114,12 @@ msgstr "Type"
 msgid "Update Email"
 msgstr "Update Email"
 
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:34
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:32
 msgid "Update Password"
 msgstr "Update Password"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:174
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:205
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:180
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:221
 msgid "Upgrade"
 msgstr "Upgrade"
 
@@ -1157,7 +1165,6 @@ msgstr "We're sorry for the inconvenience. Our team has been notified, and the i
 msgid "We've identified {0} non-compliant resources out of {1} {2}-severity security checks."
 msgstr "We've identified {0} non-compliant resources out of {1} {2}-severity security checks."
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:134
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:143
 msgid "Webhook URL"
 msgstr "Webhook URL"
@@ -1194,13 +1201,17 @@ msgstr "Workspace Settings"
 msgid "Workspace Users"
 msgstr "Workspace Users"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:209
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:228
 msgid "You are about to apply changes to your billing information. Please review the new details below:"
 msgstr "You are about to apply changes to your billing information. Please review the new details below:"
 
 #: src/pages/auth/login/LoginPage.tsx:115
 msgid "You have successfully verified your account."
 msgstr "You have successfully verified your account."
+
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:235
+msgid "You need an AWS Marketplace Subscription to upgrade your plan."
+msgstr "You need an AWS Marketplace Subscription to upgrade your plan."
 
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:41
 msgid "Your new email address will become active once you have verified it by clicking on the confirmation link we have sent to your inbox."
