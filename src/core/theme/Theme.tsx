@@ -1,4 +1,13 @@
-import { createTheme, CssBaseline, PaletteOptions, responsiveFontSizes, ThemeOptions, ThemeProvider, useMediaQuery } from '@mui/material'
+import {
+  alpha,
+  createTheme,
+  CssBaseline,
+  PaletteOptions,
+  responsiveFontSizes,
+  ThemeOptions,
+  ThemeProvider,
+  useMediaQuery,
+} from '@mui/material'
 import { PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
 
 import '@fontsource-variable/nunito-sans'
@@ -120,8 +129,18 @@ export function Theme({ children }: ThemeProps) {
             },
           },
         },
+        MuiBackdrop: {
+          styleOverrides: {
+            root: {
+              backgroundColor: alpha('#000', 0.7),
+            },
+          },
+        },
         MuiCssBaseline: {
           styleOverrides: {
+            html: {
+              scrollBehavior: 'smooth',
+            },
             'body > #root': {
               display: 'flex',
               flexDirection: 'column',

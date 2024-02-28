@@ -50,10 +50,10 @@ export const GTMProvider = ({ state, children }: GTMHookProviderProps) => {
     const mergedState = { ...initialState, ...state }
 
     initGTM(mergedState)
-    setGTMDispatch(dispatch)
+    setGTMDispatch(dispatch, mergedState.id)
 
     return () => {
-      setGTMDispatch(() => {})
+      setGTMDispatch(() => {}, '')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(state)])

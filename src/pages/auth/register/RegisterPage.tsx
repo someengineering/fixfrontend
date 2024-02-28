@@ -9,6 +9,7 @@ import { Link, Location, useLocation, useSearchParams } from 'react-router-dom'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { LoginSocialMedia } from 'src/shared/login-social-media'
+import { PasswordTextField } from 'src/shared/password-text-field'
 import { SocialMediaButtonSkeleton } from 'src/shared/social-media-button'
 import { registerMutation } from './register.mutation'
 
@@ -47,9 +48,6 @@ export default function RegisterPage() {
         })
     }
   }
-  const handleClickHref = () => {
-    setIsLoading(true)
-  }
   const isLoadingGeneric = isLoading || isRegisterLoading
   const registerError = ((error as AxiosError)?.response?.data as { detail: string })?.detail
   return (
@@ -86,7 +84,7 @@ export default function RegisterPage() {
           />
         </Grid>
         <Grid item>
-          <TextField
+          <PasswordTextField
             required
             id="password"
             name="password"
@@ -94,7 +92,6 @@ export default function RegisterPage() {
             label={t`Password`}
             variant="outlined"
             fullWidth
-            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value ?? '')}
           />
@@ -136,7 +133,7 @@ export default function RegisterPage() {
               </Grid>
             ))}
           >
-            <LoginSocialMedia isLoading={isLoadingGeneric} onClick={handleClickHref} />
+            <LoginSocialMedia isLoading={isLoadingGeneric} />
           </Suspense>
         </NetworkErrorBoundary>
       </Grid>

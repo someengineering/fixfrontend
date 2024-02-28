@@ -1,30 +1,29 @@
-import { Box } from '@mui/material'
-import { PropsWithChildren, ReactNode } from 'react'
+import { Box, Stack } from '@mui/material'
+import { PropsWithChildren, ReactNode, useRef } from 'react'
 import { panelUI } from 'src/shared/constants'
 import { PanelBottom } from './PanelBottom'
 import { PanelBreadcrumbs } from './PanelBreadcrumbs'
+import { PageScrollContext } from './usePageScroll'
 
 interface PanelContent extends PropsWithChildren {
   bottom: ReactNode
 }
 
 export const PanelContent = ({ children, bottom }: PanelContent) => {
+  const mainRef = useRef<HTMLDivElement>(null)
   return (
-    <Box width="100%" display="flex" flexDirection="column" flexGrow={1} overflow="hidden">
-      <Box
-        p={3}
-        mb={2}
-        mt={panelUI.headerHeight + 'px'}
-        component="main"
-        display="flex"
-        flexDirection="column"
-        flexGrow={1}
-        position="relative"
-      >
-        <PanelBreadcrumbs />
-        {children}
-      </Box>
-      <PanelBottom>{bottom}</PanelBottom>
-    </Box>
+    <PageScrollContext.Provider value={mainRef}>
+      <Stack width="100%" flexGrow={1} overflow="hidden" height="100vh">
+        <Stack mt={panelUI.headerHeight + 'px'} flexGrow={1} position="relative" sx={{ overflowY: 'auto' }} ref={mainRef}>
+          <Box p={3}>
+            <PanelBreadcrumbs />
+          </Box>
+          <Box component="main" p={3} pt={0} flexGrow={1}>
+            {children}
+          </Box>
+          <PanelBottom>{bottom}</PanelBottom>
+        </Stack>
+      </Stack>
+    </PageScrollContext.Provider>
   )
 }

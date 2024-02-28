@@ -5,10 +5,10 @@ export const securityTierToLabel = (securityTier: SecurityTier) => {
   switch (securityTier) {
     case 'free':
       return t`Free`
-    case 'foundational':
-      return t`Foundational`
-    case 'high_security':
-      return t`High Security`
+    case 'plus':
+      return t`Plus`
+    case 'business':
+      return t`Business`
     default:
       return securityTier
   }

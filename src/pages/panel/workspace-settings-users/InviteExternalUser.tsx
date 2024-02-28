@@ -20,7 +20,6 @@ export const InviteExternalUser = ({ preInvite }: { preInvite?: GetWorkspaceSett
   const showModalRef = useRef<(show?: boolean | undefined) => void>()
   const { mutate: postWorkspaceInvite, isPending: postWorkspaceInviteIsPending } = useMutation({
     mutationFn: postWorkspaceInviteMutation,
-    mutationKey: ['post-workspace-invite', selectedWorkspace?.id],
     onSuccess: () => {
       void showSnackbar(t`Successfully invited ${email}`, { severity: 'success' })
     },

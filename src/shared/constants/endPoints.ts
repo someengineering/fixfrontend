@@ -1,20 +1,82 @@
+import { NotificationChannel } from 'src/shared/types/server'
+
 export const endPoints = {
-  info: 'api/info',
   auth: {
+    forgotPassword: 'api/auth/forgot-password',
     jwt: {
       logout: 'api/auth/jwt/logout',
       login: 'api/auth/jwt/login',
     },
-    register: 'api/auth/register',
-    forgotPassword: 'api/auth/forgot-password',
-    resetPassword: 'api/auth/reset-password',
-    requestVerifyToken: 'api/auth/request-verify-token',
-    verify: 'api/auth/verify',
+    oauthAccounts: (providerId: string) => `api/auth/oauth-accounts/${providerId}`,
+    oauthAssociate: 'api/auth/oauth-associate',
     oauthProviders: 'api/auth/oauth-providers',
+    register: 'api/auth/register',
+    requestVerifyToken: 'api/auth/request-verify-token',
+    resetPassword: 'api/auth/reset-password',
+    verify: 'api/auth/verify',
+  },
+  info: 'api/info',
+  users: {
+    me: {
+      self: 'api/users/me',
+      settings: {
+        notifications: 'api/users/me/settings/notifications',
+      },
+    },
   },
   workspaces: {
     self: 'api/workspaces/',
     workspace: (workspaceId: string) => ({
+      billing: `api/workspaces/${workspaceId}/billing`,
+      billingEntries: `api/workspaces/${workspaceId}/billing_entries/`,
+      subscriptionItem: (subscriptionId: string) => `api/workspaces/${workspaceId}/subscription/${subscriptionId}`,
+      cloudAccounts: {
+        cloudAccount: (cloudAccountId: string) => ({
+          self: `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}`,
+          enable: `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}/enable`,
+          disable: `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}/disable`,
+          scan: {
+            enable: `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}/scan/enable`,
+            disable: `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}/scan/disable`,
+          },
+        }),
+        self: `api/workspaces/${workspaceId}/cloud_accounts`,
+        lastScan: `api/workspaces/${workspaceId}/cloud_accounts/lastScan`,
+      },
+      inventory: {
+        reportSummary: `api/workspaces/${workspaceId}/inventory/report-summary`,
+        report: {
+          benchmark: (benchmarkName: string) => ({
+            self: `api/workspaces/${workspaceId}/inventory/report/benchmark/${benchmarkName}`,
+            result: `api/workspaces/${workspaceId}/inventory/report/benchmark/${benchmarkName}/result`,
+          }),
+          check: (checkId: string) => `api/workspaces/${workspaceId}/inventory/report/check/${checkId}`,
+          config: `api/workspaces/${workspaceId}/inventory/report/config`,
+          info: `api/workspaces/${workspaceId}/inventory/report/info`,
+        },
+        search: {
+          start: `api/workspaces/${workspaceId}/inventory/search/start`,
+          table: `api/workspaces/${workspaceId}/inventory/search/table`,
+        },
+        model: `api/workspaces/${workspaceId}/inventory/model`,
+        node: (nodeId: string) => `api/workspaces/${workspaceId}/inventory/node/${nodeId}`,
+        property: {
+          attributes: `api/workspaces/${workspaceId}/inventory/property/attributes`,
+          values: `api/workspaces/${workspaceId}/inventory/property/values`,
+          path: {
+            complete: `api/workspaces/${workspaceId}/inventory/property/path/complete`,
+          },
+        },
+      },
+      alerting: {
+        settings: `api/workspaces/${workspaceId}/alerting/setting`,
+      },
+      notification: {
+        self: (channel: NotificationChannel) => `api/workspaces/${workspaceId}/notification/${channel}`,
+        add: (channel: NotificationChannel) => `api/workspaces/${workspaceId}/notification/add/${channel}`,
+        test: (channel: NotificationChannel) => `api/workspaces/${workspaceId}/notification/${channel}/test`,
+        list: `api/workspaces/${workspaceId}/notifications`,
+      },
       self: `api/workspaces/${workspaceId}`,
       settings: `api/workspaces/${workspaceId}/settings`,
       invites: {
@@ -26,41 +88,11 @@ export const endPoints = {
         self: (userId: string) => `api/workspaces/${workspaceId}/users/${userId}`,
       },
       acceptInvite: `api/workspaces/${workspaceId}/accept_invite`,
-      billing: `api/workspaces/${workspaceId}/billing`,
       subscription: (subscriptionId: string) => `api/workspaces/${workspaceId}/subscription/${subscriptionId}`,
       cfUrl: `api/workspaces/${workspaceId}/cf_url`,
       cfTemplate: `api/workspaces/${workspaceId}/cf_template`,
       externalId: `api/workspaces/${workspaceId}/external_id`,
-      cloudAccounts: {
-        cloudAccount: (cloudAccountId: string) => ({
-          self: `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}`,
-          enable: `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}/enable`,
-          disable: `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}/disable`,
-        }),
-        self: `api/workspaces/${workspaceId}/cloud_accounts`,
-        lastScan: `api/workspaces/${workspaceId}/cloud_accounts/lastScan`,
-      },
-      inventory: {
-        reportSummary: `api/workspaces/${workspaceId}/inventory/report-summary`,
-        search: {
-          start: `/api/workspaces/${workspaceId}/inventory/search/start`,
-          table: `/api/workspaces/${workspaceId}/inventory/search/table`,
-        },
-        model: `/api/workspaces/${workspaceId}/inventory/model`,
-        property: {
-          attributes: `/api/workspaces/${workspaceId}/inventory/property/attributes`,
-          values: `/api/workspaces/${workspaceId}/inventory/property/values`,
-          path: {
-            complete: `/api/workspaces/${workspaceId}/inventory/property/path/complete`,
-          },
-        },
-        node: (nodeId: string) => `api/workspaces/${workspaceId}/inventory/node/${nodeId}`,
-      },
-      billingEntries: `api/workspaces/${workspaceId}/billing_entries/`,
       events: `api/workspaces/${workspaceId}/events`,
     }),
-  },
-  users: {
-    me: 'api/users/me',
   },
 }

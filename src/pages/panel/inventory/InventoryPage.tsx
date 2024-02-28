@@ -7,6 +7,7 @@ import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/u
 import { InventoryAdvanceSearch } from './InventoryAdvanceSearch'
 import { InventoryTable } from './InventoryTable'
 import { InventoryTableError } from './InventoryTable.error'
+import { ResourceDetail } from './ResourceDetail'
 
 export default function InventoryPage() {
   const [searchParams] = useSearchParams()
@@ -44,6 +45,9 @@ export default function InventoryPage() {
       <Suspense fallback={<LoadingSuspenseFallback />}>
         <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
           <InventoryAdvanceSearch value={searchCrit} onChange={setSearchCrit} hasError={hasError} />
+        </NetworkErrorBoundary>
+        <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+          <ResourceDetail />
         </NetworkErrorBoundary>
         <NetworkErrorBoundary
           fallbackRender={({ resetErrorBoundary }) => (

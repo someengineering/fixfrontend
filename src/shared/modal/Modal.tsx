@@ -1,5 +1,5 @@
 import { Divider, Modal as MuiModal, Stack, Typography, styled } from '@mui/material'
-import { MutableRefObject, PropsWithChildren, ReactNode, useEffect, useState } from 'react'
+import { FormEvent, MutableRefObject, PropsWithChildren, ReactNode, useEffect, useState } from 'react'
 import { panelUI } from 'src/shared/constants'
 
 interface ModalProps extends PropsWithChildren {
@@ -8,9 +8,10 @@ interface ModalProps extends PropsWithChildren {
   actions?: ReactNode
   openRef: MutableRefObject<((show?: boolean) => void) | undefined>
   width?: number | string
+  onSubmit?: (event: FormEvent<HTMLFormElement>) => void
 }
 
-const ModalContent = styled(Stack)(({ theme, width }) => ({
+const ModalContent = styled(Stack<'form' | 'div'>)(({ theme, width }) => ({
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -24,7 +25,7 @@ const ModalContent = styled(Stack)(({ theme, width }) => ({
   padding: theme.spacing(2, 3, 3),
 }))
 
-export const Modal = ({ children, actions, description, title, openRef, width }: ModalProps) => {
+export const Modal = ({ children, actions, description, title, openRef, width, onSubmit }: ModalProps) => {
   const [open, setOpen] = useState(false)
   useEffect(() => {
     openRef.current = (show?: boolean) => {
@@ -36,7 +37,19 @@ export const Modal = ({ children, actions, description, title, openRef, width }:
   }, [openRef])
   return (
     <MuiModal aria-labelledby="modal-title" aria-describedby="modal-description" open={open} onClose={() => setOpen(false)}>
-      <ModalContent spacing={1} width={width}>
+      <ModalContent
+        spacing={1}
+        width={width}
+        component={onSubmit ? 'form' : 'div'}
+        onSubmit={
+          onSubmit
+            ? (e: FormEvent<HTMLFormElement>) => {
+                e.preventDefault()
+                onSubmit(e)
+              }
+            : undefined
+        }
+      >
         {title && (
           <Typography id="modal-title" variant="h5">
             {title}

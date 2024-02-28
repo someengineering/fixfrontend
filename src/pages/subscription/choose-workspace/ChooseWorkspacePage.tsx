@@ -3,7 +3,7 @@ import { LoadingButton } from '@mui/lab'
 import { alpha, ButtonBase, Card, CardHeader, Grid, styled, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
@@ -19,7 +19,7 @@ const ChooseWorkspaceButton = styled(LoadingButton)({
 export default function ChooseWorkspacePage() {
   const { workspaces, selectedWorkspace, selectWorkspace } = useUserProfile()
   const { showSnackbar } = useSnackbar()
-  const { mutate, isPending, error } = useMutation({
+  const { mutateAsync, isPending, error } = useMutation({
     mutationFn: putWorkspaceSubscriptionMutation,
     onSuccess: () => {
       setSubscriptionId()
@@ -45,16 +45,25 @@ export default function ChooseWorkspacePage() {
   const [getSearch] = useSearchParams()
   const subscriptionId = getSearch.get('subscription_id')
 
+  const afterSubmit = useCallback(() => {
+    setSubscriptionId(undefined)
+    navigate('/')
+  }, [navigate])
+
   useEffect(() => {
     if (subscriptionId) {
       if (workspaces?.length === 1) {
-        mutate({ workspaceId: workspaces[0].id ?? '', subscriptionId: subscriptionId ?? '' })
+        void mutateAsync({ workspaceId: workspaces[0].id ?? '', subscriptionId: subscriptionId ?? '' }).then(afterSubmit)
       }
       setSubscriptionId(subscriptionId)
     } else {
       navigate('/')
     }
-  }, [subscriptionId, navigate, workspaces, mutate])
+  }, [subscriptionId, navigate, workspaces, mutateAsync, afterSubmit])
+
+  const handleSubmit = () => {
+    void mutateAsync({ workspaceId: selectedWorkspace?.id ?? '', subscriptionId: subscriptionId ?? '' }).then(afterSubmit)
+  }
 
   return (subscriptionId && workspaces?.length && workspaces.length > 1) || error ? (
     <>
@@ -71,7 +80,11 @@ export default function ChooseWorkspacePage() {
       <Grid container spacing={2} width="100%" justifyContent="center" mb={2}>
         {workspaces?.map((item) => (
           <Grid item key={item.id}>
-            <ButtonBase onClick={() => void selectWorkspace(item.id)}>
+            <ButtonBase
+              onClick={() => {
+                void selectWorkspace(item.id)
+              }}
+            >
               <Card sx={item.id === selectedWorkspace?.id ? { bgcolor: 'primary.dark', color: 'white' } : undefined}>
                 <CardHeader
                   title={item.name}
@@ -83,11 +96,7 @@ export default function ChooseWorkspacePage() {
           </Grid>
         ))}
       </Grid>
-      <ChooseWorkspaceButton
-        variant="outlined"
-        onClick={() => mutate({ workspaceId: selectedWorkspace?.id ?? '', subscriptionId: subscriptionId ?? '' })}
-        loading={isPending}
-      >
+      <ChooseWorkspaceButton variant="outlined" onClick={handleSubmit} loading={isPending}>
         <Trans>Choose Workspace</Trans>
       </ChooseWorkspaceButton>
     </>

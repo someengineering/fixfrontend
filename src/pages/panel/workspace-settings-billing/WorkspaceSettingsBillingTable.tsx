@@ -3,7 +3,8 @@ import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@m
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { TableViewPage } from 'src/shared/layouts/panel-layout'
+import { panelUI } from 'src/shared/constants'
+import { TableView } from 'src/shared/layouts/panel-layout'
 import { BillingEntryRow } from './BillingEntryRow'
 import { getWorkspaceBillingEntriesQuery } from './getWorkspaceBillingEntires.query'
 
@@ -20,14 +21,17 @@ export const WorkspaceSettingsBillingTable = () => {
       <Typography variant="h4">
         <Trans>Receipts</Trans>
       </Typography>
-      <TableViewPage
+      <TableView
         paginationProps={{
           dataCount: data.length ?? 0,
           page,
           rowsPerPage,
           setPage,
           setRowsPerPage,
+          id: 'WorkspaceSettingsBillingTable',
         }}
+        minHeight={panelUI.tableViewMinHeight}
+        stickyPagination
       >
         <Table stickyHeader aria-label={t`Receipts`}>
           <TableHead>
@@ -52,7 +56,7 @@ export const WorkspaceSettingsBillingTable = () => {
               .map((billingEntry, i) => <BillingEntryRow billingEntry={billingEntry} key={`${billingEntry.id}_${i}`} />)}
           </TableBody>
         </Table>
-      </TableViewPage>
+      </TableView>
     </>
   )
 }

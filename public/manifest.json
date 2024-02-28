@@ -1,7 +1,7 @@
 {
   "short_name": "Fix",
   "name": "Fix by Some Engineering Inc.",
-  "description": "Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows.",
+  "description": "Mission control for your AWS security. Fix is an all-in-one dashboard for security engineers. Prioritize top risks by combining user, resource, and configuration data. Plus, get actionable remediation recommendations for your DevOps team.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -19,7 +19,6 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
   "display": "standalone",
   "theme_color": "#1c4396",
   "background_color": "#ffffff"

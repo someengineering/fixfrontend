@@ -5,7 +5,7 @@ export type WorkspaceInventoryNodeType = 'node' | 'edge'
 export interface WorkspaceInventoryNodeNeighborhoodNodeType {
   id: string
   type: 'node'
-  metadata: {
+  metadata?: {
     icon?: string
     group?: string
     name?: string

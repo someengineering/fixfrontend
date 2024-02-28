@@ -8,6 +8,7 @@ export interface PostWorkspaceInventorySearchTableRow {
 export interface PostWorkspaceInventorySearchTableColumn {
   name: string
   kind: ResourceComplexKindSimpleTypeDefinitions
+  path: string
   display: string
 }
 

@@ -1,5 +1,6 @@
 export type { Account } from './Account'
 export type { FailedCheck } from './FailedCheck'
+export type { OAuthProviderNames } from './OAuthProviderNames'
 export type {
   ResourceComplexKindProperty,
   ResourceComplexKindPropertyKind,

@@ -30,6 +30,8 @@ import { deleteAccountMutation } from './deleteAccount.mutation'
 import { patchAccountMutation } from './patchAccount.mutation'
 import { patchAccountDisableMutation } from './patchAccountDisable.mutation'
 import { patchAccountEnableMutation } from './patchAccountEnable.mutation'
+import { patchAccountScanDisableMutation } from './patchAccountScanDisable.mutation'
+import { patchAccountScanEnableMutation } from './patchAccountScanEnable.mutation'
 import { replaceRowByAccount } from './replaceRowByAccount'
 
 export const AccountRow = ({ account }: { account: Account }) => {
@@ -44,22 +46,26 @@ export const AccountRow = ({ account }: { account: Account }) => {
 
   const { mutate: renameAccount, isPending: renameAccountIsPending } = useMutation({
     mutationFn: patchAccountMutation,
-    mutationKey: ['edit-workspace-account', selectedWorkspace?.id, account.id],
   })
 
   const { mutate: disableAccount, isPending: disableAccountIsPending } = useMutation({
     mutationFn: patchAccountDisableMutation,
-    mutationKey: ['edit-workspace-account', selectedWorkspace?.id, account.id],
   })
 
   const { mutate: enableAccount, isPending: enableAccountIsPending } = useMutation({
     mutationFn: patchAccountEnableMutation,
-    mutationKey: ['edit-workspace-account', selectedWorkspace?.id, account.id],
+  })
+
+  const { mutate: disableScanAccount, isPending: disableScanAccountIsPending } = useMutation({
+    mutationFn: patchAccountScanDisableMutation,
+  })
+
+  const { mutate: enableScanAccount, isPending: enableScanAccountIsPending } = useMutation({
+    mutationFn: patchAccountScanEnableMutation,
   })
 
   const { mutate: deleteAccount, isPending: deleteAccountIsPending } = useMutation({
     mutationFn: deleteAccountMutation,
-    mutationKey: ['edit-workspace-account', selectedWorkspace?.id, account.id],
   })
 
   const [isEdit, setIsEdit] = useState(false)
@@ -108,6 +114,22 @@ export const AccountRow = ({ account }: { account: Account }) => {
   const handleEnableChange = (_: unknown, checked: boolean) => {
     if (selectedWorkspace?.id) {
       return (checked ? enableAccount : disableAccount)(
+        { workspaceId: selectedWorkspace.id, id: account.id },
+        {
+          onSuccess: (data) => {
+            void queryClient.invalidateQueries({
+              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
+            })
+            replaceRowByAccount(queryClient, data, selectedWorkspace?.id)
+          },
+        },
+      )
+    }
+  }
+
+  const handleEnableScanChange = (_: unknown, checked: boolean) => {
+    if (selectedWorkspace?.id) {
+      return (checked ? enableScanAccount : disableScanAccount)(
         { workspaceId: selectedWorkspace.id, id: account.id },
         {
           onSuccess: (data) => {
@@ -274,8 +296,24 @@ export const AccountRow = ({ account }: { account: Account }) => {
       </TableCell>
       <TableCell>{account.resources ?? '-'}</TableCell>
       <TableCell>{account.next_scan ? new Date(account.next_scan).toLocaleTimeString(locale) : '-'}</TableCell>
+      {account.is_configured ? (
+        <TableCell>
+          {enableAccountIsPending || disableAccountIsPending ? (
+            <Stack justifyContent="center" direction="column" padding={1} margin="1px">
+              <CircularProgress size={20} />
+            </Stack>
+          ) : (
+            <Checkbox
+              name={`enable-account-${account.account_id}`}
+              disabled={!account.is_configured}
+              checked={account.enabled}
+              onChange={handleEnableChange}
+            />
+          )}
+        </TableCell>
+      ) : null}
       <TableCell>
-        {enableAccountIsPending || disableAccountIsPending ? (
+        {enableScanAccountIsPending || disableScanAccountIsPending ? (
           <Stack justifyContent="center" direction="column" padding={1} margin="1px">
             <CircularProgress size={20} />
           </Stack>
@@ -283,8 +321,8 @@ export const AccountRow = ({ account }: { account: Account }) => {
           <Checkbox
             name={`enable-account-${account.account_id}`}
             disabled={!account.is_configured}
-            checked={account.enabled}
-            onChange={handleEnableChange}
+            checked={account.scan}
+            onChange={handleEnableScanChange}
           />
         )}
       </TableCell>
@@ -306,7 +344,7 @@ export const AccountRow = ({ account }: { account: Account }) => {
         width={550}
         openRef={showDegradedModalRef}
         actions={
-          <Button variant="outlined" component={Link} to="/setup-cloud">
+          <Button variant="outlined" component={Link} to="/workspace-settings/accounts/setup-cloud">
             <Trans>Deploy Stack</Trans>
           </Button>
         }
