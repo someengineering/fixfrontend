@@ -6,32 +6,46 @@ export const securityTierToDescription = (securityTier: SecurityTier) => {
     case 'free':
       return {
         description: t`Single-account security overview on a monthly basis.`,
-        targetCustomer: t`Perfect for individual use or small-scale proof-of-concept trials.`,
+        targetCustomer: t`For solo engineers who want to secure a single cloud account.`,
         price: 0,
         oneTime: true,
         scanFrequency: t`Monthly`,
-        featuresTitle: t`Free features`,
-        features: [t`Basic asset inventory`, t`Compliance scans`, t`Account risk score`, t`Fix recommendations`, t`Monthly email report`],
+        featuresTitle: t`Features`,
+        features: [
+          t`1-month history`,
+          t`Asset inventory`,
+          t`Inventory search`,
+          t`Neighborhood view`,
+          t`Security benchmarks`,
+          t`Monthly email report`,
+          t`Remediation recommendations`,
+          t`Core CSPM scanning capabilities`,
+        ],
       }
-    case 'foundational':
+    case 'plus':
       return {
         description: t`Daily scans for secure, compliant operations.`,
-        targetCustomer: t`Ideal for growing businesses that need a robust security baseline.`,
-        price: 5,
+        targetCustomer: t`For growing teams looking to stay secure as they build out infrastructure.`,
+        price: 30,
         monthly: true,
         scanFrequency: t`Daily`,
-        featuresTitle: t`All Free features, plus`,
-        features: [t`Alerting integrations (Slack, PagerDuty, Discord)`, t`Graph visualization`, t`Inventory search`, t`CSV data export`],
+        featuresTitle: t`Everything in Free, and`,
+        features: [t`3-month history`, t`Email alerts`, t`Weekly email report`, t`Data export (CSV, JSON, PDF)`],
       }
-    case 'high_security':
+    case 'business':
       return {
         description: t`Hourly scans for critical, fast-paced environments.`,
-        targetCustomer: t`Advanced integration for top-tier security needs and IaC support.`,
-        price: 50,
+        targetCustomer: t`For engineering teams looking to automate their cloud infrastructure security.`,
+        price: 40,
         monthly: true,
         scanFrequency: t`Hourly`,
-        featuresTitle: t`All Foundational features, plus`,
-        features: [t`Alerting integrations with custom HTTP webhooks`, t`Automatic inventory exports (AWS S3)`],
+        featuresTitle: t`Everything in Plus, and`,
+        features: [
+          t`6-month history`,
+          t`Custom policies`,
+          t`Alerting integrations (PagerDuty, Slack, Discord, Teams)`,
+          t`Task management integrations (coming soon)`,
+        ],
       }
   }
 }

@@ -1,6 +1,7 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
+  readonly VITE_FIX_LANDING_PAGE_URL?: string
   readonly VITE_SERVER?: string
   readonly VITE_WS_SERVER?: string
   readonly VITE_USE_PROXY?: string
@@ -10,6 +11,7 @@ interface ImportMetaEnv {
   readonly VITE_GTM_DEV_ID?: string
   readonly VITE_GTM_PROD_ID?: string
   readonly VITE_TRACKJS_TOKEN?: string
+  readonly VITE_MUI_LICENSE_KEY?: string
 }
 
 interface ImportMeta {

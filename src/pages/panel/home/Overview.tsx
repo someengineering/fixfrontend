@@ -59,7 +59,7 @@ export const Overview = () => {
                 />
                 <Divider />
                 <Typography variant="h3" mt={{ xs: 0, md: 2 }}>
-                  <Trans>Top 5 Security Enhancements</Trans>
+                  <Trans>Top Security Enhancements</Trans>
                 </Typography>
                 <TopFiveChecksCard failedChecks={data.top_checks} />
               </Stack>
@@ -76,7 +76,7 @@ export const Overview = () => {
             <Divider />
           </Box>
           <Typography variant="h3" mb={{ xs: 0, md: 2 }}>
-            <Trans>Top 5 Security Enhancements</Trans>
+            <Trans>Top Security Enhancements</Trans>
           </Typography>
           <TopFiveChecksCard failedChecks={data.top_checks} />
         </>

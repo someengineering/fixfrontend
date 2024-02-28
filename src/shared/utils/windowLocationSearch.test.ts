@@ -1,4 +1,4 @@
-import { getLocationSearchValues, mergeLocationSearchValues } from './windowLocationSearch'
+import { getLocationSearchValues, mergeLocationSearchValues, removeLocationSearchValues } from './windowLocationSearch'
 
 describe('windowLocationSearch', () => {
   test('getLocationSearchValues should return json from search', () => {
@@ -18,8 +18,16 @@ describe('windowLocationSearch', () => {
     expect(search['value3']).toBe('v')
     Object.defineProperty(window, 'location', { value: origLocation })
   })
+
   test('mergeLocationSearchValues should return merged search', () => {
     const search = mergeLocationSearchValues({ value1: 'value', value2: 'val', value3: 'v' })
     expect(search).toBe('?value1=value&value2=val&value3=v')
+  })
+
+  test('removeLocationSearchValues should return merged search with removed key', () => {
+    const search1 = removeLocationSearchValues({ value1: 'value', value2: 'val', value3: 'v' }, 'value3')
+    const search2 = removeLocationSearchValues({ value1: 'value', value2: 'val', value3: 'v' }, 'value')
+    expect(search1).toBe('?value1=value&value2=val')
+    expect(search2).toBe('?value1=value&value2=val&value3=v')
   })
 })

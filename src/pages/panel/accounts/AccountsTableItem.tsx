@@ -1,7 +1,8 @@
 import { Trans } from '@lingui/macro'
 import { Box, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { useState } from 'react'
-import { TableViewPage } from 'src/shared/layouts/panel-layout'
+import { panelUI } from 'src/shared/constants'
+import { TableView } from 'src/shared/layouts/panel-layout'
 import { Account } from 'src/shared/types/server'
 import { AccountRow } from './AccountRow'
 import { AccountTableTitle } from './AccountTableTitle'
@@ -11,23 +12,26 @@ interface AccountsTableItemProps {
   title: string
   isTop: boolean
   isBottom: boolean
+  isConfigured?: boolean
 }
 
-export const AccountsTableItem = ({ data, title, isTop, isBottom }: AccountsTableItemProps) => {
+export const AccountsTableItem = ({ data, title, isTop, isBottom, isConfigured }: AccountsTableItemProps) => {
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(10)
+  const [rowsPerPage, setRowsPerPage] = useState(5)
   return (
     <Box mb={isBottom ? undefined : { xs: 8, sm: 5 }} mt={isTop ? undefined : { sm: 3 }}>
       <AccountTableTitle isTop={isTop}>{title}</AccountTableTitle>
-      <TableViewPage
+      <TableView
+        stickyPagination
         paginationProps={{
           dataCount: data.length ?? 0,
           page,
           rowsPerPage,
           setPage,
           setRowsPerPage,
+          pages: [5, ...panelUI.tableRowsPerPages],
+          id: `AccountsTableItem_${title}`,
         }}
-        minHeight={0}
       >
         <Table stickyHeader aria-label={title}>
           <TableHead>
@@ -50,6 +54,11 @@ export const AccountsTableItem = ({ data, title, isTop, isBottom }: AccountsTabl
               <TableCell>
                 <Trans>Enabled</Trans>
               </TableCell>
+              {isConfigured ? (
+                <TableCell>
+                  <Trans>Security Scan</Trans>
+                </TableCell>
+              ) : null}
               <TableCell>
                 <Trans>Actions</Trans>
               </TableCell>
@@ -61,7 +70,7 @@ export const AccountsTableItem = ({ data, title, isTop, isBottom }: AccountsTabl
               .map((account, i) => <AccountRow account={account} key={`${account.id}_${i}`} />)}
           </TableBody>
         </Table>
-      </TableViewPage>
+      </TableView>
     </Box>
   )
 }

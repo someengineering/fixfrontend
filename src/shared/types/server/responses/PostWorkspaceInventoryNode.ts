@@ -5,7 +5,7 @@ export type WorkspaceInventoryNodeType = 'node' | 'edge'
 export interface WorkspaceInventoryNodeNeighborhoodNodeType {
   id: string
   type: 'node'
-  metadata: {
+  metadata?: {
     icon?: string
     group?: string
     name?: string
@@ -67,7 +67,7 @@ export interface WorkspaceInventoryNode {
       provider_link?: string
       [key: string]: unknown
     }
-    ancestors: Record<string, { reported: { name: string; id: string } }>
+    ancestors?: Record<string, { reported: { name: string; id: string } }>
   }
   neighborhood: WorkspaceInventoryNodeNeighborhood[]
   failing_checks: FailedCheck[]

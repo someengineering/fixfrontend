@@ -1,7 +1,6 @@
 import { t } from '@lingui/macro'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { useEffect, useRef } from 'react'
-import { TableViewPage } from 'src/shared/layouts/panel-layout'
 
 interface InventoryTableProps {
   searchCrit: string
@@ -70,7 +69,7 @@ export const InventoryTableError = ({ searchCrit, resetErrorBoundary, setHasErro
   }, [searchCrit, resetErrorBoundary, setHasError])
 
   return (
-    <TableViewPage>
+    <>
       <Table stickyHeader aria-label={t`Accounts`}>
         <TableHead>
           <TableRow>
@@ -81,6 +80,6 @@ export const InventoryTableError = ({ searchCrit, resetErrorBoundary, setHasErro
         </TableHead>
         <TableBody />
       </Table>
-    </TableViewPage>
+    </>
   )
 }

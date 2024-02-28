@@ -1,6 +1,12 @@
+import { LicenseInfo } from '@mui/x-license-pro'
 import ReactDOM from 'react-dom/client'
 import { App } from './App'
 import reportWebVitals from './reportWebVitals'
+import { env } from './shared/constants'
+
+if (env.muiLicenseKey) {
+  LicenseInfo.setLicenseKey(env.muiLicenseKey)
+}
 
 const root = ReactDOM.createRoot(window.document.getElementById('root') as HTMLElement)
 root.render(<App />)

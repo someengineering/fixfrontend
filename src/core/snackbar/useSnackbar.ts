@@ -3,8 +3,6 @@ import { SnackbarContext, SnackbarContextValue } from './SnackbarProvider'
 
 export function useSnackbar(): SnackbarContextValue {
   const context = useContext(SnackbarContext)
-  if (!context) {
-    throw new Error('useSnackbar must be used inside the SnackbarProvider')
-  }
-  return context
+  // eslint-disable-next-line @typescript-eslint/require-await
+  return context ?? { closeSnackbar: async (_) => true, showSnackbar: async (_) => 0 }
 }

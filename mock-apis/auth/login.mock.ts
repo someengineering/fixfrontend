@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-imports */
 import { defineMock } from 'vite-plugin-mock-dev-server'
-import { getBodyFromRawRequest, parseQueryString } from '../utils'
+import { getBodyFromRawRequest } from '../utils'
 import { setEmail, setToken, token } from './authData'
 
 export default defineMock({
@@ -8,9 +8,8 @@ export default defineMock({
   url: '/api/auth/jwt/login',
   method: 'POST',
   response: async (req, res) => {
-    const reqbody = await getBodyFromRawRequest(req, res)
-    const body = parseQueryString<{ username?: string; password?: string }>(reqbody, '%40')
-    if (!body.username || body.username === 'fail') {
+    const body = await getBodyFromRawRequest<{ username?: string; password?: string }>(req, res, true)
+    if (!body || !body.username || body.username === 'fail') {
       res.statusCode = 400
       res.end(
         JSON.stringify({

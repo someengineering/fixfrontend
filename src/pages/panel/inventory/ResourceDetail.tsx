@@ -1,6 +1,7 @@
 import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import CloseIcon from '@mui/icons-material/Close'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import {
   Accordion,
@@ -24,22 +25,20 @@ import {
 import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { Fragment, ReactNode, useEffect, useRef, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { FailedChecks } from 'src/pages/panel/shared/failed-checks'
 import { postWorkspaceInventoryNodeQuery } from 'src/pages/panel/shared/queries'
+import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
+import { NetworkDiagram } from 'src/shared/charts'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { panelUI } from 'src/shared/constants'
 import { Modal as PopupModal } from 'src/shared/modal'
-import { PostWorkspaceInventorySearchTableRow } from 'src/shared/types/server'
 import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
+import { getLocationSearchValues, removeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { YamlHighlighter } from 'src/shared/yaml-highlighter'
 import { stringify } from 'yaml'
 import { inventorySendToGTM } from './utils'
-
-interface ResourceDetailProps {
-  detail: PostWorkspaceInventorySearchTableRow | undefined
-  onClose: () => void
-}
 
 const Modal = styled(MuiModal)(({ theme }) => ({
   position: 'fixed',
@@ -78,7 +77,7 @@ const GridItem = ({
     <>
       <Grid overflow="hidden" width="100%" alignItems="center" height="100%" display="flex">
         <Tooltip arrow title={property} placement="left" slotProps={{ tooltip: { sx: { maxWidth: 'none' } } }}>
-          <Typography overflow="hidden" textOverflow="ellipsis" whiteSpace="nowrap">
+          <Typography overflow="hidden" textOverflow="ellipsis" whiteSpace="nowrap" color="primary.main">
             {property}
           </Typography>
         </Tooltip>
@@ -116,42 +115,57 @@ const GridItem = ({
   )
 }
 
-export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
+export const ResourceDetail = () => {
+  const { resourceDetailId } = useParams()
+  const navigate = useAbsoluteNavigate()
   const openResourceModalRef = useRef<(show?: boolean | undefined) => void>()
   const { selectedWorkspace } = useUserProfile()
   const {
     i18n: { locale },
   } = useLingui()
   const { data, isLoading, error } = useQuery({
-    queryKey: ['workspace-inventory-node', selectedWorkspace?.id, detail?.id],
+    queryKey: ['workspace-inventory-node', selectedWorkspace?.id, resourceDetailId],
     queryFn: postWorkspaceInventoryNodeQuery,
     throwOnError: false,
+    enabled: !!resourceDetailId,
   })
-  const [selectedRow, setSelectedRow] = useState(detail)
+  const [selectedRow, setSelectedRow] = useState(resourceDetailId)
 
   useEffect(() => {
     if (error) {
-      inventorySendToGTM('postWorkspaceInventoryNodeQuery', false, error as AxiosError, detail?.id, detail?.id)
+      inventorySendToGTM('postWorkspaceInventoryNodeQuery', false, error as AxiosError, resourceDetailId, resourceDetailId)
     }
-  }, [detail?.id, error])
+  }, [resourceDetailId, error])
 
   useEffect(() => {
-    if (detail) {
-      setSelectedRow(detail)
+    if (resourceDetailId) {
+      setSelectedRow(resourceDetailId)
     }
-  }, [detail])
+  }, [resourceDetailId])
 
-  const { id, name, kind, ctime, age: _age, tags } = data?.resource.reported ?? {}
-  const cloud = data?.resource.ancestors.cloud?.reported?.name ?? '-'
-  const accountObj = data?.resource.ancestors.account?.reported
+  const handleClose = () => {
+    const search = getLocationSearchValues(window.location.search)
+    navigate({ pathname: '/inventory', search: removeLocationSearchValues(search, 'name') })
+  }
+
+  const {
+    id,
+    name = getLocationSearchValues(window.location.search)?.name || '',
+    kind,
+    ctime,
+    age: _age,
+    tags,
+  } = data?.resource.reported ?? {}
+  const cloud = data?.resource.ancestors?.cloud?.reported?.name ?? '-'
+  const accountObj = data?.resource.ancestors?.account?.reported
   const account = accountObj ? `${accountObj?.name} (${accountObj?.id})` : '-'
-  const region = data?.resource.ancestors.region?.reported?.name ?? '-'
+  const region = data?.resource.ancestors?.region?.reported?.name ?? '-'
   const provider_link = data?.resource.metadata.provider_link
   const { tags: _tags, ...reported } = data?.resource.reported ?? {}
 
   return selectedRow ? (
-    <Modal open={!!detail} onClose={onClose}>
-      <Slide in={!!detail} direction="left" mountOnEnter unmountOnExit>
+    <Modal open={!!resourceDetailId} onClose={handleClose}>
+      <Slide in={!!resourceDetailId} direction="left" mountOnEnter unmountOnExit>
         <Stack
           position="absolute"
           top={0}
@@ -178,20 +192,23 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
             p={1}
             boxShadow={1}
           >
-            <Box flex={1}>{typeof selectedRow.row['name'] === 'object' ? '' : selectedRow.row['name']}</Box>
-            <IconButton onClick={onClose}>
+            <Stack direction="row" alignItems="center" gap={1} flex={1}>
+              {cloud !== '-' ? <CloudAvatar cloud={cloud} /> : null}
+              {name}
+            </Stack>
+            <IconButton onClick={handleClose}>
               <CloseIcon />
             </IconButton>
           </Stack>
-          {/* <Box minHeight={400} width="100%" sx={{ userSelect: 'none' }}>
+          <Box minHeight={400} width="100%" sx={{ userSelect: 'none' }}>
             {data ? (
-              <NetworkDiagram data={data.neighborhood} />
+              <NetworkDiagram data={data.neighborhood} mainId={data.resource.id} />
             ) : isLoading ? (
-              <Skeleton height={400} width="100%" variant="rectangular" />
+              <Skeleton height={400} width="100%" variant="rounded" />
             ) : null}
-          </Box> */}
+          </Box>
           <Accordion defaultExpanded>
-            <AccordionSummary>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Trans>Basic Information</Trans>
             </AccordionSummary>
             <Divider />
@@ -204,16 +221,7 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
                     <GridItem property={<Trans>Name</Trans>} value={name} />
                     <GridItem
                       property={<Trans>Cloud</Trans>}
-                      value={
-                        cloud !== '-' ? (
-                          <Stack direction="row" spacing={2} alignItems="center">
-                            <CloudAvatar cloud={cloud} />
-                            <Typography>{cloud.toUpperCase()}</Typography>
-                          </Stack>
-                        ) : (
-                          '-'
-                        )
-                      }
+                      value={cloud !== '-' ? <Typography>{cloud.toUpperCase()}</Typography> : '-'}
                       isReactNode={cloud !== '-'}
                     />
                     <GridItem property={<Trans>Account</Trans>} value={account} />
@@ -264,14 +272,14 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
                 </>
               ) : isLoading ? (
                 <>
-                  <Skeleton height={200} width="100%" variant="rectangular" />
+                  <Skeleton height={200} width="100%" variant="rounded" />
                 </>
               ) : null}
             </AccordionDetails>
           </Accordion>
           {data && Object.entries(tags ?? {}).length ? (
             <Accordion>
-              <AccordionSummary>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Trans>Tags</Trans>
               </AccordionSummary>
               <Divider />
@@ -285,7 +293,7 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
             </Accordion>
           ) : null}
           <Accordion>
-            <AccordionSummary>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Trans>Details</Trans>
             </AccordionSummary>
             <Divider />
@@ -298,14 +306,14 @@ export const ResourceDetail = ({ detail, onClose }: ResourceDetailProps) => {
                 </Stack>
               ) : isLoading ? (
                 <>
-                  <Skeleton height={400} width="100%" variant="rectangular" />
+                  <Skeleton height={400} width="100%" variant="rounded" />
                 </>
               ) : null}
             </AccordionDetails>
           </Accordion>
           {data?.resource.security?.has_issues ? (
             <Accordion defaultExpanded>
-              <AccordionSummary>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Trans>Security Issues</Trans>
               </AccordionSummary>
               <Divider />

@@ -3,11 +3,12 @@ import { useLingui } from '@lingui/react'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import PersonIcon from '@mui/icons-material/Person'
 import VisibilityIcon from '@mui/icons-material/Visibility'
-import { Card, CardContent, CardHeader, Typography } from '@mui/material'
+import { Card, CardContent, CardHeader, Link, Typography } from '@mui/material'
 import { Suspense } from 'react'
-import { FixLogo } from 'src/assets/icons'
+import { FixBetaLogo } from 'src/assets/icons'
+import { env } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
-import { AuthLayout, BrandRegion, ContentRegion, LeftRegion } from 'src/shared/layouts/auth-layout'
+import { AuthLayout, BrandRegion, ContentRegion, FooterRegion, LeftRegion } from 'src/shared/layouts/auth-layout'
 import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
 import { AuthRoutes } from './AuthRoutes'
 
@@ -71,11 +72,24 @@ export default function AuthContainer() {
             </Card>
           </LeftRegion>
           <BrandRegion>
-            <FixLogo width={128} height={128} />
+            <FixBetaLogo width={128} height={128} />
           </BrandRegion>
           <ContentRegion>
             <AuthRoutes />
           </ContentRegion>
+          <FooterRegion>
+            <Typography variant="subtitle2">
+              <Trans>
+                <Link target="_blank" href={`${env.landingPageUrl}/terms-and-conditions`}>
+                  Privacy policy
+                </Link>{' '}
+                |{' '}
+                <Link target="_blank" href={`${env.landingPageUrl}/privacy-policy`}>
+                  Terms and conditions
+                </Link>
+              </Trans>
+            </Typography>
+          </FooterRegion>
         </AuthLayout>
       </Suspense>
     </NetworkErrorBoundary>

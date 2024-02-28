@@ -1,8 +1,8 @@
 import { LoadingButtonProps } from '@mui/lab'
 import { OAuthProviderNames } from 'src/shared/types/server'
+import { IconFromOAuthType } from './IconFromOAuthType'
 import { SocialMediaButton } from './SocialMediaButton'
 import { getColorFromOAuthType } from './getColorFromOAuthType'
-import { getIconFromOAuthType } from './getIconFromOAuthType'
 import { getNameFromOAuthType } from './getNameFromOAuthType'
 
 interface SocialMediaButtonFromOauthTypeProps extends LoadingButtonProps {
@@ -15,7 +15,7 @@ export const SocialMediaButtonFromOauthType = ({ name, authUrl, isSignup, ...pro
   return (
     <SocialMediaButton
       href={authUrl}
-      startIcon={getIconFromOAuthType(name)}
+      startIcon={<IconFromOAuthType name={name} />}
       loadingPosition="start"
       variant="contained"
       {...getColorFromOAuthType(name)}

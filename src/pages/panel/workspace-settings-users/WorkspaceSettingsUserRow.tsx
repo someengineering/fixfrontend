@@ -21,7 +21,6 @@ export const WorkspaceSettingsUserRow = ({ workspaceUser }: { workspaceUser: Wor
 
   const { mutate: deleteWorkspaceUser, isPending: deleteWorkspaceUserIsPending } = useMutation({
     mutationFn: deleteWorkspaceUserMutation,
-    mutationKey: ['delete-workspace-user', selectedWorkspace?.id],
   })
 
   const handleDeleteModal = () => {

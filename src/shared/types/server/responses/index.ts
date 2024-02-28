@@ -1,5 +1,9 @@
 export type { GetCurrentUserResponse } from './GetCurrentUser'
 export type { GetInfoResponse } from './GetInfo'
+export type { GetNotificationUserResponse } from './GetNotificationUser'
+export type { GetOAuthAssociatesResponse, OAuthAssociateResponse } from './GetOAuthAssociates'
+export type { GetOAuthProvidersResponse, OAuthProviderResponse } from './GetOAuthProviders'
+export type { GetWorkspaceAlertingSettingsResponse, WorkspaceAlertingSetting } from './GetWorkspaceAlertingSettings'
 export type { GetWorkspaceBillingResponse } from './GetWorkspaceBilling'
 export type { GetWorkspaceBillingEntriesResponse, WorkspaceBillingEntry } from './GetWorkspaceBillingEntries'
 export type { GetWorkspaceCfTemplateResponse } from './GetWorkspaceCfTemplate'
@@ -8,6 +12,7 @@ export type { GetWorkspaceCloudAccountsResponse } from './GetWorkspaceCloudAccou
 export type { GetWorkspaceCloudAccountsLastScanResponse, WorkspaceCloudAccountsLastScanAccount } from './GetWorkspaceCloudAccountsLastScan'
 export type { GetWorkspaceExternalIdResponse } from './GetWorkspaceExternalId'
 export type { GetWorkspaceInventoryModelResponse } from './GetWorkspaceInventoryModel'
+export type { GetWorkspaceInventoryReportInfoResponse } from './GetWorkspaceInventoryReportInfo'
 export type {
   FailedChecksType,
   GetWorkspaceInventoryReportSummaryResponse,
@@ -22,10 +27,10 @@ export type {
   GetWorkspaceInventorySearchStartResponse,
 } from './GetWorkspaceInventorySearchStart'
 export type { GetWorkspaceInvitesResponse, WorkspaceInvite } from './GetWorkspaceInvites'
+export type { GetWorkspaceNotificationsResponse } from './GetWorkspaceNotifications'
 export type { GetWorkspaceSettingsResponse } from './GetWorkspaceSettings'
 export type { GetWorkspaceUsersResponse, WorkspaceUser } from './GetWorkspaceUsers'
 export type { GetWorkspaceResponse, GetWorkspacesResponse } from './GetWorkspaces'
-export type { OAuthProviderNames, OAuthProviderResponse, OAuthProvidersResponse } from './OAuthProviders'
 export type {
   PostWorkspaceInventoryNodeResponse,
   WorkspaceInventoryNode,

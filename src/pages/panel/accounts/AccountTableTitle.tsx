@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { PropsWithChildren } from 'react'
-import { AddAccountButton } from './AddAccountButton'
+import { AddAccountButton } from 'src/shared/add-account-button'
 
 interface AccountTableTitleProps extends PropsWithChildren {
   isTop: boolean
