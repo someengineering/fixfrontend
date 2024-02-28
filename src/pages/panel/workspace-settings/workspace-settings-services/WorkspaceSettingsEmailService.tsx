@@ -29,7 +29,7 @@ export const WorkspaceSettingsEmailService = ({
   const { mutate, isPending } = useMutation({ mutationFn: putWorkspaceNotificationAddMutation })
   const [typedEmail, setTypedEmail] = useState('')
   const [email, setEmail] = useState(defaultEmail ?? [])
-  const [name, setName] = useState(defaultName ?? '')
+  const [name, setName] = useState(defaultName ?? 'Email Integration')
   useEffect(() => {
     if (defaultName) {
       setName(defaultName)

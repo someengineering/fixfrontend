@@ -22,9 +22,8 @@ export const WorkspaceSettingsOpsgenieService = ({ isConnected, defaultName, isL
   const theme = useTheme()
   const { selectedWorkspace } = useUserProfile()
   const { mutate, isPending } = useMutation({ mutationFn: putWorkspaceNotificationAddMutation })
-  const [webhookUrl, setWebhookUrl] = useState('')
   const [apiKey, setApiKey] = useState('')
-  const [name, setName] = useState(defaultName ?? '')
+  const [name, setName] = useState(defaultName ?? 'Opsgenie Integration')
   useEffect(() => {
     if (defaultName) {
       setName(defaultName)
@@ -34,7 +33,7 @@ export const WorkspaceSettingsOpsgenieService = ({ isConnected, defaultName, isL
   const modalRef = useRef<(show?: boolean | undefined) => void>()
   const handleConnect = () => {
     mutate(
-      { workspaceId: selectedWorkspace?.id ?? '', webhook_url: webhookUrl, api_key: apiKey, name, channel: 'opsgenie' },
+      { workspaceId: selectedWorkspace?.id ?? '', api_key: apiKey, name, channel: 'opsgenie' },
       {
         onSettled: () => {
           void queryClient.invalidateQueries({
@@ -108,7 +107,7 @@ export const WorkspaceSettingsOpsgenieService = ({ isConnected, defaultName, isL
               loading={isPending}
               variant="contained"
               type="submit"
-              disabled={!name || !webhookUrl}
+              disabled={!name || !apiKey}
             >
               <Trans>Connect</Trans>
             </LoadingButton>
@@ -129,17 +128,6 @@ export const WorkspaceSettingsOpsgenieService = ({ isConnected, defaultName, isL
           />
           <TextField
             required
-            name="webhook_url"
-            autoComplete="url"
-            label={t`Webhook URL`}
-            variant="outlined"
-            fullWidth
-            type="text"
-            value={webhookUrl}
-            onChange={(e) => setWebhookUrl(e.target.value ?? '')}
-          />
-          <TextField
-            required
             name="api_key"
             autoComplete="api_key"
             label={t`API Key`}
@@ -148,6 +136,7 @@ export const WorkspaceSettingsOpsgenieService = ({ isConnected, defaultName, isL
             type="text"
             value={apiKey}
             onChange={(e) => setApiKey(e.target.value ?? '')}
+            autoFocus
           />
         </Stack>
       </Modal>

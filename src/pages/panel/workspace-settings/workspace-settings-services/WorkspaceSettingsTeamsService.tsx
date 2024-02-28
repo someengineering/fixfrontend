@@ -28,7 +28,7 @@ export const WorkspaceSettingsTeamsService = ({ isConnected, defaultName, isLoad
   const { selectedWorkspace } = useUserProfile()
   const { mutate, isPending } = useMutation({ mutationFn: putWorkspaceNotificationAddMutation })
   const [webhookUrl, setWebhookUrl] = useState('')
-  const [name, setName] = useState(defaultName ?? '')
+  const [name, setName] = useState(defaultName ?? 'Teams Integration')
   useEffect(() => {
     if (defaultName) {
       setName(defaultName)

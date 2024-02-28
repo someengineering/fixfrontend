@@ -24,7 +24,7 @@ export const WorkspaceSettingsPagerdutyService = ({ isConnected, defaultName, is
   const { selectedWorkspace } = useUserProfile()
   const { mutate, isPending } = useMutation({ mutationFn: putWorkspaceNotificationAddMutation })
   const [integrationKey, setIntegrationKey] = useState('')
-  const [name, setName] = useState(defaultName ?? '')
+  const [name, setName] = useState(defaultName ?? 'Pagerduty Integration')
   useEffect(() => {
     if (defaultName) {
       setName(defaultName)
