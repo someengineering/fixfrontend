@@ -1,9 +1,11 @@
 import { Trans, t } from '@lingui/macro'
 import DoneIcon from '@mui/icons-material/Done'
+import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import TrendingDownIcon from '@mui/icons-material/TrendingDown'
 import UpgradeIcon from '@mui/icons-material/Upgrade'
 import { LoadingButton } from '@mui/lab'
 import {
+  Alert,
   Button,
   ButtonBase,
   Divider,
@@ -25,6 +27,7 @@ import { AxiosError } from 'axios'
 import { Fragment, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
+import { env } from 'src/shared/constants'
 import { Modal } from 'src/shared/modal'
 import { PaymentMethod, SecurityTier } from 'src/shared/types/server'
 import { putWorkspaceBillingMutation } from './putWorkspaceBilling.mutation'
@@ -133,6 +136,9 @@ export const ChangePaymentMethod = ({ paymentMethods, defaultSecurityTier }: Cha
   const isUpgrade =
     securityTier === defaultSecurityTier ? null : allSecurityTiers.indexOf(securityTier) > allSecurityTiers.indexOf(defaultSecurityTier)
 
+  const noPaymentMethod =
+    !paymentMethodOptions.length || (paymentMethodOptions.length === 1 && paymentMethodOptions[0].value.method === 'none')
+
   return (
     <>
       <Stack direction={{ xs: 'column', lg: 'row' }} alignItems={{ xs: 'center', lg: 'stretch' }} justifyContent="center">
@@ -187,48 +193,72 @@ export const ChangePaymentMethod = ({ paymentMethods, defaultSecurityTier }: Cha
       <Modal
         openRef={showModalRef}
         actions={
-          <LoadingButton
-            loadingPosition="end"
-            loading={changeBillingIsPending}
-            color={isUpgrade ? 'success' : 'error'}
-            variant="contained"
-            onClick={() => {
-              changeBilling({
-                workspace_payment_method: paymentMethod,
-                security_tier: securityTier,
-                workspaceId: selectedWorkspace?.id ?? '',
-              })
-            }}
-            endIcon={isUpgrade ? <UpgradeIcon /> : <TrendingDownIcon />}
-            disabled={paymentMethod.method === 'none'}
-          >
-            {isUpgrade === null ? <Trans>Change Security Tier</Trans> : isUpgrade ? <Trans>Upgrade</Trans> : <Trans>Downgrade</Trans>}
-          </LoadingButton>
-        }
-        title={t`Change payment method`}
-        description={<Trans>You are about to apply changes to your billing information. Please review the new details below:</Trans>}
-      >
-        <Stack spacing={1}>
-          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} alignItems="center">
-            <Typography>
-              <Trans>Payment method</Trans>:
-            </Typography>
-            <Select
-              value={JSON.stringify(paymentMethod)}
-              onChange={(e) => setPaymentMethod(JSON.parse(e.target.value) as PaymentMethod)}
-              size="small"
+          noPaymentMethod ? (
+            <Button
+              href={env.aws_marketplace_url}
+              disabled={!env.aws_marketplace_url}
+              variant="outlined"
+              color="success"
+              endIcon={<OpenInNewIcon />}
             >
-              {paymentMethodOptions.map((paymentMethod, i) => (
-                <MenuItem value={JSON.stringify(paymentMethod.value)} key={`${JSON.stringify(paymentMethod.value)}_${i}`}>
-                  {paymentMethod.label}
-                </MenuItem>
-              ))}
-            </Select>
+              <Trans>To AWS Marketplace</Trans>
+            </Button>
+          ) : (
+            <LoadingButton
+              loadingPosition="end"
+              loading={changeBillingIsPending}
+              color={isUpgrade ? 'success' : 'error'}
+              variant="contained"
+              onClick={() => {
+                changeBilling({
+                  workspace_payment_method: paymentMethod,
+                  security_tier: securityTier,
+                  workspaceId: selectedWorkspace?.id ?? '',
+                })
+              }}
+              endIcon={isUpgrade ? <UpgradeIcon /> : <TrendingDownIcon />}
+            >
+              {isUpgrade === null ? <Trans>Change Security Tier</Trans> : isUpgrade ? <Trans>Upgrade</Trans> : <Trans>Downgrade</Trans>}
+            </LoadingButton>
+          )
+        }
+        title={noPaymentMethod ? t`Payment Method Required` : t`Change payment method`}
+        description={
+          noPaymentMethod ? null : (
+            <Trans>You are about to apply changes to your billing information. Please review the new details below:</Trans>
+          )
+        }
+      >
+        {noPaymentMethod ? (
+          <>
+            <Typography>
+              <Trans>You need an AWS Marketplace Subscription to upgrade your plan.</Trans>
+            </Typography>
+            <Alert color="warning">Make sure to log in to AWS Console before proceeding.</Alert>
+          </>
+        ) : (
+          <Stack spacing={1}>
+            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} alignItems="center">
+              <Typography>
+                <Trans>Payment method</Trans>:
+              </Typography>
+              <Select
+                value={JSON.stringify(paymentMethod)}
+                onChange={(e) => setPaymentMethod(JSON.parse(e.target.value) as PaymentMethod)}
+                size="small"
+              >
+                {paymentMethodOptions.map((paymentMethod, i) => (
+                  <MenuItem value={JSON.stringify(paymentMethod.value)} key={`${JSON.stringify(paymentMethod.value)}_${i}`}>
+                    {paymentMethod.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </Stack>
+            <Typography>
+              <Trans>Security Tier</Trans>: {securityTierToLabel(securityTier)}
+            </Typography>
           </Stack>
-          <Typography>
-            <Trans>Security Tier</Trans>: {securityTierToLabel(securityTier)}
-          </Typography>
-        </Stack>
+        )}
       </Modal>
       <Divider />
     </>
