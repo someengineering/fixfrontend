@@ -6,7 +6,7 @@ import { useUserProfile } from 'src/core/auth'
 import { ChangePaymentMethod } from './ChangePaymentMethod'
 import { WorkspaceSettingsBillingTable } from './WorkspaceSettingsBillingTable'
 import { getWorkspaceBillingQuery } from './getWorkspaceBilling.query'
-import { securityTierToDescription, securityTierToLabel } from './utils'
+import { productTierToDescription, productTierToLabel } from './utils'
 
 export default function WorkspaceSettingsBillingPage() {
   const {
@@ -14,7 +14,7 @@ export default function WorkspaceSettingsBillingPage() {
   } = useLingui()
   const { selectedWorkspace } = useUserProfile()
   const {
-    data: { available_payment_methods, security_tier },
+    data: { available_payment_methods, security_tier, workspace_payment_method },
   } = useSuspenseQuery({ queryFn: getWorkspaceBillingQuery, queryKey: ['workspace-billing', selectedWorkspace?.id] })
   const currentDate = new Date()
   currentDate.setMilliseconds(0)
@@ -24,19 +24,23 @@ export default function WorkspaceSettingsBillingPage() {
   currentDate.setDate(1)
   const nextBillingCycle = new Date(currentDate.valueOf())
   nextBillingCycle.setMonth(currentDate.getMonth() + 1)
-  const title = securityTierToLabel(security_tier)
-  const desc = securityTierToDescription(security_tier)
+  const title = productTierToLabel(security_tier)
+  const desc = productTierToDescription(security_tier)
 
-  return (
+  return desc ? (
     <Stack spacing={2}>
       <Typography variant="h3">
         <Trans>Billing</Trans>
       </Typography>
-      <ChangePaymentMethod paymentMethods={available_payment_methods} defaultSecurityTier={security_tier} />
+      <ChangePaymentMethod
+        paymentMethods={available_payment_methods}
+        defaultProductTier={security_tier}
+        workspacePaymentMethod={workspace_payment_method}
+      />
       <Trans>
         <Typography>Billing cycle: {desc.monthly ? t`Monthly` : t`One time`}</Typography>
         <Typography>
-          Highest security tier this billing cycle: {title} (${desc.price} / account)
+          Highest product tier this billing cycle: {title} (${desc.price} / account)
         </Typography>
       </Trans>
       {desc.monthly ? (
@@ -50,8 +54,8 @@ export default function WorkspaceSettingsBillingPage() {
       <Alert color="info">
         <Typography>
           <Trans>
-            Info: Changes to your security tier will become active immediately and be applied for the current billing cycle! Within a
-            billing cycle you will be charged for the highest security tier that was active. Your next billing cycle starts:{' '}
+            Info: Changes to your product tier will become active immediately and be applied for the current billing cycle! Within a billing
+            cycle you will be charged for the highest product tier that was active. Your next billing cycle starts:{' '}
             {nextBillingCycle.toLocaleString(locale, {
               year: 'numeric',
               month: '2-digit',
@@ -66,5 +70,5 @@ export default function WorkspaceSettingsBillingPage() {
       <Divider />
       <WorkspaceSettingsBillingTable />
     </Stack>
-  )
+  ) : null
 }

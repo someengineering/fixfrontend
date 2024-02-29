@@ -6,6 +6,7 @@ import UpgradeIcon from '@mui/icons-material/Upgrade'
 import { LoadingButton } from '@mui/lab'
 import {
   Alert,
+  Box,
   Button,
   ButtonBase,
   Divider,
@@ -25,56 +26,78 @@ import {
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { Fragment, useRef, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
 import { env } from 'src/shared/constants'
 import { Modal } from 'src/shared/modal'
-import { PaymentMethod, SecurityTier } from 'src/shared/types/server'
+import { PaymentMethod, ProductTier } from 'src/shared/types/server'
 import { putWorkspaceBillingMutation } from './putWorkspaceBilling.mutation'
-import { paymentMethodToLabel, securityTierToDescription, securityTierToLabel } from './utils'
+import { paymentMethodToLabel, productTierToDescription, productTierToLabel } from './utils'
 
 interface ChangePaymentMethodProps {
-  defaultSecurityTier: SecurityTier
+  workspacePaymentMethod: PaymentMethod
+  defaultProductTier: ProductTier
   paymentMethods: PaymentMethod[]
 }
 
-const allSecurityTiers: SecurityTier[] = ['free', 'plus', 'business']
+const allProductTiers: ProductTier[] = ['free', 'Plus', 'Business', 'Enterprise']
 
-const SecurityTierComp = ({ securityTier }: { securityTier: SecurityTier }) => {
-  const label = securityTierToLabel(securityTier)
-  const desc = securityTierToDescription(securityTier)
+const ProductTierComp = ({ productTier }: { productTier: ProductTier }) => {
+  const label = productTierToLabel(productTier)
+  const desc = productTierToDescription(productTier)
   if (!desc) {
     return null
   }
-  const priceDesc = desc.oneTime ? t`one cloud account included` : desc.monthly ? `/ ${t`cloud account per month`}` : ''
+  const priceDesc = desc.monthly ? t`per cloud account, per month` : ''
   return (
-    <Stack spacing={4} maxWidth={304}>
-      <Typography variant="h4" color="primary.main">
+    <Stack spacing={4} width={216}>
+      <Typography component={Stack} direction="row" alignContent="center" variant="h4" color="primary.main">
+        <Box mr={1.5} display="inline-block">
+          <desc.icon />
+        </Box>
         {label}
       </Typography>
       <Typography>
-        <Typography fontWeight={700} component="span">
+        <Typography fontWeight={500} component="span">
           {desc.description}
         </Typography>{' '}
-        {desc.targetCustomer}
       </Typography>
-      <Stack direction="row" my={1.5} spacing={desc.oneTime ? 1.25 : 0.75} alignItems="baseline">
-        <Typography variant="h2">${desc.price.toString()}</Typography>
+      <Stack direction="column" my={1.5} spacing={0.25} alignItems="baseline">
+        <Typography variant="h2" fontWeight={700}>
+          ${desc.price.toString()}
+        </Typography>
         {priceDesc ? (
           <Typography variant="body2" fontWeight={600}>
-            {priceDesc}*
+            {priceDesc}
           </Typography>
         ) : null}
+        <Typography variant="subtitle1" fontSize={14} fontWeight={400}>
+          (
+          {desc.cloudAccounts.maximum
+            ? t`maximum of ${desc.cloudAccounts.maximum} cloud accounts`
+            : t`minimum of ${desc.cloudAccounts.minimum} cloud accounts`}
+          )
+        </Typography>
+        {!priceDesc ? <Box height={16.09} /> : null}
       </Stack>
       <Divider />
       <Stack mt={1.5} spacing={0.75}>
-        <Typography fontWeight={600}>
-          <Trans>Scan frequency</Trans>
+        <Typography>
+          <Trans>{desc.scanFrequency} scans</Trans>
         </Typography>
-        <Typography>{desc.scanFrequency}</Typography>
+        <Typography>
+          {desc.seats.included ? (
+            <Trans>
+              {desc.seats.included} seats included{desc.seats.maximum ? t` ${desc.seats.maximum} max` : ''}
+            </Trans>
+          ) : (
+            <Trans>{desc.seats.maximum} seat max</Trans>
+          )}
+        </Typography>
       </Stack>
       <Stack spacing={0.75}>
-        <Typography fontWeight={600}>{desc.featuresTitle}</Typography>
+        <Typography fontWeight={600}>{desc.featuresTitle}:</Typography>
         <List dense>
           {desc.features.map((feature, i) => (
             <ListItem key={i} sx={{ p: 0 }}>
@@ -93,31 +116,32 @@ const SecurityTierComp = ({ securityTier }: { securityTier: SecurityTier }) => {
 }
 
 const PaymentMethodDivider = () => {
-  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('lg'))
+  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('sm'))
 
   return (
     <Divider
       key={isMobile.toString()}
       orientation={isMobile ? 'horizontal' : 'vertical'}
-      sx={isMobile ? { width: '100%', maxWidth: 336 } : undefined}
+      sx={isMobile ? { width: '100%', my: 4, maxWidth: 336 } : undefined}
     />
   )
 }
 
-export const ChangePaymentMethod = ({ paymentMethods, defaultSecurityTier }: ChangePaymentMethodProps) => {
+export const ChangePaymentMethod = ({ paymentMethods, defaultProductTier, workspacePaymentMethod }: ChangePaymentMethodProps) => {
   const { selectedWorkspace } = useUserProfile()
+  const [search] = useSearchParams()
   const showModalRef = useRef<(show?: boolean | undefined) => void>()
   const { showSnackbar } = useSnackbar()
   const queryClient = useQueryClient()
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(paymentMethods[0])
-  const [securityTier, setSecurityTier] = useState<SecurityTier>(defaultSecurityTier)
+  const [productTier, setProductTier] = useState<ProductTier>(() => (search.get('tier') as ProductTier) ?? defaultProductTier)
 
   const paymentMethodOptions = paymentMethods.map((value) => ({ label: paymentMethodToLabel(value.method), value }))
 
   const { mutate: changeBilling, isPending: changeBillingIsPending } = useMutation({
     mutationFn: putWorkspaceBillingMutation,
     onSuccess: () => {
-      void showSnackbar(t`Payment method changed to ${paymentMethod} as ${securityTier}`, { severity: 'success' })
+      void showSnackbar(t`Payment method changed to ${paymentMethod} as ${productTier}`, { severity: 'success' })
     },
     onError: (err) => {
       const { response: { data } = { data: { message: '' } } } = err as AxiosError
@@ -134,16 +158,18 @@ export const ChangePaymentMethod = ({ paymentMethods, defaultSecurityTier }: Cha
   })
 
   const isUpgrade =
-    securityTier === defaultSecurityTier ? null : allSecurityTiers.indexOf(securityTier) > allSecurityTiers.indexOf(defaultSecurityTier)
+    productTier === defaultProductTier ? null : allProductTiers.indexOf(productTier) > allProductTiers.indexOf(defaultProductTier)
 
   const noPaymentMethod =
     !paymentMethodOptions.length || (paymentMethodOptions.length === 1 && paymentMethodOptions[0].value.method === 'none')
 
+  const noWorkspaceMethod = workspacePaymentMethod.method === 'none'
+
   return (
     <>
-      <Stack direction={{ xs: 'column', lg: 'row' }} alignItems={{ xs: 'center', lg: 'stretch' }} justifyContent="center">
-        {allSecurityTiers.map((curSecurityTier, i) => (
-          <Fragment key={curSecurityTier}>
+      <Stack direction={{ xs: 'column', sm: 'row' }} flexWrap="wrap" alignItems={{ xs: 'center', sm: 'stretch' }} justifyContent="center">
+        {allProductTiers.map((curProductTier, i) => (
+          <Fragment key={curProductTier}>
             {i ? <PaymentMethodDivider /> : null}
             <ButtonBase
               LinkComponent={Stack}
@@ -151,25 +177,28 @@ export const ChangePaymentMethod = ({ paymentMethods, defaultSecurityTier }: Cha
                 alignItems: 'baseline',
                 textAlign: 'left',
                 justifyContent: 'stretch',
-                px: { xs: 2, lg: 7 },
-                py: { xs: 2, lg: 2 },
+                px: { xs: 2, lg: 4 },
+                py: { xs: 2, lg: 4 },
                 bgcolor:
-                  curSecurityTier === securityTier
+                  curProductTier === productTier
                     ? ({
                         palette: {
                           primary: { main },
                         },
                       }) => alpha(main, 0.15)
                     : undefined,
+                borderRadius: 2,
+                boxShadow: (theme) => (curProductTier === productTier ? theme.shadows[12] : undefined),
+                transition: (theme) => theme.transitions.create(['box-shadow', 'background-color']),
               }}
-              onClick={() => setSecurityTier(curSecurityTier)}
+              onClick={() => setProductTier(curProductTier)}
             >
-              <SecurityTierComp securityTier={curSecurityTier} />
+              <ProductTierComp productTier={curProductTier} />
             </ButtonBase>
           </Fragment>
         ))}
       </Stack>
-      <Stack alignItems="center" spacing={5}>
+      <Stack alignItems="center" spacing={5} pt={4}>
         <Button
           color={isUpgrade === null ? undefined : isUpgrade ? 'success' : 'error'}
           variant="contained"
@@ -177,7 +206,7 @@ export const ChangePaymentMethod = ({ paymentMethods, defaultSecurityTier }: Cha
           onClick={() => showModalRef.current?.(true)}
           endIcon={isUpgrade === null ? undefined : isUpgrade ? <UpgradeIcon /> : <TrendingDownIcon />}
         >
-          {isUpgrade === null ? <Trans>Change Security Tier</Trans> : isUpgrade ? <Trans>Upgrade</Trans> : <Trans>Downgrade</Trans>}
+          {isUpgrade === null ? <Trans>Change Product Tier</Trans> : isUpgrade ? <Trans>Upgrade</Trans> : <Trans>Downgrade</Trans>}
         </Button>
         <Typography maxWidth={587} textAlign="center">
           *{' '}
@@ -191,9 +220,10 @@ export const ChangePaymentMethod = ({ paymentMethods, defaultSecurityTier }: Cha
         </Typography>
       </Stack>
       <Modal
+        defaultOpen={search.get('tier') ? true : undefined}
         openRef={showModalRef}
         actions={
-          noPaymentMethod ? (
+          noWorkspaceMethod && noPaymentMethod ? (
             <Button
               href={env.aws_marketplace_url}
               disabled={!env.aws_marketplace_url}
@@ -211,25 +241,25 @@ export const ChangePaymentMethod = ({ paymentMethods, defaultSecurityTier }: Cha
               variant="contained"
               onClick={() => {
                 changeBilling({
-                  workspace_payment_method: paymentMethod,
-                  security_tier: securityTier,
+                  workspace_payment_method: paymentMethod || workspacePaymentMethod,
+                  security_tier: productTier,
                   workspaceId: selectedWorkspace?.id ?? '',
                 })
               }}
               endIcon={isUpgrade ? <UpgradeIcon /> : <TrendingDownIcon />}
             >
-              {isUpgrade === null ? <Trans>Change Security Tier</Trans> : isUpgrade ? <Trans>Upgrade</Trans> : <Trans>Downgrade</Trans>}
+              {isUpgrade === null ? <Trans>Change Product Tier</Trans> : isUpgrade ? <Trans>Upgrade</Trans> : <Trans>Downgrade</Trans>}
             </LoadingButton>
           )
         }
-        title={noPaymentMethod ? t`Payment Method Required` : t`Change payment method`}
+        title={noWorkspaceMethod && noPaymentMethod ? t`Payment Method Required` : t`Change payment method`}
         description={
-          noPaymentMethod ? null : (
+          noWorkspaceMethod && noPaymentMethod ? null : (
             <Trans>You are about to apply changes to your billing information. Please review the new details below:</Trans>
           )
         }
       >
-        {noPaymentMethod ? (
+        {noWorkspaceMethod && noPaymentMethod ? (
           <>
             <Typography>
               <Trans>You need an AWS Marketplace Subscription to upgrade your plan.</Trans>
@@ -238,24 +268,26 @@ export const ChangePaymentMethod = ({ paymentMethods, defaultSecurityTier }: Cha
           </>
         ) : (
           <Stack spacing={1}>
-            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} alignItems="center">
-              <Typography>
-                <Trans>Payment method</Trans>:
-              </Typography>
-              <Select
-                value={JSON.stringify(paymentMethod)}
-                onChange={(e) => setPaymentMethod(JSON.parse(e.target.value) as PaymentMethod)}
-                size="small"
-              >
-                {paymentMethodOptions.map((paymentMethod, i) => (
-                  <MenuItem value={JSON.stringify(paymentMethod.value)} key={`${JSON.stringify(paymentMethod.value)}_${i}`}>
-                    {paymentMethod.label}
-                  </MenuItem>
-                ))}
-              </Select>
-            </Stack>
+            {!noPaymentMethod ? (
+              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} alignItems="center">
+                <Typography>
+                  <Trans>Payment method</Trans>:
+                </Typography>
+                <Select
+                  value={JSON.stringify(paymentMethod)}
+                  onChange={(e) => setPaymentMethod(JSON.parse(e.target.value) as PaymentMethod)}
+                  size="small"
+                >
+                  {paymentMethodOptions.map((paymentMethod, i) => (
+                    <MenuItem value={JSON.stringify(paymentMethod.value)} key={`${JSON.stringify(paymentMethod.value)}_${i}`}>
+                      {paymentMethod.label}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </Stack>
+            ) : null}
             <Typography>
-              <Trans>Security Tier</Trans>: {securityTierToLabel(securityTier)}
+              <Trans>Product Tier</Trans>: {productTierToLabel(productTier)}
             </Typography>
           </Stack>
         )}

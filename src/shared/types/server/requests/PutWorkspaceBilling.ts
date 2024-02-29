@@ -1,6 +1,6 @@
-import { PaymentMethod, SecurityTier } from 'src/shared/types/server'
+import { PaymentMethod, ProductTier } from 'src/shared/types/server'
 
 export interface PutWorkspaceBillingRequest {
-  security_tier: SecurityTier
+  security_tier: ProductTier
   workspace_payment_method: PaymentMethod
 }
