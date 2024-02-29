@@ -1,12 +1,12 @@
 import { Trans } from '@lingui/macro'
 import CloseIcon from '@mui/icons-material/Close'
-import InfoRoundedIcon from '@mui/icons-material/InfoRounded'
 import SearchIcon from '@mui/icons-material/Search'
 import { Box, Collapse, FormHelperText, IconButton, Stack, TextField, Typography } from '@mui/material'
 import { ChangeEvent, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { panelUI } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
+import { InventoryAdvanceSearchInfo } from './InventoryAdvanceSearchInfo'
 import { InventoryForm } from './InventoryForm'
 import { InventoryFormsSkeleton } from './InventoryForms.skeleton'
 import { InventoryAdvanceSearchConfig, inventoryAdvanceSearchConfigToString } from './utils'
@@ -132,9 +132,7 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }
                   <CloseIcon />
                 </IconButton>
               ) : null}
-              <IconButton size="small" color="info">
-                <InfoRoundedIcon />
-              </IconButton>
+              <InventoryAdvanceSearchInfo />
             </Stack>
           ),
         }}
