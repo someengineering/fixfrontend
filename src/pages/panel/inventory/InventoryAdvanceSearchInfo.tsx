@@ -59,7 +59,7 @@ export const InventoryAdvanceSearchInfo = () => {
           <Trans>
             <span>
               Fix supports full text search by encasing the search term in double quotes. For instance,
-              <Button size="small" onClick={() => void handleCopy(searchTagsOwners)}>
+              <Button size="small" onClick={() => void handleCopy(searchInstance)}>
                 <pre>
                   <code>{searchInstance}</code>
                 </pre>
@@ -114,7 +114,7 @@ export const InventoryAdvanceSearchInfo = () => {
                 <code>{booleanOperators.slice(-1)[0]}</code>
               </pre>{' '}
               to combine multiple terms. An example would be
-              <Button size="small" onClick={() => void handleCopy(searchTagsOwners)}>
+              <Button size="small" onClick={() => void handleCopy(searchEc2InstanceCores)}>
                 <pre>
                   <code>{searchEc2InstanceCores}</code>
                 </pre>
