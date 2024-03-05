@@ -7,7 +7,7 @@ import { ProductTier } from 'src/shared/types/server'
 
 export const productTierToDescription = (productTier: ProductTier) => {
   switch (productTier) {
-    case 'free':
+    case 'Free':
       return {
         description: t`For solo software engineers who want to secure a single cloud account.`,
         icon: AccessibilityNewIcon,

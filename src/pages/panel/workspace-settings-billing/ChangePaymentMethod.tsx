@@ -15,8 +15,6 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  MenuItem,
-  Select,
   Stack,
   Theme,
   Typography,
@@ -33,15 +31,14 @@ import { env } from 'src/shared/constants'
 import { Modal } from 'src/shared/modal'
 import { PaymentMethod, ProductTier } from 'src/shared/types/server'
 import { putWorkspaceBillingMutation } from './putWorkspaceBilling.mutation'
-import { paymentMethodToLabel, productTierToDescription, productTierToLabel } from './utils'
+import { productTierToDescription, productTierToLabel } from './utils'
 
 interface ChangePaymentMethodProps {
   workspacePaymentMethod: PaymentMethod
   defaultProductTier: ProductTier
-  paymentMethods: PaymentMethod[]
 }
 
-const allProductTiers: ProductTier[] = ['free', 'Plus', 'Business', 'Enterprise']
+const allProductTiers: ProductTier[] = ['Free', 'Plus', 'Business', 'Enterprise']
 
 const ProductTierComp = ({ productTier }: { productTier: ProductTier }) => {
   const label = productTierToLabel(productTier)
@@ -127,21 +124,18 @@ const PaymentMethodDivider = () => {
   )
 }
 
-export const ChangePaymentMethod = ({ paymentMethods, defaultProductTier, workspacePaymentMethod }: ChangePaymentMethodProps) => {
+export const ChangePaymentMethod = ({ defaultProductTier, workspacePaymentMethod }: ChangePaymentMethodProps) => {
   const { selectedWorkspace } = useUserProfile()
   const [search] = useSearchParams()
   const showModalRef = useRef<(show?: boolean | undefined) => void>()
   const { showSnackbar } = useSnackbar()
   const queryClient = useQueryClient()
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(paymentMethods[0])
   const [productTier, setProductTier] = useState<ProductTier>(() => (search.get('tier') as ProductTier) ?? defaultProductTier)
-
-  const paymentMethodOptions = paymentMethods.map((value) => ({ label: paymentMethodToLabel(value.method), value }))
 
   const { mutate: changeBilling, isPending: changeBillingIsPending } = useMutation({
     mutationFn: putWorkspaceBillingMutation,
     onSuccess: () => {
-      void showSnackbar(t`Payment method changed to ${paymentMethod} as ${productTier}`, { severity: 'success' })
+      void showSnackbar(t`Product tier changed to ${productTier}`, { severity: 'success' })
     },
     onError: (err) => {
       const { response: { data } = { data: { message: '' } } } = err as AxiosError
@@ -159,9 +153,6 @@ export const ChangePaymentMethod = ({ paymentMethods, defaultProductTier, worksp
 
   const isUpgrade =
     productTier === defaultProductTier ? null : allProductTiers.indexOf(productTier) > allProductTiers.indexOf(defaultProductTier)
-
-  const noPaymentMethod =
-    !paymentMethodOptions.length || (paymentMethodOptions.length === 1 && paymentMethodOptions[0].value.method === 'none')
 
   const noWorkspaceMethod = workspacePaymentMethod.method === 'none'
 
@@ -223,7 +214,7 @@ export const ChangePaymentMethod = ({ paymentMethods, defaultProductTier, worksp
         defaultOpen={search.get('tier') ? true : undefined}
         openRef={showModalRef}
         actions={
-          noWorkspaceMethod && noPaymentMethod ? (
+          <>
             <Button
               href={env.aws_marketplace_url}
               disabled={!env.aws_marketplace_url}
@@ -233,33 +224,33 @@ export const ChangePaymentMethod = ({ paymentMethods, defaultProductTier, worksp
             >
               <Trans>To AWS Marketplace</Trans>
             </Button>
-          ) : (
-            <LoadingButton
-              loadingPosition="end"
-              loading={changeBillingIsPending}
-              color={isUpgrade ? 'success' : 'error'}
-              variant="contained"
-              onClick={() => {
-                changeBilling({
-                  workspace_payment_method: paymentMethod || workspacePaymentMethod,
-                  security_tier: productTier,
-                  workspaceId: selectedWorkspace?.id ?? '',
-                })
-              }}
-              endIcon={isUpgrade ? <UpgradeIcon /> : <TrendingDownIcon />}
-            >
-              {isUpgrade === null ? <Trans>Change Product Tier</Trans> : isUpgrade ? <Trans>Upgrade</Trans> : <Trans>Downgrade</Trans>}
-            </LoadingButton>
-          )
+            {!noWorkspaceMethod ? (
+              <LoadingButton
+                loadingPosition="end"
+                loading={changeBillingIsPending}
+                color={isUpgrade ? 'success' : 'error'}
+                variant="contained"
+                onClick={() => {
+                  changeBilling({
+                    product_tier: productTier,
+                    workspaceId: selectedWorkspace?.id ?? '',
+                  })
+                }}
+                endIcon={isUpgrade ? <UpgradeIcon /> : <TrendingDownIcon />}
+              >
+                {isUpgrade === null ? <Trans>Change Product Tier</Trans> : isUpgrade ? <Trans>Upgrade</Trans> : <Trans>Downgrade</Trans>}
+              </LoadingButton>
+            ) : null}
+          </>
         }
-        title={noWorkspaceMethod && noPaymentMethod ? t`Payment Method Required` : t`Change payment method`}
+        title={noWorkspaceMethod ? t`Payment Method Required` : t`Change payment method`}
         description={
-          noWorkspaceMethod && noPaymentMethod ? null : (
+          noWorkspaceMethod ? null : (
             <Trans>You are about to apply changes to your billing information. Please review the new details below:</Trans>
           )
         }
       >
-        {noWorkspaceMethod && noPaymentMethod ? (
+        {noWorkspaceMethod ? (
           <>
             <Typography>
               <Trans>You need an AWS Marketplace Subscription to upgrade your plan.</Trans>
@@ -268,24 +259,6 @@ export const ChangePaymentMethod = ({ paymentMethods, defaultProductTier, worksp
           </>
         ) : (
           <Stack spacing={1}>
-            {!noPaymentMethod ? (
-              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} alignItems="center">
-                <Typography>
-                  <Trans>Payment method</Trans>:
-                </Typography>
-                <Select
-                  value={JSON.stringify(paymentMethod)}
-                  onChange={(e) => setPaymentMethod(JSON.parse(e.target.value) as PaymentMethod)}
-                  size="small"
-                >
-                  {paymentMethodOptions.map((paymentMethod, i) => (
-                    <MenuItem value={JSON.stringify(paymentMethod.value)} key={`${JSON.stringify(paymentMethod.value)}_${i}`}>
-                      {paymentMethod.label}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </Stack>
-            ) : null}
             <Typography>
               <Trans>Product Tier</Trans>: {productTierToLabel(productTier)}
             </Typography>

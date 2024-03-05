@@ -45,7 +45,7 @@ msgstr "{0, plural, one {# Jahr} other {# Jahre}}"
 msgid "{0} has been connected"
 msgstr "{0} wurde verbunden"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:92
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:89
 msgid "{0} max"
 msgstr "{0} max"
 
@@ -53,15 +53,15 @@ msgstr "{0} max"
 msgid "{0} Milliseconds"
 msgstr "{0} Millisekunden"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:87
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:84
 msgid "{0} scans"
 msgstr "{0} scans"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:95
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:92
 msgid "{0} seat max"
 msgstr "{0} Sitzplatz max"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:91
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:88
 msgid "{0} seats included{1}"
 msgstr "{0} Sitzplätze inbegriffen{1}"
 
@@ -69,11 +69,11 @@ msgstr "{0} Sitzplätze inbegriffen{1}"
 msgid "© 2024 Some Engineering Inc. All rights reserved."
 msgstr "© 2024 Some Engineering Inc. Alle Rechte vorbehalten."
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:40
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:36
 msgid "<0>Billing cycle: {0}</0><1>Highest product tier this billing cycle: {title} (${1} / account)</1>"
 msgstr "<0>Abrechnungszeitraum: {0}</0><1>Höchste Produktstufe in diesem Abrechnungszeitraum: {title} (${1} / Konto)</1>"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:47
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:43
 msgid "<0>Next invoice will be available: {0}</0>"
 msgstr "<0>Die nächste Rechnung wird verfügbar sein: {0}</0>"
 
@@ -196,7 +196,7 @@ msgstr "Alternativ: Manuelles Cloud Setup"
 msgid "An error occurred while connecting to {0}"
 msgstr "Beim Herstellen der Verbindung zu {0} ist ein Fehler aufgetreten."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:148
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:142
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:27
 msgid "An error occurred, please try again later."
 msgstr "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut."
@@ -289,12 +289,12 @@ msgstr "Business"
 msgid "Cancel"
 msgstr "Stornieren"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:255
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:246
 msgid "Change payment method"
 msgstr "Bezahlungsmethode ändern"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:209
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:251
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:200
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:241
 msgid "Change Product Tier"
 msgstr "Produktstufe ändern"
 
@@ -518,8 +518,8 @@ msgstr "Möchten Sie diesen Benutzer löschen?"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:209
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:251
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:200
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:241
 msgid "Downgrade"
 msgstr "Downgrade"
 
@@ -673,7 +673,7 @@ msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS 
 msgid "Inactivity reminder"
 msgstr "Inaktivitätserinnerung"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:56
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:52
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle! Within a billing cycle you will be charged for the highest product tier that was active. Your next billing cycle starts: {0} UTC"
 msgstr "Info: Änderungen an Ihrer Produktstufe werden sofort aktiv und für den aktuellen Abrechnungszeitraum übernommen! Innerhalb eines Abrechnungszeitraums wird Ihnen die höchste aktive Produktstufe in Rechnung gestellt. Ihr nächster Abrechnungszeitraum beginnt: {0} UTC"
 
@@ -746,7 +746,7 @@ msgstr "Niedrig"
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS Konto angemeldet sind, bevor Sie auf die Schaltfläche DEPLOY STACK klicken."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:78
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:75
 msgid "maximum of {0} cloud accounts"
 msgstr "maximal {0} Cloud-Konten"
 
@@ -754,12 +754,12 @@ msgstr "maximal {0} Cloud-Konten"
 msgid "Medium"
 msgstr "Mittel"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:79
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:76
 msgid "minimum of {0} cloud accounts"
 msgstr "mindestens {0} Cloud-Konten"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:18
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:41
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:37
 msgid "Monthly"
 msgstr "Monatlich"
 
@@ -847,7 +847,7 @@ msgstr "Null"
 msgid "Number Of Account Charged"
 msgstr "Anzahl der belasteten Konten"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:41
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:37
 msgid "One time"
 msgstr "Einmal"
 
@@ -876,7 +876,7 @@ msgstr "Oder"
 msgid "Other Workspace Settings"
 msgstr "Andere Arbeitsbereichseinstellungen"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:213
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:204
 msgid "Our fair-use policy allows for up to 200,000 resources per account. If your needs surpass this amount, please <0>reach out</0> to discuss your specific requirements."
 msgstr "Unsere Fair-Use-Richtlinie ermöglicht bis zu 200.000 Ressourcen pro Konto. Wenn Ihr Bedarf diesen Betrag übersteigt, <0>kontaktieren Sie uns bitte</0>, um Ihre spezifischen Anforderungen zu besprechen."
 
@@ -885,15 +885,7 @@ msgstr "Unsere Fair-Use-Richtlinie ermöglicht bis zu 200.000 Ressourcen pro Kon
 msgid "Password"
 msgstr "Passwort"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:274
-msgid "Payment method"
-msgstr "Bezahlverfahren"
-
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:144
-msgid "Payment method changed to {paymentMethod} as {productTier}"
-msgstr "Die Zahlungsmethode wurde als {productTier} in {paymentMethod} geändert"
-
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:255
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:246
 msgid "Payment Method Required"
 msgstr "Zahlungsmethode erforderlich"
 
@@ -904,7 +896,7 @@ msgstr "Zahlungsmethode erforderlich"
 msgid "Pending Invitations"
 msgstr "Ausstehende Einladungen"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:52
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:49
 msgid "per cloud account, per month"
 msgstr "pro Cloud-Konto, pro Monat"
 
@@ -932,9 +924,13 @@ msgstr "Privilegiert"
 msgid "Privileged account"
 msgstr "Privilegiertes Konto"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:290
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:263
 msgid "Product Tier"
 msgstr "Produktebene"
+
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:138
+msgid "Product tier changed to {productTier}"
+msgstr "Produktstufe wurde in {productTier} geändert"
 
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:53
 msgid "Profile"
@@ -1121,7 +1117,7 @@ msgstr "Stufe"
 msgid "To access this resource, please ensure that you are logged into the AWS account: {account}"
 msgstr "Um auf diese Ressource zuzugreifen, stellen Sie bitte sicher, dass Sie beim AWS-Konto angemeldet sind: {account}"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:234
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:225
 msgid "To AWS Marketplace"
 msgstr "Zum AWS Marketplace"
 
@@ -1159,8 +1155,8 @@ msgstr "E-Mail aktualisieren"
 msgid "Update Password"
 msgstr "Kennwort aktualisieren"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:209
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:251
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:200
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:241
 msgid "Upgrade"
 msgstr "Aktualisierung"
 
@@ -1246,7 +1242,7 @@ msgstr "Arbeitsbereichseinstellungen"
 msgid "Workspace Users"
 msgstr "Workspace-Benutzer"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:258
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:249
 msgid "You are about to apply changes to your billing information. Please review the new details below:"
 msgstr "Sie sind dabei, Änderungen an Ihren Zahlungsinformationen vorzunehmen. Bitte lesen Sie die neuen Details unten:"
 
@@ -1254,7 +1250,7 @@ msgstr "Sie sind dabei, Änderungen an Ihren Zahlungsinformationen vorzunehmen. 
 msgid "You have successfully verified your account."
 msgstr "Sie haben Ihr Konto erfolgreich verifiziert."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:265
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:256
 msgid "You need an AWS Marketplace Subscription to upgrade your plan."
 msgstr "Sie benötigen ein AWS Marketplace-Abonnement, um Ihren Plan zu aktualisieren."
 

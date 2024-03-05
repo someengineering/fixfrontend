@@ -14,7 +14,7 @@ export default function WorkspaceSettingsBillingPage() {
   } = useLingui()
   const { selectedWorkspace } = useUserProfile()
   const {
-    data: { available_payment_methods, security_tier, workspace_payment_method },
+    data: { product_tier, workspace_payment_method },
   } = useSuspenseQuery({ queryFn: getWorkspaceBillingQuery, queryKey: ['workspace-billing', selectedWorkspace?.id] })
   const currentDate = new Date()
   currentDate.setMilliseconds(0)
@@ -24,19 +24,15 @@ export default function WorkspaceSettingsBillingPage() {
   currentDate.setDate(1)
   const nextBillingCycle = new Date(currentDate.valueOf())
   nextBillingCycle.setMonth(currentDate.getMonth() + 1)
-  const title = productTierToLabel(security_tier)
-  const desc = productTierToDescription(security_tier)
+  const title = productTierToLabel(product_tier)
+  const desc = productTierToDescription(product_tier)
 
   return desc ? (
     <Stack spacing={2}>
       <Typography variant="h3">
         <Trans>Billing</Trans>
       </Typography>
-      <ChangePaymentMethod
-        paymentMethods={available_payment_methods}
-        defaultProductTier={security_tier}
-        workspacePaymentMethod={workspace_payment_method}
-      />
+      <ChangePaymentMethod defaultProductTier={product_tier} workspacePaymentMethod={workspace_payment_method} />
       <Trans>
         <Typography>Billing cycle: {desc.monthly ? t`Monthly` : t`One time`}</Typography>
         <Typography>
