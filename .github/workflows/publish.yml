@@ -61,7 +61,7 @@ jobs:
           out_dir: fix-ui/edge
           source: target/${{ github.sha }}/index.html
 
-      - name: Publish the new version to the CDN 
+      - name: Publish storybook to the CDN 
         uses: BetaHuhn/do-spaces-action@v2
         with:
           access_key: ${{ secrets.FIX_UI_DO_SPACES_KEY }}
