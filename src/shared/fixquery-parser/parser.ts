@@ -1,4 +1,18 @@
-import { alt, apply, buildLexer, fail, kmid, kright, Lexer, list_sc, opt, rep_sc, rule, seq, tok } from 'typescript-parsec'
+import {
+  alt,
+  apply,
+  buildLexer,
+  fail,
+  kmid,
+  kright,
+  Lexer,
+  list_sc,
+  opt,
+  rep_sc,
+  rule,
+  seq,
+  tok,
+} from 'typescript-parsec'
 import {
   AllTerm,
   CombinedTerm,
@@ -10,7 +24,7 @@ import {
   IsTerm,
   JsonElement,
   Limit,
-  MergeQuery,
+  MergeQuery, MergeTerm,
   Navigation,
   NotTerm,
   Part,
@@ -181,44 +195,40 @@ OperationP.setPattern(
 SimpleTermP.setPattern(
   alt(
     kmid(tok(Token.LParen), TermP, tok(Token.RParen)),
-    apply(kright(tok(Token.NOT), TermP), (term) => new NotTerm({term})),
+    apply(kright(tok(Token.NOT), TermP), (term) => new NotTerm({ term })),
     apply(
       seq(VariableP, tok(Token.Dot), kmid(tok(Token.LCurly), TermP, tok(Token.RCurly))),
-      ([name, _, term]) => new ContextTerm({name, term}),
+      ([name, _, term]) => new ContextTerm({ name, term }),
     ),
-    apply(seq(VariableP, OperationP, JsonElementP), ([name, op, value]) => new Predicate({name, op, value})),
-    apply(kright(tok(Token.IS), kmid(tok(Token.LParen), tok(Token.Literal), tok(Token.RParen))), (t) => new IsTerm({kinds:[t.text]})),
-    apply(kright(tok(Token.ID), kmid(tok(Token.LParen), tok(Token.Literal), tok(Token.RParen))), (t) => new IdTerm({ids:[t.text]})),
-    apply(tok(Token.DoubleQuotedString), (t) => new FulltextTerm({text:t.text.slice(1, -1)})),
+    apply(seq(VariableP, OperationP, JsonElementP), ([name, op, value]) => new Predicate({ name, op, value })),
+    apply(kright(tok(Token.IS), kmid(tok(Token.LParen), tok(Token.Literal), tok(Token.RParen))), (t) => new IsTerm({ kinds: [t.text] })),
+    apply(kright(tok(Token.ID), kmid(tok(Token.LParen), tok(Token.Literal), tok(Token.RParen))), (t) => new IdTerm({ ids: [t.text] })),
+    apply(tok(Token.DoubleQuotedString), (t) => new FulltextTerm({ text: t.text.slice(1, -1) })),
     apply(tok(Token.ALL), (_) => new AllTerm()),
   ),
 )
 
 TermP.setPattern(
-  alt(
-    // simple_term <and|or> simple_term
-    apply(seq(SimpleTermP, rep_sc(seq(BoolOperationP, SimpleTermP))), ([term, op_terms]) => {
-      let left = term
-      for (const [op, right] of op_terms) {
-        left = new CombinedTerm({left, op, right})
-      }
-      return left
-    }),
-    // (term)
-    kmid(tok(Token.LParen), TermP, tok(Token.RParen)),
-    // term {merge} <term>
-    // TODO: Fix merge query
-    // apply(seq(TermP, list_sc(MergeQueryP, tok(Token.Comma)), opt(TermP)), ([pre, queries, post]) => new MergeTerm(pre, queries, post)),
-  ),
+  // simple_term <and|or> simple_term
+  apply(seq(SimpleTermP, rep_sc(seq(BoolOperationP, SimpleTermP))), ([term, op_terms]) => {
+    let left = term
+    for (const [op, right] of op_terms) {
+      left = new CombinedTerm({ left, op, right })
+    }
+    return left
+  }),
 )
 
 MergeQueryP.setPattern(
-  apply(seq(VariableP, tok(Token.Colon), QueryP), ([name, _, query]) => new MergeQuery({name, query})), //TODO: array flag
+  apply(seq(VariableP, tok(Token.Colon), QueryP), ([name, _, query]) => new MergeQuery({ name, query })), //TODO: array flag
 )
 
 LimitP.setPattern(
   apply(kright(tok(Token.Limit), seq(tok(Token.Integer), opt(kright(tok(Token.Comma), tok(Token.Integer))))), ([first, second]) =>
-    second ? new Limit({offset:parseInt(first.text), length:parseInt(second.text)}) : new Limit({length: parseInt(first.text)}),
+    second ? new Limit({
+      offset: parseInt(first.text),
+      length: parseInt(second.text),
+    }) : new Limit({ length: parseInt(first.text) }),
   ),
 )
 
@@ -226,7 +236,7 @@ const asc = apply(tok(Token.Asc), (_b) => SortOrder.Asc)
 const desc = apply(tok(Token.Desc), (_b) => SortOrder.Desc)
 SortP.setPattern(
   apply(kright(tok(Token.Sort), list_sc(seq(VariableP, opt(alt(asc, desc))), tok(Token.Comma))), (sorts) =>
-    sorts.map(([name, dir]) => new Sort({name, order:dir || SortOrder.Asc})),
+    sorts.map(([name, dir]) => new Sort({ name, order: dir || SortOrder.Asc })),
   ),
 )
 
@@ -244,7 +254,7 @@ const edge_detail = apply(seq(opt(edge_type_p), opt(range), opt(edge_type_p)), (
   }
   const start: number = range ? range[0] || 1 : 1
   const end: number | undefined = range ? range[1] : 1
-  return new Navigation({start:start, until:end, edge_types:et_before || et_after || [EdgeType.default]})
+  return new Navigation({ start: start, until: end, edge_types: et_before || et_after || [EdgeType.default] })
 })
 NavigationP.setPattern(
   alt(
@@ -263,10 +273,28 @@ NavigationP.setPattern(
 WithClauseP.setPattern(fail('Not implemented'))
 
 PartP.setPattern(
-  apply(
-    seq(TermP, opt(WithClauseP), opt(SortP), opt(LimitP), opt(NavigationP)),
-    ([term, with_clause, sort, limit, navigation]) => new Part({term, with_clause, sort, limit, navigation}),
-  ),
+  // TODO: fix merge query
+  alt(
+    apply(seq(apply(seq(TermP, list_sc(MergeQueryP, tok(Token.Comma)), opt(TermP)), ([preFilter, merge, postFilter]) => new MergeTerm({
+      preFilter,
+      merge,
+      postFilter,
+    })), opt(WithClauseP), opt(SortP), opt(LimitP), opt(NavigationP)), ([term, with_clause, sort, limit, navigation]) => new Part({
+      term,
+      with_clause,
+      sort,
+      limit,
+      navigation,
+    })),
+    apply(
+      seq(TermP, opt(WithClauseP), opt(SortP), opt(LimitP), opt(NavigationP)), ([term, with_clause, sort, limit, navigation]) => new Part({
+        term,
+        with_clause,
+        sort,
+        limit,
+        navigation,
+      }),
+    )),
 )
 
-QueryP.setPattern(apply(rep_sc(PartP), (parts) => new Query({parts})))
+QueryP.setPattern(apply(rep_sc(PartP), (parts) => new Query({ parts })))
