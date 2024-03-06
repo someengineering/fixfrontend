@@ -35,6 +35,11 @@ jobs:
           mkdir -p target/${{ github.sha }}
           cp -r dist/* target/${{ github.sha }}
 
+      - name: Create a production storybook build
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: yarn build-storybook
+
       - name: Publish the new version to the CDN 
         uses: BetaHuhn/do-spaces-action@v2
         with:
@@ -54,6 +59,16 @@ jobs:
           space_region: ${{ secrets.FIX_UI_DO_SPACE_REGION }}
           out_dir: fix-ui/edge
           source: target/${{ github.sha }}/index.html
+
+      - name: Publish the new version to the CDN 
+        uses: BetaHuhn/do-spaces-action@v2
+        with:
+          access_key: ${{ secrets.FIX_UI_DO_SPACES_KEY }}
+          secret_key: ${{ secrets.FIX_UI_DO_SPACES_SECRET }}
+          space_name: ${{ secrets.FIX_UI_DO_SPACE_NAME }}
+          space_region: ${{ secrets.FIX_UI_DO_SPACE_REGION }}
+          out_dir: fix-storybook
+          source: storybook-static
 
       - name: Create a patch with the new version
         # writes the file with a config map definition
