@@ -78,6 +78,7 @@ test(`Parse Variable`, () => {
   assert.strictEqual(parse_variable('/foo'), '/foo')
   assert.strictEqual(parse_variable('foo.bla.bar'), 'foo.bla.bar')
   assert.strictEqual(parse_variable('/foo.bla.bar'), '/foo.bla.bar')
+  assert.strictEqual(parse_variable('/foo[*].bla[].bar[*]'), '/foo[*].bla[].bar[*]')
 })
 
 test(`Parse Simple Term`, () => {

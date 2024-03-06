@@ -7,7 +7,7 @@ import {
   kright,
   Lexer,
   list_sc,
-  opt,
+  opt, Parser,
   rep_sc,
   rule,
   seq,
@@ -66,6 +66,7 @@ export enum Token {
   Integer, // 1
   Plus, // +
   Minus, // -
+  Star, // *
   Slash, // /
   DoubleQuotedString, // "abc"
   Equal, // ==
@@ -114,6 +115,7 @@ export const FixQueryLexer: Lexer<Token> = buildLexer([
   [true, /^<-/g, Token.Inbound],
   [true, /^[+]/g, Token.Plus],
   [true, /^[-]/g, Token.Minus],
+  [true, /^\*/g, Token.Star],
   [true, /^[+-]?[0-9]+/g, Token.Integer],
   [true, /^\//g, Token.Slash],
   [true, /^=/g, Token.Equal],
@@ -143,6 +145,11 @@ export const NavigationP = rule<Token, Navigation>()
 export const PartP = rule<Token, Part>()
 export const QueryP = rule<Token, Query>()
 
+
+function times_n<TKind, TResult,>(parser: Parser<TKind, TResult>): Parser<TKind, TResult[]> {
+  return apply(seq(parser, rep_sc(parser)), ([first, rest]) => [first, ...rest])
+}
+
 JsonElementP.setPattern(
   alt(
     apply(tok(Token.True), () => true),
@@ -168,10 +175,12 @@ JsonElementP.setPattern(
   ),
 )
 
+
+const allowed_characters = alt(tok(Token.Literal), tok(Token.Star), tok(Token.LBracket), tok(Token.RBracket))
 VariableP.setPattern(
   apply(
-    seq(opt(tok(Token.Slash)), list_sc(tok(Token.Literal), tok(Token.Dot))),
-    ([slash, parts]) => (slash ? '/' : '') + parts.map((part) => part.text).join('.'),
+    seq(opt(tok(Token.Slash)), list_sc(times_n(allowed_characters), tok(Token.Dot))),
+    ([slash, parts]) => (slash ? '/' : '') + parts.map((part) => part.map(r => r.text).join('')).join('.'),
   ),
 )
 
