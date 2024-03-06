@@ -57,7 +57,11 @@ export type SetupGTMParams = {
   getScript: () => HTMLElement
 }
 
-type DataEventCommonError = {
+type DataEventCommon = {
+  user_id?: string
+}
+
+type DataEventCommonError = DataEventCommon & {
   name: string
   message: string
   stack: string
@@ -65,7 +69,7 @@ type DataEventCommonError = {
   authorized: boolean
 }
 
-type DataEventPage = {
+type DataEventPage = DataEventCommon & {
   event: GTMEventNames.Page
   language: string
   path: string
@@ -102,7 +106,7 @@ type DataEventNetworkError = DataEventCommonError & {
   code: string
 }
 
-type DataEventInventorySearch = {
+type DataEventInventorySearch = DataEventCommon & {
   event: GTMEventNames.InventorySearch
   q: string
   workspaceId: string
@@ -119,12 +123,12 @@ type DataEventInventoryError = DataEventCommonError & {
   status: number | string
 }
 
-type DataEventLogin = {
+type DataEventLogin = DataEventCommon & {
   event: GTMEventNames.Login
   username: string
 }
 
-type DataEventSignup = {
+type DataEventSignup = DataEventCommon & {
   event: GTMEventNames.Signup
   username: string
 }
@@ -138,6 +142,7 @@ export type DataEventTypes =
   | DataEventInventoryError
   | DataEventLogin
   | DataEventSignup
+  | DataEventCommon
 
 /**
  * The shape of the sendToGtm function

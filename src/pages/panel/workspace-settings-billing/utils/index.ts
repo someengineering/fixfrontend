@@ -1,3 +1,3 @@
 export { paymentMethodToLabel } from './paymentMethodToLabel'
-export { securityTierToDescription } from './securityTierToDescription'
-export { securityTierToLabel } from './securityTierToLabel'
+export { productTierToDescription } from './productTierToDescription'
+export { productTierToLabel } from './productTierToLabel'
