@@ -20,7 +20,7 @@ const queryFnStrToApi = (queryFn: queryFnStr, workspaceId: string, id?: string) 
       return endPoints.workspaces.workspace(workspaceId).inventory.search.start
 
     case 'postWorkspaceInventoryNodeQuery':
-      return endPoints.workspaces.workspace(workspaceId).inventory.node(id ?? 'unknown')
+      return endPoints.workspaces.workspace(workspaceId).inventory.node(id ?? 'unknown').self
 
     case 'postWorkspaceInventoryPropertyAttributesQuery':
     case 'postCostumedWorkspaceInventoryPropertyAttributesQuery':

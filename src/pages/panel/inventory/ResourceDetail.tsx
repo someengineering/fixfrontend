@@ -38,6 +38,7 @@ import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/util
 import { getLocationSearchValues, removeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { YamlHighlighter } from 'src/shared/yaml-highlighter'
 import { stringify } from 'yaml'
+import { ResourceDetailChangeLog } from './ResourceDetailChangeLog'
 import { inventorySendToGTM } from './utils'
 
 const Modal = styled(MuiModal)(({ theme }) => ({
@@ -93,7 +94,9 @@ const GridItem = ({
                 <Typography color={color}>{stringValue}</Typography>
               ) : (
                 <pre>
-                  <YamlHighlighter>{stringify(value, null, '  ')}</YamlHighlighter>
+                  <code>
+                    <YamlHighlighter>{stringify(value, null, '  ')}</YamlHighlighter>
+                  </code>
                 </pre>
               )
             }
@@ -301,7 +304,9 @@ export const ResourceDetail = () => {
               {data?.resource.reported ? (
                 <Stack overflow="auto">
                   <pre>
-                    <YamlHighlighter>{stringify(reported, null, '  ')}</YamlHighlighter>
+                    <code>
+                      <YamlHighlighter>{stringify(reported, null, '  ')}</YamlHighlighter>
+                    </code>
                   </pre>
                 </Stack>
               ) : isLoading ? (
@@ -361,6 +366,7 @@ export const ResourceDetail = () => {
               </AccordionDetails>
             </Accordion>
           ) : null}
+          {resourceDetailId ? <ResourceDetailChangeLog /> : null}
         </Stack>
       </Slide>
     </Modal>
