@@ -1,4 +1,4 @@
-import { alt, apply, buildLexer, fail, kmid, kright, Lexer, list_sc, opt, Parser, rep_sc, rule, seq, tok } from 'typescript-parsec'
+import { alt, apply, buildLexer, kmid, kright, Lexer, list_sc, opt, Parser, rep_sc, rule, seq, tok } from 'typescript-parsec'
 import {
   AllTerm,
   CombinedTerm,
@@ -21,16 +21,21 @@ import {
   SortOrder,
   Term,
   WithClause,
+  WithClauseFilter,
 } from './query'
 
 export enum Token {
   Space,
   IS,
   ID,
-  ALL, // all
-  NOT,
-  AND,
-  OR,
+  With, // with
+  Any, // any
+  Empty, // empty
+  All, // all
+  Count, // count
+  Not,
+  And,
+  Or,
   Limit,
   Sort,
   Asc,
@@ -74,10 +79,14 @@ export const FixQueryLexer: Lexer<Token> = buildLexer([
   [false, /^\s+/g, Token.Space],
   [true, /^is/g, Token.IS],
   [true, /^id/g, Token.ID],
-  [true, /^all/g, Token.ALL],
-  [true, /^not/g, Token.NOT],
-  [true, /^and/g, Token.AND],
-  [true, /^or/g, Token.OR],
+  [true, /^with/g, Token.With],
+  [true, /^any/g, Token.Any],
+  [true, /^empty/g, Token.Empty],
+  [true, /^all/g, Token.All],
+  [true, /^count/g, Token.Count],
+  [true, /^not/g, Token.Not],
+  [true, /^and/g, Token.And],
+  [true, /^or/g, Token.Or],
   [true, /^limit/g, Token.Limit],
   [true, /^sort/g, Token.Sort],
   [true, /^asc/g, Token.Asc],
@@ -101,7 +110,7 @@ export const FixQueryLexer: Lexer<Token> = buildLexer([
   [true, /^->/g, Token.Outbound],
   [true, /^<-/g, Token.Inbound],
   [true, /^[+]/g, Token.Plus],
-  [true, /^[-]/g, Token.Minus],
+  [true, /^-/g, Token.Minus],
   [true, /^\*/g, Token.Star],
   [true, /^[+-]?[0-9]+/g, Token.Integer],
   [true, /^\//g, Token.Slash],
@@ -115,7 +124,11 @@ export const FixQueryLexer: Lexer<Token> = buildLexer([
   [true, /^</g, Token.LessThan],
   [true, /^>/g, Token.GreaterThan],
   [true, /^"[^"\\]+"/g, Token.DoubleQuotedString], // TODO: handle escape
-  [true, /^(?!delete|default)[A-Za-z0-9][A-Za-z0-9_\\-]*/g, Token.Literal],
+  [
+    true,
+    /^(?!delete|default|with|any|empty|count|not|and|or|limit|sort|asc|desc|true|false|null)[A-Za-z0-9][A-Za-z0-9_\\-]*/g,
+    Token.Literal,
+  ],
 ])
 
 export const JsonElementP = rule<Token, JsonElement>()
@@ -172,7 +185,7 @@ VariableP.setPattern(
   ),
 )
 
-BoolOperationP.setPattern(apply(alt(tok(Token.AND), tok(Token.OR)), (t) => t.text))
+BoolOperationP.setPattern(apply(alt(tok(Token.And), tok(Token.Or)), (t) => t.text))
 
 OperationP.setPattern(
   apply(
@@ -192,7 +205,7 @@ OperationP.setPattern(
 SimpleTermP.setPattern(
   alt(
     kmid(tok(Token.LParen), TermP, tok(Token.RParen)),
-    apply(kright(tok(Token.NOT), TermP), (term) => new NotTerm({ term })),
+    apply(kright(tok(Token.Not), TermP), (term) => new NotTerm({ term })),
     apply(
       seq(VariableP, tok(Token.Dot), kmid(tok(Token.LCurly), TermP, tok(Token.RCurly))),
       ([name, _, term]) => new ContextTerm({ name, term }),
@@ -201,7 +214,7 @@ SimpleTermP.setPattern(
     apply(kright(tok(Token.IS), kmid(tok(Token.LParen), tok(Token.Literal), tok(Token.RParen))), (t) => new IsTerm({ kinds: [t.text] })),
     apply(kright(tok(Token.ID), kmid(tok(Token.LParen), tok(Token.Literal), tok(Token.RParen))), (t) => new IdTerm({ ids: [t.text] })),
     apply(tok(Token.DoubleQuotedString), (t) => new FulltextTerm({ text: t.text.slice(1, -1) })),
-    apply(tok(Token.ALL), (_) => new AllTerm()),
+    apply(tok(Token.All), (_) => new AllTerm()),
   ),
 )
 
@@ -217,7 +230,10 @@ TermP.setPattern(
 )
 
 MergeQueryP.setPattern(
-  apply(seq(VariableP, tok(Token.Colon), QueryP), ([name, _, query]) => new MergeQuery({ name: name.replace(/\[]$/, ''), query, onlyFirst: name.endsWith("[]") })),
+  apply(
+    seq(VariableP, tok(Token.Colon), QueryP),
+    ([name, _, query]) => new MergeQuery({ name: name.replace(/\[]$/, ''), query, onlyFirst: name.endsWith('[]') }),
+  ),
 )
 
 LimitP.setPattern(
@@ -269,11 +285,26 @@ NavigationP.setPattern(
   ),
 )
 
-WithClauseP.setPattern(fail('Not implemented'))
+const with_filter = alt(
+  apply(tok(Token.Empty), (_) => new WithClauseFilter({ op: '==', num: 0 })),
+  apply(tok(Token.Any), (_) => new WithClauseFilter({ op: '>', num: 0 })),
+  apply(
+    kright(tok(Token.Count), seq(OperationP, tok(Token.Integer))),
+    ([op, count]) => new WithClauseFilter({ op, num: parseInt(count.text) }),
+  ),
+)
+WithClauseP.setPattern(
+  apply(
+    kright(
+      tok(Token.With),
+      kmid(tok(Token.LParen), seq(with_filter, tok(Token.Comma), NavigationP, opt(TermP), opt(WithClauseP)), tok(Token.RParen)),
+    ),
+    ([with_filter, _, navigation, term, with_clause]) => new WithClause({ with_filter, navigation, term, with_clause }),
+  ),
+)
 
 const part_term = apply(
   seq(TermP, opt(kmid(tok(Token.LCurly), times_n_sep(MergeQueryP, tok(Token.Comma)), tok(Token.RCurly)))),
-  // seq(TermP, opt(kmid(tok(Token.LCurly), MergeQueryP, tok(Token.RCurly)))),
   ([preFilter, merge]) => {
     if (merge) {
       return new MergeTerm({ preFilter, merge })

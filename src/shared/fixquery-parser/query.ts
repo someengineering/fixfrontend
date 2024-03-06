@@ -154,8 +154,8 @@ export class WithClauseFilter {
 export class WithClause {
   with_filter: WithClauseFilter
   navigation: Navigation
-  term: Term | null = null
-  with_clause: WithClause | null = null
+  term: Term | undefined
+  with_clause: WithClause | undefined
   constructor({
     with_filter,
     navigation,
@@ -164,8 +164,8 @@ export class WithClause {
   }: {
     with_filter: WithClauseFilter
     navigation: Navigation
-    term: Term | null
-    with_clause: WithClause | null
+    term?: Term | undefined
+    with_clause?: WithClause | undefined
   }) {
     this.with_filter = with_filter
     this.navigation = navigation

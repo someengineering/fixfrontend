@@ -14,6 +14,7 @@ import {
   TermP,
   Token,
   VariableP,
+  WithClauseP,
 } from './parser.ts'
 import {
   AllTerm,
@@ -33,6 +34,8 @@ import {
   Query,
   Sort,
   SortOrder,
+  WithClause,
+  WithClauseFilter,
 } from './query.ts'
 
 function parse_expr<T>(parser: Rule<Token, T>): (expr: string) => T {
@@ -59,6 +62,7 @@ const parse_part = parse_expr(PartP)
 const parse_term = parse_expr(TermP)
 const parse_query = parse_expr(QueryP)
 const parse_merge_query = parse_expr(MergeQueryP)
+const parse_with_clause = parse_expr(WithClauseP)
 
 test(`Parse Json`, () => {
   assert.strictEqual(parse_json('1'), 1)
@@ -177,6 +181,23 @@ test(`Parse Navigation`, () => {
   )
 })
 
+test(`Parse WithClause`, () => {
+  const with_filter = new WithClauseFilter({ op: '>', num: 0 })
+  const navigation = new Navigation()
+  const term = new IsTerm({ kinds: ['instance'] })
+  const with_clause = new WithClause({ with_filter, navigation, term })
+  assert.deepEqual(parse_with_clause('with(any, --> is(instance))'), with_clause)
+  assert.deepEqual(
+    parse_with_clause('with(any, --> is(instance) with(any, --> is(instance)))'),
+    new WithClause({
+      with_filter,
+      navigation,
+      term,
+      with_clause,
+    }),
+  )
+})
+
 test(`Parse Part`, () => {
   const pred = new Predicate({ name: 'foo', op: '=', value: 23 })
   const ctx = new ContextTerm({ name: 'bar.test', term: new Predicate({ name: 'num', op: '>', value: 23 }) })
@@ -224,7 +245,16 @@ test(`Parse Query`, () => {
   const sort = [new Sort({ name: 'bla', order: SortOrder.Asc })]
   const limit = new Limit({ length: 10 })
   const part = new Part({ term: pred, sort, limit })
+  const with_clause = new WithClause({
+    with_filter: new WithClauseFilter({ op: '==', num: 0 }),
+    navigation: new Navigation({ direction: Direction.inbound }),
+    term: pred,
+  })
   assert.deepEqual(parse_query('foo=23 sort bla limit 10'), new Query({ parts: [part] }))
+  assert.deepEqual(
+    parse_query('is(instance) with(empty, <-- foo=23) sort bla limit 10'),
+    new Query({ parts: [new Part({ term: is, with_clause, sort, limit })] }),
+  )
   assert.deepEqual(
     parse_query('is(instance) and foo=23 and bar.test.{num>23} sort bla limit 10 --> foo=23 sort bla limit 10'),
     new Query({ parts: [new Part({ term: combined, sort, limit, navigation: new Navigation() }), part] }),
