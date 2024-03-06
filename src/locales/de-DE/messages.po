@@ -133,6 +133,7 @@ msgstr "Konto"
 #: src/pages/panel/inventory/InventoryTable.error.tsx:73
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:126
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:42
+#: src/shared/language-button/LanguageButton.stories.tsx:20
 #: src/shared/layouts/panel-layout/menuList.tsx:55
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:12
 msgid "Accounts"
