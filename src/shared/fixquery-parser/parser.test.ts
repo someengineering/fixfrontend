@@ -225,10 +225,10 @@ test(`Parse Merge Query`, () => {
   const pred = new Predicate({ name: 'foo', op: '=', value: 23 })
   const part = new Part({ term: pred })
   assert.deepEqual(
-    parse_merge_query('test: foo=23'),
+    parse_merge_query('test: <-- foo=23'),
     new MergeQuery({
       name: 'test',
-      query: new Query({ parts: [part] }),
+      query: new Query({ parts: [new Part({term: new AllTerm(), navigation: new Navigation({direction: Direction.inbound})}), part] }),
     }),
   )
 })
@@ -260,15 +260,15 @@ test(`Parse Query`, () => {
     new Query({ parts: [new Part({ term: combined, sort, limit, navigation: new Navigation() }), part] }),
   )
   assert.deepEqual(
-    parse_query('is(instance) {test: foo=23, bla: is(instance)}'),
+    parse_query('is(instance) {test: --> foo=23, bla: <-- is(instance)}'),
     new Query({
       parts: [
         new Part({
           term: new MergeTerm({
             preFilter: is,
             merge: [
-              new MergeQuery({ name: 'test', query: new Query({ parts: [new Part({ term: pred })] }) }),
-              new MergeQuery({ name: 'bla', query: new Query({ parts: [new Part({ term: is })] }) }),
+              new MergeQuery({ name: 'test', query: new Query({ parts: [new Part({term: new AllTerm(), navigation: new Navigation({direction: Direction.outbound})}), new Part({ term: pred })] }) }),
+              new MergeQuery({ name: 'bla', query: new Query({ parts: [new Part({term: new AllTerm(), navigation: new Navigation({direction: Direction.inbound})}), new Part({ term: is })] }) }),
             ],
           }),
         }),

@@ -209,8 +209,8 @@ OperationP.setPattern(
     apply(tok(Token.In), (_) => "in"),
     apply(seq(tok(Token.Not), tok(Token.In)), (_) => "not in"),
     apply(tok(Token.Equal), (t) => t.text),
-    apply(seq(tok(Token.Equal),tok(Token.Equal)), (_) => "=="),
-    apply(seq(tok(Token.Tilde),tok(Token.Equal)), (_) => "~="),
+    apply(seq(tok(Token.Equal), tok(Token.Equal)), (_) => "=="),
+    apply(seq(tok(Token.Tilde), tok(Token.Equal)), (_) => "~="),
     apply(tok(Token.Tilde), (t) => t.text),
     apply(tok(Token.NotEqual), (t) => t.text),
     apply(tok(Token.LessThanEqual), (t) => t.text),
@@ -249,8 +249,8 @@ TermP.setPattern(
 
 MergeQueryP.setPattern(
   apply(
-    seq(VariableP, tok(Token.Colon), QueryP),
-    ([name, _, query]) => new MergeQuery({ name: name.replace(/\[]$/, ''), query, onlyFirst: name.endsWith('[]') }),
+    seq(VariableP, tok(Token.Colon), NavigationP, rep_sc(PartP)),
+    ([name, _, navigation, parts]) => new MergeQuery({ name: name.replace(/\[]$/, ''), query: new Query({parts: [new Part({term: new AllTerm(), navigation}), ...parts]}), onlyFirst: name.endsWith('[]') }),
   ),
 )
 
