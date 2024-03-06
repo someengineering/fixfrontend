@@ -12,9 +12,10 @@ interface AccountsTableItemProps {
   title: string
   isTop: boolean
   isBottom: boolean
+  isConfigured?: boolean
 }
 
-export const AccountsTableItem = ({ data, title, isTop, isBottom }: AccountsTableItemProps) => {
+export const AccountsTableItem = ({ data, title, isTop, isBottom, isConfigured }: AccountsTableItemProps) => {
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
   return (
@@ -53,6 +54,11 @@ export const AccountsTableItem = ({ data, title, isTop, isBottom }: AccountsTabl
               <TableCell>
                 <Trans>Enabled</Trans>
               </TableCell>
+              {isConfigured ? (
+                <TableCell>
+                  <Trans>Security Scan</Trans>
+                </TableCell>
+              ) : null}
               <TableCell>
                 <Trans>Actions</Trans>
               </TableCell>

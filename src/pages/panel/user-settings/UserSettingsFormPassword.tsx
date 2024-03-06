@@ -2,7 +2,6 @@ import { Trans, t } from '@lingui/macro'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useState } from 'react'
-import { useUserProfile } from 'src/core/auth'
 import { PasswordTextField, PasswordTextFieldProps } from 'src/shared/password-text-field'
 import { UserSettingsFormContentContainer } from './UserSettingsFormContentContainer'
 import { patchUsersMeMutation } from './patchUsersMe.mutation'
@@ -14,11 +13,10 @@ interface UserSettingsFormPasswordProps
   > {}
 
 export const UserSettingsFormPassword = ({ ...rest }: UserSettingsFormPasswordProps) => {
-  const { logout } = useUserProfile()
   const { mutateAsync, isPending, error } = useMutation({ mutationFn: patchUsersMeMutation })
   const [password, setPassword] = useState('')
   const handleSubmit = () => {
-    void mutateAsync({ password }).then(logout)
+    void mutateAsync({ password })
   }
 
   const formError = error

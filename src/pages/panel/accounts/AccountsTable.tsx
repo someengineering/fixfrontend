@@ -19,10 +19,17 @@ export const AccountsTable = () => {
           isTop
           isBottom={!data.discovered.length && !data.added.length}
           title={t`Recently added accounts`}
+          isConfigured
         />
       ) : null}
       {data.added.length ? (
-        <AccountsTableItem data={data.added} isTop={!data.recent.length} isBottom={!data.discovered.length} title={t`Added accounts`} />
+        <AccountsTableItem
+          data={data.added}
+          isTop={!data.recent.length}
+          isBottom={!data.discovered.length}
+          title={t`Added accounts`}
+          isConfigured
+        />
       ) : null}
       {data.discovered.length ? (
         <AccountsTableItem

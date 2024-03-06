@@ -35,7 +35,7 @@ export const UserProfileButton = () => {
       void selectWorkspace(id).then((workspace) => {
         if (workspace?.id) {
           window.setTimeout(() => {
-            navigate({ pathname: window.location.pathname, hash: `#${workspace.id}`, search: window.location.search }, { replace: true })
+            navigate({ pathname: '/', hash: `#${workspace.id}`, search: '' }, { replace: true })
           })
         }
       })

@@ -1,8 +1,10 @@
+import { ProductTier } from 'src/shared/types/server'
+
 export interface WorkspaceBillingEntry {
   id: string
   workspace_id: string
   subscription_id: string
-  tier: 'FreeAccount' | 'FoundationalSecurityAccount' | 'HighSecurityAccount'
+  tier: ProductTier
   period_start: string
   period_end: string
   nr_of_accounts_charged: number

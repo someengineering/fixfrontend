@@ -3,6 +3,7 @@ export interface Account {
   cloud: string
   account_id: string
   enabled: boolean
+  scan: boolean
   is_configured: boolean
   resources: number | null
   next_scan: string | null
@@ -13,4 +14,5 @@ export interface Account {
   privileged: boolean
   last_scan_started_at: string | null
   last_scan_finished_at: string | null
+  cf_stack_version: number | null
 }
