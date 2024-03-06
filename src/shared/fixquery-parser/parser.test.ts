@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { expectEOF, expectSingleResult } from 'typescript-parsec'
+import { expectEOF, Rule } from 'typescript-parsec'
 import {
   BoolOperationP,
   FixQueryLexer,
@@ -11,6 +11,7 @@ import {
   SimpleTermP,
   SortP,
   TermP,
+  Token,
   VariableP,
 } from './parser.ts'
 import {
@@ -22,7 +23,6 @@ import {
   FulltextTerm,
   IdTerm,
   IsTerm,
-  JsonElement,
   Limit,
   Navigation,
   Part,
@@ -30,61 +30,31 @@ import {
   Query,
   Sort,
   SortOrder,
-  Term,
 } from './query.ts'
 
-function parse_variable(expr: string): string {
-  return expectSingleResult(expectEOF(VariableP.parse(FixQueryLexer.parse(expr))))
-}
-function parse_bool_operation(expr: string): string {
-  return expectSingleResult(expectEOF(BoolOperationP.parse(FixQueryLexer.parse(expr))))
-}
-function parse_json(expr: string): JsonElement {
-  return expectSingleResult(expectEOF(JsonElementP.parse(FixQueryLexer.parse(expr))))
+function parse_expr<T>(parser: Rule<Token, T>): (expr: string) => T {
+  function parse(expr: string): T {
+    const result = expectEOF(parser.parse(FixQueryLexer.parse(expr)))
+    if (result.successful) {
+      return result.candidates[0].result
+    } else {
+      throw new Error(result.error.message)
+    }
+  }
+
+  return parse
 }
 
-function parse_simple_term(expr: string): Term {
-  return expectSingleResult(expectEOF(SimpleTermP.parse(FixQueryLexer.parse(expr))))
-}
-function parse_sort(expr: string): Term {
-  return expectSingleResult(expectEOF(SortP.parse(FixQueryLexer.parse(expr))))
-}
-function parse_limit(expr: string): Limit {
-  return expectSingleResult(expectEOF(LimitP.parse(FixQueryLexer.parse(expr))))
-}
-function parse_navigation(expr: string): Navigation {
-  const result = expectEOF(NavigationP.parse(FixQueryLexer.parse(expr)))
-  if (result.successful) {
-    return result.candidates[0].result
-  } else {
-    throw new Error(result.error.message)
-  }
-}
-function parse_part(expr: string): Part {
-  const result = expectEOF(PartP.parse(FixQueryLexer.parse(expr)))
-  if (result.successful) {
-    return result.candidates[0].result
-  } else {
-    throw new Error(result.error.message)
-  }
-}
-
-function parse_term(expr: string): Term {
-  const result = expectEOF(TermP.parse(FixQueryLexer.parse(expr)))
-  if (result.successful) {
-    return result.candidates[0].result
-  } else {
-    throw new Error(result.error.message)
-  }
-}
-function parse_query(expr: string): Term {
-  const result = expectEOF(QueryP.parse(FixQueryLexer.parse(expr)))
-  if (result.successful) {
-    return result.candidates[0].result
-  } else {
-    throw new Error(result.error.message)
-  }
-}
+const parse_variable = parse_expr(VariableP)
+const parse_bool_operation = parse_expr(BoolOperationP)
+const parse_json = parse_expr(JsonElementP)
+const parse_simple_term = parse_expr(SimpleTermP)
+const parse_sort = parse_expr(SortP)
+const parse_limit = parse_expr(LimitP)
+const parse_navigation = parse_expr(NavigationP)
+const parse_part = parse_expr(PartP)
+const parse_term = parse_expr(TermP)
+const parse_query = parse_expr(QueryP)
 
 test(`Parse Json`, () => {
   assert.strictEqual(parse_json('1'), 1)
@@ -111,83 +81,116 @@ test(`Parse Variable`, () => {
 })
 
 test(`Parse Simple Term`, () => {
-  assert.deepEqual(parse_simple_term('is(instance)'), new IsTerm(['instance']))
-  assert.deepEqual(parse_simple_term('id(test1234)'), new IdTerm(['test1234']))
+  assert.deepEqual(parse_simple_term('is(instance)'), new IsTerm({ kinds: ['instance'] }))
+  assert.deepEqual(parse_simple_term('id(test1234)'), new IdTerm({ ids: ['test1234'] }))
   assert.deepEqual(parse_simple_term('all'), new AllTerm())
-  assert.deepEqual(parse_simple_term('foo==23'), new Predicate('foo', '==', 23, {}))
-  assert.deepEqual(parse_simple_term('bla!=["1", 2]'), new Predicate('bla', '!=', ['1', 2], {}))
-  assert.deepEqual(parse_simple_term('foo.bla.bar.{test=23}'), new ContextTerm('foo.bla.bar', new Predicate('test', '=', 23, {})))
-  assert.deepEqual(parse_simple_term('"test"'), new FulltextTerm('test'))
+  assert.deepEqual(parse_simple_term('foo==23'), new Predicate({ name: 'foo', op: '==', value: 23 }))
+  assert.deepEqual(parse_simple_term('bla!=["1", 2]'), new Predicate({ name: 'bla', op: '!=', value: ['1', 2] }))
+  assert.deepEqual(parse_simple_term('foo.bla.bar.{test=23}'), new ContextTerm({
+    name: 'foo.bla.bar',
+    term: new Predicate({ name: 'test', op: '=', value: 23 }),
+  }))
+  assert.deepEqual(parse_simple_term('"test"'), new FulltextTerm({ text: 'test' }))
 })
 
 test(`Parse Term`, () => {
   // can also parse simple terms
-  assert.deepEqual(parse_term('is(instance)'), new IsTerm(['instance']))
-  assert.deepEqual(parse_term('id(test1234)'), new IdTerm(['test1234']))
+  assert.deepEqual(parse_term('is(instance)'), new IsTerm({ kinds: ['instance'] }))
+  assert.deepEqual(parse_term('id(test1234)'), new IdTerm({ ids: ['test1234'] }))
   assert.deepEqual(parse_term('all'), new AllTerm())
-  assert.deepEqual(parse_term('foo==23'), new Predicate('foo', '==', 23, {}))
-  assert.deepEqual(parse_term('bla!=["1", 2]'), new Predicate('bla', '!=', ['1', 2], {}))
-  assert.deepEqual(parse_term('foo.bla.bar.{test=23}'), new ContextTerm('foo.bla.bar', new Predicate('test', '=', 23, {})))
-  assert.deepEqual(parse_term('"test"'), new FulltextTerm('test'))
-  assert.deepEqual(parse_term('"test" or "goo"'), new CombinedTerm(new FulltextTerm('test'), 'or', new FulltextTerm('goo')))
-  assert.deepEqual(parse_term('("test" or "goo")'), new CombinedTerm(new FulltextTerm('test'), 'or', new FulltextTerm('goo')))
-  assert.deepEqual(parse_term('(("test") or ("goo"))'), new CombinedTerm(new FulltextTerm('test'), 'or', new FulltextTerm('goo')))
+  assert.deepEqual(parse_term('foo==23'), new Predicate({ name: 'foo', op: '==', value: 23 }))
+  assert.deepEqual(parse_term('bla!=["1", 2]'), new Predicate({ name: 'bla', op: '!=', value: ['1', 2] }))
+  assert.deepEqual(parse_term('foo.bla.bar.{test=23}'), new ContextTerm({
+    name: 'foo.bla.bar',
+    term: new Predicate({ name: 'test', op: '=', value: 23 }),
+  }))
+  const ftt = new FulltextTerm({ text: 'test' })
+  const ftg = new FulltextTerm({ text: 'goo' })
+  assert.deepEqual(parse_term('"test"'), ftt)
+  assert.deepEqual(parse_term('"test" or "goo"'), new CombinedTerm({ left: ftt, op: 'or', right: ftg }))
+  assert.deepEqual(parse_term('("test" or "goo")'), new CombinedTerm({ left: ftt, op: 'or', right: ftg }))
+  assert.deepEqual(parse_term('(("test") or ("goo"))'), new CombinedTerm({ left: ftt, op: 'or', right: ftg }))
   assert.deepEqual(
     parse_term('(ab > 23 and (("test") or ("goo")))'),
-    new CombinedTerm(new Predicate('ab', '>', 23, {}), 'and', new CombinedTerm(new FulltextTerm('test'), 'or', new FulltextTerm('goo'))),
+    new CombinedTerm({
+      left: new Predicate({ name: 'ab', op: '>', value: 23 }),
+      op: 'and',
+      right: new CombinedTerm({ left: ftt, op: 'or', right: ftg }),
+    }),
   )
 })
 
 test(`Parse Sort`, () => {
-  assert.deepEqual(parse_sort('sort foo.bar'), [new Sort('foo.bar', SortOrder.Asc)])
-  assert.deepEqual(parse_sort('sort foo.bar asc'), [new Sort('foo.bar', SortOrder.Asc)])
-  assert.deepEqual(parse_sort('sort foo.bar desc'), [new Sort('foo.bar', SortOrder.Desc)])
+  assert.deepEqual(parse_sort('sort foo.bar'), [new Sort({ name: 'foo.bar', order: SortOrder.Asc })])
+  assert.deepEqual(parse_sort('sort foo.bar asc'), [new Sort({ name: 'foo.bar', order: SortOrder.Asc })])
+  assert.deepEqual(parse_sort('sort foo.bar desc'), [new Sort({ name: 'foo.bar', order: SortOrder.Desc })])
   assert.deepEqual(parse_sort('sort foo asc, bar desc, bla'), [
-    new Sort('foo', SortOrder.Asc),
-    new Sort('bar', SortOrder.Desc),
-    new Sort('bla', SortOrder.Asc),
+    new Sort({ name: 'foo', order: SortOrder.Asc }),
+    new Sort({ name: 'bar', order: SortOrder.Desc }),
+    new Sort({ name: 'bla', order: SortOrder.Asc }),
   ])
 })
 
 test(`Parse Limit`, () => {
-  assert.deepEqual(parse_limit('limit 10'), new Limit(0, 10))
-  assert.deepEqual(parse_limit('limit 10,20'), new Limit(10, 20))
+  assert.deepEqual(parse_limit('limit 10'), new Limit({ length: 10 }))
+  assert.deepEqual(parse_limit('limit 10,20'), new Limit({ offset: 10, length: 20 }))
 })
 
 test(`Parse Navigation`, () => {
   assert.deepEqual(parse_navigation('-->'), new Navigation())
-  assert.deepEqual(parse_navigation('-[2:3]->'), new Navigation(2, 3))
-  assert.deepEqual(parse_navigation('-[2:3]delete->'), new Navigation(2, 3, [EdgeType.delete]))
-  assert.deepEqual(parse_navigation('-delete[2:3]->'), new Navigation(2, 3, [EdgeType.delete]))
-  assert.deepEqual(parse_navigation('<-delete[2:3]->'), new Navigation(2, 3, [EdgeType.delete], Direction.any))
+  assert.deepEqual(parse_navigation('-[2:3]->'), new Navigation({ start: 2, until: 3 }))
+  assert.deepEqual(parse_navigation('-[2:3]delete->'), new Navigation({
+    start: 2,
+    until: 3,
+    edge_types: [EdgeType.delete],
+  }))
+  assert.deepEqual(parse_navigation('-delete[2:3]->'), new Navigation({
+    start: 2,
+    until: 3,
+    edge_types: [EdgeType.delete],
+  }))
+  assert.deepEqual(parse_navigation('<-delete[2:3]->'), new Navigation({
+    start: 2,
+    until: 3,
+    edge_types: [EdgeType.delete],
+    direction: Direction.any,
+  }))
 })
 
 test(`Parse Part`, () => {
-  const pred = new Predicate('foo', '=', 23, {})
-  const ctx = new ContextTerm('bar.test', new Predicate('num', '>', 23, {}))
-  const is = new IsTerm(['instance'])
-  const combined = new CombinedTerm(new CombinedTerm(is, 'and', pred), 'and', ctx)
-  const sort = [new Sort('bla', SortOrder.Asc)]
-  const limit = new Limit(0, 10)
-  assert.deepEqual(parse_part('foo=23 sort bla limit 10'), new Part(pred, undefined, sort, limit, undefined))
+  const pred = new Predicate({ name: 'foo', op: '=', value: 23 })
+  const ctx = new ContextTerm({ name: 'bar.test', term: new Predicate({ name: 'num', op: '>', value: 23 }) })
+  const is = new IsTerm({ kinds: ['instance'] })
+  const combined = new CombinedTerm({
+    left: new CombinedTerm({ left: is, op: 'and', right: pred }),
+    op: 'and',
+    right: ctx,
+  })
+  const sort = [new Sort({ name: 'bla', order: SortOrder.Asc })]
+  const limit = new Limit({ length: 10 })
+  assert.deepEqual(parse_part('foo=23 sort bla limit 10'), new Part({ term: pred, sort, limit }))
   assert.deepEqual(
     parse_part('is(instance) and foo=23 and bar.test.{num>23} sort bla limit 10'),
-    new Part(combined, undefined, sort, limit, undefined),
+    new Part({ term: combined, sort, limit }),
   )
-  assert.deepEqual(parse_part('is(instance) -->'), new Part(is, undefined, undefined, undefined, new Navigation()))
+  assert.deepEqual(parse_part('is(instance) -->'), new Part({ term: is, navigation: new Navigation() }))
 })
 
 test(`Parse Query`, () => {
-  const pred = new Predicate('foo', '=', 23, {})
-  const ctx = new ContextTerm('bar.test', new Predicate('num', '>', 23, {}))
-  const is = new IsTerm(['instance'])
-  const combined = new CombinedTerm(new CombinedTerm(is, 'and', pred), 'and', ctx)
-  const sort = [new Sort('bla', SortOrder.Asc)]
-  const limit = new Limit(0, 10)
-  const part = new Part(pred, undefined, sort, limit, undefined)
-  assert.deepEqual(parse_query('foo=23 sort bla limit 10'), new Query([part]))
+  const pred = new Predicate({ name: 'foo', op: '=', value: 23 })
+  const ctx = new ContextTerm({ name: 'bar.test', term: new Predicate({ name: 'num', op: '>', value: 23 }) })
+  const is = new IsTerm({ kinds: ['instance'] })
+  const combined = new CombinedTerm({
+    left: new CombinedTerm({ left: is, op: 'and', right: pred }),
+    op: 'and',
+    right: ctx,
+  })
+  const sort = [new Sort({ name: 'bla', order: SortOrder.Asc })]
+  const limit = new Limit({ length: 10 })
+  const part = new Part({ term: pred, sort, limit })
+  assert.deepEqual(parse_query('foo=23 sort bla limit 10'), new Query({ parts: [part] }))
   assert.deepEqual(
     parse_query('is(instance) and foo=23 and bar.test.{num>23} sort bla limit 10 --> foo=23 sort bla limit 10'),
-    new Query([new Part(combined, undefined, sort, limit, new Navigation()), part]),
+    new Query({ parts: [new Part({ term: combined, sort, limit, navigation: new Navigation() }), part] }),
   )
 })

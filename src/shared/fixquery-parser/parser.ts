@@ -22,7 +22,7 @@ import {
   WithClause,
 } from './query'
 
-enum Token {
+export enum Token {
   Space,
   IS,
   ID,
@@ -181,15 +181,15 @@ OperationP.setPattern(
 SimpleTermP.setPattern(
   alt(
     kmid(tok(Token.LParen), TermP, tok(Token.RParen)),
-    apply(kright(tok(Token.NOT), TermP), (t) => new NotTerm(t)),
+    apply(kright(tok(Token.NOT), TermP), (term) => new NotTerm({term})),
     apply(
       seq(VariableP, tok(Token.Dot), kmid(tok(Token.LCurly), TermP, tok(Token.RCurly))),
-      ([context, _, t]) => new ContextTerm(context, t),
+      ([name, _, term]) => new ContextTerm({name, term}),
     ),
-    apply(seq(VariableP, OperationP, JsonElementP), ([l, o, v]) => new Predicate(l, o, v, {})),
-    apply(kright(tok(Token.IS), kmid(tok(Token.LParen), tok(Token.Literal), tok(Token.RParen))), (t) => new IsTerm([t.text])),
-    apply(kright(tok(Token.ID), kmid(tok(Token.LParen), tok(Token.Literal), tok(Token.RParen))), (t) => new IdTerm([t.text])),
-    apply(tok(Token.DoubleQuotedString), (t) => new FulltextTerm(t.text.slice(1, -1))),
+    apply(seq(VariableP, OperationP, JsonElementP), ([name, op, value]) => new Predicate({name, op, value})),
+    apply(kright(tok(Token.IS), kmid(tok(Token.LParen), tok(Token.Literal), tok(Token.RParen))), (t) => new IsTerm({kinds:[t.text]})),
+    apply(kright(tok(Token.ID), kmid(tok(Token.LParen), tok(Token.Literal), tok(Token.RParen))), (t) => new IdTerm({ids:[t.text]})),
+    apply(tok(Token.DoubleQuotedString), (t) => new FulltextTerm({text:t.text.slice(1, -1)})),
     apply(tok(Token.ALL), (_) => new AllTerm()),
   ),
 )
@@ -198,11 +198,11 @@ TermP.setPattern(
   alt(
     // simple_term <and|or> simple_term
     apply(seq(SimpleTermP, rep_sc(seq(BoolOperationP, SimpleTermP))), ([term, op_terms]) => {
-      let res = term
+      let left = term
       for (const [op, right] of op_terms) {
-        res = new CombinedTerm(res, op, right)
+        left = new CombinedTerm({left, op, right})
       }
-      return res
+      return left
     }),
     // (term)
     kmid(tok(Token.LParen), TermP, tok(Token.RParen)),
@@ -213,12 +213,12 @@ TermP.setPattern(
 )
 
 MergeQueryP.setPattern(
-  apply(seq(VariableP, tok(Token.Colon), QueryP), ([variable, _, query]) => new MergeQuery(variable, query, true)), //TODO: array flag
+  apply(seq(VariableP, tok(Token.Colon), QueryP), ([name, _, query]) => new MergeQuery({name, query})), //TODO: array flag
 )
 
 LimitP.setPattern(
-  apply(kright(tok(Token.Limit), seq(tok(Token.Integer), opt(kright(tok(Token.Comma), tok(Token.Integer))))), ([limit, offset]) =>
-    offset ? new Limit(parseInt(limit.text), parseInt(offset.text)) : new Limit(0, parseInt(limit.text)),
+  apply(kright(tok(Token.Limit), seq(tok(Token.Integer), opt(kright(tok(Token.Comma), tok(Token.Integer))))), ([first, second]) =>
+    second ? new Limit({offset:parseInt(first.text), length:parseInt(second.text)}) : new Limit({length: parseInt(first.text)}),
   ),
 )
 
@@ -226,7 +226,7 @@ const asc = apply(tok(Token.Asc), (_b) => SortOrder.Asc)
 const desc = apply(tok(Token.Desc), (_b) => SortOrder.Desc)
 SortP.setPattern(
   apply(kright(tok(Token.Sort), list_sc(seq(VariableP, opt(alt(asc, desc))), tok(Token.Comma))), (sorts) =>
-    sorts.map(([name, dir]) => new Sort(name, dir || SortOrder.Asc)),
+    sorts.map(([name, dir]) => new Sort({name, order:dir || SortOrder.Asc})),
   ),
 )
 
@@ -244,18 +244,18 @@ const edge_detail = apply(seq(opt(edge_type_p), opt(range), opt(edge_type_p)), (
   }
   const start: number = range ? range[0] || 1 : 1
   const end: number | undefined = range ? range[1] : 1
-  return new Navigation(start, end, et_before || et_after || [EdgeType.default])
+  return new Navigation({start:start, until:end, edge_types:et_before || et_after || [EdgeType.default]})
 })
 NavigationP.setPattern(
   alt(
     apply(kmid(tok(Token.Minus), opt(edge_detail), tok(Token.Outbound)), (nav) => {
-      return { ...(nav ? nav : new Navigation()), direction: Direction.outbound }
+      return new Navigation({ ...(nav || new Navigation()), direction: Direction.outbound })
     }),
     apply(kmid(tok(Token.Inbound), opt(edge_detail), tok(Token.Minus)), (nav) => {
-      return { ...(nav ? nav : new Navigation()), direction: Direction.inbound }
+      return new Navigation({ ...(nav ? nav : new Navigation()), direction: Direction.inbound })
     }),
     apply(kmid(tok(Token.Inbound), opt(edge_detail), tok(Token.Outbound)), (nav) => {
-      return { ...(nav ? nav : new Navigation()), direction: Direction.any }
+      return new Navigation({ ...(nav ? nav : new Navigation()), direction: Direction.any })
     }),
   ),
 )
@@ -265,8 +265,8 @@ WithClauseP.setPattern(fail('Not implemented'))
 PartP.setPattern(
   apply(
     seq(TermP, opt(WithClauseP), opt(SortP), opt(LimitP), opt(NavigationP)),
-    ([term, with_clause, sort, limit, nav]) => new Part(term, with_clause, sort, limit, nav),
+    ([term, with_clause, sort, limit, navigation]) => new Part({term, with_clause, sort, limit, navigation}),
   ),
 )
 
-QueryP.setPattern(apply(rep_sc(PartP), (parts) => new Query(parts)))
+QueryP.setPattern(apply(rep_sc(PartP), (parts) => new Query({parts})))
