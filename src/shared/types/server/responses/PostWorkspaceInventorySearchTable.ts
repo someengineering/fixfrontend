@@ -1,11 +1,11 @@
 import { ResourceComplexKindSimpleTypeDefinitions } from './shared'
 
-export interface PostWorkspaceInventorySearchTableRow {
+export interface WorkspaceInventorySearchTableRow {
   id: string
   row: Record<string, string | number | boolean | null>
 }
 
-export interface PostWorkspaceInventorySearchTableColumn {
+export interface WorkspaceInventorySearchTableColumn {
   name: string
   kind: ResourceComplexKindSimpleTypeDefinitions
   path: string
@@ -13,6 +13,6 @@ export interface PostWorkspaceInventorySearchTableColumn {
 }
 
 export type PostWorkspaceInventorySearchTableResponse = [
-  { columns: PostWorkspaceInventorySearchTableColumn[] },
-  ...PostWorkspaceInventorySearchTableRow[],
+  { columns: WorkspaceInventorySearchTableColumn[] },
+  ...WorkspaceInventorySearchTableRow[],
 ]

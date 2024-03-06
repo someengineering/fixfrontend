@@ -28,7 +28,7 @@ import { Fragment, ReactNode, useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { FailedChecks } from 'src/pages/panel/shared/failed-checks'
-import { postWorkspaceInventoryNodeQuery } from 'src/pages/panel/shared/queries'
+import { getWorkspaceInventoryNodeQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { NetworkDiagram } from 'src/shared/charts'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
@@ -128,7 +128,7 @@ export const ResourceDetail = () => {
   } = useLingui()
   const { data, isLoading, error } = useQuery({
     queryKey: ['workspace-inventory-node', selectedWorkspace?.id, resourceDetailId],
-    queryFn: postWorkspaceInventoryNodeQuery,
+    queryFn: getWorkspaceInventoryNodeQuery,
     throwOnError: false,
     enabled: !!resourceDetailId,
   })
@@ -136,7 +136,7 @@ export const ResourceDetail = () => {
 
   useEffect(() => {
     if (error) {
-      inventorySendToGTM('postWorkspaceInventoryNodeQuery', false, error as AxiosError, resourceDetailId, resourceDetailId)
+      inventorySendToGTM('getWorkspaceInventoryNodeQuery', false, error as AxiosError, resourceDetailId, resourceDetailId)
     }
   }, [resourceDetailId, error])
 
@@ -204,11 +204,7 @@ export const ResourceDetail = () => {
             </IconButton>
           </Stack>
           <Box minHeight={400} width="100%" sx={{ userSelect: 'none' }}>
-            {data ? (
-              <NetworkDiagram data={data.neighborhood} mainId={data.resource.id} />
-            ) : isLoading ? (
-              <Skeleton height={400} width="100%" variant="rounded" />
-            ) : null}
+            {data ? <NetworkDiagram mainId={data.resource.id} /> : null}
           </Box>
           <Accordion defaultExpanded>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>

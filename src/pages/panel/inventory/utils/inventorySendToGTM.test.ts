@@ -11,7 +11,7 @@ test('inventorySendToGTM should send to GTM correctly', () => {
   const headers = new AxiosHeaders('')
   const config = { config: { headers }, data: null, headers, status: 500, statusText: 'InternalError' }
   const err = new AxiosError('message', '500', { headers }, {}, config)
-  inventorySendToGTM('postWorkspaceInventoryNodeQuery', true, err, params, 'id')
+  inventorySendToGTM('getWorkspaceInventoryNodeQuery', true, err, params, 'id')
   expect(gtmId).toBe('id')
   expect(spy).toHaveBeenCalledOnce()
   expect(spy).toBeCalledWith({
