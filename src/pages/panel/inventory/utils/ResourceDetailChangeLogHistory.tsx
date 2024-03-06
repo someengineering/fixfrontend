@@ -13,11 +13,10 @@ export const ResourceDetailChangeLogHistory = ({ history, onClick }: ResourceDet
   const {
     i18n: { locale },
   } = useLingui()
-  const haveDiff = history.change === 'node_compliant' || history.change === 'node_vulnerable' || history.change === 'node_updated'
   return (
     <TimelineItem>
       <TimelineOppositeContent
-        component={haveDiff ? ButtonBase : 'div'}
+        component={ButtonBase}
         m="auto 0"
         align="right"
         variant="body2"
@@ -25,7 +24,7 @@ export const ResourceDetailChangeLogHistory = ({ history, onClick }: ResourceDet
         borderRadius={2}
         display="flex"
         alignItems="center"
-        onClick={haveDiff ? (e) => onClick([e.currentTarget, history]) : undefined}
+        onClick={(e) => onClick([e.currentTarget, history])}
       >
         <Box flex={1}>
           <Typography variant="h6" component="span">
