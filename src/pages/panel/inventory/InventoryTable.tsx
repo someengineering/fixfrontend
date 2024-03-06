@@ -101,7 +101,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
           minWidth: 100,
         })),
       )
-      setRows(newRows.map(({ row, id }) => ({ INTERNAL_ID: id, ...row })))
+      setRows(newRows.map(({ row, id }, i) => ({ INTERNAL_ID: id + '_' + i, ...row })))
     }
   }, [data, isLoading])
 
@@ -170,7 +170,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
           <ButtonBase
             onClick={() =>
               navigate({
-                pathname: `/inventory/resource-detail/${(rowProps.row as RowType)?.INTERNAL_ID}`,
+                pathname: `/inventory/resource-detail/${(rowProps.row as RowType)?.INTERNAL_ID.split('_').slice(0, -1).join('_')}`,
                 search:
                   typeof (rowProps.row as RowType)?.name === 'string'
                     ? mergeLocationSearchValues({ ...searchValues, name: (rowProps.row as RowType)?.name as string })

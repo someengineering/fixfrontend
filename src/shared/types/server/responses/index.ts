@@ -39,6 +39,12 @@ export type {
   WorkspaceInventoryNodeNeighborhoodNodeType,
   WorkspaceInventoryNodeType,
 } from './PostWorkspaceInventoryNode'
+export type {
+  PostWorkspaceInventoryNodeHistory,
+  PostWorkspaceInventoryNodeHistoryChanges,
+  PostWorkspaceInventoryNodeHistoryDiff,
+  PostWorkspaceInventoryNodeHistoryResponse,
+} from './PostWorkspaceInventoryNodeHistory'
 export type { PostWorkspaceInventoryPropertyAttributesResponse } from './PostWorkspaceInventoryPropertyAttributes'
 export type { PostWorkspaceInventoryPropertyPathCompleteResponse } from './PostWorkspaceInventoryPropertyPathComplete'
 export type { PostWorkspaceInventoryPropertyValuesResponse } from './PostWorkspaceInventoryPropertyValues'

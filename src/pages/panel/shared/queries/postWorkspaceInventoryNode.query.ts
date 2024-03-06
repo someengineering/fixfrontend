@@ -9,7 +9,7 @@ export const postWorkspaceInventoryNodeQuery = ({
 }: QueryFunctionContext<['workspace-inventory-node', string | undefined, string | undefined]>) => {
   return workspaceId && nodeId
     ? axiosWithAuth
-        .post<PostWorkspaceInventoryNodeResponse>(endPoints.workspaces.workspace(workspaceId).inventory.node(nodeId), null, { signal })
+        .post<PostWorkspaceInventoryNodeResponse>(endPoints.workspaces.workspace(workspaceId).inventory.node(nodeId).self, null, { signal })
         .then((res) => res.data)
     : null
 }
