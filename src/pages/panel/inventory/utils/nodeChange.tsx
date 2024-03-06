@@ -8,9 +8,9 @@ import { TimelineDot } from '@mui/lab'
 import { IconButton, Typography } from '@mui/material'
 import { MouseEventHandler } from 'react'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
-import { PostWorkspaceInventoryNodeHistory, PostWorkspaceInventoryNodeHistoryChanges, SeverityType } from 'src/shared/types/server'
+import { SeverityType, WorkspaceInventoryNodeHistory, WorkspaceInventoryNodeHistoryChanges } from 'src/shared/types/server'
 
-export const nodeChangeToStr = (nodeChange: PostWorkspaceInventoryNodeHistoryChanges) => {
+export const nodeChangeToStr = (nodeChange: WorkspaceInventoryNodeHistoryChanges) => {
   switch (nodeChange) {
     case 'node_created':
       return <Trans>Created</Trans>
@@ -25,7 +25,7 @@ export const nodeChangeToStr = (nodeChange: PostWorkspaceInventoryNodeHistoryCha
   }
 }
 
-export const nodeChangeToDescription = (history: PostWorkspaceInventoryNodeHistory, locale?: string) => {
+export const nodeChangeToDescription = (history: WorkspaceInventoryNodeHistory, locale?: string) => {
   switch (history.change) {
     case 'node_created':
       return (
@@ -88,7 +88,7 @@ export const nodeChangeToDescription = (history: PostWorkspaceInventoryNodeHisto
   }
 }
 
-export const nodeChangeToIcon = (nodeChange: PostWorkspaceInventoryNodeHistoryChanges, onClick?: MouseEventHandler<HTMLButtonElement>) => {
+export const nodeChangeToIcon = (nodeChange: WorkspaceInventoryNodeHistoryChanges, onClick?: MouseEventHandler<HTMLButtonElement>) => {
   switch (nodeChange) {
     case 'node_created':
       return (

@@ -10,10 +10,10 @@ import { sendToGTM } from 'src/shared/google-tag-manager'
 import { AdvancedTableView } from 'src/shared/layouts/panel-layout'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import {
-  PostWorkspaceInventorySearchTableColumn,
   PostWorkspaceInventorySearchTableResponse,
-  PostWorkspaceInventorySearchTableRow,
-  PostWorkspaceInventorySearchTableSort,
+  WorkspaceInventorySearchTableColumn,
+  WorkspaceInventorySearchTableRow,
+  WorkspaceInventorySearchTableSort,
 } from 'src/shared/types/server'
 import { isAuthenticated as getIsAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData } from 'src/shared/utils/localstorage'
@@ -29,11 +29,11 @@ interface InventoryTableProps {
   }
 }
 
-type RowType = PostWorkspaceInventorySearchTableRow['row'] & {
+type RowType = WorkspaceInventorySearchTableRow['row'] & {
   INTERNAL_ID: string
 }
 
-type ColType = GridColDef & PostWorkspaceInventorySearchTableColumn
+type ColType = GridColDef & WorkspaceInventorySearchTableColumn
 
 export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => {
   const [dataCount, setDataCount] = useState(-1)
@@ -43,8 +43,8 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
   const { selectedWorkspace } = useUserProfile()
   const [rows, setRows] = useState<RowType[]>([])
   const [columns, setColumns] = useState<ColType[]>([])
-  const [sorting, setSorting] = useState<PostWorkspaceInventorySearchTableSort[]>([
-    ...(history ? [{ direction: 'asc', path: '/changed_at' } as PostWorkspaceInventorySearchTableSort] : []),
+  const [sorting, setSorting] = useState<WorkspaceInventorySearchTableSort[]>([
+    ...(history ? [{ direction: 'asc', path: '/changed_at' } as WorkspaceInventorySearchTableSort] : []),
     { direction: 'asc', path: '/reported.kind' },
     { direction: 'asc', path: '/reported.name' },
     { direction: 'asc', path: '/reported.id' },
@@ -144,7 +144,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
                 }
               }
             })
-            .filter((i) => i) as PostWorkspaceInventorySearchTableSort[],
+            .filter((i) => i) as WorkspaceInventorySearchTableSort[],
         )
       }
       pagination={dataCount > 10}

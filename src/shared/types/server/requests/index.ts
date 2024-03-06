@@ -4,9 +4,9 @@ export type { PostWorkspaceInventoryPropertyAttributesRequest } from './PostWork
 export type { PostWorkspaceInventoryPropertyPathCompleteRequest } from './PostWorkspaceInventoryPropertyPathComplete'
 export type { PostWorkspaceInventoryPropertyValuesRequest } from './PostWorkspaceInventoryPropertyValues'
 export type {
-  PostWorkspaceInventorySearchTableHistory,
   PostWorkspaceInventorySearchTableRequest,
-  PostWorkspaceInventorySearchTableSort,
+  WorkspaceInventorySearchTableHistory,
+  WorkspaceInventorySearchTableSort,
 } from './PostWorkspaceInventorySearchTable'
 export type { PostWorkspaceInviteRequest } from './PostWorkspaceInvite'
 export type { PutNotificationUserRequest } from './PutNotificationUser'

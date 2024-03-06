@@ -1,15 +1,15 @@
 import { QueryFunctionContext } from '@tanstack/react-query'
 import { endPoints } from 'src/shared/constants'
-import { PostWorkspaceInventoryNodeResponse } from 'src/shared/types/server'
+import { GetWorkspaceInventoryNodeResponse } from 'src/shared/types/server'
 import { axiosWithAuth } from 'src/shared/utils/axios'
 
-export const postWorkspaceInventoryNodeQuery = ({
+export const getWorkspaceInventoryNodeQuery = ({
   signal,
   queryKey: [, workspaceId, nodeId],
 }: QueryFunctionContext<['workspace-inventory-node', string | undefined, string | undefined]>) => {
   return workspaceId && nodeId
     ? axiosWithAuth
-        .post<PostWorkspaceInventoryNodeResponse>(endPoints.workspaces.workspace(workspaceId).inventory.node(nodeId).self, null, { signal })
+        .get<GetWorkspaceInventoryNodeResponse>(endPoints.workspaces.workspace(workspaceId).inventory.node(nodeId).self, { signal })
         .then((res) => res.data)
     : null
 }

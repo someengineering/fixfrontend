@@ -8,7 +8,7 @@ import { TrackJS } from 'trackjs'
 
 type queryFnStr =
   | 'getWorkspaceInventorySearchStartQuery'
-  | 'postWorkspaceInventoryNodeQuery'
+  | 'getWorkspaceInventoryNodeQuery'
   | 'postCostumedWorkspaceInventoryPropertyAttributesQuery'
   | 'postWorkspaceInventoryPropertyAttributesQuery'
   | 'postWorkspaceInventoryPropertyPathCompleteQuery'
@@ -19,7 +19,7 @@ const queryFnStrToApi = (queryFn: queryFnStr, workspaceId: string, id?: string) 
     case 'getWorkspaceInventorySearchStartQuery':
       return endPoints.workspaces.workspace(workspaceId).inventory.search.start
 
-    case 'postWorkspaceInventoryNodeQuery':
+    case 'getWorkspaceInventoryNodeQuery':
       return endPoints.workspaces.workspace(workspaceId).inventory.node(id ?? 'unknown').self
 
     case 'postWorkspaceInventoryPropertyAttributesQuery':

@@ -1,6 +1,6 @@
 import { QueryFunctionContext } from '@tanstack/react-query'
 import { endPoints } from 'src/shared/constants'
-import { PostWorkspaceInventoryNodeHistoryResponse } from 'src/shared/types/server'
+import { GetWorkspaceInventoryNodeHistoryResponse } from 'src/shared/types/server'
 import { axiosWithAuth } from 'src/shared/utils/axios'
 
 export const getWorkspaceInventoryNodeHistoryQuery = ({
@@ -19,7 +19,7 @@ export const getWorkspaceInventoryNodeHistoryQuery = ({
 >) => {
   return workspaceId && nodeId
     ? axiosWithAuth
-        .get<PostWorkspaceInventoryNodeHistoryResponse>(endPoints.workspaces.workspace(workspaceId).inventory.node(nodeId).history, {
+        .get<GetWorkspaceInventoryNodeHistoryResponse>(endPoints.workspaces.workspace(workspaceId).inventory.node(nodeId).history, {
           signal,
           params: {
             before,

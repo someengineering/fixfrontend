@@ -1,12 +1,12 @@
 import { useLingui } from '@lingui/react'
 import { TimelineConnector, TimelineContent, TimelineItem, TimelineOppositeContent, TimelineSeparator } from '@mui/lab'
 import { Box, ButtonBase, Typography } from '@mui/material'
-import { PostWorkspaceInventoryNodeHistory } from 'src/shared/types/server'
+import { WorkspaceInventoryNodeHistory } from 'src/shared/types/server'
 import { nodeChangeToDescription, nodeChangeToIcon, nodeChangeToStr } from './nodeChange'
 
 interface ResourceDetailChangeLogHistoryProps {
-  history: PostWorkspaceInventoryNodeHistory
-  onClick: (params: [HTMLElement | null, PostWorkspaceInventoryNodeHistory]) => void
+  history: WorkspaceInventoryNodeHistory
+  onClick: (params: [HTMLElement | null, WorkspaceInventoryNodeHistory]) => void
 }
 
 export const ResourceDetailChangeLogHistory = ({ history, onClick }: ResourceDetailChangeLogHistoryProps) => {

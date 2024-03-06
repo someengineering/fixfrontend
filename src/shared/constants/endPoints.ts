@@ -62,6 +62,7 @@ export const endPoints = {
         node: (nodeId: string) => ({
           self: `api/workspaces/${workspaceId}/inventory/node/${nodeId}`,
           history: `api/workspaces/${workspaceId}/inventory/node/${nodeId}/history`,
+          neighborhood: `api/workspaces/${workspaceId}/inventory/node/${nodeId}/neighborhood`,
         }),
         property: {
           attributes: `api/workspaces/${workspaceId}/inventory/property/attributes`,

@@ -1,22 +1,20 @@
 import Dagre, { Node } from '@dagrejs/dagre'
 import { t } from '@lingui/macro'
-import { Box, colors, tooltipClasses, useTheme } from '@mui/material'
+import { Box, Skeleton, colors, tooltipClasses, useTheme } from '@mui/material'
+import { useQuery } from '@tanstack/react-query'
 import { BaseType, Selection, SimulationLinkDatum, SimulationNodeDatum, select, zoom, zoomIdentity } from 'd3'
 import { useCallback, useEffect, useRef } from 'react'
 import { getIconFromResource } from 'src/assets/raw-icons'
+import { useUserProfile } from 'src/core/auth'
+import { getWorkspaceInventoryNodeHistoryNeighborhoodQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import {
-  WorkspaceInventoryNodeNeighborhood,
-  WorkspaceInventoryNodeNeighborhoodEdgeType,
-  WorkspaceInventoryNodeNeighborhoodNodeType,
-} from 'src/shared/types/server'
+import { WorkspaceInventoryNodeNeighborhoodEdgeType, WorkspaceInventoryNodeNeighborhoodNodeType } from 'src/shared/types/server'
 import { iso8601DurationToString, parseCustomDuration } from 'src/shared/utils/parseDuration'
 
 type NodesType = WorkspaceInventoryNodeNeighborhoodNodeType & SimulationNodeDatum & Node
 type LinksType = SimulationLinkDatum<NodesType> & { source: NodesType; target: NodesType }
 
 interface NetworkDiagramProps {
-  data: WorkspaceInventoryNodeNeighborhood[]
   mainId: string
 }
 
@@ -93,7 +91,12 @@ const createLabel = (
   })
 }
 
-export const NetworkDiagram = ({ data, mainId }: NetworkDiagramProps) => {
+export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
+  const { selectedWorkspace } = useUserProfile()
+  const { isLoading, data } = useQuery({
+    queryKey: ['workspace-inventory-node-neighborhood', selectedWorkspace?.id ?? '', mainId],
+    queryFn: getWorkspaceInventoryNodeHistoryNeighborhoodQuery,
+  })
   const {
     palette: {
       primary: { main: primaryColor, dark: primaryDarkColor, light: primaryLightColor },
@@ -106,6 +109,9 @@ export const NetworkDiagram = ({ data, mainId }: NetworkDiagramProps) => {
   const containerRef = useRef<HTMLDivElement | undefined>()
 
   const getSimulation = useCallback(() => {
+    if (!data) {
+      return
+    }
     if (containerRef.current) {
       const { offsetWidth: width, offsetHeight: height } = containerRef.current
 
@@ -380,5 +386,9 @@ export const NetworkDiagram = ({ data, mainId }: NetworkDiagramProps) => {
     }
   }, [data, getSimulation, navigate, primaryColor])
 
-  return <Box width="100%" height="100%" ref={containerRef} />
+  return isLoading ? (
+    <Skeleton height={400} width="100%" variant="rounded" />
+  ) : data ? (
+    <Box width="100%" height="100%" ref={containerRef} />
+  ) : null
 }

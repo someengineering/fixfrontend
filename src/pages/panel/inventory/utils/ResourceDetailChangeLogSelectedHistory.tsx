@@ -3,7 +3,7 @@ import { useLingui } from '@lingui/react'
 import CloseIcon from '@mui/icons-material/Close'
 import { Box, Divider, IconButton, Popover, Stack, Typography } from '@mui/material'
 import { diffJson } from 'diff'
-import { PostWorkspaceInventoryNodeHistory } from 'src/shared/types/server'
+import { WorkspaceInventoryNodeHistory } from 'src/shared/types/server'
 import { YamlHighlighter } from 'src/shared/yaml-highlighter'
 import { stringify } from 'yaml'
 import { ResourceDetailChangeLogSelectedHistoryAccordion } from './ResourceDetailChangeLogSelectedHistoryAccordion'
@@ -11,7 +11,7 @@ import { nodeChangeToIcon, nodeChangeToStr } from './nodeChange'
 
 interface ResourceDetailChangeLogSelectedHistoryProps {
   historyAnchorEl: HTMLElement | null
-  selectedHistory: PostWorkspaceInventoryNodeHistory | undefined
+  selectedHistory: WorkspaceInventoryNodeHistory | undefined
   onClosePopup: () => void
 }
 

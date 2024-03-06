@@ -1,20 +1,15 @@
 import { NodeAncestors, NodeMetadata, NodeReported, NodeSecurity, SeverityType } from './shared'
 
-export type PostWorkspaceInventoryNodeHistoryChanges =
-  | 'node_created'
-  | 'node_updated'
-  | 'node_deleted'
-  | 'node_vulnerable'
-  | 'node_compliant'
+export type WorkspaceInventoryNodeHistoryChanges = 'node_created' | 'node_updated' | 'node_deleted' | 'node_vulnerable' | 'node_compliant'
 
-export type PostWorkspaceInventoryNodeHistoryDiff = {
+export type WorkspaceInventoryNodeHistoryDiff = {
   check: string
   severity: SeverityType
   opened_at: string
   benchmarks: string[]
 }
 
-export interface PostWorkspaceInventoryNodeHistory<NodeChange = PostWorkspaceInventoryNodeHistoryChanges> {
+export interface WorkspaceInventoryNodeHistory<NodeChange = WorkspaceInventoryNodeHistoryChanges> {
   id: string
   type: 'node'
   revision: string
@@ -24,8 +19,8 @@ export interface PostWorkspaceInventoryNodeHistory<NodeChange = PostWorkspaceInv
   metadata: NodeMetadata
   diff: NodeChange extends 'node_vulnerable' | 'node_compliant'
     ? {
-        node_compliant: PostWorkspaceInventoryNodeHistoryDiff[]
-        node_vulnerable: PostWorkspaceInventoryNodeHistoryDiff[]
+        node_compliant: WorkspaceInventoryNodeHistoryDiff[]
+        node_vulnerable: WorkspaceInventoryNodeHistoryDiff[]
       }
     : never
   ancestors?: NodeAncestors
@@ -35,4 +30,4 @@ export interface PostWorkspaceInventoryNodeHistory<NodeChange = PostWorkspaceInv
   updated: string
 }
 
-export type PostWorkspaceInventoryNodeHistoryResponse = PostWorkspaceInventoryNodeHistory[]
+export type GetWorkspaceInventoryNodeHistoryResponse = WorkspaceInventoryNodeHistory[]

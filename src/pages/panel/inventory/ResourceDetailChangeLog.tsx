@@ -8,13 +8,13 @@ import { useParams } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryNodeHistoryQuery } from 'src/pages/panel/shared/queries'
 import { Spinner } from 'src/shared/loading'
-import { PostWorkspaceInventoryNodeHistory } from 'src/shared/types/server'
+import { WorkspaceInventoryNodeHistory } from 'src/shared/types/server'
 import { ResourceDetailChangeLogHistory } from './utils'
 import { ResourceDetailChangeLogSelectedHistory } from './utils/ResourceDetailChangeLogSelectedHistory'
 
 export const ResourceDetailChangeLog = () => {
   const [expanded, setExpanded] = useState(false)
-  const [[historyAnchorEl, selectedHistory], setHistory] = useState<[HTMLElement | null, PostWorkspaceInventoryNodeHistory | undefined]>([
+  const [[historyAnchorEl, selectedHistory], setHistory] = useState<[HTMLElement | null, WorkspaceInventoryNodeHistory | undefined]>([
     null,
     undefined,
   ])

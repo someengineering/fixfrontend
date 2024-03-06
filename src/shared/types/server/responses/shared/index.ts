@@ -4,6 +4,7 @@ export type { NodeAncestors } from './NodeAncestors'
 export type { NodeMetadata } from './NodeMetadata'
 export type { NodeReported } from './NodeReported'
 export type { NodeSecurity } from './NodeSecurity'
+export type { NodeType } from './NodeType'
 export type { OAuthProviderNames } from './OAuthProviderNames'
 export type {
   ResourceComplexKindProperty,

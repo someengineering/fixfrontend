@@ -4,11 +4,11 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Accordion, AccordionDetails, AccordionSummary, Box, Chip, Grid, Stack, Typography, accordionSummaryClasses } from '@mui/material'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { getMessage } from 'src/shared/defined-messages'
-import { PostWorkspaceInventoryNodeHistoryDiff } from 'src/shared/types/server'
+import { WorkspaceInventoryNodeHistoryDiff } from 'src/shared/types/server'
 import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 
 interface ResourceDetailChangeLogSelectedHistoryAccordionProps {
-  data: PostWorkspaceInventoryNodeHistoryDiff
+  data: WorkspaceInventoryNodeHistoryDiff
   isVulnerable?: boolean
 }
 
