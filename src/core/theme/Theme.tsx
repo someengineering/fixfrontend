@@ -151,6 +151,9 @@ export function Theme({ children }: ThemeProps) {
               margin: 0,
               padding: 0,
             },
+            code: {
+              fontFamily: 'monospace',
+            },
           },
         },
       },
