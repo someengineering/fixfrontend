@@ -43,7 +43,17 @@ export class Predicate extends Term {
   value: JsonElement
   args: Record<string, JsonElement>
 
-  constructor({ name, op, value, args={} }: { name: string, op: string, value: JsonElement, args?: Record<string, JsonElement> | undefined }) {
+  constructor({
+    name,
+    op,
+    value,
+    args = {},
+  }: {
+    name: string
+    op: string
+    value: JsonElement
+    args?: Record<string, JsonElement> | undefined
+  }) {
     super()
     this.name = name
     this.op = op
@@ -56,7 +66,7 @@ export class ContextTerm extends Term {
   name: string
   term: Term
 
-  constructor({ name, term }: { name: string, term: Term }) {
+  constructor({ name, term }: { name: string; term: Term }) {
     super()
     this.name = name
     this.term = term
@@ -68,7 +78,7 @@ export class CombinedTerm extends Term {
   op: string
   right: Term
 
-  constructor({ left, op, right }: { left: Term, op: string, right: Term }) {
+  constructor({ left, op, right }: { left: Term; op: string; right: Term }) {
     super()
     this.left = left
     this.op = op
@@ -99,7 +109,7 @@ export class FunctionTerm extends Term {
   propertyPath: string
   args: Array<JsonElement>
 
-  constructor({ fn, propertyPath, args }: { fn: string, propertyPath: string, args: Array<JsonElement> }) {
+  constructor({ fn, propertyPath, args }: { fn: string; propertyPath: string; args: Array<JsonElement> }) {
     super()
     this.fn = fn
     this.propertyPath = propertyPath
@@ -112,7 +122,7 @@ export class MergeQuery {
   query: Query
   onlyFirst: boolean
 
-  constructor({ name, query, onlyFirst }: { name: string, query: Query, onlyFirst?: boolean }) {
+  constructor({ name, query, onlyFirst }: { name: string; query: Query; onlyFirst?: boolean }) {
     this.name = name
     this.query = query
     this.onlyFirst = onlyFirst || true
@@ -124,7 +134,7 @@ export class MergeTerm extends Term {
   merge: MergeQuery[]
   postFilter?: Term
 
-  constructor({ preFilter, merge, postFilter }: { preFilter: Term, merge: MergeQuery[], postFilter?: Term }) {
+  constructor({ preFilter, merge, postFilter }: { preFilter: Term; merge: MergeQuery[]; postFilter?: Term }) {
     super()
     this.preFilter = preFilter
     this.merge = merge
@@ -135,7 +145,7 @@ export class MergeTerm extends Term {
 export class WithClauseFilter {
   op: string
   num: number
-  constructor({ op, num }: { op: string, num: number }) {
+  constructor({ op, num }: { op: string; num: number }) {
     this.op = op
     this.num = num
   }
@@ -146,7 +156,17 @@ export class WithClause {
   navigation: Navigation
   term: Term | null = null
   with_clause: WithClause | null = null
-  constructor({ with_filter, navigation, term, with_clause }: { with_filter: WithClauseFilter, navigation: Navigation, term: Term | null, with_clause: WithClause | null }) {
+  constructor({
+    with_filter,
+    navigation,
+    term,
+    with_clause,
+  }: {
+    with_filter: WithClauseFilter
+    navigation: Navigation
+    term: Term | null
+    with_clause: WithClause | null
+  }) {
     this.with_filter = with_filter
     this.navigation = navigation
     this.term = term
@@ -169,11 +189,11 @@ export class Navigation {
     direction = Direction.outbound,
     maybe_two_directional_outbound_edge_type = null,
   }: {
-    start?: number,
-    until?: number,
-    edge_types?: EdgeType[],
-    direction?: Direction,
-    maybe_two_directional_outbound_edge_type?: EdgeType[] | null,
+    start?: number
+    until?: number
+    edge_types?: EdgeType[]
+    direction?: Direction
+    maybe_two_directional_outbound_edge_type?: EdgeType[] | null
   } = {}) {
     this.start = start
     this.until = until
@@ -186,7 +206,7 @@ export class Navigation {
 export class Limit {
   offset: number
   length: number
-  constructor({ offset, length }: { offset?: number, length: number }) {
+  constructor({ offset, length }: { offset?: number; length: number }) {
     this.offset = offset || 0
     this.length = length
   }
@@ -195,7 +215,7 @@ export class Limit {
 export class Sort {
   name: string
   order: SortOrder = SortOrder.Asc
-  constructor({ name, order = SortOrder.Asc }: { name: string, order?: SortOrder }) {
+  constructor({ name, order = SortOrder.Asc }: { name: string; order?: SortOrder }) {
     this.name = name
     this.order = order
   }
@@ -207,7 +227,19 @@ export class Part {
   limit?: Limit
   navigation?: Navigation
 
-  constructor({ term, with_clause, sort = [], limit, navigation }: { term: Term, with_clause?: WithClause, sort?: Sort[], limit?: Limit, navigation?: Navigation }) {
+  constructor({
+    term,
+    with_clause,
+    sort = [],
+    limit,
+    navigation,
+  }: {
+    term: Term
+    with_clause?: WithClause
+    sort?: Sort[]
+    limit?: Limit
+    navigation?: Navigation
+  }) {
     this.term = term
     this.with_clause = with_clause
     this.sort = sort
@@ -225,7 +257,7 @@ export class Query {
   preamble: Record<string, SimpleValue>
   aggregate?: Aggregate
 
-  constructor({ parts, preamble = {}, aggregate }: { parts: Part[], preamble?: Record<string, SimpleValue>, aggregate?: Aggregate }) {
+  constructor({ parts, preamble = {}, aggregate }: { parts: Part[]; preamble?: Record<string, SimpleValue>; aggregate?: Aggregate }) {
     this.parts = parts
     this.preamble = preamble
     this.aggregate = aggregate

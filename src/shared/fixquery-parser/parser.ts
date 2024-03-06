@@ -1,18 +1,4 @@
-import {
-  alt,
-  apply,
-  buildLexer,
-  fail,
-  kmid,
-  kright,
-  Lexer,
-  list_sc,
-  opt, Parser,
-  rep_sc,
-  rule,
-  seq,
-  tok,
-} from 'typescript-parsec'
+import { alt, apply, buildLexer, fail, kmid, kright, Lexer, list_sc, opt, Parser, rep_sc, rule, seq, tok } from 'typescript-parsec'
 import {
   AllTerm,
   CombinedTerm,
@@ -24,7 +10,8 @@ import {
   IsTerm,
   JsonElement,
   Limit,
-  MergeQuery, MergeTerm,
+  MergeQuery,
+  MergeTerm,
   Navigation,
   NotTerm,
   Part,
@@ -145,9 +132,11 @@ export const NavigationP = rule<Token, Navigation>()
 export const PartP = rule<Token, Part>()
 export const QueryP = rule<Token, Query>()
 
-
-function times_n<TKind, TResult,>(parser: Parser<TKind, TResult>): Parser<TKind, TResult[]> {
+function times_n<TKind, TResult>(parser: Parser<TKind, TResult>): Parser<TKind, TResult[]> {
   return apply(seq(parser, rep_sc(parser)), ([first, rest]) => [first, ...rest])
+}
+function times_n_sep<TKind, TResult, TSeparator>(parser: Parser<TKind, TResult>, sep: Parser<TKind, TSeparator>): Parser<TKind, TResult[]> {
+  return apply(seq(parser, rep_sc(kright(sep, parser))), ([first, rest]) => [first, ...rest])
 }
 
 JsonElementP.setPattern(
@@ -175,12 +164,11 @@ JsonElementP.setPattern(
   ),
 )
 
-
 const allowed_characters = alt(tok(Token.Literal), tok(Token.Star), tok(Token.LBracket), tok(Token.RBracket))
 VariableP.setPattern(
   apply(
     seq(opt(tok(Token.Slash)), list_sc(times_n(allowed_characters), tok(Token.Dot))),
-    ([slash, parts]) => (slash ? '/' : '') + parts.map((part) => part.map(r => r.text).join('')).join('.'),
+    ([slash, parts]) => (slash ? '/' : '') + parts.map((part) => part.map((r) => r.text).join('')).join('.'),
   ),
 )
 
@@ -229,15 +217,17 @@ TermP.setPattern(
 )
 
 MergeQueryP.setPattern(
-  apply(seq(VariableP, tok(Token.Colon), QueryP), ([name, _, query]) => new MergeQuery({ name, query })), //TODO: array flag
+  apply(seq(VariableP, tok(Token.Colon), QueryP), ([name, _, query]) => new MergeQuery({ name: name.replace(/\[]$/, ''), query, onlyFirst: name.endsWith("[]") })),
 )
 
 LimitP.setPattern(
   apply(kright(tok(Token.Limit), seq(tok(Token.Integer), opt(kright(tok(Token.Comma), tok(Token.Integer))))), ([first, second]) =>
-    second ? new Limit({
-      offset: parseInt(first.text),
-      length: parseInt(second.text),
-    }) : new Limit({ length: parseInt(first.text) }),
+    second
+      ? new Limit({
+          offset: parseInt(first.text),
+          length: parseInt(second.text),
+        })
+      : new Limit({ length: parseInt(first.text) }),
   ),
 )
 
@@ -281,29 +271,30 @@ NavigationP.setPattern(
 
 WithClauseP.setPattern(fail('Not implemented'))
 
+const part_term = apply(
+  seq(TermP, opt(kmid(tok(Token.LCurly), times_n_sep(MergeQueryP, tok(Token.Comma)), tok(Token.RCurly)))),
+  // seq(TermP, opt(kmid(tok(Token.LCurly), MergeQueryP, tok(Token.RCurly)))),
+  ([preFilter, merge]) => {
+    if (merge) {
+      return new MergeTerm({ preFilter, merge })
+    } else {
+      return preFilter
+    }
+  },
+)
+
 PartP.setPattern(
-  // TODO: fix merge query
-  alt(
-    apply(seq(apply(seq(TermP, list_sc(MergeQueryP, tok(Token.Comma)), opt(TermP)), ([preFilter, merge, postFilter]) => new MergeTerm({
-      preFilter,
-      merge,
-      postFilter,
-    })), opt(WithClauseP), opt(SortP), opt(LimitP), opt(NavigationP)), ([term, with_clause, sort, limit, navigation]) => new Part({
-      term,
-      with_clause,
-      sort,
-      limit,
-      navigation,
-    })),
-    apply(
-      seq(TermP, opt(WithClauseP), opt(SortP), opt(LimitP), opt(NavigationP)), ([term, with_clause, sort, limit, navigation]) => new Part({
-        term,
+  apply(
+    seq(part_term, opt(WithClauseP), opt(SortP), opt(LimitP), opt(NavigationP)),
+    ([term, with_clause, sort, limit, navigation]) =>
+      new Part({
+        term: term || new AllTerm(),
         with_clause,
         sort,
         limit,
         navigation,
       }),
-    )),
+  ),
 )
 
 QueryP.setPattern(apply(rep_sc(PartP), (parts) => new Query({ parts })))

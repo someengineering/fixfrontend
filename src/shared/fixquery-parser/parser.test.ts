@@ -5,6 +5,7 @@ import {
   FixQueryLexer,
   JsonElementP,
   LimitP,
+  MergeQueryP,
   NavigationP,
   PartP,
   QueryP,
@@ -24,6 +25,8 @@ import {
   IdTerm,
   IsTerm,
   Limit,
+  MergeQuery,
+  MergeTerm,
   Navigation,
   Part,
   Predicate,
@@ -55,6 +58,7 @@ const parse_navigation = parse_expr(NavigationP)
 const parse_part = parse_expr(PartP)
 const parse_term = parse_expr(TermP)
 const parse_query = parse_expr(QueryP)
+const parse_merge_query = parse_expr(MergeQueryP)
 
 test(`Parse Json`, () => {
   assert.strictEqual(parse_json('1'), 1)
@@ -87,10 +91,13 @@ test(`Parse Simple Term`, () => {
   assert.deepEqual(parse_simple_term('all'), new AllTerm())
   assert.deepEqual(parse_simple_term('foo==23'), new Predicate({ name: 'foo', op: '==', value: 23 }))
   assert.deepEqual(parse_simple_term('bla!=["1", 2]'), new Predicate({ name: 'bla', op: '!=', value: ['1', 2] }))
-  assert.deepEqual(parse_simple_term('foo.bla.bar.{test=23}'), new ContextTerm({
-    name: 'foo.bla.bar',
-    term: new Predicate({ name: 'test', op: '=', value: 23 }),
-  }))
+  assert.deepEqual(
+    parse_simple_term('foo.bla.bar.{test=23}'),
+    new ContextTerm({
+      name: 'foo.bla.bar',
+      term: new Predicate({ name: 'test', op: '=', value: 23 }),
+    }),
+  )
   assert.deepEqual(parse_simple_term('"test"'), new FulltextTerm({ text: 'test' }))
 })
 
@@ -101,10 +108,13 @@ test(`Parse Term`, () => {
   assert.deepEqual(parse_term('all'), new AllTerm())
   assert.deepEqual(parse_term('foo==23'), new Predicate({ name: 'foo', op: '==', value: 23 }))
   assert.deepEqual(parse_term('bla!=["1", 2]'), new Predicate({ name: 'bla', op: '!=', value: ['1', 2] }))
-  assert.deepEqual(parse_term('foo.bla.bar.{test=23}'), new ContextTerm({
-    name: 'foo.bla.bar',
-    term: new Predicate({ name: 'test', op: '=', value: 23 }),
-  }))
+  assert.deepEqual(
+    parse_term('foo.bla.bar.{test=23}'),
+    new ContextTerm({
+      name: 'foo.bla.bar',
+      term: new Predicate({ name: 'test', op: '=', value: 23 }),
+    }),
+  )
   const ftt = new FulltextTerm({ text: 'test' })
   const ftg = new FulltextTerm({ text: 'goo' })
   assert.deepEqual(parse_term('"test"'), ftt)
@@ -140,22 +150,31 @@ test(`Parse Limit`, () => {
 test(`Parse Navigation`, () => {
   assert.deepEqual(parse_navigation('-->'), new Navigation())
   assert.deepEqual(parse_navigation('-[2:3]->'), new Navigation({ start: 2, until: 3 }))
-  assert.deepEqual(parse_navigation('-[2:3]delete->'), new Navigation({
-    start: 2,
-    until: 3,
-    edge_types: [EdgeType.delete],
-  }))
-  assert.deepEqual(parse_navigation('-delete[2:3]->'), new Navigation({
-    start: 2,
-    until: 3,
-    edge_types: [EdgeType.delete],
-  }))
-  assert.deepEqual(parse_navigation('<-delete[2:3]->'), new Navigation({
-    start: 2,
-    until: 3,
-    edge_types: [EdgeType.delete],
-    direction: Direction.any,
-  }))
+  assert.deepEqual(
+    parse_navigation('-[2:3]delete->'),
+    new Navigation({
+      start: 2,
+      until: 3,
+      edge_types: [EdgeType.delete],
+    }),
+  )
+  assert.deepEqual(
+    parse_navigation('-delete[2:3]->'),
+    new Navigation({
+      start: 2,
+      until: 3,
+      edge_types: [EdgeType.delete],
+    }),
+  )
+  assert.deepEqual(
+    parse_navigation('<-delete[2:3]->'),
+    new Navigation({
+      start: 2,
+      until: 3,
+      edge_types: [EdgeType.delete],
+      direction: Direction.any,
+    }),
+  )
 })
 
 test(`Parse Part`, () => {
@@ -172,9 +191,25 @@ test(`Parse Part`, () => {
   assert.deepEqual(parse_part('foo=23 sort bla limit 10'), new Part({ term: pred, sort, limit }))
   assert.deepEqual(
     parse_part('is(instance) and foo=23 and bar.test.{num>23} sort bla limit 10'),
-    new Part({ term: combined, sort, limit }),
+    new Part({
+      term: combined,
+      sort,
+      limit,
+    }),
   )
   assert.deepEqual(parse_part('is(instance) -->'), new Part({ term: is, navigation: new Navigation() }))
+})
+
+test(`Parse Merge Query`, () => {
+  const pred = new Predicate({ name: 'foo', op: '=', value: 23 })
+  const part = new Part({ term: pred })
+  assert.deepEqual(
+    parse_merge_query('test: foo=23'),
+    new MergeQuery({
+      name: 'test',
+      query: new Query({ parts: [part] }),
+    }),
+  )
 })
 
 test(`Parse Query`, () => {
@@ -193,5 +228,21 @@ test(`Parse Query`, () => {
   assert.deepEqual(
     parse_query('is(instance) and foo=23 and bar.test.{num>23} sort bla limit 10 --> foo=23 sort bla limit 10'),
     new Query({ parts: [new Part({ term: combined, sort, limit, navigation: new Navigation() }), part] }),
+  )
+  assert.deepEqual(
+    parse_query('is(instance) {test: foo=23, bla: is(instance)}'),
+    new Query({
+      parts: [
+        new Part({
+          term: new MergeTerm({
+            preFilter: is,
+            merge: [
+              new MergeQuery({ name: 'test', query: new Query({ parts: [new Part({ term: pred })] }) }),
+              new MergeQuery({ name: 'bla', query: new Query({ parts: [new Part({ term: is })] }) }),
+            ],
+          }),
+        }),
+      ],
+    }),
   )
 })
