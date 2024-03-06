@@ -1,4 +1,18 @@
-import { alt, apply, buildLexer, kmid, kright, Lexer, list_sc, opt, Parser, rep_sc, rule, seq, tok } from 'typescript-parsec'
+import {
+  alt,
+  apply,
+  buildLexer,
+  kmid,
+  kright,
+  Lexer,
+  list_sc,
+  opt,
+  Parser,
+  rep_sc,
+  rule,
+  seq,
+  tok,
+} from 'typescript-parsec'
 import {
   AllTerm,
   CombinedTerm,
@@ -61,13 +75,14 @@ export enum Token {
   Star, // *
   Slash, // /
   DoubleQuotedString, // "abc"
-  Equal, // ==
-  EqualEqual, // ==
+  Equal, // =
+  Tilde, // ~
   NotEqual, // !=
   LessThanEqual, // <=
   GreaterThanEqual, // >=
   LessThan, // <
   GreaterThan, // >
+  In, // in
   Outbound, // ->
   Inbound, // <-
   Default, // default
@@ -79,6 +94,7 @@ export const FixQueryLexer: Lexer<Token> = buildLexer([
   [false, /^\s+/g, Token.Space],
   [true, /^is/g, Token.IS],
   [true, /^id/g, Token.ID],
+  [true, /^in/g, Token.In],
   [true, /^with/g, Token.With],
   [true, /^any/g, Token.Any],
   [true, /^empty/g, Token.Empty],
@@ -114,8 +130,8 @@ export const FixQueryLexer: Lexer<Token> = buildLexer([
   [true, /^\*/g, Token.Star],
   [true, /^[+-]?[0-9]+/g, Token.Integer],
   [true, /^\//g, Token.Slash],
+  [true, /^~/g, Token.Tilde],
   [true, /^=/g, Token.Equal],
-  [true, /^==/g, Token.EqualEqual],
   [true, /^!=/g, Token.NotEqual],
   [true, /^default/g, Token.Default],
   [true, /^delete/g, Token.Delete],
@@ -123,7 +139,7 @@ export const FixQueryLexer: Lexer<Token> = buildLexer([
   [true, /^>=/g, Token.GreaterThanEqual],
   [true, /^</g, Token.LessThan],
   [true, /^>/g, Token.GreaterThan],
-  [true, /^"[^"\\]+"/g, Token.DoubleQuotedString], // TODO: handle escape
+  [true, /^"[^"\\]*"/g, Token.DoubleQuotedString], // TODO: handle escape
   [
     true,
     /^(?!delete|default|with|any|empty|count|not|and|or|limit|sort|asc|desc|true|false|null)[A-Za-z0-9][A-Za-z0-9_\\-]*/g,
@@ -148,6 +164,7 @@ export const QueryP = rule<Token, Query>()
 function times_n<TKind, TResult>(parser: Parser<TKind, TResult>): Parser<TKind, TResult[]> {
   return apply(seq(parser, rep_sc(parser)), ([first, rest]) => [first, ...rest])
 }
+
 function times_n_sep<TKind, TResult, TSeparator>(parser: Parser<TKind, TResult>, sep: Parser<TKind, TSeparator>): Parser<TKind, TResult[]> {
   return apply(seq(parser, rep_sc(kright(sep, parser))), ([first, rest]) => [first, ...rest])
 }
@@ -188,17 +205,18 @@ VariableP.setPattern(
 BoolOperationP.setPattern(apply(alt(tok(Token.And), tok(Token.Or)), (t) => t.text))
 
 OperationP.setPattern(
-  apply(
-    alt(
-      tok(Token.Equal),
-      tok(Token.EqualEqual),
-      tok(Token.NotEqual),
-      tok(Token.LessThanEqual),
-      tok(Token.GreaterThanEqual),
-      tok(Token.LessThan),
-      tok(Token.GreaterThan),
-    ),
-    (t) => t.text,
+  alt(
+    apply(tok(Token.In), (_) => "in"),
+    apply(seq(tok(Token.Not), tok(Token.In)), (_) => "not in"),
+    apply(tok(Token.Equal), (t) => t.text),
+    apply(seq(tok(Token.Equal),tok(Token.Equal)), (_) => "=="),
+    apply(seq(tok(Token.Tilde),tok(Token.Equal)), (_) => "~="),
+    apply(tok(Token.Tilde), (t) => t.text),
+    apply(tok(Token.NotEqual), (t) => t.text),
+    apply(tok(Token.LessThanEqual), (t) => t.text),
+    apply(tok(Token.GreaterThanEqual), (t) => t.text),
+    apply(tok(Token.LessThan), (t) => t.text),
+    apply(tok(Token.GreaterThan), (t) => t.text),
   ),
 )
 
@@ -240,9 +258,9 @@ LimitP.setPattern(
   apply(kright(tok(Token.Limit), seq(tok(Token.Integer), opt(kright(tok(Token.Comma), tok(Token.Integer))))), ([first, second]) =>
     second
       ? new Limit({
-          offset: parseInt(first.text),
-          length: parseInt(second.text),
-        })
+        offset: parseInt(first.text),
+        length: parseInt(second.text),
+      })
       : new Limit({ length: parseInt(first.text) }),
   ),
 )
