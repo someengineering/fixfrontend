@@ -1,18 +1,4 @@
-import {
-  alt,
-  apply,
-  buildLexer,
-  kmid,
-  kright,
-  Lexer,
-  list_sc,
-  opt,
-  Parser,
-  rep_sc,
-  rule,
-  seq,
-  tok,
-} from 'typescript-parsec'
+import { alt, apply, buildLexer, kmid, kright, Lexer, list_sc, opt, Parser, rep_sc, rule, seq, tok } from 'typescript-parsec'
 import {
   AllTerm,
   CombinedTerm,
@@ -206,11 +192,11 @@ BoolOperationP.setPattern(apply(alt(tok(Token.And), tok(Token.Or)), (t) => t.tex
 
 OperationP.setPattern(
   alt(
-    apply(tok(Token.In), (_) => "in"),
-    apply(seq(tok(Token.Not), tok(Token.In)), (_) => "not in"),
+    apply(tok(Token.In), (_) => 'in'),
+    apply(seq(tok(Token.Not), tok(Token.In)), (_) => 'not in'),
     apply(tok(Token.Equal), (t) => t.text),
-    apply(seq(tok(Token.Equal), tok(Token.Equal)), (_) => "=="),
-    apply(seq(tok(Token.Tilde), tok(Token.Equal)), (_) => "~="),
+    apply(seq(tok(Token.Equal), tok(Token.Equal)), (_) => '=='),
+    apply(seq(tok(Token.Tilde), tok(Token.Equal)), (_) => '~='),
     apply(tok(Token.Tilde), (t) => t.text),
     apply(tok(Token.NotEqual), (t) => t.text),
     apply(tok(Token.LessThanEqual), (t) => t.text),
@@ -250,7 +236,12 @@ TermP.setPattern(
 MergeQueryP.setPattern(
   apply(
     seq(VariableP, tok(Token.Colon), NavigationP, rep_sc(PartP)),
-    ([name, _, navigation, parts]) => new MergeQuery({ name: name.replace(/\[]$/, ''), query: new Query({parts: [new Part({term: new AllTerm(), navigation}), ...parts]}), onlyFirst: name.endsWith('[]') }),
+    ([name, _, navigation, parts]) =>
+      new MergeQuery({
+        name: name.replace(/\[]$/, ''),
+        query: new Query({ parts: [new Part({ term: new AllTerm(), navigation }), ...parts] }),
+        onlyFirst: name.endsWith('[]'),
+      }),
   ),
 )
 
@@ -258,9 +249,9 @@ LimitP.setPattern(
   apply(kright(tok(Token.Limit), seq(tok(Token.Integer), opt(kright(tok(Token.Comma), tok(Token.Integer))))), ([first, second]) =>
     second
       ? new Limit({
-        offset: parseInt(first.text),
-        length: parseInt(second.text),
-      })
+          offset: parseInt(first.text),
+          length: parseInt(second.text),
+        })
       : new Limit({ length: parseInt(first.text) }),
   ),
 )

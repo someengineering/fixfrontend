@@ -228,7 +228,7 @@ test(`Parse Merge Query`, () => {
     parse_merge_query('test: <-- foo=23'),
     new MergeQuery({
       name: 'test',
-      query: new Query({ parts: [new Part({term: new AllTerm(), navigation: new Navigation({direction: Direction.inbound})}), part] }),
+      query: new Query({ parts: [new Part({ term: new AllTerm(), navigation: new Navigation({ direction: Direction.inbound }) }), part] }),
     }),
   )
 })
@@ -267,8 +267,24 @@ test(`Parse Query`, () => {
           term: new MergeTerm({
             preFilter: is,
             merge: [
-              new MergeQuery({ name: 'test', query: new Query({ parts: [new Part({term: new AllTerm(), navigation: new Navigation({direction: Direction.outbound})}), new Part({ term: pred })] }) }),
-              new MergeQuery({ name: 'bla', query: new Query({ parts: [new Part({term: new AllTerm(), navigation: new Navigation({direction: Direction.inbound})}), new Part({ term: is })] }) }),
+              new MergeQuery({
+                name: 'test',
+                query: new Query({
+                  parts: [
+                    new Part({ term: new AllTerm(), navigation: new Navigation({ direction: Direction.outbound }) }),
+                    new Part({ term: pred }),
+                  ],
+                }),
+              }),
+              new MergeQuery({
+                name: 'bla',
+                query: new Query({
+                  parts: [
+                    new Part({ term: new AllTerm(), navigation: new Navigation({ direction: Direction.inbound }) }),
+                    new Part({ term: is }),
+                  ],
+                }),
+              }),
             ],
           }),
         }),
