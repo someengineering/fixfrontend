@@ -287,7 +287,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
           </ListItemButton>
         )
       }}
-      sx={{ width: { xs: '100%', lg: 250 } }}
+      sx={{ width: { xs: '100%', lg: 190, xl: 250 } }}
       slotProps={{
         popper: {
           sx: { width: 'fit-content!important' },
