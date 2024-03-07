@@ -1,9 +1,9 @@
 import { Trans } from '@lingui/macro'
 // eslint-disable-next-line no-restricted-imports
 import { SvgIconComponent } from '@mui/icons-material'
+import CloudIcon from '@mui/icons-material/Cloud'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import InventoryIcon from '@mui/icons-material/Inventory'
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
 import PeopleIcon from '@mui/icons-material/People'
 import ReceiptIcon from '@mui/icons-material/Receipt'
 import RoomPreferencesIcon from '@mui/icons-material/RoomPreferences'
@@ -51,7 +51,7 @@ export const bottomMenuList: MenuListItem[] = [
     Icon: RoomPreferencesIcon,
     children: [
       {
-        Icon: ManageAccountsIcon,
+        Icon: CloudIcon,
         name: <Trans>Accounts</Trans>,
         route: '/workspace-settings/accounts',
       },
