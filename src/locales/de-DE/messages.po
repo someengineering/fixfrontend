@@ -206,6 +206,10 @@ msgstr "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut."
 msgid "and"
 msgstr "und"
 
+#: src/pages/panel/inventory/InventoryForm.tsx:225
+msgid "And"
+msgstr "Und"
+
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:72
 msgid "API access"
 msgstr "API-Zugriff"

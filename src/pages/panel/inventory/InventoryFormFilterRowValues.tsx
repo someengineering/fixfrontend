@@ -92,7 +92,7 @@ export function InventoryFormFilterRowValues<HasDefaultProperties extends boolea
         <InventoryFormFilterRowStringValue
           key={`${data.fqn}_${data.property}_${data.id}`}
           size="small"
-          sx={{ minWidth: 250, maxWidth: '100%' }}
+          sx={{ minWidth: { xl: 250, lg: 190, xs: 200 }, maxWidth: '100%' }}
           isDouble={isDouble}
           isNumber={isNumber}
           multiple={multiple}
