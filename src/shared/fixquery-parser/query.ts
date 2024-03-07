@@ -298,7 +298,7 @@ export class Query {
     // neither cloud, account, region, tags nor severity
     return this.predicates()
       .filter((p) => !p.name.startsWith('/ancestors.') && !p.name.startsWith('/security.severity') && !p.name.startsWith('tags'))
-      .reduce((acc, pred) => ({ ...acc, [pred.name]: pred.value }), {} as { [key: string]: string })
+      .reduce((acc, pred) => ({ ...acc, [pred.name]: pred.value }), {} as { [key: string]: JsonElement })
   }
 
   public get cloud(): Predicate | undefined {
@@ -316,7 +316,7 @@ export class Query {
   public get tags(): Record<string, JsonElement> {
     return this.predicates()
       .filter((p) => p.name.startsWith('tags'))
-      .reduce((acc, pred) => ({ ...acc, [pred.name]: pred.value }), {} as { [key: string]: string })
+      .reduce((acc, pred) => ({ ...acc, [pred.name]: pred.value }), {} as { [key: string]: JsonElement })
   }
 
   public get severity(): Predicate | undefined {
