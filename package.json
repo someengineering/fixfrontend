@@ -61,6 +61,7 @@
     "react-window": "^1.8.10",
     "recharts": "^2.12.2",
     "trackjs": "^3.10.4",
+    "typescript-parsec": "^0.3.4",
     "yaml": "^2.4.1"
   },
   "devDependencies": {
