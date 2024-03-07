@@ -1,4 +1,4 @@
-import { parse_query } from './parser.ts'
+import { fixQueryParser } from './fixQueryParser.ts'
 
 export type SimpleValue = string | number | boolean | null
 export type JsonElement = SimpleValue | { [key in string]: JsonElement } | JsonElement[]
@@ -20,20 +20,20 @@ export enum EdgeType {
 }
 
 export abstract class Term {
-  find_terms(fn: (term: Term) => boolean): Term[] {
+  findTerms(fn: (term: Term) => boolean): Term[] {
     if (fn(this)) {
       return [this]
     } else if (this instanceof CombinedTerm) {
-      return this.left.find_terms(fn).concat(this.right.find_terms(fn))
+      return this.left.findTerms(fn).concat(this.right.findTerms(fn))
     } else if (this instanceof NotTerm) {
-      return this.term.find_terms(fn)
+      return this.term.findTerms(fn)
     } else if (this instanceof ContextTerm) {
-      return this.term.find_terms(fn)
+      return this.term.findTerms(fn)
     } else if (this instanceof MergeTerm) {
       return this.preFilter
-        .find_terms(fn)
-        .concat(this.merge.flatMap((q) => q.query.parts.flatMap((p) => p.term.find_terms(fn))))
-        .concat(this.postFilter?.find_terms(fn) || [])
+        .findTerms(fn)
+        .concat(this.merge.flatMap((q) => q.query.parts.flatMap((p) => p.term.findTerms(fn))))
+        .concat(this.postFilter?.findTerms(fn) || [])
     }
     return []
   }
@@ -50,7 +50,7 @@ export class NotTerm extends Term {
   }
 }
 
-export class FulltextTerm extends Term {
+export class FullTextTerm extends Term {
   text: string
 
   constructor({ text }: { text: string }) {
@@ -141,10 +141,10 @@ export class FunctionTerm extends Term {
 
 export class MergeQuery {
   name: string
-  query: Query
+  query: FixQuery
   onlyFirst: boolean
 
-  constructor({ name, query, onlyFirst }: { name: string; query: Query; onlyFirst?: boolean }) {
+  constructor({ name, query, onlyFirst }: { name: string; query: FixQuery; onlyFirst?: boolean }) {
     this.name = name
     this.query = query
     this.onlyFirst = onlyFirst || true
@@ -175,26 +175,26 @@ export class WithClauseFilter {
 }
 
 export class WithClause {
-  with_filter: WithClauseFilter
+  withFilter: WithClauseFilter
   navigation: Navigation
   term: Term | undefined
-  with_clause: WithClause | undefined
+  withClause: WithClause | undefined
 
   constructor({
-    with_filter,
+    withFilter,
     navigation,
     term,
-    with_clause,
+    withClause,
   }: {
-    with_filter: WithClauseFilter
+    withFilter: WithClauseFilter
     navigation: Navigation
     term?: Term | undefined
-    with_clause?: WithClause | undefined
+    withClause?: WithClause | undefined
   }) {
-    this.with_filter = with_filter
+    this.withFilter = withFilter
     this.navigation = navigation
     this.term = term
-    this.with_clause = with_clause
+    this.withClause = withClause
   }
 }
 
@@ -202,28 +202,28 @@ export class Navigation {
   static Max: number = 250
   start: number
   until: number | undefined
-  edge_types: EdgeType[] | undefined
+  edgeTypes: EdgeType[] | undefined
   direction: Direction
-  maybe_two_directional_outbound_edge_type: EdgeType[] | null
+  maybeTwoDirectionalOutboundEdgeType: EdgeType[] | null
 
   constructor({
     start = 1,
     until = 1,
-    edge_types = [EdgeType.default],
+    edgeTypes = [EdgeType.default],
     direction = Direction.outbound,
-    maybe_two_directional_outbound_edge_type = null,
+    maybeTwoDirectionalOutboundEdgeType = null,
   }: {
     start?: number
     until?: number
-    edge_types?: EdgeType[]
+    edgeTypes?: EdgeType[]
     direction?: Direction
-    maybe_two_directional_outbound_edge_type?: EdgeType[] | null
+    maybeTwoDirectionalOutboundEdgeType?: EdgeType[] | null
   } = {}) {
     this.start = start
     this.until = until
-    this.edge_types = edge_types
+    this.edgeTypes = edgeTypes
     this.direction = direction
-    this.maybe_two_directional_outbound_edge_type = maybe_two_directional_outbound_edge_type
+    this.maybeTwoDirectionalOutboundEdgeType = maybeTwoDirectionalOutboundEdgeType
   }
 }
 
@@ -249,26 +249,26 @@ export class Sort {
 
 export class Part {
   term: Term
-  with_clause: WithClause | undefined
+  withClause: WithClause | undefined
   sort: Sort[]
   limit?: Limit
   navigation?: Navigation
 
   constructor({
     term,
-    with_clause,
+    withClause,
     sort = [],
     limit,
     navigation,
   }: {
     term: Term
-    with_clause?: WithClause
+    withClause?: WithClause
     sort?: Sort[]
     limit?: Limit
     navigation?: Navigation
   }) {
     this.term = term
-    this.with_clause = with_clause
+    this.withClause = withClause
     this.sort = sort
     this.limit = limit
     this.navigation = navigation
@@ -279,7 +279,7 @@ interface Aggregate {
   // Define the properties of Aggregate here
 }
 
-export class Query {
+export class FixQuery {
   parts: Part[]
   preamble: Record<string, SimpleValue>
   aggregate?: Aggregate
@@ -291,10 +291,10 @@ export class Query {
   }
 
   public predicates(): Predicate[] {
-    return this.parts.flatMap((p) => p.term.find_terms((t) => t instanceof Predicate) as Predicate[])
+    return this.parts.flatMap((p) => p.term.findTerms((t) => t instanceof Predicate) as Predicate[])
   }
 
-  public get remaining_predicates(): Record<string, JsonElement> {
+  public get remainingPredicates(): Record<string, JsonElement> {
     // neither cloud, account, region, tags nor severity
     return this.predicates()
       .filter((p) => !p.name.startsWith('/ancestors.') && !p.name.startsWith('/security.severity') && !p.name.startsWith('tags'))
@@ -323,7 +323,7 @@ export class Query {
     return this.predicates().find((p) => p.name.startsWith('/security.severity'))
   }
 
-  static parse(query: string): Query {
-    return parse_query(query)
+  static parse(query: string): FixQuery {
+    return fixQueryParser(query)
   }
 }
