@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/macro'
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
+import CloudIcon from '@mui/icons-material/Cloud'
 import PeopleIcon from '@mui/icons-material/People'
 import ReceiptIcon from '@mui/icons-material/Receipt'
 import { Button, Divider, Stack, Typography } from '@mui/material'
@@ -38,7 +38,7 @@ export default function WorkspaceSettingsPage() {
         <Trans>Other Workspace Settings</Trans>
       </Typography>
       <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} alignItems="start">
-        <Button variant="outlined" onClick={() => navigate('workspace-settings/accounts')} startIcon={<ManageAccountsIcon />}>
+        <Button variant="outlined" onClick={() => navigate('workspace-settings/accounts')} startIcon={<CloudIcon />}>
           <Trans>Accounts</Trans>
         </Button>
         <Button variant="outlined" onClick={() => navigate('workspace-settings/users')} startIcon={<PeopleIcon />}>

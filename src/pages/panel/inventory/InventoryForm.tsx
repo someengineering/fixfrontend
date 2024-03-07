@@ -221,7 +221,9 @@ export const InventoryForm = ({ searchCrit, kind, setKind, config, setConfig }: 
         <Grid item xs={12} sm={6} lg={9} xl={10}>
           <Stack spacing={1} direction="row">
             <Box>
-              <Divider orientation="vertical" />
+              <Divider orientation="vertical">
+                <Trans>And</Trans>
+              </Divider>
             </Box>
             <Stack spacing={1} flexGrow={1}>
               {config.map((item) => (
