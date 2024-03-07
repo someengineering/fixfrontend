@@ -169,7 +169,7 @@ msgid "Added accounts"
 msgstr "Konten hinzugefügt"
 
 #: src/pages/panel/inventory/ResourceDetail.tsx:235
-#: src/shared/charts/NetworkDiagram.tsx:329
+#: src/shared/charts/NetworkDiagram.tsx:345
 msgid "Age"
 msgstr "Alter"
 
@@ -684,7 +684,7 @@ msgstr "Wie repariert man"
 #: src/pages/panel/accounts/AccountsTableItem.tsx:43
 #: src/pages/panel/home/AccountCard.tsx:30
 #: src/pages/panel/inventory/ResourceDetail.tsx:219
-#: src/shared/charts/NetworkDiagram.tsx:325
+#: src/shared/charts/NetworkDiagram.tsx:341
 msgid "ID"
 msgstr "ID"
 
@@ -704,6 +704,10 @@ msgstr "Inaktivitätserinnerung"
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:52
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle! Within a billing cycle you will be charged for the highest product tier that was active. Your next billing cycle starts: {0} UTC"
 msgstr "Info: Änderungen an Ihrer Produktstufe werden sofort aktiv und für den aktuellen Abrechnungszeitraum übernommen! Innerhalb eines Abrechnungszeitraums wird Ihnen die höchste aktive Produktstufe in Rechnung gestellt. Ihr nächster Abrechnungszeitraum beginnt: {0} UTC"
+
+#: src/shared/charts/NetworkDiagram.tsx:347
+msgid "Instance is terminated"
+msgstr "Instanz wird beendet"
 
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:131
 msgid "Integration Key"
@@ -737,7 +741,7 @@ msgid "Invites"
 msgstr "Lädt ein"
 
 #: src/pages/panel/inventory/ResourceDetail.tsx:218
-#: src/shared/charts/NetworkDiagram.tsx:323
+#: src/shared/charts/NetworkDiagram.tsx:339
 msgid "Kind"
 msgstr "Art"
 
@@ -825,7 +829,7 @@ msgstr "Die meisten nicht konformen Konten"
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:122
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:120
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:132
-#: src/shared/charts/NetworkDiagram.tsx:327
+#: src/shared/charts/NetworkDiagram.tsx:343
 msgid "Name"
 msgstr "Name"
 
