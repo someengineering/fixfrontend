@@ -1,25 +1,5 @@
 import * as assert from 'assert'
-import {
-  AllTerm,
-  CombinedTerm,
-  ContextTerm,
-  Direction,
-  EdgeType,
-  FixQuery,
-  FullTextTerm,
-  IdTerm,
-  IsTerm,
-  Limit,
-  MergeQuery,
-  MergeTerm,
-  Navigation,
-  Part,
-  Predicate,
-  Sort,
-  SortOrder,
-  WithClause,
-  WithClauseFilter,
-} from './FixQuery.ts'
+import { parse_expr } from './lexer.ts'
 import {
   BoolOperationP,
   JsonElementP,
@@ -33,63 +13,83 @@ import {
   TermP,
   VariableP,
   WithClauseP,
-} from './fixQueryParser.ts'
-import { parseExpr } from './parseExpr.ts'
+} from './parser.ts'
+import {
+  AllTerm,
+  CombinedTerm,
+  ContextTerm,
+  Direction,
+  EdgeType,
+  FulltextTerm,
+  IdTerm,
+  IsTerm,
+  Limit,
+  MergeQuery,
+  MergeTerm,
+  Navigation,
+  Part,
+  Predicate,
+  Query,
+  Sort,
+  SortOrder,
+  WithClause,
+  WithClauseFilter,
+} from './query.ts'
 
-const parseVariable = parseExpr(VariableP)
-const parseBoolOperation = parseExpr(BoolOperationP)
-const parseJson = parseExpr(JsonElementP)
-const parseSimpleTerm = parseExpr(SimpleTermP)
-const parseSort = parseExpr(SortP)
-const parseLimit = parseExpr(LimitP)
-const parseNavigation = parseExpr(NavigationP)
-const parsePart = parseExpr(PartP)
-const parse_term = parseExpr(TermP)
-const parseQuery = parseExpr(QueryP)
-const parse_merge_query = parseExpr(MergeQueryP)
-const parseWithClause = parseExpr(WithClauseP)
+const parse_variable = parse_expr(VariableP)
+const parse_bool_operation = parse_expr(BoolOperationP)
+const parse_json = parse_expr(JsonElementP)
+const parse_simple_term = parse_expr(SimpleTermP)
+const parse_sort = parse_expr(SortP)
+const parse_limit = parse_expr(LimitP)
+const parse_navigation = parse_expr(NavigationP)
+const parse_part = parse_expr(PartP)
+const parse_term = parse_expr(TermP)
+const parse_query = parse_expr(QueryP)
+const parse_merge_query = parse_expr(MergeQueryP)
+const parse_with_clause = parse_expr(WithClauseP)
 
 test(`Parse Json`, () => {
-  assert.strictEqual(parseJson('1'), 1)
+  assert.strictEqual(parse_json('1'), 1)
   const rich_string = '!dfg%23  {foo} [bla] \\" fdjghdfhg \' '
-  assert.strictEqual(parseJson('"' + rich_string + '"'), rich_string)
-  assert.strictEqual(parseJson('test'), 'test')
-  assert.strictEqual(parseJson('  "test" '), 'test')
-  assert.deepEqual(parseJson('[]'), [])
-  assert.deepEqual(parseJson('[1]'), [1])
-  assert.deepEqual(parseJson('[1,2,3,4]'), [1, 2, 3, 4])
-  assert.deepEqual(parseJson('{}'), {})
-  assert.deepEqual(parseJson('{foo:[23]}'), { foo: [23] })
-  assert.deepEqual(parseJson('{foo:  [23], bla:   "test"}'), { foo: [23], bla: 'test' })
+  assert.strictEqual(parse_json('"' + rich_string + '"'), rich_string)
+  assert.strictEqual(parse_json('test'), 'test')
+  assert.strictEqual(parse_json('  "test" '), 'test')
+  assert.deepEqual(parse_json('[]'), [])
+  assert.deepEqual(parse_json('[1]'), [1])
+  assert.deepEqual(parse_json('[1,2,3,4]'), [1, 2, 3, 4])
+  assert.deepEqual(parse_json('{}'), {})
+  assert.deepEqual(parse_json('{foo:[23]}'), { foo: [23] })
+  assert.deepEqual(parse_json('{foo:  [23], bla:   "test"}'), { foo: [23], bla: 'test' })
 })
 
 test(`Parse Bool Operation`, () => {
-  assert.strictEqual(parseBoolOperation('and'), 'and')
-  assert.strictEqual(parseBoolOperation('or'), 'or')
+  assert.strictEqual(parse_bool_operation('and'), 'and')
+  assert.strictEqual(parse_bool_operation('or'), 'or')
 })
 
 test(`Parse Variable`, () => {
-  assert.strictEqual(parseVariable('foo'), 'foo')
-  assert.strictEqual(parseVariable('/foo'), '/foo')
-  assert.strictEqual(parseVariable('foo.bla.bar'), 'foo.bla.bar')
-  assert.strictEqual(parseVariable('/foo.bla.bar'), '/foo.bla.bar')
-  assert.strictEqual(parseVariable('/foo[*].bla[].bar[*]'), '/foo[*].bla[].bar[*]')
+  assert.strictEqual(parse_variable('foo'), 'foo')
+  assert.strictEqual(parse_variable('/foo'), '/foo')
+  assert.strictEqual(parse_variable('foo.bla.bar'), 'foo.bla.bar')
+  assert.strictEqual(parse_variable('/foo.bla.bar'), '/foo.bla.bar')
+  assert.strictEqual(parse_variable('/foo[*].bla[].bar[*]'), '/foo[*].bla[].bar[*]')
 })
 
 test(`Parse Simple Term`, () => {
-  assert.deepEqual(parseSimpleTerm('is(instance)'), new IsTerm({ kinds: ['instance'] }))
-  assert.deepEqual(parseSimpleTerm('id(test1234)'), new IdTerm({ ids: ['test1234'] }))
-  assert.deepEqual(parseSimpleTerm('all'), new AllTerm())
-  assert.deepEqual(parseSimpleTerm('foo==23'), new Predicate({ name: 'foo', op: '==', value: 23 }))
-  assert.deepEqual(parseSimpleTerm('bla!=["1", 2]'), new Predicate({ name: 'bla', op: '!=', value: ['1', 2] }))
+  assert.deepEqual(parse_simple_term('is(instance)'), new IsTerm({ kinds: ['instance'] }))
+  assert.deepEqual(parse_simple_term('id(test1234)'), new IdTerm({ ids: ['test1234'] }))
+  assert.deepEqual(parse_simple_term('all'), new AllTerm())
+  assert.deepEqual(parse_simple_term('foo==23'), new Predicate({ name: 'foo', op: '==', value: 23 }))
+  assert.deepEqual(parse_simple_term('bla!=["1", 2]'), new Predicate({ name: 'bla', op: '!=', value: ['1', 2] }))
   assert.deepEqual(
-    parseSimpleTerm('foo.bla.bar.{test=23}'),
+    parse_simple_term('foo.bla.bar.{test=23}'),
     new ContextTerm({
       name: 'foo.bla.bar',
       term: new Predicate({ name: 'test', op: '=', value: 23 }),
     }),
   )
-  assert.deepEqual(parseSimpleTerm('"test"'), new FullTextTerm({ text: 'test' }))
+  assert.deepEqual(parse_simple_term('"test"'), new FulltextTerm({ text: 'test' }))
 })
 
 test(`Parse Term`, () => {
@@ -107,8 +107,8 @@ test(`Parse Term`, () => {
       term: new Predicate({ name: 'test', op: '=', value: 23 }),
     }),
   )
-  const ftt = new FullTextTerm({ text: 'test' })
-  const ftg = new FullTextTerm({ text: 'goo' })
+  const ftt = new FulltextTerm({ text: 'test' })
+  const ftg = new FulltextTerm({ text: 'goo' })
   assert.deepEqual(parse_term('"test"'), ftt)
   assert.deepEqual(parse_term('"test" or "goo"'), new CombinedTerm({ left: ftt, op: 'or', right: ftg }))
   assert.deepEqual(parse_term('("test" or "goo")'), new CombinedTerm({ left: ftt, op: 'or', right: ftg }))
@@ -124,10 +124,10 @@ test(`Parse Term`, () => {
 })
 
 test(`Parse Sort`, () => {
-  assert.deepEqual(parseSort('sort foo.bar'), [new Sort({ name: 'foo.bar', order: SortOrder.Asc })])
-  assert.deepEqual(parseSort('sort foo.bar asc'), [new Sort({ name: 'foo.bar', order: SortOrder.Asc })])
-  assert.deepEqual(parseSort('sort foo.bar desc'), [new Sort({ name: 'foo.bar', order: SortOrder.Desc })])
-  assert.deepEqual(parseSort('sort foo asc, bar desc, bla'), [
+  assert.deepEqual(parse_sort('sort foo.bar'), [new Sort({ name: 'foo.bar', order: SortOrder.Asc })])
+  assert.deepEqual(parse_sort('sort foo.bar asc'), [new Sort({ name: 'foo.bar', order: SortOrder.Asc })])
+  assert.deepEqual(parse_sort('sort foo.bar desc'), [new Sort({ name: 'foo.bar', order: SortOrder.Desc })])
+  assert.deepEqual(parse_sort('sort foo asc, bar desc, bla'), [
     new Sort({ name: 'foo', order: SortOrder.Asc }),
     new Sort({ name: 'bar', order: SortOrder.Desc }),
     new Sort({ name: 'bla', order: SortOrder.Asc }),
@@ -135,53 +135,53 @@ test(`Parse Sort`, () => {
 })
 
 test(`Parse Limit`, () => {
-  assert.deepEqual(parseLimit('limit 10'), new Limit({ length: 10 }))
-  assert.deepEqual(parseLimit('limit 10,20'), new Limit({ offset: 10, length: 20 }))
+  assert.deepEqual(parse_limit('limit 10'), new Limit({ length: 10 }))
+  assert.deepEqual(parse_limit('limit 10,20'), new Limit({ offset: 10, length: 20 }))
 })
 
 test(`Parse Navigation`, () => {
-  assert.deepEqual(parseNavigation('-->'), new Navigation())
-  assert.deepEqual(parseNavigation('-[2:3]->'), new Navigation({ start: 2, until: 3 }))
+  assert.deepEqual(parse_navigation('-->'), new Navigation())
+  assert.deepEqual(parse_navigation('-[2:3]->'), new Navigation({ start: 2, until: 3 }))
   assert.deepEqual(
-    parseNavigation('-[2:3]delete->'),
+    parse_navigation('-[2:3]delete->'),
     new Navigation({
       start: 2,
       until: 3,
-      edgeTypes: [EdgeType.delete],
+      edge_types: [EdgeType.delete],
     }),
   )
   assert.deepEqual(
-    parseNavigation('-delete[2:3]->'),
+    parse_navigation('-delete[2:3]->'),
     new Navigation({
       start: 2,
       until: 3,
-      edgeTypes: [EdgeType.delete],
+      edge_types: [EdgeType.delete],
     }),
   )
   assert.deepEqual(
-    parseNavigation('<-delete[2:3]->'),
+    parse_navigation('<-delete[2:3]->'),
     new Navigation({
       start: 2,
       until: 3,
-      edgeTypes: [EdgeType.delete],
+      edge_types: [EdgeType.delete],
       direction: Direction.any,
     }),
   )
 })
 
 test(`Parse WithClause`, () => {
-  const withFilter = new WithClauseFilter({ op: '>', num: 0 })
+  const with_filter = new WithClauseFilter({ op: '>', num: 0 })
   const navigation = new Navigation()
   const term = new IsTerm({ kinds: ['instance'] })
-  const withClause = new WithClause({ withFilter, navigation, term })
-  assert.deepEqual(parseWithClause('with(any, --> is(instance))'), withClause)
+  const with_clause = new WithClause({ with_filter, navigation, term })
+  assert.deepEqual(parse_with_clause('with(any, --> is(instance))'), with_clause)
   assert.deepEqual(
-    parseWithClause('with(any, --> is(instance) with(any, --> is(instance)))'),
+    parse_with_clause('with(any, --> is(instance) with(any, --> is(instance)))'),
     new WithClause({
-      withFilter,
+      with_filter,
       navigation,
       term,
-      withClause,
+      with_clause,
     }),
   )
 })
@@ -197,16 +197,16 @@ test(`Parse Part`, () => {
   })
   const sort = [new Sort({ name: 'bla', order: SortOrder.Asc })]
   const limit = new Limit({ length: 10 })
-  assert.deepEqual(parsePart('foo=23 sort bla limit 10'), new Part({ term: pred, sort, limit }))
+  assert.deepEqual(parse_part('foo=23 sort bla limit 10'), new Part({ term: pred, sort, limit }))
   assert.deepEqual(
-    parsePart('is(instance) and foo=23 and bar.test.{num>23} sort bla limit 10'),
+    parse_part('is(instance) and foo=23 and bar.test.{num>23} sort bla limit 10'),
     new Part({
       term: combined,
       sort,
       limit,
     }),
   )
-  assert.deepEqual(parsePart('is(instance) -->'), new Part({ term: is, navigation: new Navigation() }))
+  assert.deepEqual(parse_part('is(instance) -->'), new Part({ term: is, navigation: new Navigation() }))
 })
 
 test(`Parse Merge Query`, () => {
@@ -216,9 +216,7 @@ test(`Parse Merge Query`, () => {
     parse_merge_query('test: <-- foo=23'),
     new MergeQuery({
       name: 'test',
-      query: new FixQuery({
-        parts: [new Part({ term: new AllTerm(), navigation: new Navigation({ direction: Direction.inbound }) }), part],
-      }),
+      query: new Query({ parts: [new Part({ term: new AllTerm(), navigation: new Navigation({ direction: Direction.inbound }) }), part] }),
     }),
   )
 })
@@ -235,23 +233,23 @@ test(`Parse Query`, () => {
   const sort = [new Sort({ name: 'bla', order: SortOrder.Asc })]
   const limit = new Limit({ length: 10 })
   const part = new Part({ term: pred, sort, limit })
-  const withClause = new WithClause({
-    withFilter: new WithClauseFilter({ op: '==', num: 0 }),
+  const with_clause = new WithClause({
+    with_filter: new WithClauseFilter({ op: '==', num: 0 }),
     navigation: new Navigation({ direction: Direction.inbound }),
     term: pred,
   })
-  assert.deepEqual(parseQuery('foo=23 sort bla limit 10'), new FixQuery({ parts: [part] }))
+  assert.deepEqual(parse_query('foo=23 sort bla limit 10'), new Query({ parts: [part] }))
   assert.deepEqual(
-    parseQuery('is(instance) with(empty, <-- foo=23) sort bla limit 10'),
-    new FixQuery({ parts: [new Part({ term: is, withClause, sort, limit })] }),
+    parse_query('is(instance) with(empty, <-- foo=23) sort bla limit 10'),
+    new Query({ parts: [new Part({ term: is, with_clause, sort, limit })] }),
   )
   assert.deepEqual(
-    parseQuery('is(instance) and foo=23 and bar.test.{num>23} sort bla limit 10 --> foo=23 sort bla limit 10'),
-    new FixQuery({ parts: [new Part({ term: combined, sort, limit, navigation: new Navigation() }), part] }),
+    parse_query('is(instance) and foo=23 and bar.test.{num>23} sort bla limit 10 --> foo=23 sort bla limit 10'),
+    new Query({ parts: [new Part({ term: combined, sort, limit, navigation: new Navigation() }), part] }),
   )
   assert.deepEqual(
-    parseQuery('is(instance) {test: --> foo=23, bla: <-- is(instance)}'),
-    new FixQuery({
+    parse_query('is(instance) {test: --> foo=23, bla: <-- is(instance)}'),
+    new Query({
       parts: [
         new Part({
           term: new MergeTerm({
@@ -259,7 +257,7 @@ test(`Parse Query`, () => {
             merge: [
               new MergeQuery({
                 name: 'test',
-                query: new FixQuery({
+                query: new Query({
                   parts: [
                     new Part({ term: new AllTerm(), navigation: new Navigation({ direction: Direction.outbound }) }),
                     new Part({ term: pred }),
@@ -268,7 +266,7 @@ test(`Parse Query`, () => {
               }),
               new MergeQuery({
                 name: 'bla',
-                query: new FixQuery({
+                query: new Query({
                   parts: [
                     new Part({ term: new AllTerm(), navigation: new Navigation({ direction: Direction.inbound }) }),
                     new Part({ term: is }),
@@ -456,7 +454,7 @@ test('Parse existing queries', () => {
 
   for (const query of queries) {
     try {
-      parseQuery(query)
+      parse_query(query)
     } catch (e) {
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       throw new Error(`Failed to parse query: ${query}: ${e}`)
