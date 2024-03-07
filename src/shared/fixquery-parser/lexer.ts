@@ -248,9 +248,6 @@ export class FixLexer implements Lexer<T> {
     let last_is_escape = false
     // Iterate over the input starting from startIndex
     while (index < input.length && this.unquotedAllowedCharacters.test(input[index]) && !this.unquotedEndOfUnquotedStr.test(input[index])) {
-      if (input[index] === '\\' && !last_is_escape) {
-        last_is_escape = true
-      }
       if (input[index] === '`' && !last_is_escape) {
         const backtick = this.parse_until(input, index, '`')
         if (backtick) {
@@ -259,6 +256,7 @@ export class FixLexer implements Lexer<T> {
           return undefined
         }
       }
+      last_is_escape = input[index] === '\\' && !last_is_escape
       index++
     }
     if (index == startIndex) {
