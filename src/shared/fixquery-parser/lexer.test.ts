@@ -1,7 +1,5 @@
 import assert from 'assert'
-import { FixLexer, T } from './lexer.ts'
-
-const lexer = new FixLexer()
+import { lexer, T } from './lexer.ts'
 
 function kinds(expr: string): T[] {
   let lexed = lexer.parse(expr)

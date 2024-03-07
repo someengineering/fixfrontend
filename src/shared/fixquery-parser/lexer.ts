@@ -1,4 +1,4 @@
-import { Lexer, Token, TokenError, TokenPosition } from 'typescript-parsec'
+import { expectEOF, Lexer, Rule, Token, TokenError, TokenPosition } from 'typescript-parsec'
 
 // A string is parsed into a stream of tokens. All available token kinds are defined in the T enum.
 export enum T {
@@ -275,4 +275,18 @@ export class FixLexer implements Lexer<T> {
     }
     return [T.Literal, result, index] // Return the result and new index
   }
+}
+
+export const lexer = new FixLexer()
+export function parse_expr<R>(parser: Rule<T, R>): (expr: string) => R {
+  function parse(expr: string): R {
+    const result = expectEOF(parser.parse(lexer.parse(expr)))
+    if (result.successful) {
+      return result.candidates[0].result
+    } else {
+      throw new Error(result.error.message)
+    }
+  }
+
+  return parse
 }

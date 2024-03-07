@@ -1,5 +1,5 @@
 import { alt, apply, kmid, kright, list_sc, opt, Parser, rep_sc, rule, seq, tok } from 'typescript-parsec'
-import { T } from './lexer.ts'
+import { parse_expr, T } from './lexer.ts'
 import {
   AllTerm,
   CombinedTerm,
@@ -225,3 +225,5 @@ PartP.setPattern(
 )
 
 QueryP.setPattern(apply(rep_sc(PartP), (parts) => new Query({ parts })))
+
+export const parse_query = parse_expr(QueryP)

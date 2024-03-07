@@ -1,3 +1,5 @@
+import { parse_query } from './parser.ts'
+
 export type SimpleValue = string | number | boolean | null
 export type JsonElement = SimpleValue | { [key in string]: JsonElement } | JsonElement[]
 
@@ -5,17 +7,37 @@ export enum SortOrder {
   Asc = 'Asc',
   Desc = 'Desc',
 }
+
 export enum Direction {
   outbound = 'outbound',
   inbound = 'in',
   any = 'any',
 }
+
 export enum EdgeType {
   default = 'default',
   delete = 'delete',
 }
 
-export abstract class Term {}
+export abstract class Term {
+  find_terms(fn: (term: Term) => boolean): Term[] {
+    if (fn(this)) {
+      return [this]
+    } else if (this instanceof CombinedTerm) {
+      return this.left.find_terms(fn).concat(this.right.find_terms(fn))
+    } else if (this instanceof NotTerm) {
+      return this.term.find_terms(fn)
+    } else if (this instanceof ContextTerm) {
+      return this.term.find_terms(fn)
+    } else if (this instanceof MergeTerm) {
+      return this.preFilter
+        .find_terms(fn)
+        .concat(this.merge.flatMap((q) => q.query.parts.flatMap((p) => p.term.find_terms(fn))))
+        .concat(this.postFilter?.find_terms(fn) || [])
+    }
+    return []
+  }
+}
 
 export class AllTerm extends Term {}
 
@@ -145,6 +167,7 @@ export class MergeTerm extends Term {
 export class WithClauseFilter {
   op: string
   num: number
+
   constructor({ op, num }: { op: string; num: number }) {
     this.op = op
     this.num = num
@@ -156,6 +179,7 @@ export class WithClause {
   navigation: Navigation
   term: Term | undefined
   with_clause: WithClause | undefined
+
   constructor({
     with_filter,
     navigation,
@@ -206,6 +230,7 @@ export class Navigation {
 export class Limit {
   offset: number
   length: number
+
   constructor({ offset, length }: { offset?: number; length: number }) {
     this.offset = offset || 0
     this.length = length
@@ -215,11 +240,13 @@ export class Limit {
 export class Sort {
   name: string
   order: SortOrder = SortOrder.Asc
+
   constructor({ name, order = SortOrder.Asc }: { name: string; order?: SortOrder }) {
     this.name = name
     this.order = order
   }
 }
+
 export class Part {
   term: Term
   with_clause: WithClause | undefined
@@ -261,5 +288,42 @@ export class Query {
     this.parts = parts
     this.preamble = preamble
     this.aggregate = aggregate
+  }
+
+  public predicates(): Predicate[] {
+    return this.parts.flatMap((p) => p.term.find_terms((t) => t instanceof Predicate) as Predicate[])
+  }
+
+  public get remaining_predicates(): Record<string, JsonElement> {
+    // neither cloud, account, region, tags nor severity
+    return this.predicates()
+      .filter((p) => !p.name.startsWith('/ancestors.') && !p.name.startsWith('/security.severity') && !p.name.startsWith('tags'))
+      .reduce((acc, pred) => ({ ...acc, [pred.name]: pred.value }), {} as { [key: string]: string })
+  }
+
+  public get cloud(): Predicate | undefined {
+    return this.predicates().find((p) => p.name.startsWith('/ancestors.cloud.reported'))
+  }
+
+  public get account(): Predicate | undefined {
+    return this.predicates().find((p) => p.name.startsWith('/ancestors.account.reported'))
+  }
+
+  public get region(): Predicate | undefined {
+    return this.predicates().find((p) => p.name.startsWith('/ancestors.cloud.reported'))
+  }
+
+  public get tags(): Record<string, JsonElement> {
+    return this.predicates()
+      .filter((p) => p.name.startsWith('tags'))
+      .reduce((acc, pred) => ({ ...acc, [pred.name]: pred.value }), {} as { [key: string]: string })
+  }
+
+  public get severity(): Predicate | undefined {
+    return this.predicates().find((p) => p.name.startsWith('/security.severity'))
+  }
+
+  static parse(query: string): Query {
+    return parse_query(query)
   }
 }

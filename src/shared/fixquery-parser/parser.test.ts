@@ -1,6 +1,5 @@
 import * as assert from 'assert'
-import { expectEOF, Rule } from 'typescript-parsec'
-import { FixLexer, T } from './lexer.ts'
+import { parse_expr } from './lexer.ts'
 import {
   BoolOperationP,
   JsonElementP,
@@ -36,20 +35,6 @@ import {
   WithClause,
   WithClauseFilter,
 } from './query.ts'
-
-const lexer = new FixLexer()
-function parse_expr<R>(parser: Rule<T, R>): (expr: string) => R {
-  function parse(expr: string): R {
-    const result = expectEOF(parser.parse(lexer.parse(expr)))
-    if (result.successful) {
-      return result.candidates[0].result
-    } else {
-      throw new Error(result.error.message)
-    }
-  }
-
-  return parse
-}
 
 const parse_variable = parse_expr(VariableP)
 const parse_bool_operation = parse_expr(BoolOperationP)
