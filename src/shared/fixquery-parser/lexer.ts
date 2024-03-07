@@ -58,60 +58,59 @@ export enum T {
 // Simple lexer rules that can be expresses as a regular expression.
 // [keep, is_text, regexp, kind]
 // keep: if true, the token is kept, if false, the token is discarded
-// is_text: if true, the token is not allowed when surrounded by text.
 // regexp: the regular expression to match the token
 // kind: the token kind to return when the regular expression matches.
 //
 // Note: we have special rules only for: Literal, SingleQuotedString, DoubleQuotedString
-export const FixQueryLexerRules: [boolean, boolean, RegExp, T][] = [
-  [false, false, /^\s+/g, T.Space],
-  [true, true, /^is/g, T.IS],
-  [true, true, /^id/g, T.ID],
-  [true, true, /^in/g, T.In],
-  [true, true, /^with/g, T.With],
-  [true, true, /^any/g, T.Any],
-  [true, true, /^empty/g, T.Empty],
-  [true, true, /^all/g, T.All],
-  [true, true, /^count/g, T.Count],
-  [true, true, /^not/g, T.Not],
-  [true, true, /^and/g, T.And],
-  [true, true, /^or/g, T.Or],
-  [true, true, /^limit/g, T.Limit],
-  [true, true, /^sort/g, T.Sort],
-  [true, true, /^asc/g, T.Asc],
-  [true, true, /^desc/g, T.Desc],
-  [true, true, /^true/g, T.True],
-  [true, true, /^false/g, T.False],
-  [true, true, /^null/g, T.Null],
-  [true, true, /^default/g, T.Default],
-  [true, true, /^delete/g, T.Delete],
-  [true, false, /^\(/g, T.LParen],
-  [true, false, /^\)/g, T.RParen],
-  [true, false, /^\[/g, T.LBracket],
-  [true, false, /^]/g, T.RBracket],
-  [true, false, /^[{]/g, T.LCurly],
-  [true, false, /^[}]/g, T.RCurly],
-  [true, false, /^[.]/g, T.Dot],
-  [true, false, /^[.]{2}/g, T.DotDot],
-  [true, false, /^;/g, T.Semicolon],
-  [true, false, /^,/g, T.Comma],
-  [true, false, /^:/g, T.Colon],
-  [true, false, /^[+-]?[0-9]+\.[0-9]+/g, T.Float],
-  [true, true, /^[+-]?[0-9]+/g, T.Integer],
-  [true, false, /^->/g, T.Outbound],
-  [true, false, /^<-/g, T.Inbound],
-  [true, false, /^[+]/g, T.Plus],
-  [true, false, /^-/g, T.Minus],
-  [true, false, /^\*/g, T.Star],
-  [true, false, /^\//g, T.Slash],
-  [true, false, /^!~/g, T.NotTilde],
-  [true, false, /^~/g, T.Tilde],
-  [true, false, /^=/g, T.Equal],
-  [true, false, /^!=/g, T.NotEqual],
-  [true, false, /^<=/g, T.LessThanEqual],
-  [true, false, /^>=/g, T.GreaterThanEqual],
-  [true, false, /^</g, T.LessThan],
-  [true, false, /^>/g, T.GreaterThan],
+export const FixQueryLexerRules: [boolean, RegExp, T][] = [
+  [false, /^\s+/g, T.Space],
+  [true, /^is/g, T.IS],
+  [true, /^id/g, T.ID],
+  [true, /^in/g, T.In],
+  [true, /^with/g, T.With],
+  [true, /^any/g, T.Any],
+  [true, /^empty/g, T.Empty],
+  [true, /^all/g, T.All],
+  [true, /^count/g, T.Count],
+  [true, /^not/g, T.Not],
+  [true, /^and/g, T.And],
+  [true, /^or/g, T.Or],
+  [true, /^limit/g, T.Limit],
+  [true, /^sort/g, T.Sort],
+  [true, /^asc/g, T.Asc],
+  [true, /^desc/g, T.Desc],
+  [true, /^true/g, T.True],
+  [true, /^false/g, T.False],
+  [true, /^null/g, T.Null],
+  [true, /^default/g, T.Default],
+  [true, /^delete/g, T.Delete],
+  [true, /^\(/g, T.LParen],
+  [true, /^\)/g, T.RParen],
+  [true, /^\[/g, T.LBracket],
+  [true, /^]/g, T.RBracket],
+  [true, /^[{]/g, T.LCurly],
+  [true, /^[}]/g, T.RCurly],
+  [true, /^[.]/g, T.Dot],
+  [true, /^[.]{2}/g, T.DotDot],
+  [true, /^;/g, T.Semicolon],
+  [true, /^,/g, T.Comma],
+  [true, /^:/g, T.Colon],
+  [true, /^[+-]?[0-9]+\.[0-9]+/g, T.Float],
+  [true, /^[+-]?[0-9]+/g, T.Integer],
+  [true, /^->/g, T.Outbound],
+  [true, /^<-/g, T.Inbound],
+  [true, /^[+]/g, T.Plus],
+  [true, /^-/g, T.Minus],
+  [true, /^\*/g, T.Star],
+  [true, /^\//g, T.Slash],
+  [true, /^!~/g, T.NotTilde],
+  [true, /^~/g, T.Tilde],
+  [true, /^=/g, T.Equal],
+  [true, /^!=/g, T.NotEqual],
+  [true, /^<=/g, T.LessThanEqual],
+  [true, /^>=/g, T.GreaterThanEqual],
+  [true, /^</g, T.LessThan],
+  [true, /^>/g, T.GreaterThan],
 ]
 
 // Token implementation for the FixLexer
@@ -138,10 +137,16 @@ export class LexerToken implements Token<T> {
   }
 }
 
+const sw1 = ['is', 'id', 'in', 'with', 'any', 'empty', 'all', 'count', 'not']
+const sw2 = ['and', 'or', 'limit', 'sort', 'asc', 'desc', 'true', 'false', 'null', 'default', 'delete']
+const sw3 = ['/', '+', '-', '*', '=', '~', '!=', '<=', '>=', '<', '>', '->', '<-']
+
 // Lexer implementation for the FixQuery language
 // It uses a static set of rules and can dynamically parse Literals, SingleQuotedStrings and DoubleQuotedStrings.
 export class FixLexer implements Lexer<T> {
+  private stopWords = [...sw1, ...sw2, ...sw3]
   private alphaCharacters = /[A-Za-z0-9_]/
+  private unquotedAllowedStartCharacters = /[A-Za-z0-9_`]/
   private unquotedAllowedCharacters = /[A-Za-z0-9_\-/`\\]/
   private unquotedEndOfUnquotedStr = /[\s,{}()\\[\]<>]/
 
@@ -153,21 +158,21 @@ export class FixLexer implements Lexer<T> {
     if (indexStart === input.length) {
       return undefined
     }
-    let result = this.parseNextToken(input, indexStart, rowBegin, columnBegin)
-    if (result === undefined) {
-      let res: [T, string, number] | undefined = undefined
-      if (input[indexStart] === '"') {
-        res = this.parse_until_next(input, indexStart, T.DoubleQuotedString)
-      } else if (input[indexStart] === "'") {
-        res = this.parse_until_next(input, indexStart, T.SingleQuotedString)
-      } else {
-        res = this.parse_unquoted(input, indexStart)
-      }
-      if (res) {
-        const [kind, text, columnEnd] = res
-        const position: TokenPosition = { index: indexStart, rowBegin, columnBegin, rowEnd: rowBegin, columnEnd }
-        result = new LexerToken(this, input, kind, text, position, true)
-      }
+    let result: LexerToken | undefined
+    let res: [T, string, number] | undefined
+    if (input[indexStart] === '"') {
+      res = this.parse_until_next(input, indexStart, T.DoubleQuotedString)
+    } else if (input[indexStart] === "'") {
+      res = this.parse_until_next(input, indexStart, T.SingleQuotedString)
+    } else if (this.unquotedAllowedStartCharacters.test(input[indexStart])) {
+      res = this.parse_unquoted(input, indexStart)
+    }
+    if (res) {
+      const [kind, text, columnEnd] = res
+      const position: TokenPosition = { index: indexStart, rowBegin, columnBegin, rowEnd: rowBegin, columnEnd }
+      result = new LexerToken(this, input, kind, text, position, true)
+    } else {
+      result = this.parseNextToken(input, indexStart, rowBegin, columnBegin)
     }
 
     if (result === undefined) {
@@ -179,20 +184,18 @@ export class FixLexer implements Lexer<T> {
       return result
     }
   }
+
   parseNextToken(input: string, indexStart: number, rowBegin: number, columnBegin: number): LexerToken | undefined {
     const subString = input.substring(indexStart)
     let result: LexerToken | undefined
-    for (const [keep, is_text, regexp, kind] of FixQueryLexerRules) {
+    for (const [keep, regexp, kind] of FixQueryLexerRules) {
       regexp.lastIndex = 0
       if (regexp.test(subString)) {
         const text = subString.substring(0, regexp.lastIndex)
         const columnEnd = columnBegin + text.length
         const position: TokenPosition = { index: indexStart, rowBegin, columnBegin, rowEnd: rowBegin, columnEnd }
         const newResult = new LexerToken(this, input, kind, text, position, keep)
-        if (
-          (result === undefined || result.text.length < newResult.text.length) &&
-          (!is_text || subString.length == regexp.lastIndex || !this.alphaCharacters.test(subString[regexp.lastIndex]))
-        ) {
+        if (result === undefined || result.text.length < newResult.text.length) {
           result = newResult
         }
       }
@@ -239,6 +242,7 @@ export class FixLexer implements Lexer<T> {
       return undefined
     }
   }
+
   parse_unquoted(input: string, startIndex: number): [T, string, number] | undefined {
     let index = startIndex
     let last_is_escape = false
@@ -257,7 +261,18 @@ export class FixLexer implements Lexer<T> {
       }
       index++
     }
+    if (index == startIndex) {
+      return undefined
+    }
     const result = input.substring(startIndex, index)
+    for (const stopWord of this.stopWords) {
+      if (result.startsWith(stopWord) && (result.length === stopWord.length || !this.alphaCharacters.test(result[stopWord.length]))) {
+        return undefined
+      }
+    }
+    if (!isNaN(parseInt(result))) {
+      return undefined
+    }
     return [T.Literal, result, index] // Return the result and new index
   }
 }
