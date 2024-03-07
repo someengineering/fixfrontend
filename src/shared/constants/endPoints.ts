@@ -59,7 +59,11 @@ export const endPoints = {
           table: `api/workspaces/${workspaceId}/inventory/search/table`,
         },
         model: `api/workspaces/${workspaceId}/inventory/model`,
-        node: (nodeId: string) => `api/workspaces/${workspaceId}/inventory/node/${nodeId}`,
+        node: (nodeId: string) => ({
+          self: `api/workspaces/${workspaceId}/inventory/node/${nodeId}`,
+          history: `api/workspaces/${workspaceId}/inventory/node/${nodeId}/history`,
+          neighborhood: `api/workspaces/${workspaceId}/inventory/node/${nodeId}/neighborhood`,
+        }),
         property: {
           attributes: `api/workspaces/${workspaceId}/inventory/property/attributes`,
           values: `api/workspaces/${workspaceId}/inventory/property/values`,

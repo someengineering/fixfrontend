@@ -126,13 +126,14 @@ msgstr "A few minutes to first results"
 msgid "Access to your account is broken"
 msgstr "Access to your account is broken"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:228
+#: src/pages/panel/inventory/ResourceDetail.tsx:226
 msgid "Account"
 msgstr "Account"
 
 #: src/pages/panel/inventory/InventoryTable.error.tsx:73
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:126
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:42
+#: src/shared/language-button/LanguageButton.stories.tsx:20
 #: src/shared/layouts/panel-layout/menuList.tsx:55
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:12
 msgid "Accounts"
@@ -167,8 +168,8 @@ msgstr "Add external directory"
 msgid "Added accounts"
 msgstr "Added accounts"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:237
-#: src/shared/charts/NetworkDiagram.tsx:323
+#: src/pages/panel/inventory/ResourceDetail.tsx:235
+#: src/shared/charts/NetworkDiagram.tsx:329
 msgid "Age"
 msgstr "Age"
 
@@ -243,7 +244,7 @@ msgstr "AWS Marketplace"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace has been successfully subscribed"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:213
+#: src/pages/panel/inventory/ResourceDetail.tsx:211
 msgid "Basic Information"
 msgstr "Basic Information"
 
@@ -256,6 +257,7 @@ msgstr "Because the data is over {0} Only first {1} items will be downloaded"
 msgid "Benchmark"
 msgstr "Benchmark"
 
+#: src/pages/panel/inventory/utils/ResourceDetailChangeLogSelectedHistoryAccordion.tsx:45
 #: src/pages/panel/shared/utils/chartToShow.tsx:39
 msgid "Benchmarks"
 msgstr "Benchmarks"
@@ -298,7 +300,7 @@ msgstr "Change payment method"
 msgid "Change Product Tier"
 msgstr "Change Product Tier"
 
-#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:24
+#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:34
 msgid "Changes"
 msgstr "Changes"
 
@@ -313,7 +315,7 @@ msgstr "Choose Workspace"
 #: src/pages/panel/accounts/AccountRow.tsx:400
 #: src/pages/panel/accounts/AccountsTableItem.tsx:40
 #: src/pages/panel/home/AccountCard.tsx:33
-#: src/pages/panel/inventory/ResourceDetail.tsx:224
+#: src/pages/panel/inventory/ResourceDetail.tsx:222
 msgid "Cloud"
 msgstr "Cloud"
 
@@ -338,6 +340,7 @@ msgid "Clouds"
 msgstr "Clouds"
 
 #: src/pages/panel/home/OverallCard.tsx:77
+#: src/pages/panel/inventory/utils/ResourceDetailChangeLogSelectedHistory.tsx:81
 msgid "Compliance"
 msgstr "Compliance"
 
@@ -405,7 +408,11 @@ msgstr "Copy"
 msgid "Core CSPM scanning capabilities"
 msgstr "Core CSPM scanning capabilities"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:231
+#: src/pages/panel/inventory/utils/nodeChange.tsx:16
+msgid "Created"
+msgstr "Created"
+
+#: src/pages/panel/inventory/ResourceDetail.tsx:229
 msgid "Created Time"
 msgstr "Created Time"
 
@@ -474,6 +481,10 @@ msgstr "Delete"
 msgid "Delete Provider"
 msgstr "Delete Provider"
 
+#: src/pages/panel/inventory/utils/nodeChange.tsx:20
+msgid "Deleted"
+msgstr "Deleted"
+
 #: src/pages/panel/accounts/AccountRow.tsx:348
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:13
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:29
@@ -484,7 +495,7 @@ msgstr "Deploy Stack"
 msgid "Description"
 msgstr "Description"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:298
+#: src/pages/panel/inventory/ResourceDetail.tsx:296
 msgid "Details"
 msgstr "Details"
 
@@ -624,6 +635,22 @@ msgstr "For growing teams looking to stay secure as they build out infrastructur
 msgid "For solo software engineers who want to secure a single cloud account."
 msgstr "For solo software engineers who want to secure a single cloud account."
 
+#: src/pages/panel/inventory/utils/nodeChange.tsx:56
+msgid "Found {0} vulnerability at {1}"
+msgstr "Found {0} vulnerability at {1}"
+
+#: src/pages/panel/inventory/utils/nodeChange.tsx:24
+msgid "Found compliant"
+msgstr "Found compliant"
+
+#: src/pages/panel/inventory/utils/nodeChange.tsx:76
+msgid "Found resolved {0} vulnerability at {1}"
+msgstr "Found resolved {0} vulnerability at {1}"
+
+#: src/pages/panel/inventory/utils/nodeChange.tsx:22
+msgid "Found vulnerability"
+msgstr "Found vulnerability"
+
 #: src/pages/panel/workspace-settings-billing/utils/productTierToLabel.ts:7
 msgid "Free"
 msgstr "Free"
@@ -656,12 +683,13 @@ msgstr "How to fix"
 #: src/pages/panel/accounts/AccountRow.tsx:397
 #: src/pages/panel/accounts/AccountsTableItem.tsx:43
 #: src/pages/panel/home/AccountCard.tsx:30
-#: src/pages/panel/inventory/ResourceDetail.tsx:221
-#: src/shared/charts/NetworkDiagram.tsx:319
+#: src/pages/panel/inventory/ResourceDetail.tsx:219
+#: src/shared/charts/NetworkDiagram.tsx:325
 msgid "ID"
 msgstr "ID"
 
 #: src/pages/panel/home/OverallCard.tsx:162
+#: src/pages/panel/inventory/utils/ResourceDetailChangeLogSelectedHistory.tsx:71
 msgid "Improved"
 msgstr "Improved"
 
@@ -708,8 +736,8 @@ msgstr "Invite External User"
 msgid "Invites"
 msgstr "Invites"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:220
-#: src/shared/charts/NetworkDiagram.tsx:317
+#: src/pages/panel/inventory/ResourceDetail.tsx:218
+#: src/shared/charts/NetworkDiagram.tsx:323
 msgid "Kind"
 msgstr "Kind"
 
@@ -785,7 +813,7 @@ msgstr "Most Non-Compliant Accounts"
 
 #: src/pages/panel/accounts/AccountRow.tsx:403
 #: src/pages/panel/accounts/AccountsTableItem.tsx:46
-#: src/pages/panel/inventory/ResourceDetail.tsx:222
+#: src/pages/panel/inventory/ResourceDetail.tsx:220
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:18
@@ -797,7 +825,7 @@ msgstr "Most Non-Compliant Accounts"
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:122
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:120
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:132
-#: src/shared/charts/NetworkDiagram.tsx:321
+#: src/shared/charts/NetworkDiagram.tsx:327
 msgid "Name"
 msgstr "Name"
 
@@ -825,6 +853,18 @@ msgstr "Next scan"
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:30
 msgid "Next Sync"
 msgstr "Next Sync"
+
+#: src/pages/panel/inventory/utils/nodeChange.tsx:33
+msgid "Node created at {0}"
+msgstr "Node created at {0}"
+
+#: src/pages/panel/inventory/utils/nodeChange.tsx:45
+msgid "Node deleted at {0}"
+msgstr "Node deleted at {0}"
+
+#: src/pages/panel/inventory/utils/nodeChange.tsx:39
+msgid "Node updated at {0}"
+msgstr "Node updated at {0}"
 
 #: src/pages/panel/accounts/AccountRow.tsx:367
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
@@ -863,9 +903,13 @@ msgstr "Oops! Something went wrong."
 msgid "Open drawer"
 msgstr "Open drawer"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:246
+#: src/pages/panel/inventory/ResourceDetail.tsx:244
 msgid "Open resource {name} in AWS Console"
 msgstr "Open resource {name} in AWS Console"
+
+#: src/pages/panel/inventory/utils/ResourceDetailChangeLogSelectedHistoryAccordion.tsx:55
+msgid "Opened at"
+msgstr "Opened at"
 
 #: src/pages/auth/login/LoginPage.tsx:141
 #: src/pages/auth/register/RegisterPage.tsx:125
@@ -957,7 +1001,7 @@ msgstr "Recently added accounts"
 msgid "Regenerate"
 msgstr "Regenerate"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:229
+#: src/pages/panel/inventory/ResourceDetail.tsx:227
 msgid "Region"
 msgstr "Region"
 
@@ -1017,8 +1061,8 @@ msgstr "Security Scan"
 msgid "Security Score"
 msgstr "Security Score"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:257
-#: src/pages/panel/inventory/ResourceDetail.tsx:268
+#: src/pages/panel/inventory/ResourceDetail.tsx:255
+#: src/pages/panel/inventory/ResourceDetail.tsx:266
 msgid "See this Resource in AWS Console"
 msgstr "See this Resource in AWS Console"
 
@@ -1081,7 +1125,7 @@ msgid "Successfully invited {email}"
 msgstr "Successfully invited {email}"
 
 #: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:86
-#: src/pages/panel/inventory/ResourceDetail.tsx:284
+#: src/pages/panel/inventory/ResourceDetail.tsx:282
 msgid "Tags"
 msgstr "Tags"
 
@@ -1096,6 +1140,10 @@ msgstr "Test"
 #: src/pages/panel/setup-cloud/SetupCloudPage.tsx:107
 msgid "The Stack requires the following parameters"
 msgstr "The Stack requires the following parameters"
+
+#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:52
+msgid "There are no changes"
+msgstr "There are no changes"
 
 #: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:45
 msgid "There's no account configured for this workspace."
@@ -1113,7 +1161,7 @@ msgstr "This will deploy a CloudFormation stack that creates a new IAM role in y
 msgid "Tier"
 msgstr "Tier"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:263
+#: src/pages/panel/inventory/ResourceDetail.tsx:261
 msgid "To access this resource, please ensure that you are logged into the AWS account: {account}"
 msgstr "To access this resource, please ensure that you are logged into the AWS account: {account}"
 
@@ -1154,6 +1202,10 @@ msgstr "Update Email"
 #: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:32
 msgid "Update Password"
 msgstr "Update Password"
+
+#: src/pages/panel/inventory/utils/nodeChange.tsx:18
+msgid "Updated"
+msgstr "Updated"
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:200
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:241

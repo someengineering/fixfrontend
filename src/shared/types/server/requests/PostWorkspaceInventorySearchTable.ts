@@ -1,19 +1,19 @@
-export type PostWorkspaceInventorySearchTableHistory = {
+export type WorkspaceInventorySearchTableHistory = {
   before: string | null
   after: string | null
   change: string | null
 }
 
-export type PostWorkspaceInventorySearchTableSort = {
+export type WorkspaceInventorySearchTableSort = {
   path: string
   direction: 'asc' | 'desc'
 }
 
 export type PostWorkspaceInventorySearchTableRequest = {
   query: string
-  history?: PostWorkspaceInventorySearchTableHistory | null
+  history?: WorkspaceInventorySearchTableHistory | null
   skip: number
   limit: number
   count: boolean
-  sort?: PostWorkspaceInventorySearchTableSort[]
+  sort?: WorkspaceInventorySearchTableSort[]
 }

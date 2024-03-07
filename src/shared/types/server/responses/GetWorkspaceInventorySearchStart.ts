@@ -1,14 +1,14 @@
-export interface GetWorkspaceInventorySearchStartProperty {
+export interface WorkspaceInventorySearchStartProperty {
   id: string
   name: string
   cloud: string
 }
 
-export interface GetWorkspaceInventorySearchStart {
-  accounts: GetWorkspaceInventorySearchStartProperty[]
-  regions: GetWorkspaceInventorySearchStartProperty[]
-  kinds: GetWorkspaceInventorySearchStartProperty[]
+export interface WorkspaceInventorySearchStart {
+  accounts: WorkspaceInventorySearchStartProperty[]
+  regions: WorkspaceInventorySearchStartProperty[]
+  kinds: WorkspaceInventorySearchStartProperty[]
   severity: string[]
 }
 
-export type GetWorkspaceInventorySearchStartResponse = GetWorkspaceInventorySearchStart
+export type GetWorkspaceInventorySearchStartResponse = WorkspaceInventorySearchStart
