@@ -7,6 +7,7 @@ export interface WorkspaceInventoryNodeNeighborhoodNodeType {
     icon?: string
     group?: string
     name?: string
+    'state-icon'?: 'instance_terminated'
   }
   age?: string
   tags: Record<string, string>
