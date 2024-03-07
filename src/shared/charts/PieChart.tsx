@@ -105,6 +105,7 @@ export function PieChart({ data, showLabel, colors, pieProps = {}, width = 400, 
           dataKey="value"
           startAngle={90}
           endAngle={-270}
+          minAngle={25}
           {...pieProps}
           onMouseEnter={({ description, tooltipPosition }: PieChartProps['data'][number] & { tooltipPosition: { x: number; y: number } }) =>
             setPopoverData({
