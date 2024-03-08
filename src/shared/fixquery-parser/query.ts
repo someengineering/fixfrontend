@@ -37,9 +37,15 @@ export abstract class Term {
     }
     return []
   }
+
+  abstract toString(): string
 }
 
-export class AllTerm extends Term {}
+export class AllTerm extends Term {
+  toString(): string {
+    return 'all'
+  }
+}
 
 export class NotTerm extends Term {
   term: Term
@@ -47,6 +53,10 @@ export class NotTerm extends Term {
   constructor({ term }: { term: Term }) {
     super()
     this.term = term
+  }
+
+  toString(): string {
+    return `not ${this.term.toString()}`
   }
 }
 
@@ -56,6 +66,10 @@ export class FulltextTerm extends Term {
   constructor({ text }: { text: string }) {
     super()
     this.text = text
+  }
+
+  toString(): string {
+    return `"${this.text}"`
   }
 }
 
@@ -82,6 +96,11 @@ export class Predicate extends Term {
     this.value = value
     this.args = args || {}
   }
+
+  toString(): string {
+    const modifier = this.args?.filter?.toString() || ''
+    return `${this.name} ${modifier}${this.op} ${JSON.stringify(this.value)}`
+  }
 }
 
 export class ContextTerm extends Term {
@@ -92,6 +111,10 @@ export class ContextTerm extends Term {
     super()
     this.name = name
     this.term = term
+  }
+
+  toString(): string {
+    return `${this.name}.{${this.term.toString()}}`
   }
 }
 
@@ -106,6 +129,19 @@ export class CombinedTerm extends Term {
     this.op = op
     this.right = right
   }
+
+  toString(): string {
+    const same_op = (t: Term): boolean => !(t instanceof CombinedTerm) || t.op === this.op
+    if (same_op(this.left) && same_op(this.right)) {
+      return `${this.left.toString()} ${this.op} ${this.right.toString()}`
+    } else if (!same_op(this.left) && !same_op(this.right)) {
+      return `(${this.left.toString()}) ${this.op} (${this.right.toString()})`
+    } else if (!same_op(this.left)) {
+      return `(${this.left.toString()}) ${this.op} ${this.right.toString()}`
+    } else {
+      return `${this.left.toString()} ${this.op} (${this.right.toString()})`
+    }
+  }
 }
 
 export class IdTerm extends Term {
@@ -115,6 +151,9 @@ export class IdTerm extends Term {
     super()
     this.ids = ids
   }
+  toString(): string {
+    return `id(${this.ids.join(', ')})`
+  }
 }
 
 export class IsTerm extends Term {
@@ -123,6 +162,10 @@ export class IsTerm extends Term {
   constructor({ kinds }: { kinds: string[] }) {
     super()
     this.kinds = kinds
+  }
+
+  toString(): string {
+    return `is(${this.kinds.join(', ')})`
   }
 }
 
@@ -137,6 +180,12 @@ export class FunctionTerm extends Term {
     this.propertyPath = propertyPath
     this.args = args
   }
+
+  toString(): string {
+    const args = this.args.join(', ')
+    const sep = args.length > 0 ? ', ' : ''
+    return `${this.fn}(${this.propertyPath}${sep}${args})`
+  }
 }
 
 export class MergeQuery {
@@ -148,6 +197,11 @@ export class MergeQuery {
     this.name = name
     this.query = query
     this.onlyFirst = onlyFirst || true
+  }
+
+  toString(): string {
+    const arr = this.onlyFirst ? '' : '[]'
+    return `${this.name}${arr}: ${this.query.toString()}`
   }
 }
 
@@ -162,6 +216,12 @@ export class MergeTerm extends Term {
     this.merge = merge
     this.postFilter = postFilter
   }
+
+  toString(): string {
+    const merge = this.merge.join(', ')
+    const post = this.postFilter ? ' ' + this.postFilter.toString() : ''
+    return `${this.preFilter.toString()} {${merge}}${post}`
+  }
 }
 
 export class WithClauseFilter {
@@ -171,6 +231,16 @@ export class WithClauseFilter {
   constructor({ op, num }: { op: string; num: number }) {
     this.op = op
     this.num = num
+  }
+
+  toString(): string {
+    if (this.op === '==' && this.num === 0) {
+      return `empty`
+    } else if (this.op === '>' && this.num === 0) {
+      return `any`
+    } else {
+      return `count${this.op}${this.num}`
+    }
   }
 }
 
@@ -196,10 +266,15 @@ export class WithClause {
     this.term = term
     this.with_clause = with_clause
   }
+
+  toString(): string {
+    const term = this.term ? ` ${this.term.toString()}` : ''
+    const with_clause = this.with_clause ? ` ${this.with_clause.toString()}` : ''
+    return `with(${this.with_filter.toString()}, ${this.navigation.toString()}${term}${with_clause})`
+  }
 }
 
 export class Navigation {
-  static Max: number = 250
   start: number
   until: number | undefined
   edge_types: EdgeType[] | undefined
@@ -225,6 +300,29 @@ export class Navigation {
     this.direction = direction
     this.maybe_two_directional_outbound_edge_type = maybe_two_directional_outbound_edge_type
   }
+
+  toString(): string {
+    const same = this.start == this.until
+    const mo = this.maybe_two_directional_outbound_edge_type
+    let depth: string
+    if (same && this.start == 1 && mo == undefined) {
+      depth = ''
+    } else if (same && mo == undefined) {
+      depth = `[${this.start}]`
+    } else {
+      depth = `[${this.start}:${this.until ? this.until : ''}]`
+    }
+    const et = this.edge_types ? this.edge_types.join(',') : ''
+    const out_nav = mo ? `(${mo.join(',')})` : ''
+    const nav = `${et}${depth}${out_nav}`
+    if (this.direction === Direction.inbound) {
+      return `<-${nav}-`
+    } else if (this.direction === Direction.outbound) {
+      return `-${nav}->`
+    } else {
+      return `<-${nav}->`
+    }
+  }
 }
 
 export class Limit {
@@ -235,6 +333,11 @@ export class Limit {
     this.offset = offset || 0
     this.length = length
   }
+
+  toString(): string {
+    const offset = this.offset > 0 ? `${this.offset}, ` : ''
+    return `limit ${offset}${this.length}`
+  }
 }
 
 export class Sort {
@@ -244,6 +347,10 @@ export class Sort {
   constructor({ name, order = SortOrder.Asc }: { name: string; order?: SortOrder }) {
     this.name = name
     this.order = order
+  }
+
+  toString(): string {
+    return `${this.name} ${this.order}`
   }
 }
 
@@ -273,10 +380,19 @@ export class Part {
     this.limit = limit
     this.navigation = navigation
   }
+
+  toString(): string {
+    const with_clause = this.with_clause ? ` ${this.with_clause.toString()}` : ''
+    const sort = this.sort.length > 0 ? `sort ${this.sort.map((s) => s.toString()).join(', ')}` : ''
+    const limit = this.limit ? ` ${this.limit.toString()}` : ''
+    const nav = this.navigation ? ` ${this.navigation.toString()}` : ''
+    return `${this.term.toString()}${with_clause}${sort}${limit}${nav}`
+  }
 }
 
 interface Aggregate {
   // Define the properties of Aggregate here
+  toString(): string
 }
 
 export class Query {
@@ -288,6 +404,15 @@ export class Query {
     this.parts = parts
     this.preamble = preamble
     this.aggregate = aggregate
+  }
+
+  toString(): string {
+    const aggregate = this.aggregate ? this.aggregate.toString() : ''
+    const pre = Object.entries(this.preamble)
+    const colon = pre.length > 0 || this.aggregate != undefined ? ':' : ''
+    const preamble = pre.length > 0 ? '(' + pre.map(([k, v]) => `${k}=${JSON.stringify(v)}`).join(', ') + ')' : ''
+    const parts = this.parts.map((p) => p.toString()).join(' ')
+    return `${aggregate}${preamble}${colon}${parts}`
   }
 
   public predicates(): Predicate[] {
