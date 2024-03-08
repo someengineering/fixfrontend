@@ -20,20 +20,20 @@ export enum EdgeType {
 }
 
 export abstract class Term {
-  find_terms(fn: (term: Term) => boolean): Term[] {
+  find_terms(fn: (term: Term) => boolean, wdf: (wd: Term) => boolean = (_) => true): Term[] {
     if (fn(this)) {
       return [this]
-    } else if (this instanceof CombinedTerm) {
-      return this.left.find_terms(fn).concat(this.right.find_terms(fn))
-    } else if (this instanceof NotTerm) {
-      return this.term.find_terms(fn)
-    } else if (this instanceof ContextTerm) {
-      return this.term.find_terms(fn)
-    } else if (this instanceof MergeTerm) {
+    } else if (this instanceof CombinedTerm && wdf(this)) {
+      return this.left.find_terms(fn, wdf).concat(this.right.find_terms(fn, wdf))
+    } else if (this instanceof NotTerm && wdf(this)) {
+      return this.term.find_terms(fn, wdf)
+    } else if (this instanceof ContextTerm && wdf(this)) {
+      return this.term.find_terms(fn, wdf)
+    } else if (this instanceof MergeTerm && wdf(this)) {
       return this.preFilter
-        .find_terms(fn)
-        .concat(this.merge.flatMap((q) => q.query.parts.flatMap((p) => p.term.find_terms(fn))))
-        .concat(this.postFilter?.find_terms(fn) || [])
+        .find_terms(fn, wdf)
+        .concat(this.merge.flatMap((q) => q.query.parts.flatMap((p) => p.term.find_terms(fn, wdf))))
+        .concat(this.postFilter?.find_terms(fn, wdf) || [])
     }
     return []
   }
@@ -395,6 +395,9 @@ interface Aggregate {
   toString(): string
 }
 
+const CloudIdentifier = new Set(['/ancestors.cloud.reported.id', '/ancestors.cloud.reported.name'])
+const AccountIdentifier = new Set(['/ancestors.account.reported.id', '/ancestors.account.reported.name'])
+const RegionIdentifier = new Set(['/ancestors.region.reported.id', '/ancestors.region.reported.name'])
 export class Query {
   parts: Part[]
   preamble: Record<string, SimpleValue>
@@ -416,7 +419,13 @@ export class Query {
   }
 
   public predicates(): Predicate[] {
-    return this.parts.flatMap((p) => p.term.find_terms((t) => t instanceof Predicate) as Predicate[])
+    // Using the UI, we can only access and modify predicates of the last part.
+    if (this.parts.length === 0) {
+      return []
+    }
+    // The UI assumes that all parts are AND combined. Do not walk OR parts.
+    const only_and_parts = (wd: Term) => !(wd instanceof CombinedTerm) || wd.op === 'and'
+    return this.parts[this.parts.length - 1].term.find_terms((t) => t instanceof Predicate, only_and_parts) as Predicate[]
   }
 
   public get remaining_predicates(): Record<string, JsonElement> {
@@ -427,15 +436,15 @@ export class Query {
   }
 
   public get cloud(): Predicate | undefined {
-    return this.predicates().find((p) => p.name.startsWith('/ancestors.cloud.reported'))
+    return this.predicates().find((p) => CloudIdentifier.has(p.name))
   }
 
   public get account(): Predicate | undefined {
-    return this.predicates().find((p) => p.name.startsWith('/ancestors.account.reported'))
+    return this.predicates().find((p) => AccountIdentifier.has(p.name))
   }
 
   public get region(): Predicate | undefined {
-    return this.predicates().find((p) => p.name.startsWith('/ancestors.cloud.reported'))
+    return this.predicates().find((p) => RegionIdentifier.has(p.name))
   }
 
   public get tags(): Record<string, JsonElement> {
@@ -445,7 +454,7 @@ export class Query {
   }
 
   public get severity(): Predicate | undefined {
-    return this.predicates().find((p) => p.name.startsWith('/security.severity'))
+    return this.predicates().find((p) => p.name == '/security.severity')
   }
 
   static parse(query: string): Query {

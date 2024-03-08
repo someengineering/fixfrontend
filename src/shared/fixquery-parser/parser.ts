@@ -118,11 +118,15 @@ SimpleTermP.setPattern(
 TermP.setPattern(
   // simple_term <and|or> simple_term
   apply(seq(SimpleTermP, rep_sc(seq(BoolOperationP, SimpleTermP))), ([term, op_terms]) => {
-    let left = term
-    for (const [op, right] of op_terms) {
-      left = new CombinedTerm({ left, op, right })
+    // combine all terms from right to left, so the order from left to right remains
+    const combine_term = (left: Term, rest: [string, Term][]): Term => {
+      if (rest.length === 0) {
+        return left
+      }
+      const [[op, next], ...remaining] = rest
+      return new CombinedTerm({ left, op, right: combine_term(next, remaining) })
     }
-    return left
+    return combine_term(term, op_terms)
   }),
 )
 
