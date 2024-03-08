@@ -1,3 +1,4 @@
+import { immerable, produce } from 'immer'
 import { parse_query } from './parser.ts'
 
 export type SimpleValue = string | number | boolean | null
@@ -20,6 +21,8 @@ export enum EdgeType {
 }
 
 export abstract class Term {
+  [immerable] = true
+
   find_terms(fn: (term: Term) => boolean, wdf: (wd: Term) => boolean = (_) => true): Term[] {
     if (fn(this)) {
       return [this]
@@ -36,6 +39,29 @@ export abstract class Term {
         .concat(this.postFilter?.find_terms(fn, wdf) || [])
     }
     return []
+  }
+
+  delete_terms(fn: (term: Term) => boolean, wdf: (wd: Term) => boolean = (_) => true): Term {
+    if (fn(this)) {
+      return new AllTerm()
+    } else if (this instanceof CombinedTerm && wdf(this)) {
+      const in_left = this.left.find_terms(fn, wdf)
+      const in_right = this.right.find_terms(fn, wdf)
+      const left = in_left.length > 0 ? this.left.delete_terms(fn, wdf) : this.left
+      const right = in_right.length > 0 ? this.right.delete_terms(fn, wdf) : this.right
+      if (in_left.length > 0 || in_right.length > 0) {
+        if (left instanceof AllTerm && right instanceof AllTerm) {
+          return new AllTerm()
+        } else if (left instanceof AllTerm) {
+          return right
+        } else if (right instanceof AllTerm) {
+          return left
+        } else {
+          return new CombinedTerm({ left, op: this.op, right })
+        }
+      }
+    }
+    return this
   }
 
   abstract toString(): string
@@ -245,6 +271,8 @@ export class WithClauseFilter {
 }
 
 export class WithClause {
+  [immerable] = true
+
   with_filter: WithClauseFilter
   navigation: Navigation
   term: Term | undefined
@@ -275,6 +303,8 @@ export class WithClause {
 }
 
 export class Navigation {
+  [immerable] = true
+
   start: number
   until: number | undefined
   edge_types: EdgeType[] | undefined
@@ -326,6 +356,7 @@ export class Navigation {
 }
 
 export class Limit {
+  [immerable] = true
   offset: number
   length: number
 
@@ -341,6 +372,7 @@ export class Limit {
 }
 
 export class Sort {
+  [immerable] = true
   name: string
   order: SortOrder = SortOrder.Asc
 
@@ -355,6 +387,7 @@ export class Sort {
 }
 
 export class Part {
+  [immerable] = true
   term: Term
   with_clause: WithClause | undefined
   sort: Sort[]
@@ -399,6 +432,7 @@ const CloudIdentifier = new Set(['/ancestors.cloud.reported.id', '/ancestors.clo
 const AccountIdentifier = new Set(['/ancestors.account.reported.id', '/ancestors.account.reported.name'])
 const RegionIdentifier = new Set(['/ancestors.region.reported.id', '/ancestors.region.reported.name'])
 export class Query {
+  [immerable] = true
   parts: Part[]
   preamble: Record<string, SimpleValue>
   aggregate?: Aggregate
@@ -418,14 +452,25 @@ export class Query {
     return `${aggregate}${preamble}${colon}${parts}`
   }
 
-  public predicates(): Predicate[] {
+  public get working_part(): Part {
     // Using the UI, we can only access and modify predicates of the last part.
     if (this.parts.length === 0) {
-      return []
+      throw new Error('Query has no parts')
     }
+    return this.parts[this.parts.length - 1]
+  }
+
+  public is(): IsTerm | undefined {
     // The UI assumes that all parts are AND combined. Do not walk OR parts.
     const only_and_parts = (wd: Term) => !(wd instanceof CombinedTerm) || wd.op === 'and'
-    return this.parts[this.parts.length - 1].term.find_terms((t) => t instanceof Predicate, only_and_parts) as Predicate[]
+    const is_terms = this.working_part.term.find_terms((t) => t instanceof IsTerm, only_and_parts) as IsTerm[]
+    return is_terms.length > 0 ? is_terms[0] : undefined
+  }
+
+  public predicates(): Predicate[] {
+    // The UI assumes that all parts are AND combined. Do not walk OR parts.
+    const only_and_parts = (wd: Term) => !(wd instanceof CombinedTerm) || wd.op === 'and'
+    return this.working_part.term.find_terms((t) => t instanceof Predicate, only_and_parts) as Predicate[]
   }
 
   public get remaining_predicates(): Record<string, JsonElement> {
@@ -445,6 +490,54 @@ export class Query {
 
   public get region(): Predicate | undefined {
     return this.predicates().find((p) => RegionIdentifier.has(p.name))
+  }
+
+  public set_predicate(name: string, op: string, value: JsonElement): Query {
+    return produce(this, (draft) => {
+      const existing = draft.predicates().find((p) => p.name == name)
+      if (existing) {
+        existing.op = op
+        existing.value = value
+      } else {
+        draft.working_part.term = new CombinedTerm({
+          left: new Predicate({ name, op, value }),
+          op: 'and',
+          right: draft.working_part.term,
+        })
+      }
+    })
+  }
+  public delete_predicate(name: string): Query {
+    return produce(this, (draft) => {
+      const existing = this.predicates().find((p) => p.name == name)
+      if (existing) {
+        draft.working_part.term = this.working_part.term.delete_terms((t) => existing === t)
+      }
+    })
+  }
+
+  public set_is(kinds: string[]): Query {
+    return produce(this, (draft) => {
+      const existing = draft.is()
+      if (existing) {
+        existing.kinds = kinds
+      } else {
+        draft.working_part.term = new CombinedTerm({
+          left: new IsTerm({ kinds }),
+          op: 'and',
+          right: draft.working_part.term,
+        })
+      }
+    })
+  }
+
+  public delete_is(): Query {
+    return produce(this, (draft) => {
+      const existing = this.is()
+      if (existing) {
+        draft.working_part.term = this.working_part.term.delete_terms((t) => existing === t)
+      }
+    })
   }
 
   public get tags(): Record<string, JsonElement> {

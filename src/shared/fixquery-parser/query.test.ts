@@ -29,3 +29,51 @@ test('Test toString', () => {
   const query = Query.parse(q)
   assert.strictEqual(query.toString(), q)
 })
+
+test('Update a query', () => {
+  const q = 'is(foo) and prop == 42 and /ancestors.cloud.reported.name == "aws" and /ancestors.account.reported.name == "test"'
+  const query = Query.parse(q)
+
+  // update query: update existing property gcp as cloud
+  let updated = query.set_predicate('/ancestors.cloud.reported.name', '==', 'gcp')
+  assert.strictEqual(
+    updated.toString(),
+    'is(foo) and prop == 42 and /ancestors.cloud.reported.name == "gcp" and /ancestors.account.reported.name == "test"',
+  )
+  assert.strictEqual(updated.cloud!.value, 'gcp')
+
+  // region was not defined
+  updated = updated.set_predicate('/ancestors.region.reported.name', '!=', 'us-west-1')
+  assert.strictEqual(
+    updated.toString(),
+    '/ancestors.region.reported.name != "us-west-1" and is(foo) and prop == 42 and /ancestors.cloud.reported.name == "gcp" and /ancestors.account.reported.name == "test"',
+  )
+  assert.strictEqual(updated.region!.value, 'us-west-1')
+
+  // update prop
+  updated = updated.set_predicate('prop', '>', 43)
+  updated = updated.set_predicate('prop', '>', 44)
+  updated = updated.set_predicate('prop', '>', 45)
+  updated = updated.set_predicate('prop', '<', 46)
+  assert.strictEqual(
+    updated.toString(),
+    '/ancestors.region.reported.name != "us-west-1" and is(foo) and prop < 46 and /ancestors.cloud.reported.name == "gcp" and /ancestors.account.reported.name == "test"',
+  )
+
+  // delete prop
+  updated = updated.delete_predicate('prop')
+  updated = updated.delete_predicate('/ancestors.region.reported.name')
+  updated = updated.delete_predicate('/ancestors.cloud.reported.name')
+  assert.strictEqual(updated.toString(), 'is(foo) and /ancestors.account.reported.name == "test"')
+
+  // update is
+  updated = updated.set_is(['bar'])
+  assert.strictEqual(updated.toString(), 'is(bar) and /ancestors.account.reported.name == "test"')
+  updated = updated.delete_is()
+  assert.strictEqual(updated.toString(), '/ancestors.account.reported.name == "test"')
+  updated = updated.set_is(['boo', 'bla'])
+  assert.strictEqual(updated.toString(), 'is(boo, bla) and /ancestors.account.reported.name == "test"')
+
+  // original query should not be modified
+  assert.strictEqual(query.toString(), q)
+})
