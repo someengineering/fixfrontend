@@ -1,8 +1,9 @@
-import { immerable, produce } from 'immer'
-import { parse_query } from './parser.ts'
+import { createDraft, Draft, finishDraft, immerable, produce } from 'immer'
+import { parse_path, parse_query } from './parser.ts'
 
 export type SimpleValue = string | number | boolean | null
-export type JsonElement = SimpleValue | { [key in string]: JsonElement } | JsonElement[]
+export type ObjectValue = { [key: string]: JsonElement }
+export type JsonElement = SimpleValue | ObjectValue | JsonElement[] | object
 
 export enum SortOrder {
   Asc = 'Asc',
@@ -18,6 +19,209 @@ export enum Direction {
 export enum EdgeType {
   default = 'default',
   delete = 'delete',
+}
+
+export class PathPart {
+  [immerable] = true
+  name: string
+  array_access: string | number | undefined
+
+  constructor({ name, array_access }: { name: string; array_access?: string | number | undefined }) {
+    this.name = name
+    this.array_access = array_access
+  }
+
+  for_array(index: number): PathPart {
+    return new PathPart({ name: this.name, array_access: index })
+  }
+
+  accepts(index: number): boolean {
+    return this.array_access === '*' || this.array_access === index
+  }
+
+  equalTo(other: PathPart): boolean {
+    // '*' is a wildcard for array access: foo[*] == foo[0], foo[1] ...
+    return (
+      this.name === other.name &&
+      (this.array_access === other.array_access ||
+        (this.array_access === '*' && typeof other.array_access === 'number') ||
+        (typeof this.array_access === 'number' && other.array_access === '*'))
+    )
+  }
+  toString(): string {
+    const array = this.array_access != undefined ? `[${this.array_access}]` : ''
+    return `${this.name}${array}`
+  }
+}
+
+export class JsonElementChange {
+  elem: JsonElement
+  path: Path
+  deleted: boolean
+  changed: boolean
+
+  constructor(elem: JsonElement, path: Path) {
+    this.elem = elem
+    this.path = path
+    this.deleted = false
+    this.changed = false
+  }
+
+  public get(): JsonElement {
+    return this.elem
+  }
+  public set(value: JsonElement): void {
+    this.elem = value
+    this.changed = true
+    this.deleted = false
+  }
+  public delete(): void {
+    this.elem = null
+    this.changed = true
+    this.deleted = true
+  }
+}
+export class JsonElementDraft {
+  value: Draft<object>
+
+  constructor(value: JsonElement) {
+    this.value = createDraft(value as object)
+  }
+
+  public get final_value(): JsonElement {
+    return finishDraft(this.value) as JsonElement
+  }
+
+  public *find_path(path: Path, criteria: (js: JsonElement) => boolean = (_) => true): Generator<JsonElementChange> {
+    function* walk_path(parts: PathPart[], at: number, js: JsonElement): Generator<JsonElementChange> {
+      if (js != null && typeof js === 'object') {
+        const jso: { [key: string]: JsonElement } = js as { [key: string]: JsonElement }
+        const part = path.parts[at]
+        const current = jso[part.name] as JsonElement
+        if (at == path.parts.length - 1) {
+          if (part.array_access != undefined && Array.isArray(current)) {
+            const arr: JsonElement[] = []
+            for (let i = 0; i < current.length; i++) {
+              const je = current[i] as JsonElement
+              if (!part.accepts(i)) {
+                arr.push(je)
+              } else if (criteria(je)) {
+                const change = new JsonElementChange(je, new Path({ parts: [...parts, part.for_array(i)] }))
+                yield change
+                if (!change.deleted) arr.push(change.get())
+              }
+            }
+            jso[part.name] = arr
+          } else if (part.array_access != undefined) {
+            // array access on non-array: ignore
+          } else if (criteria(current)) {
+            const change = new JsonElementChange(current, new Path({ parts: [...parts, part] }))
+            yield change
+            if (change.changed && change.deleted) delete jso[part.name]
+            else if (change.changed) jso[part.name] = change.get()
+          }
+        } else {
+          if (part.array_access != undefined && Array.isArray(current)) {
+            for (let i = 0; i < current.length; i++) {
+              const e = current[i] as JsonElement
+              yield* walk_path([...parts, part.for_array(i)], at + 1, e as JsonElement)
+            }
+          } else if (typeof current === 'object') {
+            yield* walk_path([...parts, part], at + 1, current)
+          }
+        }
+      }
+    }
+    yield* walk_path([], 0, this.value)
+  }
+}
+
+export class Path {
+  [immerable] = true
+  parts: PathPart[]
+  root: boolean
+
+  constructor({ parts, root }: { parts?: PathPart[]; root?: boolean }) {
+    this.parts = parts || []
+    this.root = root || false
+  }
+
+  public startsWith(part: string | string[] | Path, root: boolean = false): boolean {
+    let parts: PathPart[]
+    if (typeof part === 'string') {
+      parts = [new PathPart({ name: part })]
+    } else if (Array.isArray(part)) {
+      parts = part.map((name) => new PathPart({ name }))
+    } else {
+      parts = part.parts
+    }
+    if (this.root !== root) {
+      return false
+    }
+    if (parts.length > this.parts.length) {
+      return false
+    }
+    return parts.every((part, i) => this.parts[i].equalTo(part))
+  }
+
+  public equalTo(other: Path): boolean {
+    return (
+      this.root === other.root && this.parts.length === other.parts.length && this.parts.every((part, i) => part.equalTo(other.parts[i]))
+    )
+  }
+
+  public *find_path(elem: JsonElement, criteria: (js: JsonElement) => boolean = (_) => true): Generator<[Path, JsonElement]> {
+    const path = this as Path
+    function* walk_path(parts: PathPart[], at: number, js: JsonElement): Generator<[Path, JsonElement]> {
+      if (js != null && typeof js === 'object') {
+        const jso: { [key: string]: JsonElement } = js as { [key: string]: JsonElement }
+        const part = path.parts[at]
+        const current = jso[part.name] as JsonElement
+        if (at == path.parts.length - 1) {
+          if (part.array_access != undefined && Array.isArray(current)) {
+            for (let i = 0; i < current.length; i++) {
+              const e = current[i] as JsonElement
+              if (part.accepts(i) && criteria(e)) yield [new Path({ parts: [...parts, part.for_array(i)] }), e]
+            }
+          } else if (part.array_access != undefined) {
+            // array access on non-array: ignore
+          } else if (criteria(current)) {
+            yield [new Path({ parts: [...parts, part] }), current]
+          }
+        } else {
+          if (part.array_access != undefined && Array.isArray(current)) {
+            for (let i = 0; i < current.length; i++) {
+              const e = current[i] as JsonElement
+              yield* walk_path([...parts, part.for_array(i)], at + 1, e as JsonElement)
+            }
+          } else if (typeof current === 'object') {
+            yield* walk_path([...parts, part], at + 1, current)
+          }
+        }
+      }
+    }
+    yield* walk_path([], 0, elem)
+  }
+
+  public add(path: Path): Path {
+    return new Path({ parts: this.parts.concat(path.parts), root: this.root })
+  }
+
+  toString(): string {
+    const root = this.root ? '/' : ''
+    return root + this.parts.join('.')
+  }
+
+  static from_string(str: string): Path {
+    return parse_path(str)
+  }
+  static from(parts: string | string[], root?: boolean): Path {
+    parts = typeof parts === 'string' ? [parts] : parts
+    return new Path({ parts: parts.map((name) => new PathPart({ name })), root })
+  }
+  static empty(): Path {
+    return new Path({})
+  }
 }
 
 export abstract class Term {
@@ -50,21 +254,78 @@ export abstract class Term {
       const left = in_left.length > 0 ? this.left.delete_terms(fn, wdf) : this.left
       const right = in_right.length > 0 ? this.right.delete_terms(fn, wdf) : this.right
       if (in_left.length > 0 || in_right.length > 0) {
-        if (left instanceof AllTerm && right instanceof AllTerm) {
-          return new AllTerm()
-        } else if (left instanceof AllTerm) {
-          return right
-        } else if (right instanceof AllTerm) {
-          return left
-        } else {
-          return new CombinedTerm({ left, op: this.op, right })
-        }
+        if (left instanceof AllTerm && right instanceof AllTerm) return new AllTerm()
+        else if (left instanceof AllTerm) return right
+        else if (right instanceof AllTerm) return left
+        else return new CombinedTerm({ left, op: this.op, right })
       }
     }
     return this
   }
 
   abstract toString(): string
+
+  matches(js: JsonElement): boolean {
+    if (this instanceof AllTerm) return true
+    else if (this instanceof Predicate) {
+      const path = this.path.find_path(js, (js) => Predicate.matches_value(this.value, this.op, js))
+      return !path.next().done
+    } else if (this instanceof ContextTerm) {
+      for (const [_, value] of this.path.find_path(js)) {
+        if (this.term.matches(value)) {
+          return true
+        }
+      }
+      return false
+    } else if (this instanceof CombinedTerm) {
+      const left = this.left.matches(js)
+      const right = this.right.matches(js)
+      return this.op == 'and' ? left && right : left || right
+    } else if (this instanceof NotTerm) {
+      return !this.term.matches(js)
+    } else return true // ignore other terms
+  }
+
+  find_matching(js: JsonElement): Path[] {
+    let result: Path[] = []
+    if (this instanceof CombinedTerm) {
+      const left = this.left.matches(js)
+      const right = this.right.matches(js)
+      if (left && right) {
+        result = result.concat(this.left.find_matching(js))
+        result = result.concat(this.right.find_matching(js))
+      } else if (this.op === 'or' && left) {
+        result = result.concat(this.left.find_matching(js))
+      } else if (this.op === 'or' && right) {
+        result = result.concat(this.right.find_matching(js))
+      }
+    } else if (this instanceof NotTerm) {
+      if (!this.term.matches(js)) {
+        result = result.concat(this.term.find_matching(js))
+      }
+    } else if (this instanceof Predicate) {
+      if (this.matches(js)) {
+        for (const [path, _] of this.path.find_path(js)) {
+          result.push(path)
+        }
+      }
+    } else if (this instanceof ContextTerm) {
+      if (this.matches(js)) {
+        for (const [path, hit] of this.path.find_path(js)) {
+          this.term.find_matching(hit).forEach((p) => result.push(path.add(p)))
+        }
+      }
+    }
+    return result
+  }
+
+  delete_matching(js: JsonElement): JsonElement {
+    const draft = new JsonElementDraft(js)
+    for (const path of this.find_matching(js)) {
+      for (const hit of draft.find_path(path)) hit.delete()
+    }
+    return draft.final_value
+  }
 }
 
 export class AllTerm extends Term {
@@ -100,24 +361,14 @@ export class FulltextTerm extends Term {
 }
 
 export class Predicate extends Term {
-  name: string
+  path: Path
   op: string
   value: JsonElement
   args: Record<string, JsonElement>
 
-  constructor({
-    name,
-    op,
-    value,
-    args = {},
-  }: {
-    name: string
-    op: string
-    value: JsonElement
-    args?: Record<string, JsonElement> | undefined
-  }) {
+  constructor({ path, op, value, args }: { path: Path; op: string; value: JsonElement; args?: Record<string, JsonElement> | undefined }) {
     super()
-    this.name = name
+    this.path = path
     this.op = op
     this.value = value
     this.args = args || {}
@@ -125,22 +376,38 @@ export class Predicate extends Term {
 
   toString(): string {
     const modifier = this.args?.filter?.toString() || ''
-    return `${this.name} ${modifier}${this.op} ${JSON.stringify(this.value)}`
+    return `${this.path.toString()} ${modifier}${this.op} ${JSON.stringify(this.value)}`
+  }
+
+  static matches_value(value: JsonElement, op: string, p: JsonElement): boolean {
+    if (p == null && value == null) return true
+    else if (p == null || value == null) return false
+    else if (op === '==' || op === '=') return p === value
+    else if (op === '!=') return p !== value
+    else if (op === '>') return p > value
+    else if (op === '>=') return p >= value
+    else if (op === '<') return p < value
+    else if (op === '<=') return p <= value
+    else if (op === '~' || op === '=~') return new RegExp(value as string).test(p as string)
+    else if (op === '!~') return !new RegExp(value as string).test(p as string)
+    else if (op === 'in') return (value as JsonElement[]).includes(p)
+    else if (op === 'not in') return !(value as JsonElement[]).includes(p)
+    else return false
   }
 }
 
 export class ContextTerm extends Term {
-  name: string
+  path: Path
   term: Term
 
-  constructor({ name, term }: { name: string; term: Term }) {
+  constructor({ path, term }: { path: Path; term: Term }) {
     super()
-    this.name = name
+    this.path = path
     this.term = term
   }
 
   toString(): string {
-    return `${this.name}.{${this.term.toString()}}`
+    return `${this.path.toString()}.{${this.term.toString()}}`
   }
 }
 
@@ -215,19 +482,16 @@ export class FunctionTerm extends Term {
 }
 
 export class MergeQuery {
-  name: string
+  path: Path
   query: Query
-  onlyFirst: boolean
 
-  constructor({ name, query, onlyFirst }: { name: string; query: Query; onlyFirst?: boolean }) {
-    this.name = name
+  constructor({ path, query }: { path: Path; query: Query }) {
+    this.path = path
     this.query = query
-    this.onlyFirst = onlyFirst || true
   }
 
   toString(): string {
-    const arr = this.onlyFirst ? '' : '[]'
-    return `${this.name}${arr}: ${this.query.toString()}`
+    return `${this.path.toString()}: ${this.query.toString()}`
   }
 }
 
@@ -373,16 +637,16 @@ export class Limit {
 
 export class Sort {
   [immerable] = true
-  name: string
+  path: Path
   order: SortOrder = SortOrder.Asc
 
-  constructor({ name, order = SortOrder.Asc }: { name: string; order?: SortOrder }) {
-    this.name = name
+  constructor({ path, order = SortOrder.Asc }: { path: Path; order?: SortOrder }) {
+    this.path = path
     this.order = order
   }
 
   toString(): string {
-    return `${this.name} ${this.order}`
+    return `${this.path.toString()} ${this.order}`
   }
 }
 
@@ -476,31 +740,34 @@ export class Query {
   public get remaining_predicates(): Record<string, JsonElement> {
     // neither cloud, account, region, tags nor severity
     return this.predicates()
-      .filter((p) => !p.name.startsWith('/ancestors.') && !p.name.startsWith('/security.severity') && !p.name.startsWith('tags'))
-      .reduce((acc, pred) => ({ ...acc, [pred.name]: pred.value }), {} as { [key: string]: JsonElement })
+      .filter(
+        (p) => !p.path.startsWith('ancestors', true) && !p.path.startsWith(['security', 'severity'], true) && !p.path.startsWith('tags'),
+      )
+      .reduce((acc, pred) => ({ ...acc, [pred.path.toString()]: pred.value }), {} as { [key: string]: JsonElement })
   }
 
   public get cloud(): Predicate | undefined {
-    return this.predicates().find((p) => CloudIdentifier.has(p.name))
+    return this.predicates().find((p) => CloudIdentifier.has(p.path.toString()))
   }
 
   public get account(): Predicate | undefined {
-    return this.predicates().find((p) => AccountIdentifier.has(p.name))
+    return this.predicates().find((p) => AccountIdentifier.has(p.path.toString()))
   }
 
   public get region(): Predicate | undefined {
-    return this.predicates().find((p) => RegionIdentifier.has(p.name))
+    return this.predicates().find((p) => RegionIdentifier.has(p.path.toString()))
   }
 
   public set_predicate(name: string, op: string, value: JsonElement): Query {
+    const path = Path.from_string(name)
     return produce(this, (draft) => {
-      const existing = draft.predicates().find((p) => p.name == name)
+      const existing = draft.predicates().find((p) => p.path.equalTo(path))
       if (existing) {
         existing.op = op
         existing.value = value
       } else {
         draft.working_part.term = new CombinedTerm({
-          left: new Predicate({ name, op, value }),
+          left: new Predicate({ path, op, value }),
           op: 'and',
           right: draft.working_part.term,
         })
@@ -508,8 +775,9 @@ export class Query {
     })
   }
   public delete_predicate(name: string): Query {
+    const path = Path.from_string(name)
     return produce(this, (draft) => {
-      const existing = this.predicates().find((p) => p.name == name)
+      const existing = this.predicates().find((p) => p.path.equalTo(path))
       if (existing) {
         draft.working_part.term = this.working_part.term.delete_terms((t) => existing === t)
       }
@@ -542,12 +810,20 @@ export class Query {
 
   public get tags(): Record<string, JsonElement> {
     return this.predicates()
-      .filter((p) => p.name.startsWith('tags'))
-      .reduce((acc, pred) => ({ ...acc, [pred.name]: pred.value }), {} as { [key: string]: JsonElement })
+      .filter((p) => p.path.startsWith('tags'))
+      .reduce((acc, pred) => ({ ...acc, [pred.path.toString()]: pred.value }), {} as { [key: string]: JsonElement })
   }
 
   public get severity(): Predicate | undefined {
-    return this.predicates().find((p) => p.name == '/security.severity')
+    return this.predicates().find((p) => p.path.startsWith(['security', 'severity'], true))
+  }
+
+  public find_matching(json: JsonElement): Path[] {
+    return this.working_part.term.find_matching(json)
+  }
+
+  public delete_matching(json: JsonElement): JsonElement {
+    return this.working_part.term.delete_matching(json)
   }
 
   static parse(query: string): Query {

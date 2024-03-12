@@ -16,6 +16,8 @@ import {
   Navigation,
   NotTerm,
   Part,
+  Path,
+  PathPart,
   Predicate,
   Query,
   Sort,
@@ -28,7 +30,7 @@ import {
 export const JsonElementP = rule<T, JsonElement>()
 export const SimpleTermP = rule<T, Term>()
 export const TermP = rule<T, Term>()
-export const VariableP = rule<T, string>()
+export const PathP = rule<T, Path>()
 export const BoolOperationP = rule<T, string>()
 export const OperationP = rule<T, string>()
 export const MergeQueryP = rule<T, MergeQuery>()
@@ -45,6 +47,13 @@ function times_n<TKind, TResult>(parser: Parser<TKind, TResult>): Parser<TKind, 
 
 function times_n_sep<TKind, TResult, TSeparator>(parser: Parser<TKind, TResult>, sep: Parser<TKind, TSeparator>): Parser<TKind, TResult[]> {
   return apply(seq(parser, rep_sc(kright(sep, parser))), ([first, rest]) => [first, ...rest])
+}
+
+function str(t: T): Parser<T, string> {
+  return apply(tok(t), (t) => t.text)
+}
+function num(): Parser<T, number> {
+  return apply(tok(T.Integer), (t) => parseInt(t.text))
 }
 
 JsonElementP.setPattern(
@@ -71,13 +80,9 @@ JsonElementP.setPattern(
   ),
 )
 
-const allowed_characters = alt(tok(T.Literal), tok(T.Star), tok(T.LBracket), tok(T.RBracket), tok(T.Integer))
-VariableP.setPattern(
-  apply(
-    seq(opt(tok(T.Slash)), list_sc(times_n(allowed_characters), tok(T.Dot))),
-    ([slash, parts]) => (slash ? '/' : '') + parts.map((part) => part.map((r) => r.text).join('')).join('.'),
-  ),
-)
+const array_access = apply(kmid(tok(T.LBracket), opt(alt(num(), str(T.Star))), tok(T.RBracket)), (ac) => (ac != undefined ? ac : '*'))
+const path_part = apply(seq(str(T.Literal), opt(array_access)), ([name, array_access]) => new PathPart({ name, array_access }))
+PathP.setPattern(apply(seq(opt(tok(T.Slash)), list_sc(path_part, tok(T.Dot))), ([slash, parts]) => new Path({ parts, root: !!slash })))
 
 BoolOperationP.setPattern(apply(alt(tok(T.And), tok(T.Or)), (t) => t.text))
 
@@ -85,9 +90,9 @@ OperationP.setPattern(
   alt(
     apply(tok(T.In), (_) => 'in'),
     apply(seq(tok(T.Not), tok(T.In)), (_) => 'not in'),
-    apply(tok(T.Equal), (t) => t.text),
     apply(seq(tok(T.Equal), tok(T.Equal)), (_) => '=='),
-    apply(seq(tok(T.Tilde), tok(T.Equal)), (_) => '~='),
+    apply(seq(tok(T.Equal), tok(T.Tilde)), (_) => '=~'),
+    apply(tok(T.Equal), (t) => t.text),
     apply(tok(T.Tilde), (t) => t.text),
     apply(tok(T.NotTilde), (t) => t.text),
     apply(tok(T.NotEqual), (t) => t.text),
@@ -106,8 +111,8 @@ SimpleTermP.setPattern(
   alt(
     kmid(tok(T.LParen), TermP, tok(T.RParen)),
     apply(kright(tok(T.Not), TermP), (term) => new NotTerm({ term })),
-    apply(seq(VariableP, tok(T.Dot), kmid(tok(T.LCurly), TermP, tok(T.RCurly))), ([name, _, term]) => new ContextTerm({ name, term })),
-    apply(seq(VariableP, OperationP, JsonElementP), ([name, op, value]) => new Predicate({ name, op, value })),
+    apply(seq(PathP, tok(T.Dot), kmid(tok(T.LCurly), TermP, tok(T.RCurly))), ([name, _, term]) => new ContextTerm({ path: name, term })),
+    apply(seq(PathP, OperationP, JsonElementP), ([name, op, value]) => new Predicate({ path: name, op, value })),
     apply(kright(tok(T.IS), kmid(tok(T.LParen), list_or_simple, tok(T.RParen))), (t) => new IsTerm({ kinds: t })),
     apply(kright(tok(T.ID), kmid(tok(T.LParen), list_or_simple, tok(T.RParen))), (t) => new IdTerm({ ids: t })),
     apply(tok(T.DoubleQuotedString), (t) => new FulltextTerm({ text: t.text.slice(1, -1) })),
@@ -132,12 +137,11 @@ TermP.setPattern(
 
 MergeQueryP.setPattern(
   apply(
-    seq(VariableP, tok(T.Colon), NavigationP, rep_sc(PartP)),
-    ([name, _, navigation, parts]) =>
+    seq(PathP, tok(T.Colon), NavigationP, rep_sc(PartP)),
+    ([path, _, navigation, parts]) =>
       new MergeQuery({
-        name: name.replace(/\[]$/, ''),
+        path,
         query: new Query({ parts: [new Part({ term: new AllTerm(), navigation }), ...parts] }),
-        onlyFirst: name.endsWith('[]'),
       }),
   ),
 )
@@ -156,8 +160,8 @@ LimitP.setPattern(
 const asc = apply(tok(T.Asc), (_b) => SortOrder.Asc)
 const desc = apply(tok(T.Desc), (_b) => SortOrder.Desc)
 SortP.setPattern(
-  apply(kright(tok(T.Sort), list_sc(seq(VariableP, opt(alt(asc, desc))), tok(T.Comma))), (sorts) =>
-    sorts.map(([name, dir]) => new Sort({ name, order: dir || SortOrder.Asc })),
+  apply(kright(tok(T.Sort), list_sc(seq(PathP, opt(alt(asc, desc))), tok(T.Comma))), (sorts) =>
+    sorts.map(([path, dir]) => new Sort({ path, order: dir || SortOrder.Asc })),
   ),
 )
 
@@ -231,3 +235,4 @@ PartP.setPattern(
 QueryP.setPattern(apply(rep_sc(PartP), (parts) => new Query({ parts })))
 
 export const parse_query = parse_expr(QueryP)
+export const parse_path = parse_expr(PathP)

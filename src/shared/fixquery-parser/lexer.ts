@@ -251,7 +251,7 @@ export class FixLexer implements Lexer<T> {
       if (input[index] === '`' && !last_is_escape) {
         const backtick = this.parse_until(input, index, '`')
         if (backtick) {
-          index = backtick
+          index = backtick - 1
         } else {
           return undefined
         }
