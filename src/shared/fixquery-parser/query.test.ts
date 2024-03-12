@@ -248,3 +248,17 @@ test('Find and change', () => {
     ],
   })
 })
+
+test('Indicate if a query can derive data from resource json', () => {
+  const queries: Array<[string, boolean]> = [
+    ['is(aws_lambda_function) with (empty, <-- is(aws_vpc))', false],
+    ['is(aws_lambda_function) and function_url_config.cors.allow_origins ~ "*"', true],
+    ['is(aws_lambda_function) and function_runtime in [python3.6, python2.7, dotnetcore2.1, ruby2.5]', true],
+    ['foo.bla.bar[*].{test in [python3.6, python2.7, dotnetcore2.1, ruby2.5] or rest==42}', true],
+    ['is(foo) --> is(bla)', false],
+    ['is(foo) {test: -->}', false],
+  ]
+  for (const [query, details] of queries) {
+    assert.strictEqual(Query.parse(query).provides_security_check_details(), details)
+  }
+})

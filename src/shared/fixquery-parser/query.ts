@@ -818,12 +818,45 @@ export class Query {
     return this.predicates().find((p) => p.path.startsWith(['security', 'severity'], true))
   }
 
+  /**
+   * Takes resource json (the reported section) and returns a list of paths that get matched by the query.
+   *
+   * Note:
+   * Certain criteria of a query cannot be matched by the resource data, e.g. with clauses, merge queries, or aggregate queries.
+   * Please use `provides_security_check_details` to check if the query can provide details based on resource data.
+   * @param json the resource json
+   */
   public find_matching(json: JsonElement): Path[] {
     return this.working_part.term.find_matching(json)
   }
 
+  /**
+   * Takes resource json (the reported section) and returns a new json with the parts that match the query deleted.
+   *
+   * Note:
+   * Certain criteria of a query cannot be matched by the resource data, e.g. with clauses, merge queries, or aggregate queries.
+   * Please use `provides_security_check_details` to check if the query can provide details based on resource data.
+   * @param json the resource json
+   */
   public delete_matching(json: JsonElement): JsonElement {
     return this.working_part.term.delete_matching(json)
+  }
+
+  /**
+   * Signals, if this query can provide details based on resource data.
+   *
+   * To show details, the check must use a plain fix query.
+   * To reason about the resource data, the query should not use one of the following:
+   * - with clause: graph traversals are used that are not available in the resource data
+   * - merge queries: if the query uses merges, they are not available in the resource data
+   * - aggregate: if the query uses an aggregate, the result is not available in the resource data
+   */
+  public provides_security_check_details(): boolean {
+    return (
+      this.aggregate == undefined &&
+      this.parts.length == 1 &&
+      this.parts.every((part) => part.with_clause == undefined && part.term.find_terms((t) => t instanceof MergeTerm).length == 0)
+    )
   }
 
   static parse(query: string): Query {
