@@ -80,11 +80,11 @@ test('Update a query', () => {
 
 test('find paths', () => {
   let jso: object = { a: 12, b: 21 }
-  let all_paths = [...Path.from_string('a').find_path(jso)]
+  let all_paths = [...Path.from_string('a').find(jso)]
   assert.deepEqual(all_paths, [[Path.from('a'), 12]])
 
   jso = { a: [{ b: [{ c: 21 }, { c: 22 }] }, { b: [{ c: 21 }, { c: 22 }] }] }
-  all_paths = [...Path.from_string('a[*].b[*].c').find_path(jso)]
+  all_paths = [...Path.from_string('a[*].b[*].c').find(jso)]
   assert.deepEqual(all_paths, [
     [Path.from_string('a[0].b[0].c'), 21],
     [Path.from_string('a[0].b[1].c'), 22],
@@ -96,16 +96,16 @@ test('find paths', () => {
 test('find matching path', () => {
   // simple top level property
   let js: object = { a: 1, prop: 42, b: 2 }
-  assert.deepEqual(Query.parse('prop == 42').find_matching(js), [Path.from('prop')])
-  assert.deepEqual(Query.parse('prop > 12').find_matching(js), [Path.from('prop')])
-  assert.deepEqual(Query.parse('prop >= 12').find_matching(js), [Path.from('prop')])
-  assert.deepEqual(Query.parse('prop < 45').find_matching(js), [Path.from('prop')])
-  assert.deepEqual(Query.parse('prop <= 45').find_matching(js), [Path.from('prop')])
-  assert.deepEqual(Query.parse('prop != 45').find_matching(js), [Path.from('prop')])
-  assert.deepEqual(Query.parse('prop =~ 4.').find_matching(js), [Path.from('prop')])
-  assert.deepEqual(Query.parse('prop ~ ".."').find_matching(js), [Path.from('prop')])
-  assert.deepEqual(Query.parse('prop > 43').find_matching(js), [])
-  assert.deepEqual(Query.parse('prop < 42').find_matching(js), [])
+  assert.deepEqual(Query.parse('prop == 42').find_paths(js), [Path.from('prop')])
+  assert.deepEqual(Query.parse('prop > 12').find_paths(js), [Path.from('prop')])
+  assert.deepEqual(Query.parse('prop >= 12').find_paths(js), [Path.from('prop')])
+  assert.deepEqual(Query.parse('prop < 45').find_paths(js), [Path.from('prop')])
+  assert.deepEqual(Query.parse('prop <= 45').find_paths(js), [Path.from('prop')])
+  assert.deepEqual(Query.parse('prop != 45').find_paths(js), [Path.from('prop')])
+  assert.deepEqual(Query.parse('prop =~ 4.').find_paths(js), [Path.from('prop')])
+  assert.deepEqual(Query.parse('prop ~ ".."').find_paths(js), [Path.from('prop')])
+  assert.deepEqual(Query.parse('prop > 43').find_paths(js), [])
+  assert.deepEqual(Query.parse('prop < 42').find_paths(js), [])
   assert.deepEqual(js, { a: 1, prop: 42, b: 2 })
 
   // nested property with array
@@ -128,7 +128,7 @@ test('find matching path', () => {
     ],
     b: 2,
   }
-  const paths = nested_array_predicate.find_matching(js)
+  const paths = nested_array_predicate.find_paths(js)
   assert.deepEqual(paths, [
     Path.from_string('foo[0].bla[0].bar[0].prop'),
     Path.from_string('foo[0].bla[1].bar[0].prop'),
@@ -212,35 +212,35 @@ test('Find and change', () => {
   const js = { a: 1, b: [1, 2, 3, 4], c: { d: { e: { f: [{ g: 1, h: 2 }] } } } }
 
   let draft = new JsonElementDraft(js)
-  for (const m of draft.find_path(Path.from_string('c.d.e.f[*].g'))) m.set(42)
+  for (const m of draft.find(Path.from_string('c.d.e.f[*].g'))) m.set(42)
   assert.deepEqual(draft.final_value, { a: 1, b: [1, 2, 3, 4], c: { d: { e: { f: [{ g: 42, h: 2 }] } } } })
 
   draft = new JsonElementDraft(js)
-  for (const m of draft.find_path(Path.from_string('c.d.e.f[*].g'))) m.delete()
+  for (const m of draft.find(Path.from_string('c.d.e.f[*].g'))) m.delete()
   assert.deepEqual(draft.final_value, { a: 1, b: [1, 2, 3, 4], c: { d: { e: { f: [{ h: 2 }] } } } })
 
   draft = new JsonElementDraft(js)
-  for (const m of draft.find_path(Path.from_string('c'))) m.delete()
-  for (const m of draft.find_path(Path.from_string('b[*]'))) m.delete()
+  for (const m of draft.find(Path.from_string('c'))) m.delete()
+  for (const m of draft.find(Path.from_string('b[*]'))) m.delete()
   assert.deepEqual(draft.final_value, { a: 1, b: [] })
 
   draft = new JsonElementDraft(js)
-  for (const m of draft.find_path(Path.from_string('c'))) m.delete()
-  for (const m of draft.find_path(Path.from_string('b'))) m.delete()
+  for (const m of draft.find(Path.from_string('c'))) m.delete()
+  for (const m of draft.find(Path.from_string('b'))) m.delete()
   assert.deepEqual(draft.final_value, { a: 1 })
 
   draft = new JsonElementDraft(js)
-  for (const m of draft.find_path(Path.from_string('c'))) m.delete()
-  for (const m of draft.find_path(Path.from_string('b[*]'))) m.set(23)
+  for (const m of draft.find(Path.from_string('c'))) m.delete()
+  for (const m of draft.find(Path.from_string('b[*]'))) m.set(23)
   assert.deepEqual(draft.final_value, { a: 1, b: [23, 23, 23, 23] })
 
   draft = new JsonElementDraft(js)
-  for (const m of draft.find_path(Path.from_string('c'))) m.delete()
-  for (const m of draft.find_path(Path.from_string('b[1]'))) m.set(23)
+  for (const m of draft.find(Path.from_string('c'))) m.delete()
+  for (const m of draft.find(Path.from_string('b[1]'))) m.set(23)
   assert.deepEqual(draft.final_value, { a: 1, b: [1, 23, 3, 4] })
 
   draft = new JsonElementDraft({ t: [js, js] })
-  for (const m of draft.find_path(Path.from_string('t[*].c'))) m.delete()
+  for (const m of draft.find(Path.from_string('t[*].c'))) m.delete()
   assert.deepEqual(draft.final_value, {
     t: [
       { a: 1, b: [1, 2, 3, 4] },

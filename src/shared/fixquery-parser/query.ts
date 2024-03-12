@@ -92,7 +92,7 @@ export class JsonElementDraft {
     return finishDraft(this.value) as JsonElement
   }
 
-  public *find_path(path: Path, criteria: (js: JsonElement) => boolean = (_) => true): Generator<JsonElementChange> {
+  public *find(path: Path, criteria: (js: JsonElement) => boolean = (_) => true): Generator<JsonElementChange> {
     function* walk_path(parts: PathPart[], at: number, js: JsonElement): Generator<JsonElementChange> {
       if (js != null && typeof js === 'object') {
         const jso: { [key: string]: JsonElement } = js as { [key: string]: JsonElement }
@@ -170,7 +170,7 @@ export class Path {
     )
   }
 
-  public *find_path(elem: JsonElement, criteria: (js: JsonElement) => boolean = (_) => true): Generator<[Path, JsonElement]> {
+  public *find(elem: JsonElement, criteria: (js: JsonElement) => boolean = (_) => true): Generator<[Path, JsonElement]> {
     const path = this as Path
     function* walk_path(parts: PathPart[], at: number, js: JsonElement): Generator<[Path, JsonElement]> {
       if (js != null && typeof js === 'object') {
@@ -268,10 +268,10 @@ export abstract class Term {
   matches(js: JsonElement): boolean {
     if (this instanceof AllTerm) return true
     else if (this instanceof Predicate) {
-      const path = this.path.find_path(js, (js) => Predicate.matches_value(this.value, this.op, js))
+      const path = this.path.find(js, (js) => Predicate.matches_value(this.value, this.op, js))
       return !path.next().done
     } else if (this instanceof ContextTerm) {
-      for (const [_, value] of this.path.find_path(js)) {
+      for (const [_, value] of this.path.find(js)) {
         if (this.term.matches(value)) {
           return true
         }
@@ -286,33 +286,33 @@ export abstract class Term {
     } else return true // ignore other terms
   }
 
-  find_matching(js: JsonElement): Path[] {
+  find_paths(js: JsonElement): Path[] {
     let result: Path[] = []
     if (this instanceof CombinedTerm) {
       const left = this.left.matches(js)
       const right = this.right.matches(js)
       if (left && right) {
-        result = result.concat(this.left.find_matching(js))
-        result = result.concat(this.right.find_matching(js))
+        result = result.concat(this.left.find_paths(js))
+        result = result.concat(this.right.find_paths(js))
       } else if (this.op === 'or' && left) {
-        result = result.concat(this.left.find_matching(js))
+        result = result.concat(this.left.find_paths(js))
       } else if (this.op === 'or' && right) {
-        result = result.concat(this.right.find_matching(js))
+        result = result.concat(this.right.find_paths(js))
       }
     } else if (this instanceof NotTerm) {
       if (!this.term.matches(js)) {
-        result = result.concat(this.term.find_matching(js))
+        result = result.concat(this.term.find_paths(js))
       }
     } else if (this instanceof Predicate) {
       if (this.matches(js)) {
-        for (const [path, _] of this.path.find_path(js)) {
+        for (const [path, _] of this.path.find(js)) {
           result.push(path)
         }
       }
     } else if (this instanceof ContextTerm) {
       if (this.matches(js)) {
-        for (const [path, hit] of this.path.find_path(js)) {
-          this.term.find_matching(hit).forEach((p) => result.push(path.add(p)))
+        for (const [path, hit] of this.path.find(js)) {
+          this.term.find_paths(hit).forEach((p) => result.push(path.add(p)))
         }
       }
     }
@@ -321,8 +321,8 @@ export abstract class Term {
 
   delete_matching(js: JsonElement): JsonElement {
     const draft = new JsonElementDraft(js)
-    for (const path of this.find_matching(js)) {
-      for (const hit of draft.find_path(path)) hit.delete()
+    for (const path of this.find_paths(js)) {
+      for (const hit of draft.find(path)) hit.delete()
     }
     return draft.final_value
   }
@@ -826,8 +826,8 @@ export class Query {
    * Please use `provides_security_check_details` to check if the query can provide details based on resource data.
    * @param json the resource json
    */
-  public find_matching(json: JsonElement): Path[] {
-    return this.working_part.term.find_matching(json)
+  public find_paths(json: JsonElement): Path[] {
+    return this.working_part.term.find_paths(json)
   }
 
   /**
