@@ -1,6 +1,6 @@
 import { t, Trans } from '@lingui/macro'
 import { LoadingButton } from '@mui/lab'
-import { alpha, ButtonBase, Card, CardHeader, Grid, styled, Typography } from '@mui/material'
+import { alpha, ButtonBase, Card, CardHeader, Grid, Stack, styled, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useCallback, useEffect } from 'react'
@@ -71,12 +71,14 @@ export default function ChooseWorkspacePage() {
         <Trans>Congratulations on your subscription</Trans>
         🎉🎊😍
       </Typography>
-      <Typography variant="h5" textAlign="left" mb={4} maxWidth={550}>
-        <Trans>We appreciate your decision to subscribe to our service through AWS Marketplace.</Trans>
-      </Typography>
-      <Typography variant="h6" textAlign="left" mb={4} maxWidth={550}>
-        <Trans>To enhance your experience, please select the workspace where you'd like to activate your subscription</Trans>:
-      </Typography>
+      <Stack alignItems="center" justifyContent="center">
+        <Typography variant="h5" textAlign="left" mb={4} maxWidth={550}>
+          <Trans>We appreciate your decision to subscribe to our service through AWS Marketplace.</Trans>
+        </Typography>
+        <Typography variant="h6" textAlign="left" mb={4} maxWidth={550}>
+          <Trans>To enhance your experience, please select the workspace where you'd like to activate your subscription</Trans>:
+        </Typography>
+      </Stack>
       <Grid container spacing={2} width="100%" justifyContent="center" mb={2}>
         {workspaces?.map((item) => (
           <Grid item key={item.id}>

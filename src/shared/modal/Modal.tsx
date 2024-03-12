@@ -8,6 +8,7 @@ interface ModalProps extends PropsWithChildren {
   actions?: ReactNode
   openRef: MutableRefObject<((show?: boolean) => void) | undefined>
   width?: number | string
+  defaultOpen?: boolean
   onSubmit?: (event: FormEvent<HTMLFormElement>) => void
 }
 
@@ -25,8 +26,8 @@ const ModalContent = styled(Stack<'form' | 'div'>)(({ theme, width }) => ({
   padding: theme.spacing(2, 3, 3),
 }))
 
-export const Modal = ({ children, actions, description, title, openRef, width, onSubmit }: ModalProps) => {
-  const [open, setOpen] = useState(false)
+export const Modal = ({ children, actions, description, title, openRef, defaultOpen, width, onSubmit }: ModalProps) => {
+  const [open, setOpen] = useState(defaultOpen ?? false)
   useEffect(() => {
     openRef.current = (show?: boolean) => {
       setOpen(show ?? true)

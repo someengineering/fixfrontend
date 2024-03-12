@@ -1,44 +1,53 @@
 import Dagre, { Node } from '@dagrejs/dagre'
 import { t } from '@lingui/macro'
-import { Box, colors, tooltipClasses, useTheme } from '@mui/material'
+import { Box, Skeleton, colors, tooltipClasses, useTheme } from '@mui/material'
+// eslint-disable-next-line no-restricted-imports
+import { alpha, blend } from '@mui/system'
+import { useQuery } from '@tanstack/react-query'
 import { BaseType, Selection, SimulationLinkDatum, SimulationNodeDatum, select, zoom, zoomIdentity } from 'd3'
 import { useCallback, useEffect, useRef } from 'react'
 import { getIconFromResource } from 'src/assets/raw-icons'
+import { useUserProfile } from 'src/core/auth'
+import { getWorkspaceInventoryNodeHistoryNeighborhoodQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import {
-  WorkspaceInventoryNodeNeighborhood,
-  WorkspaceInventoryNodeNeighborhoodEdgeType,
-  WorkspaceInventoryNodeNeighborhoodNodeType,
-} from 'src/shared/types/server'
+import { WorkspaceInventoryNodeNeighborhoodEdgeType, WorkspaceInventoryNodeNeighborhoodNodeType } from 'src/shared/types/server'
 import { iso8601DurationToString, parseCustomDuration } from 'src/shared/utils/parseDuration'
 
 type NodesType = WorkspaceInventoryNodeNeighborhoodNodeType & SimulationNodeDatum & Node
 type LinksType = SimulationLinkDatum<NodesType> & { source: NodesType; target: NodesType }
 
 interface NetworkDiagramProps {
-  data: WorkspaceInventoryNodeNeighborhood[]
   mainId: string
 }
 
-const groupToColor = (defaultColor: string, group?: string) => {
+type MaterialColorsType = typeof colors
+type MaterialColorKeysType = Exclude<keyof MaterialColorsType, 'common'>
+type MaterialColorKeys = keyof MaterialColorsType[MaterialColorKeysType]
+
+const groupToColorMaterial = (number: MaterialColorKeys, group?: string) => {
   switch (group) {
     case 'networking':
-      return colors.purple[600]
+      return colors.purple[number]
     case 'misc':
-      return colors.green[600]
+      return colors.green[number]
     case 'storage':
-      return colors.yellow[800]
+      return colors.yellow[number]
     case 'access_control':
-      return colors.pink[600]
+      return colors.pink[number]
     case 'control':
-      return colors.blue[600]
+      return colors.blue[number]
     case 'compute':
-      return colors.orange[600]
+      return colors.orange[number]
     case 'database':
-      return colors.cyan[600]
+      return colors.cyan[number]
     default:
-      return defaultColor
+      return null
   }
+}
+
+const groupToColor = (defaultColor: string, group?: string, disabled?: boolean) => {
+  const color = groupToColorMaterial(group === 'storage' ? 800 : 600, group) ?? defaultColor
+  return disabled ? alpha(blend(color, colors.grey[600], 0.8), 0.7) : color
 }
 
 const MAX_WIDTH = 110
@@ -93,10 +102,16 @@ const createLabel = (
   })
 }
 
-export const NetworkDiagram = ({ data, mainId }: NetworkDiagramProps) => {
+export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
+  const { selectedWorkspace } = useUserProfile()
+  const { isLoading, data } = useQuery({
+    queryKey: ['workspace-inventory-node-neighborhood', selectedWorkspace?.id ?? '', mainId],
+    queryFn: getWorkspaceInventoryNodeHistoryNeighborhoodQuery,
+  })
   const {
     palette: {
       primary: { main: primaryColor, dark: primaryDarkColor, light: primaryLightColor },
+      error: { light: errorColor },
       background: { paper: paperBgColor },
     },
     zIndex: { tooltip: tooltipZIndex },
@@ -106,6 +121,9 @@ export const NetworkDiagram = ({ data, mainId }: NetworkDiagramProps) => {
   const containerRef = useRef<HTMLDivElement | undefined>()
 
   const getSimulation = useCallback(() => {
+    if (!data) {
+      return
+    }
     if (containerRef.current) {
       const { offsetWidth: width, offsetHeight: height } = containerRef.current
 
@@ -214,7 +232,7 @@ export const NetworkDiagram = ({ data, mainId }: NetworkDiagramProps) => {
       const topLabel = createLabel(
         labels,
         -8,
-        (d: NodesType) => groupToColor(primaryColor, d.metadata?.group),
+        (d: NodesType) => groupToColor(primaryColor, d.metadata?.group, d.metadata?.['state-icon'] === 'instance_terminated'),
         'white',
         (d) => d.reported.kind,
       ) // For the top label
@@ -273,11 +291,15 @@ export const NetworkDiagram = ({ data, mainId }: NetworkDiagramProps) => {
 
       // Update positions on tick
       const ticked = () => {
-        linkPath.attr('d', generateLinkPath).attr('stroke', (d) => groupToColor(primaryColor, d.source.metadata?.group))
+        linkPath
+          .attr('d', generateLinkPath)
+          .attr('stroke', (d) =>
+            groupToColor(primaryColor, d.source.metadata?.group, d.source.metadata?.['state-icon'] === 'instance_terminated'),
+          )
         node
           .attr('cx', (d) => d.x)
           .attr('cy', (d) => d.y)
-          .attr('fill', (d) => groupToColor(primaryColor, d.metadata?.group))
+          .attr('fill', (d) => groupToColor(primaryColor, d.metadata?.group, d.metadata?.['state-icon'] === 'instance_terminated'))
         icon
           .attr('x', (d) => d.x - 10)
           .attr('y', (d) => d.y - 10)
@@ -322,6 +344,7 @@ export const NetworkDiagram = ({ data, mainId }: NetworkDiagramProps) => {
           ${rightDiv}${p}">${d.reported.name}</p></div>
           ${leftDiv}${p}color:${primaryColor};">${t`Age`}</p></div>
           ${rightDiv}${p}">${d.age ? iso8601DurationToString(parseCustomDuration(d.age), 2) : '-'}</p></div>
+          ${d.metadata?.['state-icon'] === 'instance_terminated' ? `${leftDiv}</div>${rightDiv}${p}color:${errorColor};">${t`Instance is terminated`}</p></div>` : ''}
         </div>`
       }
 
@@ -378,7 +401,11 @@ export const NetworkDiagram = ({ data, mainId }: NetworkDiagramProps) => {
         tooltip.remove()
       }
     }
-  }, [data, getSimulation, navigate, primaryColor])
+  }, [data, getSimulation, navigate, primaryColor, errorColor])
 
-  return <Box width="100%" height="100%" ref={containerRef} />
+  return isLoading ? (
+    <Skeleton height={400} width="100%" variant="rounded" />
+  ) : data ? (
+    <Box width="100%" height="100%" ref={containerRef} />
+  ) : null
 }

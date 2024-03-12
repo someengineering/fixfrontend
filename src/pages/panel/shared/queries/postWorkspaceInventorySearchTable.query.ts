@@ -1,10 +1,10 @@
 import { QueryFunctionContext } from '@tanstack/react-query'
 import { endPoints } from 'src/shared/constants'
 import {
-  PostWorkspaceInventorySearchTableHistory,
   PostWorkspaceInventorySearchTableRequest,
   PostWorkspaceInventorySearchTableResponse,
-  PostWorkspaceInventorySearchTableSort,
+  WorkspaceInventorySearchTableHistory,
+  WorkspaceInventorySearchTableSort,
 } from 'src/shared/types/server'
 import { axiosWithAuth } from 'src/shared/utils/axios'
 
@@ -13,8 +13,8 @@ export const postWorkspaceInventorySearchTableQuery = ({
   queryKey: [, workspaceId, query, skip, limit, count, sort, history],
 }: QueryFunctionContext<['workspace-inventory-search-table', string | undefined, string, number, number, boolean, string, string]>) => {
   const data: PostWorkspaceInventorySearchTableRequest = {
-    ...(history ? { history: JSON.parse(history) as PostWorkspaceInventorySearchTableHistory } : {}),
-    ...(sort ? { sort: JSON.parse(sort) as PostWorkspaceInventorySearchTableSort[] } : {}),
+    ...(history ? { history: JSON.parse(history) as WorkspaceInventorySearchTableHistory } : {}),
+    ...(sort ? { sort: JSON.parse(sort) as WorkspaceInventorySearchTableSort[] } : {}),
     count,
     limit,
     query,
