@@ -1,12 +1,12 @@
 import { Trans } from '@lingui/macro'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDownCircleOutlined'
+import CloseIcon from '@mui/icons-material/Close'
 import SearchIcon from '@mui/icons-material/Search'
-import { Box, Collapse, Divider, FormHelperText, IconButton, TextField, Typography, styled } from '@mui/material'
+import { Box, Collapse, FormHelperText, IconButton, Stack, TextField, Typography } from '@mui/material'
 import { ChangeEvent, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { panelUI } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
-import { shouldForwardProp } from 'src/shared/utils/shouldForwardProp'
+import { InventoryAdvanceSearchInfo } from './InventoryAdvanceSearchInfo'
 import { InventoryForm } from './InventoryForm'
 import { InventoryFormsSkeleton } from './InventoryForms.skeleton'
 import { InventoryAdvanceSearchConfig, inventoryAdvanceSearchConfigToString } from './utils'
@@ -17,24 +17,16 @@ interface InventoryAdvanceSearchProps {
   hasError: boolean
 }
 
-const StyledArrowDropDownIcon = styled(ArrowDropDownIcon, { shouldForwardProp: shouldForwardProp })<{ showAdvanceSearch: boolean }>(
-  ({ theme, showAdvanceSearch }) => ({
-    transform: `rotate(${showAdvanceSearch ? '180' : '0'}deg)`,
-    transformOrigin: 'center',
-    transition: theme.transitions.create('transform'),
-  }),
-)
+const defaultConfig = () => [{ id: Math.random(), property: null, op: null, value: null, fqn: null }]
 
 export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }: InventoryAdvanceSearchProps) => {
   const initializedRef = useRef(false)
+  const [focused, setIsFocused] = useState(false)
   const [searchParams] = useSearchParams()
   const hideFilters = searchParams.get('hide') === 'true'
   const [searchCritValue, setSearchCritValue] = useState(searchCrit === 'all' || !searchCrit ? '' : searchCrit)
-  const [config, setConfig] = useState<InventoryAdvanceSearchConfig[]>([
-    { id: Math.random(), property: null, op: null, value: null, fqn: null },
-  ])
+  const [config, setConfig] = useState<InventoryAdvanceSearchConfig[]>(defaultConfig())
   const [kind, setKind] = useState<string | null>(null)
-  const [showAdvanceSearch, setShowAdvanceSearch] = useState(false)
 
   const timeoutRef = useRef<number>()
 
@@ -62,10 +54,14 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }
   )
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value !== searchCritValue) {
-      onChange(undefined, !e.target.value || e.target.value === 'all' ? '' : 'true')
+    const { value } = e.target
+    if (!value || value === 'all') {
+      handleReset(true)
     }
-    handleChangeValue(e.target.value)
+    if (value !== searchCritValue) {
+      onChange(undefined, !value || value === 'all' ? '' : 'true')
+    }
+    handleChangeValue(value)
   }
 
   useEffect(() => {
@@ -84,8 +80,17 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }
     initializedRef.current = true
   }, [config, handleChangeValue, kind])
 
+  const handleReset = (noValueSet?: boolean) => {
+    if (!noValueSet) {
+      onChange(undefined, '')
+      handleChangeValue('')
+    }
+    setConfig(defaultConfig())
+    setKind(null)
+  }
+
   return (
-    <>
+    <Box mb={2}>
       <Collapse in={!hideFilters}>
         <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
           <Suspense fallback={<InventoryFormsSkeleton />}>
@@ -95,23 +100,44 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }
           </Suspense>
         </NetworkErrorBoundary>
       </Collapse>
-      <Collapse in={showAdvanceSearch}>
-        <TextField
-          margin="dense"
-          placeholder="all"
-          fullWidth
-          size="small"
-          inputProps={{
-            sx: {
-              ml: 1,
-            },
-          }}
-          value={searchCritValue}
-          onChange={handleChange}
-          InputProps={{ startAdornment: <SearchIcon /> }}
-          error={hasError}
-        />
-      </Collapse>
+      <TextField
+        variant="outlined"
+        margin="dense"
+        label={
+          <Stack direction="row" gap={1}>
+            <Collapse in={!focused && !searchCritValue} orientation="horizontal">
+              <SearchIcon />
+            </Collapse>
+            <Trans>Advanced search query</Trans>
+          </Stack>
+        }
+        fullWidth
+        size="small"
+        inputProps={{
+          sx: {
+            ml: 1,
+          },
+        }}
+        value={searchCritValue}
+        onChange={handleChange}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        onReset={() => handleReset()}
+        InputProps={{
+          startAdornment: focused || searchCritValue ? <SearchIcon /> : undefined,
+          endAdornment: (
+            <Stack direction="row" alignItems="center" mr={-1}>
+              {searchCritValue ? (
+                <IconButton size="small" onClick={() => handleReset()}>
+                  <CloseIcon />
+                </IconButton>
+              ) : null}
+              <InventoryAdvanceSearchInfo />
+            </Stack>
+          ),
+        }}
+        error={hasError}
+      />
       <Collapse in={hasError}>
         <FormHelperText>
           <Typography variant="caption" color="error" mx={1.75}>
@@ -119,13 +145,6 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError }
           </Typography>
         </FormHelperText>
       </Collapse>
-      <Box my={2}>
-        <Divider>
-          <IconButton onClick={() => setShowAdvanceSearch((prev) => !prev)}>
-            <StyledArrowDropDownIcon showAdvanceSearch={showAdvanceSearch} />
-          </IconButton>
-        </Divider>
-      </Box>
-    </>
+    </Box>
   )
 }

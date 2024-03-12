@@ -73,6 +73,10 @@ msgstr "© 2024 Some Engineering Inc. Alle Rechte vorbehalten."
 msgid "<0>Billing cycle: {0}</0><1>Highest product tier this billing cycle: {title} (${1} / account)</1>"
 msgstr "<0>Abrechnungszeitraum: {0}</0><1>Höchste Produktstufe in diesem Abrechnungszeitraum: {title} (${1} / Konto)</1>"
 
+#: src/pages/panel/inventory/InventoryAdvanceSearchInfo.tsx:59
+msgid "<0>Fix supports full text search by encasing the search term in double quotes. For instance,<1><2><3>{searchInstance}</3></2></1>enables you to scan your entire infrastructure for a specific IP address.</0><4>Additionally, you can query for any resource attribute by utilizing the <5><6>{attributeOperatorValue}</6></5> format, where the operator can be {0}or <7><8>{1}</8></7>. For example,<9><10><11>{searchTagsOwners}</11></10></9>allows you to find all resources tagged with an <12><13>{owner}</13></12> attribute equal to <14><15>{sre}</15></14>.</4><16>Search queries can be refined using boolean operators {2}<17><18>{3}</18></17> to combine multiple terms. An example would be<19><20><21>{searchEc2InstanceCores}</21></20></19>to identify all EC2 instances possessing more than 4 cores.</16><22>For detailed search syntax guidance, visit <23>https://docs.fix.security/search-syntax<24/></23></22>"
+msgstr "<0>Fix unterstützt die Volltextsuche, indem der Suchbegriff in Anführungszeichen eingeschlossen wird. Zum Beispiel ermöglicht<1><2><3>{searchInstance}</3></2></1>Ihnen, Ihre gesamte Infrastruktur nach einer spezifischen IP-Adresse zu durchsuchen.</0><4>Zusätzlich können Sie jede Ressourceneigenschaft abfragen, indem Sie das Format <5><6>{attributeOperatorValue}</6></5> verwenden, wobei der Operator {0}oder <7><8>{1}</8></7> sein kann. Zum Beispiel erlaubt<9><10><11>{searchTagsOwners}</11></10></9>Ihnen, alle Ressourcen zu finden, die mit einem <12><13>{owner}</13></12>-Attribut gleich <14><15>{sre}</15></14> markiert sind.</4><16>Suchanfragen können verfeinert werden, indem boolesche Operatoren {2}<17><18>{3}</18></17> verwendet werden, um mehrere Begriffe zu kombinieren. Ein Beispiel wäre<19><20><21>{searchEc2InstanceCores}</21></20></19>, um alle EC2-Instanzen zu identifizieren, die mehr als 4 CPU Kerne besitzen.</16><22>Für detaillierte Hilfe zur Suchsyntax besuchen Sie <23>https://docs.fix.security/search-syntax<24/></23></22>"
+
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:43
 msgid "<0>Next invoice will be available: {0}</0>"
 msgstr "<0>Die nächste Rechnung wird verfügbar sein: {0}</0>"
@@ -167,6 +171,10 @@ msgstr "Externes Verzeichnis hinzufügen"
 #: src/pages/panel/accounts/AccountsTable.tsx:30
 msgid "Added accounts"
 msgstr "Konten hinzugefügt"
+
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:111
+msgid "Advanced search query"
+msgstr "Erweiterte Suchabfrage"
 
 #: src/pages/panel/inventory/ResourceDetail.tsx:235
 #: src/shared/charts/NetworkDiagram.tsx:345
@@ -899,7 +907,7 @@ msgstr "Anzahl der belasteten Konten"
 msgid "One time"
 msgstr "Einmal"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:118
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:144
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Sie sie und versuchen Sie es erneut."
 
