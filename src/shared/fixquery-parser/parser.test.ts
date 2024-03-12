@@ -191,9 +191,9 @@ test(`Parse Part`, () => {
   const ctx = new ContextTerm({ name: 'bar.test', term: new Predicate({ name: 'num', op: '>', value: 23 }) })
   const is = new IsTerm({ kinds: ['instance'] })
   const combined = new CombinedTerm({
-    left: new CombinedTerm({ left: is, op: 'and', right: pred }),
+    left: is,
     op: 'and',
-    right: ctx,
+    right: new CombinedTerm({ left: pred, op: 'and', right: ctx }),
   })
   const sort = [new Sort({ name: 'bla', order: SortOrder.Asc })]
   const limit = new Limit({ length: 10 })
@@ -226,9 +226,9 @@ test(`Parse Query`, () => {
   const ctx = new ContextTerm({ name: 'bar.test', term: new Predicate({ name: 'num', op: '>', value: 23 }) })
   const is = new IsTerm({ kinds: ['instance'] })
   const combined = new CombinedTerm({
-    left: new CombinedTerm({ left: is, op: 'and', right: pred }),
+    left: is,
     op: 'and',
-    right: ctx,
+    right: new CombinedTerm({ left: pred, op: 'and', right: ctx }),
   })
   const sort = [new Sort({ name: 'bla', order: SortOrder.Asc })]
   const limit = new Limit({ length: 10 })
