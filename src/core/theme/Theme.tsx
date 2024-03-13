@@ -28,11 +28,13 @@ if (nonceEl) {
   nonceEl = undefined
 }
 
-const emotionCache = createCache({
-  key: `fix-nonce`,
-  prepend: true,
-  nonce: `nonce-${nonce}`,
-})
+const emotionCache = nonce
+  ? createCache({
+      key: `fix-nonce`,
+      prepend: true,
+      nonce: `nonce-${nonce}`,
+    })
+  : undefined
 
 nonce = undefined
 
@@ -190,5 +192,5 @@ export function Theme({ children }: ThemeProps) {
     </ThemeContext.Provider>
   )
 
-  return nonce ? <CacheProvider value={emotionCache}>{themeContainer}</CacheProvider> : themeContainer
+  return emotionCache ? <CacheProvider value={emotionCache}>{themeContainer}</CacheProvider> : themeContainer
 }
