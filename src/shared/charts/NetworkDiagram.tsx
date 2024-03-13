@@ -127,211 +127,214 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
   const navigate = useAbsoluteNavigate()
   const containerRef = useRef<HTMLDivElement | undefined>()
 
-  const getSimulation = useCallback(() => {
-    if (!data) {
-      return
-    }
-    if (containerRef.current) {
-      const { offsetWidth: width, offsetHeight: height } = containerRef.current
+  const getSimulation = useCallback(
+    (nonce?: string) => {
+      if (!data) {
+        return
+      }
+      if (containerRef.current) {
+        const { offsetWidth: width, offsetHeight: height } = containerRef.current
 
-      // Set up SVG
-      const svg = select(containerRef.current)
-        .attr('nonce', nonce ?? '')
-        .append('svg')
-        .attr('width', width)
-        .attr('height', height)
-        .attr('viewBox', [0, 0, width, height])
-        .attr('nonce', nonce ?? '')
-        .attr('style', 'max-width: 100%; height: auto;')
+        // Set up SVG
+        const svg = select(containerRef.current)
+          .attr('nonce', nonce ?? '')
+          .append('svg')
+          .attr('width', width)
+          .attr('height', height)
+          .attr('viewBox', [0, 0, width, height])
+          .attr('nonce', nonce ?? '')
+          .attr('style', 'max-width: 100%; height: auto;')
 
-      const svgG = svg.append('g')
+        const svgG = svg.append('g')
 
-      // Prepare nodes and links for Dagre
-      const nodes = data.filter((d) => d.type === 'node') as NodesType[]
-      const links = (data.filter((d) => d.type === 'edge' && d) as WorkspaceInventoryNodeNeighborhoodEdgeType[])
-        .map((link) => {
-          return {
-            ...link,
-            source: nodes.find((n) => n.id === link.from),
-            target: nodes.find((n) => n.id === link.to),
-          }
+        // Prepare nodes and links for Dagre
+        const nodes = data.filter((d) => d.type === 'node') as NodesType[]
+        const links = (data.filter((d) => d.type === 'edge' && d) as WorkspaceInventoryNodeNeighborhoodEdgeType[])
+          .map((link) => {
+            return {
+              ...link,
+              source: nodes.find((n) => n.id === link.from),
+              target: nodes.find((n) => n.id === link.to),
+            }
+          })
+          .filter((link) => link.source && link.target) as LinksType[]
+
+        // Create a new directed graph
+        const dagre = new Dagre.graphlib.Graph()
+        dagre.setGraph({ rankdir: 'LR' })
+        dagre.setDefaultEdgeLabel(() => ({}))
+
+        // Add nodes to the graph
+        nodes.forEach((node) => {
+          dagre.setNode(node.id, { width: 50, height: 50 })
         })
-        .filter((link) => link.source && link.target) as LinksType[]
 
-      // Create a new directed graph
-      const dagre = new Dagre.graphlib.Graph()
-      dagre.setGraph({ rankdir: 'LR' })
-      dagre.setDefaultEdgeLabel(() => ({}))
+        // Add links to the graph
+        links.forEach((link) => {
+          dagre.setEdge(link.source.id, link.target.id)
+        })
 
-      // Add nodes to the graph
-      nodes.forEach((node) => {
-        dagre.setNode(node.id, { width: 50, height: 50 })
-      })
+        // Compute the layout
+        Dagre.layout(dagre)
 
-      // Add links to the graph
-      links.forEach((link) => {
-        dagre.setEdge(link.source.id, link.target.id)
-      })
+        // Update nodes with computed positions
+        nodes.forEach((node) => {
+          const nodeInfo = dagre.node(node.id)
+          node.x = nodeInfo.x * 1.5
+          node.y = nodeInfo.y
+        })
 
-      // Compute the layout
-      Dagre.layout(dagre)
+        // tooltip
 
-      // Update nodes with computed positions
-      nodes.forEach((node) => {
-        const nodeInfo = dagre.node(node.id)
-        node.x = nodeInfo.x * 1.5
-        node.y = nodeInfo.y
-      })
+        const tooltip = select(containerRef.current)
+          .append('div')
+          .style('opacity', 0)
+          .attr('nonce', nonce ?? '')
+          .attr('class', tooltipClasses.tooltip)
+          .style('position', 'fixed')
+          .style('box-shadow', shadow24)
+          .style('background-color', paperBgColor)
+          .style('border-width', '2px')
+          .style('border-radius', '5px')
+          .style('padding', '5px')
+          .style('z-index', tooltipZIndex)
+          .attr('nonce', nonce ?? '')
 
-      // tooltip
+        // Render links
+        // const link = svgG
+        //   .append('g')
+        //   .attr('stroke', primaryDarkColor)
+        //   .attr('stroke-opacity', 0.6)
+        //   .selectAll('line')
+        //   .data(links)
+        //   .join('line')
+        //   .attr('stroke-width', 1.5)
 
-      const tooltip = select(containerRef.current)
-        .append('div')
-        .style('opacity', 0)
-        .attr('nonce', nonce ?? '')
-        .attr('class', tooltipClasses.tooltip)
-        .style('position', 'fixed')
-        .style('box-shadow', shadow24)
-        .style('background-color', paperBgColor)
-        .style('border-width', '2px')
-        .style('border-radius', '5px')
-        .style('padding', '5px')
-        .style('z-index', tooltipZIndex)
-        .attr('nonce', nonce ?? '')
+        // Update link rendering to use paths for curved lines
+        const linkPath = svgG
+          .append('g')
+          .attr('stroke', primaryDarkColor)
+          .attr('stroke-opacity', 0.6)
+          .selectAll('path')
+          .data(links)
+          .join('path')
+          .style('pointer-events', 'none')
+          .attr('nonce', nonce ?? '')
+          .attr('stroke-width', 1.5)
+          .attr('fill', 'none') // This ensures the path is not filled
+          .attr('id', (_, i) => `linkPath${i}`)
+          .attr('marker-end', 'url(#end)')
 
-      // Render links
-      // const link = svgG
-      //   .append('g')
-      //   .attr('stroke', primaryDarkColor)
-      //   .attr('stroke-opacity', 0.6)
-      //   .selectAll('line')
-      //   .data(links)
-      //   .join('line')
-      //   .attr('stroke-width', 1.5)
+        // Render nodes
+        const node = svgG
+          .append('g')
+          .attr('stroke', primaryLightColor)
+          .attr('stroke-width', 1.5)
+          .selectAll('circle')
+          .data(nodes)
+          .join('circle')
+          .attr('r', 15)
+          .attr('cursor', 'pointer')
+          .attr('opacity', 0.8)
+          .attr('fill', primaryColor) as Selection<SVGCircleElement, NodesType, SVGGElement, unknown>
 
-      // Update link rendering to use paths for curved lines
-      const linkPath = svgG
-        .append('g')
-        .attr('stroke', primaryDarkColor)
-        .attr('stroke-opacity', 0.6)
-        .selectAll('path')
-        .data(links)
-        .join('path')
-        .style('pointer-events', 'none')
-        .attr('nonce', nonce ?? '')
-        .attr('stroke-width', 1.5)
-        .attr('fill', 'none') // This ensures the path is not filled
-        .attr('id', (_, i) => `linkPath${i}`)
-        .attr('marker-end', 'url(#end)')
+        node.append('title').text((d) => d.reported.name)
 
-      // Render nodes
-      const node = svgG
-        .append('g')
-        .attr('stroke', primaryLightColor)
-        .attr('stroke-width', 1.5)
-        .selectAll('circle')
-        .data(nodes)
-        .join('circle')
-        .attr('r', 15)
-        .attr('cursor', 'pointer')
-        .attr('opacity', 0.8)
-        .attr('fill', primaryColor) as Selection<SVGCircleElement, NodesType, SVGGElement, unknown>
+        // set label
+        const labels = svgG.append('g').selectAll('g').data(nodes).join('g') as Selection<SVGGElement, NodesType, SVGGElement, unknown>
+        const topLabel = createLabel(
+          labels,
+          -8,
+          (d: NodesType) => groupToColor(primaryColor, d.metadata?.group, d.metadata?.['state-icon'] === 'instance_terminated'),
+          'white',
+          (d) => d.reported.kind,
+          nonce,
+        ) // For the top label
+        const bellowLabel = createLabel(labels, 8, 'black', 'white', (d) => d.reported.name, nonce) // For the bottom label
 
-      node.append('title').text((d) => d.reported.name)
+        // New code to append the SVG icon to each node
+        const icon = svgG
+          .append('g')
+          .selectAll('image')
+          .data(nodes)
+          .join('image')
+          .style('pointer-events', 'none')
+          .attr('nonce', nonce ?? '')
+          .attr('cursor', 'pointer')
+          .attr('width', 20) // Set the width of the icon
+          .attr('height', 20) // Set the height of the icon
+          .attr('fill', '#fff') as Selection<SVGImageElement, NodesType, SVGGElement, unknown>
 
-      // set label
-      const labels = svgG.append('g').selectAll('g').data(nodes).join('g') as Selection<SVGGElement, NodesType, SVGGElement, unknown>
-      const topLabel = createLabel(
-        labels,
-        -8,
-        (d: NodesType) => groupToColor(primaryColor, d.metadata?.group, d.metadata?.['state-icon'] === 'instance_terminated'),
-        'white',
-        (d) => d.reported.kind,
-        nonce,
-      ) // For the top label
-      const bellowLabel = createLabel(labels, 8, 'black', 'white', (d) => d.reported.name, nonce) // For the bottom label
+        // Function to generate the path for each link
+        const generateLinkPath = (d: LinksType) => {
+          const dx = d.target.x - d.source.x
+          const dy = d.target.y - d.source.y
+          const dr = Math.sqrt(dx * dx + dy * dy) // Distance between nodes
 
-      // New code to append the SVG icon to each node
-      const icon = svgG
-        .append('g')
-        .selectAll('image')
-        .data(nodes)
-        .join('image')
-        .style('pointer-events', 'none')
-        .attr('nonce', nonce ?? '')
-        .attr('cursor', 'pointer')
-        .attr('width', 20) // Set the width of the icon
-        .attr('height', 20) // Set the height of the icon
-        .attr('fill', '#fff') as Selection<SVGImageElement, NodesType, SVGGElement, unknown>
+          // Use dr to influence the curve strength
+          const curveStrength = Math.log1p(dr) * 5 // Example formula to determine curve based on distance
 
-      // Function to generate the path for each link
-      const generateLinkPath = (d: LinksType) => {
-        const dx = d.target.x - d.source.x
-        const dy = d.target.y - d.source.y
-        const dr = Math.sqrt(dx * dx + dy * dy) // Distance between nodes
+          // If the nodes are horizontally or vertically aligned, make the line straight
+          const isStraight = Math.abs(dx) < 50 || Math.abs(dy) < 50
 
-        // Use dr to influence the curve strength
-        const curveStrength = Math.log1p(dr) * 5 // Example formula to determine curve based on distance
-
-        // If the nodes are horizontally or vertically aligned, make the line straight
-        const isStraight = Math.abs(dx) < 50 || Math.abs(dy) < 50
-
-        if (isStraight) {
-          // Straight line
-          return `M${d.source.x},${d.source.y} L${d.target.x},${d.target.y}`
-        } else {
-          // Curved path using a quadratic Bezier curve with a control point
-          // Control point is at the midpoint, shifted by the curve strength
-          const controlX = (d.source.x + d.target.x) / 2 + curveStrength * (dy / dr)
-          const controlY = (d.source.y + d.target.y) / 2 - curveStrength * (dx / dr)
-          return `M${d.source.x},${d.source.y} Q${controlX},${controlY} ${d.target.x},${d.target.y}`
+          if (isStraight) {
+            // Straight line
+            return `M${d.source.x},${d.source.y} L${d.target.x},${d.target.y}`
+          } else {
+            // Curved path using a quadratic Bezier curve with a control point
+            // Control point is at the midpoint, shifted by the curve strength
+            const controlX = (d.source.x + d.target.x) / 2 + curveStrength * (dy / dr)
+            const controlY = (d.source.y + d.target.y) / 2 - curveStrength * (dx / dr)
+            return `M${d.source.x},${d.source.y} Q${controlX},${controlY} ${d.target.x},${d.target.y}`
+          }
         }
+
+        // Apply the animated path generator to the links
+        // const animateLinks = () => {
+        //   linkPath
+        //     .attr('d', generateLinkPath)
+        //     .attr('stroke-dasharray', '10 5')
+        //     .attr('stroke-dashoffset', 0)
+        //     .transition()
+        //     .duration(2000)
+        //     .ease(easeLinear)
+        //     .attr('stroke-dashoffset', -30)
+        //     .on('end', () => window.setTimeout(animateLinks, 50))
+        // }
+
+        // animateLinks()
+
+        // Update positions on tick
+        const ticked = () => {
+          linkPath
+            .attr('d', generateLinkPath)
+            .attr('stroke', (d) =>
+              groupToColor(primaryColor, d.source.metadata?.group, d.source.metadata?.['state-icon'] === 'instance_terminated'),
+            )
+          node
+            .attr('cx', (d) => d.x)
+            .attr('cy', (d) => d.y)
+            .attr('fill', (d) => groupToColor(primaryColor, d.metadata?.group, d.metadata?.['state-icon'] === 'instance_terminated'))
+          icon
+            .attr('x', (d) => d.x - 10)
+            .attr('y', (d) => d.y - 10)
+            .attr('xlink:href', (d) => getIconFromResource(d.metadata?.icon))
+          labels.attr('transform', (d) => `translate(${d.x},${d.y})`)
+        }
+
+        // Apply the tick function
+        ticked()
+
+        const mainNode = nodes.find((n) => n.id === mainId)
+
+        return { svgG, svg, node, tooltip, mainNode, linkPath, icon, topLabel, bellowLabel, labels }
       }
-
-      // Apply the animated path generator to the links
-      // const animateLinks = () => {
-      //   linkPath
-      //     .attr('d', generateLinkPath)
-      //     .attr('stroke-dasharray', '10 5')
-      //     .attr('stroke-dashoffset', 0)
-      //     .transition()
-      //     .duration(2000)
-      //     .ease(easeLinear)
-      //     .attr('stroke-dashoffset', -30)
-      //     .on('end', () => window.setTimeout(animateLinks, 50))
-      // }
-
-      // animateLinks()
-
-      // Update positions on tick
-      const ticked = () => {
-        linkPath
-          .attr('d', generateLinkPath)
-          .attr('stroke', (d) =>
-            groupToColor(primaryColor, d.source.metadata?.group, d.source.metadata?.['state-icon'] === 'instance_terminated'),
-          )
-        node
-          .attr('cx', (d) => d.x)
-          .attr('cy', (d) => d.y)
-          .attr('fill', (d) => groupToColor(primaryColor, d.metadata?.group, d.metadata?.['state-icon'] === 'instance_terminated'))
-        icon
-          .attr('x', (d) => d.x - 10)
-          .attr('y', (d) => d.y - 10)
-          .attr('xlink:href', (d) => getIconFromResource(d.metadata?.icon))
-        labels.attr('transform', (d) => `translate(${d.x},${d.y})`)
-      }
-
-      // Apply the tick function
-      ticked()
-
-      const mainNode = nodes.find((n) => n.id === mainId)
-
-      return { svgG, svg, node, tooltip, mainNode, linkPath, icon, topLabel, bellowLabel, labels }
-    }
-  }, [data, mainId, nonce, paperBgColor, primaryColor, primaryDarkColor, primaryLightColor, shadow24, tooltipZIndex])
+    },
+    [data, mainId, paperBgColor, primaryColor, primaryDarkColor, primaryLightColor, shadow24, tooltipZIndex],
+  )
 
   useEffect(() => {
-    const result = getSimulation()
+    const result = getSimulation(nonce)
     if (result) {
       const { tooltip, svgG, svg, node, mainNode, linkPath, icon, topLabel, bellowLabel, labels } = result
 
@@ -342,7 +345,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
           .attr('nonce', nonce ?? '')
       }
 
-      const createTooltipHtml = (d: NodesType) => {
+      const createTooltipHtml = (d: NodesType, nonce?: string) => {
         const container = `<div nonce="${nonce}" style="padding: 8px 16px 16px;box-sizing: border-box;-webkit-flex-direction: row;-ms-flex-direction: row;flex-direction: row;gap: 16px;grid-template-columns: 50px 1fr;width: 100%;display: grid;margin-top: 8px;color: inherit;">`
         const leftDiv = `<div nonce="${nonce}" style="box-sizing: border-box;-webkit-flex-direction: row;-ms-flex-direction: row;flex-direction: row;overflow: hidden;width: 100%;-webkit-align-items: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;height: 100%;display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;">`
         const rightDiv = `<div nonce="${nonce}" style="box-sizing: border-box;-webkit-flex-direction: row;-ms-flex-direction: row;flex-direction: row;overflow: hidden;width: 100%;">`
@@ -362,7 +365,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
 
       const handleMouseMove = function (this: BaseType, event: MouseEvent, d: NodesType) {
         tooltip
-          .html(createTooltipHtml(d))
+          .html(createTooltipHtml(d, nonce))
           .style('right', window.innerWidth - event.clientX + 'px')
           .style('top', event.clientY + 20 + 'px')
       }
@@ -420,6 +423,6 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
   return isLoading ? (
     <Skeleton height={400} width="100%" variant="rounded" />
   ) : data ? (
-    <Box width="100%" height="100%" ref={containerRef} nonce={nonce} />
+    <Box width="100%" height="100%" ref={containerRef} />
   ) : null
 }
