@@ -14,7 +14,7 @@ import { queryClient } from './queryClient'
 
 const inLocalhost = window?.location?.host?.startsWith('localhost') || window?.location?.host?.startsWith('127.0.0.1') || false
 
-export const Providers = ({ children }: PropsWithChildren) => {
+export const Providers = ({ children, nonce }: PropsWithChildren<{ nonce?: string }>) => {
   const [gtmId, setGtmId] = useState<string>()
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export const Providers = ({ children }: PropsWithChildren) => {
   }, [])
 
   return import.meta.env.MODE === 'test' ? (
-    <BasicProviders>
+    <BasicProviders nonce={nonce}>
       <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>
@@ -54,8 +54,8 @@ export const Providers = ({ children }: PropsWithChildren) => {
       </NetworkErrorBoundary>
     </BasicProviders>
   ) : (
-    <GTMProvider state={gtmId ? { id: gtmId } : undefined}>
-      <BasicProviders>
+    <GTMProvider state={gtmId ? { id: gtmId, nonce } : undefined}>
+      <BasicProviders nonce={nonce}>
         <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
           <QueryClientProvider client={queryClient}>
             <BrowserRouter>

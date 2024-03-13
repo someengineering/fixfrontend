@@ -10,43 +10,23 @@ import {
   ThemeProvider,
   useMediaQuery,
 } from '@mui/material'
-import { HTMLAttributes, MetaHTMLAttributes, PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
+import { PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
 import { langs } from 'src/shared/constants'
 import { getThemeMode, setThemeMode } from 'src/shared/utils/localstorage'
 import { ThemeContext } from './ThemeContext'
 
 // eslint-disable-next-line no-restricted-imports
-import createCache from '@emotion/cache'
-// eslint-disable-next-line no-restricted-imports
-import { CacheProvider } from '@emotion/react'
-
-let nonceEl = window?.document?.head?.querySelector?.('meta[property="csp-nonce"]') as unknown as { remove: () => void } | undefined
-let nonce = (nonceEl as MetaHTMLAttributes<HTMLAttributes<HTMLElement>>)?.content
-
-if (nonceEl) {
-  nonceEl.remove()
-  nonceEl = undefined
-}
-
-const emotionCache = nonce
-  ? createCache({
-      key: `fix-nonce`,
-      prepend: true,
-      nonce,
-    })
-  : undefined
-
-nonce = undefined
+import { CacheProvider, EmotionCache } from '@emotion/react'
 
 createTheme({
   typography: {},
 })
 
-export type ThemeProps = PropsWithChildren
+export type ThemeProps = PropsWithChildren<{ emotionCache?: EmotionCache }>
 
 const themeMode = getThemeMode()
 
-export function Theme({ children }: ThemeProps) {
+export function Theme({ children, emotionCache }: ThemeProps) {
   const {
     i18n: { locale },
   } = useLingui()

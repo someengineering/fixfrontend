@@ -1,9 +1,9 @@
 import { AppRouter } from './AppRouter'
 import { Providers } from './shared/providers'
 
-export const App = () => {
+export const App = ({ nonce }: { nonce?: string }) => {
   return (
-    <Providers>
+    <Providers nonce={nonce}>
       <AppRouter />
     </Providers>
   )
