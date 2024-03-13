@@ -40,11 +40,12 @@ test(`number literals`, () => {
 })
 
 test(`literal literals`, () => {
+  assert.deepEqual(lex('Condition.IpAddress.`aws:SourceIp`[]'), ['Condition', '.', 'IpAddress', '.', '`aws:SourceIp`', '[', ']'])
   assert.deepEqual(lex('some-foo_bla-bar'), ['some-foo_bla-bar'])
   assert.deepEqual(lex('some_foo-bla-bar'), ['some_foo-bla-bar'])
   assert.deepEqual(lex('foo.bla[*].bar'), ['foo', '.', 'bla', '[', '*', ']', '.', 'bar'])
-  assert.deepEqual(lex('foo.`bla[*]`.bar'), ['foo', '.', '`bla[*]`.bar'])
-  assert.deepEqual(lex('foo.`bla\\`[*]`.bar'), ['foo', '.', '`bla\\`[*]`.bar'])
+  assert.deepEqual(lex('foo.`bla[*]`.bar'), ['foo', '.', '`bla[*]`', '.', 'bar'])
+  assert.deepEqual(lex('foo.`bla\\`[*]`.bar'), ['foo', '.', '`bla\\`[*]`', '.', 'bar'])
 })
 
 test(`double quoted literals`, () => {
