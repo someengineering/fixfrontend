@@ -1,3 +1,5 @@
+import '@fontsource-variable/nunito-sans'
+import { useLingui } from '@lingui/react'
 import {
   alpha,
   createTheme,
@@ -8,13 +10,15 @@ import {
   ThemeProvider,
   useMediaQuery,
 } from '@mui/material'
-import { PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
-
-import '@fontsource-variable/nunito-sans'
-import { useLingui } from '@lingui/react'
+import { HTMLAttributes, MetaHTMLAttributes, PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
 import { langs } from 'src/shared/constants'
 import { getThemeMode, setThemeMode } from 'src/shared/utils/localstorage'
 import { ThemeContext } from './ThemeContext'
+
+// eslint-disable-next-line no-restricted-imports
+import createCache from '@emotion/cache'
+// eslint-disable-next-line no-restricted-imports
+import { CacheProvider } from '@emotion/react'
 
 createTheme({
   typography: {},
@@ -161,12 +165,32 @@ export function Theme({ children }: ThemeProps) {
     ...(langs[locale as keyof typeof langs]?.muiLocale ?? []),
   )
 
-  return (
+  const nonceEl = window.document.head.querySelector('meta[property="csp-nonce"]') as unknown as { remove: () => void }
+  const nonce = (nonceEl as MetaHTMLAttributes<HTMLAttributes<HTMLElement>>)?.content
+  if (nonceEl) {
+    nonceEl.remove()
+  }
+
+  const themeContainer = (
     <ThemeContext.Provider value={{ toggleColorMode, mode }}>
       <ThemeProvider theme={responsiveFontSizes(theme)}>
         <CssBaseline enableColorScheme />
         {children}
       </ThemeProvider>
     </ThemeContext.Provider>
+  )
+
+  return nonce ? (
+    <CacheProvider
+      value={createCache({
+        key: `fix-nonce`,
+        prepend: true,
+        nonce,
+      })}
+    >
+      {themeContainer}
+    </CacheProvider>
+  ) : (
+    themeContainer
   )
 }
