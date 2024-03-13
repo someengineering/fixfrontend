@@ -66,7 +66,10 @@ const createLabel = (
 ) => {
   return parentNode.each(function (d) {
     const nodeSelection = select<SVGGElement, ExtendedNodesType>(this)
-    const labelGroup = nodeSelection.append('g').style('pointer-events', 'none') // Ignore pointer events
+    const labelGroup = nodeSelection
+      .append('g')
+      .attr('nonce', nonce ?? '')
+      .style('pointer-events', 'none') // Ignore pointer events
 
     const textElement = labelGroup
       .append('text')
@@ -133,12 +136,13 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
 
       // Set up SVG
       const svg = select(containerRef.current)
+        .attr('nonce', nonce ?? '')
         .append('svg')
         .attr('width', width)
         .attr('height', height)
         .attr('viewBox', [0, 0, width, height])
-        .attr('style', 'max-width: 100%; height: auto;')
         .attr('nonce', nonce ?? '')
+        .attr('style', 'max-width: 100%; height: auto;')
 
       const svgG = svg.append('g')
 
@@ -358,11 +362,9 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
 
       const handleMouseMove = function (this: BaseType, event: MouseEvent, d: NodesType) {
         tooltip
-          .attr('nonce', nonce ?? '')
           .html(createTooltipHtml(d))
           .style('right', window.innerWidth - event.clientX + 'px')
           .style('top', event.clientY + 20 + 'px')
-          .attr('nonce', nonce ?? '')
       }
 
       const handleMouseLeave = function (this: BaseType) {
