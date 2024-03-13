@@ -7,6 +7,7 @@ import { useEvents } from 'src/core/events'
 import { SetupCloudButton } from 'src/pages/panel/shared/setup-cloud-button'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
+import { useNonce } from 'src/shared/providers'
 import { setInitiated } from 'src/shared/utils/localstorage'
 import { ExternalId } from './ExternalId'
 import { ExternalIdSkeleton } from './ExternalId.skeleton'
@@ -16,6 +17,7 @@ import { WorkspaceId } from './WorkspaceId'
 
 export default function SetupCloud() {
   const { addListener } = useEvents()
+  const nonce = useNonce()
   const {
     i18n: { locale },
   } = useLingui()
@@ -74,6 +76,7 @@ export default function SetupCloud() {
           src={`https://www.youtube-nocookie.com/embed/yWdOBEnAytM?modestbranding=1&rel=0&iv_load_policy=3&hl=${locale}&color=white`}
           title="FIX AWS Account Setup"
           style={{ border: 0, maxWidth: 720, maxHeight: 405 }}
+          nonce={nonce}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
         />

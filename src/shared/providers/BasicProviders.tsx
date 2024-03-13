@@ -7,6 +7,7 @@ import { i18n } from './i18n'
 
 // eslint-disable-next-line no-restricted-imports
 import createCache from '@emotion/cache'
+import { NonceProvider } from './NonceProvider'
 
 export const BasicProviders = ({ children, nonce }: PropsWithChildren<{ nonce?: string }>) => {
   const emotionCache = nonce
@@ -18,12 +19,14 @@ export const BasicProviders = ({ children, nonce }: PropsWithChildren<{ nonce?: 
     : undefined
 
   return (
-    <I18nProvider i18n={i18n}>
-      <InnerI18nProvider>
-        <Theme emotionCache={emotionCache}>
-          <SnackbarProvider>{children}</SnackbarProvider>
-        </Theme>
-      </InnerI18nProvider>
-    </I18nProvider>
+    <NonceProvider nonce={nonce}>
+      <I18nProvider i18n={i18n}>
+        <InnerI18nProvider>
+          <Theme emotionCache={emotionCache}>
+            <SnackbarProvider>{children}</SnackbarProvider>
+          </Theme>
+        </InnerI18nProvider>
+      </I18nProvider>
+    </NonceProvider>
   )
 }

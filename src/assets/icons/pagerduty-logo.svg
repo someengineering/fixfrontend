@@ -1,5 +1,5 @@
 <svg viewBox="0 0 974.8 200" fill="currentColor" id="logo-pagerduty" title="PagerDuty logo"
-  class="px-gut text-black w-full" style="max-width:13rem">
+  class="px-gut text-black w-full">
   <path
     d="M0 115.7h23.1v42H0zm87-108C74.6 1.1 66 0 45.7 0H0v95.6h45.5c18.1 0 31.6-1.1 43.5-9 13-8.6 19.7-22.9 19.7-39.4 0-17.9-8.3-32.2-21.7-39.5zM50.8 75.6H23.1V20.5l26.1-.2C73 20 84.9 28.4 84.9 47.4c0 20.4-14.7 28.2-34.1 28.2z"
     class="icn-pd nav-hider-disabled"></path>

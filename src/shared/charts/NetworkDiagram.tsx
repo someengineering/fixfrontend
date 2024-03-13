@@ -10,6 +10,7 @@ import { getIconFromResource } from 'src/assets/raw-icons'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryNodeHistoryNeighborhoodQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
+import { useNonce } from 'src/shared/providers'
 import { WorkspaceInventoryNodeNeighborhoodEdgeType, WorkspaceInventoryNodeNeighborhoodNodeType } from 'src/shared/types/server'
 import { iso8601DurationToString, parseCustomDuration } from 'src/shared/utils/parseDuration'
 
@@ -61,6 +62,7 @@ const createLabel = (
   bgColor: string | ((d: NodesType) => string),
   textColor: string,
   textAccessor: (d: ExtendedNodesType) => string,
+  nonce?: string,
 ) => {
   return parentNode.each(function (d) {
     const nodeSelection = select<SVGGElement, ExtendedNodesType>(this)
@@ -74,6 +76,7 @@ const createLabel = (
       .style('fill', textColor)
       .style('dominant-baseline', 'central')
       .style('font-size', '10px')
+      .attr('nonce', nonce ?? '')
       .each(function () {
         d.bbox = this.getBBox()
       })
@@ -103,6 +106,7 @@ const createLabel = (
 }
 
 export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
+  const nonce = useNonce()
   const { selectedWorkspace } = useUserProfile()
   const { isLoading, data } = useQuery({
     queryKey: ['workspace-inventory-node-neighborhood', selectedWorkspace?.id ?? '', mainId],
@@ -179,6 +183,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
       const tooltip = select(containerRef.current)
         .append('div')
         .style('opacity', 0)
+        .attr('nonce', nonce ?? '')
         .attr('class', tooltipClasses.tooltip)
         .style('position', 'fixed')
         .style('box-shadow', shadow24)
@@ -187,6 +192,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
         .style('border-radius', '5px')
         .style('padding', '5px')
         .style('z-index', tooltipZIndex)
+        .attr('nonce', nonce ?? '')
 
       // Render links
       // const link = svgG
@@ -207,6 +213,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
         .data(links)
         .join('path')
         .style('pointer-events', 'none')
+        .attr('nonce', nonce ?? '')
         .attr('stroke-width', 1.5)
         .attr('fill', 'none') // This ensures the path is not filled
         .attr('id', (_, i) => `linkPath${i}`)
@@ -235,8 +242,9 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
         (d: NodesType) => groupToColor(primaryColor, d.metadata?.group, d.metadata?.['state-icon'] === 'instance_terminated'),
         'white',
         (d) => d.reported.kind,
+        nonce,
       ) // For the top label
-      const bellowLabel = createLabel(labels, 8, 'black', 'white', (d) => d.reported.name) // For the bottom label
+      const bellowLabel = createLabel(labels, 8, 'black', 'white', (d) => d.reported.name, nonce) // For the bottom label
 
       // New code to append the SVG icon to each node
       const icon = svgG
@@ -245,6 +253,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
         .data(nodes)
         .join('image')
         .style('pointer-events', 'none')
+        .attr('nonce', nonce ?? '')
         .attr('cursor', 'pointer')
         .attr('width', 20) // Set the width of the icon
         .attr('height', 20) // Set the height of the icon
@@ -314,7 +323,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
 
       return { svgG, svg, node, tooltip, mainNode, linkPath, icon, topLabel, bellowLabel, labels }
     }
-  }, [data, mainId, paperBgColor, primaryColor, primaryDarkColor, primaryLightColor, shadow24, tooltipZIndex])
+  }, [data, mainId, nonce, paperBgColor, primaryColor, primaryDarkColor, primaryLightColor, shadow24, tooltipZIndex])
 
   useEffect(() => {
     const result = getSimulation()
@@ -322,19 +331,17 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
       const { tooltip, svgG, svg, node, mainNode, linkPath, icon, topLabel, bellowLabel, labels } = result
 
       const handleMouseOver = function (this: BaseType) {
-        tooltip.style('opacity', 1)
-        select(this).style('opacity', 1)
+        tooltip.style('opacity', 1).attr('nonce', nonce ?? '')
+        select(this)
+          .style('opacity', 1)
+          .attr('nonce', nonce ?? '')
       }
 
       const createTooltipHtml = (d: NodesType) => {
-        const container =
-          '<div style="padding: 8px 16px 16px;box-sizing: border-box;-webkit-flex-direction: row;-ms-flex-direction: row;flex-direction: row;gap: 16px;grid-template-columns: 50px 1fr;width: 100%;display: grid;margin-top: 8px;color: inherit;">'
-        const leftDiv =
-          '<div style="box-sizing: border-box;-webkit-flex-direction: row;-ms-flex-direction: row;flex-direction: row;overflow: hidden;width: 100%;-webkit-align-items: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;height: 100%;display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;">'
-        const rightDiv =
-          '<div style="box-sizing: border-box;-webkit-flex-direction: row;-ms-flex-direction: row;flex-direction: row;overflow: hidden;width: 100%;">'
-        const p =
-          "<p style=\"margin: 0;font-size: 16px;font-weight: 400;line-height: 1.15;font-family: Nunito Sans Variable,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"
+        const container = `<div nonce="${nonce}" style="padding: 8px 16px 16px;box-sizing: border-box;-webkit-flex-direction: row;-ms-flex-direction: row;flex-direction: row;gap: 16px;grid-template-columns: 50px 1fr;width: 100%;display: grid;margin-top: 8px;color: inherit;">`
+        const leftDiv = `<div nonce="${nonce}" style="box-sizing: border-box;-webkit-flex-direction: row;-ms-flex-direction: row;flex-direction: row;overflow: hidden;width: 100%;-webkit-align-items: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;height: 100%;display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;">`
+        const rightDiv = `<div nonce="${nonce}" style="box-sizing: border-box;-webkit-flex-direction: row;-ms-flex-direction: row;flex-direction: row;overflow: hidden;width: 100%;">`
+        const p = `<p nonce="${nonce}" style="margin: 0;font-size: 16px;font-weight: 400;line-height: 1.15;font-family: Nunito Sans Variable,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';overflow: hidden;text-overflow: ellipsis;white-space: nowrap;`
         return `${container}
           ${leftDiv}${p}color:${primaryColor};">${t`Kind`}</p></div>
           ${rightDiv}${p}">${d.reported.kind}</p></div>
@@ -353,11 +360,14 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
           .html(createTooltipHtml(d))
           .style('right', window.innerWidth - event.clientX + 'px')
           .style('top', event.clientY + 20 + 'px')
+          .attr('nonce', nonce ?? '')
       }
 
       const handleMouseLeave = function (this: BaseType) {
-        tooltip.style('opacity', 0)
-        select(this).style('opacity', 0.8)
+        tooltip.style('opacity', 0).attr('nonce', nonce ?? '')
+        select(this)
+          .style('opacity', 0.8)
+          .attr('nonce', nonce ?? '')
       }
 
       const handleZoom = (event: { transform: string; sourceEvent: MouseEvent }) => {
@@ -401,7 +411,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
         tooltip.remove()
       }
     }
-  }, [data, getSimulation, navigate, primaryColor, errorColor])
+  }, [data, getSimulation, navigate, primaryColor, errorColor, nonce])
 
   return isLoading ? (
     <Skeleton height={400} width="100%" variant="rounded" />
