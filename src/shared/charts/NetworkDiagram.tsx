@@ -138,6 +138,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
         .attr('height', height)
         .attr('viewBox', [0, 0, width, height])
         .attr('style', 'max-width: 100%; height: auto;')
+        .attr('nonce', nonce ?? '')
 
       const svgG = svg.append('g')
 
@@ -357,6 +358,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
 
       const handleMouseMove = function (this: BaseType, event: MouseEvent, d: NodesType) {
         tooltip
+          .attr('nonce', nonce ?? '')
           .html(createTooltipHtml(d))
           .style('right', window.innerWidth - event.clientX + 'px')
           .style('top', event.clientY + 20 + 'px')
@@ -416,6 +418,6 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
   return isLoading ? (
     <Skeleton height={400} width="100%" variant="rounded" />
   ) : data ? (
-    <Box width="100%" height="100%" ref={containerRef} />
+    <Box width="100%" height="100%" ref={containerRef} nonce={nonce} />
   ) : null
 }
