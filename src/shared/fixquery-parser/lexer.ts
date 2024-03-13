@@ -52,6 +52,7 @@ export enum T {
   Delete, // delete
   SingleQuotedString, // "abc"
   DoubleQuotedString, // "abc"
+  BackTickedString, // `abc`
   Literal, // abc
 }
 
@@ -162,6 +163,8 @@ export class FixLexer implements Lexer<T> {
     let res: [T, string, number] | undefined
     if (input[indexStart] === '"') {
       res = this.parse_until_next(input, indexStart, T.DoubleQuotedString)
+    } else if (input[indexStart] === '`') {
+      res = this.parse_until_next(input, indexStart, T.BackTickedString)
     } else if (input[indexStart] === "'") {
       res = this.parse_until_next(input, indexStart, T.SingleQuotedString)
     } else if (this.unquotedAllowedStartCharacters.test(input[indexStart])) {

@@ -23,7 +23,7 @@
     "preview:storybook": "vite preview --outDir=\"storybook-static\"",
     "start": "vite",
     "storybook": "storybook dev -p 6006",
-    "test": "vitest --config=./vite.config.test.ts",
+    "test": "vitest --run --config=./vite.config.test.ts",
     "test:coverage:all": "yarn test --coverage",
     "test:coverage": "yarn test --coverage.enabled=true --coverage.all=false",
     "test:inspect": "yarn test --inspect-brk",

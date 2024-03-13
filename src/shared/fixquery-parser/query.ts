@@ -26,10 +26,12 @@ export class PathPart {
   [immerable] = true
   name: string
   array_access: string | number | undefined
+  backtick: boolean
 
-  constructor({ name, array_access }: { name: string; array_access?: string | number | undefined }) {
+  constructor({ name, array_access, backtick }: { name: string; array_access?: string | number | undefined; backtick?: boolean }) {
     this.name = name
     this.array_access = array_access
+    this.backtick = backtick || false
   }
 
   for_array(index: number): PathPart {
@@ -52,7 +54,8 @@ export class PathPart {
 
   toString(): string {
     const array = this.array_access != undefined ? `[${this.array_access}]` : ''
-    return `${this.name}${array}`
+    const tick = this.backtick ? '`' : ''
+    return `${tick}${this.name}${tick}${array}`
   }
 }
 

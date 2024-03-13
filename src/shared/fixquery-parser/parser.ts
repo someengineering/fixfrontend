@@ -81,7 +81,13 @@ JsonElementP.setPattern(
 )
 
 const array_access = apply(kmid(tok(T.LBracket), opt(alt(num(), str(T.Star))), tok(T.RBracket)), (ac) => (ac != undefined ? ac : '*'))
-const path_part = apply(seq(str(T.Literal), opt(array_access)), ([name, array_access]) => new PathPart({ name, array_access }))
+const path_part = alt(
+  apply(seq(str(T.Literal), opt(array_access)), ([name, array_access]) => new PathPart({ name, array_access, backtick: false })),
+  apply(
+    seq(str(T.BackTickedString), opt(array_access)),
+    ([name, array_access]) => new PathPart({ name: name.slice(1, -1), array_access, backtick: true }),
+  ),
+)
 PathP.setPattern(apply(seq(opt(tok(T.Slash)), list_sc(path_part, tok(T.Dot))), ([slash, parts]) => new Path({ parts, root: !!slash })))
 
 BoolOperationP.setPattern(apply(alt(tok(T.And), tok(T.Or)), (t) => t.text))
