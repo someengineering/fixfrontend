@@ -54,6 +54,7 @@
     "immer": "^10.0.3",
     "js-md5": "^0.8.3",
     "lowlight": "^3.1.0",
+    "mustache": "^4.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.13",
