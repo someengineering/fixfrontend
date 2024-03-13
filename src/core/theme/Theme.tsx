@@ -32,7 +32,7 @@ const emotionCache = nonce
   ? createCache({
       key: `fix-nonce`,
       prepend: true,
-      nonce: `nonce-${nonce}`,
+      nonce,
     })
   : undefined
 
