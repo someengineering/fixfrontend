@@ -185,7 +185,7 @@ export function Theme({ children }: ThemeProps) {
       value={createCache({
         key: `fix-nonce`,
         prepend: true,
-        nonce,
+        nonce: `nonce-${nonce}`,
       })}
     >
       {themeContainer}
