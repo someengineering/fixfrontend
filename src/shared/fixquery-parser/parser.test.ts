@@ -6,12 +6,13 @@ import {
   LimitP,
   MergeQueryP,
   NavigationP,
+  parse_path,
   PartP,
+  PathP,
   QueryP,
   SimpleTermP,
   SortP,
   TermP,
-  VariableP,
   WithClauseP,
 } from './parser.ts'
 import {
@@ -28,6 +29,8 @@ import {
   MergeTerm,
   Navigation,
   Part,
+  Path,
+  PathPart,
   Predicate,
   Query,
   Sort,
@@ -36,7 +39,7 @@ import {
   WithClauseFilter,
 } from './query.ts'
 
-const parse_variable = parse_expr(VariableP)
+const parse_variable = parse_expr(PathP)
 const parse_bool_operation = parse_expr(BoolOperationP)
 const parse_json = parse_expr(JsonElementP)
 const parse_simple_term = parse_expr(SimpleTermP)
@@ -48,6 +51,11 @@ const parse_term = parse_expr(TermP)
 const parse_query = parse_expr(QueryP)
 const parse_merge_query = parse_expr(MergeQueryP)
 const parse_with_clause = parse_expr(WithClauseP)
+
+const foo = Path.from('foo')
+const bar = Path.from('bar')
+const foo_bar = Path.from_string('foo.bar')
+const bla = Path.from('bla')
 
 test(`Parse Json`, () => {
   assert.strictEqual(parse_json('1'), 1)
@@ -68,25 +76,36 @@ test(`Parse Bool Operation`, () => {
   assert.strictEqual(parse_bool_operation('or'), 'or')
 })
 
+test(`Parse Path`, () => {
+  assert.deepEqual(parse_path('foo'), Path.from('foo'))
+  assert.deepEqual(parse_path('/foo'), Path.from('foo', true))
+  assert.deepEqual(parse_path('/foo[*].bla[*].bar').toString(), '/foo[*].bla[*].bar')
+  assert.deepEqual(parse_path('/foo[1].bla[2].bar').toString(), '/foo[1].bla[2].bar')
+  assert.deepEqual(parse_path('/foo[0].bla[0].bar').toString(), '/foo[0].bla[0].bar')
+})
+
 test(`Parse Variable`, () => {
-  assert.strictEqual(parse_variable('foo'), 'foo')
-  assert.strictEqual(parse_variable('/foo'), '/foo')
-  assert.strictEqual(parse_variable('foo.bla.bar'), 'foo.bla.bar')
-  assert.strictEqual(parse_variable('/foo.bla.bar'), '/foo.bla.bar')
-  assert.strictEqual(parse_variable('/foo[*].bla[].bar[*]'), '/foo[*].bla[].bar[*]')
+  assert.deepEqual(parse_variable('foo'), foo)
+  assert.deepEqual(parse_variable('/foo'), Path.from('foo', true))
+  assert.deepEqual(parse_variable('foo.bla.bar'), Path.from(['foo', 'bla', 'bar']))
+  assert.deepEqual(parse_variable('/foo.bla.bar'), Path.from(['foo', 'bla', 'bar'], true))
+  assert.deepEqual(
+    parse_variable('/foo[*].bla[].bar[*]'),
+    new Path({ parts: ['foo', 'bla', 'bar'].map((name) => new PathPart({ name, array_access: '*' })), root: true }),
+  )
 })
 
 test(`Parse Simple Term`, () => {
   assert.deepEqual(parse_simple_term('is(instance)'), new IsTerm({ kinds: ['instance'] }))
   assert.deepEqual(parse_simple_term('id(test1234)'), new IdTerm({ ids: ['test1234'] }))
   assert.deepEqual(parse_simple_term('all'), new AllTerm())
-  assert.deepEqual(parse_simple_term('foo==23'), new Predicate({ name: 'foo', op: '==', value: 23 }))
-  assert.deepEqual(parse_simple_term('bla!=["1", 2]'), new Predicate({ name: 'bla', op: '!=', value: ['1', 2] }))
+  assert.deepEqual(parse_simple_term('foo==23'), new Predicate({ path: foo, op: '==', value: 23 }))
+  assert.deepEqual(parse_simple_term('bla!=["1", 2]'), new Predicate({ path: bla, op: '!=', value: ['1', 2] }))
   assert.deepEqual(
     parse_simple_term('foo.bla.bar.{test=23}'),
     new ContextTerm({
-      name: 'foo.bla.bar',
-      term: new Predicate({ name: 'test', op: '=', value: 23 }),
+      path: Path.from_string('foo.bla.bar'),
+      term: new Predicate({ path: Path.from('test'), op: '=', value: 23 }),
     }),
   )
   assert.deepEqual(parse_simple_term('"test"'), new FulltextTerm({ text: 'test' }))
@@ -98,13 +117,13 @@ test(`Parse Term`, () => {
   assert.deepEqual(parse_term('is([a,b,c])'), new IsTerm({ kinds: ['a', 'b', 'c'] }))
   assert.deepEqual(parse_term('id(test1234)'), new IdTerm({ ids: ['test1234'] }))
   assert.deepEqual(parse_term('all'), new AllTerm())
-  assert.deepEqual(parse_term('foo==23'), new Predicate({ name: 'foo', op: '==', value: 23 }))
-  assert.deepEqual(parse_term('bla!=["1", 2]'), new Predicate({ name: 'bla', op: '!=', value: ['1', 2] }))
+  assert.deepEqual(parse_term('foo==23'), new Predicate({ path: foo, op: '==', value: 23 }))
+  assert.deepEqual(parse_term('bla!=["1", 2]'), new Predicate({ path: bla, op: '!=', value: ['1', 2] }))
   assert.deepEqual(
     parse_term('foo.bla.bar.{test=23}'),
     new ContextTerm({
-      name: 'foo.bla.bar',
-      term: new Predicate({ name: 'test', op: '=', value: 23 }),
+      path: Path.from_string('foo.bla.bar'),
+      term: new Predicate({ path: Path.from('test'), op: '=', value: 23 }),
     }),
   )
   const ftt = new FulltextTerm({ text: 'test' })
@@ -114,9 +133,9 @@ test(`Parse Term`, () => {
   assert.deepEqual(parse_term('("test" or "goo")'), new CombinedTerm({ left: ftt, op: 'or', right: ftg }))
   assert.deepEqual(parse_term('(("test") or ("goo"))'), new CombinedTerm({ left: ftt, op: 'or', right: ftg }))
   assert.deepEqual(
-    parse_term('(ab > 23 and (("test") or ("goo")))'),
+    parse_term('(foo > 23 and (("test") or ("goo")))'),
     new CombinedTerm({
-      left: new Predicate({ name: 'ab', op: '>', value: 23 }),
+      left: new Predicate({ path: foo, op: '>', value: 23 }),
       op: 'and',
       right: new CombinedTerm({ left: ftt, op: 'or', right: ftg }),
     }),
@@ -124,13 +143,13 @@ test(`Parse Term`, () => {
 })
 
 test(`Parse Sort`, () => {
-  assert.deepEqual(parse_sort('sort foo.bar'), [new Sort({ name: 'foo.bar', order: SortOrder.Asc })])
-  assert.deepEqual(parse_sort('sort foo.bar asc'), [new Sort({ name: 'foo.bar', order: SortOrder.Asc })])
-  assert.deepEqual(parse_sort('sort foo.bar desc'), [new Sort({ name: 'foo.bar', order: SortOrder.Desc })])
+  assert.deepEqual(parse_sort('sort foo.bar'), [new Sort({ path: foo_bar, order: SortOrder.Asc })])
+  assert.deepEqual(parse_sort('sort foo.bar asc'), [new Sort({ path: foo_bar, order: SortOrder.Asc })])
+  assert.deepEqual(parse_sort('sort foo.bar desc'), [new Sort({ path: foo_bar, order: SortOrder.Desc })])
   assert.deepEqual(parse_sort('sort foo asc, bar desc, bla'), [
-    new Sort({ name: 'foo', order: SortOrder.Asc }),
-    new Sort({ name: 'bar', order: SortOrder.Desc }),
-    new Sort({ name: 'bla', order: SortOrder.Asc }),
+    new Sort({ path: foo, order: SortOrder.Asc }),
+    new Sort({ path: bar, order: SortOrder.Desc }),
+    new Sort({ path: bla, order: SortOrder.Asc }),
   ])
 })
 
@@ -187,19 +206,19 @@ test(`Parse WithClause`, () => {
 })
 
 test(`Parse Part`, () => {
-  const pred = new Predicate({ name: 'foo', op: '=', value: 23 })
-  const ctx = new ContextTerm({ name: 'bar.test', term: new Predicate({ name: 'num', op: '>', value: 23 }) })
+  const pred = new Predicate({ path: foo, op: '=', value: 23 })
+  const ctx = new ContextTerm({ path: foo_bar, term: new Predicate({ path: foo, op: '>', value: 23 }) })
   const is = new IsTerm({ kinds: ['instance'] })
   const combined = new CombinedTerm({
     left: is,
     op: 'and',
     right: new CombinedTerm({ left: pred, op: 'and', right: ctx }),
   })
-  const sort = [new Sort({ name: 'bla', order: SortOrder.Asc })]
+  const sort = [new Sort({ path: bla, order: SortOrder.Asc })]
   const limit = new Limit({ length: 10 })
   assert.deepEqual(parse_part('foo=23 sort bla limit 10'), new Part({ term: pred, sort, limit }))
   assert.deepEqual(
-    parse_part('is(instance) and foo=23 and bar.test.{num>23} sort bla limit 10'),
+    parse_part('is(instance) and foo=23 and foo.bar.{foo>23} sort bla limit 10'),
     new Part({
       term: combined,
       sort,
@@ -210,27 +229,27 @@ test(`Parse Part`, () => {
 })
 
 test(`Parse Merge Query`, () => {
-  const pred = new Predicate({ name: 'foo', op: '=', value: 23 })
+  const pred = new Predicate({ path: foo, op: '=', value: 23 })
   const part = new Part({ term: pred })
   assert.deepEqual(
-    parse_merge_query('test: <-- foo=23'),
+    parse_merge_query('foo: <-- foo=23'),
     new MergeQuery({
-      name: 'test',
+      path: foo,
       query: new Query({ parts: [new Part({ term: new AllTerm(), navigation: new Navigation({ direction: Direction.inbound }) }), part] }),
     }),
   )
 })
 
 test(`Parse Query`, () => {
-  const pred = new Predicate({ name: 'foo', op: '=', value: 23 })
-  const ctx = new ContextTerm({ name: 'bar.test', term: new Predicate({ name: 'num', op: '>', value: 23 }) })
+  const pred = new Predicate({ path: foo, op: '=', value: 23 })
+  const ctx = new ContextTerm({ path: foo_bar, term: new Predicate({ path: bla, op: '>', value: 23 }) })
   const is = new IsTerm({ kinds: ['instance'] })
   const combined = new CombinedTerm({
     left: is,
     op: 'and',
     right: new CombinedTerm({ left: pred, op: 'and', right: ctx }),
   })
-  const sort = [new Sort({ name: 'bla', order: SortOrder.Asc })]
+  const sort = [new Sort({ path: bla, order: SortOrder.Asc })]
   const limit = new Limit({ length: 10 })
   const part = new Part({ term: pred, sort, limit })
   const with_clause = new WithClause({
@@ -244,11 +263,11 @@ test(`Parse Query`, () => {
     new Query({ parts: [new Part({ term: is, with_clause, sort, limit })] }),
   )
   assert.deepEqual(
-    parse_query('is(instance) and foo=23 and bar.test.{num>23} sort bla limit 10 --> foo=23 sort bla limit 10'),
+    parse_query('is(instance) and foo=23 and foo.bar.{bla>23} sort bla limit 10 --> foo=23 sort bla limit 10'),
     new Query({ parts: [new Part({ term: combined, sort, limit, navigation: new Navigation() }), part] }),
   )
   assert.deepEqual(
-    parse_query('is(instance) {test: --> foo=23, bla: <-- is(instance)}'),
+    parse_query('is(instance) {foo: --> foo=23, bla: <-- is(instance)}'),
     new Query({
       parts: [
         new Part({
@@ -256,7 +275,7 @@ test(`Parse Query`, () => {
             preFilter: is,
             merge: [
               new MergeQuery({
-                name: 'test',
+                path: foo,
                 query: new Query({
                   parts: [
                     new Part({ term: new AllTerm(), navigation: new Navigation({ direction: Direction.outbound }) }),
@@ -265,7 +284,7 @@ test(`Parse Query`, () => {
                 }),
               }),
               new MergeQuery({
-                name: 'bla',
+                path: bla,
                 query: new Query({
                   parts: [
                     new Part({ term: new AllTerm(), navigation: new Navigation({ direction: Direction.inbound }) }),
