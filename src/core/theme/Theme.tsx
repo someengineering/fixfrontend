@@ -20,6 +20,22 @@ import createCache from '@emotion/cache'
 // eslint-disable-next-line no-restricted-imports
 import { CacheProvider } from '@emotion/react'
 
+let nonceEl = window?.document?.head?.querySelector?.('meta[property="csp-nonce"]') as unknown as { remove: () => void } | undefined
+let nonce = (nonceEl as MetaHTMLAttributes<HTMLAttributes<HTMLElement>>)?.content
+
+if (nonceEl) {
+  nonceEl.remove()
+  nonceEl = undefined
+}
+
+const emotionCache = createCache({
+  key: `fix-nonce`,
+  prepend: true,
+  nonce: `nonce-${nonce}`,
+})
+
+nonce = undefined
+
 createTheme({
   typography: {},
 })
@@ -165,12 +181,6 @@ export function Theme({ children }: ThemeProps) {
     ...(langs[locale as keyof typeof langs]?.muiLocale ?? []),
   )
 
-  const nonceEl = window.document.head.querySelector('meta[property="csp-nonce"]') as unknown as { remove: () => void }
-  const nonce = (nonceEl as MetaHTMLAttributes<HTMLAttributes<HTMLElement>>)?.content
-  if (nonceEl) {
-    nonceEl.remove()
-  }
-
   const themeContainer = (
     <ThemeContext.Provider value={{ toggleColorMode, mode }}>
       <ThemeProvider theme={responsiveFontSizes(theme)}>
@@ -180,17 +190,5 @@ export function Theme({ children }: ThemeProps) {
     </ThemeContext.Provider>
   )
 
-  return nonce ? (
-    <CacheProvider
-      value={createCache({
-        key: `fix-nonce`,
-        prepend: true,
-        nonce: `nonce-${nonce}`,
-      })}
-    >
-      {themeContainer}
-    </CacheProvider>
-  ) : (
-    themeContainer
-  )
+  return nonce ? <CacheProvider value={emotionCache}>{themeContainer}</CacheProvider> : themeContainer
 }
