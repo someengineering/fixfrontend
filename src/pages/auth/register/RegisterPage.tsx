@@ -19,6 +19,15 @@ const RegisterButton = styled(LoadingButton)({
   minHeight: 50,
 })
 
+const getErrorMessage = (error: string) => {
+  switch (error) {
+    case 'REGISTER_USER_ALREADY_EXISTS':
+      return t`This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password.`
+    default:
+      return error
+  }
+}
+
 export default function RegisterPage() {
   const { mutateAsync: register, isPending: isRegisterLoading, error } = useMutation({ mutationFn: registerMutation })
   const [email, setEmail] = useState('')
@@ -49,7 +58,8 @@ export default function RegisterPage() {
     }
   }
   const isLoadingGeneric = isLoading || isRegisterLoading
-  const registerError = ((error as AxiosError)?.response?.data as { detail: string })?.detail
+  let registerError = ((error as AxiosError)?.response?.data as { detail: string | { code: string; reason: string } })?.detail || undefined
+  registerError = registerError ? (typeof registerError === 'string' ? getErrorMessage(registerError) : registerError.reason) : undefined
   return (
     <>
       <Grid

@@ -7,6 +7,7 @@ import { UserSettingsFormPassword } from './UserSettingsFormPassword'
 import { UserSettingsNotification } from './UserSettingsNotification'
 import { UserSettingsSocialNetworkSkeleton } from './UserSettingsSocialNetwork.skeleton'
 import { UserSettingsSocialNetworkList } from './UserSettingsSocialNetworkList'
+import { UserSettingsTotp } from './UserSettingsTotp'
 
 export default function UserSettingsPage() {
   return (
@@ -18,6 +19,7 @@ export default function UserSettingsPage() {
         <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
           <UserSettingsFormEmail />
           <UserSettingsFormPassword />
+          <UserSettingsTotp />
         </NetworkErrorBoundary>
       </Stack>
       <Divider />

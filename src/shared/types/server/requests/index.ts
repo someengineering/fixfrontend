@@ -1,5 +1,7 @@
 export type { PatchWorkspaceSettingsRequest } from './PatchWorkspaceSetting'
+export type { PostAuthForgotPasswordRequest } from './PostAuthForgotPassword'
 export type { PostAuthRegisterRequest } from './PostAuthRegister'
+export type { PostAuthResetPasswordRequest } from './PostAuthResetPassword'
 export type { PostWorkspaceInventoryPropertyAttributesRequest } from './PostWorkspaceInventoryPropertyAttributes'
 export type { PostWorkspaceInventoryPropertyPathCompleteRequest } from './PostWorkspaceInventoryPropertyPathComplete'
 export type { PostWorkspaceInventoryPropertyValuesRequest } from './PostWorkspaceInventoryPropertyValues'

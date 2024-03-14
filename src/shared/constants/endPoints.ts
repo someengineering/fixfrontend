@@ -7,6 +7,11 @@ export const endPoints = {
       logout: 'api/auth/jwt/logout',
       login: 'api/auth/jwt/login',
     },
+    mfa: {
+      add: 'api/auth/mfa/add',
+      disable: 'api/auth/mfa/disable',
+      enable: 'api/auth/mfa/enable',
+    },
     oauthAccounts: (providerId: string) => `api/auth/oauth-accounts/${providerId}`,
     oauthAssociate: 'api/auth/oauth-associate',
     oauthProviders: 'api/auth/oauth-providers',

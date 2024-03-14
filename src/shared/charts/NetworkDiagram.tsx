@@ -187,6 +187,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
           .append('div')
           .style('opacity', 0)
           .attr('class', tooltipClasses.tooltip)
+          .style('pointer-events', 'none')
           .style('position', 'fixed')
           .style('box-shadow', shadow24)
           .style('background-color', paperBgColor)
