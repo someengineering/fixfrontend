@@ -12,11 +12,13 @@ import { TrackJS } from 'trackjs'
 import { BasicProviders } from './BasicProviders'
 import { queryClient } from './queryClient'
 
-export const Providers = ({ children }: PropsWithChildren) => {
+const inLocalhost = window?.location?.host?.startsWith('localhost') || window?.location?.host?.startsWith('127.0.0.1') || false
+
+export const Providers = ({ children, nonce }: PropsWithChildren<{ nonce?: string }>) => {
   const [gtmId, setGtmId] = useState<string>()
 
   useEffect(() => {
-    if (import.meta.env.MODE !== 'test') {
+    if (import.meta.env.MODE !== 'test' && !inLocalhost) {
       getEnvironmentStr()
         .then((envStr) => {
           env.aws_marketplace_url = envStr.aws_marketplace_url
@@ -25,7 +27,7 @@ export const Providers = ({ children }: PropsWithChildren) => {
           )
         })
         .catch(() => {})
-      if (!TrackJS.isInstalled() && import.meta.env.MODE !== 'development') {
+      if (!TrackJS.isInstalled() && import.meta.env.MODE !== 'development' && !inLocalhost) {
         TrackJS.install({
           token: import.meta.env.VITE_TRACKJS_TOKEN ?? '',
           application: 'fix',
@@ -38,7 +40,7 @@ export const Providers = ({ children }: PropsWithChildren) => {
   }, [])
 
   return import.meta.env.MODE === 'test' ? (
-    <BasicProviders>
+    <BasicProviders nonce={nonce}>
       <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>
@@ -52,8 +54,8 @@ export const Providers = ({ children }: PropsWithChildren) => {
       </NetworkErrorBoundary>
     </BasicProviders>
   ) : (
-    <GTMProvider state={gtmId ? { id: gtmId } : undefined}>
-      <BasicProviders>
+    <GTMProvider state={gtmId ? { id: gtmId, nonce } : undefined}>
+      <BasicProviders nonce={nonce}>
         <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
           <QueryClientProvider client={queryClient}>
             <BrowserRouter>

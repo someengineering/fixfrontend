@@ -1,6 +1,7 @@
 import { BaseType, axisBottom, axisLeft, scaleBand, select } from 'd3'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { colorFromRedToGreen } from 'src/shared/constants'
+import { useNonce } from 'src/shared/providers'
 
 interface HeatmapProps<ColumnsKeys extends string, RowsKeys extends string> {
   data: {
@@ -21,6 +22,7 @@ export function Heatmap<ColumnsKeys extends string, RowsKeys extends string>({
   minWidth,
 }: HeatmapProps<ColumnsKeys, RowsKeys>) {
   const ref = useRef<HTMLDivElement>(null)
+  const nonce = useNonce()
 
   const processedData = useMemo(() => {
     const columns = Object.keys(data) as ColumnsKeys[]
@@ -53,6 +55,7 @@ export function Heatmap<ColumnsKeys extends string, RowsKeys extends string>({
         .append('div')
         .style('opacity', 0)
         .attr('class', 'tooltip')
+        .attr('nonce', nonce ?? '')
         .style('position', 'fixed')
         .style('box-shadow', '0px 5px 5px -3px rgba(0,0,0,0.2), 0px 8px 10px 1px rgba(0,0,0,0.14), 0px 3px 14px 2px rgba(0,0,0,0.12)')
         .style('background-color', 'white')
@@ -64,9 +67,11 @@ export function Heatmap<ColumnsKeys extends string, RowsKeys extends string>({
       const svg = select(el)
         .style('height', `${el.offsetWidth / 2}px`)
         .style('overflow', 'auto')
+        .attr('nonce', nonce ?? '')
         .append('svg')
         .attr('width', width + margin.left + margin.right)
         .attr('height', height + margin.top + margin.bottom)
+        .attr('nonce', nonce ?? '')
       const container = svg.append('g').attr('transform', `translate(${margin.left}, ${margin.top})`)
 
       // Build X scales and axis:
@@ -75,6 +80,7 @@ export function Heatmap<ColumnsKeys extends string, RowsKeys extends string>({
       container
         .append('g')
         .style('font-size', 15)
+        .attr('nonce', nonce ?? '')
         .attr('transform', `translate(0, ${height})`)
         .call(axisBottom(x).tickSize(0))
         .select('.domain')
@@ -83,7 +89,13 @@ export function Heatmap<ColumnsKeys extends string, RowsKeys extends string>({
       // Build Y scales and axis:
       const y = scaleBand().range([height, 0]).domain(processedData.rows).padding(0.05)
       const yBandwidth = y.bandwidth()
-      container.append('g').style('font-size', 15).call(axisLeft(y).tickSize(0)).select('.domain').remove()
+      container
+        .append('g')
+        .style('font-size', 15)
+        .attr('nonce', nonce ?? '')
+        .call(axisLeft(y).tickSize(0))
+        .select('.domain')
+        .remove()
 
       const mouseover = function (this: BaseType) {
         tooltip.style('opacity', 1)
@@ -94,10 +106,13 @@ export function Heatmap<ColumnsKeys extends string, RowsKeys extends string>({
           .html(`${d.data.title}`)
           .style('left', event.clientX + 20 + 'px')
           .style('top', event.clientY + 20 + 'px')
+          .attr('nonce', nonce ?? '')
       }
       const mouseleave = function (this: BaseType) {
-        tooltip.style('opacity', 0)
-        select(this).style('opacity', 0.8)
+        tooltip.style('opacity', 0).attr('nonce', nonce ?? '')
+        select(this)
+          .style('opacity', 0.8)
+          .attr('nonce', nonce ?? '')
       }
       const textWrap = function (this: SVGTextElement | null) {
         const self = select(this)
@@ -137,6 +152,7 @@ export function Heatmap<ColumnsKeys extends string, RowsKeys extends string>({
         .style('stroke-width', 4)
         .style('stroke', 'none')
         .style('opacity', 0.8)
+        .attr('nonce', nonce ?? '')
         .on('mouseover', mouseover)
         .on('mousemove', mousemove)
         .on('mouseleave', mouseleave)
@@ -150,7 +166,7 @@ export function Heatmap<ColumnsKeys extends string, RowsKeys extends string>({
         svg.remove()
       }
     },
-    [processedData, minWidth, minHeight],
+    [processedData, minWidth, minHeight, nonce],
   )
 
   useEffect(() => {
