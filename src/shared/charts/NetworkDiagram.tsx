@@ -139,7 +139,8 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
           .attr('width', width)
           .attr('height', height)
           .attr('viewBox', [0, 0, width, height])
-          .attr('style', 'max-width: 100%; height: auto;')
+          .style('max-width', '100%')
+          .style('height', 'auto')
 
         const svgG = svg.append('g')
 
