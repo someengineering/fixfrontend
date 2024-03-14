@@ -1,6 +1,7 @@
 import { AutocompleteRenderOptionState, ListItemButton, Tooltip, Typography, TypographyProps, useMediaQuery, useTheme } from '@mui/material'
 import { HTMLAttributes, ReactElement, ReactNode, forwardRef } from 'react'
 import { ListChildComponentProps, VariableSizeList } from 'react-window'
+import { useNonce } from 'src/shared/providers'
 import { OuterElementContext } from './helper/OuterElementContext'
 import { OuterElementType } from './helper/OuterElementType'
 import { useResetCache } from './helper/useResetCache'
@@ -15,6 +16,7 @@ function RenderRow({
   style: { background: _background, backgroundColor: _backgroundColor, ...style },
 }: ListChildComponentProps) {
   const [props, option, { inputValue: _state, ...state }, typographyProps] = (data as DataItemType[])[index]
+  const nonce = useNonce()
 
   const inlineStyle = {
     ...style,
@@ -23,7 +25,7 @@ function RenderRow({
 
   return (
     <Tooltip title={option} arrow enterDelay={400} enterNextDelay={400}>
-      <ListItemButton component="li" {...props} {...state} style={inlineStyle}>
+      <ListItemButton component="li" {...props} {...state} style={inlineStyle} nonce={nonce}>
         <Typography noWrap {...typographyProps}>
           {option}
         </Typography>

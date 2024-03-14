@@ -1,6 +1,7 @@
 import { Paper, Stack, Typography, alpha, colors as muicolors, useTheme } from '@mui/material'
 import { useMemo } from 'react'
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import { useNonce } from 'src/shared/providers'
 
 interface StackbarChartProps {
   data: {
@@ -19,6 +20,7 @@ interface StackbarChartProps {
 
 export function StackbarChart({ data, colors }: StackbarChartProps) {
   const theme = useTheme()
+  const nonce = useNonce()
   const { rawData, barChartData, total } = useMemo(() => {
     const rawData = data.reduce(
       (prev1, cur1) => ({
@@ -76,23 +78,8 @@ export function StackbarChart({ data, colors }: StackbarChartProps) {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis
-          angle={45}
-          dataKey="name"
-          textAnchor="start"
-          height={150}
-          style={{
-            fill: alpha(theme.palette.common.black, 0.8),
-          }}
-        />
-        <YAxis
-          domain={[0, total]}
-          type="number"
-          allowDataOverflow={true}
-          style={{
-            fill: alpha(theme.palette.common.black, 0.8),
-          }}
-        />
+        <XAxis angle={45} dataKey="name" textAnchor="start" height={150} fill={alpha(theme.palette.common.black, 0.8)} />
+        <YAxis domain={[0, total]} type="number" allowDataOverflow={true} fill={alpha(theme.palette.common.black, 0.8)} />
         <Tooltip contentStyle={{ background: theme.palette.common.white }} />
         <Legend
           content={({ payload }) => (
@@ -100,7 +87,7 @@ export function StackbarChart({ data, colors }: StackbarChartProps) {
               <Paper component={Stack} direction="row" justifyContent="center" spacing={3} p={2} sx={{ flexWrap: 'wrap' }} width="auto">
                 {payload?.map(({ value, color }, i) => (
                   <Stack direction="row" py={1} spacing={1} key={i}>
-                    <div style={{ background: color, width: 16, height: 16 }} />
+                    <div style={{ background: color, width: 16, height: 16 }} nonce={nonce} />
                     <Typography display="flex" key={i} color={color}>
                       {value}
                     </Typography>

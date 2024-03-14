@@ -25,13 +25,14 @@ export const getIframeSnippet = (
   id: Pick<SnippetsParams, 'id'>['id'],
   environment?: CustomEnvironmentParams,
   customDomain: SnippetsParams['customDomain'] = DEFAULT_DOMAIN,
+  nonce?: string,
 ) => {
   let params = ``
   if (environment) {
     const { gtm_auth, gtm_preview } = environment
     params = `&gtm_auth=${gtm_auth}&gtm_preview=${gtm_preview}&gtm_cookies_win=x`
   }
-  return `<iframe src="${customDomain}/ns.html?id=${id}${params}" height="0" width="0" style="display:none;visibility:hidden" id="tag-manager"></iframe>`
+  return `<iframe src="${customDomain}/ns.html?id=${id}${params}" height="0" width="0" style="display:none;visibility:hidden" nonce="${nonce}" id="tag-manager"></iframe>`
 }
 
 /**

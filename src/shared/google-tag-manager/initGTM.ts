@@ -13,7 +13,7 @@ const setupGTM = (params: SnippetsParams) => {
 
   const getNoScript = (): HTMLElement => {
     const noScript = window.document.createElement('noscript')
-    noScript.innerHTML = getIframeSnippet(params.id, params.environment, params.customDomain)
+    noScript.innerHTML = getIframeSnippet(params.id, params.environment, params.customDomain, params.nonce)
     return noScript
   }
 

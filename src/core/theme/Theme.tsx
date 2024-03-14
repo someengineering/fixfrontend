@@ -10,25 +10,23 @@ import {
   ThemeProvider,
   useMediaQuery,
 } from '@mui/material'
-import { HTMLAttributes, MetaHTMLAttributes, PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
+import { PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
 import { langs } from 'src/shared/constants'
 import { getThemeMode, setThemeMode } from 'src/shared/utils/localstorage'
 import { ThemeContext } from './ThemeContext'
 
 // eslint-disable-next-line no-restricted-imports
-import createCache from '@emotion/cache'
-// eslint-disable-next-line no-restricted-imports
-import { CacheProvider } from '@emotion/react'
+import { CacheProvider, EmotionCache } from '@emotion/react'
 
 createTheme({
   typography: {},
 })
 
-export type ThemeProps = PropsWithChildren
+export type ThemeProps = PropsWithChildren<{ emotionCache?: EmotionCache }>
 
 const themeMode = getThemeMode()
 
-export function Theme({ children }: ThemeProps) {
+export function Theme({ children, emotionCache }: ThemeProps) {
   const {
     i18n: { locale },
   } = useLingui()
@@ -165,12 +163,6 @@ export function Theme({ children }: ThemeProps) {
     ...(langs[locale as keyof typeof langs]?.muiLocale ?? []),
   )
 
-  const nonceEl = window.document.head.querySelector('meta[property="csp-nonce"]') as unknown as { remove: () => void }
-  const nonce = (nonceEl as MetaHTMLAttributes<HTMLAttributes<HTMLElement>>)?.content
-  if (nonceEl) {
-    nonceEl.remove()
-  }
-
   const themeContainer = (
     <ThemeContext.Provider value={{ toggleColorMode, mode }}>
       <ThemeProvider theme={responsiveFontSizes(theme)}>
@@ -180,17 +172,5 @@ export function Theme({ children }: ThemeProps) {
     </ThemeContext.Provider>
   )
 
-  return nonce ? (
-    <CacheProvider
-      value={createCache({
-        key: `fix-nonce`,
-        prepend: true,
-        nonce,
-      })}
-    >
-      {themeContainer}
-    </CacheProvider>
-  ) : (
-    themeContainer
-  )
+  return emotionCache ? <CacheProvider value={emotionCache}>{themeContainer}</CacheProvider> : themeContainer
 }
