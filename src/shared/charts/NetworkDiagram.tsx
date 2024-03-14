@@ -62,14 +62,11 @@ const createLabel = (
   bgColor: string | ((d: NodesType) => string),
   textColor: string,
   textAccessor: (d: ExtendedNodesType) => string,
-  nonce?: string,
+  nonce: string,
 ) => {
   return parentNode.each(function (d) {
     const nodeSelection = select<SVGGElement, ExtendedNodesType>(this)
-    const labelGroup = nodeSelection
-      .append('g')
-      .attr('nonce', nonce ?? '')
-      .style('pointer-events', 'none') // Ignore pointer events
+    const labelGroup = nodeSelection.append('g').attr('nonce', nonce).style('pointer-events', 'none') // Ignore pointer events
 
     const textElement = labelGroup
       .append('text')
@@ -79,7 +76,7 @@ const createLabel = (
       .style('fill', textColor)
       .style('dominant-baseline', 'central')
       .style('font-size', '10px')
-      .attr('nonce', nonce ?? '')
+      .attr('nonce', nonce)
       .each(function () {
         d.bbox = this.getBBox()
       })
@@ -109,7 +106,7 @@ const createLabel = (
 }
 
 export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
-  const nonce = useNonce()
+  const nonce = useNonce() ?? ''
   const { selectedWorkspace } = useUserProfile()
   const { isLoading, data } = useQuery({
     queryKey: ['workspace-inventory-node-neighborhood', selectedWorkspace?.id ?? '', mainId],
@@ -128,7 +125,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
   const containerRef = useRef<HTMLDivElement | undefined>()
 
   const getSimulation = useCallback(
-    (nonce?: string) => {
+    (nonce: string) => {
       if (!data) {
         return
       }
@@ -137,13 +134,12 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
 
         // Set up SVG
         const svg = select(containerRef.current)
-          .attr('nonce', nonce ?? '')
           .append('svg')
           .attr('width', width)
           .attr('height', height)
           .attr('viewBox', [0, 0, width, height])
-          .attr('nonce', nonce ?? '')
           .attr('style', 'max-width: 100%; height: auto;')
+          .attr('nonce', nonce)
 
         const svgG = svg.append('g')
 
@@ -189,7 +185,6 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
         const tooltip = select(containerRef.current)
           .append('div')
           .style('opacity', 0)
-          .attr('nonce', nonce ?? '')
           .attr('class', tooltipClasses.tooltip)
           .style('position', 'fixed')
           .style('box-shadow', shadow24)
@@ -198,7 +193,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
           .style('border-radius', '5px')
           .style('padding', '5px')
           .style('z-index', tooltipZIndex)
-          .attr('nonce', nonce ?? '')
+          .attr('nonce', nonce)
 
         // Render links
         // const link = svgG
@@ -219,7 +214,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
           .data(links)
           .join('path')
           .style('pointer-events', 'none')
-          .attr('nonce', nonce ?? '')
+          .attr('nonce', nonce)
           .attr('stroke-width', 1.5)
           .attr('fill', 'none') // This ensures the path is not filled
           .attr('id', (_, i) => `linkPath${i}`)
@@ -259,7 +254,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
           .data(nodes)
           .join('image')
           .style('pointer-events', 'none')
-          .attr('nonce', nonce ?? '')
+          .attr('nonce', nonce)
           .attr('cursor', 'pointer')
           .attr('width', 20) // Set the width of the icon
           .attr('height', 20) // Set the height of the icon
@@ -339,42 +334,108 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
       const { tooltip, svgG, svg, node, mainNode, linkPath, icon, topLabel, bellowLabel, labels } = result
 
       const handleMouseOver = function (this: BaseType) {
-        tooltip.style('opacity', 1).attr('nonce', nonce ?? '')
-        select(this)
-          .style('opacity', 1)
-          .attr('nonce', nonce ?? '')
+        tooltip.style('opacity', 1)
+        select(this).style('opacity', 1).attr('nonce', nonce)
+      }
+      const tooltipContainer = select(window.document.createElement('div'))
+        .attr('nonce', nonce)
+        .style('padding', '8px 16px 16px')
+        .style('box-sizing', 'border-box')
+        .style('-webkit-flex-direction', 'row')
+        .style('-ms-flex-direction', 'row')
+        .style('flex-direction', 'row')
+        .style('gap', '16px')
+        .style('grid-template-columns', '50px 1fr')
+        .style('width', '100%')
+        .style('display', 'grid')
+        .style('margin-top', '8px')
+        .style('color', 'inherit')
+
+      const tooltipRightDiv = select(window.document.createElement('div'))
+        .attr('nonce', nonce)
+        .style('box-sizing', 'border-box')
+        .style('-webkit-flex-direction', 'row')
+        .style('-ms-flex-direction', 'row')
+        .style('flex-direction', 'row')
+        .style('overflow', 'hidden')
+        .style('width', '100%')
+
+      const tooltipLeftDiv = tooltipRightDiv
+        .clone()
+        .style('-webkit-align-items', 'center')
+        .style('-webkit-box-align', 'center')
+        .style('-ms-flex-align', 'center')
+        .style('align-items', 'center')
+        .style('height', '100%')
+        .style('display', '-webkit-box')
+        .style('display', '-webkit-flex')
+        .style('display', '-ms-flexbox')
+        .style('display', 'flex')
+
+      const tooltipContent = select(window.document.createElement('p'))
+        .attr('nonce', nonce)
+        .style('margin', '0')
+        .style('font-size', '16px')
+        .style('font-weight', '400')
+        .style('line-height', '1.15')
+        .style(
+          'font-family',
+          "'Nunito Sans Variable,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'",
+        )
+        .style('overflow', 'hidden')
+        .style('text-overflow', 'ellipsis')
+        .style('white-space', 'nowrap')
+
+      const createTooltipContentRow = (clonedContainer: HTMLDivElement | null, left: string, right: string) => {
+        clonedContainer?.appendChild(
+          tooltipLeftDiv
+            .clone()
+            .node()
+            ?.appendChild(tooltipContent.clone().text(left).style('color', primaryColor).node() as HTMLParagraphElement) as HTMLDivElement,
+        )
+        clonedContainer?.appendChild(
+          tooltipRightDiv
+            .clone()
+            .node()
+            ?.appendChild(tooltipContent.clone().text(right).node() as HTMLParagraphElement) as HTMLDivElement,
+        )
       }
 
-      const createTooltipHtml = (d: NodesType, nonce?: string) => {
-        const container = `<div nonce="${nonce}" style="padding: 8px 16px 16px;box-sizing: border-box;-webkit-flex-direction: row;-ms-flex-direction: row;flex-direction: row;gap: 16px;grid-template-columns: 50px 1fr;width: 100%;display: grid;margin-top: 8px;color: inherit;">`
-        const leftDiv = `<div nonce="${nonce}" style="box-sizing: border-box;-webkit-flex-direction: row;-ms-flex-direction: row;flex-direction: row;overflow: hidden;width: 100%;-webkit-align-items: center;-webkit-box-align: center;-ms-flex-align: center;align-items: center;height: 100%;display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;">`
-        const rightDiv = `<div nonce="${nonce}" style="box-sizing: border-box;-webkit-flex-direction: row;-ms-flex-direction: row;flex-direction: row;overflow: hidden;width: 100%;">`
-        const p = `<p nonce="${nonce}" style="margin: 0;font-size: 16px;font-weight: 400;line-height: 1.15;font-family: Nunito Sans Variable,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';overflow: hidden;text-overflow: ellipsis;white-space: nowrap;`
-        return `${container}
-          ${leftDiv}${p}color:${primaryColor};">${t`Kind`}</p></div>
-          ${rightDiv}${p}">${d.reported.kind}</p></div>
-          ${leftDiv}${p}color:${primaryColor};">${t`ID`}</p></div>
-          ${rightDiv}${p}">${d.reported.id}</p></div>
-          ${leftDiv}${p}color:${primaryColor};">${t`Name`}</p></div>
-          ${rightDiv}${p}">${d.reported.name}</p></div>
-          ${leftDiv}${p}color:${primaryColor};">${t`Age`}</p></div>
-          ${rightDiv}${p}">${d.age ? iso8601DurationToString(parseCustomDuration(d.age), 2) : '-'}</p></div>
-          ${d.metadata?.['state-icon'] === 'instance_terminated' ? `${leftDiv}</div>${rightDiv}${p}color:${errorColor};">${t`Instance is terminated`}</p></div>` : ''}
-        </div>`
+      const createTooltipHtml = (d: NodesType, tooltip: Selection<HTMLDivElement, unknown, null, undefined>) => {
+        tooltip.selectAll('*').remove()
+        const clonedContainer = tooltipContainer.clone().node()
+        createTooltipContentRow(clonedContainer, t`Kind`, d.reported.kind)
+        createTooltipContentRow(clonedContainer, t`ID`, d.reported.id)
+        createTooltipContentRow(clonedContainer, t`Name`, d.reported.name)
+        createTooltipContentRow(clonedContainer, t`Age`, d.age ? iso8601DurationToString(parseCustomDuration(d.age), 2) : '-')
+
+        if (d.metadata?.['state-icon'] === 'instance_terminated') {
+          clonedContainer?.appendChild(tooltipLeftDiv.clone().node() as HTMLDivElement)
+          clonedContainer?.appendChild(
+            tooltipRightDiv
+              .clone()
+              .node()
+              ?.appendChild(
+                tooltipContent
+                  .clone()
+                  .style('color', errorColor)
+                  .text(t`Instance is terminated`)
+                  .node() as HTMLParagraphElement,
+              ) as HTMLDivElement,
+          )
+        }
+
+        tooltip.node()?.appendChild(clonedContainer as HTMLDivElement)
       }
 
       const handleMouseMove = function (this: BaseType, event: MouseEvent, d: NodesType) {
-        tooltip
-          .html(createTooltipHtml(d, nonce))
-          .style('right', window.innerWidth - event.clientX + 'px')
-          .style('top', event.clientY + 20 + 'px')
+        tooltip.style('right', window.innerWidth - event.clientX + 'px').style('top', event.clientY + 20 + 'px')
+        createTooltipHtml(d, tooltip)
       }
 
       const handleMouseLeave = function (this: BaseType) {
-        tooltip.style('opacity', 0).attr('nonce', nonce ?? '')
-        select(this)
-          .style('opacity', 0.8)
-          .attr('nonce', nonce ?? '')
+        tooltip.style('opacity', 0)
+        select(this).style('opacity', 0.8).attr('nonce', nonce)
       }
 
       const handleZoom = (event: { transform: string; sourceEvent: MouseEvent }) => {
