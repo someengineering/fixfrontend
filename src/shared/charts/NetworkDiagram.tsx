@@ -135,11 +135,11 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
         // Set up SVG
         const svg = select(containerRef.current)
           .append('svg')
+          .attr('nonce', nonce)
           .attr('width', width)
           .attr('height', height)
           .attr('viewBox', [0, 0, width, height])
           .attr('style', 'max-width: 100%; height: auto;')
-          .attr('nonce', nonce)
 
         const svgG = svg.append('g')
 
@@ -332,11 +332,6 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
     const result = getSimulation(nonce)
     if (result) {
       const { tooltip, svgG, svg, node, mainNode, linkPath, icon, topLabel, bellowLabel, labels } = result
-
-      const handleMouseOver = function (this: BaseType) {
-        tooltip.style('opacity', 1)
-        select(this).style('opacity', 1).attr('nonce', nonce)
-      }
       const tooltipContainer = select(window.document.createElement('div'))
         .attr('nonce', nonce)
         .style('padding', '8px 16px 16px')
@@ -426,6 +421,11 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
         }
 
         tooltip.node()?.appendChild(clonedContainer as HTMLDivElement)
+      }
+
+      const handleMouseOver = function (this: BaseType) {
+        tooltip.style('opacity', 1)
+        select(this).style('opacity', 1).attr('nonce', nonce)
       }
 
       const handleMouseMove = function (this: BaseType, event: MouseEvent, d: NodesType) {
