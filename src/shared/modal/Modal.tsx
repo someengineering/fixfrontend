@@ -10,6 +10,7 @@ interface ModalProps extends PropsWithChildren {
   width?: number | string
   defaultOpen?: boolean
   onSubmit?: (event: FormEvent<HTMLFormElement>) => void
+  onClose?: () => void
 }
 
 const ModalContent = styled(Stack<'form' | 'div'>)(({ theme, width }) => ({
@@ -20,13 +21,15 @@ const ModalContent = styled(Stack<'form' | 'div'>)(({ theme, width }) => ({
   minWidth: width ? undefined : panelUI.minModalWidth,
   width: width ? (typeof width === 'number' ? width + 'px' : (width as string)) : undefined,
   maxWidth: `calc(100% - ${theme.spacing(2)})`,
+  maxHeight: `calc(100% - ${theme.spacing(2)})`,
+  overflow: 'auto',
   backgroundColor: theme.palette.background.paper,
   borderRadius: 4,
   boxShadow: theme.shadows['24'],
   padding: theme.spacing(2, 3, 3),
 }))
 
-export const Modal = ({ children, actions, description, title, openRef, defaultOpen, width, onSubmit }: ModalProps) => {
+export const Modal = ({ children, actions, description, title, openRef, defaultOpen, width, onSubmit, onClose }: ModalProps) => {
   const [open, setOpen] = useState(defaultOpen ?? false)
   useEffect(() => {
     openRef.current = (show?: boolean) => {
@@ -37,7 +40,15 @@ export const Modal = ({ children, actions, description, title, openRef, defaultO
     }
   }, [openRef])
   return (
-    <MuiModal aria-labelledby="modal-title" aria-describedby="modal-description" open={open} onClose={() => setOpen(false)}>
+    <MuiModal
+      aria-labelledby="modal-title"
+      aria-describedby="modal-description"
+      open={open}
+      onClose={() => {
+        setOpen(false)
+        onClose?.()
+      }}
+    >
       <ModalContent
         spacing={1}
         width={width}

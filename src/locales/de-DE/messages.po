@@ -81,9 +81,17 @@ msgstr "<0>Fix unterstützt die Volltextsuche, indem der Suchbegriff in Anführu
 msgid "<0>Next invoice will be available: {0}</0>"
 msgstr "<0>Die nächste Rechnung wird verfügbar sein: {0}</0>"
 
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:165
+msgid "<0>Open Your Authenticator App:</0> Head over to your authenticator app and choose to add a new account manually.<1>Enter Account Details:</1> You'll need to type in your account's email address or username, and the key provided below.<2>Your Key:</2> <3/><4>Verification Type:</4> Make sure to select \"Time-based\" as the verification type.<5>Enter the Code:</5> Once your account is added manually, the app will show a 6-digit code. Pop that code into the box below and hit \"Activate\"."
+msgstr "<0>Öffnen Sie Ihre Authenticator-App:</0> Gehe zu deiner Authenticator-App und wähle, ein neues Konto manuell hinzuzufügen.<1>Gib Kontodetails ein:</1> Du musst deine E-Mail-Adresse oder Benutzernamen des Kontos eingeben und den untenstehenden Schlüssel verwenden.<2>Dein Schlüssel:</2> <3/><4>Verifizierungstyp:</4> Stelle sicher, dass du \"Zeitbasiert\" als Verifizierungstyp auswählst.<5>Gib den Code ein:</5> Sobald dein Konto manuell hinzugefügt ist, zeigt die App einen 6-stelligen Code an. Gib diesen Code in das untenstehende Feld ein und drücke auf \"Aktivieren\"."
+
 #: src/containers/auth/AuthContainer.tsx:82
 msgid "<0>Privacy policy</0> | <1>Terms and conditions</1>"
 msgstr "<0>Datenschutzerklärung</0> | <1>Allgemeine Geschäftsbedingungen</1>"
+
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:136
+msgid "<0>Step 1: Scan the QR Code</0><1>First up, see this QR code on your screen? Grab your phone and open your favorite authenticator app (like Google Authenticator).</1><2>Step 2: Add a New Account</2><3>In the app, tap on \"Add\" or \"+\" to set up a new account. Select \"Scan a QR Code\" and point your phone's camera at the QR code displayed here. This will link your account to the app.</3><4><5/></4><6>Step 3: Enter the Code</6><7>Once linked, the app will display a 6-digit code. It changes every 30 seconds, so it's super fresh! Enter that code in the box below and hit \"Activate\". And voilà, you're all set!</7>"
+msgstr "<0>Schritt 1: Scannen Sie den QR-Code</0><1>Zuerst, sehen Sie diesen QR-Code auf Ihrem Bildschirm? Nehmen Sie Ihr Handy und öffnen Sie Ihre bevorzugte Authenticator-App (wie Google Authenticator).</1><2>Schritt 2: Ein neues Konto hinzufügen</2><3>In der App, tippen Sie auf \"Hinzufügen\" oder \"+\", um ein neues Konto einzurichten. Wählen Sie \"QR-Code scannen\" und richten Sie die Kamera Ihres Handys auf den hier angezeigten QR-Code. Dies verknüpft Ihr Konto mit der App.</3><4><5/></4><6>Schritt 3: Geben Sie den Code ein</6><7>Sobald verknüpft, zeigt die App einen 6-stelligen Code an. Er ändert sich alle 30 Sekunden, also ist er super aktuell! Geben Sie diesen Code in das Feld unten ein und klicken Sie auf \"Aktivieren\". Und voilà, Sie sind fertig!</7>"
 
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:81
 msgid "<0>To ensure you receive timely alerts and notifications directly to your email, we require your email address.<1/>Please note that it is possible to define multiple email addresses.</0>"
@@ -130,7 +138,7 @@ msgstr "In wenigen Minuten bis zum ersten Ergebnis"
 msgid "Access to your account is broken"
 msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:226
+#: src/pages/panel/inventory/ResourceDetail.tsx:233
 msgid "Account"
 msgstr "Konto"
 
@@ -156,6 +164,12 @@ msgstr "Aktion"
 msgid "Actions"
 msgstr "Aktionen"
 
+#: src/pages/panel/user-settings/UserSettingsTotp.tsx:19
+#: src/pages/panel/user-settings/UserSettingsTotp.tsx:31
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:129
+msgid "Activate"
+msgstr "aktivieren Sie"
+
 #: src/shared/add-account-button/AddAccountButton.tsx:16
 msgid "Add an account"
 msgstr "Füge ein Konto hinzu"
@@ -168,6 +182,10 @@ msgstr "Verzeichnis hinzufügen"
 msgid "Add external directory"
 msgstr "Externes Verzeichnis hinzufügen"
 
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:159
+msgid "Add Manually"
+msgstr "Manuell hinzufügen"
+
 #: src/pages/panel/accounts/AccountsTable.tsx:30
 msgid "Added accounts"
 msgstr "Konten hinzugefügt"
@@ -176,8 +194,8 @@ msgstr "Konten hinzugefügt"
 msgid "Advanced search query"
 msgstr "Erweiterte Suchabfrage"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:235
-#: src/shared/charts/NetworkDiagram.tsx:345
+#: src/pages/panel/inventory/ResourceDetail.tsx:242
+#: src/shared/charts/NetworkDiagram.tsx:407
 msgid "Age"
 msgstr "Alter"
 
@@ -189,17 +207,23 @@ msgstr "Alarmierungsintegrationen (PagerDuty, Slack, Discord, Teams)"
 msgid "Alerting Settings"
 msgstr "Benachrichtigungseinstellungen"
 
-#: src/pages/auth/register/RegisterPage.tsx:120
+#: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:100
+#: src/pages/auth/register/RegisterPage.tsx:130
+#: src/pages/auth/reset-password/ResetPasswordPage.tsx:124
 msgid "Already have an account? Click here to Log in."
 msgstr "Sie haben bereits ein Konto? Klicken Sie hier, um sich einzuloggen."
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:99
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:102
 msgid "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
 msgstr "Wenn Sie den Stack alternativ manuell bereitstellen möchten, können Sie folgendes CloudFormation-Template verwenden"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:94
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:97
 msgid "Alternatively: Manual Cloud Setup"
 msgstr "Alternativ: Manuelles Cloud Setup"
+
+#: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:77
+msgid "An email has been sent to your inbox with a 'Reset Password' button. Please check your email and click on it to reset your password."
+msgstr "Eine E-Mail wurde mit einem 'Passwort zurücksetzen'-Button an Ihren Posteingang gesendet. Bitte überprüfen Sie Ihre E-Mails und klicken Sie darauf, um Ihr Passwort zurückzusetzen."
 
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsConnectedServices.tsx:26
 msgid "An error occurred while connecting to {0}"
@@ -244,7 +268,7 @@ msgstr "Bist du sicher?"
 msgid "Asset inventory"
 msgstr "Cloud-Asset-Inventar"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:45
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:47
 msgid "Automatic Cloud Setup"
 msgstr "Automatisches Cloud Setup"
 
@@ -256,7 +280,7 @@ msgstr "AWS Marketplace"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:211
+#: src/pages/panel/inventory/ResourceDetail.tsx:218
 msgid "Basic Information"
 msgstr "Grundinformation"
 
@@ -293,6 +317,8 @@ msgstr "Business"
 #: src/pages/panel/accounts/AccountRow.tsx:278
 #: src/pages/panel/accounts/AccountRow.tsx:380
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:68
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:121
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:49
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:88
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:105
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsDisconnectServiceModal.tsx:57
@@ -312,7 +338,7 @@ msgstr "Bezahlungsmethode ändern"
 msgid "Change Product Tier"
 msgstr "Produktstufe ändern"
 
-#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:34
+#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:35
 msgid "Changes"
 msgstr "Änderungen"
 
@@ -324,10 +350,14 @@ msgstr "Änderungen in den letzten 7 Tagen"
 msgid "Choose Workspace"
 msgstr "Wählen Sie Arbeitsbereich"
 
+#: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:36
+msgid "Close"
+msgstr "Schließen"
+
 #: src/pages/panel/accounts/AccountRow.tsx:400
 #: src/pages/panel/accounts/AccountsTableItem.tsx:40
 #: src/pages/panel/home/AccountCard.tsx:33
-#: src/pages/panel/inventory/ResourceDetail.tsx:222
+#: src/pages/panel/inventory/ResourceDetail.tsx:229
 msgid "Cloud"
 msgstr "Cloud"
 
@@ -397,7 +427,7 @@ msgstr "Verbinden Sie Teams"
 msgid "Connect your AWS account"
 msgstr "Verbinden Sie Ihr AWS-Konto"
 
-#: src/pages/panel/user-settings/UserSettingsPage.tsx:30
+#: src/pages/panel/user-settings/UserSettingsPage.tsx:32
 msgid "Connected Accounts"
 msgstr "Verbundene Konten"
 
@@ -412,6 +442,7 @@ msgstr "In die Zwischenablage kopiert!"
 
 #: src/pages/panel/setup-cloud/ExternalId.tsx:56
 #: src/pages/panel/setup-cloud/WorkspaceId.tsx:46
+#: src/pages/panel/user-settings/UserSettingsTotpShowSecret.tsx:49
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:48
 msgid "Copy"
 msgstr "Kopieren"
@@ -424,7 +455,7 @@ msgstr "Kern-CSPM-Scanfunktionen"
 msgid "Created"
 msgstr "Erstellt"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:229
+#: src/pages/panel/inventory/ResourceDetail.tsx:236
 msgid "Created Time"
 msgstr "Erstellte Zeit"
 
@@ -468,6 +499,11 @@ msgstr "Datumsauswahl"
 msgid "Date Time Picker"
 msgstr "Datum-/Uhrzeitauswahl"
 
+#: src/pages/panel/user-settings/UserSettingsTotp.tsx:19
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:52
+msgid "Deactivate"
+msgstr "Deaktivieren"
+
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:69
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:33
 msgid "Default Role"
@@ -507,7 +543,7 @@ msgstr "Deploy Stack"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:296
+#: src/pages/panel/inventory/ResourceDetail.tsx:303
 msgid "Details"
 msgstr "Einzelheiten"
 
@@ -537,7 +573,7 @@ msgstr "Möchten Sie diese Einladung löschen?"
 msgid "Do you want to delete this user?"
 msgstr "Möchten Sie diesen Benutzer löschen?"
 
-#: src/pages/auth/login/LoginPage.tsx:136
+#: src/pages/auth/login/LoginPage.tsx:218
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 
@@ -560,8 +596,9 @@ msgstr "CSV herunterladen"
 msgid "Edit"
 msgstr "Edit"
 
-#: src/pages/auth/login/LoginPage.tsx:80
-#: src/pages/auth/register/RegisterPage.tsx:78
+#: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:62
+#: src/pages/auth/login/LoginPage.tsx:102
+#: src/pages/auth/register/RegisterPage.tsx:88
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:49
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:69
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:79
@@ -614,10 +651,14 @@ msgstr "Läuft ab"
 msgid "External Directories"
 msgstr "Externe Verzeichnisse"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:118
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:121
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:55
 msgid "External Id"
 msgstr "External Id"
+
+#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:45
+msgid "Failed to retrieve changelog"
+msgstr "Das Änderungsprotokoll konnte nicht abgerufen werden"
 
 #: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:135
 msgid "False"
@@ -646,6 +687,15 @@ msgstr "Für wachsende Teams, die sicher bleiben möchten, während sie die Infr
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:12
 msgid "For solo software engineers who want to secure a single cloud account."
 msgstr "Für Solo-Softwareentwickler, die sich ein einziges Cloud-Konto sichern möchten."
+
+#: src/pages/auth/login/LoginPage.tsx:223
+msgid "Forget your password? Click here to reset your password."
+msgstr "Passwort vergessen? Klicken Sie hier, um Ihr Passwort zurückzusetzen."
+
+#: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:53
+#: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:95
+msgid "Forgot Password"
+msgstr "Passwort vergessen"
 
 #: src/pages/panel/inventory/utils/nodeChange.tsx:56
 msgid "Found {0} vulnerability at {1}"
@@ -695,8 +745,8 @@ msgstr "Wie repariert man"
 #: src/pages/panel/accounts/AccountRow.tsx:397
 #: src/pages/panel/accounts/AccountsTableItem.tsx:43
 #: src/pages/panel/home/AccountCard.tsx:30
-#: src/pages/panel/inventory/ResourceDetail.tsx:219
-#: src/shared/charts/NetworkDiagram.tsx:341
+#: src/pages/panel/inventory/ResourceDetail.tsx:226
+#: src/shared/charts/NetworkDiagram.tsx:405
 msgid "ID"
 msgstr "ID"
 
@@ -705,7 +755,7 @@ msgstr "ID"
 msgid "Improved"
 msgstr "Verbessert"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:48
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:50
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS Konto ein."
 
@@ -717,7 +767,7 @@ msgstr "Inaktivitätserinnerung"
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle! Within a billing cycle you will be charged for the highest product tier that was active. Your next billing cycle starts: {0} UTC"
 msgstr "Info: Änderungen an Ihrer Produktstufe werden sofort aktiv und für den aktuellen Abrechnungszeitraum übernommen! Innerhalb eines Abrechnungszeitraums wird Ihnen die höchste aktive Produktstufe in Rechnung gestellt. Ihr nächster Abrechnungszeitraum beginnt: {0} UTC"
 
-#: src/shared/charts/NetworkDiagram.tsx:347
+#: src/shared/charts/NetworkDiagram.tsx:419
 msgid "Instance is terminated"
 msgstr "Instanz wird beendet"
 
@@ -752,8 +802,8 @@ msgstr "Externen Benutzer einladen"
 msgid "Invites"
 msgstr "Lädt ein"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:218
-#: src/shared/charts/NetworkDiagram.tsx:339
+#: src/pages/panel/inventory/ResourceDetail.tsx:225
+#: src/shared/charts/NetworkDiagram.tsx:404
 msgid "Kind"
 msgstr "Art"
 
@@ -765,8 +815,8 @@ msgstr "Arten"
 msgid "Last login"
 msgstr "Letzte Anmeldung"
 
-#: src/pages/auth/login/LoginPage.tsx:71
-#: src/pages/auth/login/LoginPage.tsx:131
+#: src/pages/auth/login/LoginPage.tsx:93
+#: src/pages/auth/login/LoginPage.tsx:213
 msgid "Log in"
 msgstr "Anmeldung"
 
@@ -786,7 +836,7 @@ msgstr "Ausloggen"
 msgid "Low"
 msgstr "Niedrig"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:53
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:55
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS Konto angemeldet sind, bevor Sie auf die Schaltfläche DEPLOY STACK klicken."
 
@@ -829,7 +879,7 @@ msgstr "Die meisten nicht konformen Konten"
 
 #: src/pages/panel/accounts/AccountRow.tsx:403
 #: src/pages/panel/accounts/AccountsTableItem.tsx:46
-#: src/pages/panel/inventory/ResourceDetail.tsx:220
+#: src/pages/panel/inventory/ResourceDetail.tsx:227
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:18
@@ -841,7 +891,7 @@ msgstr "Die meisten nicht konformen Konten"
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:122
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:120
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:132
-#: src/shared/charts/NetworkDiagram.tsx:343
+#: src/shared/charts/NetworkDiagram.tsx:406
 msgid "Name"
 msgstr "Name"
 
@@ -891,7 +941,7 @@ msgstr "Sie löschen gerade ein Management- oder delegiertes Admin-Konto. Beacht
 msgid "Nothing to show yet"
 msgstr "Noch nichts zu zeigen"
 
-#: src/pages/panel/user-settings/UserSettingsPage.tsx:25
+#: src/pages/panel/user-settings/UserSettingsPage.tsx:27
 msgid "Notification"
 msgstr "Benachrichtigung"
 
@@ -907,6 +957,10 @@ msgstr "Anzahl der belasteten Konten"
 msgid "One time"
 msgstr "Einmal"
 
+#: src/pages/auth/login/LoginPage.tsx:25
+msgid "Oops, the username or password doesn't seem to match our records. Please try again."
+msgstr "Hoppla, der Benutzername oder das Passwort scheinen nicht mit unseren Aufzeichnungen übereinzustimmen. Bitte versuche es erneut."
+
 #: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:144
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Sie sie und versuchen Sie es erneut."
@@ -919,7 +973,7 @@ msgstr "Hoppla! Etwas ist schief gelaufen."
 msgid "Open drawer"
 msgstr "Öffene die Schublade"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:244
+#: src/pages/panel/inventory/ResourceDetail.tsx:251
 msgid "Open resource {name} in AWS Console"
 msgstr "Öffnen Sie die Ressource {name} in der AWS-Konsole"
 
@@ -927,8 +981,10 @@ msgstr "Öffnen Sie die Ressource {name} in der AWS-Konsole"
 msgid "Opened at"
 msgstr "Geöffnet um"
 
-#: src/pages/auth/login/LoginPage.tsx:141
-#: src/pages/auth/register/RegisterPage.tsx:125
+#: src/pages/auth/login/LoginPage.tsx:151
+#: src/pages/auth/login/LoginPage.tsx:228
+#: src/pages/auth/register/RegisterPage.tsx:135
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:87
 msgid "Or"
 msgstr "Oder"
 
@@ -936,12 +992,19 @@ msgstr "Oder"
 msgid "Other Workspace Settings"
 msgstr "Andere Arbeitsbereichseinstellungen"
 
+#: src/pages/auth/login/LoginPage.tsx:134
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:204
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:73
+msgid "OTP Code"
+msgstr "OTP-Code"
+
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:204
 msgid "Our fair-use policy allows for up to 200,000 resources per account. If your needs surpass this amount, please <0>reach out</0> to discuss your specific requirements."
 msgstr "Unsere Fair-Use-Richtlinie ermöglicht bis zu 200.000 Ressourcen pro Konto. Wenn Ihr Bedarf diesen Betrag übersteigt, <0>kontaktieren Sie uns bitte</0>, um Ihre spezifischen Anforderungen zu besprechen."
 
-#: src/pages/auth/login/LoginPage.tsx:94
-#: src/pages/auth/register/RegisterPage.tsx:92
+#: src/pages/auth/login/LoginPage.tsx:117
+#: src/pages/auth/register/RegisterPage.tsx:102
+#: src/pages/auth/reset-password/ResetPasswordPage.tsx:96
 msgid "Password"
 msgstr "Passwort"
 
@@ -964,6 +1027,10 @@ msgstr "pro Cloud-Konto, pro Monat"
 msgid "Pick one of the recommendations to the right and improve your security"
 msgstr "Wählen Sie eine der Empfehlungen rechts aus und verbessern Sie Ihre Sicherheit"
 
+#: src/pages/auth/login/LoginPage.tsx:178
+msgid "Please enter your One-Time-Password or one of your Recovery code."
+msgstr "Bitte geben Sie Ihr One-Time-Passwort oder einen Ihrer Wiederherstellungscodes ein."
+
 #: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:48
 msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgstr "Bitte gehen Sie zur Seite <0>Setup Accounts</0>, um zunächst Ihr Konto einzurichten"
@@ -975,6 +1042,10 @@ msgstr "Bitte Zahlungsart wählen"
 #: src/pages/panel/workspace-settings-billing/utils/productTierToLabel.ts:9
 msgid "Plus"
 msgstr "Plus"
+
+#: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:25
+msgid "Print or copy the following recovery codes"
+msgstr "Drucken oder kopieren Sie die folgenden Wiederherstellungscodes"
 
 #: src/shared/cloud-avatar/CloudAvatar.tsx:38
 msgid "Privileged"
@@ -1013,11 +1084,20 @@ msgstr "Quittungen"
 msgid "Recently added accounts"
 msgstr "Kürzlich hinzugefügte Konten"
 
+#: src/pages/auth/login/LoginPage.tsx:160
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:105
+msgid "Recovery Code"
+msgstr "Wiederherstellungscode"
+
+#: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:24
+msgid "Recovery codes"
+msgstr "Wiederherstellungscodes"
+
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:56
 msgid "Regenerate"
 msgstr "Regenerieren"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:227
+#: src/pages/panel/inventory/ResourceDetail.tsx:234
 msgid "Region"
 msgstr "Region"
 
@@ -1025,7 +1105,7 @@ msgstr "Region"
 msgid "Regions"
 msgstr "Regionen"
 
-#: src/pages/auth/register/RegisterPage.tsx:69
+#: src/pages/auth/register/RegisterPage.tsx:79
 msgid "Register"
 msgstr "Registrieren"
 
@@ -1040,6 +1120,11 @@ msgstr "Entfernen"
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:40
 msgid "Rename"
 msgstr "Umbenennen"
+
+#: src/pages/auth/reset-password/ResetPasswordPage.tsx:87
+#: src/pages/auth/reset-password/ResetPasswordPage.tsx:119
+msgid "Reset Password"
+msgstr "Passwort zurücksetzen"
 
 #: src/pages/panel/accounts/AccountsTableItem.tsx:49
 msgid "Resources"
@@ -1064,7 +1149,7 @@ msgstr "Sicherer Lesezugriff"
 msgid "Security benchmarks"
 msgstr "Sicherheitsbenchmarks"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:318
+#: src/pages/panel/inventory/ResourceDetail.tsx:325
 msgid "Security Issues"
 msgstr "Sicherheitsprobleme"
 
@@ -1077,8 +1162,8 @@ msgstr "Sicherheitsscan"
 msgid "Security Score"
 msgstr "Sicherheitsbewertung"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:255
-#: src/pages/panel/inventory/ResourceDetail.tsx:266
+#: src/pages/panel/inventory/ResourceDetail.tsx:262
+#: src/pages/panel/inventory/ResourceDetail.tsx:273
 msgid "See this Resource in AWS Console"
 msgstr "Sehen Sie sich diese Ressource in der AWS-Konsole an"
 
@@ -1100,7 +1185,7 @@ msgstr "E-Mail-Benachrichtigungen einrichten"
 msgid "Severity"
 msgstr "Schwere"
 
-#: src/pages/auth/register/RegisterPage.tsx:115
+#: src/pages/auth/register/RegisterPage.tsx:125
 msgid "Sign up"
 msgstr "Melden Sie sich an"
 
@@ -1118,6 +1203,9 @@ msgstr "Snowflake-Datenexport (bald verfügbar!)"
 
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:33
 #: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:23
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:107
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:110
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:39
 msgid "Something went wrong please try again later."
 msgstr "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal."
 
@@ -1141,7 +1229,7 @@ msgid "Successfully invited {email}"
 msgstr "{email} erfolgreich eingeladen"
 
 #: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:86
-#: src/pages/panel/inventory/ResourceDetail.tsx:282
+#: src/pages/panel/inventory/ResourceDetail.tsx:289
 msgid "Tags"
 msgstr "Stichworte"
 
@@ -1153,11 +1241,19 @@ msgstr "Integrationen zur Aufgabenverwaltung (bald verfügbar!)"
 msgid "Test"
 msgstr "Prüfen"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:107
+#: src/pages/auth/login/LoginPage.tsx:29
+msgid "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
+msgstr "Das von Ihnen eingegebene OTP oder Wiederherstellungscode ist falsch oder das OTP ist abgelaufen. Bitte versuchen Sie es erneut einzugeben."
+
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:110
 msgid "The Stack requires the following parameters"
 msgstr "Der Stack erfordert die folgenden Parameter"
 
-#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:52
+#: src/pages/auth/reset-password/ResetPasswordPage.tsx:20
+msgid "The token that you sent is invalid or have been expired please try again"
+msgstr "Das von Ihnen gesendete Token ist ungültig oder abgelaufen. Bitte versuchen Sie es erneut"
+
+#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:56
 msgid "There are no changes"
 msgstr "Es gibt keine Änderungen"
 
@@ -1169,7 +1265,11 @@ msgstr "Für diesen Arbeitsbereich ist kein Konto konfiguriert."
 msgid "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 msgstr "Dieses Konto befindet sich derzeit in einem nicht-funktionalen Zustand, möglicherweise aufgrund einer Fehlkonfiguration. Fix konnte nicht auf das Konto zugreifen. Um die Sicherheitsscans fortzusetzen, loggen Sie sich bitte in das Konto {accountName} ({0}) ein und erzeugen Sie den CloudFormation-Stacks, der die IAM Vertrauensstellung herstellt, erneut."
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:85
+#: src/pages/auth/register/RegisterPage.tsx:25
+msgid "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
+msgstr "Diese Email-Adresse ist bereits registriert. Wenn dies Ihre E-Mail-Adresse ist, versuchen Sie bitte, sich anzumelden, oder klicken Sie auf der Anmeldeseite auf „Passwort vergessen“, um Ihr Passwort zurückzusetzen."
+
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:88
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM Rolle in Ihrem AWS Konto erstellt. Diese Rolle wird von FIX verwendet, um in Ihrem AWS Konto Sicherheitsscans durchzuführen."
 
@@ -1177,7 +1277,7 @@ msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM 
 msgid "Tier"
 msgstr "Stufe"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:261
+#: src/pages/panel/inventory/ResourceDetail.tsx:268
 msgid "To access this resource, please ensure that you are logged into the AWS account: {account}"
 msgstr "Um auf diese Ressource zuzugreifen, stellen Sie bitte sicher, dass Sie beim AWS-Konto angemeldet sind: {account}"
 
@@ -1197,6 +1297,22 @@ msgstr "Top Ressourcen mit Compliance-Verstößen"
 #: src/pages/panel/home/Overview.tsx:79
 msgid "Top Security Enhancements"
 msgstr "Top-Sicherheitsverbesserungen"
+
+#: src/pages/panel/user-settings/UserSettingsTotp.tsx:24
+msgid "TOTP"
+msgstr "TOTP"
+
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:45
+msgid "TOTP Deactivation"
+msgstr "TOTP-Deaktivierung"
+
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:31
+msgid "TOTP disabled successfully"
+msgstr "TOTP erfolgreich deaktiviert"
+
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:117
+msgid "TOTP Setup"
+msgstr "TOTP-Setup"
 
 #: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:132
 msgid "True"
@@ -1228,7 +1344,7 @@ msgstr "Aktualisiert"
 msgid "Upgrade"
 msgstr "Aktualisierung"
 
-#: src/pages/panel/user-settings/UserSettingsPage.tsx:15
+#: src/pages/panel/user-settings/UserSettingsPage.tsx:16
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:117
 msgid "User Settings"
 msgstr "Benutzereinstellungen"
@@ -1257,7 +1373,7 @@ msgstr "Warnung"
 msgid "We appreciate your decision to subscribe to our service through AWS Marketplace."
 msgstr "Wir freuen uns über Ihre Entscheidung, unseren Service über AWS Marketplace zu abonnieren."
 
-#: src/pages/auth/login/LoginPage.tsx:109
+#: src/pages/auth/login/LoginPage.tsx:185
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "Wir haben eine E-Mail mit einem Bestätigungslink an Ihre E-Mail-Adresse gesendet. Bitte folgen Sie dem Link, um Ihr Konto zu aktivieren."
 
@@ -1290,7 +1406,7 @@ msgstr "Workspace-Benachrichtigungseinstellungen"
 msgid "Workspace analytics (coming soon!)"
 msgstr "Arbeitsbereichsanalyse (bald verfügbar!)"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:136
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:139
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:47
 msgid "Workspace Id"
 msgstr "Workspace Id"
@@ -1314,13 +1430,29 @@ msgstr "Workspace-Benutzer"
 msgid "You are about to apply changes to your billing information. Please review the new details below:"
 msgstr "Sie sind dabei, Änderungen an Ihren Zahlungsinformationen vorzunehmen. Bitte lesen Sie die neuen Details unten:"
 
-#: src/pages/auth/login/LoginPage.tsx:115
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:59
+msgid "You can deactivate TOTP via otp code"
+msgstr "Sie können TOTP über den OTP-Code deaktivieren"
+
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:91
+msgid "You can deactivate TOTP via recovery code"
+msgstr "Sie können TOTP über den Wiederherstellungscode deaktivieren"
+
+#: src/pages/auth/login/LoginPage.tsx:198
+msgid "You have successfully reset your password."
+msgstr "Sie haben Ihr Passwort erfolgreich zurückgesetzt."
+
+#: src/pages/auth/login/LoginPage.tsx:191
 msgid "You have successfully verified your account."
 msgstr "Sie haben Ihr Konto erfolgreich verifiziert."
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:256
 msgid "You need an AWS Marketplace Subscription to upgrade your plan."
 msgstr "Sie benötigen ein AWS Marketplace-Abonnement, um Ihren Plan zu aktualisieren."
+
+#: src/pages/auth/login/LoginPage.tsx:27
+msgid "Your email address isn't verified yet. Please check your inbox and click on the 'Verify' button to complete the process. Can't find the email? It might be in your spam folder."
+msgstr "Ihre E-Mail-Adresse ist noch nicht verifiziert. Bitte überprüfen Sie Ihren Posteingang und klicken Sie auf den 'Verifizieren'-Button, um den Prozess abzuschließen. Sie können die E-Mail nicht finden? Möglicherweise befindet sie sich in Ihrem Spam-Ordner."
 
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:41
 msgid "Your new email address will become active once you have verified it by clicking on the confirmation link we have sent to your inbox."

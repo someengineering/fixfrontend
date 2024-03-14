@@ -41,6 +41,14 @@ import { stringify } from 'yaml'
 import { ResourceDetailChangeLog } from './ResourceDetailChangeLog'
 import { inventorySendToGTM } from './utils'
 
+export const ResourceDetailAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
+  position: 'sticky',
+  top: theme.spacing(6),
+  background: 'inherit',
+  boxShadow: theme.shadows[2],
+  zIndex: 1,
+}))
+
 const Modal = styled(MuiModal)(({ theme }) => ({
   position: 'fixed',
   top: 0,
@@ -181,7 +189,6 @@ export const ResourceDetail = () => {
           }}
           direction="column"
           p={1}
-          spacing={1}
           overflow="auto"
         >
           <Stack
@@ -207,9 +214,9 @@ export const ResourceDetail = () => {
             {data ? <NetworkDiagram mainId={data.resource.id} /> : null}
           </Box>
           <Accordion defaultExpanded>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <ResourceDetailAccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Trans>Basic Information</Trans>
-            </AccordionSummary>
+            </ResourceDetailAccordionSummary>
             <Divider />
             <AccordionDetails>
               {data ? (
@@ -278,9 +285,9 @@ export const ResourceDetail = () => {
           </Accordion>
           {data && Object.entries(tags ?? {}).length ? (
             <Accordion>
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <ResourceDetailAccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Trans>Tags</Trans>
-              </AccordionSummary>
+              </ResourceDetailAccordionSummary>
               <Divider />
               <AccordionDetails>
                 <Grid gap={2} gridTemplateColumns="50% 1fr" width="100%" display="grid" mt={1}>
@@ -292,9 +299,9 @@ export const ResourceDetail = () => {
             </Accordion>
           ) : null}
           <Accordion>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <ResourceDetailAccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Trans>Details</Trans>
-            </AccordionSummary>
+            </ResourceDetailAccordionSummary>
             <Divider />
             <AccordionDetails>
               {data?.resource.reported ? (
@@ -314,9 +321,9 @@ export const ResourceDetail = () => {
           </Accordion>
           {data?.resource.security?.has_issues ? (
             <Accordion defaultExpanded>
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <ResourceDetailAccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Trans>Security Issues</Trans>
-              </AccordionSummary>
+              </ResourceDetailAccordionSummary>
               <Divider />
               <AccordionDetails>
                 {data.failing_checks.map((failedCheck, i) => (

@@ -1,7 +1,7 @@
 import { Trans } from '@lingui/macro'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Timeline } from '@mui/lab'
-import { Accordion, AccordionDetails, AccordionSummary, Divider, Stack, Typography } from '@mui/material'
+import { Accordion, AccordionDetails, Divider, Stack, Typography } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -9,6 +9,7 @@ import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryNodeHistoryQuery } from 'src/pages/panel/shared/queries'
 import { Spinner } from 'src/shared/loading'
 import { WorkspaceInventoryNodeHistory } from 'src/shared/types/server'
+import { ResourceDetailAccordionSummary } from './ResourceDetail'
 import { ResourceDetailChangeLogHistory } from './utils'
 import { ResourceDetailChangeLogSelectedHistory } from './utils/ResourceDetailChangeLogSelectedHistory'
 
@@ -30,16 +31,19 @@ export const ResourceDetailChangeLog = () => {
   return (
     <>
       <Accordion expanded={expanded} onChange={(_, value) => setExpanded(value)}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <ResourceDetailAccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Trans>Changes</Trans>
-        </AccordionSummary>
+        </ResourceDetailAccordionSummary>
+        <Divider />
         <AccordionDetails>
           {isLoading ? (
             <Stack alignItems="center" justifyContent="center" height={250}>
               <Spinner isLoading />
             </Stack>
           ) : error ? (
-            <Typography color="error.main">{error.message}</Typography>
+            <Typography color="error.main">
+              <Trans>Failed to retrieve changelog</Trans>
+            </Typography>
           ) : data?.length ? (
             <Timeline position="right">
               {data.map((history, i) => (
