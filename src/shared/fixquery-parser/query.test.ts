@@ -262,3 +262,20 @@ test('Indicate if a query can derive data from resource json', () => {
     assert.strictEqual(Query.parse(query).provides_security_check_details(), details)
   }
 })
+
+test('real world example', () => {
+  let resource: object = { ctime: '2023-02-02T04:27:03Z', access_key_last_used: { last_used: '2023-02-26T17:39:00Z' } }
+  let query = Query.parse(
+    'is(aws_iam_access_key) and age>{{access_key_too_old_age}} and (access_key_last_used.last_used==null or access_key_last_used.last_used<{{access_key_too_old_age.ago}})',
+    { access_key_too_old_age: '90d' },
+  )
+  assert.deepEqual(query.find_paths(resource), [Path.from_string('ctime'), Path.from_string('access_key_last_used.last_used')])
+
+  resource = { max_password_age: 120 }
+  query = Query.parse('is(aws_account) and (expire_passwords!=true or max_password_age>{{password_age}})', { password_age: 90 })
+  assert.deepEqual(query.find_paths(resource), [Path.from_string('expire_passwords'), Path.from_string('max_password_age')])
+
+  resource = { max_password_age: 20 }
+  query = Query.parse('is(aws_account) and (expire_passwords!=true or max_password_age>{{password_age}})', { password_age: 90 })
+  assert.deepEqual(query.find_paths(resource), [Path.from_string('expire_passwords')])
+})

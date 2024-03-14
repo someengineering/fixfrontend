@@ -1,5 +1,6 @@
 import { createDraft, Draft, finishDraft, immerable, produce } from 'immer'
 import { parse_path, parse_query } from './parser.ts'
+import { render } from './templater.ts'
 
 export type SimpleValue = string | number | boolean | null
 export type ObjectValue = { [key: string]: JsonElement }
@@ -25,10 +26,12 @@ export class PathPart {
   [immerable] = true
   name: string
   array_access: string | number | undefined
+  backtick: boolean
 
-  constructor({ name, array_access }: { name: string; array_access?: string | number | undefined }) {
+  constructor({ name, array_access, backtick }: { name: string; array_access?: string | number | undefined; backtick?: boolean }) {
     this.name = name
     this.array_access = array_access
+    this.backtick = backtick || false
   }
 
   for_array(index: number): PathPart {
@@ -48,9 +51,11 @@ export class PathPart {
         (typeof this.array_access === 'number' && other.array_access === '*'))
     )
   }
+
   toString(): string {
     const array = this.array_access != undefined ? `[${this.array_access}]` : ''
-    return `${this.name}${array}`
+    const tick = this.backtick ? '`' : ''
+    return `${tick}${this.name}${tick}${array}`
   }
 }
 
@@ -70,17 +75,20 @@ export class JsonElementChange {
   public get(): JsonElement {
     return this.elem
   }
+
   public set(value: JsonElement): void {
     this.elem = value
     this.changed = true
     this.deleted = false
   }
+
   public delete(): void {
     this.elem = null
     this.changed = true
     this.deleted = true
   }
 }
+
 export class JsonElementDraft {
   value: Draft<object>
 
@@ -132,6 +140,7 @@ export class JsonElementDraft {
         }
       }
     }
+
     yield* walk_path([], 0, this.value)
   }
 }
@@ -172,10 +181,11 @@ export class Path {
 
   public *find(elem: JsonElement, criteria: (js: JsonElement) => boolean = (_) => true): Generator<[Path, JsonElement]> {
     const path = this as Path
+
     function* walk_path(parts: PathPart[], at: number, js: JsonElement): Generator<[Path, JsonElement]> {
+      const part = path.parts[at]
       if (js != null && typeof js === 'object') {
         const jso: { [key: string]: JsonElement } = js as { [key: string]: JsonElement }
-        const part = path.parts[at]
         const current = jso[part.name] as JsonElement
         if (at == path.parts.length - 1) {
           if (part.array_access != undefined && Array.isArray(current)) {
@@ -200,6 +210,7 @@ export class Path {
         }
       }
     }
+
     yield* walk_path([], 0, elem)
   }
 
@@ -215,10 +226,12 @@ export class Path {
   static from_string(str: string): Path {
     return parse_path(str)
   }
+
   static from(parts: string | string[], root?: boolean): Path {
     parts = typeof parts === 'string' ? [parts] : parts
     return new Path({ parts: parts.map((name) => new PathPart({ name })), root })
   }
+
   static empty(): Path {
     return new Path({})
   }
@@ -326,6 +339,31 @@ export abstract class Term {
     }
     return draft.final_value
   }
+
+  rewrite_synthetic_properties(): Term {
+    const reverse_operation = (op: string): string => {
+      if (op == '>=') return '<='
+      else if (op == '>') return '<'
+      else if (op == '<=') return '>='
+      else if (op == '<') return '>'
+      else return op
+    }
+    const mapping: Record<string, string> = { age: 'ctime', last_updated: 'mtime', last_access: 'atime' }
+    const synthetic_props = Object.keys(mapping).map((k) => Path.from(k))
+    return produce(this, (draft) => {
+      draft
+        .find_terms((term) => term instanceof Predicate)
+        .map((term) => {
+          const predicate = term as Predicate
+          synthetic_props
+            .filter((path) => predicate.path.startsWith(path))
+            .map((path) => {
+              predicate.path = Path.from(mapping[path.toString()])
+              predicate.op = reverse_operation(predicate.op)
+            })
+        })
+    })
+  }
 }
 
 export class AllTerm extends Term {
@@ -381,9 +419,9 @@ export class Predicate extends Term {
 
   static matches_value(value: JsonElement, op: string, p: JsonElement): boolean {
     if (p == null && value == null) return true
-    else if (p == null || value == null) return false
-    else if (op === '==' || op === '=') return p === value
     else if (op === '!=') return p !== value
+    else if (op === '==' || op === '=') return p === value
+    else if (p == null || value == null) return false
     else if (op === '>') return p > value
     else if (op === '>=') return p >= value
     else if (op === '<') return p < value
@@ -444,6 +482,7 @@ export class IdTerm extends Term {
     super()
     this.ids = ids
   }
+
   toString(): string {
     return `id(${this.ids.join(', ')})`
   }
@@ -695,6 +734,7 @@ interface Aggregate {
 const CloudIdentifier = new Set(['/ancestors.cloud.reported.id', '/ancestors.cloud.reported.name'])
 const AccountIdentifier = new Set(['/ancestors.account.reported.id', '/ancestors.account.reported.name'])
 const RegionIdentifier = new Set(['/ancestors.region.reported.id', '/ancestors.region.reported.name'])
+
 export class Query {
   [immerable] = true
   parts: Part[]
@@ -774,6 +814,7 @@ export class Query {
       }
     })
   }
+
   public delete_predicate(name: string): Query {
     const path = Path.from_string(name)
     return produce(this, (draft) => {
@@ -827,7 +868,7 @@ export class Query {
    * @param json the resource json
    */
   public find_paths(json: JsonElement): Path[] {
-    return this.working_part.term.find_paths(json)
+    return this.working_part.term.rewrite_synthetic_properties().find_paths(json)
   }
 
   /**
@@ -839,7 +880,7 @@ export class Query {
    * @param json the resource json
    */
   public delete_matching(json: JsonElement): JsonElement {
-    return this.working_part.term.delete_matching(json)
+    return this.working_part.term.rewrite_synthetic_properties().delete_matching(json)
   }
 
   /**
@@ -859,7 +900,7 @@ export class Query {
     )
   }
 
-  static parse(query: string): Query {
-    return parse_query(query)
+  static parse(query: string, template_parameters: { [key: string]: JsonElement } = {}): Query {
+    return parse_query(render(query, template_parameters))
   }
 }

@@ -93,6 +93,16 @@ test(`Parse Variable`, () => {
     parse_variable('/foo[*].bla[].bar[*]'),
     new Path({ parts: ['foo', 'bla', 'bar'].map((name) => new PathPart({ name, array_access: '*' })), root: true }),
   )
+  assert.deepEqual(
+    parse_variable('`foo . bla . bar / do`[*].`[][]bla#$![]`[2].`bar`'),
+    new Path({
+      parts: [
+        new PathPart({ name: 'foo . bla . bar / do', array_access: '*', backtick: true }),
+        new PathPart({ name: '[][]bla#$![]', array_access: 2, backtick: true }),
+        new PathPart({ name: 'bar', backtick: true }),
+      ],
+    }),
+  )
 })
 
 test(`Parse Simple Term`, () => {
