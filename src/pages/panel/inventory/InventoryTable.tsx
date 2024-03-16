@@ -172,8 +172,8 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
               navigate({
                 pathname: `/inventory/resource-detail/${(rowProps.row as RowType)?.INTERNAL_ID.split('_').slice(0, -1).join('_')}`,
                 search:
-                  typeof (rowProps.row as RowType)?.name === 'string'
-                    ? mergeLocationSearchValues({ ...searchValues, name: (rowProps.row as RowType)?.name as string })
+                  typeof rowProps.row?.name === 'string'
+                    ? mergeLocationSearchValues({ ...searchValues, name: rowProps.row?.name })
                     : window.location.search,
               })
             }

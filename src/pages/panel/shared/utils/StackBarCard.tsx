@@ -39,6 +39,10 @@ export const StackBarCard = ({ data }: { data?: GetWorkspaceInventoryReportSumma
                           value: benchmark.account_summary[accountId].failed_checks?.low || 0,
                           name: `${benchmark.title} - Low`,
                         },
+                        {
+                          value: benchmark.account_summary[accountId].failed_checks?.info || 0,
+                          name: `${benchmark.title} - Info`,
+                        },
                         // {
                         //   value: calculatePassed(benchmark.account_summary[accountId].failed_checks, benchmark.nr_of_checks),
                         //   name: `${benchmark.title} - Passed`,

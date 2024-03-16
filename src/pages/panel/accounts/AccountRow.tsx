@@ -296,22 +296,20 @@ export const AccountRow = ({ account }: { account: Account }) => {
       </TableCell>
       <TableCell>{account.resources ?? '-'}</TableCell>
       <TableCell>{account.next_scan ? new Date(account.next_scan).toLocaleTimeString(locale) : '-'}</TableCell>
-      {account.is_configured ? (
-        <TableCell>
-          {enableAccountIsPending || disableAccountIsPending ? (
-            <Stack justifyContent="center" direction="column" padding={1} margin="1px">
-              <CircularProgress size={20} />
-            </Stack>
-          ) : (
-            <Checkbox
-              name={`enable-account-${account.account_id}`}
-              disabled={!account.is_configured}
-              checked={account.enabled}
-              onChange={handleEnableChange}
-            />
-          )}
-        </TableCell>
-      ) : null}
+      <TableCell>
+        {enableAccountIsPending || disableAccountIsPending ? (
+          <Stack justifyContent="center" direction="column" padding={1} margin="1px">
+            <CircularProgress size={20} />
+          </Stack>
+        ) : (
+          <Checkbox
+            name={`enable-account-${account.account_id}`}
+            disabled={!account.is_configured}
+            checked={account.enabled}
+            onChange={handleEnableChange}
+          />
+        )}
+      </TableCell>
       <TableCell>
         {enableScanAccountIsPending || disableScanAccountIsPending ? (
           <Stack justifyContent="center" direction="column" padding={1} margin="1px">

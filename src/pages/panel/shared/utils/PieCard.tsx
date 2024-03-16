@@ -24,7 +24,7 @@ const PieCardItemPaper = styled(Paper, { shouldForwardProp: shouldForwardPropWit
 }))
 
 const createPieDataFromName = (
-  name: 'critical' | 'high' | 'medium' | 'low',
+  name: 'critical' | 'high' | 'medium' | 'low' | 'info',
   accountFailedResources: Partial<FailedChecksType<number>> | null,
   resourceCount: number,
   locale: string,
@@ -51,7 +51,7 @@ const createPieDataFromName = (
 }
 
 const createPieDataFromNonCompliance = (account: WorkspaceAccountReportSummary, locale: string, navigate: NavigateFunction) => {
-  return (['critical', 'high', 'medium', 'low'] as const).map((name) =>
+  return (['critical', 'high', 'medium', 'low', 'info'] as const).map((name) =>
     createPieDataFromName(name, account.failed_resources_by_severity, account.resource_count, locale, navigate, account.id),
   )
 }

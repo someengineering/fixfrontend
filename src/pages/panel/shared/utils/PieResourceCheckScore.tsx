@@ -1,5 +1,5 @@
 import { Box, ButtonBase, Stack, StackProps, styled, useTheme } from '@mui/material'
-import { MouseEventHandler } from 'react'
+import { MouseEventHandler, useMemo } from 'react'
 import { PieChart } from 'src/shared/charts'
 import { CircularScore } from 'src/shared/circular-score'
 import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
@@ -42,6 +42,9 @@ export const PieResourceCheckScore = ({
   ...props
 }: PieResourceCheckScoreProps) => {
   const theme = useTheme()
+  const colors = useMemo(() => {
+    return { ...colorsBySeverity, Info: theme.palette.info.main }
+  }, [theme.palette.info.main])
   return (
     <Stack width={170} alignSelf="center" justifyContent="end" overflow="visible" flex={1} {...props}>
       <Box position="relative" height={170}>
@@ -60,7 +63,7 @@ export const PieResourceCheckScore = ({
         {showPieChart ? (
           <PieChartContainer opacity={hidingPieChart ? 0 : 1}>
             <PieChart
-              colors={colorsBySeverity}
+              colors={colors}
               data={data}
               showLabel
               pieProps={{

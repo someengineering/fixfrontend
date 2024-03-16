@@ -15,7 +15,7 @@ const meta = {
 } satisfies Meta<typeof ErrorBoundaryFallback>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof ErrorBoundaryFallback>
 
 export const Default: Story = {
   args: {

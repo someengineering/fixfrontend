@@ -134,7 +134,7 @@ msgid "A few minutes to first results"
 msgstr "In wenigen Minuten bis zum ersten Ergebnis"
 
 #: src/pages/panel/accounts/AccountRow.tsx:227
-#: src/pages/panel/accounts/AccountRow.tsx:343
+#: src/pages/panel/accounts/AccountRow.tsx:341
 msgid "Access to your account is broken"
 msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 
@@ -151,7 +151,7 @@ msgstr "Konto"
 msgid "Accounts"
 msgstr "Konten"
 
-#: src/pages/panel/home/Overview.tsx:90
+#: src/pages/panel/security/Overview.tsx:90
 msgid "Accounts Summary"
 msgstr "Zusammenfassung der Konten"
 
@@ -258,7 +258,7 @@ msgstr "Möchten Sie die Verbindung zu {name} wirklich trennen?"
 msgid "Are you sure you want to remove the {name} account {0}?"
 msgstr "Sind Sie sicher, dass Sie das {name}-Konto {0} entfernen möchten?"
 
-#: src/pages/panel/accounts/AccountRow.tsx:361
+#: src/pages/panel/accounts/AccountRow.tsx:359
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:77
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:94
 msgid "Are you sure?"
@@ -315,7 +315,7 @@ msgstr "Business"
 #: src/pages/panel/accounts/AccountRow.tsx:273
 #: src/pages/panel/accounts/AccountRow.tsx:277
 #: src/pages/panel/accounts/AccountRow.tsx:278
-#: src/pages/panel/accounts/AccountRow.tsx:380
+#: src/pages/panel/accounts/AccountRow.tsx:378
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:68
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:121
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:49
@@ -342,7 +342,7 @@ msgstr "Produktstufe ändern"
 msgid "Changes"
 msgstr "Änderungen"
 
-#: src/pages/panel/home/Overview.tsx:42
+#: src/pages/panel/security/Overview.tsx:42
 msgid "Changes in the past 7 days"
 msgstr "Änderungen in den letzten 7 Tagen"
 
@@ -354,10 +354,10 @@ msgstr "Wählen Sie Arbeitsbereich"
 msgid "Close"
 msgstr "Schließen"
 
-#: src/pages/panel/accounts/AccountRow.tsx:400
+#: src/pages/panel/accounts/AccountRow.tsx:398
 #: src/pages/panel/accounts/AccountsTableItem.tsx:40
-#: src/pages/panel/home/AccountCard.tsx:33
 #: src/pages/panel/inventory/ResourceDetail.tsx:229
+#: src/pages/panel/security/AccountCard.tsx:33
 msgid "Cloud"
 msgstr "Cloud"
 
@@ -381,8 +381,8 @@ msgstr "Cloud Setup"
 msgid "Clouds"
 msgstr "Wolken"
 
-#: src/pages/panel/home/OverallCard.tsx:77
 #: src/pages/panel/inventory/utils/ResourceDetailChangeLogSelectedHistory.tsx:81
+#: src/pages/panel/security/OverallCard.tsx:77
 msgid "Compliance"
 msgstr "Compliance"
 
@@ -480,8 +480,8 @@ msgid "Daily"
 msgstr "Täglich"
 
 #: src/shared/layouts/panel-layout/menuList.tsx:35
-msgid "Dashboard"
-msgstr "Dashboard"
+#~ msgid "Dashboard"
+#~ msgstr "Dashboard"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:41
 msgid "Data export (CSV, JSON, PDF)"
@@ -509,10 +509,10 @@ msgstr "Deaktivieren"
 msgid "Default Role"
 msgstr "Standardrolle"
 
-#: src/pages/panel/accounts/AccountRow.tsx:331
-#: src/pages/panel/accounts/AccountRow.tsx:335
-#: src/pages/panel/accounts/AccountRow.tsx:336
-#: src/pages/panel/accounts/AccountRow.tsx:391
+#: src/pages/panel/accounts/AccountRow.tsx:329
+#: src/pages/panel/accounts/AccountRow.tsx:333
+#: src/pages/panel/accounts/AccountRow.tsx:334
+#: src/pages/panel/accounts/AccountRow.tsx:389
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:79
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:65
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:69
@@ -533,7 +533,7 @@ msgstr "Anbieter löschen"
 msgid "Deleted"
 msgstr "Gelöscht"
 
-#: src/pages/panel/accounts/AccountRow.tsx:348
+#: src/pages/panel/accounts/AccountRow.tsx:346
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:13
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:29
 msgid "Deploy Stack"
@@ -561,7 +561,7 @@ msgstr "Dienst trennen"
 msgid "Discovered but unconfigured accounts"
 msgstr "Erkannte, aber nicht konfigurierte Konten"
 
-#: src/pages/panel/accounts/AccountRow.tsx:364
+#: src/pages/panel/accounts/AccountRow.tsx:362
 msgid "Do you want to delete this account?"
 msgstr "Möchten Sie dieses Konto löschen?"
 
@@ -721,7 +721,7 @@ msgstr "Free"
 msgid "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
 msgstr "Erhalten Sie Ihre fünf wichtigsten Empfehlungen zur Verbesserung Ihrer Sicherheit, sobald der erste Scan abgeschlossen ist, normalerweise innerhalb von 10 Minuten."
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:55
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:113
 msgid "Go to resources"
 msgstr "Gehen Sie zu Ressourcen"
 
@@ -738,20 +738,20 @@ msgstr "Startseite"
 msgid "Hourly"
 msgstr "Stündlich"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:42
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:72
 msgid "How to fix"
 msgstr "Wie repariert man"
 
-#: src/pages/panel/accounts/AccountRow.tsx:397
+#: src/pages/panel/accounts/AccountRow.tsx:395
 #: src/pages/panel/accounts/AccountsTableItem.tsx:43
-#: src/pages/panel/home/AccountCard.tsx:30
 #: src/pages/panel/inventory/ResourceDetail.tsx:226
+#: src/pages/panel/security/AccountCard.tsx:30
 #: src/shared/charts/NetworkDiagram.tsx:405
 msgid "ID"
 msgstr "ID"
 
-#: src/pages/panel/home/OverallCard.tsx:162
 #: src/pages/panel/inventory/utils/ResourceDetailChangeLogSelectedHistory.tsx:71
+#: src/pages/panel/security/OverallCard.tsx:162
 msgid "Improved"
 msgstr "Verbessert"
 
@@ -762,6 +762,10 @@ msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS 
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:77
 msgid "Inactivity reminder"
 msgstr "Inaktivitätserinnerung"
+
+#: src/shared/defined-messages/getMessage.ts:17
+msgid "Info"
+msgstr "Info"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:52
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle! Within a billing cycle you will be charged for the highest product tier that was active. Your next billing cycle starts: {0} UTC"
@@ -780,7 +784,7 @@ msgstr "Integrationsschlüssel"
 msgid "Invalid Value"
 msgstr "Ungültiger Wert"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:40
+#: src/shared/layouts/panel-layout/menuList.tsx:35
 msgid "Inventory"
 msgstr "Inventar"
 
@@ -861,23 +865,23 @@ msgstr "Monatlich"
 msgid "Monthly email report"
 msgstr "Monatlicher E-Mail-Bericht"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:59
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:117
 msgid "More info"
 msgstr "Mehr Info"
 
-#: src/pages/panel/home/OverallCard.tsx:196
+#: src/pages/panel/security/OverallCard.tsx:196
 msgid "Most Improved Accounts"
 msgstr "Am meisten verbesserte Konten"
 
-#: src/pages/panel/home/OverallCard.tsx:213
+#: src/pages/panel/security/OverallCard.tsx:213
 msgid "Most Improved Resources"
 msgstr "Am meisten verbesserte Ressourcen"
 
-#: src/pages/panel/home/OverallCard.tsx:111
+#: src/pages/panel/security/OverallCard.tsx:111
 msgid "Most Non-Compliant Accounts"
 msgstr "Die meisten nicht konformen Konten"
 
-#: src/pages/panel/accounts/AccountRow.tsx:403
+#: src/pages/panel/accounts/AccountRow.tsx:401
 #: src/pages/panel/accounts/AccountsTableItem.tsx:46
 #: src/pages/panel/inventory/ResourceDetail.tsx:227
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
@@ -899,11 +903,11 @@ msgstr "Name"
 msgid "Neighborhood view"
 msgstr "Nachbarschaftsansicht"
 
-#: src/pages/panel/home/OverallCard.tsx:167
+#: src/pages/panel/security/OverallCard.tsx:167
 msgid "new improved resources in the past {since}"
 msgstr "neue verbesserte Ressourcen in der Vergangenheit {since}"
 
-#: src/pages/panel/home/OverallCard.tsx:82
+#: src/pages/panel/security/OverallCard.tsx:82
 msgid "new non compliant resources in the past {since}"
 msgstr "neue nicht konforme Ressourcen in der Vergangenheit {since}"
 
@@ -932,12 +936,12 @@ msgstr "Knoten gelöscht um {0}"
 msgid "Node updated at {0}"
 msgstr "Knoten aktualisiert um {0}"
 
-#: src/pages/panel/accounts/AccountRow.tsx:367
+#: src/pages/panel/accounts/AccountRow.tsx:365
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Sie löschen gerade ein Management- oder delegiertes Admin-Konto. Beachten Sie bitte, dass wir nach der Löschung nicht mehr in der Lage sein werden, Kontonamen abzurufen, wodurch Sie diese manuell bearbeiten müssen."
 
-#: src/pages/panel/home/OverallCard.tsx:88
-#: src/pages/panel/home/OverallCard.tsx:173
+#: src/pages/panel/security/OverallCard.tsx:88
+#: src/pages/panel/security/OverallCard.tsx:173
 msgid "Nothing to show yet"
 msgstr "Noch nichts zu zeigen"
 
@@ -1023,7 +1027,7 @@ msgstr "Ausstehende Einladungen"
 msgid "per cloud account, per month"
 msgstr "pro Cloud-Konto, pro Monat"
 
-#: src/pages/panel/home/OverallCard.tsx:176
+#: src/pages/panel/security/OverallCard.tsx:176
 msgid "Pick one of the recommendations to the right and improve your security"
 msgstr "Wählen Sie eine der Empfehlungen rechts aus und verbessern Sie Ihre Sicherheit"
 
@@ -1130,7 +1134,7 @@ msgstr "Passwort zurücksetzen"
 msgid "Resources"
 msgstr "Ressourcen"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:38
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:68
 msgid "Risk"
 msgstr "Risiko"
 
@@ -1145,6 +1149,10 @@ msgstr "Rollen"
 msgid "Secure read-only access"
 msgstr "Sicherer Lesezugriff"
 
+#: src/shared/layouts/panel-layout/menuList.tsx:41
+msgid "Security"
+msgstr "Sicherheit"
+
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:25
 msgid "Security benchmarks"
 msgstr "Sicherheitsbenchmarks"
@@ -1157,8 +1165,8 @@ msgstr "Sicherheitsprobleme"
 msgid "Security Scan"
 msgstr "Sicherheitsscan"
 
-#: src/pages/panel/home/Overview.tsx:28
-#: src/pages/panel/home/Overview.tsx:52
+#: src/pages/panel/security/Overview.tsx:28
+#: src/pages/panel/security/Overview.tsx:52
 msgid "Security Score"
 msgstr "Sicherheitsbewertung"
 
@@ -1261,7 +1269,7 @@ msgstr "Es gibt keine Änderungen"
 msgid "There's no account configured for this workspace."
 msgstr "Für diesen Arbeitsbereich ist kein Konto konfiguriert."
 
-#: src/pages/panel/accounts/AccountRow.tsx:353
+#: src/pages/panel/accounts/AccountRow.tsx:351
 msgid "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 msgstr "Dieses Konto befindet sich derzeit in einem nicht-funktionalen Zustand, möglicherweise aufgrund einer Fehlkonfiguration. Fix konnte nicht auf das Konto zugreifen. Um die Sicherheitsscans fortzusetzen, loggen Sie sich bitte in das Konto {accountName} ({0}) ein und erzeugen Sie den CloudFormation-Stacks, der die IAM Vertrauensstellung herstellt, erneut."
 
@@ -1289,12 +1297,13 @@ msgstr "Zum AWS Marketplace"
 msgid "To enhance your experience, please select the workspace where you'd like to activate your subscription"
 msgstr "Um Ihr Erlebnis zu verbessern, wählen Sie bitte den Arbeitsbereich aus, in dem Sie Ihr Abonnement aktivieren möchten"
 
-#: src/pages/panel/home/OverallCard.tsx:135
+#: src/pages/panel/security/OverallCard.tsx:135
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:78
 msgid "Top Non-Compliant Resources"
 msgstr "Top Ressourcen mit Compliance-Verstößen"
 
-#: src/pages/panel/home/Overview.tsx:62
-#: src/pages/panel/home/Overview.tsx:79
+#: src/pages/panel/security/Overview.tsx:62
+#: src/pages/panel/security/Overview.tsx:79
 msgid "Top Security Enhancements"
 msgstr "Top-Sicherheitsverbesserungen"
 
@@ -1381,7 +1390,7 @@ msgstr "Wir haben eine E-Mail mit einem Bestätigungslink an Ihre E-Mail-Adresse
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "Wir entschuldigen uns für die Unannehmlichkeiten. Unser Team wurde benachrichtigt und das Problem wird untersucht. Bitte versuchen Sie es in ein paar Minuten noch einmal. Wenn das Problem weiterhin besteht, können Sie uns gerne <0>auf Discord</0> kontaktieren. Danke für Ihre Geduld!"
 
-#: src/pages/panel/home/OverallScore.tsx:59
+#: src/pages/panel/security/OverallScore.tsx:59
 #: src/pages/panel/shared/utils/PieCard.tsx:40
 msgid "We've identified {0} non-compliant resources out of {1} {2}-severity security checks."
 msgstr "Wir haben {0} nicht konforme Ressourcen von insgesamt {1} {2}-Severity Security-Checks identifiziert"

@@ -2,11 +2,11 @@ import { lazy } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { AccountCheckGuard, BenchmarkCheckGuard, SubscriptionCheckGuard } from 'src/shared/layouts/panel-layout'
 
-const HomePage = lazy(
+const SecurityPage = lazy(
   () =>
     import(
-      /* webpackChunkName: "home" */
-      'src/pages/panel/home/HomePage'
+      /* webpackChunkName: "security" */
+      'src/pages/panel/security/SecurityPage'
     ),
 )
 
@@ -79,9 +79,10 @@ export function PanelRoutes() {
     <Routes>
       <Route element={<SubscriptionCheckGuard />}>
         <Route path="/">
+          <Route index element={<Navigate to="/inventory" replace />} />
           <Route element={<AccountCheckGuard />}>
             <Route element={<BenchmarkCheckGuard />}>
-              <Route index element={<HomePage />} />
+              <Route path="security" element={<SecurityPage />} />
               <Route path="inventory">
                 <Route index element={<InventoryPage />} />
                 <Route path="resource-detail/:resourceDetailId" element={<InventoryPage />} />

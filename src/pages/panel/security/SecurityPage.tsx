@@ -3,7 +3,7 @@ import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-bo
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { Overview } from './Overview'
 
-export default function HomePage() {
+export default function SecurityPage() {
   return (
     <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
       <Suspense fallback={<LoadingSuspenseFallback />}>
