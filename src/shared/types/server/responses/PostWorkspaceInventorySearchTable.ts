@@ -1,8 +1,22 @@
 import { ResourceComplexKindSimpleTypeDefinitions } from './shared'
 
+export interface WorkspaceInventorySearchTableDefaultRow {
+  kind: string
+  id: string
+  name: string
+  has_issues: boolean
+  check: string | null
+  age: string
+  last_update: string
+  cloud: string | null
+  account: string | null
+  region: string | null
+  zone: string | null
+}
+
 export interface WorkspaceInventorySearchTableRow {
   id: string
-  row: Record<string, string | number | boolean | null>
+  row: WorkspaceInventorySearchTableDefaultRow & Record<string, string | number | boolean | null>
 }
 
 export interface WorkspaceInventorySearchTableColumn {
