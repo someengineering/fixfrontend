@@ -22,7 +22,7 @@ const meta = {
 } satisfies Meta<typeof DurationPicker>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof DurationPicker>
 
 export const Default: Story = {
   args: {
