@@ -25,6 +25,13 @@ jobs:
           echo "VITE_GTM_PROD_ID=${{ secrets.GTM_PROD_ID }}" >> .env.production
           echo "VITE_TRACKJS_TOKEN=${{ secrets.TRACKJS_TOKEN }}" >> .env.production
           echo "VITE_MUI_LICENSE_KEY=${{ secrets.MUI_LICENSE_KEY }}" >> .env.production
+      
+      - name: Add models
+        run: |
+          echo "[]" > mock-apis/data/model.json
+          echo "{ \"accounts\": [], \"regions\": [], \"kinds\": [], \"severity\": [] }" > mock-apis/data/search-start.json
+          echo "[]" > mock-apis/data/table.json
+          echo "[]" > mock-apis/data/tags.json
 
       - name: Create a production build
         uses: devcontainers/ci@v0.3
