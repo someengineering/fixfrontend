@@ -7,7 +7,6 @@ import { useEvents } from 'src/core/events'
 import { useSnackbar } from 'src/core/snackbar'
 import { CollectProgressEvent, WebSocketEvent } from 'src/shared/types/server'
 import { EventItem } from './EventItem'
-import { mergeProgressEventParts } from './mergeProgressEventParts'
 
 const PopperContainer = styled(Popper)(({ theme }) => ({
   marginTop: 45,
@@ -28,14 +27,14 @@ export const EventButton = () => {
         case 'collect-progress': {
           const hasProgress = ev.data.message.parts.find((i) => i.current !== i.total)
           setEvents((prev) => {
-            const foundIndex = prev.findIndex((item) => item.kind === ev.kind)
+            const foundIndex = prev.findIndex((item) => item.kind === ev.kind && item.data.task === ev.data.task)
             if (foundIndex === -1 && !hasProgress) {
               return prev
             }
             const newEvents = [...prev]
             if (foundIndex > -1) {
               if (hasProgress) {
-                newEvents[foundIndex] = mergeProgressEventParts(newEvents[foundIndex] as CollectProgressEvent, ev)
+                newEvents[foundIndex] = ev
               } else {
                 void queryClient.invalidateQueries({
                   predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace'),
@@ -45,7 +44,7 @@ export const EventButton = () => {
             } else if (hasProgress) {
               newEvents.unshift(ev)
             }
-            return newEvents
+            return newEvents.sort((a, b) => new Date(b.at).valueOf() - new Date(a.at).valueOf())
           })
           break
         }
@@ -129,9 +128,7 @@ export const EventButton = () => {
                 maxHeight="calc(100vh - 90px)"
                 overflow="auto"
               >
-                {events.map((data, i) => (
-                  <EventItem key={i} data={data} />
-                ))}
+                <EventItem data={events.filter((i) => i.kind === 'collect-progress') as CollectProgressEvent[]} />
               </Box>
             </Paper>
           </Fade>

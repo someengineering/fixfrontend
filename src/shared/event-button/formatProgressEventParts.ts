@@ -9,7 +9,7 @@ export interface FormattedProgressEventParts {
 }
 
 const createPart = (prevParts: FormattedProgressEventParts[], currentPath = '', prevPath = '') => {
-  const currentFullPath = `${prevPath}>${currentPath}`
+  const currentFullPath = prevPath ? `${prevPath}>${currentPath}` : currentPath
   const foundPart = prevParts.find((part) => part.path === currentFullPath)
   if (foundPart) {
     return foundPart
@@ -28,7 +28,7 @@ const createPart = (prevParts: FormattedProgressEventParts[], currentPath = '', 
 const populatePart = (
   prevParts: FormattedProgressEventParts[],
   currentPart: CollectProgressEvent['data']['message']['parts'][number],
-  prevPath: string,
+  prevPath?: string,
   pathIndex = 0,
 ) => {
   if (pathIndex < (currentPart.path?.length ?? 0)) {
@@ -46,13 +46,10 @@ const populatePart = (
   }
 }
 
-export const formatProgressEventParts = (
-  parts: CollectProgressEvent['data']['message']['parts'],
-  name: string,
-): FormattedProgressEventParts => {
+export const formatProgressEventParts = (parts: CollectProgressEvent['data']['message']['parts']): FormattedProgressEventParts => {
   const newParts: FormattedProgressEventParts[] = []
   for (const part of parts) {
-    populatePart(newParts, part, name)
+    populatePart(newParts, part)
   }
   const sums = { current: 0, total: 0 }
   for (const part of newParts) {
@@ -60,10 +57,10 @@ export const formatProgressEventParts = (
     sums.total += part.total
   }
   return {
-    name,
+    name: '',
+    path: '',
     current: sums.current,
     total: sums.total,
-    path: name,
     detail: newParts,
   }
 }
