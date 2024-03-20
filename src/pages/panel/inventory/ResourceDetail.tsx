@@ -338,7 +338,11 @@ export const ResourceDetail = () => {
                 {data.failing_checks.map((failedCheck, i) => (
                   <Fragment key={i}>
                     <Paper elevation={1}>
-                      <FailedChecks failedCheck={failedCheck} smallText />
+                      <FailedChecks
+                        failedCheck={failedCheck}
+                        smallText
+                        benchmarks={data.resource.security?.issues.find((issue) => issue.check === failedCheck.id)?.benchmarks}
+                      />
                     </Paper>
                     <Divider />
                   </Fragment>

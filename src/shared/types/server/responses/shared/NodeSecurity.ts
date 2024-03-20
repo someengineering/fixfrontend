@@ -2,7 +2,7 @@ import { SeverityType } from './SeverityType'
 
 export type NodeSecurity = {
   issues: {
-    benchmark: string
+    benchmarks: string[]
     check: string
     severity: SeverityType
     opened_at: string

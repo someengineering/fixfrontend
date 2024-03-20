@@ -22,16 +22,17 @@ import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/q
 import { createInventorySearchTo, getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { getMessage } from 'src/shared/defined-messages'
 import { FailedCheck } from 'src/shared/types/server'
-import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
+import { snakeCaseToUFStr, snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 
 interface FailedChecks {
   failedCheck: FailedCheck
   navigate?: NavigateFunction
   smallText?: boolean
   withResources?: boolean
+  benchmarks?: string[]
 }
 
-export const FailedChecks = ({ failedCheck, navigate, smallText, withResources }: FailedChecks) => {
+export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, benchmarks }: FailedChecks) => {
   const [expanded, setExpanded] = useState(false)
   const { selectedWorkspace } = useUserProfile()
   const query = `/security.has_issues=true and /security.issues[*].check="${failedCheck.id}"`
@@ -101,6 +102,18 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources }
                   : isLoading
                     ? new Array(5).fill('').map(() => <Skeleton variant="rounded" sx={{ borderRadius: 4 }} width={100} height={32} />)
                     : null}
+              </Stack>
+            </>
+          ) : null}
+          {benchmarks && benchmarks.length ? (
+            <>
+              <Typography variant={smallText ? 'h6' : 'h5'} fontWeight={smallText ? 800 : undefined} mt={2}>
+                <Trans>Failing benchmarks</Trans>
+              </Typography>
+              <Stack direction="row" flexWrap="wrap" gap={1} my={1}>
+                {benchmarks.map((benchmark) => (
+                  <Chip label={snakeCaseWordsToUFStr(benchmark)} variant="outlined" color="info" />
+                ))}
               </Stack>
             </>
           ) : null}

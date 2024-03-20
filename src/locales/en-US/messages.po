@@ -388,15 +388,15 @@ msgstr "Close"
 msgid "Cloud"
 msgstr "Cloud"
 
-#: src/shared/event-button/EventButton.tsx:56
+#: src/shared/event-button/EventButton.tsx:55
 msgid "Cloud account configured, id: {0}"
 msgstr "Cloud account configured, id: {0}"
 
-#: src/shared/event-button/EventButton.tsx:62
+#: src/shared/event-button/EventButton.tsx:61
 msgid "Cloud account degraded, id: {0}"
 msgstr "Cloud account degraded, id: {0}"
 
-#: src/shared/event-button/EventButton.tsx:68
+#: src/shared/event-button/EventButton.tsx:67
 msgid "Cloud account discovered, id: {0}"
 msgstr "Cloud account discovered, id: {0}"
 
@@ -642,7 +642,7 @@ msgstr "Enabled"
 msgid "Enterprise"
 msgstr "Enterprise"
 
-#: src/shared/event-button/EventButton.tsx:102
+#: src/shared/event-button/EventButton.tsx:101
 msgid "Events"
 msgstr "Events"
 
@@ -677,6 +677,10 @@ msgstr "External Id"
 #: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:54
 msgid "Failed to retrieve changelog"
 msgstr "Failed to retrieve changelog"
+
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:111
+msgid "Failing benchmarks"
+msgstr "Failing benchmarks"
 
 #: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:135
 msgid "False"
@@ -727,7 +731,7 @@ msgstr "Free"
 msgid "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
 msgstr "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:113
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:126
 msgid "Go to resources"
 msgstr "Go to resources"
 
@@ -744,7 +748,7 @@ msgstr "Homepage"
 msgid "Hourly"
 msgstr "Hourly"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:72
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:73
 msgid "How to fix"
 msgstr "How to fix"
 
@@ -874,7 +878,7 @@ msgstr "Monthly"
 msgid "Monthly email report"
 msgstr "Monthly email report"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:117
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:130
 msgid "More info"
 msgstr "More info"
 
@@ -1151,7 +1155,7 @@ msgstr "Resource deleted"
 msgid "Resources"
 msgstr "Resources"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:68
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:69
 msgid "Risk"
 msgstr "Risk"
 
@@ -1320,7 +1324,7 @@ msgid "To enhance your experience, please select the workspace where you'd like 
 msgstr "To enhance your experience, please select the workspace where you'd like to activate your subscription"
 
 #: src/pages/panel/security/OverallCard.tsx:135
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:78
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:79
 msgid "Top Non-Compliant Resources"
 msgstr "Top Non-Compliant Resources"
 
