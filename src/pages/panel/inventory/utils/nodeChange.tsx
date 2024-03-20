@@ -1,98 +1,157 @@
 import { Trans } from '@lingui/macro'
 import AddIcon from '@mui/icons-material/Add'
 import DeleteIcon from '@mui/icons-material/Delete'
+import GppBadIcon from '@mui/icons-material/GppBad'
 import GppGoodIcon from '@mui/icons-material/GppGood'
 import GppMaybeIcon from '@mui/icons-material/GppMaybe'
 import UpdateIcon from '@mui/icons-material/Update'
 import { TimelineDot } from '@mui/lab'
-import { IconButton, Typography } from '@mui/material'
+import { IconButton, Theme, Typography } from '@mui/material'
+import { diffLines } from 'diff'
 import { MouseEventHandler } from 'react'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
-import { SeverityType, WorkspaceInventoryNodeHistory, WorkspaceInventoryNodeHistoryChanges } from 'src/shared/types/server'
+import { SeverityType, WorkspaceInventoryNodeHistory } from 'src/shared/types/server'
+import { stringify } from 'yaml'
 
-export const nodeChangeToStr = (nodeChange: WorkspaceInventoryNodeHistoryChanges) => {
-  switch (nodeChange) {
+export const nodeChangeToStr = (history: WorkspaceInventoryNodeHistory) => {
+  switch (history.change) {
     case 'node_created':
-      return <Trans>Created</Trans>
+      return <Trans>Resource created</Trans>
     case 'node_updated':
-      return <Trans>Updated</Trans>
+      return <Trans>Configuration changed</Trans>
     case 'node_deleted':
-      return <Trans>Deleted</Trans>
+      return <Trans>Resource deleted</Trans>
     case 'node_vulnerable':
-      return <Trans>Found vulnerability</Trans>
+      return <Trans>New security issues detected</Trans>
     case 'node_compliant':
-      return <Trans>Found compliant</Trans>
+      return history.security.has_issues ? <Trans>Security posture improved</Trans> : <Trans>All security issues fixed</Trans>
   }
 }
 
-export const nodeChangeToDescription = (history: WorkspaceInventoryNodeHistory, locale?: string) => {
+export const nodeChangeToDescription = (history: WorkspaceInventoryNodeHistory) => {
+  const { age: _age, last_update: _lastUpdate, time_created: _timeCreated, ...selectedHistoryReported } = history?.reported ?? {}
   switch (history.change) {
     case 'node_created':
+      return null
+    case 'node_updated': {
+      const { added, removed } = diffLines(stringify(history.before), stringify(selectedHistoryReported)).reduce(
+        (prev, part) => ({
+          removed: prev.removed + (part.removed ? part.count ?? 0 : 0),
+          added: prev.added + (part.added ? part.count ?? 0 : 0),
+        }),
+        { removed: 0, added: 0 },
+      )
       return (
-        <Typography color="success.main" width="100%" align="left">
-          <Trans>Node created at {new Date(history.changed_at).toLocaleTimeString(locale)}</Trans>
+        <Typography width="100%" align="left">
+          <Trans>
+            {added} configuration lines added and {removed} lines deleted.
+          </Trans>
         </Typography>
       )
-    case 'node_updated':
-      return (
-        <Typography color="warning.main" width="100%" align="left">
-          <Trans>Node updated at {new Date(history.changed_at).toLocaleTimeString(locale)}</Trans>
-        </Typography>
-      )
+    }
     case 'node_deleted':
-      return (
-        <Typography color="error.main" width="100%" align="left">
-          <Trans>Node deleted at {new Date(history.changed_at).toLocaleTimeString(locale)}</Trans>
-        </Typography>
-      )
+      return null
     case 'node_vulnerable': {
-      const allVulnerabilitiesCount = history.diff.node_vulnerable.length
       const vulnerabilities = history.diff.node_vulnerable.reduce(
         (prev, cur) => ({ ...prev, [cur.severity]: (prev[cur.severity] ?? 0) + 1 }),
         {} as { [key in SeverityType]: number },
       )
-      return allVulnerabilitiesCount ? (
-        <Typography width="100%" align="left">
-          <Trans>
-            Found{' '}
-            {Object.entries(vulnerabilities).map(([severity, count], i) => (
-              <Typography component="span" color={getColorBySeverity(severity)} key={i}>
-                {count} {severity}{' '}
-              </Typography>
-            ))}{' '}
-            vulnerability at {new Date(history.changed_at).toLocaleTimeString(locale)}
-          </Trans>
-        </Typography>
-      ) : null
-    }
-    case 'node_compliant': {
-      const allCompliantCount = history.diff.node_compliant.length
-      const compliant = history.diff.node_vulnerable.reduce(
+      const compliances = history.diff.node_compliant.reduce(
         (prev, cur) => ({ ...prev, [cur.severity]: (prev[cur.severity] ?? 0) + 1 }),
         {} as { [key in SeverityType]: number },
       )
-      return allCompliantCount ? (
+      return (
         <Typography width="100%" align="left">
-          <Trans>
-            Found resolved{' '}
-            {Object.entries(compliant).map(([severity, count], i) => (
-              <Typography component="span" color={getColorBySeverity(severity)} key={i}>
-                {count} {severity},{' '}
-              </Typography>
-            ))}{' '}
-            vulnerability at {new Date(history.changed_at).toLocaleTimeString(locale)}
-          </Trans>
+          {history.diff.node_vulnerable.length ? (
+            <>
+              <Trans>
+                {Object.entries(vulnerabilities).map(([severity, count], i) => (
+                  <Typography component="span" color={getColorBySeverity(severity)} key={i}>
+                    {count} {severity}{' '}
+                  </Typography>
+                ))}{' '}
+                checks failed.
+              </Trans>{' '}
+            </>
+          ) : null}
+          {history.diff.node_compliant.length ? (
+            <Trans>
+              {Object.entries(compliances).map(([severity, count], i) => (
+                <Typography component="span" color={getColorBySeverity(severity)} key={i}>
+                  {count} {severity}{' '}
+                </Typography>
+              ))}{' '}
+              checks fixed.
+            </Trans>
+          ) : null}
         </Typography>
-      ) : null
+      )
+    }
+    case 'node_compliant': {
+      const vulnerabilities = history.diff.node_vulnerable.reduce(
+        (prev, cur) => ({ ...prev, [cur.severity]: (prev[cur.severity] ?? 0) + 1 }),
+        {} as { [key in SeverityType]: number },
+      )
+      const compliances = history.diff.node_compliant.reduce(
+        (prev, cur) => ({ ...prev, [cur.severity]: (prev[cur.severity] ?? 0) + 1 }),
+        {} as { [key in SeverityType]: number },
+      )
+      return (
+        <Typography width="100%" align="left">
+          {history.diff.node_compliant.length ? (
+            <>
+              <Trans>
+                {Object.entries(compliances).map(([severity, count], i) => (
+                  <Typography component="span" color={getColorBySeverity(severity)} key={i}>
+                    {count} {severity}{' '}
+                  </Typography>
+                ))}{' '}
+                checks fixed.
+              </Trans>{' '}
+            </>
+          ) : null}
+          {history.diff.node_vulnerable.length ? (
+            <Trans>
+              {Object.entries(vulnerabilities).map(([severity, count], i) => (
+                <Typography component="span" color={getColorBySeverity(severity)} key={i}>
+                  {count} {severity}
+                  {'  '}
+                </Typography>
+              ))}{' '}
+              checks failed.
+            </Trans>
+          ) : null}
+        </Typography>
+      )
     }
   }
 }
 
-export const nodeChangeToIcon = (nodeChange: WorkspaceInventoryNodeHistoryChanges, onClick?: MouseEventHandler<HTMLButtonElement>) => {
-  switch (nodeChange) {
+export const nodeChangeToColorName = (history: WorkspaceInventoryNodeHistory) => {
+  switch (history.change) {
+    case 'node_created':
+      return 'info' as const
+    case 'node_updated':
+      return 'primary' as const
+    case 'node_deleted':
+      return 'error' as const
+    case 'node_vulnerable':
+      return 'error' as const
+    case 'node_compliant':
+      return history.security.has_issues ? 'warning' : ('success' as const)
+  }
+}
+
+export const nodeChangeToColor = (history: WorkspaceInventoryNodeHistory, theme?: Theme) => {
+  const colorName = nodeChangeToColorName(history)
+  return theme?.palette[colorName].main ?? `${colorName}.main`
+}
+
+export const nodeChangeToIcon = (history: WorkspaceInventoryNodeHistory, onClick?: MouseEventHandler<HTMLButtonElement>) => {
+  switch (history.change) {
     case 'node_created':
       return (
-        <TimelineDot color="primary" variant="outlined">
+        <TimelineDot color={nodeChangeToColorName(history)} variant="outlined">
           {onClick ? (
             <IconButton onClick={onClick} size="small">
               <AddIcon />
@@ -104,7 +163,7 @@ export const nodeChangeToIcon = (nodeChange: WorkspaceInventoryNodeHistoryChange
       )
     case 'node_updated':
       return (
-        <TimelineDot color="warning" variant="outlined">
+        <TimelineDot color={nodeChangeToColorName(history)} variant="outlined">
           {onClick ? (
             <IconButton onClick={onClick} size="small">
               <UpdateIcon />
@@ -116,7 +175,7 @@ export const nodeChangeToIcon = (nodeChange: WorkspaceInventoryNodeHistoryChange
       )
     case 'node_deleted':
       return (
-        <TimelineDot color="error" variant="outlined">
+        <TimelineDot color={nodeChangeToColorName(history)} variant="outlined">
           {onClick ? (
             <IconButton onClick={onClick} size="small">
               <DeleteIcon />
@@ -128,27 +187,29 @@ export const nodeChangeToIcon = (nodeChange: WorkspaceInventoryNodeHistoryChange
       )
     case 'node_vulnerable':
       return (
-        <TimelineDot color="error" variant="outlined">
+        <TimelineDot color={nodeChangeToColorName(history)} variant="outlined">
           {onClick ? (
             <IconButton onClick={onClick} size="small">
-              <GppMaybeIcon />
+              <GppBadIcon />
             </IconButton>
           ) : (
-            <GppMaybeIcon />
+            <GppBadIcon />
           )}
         </TimelineDot>
       )
-    case 'node_compliant':
+    case 'node_compliant': {
+      const icon = history.security.has_issues ? <GppMaybeIcon /> : <GppGoodIcon />
       return (
-        <TimelineDot color="success" variant="outlined">
+        <TimelineDot color={nodeChangeToColorName(history)} variant="outlined">
           {onClick ? (
             <IconButton onClick={onClick} size="small">
-              <GppGoodIcon />
+              {icon}
             </IconButton>
           ) : (
-            <GppGoodIcon />
+            icon
           )}
         </TimelineDot>
       )
+    }
   }
 }

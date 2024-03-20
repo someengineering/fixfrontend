@@ -24,7 +24,7 @@ import {
 } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { Fragment, ReactNode, useEffect, useRef, useState } from 'react'
+import { Fragment, ReactNode, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { FailedChecks } from 'src/pages/panel/shared/failed-checks'
@@ -140,19 +140,14 @@ export const ResourceDetail = () => {
     throwOnError: false,
     enabled: !!resourceDetailId,
   })
-  const [selectedRow, setSelectedRow] = useState(resourceDetailId)
+
+  const nodeNotFound = (error as AxiosError)?.response?.status === 404
 
   useEffect(() => {
     if (error) {
       inventorySendToGTM('getWorkspaceInventoryNodeQuery', false, error as AxiosError, resourceDetailId, resourceDetailId)
     }
   }, [resourceDetailId, error])
-
-  useEffect(() => {
-    if (resourceDetailId) {
-      setSelectedRow(resourceDetailId)
-    }
-  }, [resourceDetailId])
 
   const handleClose = () => {
     const search = getLocationSearchValues(window.location.search)
@@ -161,7 +156,7 @@ export const ResourceDetail = () => {
 
   const {
     id,
-    name = getLocationSearchValues(window.location.search)?.name || '',
+    name = window.decodeURIComponent(getLocationSearchValues(window.location.search)?.name || ''),
     kind,
     ctime,
     age: _age,
@@ -174,7 +169,7 @@ export const ResourceDetail = () => {
   const provider_link = data?.resource.metadata.provider_link
   const { tags: _tags, ...reported } = data?.resource.reported ?? {}
 
-  return selectedRow ? (
+  return resourceDetailId ? (
     <Modal open={!!resourceDetailId} onClose={handleClose}>
       <Slide in={!!resourceDetailId} direction="left" mountOnEnter unmountOnExit>
         <Stack
@@ -210,9 +205,11 @@ export const ResourceDetail = () => {
               <CloseIcon />
             </IconButton>
           </Stack>
-          <Box minHeight={400} width="100%" sx={{ userSelect: 'none' }}>
-            {data ? <NetworkDiagram mainId={data.resource.id} /> : null}
-          </Box>
+          {nodeNotFound ? null : (
+            <Box minHeight={400} width="100%" sx={{ userSelect: 'none' }}>
+              {data ? <NetworkDiagram mainId={data.resource.id} /> : <Skeleton height="100%" width="100%" variant="rectangular" />}
+            </Box>
+          )}
           <Accordion defaultExpanded>
             <ResourceDetailAccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Trans>Basic Information</Trans>
@@ -280,6 +277,16 @@ export const ResourceDetail = () => {
                 <>
                   <Skeleton height={200} width="100%" variant="rounded" />
                 </>
+              ) : error ? (
+                <Stack height={200} width="100%" alignItems="center" justifyContent="center">
+                  <Typography color="info.main" component="span" variant="h6">
+                    {nodeNotFound ? (
+                      <Trans>The selected resource does not exist anymore.</Trans>
+                    ) : (
+                      <Trans>Something went wrong please try again later.</Trans>
+                    )}
+                  </Typography>
+                </Stack>
               ) : null}
             </AccordionDetails>
           </Accordion>
@@ -298,27 +305,29 @@ export const ResourceDetail = () => {
               </AccordionDetails>
             </Accordion>
           ) : null}
-          <Accordion>
-            <ResourceDetailAccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <Trans>Details</Trans>
-            </ResourceDetailAccordionSummary>
-            <Divider />
-            <AccordionDetails>
-              {data?.resource.reported ? (
-                <Stack overflow="auto">
-                  <pre>
-                    <code>
-                      <YamlHighlighter>{stringify(reported, null, '  ')}</YamlHighlighter>
-                    </code>
-                  </pre>
-                </Stack>
-              ) : isLoading ? (
-                <>
-                  <Skeleton height={400} width="100%" variant="rounded" />
-                </>
-              ) : null}
-            </AccordionDetails>
-          </Accordion>
+          {error ? null : (
+            <Accordion>
+              <ResourceDetailAccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Trans>Details</Trans>
+              </ResourceDetailAccordionSummary>
+              <Divider />
+              <AccordionDetails>
+                {data?.resource.reported ? (
+                  <Stack overflow="auto">
+                    <pre>
+                      <code>
+                        <YamlHighlighter>{stringify(reported, null, '  ')}</YamlHighlighter>
+                      </code>
+                    </pre>
+                  </Stack>
+                ) : isLoading ? (
+                  <>
+                    <Skeleton height={400} width="100%" variant="rounded" />
+                  </>
+                ) : null}
+              </AccordionDetails>
+            </Accordion>
+          )}
           {data?.resource.security?.has_issues ? (
             <Accordion defaultExpanded>
               <ResourceDetailAccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -369,7 +378,7 @@ export const ResourceDetail = () => {
               </AccordionDetails>
             </Accordion>
           ) : null}
-          {resourceDetailId ? <ResourceDetailChangeLog /> : null}
+          {resourceDetailId && (!error || nodeNotFound) ? <ResourceDetailChangeLog notFound={nodeNotFound} /> : null}
         </Stack>
       </Slide>
     </Modal>

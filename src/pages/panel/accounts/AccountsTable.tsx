@@ -19,17 +19,10 @@ export const AccountsTable = () => {
           isTop
           isBottom={!data.discovered.length && !data.added.length}
           title={t`Recently added accounts`}
-          isConfigured
         />
       ) : null}
       {data.added.length ? (
-        <AccountsTableItem
-          data={data.added}
-          isTop={!data.recent.length}
-          isBottom={!data.discovered.length}
-          title={t`Added accounts`}
-          isConfigured
-        />
+        <AccountsTableItem data={data.added} isTop={!data.recent.length} isBottom={!data.discovered.length} title={t`Added accounts`} />
       ) : null}
       {data.discovered.length ? (
         <AccountsTableItem
@@ -37,6 +30,7 @@ export const AccountsTable = () => {
           isTop={!data.recent.length && !data.added.length}
           isBottom
           title={t`Discovered but unconfigured accounts`}
+          isNotConfigured
         />
       ) : null}
     </>

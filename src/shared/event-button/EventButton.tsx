@@ -5,8 +5,9 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
 import { useEvents } from 'src/core/events'
 import { useSnackbar } from 'src/core/snackbar'
-import { WebSocketEvent } from 'src/shared/types/server'
+import { CollectProgressEvent, WebSocketEvent } from 'src/shared/types/server'
 import { EventItem } from './EventItem'
+import { mergeProgressEventParts } from './mergeProgressEventParts'
 
 const PopperContainer = styled(Popper)(({ theme }) => ({
   marginTop: 45,
@@ -27,14 +28,14 @@ export const EventButton = () => {
         case 'collect-progress': {
           const hasProgress = ev.data.message.parts.find((i) => i.current !== i.total)
           setEvents((prev) => {
-            const foundIndex = prev.findIndex((item) => item.kind === ev.kind && item.data.task === ev.data.task)
+            const foundIndex = prev.findIndex((item) => item.kind === ev.kind)
             if (foundIndex === -1 && !hasProgress) {
               return prev
             }
             const newEvents = [...prev]
             if (foundIndex > -1) {
               if (hasProgress) {
-                newEvents[foundIndex] = ev
+                newEvents[foundIndex] = mergeProgressEventParts(newEvents[foundIndex] as CollectProgressEvent, ev)
               } else {
                 void queryClient.invalidateQueries({
                   predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace'),

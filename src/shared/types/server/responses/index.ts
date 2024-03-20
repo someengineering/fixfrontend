@@ -42,7 +42,7 @@ export type {
 export type { GetWorkspaceInvitesResponse, WorkspaceInvite } from './GetWorkspaceInvites'
 export type { GetWorkspaceNotificationsResponse } from './GetWorkspaceNotifications'
 export type { GetWorkspaceSettingsResponse } from './GetWorkspaceSettings'
-export type { GetWorkspaceUsersResponse, WorkspaceUser } from './GetWorkspaceUsers'
+export type { GetWorkspaceUsersResponse, WorkspaceUser, WorkspaceUserRole } from './GetWorkspaceUsers'
 export type { GetWorkspaceResponse, GetWorkspacesResponse } from './GetWorkspaces'
 export type { PostAuthMfaAddResponse } from './PostAuthMfaAdd'
 export type { PostWorkspaceInventoryPropertyAttributesResponse } from './PostWorkspaceInventoryPropertyAttributes'

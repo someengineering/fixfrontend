@@ -79,7 +79,7 @@ test('Update a query', () => {
 })
 
 test('find paths', () => {
-  let jso: object = { a: 12, b: 21 }
+  let jso: JsonElement = { a: 12, b: 21 }
   let all_paths = [...Path.from_string('a').find(jso)]
   assert.deepEqual(all_paths, [[Path.from('a'), 12]])
 
@@ -95,7 +95,7 @@ test('find paths', () => {
 
 test('find matching path', () => {
   // simple top level property
-  let js: object = { a: 1, prop: 42, b: 2 }
+  let js: JsonElement = { a: 1, prop: 42, b: 2 }
   assert.deepEqual(Query.parse('prop == 42').find_paths(js), [Path.from('prop')])
   assert.deepEqual(Query.parse('prop > 12').find_paths(js), [Path.from('prop')])
   assert.deepEqual(Query.parse('prop >= 12').find_paths(js), [Path.from('prop')])
@@ -138,7 +138,7 @@ test('find matching path', () => {
 })
 test('Changing resource json: predicate', () => {
   // simple top level property
-  let js: object = { a: 1, prop: 42, b: 2 }
+  let js: JsonElement = { a: 1, prop: 42, b: 2 }
   assert.deepEqual(Query.parse('prop == 42').delete_matching(js), { a: 1, b: 2 })
   assert.deepEqual(Query.parse('prop > 12').delete_matching(js), { a: 1, b: 2 })
   assert.deepEqual(Query.parse('prop >= 12').delete_matching(js), { a: 1, b: 2 })
@@ -201,7 +201,7 @@ test('Changing resource json: predicate', () => {
 
 test('Changing resource json: context term', () => {
   // simple top level property
-  const js: object = { a: 1, b: 2, c: { d: { e: { f: [{ g: 1, h: 2 }] } } } }
+  const js = { a: 1, b: 2, c: { d: { e: { f: [{ g: 1, h: 2 }] } } } }
   assert.deepEqual(Query.parse('c.d.e.f[*].{g>0 and h<3}').delete_matching(js), { a: 1, b: 2, c: { d: { e: { f: [{}] } } } })
   assert.deepEqual(Query.parse('c.d.e.f[*].{g>0 or h<3}').delete_matching(js), { a: 1, b: 2, c: { d: { e: { f: [{}] } } } })
   assert.deepEqual(Query.parse('c.d.e.f[*].{g>0 or h>3}').delete_matching(js), { a: 1, b: 2, c: { d: { e: { f: [{ h: 2 }] } } } })
@@ -264,7 +264,7 @@ test('Indicate if a query can derive data from resource json', () => {
 })
 
 test('real world example', () => {
-  let resource: object = { ctime: '2023-02-02T04:27:03Z', access_key_last_used: { last_used: '2023-02-26T17:39:00Z' } }
+  let resource: JsonElement = { ctime: '2023-02-02T04:27:03Z', access_key_last_used: { last_used: '2023-02-26T17:39:00Z' } }
   let query = Query.parse(
     'is(aws_iam_access_key) and age>{{access_key_too_old_age}} and (access_key_last_used.last_used==null or access_key_last_used.last_used<{{access_key_too_old_age.ago}})',
     { access_key_too_old_age: '90d' },
