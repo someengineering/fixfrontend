@@ -1,6 +1,6 @@
 import Dagre, { Node } from '@dagrejs/dagre'
 import { t } from '@lingui/macro'
-import { Box, Skeleton, colors, tooltipClasses, useTheme } from '@mui/material'
+import { Skeleton, colors, tooltipClasses, useTheme } from '@mui/material'
 // eslint-disable-next-line no-restricted-imports
 import { alpha, blend } from '@mui/system'
 import { useQuery } from '@tanstack/react-query'
@@ -10,9 +10,11 @@ import { getIconFromResource } from 'src/assets/raw-icons'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryNodeHistoryNeighborhoodQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
+import { FullscreenAbleContainer } from 'src/shared/fullscreen-able-container'
 import { useNonce } from 'src/shared/providers'
 import { WorkspaceInventoryNodeNeighborhoodEdgeType, WorkspaceInventoryNodeNeighborhoodNodeType } from 'src/shared/types/server'
 import { iso8601DurationToString, parseCustomDuration } from 'src/shared/utils/parseDuration'
+import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 
 type NodesType = WorkspaceInventoryNodeNeighborhoodNodeType & SimulationNodeDatum & Node
 type LinksType = SimulationLinkDatum<NodesType> & { source: NodesType; target: NodesType }
@@ -51,11 +53,13 @@ const groupToColor = (defaultColor: string, group?: string, disabled?: boolean) 
   return disabled ? alpha(blend(color, colors.grey[600], 0.8), 0.7) : color
 }
 
-const MAX_WIDTH = 110
+const MAX_NODE_WIDTH = 130
+const NODE_HEIGHT = 50
 
 type ExtendedNodesType = NodesType & {
   bbox?: DOMRect
 }
+
 const createLabel = (
   parentNode: Selection<SVGGElement, ExtendedNodesType, BaseType, unknown>,
   yOffset: number,
@@ -64,7 +68,7 @@ const createLabel = (
   textAccessor: (d: ExtendedNodesType) => string,
   nonce: string,
 ) => {
-  return parentNode.each(function (d) {
+  parentNode.each(function (d) {
     const nodeSelection = select<SVGGElement, ExtendedNodesType>(this)
     const labelGroup = nodeSelection.append('g').attr('nonce', nonce).style('pointer-events', 'none') // Ignore pointer events
 
@@ -76,32 +80,30 @@ const createLabel = (
       .style('fill', textColor)
       .style('dominant-baseline', 'central')
       .style('font-size', '10px')
+      .style('font-family', 'monospace')
       .attr('nonce', nonce)
-      .each(function () {
-        d.bbox = this.getBBox()
-      })
 
-    labelGroup
+    // Compute the bounding box once
+    d.bbox = textElement.node()?.getBBox()
+
+    const padding = 8 // Total padding (4 on each side)
+    const avgCharWidth = (d.bbox?.width ?? 0) / textElement.text().length
+    const maxChars = Math.floor((MAX_NODE_WIDTH - padding) / avgCharWidth)
+
+    let text = textAccessor(d)
+    if (text.length > maxChars) {
+      text = text.slice(0, maxChars - 1) + '…'
+      textElement.text(text)
+    }
+
+    return labelGroup
       .insert('rect', 'text')
       .attr('x', 20) // Position rect to the right of the icon
-      .attr('y', yOffset - 7)
-      .attr('width', (d) => (d.bbox ? Math.min(d.bbox.width + 10, MAX_WIDTH) : 0)) // Max width plus some padding
+      .attr('y', yOffset - 5)
+      .attr('width', (d) => (d.bbox ? Math.min(d.bbox.width + 10, MAX_NODE_WIDTH) : 0)) // Max width plus some padding
       .attr('height', (d) => (d.bbox ? d.bbox.height : 0))
       .attr('fill', bgColor)
       .attr('rx', 4) // Rounded corners
-
-    // Truncate text if it's wider than max width
-    textElement.each(function () {
-      const self = select(this)
-      let textLength = self.node()?.getComputedTextLength() ?? 0
-      let text = self.text()
-      while (textLength > MAX_WIDTH - 2 * 4 && text.length > 0) {
-        // MAX_WIDTH is max width, 4 is padding on both sides
-        text = text.slice(0, -1)
-        self.text(`${text}...`)
-        textLength = self.node()?.getComputedTextLength() ?? 0
-      }
-    })
   })
 }
 
@@ -122,7 +124,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
     shadows: { '24': shadow24 },
   } = useTheme()
   const navigate = useAbsoluteNavigate()
-  const containerRef = useRef<HTMLDivElement | undefined>()
+  const containerRef = useRef<HTMLDivElement | null>(null)
 
   const getSimulation = useCallback(
     (nonce: string) => {
@@ -141,6 +143,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
           .attr('viewBox', [0, 0, width, height])
           .style('max-width', '100%')
           .style('height', 'auto')
+          .attr('cursor', 'grab')
 
         const svgG = svg.append('g')
 
@@ -163,7 +166,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
 
         // Add nodes to the graph
         nodes.forEach((node) => {
-          dagre.setNode(node.id, { width: 50, height: 50 })
+          dagre.setNode(node.id, { width: MAX_NODE_WIDTH, height: NODE_HEIGHT })
         })
 
         // Add links to the graph
@@ -173,11 +176,10 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
 
         // Compute the layout
         Dagre.layout(dagre)
-
         // Update nodes with computed positions
         nodes.forEach((node) => {
           const nodeInfo = dagre.node(node.id)
-          node.x = nodeInfo.x * 1.5
+          node.x = nodeInfo.x
           node.y = nodeInfo.y
         })
 
@@ -232,14 +234,13 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
           .join('circle')
           .attr('r', 15)
           .attr('cursor', 'pointer')
-          .attr('opacity', 0.8)
           .attr('fill', primaryColor) as Selection<SVGCircleElement, NodesType, SVGGElement, unknown>
 
         node.append('title').text((d) => d.reported.name)
 
         // set label
         const labels = svgG.append('g').selectAll('g').data(nodes).join('g') as Selection<SVGGElement, NodesType, SVGGElement, unknown>
-        const topLabel = createLabel(
+        createLabel(
           labels,
           -8,
           (d: NodesType) => groupToColor(primaryColor, d.metadata?.group, d.metadata?.['state-icon'] === 'instance_terminated'),
@@ -247,7 +248,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
           (d) => d.reported.kind,
           nonce,
         ) // For the top label
-        const bellowLabel = createLabel(labels, 8, 'black', 'white', (d) => d.reported.name, nonce) // For the bottom label
+        createLabel(labels, 8, 'black', 'white', (d) => d.reported.name, nonce) // For the bottom label
 
         // New code to append the SVG icon to each node
         const icon = svgG
@@ -324,7 +325,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
 
         const mainNode = nodes.find((n) => n.id === mainId)
 
-        return { svgG, svg, node, tooltip, mainNode, linkPath, icon, topLabel, bellowLabel, labels }
+        return { svgG, svg, node, tooltip, mainNode, linkPath, icon, labels }
       }
     },
     [data, mainId, paperBgColor, primaryColor, primaryDarkColor, primaryLightColor, shadow24, tooltipZIndex],
@@ -333,7 +334,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
   useEffect(() => {
     const result = getSimulation(nonce)
     if (result) {
-      const { tooltip, svgG, svg, node, mainNode, linkPath, icon, topLabel, bellowLabel, labels } = result
+      const { tooltip, svgG, svg, node, mainNode, linkPath, icon, labels } = result
       const tooltipContainer = select(window.document.createElement('div'))
         .attr('nonce', nonce)
         .style('padding', '8px 16px 16px')
@@ -427,33 +428,80 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
 
       const handleMouseOver = function (this: BaseType) {
         tooltip.style('opacity', 1)
-        select(this).style('opacity', 1).attr('nonce', nonce)
       }
 
       const handleMouseMove = function (this: BaseType, event: MouseEvent, d: NodesType) {
-        tooltip.style('right', window.innerWidth - event.clientX + 'px').style('top', event.clientY + 20 + 'px')
+        const right = window.innerWidth - event.clientX
+        const { height, width } = tooltip.node()?.getBoundingClientRect() ?? { height: 0, width: 0 }
+        const left = event.clientX - width
+        const top = event.clientY + 20
+        const bottom = top + height
+        tooltip
+          .style('right', (left < 0 ? null : `${right}px`) as string)
+          .style('left', (left < 0 ? '0px' : null) as string)
+          .style('top', `${bottom > window.innerHeight ? window.innerHeight - height : top}px`)
         createTooltipHtml(d, tooltip)
       }
 
       const handleMouseLeave = function (this: BaseType) {
         tooltip.style('opacity', 0)
-        select(this).style('opacity', 0.8).attr('nonce', nonce)
       }
 
-      const handleZoom = (event: { transform: string; sourceEvent: MouseEvent }) => {
-        svgG.attr('transform', event.transform)
+      const handleZoom = (event: { transform: { k: number; x: number; y: number } }) => {
+        const { k, x, y } = event.transform
+
+        svgG.attr('transform', `translate(${x},${y}) scale(${k})`)
       }
 
       const handleClick = (_: MouseEvent, d: NodesType) => {
-        navigate({ pathname: `../${d.id}`, hash: window.location.hash, search: window.location.search })
+        navigate({
+          pathname: `../${d.id}`,
+          hash: window.location.hash,
+          search: mergeLocationSearchValues({
+            ...getLocationSearchValues(window.location.search),
+            name: window.encodeURIComponent(d.reported.name ?? ''),
+          }),
+        })
       }
 
       icon.on('click', handleClick)
 
       node.on('click', handleClick)
 
-      const zoomFn = zoom<SVGSVGElement, unknown>().on('zoom', handleZoom)
-      svg.call(zoomFn.on('zoom', handleZoom))
+      const handleStartZoom = function (this: BaseType) {
+        select(this).attr('cursor', 'grabbing')
+      }
+
+      const handleEndZoom = function (this: BaseType) {
+        select(this).attr('cursor', 'grab')
+      }
+      let x0 = Infinity,
+        y0 = Infinity,
+        x1 = -Infinity,
+        y1 = -Infinity
+      svgG.selectAll('*').each(function () {
+        const svgElement = select(this).node() as SVGGElement
+        if ('getBBox' in svgElement) {
+          const bbox = svgElement.getBBox()
+          x0 = Math.min(x0, bbox.x)
+          y0 = Math.min(y0, bbox.y)
+          x1 = Math.max(x1, bbox.x + bbox.width)
+          y1 = Math.max(y1, bbox.y + bbox.height)
+        }
+      })
+
+      const zoomInit = zoom<SVGSVGElement, unknown>()
+        .translateExtent([
+          [x0 - 50, y0 - 50],
+          [x1 + 50, y1 + 50],
+        ])
+        .scaleExtent([0.33, 3])
+      const zoomStartFn = zoomInit.on('start', handleStartZoom)
+      const zoomEndFn = zoomInit.on('end', handleEndZoom)
+      const zoomFn = zoomInit.on('zoom', handleZoom)
+      svg.call(zoomFn)
+      svg.call(zoomStartFn)
+      svg.call(zoomEndFn)
 
       if (mainNode) {
         // Calculate the scale and translate to center the main node
@@ -472,8 +520,9 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
       node.on('mouseover', handleMouseOver).on('mousemove', handleMouseMove).on('mouseleave', handleMouseLeave)
 
       return () => {
-        topLabel.remove()
-        bellowLabel.remove()
+        zoomInit.on('start', null)
+        zoomInit.on('end', null)
+        zoomInit.on('zoom', null)
         labels.remove()
         linkPath.remove()
         node.on('click', null).on('mouseover', null).on('mousemove', null).on('mouseleave', null).remove()
@@ -483,9 +532,14 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
     }
   }, [data, getSimulation, navigate, primaryColor, errorColor, nonce])
 
+  const handleFullscreenChange = (_: boolean, container: HTMLDivElement) => {
+    const { height, width } = container.getBoundingClientRect()
+    select(container).selectChildren('svg').attr('width', width).attr('height', height)
+  }
+
   return isLoading ? (
     <Skeleton height={400} width="100%" variant="rounded" />
   ) : data ? (
-    <Box width="100%" height="100%" ref={containerRef} />
+    <FullscreenAbleContainer ref={containerRef} onChange={handleFullscreenChange} />
   ) : null
 }

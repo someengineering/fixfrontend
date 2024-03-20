@@ -20,7 +20,7 @@ export const ResourceDetailChangeLogSelectedHistoryAccordion = ({
     i18n: { locale },
   } = useLingui()
   return (
-    <Accordion defaultExpanded>
+    <Accordion>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         sx={{ height: '100%', [`.${accordionSummaryClasses.content}`]: { width: '100%', overflow: 'hidden' } }}

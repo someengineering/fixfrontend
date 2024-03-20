@@ -12,10 +12,10 @@ interface AccountsTableItemProps {
   title: string
   isTop: boolean
   isBottom: boolean
-  isConfigured?: boolean
+  isNotConfigured?: boolean
 }
 
-export const AccountsTableItem = ({ data, title, isTop, isBottom, isConfigured }: AccountsTableItemProps) => {
+export const AccountsTableItem = ({ data, title, isTop, isBottom, isNotConfigured }: AccountsTableItemProps) => {
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
   return (
@@ -48,17 +48,19 @@ export const AccountsTableItem = ({ data, title, isTop, isBottom, isConfigured }
               <TableCell>
                 <Trans>Resources</Trans>
               </TableCell>
-              <TableCell>
-                <Trans>Next scan</Trans>
-              </TableCell>
-              <TableCell>
-                <Trans>Enabled</Trans>
-              </TableCell>
-              {isConfigured ? (
-                <TableCell>
-                  <Trans>Security Scan</Trans>
-                </TableCell>
-              ) : null}
+              {isNotConfigured ? null : (
+                <>
+                  <TableCell>
+                    <Trans>Next scan</Trans>
+                  </TableCell>
+                  <TableCell>
+                    <Trans>Enabled</Trans>
+                  </TableCell>
+                  <TableCell>
+                    <Trans>Security Scan</Trans>
+                  </TableCell>
+                </>
+              )}
               <TableCell>
                 <Trans>Actions</Trans>
               </TableCell>
@@ -67,7 +69,7 @@ export const AccountsTableItem = ({ data, title, isTop, isBottom, isConfigured }
           <TableBody>
             {data
               ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((account, i) => <AccountRow account={account} key={`${account.id}_${i}`} />)}
+              .map((account, i) => <AccountRow account={account} key={`${account.id}_${i}`} isNotConfigured={isNotConfigured} />)}
           </TableBody>
         </Table>
       </TableView>

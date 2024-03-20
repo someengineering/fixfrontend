@@ -34,7 +34,7 @@ import { patchAccountScanDisableMutation } from './patchAccountScanDisable.mutat
 import { patchAccountScanEnableMutation } from './patchAccountScanEnable.mutation'
 import { replaceRowByAccount } from './replaceRowByAccount'
 
-export const AccountRow = ({ account }: { account: Account }) => {
+export const AccountRow = ({ account, isNotConfigured }: { account: Account; isNotConfigured?: boolean }) => {
   const inputRef = useRef<HTMLInputElement>()
   const {
     i18n: { locale },
@@ -295,35 +295,39 @@ export const AccountRow = ({ account }: { account: Account }) => {
         )}
       </TableCell>
       <TableCell>{account.resources ?? '-'}</TableCell>
-      <TableCell>{account.next_scan ? new Date(account.next_scan).toLocaleTimeString(locale) : '-'}</TableCell>
-      <TableCell>
-        {enableAccountIsPending || disableAccountIsPending ? (
-          <Stack justifyContent="center" direction="column" padding={1} margin="1px">
-            <CircularProgress size={20} />
-          </Stack>
-        ) : (
-          <Checkbox
-            name={`enable-account-${account.account_id}`}
-            disabled={!account.is_configured}
-            checked={account.enabled}
-            onChange={handleEnableChange}
-          />
-        )}
-      </TableCell>
-      <TableCell>
-        {enableScanAccountIsPending || disableScanAccountIsPending ? (
-          <Stack justifyContent="center" direction="column" padding={1} margin="1px">
-            <CircularProgress size={20} />
-          </Stack>
-        ) : (
-          <Checkbox
-            name={`enable-account-${account.account_id}`}
-            disabled={!account.is_configured}
-            checked={account.scan}
-            onChange={handleEnableScanChange}
-          />
-        )}
-      </TableCell>
+      {isNotConfigured ? null : (
+        <>
+          <TableCell>{account.next_scan ? new Date(account.next_scan).toLocaleTimeString(locale) : '-'}</TableCell>
+          <TableCell>
+            {enableAccountIsPending || disableAccountIsPending ? (
+              <Stack justifyContent="center" direction="column" padding={1} margin="1px">
+                <CircularProgress size={20} />
+              </Stack>
+            ) : (
+              <Checkbox
+                name={`enable-account-${account.account_id}`}
+                disabled={!account.is_configured}
+                checked={account.enabled}
+                onChange={handleEnableChange}
+              />
+            )}
+          </TableCell>
+          <TableCell>
+            {enableScanAccountIsPending || disableScanAccountIsPending ? (
+              <Stack justifyContent="center" direction="column" padding={1} margin="1px">
+                <CircularProgress size={20} />
+              </Stack>
+            ) : (
+              <Checkbox
+                name={`enable-account-${account.account_id}`}
+                disabled={!account.is_configured}
+                checked={account.scan}
+                onChange={handleEnableScanChange}
+              />
+            )}
+          </TableCell>
+        </>
+      )}
       <TableCell>
         {deleteAccountIsPending ? (
           <IconButton aria-label={t`Delete`} disabled>

@@ -3,8 +3,7 @@ import { parse_path, parse_query } from './parser.ts'
 import { render } from './templater.ts'
 
 export type SimpleValue = string | number | boolean | null
-export type ObjectValue = { [key: string]: JsonElement }
-export type JsonElement = SimpleValue | ObjectValue | JsonElement[] | object
+export type JsonElement = SimpleValue | Record<string, unknown> | (SimpleValue | Record<string, unknown> | unknown[])[]
 
 export enum SortOrder {
   Asc = 'Asc',
@@ -105,7 +104,7 @@ export class JsonElementDraft {
       if (js != null && typeof js === 'object') {
         const jso: { [key: string]: JsonElement } = js as { [key: string]: JsonElement }
         const part = path.parts[at]
-        const current = jso[part.name] as JsonElement
+        const current = jso[part.name]
         if (at == path.parts.length - 1) {
           if (part.array_access != undefined && Array.isArray(current)) {
             const arr: JsonElement[] = []
@@ -132,7 +131,7 @@ export class JsonElementDraft {
           if (part.array_access != undefined && Array.isArray(current)) {
             for (let i = 0; i < current.length; i++) {
               const e = current[i] as JsonElement
-              yield* walk_path([...parts, part.for_array(i)], at + 1, e as JsonElement)
+              yield* walk_path([...parts, part.for_array(i)], at + 1, e)
             }
           } else if (typeof current === 'object') {
             yield* walk_path([...parts, part], at + 1, current)
@@ -141,7 +140,7 @@ export class JsonElementDraft {
       }
     }
 
-    yield* walk_path([], 0, this.value)
+    yield* walk_path([], 0, this.value as JsonElement)
   }
 }
 
@@ -186,7 +185,7 @@ export class Path {
       const part = path.parts[at]
       if (js != null && typeof js === 'object') {
         const jso: { [key: string]: JsonElement } = js as { [key: string]: JsonElement }
-        const current = jso[part.name] as JsonElement
+        const current = jso[part.name]
         if (at == path.parts.length - 1) {
           if (part.array_access != undefined && Array.isArray(current)) {
             for (let i = 0; i < current.length; i++) {
@@ -202,7 +201,7 @@ export class Path {
           if (part.array_access != undefined && Array.isArray(current)) {
             for (let i = 0; i < current.length; i++) {
               const e = current[i] as JsonElement
-              yield* walk_path([...parts, part.for_array(i)], at + 1, e as JsonElement)
+              yield* walk_path([...parts, part.for_array(i)], at + 1, e)
             }
           } else if (typeof current === 'object') {
             yield* walk_path([...parts, part], at + 1, current)

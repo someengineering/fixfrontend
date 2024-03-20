@@ -2,7 +2,7 @@ import { useLingui } from '@lingui/react'
 import { TimelineConnector, TimelineContent, TimelineItem, TimelineOppositeContent, TimelineSeparator } from '@mui/lab'
 import { Box, ButtonBase, Typography } from '@mui/material'
 import { WorkspaceInventoryNodeHistory } from 'src/shared/types/server'
-import { nodeChangeToDescription, nodeChangeToIcon, nodeChangeToStr } from './nodeChange'
+import { nodeChangeToColor, nodeChangeToDescription, nodeChangeToIcon, nodeChangeToStr } from './nodeChange'
 
 interface ResourceDetailChangeLogHistoryProps {
   history: WorkspaceInventoryNodeHistory
@@ -27,16 +27,16 @@ export const ResourceDetailChangeLogHistory = ({ history, onClick }: ResourceDet
         onClick={(e) => onClick([e.currentTarget, history])}
       >
         <Box flex={1}>
-          <Typography variant="h6" component="span">
-            {nodeChangeToStr(history.change)}
+          <Typography variant="h6" component="span" color={nodeChangeToColor(history)}>
+            {nodeChangeToStr(history)}
           </Typography>
           <br />
-          {new Date(history.changed_at).toLocaleDateString(locale)}
+          {new Date(history.changed_at).toLocaleDateString(locale)} {new Date(history.changed_at).toLocaleTimeString(locale)}
         </Box>
       </TimelineOppositeContent>
       <TimelineSeparator>
         <TimelineConnector />
-        {nodeChangeToIcon(history.change, (e) => onClick([e.currentTarget, history]))}
+        {nodeChangeToIcon(history, (e) => onClick([e.currentTarget, history]))}
         <TimelineConnector />
       </TimelineSeparator>
       <TimelineContent
@@ -51,7 +51,7 @@ export const ResourceDetailChangeLogHistory = ({ history, onClick }: ResourceDet
         gap={1}
         onClick={(e) => onClick([e.currentTarget, history])}
       >
-        {nodeChangeToDescription(history, locale)}
+        {nodeChangeToDescription(history)}
       </TimelineContent>
     </TimelineItem>
   )

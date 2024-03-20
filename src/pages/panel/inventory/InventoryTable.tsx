@@ -65,7 +65,6 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
     enabled: !!selectedWorkspace?.id,
   })
   const [data, totalCount] = serverData ?? [[{ columns: [] }] as PostWorkspaceInventorySearchTableResponse, -1]
-  const searchValues = getLocationSearchValues(window.location.search)
 
   useEffect(() => {
     if (totalCount !== dataCount && dataCount === -1) {
@@ -173,7 +172,10 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
                 pathname: `/inventory/resource-detail/${(rowProps.row as RowType)?.INTERNAL_ID.split('_').slice(0, -1).join('_')}`,
                 search:
                   typeof rowProps.row?.name === 'string'
-                    ? mergeLocationSearchValues({ ...searchValues, name: rowProps.row?.name })
+                    ? mergeLocationSearchValues({
+                        ...getLocationSearchValues(window.location.search),
+                        name: window.encodeURIComponent(rowProps.row?.name ?? '-'),
+                      })
                     : window.location.search,
               })
             }
