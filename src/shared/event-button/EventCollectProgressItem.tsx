@@ -6,7 +6,7 @@ import { CollectProgressEvent } from 'src/shared/types/server'
 import { FormattedProgressEventParts, formatProgressEventParts } from './formatProgressEventParts'
 
 interface EventCollectProgressItemProps {
-  data: CollectProgressEvent
+  parts: CollectProgressEvent['data']['message']['parts']
 }
 
 const ShowTreeView = ({ current, name, path, total, detail }: FormattedProgressEventParts) => {
@@ -36,8 +36,8 @@ const ShowTreeView = ({ current, name, path, total, detail }: FormattedProgressE
   )
 }
 
-export const EventCollectProgressItem = ({ data }: EventCollectProgressItemProps) => {
-  const formattedProgress = formatProgressEventParts(data.data.message.parts, data.data.message.name).detail
+export const EventCollectProgressItem = ({ parts }: EventCollectProgressItemProps) => {
+  const formattedProgress = formatProgressEventParts(parts).detail
   // formattedProgress.name += ` (${data.data.task})`
 
   return (
