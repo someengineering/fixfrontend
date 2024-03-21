@@ -1,6 +1,10 @@
 import { SeverityType } from './SeverityType'
 
 export interface FailedCheck {
+  benchmarks: {
+    id: string
+    title: string
+  }[]
   categories: string[]
   default_values: null | {
     certificate_expiration: string
