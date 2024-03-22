@@ -86,7 +86,7 @@ const ProductTierComp = ({ productTier }: { productTier: ProductTier }) => {
         <Typography>
           {desc.seats.included ? (
             <Trans>
-              {desc.seats.included} seats included{desc.seats.maximum ? t` ${desc.seats.maximum} max` : ''}
+              {desc.seats.included} seats included {desc.seats.maximum ? t`(${desc.seats.maximum} max)` : ''}
             </Trans>
           ) : (
             <Trans>{desc.seats.maximum} seat max</Trans>
@@ -152,42 +152,46 @@ export const ChangePaymentMethod = ({ defaultProductTier, workspacePaymentMethod
   })
 
   const isUpgrade =
-    productTier === defaultProductTier ? null : allProductTiers.indexOf(productTier) > allProductTiers.indexOf(defaultProductTier)
+    productTier === defaultProductTier || (defaultProductTier === 'Trial' && productTier === 'Free')
+      ? null
+      : allProductTiers.indexOf(productTier) > allProductTiers.indexOf(defaultProductTier)
 
   const noWorkspaceMethod = workspacePaymentMethod.method === 'none'
 
   return (
     <>
       <Stack direction={{ xs: 'column', sm: 'row' }} flexWrap="wrap" alignItems={{ xs: 'center', sm: 'stretch' }} justifyContent="center">
-        {allProductTiers.map((curProductTier, i) => (
-          <Fragment key={curProductTier}>
-            {i ? <PaymentMethodDivider /> : null}
-            <ButtonBase
-              LinkComponent={Stack}
-              sx={{
-                alignItems: 'baseline',
-                textAlign: 'left',
-                justifyContent: 'stretch',
-                px: { xs: 2, lg: 4 },
-                py: { xs: 2, lg: 4 },
-                bgcolor:
-                  curProductTier === productTier
+        {allProductTiers.map((curProductTier, i) => {
+          const selectedProductTier = curProductTier === productTier || (productTier === 'Trial' && curProductTier === 'Free')
+          return (
+            <Fragment key={curProductTier}>
+              {i ? <PaymentMethodDivider /> : null}
+              <ButtonBase
+                LinkComponent={Stack}
+                sx={{
+                  alignItems: 'baseline',
+                  textAlign: 'left',
+                  justifyContent: 'stretch',
+                  px: { xs: 2, lg: 4 },
+                  py: { xs: 2, lg: 4 },
+                  bgcolor: selectedProductTier
                     ? ({
                         palette: {
                           primary: { main },
                         },
                       }) => alpha(main, 0.15)
                     : undefined,
-                borderRadius: 2,
-                boxShadow: (theme) => (curProductTier === productTier ? theme.shadows[12] : undefined),
-                transition: (theme) => theme.transitions.create(['box-shadow', 'background-color']),
-              }}
-              onClick={() => setProductTier(curProductTier)}
-            >
-              <ProductTierComp productTier={curProductTier} />
-            </ButtonBase>
-          </Fragment>
-        ))}
+                  borderRadius: 2,
+                  boxShadow: (theme) => (selectedProductTier ? theme.shadows[12] : undefined),
+                  transition: (theme) => theme.transitions.create(['box-shadow', 'background-color']),
+                }}
+                onClick={() => setProductTier(curProductTier)}
+              >
+                <ProductTierComp productTier={curProductTier} />
+              </ButtonBase>
+            </Fragment>
+          )
+        })}
       </Stack>
       <Stack alignItems="center" spacing={5} pt={4}>
         <Button
@@ -203,10 +207,7 @@ export const ChangePaymentMethod = ({ defaultProductTier, workspacePaymentMethod
           *{' '}
           <Trans>
             Our fair-use policy allows for up to 200,000 resources per account. If your needs surpass this amount, please{' '}
-            <Link href="mailto:hi@fix.tt" target="_blank" rel="noopener noreferrer">
-              reach out
-            </Link>{' '}
-            to discuss your specific requirements.
+            <Link href="mailto:hi@fix.tt">reach out</Link> to discuss your specific requirements.
           </Trans>
         </Typography>
       </Stack>

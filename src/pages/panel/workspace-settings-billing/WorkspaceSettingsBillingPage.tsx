@@ -32,6 +32,19 @@ export default function WorkspaceSettingsBillingPage() {
       <Typography variant="h3">
         <Trans>Billing</Trans>
       </Typography>
+      {product_tier === 'Trial' ? (
+        <Stack direction="row" justifyContent="center">
+          <Alert variant="outlined" severity="success">
+            <Typography variant="h5">
+              <Trans>
+                You are currently in your trial period, which will end in 14 days.
+                <br />
+                During your trial period, you have access to all features of the product.
+              </Trans>
+            </Typography>
+          </Alert>
+        </Stack>
+      ) : null}
       <ChangePaymentMethod defaultProductTier={product_tier} workspacePaymentMethod={workspace_payment_method} />
       <Trans>
         <Typography>Billing cycle: {desc.monthly ? t`Monthly` : t`One time`}</Typography>
