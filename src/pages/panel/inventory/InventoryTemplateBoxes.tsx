@@ -1,6 +1,9 @@
-import { t } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
+import BrokenImageIcon from '@mui/icons-material/BrokenImage'
+import DynamicFormIcon from '@mui/icons-material/DynamicForm'
+import SecurityIcon from '@mui/icons-material/Security'
 import { Box, Card, CardContent, CardHeader, Divider, Grid, Link, Stack, Typography } from '@mui/material'
-import { Fragment } from 'react'
+import { FC, Fragment } from 'react'
 
 interface InventoryTemplateBoxesProps {
   onChange: (value?: string) => void
@@ -8,7 +11,7 @@ interface InventoryTemplateBoxesProps {
 
 interface TemplateData {
   header: string
-  subHeader: string
+  icon: FC
   content: {
     title: string
     description: string
@@ -19,7 +22,7 @@ interface TemplateData {
 const templateData: TemplateData[] = [
   {
     header: t`Security`,
-    subHeader: t`You can search for security issues in your accounts.`,
+    icon: SecurityIcon,
     content: [
       {
         title: t`Unencrypted EBS Volumes`,
@@ -51,7 +54,7 @@ const templateData: TemplateData[] = [
   },
   {
     header: t`Abandoned`,
-    subHeader: t`You can search for abandoned resources in your accounts.`,
+    icon: BrokenImageIcon,
     content: [
       {
         title: t`Resources with the string "deleteme"`,
@@ -82,7 +85,7 @@ const templateData: TemplateData[] = [
   },
   {
     header: t`Underutilized`,
-    subHeader: t`You can search for underutilized resources in your accounts.`,
+    icon: DynamicFormIcon,
     content: [
       {
         title: t`Low Utilization Compute Instances and Databases`,
@@ -102,13 +105,13 @@ export const InventoryTemplateBoxes = ({ onChange }: InventoryTemplateBoxesProps
   return (
     <>
       <Typography variant="h5" mb={2}>
-        Example searches
+        <Trans>Example searches</Trans>
       </Typography>
       <Grid container spacing={2}>
         {templateData.map((template, i) => (
           <Grid item xs={12} sm={6} md={4} lg={4} xl={3} key={i}>
             <Card elevation={4}>
-              <CardHeader title={template.header} />
+              <CardHeader title={template.header} avatar={<template.icon />} />
               <CardContent>
                 {template.content.map((content, i) => (
                   <Fragment key={i}>
