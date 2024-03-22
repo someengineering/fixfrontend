@@ -35,6 +35,7 @@ import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { panelUI } from 'src/shared/constants'
 import { Modal as PopupModal } from 'src/shared/modal'
 import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
+import { snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 import { getLocationSearchValues, removeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { YamlHighlighter } from 'src/shared/yaml-highlighter'
 import { stringify } from 'yaml'
@@ -341,7 +342,9 @@ export const ResourceDetail = () => {
                       <FailedChecks
                         failedCheck={failedCheck}
                         smallText
-                        benchmarks={data.resource.security?.issues.find((issue) => issue.check === failedCheck.id)?.benchmarks}
+                        benchmarks={data.resource.security?.issues
+                          .find((issue) => issue.check === failedCheck.id)
+                          ?.benchmarks.map((benchmark) => snakeCaseWordsToUFStr(benchmark))}
                       />
                     </Paper>
                     <Divider />

@@ -22,7 +22,7 @@ import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/q
 import { createInventorySearchTo, getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { getMessage } from 'src/shared/defined-messages'
 import { FailedCheck } from 'src/shared/types/server'
-import { snakeCaseToUFStr, snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
+import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 
 interface FailedChecks {
   failedCheck: FailedCheck
@@ -82,6 +82,7 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, 
                 {resources.length
                   ? resources.map((resource) => (
                       <Chip
+                        key={resource.id}
                         label={`${resource.row.name} ${resource.row.account ? `(${resource.row.account})` : ''}`}
                         variant="outlined"
                         color="info"
@@ -100,7 +101,9 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, 
                       />
                     ))
                   : isLoading
-                    ? new Array(5).fill('').map(() => <Skeleton variant="rounded" sx={{ borderRadius: 4 }} width={100} height={32} />)
+                    ? new Array(5)
+                        .fill('')
+                        .map((_, i) => <Skeleton key={i} variant="rounded" sx={{ borderRadius: 4 }} width={100} height={32} />)
                     : null}
               </Stack>
             </>
@@ -111,8 +114,8 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, 
                 <Trans>Failing benchmarks</Trans>
               </Typography>
               <Stack direction="row" flexWrap="wrap" gap={1} my={1}>
-                {benchmarks.map((benchmark) => (
-                  <Chip label={snakeCaseWordsToUFStr(benchmark)} variant="outlined" color="info" />
+                {benchmarks.map((benchmark, i) => (
+                  <Chip label={benchmark} key={i} variant="outlined" color="info" />
                 ))}
               </Stack>
             </>

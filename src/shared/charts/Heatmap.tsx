@@ -1,195 +1,85 @@
-import { BaseType, axisBottom, axisLeft, scaleBand, select } from 'd3'
-import { useCallback, useEffect, useMemo, useRef } from 'react'
-import { colorFromRedToGreen } from 'src/shared/constants'
-import { useNonce } from 'src/shared/providers'
+import { ButtonBase, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip, Typography } from '@mui/material'
+import { ReactNode, useMemo } from 'react'
+import { useScaleSequentialMaterialRdYwGn } from 'src/shared/utils/useScaleSequentialMaterialRdYwGn'
 
-interface HeatmapProps<ColumnsKeys extends string, RowsKeys extends string> {
-  data: {
-    [ColumnKey in ColumnsKeys]: {
-      [RowKey in RowsKeys]: {
-        value: number
-        title: string
-      }
-    }
-  }
-  minWidth: number
-  minHeight: number
+const CELL_WIDTH = 50
+
+interface HeatmapData {
+  name: ReactNode
+  value: number
+  title: ReactNode
+  tooltip: ReactNode
 }
 
-export function Heatmap<ColumnsKeys extends string, RowsKeys extends string>({
-  data,
-  minHeight,
-  minWidth,
-}: HeatmapProps<ColumnsKeys, RowsKeys>) {
-  const ref = useRef<HTMLDivElement>(null)
-  const nonce = useNonce()
+interface HeatmapProps {
+  data: {
+    title: ReactNode
+    cells: HeatmapData[]
+  }[]
+}
 
-  const processedData = useMemo(() => {
-    const columns = Object.keys(data) as ColumnsKeys[]
-    const rows = Object.keys(data[columns[0]]) as RowsKeys[]
-
-    const values = columns.reduce(
-      (prev, column) => [...prev, ...rows.map((row) => ({ column, row, data: data[column][row] }))],
-      [] as { column: ColumnsKeys; row: RowsKeys; data: { value: number; title: string } }[],
-    )
-
-    return { columns, rows, values }
-  }, [data])
-
-  const createHeatmap = useCallback(
-    (el: HTMLDivElement) => {
-      const margin = { top: 10, right: 35, bottom: 30, left: 100 }
-      const width =
-        (el.offsetWidth / processedData.rows.length < minWidth ? minWidth * processedData.rows.length : el.offsetWidth) -
-        margin.left -
-        margin.right -
-        20
-      const height =
-        (el.offsetHeight / processedData.columns.length < minHeight ? minHeight * processedData.columns.length : el.offsetHeight) -
-        margin.top -
-        margin.bottom -
-        25
-
-      // create a tooltip
-      const tooltip = select(el)
-        .append('div')
-        .style('opacity', 0)
-        .attr('class', 'tooltip')
-        .attr('nonce', nonce ?? '')
-        .style('position', 'fixed')
-        .style('box-shadow', '0px 5px 5px -3px rgba(0,0,0,0.2), 0px 8px 10px 1px rgba(0,0,0,0.14), 0px 3px 14px 2px rgba(0,0,0,0.12)')
-        .style('background-color', 'white')
-        .style('border-width', '2px')
-        .style('border-radius', '5px')
-        .style('padding', '5px')
-        .style('white-space', 'nowrap')
-
-      const svg = select(el)
-        .style('height', `${el.offsetWidth / 2}px`)
-        .style('overflow', 'auto')
-        .attr('nonce', nonce ?? '')
-        .append('svg')
-        .attr('width', width + margin.left + margin.right)
-        .attr('height', height + margin.top + margin.bottom)
-        .attr('nonce', nonce ?? '')
-      const container = svg.append('g').attr('transform', `translate(${margin.left}, ${margin.top})`)
-
-      // Build X scales and axis:
-      const x = scaleBand().range([0, width]).domain(processedData.columns).padding(0.05)
-      const xBandwidth = x.bandwidth()
-      container
-        .append('g')
-        .style('font-size', 15)
-        .attr('nonce', nonce ?? '')
-        .attr('transform', `translate(0, ${height})`)
-        .call(axisBottom(x).tickSize(0))
-        .select('.domain')
-        .remove()
-
-      // Build Y scales and axis:
-      const y = scaleBand().range([height, 0]).domain(processedData.rows).padding(0.05)
-      const yBandwidth = y.bandwidth()
-      container
-        .append('g')
-        .style('font-size', 15)
-        .attr('nonce', nonce ?? '')
-        .call(axisLeft(y).tickSize(0))
-        .select('.domain')
-        .remove()
-
-      const mouseover = function (this: BaseType) {
-        tooltip.style('opacity', 1)
-        select(this).style('opacity', 1)
-      }
-      const mousemove = function (this: BaseType, event: MouseEvent, d: (typeof processedData.values)[number]) {
-        tooltip
-          .html(`${d.data.title}`)
-          .style('left', event.clientX + 20 + 'px')
-          .style('top', event.clientY + 20 + 'px')
-          .attr('nonce', nonce ?? '')
-      }
-      const mouseleave = function (this: BaseType) {
-        tooltip.style('opacity', 0).attr('nonce', nonce ?? '')
-        select(this)
-          .style('opacity', 0.8)
-          .attr('nonce', nonce ?? '')
-      }
-      const textWrap = function (this: SVGTextElement | null) {
-        const self = select(this)
-        let textLength = self.node()?.getComputedTextLength() ?? 0,
-          text = self.text()
-        while (textLength > xBandwidth - 2 * 10 && text.length > 0) {
-          text = text.slice(0, -1)
-          self.text(text + '...')
-          textLength = self.node()?.getComputedTextLength() ?? 0
-        }
-      }
-
-      const svgWithData = container.selectAll().data(processedData.values, (d) => `${d?.column}:${d?.row}`)
-
-      const text = svgWithData
-        .join('text')
-        .html((d) => d.data.title)
-        .attr('x', (d) => (x(d.column) ?? 0) + xBandwidth / 2)
-        .attr('y', (d) => (y(d.row) ?? 0) + yBandwidth / 2)
-        .attr('dominant-baseline', 'middle')
-        .attr('text-anchor', 'middle')
-        .attr('width', xBandwidth)
-        .attr('height', yBandwidth)
-        .attr('fill', 'blue')
-        .attr('font-size', 15)
-        .each(textWrap)
-
-      const rect = svgWithData
-        .join('rect')
-        .attr('x', (d) => x(d.column) ?? 0)
-        .attr('y', (d) => y(d.row) ?? 0)
-        .attr('rx', 4)
-        .attr('ry', 4)
-        .attr('width', xBandwidth)
-        .attr('height', yBandwidth)
-        .style('fill', (d) => colorFromRedToGreen[d.data.value])
-        .style('stroke-width', 4)
-        .style('stroke', 'none')
-        .style('opacity', 0.8)
-        .attr('nonce', nonce ?? '')
-        .on('mouseover', mouseover)
-        .on('mousemove', mousemove)
-        .on('mouseleave', mouseleave)
-
-      return () => {
-        text.remove()
-        rect.remove()
-        svgWithData.remove()
-        tooltip.remove()
-        container.remove()
-        svg.remove()
-      }
-    },
-    [processedData, minWidth, minHeight, nonce],
+const HeatmapCell = ({ title, value, tooltip }: HeatmapData) => {
+  const getColors = useScaleSequentialMaterialRdYwGn(0, 100, 'main')
+  const comp = (
+    <Stack
+      color="#fff"
+      bgcolor={value >= 0 ? getColors(value) : undefined}
+      width={CELL_WIDTH}
+      height={CELL_WIDTH}
+      alignItems="center"
+      justifyContent="center"
+      component={ButtonBase}
+    >
+      {value >= 0 ? title : '-'}
+    </Stack>
   )
+  return tooltip ? <Tooltip title={tooltip}>{comp}</Tooltip> : comp
+}
 
-  useEffect(() => {
-    if (ref.current) {
-      const observedElement = ref.current
-      let cleanup = createHeatmap(observedElement)
-      const resizeObserver = new ResizeObserver((entries) => {
-        window.requestAnimationFrame((): void | undefined => {
-          if (!Array.isArray(entries) || !entries.length) {
-            return
-          }
-          cleanup()
-          cleanup = createHeatmap(entries[0].target as HTMLDivElement)
-        })
-      })
-      resizeObserver.observe(observedElement)
-      return () => {
-        cleanup()
-        resizeObserver.disconnect()
-        resizeObserver.unobserve(observedElement)
-      }
-    }
-  }, [createHeatmap])
-
-  return <div ref={ref} />
+export const Heatmap = ({ data }: HeatmapProps) => {
+  const columns = useMemo(
+    () =>
+      data.reduce((prev, { cells }) => {
+        cells.forEach((cell) => prev.add(cell.name))
+        return prev
+      }, new Set<ReactNode>()),
+    [data],
+  )
+  return (
+    <TableContainer>
+      <Table size="small" padding="none" stickyHeader sx={{ maxWidth: '100%', width: 'auto' }}>
+        <TableHead>
+          <TableRow>
+            <TableCell />
+            {[...columns].map((column, i) => (
+              <TableCell key={i} align="center" sx={{ verticalAlign: 'bottom', textAlign: '-webkit-center' }} width={CELL_WIDTH}>
+                <Typography
+                  whiteSpace="nowrap"
+                  sx={{ writingMode: 'vertical-lr', textOrientation: 'sideways', transform: 'rotate(180deg)', mb: 1 }}
+                >
+                  {column}
+                </Typography>
+              </TableCell>
+            ))}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map(({ cells, title }, i) => (
+            <TableRow key={i}>
+              <TableCell sx={{ borderBottom: 'none' }}>
+                <Typography overflow="hidden" textOverflow="ellipsis" whiteSpace="nowrap" pr={1} component="span">
+                  {title}
+                </Typography>
+              </TableCell>
+              {cells.map((cell, j) => (
+                <TableCell key={j} sx={{ borderBottom: 'none' }} width={CELL_WIDTH}>
+                  <HeatmapCell {...cell} />
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  )
 }

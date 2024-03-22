@@ -77,12 +77,15 @@ export function PieChart({ data, showLabel, colors, pieProps = {}, width = 400, 
         textAnchor="middle"
         dominantBaseline="middle"
         fontSize={13}
-        onMouseEnter={() =>
-          setPopoverData((prev) => ({
-            content: description ?? '',
-            origin: prev.origin,
-            anchor: containerRef.current,
-          }))
+        onMouseEnter={
+          description
+            ? () =>
+                setPopoverData((prev) => ({
+                  content: description,
+                  origin: prev.origin,
+                  anchor: containerRef.current,
+                }))
+            : undefined
         }
         onMouseUp={onClick}
       >
@@ -107,14 +110,21 @@ export function PieChart({ data, showLabel, colors, pieProps = {}, width = 400, 
           endAngle={-270}
           minAngle={25}
           {...pieProps}
-          onMouseEnter={({ description, tooltipPosition }: PieChartProps['data'][number] & { tooltipPosition: { x: number; y: number } }) =>
-            setPopoverData({
-              content: description ?? '',
-              origin: { horizontal: tooltipPosition.x, vertical: tooltipPosition.y },
-              anchor: containerRef.current,
-            })
+          onMouseEnter={({
+            description,
+            tooltipPosition,
+          }: PieChartProps['data'][number] & { tooltipPosition: { x: number; y: number } }) =>
+            description
+              ? setPopoverData({
+                  content: description,
+                  origin: { horizontal: tooltipPosition.x, vertical: tooltipPosition.y },
+                  anchor: containerRef.current,
+                })
+              : undefined
           }
-          onMouseLeave={() => setPopoverData((prev) => ({ ...prev, anchor: undefined }))}
+          onMouseLeave={({ description }: PieChartProps['data'][number]) =>
+            description ? setPopoverData((prev) => ({ ...prev, anchor: undefined })) : undefined
+          }
         >
           {data.map((entry, index) => (
             <Cell

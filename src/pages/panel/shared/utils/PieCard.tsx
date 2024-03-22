@@ -1,16 +1,13 @@
-import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Box, ButtonBase, Divider, Grid, Paper, Stack, Typography, styled, useTheme } from '@mui/material'
 import { useMemo, useRef, useState } from 'react'
-import { NavigateFunction } from 'react-router-dom'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
-import { FailedChecksType, GetWorkspaceInventoryReportSummaryResponse, WorkspaceAccountReportSummary } from 'src/shared/types/server'
-import { numberToShortHRT } from 'src/shared/utils/numberToShortHRT'
+import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
-import { wordToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 import { PieResourceCheckScore } from './PieResourceCheckScore'
 import { createInventorySearchTo } from './createInventorySearchTo'
+import { createPieDataFromNonCompliance } from './createPieDataFromNonCompliance'
 
 const PieCardItemPaper = styled(Paper, { shouldForwardProp: shouldForwardPropWithBlackList(['score']) })(({ theme }) => ({
   width: '100%',
@@ -22,39 +19,6 @@ const PieCardItemPaper = styled(Paper, { shouldForwardProp: shouldForwardPropWit
   // background: alpha(colorFromRedToGreen[score], 0.1),
   padding: theme.spacing(2),
 }))
-
-const createPieDataFromName = (
-  name: 'critical' | 'high' | 'medium' | 'low' | 'info',
-  accountFailedResources: Partial<FailedChecksType<number>> | null,
-  resourceCount: number,
-  locale: string,
-  navigate: NavigateFunction,
-  accountId: string,
-) => {
-  const accountFailedResource = accountFailedResources?.[name]
-  const label = wordToUFStr(name)
-  return {
-    value: accountFailedResource ?? 0,
-    name: label,
-    label: typeof accountFailedResource === 'number' ? numberToShortHRT(accountFailedResource, locale) : undefined,
-    description: t`We've identified ${
-      accountFailedResource?.toLocaleString(locale) ?? '0'
-    } non-compliant resources out of ${resourceCount?.toLocaleString(locale)} ${label.toString()}-severity security checks.`,
-    onClick: () => {
-      navigate(
-        createInventorySearchTo(
-          `/security.has_issues=true and /ancestors.account.reported.id="${accountId}" and /security.severity=${name}`,
-        ),
-      )
-    },
-  }
-}
-
-const createPieDataFromNonCompliance = (account: WorkspaceAccountReportSummary, locale: string, navigate: NavigateFunction) => {
-  return (['critical', 'high', 'medium', 'low', 'info'] as const).map((name) =>
-    createPieDataFromName(name, account.failed_resources_by_severity, account.resource_count, locale, navigate, account.id),
-  )
-}
 
 const PieCardItem = ({
   id,
@@ -160,7 +124,7 @@ export const PieCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryRes
           ],
           [] as {
             id: string
-            data: { value: number; name: string; label?: string; description?: string; onClick: () => void }[]
+            data: { value: number; name: string; label?: string; description?: string; onClick?: () => void }[]
             title: string
             score: number
             cloud: string

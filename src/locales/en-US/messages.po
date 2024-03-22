@@ -152,9 +152,13 @@ msgstr "A few minutes to first results"
 msgid "Access to your account is broken"
 msgstr "Access to your account is broken"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:230
+#: src/pages/panel/inventory/ResourceDetail.tsx:231
 msgid "Account"
 msgstr "Account"
+
+#: src/pages/panel/shared/utils/HeatmapCard.tsx:34
+msgid "Account: {0}"
+msgstr "Account: {0}"
 
 #: src/pages/panel/inventory/InventoryTable.error.tsx:73
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:126
@@ -213,7 +217,7 @@ msgstr "Admin"
 msgid "Advanced search query"
 msgstr "Advanced search query"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:239
+#: src/pages/panel/inventory/ResourceDetail.tsx:240
 #: src/shared/charts/NetworkDiagram.tsx:408
 msgid "Age"
 msgstr "Age"
@@ -303,7 +307,7 @@ msgstr "AWS Marketplace"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace has been successfully subscribed"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:215
+#: src/pages/panel/inventory/ResourceDetail.tsx:216
 msgid "Basic Information"
 msgstr "Basic Information"
 
@@ -315,6 +319,10 @@ msgstr "Because the data is over {0} Only first {1} items will be downloaded"
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:154
 msgid "Benchmark"
 msgstr "Benchmark"
+
+#: src/pages/panel/shared/utils/HeatmapCard.tsx:37
+msgid "Benchmark: {0}"
+msgstr "Benchmark: {0}"
 
 #: src/pages/panel/inventory/utils/ResourceDetailChangeLogSelectedHistoryAccordion.tsx:45
 #: src/pages/panel/shared/utils/chartToShow.tsx:16
@@ -383,7 +391,7 @@ msgstr "Close"
 
 #: src/pages/panel/accounts/AccountRow.tsx:402
 #: src/pages/panel/accounts/AccountsTableItem.tsx:40
-#: src/pages/panel/inventory/ResourceDetail.tsx:226
+#: src/pages/panel/inventory/ResourceDetail.tsx:227
 #: src/pages/panel/security/AccountCard.tsx:33
 msgid "Cloud"
 msgstr "Cloud"
@@ -481,7 +489,7 @@ msgstr "Copy"
 msgid "Core CSPM scanning capabilities"
 msgstr "Core CSPM scanning capabilities"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:233
+#: src/pages/panel/inventory/ResourceDetail.tsx:234
 msgid "Created Time"
 msgstr "Created Time"
 
@@ -561,7 +569,7 @@ msgstr "Deploy Stack"
 msgid "Description"
 msgstr "Description"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:311
+#: src/pages/panel/inventory/ResourceDetail.tsx:312
 msgid "Details"
 msgstr "Details"
 
@@ -678,7 +686,7 @@ msgstr "External Id"
 msgid "Failed to retrieve changelog"
 msgstr "Failed to retrieve changelog"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:111
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:114
 msgid "Failing benchmarks"
 msgstr "Failing benchmarks"
 
@@ -731,7 +739,7 @@ msgstr "Free"
 msgid "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
 msgstr "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:126
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:129
 msgid "Go to resources"
 msgstr "Go to resources"
 
@@ -754,7 +762,7 @@ msgstr "How to fix"
 
 #: src/pages/panel/accounts/AccountRow.tsx:399
 #: src/pages/panel/accounts/AccountsTableItem.tsx:43
-#: src/pages/panel/inventory/ResourceDetail.tsx:223
+#: src/pages/panel/inventory/ResourceDetail.tsx:224
 #: src/pages/panel/security/AccountCard.tsx:30
 #: src/shared/charts/NetworkDiagram.tsx:406
 msgid "ID"
@@ -815,7 +823,7 @@ msgstr "Invite External User"
 msgid "Invites"
 msgstr "Invites"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:222
+#: src/pages/panel/inventory/ResourceDetail.tsx:223
 #: src/shared/charts/NetworkDiagram.tsx:405
 msgid "Kind"
 msgstr "Kind"
@@ -878,7 +886,7 @@ msgstr "Monthly"
 msgid "Monthly email report"
 msgstr "Monthly email report"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:130
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:133
 msgid "More info"
 msgstr "More info"
 
@@ -896,7 +904,7 @@ msgstr "Most Non-Compliant Accounts"
 
 #: src/pages/panel/accounts/AccountRow.tsx:405
 #: src/pages/panel/accounts/AccountsTableItem.tsx:46
-#: src/pages/panel/inventory/ResourceDetail.tsx:224
+#: src/pages/panel/inventory/ResourceDetail.tsx:225
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:18
@@ -986,7 +994,7 @@ msgstr "Oops! Something went wrong."
 msgid "Open drawer"
 msgstr "Open drawer"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:248
+#: src/pages/panel/inventory/ResourceDetail.tsx:249
 msgid "Open resource {name} in AWS Console"
 msgstr "Open resource {name} in AWS Console"
 
@@ -1114,7 +1122,7 @@ msgstr "Recovery codes"
 msgid "Regenerate"
 msgstr "Regenerate"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:231
+#: src/pages/panel/inventory/ResourceDetail.tsx:232
 msgid "Region"
 msgstr "Region"
 
@@ -1178,7 +1186,7 @@ msgstr "Security"
 msgid "Security benchmarks"
 msgstr "Security benchmarks"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:334
+#: src/pages/panel/inventory/ResourceDetail.tsx:335
 msgid "Security Issues"
 msgstr "Security Issues"
 
@@ -1195,8 +1203,8 @@ msgstr "Security Scan"
 msgid "Security Score"
 msgstr "Security Score"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:259
-#: src/pages/panel/inventory/ResourceDetail.tsx:270
+#: src/pages/panel/inventory/ResourceDetail.tsx:260
+#: src/pages/panel/inventory/ResourceDetail.tsx:271
 msgid "See this Resource in AWS Console"
 msgstr "See this Resource in AWS Console"
 
@@ -1234,7 +1242,7 @@ msgstr "Single Sign on (coming soon!)"
 msgid "Snowflake data export (coming soon!)"
 msgstr "Snowflake data export (coming soon!)"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:286
+#: src/pages/panel/inventory/ResourceDetail.tsx:287
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:33
 #: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:23
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:107
@@ -1263,7 +1271,7 @@ msgid "Successfully invited {email}"
 msgstr "Successfully invited {email}"
 
 #: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:86
-#: src/pages/panel/inventory/ResourceDetail.tsx:296
+#: src/pages/panel/inventory/ResourceDetail.tsx:297
 msgid "Tags"
 msgstr "Tags"
 
@@ -1279,7 +1287,7 @@ msgstr "Test"
 msgid "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
 msgstr "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:284
+#: src/pages/panel/inventory/ResourceDetail.tsx:285
 msgid "The selected resource does not exist anymore."
 msgstr "The selected resource does not exist anymore."
 
@@ -1311,7 +1319,7 @@ msgstr "This will deploy a CloudFormation stack that creates a new IAM role in y
 msgid "Tier"
 msgstr "Tier"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:265
+#: src/pages/panel/inventory/ResourceDetail.tsx:266
 msgid "To access this resource, please ensure that you are logged into the AWS account: {account}"
 msgstr "To access this resource, please ensure that you are logged into the AWS account: {account}"
 
@@ -1329,7 +1337,7 @@ msgid "Top Non-Compliant Resources"
 msgstr "Top Non-Compliant Resources"
 
 #: src/pages/panel/security/Overview.tsx:62
-#: src/pages/panel/security/Overview.tsx:79
+#: src/pages/panel/security/Overview.tsx:78
 msgid "Top Security Enhancements"
 msgstr "Top Security Enhancements"
 
@@ -1417,7 +1425,7 @@ msgid "We're sorry for the inconvenience. Our team has been notified, and the is
 msgstr "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 
 #: src/pages/panel/security/OverallScore.tsx:59
-#: src/pages/panel/shared/utils/PieCard.tsx:40
+#: src/pages/panel/shared/utils/createPieDataFromNonCompliance.ts:26
 msgid "We've identified {0} non-compliant resources out of {1} {2}-severity security checks."
 msgstr "We've identified {0} non-compliant resources out of {1} {2}-severity security checks."
 
