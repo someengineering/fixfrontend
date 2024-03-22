@@ -3,7 +3,7 @@ import { Box, Divider, Grid, Stack, Theme, Typography, useMediaQuery } from '@mu
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryReportSummaryQuery } from 'src/pages/panel/shared/queries'
-import { PieCard } from 'src/pages/panel/shared/utils'
+import { PieCard, chartToShow } from 'src/pages/panel/shared/utils'
 import { OverallCard } from './OverallCard'
 import { OverallScore } from './OverallScore'
 import { TopFiveChecksCard } from './TopFiveChecksCard'
@@ -69,7 +69,6 @@ export const Overview = () => {
           false
         )}
       </Grid>
-      {/* {chartToShow(data)} */}
       {isMobile ? (
         <>
           <Box p={4}>
@@ -83,6 +82,7 @@ export const Overview = () => {
       ) : (
         false
       )}
+      {chartToShow(data)}
       <Box p={4}>
         <Divider />
       </Box>

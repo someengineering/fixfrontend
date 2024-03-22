@@ -28,8 +28,9 @@ interface PieResourceCheckScoreProps extends StackProps {
     onClick?: () => void
   }[]
   score: number
-  showPieChart: boolean
-  hidingPieChart: boolean
+  showPieChart?: boolean
+  hidingPieChart?: boolean
+  noAnimation?: boolean
   onScoreClick?: MouseEventHandler<HTMLSpanElement>
 }
 
@@ -38,6 +39,7 @@ export const PieResourceCheckScore = ({
   score,
   showPieChart,
   hidingPieChart,
+  noAnimation,
   onScoreClick,
   ...props
 }: PieResourceCheckScoreProps) => {
@@ -68,6 +70,7 @@ export const PieResourceCheckScore = ({
               showLabel
               pieProps={{
                 animationDuration: theme.transitions.duration.standard,
+                animationBegin: noAnimation ? 0 : undefined,
                 innerRadius: 37,
                 outerRadius: 75,
               }}
