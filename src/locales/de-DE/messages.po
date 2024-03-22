@@ -147,6 +147,10 @@ msgstr "6-monatige Historie"
 msgid "A few minutes to first results"
 msgstr "In wenigen Minuten bis zum ersten Ergebnis"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:56
+msgid "Abandoned"
+msgstr "Verlassen"
+
 #: src/pages/panel/accounts/AccountRow.tsx:227
 #: src/pages/panel/accounts/AccountRow.tsx:345
 msgid "Access to your account is broken"
@@ -646,6 +650,10 @@ msgstr "E-Mail-Alarmierungen"
 msgid "Enabled"
 msgstr "Ermöglicht"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:61
+msgid "Engineers like to tag their temporary resources with appropriately chosen names. This searches for the string \"deleteme\" in names, tags and other string properties."
+msgstr "Ingenieure kennzeichnen ihre temporären Ressourcen gerne mit passenden Namen. Dadurch wird in Namen, Tags und anderen Zeichenfolgeneigenschaften nach der Zeichenfolge \"deleteme\" gesucht."
+
 #: src/pages/panel/workspace-settings-billing/utils/productTierToLabel.ts:15
 msgid "Enterprise"
 msgstr "Unternehmen"
@@ -665,6 +673,10 @@ msgstr "Alles in Free, und"
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:53
 msgid "Everything in Plus, and"
 msgstr "Alles in Plus, und"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:108
+msgid "Example searches"
+msgstr "Beispielsuchen"
 
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:108
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:46
@@ -697,6 +709,18 @@ msgstr "Nein"
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:20
 msgid "Features"
 msgstr "Funktionen"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:45
+msgid "Finds databases that aren't encrypted at rest."
+msgstr "Findet Datenbanken, die im Ruhezustand nicht verschlüsselt sind."
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:71
+msgid "Finds load balancers that are not associated with any running instances."
+msgstr "Findet Load Balancer, die keiner laufenden Instanz zugeordnet sind."
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:81
+msgid "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
+msgstr "Findet Snapshots von Festplatten, die nicht mehr verwendet werden und möglicherweise gelöscht werden könnten, um die Speicherkosten zu senken."
 
 #: src/containers/auth/AuthContainer.tsx:50
 msgid "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
@@ -768,6 +792,34 @@ msgstr "Wie repariert man"
 msgid "ID"
 msgstr "ID"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:92
+msgid "Identifies compute instances and databases with low CPU usage, indicating potential over-provisioning."
+msgstr "Identifiziert Recheninstanzen und Datenbanken mit geringer CPU-Auslastung, was auf eine mögliche Überbereitstellung hinweist."
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:40
+msgid "Identifies databases publicly accessible from any IP on the Internet."
+msgstr "Identifiziert Datenbanken, die von jeder IP im Internet aus öffentlich zugänglich sind."
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:29
+msgid "Identifies EBS volumes that are not encrypted."
+msgstr "Identifiziert EBS-Volumes, die nicht verschlüsselt sind."
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:76
+msgid "Identifies Elastic IP addresses that are allocated but not associated with any network interface."
+msgstr "Identifiziert Elastic IP-Adressen, die zugewiesen, aber keiner Netzwerkschnittstelle zugeordnet sind."
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:50
+msgid "Identifies RDS snapshots that are publicly accessible."
+msgstr "Identifiziert RDS-Snapshots, die öffentlich zugänglich sind."
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:34
+msgid "Identifies S3 buckets that are publicly accessible."
+msgstr "Identifiziert S3-Buckets, die öffentlich zugänglich sind."
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:66
+msgid "Identifies storage volumes that are not attached to any running instance and had no read operations in the last 7 days."
+msgstr "Identifiziert Speichervolumes, die keiner laufenden Instanz zugeordnet sind und in den letzten 7 Tagen keine Lesevorgänge durchgeführt haben."
+
 #: src/pages/panel/security/OverallCard.tsx:162
 msgid "Improved"
 msgstr "Verbessert"
@@ -836,6 +888,10 @@ msgstr "Arten"
 msgid "Last login"
 msgstr "Letzte Anmeldung"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:70
+msgid "Load Balancers with no backends"
+msgstr "Load Balancer ohne Backends"
+
 #: src/pages/auth/login/LoginPage.tsx:93
 #: src/pages/auth/login/LoginPage.tsx:213
 msgid "Log in"
@@ -856,6 +912,10 @@ msgstr "Ausloggen"
 #: src/shared/defined-messages/getMessage.ts:14
 msgid "Low"
 msgstr "Niedrig"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:91
+msgid "Low Utilization Compute Instances and Databases"
+msgstr "Recheninstanzen und Datenbanken mit geringer Auslastung"
 
 #: src/pages/panel/setup-cloud/SetupCloudPage.tsx:55
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
@@ -990,6 +1050,10 @@ msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Si
 msgid "Oops! Something went wrong."
 msgstr "Hoppla! Etwas ist schief gelaufen."
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:39
+msgid "Open Database Access"
+msgstr "Öffnen Sie den Datenbankzugriff"
+
 #: src/shared/layouts/panel-layout/PanelAppBar.tsx:71
 msgid "Open drawer"
 msgstr "Öffene die Schublade"
@@ -1008,6 +1072,14 @@ msgstr "Geöffnet um"
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:87
 msgid "Or"
 msgstr "Oder"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:80
+msgid "Orphaned Snapshots"
+msgstr "Verwaiste Schnappschüsse"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:65
+msgid "Orphaned Volumes"
+msgstr "Verwaiste Bände"
 
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:38
 msgid "Other Workspace Settings"
@@ -1096,6 +1168,14 @@ msgstr "Profil"
 msgid "Property"
 msgstr "Eigentum"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:49
+msgid "Public RDS Snapshots"
+msgstr "Öffentliche RDS-Snapshots"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:33
+msgid "Public S3 Buckets"
+msgstr "Öffentliche S3-Buckets"
+
 #: src/pages/panel/user-settings/UserSettingsSocialNetwork.tsx:17
 msgid "Re-Authenticate"
 msgstr "Erneut authentifizieren"
@@ -1163,6 +1243,10 @@ msgstr "Ressource gelöscht"
 msgid "Resources"
 msgstr "Ressourcen"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:60
+msgid "Resources with the string \"deleteme\""
+msgstr "Ressourcen mit der Zeichenfolge \"deleteme\""
+
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:69
 msgid "Risk"
 msgstr "Risiko"
@@ -1174,10 +1258,15 @@ msgstr "Risiko"
 msgid "Roles"
 msgstr "Rollen"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:97
+msgid "Searches for database instances with no connections over a significant period, indicating potential waste."
+msgstr "Sucht nach Datenbankinstanzen ohne Verbindungen über einen längeren Zeitraum, was auf potenzielle Verschwendung hinweist."
+
 #: src/containers/auth/AuthContainer.tsx:44
 msgid "Secure read-only access"
 msgstr "Sicherer Lesezugriff"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:24
 #: src/shared/layouts/panel-layout/menuList.tsx:41
 msgid "Security"
 msgstr "Sicherheit"
@@ -1373,6 +1462,26 @@ msgstr "Versuchen Sie es erneut"
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:21
 msgid "Type"
 msgstr "Typ"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:75
+msgid "Unattached Elastic IPs"
+msgstr "Nicht angehängte elastische IPs"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:87
+msgid "Underutilized"
+msgstr "Nicht ausreichend genutzt"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:44
+msgid "Unencrypted Database Storage"
+msgstr "Unverschlüsselter Datenbankspeicher"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:28
+msgid "Unencrypted EBS Volumes"
+msgstr "Unverschlüsselte EBS-Volumes"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:96
+msgid "Unused Database Instances"
+msgstr "Ungenutzte Datenbankinstanzen"
 
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:54
 msgid "Update Email"

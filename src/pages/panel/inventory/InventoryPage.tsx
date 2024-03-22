@@ -7,6 +7,7 @@ import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/u
 import { InventoryAdvanceSearch } from './InventoryAdvanceSearch'
 import { InventoryTable } from './InventoryTable'
 import { InventoryTableError } from './InventoryTable.error'
+import { InventoryTemplateBoxes } from './InventoryTemplateBoxes'
 import { ResourceDetail } from './ResourceDetail'
 
 export default function InventoryPage() {
@@ -46,21 +47,29 @@ export default function InventoryPage() {
         <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
           <InventoryAdvanceSearch value={searchCrit} onChange={setSearchCrit} hasError={hasError} />
         </NetworkErrorBoundary>
-        <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-          <ResourceDetail />
-        </NetworkErrorBoundary>
-        <NetworkErrorBoundary
-          fallbackRender={({ resetErrorBoundary }) => (
-            <InventoryTableError resetErrorBoundary={resetErrorBoundary} searchCrit={searchCrit} setHasError={setHasError} />
-          )}
-        >
-          <InventoryTable
-            searchCrit={searchCrit}
-            history={
-              history.after && history.before && history.change ? (history as { after: string; before: string; change: string }) : undefined
-            }
-          />
-        </NetworkErrorBoundary>
+        {searchCrit !== 'all' ? (
+          <>
+            <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+              <ResourceDetail />
+            </NetworkErrorBoundary>
+            <NetworkErrorBoundary
+              fallbackRender={({ resetErrorBoundary }) => (
+                <InventoryTableError resetErrorBoundary={resetErrorBoundary} searchCrit={searchCrit} setHasError={setHasError} />
+              )}
+            >
+              <InventoryTable
+                searchCrit={searchCrit}
+                history={
+                  history.after && history.before && history.change
+                    ? (history as { after: string; before: string; change: string })
+                    : undefined
+                }
+              />
+            </NetworkErrorBoundary>
+          </>
+        ) : (
+          <InventoryTemplateBoxes onChange={setSearchCrit} />
+        )}
       </Suspense>
     </NetworkErrorBoundary>
   )
