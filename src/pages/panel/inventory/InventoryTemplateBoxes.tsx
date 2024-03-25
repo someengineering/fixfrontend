@@ -79,7 +79,8 @@ const templateData: TemplateData[] = [
       {
         title: t`Orphaned Snapshots`,
         description: t`Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs.`,
-        search: 'is(aws_ec2_snapshot) with(empty, <-- is(aws_ec2_volume))',
+        search:
+          'is(aws_ec2_snapshot,aws_rds_snapshot,aws_rds_cluster_snapshot) with(empty, <-- is(aws_ec2_volume,aws_rds_instance,aws_rds_cluster))',
       },
     ],
   },
