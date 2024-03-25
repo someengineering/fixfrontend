@@ -126,7 +126,7 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, 
           <Stack spacing={1} direction="row">
             {navigate && (
               <Button onClick={() => navigate(createInventorySearchTo(query))} variant="outlined">
-                <Trans>Go to resources</Trans>
+                <Trans>Show resources</Trans>
               </Button>
             )}
             <Button href={failedCheck.remediation.url} target="_blank" rel="noopener noreferrer" endIcon={<OpenInNewIcon />}>
