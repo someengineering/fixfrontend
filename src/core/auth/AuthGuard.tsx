@@ -31,6 +31,9 @@ export function AuthGuard({ children }: PropsWithChildren) {
             name: '',
             owners: [],
             slug: '',
+            created_at: new Date().toISOString(),
+            on_hold_since: null,
+            trial_end_days: null,
           }
         : undefined,
       isAuthenticated,

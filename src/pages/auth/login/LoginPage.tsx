@@ -59,7 +59,16 @@ export default function LoginPage() {
             {
               isAuthenticated: true,
               workspaces: [],
-              selectedWorkspace: { id: returnUrl.split('#')[1], members: [], name: '', owners: [], slug: '' },
+              selectedWorkspace: {
+                id: returnUrl.split('#')[1],
+                members: [],
+                name: '',
+                owners: [],
+                slug: '',
+                created_at: new Date().toISOString(),
+                on_hold_since: null,
+                trial_end_days: null,
+              },
             },
             returnUrl,
           )
