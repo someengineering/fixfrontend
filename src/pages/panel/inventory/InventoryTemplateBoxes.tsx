@@ -90,7 +90,7 @@ const templateData: TemplateData[] = [
       {
         title: t`Low Utilization Compute Instances and Databases`,
         description: t`Identifies compute instances and databases with low CPU usage, indicating potential over-provisioning.`,
-        search: 'is(instance,database) and /usage.cpu_utilization_percent.max < 10',
+        search: 'with_usage(7d, cpu_utilization_percent) is(instance,database) and /usage.cpu_utilization_percent.max < 10',
       },
       {
         title: t`Unused Database Instances`,
