@@ -116,8 +116,8 @@ export const InventoryTemplateBoxes = ({ onChange }: InventoryTemplateBoxesProps
                 {template.content.map((content, i) => (
                   <Fragment key={i}>
                     <Stack spacing={1}>
-                      <Link onClick={() => onChange(content.search)}>
-                        <Typography variant="h6">{content.title}</Typography>
+                      <Link component={Typography} variant="h6" onClick={() => onChange(content.search)} sx={{ cursor: 'pointer' }}>
+                        {content.title}
                       </Link>
                       <Typography>{content.description}</Typography>
                     </Stack>
