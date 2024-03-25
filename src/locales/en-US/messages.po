@@ -763,10 +763,6 @@ msgstr "Free"
 msgid "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
 msgstr "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:129
-msgid "Go to resources"
-msgstr "Go to resources"
-
 #: src/shared/defined-messages/getMessage.ts:8
 msgid "High"
 msgstr "High"
@@ -1314,6 +1310,10 @@ msgstr "Setting Up Email Notifications"
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:205
 msgid "Severity"
 msgstr "Severity"
+
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:129
+msgid "Show resources"
+msgstr "Show resources"
 
 #: src/pages/auth/register/RegisterPage.tsx:125
 msgid "Sign up"
