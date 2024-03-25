@@ -37,7 +37,7 @@ export default function WorkspaceSettingsBillingPage() {
           <Alert variant="outlined" severity="success">
             <Typography variant="h5">
               <Trans>
-                You are currently in your trial period, which will end in 14 days.
+                You are currently in your trial period, which will end in {selectedWorkspace?.trial_end_days ?? 14} days.
                 <br />
                 During your trial period, you have access to all features of the product.
               </Trans>
