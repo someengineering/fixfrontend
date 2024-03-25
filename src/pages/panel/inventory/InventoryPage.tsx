@@ -45,7 +45,7 @@ export default function InventoryPage() {
     <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
       <Suspense fallback={<LoadingSuspenseFallback />}>
         <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-          <InventoryAdvanceSearch value={searchCrit} onChange={setSearchCrit} hasError={hasError} />
+          <InventoryAdvanceSearch value={searchCrit} onChange={setSearchCrit} hasError={searchCrit !== 'all' && hasError} />
         </NetworkErrorBoundary>
         {searchCrit !== 'all' ? (
           <>
