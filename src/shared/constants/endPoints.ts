@@ -96,6 +96,10 @@ export const endPoints = {
         list: `api/workspaces/${workspaceId}/users/`,
         self: (userId: string) => `api/workspaces/${workspaceId}/users/${userId}`,
       },
+      roles: {
+        list: `api/workspaces/${workspaceId}/roles`,
+        self: (userId: string) => `api/workspaces/${workspaceId}/roles/${userId}`,
+      },
       acceptInvite: `api/workspaces/${workspaceId}/accept_invite`,
       subscription: (subscriptionId: string) => `api/workspaces/${workspaceId}/subscription/${subscriptionId}`,
       cfUrl: `api/workspaces/${workspaceId}/cf_url`,

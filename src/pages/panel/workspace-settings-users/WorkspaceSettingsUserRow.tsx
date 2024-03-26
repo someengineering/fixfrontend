@@ -2,31 +2,16 @@ import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { LoadingButton } from '@mui/lab'
-import { Button, Grid, IconButton, TableCell, TableRow, Tooltip, Typography } from '@mui/material'
+import { Button, Grid, IconButton, Stack, TableCell, TableRow, Tooltip, Typography } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { Modal } from 'src/shared/modal'
-import { WorkspaceUser, WorkspaceUserRole } from 'src/shared/types/server'
+import { WorkspaceUser } from 'src/shared/types/server'
+import { WorkspaceSettingsUserRoles } from './WorkspaceSettingsUserRoles'
 import { deleteWorkspaceUserMutation } from './deleteWorkspaceUser.mutation'
-
-const workspaceSettingsUserRoleToString = (role: WorkspaceUserRole) => {
-  const roles = [] as string[]
-  if (role.owner) {
-    roles.push(t`Owner`)
-  }
-  if (role.admin) {
-    roles.push(t`Admin`)
-  }
-  if (role.billing_admin) {
-    roles.push(t`Billing Admin`)
-  }
-  if (role.member) {
-    roles.push(t`Member`)
-  }
-  return roles.length ? roles.join(', ') : t`Admin`
-}
+import { workspaceSettingsUserRoleToString } from './workspaceSettingsUserRoleToString'
 
 export const WorkspaceSettingsUserRow = ({ workspaceUser }: { workspaceUser: WorkspaceUser }) => {
   const showDeleteModalRef = useRef<(show?: boolean) => void>()
@@ -91,7 +76,9 @@ export const WorkspaceSettingsUserRow = ({ workspaceUser }: { workspaceUser: Wor
       </TableCell>
       <TableCell>{workspaceUser.name || '-'}</TableCell>
       <TableCell>{workspaceUser.email || '-'}</TableCell>
-      <TableCell>{workspaceSettingsUserRoleToString(workspaceUser.roles)}</TableCell>
+      <TableCell>
+        <WorkspaceSettingsUserRoles role={workspaceUser.roles} userId={workspaceUser.id} />
+      </TableCell>
       <TableCell>{workspaceUser.last_login ? new Date(workspaceUser.last_login).toLocaleString(locale) : '-'}</TableCell>
       <TableCell>-</TableCell>
       <TableCell>
@@ -141,9 +128,14 @@ export const WorkspaceSettingsUserRow = ({ workspaceUser }: { workspaceUser: Wor
         <Typography>
           <Trans>Name</Trans>: {workspaceUser.name}
         </Typography>
-        <Typography>
-          <Trans>Sources</Trans>: {workspaceUser.sources.join(' & ')}
-        </Typography>
+        <Stack direction="row" spacing={1} flexWrap="wrap" display="inline-flex" alignItems="center">
+          <Typography>
+            <Trans>Sources</Trans>:{' '}
+          </Typography>
+          {workspaceUser.sources.map(({ source }, i) => (
+            <CloudAvatar key={i} cloud={source} />
+          ))}
+        </Stack>
         <Typography>
           <Trans>Roles</Trans>: {workspaceSettingsUserRoleToString(workspaceUser.roles)}
         </Typography>

@@ -18,3 +18,4 @@ export type { PutWorkspaceNotificationAddEmailRequest } from './PutWorkspaceNoti
 export type { PutWorkspaceNotificationAddOpsgenieRequest } from './PutWorkspaceNotificationAddOpsgenie'
 export type { PutWorkspaceNotificationAddPagerdutyRequest } from './PutWorkspaceNotificationAddPagerduty'
 export type { PutWorkspaceNotificationAddTeamsRequest } from './PutWorkspaceNotificationAddTeams'
+export type { PutWorkspaceRolesRequest } from './PutWorkspaceRoles'
