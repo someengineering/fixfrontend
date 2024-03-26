@@ -1,9 +1,10 @@
 import { Trans } from '@lingui/macro'
 import { Box, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { useState } from 'react'
-import { panelUI } from 'src/shared/constants'
+import { panelUI, settingsStorageKeys } from 'src/shared/constants'
 import { TableView } from 'src/shared/layouts/panel-layout'
 import { Account } from 'src/shared/types/server'
+import { usePersistState } from 'src/shared/utils/usePersistState'
 import { AccountRow } from './AccountRow'
 import { AccountTableTitle } from './AccountTableTitle'
 
@@ -17,7 +18,7 @@ interface AccountsTableItemProps {
 
 export const AccountsTableItem = ({ data, title, isTop, isBottom, isNotConfigured }: AccountsTableItemProps) => {
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(5)
+  const [rowsPerPage, setRowsPerPage] = usePersistState(settingsStorageKeys.AccountsTableItem.rowsPerPage, 5)
   return (
     <Box mb={isBottom ? undefined : { xs: 8, sm: 5 }} mt={isTop ? undefined : { sm: 3 }}>
       <AccountTableTitle isTop={isTop}>{title}</AccountTableTitle>

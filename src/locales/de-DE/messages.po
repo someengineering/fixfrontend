@@ -181,8 +181,8 @@ msgstr "Zusammenfassung der Konten"
 msgid "Action"
 msgstr "Aktion"
 
-#: src/pages/panel/accounts/AccountsTableItem.tsx:65
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:68
+#: src/pages/panel/accounts/AccountsTableItem.tsx:66
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:69
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -394,7 +394,7 @@ msgid "Close"
 msgstr "Schließen"
 
 #: src/pages/panel/accounts/AccountRow.tsx:402
-#: src/pages/panel/accounts/AccountsTableItem.tsx:40
+#: src/pages/panel/accounts/AccountsTableItem.tsx:41
 #: src/pages/panel/inventory/ResourceDetail.tsx:227
 #: src/pages/panel/security/AccountCard.tsx:33
 msgid "Cloud"
@@ -521,7 +521,7 @@ msgstr "Täglich"
 msgid "Data export (CSV, JSON, PDF)"
 msgstr "Datenexport (CSV, JSON, PDF)"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:40
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:41
 msgid "Date"
 msgstr "Datum"
 
@@ -612,7 +612,7 @@ msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 msgid "Downgrade"
 msgstr "Downgrade"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:46
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:47
 msgid "Download"
 msgstr "Herunterladen"
 
@@ -634,9 +634,9 @@ msgstr "Edit"
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:79
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:83
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:105
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:43
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:44
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:139
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:56
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:57
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:131
 msgid "Email"
 msgstr "Email"
@@ -645,7 +645,7 @@ msgstr "Email"
 msgid "Email alerts"
 msgstr "E-Mail-Alarmierungen"
 
-#: src/pages/panel/accounts/AccountsTableItem.tsx:57
+#: src/pages/panel/accounts/AccountsTableItem.tsx:58
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:49
 msgid "Enabled"
 msgstr "Ermöglicht"
@@ -674,12 +674,12 @@ msgstr "Alles in Free, und"
 msgid "Everything in Plus, and"
 msgstr "Alles in Plus, und"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:108
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:109
 msgid "Example searches"
 msgstr "Beispielsuchen"
 
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:108
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:46
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:47
 msgid "Expires"
 msgstr "Läuft ab"
 
@@ -781,14 +781,14 @@ msgid "How to fix"
 msgstr "Wie repariert man"
 
 #: src/pages/panel/accounts/AccountRow.tsx:399
-#: src/pages/panel/accounts/AccountsTableItem.tsx:43
+#: src/pages/panel/accounts/AccountsTableItem.tsx:44
 #: src/pages/panel/inventory/ResourceDetail.tsx:224
 #: src/pages/panel/security/AccountCard.tsx:30
 #: src/shared/charts/NetworkDiagram.tsx:406
 msgid "ID"
 msgstr "ID"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:92
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:93
 msgid "Identifies compute instances and databases with low CPU usage, indicating potential over-provisioning."
 msgstr "Identifiziert Recheninstanzen und Datenbanken mit geringer CPU-Auslastung, was auf eine mögliche Überbereitstellung hinweist."
 
@@ -867,7 +867,7 @@ msgstr "Einladen"
 msgid "Invite External User"
 msgstr "Externen Benutzer einladen"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:65
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:66
 msgid "Invites"
 msgstr "Lädt ein"
 
@@ -880,7 +880,7 @@ msgstr "Art"
 msgid "Kinds"
 msgstr "Arten"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:62
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:63
 msgid "Last login"
 msgstr "Letzte Anmeldung"
 
@@ -909,7 +909,7 @@ msgstr "Ausloggen"
 msgid "Low"
 msgstr "Niedrig"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:91
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:92
 msgid "Low Utilization Compute Instances and Databases"
 msgstr "Recheninstanzen und Datenbanken mit geringer Auslastung"
 
@@ -959,7 +959,7 @@ msgid "Most Non-Compliant Accounts"
 msgstr "Die meisten nicht konformen Konten"
 
 #: src/pages/panel/accounts/AccountRow.tsx:405
-#: src/pages/panel/accounts/AccountsTableItem.tsx:46
+#: src/pages/panel/accounts/AccountsTableItem.tsx:47
 #: src/pages/panel/inventory/ResourceDetail.tsx:225
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
@@ -967,7 +967,7 @@ msgstr "Die meisten nicht konformen Konten"
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:69
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:73
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:142
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:53
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:54
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:114
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:122
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:120
@@ -1001,7 +1001,7 @@ msgstr "Neues Kennwort"
 msgid "New security issues detected"
 msgstr "Neue Sicherheitsprobleme entdeckt"
 
-#: src/pages/panel/accounts/AccountsTableItem.tsx:54
+#: src/pages/panel/accounts/AccountsTableItem.tsx:55
 msgid "Next scan"
 msgstr "Nächster Scan"
 
@@ -1026,7 +1026,7 @@ msgstr "Benachrichtigung"
 msgid "Null"
 msgstr "Null"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:49
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:50
 msgid "Number Of Account Charged"
 msgstr "Anzahl der belasteten Konten"
 
@@ -1105,9 +1105,9 @@ msgstr "Passwort"
 msgid "Payment Method Required"
 msgstr "Zahlungsmethode erforderlich"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:23
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:39
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:28
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:24
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:40
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:29
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:18
 msgid "Pending Invitations"
 msgstr "Ausstehende Einladungen"
@@ -1176,8 +1176,8 @@ msgstr "Öffentliche S3-Buckets"
 msgid "Re-Authenticate"
 msgstr "Erneut authentifizieren"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:22
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:36
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:23
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:37
 msgid "Receipts"
 msgstr "Quittungen"
 
@@ -1214,7 +1214,7 @@ msgstr "Registrieren"
 msgid "Remediation recommendations"
 msgstr "Empfehlungen zur Fehlerbehebung"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:49
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:50
 msgid "Remove"
 msgstr "Entfernen"
 
@@ -1235,7 +1235,7 @@ msgstr "Ressource erstellt"
 msgid "Resource deleted"
 msgstr "Ressource gelöscht"
 
-#: src/pages/panel/accounts/AccountsTableItem.tsx:49
+#: src/pages/panel/accounts/AccountsTableItem.tsx:50
 msgid "Resources"
 msgstr "Ressourcen"
 
@@ -1250,11 +1250,11 @@ msgstr "Risiko"
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:89
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:100
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:148
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:59
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:60
 msgid "Roles"
 msgstr "Rollen"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:97
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:98
 msgid "Searches for database instances with no connections over a significant period, indicating potential waste."
 msgstr "Sucht nach Datenbankinstanzen ohne Verbindungen über einen längeren Zeitraum, was auf potenzielle Verschwendung hinweist."
 
@@ -1279,7 +1279,7 @@ msgstr "Sicherheitsprobleme"
 msgid "Security posture improved"
 msgstr "Die Sicherheitslage wurde verbessert"
 
-#: src/pages/panel/accounts/AccountsTableItem.tsx:60
+#: src/pages/panel/accounts/AccountsTableItem.tsx:61
 msgid "Security Scan"
 msgstr "Sicherheitsscan"
 
@@ -1341,7 +1341,7 @@ msgid "Something went wrong please try again later."
 msgstr "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal."
 
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:145
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:50
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:51
 msgid "Sources"
 msgstr "Quellen"
 
@@ -1404,7 +1404,7 @@ msgstr "Diese Email-Adresse ist bereits registriert. Wenn dies Ihre E-Mail-Adres
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM Rolle in Ihrem AWS Konto erstellt. Diese Rolle wird von FIX verwendet, um in Ihrem AWS Konto Sicherheitsscans durchzuführen."
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:43
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:44
 msgid "Tier"
 msgstr "Stufe"
 
@@ -1467,7 +1467,7 @@ msgstr "Typ"
 msgid "Unattached Elastic IPs"
 msgstr "Nicht angehängte elastische IPs"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:87
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:88
 msgid "Underutilized"
 msgstr "Nicht ausreichend genutzt"
 
@@ -1479,7 +1479,7 @@ msgstr "Unverschlüsselter Datenbankspeicher"
 msgid "Unencrypted EBS Volumes"
 msgstr "Unverschlüsselte EBS-Volumes"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:96
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:97
 msgid "Unused Database Instances"
 msgstr "Ungenutzte Datenbankinstanzen"
 
@@ -1573,8 +1573,8 @@ msgstr "Arbeitsbereichsname"
 msgid "Workspace Settings"
 msgstr "Arbeitsbereichseinstellungen"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:24
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:46
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:25
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:47
 msgid "Workspace Users"
 msgstr "Workspace-Benutzer"
 
@@ -1585,7 +1585,6 @@ msgstr "Sie sind dabei, Änderungen an Ihren Zahlungsinformationen vorzunehmen. 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:39
 msgid "You are currently in your trial period, which will end in {0} days.<0/>During your trial period, you have access to all features of the product."
 msgstr "Sie befinden sich derzeit in Ihrer Testphase, die in {0} Tagen endet.<0/>In dieser Zeit haben Sie Zugang zu allen Funktionen des Produkts."
-
 
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:59
 msgid "You can deactivate TOTP via otp code"

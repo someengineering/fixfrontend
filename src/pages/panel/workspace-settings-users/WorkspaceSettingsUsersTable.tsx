@@ -3,8 +3,9 @@ import { Button, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typogr
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { panelUI } from 'src/shared/constants'
+import { panelUI, settingsStorageKeys } from 'src/shared/constants'
 import { TableView } from 'src/shared/layouts/panel-layout'
+import { usePersistState } from 'src/shared/utils/usePersistState'
 import { InviteExternalUser } from './InviteExternalUser'
 import { WorkspaceSettingsUserRow } from './WorkspaceSettingsUserRow'
 import { getWorkspaceUsersQuery } from './getWorkspaceUsers.query'
@@ -16,7 +17,7 @@ export const WorkspaceSettingsUsersTable = () => {
     queryFn: getWorkspaceUsersQuery,
   })
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(5)
+  const [rowsPerPage, setRowsPerPage] = usePersistState(settingsStorageKeys.WorkspaceSettingsUsersTable.rowsPerPage, 5)
   return (
     <>
       <Stack pb={2} justifyContent="space-between" direction={{ xs: 'column', md: 'row' }} spacing={2}>
