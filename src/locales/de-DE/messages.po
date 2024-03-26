@@ -641,11 +641,8 @@ msgstr "Edit"
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:79
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:83
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:105
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:43
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:126
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:56
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:44
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:139
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:126
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:57
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:131
 msgid "Email"
@@ -978,8 +975,6 @@ msgstr "Die meisten nicht konformen Konten"
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:69
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:73
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:129
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:53
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:142
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:54
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:114
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:122
@@ -1263,9 +1258,7 @@ msgstr "Risiko"
 
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:89
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:100
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:135
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:59
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:148
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:140
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:60
 msgid "Roles"
 msgstr "Rollen"
@@ -1356,9 +1349,7 @@ msgstr "Snowflake-Datenexport (bald verfügbar!)"
 msgid "Something went wrong please try again later."
 msgstr "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal."
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:132
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:50
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:145
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:133
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:51
 msgid "Sources"
 msgstr "Quellen"
