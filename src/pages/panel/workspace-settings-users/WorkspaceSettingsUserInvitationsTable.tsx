@@ -3,8 +3,9 @@ import { Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } f
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { panelUI } from 'src/shared/constants'
+import { panelUI, settingsStorageKeys } from 'src/shared/constants'
 import { TableView } from 'src/shared/layouts/panel-layout'
+import { usePersistState } from 'src/shared/utils/usePersistState'
 import { WorkspaceSettingsUserInvitationRow } from './WorkspaceSettingsUserInvitationRow'
 import { getWorkspaceInvitesQuery } from './getWorkspaceInvites.query'
 
@@ -15,7 +16,7 @@ export const WorkspaceSettingsUserInvitationsTable = () => {
     queryFn: getWorkspaceInvitesQuery,
   })
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(5)
+  const [rowsPerPage, setRowsPerPage] = usePersistState(settingsStorageKeys.WorkspaceSettingsUserInvitationsTable.rowsPerPage, 5)
   return (
     <>
       <Stack pb={2} justifyContent="space-between" direction="row" id="pending-invitations">

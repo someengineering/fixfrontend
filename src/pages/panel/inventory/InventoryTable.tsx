@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { GTMEventNames, panelUI } from 'src/shared/constants'
+import { GTMEventNames, panelUI, settingsStorageKeys } from 'src/shared/constants'
 import { sendToGTM } from 'src/shared/google-tag-manager'
 import { AdvancedTableView } from 'src/shared/layouts/panel-layout'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
@@ -17,6 +17,7 @@ import {
 } from 'src/shared/types/server'
 import { isAuthenticated as getIsAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData } from 'src/shared/utils/localstorage'
+import { usePersistState } from 'src/shared/utils/usePersistState'
 import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { DownloadCSVButton } from './DownloadCSVButton'
 
@@ -39,7 +40,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
   const [dataCount, setDataCount] = useState(-1)
   const navigate = useAbsoluteNavigate()
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(10)
+  const [rowsPerPage, setRowsPerPage] = usePersistState(settingsStorageKeys.InventoryTable.rowsPerPage, 10)
   const { selectedWorkspace } = useUserProfile()
   const [rows, setRows] = useState<RowType[]>([])
   const [columns, setColumns] = useState<ColType[]>([])
