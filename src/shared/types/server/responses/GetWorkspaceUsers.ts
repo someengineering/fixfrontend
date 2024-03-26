@@ -1,18 +1,11 @@
-export interface WorkspaceUserRole {
-  admin: boolean
-  billing_admin: boolean
-  member: boolean
-  owner: boolean
-  user_id: string
-  workspace_id: string
-}
+import { UserRole } from './shared'
 
 export interface WorkspaceUser {
   id: string
   sources: { source: string }[]
   name: string
   email: string
-  roles: WorkspaceUserRole
+  roles: UserRole
   last_login: string | null
 }
 

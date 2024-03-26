@@ -19,3 +19,4 @@ export type {
 } from './ResourceComplexKindProperty'
 export type { ResourceComplexKind, ResourceKind, ResourceKindGeneric, ResourceSimpleKind } from './ResourceKind'
 export type { SeverityType } from './SeverityType'
+export type { UserRole } from './UserRole'
