@@ -2,7 +2,7 @@ import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { LoadingButton } from '@mui/lab'
-import { Button, Grid, IconButton, TableCell, TableRow, Tooltip, Typography } from '@mui/material'
+import { Button, Grid, IconButton, Stack, TableCell, TableRow, Tooltip, Typography } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
@@ -128,9 +128,14 @@ export const WorkspaceSettingsUserRow = ({ workspaceUser }: { workspaceUser: Wor
         <Typography>
           <Trans>Name</Trans>: {workspaceUser.name}
         </Typography>
-        <Typography>
-          <Trans>Sources</Trans>: {workspaceUser.sources.join(' & ')}
-        </Typography>
+        <Stack direction="row" spacing={1} flexWrap="wrap" display="inline-flex" alignItems="center">
+          <Typography>
+            <Trans>Sources</Trans>:{' '}
+          </Typography>
+          {workspaceUser.sources.map(({ source }, i) => (
+            <CloudAvatar key={i} cloud={source} />
+          ))}
+        </Stack>
         <Typography>
           <Trans>Roles</Trans>: {workspaceSettingsUserRoleToString(workspaceUser.roles)}
         </Typography>
