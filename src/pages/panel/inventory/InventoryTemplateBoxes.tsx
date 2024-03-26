@@ -33,7 +33,7 @@ const templateData: TemplateData[] = [
         title: t`Public S3 Buckets`,
         description: t`Identifies S3 buckets that are publicly accessible.`,
         search:
-          'is(aws_s3_bucket) and ((bucket_acl.grants[*].{permission in [READ, READ_ACP] and grantee.uri = "http://acs.amazonaws.com/groups/global/AllUsers"}) or (bucket_policy.Statement[*].{Principal = "*" and (Action in [s3:GetObject, s3:PutObject] or Action[*] in [s3:GetObject, s3:PutObject])}))',
+          'is(aws_s3_bucket) and (bucket_public_access_block_configuration = null or (bucket_public_access_block_configuration != null and (bucket_public_access_block_configuration.{block_public_acls = false or ignore_public_acls = false or block_public_policy = false or restrict_public_buckets = false})) and (bucket_acl.grants[*].{permission in [READ, READ_ACP] and grantee.uri = "http://acs.amazonaws.com/groups/global/AllUsers"}) or (bucket_policy.Statement[*].{Principal = "*" and (Action in [s3:GetObject, s3:PutObject] or Action[*] in [s3:GetObject, s3:PutObject])}))',
       },
       {
         title: t`Open Database Access`,
