@@ -3,8 +3,9 @@ import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@m
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { panelUI } from 'src/shared/constants'
+import { panelUI, settingsStorageKeys } from 'src/shared/constants'
 import { TableView } from 'src/shared/layouts/panel-layout'
+import { usePersistState } from 'src/shared/utils/usePersistState'
 import { BillingEntryRow } from './BillingEntryRow'
 import { getWorkspaceBillingEntriesQuery } from './getWorkspaceBillingEntires.query'
 
@@ -15,7 +16,7 @@ export const WorkspaceSettingsBillingTable = () => {
     queryFn: getWorkspaceBillingEntriesQuery,
   })
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(10)
+  const [rowsPerPage, setRowsPerPage] = usePersistState(settingsStorageKeys.WorkspaceSettingsBillingTable.rowsPerPage, 10)
   return (
     <>
       <Typography variant="h4">

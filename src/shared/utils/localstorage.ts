@@ -1,5 +1,5 @@
 import { ThemeContextRealValues } from 'src/core/theme'
-import { StorageKeys } from 'src/shared/constants'
+import { SettingsStorageKeys, StorageKeys } from 'src/shared/constants'
 
 function getStorageObject<ReturnType = unknown>(key: StorageKeys) {
   const returnDataString = window.localStorage.getItem(key)
@@ -7,7 +7,7 @@ function getStorageObject<ReturnType = unknown>(key: StorageKeys) {
     try {
       return JSON.parse(returnDataString) as ReturnType
     } catch {
-      /* empty */
+      return undefined
     }
   }
 }
@@ -40,3 +40,11 @@ export const setSubscriptionId = (subscriptionId?: string) => setStorageObject(S
 export const getThemeMode = () => getStorageObject<ThemeContextRealValues>(StorageKeys.themeMode)
 
 export const setThemeMode = (themeMode?: ThemeContextRealValues) => setStorageObject(StorageKeys.themeMode, themeMode)
+
+export const getSettings = <Type = unknown>(name: SettingsStorageKeys) =>
+  getStorageObject<Record<string, Type>>(StorageKeys.settings)?.[name]
+
+export const setSettings = <Type = unknown>(name: SettingsStorageKeys, data: Type) => {
+  const prevData = getStorageObject<Record<string, Type>>(StorageKeys.settings) ?? {}
+  setStorageObject(StorageKeys.settings, { ...prevData, [name]: data })
+}
