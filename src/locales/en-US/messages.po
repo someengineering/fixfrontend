@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:89
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:93
 msgid "({0} max)"
 msgstr "({0} max)"
 
@@ -63,15 +63,15 @@ msgstr "{0} has been connected"
 msgid "{0} Milliseconds"
 msgstr "{0} Milliseconds"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:84
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:88
 msgid "{0} scans"
 msgstr "{0} scans"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:92
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:96
 msgid "{0} seat max"
 msgstr "{0} seat max"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:88
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:92
 msgid "{0} seats included {1}"
 msgstr "{0} seats included {1}"
 
@@ -151,16 +151,16 @@ msgstr "A few minutes to first results"
 msgid "Abandoned"
 msgstr "Abandoned"
 
-#: src/pages/panel/accounts/AccountRow.tsx:227
-#: src/pages/panel/accounts/AccountRow.tsx:345
+#: src/pages/panel/accounts/AccountRow.tsx:231
+#: src/pages/panel/accounts/AccountRow.tsx:349
 msgid "Access to your account is broken"
 msgstr "Access to your account is broken"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:231
+#: src/pages/panel/inventory/ResourceDetail.tsx:227
 msgid "Account"
 msgstr "Account"
 
-#: src/pages/panel/shared/utils/HeatmapCard.tsx:34
+#: src/pages/panel/shared/utils/HeatmapCard.tsx:38
 msgid "Account: {0}"
 msgstr "Account: {0}"
 
@@ -222,7 +222,7 @@ msgstr "Admin"
 msgid "Advanced search query"
 msgstr "Advanced search query"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:240
+#: src/pages/panel/inventory/ResourceDetail.tsx:236
 #: src/shared/charts/NetworkDiagram.tsx:408
 msgid "Age"
 msgstr "Age"
@@ -234,6 +234,10 @@ msgstr "Alerting integrations (PagerDuty, Slack, Discord, Teams)"
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:31
 msgid "Alerting Settings"
 msgstr "Alerting Settings"
+
+#: src/pages/panel/inventory/ResourceDetailFailedCheckIgnoredChecks.tsx:48
+msgid "All checks have been disabled for this resource"
+msgstr "All checks have been disabled for this resource"
 
 #: src/pages/panel/inventory/utils/nodeChange.tsx:27
 msgid "All security issues fixed"
@@ -261,8 +265,8 @@ msgstr "An email has been sent to your inbox with a 'Reset Password' button. Ple
 msgid "An error occurred while connecting to {0}"
 msgstr "An error occurred while connecting to {0}"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:142
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:27
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:146
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:31
 msgid "An error occurred, please try again later."
 msgstr "An error occurred, please try again later."
 
@@ -290,9 +294,9 @@ msgstr "Are you sure you want to disconnect {name}?"
 msgid "Are you sure you want to remove the {name} account {0}?"
 msgstr "Are you sure you want to remove the {name} account {0}?"
 
-#: src/pages/panel/accounts/AccountRow.tsx:363
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:77
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:98
+#: src/pages/panel/accounts/AccountRow.tsx:367
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:81
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:102
 msgid "Are you sure?"
 msgstr "Are you sure?"
 
@@ -312,7 +316,7 @@ msgstr "AWS Marketplace"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace has been successfully subscribed"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:216
+#: src/pages/panel/inventory/ResourceDetail.tsx:212
 msgid "Basic Information"
 msgstr "Basic Information"
 
@@ -325,7 +329,7 @@ msgstr "Because the data is over {0} Only first {1} items will be downloaded"
 msgid "Benchmark"
 msgstr "Benchmark"
 
-#: src/pages/panel/shared/utils/HeatmapCard.tsx:37
+#: src/pages/panel/shared/utils/HeatmapCard.tsx:41
 msgid "Benchmark: {0}"
 msgstr "Benchmark: {0}"
 
@@ -353,18 +357,18 @@ msgstr "Billing Admin"
 msgid "Business"
 msgstr "Business"
 
-#: src/pages/panel/accounts/AccountRow.tsx:273
 #: src/pages/panel/accounts/AccountRow.tsx:277
-#: src/pages/panel/accounts/AccountRow.tsx:278
-#: src/pages/panel/accounts/AccountRow.tsx:382
+#: src/pages/panel/accounts/AccountRow.tsx:281
+#: src/pages/panel/accounts/AccountRow.tsx:282
+#: src/pages/panel/accounts/AccountRow.tsx:386
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:68
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:121
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:49
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:88
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:145
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:149
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:92
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:150
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:109
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:154
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:155
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:113
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsDisconnectServiceModal.tsx:57
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:93
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:101
@@ -373,12 +377,12 @@ msgstr "Business"
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:247
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:251
 msgid "Change payment method"
 msgstr "Change payment method"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:204
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:242
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:208
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:246
 msgid "Change Product Tier"
 msgstr "Change Product Tier"
 
@@ -398,10 +402,10 @@ msgstr "Choose Workspace"
 msgid "Close"
 msgstr "Close"
 
-#: src/pages/panel/accounts/AccountRow.tsx:402
+#: src/pages/panel/accounts/AccountRow.tsx:406
 #: src/pages/panel/accounts/AccountsTableItem.tsx:41
-#: src/pages/panel/inventory/ResourceDetail.tsx:227
-#: src/pages/panel/security/AccountCard.tsx:33
+#: src/pages/panel/inventory/ResourceDetail.tsx:223
+#: src/pages/panel/security/AccountCard.tsx:37
 msgid "Cloud"
 msgstr "Cloud"
 
@@ -439,6 +443,10 @@ msgstr "Configuration changed"
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:74
 msgid "Configure"
 msgstr "Configure"
+
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:38
+msgid "Confirm"
+msgstr "Confirm"
 
 #: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:71
 msgid "Congratulations on your subscription"
@@ -498,7 +506,7 @@ msgstr "Copy"
 msgid "Core CSPM scanning capabilities"
 msgstr "Core CSPM scanning capabilities"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:234
+#: src/pages/panel/inventory/ResourceDetail.tsx:230
 msgid "Created Time"
 msgstr "Created Time"
 
@@ -548,19 +556,24 @@ msgstr "Deactivate"
 msgid "Default Role"
 msgstr "Default Role"
 
-#: src/pages/panel/accounts/AccountRow.tsx:333
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:41
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:92
+msgid "Delayed Effect"
+msgstr "Delayed Effect"
+
 #: src/pages/panel/accounts/AccountRow.tsx:337
-#: src/pages/panel/accounts/AccountRow.tsx:338
-#: src/pages/panel/accounts/AccountRow.tsx:393
+#: src/pages/panel/accounts/AccountRow.tsx:341
+#: src/pages/panel/accounts/AccountRow.tsx:342
+#: src/pages/panel/accounts/AccountRow.tsx:397
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:79
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:65
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:69
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:70
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:99
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:86
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:73
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:74
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:103
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:90
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:91
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:120
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:94
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:95
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:124
 msgid "Delete"
 msgstr "Delete"
 
@@ -568,7 +581,7 @@ msgstr "Delete"
 msgid "Delete Provider"
 msgstr "Delete Provider"
 
-#: src/pages/panel/accounts/AccountRow.tsx:350
+#: src/pages/panel/accounts/AccountRow.tsx:354
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:13
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:29
 msgid "Deploy Stack"
@@ -578,7 +591,7 @@ msgstr "Deploy Stack"
 msgid "Description"
 msgstr "Description"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:312
+#: src/pages/panel/inventory/ResourceDetail.tsx:308
 msgid "Details"
 msgstr "Details"
 
@@ -596,15 +609,19 @@ msgstr "Disconnect Service"
 msgid "Discovered but unconfigured accounts"
 msgstr "Discovered but unconfigured accounts"
 
-#: src/pages/panel/accounts/AccountRow.tsx:366
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:55
+msgid "Do not show me again"
+msgstr "Do not show me again"
+
+#: src/pages/panel/accounts/AccountRow.tsx:370
 msgid "Do you want to delete this account?"
 msgstr "Do you want to delete this account?"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:80
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:84
 msgid "Do you want to delete this invitation?"
 msgstr "Do you want to delete this invitation?"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:101
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:105
 msgid "Do you want to delete this user?"
 msgstr "Do you want to delete this user?"
 
@@ -612,8 +629,8 @@ msgstr "Do you want to delete this user?"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Don't have an account? Click here to Sign up."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:204
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:242
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:208
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:246
 msgid "Downgrade"
 msgstr "Downgrade"
 
@@ -626,10 +643,10 @@ msgstr "Download"
 msgid "Download CSV"
 msgstr "Download CSV"
 
-#: src/pages/panel/accounts/AccountRow.tsx:289
-#: src/pages/panel/accounts/AccountRow.tsx:290
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:161
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:162
+#: src/pages/panel/accounts/AccountRow.tsx:293
+#: src/pages/panel/accounts/AccountRow.tsx:294
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:166
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:167
 msgid "Edit"
 msgstr "Edit"
 
@@ -638,11 +655,11 @@ msgstr "Edit"
 #: src/pages/auth/register/RegisterPage.tsx:88
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:49
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:69
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:79
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:83
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:105
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:87
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:109
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:44
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:126
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:130
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:57
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:131
 msgid "Email"
@@ -651,6 +668,15 @@ msgstr "Email"
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:42
 msgid "Email alerts"
 msgstr "Email alerts"
+
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:67
+msgid "Enable"
+msgstr "Enable"
+
+#: src/pages/panel/inventory/ResourceDetailFailedCheckIgnoredChecks.tsx:42
+#: src/pages/panel/inventory/ResourceDetailFailedChecks.tsx:94
+msgid "Enable all"
+msgstr "Enable all"
 
 #: src/pages/panel/accounts/AccountsTableItem.tsx:58
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:49
@@ -685,7 +711,7 @@ msgstr "Everything in Plus, and"
 msgid "Example searches"
 msgstr "Example searches"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:108
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:112
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:47
 msgid "Expires"
 msgstr "Expires"
@@ -705,7 +731,7 @@ msgstr "External Id"
 msgid "Failed to retrieve changelog"
 msgstr "Failed to retrieve changelog"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:114
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:149
 msgid "Failing benchmarks"
 msgstr "Failing benchmarks"
 
@@ -783,14 +809,14 @@ msgstr "Homepage"
 msgid "Hourly"
 msgstr "Hourly"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:73
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:108
 msgid "How to fix"
 msgstr "How to fix"
 
-#: src/pages/panel/accounts/AccountRow.tsx:399
+#: src/pages/panel/accounts/AccountRow.tsx:403
 #: src/pages/panel/accounts/AccountsTableItem.tsx:44
-#: src/pages/panel/inventory/ResourceDetail.tsx:224
-#: src/pages/panel/security/AccountCard.tsx:30
+#: src/pages/panel/inventory/ResourceDetail.tsx:220
+#: src/pages/panel/security/AccountCard.tsx:34
 #: src/shared/charts/NetworkDiagram.tsx:406
 msgid "ID"
 msgstr "ID"
@@ -822,6 +848,23 @@ msgstr "Identifies S3 buckets that are publicly accessible."
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:66
 msgid "Identifies storage volumes that are not attached to any running instance and had no read operations in the last 7 days."
 msgstr "Identifies storage volumes that are not attached to any running instance and had no read operations in the last 7 days."
+
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:171
+msgid "If this security check does not apply to this resource, you can safely ignore it."
+msgstr "If this security check does not apply to this resource, you can safely ignore it."
+
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:67
+msgid "Ignore"
+msgstr "Ignore"
+
+#: src/pages/panel/inventory/ResourceDetailFailedCheckIgnoredChecks.tsx:42
+#: src/pages/panel/inventory/ResourceDetailFailedChecks.tsx:94
+msgid "Ignore all"
+msgstr "Ignore all"
+
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:84
+msgid "Ignored"
+msgstr "Ignored"
 
 #: src/pages/panel/security/OverallCard.tsx:162
 msgid "Improved"
@@ -864,13 +907,13 @@ msgstr "Inventory"
 msgid "Inventory search"
 msgstr "Inventory search"
 
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:47
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:51
 msgid "Invite"
 msgstr "Invite"
 
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:36
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:47
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:63
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:51
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:67
 msgid "Invite External User"
 msgstr "Invite External User"
 
@@ -878,7 +921,7 @@ msgstr "Invite External User"
 msgid "Invites"
 msgstr "Invites"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:223
+#: src/pages/panel/inventory/ResourceDetail.tsx:219
 #: src/shared/charts/NetworkDiagram.tsx:405
 msgid "Kind"
 msgstr "Kind"
@@ -924,7 +967,7 @@ msgstr "Low Utilization Compute Instances and Databases"
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:75
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:79
 msgid "maximum of {0} cloud accounts"
 msgstr "maximum of {0} cloud accounts"
 
@@ -937,7 +980,7 @@ msgstr "Medium"
 msgid "Member"
 msgstr "Member"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:76
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:80
 msgid "minimum of {0} cloud accounts"
 msgstr "minimum of {0} cloud accounts"
 
@@ -950,7 +993,7 @@ msgstr "Monthly"
 msgid "Monthly email report"
 msgstr "Monthly email report"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:133
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:186
 msgid "More info"
 msgstr "More info"
 
@@ -966,15 +1009,15 @@ msgstr "Most Improved Resources"
 msgid "Most Non-Compliant Accounts"
 msgstr "Most Non-Compliant Accounts"
 
-#: src/pages/panel/accounts/AccountRow.tsx:405
+#: src/pages/panel/accounts/AccountRow.tsx:409
 #: src/pages/panel/accounts/AccountsTableItem.tsx:47
-#: src/pages/panel/inventory/ResourceDetail.tsx:225
+#: src/pages/panel/inventory/ResourceDetail.tsx:221
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:18
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:69
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:73
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:129
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:77
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:133
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:54
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:114
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:122
@@ -1017,7 +1060,7 @@ msgstr "Next scan"
 msgid "Next Sync"
 msgstr "Next Sync"
 
-#: src/pages/panel/accounts/AccountRow.tsx:369
+#: src/pages/panel/accounts/AccountRow.tsx:373
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 
@@ -1062,7 +1105,7 @@ msgstr "Open Database Access"
 msgid "Open drawer"
 msgstr "Open drawer"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:249
+#: src/pages/panel/inventory/ResourceDetail.tsx:245
 msgid "Open resource {name} in AWS Console"
 msgstr "Open resource {name} in AWS Console"
 
@@ -1095,7 +1138,7 @@ msgstr "Other Workspace Settings"
 msgid "OTP Code"
 msgstr "OTP Code"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:208
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:212
 msgid "Our fair-use policy allows for up to 200,000 resources per account. If your needs surpass this amount, please <0>reach out</0> to discuss your specific requirements."
 msgstr "Our fair-use policy allows for up to 200,000 resources per account. If your needs surpass this amount, please <0>reach out</0> to discuss your specific requirements."
 
@@ -1110,7 +1153,7 @@ msgstr "Owner"
 msgid "Password"
 msgstr "Password"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:247
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:251
 msgid "Payment Method Required"
 msgstr "Payment Method Required"
 
@@ -1121,7 +1164,7 @@ msgstr "Payment Method Required"
 msgid "Pending Invitations"
 msgstr "Pending Invitations"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:49
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:53
 msgid "per cloud account, per month"
 msgstr "per cloud account, per month"
 
@@ -1153,15 +1196,15 @@ msgstr "Print or copy the following recovery codes"
 msgid "Privileged"
 msgstr "Privileged"
 
-#: src/pages/panel/accounts/AccountRow.tsx:222
+#: src/pages/panel/accounts/AccountRow.tsx:226
 msgid "Privileged account"
 msgstr "Privileged account"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:264
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:268
 msgid "Product Tier"
 msgstr "Product Tier"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:138
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:142
 msgid "Product tier changed to {productTier}"
 msgstr "Product tier changed to {productTier}"
 
@@ -1207,7 +1250,7 @@ msgstr "Recovery codes"
 msgid "Regenerate"
 msgstr "Regenerate"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:232
+#: src/pages/panel/inventory/ResourceDetail.tsx:228
 msgid "Region"
 msgstr "Region"
 
@@ -1252,13 +1295,13 @@ msgstr "Resources"
 msgid "Resources with the string \"deleteme\""
 msgstr "Resources with the string \"deleteme\""
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:69
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:104
 msgid "Risk"
 msgstr "Risk"
 
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:89
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:100
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:140
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:93
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:104
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:144
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:60
 msgid "Roles"
 msgstr "Roles"
@@ -1280,7 +1323,7 @@ msgstr "Security"
 msgid "Security benchmarks"
 msgstr "Security benchmarks"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:335
+#: src/pages/panel/inventory/ResourceDetailFailedChecks.tsx:82
 msgid "Security Issues"
 msgstr "Security Issues"
 
@@ -1297,8 +1340,8 @@ msgstr "Security Scan"
 msgid "Security Score"
 msgstr "Security Score"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:260
-#: src/pages/panel/inventory/ResourceDetail.tsx:271
+#: src/pages/panel/inventory/ResourceDetail.tsx:256
+#: src/pages/panel/inventory/ResourceDetail.tsx:267
 msgid "See this Resource in AWS Console"
 msgstr "See this Resource in AWS Console"
 
@@ -1306,7 +1349,7 @@ msgstr "See this Resource in AWS Console"
 msgid "Select Language"
 msgstr "Select Language"
 
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:60
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:64
 msgid "Send Invite"
 msgstr "Send Invite"
 
@@ -1320,7 +1363,7 @@ msgstr "Setting Up Email Notifications"
 msgid "Severity"
 msgstr "Severity"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:129
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:182
 msgid "Show resources"
 msgstr "Show resources"
 
@@ -1340,7 +1383,11 @@ msgstr "Single Sign on (coming soon!)"
 msgid "Snowflake data export (coming soon!)"
 msgstr "Snowflake data export (coming soon!)"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:287
+#: src/pages/panel/inventory/ResourceDetailFailedCheckIgnoredChecks.tsx:52
+msgid "Some checks have been disabled for this resource"
+msgstr "Some checks have been disabled for this resource"
+
+#: src/pages/panel/inventory/ResourceDetail.tsx:283
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:33
 #: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:23
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:107
@@ -1349,16 +1396,16 @@ msgstr "Snowflake data export (coming soon!)"
 msgid "Something went wrong please try again later."
 msgstr "Something went wrong please try again later."
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:133
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:137
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:51
 msgid "Sources"
 msgstr "Sources"
 
-#: src/pages/panel/accounts/AccountRow.tsx:262
-#: src/pages/panel/accounts/AccountRow.tsx:263
-#: src/pages/panel/accounts/AccountRow.tsx:268
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:138
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:139
+#: src/pages/panel/accounts/AccountRow.tsx:266
+#: src/pages/panel/accounts/AccountRow.tsx:267
+#: src/pages/panel/accounts/AccountRow.tsx:272
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:143
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:144
 msgid "Submit"
 msgstr "Submit"
 
@@ -1366,12 +1413,12 @@ msgstr "Submit"
 msgid "Subscription successfully added to {0}"
 msgstr "Subscription successfully added to {0}"
 
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:24
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:28
 msgid "Successfully invited {email}"
 msgstr "Successfully invited {email}"
 
 #: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:86
-#: src/pages/panel/inventory/ResourceDetail.tsx:297
+#: src/pages/panel/inventory/ResourceDetail.tsx:293
 msgid "Tags"
 msgstr "Tags"
 
@@ -1383,11 +1430,16 @@ msgstr "Task management integrations (coming soon!)"
 msgid "Test"
 msgstr "Test"
 
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:47
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:96
+msgid "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
+msgstr "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
+
 #: src/pages/auth/login/LoginPage.tsx:29
 msgid "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
 msgstr "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:285
+#: src/pages/panel/inventory/ResourceDetail.tsx:281
 msgid "The selected resource does not exist anymore."
 msgstr "The selected resource does not exist anymore."
 
@@ -1403,7 +1455,7 @@ msgstr "The token that you sent is invalid or have been expired please try again
 msgid "There's no account configured for this workspace."
 msgstr "There's no account configured for this workspace."
 
-#: src/pages/panel/accounts/AccountRow.tsx:355
+#: src/pages/panel/accounts/AccountRow.tsx:359
 msgid "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 msgstr "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 
@@ -1419,11 +1471,11 @@ msgstr "This will deploy a CloudFormation stack that creates a new IAM role in y
 msgid "Tier"
 msgstr "Tier"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:266
+#: src/pages/panel/inventory/ResourceDetail.tsx:262
 msgid "To access this resource, please ensure that you are logged into the AWS account: {account}"
 msgstr "To access this resource, please ensure that you are logged into the AWS account: {account}"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:226
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:230
 msgid "To AWS Marketplace"
 msgstr "To AWS Marketplace"
 
@@ -1432,7 +1484,7 @@ msgid "To enhance your experience, please select the workspace where you'd like 
 msgstr "To enhance your experience, please select the workspace where you'd like to activate your subscription"
 
 #: src/pages/panel/security/OverallCard.tsx:135
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:79
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:114
 msgid "Top Non-Compliant Resources"
 msgstr "Top Non-Compliant Resources"
 
@@ -1502,8 +1554,8 @@ msgstr "Update Email"
 msgid "Update Password"
 msgstr "Update Password"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:204
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:242
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:208
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:246
 msgid "Upgrade"
 msgstr "Upgrade"
 
@@ -1589,7 +1641,7 @@ msgstr "Workspace Settings"
 msgid "Workspace Users"
 msgstr "Workspace Users"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:250
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:254
 msgid "You are about to apply changes to your billing information. Please review the new details below:"
 msgstr "You are about to apply changes to your billing information. Please review the new details below:"
 
@@ -1613,9 +1665,14 @@ msgstr "You have successfully reset your password."
 msgid "You have successfully verified your account."
 msgstr "You have successfully verified your account."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:257
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:261
 msgid "You need an AWS Marketplace Subscription to upgrade your plan."
 msgstr "You need an AWS Marketplace Subscription to upgrade your plan."
+
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:44
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:94
+msgid "You've chosen to ignore this security check for the resource. Please note:"
+msgstr "You've chosen to ignore this security check for the resource. Please note:"
 
 #: src/pages/auth/login/LoginPage.tsx:27
 msgid "Your email address isn't verified yet. Please check your inbox and click on the 'Verify' button to complete the process. Can't find the email? It might be in your spam folder."

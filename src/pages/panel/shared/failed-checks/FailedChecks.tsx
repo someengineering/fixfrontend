@@ -1,17 +1,21 @@
 import { Trans } from '@lingui/macro'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
+import WarningIcon from '@mui/icons-material/Warning'
 import {
   Accordion,
   AccordionActions,
   AccordionDetails,
   AccordionSummary,
+  Alert,
+  Box,
   Button,
   Chip,
   Divider,
   Grid,
   Skeleton,
   Stack,
+  Tooltip,
   Typography,
 } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
@@ -23,16 +27,23 @@ import { createInventorySearchTo, getColorBySeverity } from 'src/pages/panel/sha
 import { getMessage } from 'src/shared/defined-messages'
 import { FailedCheck } from 'src/shared/types/server'
 import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
+import { FailedCheckIgnoreButton } from './FailedCheckIgnoreButton'
 
 interface FailedChecks {
   failedCheck: FailedCheck
   navigate?: NavigateFunction
   smallText?: boolean
   withResources?: boolean
+  ignoreProps?: {
+    currentIgnoreSecurityIssue: string
+    onToggle: (currentIgnoreSecurityIssue: string, ignore: boolean) => void
+    pending: boolean
+  }
+  ignored?: boolean
   benchmarks?: string[]
 }
 
-export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, benchmarks }: FailedChecks) => {
+export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, benchmarks, ignored, ignoreProps }: FailedChecks) => {
   const [expanded, setExpanded] = useState(false)
   const { selectedWorkspace } = useUserProfile()
   const query = `/security.has_issues=true and /security.issues[*].check="${failedCheck.id}"`
@@ -43,7 +54,13 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, 
   })
   const [[_, ...resources]] = data ?? [[]]
   return (
-    <Grid item xs={12} flexDirection="column">
+    <Grid
+      item
+      xs={12}
+      flexDirection="column"
+      pt={ignored ? 2 : 0}
+      sx={ignored ? { opacity: 0.3, transition: ({ transitions }) => transitions.create('opacity'), '&:hover': { opacity: 1 } } : undefined}
+    >
       <Accordion
         expanded={withResources ? expanded : undefined}
         onChange={withResources ? (_, expanded) => setExpanded(expanded) : undefined}
@@ -62,10 +79,28 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, 
               </Stack>
             </Grid>
           </Grid>
+          {ignored ? (
+            <Box position="absolute" left={2} top={-14}>
+              <Chip variant="outlined" color="error" label={<Trans>Ignored</Trans>} size="small" />
+            </Box>
+          ) : null}
         </AccordionSummary>
         <Divider />
         <AccordionDetails>
-          <Typography variant={smallText ? 'h6' : 'h5'} fontWeight={smallText ? 800 : undefined}>
+          {ignored ? (
+            <Alert color="warning">
+              <Trans>Delayed Effect</Trans>:<br />
+              <Typography variant="h6">
+                <Trans>You've chosen to ignore this security check for the resource. Please note:</Trans>
+                <br />
+                <Trans>
+                  The change will be active from the next security scan onwards. Until the next scan, the resource will still show the
+                  failing check.
+                </Trans>
+              </Typography>
+            </Alert>
+          ) : null}
+          <Typography variant={smallText ? 'h6' : 'h5'} fontWeight={smallText ? 800 : undefined} mt={2}>
             <Trans>Risk</Trans>
           </Typography>
           <Typography>{failedCheck.risk}</Typography>
@@ -124,6 +159,24 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, 
         <Divider />
         <AccordionActions>
           <Stack spacing={1} direction="row">
+            {ignoreProps ? (
+              ignored || ignoreProps.pending ? (
+                <FailedCheckIgnoreButton ignored={ignored} {...ignoreProps} />
+              ) : (
+                <Tooltip
+                  title={
+                    <Stack direction="row" spacing={1} alignItems="center">
+                      <WarningIcon color="warning" />
+                      <Typography color="warning.main">
+                        <Trans>If this security check does not apply to this resource, you can safely ignore it.</Trans>
+                      </Typography>
+                    </Stack>
+                  }
+                >
+                  <FailedCheckIgnoreButton ignored={ignored} {...ignoreProps} />
+                </Tooltip>
+              )
+            ) : null}
             {navigate && (
               <Button onClick={() => navigate(createInventorySearchTo(query))} variant="outlined">
                 <Trans>Show resources</Trans>

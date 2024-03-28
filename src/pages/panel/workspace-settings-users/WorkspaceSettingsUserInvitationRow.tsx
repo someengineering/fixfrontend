@@ -10,7 +10,11 @@ import { Modal } from 'src/shared/modal'
 import { WorkspaceInvite } from 'src/shared/types/server'
 import { deleteWorkspaceInviteMutation } from './deleteWorkspaceInvite.mutation'
 
-export const WorkspaceSettingsUserInvitationRow = ({ workspaceInvite }: { workspaceInvite: WorkspaceInvite }) => {
+interface WorkspaceSettingsUserInvitationRowProps {
+  workspaceInvite: WorkspaceInvite
+}
+
+export const WorkspaceSettingsUserInvitationRow = ({ workspaceInvite }: WorkspaceSettingsUserInvitationRowProps) => {
   const {
     i18n: { locale },
   } = useLingui()

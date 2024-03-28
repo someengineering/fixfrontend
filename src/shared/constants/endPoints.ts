@@ -66,6 +66,7 @@ export const endPoints = {
         model: `api/workspaces/${workspaceId}/inventory/model`,
         node: (nodeId: string) => ({
           self: `api/workspaces/${workspaceId}/inventory/node/${nodeId}`,
+          securityIgnore: `api/workspaces/${workspaceId}/inventory/node/${nodeId}/security_ignore`,
           history: `api/workspaces/${workspaceId}/inventory/node/${nodeId}/history`,
           neighborhood: `api/workspaces/${workspaceId}/inventory/node/${nodeId}/neighborhood`,
         }),

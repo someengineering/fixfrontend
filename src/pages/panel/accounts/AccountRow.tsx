@@ -34,7 +34,11 @@ import { patchAccountScanDisableMutation } from './patchAccountScanDisable.mutat
 import { patchAccountScanEnableMutation } from './patchAccountScanEnable.mutation'
 import { replaceRowByAccount } from './replaceRowByAccount'
 
-export const AccountRow = ({ account, isNotConfigured }: { account: Account; isNotConfigured?: boolean }) => {
+interface AccountRowProps {
+  account: Account
+  isNotConfigured?: boolean
+}
+export const AccountRow = ({ account, isNotConfigured }: AccountRowProps) => {
   const inputRef = useRef<HTMLInputElement>()
   const {
     i18n: { locale },

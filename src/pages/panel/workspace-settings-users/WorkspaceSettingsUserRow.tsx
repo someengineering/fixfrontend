@@ -13,7 +13,11 @@ import { WorkspaceSettingsUserRoles } from './WorkspaceSettingsUserRoles'
 import { deleteWorkspaceUserMutation } from './deleteWorkspaceUser.mutation'
 import { workspaceSettingsUserRoleToString } from './workspaceSettingsUserRoleToString'
 
-export const WorkspaceSettingsUserRow = ({ workspaceUser }: { workspaceUser: WorkspaceUser }) => {
+interface WorkspaceSettingsUserRowProps {
+  workspaceUser: WorkspaceUser
+}
+
+export const WorkspaceSettingsUserRow = ({ workspaceUser }: WorkspaceSettingsUserRowProps) => {
   const showDeleteModalRef = useRef<(show?: boolean) => void>()
   const {
     i18n: { locale },

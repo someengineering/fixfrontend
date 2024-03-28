@@ -1,6 +1,11 @@
 import { Button, Typography } from '@mui/material'
 
-export const SetupTemplateButtonComponent = ({ url, onClick }: { url?: string; onClick?: () => void }) => {
+interface SetupTemplateButtonComponentProps {
+  url?: string
+  onClick?: () => void
+}
+
+export const SetupTemplateButtonComponent = ({ url, onClick }: SetupTemplateButtonComponentProps) => {
   return (
     <Button variant="text" sx={{ maxWidth: '100%' }} onClick={onClick}>
       <Typography

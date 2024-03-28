@@ -1,3 +1,4 @@
+export type { PatchWorkspaceInventoryNodeSecurityIgnoreRequest } from './PatchWorkspaceInventoryNodeSecurityIgnore'
 export type { PatchWorkspaceSettingsRequest } from './PatchWorkspaceSetting'
 export type { PostAuthForgotPasswordRequest } from './PostAuthForgotPassword'
 export type { PostAuthRegisterRequest } from './PostAuthRegister'
