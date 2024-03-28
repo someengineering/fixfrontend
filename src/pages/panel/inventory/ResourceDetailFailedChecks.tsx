@@ -97,8 +97,8 @@ export const ResourceDetailFailedChecks = ({
       </ResourceDetailAccordionSummary>
       <Divider />
       <AccordionDetails>
-        {sortedFailingChecks.map((failedCheck, i) => (
-          <Fragment key={i}>
+        {sortedFailingChecks.map((failedCheck) => (
+          <Fragment key={failedCheck.id}>
             <Paper elevation={1}>
               <FailedChecks
                 failedCheck={failedCheck}

@@ -87,7 +87,19 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, 
         </AccordionSummary>
         <Divider />
         <AccordionDetails>
-          {ignored ? <Alert color="warning">The check will be removed once the security scan runs</Alert> : null}
+          {ignored ? (
+            <Alert color="warning">
+              <Trans>Delayed Effect</Trans>:<br />
+              <Typography variant="h6">
+                <Trans>You've chosen to ignore this security check for the resource. Please note:</Trans>
+                <br />
+                <Trans>
+                  The change will be active from the next security scan onwards. Until the next scan, the resource will still show the
+                  failing check.
+                </Trans>
+              </Typography>
+            </Alert>
+          ) : null}
           <Typography variant={smallText ? 'h6' : 'h5'} fontWeight={smallText ? 800 : undefined} mt={2}>
             <Trans>Risk</Trans>
           </Typography>
