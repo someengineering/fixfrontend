@@ -557,6 +557,7 @@ msgid "Default Role"
 msgstr "Default Role"
 
 #: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:41
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:92
 msgid "Delayed Effect"
 msgstr "Delayed Effect"
 
@@ -730,7 +731,7 @@ msgstr "External Id"
 msgid "Failed to retrieve changelog"
 msgstr "Failed to retrieve changelog"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:137
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:149
 msgid "Failing benchmarks"
 msgstr "Failing benchmarks"
 
@@ -808,7 +809,7 @@ msgstr "Homepage"
 msgid "Hourly"
 msgstr "Hourly"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:96
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:108
 msgid "How to fix"
 msgstr "How to fix"
 
@@ -848,7 +849,7 @@ msgstr "Identifies S3 buckets that are publicly accessible."
 msgid "Identifies storage volumes that are not attached to any running instance and had no read operations in the last 7 days."
 msgstr "Identifies storage volumes that are not attached to any running instance and had no read operations in the last 7 days."
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:159
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:171
 msgid "If this security check does not apply to this resource, you can safely ignore it."
 msgstr "If this security check does not apply to this resource, you can safely ignore it."
 
@@ -992,7 +993,7 @@ msgstr "Monthly"
 msgid "Monthly email report"
 msgstr "Monthly email report"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:174
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:186
 msgid "More info"
 msgstr "More info"
 
@@ -1294,7 +1295,7 @@ msgstr "Resources"
 msgid "Resources with the string \"deleteme\""
 msgstr "Resources with the string \"deleteme\""
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:92
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:104
 msgid "Risk"
 msgstr "Risk"
 
@@ -1362,7 +1363,7 @@ msgstr "Setting Up Email Notifications"
 msgid "Severity"
 msgstr "Severity"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:170
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:182
 msgid "Show resources"
 msgstr "Show resources"
 
@@ -1430,6 +1431,7 @@ msgid "Test"
 msgstr "Test"
 
 #: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:47
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:96
 msgid "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 msgstr "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 
@@ -1482,7 +1484,7 @@ msgid "To enhance your experience, please select the workspace where you'd like 
 msgstr "To enhance your experience, please select the workspace where you'd like to activate your subscription"
 
 #: src/pages/panel/security/OverallCard.tsx:135
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:102
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:114
 msgid "Top Non-Compliant Resources"
 msgstr "Top Non-Compliant Resources"
 
@@ -1668,6 +1670,7 @@ msgid "You need an AWS Marketplace Subscription to upgrade your plan."
 msgstr "You need an AWS Marketplace Subscription to upgrade your plan."
 
 #: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:44
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:94
 msgid "You've chosen to ignore this security check for the resource. Please note:"
 msgstr "You've chosen to ignore this security check for the resource. Please note:"
 
