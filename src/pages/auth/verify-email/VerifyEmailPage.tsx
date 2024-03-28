@@ -4,7 +4,12 @@ import { ErrorBoundary } from 'react-error-boundary'
 import { Navigate, useSearchParams } from 'react-router-dom'
 import { verifyEmailQuery } from './verifyEmail.query'
 
-const VerifyEmail = ({ token, redirectUrl }: { token?: string; redirectUrl: string }) => {
+interface VerifyEmailProps {
+  token?: string
+  redirectUrl: string
+}
+
+const VerifyEmail = ({ token, redirectUrl }: VerifyEmailProps) => {
   const { data: email } = useSuspenseQuery({ queryKey: ['verify-email', token], queryFn: token ? verifyEmailQuery : () => '' })
 
   return (

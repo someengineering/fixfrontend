@@ -11,7 +11,11 @@ const DarkModeIconButton = styled(IconButton, { shouldForwardProp: shouldForward
   }),
 )
 
-export const DarkModeSwitch = ({ whiteMode }: { whiteMode?: boolean }) => {
+interface DarkModeSwitchProps {
+  whiteMode?: boolean
+}
+
+export const DarkModeSwitch = ({ whiteMode }: DarkModeSwitchProps) => {
   const { toggleColorMode, mode } = useThemeMode()
   const isDark = mode === 'dark'
   return (

@@ -21,7 +21,11 @@ const CardText = (props: Omit<TypographyProps, 'whiteSpace' | 'textOverflow' | '
   )
 }
 
-export const AccountCard = ({ account }: { account: WorkspaceAccountReportSummary }) => {
+interface AccountCardProps {
+  account: WorkspaceAccountReportSummary
+}
+
+export const AccountCard = ({ account }: AccountCardProps) => {
   return (
     <AccountCardContainer score={account.score}>
       <CardHeader title={<CardText variant="h5">{account.name ?? account.id}</CardText>} />

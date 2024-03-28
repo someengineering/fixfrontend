@@ -10,7 +10,7 @@ export interface WorkspaceInventoryNode {
     metadata: NodeMetadata
     ancestors?: NodeAncestors
   }
-  failing_checks: FailedCheck[]
+  checks: FailedCheck[]
 }
 
 export type GetWorkspaceInventoryNodeResponse = WorkspaceInventoryNode

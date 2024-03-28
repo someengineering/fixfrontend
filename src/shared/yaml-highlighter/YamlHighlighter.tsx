@@ -10,7 +10,11 @@ import { useNonce } from 'src/shared/providers'
 
 const lowlight = createLowlight({ yaml })
 
-export const YamlHighlighter = ({ children }: { children: string }) => {
+interface YamlHighlighterProps {
+  children: string
+}
+
+export const YamlHighlighter = ({ children }: YamlHighlighterProps) => {
   const nonce = useNonce()
   const { mode } = useThemeMode()
   const tree = lowlight.highlight('yaml', children)

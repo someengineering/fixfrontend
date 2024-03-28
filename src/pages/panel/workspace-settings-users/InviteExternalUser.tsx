@@ -10,7 +10,11 @@ import { Modal } from 'src/shared/modal'
 import { GetWorkspaceSettingsResponse } from 'src/shared/types/server'
 import { postWorkspaceInviteMutation } from './postWorkspaceInvite.mutation'
 
-export const InviteExternalUser = ({ preInvite }: { preInvite?: GetWorkspaceSettingsResponse }) => {
+interface InviteExternalUserProps {
+  preInvite?: GetWorkspaceSettingsResponse
+}
+
+export const InviteExternalUser = ({ preInvite }: InviteExternalUserProps) => {
   const { selectedWorkspace } = useUserProfile()
   const queryClient = useQueryClient()
   const { showSnackbar } = useSnackbar()

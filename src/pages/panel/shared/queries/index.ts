@@ -9,6 +9,7 @@ export { getWorkspaceInventoryNodeHistoryNeighborhoodQuery } from './getWorkspac
 export { getWorkspaceInventoryReportSummaryQuery } from './getWorkspaceInventoryReportSummary.query'
 export { getWorkspaceInventorySearchStartQuery } from './getWorkspaceInventorySearchStart.query'
 export { getWorkspaceNotificationsQuery } from './getWorkspaceNotifications.query'
+export { patchWorkspaceInventoryNodeSecurityIgnoreQuery } from './patchWorkspaceInventoryNodeSecurityIgnore.query'
 export { postWorkspaceInventoryPropertyAttributesQuery } from './postWorkspaceInventoryPropertyAttributes.query'
 export { postWorkspaceInventoryPropertyPathCompleteQuery } from './postWorkspaceInventoryPropertyPathComplete.query'
 export { postWorkspaceInventoryPropertyValuesQuery } from './postWorkspaceInventoryPropertyValues.query'

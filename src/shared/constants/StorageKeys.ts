@@ -24,8 +24,7 @@ export const settingsStorageKeys = {
   WorkspaceSettingsUserInvitationsTable: {
     rowsPerPage: 'WorkspaceSettingsUserInvitationsTable.rowsPerPage',
   },
-} as const
-
-type SettingsStorageKeysInterface = typeof settingsStorageKeys
-type SettingsStorageKeysPageInterface = SettingsStorageKeysInterface[keyof SettingsStorageKeysInterface]
-export type SettingsStorageKeys = SettingsStorageKeysPageInterface[keyof SettingsStorageKeysPageInterface]
+  SetupTemplateButtonComponent: {
+    acknowledge: 'SetupTemplateButtonComponent.acknowledge',
+  },
+}

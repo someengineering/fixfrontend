@@ -64,7 +64,12 @@ const getAutocompleteLabelFromOption = (label: AutocompleteOptions[number]) => {
   }
 }
 
-export const WorkspaceSettingsUserRoles = ({ role, userId }: { role: UserRole; userId: string }) => {
+interface WorkspaceSettingsUserRolesProps {
+  role: UserRole
+  userId: string
+}
+
+export const WorkspaceSettingsUserRoles = ({ role, userId }: WorkspaceSettingsUserRolesProps) => {
   const { selectedWorkspace } = useUserProfile()
   const [rolesValues, setValues] = useState(userRolesToAutocompleteOptions(role))
   const [isEdit, setIsEdit] = useState(false)

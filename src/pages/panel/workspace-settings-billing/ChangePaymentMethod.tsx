@@ -40,7 +40,11 @@ interface ChangePaymentMethodProps {
 
 const allProductTiers: ProductTier[] = ['Free', 'Plus', 'Business', 'Enterprise']
 
-const ProductTierComp = ({ productTier }: { productTier: ProductTier }) => {
+interface ProductTierCompProps {
+  productTier: ProductTier
+}
+
+const ProductTierComp = ({ productTier }: ProductTierCompProps) => {
   const label = productTierToLabel(productTier)
   const desc = productTierToDescription(productTier)
   if (!desc) {

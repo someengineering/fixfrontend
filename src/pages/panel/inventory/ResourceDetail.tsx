@@ -14,7 +14,6 @@ import {
   Grid,
   IconButton,
   Modal as MuiModal,
-  Paper,
   Skeleton,
   Slide,
   Stack,
@@ -24,22 +23,22 @@ import {
 } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { Fragment, ReactNode, useEffect, useRef } from 'react'
+import { ReactNode, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
-import { FailedChecks } from 'src/pages/panel/shared/failed-checks'
 import { getWorkspaceInventoryNodeQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { NetworkDiagram } from 'src/shared/charts'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { panelUI } from 'src/shared/constants'
 import { Modal as PopupModal } from 'src/shared/modal'
+import { FailedCheck } from 'src/shared/types/server'
 import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
-import { snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 import { getLocationSearchValues, removeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { YamlHighlighter } from 'src/shared/yaml-highlighter'
 import { stringify } from 'yaml'
 import { ResourceDetailChangeLog } from './ResourceDetailChangeLog'
+import { ResourceDetailFailedChecks } from './ResourceDetailFailedChecks'
 import { inventorySendToGTM } from './utils'
 
 export const ResourceDetailAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
@@ -70,17 +69,14 @@ const Modal = styled(MuiModal)(({ theme }) => ({
   },
 }))
 
-const GridItem = ({
-  property,
-  value,
-  color,
-  isReactNode,
-}: {
+interface GridItemProps {
   property: ReactNode
   value: unknown
   color?: string
   isReactNode?: boolean
-}) => {
+}
+
+const GridItem = ({ property, value, color, isReactNode }: GridItemProps) => {
   const isSimpleValue = isReactNode ? true : ['string', 'boolean', 'number'].includes(typeof value)
   const stringValue = isReactNode ? '' : isSimpleValue ? (value as string | boolean | number).toString() : JSON.stringify(value)
   return (
@@ -329,61 +325,24 @@ export const ResourceDetail = () => {
               </AccordionDetails>
             </Accordion>
           )}
-          {data?.resource.security?.has_issues ? (
-            <Accordion defaultExpanded>
-              <ResourceDetailAccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Trans>Security Issues</Trans>
-              </ResourceDetailAccordionSummary>
-              <Divider />
-              <AccordionDetails>
-                {data.failing_checks.map((failedCheck, i) => (
-                  <Fragment key={i}>
-                    <Paper elevation={1}>
-                      <FailedChecks
-                        failedCheck={failedCheck}
-                        smallText
-                        benchmarks={data.resource.security?.issues
-                          .find((issue) => issue.check === failedCheck.id)
-                          ?.benchmarks.map((benchmark) => snakeCaseWordsToUFStr(benchmark))}
-                      />
-                    </Paper>
-                    <Divider />
-                  </Fragment>
-                ))}
-
-                {/* <Grid gap={2} gridTemplateColumns="150px 1fr" display="grid">
-                  <GridItem
-                    property={<Trans>Found at</Trans>}
-                    value={`${new Date(data.resource.security.opened_at).toLocaleDateString(locale)} ${new Date(
-                      data.resource.security.opened_at,
-                    ).toLocaleTimeString(locale)}`}
-                  />
-                  <GridItem
-                    property={<Trans>Severity</Trans>}
-                    value={snakeCaseWordsToUFStr(data.resource.security.severity)}
-                    color={getColorBySeverity(data.resource.security.severity)}
-                  />
-                  <GridItem property={<Trans>Issues</Trans>} value={null} isReactNode />
-
-                  {data.resource.security.issues.map((issue, i) => (
-                    <Fragment key={i}>
-                      <Divider />
-                      <Divider />
-                      <GridItem property={<Trans>Check</Trans>} value={issue.check} />
-                      <GridItem
-                        property={<Trans>Found at</Trans>}
-                        value={`${new Date(issue.opened_at).toLocaleDateString(locale)} ${new Date(issue.opened_at).toLocaleTimeString(locale)}`}
-                      />
-                      <GridItem
-                        property={<Trans>Severity</Trans>}
-                        color={getColorBySeverity(issue.severity)}
-                        value={snakeCaseWordsToUFStr(issue.severity)}
-                      />
-                    </Fragment>
-                  ))}
-                </Grid> */}
-              </AccordionDetails>
-            </Accordion>
+          {data?.resource.security?.has_issues || data?.resource.metadata.security_ignore ? (
+            <ResourceDetailFailedChecks
+              securityIgnore={data?.resource.metadata.security_ignore}
+              securityIgnoreTitles={
+                data?.resource.metadata.security_ignore !== '*'
+                  ? data?.resource.metadata.security_ignore?.map(
+                      (ignored) => data.checks.find((check) => check.id === ignored)?.title ?? '',
+                    )
+                  : undefined
+              }
+              resourceDetailId={resourceDetailId}
+              failingChecks={
+                data.resource.security?.issues
+                  .map((issue) => data.checks.find((check) => check.id === issue.check))
+                  .filter((i) => i) as FailedCheck[]
+              }
+              nodeSecurityIssues={data.resource.security?.issues ?? []}
+            />
           ) : null}
           {resourceDetailId && (!error || nodeNotFound) ? <ResourceDetailChangeLog notFound={nodeNotFound} /> : null}
         </Stack>

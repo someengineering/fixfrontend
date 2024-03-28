@@ -1,4 +1,5 @@
 export type NodeMetadata = {
+  security_ignore: '*' | string[] | null
   python_type: string
   cleaned?: boolean
   phantom?: boolean

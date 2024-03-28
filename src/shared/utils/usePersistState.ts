@@ -1,16 +1,15 @@
 import { Dispatch, SetStateAction, useCallback, useState } from 'react'
-import { SettingsStorageKeys } from 'src/shared/constants'
 import { getSettings, setSettings } from './localstorage'
 
 export function usePersistState<StateType>(
-  name: SettingsStorageKeys,
+  name: string,
   initialState: StateType | (() => StateType),
 ): [StateType, Dispatch<SetStateAction<StateType>>]
 export function usePersistState<StateType = undefined>(
-  name: SettingsStorageKeys,
+  name: string,
 ): [StateType | undefined, Dispatch<SetStateAction<StateType | undefined>>]
 export function usePersistState<StateType = undefined>(
-  name: SettingsStorageKeys,
+  name: string,
   initialState?: StateType | (() => StateType),
 ): [StateType | undefined, Dispatch<SetStateAction<StateType | undefined>>] {
   const [state, setState] = useState<StateType | undefined>(

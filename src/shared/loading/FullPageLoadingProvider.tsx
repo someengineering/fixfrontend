@@ -2,11 +2,11 @@ import { MutableRefObject, PropsWithChildren, useCallback, useEffect, useRef, us
 import { FullPageLoading } from './FullPageLoading'
 import { LoadingContext, LoadingStateType } from './LoadingContext'
 
-const FullPageLoadingContainer = ({
-  setLoadingStateRef,
-}: {
+interface FullPageLoadingContainerProps {
   setLoadingStateRef: MutableRefObject<(loadingState: LoadingStateType, forceFullPage?: boolean) => void>
-}) => {
+}
+
+const FullPageLoadingContainer = ({ setLoadingStateRef }: FullPageLoadingContainerProps) => {
   const [loadingState, setLoadingState] = useState<LoadingStateType>(LoadingStateType.SHOW)
   const alreadyShown = useRef<boolean | undefined>(undefined)
   useEffect(() => {

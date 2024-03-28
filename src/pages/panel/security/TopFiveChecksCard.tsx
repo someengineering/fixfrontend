@@ -3,7 +3,11 @@ import { FailedChecks } from 'src/pages/panel/shared/failed-checks'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { FailedCheck } from 'src/shared/types/server'
 
-export const TopFiveChecksCard = ({ failedChecks }: { failedChecks?: FailedCheck[] }) => {
+interface TopFiveChecksCardProps {
+  failedChecks?: FailedCheck[]
+}
+
+export const TopFiveChecksCard = ({ failedChecks }: TopFiveChecksCardProps) => {
   const navigate = useAbsoluteNavigate()
   return failedChecks ? (
     <Grid container spacing={2} my={{ xs: 2, md: 0 }}>

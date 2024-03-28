@@ -20,13 +20,7 @@ const PieCardItemPaper = styled(Paper, { shouldForwardProp: shouldForwardPropWit
   padding: theme.spacing(2),
 }))
 
-const PieCardItem = ({
-  id,
-  data,
-  score,
-  title,
-  cloud,
-}: {
+interface PieCardItemProps {
   data: {
     value: number
     name: string
@@ -37,7 +31,9 @@ const PieCardItem = ({
   title: string
   score: number
   cloud: string
-}) => {
+}
+
+const PieCardItem = ({ id, data, score, title, cloud }: PieCardItemProps) => {
   const theme = useTheme()
   const navigate = useAbsoluteNavigate()
   const [showPieChart, setShowPieChart] = useState(false)
@@ -103,7 +99,11 @@ const PieCardItem = ({
   )
 }
 
-export const PieCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryResponse }) => {
+interface PieCardProps {
+  data?: GetWorkspaceInventoryReportSummaryResponse
+}
+
+export const PieCard = ({ data }: PieCardProps) => {
   const navigate = useAbsoluteNavigate()
   const {
     i18n: { locale },

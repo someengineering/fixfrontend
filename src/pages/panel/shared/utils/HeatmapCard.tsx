@@ -8,7 +8,11 @@ import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/ser
 import { PieResourceCheckScore } from './PieResourceCheckScore'
 import { createPieDataFromNonCompliance } from './createPieDataFromNonCompliance'
 
-export const HeatmapCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryResponse }) => {
+interface HeatmapCardProps {
+  data?: GetWorkspaceInventoryReportSummaryResponse
+}
+
+export const HeatmapCard = ({ data }: HeatmapCardProps) => {
   const navigate = useAbsoluteNavigate()
   const {
     i18n: { locale },

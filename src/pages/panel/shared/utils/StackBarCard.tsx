@@ -7,7 +7,11 @@ import { colorsBySeverity } from './colorsBySeverity'
 // const calculatePassed = (failedChecks: Partial<FailedChecksType<number>>, total: number) =>
 //   total - (failedChecks.critical || 0) - (failedChecks.high || 0) - (failedChecks.medium || 0) - (failedChecks.low || 0)
 
-export const StackBarCard = ({ data }: { data?: GetWorkspaceInventoryReportSummaryResponse }) => {
+interface StackBarCardProps {
+  data?: GetWorkspaceInventoryReportSummaryResponse
+}
+
+export const StackBarCard = ({ data }: StackBarCardProps) => {
   const stackBarData = useMemo(() => {
     return !data
       ? []
