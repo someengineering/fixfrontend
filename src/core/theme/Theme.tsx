@@ -1,22 +1,21 @@
+// eslint-disable-next-line no-restricted-imports
+import { CacheProvider, EmotionCache } from '@emotion/react'
 import '@fontsource-variable/nunito-sans'
 import { useLingui } from '@lingui/react'
 import {
-  alpha,
-  createTheme,
   CssBaseline,
   PaletteOptions,
-  responsiveFontSizes,
   ThemeOptions,
   ThemeProvider,
+  alpha,
+  createTheme,
+  responsiveFontSizes,
   useMediaQuery,
 } from '@mui/material'
 import { PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
 import { langs } from 'src/shared/constants'
 import { getThemeMode, setThemeMode } from 'src/shared/utils/localstorage'
 import { ThemeContext } from './ThemeContext'
-
-// eslint-disable-next-line no-restricted-imports
-import { CacheProvider, EmotionCache } from '@emotion/react'
 
 createTheme({
   typography: {},

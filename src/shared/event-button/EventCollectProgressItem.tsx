@@ -1,7 +1,5 @@
-import ChevronRightIcon from '@mui/icons-material/ChevronRight'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Box, LinearProgress, Typography } from '@mui/material'
-import { TreeItem, TreeView } from '@mui/x-tree-view'
+import { SimpleTreeView, TreeItem } from '@mui/x-tree-view'
 import { CollectProgressEvent } from 'src/shared/types/server'
 import { FormattedProgressEventParts, formatProgressEventParts } from './formatProgressEventParts'
 
@@ -16,7 +14,7 @@ const ShowTreeView = ({ current, name, path, total, detail }: FormattedProgressE
   return (
     <TreeItem
       color={themeColor}
-      nodeId={path}
+      itemId={path}
       label={
         <Box display="flex" flexDirection="column">
           <Typography variant="h5" mb={1} color={themeColor}>
@@ -40,9 +38,5 @@ export const EventCollectProgressItem = ({ parts }: EventCollectProgressItemProp
   const formattedProgress = formatProgressEventParts(parts).detail
   // formattedProgress.name += ` (${data.data.task})`
 
-  return (
-    <TreeView defaultCollapseIcon={<ExpandMoreIcon />} defaultExpandIcon={<ChevronRightIcon />}>
-      {formattedProgress?.map((item) => <ShowTreeView {...item} />)}
-    </TreeView>
-  )
+  return <SimpleTreeView>{formattedProgress?.map((item) => <ShowTreeView {...item} />)}</SimpleTreeView>
 }

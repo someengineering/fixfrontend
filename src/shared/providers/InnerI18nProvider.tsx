@@ -1,6 +1,5 @@
 import { useLingui } from '@lingui/react'
 import { LocalizationProvider } from '@mui/x-date-pickers'
-// eslint-disable-next-line no-restricted-imports
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { PropsWithChildren, useEffect } from 'react'
 import { langs } from 'src/shared/constants'

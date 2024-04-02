@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-restricted-imports
 import { PropsWithChildren, createContext } from 'react'
 
 export const NonceContext = createContext<string | undefined>(undefined)

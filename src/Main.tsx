@@ -1,4 +1,4 @@
-import { LicenseInfo } from '@mui/x-license-pro'
+import { LicenseInfo } from '@mui/x-license'
 import { HTMLAttributes, MetaHTMLAttributes } from 'react'
 import ReactDOM from 'react-dom/client'
 import { App } from './App'
