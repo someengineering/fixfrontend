@@ -320,7 +320,7 @@ msgstr "AWS Marketplace wurde erfolgreich abonniert"
 msgid "Basic Information"
 msgstr "Grundinformation"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:116
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:107
 msgid "Because the data is over {0} Only first {1} items will be downloaded"
 msgstr "Da die Daten über {0} liegen, werden nur die ersten {1} Elemente heruntergeladen"
 
@@ -638,8 +638,8 @@ msgstr "Downgrade"
 msgid "Download"
 msgstr "Herunterladen"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:76
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:109
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:100
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:119
 msgid "Download CSV"
 msgstr "CSV herunterladen"
 
@@ -1580,7 +1580,7 @@ msgstr "Benutzer"
 msgid "Value"
 msgstr "Wert"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:86
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:84
 msgid "Warning"
 msgstr "Warnung"
 
