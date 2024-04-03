@@ -6,6 +6,8 @@ export { getWorkspaceInventoryModelQuery } from './getWorkspaceInventoryModel.qu
 export { getWorkspaceInventoryNodeQuery } from './getWorkspaceInventoryNode.query'
 export { getWorkspaceInventoryNodeHistoryQuery } from './getWorkspaceInventoryNodeHistory.query'
 export { getWorkspaceInventoryNodeHistoryNeighborhoodQuery } from './getWorkspaceInventoryNodeHistoryNeighborhood.query'
+export { getWorkspaceInventoryReportBenchmarksQuery } from './getWorkspaceInventoryReportBenchmarks.query'
+export { getWorkspaceInventoryReportChecksQuery } from './getWorkspaceInventoryReportChecks.query'
 export { getWorkspaceInventoryReportSummaryQuery } from './getWorkspaceInventoryReportSummary.query'
 export { getWorkspaceInventorySearchStartQuery } from './getWorkspaceInventorySearchStart.query'
 export { getWorkspaceNotificationsQuery } from './getWorkspaceNotifications.query'

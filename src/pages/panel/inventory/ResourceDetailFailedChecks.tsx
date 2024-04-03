@@ -1,15 +1,14 @@
 import { Trans } from '@lingui/macro'
 import DoneAllIcon from '@mui/icons-material/DoneAll'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Accordion, AccordionDetails, Divider, Paper, Stack } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Fragment } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { FailedCheckIgnoreButton, FailedChecks } from 'src/pages/panel/shared/failed-checks'
 import { patchWorkspaceInventoryNodeSecurityIgnoreQuery } from 'src/pages/panel/shared/queries'
+import { StickyAccordionSummaryWithIcon } from 'src/shared/sticky-accordion-summary'
 import { FailedCheck, NodeSecurity, WorkspaceInventoryNode } from 'src/shared/types/server'
 import { snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
-import { ResourceDetailAccordionSummary } from './ResourceDetail'
 import { ResourceDetailFailedCheckIgnoredChecks } from './ResourceDetailFailedCheckIgnoredChecks'
 
 interface ResourceDetailFailedChecksProps {
@@ -77,7 +76,7 @@ export const ResourceDetailFailedChecks = ({
     []
   return (
     <Accordion defaultExpanded>
-      <ResourceDetailAccordionSummary expandIcon={<ExpandMoreIcon />}>
+      <StickyAccordionSummaryWithIcon offset={6}>
         <Stack direction="row" justifyContent="space-between" alignItems="center" width="100%">
           <Trans>Security Issues</Trans>
           <FailedCheckIgnoreButton
@@ -94,7 +93,7 @@ export const ResourceDetailFailedChecks = ({
             {securityIgnore === '*' ? <Trans>Enable all</Trans> : <Trans>Ignore all</Trans>}
           </FailedCheckIgnoreButton>
         </Stack>
-      </ResourceDetailAccordionSummary>
+      </StickyAccordionSummaryWithIcon>
       <Divider />
       <AccordionDetails>
         {sortedFailingChecks.map((failedCheck) => (

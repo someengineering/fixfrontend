@@ -1,4 +1,3 @@
-import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import CloseIcon from '@mui/icons-material/Close'
 import { Box, Divider, IconButton, Popover, Stack, Typography, alpha, colors } from '@mui/material'
@@ -6,7 +5,7 @@ import { diffLines } from 'diff'
 import { WorkspaceInventoryNodeHistory } from 'src/shared/types/server'
 import { YamlHighlighter } from 'src/shared/yaml-highlighter'
 import { stringify } from 'yaml'
-import { ResourceDetailChangeLogSelectedHistoryAccordion } from './ResourceDetailChangeLogSelectedHistoryAccordion'
+import { ResourceDetailChangeLogSelectedHistoryDiff } from './ResourceDetailChangeLogSelectedHistoryDiff'
 import { nodeChangeToIcon, nodeChangeToStr } from './nodeChange'
 
 interface ResourceDetailChangeLogSelectedHistoryProps {
@@ -85,32 +84,7 @@ export const ResourceDetailChangeLogSelectedHistory = ({
                 </code>
               </Typography>
             ) : (
-              <Stack>
-                {selectedHistory.diff.node_compliant.length ? (
-                  <>
-                    <Stack py={1}>
-                      <Typography variant="h5">
-                        <Trans>Fixed issues</Trans>
-                      </Typography>
-                    </Stack>
-                    {selectedHistory.diff.node_compliant.map((item, i) => (
-                      <ResourceDetailChangeLogSelectedHistoryAccordion data={item} key={i} />
-                    ))}
-                  </>
-                ) : null}
-                {selectedHistory.diff.node_vulnerable.length ? (
-                  <>
-                    <Stack py={1} spacing={1}>
-                      <Typography variant="h5">
-                        <Trans>New issues</Trans>
-                      </Typography>
-                    </Stack>
-                    {selectedHistory.diff.node_vulnerable.map((item, i) => (
-                      <ResourceDetailChangeLogSelectedHistoryAccordion data={item} isVulnerable key={i} />
-                    ))}
-                  </>
-                ) : null}
-              </Stack>
+              <ResourceDetailChangeLogSelectedHistoryDiff {...selectedHistory.diff} />
             )}
           </Box>
         </>

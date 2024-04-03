@@ -25,6 +25,8 @@ export type {
   WorkspaceInventoryNodeNeighborhoodEdgeType,
   WorkspaceInventoryNodeNeighborhoodNodeType,
 } from './GetWorkspaceInventoryNodeNeighborhood'
+export type { GetWorkspaceInventoryReportBenchmarksResponse } from './GetWorkspaceInventoryReportBenchmarks'
+export type { GetWorkspaceInventoryReportChecksResponse } from './GetWorkspaceInventoryReportChecks'
 export type { GetWorkspaceInventoryReportInfoResponse } from './GetWorkspaceInventoryReportInfo'
 export type {
   FailedChecksType,
@@ -32,7 +34,7 @@ export type {
   VulnerableResource,
   VulnerableResources,
   WorkspaceAccountReportSummary,
-  Benchmark as WorkspaceBenchmark,
+  WorkspaceBenchmark,
   ChangedSituation as WorkspaceChangedSituation,
   WorkspaceCheckSummary,
 } from './GetWorkspaceInventoryReportSummary'

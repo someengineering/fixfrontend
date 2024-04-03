@@ -1,34 +1,43 @@
 import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { Accordion, AccordionDetails, AccordionSummary, Box, Chip, Grid, Stack, Typography, accordionSummaryClasses } from '@mui/material'
+import { Accordion, AccordionDetails, Box, Chip, Grid, Stack, Typography, accordionSummaryClasses } from '@mui/material'
+import { useEffect, useState } from 'react'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { getMessage } from 'src/shared/defined-messages'
+import { StickyAccordionSummaryWithIcon } from 'src/shared/sticky-accordion-summary'
 import { WorkspaceInventoryNodeHistoryDiff } from 'src/shared/types/server'
 import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 
 interface ResourceDetailChangeLogSelectedHistoryAccordionProps {
   data: WorkspaceInventoryNodeHistoryDiff
+  benchmarks?: string[]
+  title?: string
   isVulnerable?: boolean
 }
 
 export const ResourceDetailChangeLogSelectedHistoryAccordion = ({
   data,
+  benchmarks,
+  title,
   isVulnerable,
 }: ResourceDetailChangeLogSelectedHistoryAccordionProps) => {
+  const [expanded, setExpanded] = useState(true)
   const {
     i18n: { locale },
   } = useLingui()
+  useEffect(() => {
+    setExpanded(false)
+  }, [])
   return (
-    <Accordion>
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
+    <Accordion expanded={expanded} onChange={(_, expanded) => setExpanded(expanded)}>
+      <StickyAccordionSummaryWithIcon
+        offset={-2}
         sx={{ height: '100%', [`.${accordionSummaryClasses.content}`]: { width: '100%', overflow: 'hidden' } }}
       >
         <Grid container spacing={2} display="flex" justifyContent="space-between" flexDirection="row" width="100%">
           <Grid item sx={{ overflowX: 'auto', overflowY: 'hidden' }} flexShrink={1} alignSelf="start">
             <Typography variant="h6" color={isVulnerable ? 'error.main' : 'success.main'} flexShrink={1}>
-              {data.check}
+              {title ?? data.check}
             </Typography>
           </Grid>
           <Grid item alignSelf="center" flexGrow={1}>
@@ -37,7 +46,7 @@ export const ResourceDetailChangeLogSelectedHistoryAccordion = ({
             </Stack>
           </Grid>
         </Grid>
-      </AccordionSummary>
+      </StickyAccordionSummaryWithIcon>
       <AccordionDetails>
         <Stack spacing={1}>
           <Box>
@@ -45,7 +54,7 @@ export const ResourceDetailChangeLogSelectedHistoryAccordion = ({
               <Trans>Benchmarks</Trans>:
             </Typography>
             <Stack spacing={1} direction="column" flexWrap="wrap" alignItems="start" mt={1}>
-              {data.benchmarks.map((benchmark, i) => (
+              {(benchmarks ?? data.benchmarks).map((benchmark, i) => (
                 <Chip label={benchmark} key={benchmark + i} color="primary" />
               ))}
             </Stack>
