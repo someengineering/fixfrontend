@@ -1,4 +1,5 @@
 export type { Account } from './Account'
+export type { Benchmark } from './Benchmark'
 export type { FailedCheck } from './FailedCheck'
 export type { NodeAncestors } from './NodeAncestors'
 export type { NodeMetadata } from './NodeMetadata'

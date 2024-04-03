@@ -1,12 +1,10 @@
 import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import CloseIcon from '@mui/icons-material/Close'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import {
   Accordion,
   AccordionDetails,
-  AccordionSummary,
   Alert,
   Box,
   Button,
@@ -32,6 +30,7 @@ import { NetworkDiagram } from 'src/shared/charts'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { panelUI } from 'src/shared/constants'
 import { Modal as PopupModal } from 'src/shared/modal'
+import { StickyAccordionSummaryWithIcon } from 'src/shared/sticky-accordion-summary'
 import { FailedCheck } from 'src/shared/types/server'
 import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
 import { getLocationSearchValues, removeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
@@ -40,14 +39,6 @@ import { stringify } from 'yaml'
 import { ResourceDetailChangeLog } from './ResourceDetailChangeLog'
 import { ResourceDetailFailedChecks } from './ResourceDetailFailedChecks'
 import { inventorySendToGTM } from './utils'
-
-export const ResourceDetailAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
-  position: 'sticky',
-  top: theme.spacing(6),
-  background: 'inherit',
-  boxShadow: theme.shadows[2],
-  zIndex: 1,
-}))
 
 const Modal = styled(MuiModal)(({ theme }) => ({
   position: 'fixed',
@@ -203,14 +194,22 @@ export const ResourceDetail = () => {
             </IconButton>
           </Stack>
           {nodeNotFound ? null : (
-            <Box minHeight={400} width="100%" sx={{ userSelect: 'none' }}>
-              {data ? <NetworkDiagram mainId={data.resource.id} /> : <Skeleton height="100%" width="100%" variant="rectangular" />}
-            </Box>
+            <Accordion defaultExpanded>
+              <StickyAccordionSummaryWithIcon offset={6} sx={{ zIndex: ({ zIndex }) => zIndex.fab + 1 }}>
+                <Trans>Neighborhood View</Trans>
+              </StickyAccordionSummaryWithIcon>
+              <Divider />
+              <AccordionDetails>
+                <Box minHeight={400} width="100%" sx={{ userSelect: 'none' }} display="grid">
+                  {data ? <NetworkDiagram mainId={data.resource.id} /> : <Skeleton height="100%" width="100%" variant="rectangular" />}
+                </Box>
+              </AccordionDetails>
+            </Accordion>
           )}
           <Accordion defaultExpanded>
-            <ResourceDetailAccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <StickyAccordionSummaryWithIcon offset={6}>
               <Trans>Basic Information</Trans>
-            </ResourceDetailAccordionSummary>
+            </StickyAccordionSummaryWithIcon>
             <Divider />
             <AccordionDetails>
               {data ? (
@@ -289,9 +288,9 @@ export const ResourceDetail = () => {
           </Accordion>
           {data && Object.entries(tags ?? {}).length ? (
             <Accordion>
-              <ResourceDetailAccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <StickyAccordionSummaryWithIcon offset={6}>
                 <Trans>Tags</Trans>
-              </ResourceDetailAccordionSummary>
+              </StickyAccordionSummaryWithIcon>
               <Divider />
               <AccordionDetails>
                 <Grid gap={2} gridTemplateColumns="50% 1fr" width="100%" display="grid" mt={1}>
@@ -304,9 +303,9 @@ export const ResourceDetail = () => {
           ) : null}
           {error ? null : (
             <Accordion>
-              <ResourceDetailAccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <StickyAccordionSummaryWithIcon offset={6}>
                 <Trans>Details</Trans>
-              </ResourceDetailAccordionSummary>
+              </StickyAccordionSummaryWithIcon>
               <Divider />
               <AccordionDetails>
                 {data?.resource.reported ? (
