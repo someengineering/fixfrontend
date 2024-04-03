@@ -7,6 +7,7 @@ import { PieCard, chartToShow } from 'src/pages/panel/shared/utils'
 import { OverallCard } from './OverallCard'
 import { OverallScore } from './OverallScore'
 import { TopFiveChecksCard } from './TopFiveChecksCard'
+import { VulnerableResourcesTimeline } from './VulnerableResourcesTimeline'
 
 export const Overview = () => {
   const { selectedWorkspace } = useUserProfile()
@@ -83,6 +84,19 @@ export const Overview = () => {
         false
       )}
       {chartToShow(data)}
+      {data.vulnerable_resources ? (
+        <>
+          <Box p={4}>
+            <Divider />
+          </Box>
+          <Typography variant="h3" mb={2}>
+            <Trans>Failing Check Timeline</Trans>
+          </Typography>
+          <Grid item>
+            <VulnerableResourcesTimeline data={data.vulnerable_resources} />
+          </Grid>
+        </>
+      ) : null}
       <Box p={4}>
         <Divider />
       </Box>

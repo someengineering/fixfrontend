@@ -45,18 +45,18 @@ export interface WorkspaceCheckSummary {
   failed_resources_by_severity: Partial<FailedChecksType>
 }
 
-export interface vulnerableResource {
+export interface VulnerableResource {
   at: string
   group: { severity: SeverityType }
   v: number
 }
 
-export interface vulnerableResources {
-  data: vulnerableResource[]
-  end: string
-  granularity: string
+export interface VulnerableResources {
   name: string
   start: string
+  end: string
+  granularity: string
+  data: VulnerableResource[]
 }
 
 export interface GetWorkspaceInventoryReportSummaryResponse {
@@ -67,5 +67,5 @@ export interface GetWorkspaceInventoryReportSummaryResponse {
   changed_vulnerable: ChangedSituation
   changed_compliant: ChangedSituation
   top_checks: FailedCheck[]
-  vulnerable_resources: vulnerableResources | null
+  vulnerable_resources: VulnerableResources | null
 }

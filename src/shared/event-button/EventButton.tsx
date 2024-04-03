@@ -100,7 +100,7 @@ export const EventButton = () => {
     <Box display="inline-flex" alignItems="center" justifyContent="center">
       <Tooltip title={t`Events`}>
         <IconButton sx={{ p: 0, color: 'white', mr: 2 }} size="large" onClick={handleToggleUserMenu} ref={anchorEl}>
-          <Badge badgeContent={events.length} color="error">
+          <Badge badgeContent="!" color="error">
             <EventIcon fontSize="large" />
           </Badge>
         </IconButton>

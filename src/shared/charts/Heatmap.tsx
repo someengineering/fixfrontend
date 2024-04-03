@@ -67,7 +67,7 @@ export const Heatmap = ({ data }: HeatmapProps) => {
           {data.map(({ cells, title }, i) => (
             <TableRow key={i}>
               <TableCell sx={{ borderBottom: 'none' }}>
-                <Typography overflow="hidden" textOverflow="ellipsis" whiteSpace="nowrap" pr={1} component="span">
+                <Typography pr={1} width={200}>
                   {title}
                 </Typography>
               </TableCell>

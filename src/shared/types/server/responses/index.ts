@@ -29,6 +29,8 @@ export type { GetWorkspaceInventoryReportInfoResponse } from './GetWorkspaceInve
 export type {
   FailedChecksType,
   GetWorkspaceInventoryReportSummaryResponse,
+  VulnerableResource,
+  VulnerableResources,
   WorkspaceAccountReportSummary,
   Benchmark as WorkspaceBenchmark,
   ChangedSituation as WorkspaceChangedSituation,
