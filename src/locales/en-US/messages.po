@@ -185,7 +185,7 @@ msgstr "Account: {0}"
 msgid "Accounts"
 msgstr "Accounts"
 
-#: src/pages/panel/security/Overview.tsx:90
+#: src/pages/panel/security/Overview.tsx:104
 msgid "Accounts Summary"
 msgstr "Accounts Summary"
 
@@ -402,7 +402,7 @@ msgstr "Change Product Tier"
 msgid "Changes"
 msgstr "Changes"
 
-#: src/pages/panel/security/Overview.tsx:42
+#: src/pages/panel/security/Overview.tsx:43
 msgid "Changes in the past 7 days"
 msgstr "Changes in the past 7 days"
 
@@ -750,6 +750,10 @@ msgstr "Failed to retrieve changelog"
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:149
 msgid "Failing benchmarks"
 msgstr "Failing benchmarks"
+
+#: src/pages/panel/security/Overview.tsx:93
+msgid "Failing Check Timeline"
+msgstr "Failing Check Timeline"
 
 #: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:135
 msgid "False"
@@ -1363,8 +1367,8 @@ msgstr "Security posture improved"
 msgid "Security Scan"
 msgstr "Security Scan"
 
-#: src/pages/panel/security/Overview.tsx:28
-#: src/pages/panel/security/Overview.tsx:52
+#: src/pages/panel/security/Overview.tsx:29
+#: src/pages/panel/security/Overview.tsx:53
 msgid "Security Score"
 msgstr "Security Score"
 
@@ -1516,8 +1520,8 @@ msgstr "To enhance your experience, please select the workspace where you'd like
 msgid "Top Non-Compliant Resources"
 msgstr "Top Non-Compliant Resources"
 
-#: src/pages/panel/security/Overview.tsx:62
-#: src/pages/panel/security/Overview.tsx:78
+#: src/pages/panel/security/Overview.tsx:63
+#: src/pages/panel/security/Overview.tsx:79
 msgid "Top Security Enhancements"
 msgstr "Top Security Enhancements"
 
