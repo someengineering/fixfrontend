@@ -13,7 +13,11 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:93
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:112
+msgid "({0} / month per additional account)"
+msgstr "({0} / Monat pro zusätzlichem Konto)"
+
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:126
 msgid "({0} max)"
 msgstr "({0} max)"
 
@@ -55,6 +59,10 @@ msgstr "{0} Prüfungen sind fehlgeschlagen."
 msgid "{0} checks fixed."
 msgstr "{0} Prüfungen behoben"
 
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:99
+msgid "{0} cloud accounts included"
+msgstr "{0} Cloud-Konten enthalten"
+
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsConnectedServices.tsx:24
 msgid "{0} has been connected"
 msgstr "{0} wurde verbunden"
@@ -63,21 +71,25 @@ msgstr "{0} wurde verbunden"
 msgid "{0} Milliseconds"
 msgstr "{0} Millisekunden"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:88
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:121
 msgid "{0} scans"
 msgstr "{0} scans"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:96
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:129
 msgid "{0} seat max"
 msgstr "{0} Sitzplatz max"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:92
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:125
 msgid "{0} seats included {1}"
 msgstr "{0} Sitzplätze inbegriffen {1}"
 
 #: src/pages/panel/inventory/utils/nodeChange.tsx:46
 msgid "{added} configuration lines added and {removed} lines deleted."
 msgstr "{added} Konfigurationszeilen hinzugefügt und {removed} Zeilen gelöscht."
+
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:77
+msgid "/ month"
+msgstr "/ monat"
 
 #: src/containers/panel/PanelContainer.tsx:34
 msgid "© 2024 Some Engineering Inc. All rights reserved."
@@ -131,15 +143,15 @@ msgstr "<0>Ihr Cloud-Konto wurde erfolgreich hinzugefügt!</0><1>Vielen Dank, da
 msgid "1-month history"
 msgstr "1-monatige Historie"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:72
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:78
 msgid "18-month history"
 msgstr "18-monatige Geschichte"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:42
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:44
 msgid "3-month history"
 msgstr "3-monatige Historie"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:55
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:59
 msgid "6-month history"
 msgstr "6-monatige Historie"
 
@@ -227,9 +239,9 @@ msgstr "Erweiterte Suchabfrage"
 msgid "Age"
 msgstr "Alter"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:57
-msgid "Alerting integrations (PagerDuty, Slack, Discord, Teams)"
-msgstr "Alarmierungsintegrationen (PagerDuty, Slack, Discord, Teams)"
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:61
+msgid "Alerting integrations (PD, Slack, Discord, Teams)"
+msgstr "Alarmierungsintegrationen (PD, Slack, Discord, Teams)"
 
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:31
 msgid "Alerting Settings"
@@ -265,7 +277,7 @@ msgstr "Eine E-Mail wurde mit einem 'Passwort zurücksetzen'-Button an Ihren Pos
 msgid "An error occurred while connecting to {0}"
 msgstr "Beim Herstellen der Verbindung zu {0} ist ein Fehler aufgetreten."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:146
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:196
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:31
 msgid "An error occurred, please try again later."
 msgstr "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut."
@@ -278,7 +290,7 @@ msgstr "und"
 msgid "And"
 msgstr "Und"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:73
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:79
 msgid "API access"
 msgstr "API-Zugriff"
 
@@ -377,12 +389,12 @@ msgstr "Business"
 msgid "Cancel"
 msgstr "Stornieren"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:251
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:301
 msgid "Change payment method"
 msgstr "Bezahlungsmethode ändern"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:208
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:246
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:258
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:296
 msgid "Change Product Tier"
 msgstr "Produktstufe ändern"
 
@@ -428,6 +440,10 @@ msgstr "Cloud Setup"
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:122
 msgid "Clouds"
 msgstr "Wolken"
+
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:31
+msgid "Community support"
+msgstr "Gemeinschaftliche Unterstützung"
 
 #: src/pages/panel/security/OverallCard.tsx:77
 msgid "Compliance"
@@ -518,19 +534,19 @@ msgstr "Kritisch"
 msgid "Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is necessary to configure alerting settings."
 msgstr "Derzeit stehen keine verbundenen Dienste zur Konfiguration zur Verfügung. Bitte beachten Sie, dass zum Konfigurieren der Alarmeinstellungen die Verbindung mindestens eines Dienstes erforderlich ist."
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:74
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:80
 msgid "Custom alerting webhooks"
 msgstr "Benutzerdefinierte Benachrichtigungs-Webhooks"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:56
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:60
 msgid "Custom policies (coming soon!)"
 msgstr "Benutzerdefinierte Richtlinien (in Kürze verfügbar!)"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:40
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:42
 msgid "Daily"
 msgstr "Täglich"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:42
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:44
 msgid "Data export (CSV, JSON, PDF)"
 msgstr "Datenexport (CSV, JSON, PDF)"
 
@@ -629,8 +645,8 @@ msgstr "Möchten Sie diesen Benutzer löschen?"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:208
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:246
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:258
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:296
 msgid "Downgrade"
 msgstr "Downgrade"
 
@@ -665,7 +681,7 @@ msgstr "Edit"
 msgid "Email"
 msgstr "Email"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:42
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:44
 msgid "Email alerts"
 msgstr "E-Mail-Alarmierungen"
 
@@ -695,15 +711,15 @@ msgstr "Unternehmen"
 msgid "Events"
 msgstr "Veranstaltungen"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:70
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:76
 msgid "Everything in Business, and"
 msgstr "Alles im Geschäft, und"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:41
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:43
 msgid "Everything in Free, and"
 msgstr "Alles in Free, und"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:53
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:57
 msgid "Everything in Plus, and"
 msgstr "Alles in Plus, und"
 
@@ -763,15 +779,15 @@ msgstr "Fix scannt Ihre Infrastruktur- und Ressourcenkonfigurationen mithilfe de
 msgid "Fixed issues"
 msgstr "Behobene Probleme"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:63
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:69
 msgid "For dedicated security teams looking to build an integrated security toolchain."
 msgstr "Für engagierte Sicherheitsteams, die eine integrierte Sicherheits-Toolchain aufbauen möchten."
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:46
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:50
 msgid "For engineering teams looking to automate their cloud infrastructure security."
 msgstr "Für Engineering-Teams, die die Sicherheit ihrer Cloud-Infrastruktur automatisieren möchten."
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:34
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:36
 msgid "For growing teams looking to stay secure as they build out infrastructure."
 msgstr "Für wachsende Teams, die sicher bleiben möchten, während sie die Infrastruktur aufbauen."
 
@@ -804,8 +820,8 @@ msgstr "Hoch"
 msgid "Homepage"
 msgstr "Startseite"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:52
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:69
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:56
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:75
 msgid "Hourly"
 msgstr "Stündlich"
 
@@ -890,6 +906,10 @@ msgstr "Info: Änderungen an Ihrer Produktstufe werden sofort aktiv und für den
 msgid "Instance is terminated"
 msgstr "Instanz wird beendet"
 
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:87
+msgid "Integration advice for your specific cloud environment via video call"
+msgstr "Integrationsberatung für Ihre spezifische Cloud-Umgebung per Videoanruf"
+
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:131
 msgid "Integration Key"
 msgstr "Integrationsschlüssel"
@@ -967,7 +987,7 @@ msgstr "Recheninstanzen und Datenbanken mit geringer Auslastung"
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS Konto angemeldet sind, bevor Sie auf die Schaltfläche DEPLOY STACK klicken."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:79
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:89
 msgid "maximum of {0} cloud accounts"
 msgstr "maximal {0} Cloud-Konten"
 
@@ -979,10 +999,6 @@ msgstr "Mittel"
 #: src/pages/panel/workspace-settings-users/workspaceSettingsUserRoleToString.ts:16
 msgid "Member"
 msgstr "Mitglied"
-
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:80
-msgid "minimum of {0} cloud accounts"
-msgstr "mindestens {0} Cloud-Konten"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:19
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:50
@@ -1113,6 +1129,10 @@ msgstr "Öffnen Sie die Ressource {name} in der AWS-Konsole"
 msgid "Opened at"
 msgstr "Geöffnet um"
 
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:88
+msgid "Optional professional services"
+msgstr "Optionale professionelle Dienstleistungen"
+
 #: src/pages/auth/login/LoginPage.tsx:160
 #: src/pages/auth/login/LoginPage.tsx:237
 #: src/pages/auth/register/RegisterPage.tsx:135
@@ -1138,7 +1158,7 @@ msgstr "Andere Arbeitsbereichseinstellungen"
 msgid "OTP Code"
 msgstr "OTP-Code"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:212
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:262
 msgid "Our fair-use policy allows for up to 200,000 resources per account. If your needs surpass this amount, please <0>reach out</0> to discuss your specific requirements."
 msgstr "Unsere Fair-Use-Richtlinie ermöglicht bis zu 200.000 Ressourcen pro Konto. Wenn Ihr Bedarf diesen Betrag übersteigt, <0>kontaktieren Sie uns bitte</0>, um Ihre spezifischen Anforderungen zu besprechen."
 
@@ -1153,7 +1173,7 @@ msgstr "Eigentümer"
 msgid "Password"
 msgstr "Passwort"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:251
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:301
 msgid "Payment Method Required"
 msgstr "Zahlungsmethode erforderlich"
 
@@ -1163,10 +1183,6 @@ msgstr "Zahlungsmethode erforderlich"
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:18
 msgid "Pending Invitations"
 msgstr "Ausstehende Einladungen"
-
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:53
-msgid "per cloud account, per month"
-msgstr "pro Cloud-Konto, pro Monat"
 
 #: src/pages/panel/security/OverallCard.tsx:176
 msgid "Pick one of the recommendations to the right and improve your security"
@@ -1200,11 +1216,23 @@ msgstr "Privilegiert"
 msgid "Privileged account"
 msgstr "Privilegiertes Konto"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:268
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:45
+msgid "Product support via email"
+msgstr "Produktsupport per E-Mail"
+
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:64
+msgid "Product support via email and live chat"
+msgstr "Produktsupport per E-Mail und Live-Chat"
+
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:86
+msgid "Product support via email, live chat, and video call"
+msgstr "Produktsupport per E-Mail, Live-Chat und Videoanruf"
+
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:318
 msgid "Product Tier"
 msgstr "Produktebene"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:142
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:192
 msgid "Product tier changed to {productTier}"
 msgstr "Produktstufe wurde in {productTier} geändert"
 
@@ -1375,11 +1403,11 @@ msgstr "Melden Sie sich an"
 msgid "Sign up with {formattedName}"
 msgstr "Melden Sie sich mit {formattedName} an"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:75
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:81
 msgid "Single Sign on (coming soon!)"
 msgstr "Single Sign-on (bald verfügbar!)"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:77
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:83
 msgid "Snowflake data export (coming soon!)"
 msgstr "Snowflake-Datenexport (bald verfügbar!)"
 
@@ -1422,7 +1450,7 @@ msgstr "{email} erfolgreich eingeladen"
 msgid "Tags"
 msgstr "Stichworte"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:58
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:62
 msgid "Task management integrations (coming soon!)"
 msgstr "Integrationen zur Aufgabenverwaltung (bald verfügbar!)"
 
@@ -1475,7 +1503,7 @@ msgstr "Stufe"
 msgid "To access this resource, please ensure that you are logged into the AWS account: {account}"
 msgstr "Um auf diese Ressource zuzugreifen, stellen Sie bitte sicher, dass Sie beim AWS-Konto angemeldet sind: {account}"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:230
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:280
 msgid "To AWS Marketplace"
 msgstr "Zum AWS Marketplace"
 
@@ -1554,8 +1582,8 @@ msgstr "E-Mail aktualisieren"
 msgid "Update Password"
 msgstr "Kennwort aktualisieren"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:208
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:246
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:258
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:296
 msgid "Upgrade"
 msgstr "Aktualisierung"
 
@@ -1605,7 +1633,7 @@ msgstr "Wir haben {0} nicht konforme Ressourcen von insgesamt {1} {2}-Severity S
 msgid "Webhook URL"
 msgstr "Webhook-URL"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:42
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:44
 msgid "Weekly email report"
 msgstr "Wöchentlicher E-Mail-Bericht"
 
@@ -1617,7 +1645,7 @@ msgstr "Wöchentlicher Report"
 msgid "Workspace Alerting Settings"
 msgstr "Workspace-Benachrichtigungseinstellungen"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:76
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:82
 msgid "Workspace analytics (coming soon!)"
 msgstr "Arbeitsbereichsanalyse (bald verfügbar!)"
 
@@ -1641,7 +1669,7 @@ msgstr "Arbeitsbereichseinstellungen"
 msgid "Workspace Users"
 msgstr "Workspace-Benutzer"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:254
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:304
 msgid "You are about to apply changes to your billing information. Please review the new details below:"
 msgstr "Sie sind dabei, Änderungen an Ihren Zahlungsinformationen vorzunehmen. Bitte lesen Sie die neuen Details unten:"
 
@@ -1665,7 +1693,7 @@ msgstr "Sie haben Ihr Passwort erfolgreich zurückgesetzt."
 msgid "You have successfully verified your account."
 msgstr "Sie haben Ihr Konto erfolgreich verifiziert."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:261
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:311
 msgid "You need an AWS Marketplace Subscription to upgrade your plan."
 msgstr "Sie benötigen ein AWS Marketplace-Abonnement, um Ihren Plan zu aktualisieren."
 
