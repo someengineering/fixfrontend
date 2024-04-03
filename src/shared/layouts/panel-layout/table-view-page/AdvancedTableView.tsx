@@ -26,8 +26,8 @@ export function AdvancedTableView<RowType extends readonly []>({ headerToolbar, 
           toolbar: headerToolbar
             ? () => (
                 <GridToolbarContainer>
-                  <GridToolbarColumnsButton color="inherit" />
-                  <GridToolbarDensitySelector color="inherit" />
+                  <GridToolbarColumnsButton slotProps={{ button: { color: 'inherit' } }} />
+                  <GridToolbarDensitySelector slotProps={{ button: { color: 'inherit' } }} />
                   <Stack alignSelf="end" flex={1}>
                     {headerToolbar}
                   </Stack>
@@ -50,16 +50,16 @@ export function AdvancedTableView<RowType extends readonly []>({ headerToolbar, 
           ...props.sx,
         }}
         slotProps={{
+          ...props.slotProps,
           footer: {
+            ...props.slotProps?.footer,
             sx: {
               position: 'sticky',
               bottom: 0,
               bgcolor: 'background.default',
               ...props.slotProps?.footer?.sx,
             },
-            ...props.slotProps?.footer,
           },
-          ...props.slotProps,
         }}
       />
     </Box>

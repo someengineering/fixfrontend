@@ -72,60 +72,50 @@ export const DownloadCSVButton = forwardRef(
         })
         .finally(() => warningModal.current?.(false))
     }
-    return (
-      <Tooltip title={<Trans>Download CSV</Trans>}>
-        {hasWarning ? (
-          <>
-            <IconButton onClick={() => warningModal.current?.(true)} disabled={isPending}>
-              <DownloadIcon />
-            </IconButton>
-            <Modal
-              openRef={warningModal}
-              title={
-                <Typography component="span" variant="h5" color="warning.main">
-                  <Trans>Warning</Trans>
-                </Typography>
-              }
-              actions={
-                <Button
-                  {...tooltipProps}
-                  variant="outlined"
-                  startIcon={<DownloadIcon />}
-                  onClick={handleClick}
-                  disabled={isPending}
-                  ref={ref}
-                >
-                  <Stack
-                    minWidth={isPending ? 160 : 0}
-                    height={isPending ? 25 : 'auto'}
-                    sx={{ transition: ({ transitions }) => transitions.create('min-width') }}
-                    alignItems="center"
-                    justifyContent="center"
-                    flex="1 0 auto"
-                  >
-                    {isPending ? (
-                      <LinearProgress variant={progress >= 0 ? 'determinate' : 'indeterminate'} value={progress} sx={{ width: '100%' }} />
-                    ) : (
-                      <Trans>Download CSV</Trans>
-                    )}
-                  </Stack>
-                </Button>
-              }
-            >
-              <Typography>
-                <Trans>
-                  Because the data is over {panelUI.maxCSVDownload.toLocaleString(locale)} Only first{' '}
-                  {panelUI.maxCSVDownload.toLocaleString(locale)} items will be downloaded
-                </Trans>
-              </Typography>
-            </Modal>
-          </>
-        ) : (
-          <IconButton {...tooltipProps} onClick={handleClick} disabled={isPending} ref={ref}>
-            {isPending ? <CircularProgress size={16} /> : <DownloadIcon />}
-          </IconButton>
-        )}
-      </Tooltip>
+    const children = hasWarning ? (
+      <>
+        <IconButton onClick={() => warningModal.current?.(true)} disabled={isPending}>
+          <DownloadIcon />
+        </IconButton>
+        <Modal
+          openRef={warningModal}
+          title={
+            <Typography component="span" variant="h5" color="warning.main">
+              <Trans>Warning</Trans>
+            </Typography>
+          }
+          actions={
+            <Button {...tooltipProps} variant="outlined" startIcon={<DownloadIcon />} onClick={handleClick} disabled={isPending} ref={ref}>
+              <Stack
+                minWidth={isPending ? 160 : 0}
+                height={isPending ? 25 : 'auto'}
+                sx={{ transition: ({ transitions }) => transitions.create('min-width') }}
+                alignItems="center"
+                justifyContent="center"
+                flex="1 0 auto"
+              >
+                {isPending ? (
+                  <LinearProgress variant={progress >= 0 ? 'determinate' : 'indeterminate'} value={progress} sx={{ width: '100%' }} />
+                ) : (
+                  <Trans>Download CSV</Trans>
+                )}
+              </Stack>
+            </Button>
+          }
+        >
+          <Typography>
+            <Trans>
+              Because the data is over {panelUI.maxCSVDownload.toLocaleString(locale)} Only first{' '}
+              {panelUI.maxCSVDownload.toLocaleString(locale)} items will be downloaded
+            </Trans>
+          </Typography>
+        </Modal>
+      </>
+    ) : (
+      <IconButton {...tooltipProps} onClick={handleClick} disabled={isPending} ref={ref}>
+        {isPending ? <CircularProgress size={16} /> : <DownloadIcon />}
+      </IconButton>
     )
+    return isPending ? children : <Tooltip title={<Trans>Download CSV</Trans>}>{children}</Tooltip>
   },
 )

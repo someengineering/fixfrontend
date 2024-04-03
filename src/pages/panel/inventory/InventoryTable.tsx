@@ -98,6 +98,15 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
           field: i.name,
           headerName: i.display,
           flex: 1,
+          type:
+            i.kind === 'boolean' || i.kind === 'date'
+              ? i.kind
+              : i.kind === 'datetime'
+                ? 'dateTime'
+                : i.kind === 'double' || i.kind === 'float' || i.kind === 'int32' || i.kind === 'int64'
+                  ? 'number'
+                  : 'string',
+          display: 'text',
           minWidth: 100,
         })),
       )

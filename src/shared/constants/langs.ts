@@ -1,6 +1,6 @@
 import { deDE as muiDeDE, enUS as muiEnUS } from '@mui/material/locale'
-import { deDE as muiDataGridPremiumDeDE, enUS as muiDataGridPremiumEnUS } from '@mui/x-data-grid-premium'
-import { deDE as muiDatePickerDeDE, enUS as muiDatePickerEnUS } from '@mui/x-date-pickers'
+import { deDE as muiDataGridPremiumDeDE, enUS as muiDataGridPremiumEnUS } from '@mui/x-data-grid-premium/locales'
+import { deDE as muiDatePickerDeDE, enUS as muiDatePickerEnUS } from '@mui/x-date-pickers/locales'
 import 'dayjs/locale/de'
 import 'dayjs/locale/en'
 import GermanyIcon from 'flag-icons/flags/1x1/de.svg?react'
