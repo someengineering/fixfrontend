@@ -28,43 +28,49 @@ export const productTierToDescription = (productTier: ProductTier) => {
           t`Remediation recommendations`,
           t`Core CSPM scanning capabilities`,
         ],
+        support: [t`Community support`],
+        mostPopular: false,
       }
     case 'Plus':
       return {
         description: t`For growing teams looking to stay secure as they build out infrastructure.`,
         icon: WarehouseIcon,
-        cloudAccounts: { minimum: 3 },
+        cloudAccounts: { included: 3, additionalCost: 30 },
         seats: { included: 2, maximum: 20 },
-        price: 30,
+        price: 90,
         monthly: true,
         scanFrequency: t`Daily`,
         featuresTitle: t`Everything in Free, and`,
         features: [t`3-month history`, t`Email alerts`, t`Weekly email report`, t`Data export (CSV, JSON, PDF)`],
+        support: [t`Product support via email`],
+        mostPopular: false,
       }
     case 'Business':
       return {
         description: t`For engineering teams looking to automate their cloud infrastructure security.`,
         icon: ApartmentIcon,
-        cloudAccounts: { minimum: 10 },
+        cloudAccounts: { included: 10, additionalCost: 40 },
         seats: { included: 5, maximum: 50 },
-        price: 40,
+        price: 400,
         monthly: true,
         scanFrequency: t`Hourly`,
         featuresTitle: t`Everything in Plus, and`,
         features: [
           t`6-month history`,
           t`Custom policies (coming soon!)`,
-          t`Alerting integrations (PagerDuty, Slack, Discord, Teams)`,
+          t`Alerting integrations (PD, Slack, Discord, Teams)`,
           t`Task management integrations (coming soon!)`,
         ],
+        support: [t`Product support via email and live chat`],
+        mostPopular: true,
       }
     case 'Enterprise':
       return {
         description: t`For dedicated security teams looking to build an integrated security toolchain.`,
         icon: BusinessIcon,
-        cloudAccounts: { minimum: 25 },
+        cloudAccounts: { included: 25, additionalCost: 50 },
         seats: { included: 20 },
-        price: 50,
+        price: 1250,
         monthly: true,
         scanFrequency: t`Hourly`,
         featuresTitle: t`Everything in Business, and`,
@@ -76,6 +82,12 @@ export const productTierToDescription = (productTier: ProductTier) => {
           t`Workspace analytics (coming soon!)`,
           t`Snowflake data export (coming soon!)`,
         ],
+        support: [
+          t`Product support via email, live chat, and video call`,
+          t`Integration advice for your specific cloud environment via video call`,
+          t`Optional professional services`,
+        ],
+        mostPopular: false,
       }
   }
 }

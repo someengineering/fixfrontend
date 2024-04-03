@@ -1,4 +1,5 @@
 import { Trans, t } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
 import DoneIcon from '@mui/icons-material/Done'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import TrendingDownIcon from '@mui/icons-material/TrendingDown'
@@ -45,14 +46,16 @@ interface ProductTierCompProps {
 }
 
 const ProductTierComp = ({ productTier }: ProductTierCompProps) => {
+  const {
+    i18n: { locale },
+  } = useLingui()
   const label = productTierToLabel(productTier)
   const desc = productTierToDescription(productTier)
   if (!desc) {
     return null
   }
-  const priceDesc = desc.monthly ? t`per cloud account, per month` : ''
   return (
-    <Stack spacing={4} width={216}>
+    <Stack spacing={4} width={216} height="100%">
       <Typography component={Stack} direction="row" alignContent="center" variant="h4" color="primary.main">
         <Box mr={1.5} display="inline-block">
           <desc.icon />
@@ -65,22 +68,52 @@ const ProductTierComp = ({ productTier }: ProductTierCompProps) => {
         </Typography>{' '}
       </Typography>
       <Stack direction="column" my={1.5} spacing={0.25} alignItems="baseline">
-        <Typography variant="h2" fontWeight={700}>
-          ${desc.price.toString()}
-        </Typography>
-        {priceDesc ? (
-          <Typography variant="body2" fontWeight={600}>
-            {priceDesc}
+        <Stack direction="row" spacing={0.5} alignItems="center">
+          <Typography variant="h3" fontWeight={700} lineHeight="1.5rem" letterSpacing="-.025em" fontSize="1.875rem !important">
+            {desc.price.toLocaleString(locale, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })}
           </Typography>
-        ) : null}
-        <Typography variant="subtitle1" fontSize={14} fontWeight={400}>
-          (
-          {desc.cloudAccounts.maximum
-            ? t`maximum of ${desc.cloudAccounts.maximum} cloud accounts`
-            : t`minimum of ${desc.cloudAccounts.minimum} cloud accounts`}
-          )
-        </Typography>
-        {!priceDesc ? <Box height={16.09} /> : null}
+          {desc.monthly ? (
+            <Typography variant="h6" fontWeight={600} lineHeight="1.5rem" fontSize="1.125rem !important" marginTop=".125rem !important">
+              <Trans>/ month</Trans>
+            </Typography>
+          ) : null}
+        </Stack>
+        {desc.cloudAccounts.maximum ? (
+          <Typography
+            variant="subtitle1"
+            fontSize="1rem !important"
+            lineHeight="1.5rem"
+            fontWeight={400}
+            color={({ palette }) => (palette.mode === 'dark' ? palette.grey[400] : palette.grey[700])}
+          >
+            {t`maximum of ${desc.cloudAccounts.maximum} cloud accounts`}
+          </Typography>
+        ) : desc.cloudAccounts.included ? (
+          <Typography
+            variant="subtitle1"
+            fontSize="1rem !important"
+            lineHeight="1.5rem"
+            fontWeight={400}
+            color={({ palette }) => (palette.mode === 'dark' ? palette.grey[400] : palette.grey[700])}
+          >
+            {t`${desc.cloudAccounts.included} cloud accounts included`}
+          </Typography>
+        ) : (
+          <Box height="1.5rem" />
+        )}
+        {desc.cloudAccounts.additionalCost ? (
+          <Typography
+            variant="subtitle1"
+            fontSize="1rem !important"
+            lineHeight="1.5rem"
+            fontWeight={400}
+            color={({ palette }) => (palette.mode === 'dark' ? palette.grey[400] : palette.grey[700])}
+          >
+            {t`(${desc.cloudAccounts.additionalCost.toLocaleString(locale, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })} / month per additional account)`}
+          </Typography>
+        ) : (
+          <Box height="3rem" />
+        )}
       </Stack>
       <Divider />
       <Stack mt={1.5} spacing={0.75}>
@@ -111,6 +144,23 @@ const ProductTierComp = ({ productTier }: ProductTierCompProps) => {
             </ListItem>
           ))}
         </List>
+      </Stack>
+      <Stack justifyContent="end" flexGrow={1}>
+        <Stack height={155} spacing={0.75}>
+          <Typography fontWeight={600}>Support:</Typography>
+          <List dense>
+            {desc.support.map((support, i) => (
+              <ListItem key={i} sx={{ p: 0 }}>
+                <ListItemIcon sx={{ minWidth: 36 }}>
+                  <DoneIcon color="primary" />
+                </ListItemIcon>
+                <ListItemText>
+                  <Typography variant="body2">{support}</Typography>
+                </ListItemText>
+              </ListItem>
+            ))}
+          </List>
+        </Stack>
       </Stack>
     </Stack>
   )
