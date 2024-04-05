@@ -1,6 +1,7 @@
 import * as assert from 'assert'
 import { parse_expr } from './lexer.ts'
 import {
+  AggregateP,
   BoolOperationP,
   JsonElementP,
   LimitP,
@@ -51,6 +52,7 @@ const parse_term = parse_expr(TermP)
 const parse_query = parse_expr(QueryP)
 const parse_merge_query = parse_expr(MergeQueryP)
 const parse_with_clause = parse_expr(WithClauseP)
+const parse_aggregate = parse_expr(AggregateP)
 
 const foo = Path.from('foo')
 const bar = Path.from('bar')
@@ -307,6 +309,37 @@ test(`Parse Query`, () => {
         }),
       ],
     }),
+  )
+})
+
+test('Parse Aggregates', () => {
+  function assert_aggregate(query: string) {
+    assert.strictEqual(parse_aggregate(query).toString(), query)
+  }
+  function assert_query(query: string, expected: string | undefined = undefined) {
+    assert.strictEqual(parse_query(query).toString(), expected || query)
+  }
+  assert_aggregate('aggregate("kind" as k, bla as foo, bar: sum(1) as count)')
+  assert_aggregate('aggregate(sum(1) as count)')
+  assert_aggregate('aggregate(a, b, c, d, e: sum(a.b.c.d.e + 23) as count)')
+  assert_aggregate('aggregate(a.b.c.d.e as group: max(a.b.c.d.e + 23), min(a.b.c) as mini)')
+
+  // query with aggregate
+  assert_query('aggregate(a.b.c as foo, b.c as bla: sum(1) as count): is(instance) and foo = 23')
+  assert_query(
+    'search is(instance) and foo = 23 | aggregate foo: sum(1) as count',
+    'aggregate(foo: sum(1) as count): is(instance) and foo = 23',
+  )
+})
+
+test('Parse piped queries', () => {
+  assert.strictEqual(
+    parse_query('search is(instance) and foo = 23 | search is(foo) and bla = 12').toString(),
+    'is(instance) and foo = 23 and is(foo) and bla = 12',
+  )
+  assert.strictEqual(
+    parse_query('search is(instance) or foo = 23 | search is(foo) and bla = 12').toString(),
+    '(is(instance) or foo = 23) and is(foo) and bla = 12',
   )
 })
 
