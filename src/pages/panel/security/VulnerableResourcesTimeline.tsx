@@ -1,6 +1,7 @@
 import { useLingui } from '@lingui/react'
 import { Box, useTheme } from '@mui/material'
 import { LineChart, LineChartProps } from '@mui/x-charts'
+import dayjs from 'dayjs'
 import { useMemo } from 'react'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { sortedSeverities } from 'src/shared/constants'
@@ -32,7 +33,7 @@ export const VulnerableResourcesTimeline = ({ data }: { data: VulnerableResource
         if (currentDataIndex < 0) {
           newLabels.push(curDate)
           newLabels.sort((labelA, labelB) => new Date(labelA).valueOf() - new Date(labelB).valueOf())
-          currentDataIndex = labels.findIndex((i) => i.valueOf() === curDate.valueOf())
+          currentDataIndex = newLabels.findIndex((i) => i.valueOf() === curDate.valueOf())
         }
         const currentLabel = snakeCaseToUFStr(cur.group.severity)
         let currentColor = infoColor
@@ -109,7 +110,8 @@ export const VulnerableResourcesTimeline = ({ data }: { data: VulnerableResource
               scaleType: 'time',
               data: labels,
               tickNumber: labels.length,
-              valueFormatter: (val: Date, ctx) => (ctx.location === 'tick' ? val.toLocaleDateString(locale) : val.toLocaleString(locale)),
+              valueFormatter: (val: Date, ctx) =>
+                ctx.location === 'tick' ? val.toLocaleDateString(locale) : dayjs(val).locale(locale).format('llll'),
             },
           ]}
         />

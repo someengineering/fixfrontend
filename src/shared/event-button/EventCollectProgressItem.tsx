@@ -38,5 +38,5 @@ export const EventCollectProgressItem = ({ parts }: EventCollectProgressItemProp
   const formattedProgress = formatProgressEventParts(parts).detail
   // formattedProgress.name += ` (${data.data.task})`
 
-  return <SimpleTreeView>{formattedProgress?.map((item) => <ShowTreeView {...item} />)}</SimpleTreeView>
+  return <SimpleTreeView>{formattedProgress?.map((item, i) => <ShowTreeView {...item} key={i} />)}</SimpleTreeView>
 }

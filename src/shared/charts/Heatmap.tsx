@@ -1,6 +1,6 @@
 import { ButtonBase, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip, Typography } from '@mui/material'
 import { ReactNode, useMemo } from 'react'
-import { useScaleSequentialMaterialRdYwGn } from 'src/shared/utils/useScaleSequentialMaterialRdYwGn'
+import { useScaleSequentialRdYwGn } from 'src/shared/utils/useScaleSequentialRdYwGn'
 
 const CELL_WIDTH = 50
 
@@ -18,12 +18,14 @@ interface HeatmapProps {
   }[]
 }
 
+const NUMBER_OF_COLORS = 6
+
 const HeatmapCell = ({ title, value, tooltip }: HeatmapData) => {
-  const getColors = useScaleSequentialMaterialRdYwGn(0, 100, 'main')
+  const getColors = useScaleSequentialRdYwGn([0, NUMBER_OF_COLORS])
   const comp = (
     <Stack
       color="#fff"
-      bgcolor={value >= 0 ? getColors(value) : undefined}
+      bgcolor={value >= 0 ? getColors(Math.floor(value / (100 / NUMBER_OF_COLORS))) : undefined}
       width={CELL_WIDTH}
       height={CELL_WIDTH}
       alignItems="center"
@@ -47,7 +49,7 @@ export const Heatmap = ({ data }: HeatmapProps) => {
   )
   return (
     <TableContainer>
-      <Table size="small" padding="none" stickyHeader sx={{ maxWidth: '100%', width: 'auto' }}>
+      <Table size="small" padding="none" stickyHeader sx={{ maxWidth: '100%', width: 'auto', pb: 2 }}>
         <TableHead>
           <TableRow>
             <TableCell />

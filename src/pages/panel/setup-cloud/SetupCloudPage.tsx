@@ -7,6 +7,7 @@ import { useEvents } from 'src/core/events'
 import { SetupCloudButton } from 'src/pages/panel/shared/setup-cloud-button'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
+import { useHasBenchmarkCheck } from 'src/shared/layouts/panel-layout'
 import { useNonce } from 'src/shared/providers'
 import { setInitiated } from 'src/shared/utils/localstorage'
 import { ExternalId } from './ExternalId'
@@ -22,6 +23,7 @@ export default function SetupCloud() {
     i18n: { locale },
   } = useLingui()
   const navigate = useAbsoluteNavigate()
+  const hasBenchmark = useHasBenchmarkCheck()
   const methodToRemove = useRef<(() => void) | null>(null)
 
   useEffect(() => {
@@ -36,10 +38,10 @@ export default function SetupCloud() {
   useEffect(() => {
     return addListener('event-button', (ev) => {
       if (ev.kind === 'aws_account_discovered') {
-        navigate('/accounts')
+        navigate(hasBenchmark ? '/accounts' : '/security')
       }
     })
-  }, [addListener, navigate])
+  }, [addListener, navigate, hasBenchmark])
 
   return (
     <>

@@ -261,11 +261,11 @@ msgstr "All security issues fixed"
 msgid "Already have an account? Click here to Log in."
 msgstr "Already have an account? Click here to Log in."
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:102
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:104
 msgid "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
 msgstr "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:97
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:99
 msgid "Alternatively: Manual Cloud Setup"
 msgstr "Alternatively: Manual Cloud Setup"
 
@@ -316,7 +316,7 @@ msgstr "Are you sure?"
 msgid "Asset inventory"
 msgstr "Asset inventory"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:47
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:49
 msgid "Automatic Cloud Setup"
 msgstr "Automatic Cloud Setup"
 
@@ -398,7 +398,7 @@ msgstr "Change payment method"
 msgid "Change Product Tier"
 msgstr "Change Product Tier"
 
-#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:43
+#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:42
 msgid "Changes"
 msgstr "Changes"
 
@@ -738,12 +738,12 @@ msgstr "Expires"
 msgid "External Directories"
 msgstr "External Directories"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:121
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:123
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:55
 msgid "External Id"
 msgstr "External Id"
 
-#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:53
+#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:52
 msgid "Failed to retrieve changelog"
 msgstr "Failed to retrieve changelog"
 
@@ -890,7 +890,7 @@ msgstr "Ignored"
 msgid "Improved"
 msgstr "Improved"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:50
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:52
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 
@@ -987,7 +987,7 @@ msgstr "Low"
 msgid "Low Utilization Compute Instances and Databases"
 msgstr "Low Utilization Compute Instances and Databases"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:55
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:57
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 
@@ -1479,7 +1479,7 @@ msgstr "The OTP or recovery code you entered is incorrect or the OTP has expired
 msgid "The selected resource does not exist anymore."
 msgstr "The selected resource does not exist anymore."
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:110
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:112
 msgid "The Stack requires the following parameters"
 msgstr "The Stack requires the following parameters"
 
@@ -1499,7 +1499,7 @@ msgstr "This account is currently in a degraded state possibly due to a misconfi
 msgid "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 msgstr "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:88
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:90
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 
@@ -1657,7 +1657,7 @@ msgstr "Workspace Alerting Settings"
 msgid "Workspace analytics (coming soon!)"
 msgstr "Workspace analytics (coming soon!)"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:139
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:141
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:47
 msgid "Workspace Id"
 msgstr "Workspace Id"

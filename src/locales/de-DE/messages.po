@@ -261,11 +261,11 @@ msgstr "Alle Sicherheitsprobleme behoben"
 msgid "Already have an account? Click here to Log in."
 msgstr "Sie haben bereits ein Konto? Klicken Sie hier, um sich einzuloggen."
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:102
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:104
 msgid "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
 msgstr "Wenn Sie den Stack alternativ manuell bereitstellen möchten, können Sie folgendes CloudFormation-Template verwenden"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:97
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:99
 msgid "Alternatively: Manual Cloud Setup"
 msgstr "Alternativ: Manuelles Cloud Setup"
 
@@ -316,7 +316,7 @@ msgstr "Bist du sicher?"
 msgid "Asset inventory"
 msgstr "Cloud-Asset-Inventar"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:47
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:49
 msgid "Automatic Cloud Setup"
 msgstr "Automatisches Cloud Setup"
 
@@ -398,7 +398,7 @@ msgstr "Bezahlungsmethode ändern"
 msgid "Change Product Tier"
 msgstr "Produktstufe ändern"
 
-#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:43
+#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:42
 msgid "Changes"
 msgstr "Änderungen"
 
@@ -738,12 +738,12 @@ msgstr "Läuft ab"
 msgid "External Directories"
 msgstr "Externe Verzeichnisse"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:121
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:123
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:55
 msgid "External Id"
 msgstr "External Id"
 
-#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:53
+#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:52
 msgid "Failed to retrieve changelog"
 msgstr "Das Änderungsprotokoll konnte nicht abgerufen werden"
 
@@ -890,7 +890,7 @@ msgstr "Ignoriert"
 msgid "Improved"
 msgstr "Verbessert"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:50
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:52
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS Konto ein."
 
@@ -987,7 +987,7 @@ msgstr "Niedrig"
 msgid "Low Utilization Compute Instances and Databases"
 msgstr "Recheninstanzen und Datenbanken mit geringer Auslastung"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:55
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:57
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS Konto angemeldet sind, bevor Sie auf die Schaltfläche DEPLOY STACK klicken."
 
@@ -1479,7 +1479,7 @@ msgstr "Das von Ihnen eingegebene OTP oder Wiederherstellungscode ist falsch ode
 msgid "The selected resource does not exist anymore."
 msgstr "Die ausgewählte Ressource existiert nicht mehr."
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:110
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:112
 msgid "The Stack requires the following parameters"
 msgstr "Der Stack erfordert die folgenden Parameter"
 
@@ -1499,7 +1499,7 @@ msgstr "Dieses Konto befindet sich derzeit in einem nicht-funktionalen Zustand, 
 msgid "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 msgstr "Diese Email-Adresse ist bereits registriert. Wenn dies Ihre E-Mail-Adresse ist, versuchen Sie bitte, sich anzumelden, oder klicken Sie auf der Anmeldeseite auf „Passwort vergessen“, um Ihr Passwort zurückzusetzen."
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:88
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:90
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM Rolle in Ihrem AWS Konto erstellt. Diese Rolle wird von FIX verwendet, um in Ihrem AWS Konto Sicherheitsscans durchzuführen."
 
@@ -1657,7 +1657,7 @@ msgstr "Workspace-Benachrichtigungseinstellungen"
 msgid "Workspace analytics (coming soon!)"
 msgstr "Arbeitsbereichsanalyse (bald verfügbar!)"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:139
+#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:141
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:47
 msgid "Workspace Id"
 msgstr "Workspace Id"

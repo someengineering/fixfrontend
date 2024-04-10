@@ -9,8 +9,7 @@ import { getWorkspaceInventoryNodeHistoryQuery } from 'src/pages/panel/shared/qu
 import { Spinner } from 'src/shared/loading'
 import { StickyAccordionSummaryWithIcon } from 'src/shared/sticky-accordion-summary'
 import { WorkspaceInventoryNodeHistory } from 'src/shared/types/server'
-import { ResourceDetailChangeLogHistory } from './utils'
-import { ResourceDetailChangeLogSelectedHistory } from './utils/ResourceDetailChangeLogSelectedHistory'
+import { ResourceDetailChangeLogHistory, ResourceDetailChangeLogSelectedHistory } from './utils'
 
 interface ResourceDetailChangeLogProps {
   notFound?: boolean
