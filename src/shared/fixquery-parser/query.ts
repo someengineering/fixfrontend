@@ -1,4 +1,5 @@
 import { createDraft, Draft, finishDraft, immerable, produce } from 'immer'
+import { combineOptional } from 'src/shared/utils/optional.ts'
 import { parse_path, parse_query } from './parser.ts'
 import { render } from './templater.ts'
 
@@ -724,10 +725,88 @@ export class Part {
     return `${this.term.toString()}${with_clause}${sort}${limit}${nav}`
   }
 }
+export class AggregateVariableName {
+  [immerable] = true
+  path: Path
+  constructor({ path }: { path: Path }) {
+    this.path = path
+  }
 
-interface Aggregate {
-  // Define the properties of Aggregate here
-  toString(): string
+  toString(): string {
+    return this.path.toString()
+  }
+}
+export class AggregateVariableCombined {
+  [immerable] = true
+  name: string
+
+  constructor({ name }: { name: string }) {
+    this.name = name
+  }
+
+  toString(): string {
+    return this.name
+  }
+}
+
+export class AggregateVariable {
+  [immerable] = true
+  name: AggregateVariableName | AggregateVariableCombined
+  as_name: string | undefined
+  constructor({ name, as_name }: { name: AggregateVariableName | AggregateVariableCombined; as_name: string | undefined }) {
+    this.name = name
+    this.as_name = as_name
+  }
+  toString(): string {
+    const with_as = this.as_name ? ` as ${this.as_name}` : ''
+    return `${this.name.toString()}${with_as}`
+  }
+}
+
+export class AggregateOp {
+  [immerable] = true
+  operation: string
+  value: number
+  constructor({ operation, value }: { operation: string; value: number }) {
+    this.operation = operation
+    this.value = value
+  }
+}
+
+export class AggregateFunction {
+  [immerable] = true
+  func: string
+  path: Path | number
+  ops: AggregateOp[]
+  as_name: string | undefined
+  constructor({ func, path, ops, as_name }: { func: string; path: Path | number; ops: AggregateOp[]; as_name: string | undefined }) {
+    this.func = func
+    this.path = path
+    this.ops = ops
+    this.as_name = as_name
+  }
+  toString(): string {
+    const with_as = this.as_name ? ` as ${this.as_name}` : ''
+    const with_ops = this.ops.map((op) => ` ${op.operation} ${op.value}`).join(' ')
+    return `${this.func}(${this.path.toString()}${with_ops})${with_as}`
+  }
+}
+
+export class Aggregate {
+  [immerable] = true
+  group_by: AggregateVariable[]
+  group_func: AggregateFunction[]
+  constructor({ group_by, group_func }: { group_by: AggregateVariable[]; group_func: AggregateFunction[] }) {
+    this.group_by = group_by
+    this.group_func = group_func
+  }
+
+  toString(): string {
+    const grouped = this.group_by.map((gb) => gb.toString()).join(', ')
+    const funcs = this.group_func.map((fn) => fn.toString()).join(', ')
+    const delim = this.group_by.length > 0 ? ': ' : ''
+    return `aggregate(${grouped}${delim}${funcs})`
+  }
 }
 
 const CloudIdentifier = new Set(['/ancestors.cloud.reported.id', '/ancestors.cloud.reported.name'])
@@ -746,10 +825,42 @@ export class Query {
     this.aggregate = aggregate
   }
 
+  public combine(other: Query): Query {
+    if (this.aggregate && other.aggregate) {
+      throw new Error('Cannot combine two aggregate queries')
+    }
+    const aggregate = this.aggregate ? this.aggregate : other.aggregate
+    let parts: Part[] = []
+    if (this.parts.length === 0) {
+      parts = other.parts
+    } else if (other.parts.length === 0) {
+      parts = this.parts
+    } else if (this.parts[this.parts.length - 1].navigation) {
+      parts = other.parts.concat(this.parts)
+    } else {
+      const left_last = this.parts[this.parts.length - 1]
+      const right_first = other.parts[0]
+      if (left_last.with_clause && right_first.with_clause) {
+        throw Error('Can not combine 2 with clauses!')
+      }
+      const term = new CombinedTerm({ left: left_last.term, op: 'and', right: right_first.term })
+      const with_clause = left_last.with_clause ? left_last.with_clause : right_first.with_clause
+      const sort = left_last.sort.concat(right_first.sort)
+      const limit = combineOptional(
+        left_last.limit,
+        right_first.limit,
+        (l, r) => new Limit({ offset: Math.max(l.offset, r.offset), length: Math.min(l.length, r.length) }),
+      )
+      const combined = new Part({ term, with_clause, sort, limit, navigation: right_first.navigation })
+      parts = [...other.parts.slice(0, -1), combined, ...this.parts.slice(1)]
+    }
+    return new Query({ parts, preamble: { ...this.preamble, ...other.preamble }, aggregate })
+  }
+
   toString(): string {
     const aggregate = this.aggregate ? this.aggregate.toString() : ''
     const pre = Object.entries(this.preamble)
-    const colon = pre.length > 0 || this.aggregate != undefined ? ':' : ''
+    const colon = pre.length > 0 || this.aggregate != undefined ? ': ' : ''
     const preamble = pre.length > 0 ? '(' + pre.map(([k, v]) => `${k}=${JSON.stringify(v)}`).join(', ') + ')' : ''
     const parts = this.parts.map((p) => p.toString()).join(' ')
     return `${aggregate}${preamble}${colon}${parts}`

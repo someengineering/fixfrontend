@@ -1,6 +1,13 @@
-import { alt, apply, kmid, kright, list_sc, opt, Parser, rep_sc, rule, seq, tok } from 'typescript-parsec'
-import { parse_expr, T } from './lexer.ts'
+import { Parser, alt, apply, kleft, kmid, kright, list_sc, opt, rep_sc, rule, seq, str as str_p, tok } from 'typescript-parsec'
+import { Token } from 'typescript-parsec/lib/Lexer'
+import { T, parse_expr } from './lexer.ts'
 import {
+  Aggregate,
+  AggregateFunction,
+  AggregateOp,
+  AggregateVariable,
+  AggregateVariableCombined,
+  AggregateVariableName,
   AllTerm,
   CombinedTerm,
   ContextTerm,
@@ -39,6 +46,7 @@ export const LimitP = rule<T, Limit>()
 export const WithClauseP = rule<T, WithClause>()
 export const NavigationP = rule<T, Navigation>()
 export const PartP = rule<T, Part>()
+export const AggregateP = rule<T, Aggregate>()
 export const QueryP = rule<T, Query>()
 
 function times_n<TKind, TResult>(parser: Parser<TKind, TResult>): Parser<TKind, TResult[]> {
@@ -49,20 +57,25 @@ function times_n_sep<TKind, TResult, TSeparator>(parser: Parser<TKind, TResult>,
   return apply(seq(parser, rep_sc(kright(sep, parser))), ([first, rest]) => [first, ...rest])
 }
 
-function str(t: T): Parser<T, string> {
+function as_str(t: T): Parser<T, string> {
   return apply(tok(t), (t) => t.text)
 }
+
+function str(t: string): Parser<T, Token<T>> {
+  return str_p(t)
+}
+
 function num(): Parser<T, number> {
   return apply(tok(T.Integer), (t) => parseInt(t.text))
 }
 
+const numberP = apply(alt(tok(T.Integer), tok(T.Float)), (t) => parseFloat(t.text))
 JsonElementP.setPattern(
   alt(
     apply(tok(T.True), () => true),
     apply(tok(T.False), () => false),
     apply(tok(T.Null), () => null),
-    apply(tok(T.Integer), (t) => parseInt(t.text)),
-    apply(tok(T.Float), (t) => parseFloat(t.text)),
+    numberP,
     apply(tok(T.DoubleQuotedString), (t) => t.text.slice(1, -1)),
     apply(times_n(alt(tok(T.Literal), tok(T.Minus), tok(T.Dot), tok(T.Colon), tok(T.Integer), tok(T.Float))), (ts) =>
       ts.map((t) => t.text).join(''),
@@ -80,11 +93,11 @@ JsonElementP.setPattern(
   ),
 )
 
-const array_access = apply(kmid(tok(T.LBracket), opt(alt(num(), str(T.Star))), tok(T.RBracket)), (ac) => (ac != undefined ? ac : '*'))
+const array_access = apply(kmid(tok(T.LBracket), opt(alt(num(), as_str(T.Star))), tok(T.RBracket)), (ac) => (ac != undefined ? ac : '*'))
 const path_part = alt(
-  apply(seq(str(T.Literal), opt(array_access)), ([name, array_access]) => new PathPart({ name, array_access, backtick: false })),
+  apply(seq(as_str(T.Literal), opt(array_access)), ([name, array_access]) => new PathPart({ name, array_access, backtick: false })),
   apply(
-    seq(str(T.BackTickedString), opt(array_access)),
+    seq(as_str(T.BackTickedString), opt(array_access)),
     ([name, array_access]) => new PathPart({ name: name.slice(1, -1), array_access, backtick: true }),
   ),
 )
@@ -238,7 +251,59 @@ PartP.setPattern(
   ),
 )
 
-QueryP.setPattern(apply(rep_sc(PartP), (parts) => new Query({ parts })))
+const allowed_names = apply(alt(tok(T.Literal), tok(T.Count), tok(T.Empty)), (t) => t.text)
+const aggregate_variable_name = apply(PathP, (path) => new AggregateVariableName({ path }))
+const aggregate_variable_combined = apply(tok(T.DoubleQuotedString), (t) => new AggregateVariableCombined({ name: t.text }))
+const aggregate_variable = apply(
+  seq(alt(aggregate_variable_name, aggregate_variable_combined), opt(kright(str('as'), allowed_names))),
+  ([name, as_name]) => new AggregateVariable({ name, as_name }),
+)
+const aggregate_func_name = alt(str('sum'), str('count'), str('min'), str('max'), str('avg'), str('stddev'), str('variance'))
+const aggregate_func_ops = alt(tok(T.Plus), tok(T.Minus), tok(T.Star), tok(T.Slash), tok(T.Percent))
+const aggregate_func_op = apply(
+  seq(aggregate_func_ops, alt(tok(T.Float), tok(T.Integer))),
+  ([op, value]) => new AggregateOp({ operation: op.text, value: parseFloat(value.text) }),
+)
+const aggregate_func = apply(
+  seq(
+    aggregate_func_name,
+    tok(T.LParen),
+    alt(PathP, numberP),
+    rep_sc(aggregate_func_op),
+    tok(T.RParen),
+    opt(kright(str('as'), allowed_names)),
+  ),
+  ([func, _, path, ops, __, as_name]) => new AggregateFunction({ func: func.text, path, ops, as_name }),
+)
+const aggregate_parameter = seq(
+  opt(kleft(times_n_sep(aggregate_variable, tok(T.Comma)), tok(T.Colon))),
+  times_n_sep(aggregate_func, tok(T.Comma)),
+)
+AggregateP.setPattern(
+  apply(
+    kright(str('aggregate'), alt(kmid(tok(T.LParen), aggregate_parameter, tok(T.RParen)), aggregate_parameter)),
+    ([group_by, group_func]) => new Aggregate({ group_by: group_by || [], group_func }),
+  ),
+)
+
+const single_query = apply(
+  seq(opt(str('search')), opt(kleft(AggregateP, tok(T.Colon))), times_n(PartP)),
+  ([_, aggregate, parts]) => new Query({ parts, aggregate }),
+)
+
+function combine_parts(l: Query | Aggregate, r: Query | Aggregate): Query {
+  if (l instanceof Query && r instanceof Query) {
+    return l.combine(r)
+  } else if (l instanceof Query && l.aggregate == undefined && r instanceof Aggregate) {
+    return new Query({ parts: l.parts, aggregate: r })
+  } else if (l instanceof Aggregate && r instanceof Query && r.aggregate == undefined) {
+    return new Query({ parts: r.parts, aggregate: l })
+  } else {
+    throw new Error(`Can not combine ${l.toString()} and ${r.toString()}`)
+  }
+}
+
+QueryP.setPattern(apply(times_n_sep(alt(single_query, AggregateP), tok(T.Pipe)), (ps) => ps.reduce((l, r) => combine_parts(l, r)) as Query))
 
 export const parse_query = parse_expr(QueryP)
 export const parse_path = parse_expr(PathP)

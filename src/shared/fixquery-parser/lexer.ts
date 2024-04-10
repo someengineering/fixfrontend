@@ -37,6 +37,8 @@ export enum T {
   Minus, // -
   Star, // *
   Slash, // /
+  Percent, // %
+  Pipe, // |
   Equal, // =
   Tilde, // ~
   NotTilde,
@@ -104,6 +106,8 @@ export const FixQueryLexerRules: [boolean, RegExp, T][] = [
   [true, /^-/g, T.Minus],
   [true, /^\*/g, T.Star],
   [true, /^\//g, T.Slash],
+  [true, /^%/g, T.Percent],
+  [true, /^\|/g, T.Pipe],
   [true, /^!~/g, T.NotTilde],
   [true, /^~/g, T.Tilde],
   [true, /^=/g, T.Equal],
