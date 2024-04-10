@@ -398,7 +398,7 @@ msgstr "Bezahlungsmethode ändern"
 msgid "Change Product Tier"
 msgstr "Produktstufe ändern"
 
-#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:43
+#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:42
 msgid "Changes"
 msgstr "Änderungen"
 
@@ -743,7 +743,7 @@ msgstr "Externe Verzeichnisse"
 msgid "External Id"
 msgstr "External Id"
 
-#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:53
+#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:52
 msgid "Failed to retrieve changelog"
 msgstr "Das Änderungsprotokoll konnte nicht abgerufen werden"
 

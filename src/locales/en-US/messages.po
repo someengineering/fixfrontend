@@ -398,7 +398,7 @@ msgstr "Change payment method"
 msgid "Change Product Tier"
 msgstr "Change Product Tier"
 
-#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:43
+#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:42
 msgid "Changes"
 msgstr "Changes"
 
@@ -743,7 +743,7 @@ msgstr "External Directories"
 msgid "External Id"
 msgstr "External Id"
 
-#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:53
+#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:52
 msgid "Failed to retrieve changelog"
 msgstr "Failed to retrieve changelog"
 
