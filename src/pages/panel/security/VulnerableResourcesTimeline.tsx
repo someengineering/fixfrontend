@@ -6,6 +6,7 @@ import { useMemo } from 'react'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { sortedSeverities } from 'src/shared/constants'
 import { SeverityType, VulnerableResources } from 'src/shared/types/server'
+import { parseISO8601Duration } from 'src/shared/utils/parseDuration'
 import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 
 const getNumberFormatter = (locale: string) => (value: number | null) => (value ? Math.round(value).toLocaleString(locale) : '-')
@@ -111,7 +112,9 @@ export const VulnerableResourcesTimeline = ({ data }: { data: VulnerableResource
               data: labels,
               tickNumber: labels.length,
               valueFormatter: (val: Date, ctx) =>
-                ctx.location === 'tick' ? val.toLocaleDateString(locale) : dayjs(val).locale(locale).format('llll'),
+                ctx.location === 'tick'
+                  ? dayjs(val).locale(locale).format('L')
+                  : dayjs(val).format(parseISO8601Duration(data.granularity).duration >= 24 * 60 * 60 * 1000 ? 'dddd, LL' : 'llll'),
             },
           ]}
         />
