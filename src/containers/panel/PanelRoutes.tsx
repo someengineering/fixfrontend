@@ -79,7 +79,10 @@ export function PanelRoutes() {
     <Routes>
       <Route element={<SubscriptionCheckGuard />}>
         <Route path="/">
-          <Route index element={<Navigate to="/inventory" replace />} />
+          <Route
+            index
+            element={<Navigate to={{ pathname: '/inventory', search: window.location.search, hash: window.location.hash }} replace />}
+          />
           <Route element={<AccountCheckGuard />}>
             <Route element={<BenchmarkCheckGuard />}>
               <Route path="security" element={<SecurityPage />} />

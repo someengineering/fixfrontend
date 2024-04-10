@@ -1,4 +1,5 @@
 export { ResourceDetailChangeLogHistory } from './ResourceDetailChangeLogHistory'
+export { ResourceDetailChangeLogSelectedHistory } from './ResourceDetailChangeLogSelectedHistory'
 export { ResourceDetailChangeLogSelectedHistoryAccordion } from './ResourceDetailChangeLogSelectedHistoryAccordion'
 export { getArrayFromInOP } from './getArrayFromInOP'
 export { getAutoCompletePropsFromKey, getAutocompleteDataFromKey, getAutocompleteValueFromKey } from './getAutoCompleteFromKey'
