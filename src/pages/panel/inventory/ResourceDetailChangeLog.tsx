@@ -1,5 +1,4 @@
 import { Trans } from '@lingui/macro'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Timeline } from '@mui/lab'
 import { Accordion, AccordionDetails, Divider, Stack, Typography } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
@@ -8,8 +7,8 @@ import { useParams } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryNodeHistoryQuery } from 'src/pages/panel/shared/queries'
 import { Spinner } from 'src/shared/loading'
+import { StickyAccordionSummaryWithIcon } from 'src/shared/sticky-accordion-summary'
 import { WorkspaceInventoryNodeHistory } from 'src/shared/types/server'
-import { ResourceDetailAccordionSummary } from './ResourceDetail'
 import { ResourceDetailChangeLogHistory, ResourceDetailChangeLogSelectedHistory } from './utils'
 
 interface ResourceDetailChangeLogProps {
@@ -39,9 +38,9 @@ export const ResourceDetailChangeLog = ({ notFound }: ResourceDetailChangeLogPro
   return data?.length || isLoading || error || !expanded ? (
     <>
       <Accordion expanded={expanded} onChange={(_, value) => setExpanded(value)}>
-        <ResourceDetailAccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <StickyAccordionSummaryWithIcon offset={6}>
           <Trans>Changes</Trans>
-        </ResourceDetailAccordionSummary>
+        </StickyAccordionSummaryWithIcon>
         <Divider />
         <AccordionDetails>
           {isLoading ? (

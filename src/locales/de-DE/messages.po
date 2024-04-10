@@ -168,7 +168,7 @@ msgstr "Verlassen"
 msgid "Access to your account is broken"
 msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:227
+#: src/pages/panel/inventory/ResourceDetail.tsx:226
 msgid "Account"
 msgstr "Konto"
 
@@ -234,7 +234,7 @@ msgstr "Admin"
 msgid "Advanced search query"
 msgstr "Erweiterte Suchabfrage"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:236
+#: src/pages/panel/inventory/ResourceDetail.tsx:235
 #: src/shared/charts/NetworkDiagram.tsx:408
 msgid "Age"
 msgstr "Alter"
@@ -328,7 +328,7 @@ msgstr "AWS Marketplace"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:212
+#: src/pages/panel/inventory/ResourceDetail.tsx:211
 msgid "Basic Information"
 msgstr "Grundinformation"
 
@@ -345,7 +345,7 @@ msgstr "Benchmark"
 msgid "Benchmark: {0}"
 msgstr "Benchmark: {0}"
 
-#: src/pages/panel/inventory/utils/ResourceDetailChangeLogSelectedHistoryAccordion.tsx:45
+#: src/pages/panel/inventory/utils/ResourceDetailChangeLogSelectedHistoryAccordion.tsx:54
 #: src/pages/panel/shared/utils/chartToShow.tsx:16
 msgid "Benchmarks"
 msgstr "Benchmarks"
@@ -416,7 +416,7 @@ msgstr "Schließen"
 
 #: src/pages/panel/accounts/AccountRow.tsx:406
 #: src/pages/panel/accounts/AccountsTableItem.tsx:41
-#: src/pages/panel/inventory/ResourceDetail.tsx:223
+#: src/pages/panel/inventory/ResourceDetail.tsx:222
 #: src/pages/panel/security/AccountCard.tsx:37
 msgid "Cloud"
 msgstr "Cloud"
@@ -522,7 +522,7 @@ msgstr "Kopieren"
 msgid "Core CSPM scanning capabilities"
 msgstr "Kern-CSPM-Scanfunktionen"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:230
+#: src/pages/panel/inventory/ResourceDetail.tsx:229
 msgid "Created Time"
 msgstr "Erstellte Zeit"
 
@@ -607,7 +607,7 @@ msgstr "Deploy Stack"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:308
+#: src/pages/panel/inventory/ResourceDetail.tsx:307
 msgid "Details"
 msgstr "Einzelheiten"
 
@@ -690,7 +690,7 @@ msgid "Enable"
 msgstr "Aktivieren"
 
 #: src/pages/panel/inventory/ResourceDetailFailedCheckIgnoredChecks.tsx:42
-#: src/pages/panel/inventory/ResourceDetailFailedChecks.tsx:94
+#: src/pages/panel/inventory/ResourceDetailFailedChecks.tsx:93
 msgid "Enable all"
 msgstr "Alle aktivieren"
 
@@ -779,7 +779,7 @@ msgstr "Findet Snapshots von Festplatten, die nicht mehr verwendet werden und m�
 msgid "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
 msgstr "Fix scannt Ihre Infrastruktur- und Ressourcenkonfigurationen mithilfe des schreibgeschützten API-Zugriffs. Keine Agenten erforderlich."
 
-#: src/pages/panel/inventory/utils/ResourceDetailChangeLogSelectedHistory.tsx:93
+#: src/pages/panel/inventory/utils/ResourceDetailChangeLogSelectedHistoryDiff.tsx:48
 msgid "Fixed issues"
 msgstr "Behobene Probleme"
 
@@ -835,7 +835,7 @@ msgstr "Wie repariert man"
 
 #: src/pages/panel/accounts/AccountRow.tsx:403
 #: src/pages/panel/accounts/AccountsTableItem.tsx:44
-#: src/pages/panel/inventory/ResourceDetail.tsx:220
+#: src/pages/panel/inventory/ResourceDetail.tsx:219
 #: src/pages/panel/security/AccountCard.tsx:34
 #: src/shared/charts/NetworkDiagram.tsx:406
 msgid "ID"
@@ -878,7 +878,7 @@ msgid "Ignore"
 msgstr "Ignorieren"
 
 #: src/pages/panel/inventory/ResourceDetailFailedCheckIgnoredChecks.tsx:42
-#: src/pages/panel/inventory/ResourceDetailFailedChecks.tsx:94
+#: src/pages/panel/inventory/ResourceDetailFailedChecks.tsx:93
 msgid "Ignore all"
 msgstr "Alles ignorieren"
 
@@ -945,7 +945,7 @@ msgstr "Externen Benutzer einladen"
 msgid "Invites"
 msgstr "Lädt ein"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:219
+#: src/pages/panel/inventory/ResourceDetail.tsx:218
 #: src/shared/charts/NetworkDiagram.tsx:405
 msgid "Kind"
 msgstr "Art"
@@ -1031,7 +1031,7 @@ msgstr "Die meisten nicht konformen Konten"
 
 #: src/pages/panel/accounts/AccountRow.tsx:409
 #: src/pages/panel/accounts/AccountsTableItem.tsx:47
-#: src/pages/panel/inventory/ResourceDetail.tsx:221
+#: src/pages/panel/inventory/ResourceDetail.tsx:220
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:18
@@ -1051,11 +1051,15 @@ msgstr "Name"
 msgid "Neighborhood view"
 msgstr "Nachbarschaftsansicht"
 
+#: src/pages/panel/inventory/ResourceDetail.tsx:199
+msgid "Neighborhood View"
+msgstr "Nachbarschaftsansicht"
+
 #: src/pages/panel/security/OverallCard.tsx:167
 msgid "new improved resources in the past {since}"
 msgstr "neue verbesserte Ressourcen in der Vergangenheit {since}"
 
-#: src/pages/panel/inventory/utils/ResourceDetailChangeLogSelectedHistory.tsx:105
+#: src/pages/panel/inventory/utils/ResourceDetailChangeLogSelectedHistoryDiff.tsx:65
 msgid "New issues"
 msgstr "Neue Ausgaben"
 
@@ -1125,11 +1129,11 @@ msgstr "Öffnen Sie den Datenbankzugriff"
 msgid "Open drawer"
 msgstr "Öffene die Schublade"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:245
+#: src/pages/panel/inventory/ResourceDetail.tsx:244
 msgid "Open resource {name} in AWS Console"
 msgstr "Öffnen Sie die Ressource {name} in der AWS-Konsole"
 
-#: src/pages/panel/inventory/utils/ResourceDetailChangeLogSelectedHistoryAccordion.tsx:55
+#: src/pages/panel/inventory/utils/ResourceDetailChangeLogSelectedHistoryAccordion.tsx:64
 msgid "Opened at"
 msgstr "Geöffnet um"
 
@@ -1282,7 +1286,7 @@ msgstr "Wiederherstellungscodes"
 msgid "Regenerate"
 msgstr "Regenerieren"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:228
+#: src/pages/panel/inventory/ResourceDetail.tsx:227
 msgid "Region"
 msgstr "Region"
 
@@ -1355,7 +1359,7 @@ msgstr "Sicherheit"
 msgid "Security benchmarks"
 msgstr "Sicherheitsbenchmarks"
 
-#: src/pages/panel/inventory/ResourceDetailFailedChecks.tsx:82
+#: src/pages/panel/inventory/ResourceDetailFailedChecks.tsx:81
 msgid "Security Issues"
 msgstr "Sicherheitsprobleme"
 
@@ -1372,8 +1376,8 @@ msgstr "Sicherheitsscan"
 msgid "Security Score"
 msgstr "Sicherheitsbewertung"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:256
-#: src/pages/panel/inventory/ResourceDetail.tsx:267
+#: src/pages/panel/inventory/ResourceDetail.tsx:255
+#: src/pages/panel/inventory/ResourceDetail.tsx:266
 msgid "See this Resource in AWS Console"
 msgstr "Sehen Sie sich diese Ressource in der AWS-Konsole an"
 
@@ -1419,7 +1423,7 @@ msgstr "Snowflake-Datenexport (bald verfügbar!)"
 msgid "Some checks have been disabled for this resource"
 msgstr "Einige Prüfungen wurden für diese Ressource deaktiviert"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:283
+#: src/pages/panel/inventory/ResourceDetail.tsx:282
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:33
 #: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:23
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:107
@@ -1450,7 +1454,7 @@ msgid "Successfully invited {email}"
 msgstr "{email} erfolgreich eingeladen"
 
 #: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:86
-#: src/pages/panel/inventory/ResourceDetail.tsx:293
+#: src/pages/panel/inventory/ResourceDetail.tsx:292
 msgid "Tags"
 msgstr "Stichworte"
 
@@ -1471,7 +1475,7 @@ msgstr "Die Änderung wird ab dem nächsten Sicherheitsscan aktiv. Bis zum näch
 msgid "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
 msgstr "Das von Ihnen eingegebene OTP oder Wiederherstellungscode ist falsch oder das OTP ist abgelaufen. Bitte versuchen Sie es erneut einzugeben."
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:281
+#: src/pages/panel/inventory/ResourceDetail.tsx:280
 msgid "The selected resource does not exist anymore."
 msgstr "Die ausgewählte Ressource existiert nicht mehr."
 
@@ -1503,7 +1507,7 @@ msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM 
 msgid "Tier"
 msgstr "Stufe"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:262
+#: src/pages/panel/inventory/ResourceDetail.tsx:261
 msgid "To access this resource, please ensure that you are logged into the AWS account: {account}"
 msgstr "Um auf diese Ressource zuzugreifen, stellen Sie bitte sicher, dass Sie beim AWS-Konto angemeldet sind: {account}"
 

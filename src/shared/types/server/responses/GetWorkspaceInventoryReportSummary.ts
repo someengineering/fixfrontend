@@ -1,24 +1,6 @@
-import { FailedCheck, SeverityType } from './shared'
+import { Benchmark, FailedCheck, SeverityType } from './shared'
 
 export type FailedChecksType<value = number> = Record<SeverityType, value>
-
-export interface Benchmark {
-  id: string
-  title: string
-  framework: string
-  version: string
-  clouds: string[]
-  description: string
-  nr_of_checks: number
-  account_summary: Record<
-    string,
-    {
-      score: number
-      failed_checks: Partial<FailedChecksType> | null
-      failed_resource_checks: Partial<FailedChecksType> | null
-    }
-  >
-}
 
 export interface ChangedSituation {
   since: string
@@ -59,11 +41,23 @@ export interface VulnerableResources {
   data: VulnerableResource[]
 }
 
+export interface WorkspaceBenchmark extends Benchmark {
+  nr_of_checks: number
+  account_summary: Record<
+    string,
+    {
+      score: number
+      failed_checks: Partial<FailedChecksType> | null
+      failed_resource_checks: Partial<FailedChecksType> | null
+    }
+  >
+}
+
 export interface GetWorkspaceInventoryReportSummaryResponse {
   overall_score: number
   check_summary: WorkspaceCheckSummary
   accounts: WorkspaceAccountReportSummary[]
-  benchmarks: Benchmark[]
+  benchmarks: WorkspaceBenchmark[]
   changed_vulnerable: ChangedSituation
   changed_compliant: ChangedSituation
   top_checks: FailedCheck[]
