@@ -1,14 +1,14 @@
 import { Trans } from '@lingui/macro'
-import { useLingui } from '@lingui/react'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Accordion, AccordionDetails, AccordionSummary, Alert, Box, Divider, Typography } from '@mui/material'
-import { Suspense, useEffect, useRef } from 'react'
+import { Suspense, useEffect } from 'react'
 import { useEvents } from 'src/core/events'
 import { SetupCloudButton } from 'src/pages/panel/shared/setup-cloud-button'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
+import { env } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { useHasBenchmarkCheck } from 'src/shared/layouts/panel-layout'
-import { useNonce } from 'src/shared/providers'
+import { Tabs } from 'src/shared/tabs'
 import { setInitiated } from 'src/shared/utils/localstorage'
 import { ExternalId } from './ExternalId'
 import { ExternalIdSkeleton } from './ExternalId.skeleton'
@@ -18,21 +18,11 @@ import { WorkspaceId } from './WorkspaceId'
 
 export default function SetupCloud() {
   const { addListener } = useEvents()
-  const nonce = useNonce()
-  const {
-    i18n: { locale },
-  } = useLingui()
   const navigate = useAbsoluteNavigate()
   const hasBenchmark = useHasBenchmarkCheck()
-  const methodToRemove = useRef<(() => void) | null>(null)
 
   useEffect(() => {
     setInitiated(true)
-    return () => {
-      if (methodToRemove.current) {
-        window.removeEventListener('resize', methodToRemove.current)
-      }
-    }
   }, [])
 
   useEffect(() => {
@@ -58,29 +48,28 @@ export default function SetupCloud() {
           </Typography>
         </Alert>
       </Box>
-      <Box mt={3} display="flex" justifyContent="start">
-        <iframe
-          height={0}
-          width="100%"
-          onLoad={(e) => {
-            const target = e.currentTarget
-            if (methodToRemove.current) {
-              window.removeEventListener('resize', methodToRemove.current)
-            }
-
-            methodToRemove.current = () => {
-              target.style.height = `${(target.clientWidth * 9) / 16}px`
-            }
-            methodToRemove.current()
-            window.addEventListener('resize', methodToRemove.current)
-          }}
-          onResize={() => methodToRemove.current?.()}
-          src={`https://www.youtube-nocookie.com/embed/yWdOBEnAytM?modestbranding=1&rel=0&iv_load_policy=3&hl=${locale}&color=white`}
-          title="FIX AWS Account Setup"
-          style={{ border: 0, maxWidth: 720, maxHeight: 405 }}
-          nonce={nonce}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
+      <Box mt={3} display="flex" flexDirection="column" justifyContent="start" height={507}>
+        <Tabs
+          tabs={[
+            {
+              content: (
+                <Box component="video" controls maxWidth={720} maxHeight={405} preload="metadata" muted>
+                  <source src={`${env.videosAssetsUrl}/deploy_to_account.mp4`} type="video/mp4" />
+                </Box>
+              ),
+              title: <Trans>Deploy to a single account</Trans>,
+              id: 'deploy_to_account',
+            },
+            {
+              content: (
+                <Box component="video" controls maxWidth={720} maxHeight={405} preload="metadata" muted>
+                  <source src={`${env.videosAssetsUrl}/deploy_to_org.mp4`} type="video/mp4" />
+                </Box>
+              ),
+              id: 'deploy_to_org',
+              title: <Trans>Deploy to organization</Trans>,
+            },
+          ]}
         />
       </Box>
       <Box py={3}>
