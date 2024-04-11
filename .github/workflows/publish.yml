@@ -16,6 +16,7 @@ jobs:
       - name: Create env file
         run: |
           echo "VITE_FIX_LANDING_PAGE_URL=${{ vars.FIX_LANDING_PAGE_URL }}" > .env.production
+          echo "VITE_VIDEOS_ASSETS_URL"=${{ vars.VIDEOS_ASSETS_URL }}" >> .env.production
           echo "VITE_USE_PROXY=false" >> .env.production
           echo "VITE_NETWORK_RETRY_COUNT=${{ vars.NETWORK_RETRY_COUNT }}" >> .env.production
           echo "VITE_WEBSOCKET_RETRY_TIMEOUT=${{ vars.WEBSOCKET_RETRY_TIMEOUT }}" >> .env.production
