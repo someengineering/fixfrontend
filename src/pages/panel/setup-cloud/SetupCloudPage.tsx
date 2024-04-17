@@ -53,7 +53,15 @@ export default function SetupCloud() {
           tabs={[
             {
               content: (
-                <Box component="video" controls maxWidth={720} maxHeight={405} preload="metadata" muted>
+                <Box
+                  component="video"
+                  controls
+                  width={720}
+                  height={405}
+                  preload="metadata"
+                  muted
+                  poster={`${env.videosAssetsUrl}/deploy_to_account_poster.png`}
+                >
                   <source src={`${env.videosAssetsUrl}/deploy_to_account.mp4`} type="video/mp4" />
                 </Box>
               ),
@@ -62,7 +70,15 @@ export default function SetupCloud() {
             },
             {
               content: (
-                <Box component="video" controls maxWidth={720} maxHeight={405} preload="metadata" muted>
+                <Box
+                  component="video"
+                  controls
+                  width={720}
+                  height={405}
+                  preload="metadata"
+                  muted
+                  poster={`${env.videosAssetsUrl}/deploy_to_org_poster.png`}
+                >
                   <source src={`${env.videosAssetsUrl}/deploy_to_org.mp4`} type="video/mp4" />
                 </Box>
               ),
