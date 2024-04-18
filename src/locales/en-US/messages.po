@@ -13,6 +13,10 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:54
+msgid "({0} / account)"
+msgstr "({0} / account)"
+
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:112
 msgid "({0} / month per additional account)"
 msgstr "({0} / month per additional account)"
@@ -96,14 +100,14 @@ msgid "© 2024 Some Engineering Inc. All rights reserved."
 msgstr "© 2024 Some Engineering Inc. All rights reserved."
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:49
-msgid "<0>Billing cycle: {0}</0><1>Highest product tier this billing cycle: {title} (${1} / account)</1>"
-msgstr "<0>Billing cycle: {0}</0><1>Highest product tier this billing cycle: {title} (${1} / account)</1>"
+msgid "<0>Billing cycle: {0}</0><1>Highest product tier this billing cycle: {title} {1}</1>"
+msgstr "<0>Billing cycle: {0}</0><1>Highest product tier this billing cycle: {title} {1}</1>"
 
 #: src/pages/panel/inventory/InventoryAdvanceSearchInfo.tsx:59
 msgid "<0>Fix supports full text search by encasing the search term in double quotes. For instance,<1><2><3>{searchInstance}</3></2></1>enables you to scan your entire infrastructure for a specific IP address.</0><4>Additionally, you can query for any resource attribute by utilizing the <5><6>{attributeOperatorValue}</6></5> format, where the operator can be {0}or <7><8>{1}</8></7>. For example,<9><10><11>{searchTagsOwners}</11></10></9>allows you to find all resources tagged with an <12><13>{owner}</13></12> attribute equal to <14><15>{sre}</15></14>.</4><16>Search queries can be refined using boolean operators {2}<17><18>{3}</18></17> to combine multiple terms. An example would be<19><20><21>{searchEc2InstanceCores}</21></20></19>to identify all EC2 instances possessing more than 4 cores.</16><22>For detailed search syntax guidance, visit <23>https://docs.fix.security/search-syntax<24/></23></22>"
 msgstr "<0>Fix supports full text search by encasing the search term in double quotes. For instance,<1><2><3>{searchInstance}</3></2></1>enables you to scan your entire infrastructure for a specific IP address.</0><4>Additionally, you can query for any resource attribute by utilizing the <5><6>{attributeOperatorValue}</6></5> format, where the operator can be {0}or <7><8>{1}</8></7>. For example,<9><10><11>{searchTagsOwners}</11></10></9>allows you to find all resources tagged with an <12><13>{owner}</13></12> attribute equal to <14><15>{sre}</15></14>.</4><16>Search queries can be refined using boolean operators {2}<17><18>{3}</18></17> to combine multiple terms. An example would be<19><20><21>{searchEc2InstanceCores}</21></20></19>to identify all EC2 instances possessing more than 4 cores.</16><22>For detailed search syntax guidance, visit <23>https://docs.fix.security/search-syntax<24/></23></22>"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:56
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:59
 msgid "<0>Next invoice will be available: {0}</0>"
 msgstr "<0>Next invoice will be available: {0}</0>"
 
@@ -911,7 +915,7 @@ msgstr "Inactivity reminder"
 msgid "Info"
 msgstr "Info"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:65
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:68
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle! Within a billing cycle you will be charged for the highest product tier that was active. Your next billing cycle starts: {0} UTC"
 msgstr "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle! Within a billing cycle you will be charged for the highest product tier that was active. Your next billing cycle starts: {0} UTC"
 
