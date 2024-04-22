@@ -56,9 +56,9 @@ export const OverallScore = ({ score, failedChecks, failedResources, availableRe
           label: typeof failedResources[name] === 'number' ? numberToShortHRT(failedResources[name] ?? 0, locale) : undefined,
           description:
             typeof failedResources[name] === 'number' && typeof value === 'number'
-              ? t`We've identified ${(failedResources[name] as number).toLocaleString(
+              ? t`${wordToUFStr(name).toString()}: We've identified ${(failedResources[name] as number).toLocaleString(
                   locale,
-                )} non-compliant resources out of ${availableResources.toLocaleString(locale)} ${wordToUFStr(name).toString()}-severity security checks.`
+                )} non-compliant resources out of ${availableResources.toLocaleString(locale)}.`
               : undefined,
           onClick: () => navigate(createInventorySearchTo(`/security.has_issues=true and /security.severity=${name}`)),
         }))}

@@ -1647,8 +1647,8 @@ msgstr "We're sorry for the inconvenience. Our team has been notified, and the i
 
 #: src/pages/panel/security/OverallScore.tsx:59
 #: src/pages/panel/shared/utils/createPieDataFromNonCompliance.ts:26
-msgid "We've identified {0} non-compliant resources out of {1} {2}-severity security checks."
-msgstr "We've identified {0} non-compliant resources out of {1} {2}-severity security checks."
+msgid "{0}: We've identified {1} non-compliant resources out of {2}."
+msgstr "{0}: We've identified {1} non-compliant resources out of {2}."
 
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:143
 msgid "Webhook URL"

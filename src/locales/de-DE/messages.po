@@ -444,7 +444,7 @@ msgstr "Cloud Setup"
 
 #: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:122
 msgid "Clouds"
-msgstr "Wolken"
+msgstr "Clouds"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:31
 msgid "Community support"
@@ -1647,8 +1647,8 @@ msgstr "Wir entschuldigen uns für die Unannehmlichkeiten. Unser Team wurde bena
 
 #: src/pages/panel/security/OverallScore.tsx:59
 #: src/pages/panel/shared/utils/createPieDataFromNonCompliance.ts:26
-msgid "We've identified {0} non-compliant resources out of {1} {2}-severity security checks."
-msgstr "Wir haben {0} nicht konforme Ressourcen von insgesamt {1} {2}-Severity Security-Checks identifiziert"
+msgid "{0}: We've identified {1} non-compliant resources out of {2}."
+msgstr "{0}: Wir haben {1} nicht konforme Ressourcen von insgesamt {2}."
 
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:143
 msgid "Webhook URL"
