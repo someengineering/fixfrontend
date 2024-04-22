@@ -713,8 +713,8 @@ msgid "Enabled"
 msgstr "Enabled"
 
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:61
-msgid "Engineers like to tag their temporary resources with appropriately chosen names. This searches for the string \"deleteme\" in names, tags and other string properties."
-msgstr "Engineers like to tag their temporary resources with appropriately chosen names. This searches for the string \"deleteme\" in names, tags and other string properties."
+msgid "Engineers like to tag their temporary resources with the string \"delete\". This performs a full-text search in names, tags and other string properties."
+msgstr "Engineers like to tag their temporary resources with the string \"delete\". This performs a full-text search in names, tags and other string properties."
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToLabel.ts:15
 msgid "Enterprise"
@@ -1341,8 +1341,8 @@ msgid "Resources"
 msgstr "Resources"
 
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:60
-msgid "Resources with the string \"deleteme\""
-msgstr "Resources with the string \"deleteme\""
+msgid "Resources with the string \"delete\""
+msgstr "Resources with the string \"delete\""
 
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:104
 msgid "Risk"
