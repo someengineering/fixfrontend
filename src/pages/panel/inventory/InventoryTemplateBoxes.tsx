@@ -57,9 +57,9 @@ const templateData: TemplateData[] = [
     icon: BrokenImageIcon,
     content: [
       {
-        title: t`Resources with the string "deleteme"`,
-        description: t`Engineers like to tag their temporary resources with appropriately chosen names. This searches for the string "deleteme" in names, tags and other string properties.`,
-        search: '"deleteme"',
+        title: t`Resources with the string "delete"`,
+        description: t`Engineers like to tag their temporary resources with the string "delete". This performs a full-text search in names, tags and other string properties.`,
+        search: '"delete"',
       },
       {
         title: t`Orphaned Volumes`,
