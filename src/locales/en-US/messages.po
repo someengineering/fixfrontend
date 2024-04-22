@@ -87,6 +87,11 @@ msgstr "{0} seat max"
 msgid "{0} seats included {1}"
 msgstr "{0} seats included {1}"
 
+#: src/pages/panel/security/OverallScore.tsx:59
+#: src/pages/panel/shared/utils/createPieDataFromNonCompliance.ts:26
+msgid "{0}: We've identified {1} non-compliant resources out of {2}."
+msgstr "{0}: We've identified {1} non-compliant resources out of {2}."
+
 #: src/pages/panel/inventory/utils/nodeChange.tsx:46
 msgid "{added} configuration lines added and {removed} lines deleted."
 msgstr "{added} configuration lines added and {removed} lines deleted."
@@ -1644,11 +1649,6 @@ msgstr "We have sent an email with a confirmation link to your email address. Pl
 #: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:59
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
-
-#: src/pages/panel/security/OverallScore.tsx:59
-#: src/pages/panel/shared/utils/createPieDataFromNonCompliance.ts:26
-msgid "{0}: We've identified {1} non-compliant resources out of {2}."
-msgstr "{0}: We've identified {1} non-compliant resources out of {2}."
 
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:143
 msgid "Webhook URL"
