@@ -39,7 +39,7 @@ export const InviteExternalUser = ({ preInvite }: InviteExternalUserProps) => {
   })
 
   const handleAction = () => {
-    postWorkspaceInvite({ email, name, roles: ['admin'], workspaceId: selectedWorkspace?.id ?? '' })
+    postWorkspaceInvite({ email, name, roles: ['member'], workspaceId: selectedWorkspace?.id ?? '' })
   }
   return (
     <>
@@ -99,7 +99,7 @@ export const InviteExternalUser = ({ preInvite }: InviteExternalUserProps) => {
                 multiple
                 getOptionLabel={(option) => option}
                 onChange={(_, values) => setRoles(values)}
-                options={['Admin', 'PowerUser', 'ReadOnly', 'Notification']}
+                options={['Member']}
                 size="small"
                 renderInput={(props) => <TextField {...props} placeholder={t`Roles`} />}
               />
