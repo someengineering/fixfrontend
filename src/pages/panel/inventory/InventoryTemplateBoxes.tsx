@@ -73,6 +73,11 @@ const templateData: TemplateData[] = [
           'is(aws_ec2_snapshot,aws_rds_snapshot,aws_rds_cluster_snapshot) with(empty, <-- is(aws_ec2_volume,aws_rds_instance,aws_rds_cluster))',
       },
       {
+        title: t`Orphaned CloudWatch Instance Alarms`,
+        description: t`Finds CloudWatch instance alarms where the instance no longer exists.`,
+        search: 'is(aws_cloudwatch_alarm) and cloudwatch_dimensions[*].name = InstanceId with (empty, <-- is(aws_ec2_instance))',
+      },
+      {
         title: t`Unattached Elastic IPs`,
         description: t`Identifies Elastic IP addresses that are allocated but not associated with any network interface.`,
         search: 'is(aws_ec2_elastic_ip) with(empty, <-- is(aws_ec2_network_interface))',

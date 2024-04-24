@@ -1170,6 +1170,14 @@ msgstr "Or"
 msgid "Orphaned Snapshots"
 msgstr "Orphaned Snapshots"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:77
+msgid "Finds CloudWatch instance alarms where the instance no longer exists."
+msgstr "Finds CloudWatch instance alarms where the instance no longer exists."
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:76
+msgid "Orphaned CloudWatch Instance Alarms"
+msgstr "Orphaned CloudWatch Instance Alarms"
+
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:65
 msgid "Orphaned Volumes"
 msgstr "Orphaned Volumes"
