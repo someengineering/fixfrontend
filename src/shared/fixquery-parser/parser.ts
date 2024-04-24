@@ -70,12 +70,14 @@ function num(): Parser<T, number> {
 }
 
 const numberP = apply(alt(tok(T.Integer), tok(T.Float)), (t) => parseFloat(t.text))
+const keywordP = alt(as_str(T.All), as_str(T.Count), as_str(T.With), as_str(T.Any), as_str(T.Empty), as_str(T.Default), as_str(T.Delete))
 JsonElementP.setPattern(
   alt(
     apply(tok(T.True), () => true),
     apply(tok(T.False), () => false),
     apply(tok(T.Null), () => null),
     numberP,
+    keywordP,
     apply(tok(T.DoubleQuotedString), (t) => t.text.slice(1, -1)),
     apply(times_n(alt(tok(T.Literal), tok(T.Minus), tok(T.Dot), tok(T.Colon), tok(T.Integer), tok(T.Float))), (ts) =>
       ts.map((t) => t.text).join(''),

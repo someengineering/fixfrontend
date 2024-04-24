@@ -278,4 +278,7 @@ test('real world example', () => {
   resource = { max_password_age: 20 }
   query = Query.parse('is(aws_account) and (expire_passwords!=true or max_password_age>{{password_age}})', { password_age: 90 })
   assert.deepEqual(query.find_paths(resource), [Path.from_string('expire_passwords')])
+
+  query = Query.parse('foo==all')
+  assert.strictEqual(query.toString(), 'foo == "all"')
 })
