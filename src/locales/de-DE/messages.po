@@ -1168,11 +1168,19 @@ msgstr "Oder"
 
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:80
 msgid "Orphaned Snapshots"
-msgstr "Verwaiste Schnappschüsse"
+msgstr "Verwaiste Snapshots"
 
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:65
 msgid "Orphaned Volumes"
-msgstr "Verwaiste Bände"
+msgstr "Verwaiste Volumes"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:77
+msgid "Finds CloudWatch instance alarms where the instance no longer exists."
+msgstr "Findet CloudWatch Instance Alarme, deren EC2 Instance nicht mehr existiert."
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:76
+msgid "Orphaned CloudWatch Instance Alarms"
+msgstr "Verwaiste CloudWatch Instance Alarms"
 
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:38
 msgid "Other Workspace Settings"
