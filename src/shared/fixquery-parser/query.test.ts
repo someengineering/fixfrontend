@@ -1,5 +1,5 @@
 import assert from 'assert'
-import { JsonElement, JsonElementDraft, Path, Query } from './query.ts'
+import { AllTerm, FulltextTerm, JsonElement, JsonElementDraft, Path, Predicate, Query } from './query.ts'
 
 test('Test query properties', () => {
   const query = Query.parse(
@@ -21,6 +21,15 @@ test('Test query properties', () => {
   assert.deepEqual(query_w_or.tags, {}) // tags are defined in an or clause
   assert.deepEqual(query_w_or.severity!.value, ['high', 'critical'])
   assert.deepEqual(query_w_or.remaining_predicates, { prop: 42 })
+})
+
+test('Combine terms', () => {
+  const left = new FulltextTerm({ text: 'foo' })
+  const right = new Predicate({ path: Path.from_string('prop'), op: '==', value: 42 })
+  const all = new AllTerm()
+  assert.strictEqual(left.and_term(all), left)
+  assert.strictEqual(left.or_term(all), all)
+  assert.strictEqual(left.and_term(right).toString(), '"foo" and prop == 42')
 })
 
 test('Test toString', () => {
