@@ -50,7 +50,11 @@ export const InventoryFormChangesComp = () => {
   return (
     <>
       <InventoryFormField
-        value={change && before && after ? t`${change} From ${before} to ${after}` : undefined}
+        value={
+          searchParamsChange && searchParamsBefore && searchParamsAfter
+            ? t`${searchParamsChange} From ${searchParamsAfter} to ${searchParamsBefore}`
+            : undefined
+        }
         label={t`Changes`}
         onClick={() => modalRef.current?.(true)}
         onClear={handleReset}
@@ -59,6 +63,7 @@ export const InventoryFormChangesComp = () => {
         openRef={modalRef}
         title={t`Inventory Changes`}
         onSubmit={handleSubmit}
+        onClose={handleSubmit}
         actions={
           <>
             <Button color="primary" onClick={() => modalRef.current?.(false)}>
