@@ -139,13 +139,13 @@ export function InventoryFormFilterRowValues({ data, keyString, fqn, preItems, o
           autoFocus={!currentValue.length}
         >
           <MenuItem value="true">
-            <Trans>True</Trans>
+            <Trans>Yes</Trans>
           </MenuItem>
           <MenuItem value="false">
-            <Trans>False</Trans>
+            <Trans>No</Trans>
           </MenuItem>
           <MenuItem value="null">
-            <Trans>Null</Trans>
+            <Trans>Undefined</Trans>
           </MenuItem>
         </Select>
       )
