@@ -7,8 +7,8 @@ export type SimpleValue = string | number | boolean | null
 export type JsonElement = SimpleValue | Record<string, unknown> | (SimpleValue | Record<string, unknown> | unknown[])[]
 
 export enum SortOrder {
-  Asc = 'Asc',
-  Desc = 'Desc',
+  asc = 'asc',
+  desc = 'desc',
 }
 
 export enum Direction {
@@ -691,9 +691,9 @@ export class Limit {
 export class Sort {
   [immerable] = true
   path: Path
-  order: SortOrder = SortOrder.Asc
+  order: SortOrder = SortOrder.asc
 
-  constructor({ path, order = SortOrder.Asc }: { path: Path; order?: SortOrder }) {
+  constructor({ path, order = SortOrder.asc }: { path: Path; order?: SortOrder }) {
     this.path = path
     this.order = order
   }
