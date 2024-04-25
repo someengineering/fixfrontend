@@ -295,13 +295,6 @@ export abstract class Term {
     return this
   }
 
-  set_last(term: Term, op: string): Term {
-    if (this instanceof CombinedTerm) {
-      return new CombinedTerm({ left: this.left, op: this.op, right: this.right.set_last(term, op) })
-    }
-    return new CombinedTerm({ left: this, op, right: term })
-  }
-
   abstract toString(): string
 
   matches(js: JsonElement): boolean {
@@ -967,7 +960,7 @@ export class Query {
             return
           }
         }
-        draft.working_part.term = draft.working_part.term.set_last(new FulltextTerm({ text: value }), 'and')
+        draft.working_part.term = new FulltextTerm({ text: value }).and_term(draft.working_part.term)
       } else {
         if (prevValue) {
           const item = draft.fulltexts().find((i) => i.text === prevValue)

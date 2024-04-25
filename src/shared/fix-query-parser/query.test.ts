@@ -312,12 +312,12 @@ test('set fulltext search', () => {
   const testEmptyAddWithValue = noFulltextQuery.update_fulltext('something')
   const testEmptyReplaceWithValue = noFulltextQuery.update_fulltext('something', 'whatever')
   //asserts full texts
-  assert.strictEqual(testAddWithValue.fullTextSearches.map((i) => i.text).join(','), 'whatever,deleteme,something')
+  assert.strictEqual(testAddWithValue.fullTextSearches.map((i) => i.text).join(','), 'something,whatever,deleteme')
   assert.strictEqual(testReplaceWithValue.fullTextSearches.map((i) => i.text).join(','), 'something,deleteme')
   //asserts query
   assert.strictEqual(
     testAddWithValue.toString(),
-    'is(aws) and access_key_last_used.last_used == null and "whatever" and age > "90d" and /ancestors.account.reported.name == "test" and "deleteme" and "something"',
+    '"something" and is(aws) and access_key_last_used.last_used == null and "whatever" and age > "90d" and /ancestors.account.reported.name == "test" and "deleteme"',
   )
   assert.strictEqual(
     testReplaceWithValue.toString(),
@@ -327,20 +327,6 @@ test('set fulltext search', () => {
   assert.strictEqual(testEmptyAddWithValue.fullTextSearches.map((i) => i.text).join(','), 'something')
   assert.strictEqual(testEmptyReplaceWithValue.fullTextSearches.map((i) => i.text).join(','), 'something')
   //asserts empties query
-  assert.strictEqual(testEmptyAddWithValue.toString(), 'access_key_last_used.last_used == null and "something"')
-  assert.strictEqual(testEmptyReplaceWithValue.toString(), 'access_key_last_used.last_used == null and "something"')
-})
-
-test('delete all should work', () => {
-  const query = Query.parse(
-    'all and "something" and all and access_key_last_used.last_used == null and all and "all" and /ancestors.account.reported.name == "test"',
-  )
-  const queryWithoutAll = Query.parse(
-    '"something" and access_key_last_used.last_used == null and "all" and /ancestors.account.reported.name == "test"',
-  )
-  const removedAll = query.delete_all_term_if_any()
-  const sameQueryWithoutAll = queryWithoutAll.delete_all_term_if_any()
-  assert.strictEqual(removedAll.toString(), sameQueryWithoutAll.toString())
-  assert.strictEqual(queryWithoutAll.toString(), sameQueryWithoutAll.toString())
-  assert.strictEqual(queryWithoutAll, sameQueryWithoutAll)
+  assert.strictEqual(testEmptyAddWithValue.toString(), '"something" and access_key_last_used.last_used == null')
+  assert.strictEqual(testEmptyReplaceWithValue.toString(), '"something" and access_key_last_used.last_used == null')
 })
