@@ -549,7 +549,7 @@ export class MergeQuery {
   }
 
   toString(): string {
-    return `${this.path.toString()}: ${this.query.toString()}`
+    return `${this.path.toString()}: ${this.query.toString().replace(/^\s*all\s*/, '')}`
   }
 }
 
