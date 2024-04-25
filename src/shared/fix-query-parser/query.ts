@@ -869,7 +869,7 @@ export class Query {
       if (left_last.with_clause && right_first.with_clause) {
         throw Error('Can not combine 2 with clauses!')
       }
-      const term = new CombinedTerm({ left: left_last.term, op: 'and', right: right_first.term })
+      const term = left_last.term.and_term(right_first.term)
       const with_clause = left_last.with_clause ? left_last.with_clause : right_first.with_clause
       const sort = left_last.sort.concat(right_first.sort)
       const limit = combineOptional(
@@ -952,11 +952,7 @@ export class Query {
         existing.op = op
         existing.value = value
       } else {
-        draft.working_part.term = new CombinedTerm({
-          left: new Predicate({ path, op, value }),
-          op: 'and',
-          right: draft.working_part.term,
-        })
+        draft.working_part.term = new Predicate({ path, op, value }).and_term(draft.working_part.term)
       }
     })
   }
@@ -999,11 +995,7 @@ export class Query {
       if (existing) {
         existing.kinds = kinds
       } else {
-        draft.working_part.term = new CombinedTerm({
-          left: new IsTerm({ kinds }),
-          op: 'and',
-          right: draft.working_part.term,
-        })
+        draft.working_part.term = new IsTerm({ kinds }).and_term(draft.working_part.term)
       }
     })
   }
