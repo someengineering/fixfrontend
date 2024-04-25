@@ -87,6 +87,11 @@ msgstr "{0} seat max"
 msgid "{0} seats included {1}"
 msgstr "{0} seats included {1}"
 
+#: src/pages/panel/security/OverallScore.tsx:59
+#: src/pages/panel/shared/utils/createPieDataFromNonCompliance.ts:26
+msgid "{0}: We've identified {1} non-compliant resources out of {2}."
+msgstr "{0}: We've identified {1} non-compliant resources out of {2}."
+
 #: src/pages/panel/inventory/resource-detail/utils/nodeChange.tsx:46
 msgid "{added} configuration lines added and {removed} lines deleted."
 msgstr "{added} configuration lines added and {removed} lines deleted."
@@ -735,9 +740,9 @@ msgstr "Enable all"
 msgid "Enabled"
 msgstr "Enabled"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:61
-msgid "Engineers like to tag their temporary resources with appropriately chosen names. This searches for the string \"deleteme\" in names, tags and other string properties."
-msgstr "Engineers like to tag their temporary resources with appropriately chosen names. This searches for the string \"deleteme\" in names, tags and other string properties."
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:87
+msgid "Engineers like to tag their temporary resources with the string \"delete\". This performs a full-text search in names, tags and other string properties."
+msgstr "Engineers like to tag their temporary resources with the string \"delete\". This performs a full-text search in names, tags and other string properties."
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToLabel.ts:15
 msgid "Enterprise"
@@ -763,7 +768,7 @@ msgstr "Everything in Free, and"
 msgid "Everything in Plus, and"
 msgstr "Everything in Plus, and"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:109
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:114
 msgid "Example searches"
 msgstr "Example searches"
 
@@ -803,15 +808,19 @@ msgstr "False"
 msgid "Features"
 msgstr "Features"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:45
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:77
+msgid "Finds CloudWatch instance alarms where the instance no longer exists."
+msgstr "Finds CloudWatch instance alarms where the instance no longer exists."
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:40
 msgid "Finds databases that aren't encrypted at rest."
 msgstr "Finds databases that aren't encrypted at rest."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:71
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:61
 msgid "Finds load balancers that are not associated with any running instances."
 msgstr "Finds load balancers that are not associated with any running instances."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:81
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:71
 msgid "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
 msgstr "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
 
@@ -904,19 +913,19 @@ msgstr "How to fix"
 msgid "ID"
 msgstr "ID"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:93
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:98
 msgid "Identifies compute instances and databases with low CPU usage, indicating potential over-provisioning."
 msgstr "Identifies compute instances and databases with low CPU usage, indicating potential over-provisioning."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:40
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:45
 msgid "Identifies databases publicly accessible from any IP on the Internet."
 msgstr "Identifies databases publicly accessible from any IP on the Internet."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:29
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:35
 msgid "Identifies EBS volumes that are not encrypted."
 msgstr "Identifies EBS volumes that are not encrypted."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:76
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:82
 msgid "Identifies Elastic IP addresses that are allocated but not associated with any network interface."
 msgstr "Identifies Elastic IP addresses that are allocated but not associated with any network interface."
 
@@ -924,7 +933,7 @@ msgstr "Identifies Elastic IP addresses that are allocated but not associated wi
 msgid "Identifies RDS snapshots that are publicly accessible."
 msgstr "Identifies RDS snapshots that are publicly accessible."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:34
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:29
 msgid "Identifies S3 buckets that are publicly accessible."
 msgstr "Identifies S3 buckets that are publicly accessible."
 
@@ -1038,7 +1047,7 @@ msgstr "Less than"
 msgid "Less than or equal"
 msgstr "Less than or equal"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:70
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:60
 msgid "Load Balancers with no backends"
 msgstr "Load Balancers with no backends"
 
@@ -1063,7 +1072,7 @@ msgstr "Logout"
 msgid "Low"
 msgstr "Low"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:92
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:97
 msgid "Low Utilization Compute Instances and Databases"
 msgstr "Low Utilization Compute Instances and Databases"
 
@@ -1237,7 +1246,7 @@ msgstr "Oops! It looks like your query didn't match our format. Please check and
 msgid "Oops! Something went wrong."
 msgstr "Oops! Something went wrong."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:39
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:44
 msgid "Open Database Access"
 msgstr "Open Database Access"
 
@@ -1264,7 +1273,11 @@ msgstr "Optional professional services"
 msgid "Or"
 msgstr "Or"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:80
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:76
+msgid "Orphaned CloudWatch Instance Alarms"
+msgstr "Orphaned CloudWatch Instance Alarms"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:70
 msgid "Orphaned Snapshots"
 msgstr "Orphaned Snapshots"
 
@@ -1372,7 +1385,7 @@ msgstr "Property"
 msgid "Public RDS Snapshots"
 msgstr "Public RDS Snapshots"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:33
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:28
 msgid "Public S3 Buckets"
 msgstr "Public S3 Buckets"
 
@@ -1444,9 +1457,9 @@ msgstr "Resource deleted"
 msgid "Resources"
 msgstr "Resources"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:60
-msgid "Resources with the string \"deleteme\""
-msgstr "Resources with the string \"deleteme\""
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:86
+msgid "Resources with the string \"delete\""
+msgstr "Resources with the string \"delete\""
 
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:104
 msgid "Risk"
@@ -1459,7 +1472,7 @@ msgstr "Risk"
 msgid "Roles"
 msgstr "Roles"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:98
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:103
 msgid "Searches for database instances with no connections over a significant period, indicating potential waste."
 msgstr "Searches for database instances with no connections over a significant period, indicating potential waste."
 
@@ -1684,23 +1697,23 @@ msgstr "Try again"
 msgid "Type"
 msgstr "Type"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:75
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:81
 msgid "Unattached Elastic IPs"
 msgstr "Unattached Elastic IPs"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:88
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:93
 msgid "Underutilized"
 msgstr "Underutilized"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:44
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:39
 msgid "Unencrypted Database Storage"
 msgstr "Unencrypted Database Storage"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:28
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:34
 msgid "Unencrypted EBS Volumes"
 msgstr "Unencrypted EBS Volumes"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:97
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:102
 msgid "Unused Database Instances"
 msgstr "Unused Database Instances"
 
@@ -1753,11 +1766,6 @@ msgstr "We have sent an email with a confirmation link to your email address. Pl
 #: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:59
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
-
-#: src/pages/panel/security/OverallScore.tsx:59
-#: src/pages/panel/shared/utils/createPieDataFromNonCompliance.ts:26
-msgid "We've identified {0} non-compliant resources out of {1} {2}-severity security checks."
-msgstr "We've identified {0} non-compliant resources out of {1} {2}-severity security checks."
 
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:143
 msgid "Webhook URL"

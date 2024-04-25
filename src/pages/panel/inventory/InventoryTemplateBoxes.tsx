@@ -25,25 +25,25 @@ const templateData: TemplateData[] = [
     icon: SecurityIcon,
     content: [
       {
-        title: t`Unencrypted EBS Volumes`,
-        description: t`Identifies EBS volumes that are not encrypted.`,
-        search: 'is(aws_ec2_volume) and volume_encrypted = false',
-      },
-      {
         title: t`Public S3 Buckets`,
         description: t`Identifies S3 buckets that are publicly accessible.`,
         search:
           'is(aws_s3_bucket) and (bucket_public_access_block_configuration = null or (bucket_public_access_block_configuration != null and (bucket_public_access_block_configuration.{block_public_acls = false or ignore_public_acls = false or block_public_policy = false or restrict_public_buckets = false})) and (bucket_acl.grants[*].{permission in [READ, READ_ACP] and grantee.uri = "http://acs.amazonaws.com/groups/global/AllUsers"}) or (bucket_policy.Statement[*].{Principal = "*" and (Action in [s3:GetObject, s3:PutObject] or Action[*] in [s3:GetObject, s3:PutObject])}))',
       },
       {
-        title: t`Open Database Access`,
-        description: t`Identifies databases publicly accessible from any IP on the Internet.`,
-        search: 'is(aws_rds_instance) and db_publicly_accessible = true',
+        title: t`Unencrypted EBS Volumes`,
+        description: t`Identifies EBS volumes that are not encrypted.`,
+        search: 'is(aws_ec2_volume) and volume_encrypted = false',
       },
       {
         title: t`Unencrypted Database Storage`,
         description: t`Finds databases that aren't encrypted at rest.`,
         search: 'is(aws_rds_instance) and volume_encrypted = false',
+      },
+      {
+        title: t`Open Database Access`,
+        description: t`Identifies databases publicly accessible from any IP on the Internet.`,
+        search: 'is(aws_rds_instance) and db_publicly_accessible = true',
       },
       {
         title: t`Public RDS Snapshots`,
@@ -57,9 +57,9 @@ const templateData: TemplateData[] = [
     icon: BrokenImageIcon,
     content: [
       {
-        title: t`Resources with the string "deleteme"`,
-        description: t`Engineers like to tag their temporary resources with appropriately chosen names. This searches for the string "deleteme" in names, tags and other string properties.`,
-        search: '"deleteme"',
+        title: t`Load Balancers with no backends`,
+        description: t`Finds load balancers that are not associated with any running instances.`,
+        search: 'is(load_balancer) and backends = []',
       },
       {
         title: t`Orphaned Volumes`,
@@ -67,9 +67,15 @@ const templateData: TemplateData[] = [
         search: 'is(aws_ec2_volume) and volume_status = available and last_access > 7d',
       },
       {
-        title: t`Load Balancers with no backends`,
-        description: t`Finds load balancers that are not associated with any running instances.`,
-        search: 'is(load_balancer) and backends = []',
+        title: t`Orphaned Snapshots`,
+        description: t`Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs.`,
+        search:
+          'is(aws_ec2_snapshot,aws_rds_snapshot,aws_rds_cluster_snapshot) with(empty, <-- is(aws_ec2_volume,aws_rds_instance,aws_rds_cluster))',
+      },
+      {
+        title: t`Orphaned CloudWatch Instance Alarms`,
+        description: t`Finds CloudWatch instance alarms where the instance no longer exists.`,
+        search: 'is(aws_cloudwatch_alarm) and cloudwatch_dimensions[*].name = InstanceId with (empty, <-- is(aws_ec2_instance))',
       },
       {
         title: t`Unattached Elastic IPs`,
@@ -77,10 +83,9 @@ const templateData: TemplateData[] = [
         search: 'is(aws_ec2_elastic_ip) with(empty, <-- is(aws_ec2_network_interface))',
       },
       {
-        title: t`Orphaned Snapshots`,
-        description: t`Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs.`,
-        search:
-          'is(aws_ec2_snapshot,aws_rds_snapshot,aws_rds_cluster_snapshot) with(empty, <-- is(aws_ec2_volume,aws_rds_instance,aws_rds_cluster))',
+        title: t`Resources with the string "delete"`,
+        description: t`Engineers like to tag their temporary resources with the string "delete". This performs a full-text search in names, tags and other string properties.`,
+        search: '"delete"',
       },
     ],
   },
