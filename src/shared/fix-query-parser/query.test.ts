@@ -279,3 +279,122 @@ test('real world example', () => {
   query = Query.parse('is(aws_account) and (expire_passwords!=true or max_password_age>{{password_age}})', { password_age: 90 })
   assert.deepEqual(query.find_paths(resource), [Path.from_string('expire_passwords')])
 })
+
+test('fulltext searches', () => {
+  const query = Query.parse(
+    'is(aws) and access_key_last_used.last_used==null and "whatever" and age>90d and /ancestors.account.reported.name == "test" and "deleteme"',
+  )
+  const noFulltextQuery = Query.parse('access_key_last_used.last_used==null')
+  assert.strictEqual(query.fullTextSearches.map((i) => i.text).join(','), 'whatever,deleteme')
+  assert.strictEqual(noFulltextQuery.fullTextSearches.map((i) => i.text).join(','), '')
+})
+
+test('set fulltext search', () => {
+  const query = Query.parse(
+    'is(aws) and access_key_last_used.last_used==null and "whatever" and age>90d and /ancestors.account.reported.name == "test" and "deleteme"',
+  )
+  const noFulltextQuery = Query.parse('access_key_last_used.last_used==null')
+  const testAddWithValue = query.set_fulltext('something')
+  const testReplaceWithValue = query.set_fulltext('something', 'whatever')
+  const testReplaceWithIndex = query.set_fulltext_index('something', 1)
+  const testSetAllLessItems = query.set_fulltexts(['something'])
+  const testSetAllMoreItems = query.set_fulltexts(['whatever', 'something', 'deleteme'])
+  const testSetAllEqualItems = query.set_fulltexts(['whatever', 'something'])
+  const testSetAllWithEmptyInBetweenItems = query.set_fulltexts(['', 'deleteme', 'something'])
+  const testDeleteWithValue = query.delete_fulltext('whatever')
+  const testDeleteWithIndex = query.delete_fulltext_index(1)
+  // no fulltext
+  const testEmptyAddWithValue = noFulltextQuery.set_fulltext('something')
+  const testEmptyReplaceWithValue = noFulltextQuery.set_fulltext('something', 'whatever')
+  const testEmptyReplaceWithIndex = noFulltextQuery.set_fulltext_index('something', 1)
+  const testEmptySetAll = noFulltextQuery.set_fulltexts(['whatever', 'something', 'deleteme'])
+  const testEmptySetAllEmptyItems = noFulltextQuery.set_fulltexts([''])
+  const testEmptySetAllNothingItems = noFulltextQuery.set_fulltexts([])
+  const testEmptySetAllWithEmptyInBetweenItems = noFulltextQuery.set_fulltexts(['deleteme', '', 'something'])
+  const testEmptyDeleteWithValue = noFulltextQuery.delete_fulltext('whatever')
+  const testEmptyDeleteWithIndex = noFulltextQuery.delete_fulltext_index(1)
+  //asserts full texts
+  assert.strictEqual(testAddWithValue.fullTextSearches.map((i) => i.text).join(','), 'whatever,deleteme,something')
+  assert.strictEqual(testReplaceWithValue.fullTextSearches.map((i) => i.text).join(','), 'something,deleteme')
+  assert.strictEqual(testReplaceWithIndex.fullTextSearches.map((i) => i.text).join(','), 'whatever,something')
+  assert.strictEqual(testSetAllLessItems.fullTextSearches.map((i) => i.text).join(','), 'something')
+  assert.strictEqual(testSetAllMoreItems.fullTextSearches.map((i) => i.text).join(','), 'whatever,something,deleteme')
+  assert.strictEqual(testSetAllEqualItems.fullTextSearches.map((i) => i.text).join(','), 'whatever,something')
+  assert.strictEqual(testSetAllWithEmptyInBetweenItems.fullTextSearches.map((i) => i.text).join(','), 'deleteme,something')
+  assert.strictEqual(testDeleteWithValue.fullTextSearches.map((i) => i.text).join(','), 'deleteme')
+  assert.strictEqual(testDeleteWithIndex.fullTextSearches.map((i) => i.text).join(','), 'whatever')
+  //asserts query
+  assert.strictEqual(
+    testAddWithValue.toString(),
+    'is(aws) and access_key_last_used.last_used == null and "whatever" and age > "90d" and /ancestors.account.reported.name == "test" and "deleteme" and "something"',
+  )
+  assert.strictEqual(
+    testReplaceWithValue.toString(),
+    'is(aws) and access_key_last_used.last_used == null and "something" and age > "90d" and /ancestors.account.reported.name == "test" and "deleteme"',
+  )
+  assert.strictEqual(
+    testReplaceWithIndex.toString(),
+    'is(aws) and access_key_last_used.last_used == null and "whatever" and age > "90d" and /ancestors.account.reported.name == "test" and "something"',
+  )
+  assert.strictEqual(
+    testSetAllLessItems.toString(),
+    'is(aws) and access_key_last_used.last_used == null and "something" and age > "90d" and /ancestors.account.reported.name == "test"',
+  )
+  assert.strictEqual(
+    testSetAllMoreItems.toString(),
+    'is(aws) and access_key_last_used.last_used == null and "whatever" and age > "90d" and /ancestors.account.reported.name == "test" and "something" and "deleteme"',
+  )
+  assert.strictEqual(
+    testSetAllEqualItems.toString(),
+    'is(aws) and access_key_last_used.last_used == null and "whatever" and age > "90d" and /ancestors.account.reported.name == "test" and "something"',
+  )
+  assert.strictEqual(
+    testSetAllWithEmptyInBetweenItems.toString(),
+    'is(aws) and access_key_last_used.last_used == null and age > "90d" and /ancestors.account.reported.name == "test" and "deleteme" and "something"',
+  )
+  assert.strictEqual(
+    testDeleteWithValue.toString(),
+    'is(aws) and access_key_last_used.last_used == null and age > "90d" and /ancestors.account.reported.name == "test" and "deleteme"',
+  )
+  assert.strictEqual(
+    testDeleteWithIndex.toString(),
+    'is(aws) and access_key_last_used.last_used == null and "whatever" and age > "90d" and /ancestors.account.reported.name == "test"',
+  )
+  //asserts empties full texts
+  assert.strictEqual(testEmptyAddWithValue.fullTextSearches.map((i) => i.text).join(','), 'something')
+  assert.strictEqual(testEmptyReplaceWithValue.fullTextSearches.map((i) => i.text).join(','), 'something')
+  assert.strictEqual(testEmptyReplaceWithIndex.fullTextSearches.map((i) => i.text).join(','), 'something')
+  assert.strictEqual(testEmptySetAll.fullTextSearches.map((i) => i.text).join(','), 'whatever,something,deleteme')
+  assert.strictEqual(testEmptySetAllEmptyItems.fullTextSearches.map((i) => i.text).join(','), '')
+  assert.strictEqual(testEmptySetAllNothingItems.fullTextSearches.map((i) => i.text).join(','), '')
+  assert.strictEqual(testEmptySetAllWithEmptyInBetweenItems.fullTextSearches.map((i) => i.text).join(','), 'deleteme,something')
+  assert.strictEqual(testEmptyDeleteWithValue.fullTextSearches.map((i) => i.text).join(','), '')
+  assert.strictEqual(testEmptyDeleteWithIndex.fullTextSearches.map((i) => i.text).join(','), '')
+  //asserts empties query
+  assert.strictEqual(testEmptyAddWithValue.toString(), 'access_key_last_used.last_used == null and "something"')
+  assert.strictEqual(testEmptyReplaceWithValue.toString(), 'access_key_last_used.last_used == null and "something"')
+  assert.strictEqual(testEmptyReplaceWithIndex.toString(), 'access_key_last_used.last_used == null and "something"')
+  assert.strictEqual(testEmptySetAll.toString(), 'access_key_last_used.last_used == null and "whatever" and "something" and "deleteme"')
+  assert.strictEqual(testEmptySetAllEmptyItems.toString(), 'access_key_last_used.last_used == null')
+  assert.strictEqual(testEmptySetAllNothingItems.toString(), 'access_key_last_used.last_used == null')
+  assert.strictEqual(
+    testEmptySetAllWithEmptyInBetweenItems.toString(),
+    'access_key_last_used.last_used == null and "deleteme" and "something"',
+  )
+  assert.strictEqual(testEmptyDeleteWithValue.toString(), 'access_key_last_used.last_used == null')
+  assert.strictEqual(testEmptyDeleteWithIndex.toString(), 'access_key_last_used.last_used == null')
+})
+
+test('delete all should work', () => {
+  const query = Query.parse(
+    'all and "something" and all and access_key_last_used.last_used == null and all and "all" and /ancestors.account.reported.name == "test"',
+  )
+  const queryWithoutAll = Query.parse(
+    '"something" and access_key_last_used.last_used == null and "all" and /ancestors.account.reported.name == "test"',
+  )
+  const removedAll = query.delete_all_term_if_any()
+  const sameQueryWithoutAll = queryWithoutAll.delete_all_term_if_any()
+  assert.strictEqual(removedAll.toString(), sameQueryWithoutAll.toString())
+  assert.strictEqual(queryWithoutAll.toString(), sameQueryWithoutAll.toString())
+  assert.strictEqual(queryWithoutAll, sameQueryWithoutAll)
+})

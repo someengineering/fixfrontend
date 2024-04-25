@@ -15,28 +15,28 @@ import { useDebounce } from '@uidotdev/usehooks'
 import { AxiosError } from 'axios'
 import { ChangeEvent, HTMLAttributes, KeyboardEvent, UIEvent as ReactUIEvent, useEffect, useMemo, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { OPType, defaultProperties, kindDurationTypes, kindSimpleTypes } from 'src/pages/panel/shared/constants'
 import { postWorkspaceInventoryPropertyPathCompleteQuery } from 'src/pages/panel/shared/queries'
 import { isValidProp } from 'src/pages/panel/shared/utils'
 import { panelUI } from 'src/shared/constants'
+import { OPType, defaultProperties, kindDurationTypes, kindSimpleTypes } from 'src/shared/fix-query-parser'
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
 import { inventorySendToGTM, postCostumedWorkspaceInventoryPropertyAttributesQuery } from './utils'
 
 interface InventoryFormFilterRowPropertyProps {
-  selectedKind: string | null
+  selectedKinds: string[] | null
   defaultValue?: string | null
   onChange: (params: {
     property?: string | null
     fqn?: ResourceComplexKindSimpleTypeDefinitions | null
     op?: OPType | null
-    value?: string | null
+    value?: string
   }) => void
   kinds: string[]
 }
 
 const ITEMS_PER_PAGE = 50
 
-export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kinds, onChange }: InventoryFormFilterRowPropertyProps) => {
+export const InventoryFormFilterRowProperty = ({ selectedKinds, defaultValue, kinds, onChange }: InventoryFormFilterRowPropertyProps) => {
   const { defaultItem, isDefaultSimple } = useMemo(() => {
     const defaultItem = defaultProperties.find((i) => i.label === defaultValue)
     return {
@@ -59,6 +59,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
   const isDefaultItemSelected = defaultItem?.label == `${path}.${prop}`
   const { selectedWorkspace } = useUserProfile()
   const isDictionary = fqn?.startsWith('dictionary') ?? false
+  const selectedKindsStr = selectedKinds ? JSON.stringify(selectedKinds) : null
   const propertyAttributes = useInfiniteQuery({
     queryKey: [
       'workspace-inventory-property-path-complete-query',
@@ -67,7 +68,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       value === `${debouncedPath}.${debouncedProp}` || value === `${debouncedPath}.${debouncedProp.replace(/\./g, '․')}`
         ? ''
         : debouncedProp,
-      selectedKind,
+      selectedKindsStr,
       fqn?.split(',')[1]?.split(']')[0]?.trim() ?? '',
     ] as const,
     initialPageParam: {
@@ -87,7 +88,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       selectedWorkspace?.id,
       isDefaultItemSelected ? '' : debouncedPath,
       !fqn || isDefaultItemSelected ? '' : debouncedProp,
-      selectedKind,
+      selectedKindsStr,
       kindsStr,
     ] as const,
     initialPageParam: {
@@ -100,6 +101,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
     throwOnError: false,
     enabled: !!selectedWorkspace?.id && !!kinds.length && !isDictionary,
   })
+
   const { data = null, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage, error } = isDictionary ? propertyAttributes : pathComplete
   const flatData = useMemo(() => (data?.pages.flat().filter((i) => i) as Exclude<typeof data, null>['pages'][number]) ?? null, [data])
   const highlightedOptionRef = useRef<Exclude<typeof flatData, null>[number] | null>(null)
@@ -115,19 +117,19 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
         inventorySendToGTM('postCostumedWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
           workspaceId: selectedWorkspace?.id,
           prop: `${path.split('.').slice(-1)[0]}${prop ? `=~"${prop.replace(/․/g, '.')}"` : ''}` ? '' : debouncedProp,
-          query: selectedKind ? `is(${selectedKind})` : 'all',
+          query: selectedKinds ? `is(${selectedKinds.join(',')})` : 'all',
         })
       } else {
         inventorySendToGTM('postCostumedWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
           workspaceId: selectedWorkspace?.id,
           path: isDefaultItemSelected ? '' : debouncedPath,
           prop: !fqn || isDefaultItemSelected ? '' : debouncedProp,
-          kinds: selectedKind ? [selectedKind] : (JSON.parse(kindsStr) as string[]),
+          kinds: selectedKinds ?? (JSON.parse(kindsStr) as string[]),
           fuzzy: true,
         })
       }
     }
-  }, [debouncedPath, debouncedProp, error, fqn, isDefaultItemSelected, isDictionary, kindsStr, selectedKind, selectedWorkspace?.id, value])
+  }, [debouncedPath, debouncedProp, error, fqn, isDefaultItemSelected, isDictionary, kindsStr, selectedKinds, selectedWorkspace?.id, value])
 
   useEffect(() => {
     if (prevPropIndex.current > propIndex) {
@@ -203,7 +205,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       if (typeof option === 'string') {
         return
       }
-      const isSimple = kindSimpleTypes.includes(option.value as ResourceComplexKindSimpleTypeDefinitions)
+      const isSimple = kindSimpleTypes.find((item) => item === option.value || `${item}[` === option.value)
       prevFqn.current = fqn
       setFqn(isSimple ? null : option.value)
       const separatedValue = option.label.split('.')
@@ -219,7 +221,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
           property: isDictionary && !isValidProp(newProp) ? `${newPath}.\`${option.key}\`` : option.label,
           op: kindDurationTypes.includes(option.value as (typeof kindDurationTypes)[number]) ? '>=' : '=',
           fqn: option.value as ResourceComplexKindSimpleTypeDefinitions,
-          value: null,
+          value: undefined,
         })
       } else {
         setProp('')
@@ -233,7 +235,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
       setProp('')
       setPropIndex(0)
       setFqn('object')
-      onChange({ property: null, op: null, value: null, fqn: null })
+      onChange({ property: null, op: null, value: undefined, fqn: null })
     }
   }
   let autoCompleteValue = flatData?.find((i) => i && i.label === value) ?? (defaultValue ? defaultItem : null) ?? null
@@ -266,7 +268,6 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
     <Autocomplete
       value={autoCompleteValue && options.indexOf(autoCompleteValue) > -1 ? autoCompleteValue : null}
       size="small"
-      disablePortal
       onChange={handleChange}
       onHighlightChange={(_, option) => (highlightedOptionRef.current = option)}
       autoHighlight
@@ -287,10 +288,10 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
           </ListItemButton>
         )
       }}
-      sx={{ width: { xs: '100%', lg: 190, xl: 250 } }}
+      sx={{ minWidth: { xs: '100%', lg: 190, xl: 250 } }}
       slotProps={{
         popper: {
-          sx: { width: 'fit-content!important' },
+          sx: { minWidth: 'fit-content!important' },
           placement: 'bottom-start',
         },
       }}
@@ -329,6 +330,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKind, defaultValue, kin
               onFocus: () => setHasFocus(true),
               onBlur: () => setHasFocus(false),
             }}
+            multiline
             label={<Trans>Property</Trans>}
             onChange={handleInputChange}
           />

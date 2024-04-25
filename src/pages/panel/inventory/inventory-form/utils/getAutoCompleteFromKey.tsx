@@ -3,8 +3,8 @@ import { AutocompleteRenderInputParams, AutocompleteRenderOptionState, Divider, 
 import { Fragment, HTMLAttributes } from 'react'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
+import { DefaultPropertiesKeys } from 'src/shared/fix-query-parser'
 import { AutoCompleteValue } from 'src/shared/types/shared'
-import { getArrayFromInOP } from './getArrayFromInOP'
 
 export interface AutoCompletePreDefinedItems {
   accounts: AutoCompleteValue[]
@@ -18,71 +18,65 @@ export function getAutocompleteValueFromKey(
   key: string,
   items: AutoCompletePreDefinedItems,
   value: '' | null,
-  isArray?: false,
   addThemIfNotFound?: boolean,
 ): null
 export function getAutocompleteValueFromKey(
   key: string,
   items: AutoCompletePreDefinedItems,
   value: string,
-  isArray: false,
   addThemIfNotFound: true,
 ): AutoCompleteValue
 export function getAutocompleteValueFromKey(
   key: string,
   items: AutoCompletePreDefinedItems,
   value: string,
-  isArray?: false,
   addThemIfNotFound?: false,
 ): AutoCompleteValue | null
 export function getAutocompleteValueFromKey(
   key: string,
   items: AutoCompletePreDefinedItems,
-  value: '' | null,
-  isArray: true,
+  value: [] | [''] | null,
   addThemIfNotFound?: boolean,
 ): []
 export function getAutocompleteValueFromKey(
   key: string,
   items: AutoCompletePreDefinedItems,
-  value: string,
-  isArray: true,
+  value: (string | null)[],
   addThemIfNotFound?: boolean,
 ): AutoCompleteValue[]
 export function getAutocompleteValueFromKey(
   key: string,
   items: AutoCompletePreDefinedItems,
-  value: string | null,
-  isArray?: boolean,
+  value: string | (string | null)[] | null,
   addThemIfNotFound?: boolean,
 ): AutoCompleteValue | AutoCompleteValue[] | null
 export function getAutocompleteValueFromKey(
   key: string,
   items: AutoCompletePreDefinedItems,
-  value: string | null,
-  isArray?: boolean,
+  value: string | (string | null)[] | null,
   addThemIfNotFound?: boolean,
 ) {
-  if (!value || (isArray && value === '[]')) {
+  const isArray = Array.isArray(value)
+  if (!value && isArray) {
     return isArray ? [] : null
   }
   const data = getAutocompleteDataFromKey(key, items)
   return isArray
-    ? (getArrayFromInOP(value)
+    ? ((value as string[])
         .map((item) => (data.find((i) => i.value === item) ?? addThemIfNotFound ? { value: item, label: item } : undefined))
         .filter((i) => i) as AutoCompleteValue[])
     : data.find((i) => i.value === value) || (addThemIfNotFound ? { value, label: value } : undefined) || null
 }
 
 export const getAutocompleteDataFromKey = (key: string, items: AutoCompletePreDefinedItems) => {
-  switch (key) {
-    case '/ancestors.account.reported.id':
+  switch (key as DefaultPropertiesKeys) {
+    case DefaultPropertiesKeys.Account:
       return items.accounts
-    case '/ancestors.cloud.reported.id':
+    case DefaultPropertiesKeys.Cloud:
       return items.clouds
-    case '/ancestors.region.reported.id':
+    case DefaultPropertiesKeys.Region:
       return items.regions
-    case '/security.severity':
+    case DefaultPropertiesKeys.Severity:
       return items.severities
     default:
       return [] as AutoCompleteValue[]
@@ -90,8 +84,8 @@ export const getAutocompleteDataFromKey = (key: string, items: AutoCompletePreDe
 }
 
 export const getAutoCompletePropsFromKey = (key: string) => {
-  switch (key) {
-    case '/ancestors.cloud.reported.id':
+  switch (key as DefaultPropertiesKeys) {
+    case DefaultPropertiesKeys.Cloud:
       return {
         renderOption: (
           props: HTMLAttributes<HTMLLIElement>,
@@ -121,15 +115,15 @@ export const getAutoCompletePropsFromKey = (key: string) => {
         ListboxProps: undefined,
         renderInput: (params: AutocompleteRenderInputParams) => <TextField {...params} label={<Trans>Clouds</Trans>} />,
       }
-    case '/ancestors.account.reported.id':
+    case DefaultPropertiesKeys.Account:
       return {
         renderInput: (params: AutocompleteRenderInputParams) => <TextField {...params} label={<Trans>Accounts</Trans>} />,
       }
-    case '/ancestors.region.reported.id':
+    case DefaultPropertiesKeys.Region:
       return {
         renderInput: (params: AutocompleteRenderInputParams) => <TextField {...params} label={<Trans>Regions</Trans>} />,
       }
-    case '/security.severity':
+    case DefaultPropertiesKeys.Severity:
       return {
         renderOption: (
           props: HTMLAttributes<HTMLLIElement>,

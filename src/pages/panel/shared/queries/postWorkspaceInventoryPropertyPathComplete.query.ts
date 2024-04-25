@@ -1,6 +1,6 @@
 import { QueryFunctionContext } from '@tanstack/react-query'
-import { defaultProperties } from 'src/pages/panel/shared/constants'
 import { endPoints } from 'src/shared/constants'
+import { defaultProperties } from 'src/shared/fix-query-parser'
 import {
   PostWorkspaceInventoryPropertyPathCompleteRequest,
   PostWorkspaceInventoryPropertyPathCompleteResponse,

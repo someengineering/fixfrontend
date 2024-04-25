@@ -7,6 +7,7 @@ import { ChangeEvent, ReactNode, UIEvent as ReactUIEvent, useEffect, useMemo, us
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventoryPropertyValuesQuery } from 'src/pages/panel/shared/queries'
 import { panelUI } from 'src/shared/constants'
+import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { ListboxComponent } from 'src/shared/react-window'
 import { AutoCompleteValue } from 'src/shared/types/shared'
 import { inventorySendToGTM } from './utils'
@@ -16,7 +17,6 @@ const ITEMS_PER_PAGE = 50
 interface InventoryFormFilterRowStringValueProps<Multiple extends boolean, NetworkDisabled extends boolean>
   extends Omit<AutocompleteProps<AutoCompleteValue, Multiple, false, true>, 'onChange' | 'value' | 'renderInput' | 'options'> {
   multiple: Multiple
-  searchCrit: string
   networkDisabled: NetworkDisabled
   defaultOptions?: AutoCompleteValue[]
   propertyName: string
@@ -30,7 +30,6 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
   defaultOptions,
   networkDisabled,
   onChange,
-  searchCrit,
   propertyName,
   isNumber,
   isDouble,
@@ -38,10 +37,12 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
   ...props
 }: InventoryFormFilterRowStringValueProps<Multiple, NetworkDisabled>) {
   const { selectedWorkspace } = useUserProfile()
+  const { query } = useFixQueryParser()
   const [hasFocus, setHasFocus] = useState(false)
   const [typed, setTyped] = useState(value && !Array.isArray(value) ? value.label : '')
   const debouncedTyped = useDebounce(networkDisabled ? '' : typed, panelUI.fastInputChangeDebounce)
   const selectedTyped = useRef('')
+  const q = useMemo(() => query.delete_predicate(propertyName), [propertyName, query]).toString()
   const {
     data = null,
     isLoading,
@@ -56,8 +57,8 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
       debouncedTyped &&
       (!selectedTyped.current || selectedTyped.current !== debouncedTyped) &&
       (!value || (Array.isArray(value) ? !value.find((i) => i.label === debouncedTyped) : value.label !== debouncedTyped))
-        ? `${searchCrit} and ${propertyName} ~ ".*${debouncedTyped}.*"`
-        : searchCrit,
+        ? `${q} and ${propertyName} ~ ".*${debouncedTyped}.*"`
+        : q,
       propertyName,
     ] as const,
     initialPageParam: {
@@ -78,12 +79,12 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
           debouncedTyped &&
           (!selectedTyped.current || selectedTyped.current !== debouncedTyped) &&
           (!value || (Array.isArray(value) ? !value.find((i) => i.label === debouncedTyped) : value.label !== debouncedTyped))
-            ? `${searchCrit} and ${propertyName} ~ ".*${debouncedTyped}.*"`
-            : searchCrit,
+            ? `${q} and ${propertyName} ~ ".*${debouncedTyped}.*"`
+            : q,
         prop: propertyName,
       })
     }
-  }, [debouncedTyped, error, propertyName, searchCrit, selectedWorkspace?.id, value])
+  }, [debouncedTyped, error, propertyName, q, selectedWorkspace?.id, value])
   const flatData = useMemo(
     () =>
       data?.pages

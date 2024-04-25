@@ -1,8 +1,8 @@
 export type PostWorkspaceInventoryPropertyPathCompleteRequest = {
-  path: string
+  path?: string
   prop: string
-  kinds: string[]
-  fuzzy: boolean
+  kinds?: string[]
+  fuzzy?: boolean
   limit: number | null
   skip: number | null
 }

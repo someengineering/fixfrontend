@@ -173,6 +173,13 @@ export class Path {
     return parts.every((part, i) => this.parts[i].equalTo(part))
   }
 
+  public getPathAndProp(): [string, string] {
+    const propParts = [...this.parts]
+    const root = this.root ? '/' : ''
+    const pathParts = propParts.splice(0, propParts.length - 1)
+    return [root + pathParts.join('.'), propParts[0].toString()]
+  }
+
   public equalTo(other: Path): boolean {
     return (
       this.root === other.root && this.parts.length === other.parts.length && this.parts.every((part, i) => part.equalTo(other.parts[i]))
@@ -274,6 +281,13 @@ export abstract class Term {
       }
     }
     return this
+  }
+
+  set_last(term: Term, op: string): Term {
+    if (this instanceof CombinedTerm) {
+      return new CombinedTerm({ left: this.left, op: this.op, right: this.right.set_last(term, op) })
+    }
+    return new CombinedTerm({ left: this, op, right: term })
   }
 
   abstract toString(): string
@@ -887,6 +901,12 @@ export class Query {
     return this.working_part.term.find_terms((t) => t instanceof Predicate, only_and_parts) as Predicate[]
   }
 
+  public fulltextPredicates(): FulltextTerm[] {
+    // The UI assumes that all parts are AND combined. Do not walk OR parts.
+    const only_and_parts = (wd: Term) => !(wd instanceof CombinedTerm) || wd.op === 'and'
+    return this.working_part.term.find_terms((t) => t instanceof FulltextTerm, only_and_parts) as FulltextTerm[]
+  }
+
   public get remaining_predicates(): Record<string, JsonElement> {
     // neither cloud, account, region, tags nor severity
     return this.predicates()
@@ -902,6 +922,10 @@ export class Query {
 
   public get account(): Predicate | undefined {
     return this.predicates().find((p) => AccountIdentifier.has(p.path.toString()))
+  }
+
+  public get fullTextSearches(): FulltextTerm[] {
+    return this.fulltextPredicates()
   }
 
   public get region(): Predicate | undefined {
@@ -925,12 +949,87 @@ export class Query {
     })
   }
 
+  public set_fulltext(value: string, prevValue?: string): Query {
+    return produce(this, (draft) => {
+      if (value) {
+        if (prevValue) {
+          const item = draft.fulltextPredicates().find((i) => i.text === prevValue)
+          if (item) {
+            item.text = value
+            return
+          }
+        }
+        draft.working_part.term = draft.working_part.term.set_last(new FulltextTerm({ text: value }), 'and')
+      } else {
+        if (prevValue) {
+          const item = draft.fulltextPredicates().find((i) => i.text === prevValue)
+          if (item) {
+            draft.working_part.term = draft.working_part.term.delete_terms((t) => t === item)
+          }
+        }
+      }
+    })
+  }
+
+  public set_fulltext_index(value: string, index: number = 0): Query {
+    return produce(this, (draft) => {
+      const item = draft.fulltextPredicates()[index]
+      if (value) {
+        if (item) {
+          item.text = value
+        } else {
+          draft.working_part.term = draft.working_part.term.set_last(new FulltextTerm({ text: value }), 'and')
+        }
+      } else if (item) {
+        draft.working_part.term = draft.working_part.term.delete_terms((t) => t === item)
+      }
+    })
+  }
+
+  public set_fulltexts(values: string[]): Query {
+    return produce(this, (draft) => {
+      const existing = draft.fulltextPredicates()
+      existing.forEach((item, i) => {
+        if (values[i]) {
+          item.text = values[i]
+        } else {
+          draft.working_part.term = draft.working_part.term.delete_terms((t) => t === item)
+        }
+      })
+      if (existing.length < values.length) {
+        for (let i = existing.length; i < values.length; i++) {
+          if (values[i]) {
+            draft.working_part.term = draft.working_part.term.set_last(new FulltextTerm({ text: values[i] }), 'and')
+          }
+        }
+      }
+    })
+  }
+
+  public delete_fulltext_index(index: number): Query {
+    return produce(this, (draft) => {
+      const item = draft.fulltextPredicates()[index]
+      if (item) {
+        draft.working_part.term = draft.working_part.term.delete_terms((t) => t === item)
+      }
+    })
+  }
+
+  public delete_fulltext(value: string): Query {
+    return produce(this, (draft) => {
+      const item = draft.fulltextPredicates().find((i) => i.text === value)
+      if (item) {
+        draft.working_part.term = draft.working_part.term.delete_terms((t) => t === item)
+      }
+    })
+  }
+
   public delete_predicate(name: string): Query {
     const path = Path.from_string(name)
     return produce(this, (draft) => {
-      const existing = this.predicates().find((p) => p.path.equalTo(path))
+      const existing = draft.predicates().find((p) => p.path.equalTo(path))
       if (existing) {
-        draft.working_part.term = this.working_part.term.delete_terms((t) => existing === t)
+        draft.working_part.term = draft.working_part.term.delete_terms((t) => existing === t)
       }
     })
   }
@@ -957,6 +1056,15 @@ export class Query {
         draft.working_part.term = this.working_part.term.delete_terms((t) => existing === t)
       }
     })
+  }
+
+  public delete_all_term_if_any(): Query {
+    const existing = this.working_part.term.find_terms((i) => i instanceof AllTerm)
+    return existing.length > 0
+      ? produce(this, (draft) => {
+          draft.working_part.term = draft.working_part.term.delete_terms((t) => t instanceof AllTerm)
+        })
+      : this
   }
 
   public get tags(): Record<string, JsonElement> {
@@ -1008,6 +1116,10 @@ export class Query {
       this.parts.length == 1 &&
       this.parts.every((part) => part.with_clause == undefined && part.term.find_terms((t) => t instanceof MergeTerm).length == 0)
     )
+  }
+
+  public get sorts() {
+    return this.working_part.sort
   }
 
   static parse(query: string, template_parameters: { [key: string]: JsonElement } = {}): Query {
