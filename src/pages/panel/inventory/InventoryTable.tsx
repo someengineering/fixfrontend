@@ -48,7 +48,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
   const [columns, setColumns] = useState<ColType[]>([])
   const [sorting, setSorting] = useState<WorkspaceInventorySearchTableSort[]>(
     sorts.length
-      ? sorts.map((sort) => ({ direction: sort.order.toLowerCase() as 'asc' | 'desc', path: sort.path.toString() }))
+      ? sorts.map((sort) => ({ direction: sort.order, path: sort.path.toString() }))
       : [
           ...(history ? [{ direction: 'asc', path: '/changed_at' } as WorkspaceInventorySearchTableSort] : []),
           { direction: 'asc', path: '/reported.kind' },
@@ -150,7 +150,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       sortModel={
         sorting
           .map((sort) => {
-            const column = columns.find((column) => column.path === sort.path)
+            const column = columns.find((column) => column.path === sort.path || column.name.toLowerCase() === sort.path.toLowerCase())
             if (column) {
               return {
                 field: column.field,
