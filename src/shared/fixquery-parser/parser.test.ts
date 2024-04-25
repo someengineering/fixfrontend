@@ -155,13 +155,13 @@ test(`Parse Term`, () => {
 })
 
 test(`Parse Sort`, () => {
-  assert.deepEqual(parse_sort('sort foo.bar'), [new Sort({ path: foo_bar, order: SortOrder.Asc })])
-  assert.deepEqual(parse_sort('sort foo.bar asc'), [new Sort({ path: foo_bar, order: SortOrder.Asc })])
-  assert.deepEqual(parse_sort('sort foo.bar desc'), [new Sort({ path: foo_bar, order: SortOrder.Desc })])
+  assert.deepEqual(parse_sort('sort foo.bar'), [new Sort({ path: foo_bar, order: SortOrder.asc })])
+  assert.deepEqual(parse_sort('sort foo.bar asc'), [new Sort({ path: foo_bar, order: SortOrder.asc })])
+  assert.deepEqual(parse_sort('sort foo.bar desc'), [new Sort({ path: foo_bar, order: SortOrder.desc })])
   assert.deepEqual(parse_sort('sort foo asc, bar desc, bla'), [
-    new Sort({ path: foo, order: SortOrder.Asc }),
-    new Sort({ path: bar, order: SortOrder.Desc }),
-    new Sort({ path: bla, order: SortOrder.Asc }),
+    new Sort({ path: foo, order: SortOrder.asc }),
+    new Sort({ path: bar, order: SortOrder.desc }),
+    new Sort({ path: bla, order: SortOrder.asc }),
   ])
 })
 
@@ -226,7 +226,7 @@ test(`Parse Part`, () => {
     op: 'and',
     right: new CombinedTerm({ left: pred, op: 'and', right: ctx }),
   })
-  const sort = [new Sort({ path: bla, order: SortOrder.Asc })]
+  const sort = [new Sort({ path: bla, order: SortOrder.asc })]
   const limit = new Limit({ length: 10 })
   assert.deepEqual(parse_part('foo=23 sort bla limit 10'), new Part({ term: pred, sort, limit }))
   assert.deepEqual(
@@ -261,7 +261,7 @@ test(`Parse Query`, () => {
     op: 'and',
     right: new CombinedTerm({ left: pred, op: 'and', right: ctx }),
   })
-  const sort = [new Sort({ path: bla, order: SortOrder.Asc })]
+  const sort = [new Sort({ path: bla, order: SortOrder.asc })]
   const limit = new Limit({ length: 10 })
   const part = new Part({ term: pred, sort, limit })
   const with_clause = new WithClause({

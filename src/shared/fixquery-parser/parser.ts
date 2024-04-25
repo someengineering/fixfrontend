@@ -178,11 +178,11 @@ LimitP.setPattern(
   ),
 )
 
-const asc = apply(tok(T.Asc), (_b) => SortOrder.Asc)
-const desc = apply(tok(T.Desc), (_b) => SortOrder.Desc)
+const asc = apply(tok(T.Asc), (_b) => SortOrder.asc)
+const desc = apply(tok(T.Desc), (_b) => SortOrder.desc)
 SortP.setPattern(
   apply(kright(tok(T.Sort), list_sc(seq(PathP, opt(alt(asc, desc))), tok(T.Comma))), (sorts) =>
-    sorts.map(([path, dir]) => new Sort({ path, order: dir || SortOrder.Asc })),
+    sorts.map(([path, dir]) => new Sort({ path, order: dir || SortOrder.asc })),
   ),
 )
 
