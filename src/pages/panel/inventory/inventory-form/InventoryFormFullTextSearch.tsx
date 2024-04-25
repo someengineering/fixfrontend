@@ -1,62 +1,40 @@
-import { Trans, t } from '@lingui/macro'
-import { Button, TextField } from '@mui/material'
-import { useEffect, useRef, useState } from 'react'
-import { useFixQueryParser } from 'src/shared/fix-query-parser'
-import { Modal } from 'src/shared/modal'
+import { t } from '@lingui/macro'
+import { useState } from 'react'
+import { FullTextTerm, useFixQueryParser } from 'src/shared/fix-query-parser'
 import { InventoryFormField } from './InventoryFormField'
+import { InventoryFormFullTextSearchPopover } from './InventoryFormFullTextSearchPopover'
 
-export const InventoryFormFullTextSearch = () => {
+export const InventoryFormFullTextSearchItem = ({ fullTextSearch }: { fullTextSearch?: FullTextTerm }) => {
+  const [open, setOpen] = useState<HTMLDivElement | null>(null)
   const {
-    fullTextSearches: [firstFullText],
     update: {
-      current: { setFullTextSearchWithIndex, deleteFullTextSearchWithIndex },
+      current: { updateFullTextSearch },
     },
   } = useFixQueryParser()
-  const modalRef = useRef<(show?: boolean | undefined) => void>()
-  const firstFullTextValue = firstFullText?.text ?? ''
-  const [value, setValue] = useState(firstFullTextValue)
-  useEffect(() => {
-    setValue(firstFullTextValue)
-  }, [firstFullTextValue])
   return (
     <>
       <InventoryFormField
-        value={firstFullTextValue}
+        value={fullTextSearch}
         label={t`Full-text search`}
-        onClick={() => modalRef.current?.(true)}
-        onClear={() => deleteFullTextSearchWithIndex(0)}
+        onClick={(e) => setOpen(e.currentTarget)}
+        onClear={fullTextSearch ? () => updateFullTextSearch(undefined, fullTextSearch.text) : () => {}}
       />
-      <Modal
-        openRef={modalRef}
-        title={t`Full-text search`}
-        onSubmit={() => {
-          setFullTextSearchWithIndex(value, 0)
-          modalRef.current?.(false)
-        }}
-        actions={
-          <>
-            <Button color="primary" onClick={() => modalRef.current?.(false)}>
-              <Trans>Close</Trans>
-            </Button>
-            <Button type="submit" color="primary">
-              <Trans>Submit</Trans>
-            </Button>
-          </>
-        }
-      >
-        <TextField
-          autoFocus
-          id="full-text-search"
-          name="full-text-search"
-          autoComplete="search"
-          label={t`Full-text search`}
-          variant="outlined"
-          fullWidth
-          type="search"
-          value={value}
-          onChange={(e) => setValue(e.target.value ?? '')}
-        />
-      </Modal>
+      <InventoryFormFullTextSearchPopover
+        fullTextSearch={fullTextSearch?.text ?? ''}
+        onChange={(value) => updateFullTextSearch(value, fullTextSearch?.text)}
+        onClose={() => setOpen(null)}
+        open={open}
+      />
     </>
+  )
+}
+
+export const InventoryFormFullTextSearches = () => {
+  const { fullTextSearches } = useFixQueryParser()
+
+  return fullTextSearches.length ? (
+    fullTextSearches.map((fullTextSearch, i) => <InventoryFormFullTextSearchItem fullTextSearch={fullTextSearch} key={i} />)
+  ) : (
+    <InventoryFormFullTextSearchItem />
   )
 }

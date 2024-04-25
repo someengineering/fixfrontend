@@ -4,13 +4,9 @@ import { JsonElement, Query } from './query'
 type CombineType = Query['combine']
 type DeleteIsType = Query['delete_is']
 type DeletePredicateType = Query['delete_predicate']
-type DeleteFullTextType = Query['delete_fulltext']
-type DeleteFullTextIndexType = Query['delete_fulltext_index']
 type SetIsType = Query['set_is']
 type SetPredicateType = Query['set_predicate']
-type SetFullTextType = Query['set_fulltext']
-type SetFullTextIndexType = Query['set_fulltext_index']
-type SetFullTextsType = Query['set_fulltexts']
+type UpdateFullTextType = Query['update_fulltext']
 
 export type FixQueryContextValue = {
   error: Error | undefined
@@ -26,20 +22,16 @@ export type FixQueryContextValue = {
   sorts: Query['sorts']
   is: Query['is']
   predicates: Query['predicates']
-  fullTextPredicates: Query['fulltextPredicates']
+  fullTexts: Query['fulltexts']
   provides_security_check_details: Query['provides_security_check_details']
   findPaths: Query['find_paths']
   update: MutableRefObject<{
     combine: CombineType
     deleteIs: DeleteIsType
     deletePredicate: DeletePredicateType
-    deleteFullTextSearch: DeleteFullTextType
-    deleteFullTextSearchWithIndex: DeleteFullTextIndexType
     setIs: (kinds: string[]) => Query
     setPredicate: (name: string, op: string, value: JsonElement) => Query
-    setFullTextSearch: SetFullTextType
-    setFullTextSearchWithIndex: SetFullTextIndexType
-    setFullTextSearches: SetFullTextsType
+    updateFullTextSearch: UpdateFullTextType
     deleteMatching: Query['delete_matching']
     updateQuery: (q: string) => Query
     reset: () => Query
@@ -81,14 +73,10 @@ export const FixQueryProvider = ({ searchQuery, children }: FixQueryProviderProp
   const update = useRef<FixQueryContextValue['update']['current']>({
     combine: forceUpdateAndCall<Parameters<CombineType>>(query.combine.bind(query)),
     deleteIs: forceUpdateAndCall<Parameters<DeleteIsType>>(query.delete_is.bind(query)),
-    deleteFullTextSearch: forceUpdateAndCall<Parameters<DeleteFullTextType>>(query.delete_fulltext.bind(query)),
-    deleteFullTextSearchWithIndex: forceUpdateAndCall<Parameters<DeleteFullTextIndexType>>(query.delete_fulltext_index.bind(query)),
     deletePredicate: forceUpdateAndCall<Parameters<DeletePredicateType>>(query.delete_predicate.bind(query)),
     setIs: forceUpdateAndCall<Parameters<SetIsType>>(query.set_is.bind(query)),
     setPredicate: forceUpdateAndCall<Parameters<SetPredicateType>>(query.set_predicate.bind(query)),
-    setFullTextSearch: forceUpdateAndCall<Parameters<SetFullTextType>>(query.set_fulltext.bind(query)),
-    setFullTextSearchWithIndex: forceUpdateAndCall<Parameters<SetFullTextIndexType>>(query.set_fulltext_index.bind(query)),
-    setFullTextSearches: forceUpdateAndCall<Parameters<SetFullTextsType>>(query.set_fulltexts.bind(query)),
+    updateFullTextSearch: forceUpdateAndCall<Parameters<UpdateFullTextType>>(query.update_fulltext.bind(query)),
     deleteMatching: query.delete_matching.bind(query),
     updateQuery: (q: string) => {
       try {
@@ -117,14 +105,10 @@ export const FixQueryProvider = ({ searchQuery, children }: FixQueryProviderProp
     update.current = {
       combine: forceUpdateAndCall<Parameters<CombineType>>(query.combine.bind(query)),
       deleteIs: forceUpdateAndCall<Parameters<DeleteIsType>>(query.delete_is.bind(query)),
-      deleteFullTextSearch: forceUpdateAndCall<Parameters<DeleteFullTextType>>(query.delete_fulltext.bind(query)),
-      deleteFullTextSearchWithIndex: forceUpdateAndCall<Parameters<DeleteFullTextIndexType>>(query.delete_fulltext_index.bind(query)),
       deletePredicate: forceUpdateAndCall<Parameters<DeletePredicateType>>(query.delete_predicate.bind(query)),
       setIs: forceUpdateAndCall<Parameters<SetIsType>>(query.set_is.bind(query)),
       setPredicate: forceUpdateAndCall<Parameters<SetPredicateType>>(query.set_predicate.bind(query)),
-      setFullTextSearch: forceUpdateAndCall<Parameters<SetFullTextType>>(query.set_fulltext.bind(query)),
-      setFullTextSearchWithIndex: forceUpdateAndCall<Parameters<SetFullTextIndexType>>(query.set_fulltext_index.bind(query)),
-      setFullTextSearches: forceUpdateAndCall<Parameters<SetFullTextsType>>(query.set_fulltexts.bind(query)),
+      updateFullTextSearch: forceUpdateAndCall<Parameters<UpdateFullTextType>>(query.update_fulltext.bind(query)),
       deleteMatching: query.delete_matching.bind(query),
       updateQuery: update.current.updateQuery,
       reset: update.current.reset,
@@ -146,7 +130,7 @@ export const FixQueryProvider = ({ searchQuery, children }: FixQueryProviderProp
       is: query.is.bind(query),
       predicates: query.predicates.bind(query),
       provides_security_check_details: query.provides_security_check_details.bind(query),
-      fullTextPredicates: query.fulltextPredicates.bind(query),
+      fullTexts: query.fulltexts.bind(query),
       findPaths: query.find_paths.bind(query),
     }
   }, [error, query])

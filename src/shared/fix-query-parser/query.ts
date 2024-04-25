@@ -901,7 +901,7 @@ export class Query {
     return this.working_part.term.find_terms((t) => t instanceof Predicate, only_and_parts) as Predicate[]
   }
 
-  public fulltextPredicates(): FulltextTerm[] {
+  public fulltexts(): FulltextTerm[] {
     // The UI assumes that all parts are AND combined. Do not walk OR parts.
     const only_and_parts = (wd: Term) => !(wd instanceof CombinedTerm) || wd.op === 'and'
     return this.working_part.term.find_terms((t) => t instanceof FulltextTerm, only_and_parts) as FulltextTerm[]
@@ -925,7 +925,7 @@ export class Query {
   }
 
   public get fullTextSearches(): FulltextTerm[] {
-    return this.fulltextPredicates()
+    return this.fulltexts()
   }
 
   public get region(): Predicate | undefined {
@@ -949,11 +949,11 @@ export class Query {
     })
   }
 
-  public set_fulltext(value: string, prevValue?: string): Query {
+  public update_fulltext(value?: string, prevValue?: string): Query {
     return produce(this, (draft) => {
       if (value) {
         if (prevValue) {
-          const item = draft.fulltextPredicates().find((i) => i.text === prevValue)
+          const item = draft.fulltexts().find((i) => i.text === prevValue)
           if (item) {
             item.text = value
             return
@@ -962,64 +962,11 @@ export class Query {
         draft.working_part.term = draft.working_part.term.set_last(new FulltextTerm({ text: value }), 'and')
       } else {
         if (prevValue) {
-          const item = draft.fulltextPredicates().find((i) => i.text === prevValue)
+          const item = draft.fulltexts().find((i) => i.text === prevValue)
           if (item) {
             draft.working_part.term = draft.working_part.term.delete_terms((t) => t === item)
           }
         }
-      }
-    })
-  }
-
-  public set_fulltext_index(value: string, index: number = 0): Query {
-    return produce(this, (draft) => {
-      const item = draft.fulltextPredicates()[index]
-      if (value) {
-        if (item) {
-          item.text = value
-        } else {
-          draft.working_part.term = draft.working_part.term.set_last(new FulltextTerm({ text: value }), 'and')
-        }
-      } else if (item) {
-        draft.working_part.term = draft.working_part.term.delete_terms((t) => t === item)
-      }
-    })
-  }
-
-  public set_fulltexts(values: string[]): Query {
-    return produce(this, (draft) => {
-      const existing = draft.fulltextPredicates()
-      existing.forEach((item, i) => {
-        if (values[i]) {
-          item.text = values[i]
-        } else {
-          draft.working_part.term = draft.working_part.term.delete_terms((t) => t === item)
-        }
-      })
-      if (existing.length < values.length) {
-        for (let i = existing.length; i < values.length; i++) {
-          if (values[i]) {
-            draft.working_part.term = draft.working_part.term.set_last(new FulltextTerm({ text: values[i] }), 'and')
-          }
-        }
-      }
-    })
-  }
-
-  public delete_fulltext_index(index: number): Query {
-    return produce(this, (draft) => {
-      const item = draft.fulltextPredicates()[index]
-      if (item) {
-        draft.working_part.term = draft.working_part.term.delete_terms((t) => t === item)
-      }
-    })
-  }
-
-  public delete_fulltext(value: string): Query {
-    return produce(this, (draft) => {
-      const item = draft.fulltextPredicates().find((i) => i.text === value)
-      if (item) {
-        draft.working_part.term = draft.working_part.term.delete_terms((t) => t === item)
       }
     })
   }

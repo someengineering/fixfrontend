@@ -7,7 +7,7 @@ import { getWorkspaceInventorySearchStartQuery } from 'src/pages/panel/shared/qu
 import { InventoryFormAccount } from './InventoryFormAccount'
 import { InventoryFormChanges } from './InventoryFormChanges'
 import { InventoryFormCloud } from './InventoryFormCloud'
-import { InventoryFormFullTextSearch } from './InventoryFormFullTextSearch'
+import { InventoryFormFullTextSearches } from './InventoryFormFullTextSearch'
 import { InventoryFormKind } from './InventoryFormKind'
 import { InventoryFormMore } from './InventoryFormMore'
 import { InventoryFormRegion } from './InventoryFormRegion'
@@ -85,7 +85,7 @@ export const InventoryForm = () => {
   return (
     <Stack direction="row" width="100%" component="form" flexWrap="wrap" overflow="auto">
       <InventoryFormChanges />
-      <InventoryFormFullTextSearch />
+      <InventoryFormFullTextSearches />
       <InventoryFormKind preItems={filteredStartData} />
       <InventoryFormCloud preItems={filteredStartData} />
       <InventoryFormAccount preItems={filteredStartData} />
