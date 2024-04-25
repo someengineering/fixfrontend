@@ -46,6 +46,7 @@ test(`literal literals`, () => {
   assert.deepEqual(lex('foo.bla[*].bar'), ['foo', '.', 'bla', '[', '*', ']', '.', 'bar'])
   assert.deepEqual(lex('foo.`bla[*]`.bar'), ['foo', '.', '`bla[*]`', '.', 'bar'])
   assert.deepEqual(lex('foo.`bla\\`[*]`.bar'), ['foo', '.', '`bla\\`[*]`', '.', 'bar'])
+  assert.deepEqual(lex('with_usage(1d, foo)'), ['with_usage', '(', '1', 'd', ',', 'foo', ')'])
 })
 
 test(`double quoted literals`, () => {

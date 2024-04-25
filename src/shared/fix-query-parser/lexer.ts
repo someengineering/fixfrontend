@@ -6,6 +6,7 @@ export enum T {
   IS,
   ID,
   With, // with
+  WithUsage, // with_usage
   Any, // any
   Empty, // empty
   All, // all
@@ -87,6 +88,7 @@ export const FixQueryLexerRules: [boolean, RegExp, T][] = [
   [true, /^null/g, T.Null],
   [true, /^default/g, T.Default],
   [true, /^delete/g, T.Delete],
+  [true, /^with_usage/g, T.WithUsage],
   [true, /^\(/g, T.LParen],
   [true, /^\)/g, T.RParen],
   [true, /^\[/g, T.LBracket],
@@ -142,7 +144,7 @@ export class LexerToken implements Token<T> {
   }
 }
 
-const sw1 = ['is', 'id', 'in', 'with', 'any', 'empty', 'all', 'count', 'not']
+const sw1 = ['is', 'id', 'in', 'with', 'any', 'empty', 'all', 'count', 'not', `with_usage`]
 const sw2 = ['and', 'or', 'limit', 'sort', 'asc', 'desc', 'true', 'false', 'null', 'default', 'delete']
 const sw3 = ['/', '+', '-', '*', '=', '~', '!=', '<=', '>=', '<', '>', '->', '<-']
 

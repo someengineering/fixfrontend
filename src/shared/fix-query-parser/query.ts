@@ -624,6 +624,20 @@ export class WithClause {
   }
 }
 
+export class WithUsage {
+  [immerable] = true
+
+  start: string
+  end: string | undefined
+  metrics: Array<string>
+
+  constructor({ start, end, metrics }: { start: string; end?: string | undefined; metrics: Array<string> }) {
+    this.start = start
+    this.end = end
+    this.metrics = metrics
+  }
+}
+
 export class Navigation {
   [immerable] = true
 
@@ -712,6 +726,7 @@ export class Part {
   [immerable] = true
   term: Term
   with_clause: WithClause | undefined
+  with_usage: WithUsage | undefined
   sort: Sort[]
   limit?: Limit
   navigation?: Navigation
@@ -719,18 +734,21 @@ export class Part {
   constructor({
     term,
     with_clause,
+    with_usage,
     sort = [],
     limit,
     navigation,
   }: {
     term: Term
     with_clause?: WithClause
+    with_usage?: WithUsage
     sort?: Sort[]
     limit?: Limit
     navigation?: Navigation
   }) {
     this.term = term
     this.with_clause = with_clause
+    this.with_usage = with_usage
     this.sort = sort
     this.limit = limit
     this.navigation = navigation

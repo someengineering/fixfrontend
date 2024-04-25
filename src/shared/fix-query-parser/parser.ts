@@ -32,6 +32,7 @@ import {
   Term,
   WithClause,
   WithClauseFilter,
+  WithUsage,
 } from './query'
 
 export const JsonElementP = rule<T, JsonElement>()
@@ -44,6 +45,7 @@ export const MergeQueryP = rule<T, MergeQuery>()
 export const SortP = rule<T, Sort[]>()
 export const LimitP = rule<T, Limit>()
 export const WithClauseP = rule<T, WithClause>()
+export const WithUsageP = rule<T, WithUsage>()
 export const NavigationP = rule<T, Navigation>()
 export const PartP = rule<T, Part>()
 export const AggregateP = rule<T, Aggregate>()
@@ -228,6 +230,15 @@ WithClauseP.setPattern(
   ),
 )
 
+const duration_part = apply(times_n(alt(as_str(T.Float), as_str(T.Integer), as_str(T.Literal))), (ts) => ts.join(''))
+const duration_or_time = apply(times_n_sep(duration_part, tok(T.Colon)), (ts) => ts.join(':'))
+const optional_end = opt(kright(seq(tok(T.Colon), tok(T.Colon)), duration_or_time))
+const with_usage = apply(
+  seq(duration_or_time, optional_end, tok(T.Comma), list_or_simple),
+  ([start, end, _, metrics]) => new WithUsage({ start, end, metrics }),
+)
+WithUsageP.setPattern(kright(tok(T.WithUsage), kmid(tok(T.LParen), with_usage, tok(T.RParen))))
+
 const part_term = apply(
   seq(TermP, opt(kmid(tok(T.LCurly), times_n_sep(MergeQueryP, tok(T.Comma)), tok(T.RCurly)))),
   ([preFilter, merge]) => {
@@ -241,11 +252,12 @@ const part_term = apply(
 
 PartP.setPattern(
   apply(
-    seq(part_term, opt(WithClauseP), opt(SortP), opt(LimitP), opt(NavigationP)),
-    ([term, with_clause, sort, limit, navigation]) =>
+    seq(opt(WithUsageP), part_term, opt(WithClauseP), opt(SortP), opt(LimitP), opt(NavigationP)),
+    ([with_usage, term, with_clause, sort, limit, navigation]) =>
       new Part({
         term: term || new AllTerm(),
         with_clause,
+        with_usage,
         sort,
         limit,
         navigation,

@@ -15,6 +15,7 @@ import {
   SortP,
   TermP,
   WithClauseP,
+  WithUsageP,
 } from './parser.ts'
 import {
   AllTerm,
@@ -38,6 +39,7 @@ import {
   SortOrder,
   WithClause,
   WithClauseFilter,
+  WithUsage,
 } from './query.ts'
 
 const parse_variable = parse_expr(PathP)
@@ -53,6 +55,7 @@ const parse_query = parse_expr(QueryP)
 const parse_merge_query = parse_expr(MergeQueryP)
 const parse_with_clause = parse_expr(WithClauseP)
 const parse_aggregate = parse_expr(AggregateP)
+const parse_with_usage = parse_expr(WithUsageP)
 
 const foo = Path.from('foo')
 const bar = Path.from('bar')
@@ -312,6 +315,13 @@ test(`Parse Query`, () => {
   )
 })
 
+test('Parse With Usage', () => {
+  assert.deepEqual(parse_with_usage('with_usage(1d, foo)'), new WithUsage({ start: '1d', metrics: ['foo'] }))
+  assert.deepEqual(parse_with_usage('with_usage(1d, foo, bla, bar)'), new WithUsage({ start: '1d', metrics: ['foo', 'bla', 'bar'] }))
+  assert.deepEqual(parse_with_usage('with_usage(1d, [foo, bla, bar])'), new WithUsage({ start: '1d', metrics: ['foo', 'bla', 'bar'] }))
+  assert.deepEqual(parse_with_usage('with_usage(1d::2d, foo)'), new WithUsage({ start: '1d', end: '2d', metrics: ['foo'] }))
+})
+
 test('Parse Aggregates', () => {
   function assert_aggregate(query: string) {
     assert.strictEqual(parse_aggregate(query).toString(), query)
@@ -512,6 +522,7 @@ test('Parse existing queries', () => {
     'is(aws_ssm_document) and document_shared_with_accounts not in [null, []]',
     'is(aws_ssm_resource_compliance) --> is(aws_ec2_instance, aws_dynamodb_table, aws_ssm_document, aws_s3_bucket)',
     'is(aws_waf_web_acl) and logging_configuration==null',
+    'with_usage(7d, cpu_utilization_percent) is(instance,database) and /usage.cpu_utilization_percent.max < 10',
   ]
 
   for (const query of queries) {
