@@ -37,6 +37,8 @@ export default function InventoryPage() {
     [navigate],
   )
 
+  const hasChanges = searchParams.get('changes') === 'true'
+
   return (
     <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
       <Suspense fallback={<LoadingSuspenseFallback />}>
@@ -46,13 +48,13 @@ export default function InventoryPage() {
               value={searchCrit}
               onChange={setSearchCrit}
               hasError={!!searchCrit && hasError}
-              hasChanges={searchParams.get('change') === 'true'}
+              hasChanges={hasChanges}
             />
           </NetworkErrorBoundary>
           <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
             <ResourceDetail />
           </NetworkErrorBoundary>
-          {searchCrit && searchCrit !== 'all' ? (
+          {searchCrit && (searchCrit !== 'all' || (hasChanges && history.change)) ? (
             <>
               <NetworkErrorBoundary
                 fallbackRender={({ resetErrorBoundary }) => (

@@ -16,6 +16,14 @@ interface InventoryFormFilterRowValuesProps {
   onChange: (newTerm: Predicate) => void
 }
 
+const strToNumber = (value: string) => {
+  const num = Number(value)
+  if (Number.isNaN(num)) {
+    return null
+  }
+  return num
+}
+
 export function InventoryFormFilterRowValues({ data, keyString, fqn, preItems, onChange }: InventoryFormFilterRowValuesProps) {
   const multiple = data.op === 'in' || data.op === 'not in'
   const handleChangeValue = (value: string | string[] | null) => {
@@ -24,13 +32,35 @@ export function InventoryFormFilterRowValues({ data, keyString, fqn, preItems, o
         path: data.path,
         op: data.op,
         value:
-          typeof value === 'string'
-            ? value === 'null'
-              ? null
+          fqn === 'float' || fqn === 'int32' || fqn === 'int64' || fqn === 'double'
+            ? typeof value === 'string'
+              ? strToNumber(value)
               : value
-            : value
-              ? value.map((item) => (item === 'null' ? null : item))
-              : value,
+                ? value.map(strToNumber)
+                : null
+            : fqn === 'boolean'
+              ? typeof value === 'string'
+                ? value.toLowerCase() === 'null'
+                  ? null
+                  : value.toLowerCase() === 'true'
+                : value
+                  ? value.map((item) => (item.toLowerCase() === 'null' ? null : item.toLowerCase() === 'true'))
+                  : null
+              : fqn === 'date' || fqn === 'datetime'
+                ? typeof value === 'string'
+                  ? value === 'null'
+                    ? null
+                    : new Date(value).toISOString()
+                  : value
+                    ? value.map((item) => (item === 'null' ? null : new Date(item).toISOString()))
+                    : null
+                : typeof value === 'string'
+                  ? value === 'null'
+                    ? null
+                    : value
+                  : value
+                    ? value.map((item) => (item === 'null' ? null : item))
+                    : value,
         args: data.args,
       }),
     )
@@ -49,10 +79,10 @@ export function InventoryFormFilterRowValues({ data, keyString, fqn, preItems, o
             ? data.value[0] || ''
             : JSON.stringify(data.value[0])
         : multiple
-          ? data.value
+          ? data.value !== undefined
             ? [JSON.stringify(data.value)]
             : []
-          : data.value
+          : data.value !== undefined
             ? JSON.stringify(data.value)
             : '') || (multiple ? [] : 'null')
 

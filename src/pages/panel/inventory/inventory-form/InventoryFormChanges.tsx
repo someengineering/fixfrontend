@@ -57,7 +57,7 @@ export const InventoryFormChangesComp = () => {
       />
       <Modal
         openRef={modalRef}
-        title={t`Full-text search`}
+        title={t`Inventory Changes`}
         onSubmit={handleSubmit}
         actions={
           <>
@@ -107,7 +107,7 @@ export const InventoryFormChangesComp = () => {
             defaultValue={[after ? dayjs(after) : null, before ? dayjs(before) : null]}
             onChange={([after, before]) => {
               setAfter(after?.toISOString() ?? null)
-              setAfter(before?.toISOString() ?? null)
+              setBefore(before?.toISOString() ?? null)
             }}
           />
         </Stack>
