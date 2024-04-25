@@ -240,6 +240,18 @@ export class Path {
 export abstract class Term {
   [immerable] = true
 
+  and_term(other: Term): Term {
+    if (this instanceof AllTerm) return other
+    else if (other instanceof AllTerm) return this
+    else return new CombinedTerm({ left: this, op: 'and', right: other })
+  }
+
+  or_term(other: Term): Term {
+    if (this instanceof AllTerm) return this
+    else if (other instanceof AllTerm) return other
+    else return new CombinedTerm({ left: this, op: 'or', right: other })
+  }
+
   find_terms(fn: (term: Term) => boolean, wdf: (wd: Term) => boolean = (_) => true): Term[] {
     if (fn(this)) {
       return [this]
