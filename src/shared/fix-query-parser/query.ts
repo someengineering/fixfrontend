@@ -1017,15 +1017,6 @@ export class Query {
     })
   }
 
-  public delete_all_term_if_any(): Query {
-    const existing = this.working_part.term.find_terms((i) => i instanceof AllTerm)
-    return existing.length > 0
-      ? produce(this, (draft) => {
-          draft.working_part.term = draft.working_part.term.delete_terms((t) => t instanceof AllTerm)
-        })
-      : this
-  }
-
   public get tags(): Record<string, JsonElement> {
     return this.predicates()
       .filter((p) => p.path.startsWith('tags'))

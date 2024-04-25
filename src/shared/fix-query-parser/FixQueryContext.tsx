@@ -58,8 +58,7 @@ export const FixQueryProvider = ({ searchQuery, children }: FixQueryProviderProp
   function forceUpdateAndCall<Args extends unknown[]>(fn: (...args: Args) => Query) {
     return (...params: Args) => {
       try {
-        let result = fn(...params)
-        result = result.delete_all_term_if_any()
+        const result = fn(...params)
         setError(undefined)
         setQuery(result)
         return result
