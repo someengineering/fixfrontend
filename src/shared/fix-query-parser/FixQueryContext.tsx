@@ -13,7 +13,7 @@ export type FixQueryContextValue = {
   query: Query
   account: Query['account']
   cloud: Query['cloud']
-  fullTextSearches: Query['fullTextSearches']
+  fullTextSearches: ReturnType<Query['fulltexts']>
   parts: Query['parts']
   region: Query['region']
   severity: Query['severity']
@@ -100,7 +100,7 @@ export const FixQueryProvider = ({ searchQuery, children }: FixQueryProviderProp
     },
   })
   const value = useMemo(() => {
-    const { account, cloud, fullTextSearches, parts, region, severity, tags, aggregate, sorts } = query
+    const { account, cloud, parts, region, severity, tags, aggregate, sorts } = query
     update.current = {
       combine: forceUpdateAndCall<Parameters<CombineType>>(query.combine.bind(query)),
       deleteIs: forceUpdateAndCall<Parameters<DeleteIsType>>(query.delete_is.bind(query)),
@@ -117,7 +117,7 @@ export const FixQueryProvider = ({ searchQuery, children }: FixQueryProviderProp
       query,
       account,
       cloud,
-      fullTextSearches,
+      fullTextSearches: query.fulltexts(),
       parts,
       region,
       severity,

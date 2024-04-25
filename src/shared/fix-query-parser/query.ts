@@ -929,10 +929,6 @@ export class Query {
     return this.predicates().find((p) => AccountIdentifier.has(p.path.toString()))
   }
 
-  public get fullTextSearches(): FulltextTerm[] {
-    return this.fulltexts()
-  }
-
   public get region(): Predicate | undefined {
     return this.predicates().find((p) => RegionIdentifier.has(p.path.toString()))
   }

@@ -297,8 +297,20 @@ test('fulltext searches', () => {
     'is(aws) and access_key_last_used.last_used==null and "whatever" and age>90d and /ancestors.account.reported.name == "test" and "deleteme"',
   )
   const noFulltextQuery = Query.parse('access_key_last_used.last_used==null')
-  assert.strictEqual(query.fullTextSearches.map((i) => i.text).join(','), 'whatever,deleteme')
-  assert.strictEqual(noFulltextQuery.fullTextSearches.map((i) => i.text).join(','), '')
+  assert.strictEqual(
+    query
+      .fulltexts()
+      .map((i) => i.text)
+      .join(','),
+    'whatever,deleteme',
+  )
+  assert.strictEqual(
+    noFulltextQuery
+      .fulltexts()
+      .map((i) => i.text)
+      .join(','),
+    '',
+  )
 })
 
 test('set fulltext search', () => {
@@ -312,8 +324,20 @@ test('set fulltext search', () => {
   const testEmptyAddWithValue = noFulltextQuery.update_fulltext('something')
   const testEmptyReplaceWithValue = noFulltextQuery.update_fulltext('something', 'whatever')
   //asserts full texts
-  assert.strictEqual(testAddWithValue.fullTextSearches.map((i) => i.text).join(','), 'something,whatever,deleteme')
-  assert.strictEqual(testReplaceWithValue.fullTextSearches.map((i) => i.text).join(','), 'something,deleteme')
+  assert.strictEqual(
+    testAddWithValue
+      .fulltexts()
+      .map((i) => i.text)
+      .join(','),
+    'something,whatever,deleteme',
+  )
+  assert.strictEqual(
+    testReplaceWithValue
+      .fulltexts()
+      .map((i) => i.text)
+      .join(','),
+    'something,deleteme',
+  )
   //asserts query
   assert.strictEqual(
     testAddWithValue.toString(),
@@ -324,8 +348,20 @@ test('set fulltext search', () => {
     'is(aws) and access_key_last_used.last_used == null and "something" and age > "90d" and /ancestors.account.reported.name == "test" and "deleteme"',
   )
   //asserts empties full texts
-  assert.strictEqual(testEmptyAddWithValue.fullTextSearches.map((i) => i.text).join(','), 'something')
-  assert.strictEqual(testEmptyReplaceWithValue.fullTextSearches.map((i) => i.text).join(','), 'something')
+  assert.strictEqual(
+    testEmptyAddWithValue
+      .fulltexts()
+      .map((i) => i.text)
+      .join(','),
+    'something',
+  )
+  assert.strictEqual(
+    testEmptyReplaceWithValue
+      .fulltexts()
+      .map((i) => i.text)
+      .join(','),
+    'something',
+  )
   //asserts empties query
   assert.strictEqual(testEmptyAddWithValue.toString(), '"something" and access_key_last_used.last_used == null')
   assert.strictEqual(testEmptyReplaceWithValue.toString(), '"something" and access_key_last_used.last_used == null')
