@@ -6,6 +6,7 @@ import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { GTMEventNames, panelUI, settingsStorageKeys } from 'src/shared/constants'
+import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { sendToGTM } from 'src/shared/google-tag-manager'
 import { AdvancedTableView } from 'src/shared/layouts/panel-layout'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
@@ -37,6 +38,7 @@ type RowType = WorkspaceInventorySearchTableRow['row'] & {
 type ColType = GridColDef & WorkspaceInventorySearchTableColumn
 
 export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => {
+  const { sorts } = useFixQueryParser()
   const [dataCount, setDataCount] = useState(-1)
   const navigate = useAbsoluteNavigate()
   const [page, setPage] = useState(0)
@@ -44,12 +46,16 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
   const { selectedWorkspace } = useUserProfile()
   const [rows, setRows] = useState<RowType[]>([])
   const [columns, setColumns] = useState<ColType[]>([])
-  const [sorting, setSorting] = useState<WorkspaceInventorySearchTableSort[]>([
-    ...(history ? [{ direction: 'asc', path: '/changed_at' } as WorkspaceInventorySearchTableSort] : []),
-    { direction: 'asc', path: '/reported.kind' },
-    { direction: 'asc', path: '/reported.name' },
-    { direction: 'asc', path: '/reported.id' },
-  ])
+  const [sorting, setSorting] = useState<WorkspaceInventorySearchTableSort[]>(
+    sorts.length
+      ? sorts.map((sort) => ({ direction: sort.order, path: sort.path.toString() }))
+      : [
+          ...(history ? [{ direction: 'asc', path: '/changed_at' } as WorkspaceInventorySearchTableSort] : []),
+          { direction: 'asc', path: '/reported.kind' },
+          { direction: 'asc', path: '/reported.name' },
+          { direction: 'asc', path: '/reported.id' },
+        ],
+  )
   const initializedRef = useRef(false)
   const { data: serverData, isLoading } = useQuery({
     queryKey: [
@@ -72,6 +78,12 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       setDataCount(totalCount)
     }
   }, [totalCount, dataCount])
+
+  useEffect(() => {
+    if (sorts.length) {
+      setSorting(sorts.map((sort) => ({ direction: sort.order.toLowerCase() as 'asc' | 'desc', path: sort.path.toString() })))
+    }
+  }, [sorts])
 
   useEffect(() => {
     if (initializedRef.current) {
@@ -107,6 +119,12 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
                   ? 'number'
                   : 'string',
           display: 'text',
+          valueGetter:
+            i.kind === 'date' || i.kind === 'datetime'
+              ? (value) => new Date(value)
+              : i.kind === 'boolean'
+                ? (value) => (typeof value === 'boolean' ? value : value === 'true')
+                : undefined,
           minWidth: 100,
         })),
       )
@@ -132,7 +150,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       sortModel={
         sorting
           .map((sort) => {
-            const column = columns.find((column) => column.path === sort.path)
+            const column = columns.find((column) => column.path === sort.path || column.name.toLowerCase() === sort.path.toLowerCase())
             if (column) {
               return {
                 field: column.field,
@@ -179,7 +197,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
           <ButtonBase
             onClick={() =>
               navigate({
-                pathname: `/inventory/resource-detail/${(rowProps.row as RowType)?.INTERNAL_ID.split('_').slice(0, -1).join('_')}`,
+                pathname: `./resource-detail/${(rowProps.row as RowType)?.INTERNAL_ID.split('_').slice(0, -1).join('_')}`,
                 search:
                   typeof rowProps.row?.name === 'string'
                     ? mergeLocationSearchValues({

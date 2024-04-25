@@ -14,6 +14,7 @@ export { getWorkspaceNotificationsQuery } from './getWorkspaceNotifications.quer
 export { patchWorkspaceInventoryNodeSecurityIgnoreQuery } from './patchWorkspaceInventoryNodeSecurityIgnore.query'
 export { postWorkspaceInventoryPropertyAttributesQuery } from './postWorkspaceInventoryPropertyAttributes.query'
 export { postWorkspaceInventoryPropertyPathCompleteQuery } from './postWorkspaceInventoryPropertyPathComplete.query'
+export { postWorkspaceInventoryPropertyPathCompleteFqnQuery } from './postWorkspaceInventoryPropertyPathCompleteFqn.query'
 export { postWorkspaceInventoryPropertyValuesQuery } from './postWorkspaceInventoryPropertyValues.query'
 export { postWorkspaceInventorySearchTableQuery } from './postWorkspaceInventorySearchTable.query'
 export { postWorkspaceInventorySearchTableDownloadMutation } from './postWorkspaceInventorySearchTableDownload.mutation'

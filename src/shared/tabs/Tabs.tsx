@@ -45,7 +45,10 @@ export function Tabs<TabKeyType extends number | string | undefined = undefined>
             <Tab
               label={item.title}
               key={(item.id?.toString() ?? '') + index.toString()}
-              {...a11yProps(typeof item.id ?? `tab-${index}`, typeof item.title === 'string' ? item.title : `tabpanel-${index}`)}
+              {...a11yProps(
+                typeof item.id === 'string' ? item.id : `tab-${index}`,
+                typeof item.title === 'string' ? item.title : `tabpanel-${index}`,
+              )}
             />
           ))}
         </MuiTabs>

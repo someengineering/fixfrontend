@@ -173,6 +173,13 @@ export class Path {
     return parts.every((part, i) => this.parts[i].equalTo(part))
   }
 
+  public getPathAndProp(): [string, string] {
+    const propParts = [...this.parts]
+    const root = this.root ? '/' : ''
+    const pathParts = propParts.splice(0, propParts.length - 1)
+    return [root + pathParts.join('.'), propParts[0].toString()]
+  }
+
   public equalTo(other: Path): boolean {
     return (
       this.root === other.root && this.parts.length === other.parts.length && this.parts.every((part, i) => part.equalTo(other.parts[i]))
@@ -731,7 +738,7 @@ export class Part {
 
   toString(): string {
     const with_clause = this.with_clause ? ` ${this.with_clause.toString()}` : ''
-    const sort = this.sort.length > 0 ? `sort ${this.sort.map((s) => s.toString()).join(', ')}` : ''
+    const sort = this.sort.length > 0 ? ` sort ${this.sort.map((s) => s.toString()).join(', ')}` : ''
     const limit = this.limit ? ` ${this.limit.toString()}` : ''
     const nav = this.navigation ? ` ${this.navigation.toString()}` : ''
     return `${this.term.toString()}${with_clause}${sort}${limit}${nav}`
@@ -899,6 +906,12 @@ export class Query {
     return this.working_part.term.find_terms((t) => t instanceof Predicate, only_and_parts) as Predicate[]
   }
 
+  public fulltexts(): FulltextTerm[] {
+    // The UI assumes that all parts are AND combined. Do not walk OR parts.
+    const only_and_parts = (wd: Term) => !(wd instanceof CombinedTerm) || wd.op === 'and'
+    return this.working_part.term.find_terms((t) => t instanceof FulltextTerm, only_and_parts) as FulltextTerm[]
+  }
+
   public get remaining_predicates(): Record<string, JsonElement> {
     // neither cloud, account, region, tags nor severity
     return this.predicates()
@@ -933,12 +946,34 @@ export class Query {
     })
   }
 
+  public update_fulltext(value?: string, prevValue?: string): Query {
+    return produce(this, (draft) => {
+      if (value) {
+        if (prevValue) {
+          const item = draft.fulltexts().find((i) => i.text === prevValue)
+          if (item) {
+            item.text = value
+            return
+          }
+        }
+        draft.working_part.term = new FulltextTerm({ text: value }).and_term(draft.working_part.term)
+      } else {
+        if (prevValue) {
+          const item = draft.fulltexts().find((i) => i.text === prevValue)
+          if (item) {
+            draft.working_part.term = draft.working_part.term.delete_terms((t) => t === item)
+          }
+        }
+      }
+    })
+  }
+
   public delete_predicate(name: string): Query {
     const path = Path.from_string(name)
     return produce(this, (draft) => {
-      const existing = this.predicates().find((p) => p.path.equalTo(path))
+      const existing = draft.predicates().find((p) => p.path.equalTo(path))
       if (existing) {
-        draft.working_part.term = this.working_part.term.delete_terms((t) => existing === t)
+        draft.working_part.term = draft.working_part.term.delete_terms((t) => existing === t)
       }
     })
   }
@@ -1012,6 +1047,10 @@ export class Query {
       this.parts.length == 1 &&
       this.parts.every((part) => part.with_clause == undefined && part.term.find_terms((t) => t instanceof MergeTerm).length == 0)
     )
+  }
+
+  public get sorts() {
+    return this.working_part.sort
   }
 
   static parse(query: string, template_parameters: { [key: string]: JsonElement } = {}): Query {

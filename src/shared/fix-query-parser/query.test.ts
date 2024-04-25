@@ -291,3 +291,78 @@ test('real world example', () => {
   query = Query.parse('foo==all')
   assert.strictEqual(query.toString(), 'foo == "all"')
 })
+
+test('fulltext searches', () => {
+  const query = Query.parse(
+    'is(aws) and access_key_last_used.last_used==null and "whatever" and age>90d and /ancestors.account.reported.name == "test" and "deleteme"',
+  )
+  const noFulltextQuery = Query.parse('access_key_last_used.last_used==null')
+  assert.strictEqual(
+    query
+      .fulltexts()
+      .map((i) => i.text)
+      .join(','),
+    'whatever,deleteme',
+  )
+  assert.strictEqual(
+    noFulltextQuery
+      .fulltexts()
+      .map((i) => i.text)
+      .join(','),
+    '',
+  )
+})
+
+test('set fulltext search', () => {
+  const query = Query.parse(
+    'is(aws) and access_key_last_used.last_used==null and "whatever" and age>90d and /ancestors.account.reported.name == "test" and "deleteme"',
+  )
+  const noFulltextQuery = Query.parse('access_key_last_used.last_used==null')
+  const testAddWithValue = query.update_fulltext('something')
+  const testReplaceWithValue = query.update_fulltext('something', 'whatever')
+  // no fulltext
+  const testEmptyAddWithValue = noFulltextQuery.update_fulltext('something')
+  const testEmptyReplaceWithValue = noFulltextQuery.update_fulltext('something', 'whatever')
+  //asserts full texts
+  assert.strictEqual(
+    testAddWithValue
+      .fulltexts()
+      .map((i) => i.text)
+      .join(','),
+    'something,whatever,deleteme',
+  )
+  assert.strictEqual(
+    testReplaceWithValue
+      .fulltexts()
+      .map((i) => i.text)
+      .join(','),
+    'something,deleteme',
+  )
+  //asserts query
+  assert.strictEqual(
+    testAddWithValue.toString(),
+    '"something" and is(aws) and access_key_last_used.last_used == null and "whatever" and age > "90d" and /ancestors.account.reported.name == "test" and "deleteme"',
+  )
+  assert.strictEqual(
+    testReplaceWithValue.toString(),
+    'is(aws) and access_key_last_used.last_used == null and "something" and age > "90d" and /ancestors.account.reported.name == "test" and "deleteme"',
+  )
+  //asserts empties full texts
+  assert.strictEqual(
+    testEmptyAddWithValue
+      .fulltexts()
+      .map((i) => i.text)
+      .join(','),
+    'something',
+  )
+  assert.strictEqual(
+    testEmptyReplaceWithValue
+      .fulltexts()
+      .map((i) => i.text)
+      .join(','),
+    'something',
+  )
+  //asserts empties query
+  assert.strictEqual(testEmptyAddWithValue.toString(), '"something" and access_key_last_used.last_used == null')
+  assert.strictEqual(testEmptyReplaceWithValue.toString(), '"something" and access_key_last_used.last_used == null')
+})
