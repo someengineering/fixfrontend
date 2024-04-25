@@ -96,9 +96,9 @@ msgstr "{0}: We've identified {1} non-compliant resources out of {2}."
 msgid "{added} configuration lines added and {removed} lines deleted."
 msgstr "{added} configuration lines added and {removed} lines deleted."
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChanges.tsx:53
-msgid "{change} From {before} to {after}"
-msgstr "{change} From {before} to {after}"
+#: src/pages/panel/inventory/inventory-form/InventoryFormChanges.tsx:41
+msgid "{searchParamsChange} From {searchParamsAfter} to {searchParamsBefore}"
+msgstr "{searchParamsChange} From {searchParamsAfter} to {searchParamsBefore}"
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:77
 msgid "/ month"
@@ -388,6 +388,8 @@ msgstr "Business"
 #: src/pages/panel/accounts/AccountRow.tsx:281
 #: src/pages/panel/accounts/AccountRow.tsx:282
 #: src/pages/panel/accounts/AccountRow.tsx:386
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:102
+#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearchPopover.tsx:61
 #: src/pages/panel/inventory/inventory-form/InventoryFormKindPopover.tsx:58
 #: src/pages/panel/inventory/inventory-form/InventoryFormMorePopover.tsx:158
 #: src/pages/panel/inventory/inventory-form/InventoryFormPopover.tsx:167
@@ -416,12 +418,12 @@ msgstr "Change payment method"
 msgid "Change Product Tier"
 msgstr "Change Product Tier"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChanges.tsx:76
-#: src/pages/panel/inventory/inventory-form/InventoryFormChanges.tsx:85
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:55
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:64
 msgid "Change Type"
 msgstr "Change Type"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChanges.tsx:54
+#: src/pages/panel/inventory/inventory-form/InventoryFormChanges.tsx:44
 #: src/pages/panel/inventory/resource-detail/ResourceDetailChangeLog.tsx:42
 msgid "Changes"
 msgstr "Changes"
@@ -434,14 +436,14 @@ msgstr "Changes in the past 7 days"
 msgid "Choose Workspace"
 msgstr "Choose Workspace"
 
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:113
+#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearchPopover.tsx:70
 #: src/pages/panel/inventory/inventory-form/InventoryFormKindPopover.tsx:67
 #: src/pages/panel/inventory/inventory-form/InventoryFormMorePopover.tsx:167
 #: src/pages/panel/inventory/inventory-form/InventoryFormPopover.tsx:176
 msgid "clear"
 msgstr "clear"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChanges.tsx:65
-#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearch.tsx:39
 #: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:36
 msgid "Close"
 msgstr "Close"
@@ -587,11 +589,11 @@ msgstr "Data export (CSV, JSON, PDF)"
 msgid "Date"
 msgstr "Date"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:134
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:164
 msgid "Date Picker"
 msgstr "Date Picker"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:126
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:156
 msgid "Date Time Picker"
 msgstr "Date Time Picker"
 
@@ -800,7 +802,7 @@ msgstr "Failing benchmarks"
 msgid "Failing Check Timeline"
 msgstr "Failing Check Timeline"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:118
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:145
 msgid "False"
 msgstr "False"
 
@@ -865,10 +867,8 @@ msgstr "Form"
 msgid "Free"
 msgstr "Free"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChanges.tsx:60
-#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearch.tsx:25
-#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearch.tsx:31
-#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearch.tsx:52
+#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearch.tsx:18
+#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearchPopover.tsx:44
 msgid "Full-text search"
 msgstr "Full-text search"
 
@@ -1177,23 +1177,23 @@ msgstr "Next scan"
 msgid "Next Sync"
 msgstr "Next Sync"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChanges.tsx:101
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:80
 msgid "Node Compliant"
 msgstr "Node Compliant"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChanges.tsx:89
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:68
 msgid "Node Created"
 msgstr "Node Created"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChanges.tsx:95
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:74
 msgid "Node Deleted"
 msgstr "Node Deleted"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChanges.tsx:92
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:71
 msgid "Node Updated"
 msgstr "Node Updated"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChanges.tsx:98
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:77
 msgid "Node Vulnerable"
 msgstr "Node Vulnerable"
 
@@ -1222,7 +1222,7 @@ msgstr "Nothing to show yet"
 msgid "Notification"
 msgstr "Notification"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:112
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:148
 msgid "Null"
 msgstr "Null"
 
@@ -1571,8 +1571,8 @@ msgstr "Sources"
 #: src/pages/panel/accounts/AccountRow.tsx:266
 #: src/pages/panel/accounts/AccountRow.tsx:267
 #: src/pages/panel/accounts/AccountRow.tsx:272
-#: src/pages/panel/inventory/inventory-form/InventoryFormChanges.tsx:68
-#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearch.tsx:42
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:118
+#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearchPopover.tsx:75
 #: src/pages/panel/inventory/inventory-form/InventoryFormKindPopover.tsx:72
 #: src/pages/panel/inventory/inventory-form/InventoryFormMorePopover.tsx:172
 #: src/pages/panel/inventory/inventory-form/InventoryFormPopover.tsx:181
@@ -1684,7 +1684,7 @@ msgstr "TOTP Setup"
 msgid "Trial"
 msgstr "Trial"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:115
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:142
 msgid "True"
 msgstr "True"
 
@@ -1746,7 +1746,7 @@ msgstr "User Settings Notification"
 msgid "Users"
 msgstr "Users"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:147
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:177
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:154
 msgid "Value"
 msgstr "Value"
