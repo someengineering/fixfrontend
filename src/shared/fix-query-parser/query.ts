@@ -733,7 +733,7 @@ export class Part {
 
   toString(): string {
     const with_clause = this.with_clause ? ` ${this.with_clause.toString()}` : ''
-    const sort = this.sort.length > 0 ? `sort ${this.sort.map((s) => s.toString()).join(', ')}` : ''
+    const sort = this.sort.length > 0 ? ` sort ${this.sort.map((s) => s.toString()).join(', ')}` : ''
     const limit = this.limit ? ` ${this.limit.toString()}` : ''
     const nav = this.navigation ? ` ${this.navigation.toString()}` : ''
     return `${this.term.toString()}${with_clause}${sort}${limit}${nav}`
