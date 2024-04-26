@@ -174,7 +174,13 @@ test(`Parse Limit`, () => {
 })
 
 test(`Parse Navigation`, () => {
-  assert.deepEqual(parse_navigation('-->'), new Navigation())
+  assert.strictEqual(parse_navigation('-->').toString(), '-->')
+  assert.strictEqual(parse_navigation('-[2:3]->').toString(), '-[2:3]->')
+  assert.strictEqual(parse_navigation('-[2:]->').toString(), '-[2:]->')
+  assert.strictEqual(parse_navigation('-[2]->').toString(), '-[2]->')
+  assert.deepEqual(parse_navigation('-->'), new Navigation({ start: 1, until: 1 }))
+  assert.deepEqual(parse_navigation('-[2]->').toString(), '-[2]->')
+  assert.deepEqual(parse_navigation('-[2:]->').toString(), '-[2:]->')
   assert.deepEqual(parse_navigation('-[2:3]->'), new Navigation({ start: 2, until: 3 }))
   assert.deepEqual(
     parse_navigation('-[2:3]delete->'),
@@ -205,7 +211,7 @@ test(`Parse Navigation`, () => {
 
 test(`Parse WithClause`, () => {
   const with_filter = new WithClauseFilter({ op: '>', num: 0 })
-  const navigation = new Navigation()
+  const navigation = new Navigation({ until: 1 })
   const term = new IsTerm({ kinds: ['instance'] })
   const with_clause = new WithClause({ with_filter, navigation, term })
   assert.deepEqual(parse_with_clause('with(any, --> is(instance))'), with_clause)
@@ -240,7 +246,7 @@ test(`Parse Part`, () => {
       limit,
     }),
   )
-  assert.deepEqual(parse_part('is(instance) -->'), new Part({ term: is, navigation: new Navigation() }))
+  assert.deepEqual(parse_part('is(instance) -->'), new Part({ term: is, navigation: new Navigation({ until: 1 }) }))
 })
 
 test(`Parse Merge Query`, () => {
@@ -250,7 +256,9 @@ test(`Parse Merge Query`, () => {
     parse_merge_query('foo: <-- foo=23'),
     new MergeQuery({
       path: foo,
-      query: new Query({ parts: [new Part({ term: new AllTerm(), navigation: new Navigation({ direction: Direction.inbound }) }), part] }),
+      query: new Query({
+        parts: [new Part({ term: new AllTerm(), navigation: new Navigation({ until: 1, direction: Direction.inbound }) }), part],
+      }),
     }),
   )
 })
@@ -269,7 +277,7 @@ test(`Parse Query`, () => {
   const part = new Part({ term: pred, sort, limit })
   const with_clause = new WithClause({
     with_filter: new WithClauseFilter({ op: '==', num: 0 }),
-    navigation: new Navigation({ direction: Direction.inbound }),
+    navigation: new Navigation({ until: 1, direction: Direction.inbound }),
     term: pred,
   })
   assert.deepEqual(parse_query('foo=23 sort bla limit 10'), new Query({ parts: [part] }))
@@ -279,7 +287,7 @@ test(`Parse Query`, () => {
   )
   assert.deepEqual(
     parse_query('is(instance) and foo=23 and foo.bar.{bla>23} sort bla limit 10 --> foo=23 sort bla limit 10'),
-    new Query({ parts: [new Part({ term: combined, sort, limit, navigation: new Navigation() }), part] }),
+    new Query({ parts: [new Part({ term: combined, sort, limit, navigation: new Navigation({ until: 1 }) }), part] }),
   )
   assert.deepEqual(
     parse_query('is(instance) {foo: --> foo=23, bla: <-- is(instance)}'),
@@ -293,7 +301,7 @@ test(`Parse Query`, () => {
                 path: foo,
                 query: new Query({
                   parts: [
-                    new Part({ term: new AllTerm(), navigation: new Navigation({ direction: Direction.outbound }) }),
+                    new Part({ term: new AllTerm(), navigation: new Navigation({ until: 1, direction: Direction.outbound }) }),
                     new Part({ term: pred }),
                   ],
                 }),
@@ -302,7 +310,7 @@ test(`Parse Query`, () => {
                 path: bla,
                 query: new Query({
                   parts: [
-                    new Part({ term: new AllTerm(), navigation: new Navigation({ direction: Direction.inbound }) }),
+                    new Part({ term: new AllTerm(), navigation: new Navigation({ until: 1, direction: Direction.inbound }) }),
                     new Part({ term: is }),
                   ],
                 }),

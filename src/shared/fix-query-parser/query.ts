@@ -676,7 +676,7 @@ export class Navigation {
 
   constructor({
     start = 1,
-    until = 1,
+    until,
     edge_types = [EdgeType.default],
     direction = Direction.outbound,
     maybe_two_directional_outbound_edge_type = null,
