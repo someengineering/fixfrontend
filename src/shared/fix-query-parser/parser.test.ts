@@ -527,10 +527,18 @@ test('Parse existing queries', () => {
 
   for (const query of queries) {
     try {
-      parse_query(query)
+      const q = parse_query(query)
+      assert.deepEqual(q, parse_query(q.toString()))
     } catch (e) {
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       throw new Error(`Failed to parse query: ${query}: ${e}`)
     }
   }
+})
+
+test('foo', () => {
+  const q1 = 'filter_pattern ~ "\\$\\.error\\"Code\\s*"'
+  const parsed = parse_query(q1)
+  const foo = parsed.toString()
+  assert.strictEqual(foo, q1)
 })

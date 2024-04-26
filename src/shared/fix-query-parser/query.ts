@@ -433,7 +433,13 @@ export class Predicate extends Term {
 
   toString(): string {
     const modifier = this.args?.filter?.toString() || ''
-    return `${this.path.toString()} ${modifier}${this.op} ${JSON.stringify(this.value)}`
+    let value: string
+    if (typeof this.value === 'string') {
+      value = `"${this.value}"`
+    } else {
+      value = JSON.stringify(this.value)
+    }
+    return `${this.path.toString()} ${modifier}${this.op} ${value}`
   }
 
   static matches_value(value: JsonElement, op: string, p: JsonElement): boolean {
@@ -636,6 +642,11 @@ export class WithUsage {
     this.end = end
     this.metrics = metrics
   }
+
+  toString(): string {
+    const end = this.end ? `::${this.end}` : ''
+    return `with_usage(${this.start}${end}, [${this.metrics.join(',')}])`
+  }
 }
 
 export class Navigation {
@@ -678,7 +689,7 @@ export class Navigation {
     } else {
       depth = `[${this.start}:${this.until ? this.until : ''}]`
     }
-    const et = this.edge_types ? this.edge_types.join(',') : ''
+    const et = this.edge_types === undefined || this.edge_types.every((v) => v === EdgeType.default) ? '' : this.edge_types.join(',')
     const out_nav = mo ? `(${mo.join(',')})` : ''
     const nav = `${et}${depth}${out_nav}`
     if (this.direction === Direction.inbound) {
@@ -755,11 +766,12 @@ export class Part {
   }
 
   toString(): string {
+    const with_usage = this.with_usage ? ` ${this.with_usage.toString()}` : ''
     const with_clause = this.with_clause ? ` ${this.with_clause.toString()}` : ''
     const sort = this.sort.length > 0 ? ` sort ${this.sort.map((s) => s.toString()).join(', ')}` : ''
     const limit = this.limit ? ` ${this.limit.toString()}` : ''
     const nav = this.navigation ? ` ${this.navigation.toString()}` : ''
-    return `${this.term.toString()}${with_clause}${sort}${limit}${nav}`
+    return `${with_usage}${this.term.toString()}${with_clause}${sort}${limit}${nav}`
   }
 }
 export class AggregateVariableName {
