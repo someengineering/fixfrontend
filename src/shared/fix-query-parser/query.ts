@@ -269,10 +269,7 @@ export abstract class Term {
     } else if (this instanceof ContextTerm && wdf(this)) {
       return this.term.find_terms(fn, wdf)
     } else if (this instanceof MergeTerm && wdf(this)) {
-      return this.preFilter
-        .find_terms(fn, wdf)
-        .concat(this.merge.flatMap((q) => q.query.parts.flatMap((p) => p.term.find_terms(fn, wdf))))
-        .concat(this.postFilter?.find_terms(fn, wdf) || [])
+      return this.preFilter.find_terms(fn, wdf).concat(this.postFilter?.find_terms(fn, wdf) || [])
     }
     return []
   }

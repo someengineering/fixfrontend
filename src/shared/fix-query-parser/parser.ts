@@ -240,10 +240,10 @@ const with_usage = apply(
 WithUsageP.setPattern(kright(tok(T.WithUsage), kmid(tok(T.LParen), with_usage, tok(T.RParen))))
 
 const part_term = apply(
-  seq(TermP, opt(kmid(tok(T.LCurly), times_n_sep(MergeQueryP, tok(T.Comma)), tok(T.RCurly)))),
-  ([preFilter, merge]) => {
+  seq(TermP, opt(kmid(tok(T.LCurly), times_n_sep(MergeQueryP, tok(T.Comma)), tok(T.RCurly))), opt(TermP)),
+  ([preFilter, merge, postFilter]) => {
     if (merge) {
-      return new MergeTerm({ preFilter, merge })
+      return new MergeTerm({ preFilter, merge, postFilter })
     } else {
       return preFilter
     }

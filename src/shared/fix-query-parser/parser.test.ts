@@ -334,9 +334,11 @@ test('Parse Aggregates', () => {
   function assert_aggregate(query: string) {
     assert.strictEqual(parse_aggregate(query).toString(), query)
   }
+
   function assert_query(query: string, expected: string | undefined = undefined) {
     assert.strictEqual(parse_query(query).toString(), expected || query)
   }
+
   assert_aggregate('aggregate("kind" as k, bla as foo, bar: sum(1) as count)')
   assert_aggregate('aggregate(sum(1) as count)')
   assert_aggregate('aggregate(a, b, c, d, e: sum(a.b.c.d.e + 23) as count)')
@@ -542,4 +544,14 @@ test('Parse existing queries', () => {
       throw new Error(`Failed to parse query: ${query}: ${e}`)
     }
   }
+})
+
+test('Parse s3 bucket query', () => {
+  const parsed = parse_query(
+    'is(aws_s3_bucket) {account_setting: <-- is(aws_account) --> is(aws_s3_account_settings)} account_setting.reported.bucket_public_access_block_configuration.{block_public_acls != true or ignore_public_acls != true or block_public_policy != true or restrict_public_buckets != true} and bucket_public_access_block_configuration.{block_public_acls != true or ignore_public_acls != true or block_public_policy != true or restrict_public_buckets != true} and (bucket_acl.grants[*].{permission in ["READ","READ_ACP","WRITE","WRITE_ACP","FULL_CONTROL"] and grantee.uri = "http://acs.amazonaws.com/groups/global/AllUsers"} or bucket_policy.Statement[*].{Effect = "Allow" and (Principal = "*" or Principal.AWS = "*" or Principal.CanonicalUser = "*") and (Action in ["s3:GetObject","s3:PutObject","s3:Get*","s3:Put*","s3:*","*"] or Action[*] in ["s3:GetObject","s3:PutObject","s3:Get*","s3:Put*","s3:*","*"])})',
+  )
+  assert.strictEqual(parsed.parts.length, 1)
+  const term = parsed.parts[0].term as MergeTerm
+  assert.strictEqual(term.preFilter instanceof IsTerm, true)
+  assert.strictEqual(term.postFilter instanceof CombinedTerm, true)
 })
