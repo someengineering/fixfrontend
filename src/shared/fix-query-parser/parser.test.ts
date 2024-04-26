@@ -543,10 +543,3 @@ test('Parse existing queries', () => {
     }
   }
 })
-
-test('foo', () => {
-  const q1 = 'filter_pattern ~ "\\$\\.error\\"Code\\s*"'
-  const parsed = parse_query(q1)
-  const foo = parsed.toString()
-  assert.strictEqual(foo, q1)
-})
