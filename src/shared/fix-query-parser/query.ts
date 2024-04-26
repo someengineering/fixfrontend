@@ -280,6 +280,22 @@ export abstract class Term {
   delete_terms(fn: (term: Term) => boolean, wdf: (wd: Term) => boolean = (_) => true): Term {
     if (fn(this)) {
       return new AllTerm()
+    } else if (this instanceof NotTerm && wdf(this) && this.term.find_terms(fn, wdf).length > 0) {
+      return new NotTerm({ term: this.term.delete_terms(fn, wdf) })
+    } else if (this instanceof ContextTerm && wdf(this) && this.term.find_terms(fn, wdf).length > 0) {
+      const inner = this.term.delete_terms(fn, wdf)
+      if (inner instanceof AllTerm) return inner
+      return new ContextTerm({ path: this.path, term: inner })
+    } else if (this instanceof MergeTerm && wdf(this)) {
+      const in_pre = this.preFilter.find_terms(fn, wdf)
+      const in_post = this.postFilter?.find_terms(fn, wdf)
+      if (in_pre.length > 0 || (in_post && in_post.length > 0)) {
+        return new MergeTerm({
+          preFilter: this.preFilter.delete_terms(fn, wdf),
+          merge: this.merge,
+          postFilter: this.postFilter?.delete_terms(fn, wdf),
+        })
+      }
     } else if (this instanceof CombinedTerm && wdf(this)) {
       const in_left = this.left.find_terms(fn, wdf)
       const in_right = this.right.find_terms(fn, wdf)
@@ -971,7 +987,7 @@ export class Query {
         existing.op = op
         existing.value = value
       } else {
-        draft.working_part.term = new Predicate({ path, op, value }).and_term(draft.working_part.term)
+        draft.working_part.term = new Predicate({ path, op, value }).and_term(this.working_part.term)
       }
     })
   }
@@ -986,7 +1002,7 @@ export class Query {
             return
           }
         }
-        draft.working_part.term = new FulltextTerm({ text: value }).and_term(draft.working_part.term)
+        draft.working_part.term = new FulltextTerm({ text: value }).and_term(this.working_part.term)
       } else {
         if (prevValue) {
           const item = draft.fulltexts().find((i) => i.text === prevValue)
@@ -1001,9 +1017,9 @@ export class Query {
   public delete_predicate(name: string): Query {
     const path = Path.from_string(name)
     return produce(this, (draft) => {
-      const existing = draft.predicates().find((p) => p.path.equalTo(path))
+      const existing = this.predicates().find((p) => p.path.equalTo(path))
       if (existing) {
-        draft.working_part.term = draft.working_part.term.delete_terms((t) => existing === t)
+        draft.working_part.term = this.working_part.term.delete_terms((t) => existing === t)
       }
     })
   }
@@ -1014,7 +1030,7 @@ export class Query {
       if (existing) {
         existing.kinds = kinds
       } else {
-        draft.working_part.term = new IsTerm({ kinds }).and_term(draft.working_part.term)
+        draft.working_part.term = new IsTerm({ kinds }).and_term(this.working_part.term)
       }
     })
   }

@@ -87,6 +87,16 @@ test('Update a query', () => {
   assert.strictEqual(query.toString(), q)
 })
 
+test('delete predicate in context', () => {
+  const query = Query.parse('is(foo) and some[*].nested[*].{ prop == 42 and foo == "aws" and bla == "test"}')
+  const p1 = query.delete_predicate('prop')
+  assert.strictEqual(p1.toString(), 'is(foo) and some[*].nested[*].{foo == "aws" and bla == "test"}')
+  const p2 = p1.delete_predicate('foo')
+  assert.strictEqual(p2.toString(), 'is(foo) and some[*].nested[*].{bla == "test"}')
+  const p3 = p2.delete_predicate('bla')
+  assert.strictEqual(p3.toString(), 'is(foo)')
+})
+
 test('find paths', () => {
   let jso: JsonElement = { a: 12, b: 21 }
   let all_paths = [...Path.from_string('a').find(jso)]
