@@ -192,10 +192,10 @@ const default_edge = apply(tok(T.Default), (_) => EdgeType.default)
 const delete_edge = apply(tok(T.Delete), (_) => EdgeType.delete)
 const edge_type_p = list_sc(alt(default_edge, delete_edge), tok(T.Comma))
 const sepa = alt(tok(T.Comma), tok(T.Colon), tok(T.DotDot))
-const range = apply(kmid(tok(T.LBracket), seq(tok(T.Integer), opt(kright(sepa, opt(tok(T.Integer))))), tok(T.RBracket)), ([start, end]) => [
-  parseInt(start.text),
-  end ? parseInt(end.text) : undefined,
-])
+const range = apply(kmid(tok(T.LBracket), seq(tok(T.Integer), opt(sepa), opt(tok(T.Integer))), tok(T.RBracket)), ([start, sepa, end]) => {
+  const start_num = parseInt(start.text)
+  return sepa ? [start_num, end ? parseInt(end.text) : undefined] : [start_num, start_num]
+})
 const edge_detail = apply(seq(opt(edge_type_p), opt(range), opt(edge_type_p)), ([et_before, range, et_after]) => {
   if (et_before && et_after) {
     throw new Error('Edge type can not be specified both before and after range')

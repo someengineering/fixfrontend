@@ -87,6 +87,16 @@ test('Update a query', () => {
   assert.strictEqual(query.toString(), q)
 })
 
+test('delete predicate in context', () => {
+  const query = Query.parse('is(foo) and some[*].nested[*].{ prop == 42 and foo == "aws" and bla == "test"}')
+  const p1 = query.delete_predicate('prop')
+  assert.strictEqual(p1.toString(), 'is(foo) and some[*].nested[*].{foo == "aws" and bla == "test"}')
+  const p2 = p1.delete_predicate('foo')
+  assert.strictEqual(p2.toString(), 'is(foo) and some[*].nested[*].{bla == "test"}')
+  const p3 = p2.delete_predicate('bla')
+  assert.strictEqual(p3.toString(), 'is(foo)')
+})
+
 test('find paths', () => {
   let jso: JsonElement = { a: 12, b: 21 }
   let all_paths = [...Path.from_string('a').find(jso)]
@@ -365,4 +375,14 @@ test('set fulltext search', () => {
   //asserts empties query
   assert.strictEqual(testEmptyAddWithValue.toString(), '"something" and access_key_last_used.last_used == null')
   assert.strictEqual(testEmptyReplaceWithValue.toString(), '"something" and access_key_last_used.last_used == null')
+})
+
+test('get and update properties when navigation is defined', () => {
+  const q1 = Query.parse('is(foo) and bla=true -->')
+  const terms = q1.ui_terms(() => true)
+  assert.deepEqual(terms, [])
+  const q2 = q1.set_predicate('bla', '==', 'bar')
+  assert.strictEqual(q2.toString(), 'is(foo) and bla = true --> bla == "bar"')
+  const q3 = q2.set_predicate('bla', '==', 'boom')
+  assert.strictEqual(q3.toString(), 'is(foo) and bla = true --> bla == "boom"')
 })
