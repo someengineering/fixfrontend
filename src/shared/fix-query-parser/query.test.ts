@@ -376,3 +376,13 @@ test('set fulltext search', () => {
   assert.strictEqual(testEmptyAddWithValue.toString(), '"something" and access_key_last_used.last_used == null')
   assert.strictEqual(testEmptyReplaceWithValue.toString(), '"something" and access_key_last_used.last_used == null')
 })
+
+test('get and update properties when navigation is defined', () => {
+  const q1 = Query.parse('is(foo) and bla=true -->')
+  const terms = q1.ui_terms(() => true)
+  assert.deepEqual(terms, [])
+  const q2 = q1.set_predicate('bla', '==', 'bar')
+  assert.strictEqual(q2.toString(), 'is(foo) and bla = true --> bla == "bar"')
+  const q3 = q2.set_predicate('bla', '==', 'boom')
+  assert.strictEqual(q3.toString(), 'is(foo) and bla = true --> bla == "boom"')
+})

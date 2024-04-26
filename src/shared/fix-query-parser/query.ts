@@ -939,23 +939,33 @@ export class Query {
     return this.parts[this.parts.length - 1]
   }
 
-  public is(): IsTerm | undefined {
-    // The UI assumes that all parts are AND combined. Do not walk OR parts.
+  // Use this when the working part should be updated.
+  // ONLY CALL THIS METHOD FROM An IMMER DRAFT
+  prepare_working_part_for_update(): void {
+    if (this.parts.length > 0 && this.parts[this.parts.length - 1].navigation) {
+      const new_part = new Part({ term: new AllTerm() })
+      this.parts.push(new_part)
+    }
+  }
+
+  ui_terms(fn: (term: Term) => boolean): Array<Term> {
     const only_and_parts = (wd: Term) => !(wd instanceof CombinedTerm) || wd.op === 'and'
-    const is_terms = this.working_part.term.find_terms((t) => t instanceof IsTerm, only_and_parts) as IsTerm[]
+    const working_part = this.working_part
+    // when the working part has navigation, we need to modify a new (not existing) part
+    return working_part.navigation ? [] : working_part.term.find_terms(fn, only_and_parts)
+  }
+
+  public is(): IsTerm | undefined {
+    const is_terms = this.ui_terms((t) => t instanceof IsTerm) as IsTerm[]
     return is_terms.length > 0 ? is_terms[0] : undefined
   }
 
   public predicates(): Predicate[] {
-    // The UI assumes that all parts are AND combined. Do not walk OR parts.
-    const only_and_parts = (wd: Term) => !(wd instanceof CombinedTerm) || wd.op === 'and'
-    return this.working_part.term.find_terms((t) => t instanceof Predicate, only_and_parts) as Predicate[]
+    return this.ui_terms((t) => t instanceof Predicate) as Predicate[]
   }
 
   public fulltexts(): FulltextTerm[] {
-    // The UI assumes that all parts are AND combined. Do not walk OR parts.
-    const only_and_parts = (wd: Term) => !(wd instanceof CombinedTerm) || wd.op === 'and'
-    return this.working_part.term.find_terms((t) => t instanceof FulltextTerm, only_and_parts) as FulltextTerm[]
+    return this.ui_terms((t) => t instanceof FulltextTerm) as FulltextTerm[]
   }
 
   public get remaining_predicates(): Record<string, JsonElement> {
@@ -982,18 +992,20 @@ export class Query {
   public set_predicate(name: string, op: string, value: JsonElement): Query {
     const path = Path.from_string(name)
     return produce(this, (draft) => {
+      draft.prepare_working_part_for_update()
       const existing = draft.predicates().find((p) => p.path.equalTo(path))
       if (existing) {
         existing.op = op
         existing.value = value
       } else {
-        draft.working_part.term = new Predicate({ path, op, value }).and_term(this.working_part.term)
+        draft.working_part.term = new Predicate({ path, op, value }).and_term(draft.working_part.term)
       }
     })
   }
 
   public update_fulltext(value?: string, prevValue?: string): Query {
     return produce(this, (draft) => {
+      draft.prepare_working_part_for_update()
       if (value) {
         if (prevValue) {
           const item = draft.fulltexts().find((i) => i.text === prevValue)
@@ -1002,7 +1014,7 @@ export class Query {
             return
           }
         }
-        draft.working_part.term = new FulltextTerm({ text: value }).and_term(this.working_part.term)
+        draft.working_part.term = new FulltextTerm({ text: value }).and_term(draft.working_part.term)
       } else {
         if (prevValue) {
           const item = draft.fulltexts().find((i) => i.text === prevValue)
@@ -1026,11 +1038,12 @@ export class Query {
 
   public set_is(kinds: string[]): Query {
     return produce(this, (draft) => {
+      draft.prepare_working_part_for_update()
       const existing = draft.is()
       if (existing) {
         existing.kinds = kinds
       } else {
-        draft.working_part.term = new IsTerm({ kinds }).and_term(this.working_part.term)
+        draft.working_part.term = new IsTerm({ kinds }).and_term(draft.working_part.term)
       }
     })
   }
