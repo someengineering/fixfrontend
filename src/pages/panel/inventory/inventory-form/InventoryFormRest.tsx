@@ -1,8 +1,8 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { DefaultPropertiesKeys, FixQueryContextValue, Predicate, useFixQueryParser } from 'src/shared/fix-query-parser'
 import { snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 import { InventoryFormField } from './InventoryFormField'
-import { InventoryFormPopover } from './InventoryFormPopover'
+import { InventoryFormValue } from './InventoryFormValue'
 import { AutoCompletePreDefinedItems } from './utils'
 
 const INDEX_STARTS_FROM = 5
@@ -15,7 +15,6 @@ interface InventoryFormRestItemProps {
 }
 
 const InventoryFormRestItem = ({ term, update, index, preItems }: InventoryFormRestItemProps) => {
-  const [open, setOpen] = useState<HTMLDivElement | null>(null)
   const {
     current: { deletePredicate, setPredicate },
   } = update
@@ -35,27 +34,21 @@ const InventoryFormRestItem = ({ term, update, index, preItems }: InventoryFormR
   )
   return (
     <>
-      <InventoryFormField
-        value={term ? `${term.op} ${JSON.stringify(term.value)}` : undefined}
-        label={LastPath}
-        onClick={(e) => setOpen(e.currentTarget)}
-        onClear={() => deletePredicate(path)}
-      />
-      <InventoryFormPopover
-        onChange={(term) => {
-          if (term) {
-            setPredicate(path, term.op, term.value)
-          } else {
-            deletePredicate(path)
-          }
-        }}
-        preItems={preItems}
-        defaultPath={term.path}
-        onClose={() => setOpen(null)}
-        open={open}
-        term={term}
-        id={index + INDEX_STARTS_FROM}
-      />
+      <InventoryFormField label={LastPath} onClear={() => deletePredicate(path)} forceShowClearButton>
+        <InventoryFormValue
+          onChange={(term) => {
+            if (term && term.value !== '') {
+              setPredicate(path, term.op, term.value)
+            } else {
+              deletePredicate(path)
+            }
+          }}
+          preItems={preItems}
+          defaultPath={term.path}
+          term={term}
+          id={index + INDEX_STARTS_FROM}
+        />
+      </InventoryFormField>
     </>
   )
 }

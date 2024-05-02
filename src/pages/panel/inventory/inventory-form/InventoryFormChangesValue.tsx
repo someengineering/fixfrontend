@@ -4,7 +4,7 @@ import { DateTimeRangePicker } from '@mui/x-date-pickers-pro'
 import dayjs from 'dayjs'
 import { useEffect, useState } from 'react'
 
-interface InventoryFormChangePopoverProps {
+interface InventoryFormChangeValueProps {
   open: HTMLElement | null
   searchParamsChange: string | null
   searchParamsAfter: string | null
@@ -13,14 +13,14 @@ interface InventoryFormChangePopoverProps {
   onClose: () => void
 }
 
-export const InventoryFormChangePopover = ({
+export const InventoryFormChangeValue = ({
   onChange,
   onClose,
   open,
   searchParamsAfter,
   searchParamsBefore,
   searchParamsChange,
-}: InventoryFormChangePopoverProps) => {
+}: InventoryFormChangeValueProps) => {
   const [change, setChange] = useState(searchParamsChange ?? '')
   const [after, setAfter] = useState(searchParamsAfter)
   const [before, setBefore] = useState(searchParamsBefore)

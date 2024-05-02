@@ -1,4 +1,8 @@
-import { ButtonBase, Stack } from '@mui/material'
+import { t } from '@lingui/macro'
+import CheckIcon from '@mui/icons-material/Check'
+import CloseIcon from '@mui/icons-material/Close'
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark'
+import { ButtonBase, Stack, Tooltip } from '@mui/material'
 import { GridColDef, GridRow, GridRowProps, GridSortItem } from '@mui/x-data-grid-premium'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
@@ -105,28 +109,47 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
     if (!isLoading) {
       const [{ columns: newColumns }, ...newRows] = data ?? [{ columns: [] }]
       setColumns(
-        newColumns.map((i) => ({
-          ...i,
-          field: i.name,
-          headerName: i.display,
-          flex: 1,
-          type:
-            i.kind === 'boolean' || i.kind === 'date'
-              ? i.kind
-              : i.kind === 'datetime'
-                ? 'dateTime'
-                : i.kind === 'double' || i.kind === 'float' || i.kind === 'int32' || i.kind === 'int64'
-                  ? 'number'
-                  : 'string',
-          display: 'text',
-          valueGetter:
-            i.kind === 'date' || i.kind === 'datetime'
-              ? (value) => new Date(value)
-              : i.kind === 'boolean'
-                ? (value) => (typeof value === 'boolean' ? value : value === 'true')
-                : undefined,
-          minWidth: 100,
-        })),
+        newColumns.map(
+          (i) =>
+            ({
+              ...i,
+              field: i.name,
+              headerName: i.display,
+              flex: 1,
+              type:
+                i.kind === 'boolean' || i.kind === 'date'
+                  ? i.kind
+                  : i.kind === 'datetime'
+                    ? 'dateTime'
+                    : i.kind === 'double' || i.kind === 'float' || i.kind === 'int32' || i.kind === 'int64'
+                      ? 'number'
+                      : 'string',
+              display: 'flex',
+              valueGetter:
+                i.kind === 'date' || i.kind === 'datetime'
+                  ? (value) => new Date(value)
+                  : i.kind === 'boolean'
+                    ? (value) => (typeof value === 'boolean' ? value : value === 'true' ? true : value === 'false' ? false : null)
+                    : undefined,
+              renderCell: (params) =>
+                params.colDef.type === 'boolean' ? (
+                  params.value === null || params.value === undefined || params.value === 'null' ? (
+                    <Tooltip title={t`Undefined`}>
+                      <QuestionMarkIcon fontSize="small" />
+                    </Tooltip>
+                  ) : params.value && params.value !== 'false' ? (
+                    <Tooltip title={t`Yes`}>
+                      <CheckIcon fontSize="small" />
+                    </Tooltip>
+                  ) : (
+                    <Tooltip title={t`No`}>
+                      <CloseIcon fontSize="small" />
+                    </Tooltip>
+                  )
+                ) : undefined,
+              minWidth: 100,
+            }) as ColType,
+        ),
       )
       setRows(newRows.map(({ row, id }, i) => ({ INTERNAL_ID: id + '_' + i, ...row })))
     }

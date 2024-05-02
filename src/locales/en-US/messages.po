@@ -181,7 +181,7 @@ msgstr "Abandoned"
 msgid "Access to your account is broken"
 msgstr "Access to your account is broken"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:21
+#: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:50
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:226
 msgid "Account"
 msgstr "Account"
@@ -190,6 +190,7 @@ msgstr "Account"
 msgid "Account: {0}"
 msgstr "Account: {0}"
 
+#: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:40
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:120
 #: src/pages/panel/inventory/InventoryTable.error.tsx:73
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:42
@@ -218,6 +219,12 @@ msgstr "Actions"
 msgid "Activate"
 msgstr "Activate"
 
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:213
+#: src/pages/panel/inventory/inventory-form/InventoryFormMoreValue.tsx:162
+#: src/pages/panel/inventory/inventory-form/InventoryFormTagsValue.tsx:151
+msgid "Add"
+msgstr "Add"
+
 #: src/shared/add-account-button/AddAccountButton.tsx:16
 msgid "Add an account"
 msgstr "Add an account"
@@ -229,6 +236,10 @@ msgstr "Add Directory"
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:20
 msgid "Add external directory"
 msgstr "Add external directory"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:67
+msgid "Add Filter"
+msgstr "Add Filter"
 
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:159
 msgid "Add Manually"
@@ -388,11 +399,7 @@ msgstr "Business"
 #: src/pages/panel/accounts/AccountRow.tsx:281
 #: src/pages/panel/accounts/AccountRow.tsx:282
 #: src/pages/panel/accounts/AccountRow.tsx:386
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:102
-#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearchPopover.tsx:61
-#: src/pages/panel/inventory/inventory-form/InventoryFormKindPopover.tsx:58
-#: src/pages/panel/inventory/inventory-form/InventoryFormMorePopover.tsx:158
-#: src/pages/panel/inventory/inventory-form/InventoryFormPopover.tsx:167
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:102
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:68
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:121
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:49
@@ -409,6 +416,10 @@ msgstr "Business"
 msgid "Cancel"
 msgstr "Cancel"
 
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:213
+msgid "Change"
+msgstr "Change"
+
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:301
 msgid "Change payment method"
 msgstr "Change payment method"
@@ -418,8 +429,8 @@ msgstr "Change payment method"
 msgid "Change Product Tier"
 msgstr "Change Product Tier"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:55
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:64
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:55
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:64
 msgid "Change Type"
 msgstr "Change Type"
 
@@ -436,13 +447,13 @@ msgstr "Changes in the past 7 days"
 msgid "Choose Workspace"
 msgstr "Choose Workspace"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:113
-#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearchPopover.tsx:70
-#: src/pages/panel/inventory/inventory-form/InventoryFormKindPopover.tsx:67
-#: src/pages/panel/inventory/inventory-form/InventoryFormMorePopover.tsx:167
-#: src/pages/panel/inventory/inventory-form/InventoryFormPopover.tsx:176
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:113
 msgid "clear"
 msgstr "clear"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormReset.tsx:15
+msgid "Clear the search"
+msgstr "Clear the search"
 
 #: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:36
 msgid "Close"
@@ -450,7 +461,8 @@ msgstr "Close"
 
 #: src/pages/panel/accounts/AccountRow.tsx:406
 #: src/pages/panel/accounts/AccountsTableItem.tsx:41
-#: src/pages/panel/inventory/inventory-form/InventoryFormCloud.tsx:21
+#: src/pages/panel/inventory/inventory-form/InventoryFormCloudValues.tsx:48
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:93
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:222
 #: src/pages/panel/security/AccountCard.tsx:37
 msgid "Cloud"
@@ -472,6 +484,7 @@ msgstr "Cloud account discovered, id: {0}"
 msgid "Cloud Setup"
 msgstr "Cloud Setup"
 
+#: src/pages/panel/inventory/inventory-form/InventoryFormCloud.tsx:24
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:116
 msgid "Clouds"
 msgstr "Clouds"
@@ -590,10 +603,11 @@ msgid "Date"
 msgstr "Date"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:164
-msgid "Date Picker"
-msgstr "Date Picker"
+#~ msgid "Date Picker"
+#~ msgstr "Date Picker"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:156
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowDateTimeValue.tsx:24
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowDateValue.tsx:18
 msgid "Date Time Picker"
 msgstr "Date Time Picker"
 
@@ -803,8 +817,8 @@ msgid "Failing Check Timeline"
 msgstr "Failing Check Timeline"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:145
-msgid "False"
-msgstr "False"
+#~ msgid "False"
+#~ msgstr "False"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:20
 msgid "Features"
@@ -867,8 +881,7 @@ msgstr "Form"
 msgid "Free"
 msgstr "Free"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearch.tsx:18
-#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearchPopover.tsx:44
+#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearchValue.tsx:42
 msgid "Full-text search"
 msgstr "Full-text search"
 
@@ -885,8 +898,8 @@ msgid "Greater than or equal"
 msgstr "Greater than or equal"
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:23
-msgid "Have"
-msgstr "Have"
+#~ msgid "Have"
+#~ msgstr "Have"
 
 #: src/shared/defined-messages/getMessage.ts:8
 msgid "High"
@@ -994,8 +1007,8 @@ msgstr "Integration advice for your specific cloud environment via video call"
 msgid "Integration Key"
 msgstr "Integration Key"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:315
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:215
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:347
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:216
 msgid "Invalid Value"
 msgstr "Invalid Value"
 
@@ -1025,13 +1038,16 @@ msgstr "Invite External User"
 msgid "Invites"
 msgstr "Invites"
 
+#: src/pages/panel/inventory/inventory-form/InventoryFormKind.tsx:48
+msgid "kind"
+msgstr "kind"
+
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:218
 #: src/shared/charts/NetworkDiagram.tsx:405
 msgid "Kind"
 msgstr "Kind"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormKind.tsx:22
-#: src/pages/panel/inventory/inventory-form/InventoryFormKindPopover.tsx:45
+#: src/pages/panel/inventory/inventory-form/InventoryFormKind.tsx:40
 msgid "Kinds"
 msgstr "Kinds"
 
@@ -1080,6 +1096,10 @@ msgstr "Low Utilization Compute Instances and Databases"
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 
+#: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:23
+msgid "Match"
+msgstr "Match"
+
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:89
 msgid "maximum of {0} cloud accounts"
 msgstr "maximum of {0} cloud accounts"
@@ -1103,8 +1123,8 @@ msgid "Monthly email report"
 msgstr "Monthly email report"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:38
-msgid "More"
-msgstr "More"
+#~ msgid "More"
+#~ msgstr "More"
 
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:186
 msgid "More info"
@@ -1177,23 +1197,37 @@ msgstr "Next scan"
 msgid "Next Sync"
 msgstr "Next Sync"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:80
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:42
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:68
+#: src/pages/panel/inventory/InventoryTable.tsx:145
+msgid "No"
+msgstr "No"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:198
+msgid "No {label} found for {typed}"
+msgstr "No {label} found for {typed}"
+
+#: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:25
+msgid "No Match"
+msgstr "No Match"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:80
 msgid "Node Compliant"
 msgstr "Node Compliant"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:68
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:68
 msgid "Node Created"
 msgstr "Node Created"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:74
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:74
 msgid "Node Deleted"
 msgstr "Node Deleted"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:71
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:71
 msgid "Node Updated"
 msgstr "Node Updated"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:77
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:77
 msgid "Node Vulnerable"
 msgstr "Node Vulnerable"
 
@@ -1202,8 +1236,8 @@ msgid "Not equal"
 msgstr "Not equal"
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:25
-msgid "Not Have"
-msgstr "Not Have"
+#~ msgid "Not Have"
+#~ msgstr "Not Have"
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:9
 msgid "Not include"
@@ -1223,8 +1257,8 @@ msgid "Notification"
 msgstr "Notification"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:148
-msgid "Null"
-msgstr "Null"
+#~ msgid "Null"
+#~ msgstr "Null"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:50
 msgid "Number Of Account Charged"
@@ -1289,6 +1323,10 @@ msgstr "Orphaned Volumes"
 msgid "Other Workspace Settings"
 msgstr "Other Workspace Settings"
 
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:96
+msgid "Others"
+msgstr "Others"
+
 #: src/pages/auth/login/LoginPage.tsx:143
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:204
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:73
@@ -1345,7 +1383,7 @@ msgstr "Plus"
 msgid "Print or copy the following recovery codes"
 msgstr "Print or copy the following recovery codes"
 
-#: src/shared/cloud-avatar/CloudAvatar.tsx:38
+#: src/shared/cloud-avatar/CloudAvatar.tsx:44
 msgid "Privileged"
 msgstr "Privileged"
 
@@ -1377,7 +1415,7 @@ msgstr "Product tier changed to {productTier}"
 msgid "Profile"
 msgstr "Profile"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:334
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:366
 msgid "Property"
 msgstr "Property"
 
@@ -1415,11 +1453,13 @@ msgstr "Recovery codes"
 msgid "Regenerate"
 msgstr "Regenerate"
 
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:94
+#: src/pages/panel/inventory/inventory-form/InventoryFormRegionValues.tsx:46
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:227
 msgid "Region"
 msgstr "Region"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormRegion.tsx:21
+#: src/pages/panel/inventory/inventory-form/InventoryFormRegion.tsx:24
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:124
 msgid "Regions"
 msgstr "Regions"
@@ -1472,6 +1512,10 @@ msgstr "Risk"
 msgid "Roles"
 msgstr "Roles"
 
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:163
+msgid "Search {0}"
+msgstr "Search {0}"
+
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:103
 msgid "Searches for database instances with no connections over a significant period, indicating potential waste."
 msgstr "Searches for database instances with no connections over a significant period, indicating potential waste."
@@ -1523,7 +1567,12 @@ msgstr "Send Invite"
 msgid "Setting Up Email Notifications"
 msgstr "Setting Up Email Notifications"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:21
+#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:43
+#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:59
+msgid "Severities"
+msgstr "Severities"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:53
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:150
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:157
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:205
@@ -1571,11 +1620,7 @@ msgstr "Sources"
 #: src/pages/panel/accounts/AccountRow.tsx:266
 #: src/pages/panel/accounts/AccountRow.tsx:267
 #: src/pages/panel/accounts/AccountRow.tsx:272
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesPopover.tsx:118
-#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearchPopover.tsx:75
-#: src/pages/panel/inventory/inventory-form/InventoryFormKindPopover.tsx:72
-#: src/pages/panel/inventory/inventory-form/InventoryFormMorePopover.tsx:172
-#: src/pages/panel/inventory/inventory-form/InventoryFormPopover.tsx:181
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:118
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:143
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:144
 msgid "Submit"
@@ -1589,6 +1634,7 @@ msgstr "Subscription successfully added to {0}"
 msgid "Successfully invited {email}"
 msgstr "Successfully invited {email}"
 
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:95
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:292
 msgid "Tags"
 msgstr "Tags"
@@ -1685,8 +1731,8 @@ msgid "Trial"
 msgstr "Trial"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:142
-msgid "True"
-msgstr "True"
+#~ msgid "True"
+#~ msgstr "True"
 
 #: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:97
 msgid "Try again"
@@ -1700,6 +1746,12 @@ msgstr "Type"
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:81
 msgid "Unattached Elastic IPs"
 msgstr "Unattached Elastic IPs"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:45
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:71
+#: src/pages/panel/inventory/InventoryTable.tsx:137
+msgid "Undefined"
+msgstr "Undefined"
 
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:93
 msgid "Underutilized"
@@ -1746,7 +1798,7 @@ msgstr "User Settings Notification"
 msgid "Users"
 msgstr "Users"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:177
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:178
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:154
 msgid "Value"
 msgstr "Value"
@@ -1806,6 +1858,12 @@ msgstr "Workspace Settings"
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:47
 msgid "Workspace Users"
 msgstr "Workspace Users"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:39
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:65
+#: src/pages/panel/inventory/InventoryTable.tsx:141
+msgid "Yes"
+msgstr "Yes"
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:304
 msgid "You are about to apply changes to your billing information. Please review the new details below:"

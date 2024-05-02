@@ -25,6 +25,7 @@ import { inventorySendToGTM, postCostumedWorkspaceInventoryPropertyAttributesQue
 interface InventoryFormFilterRowPropertyProps {
   selectedKinds: string[] | null
   defaultValue?: string | null
+  defaultForcedValue?: string
   onChange: (params: {
     property?: string | null
     fqn?: ResourceComplexKindSimpleTypeDefinitions | null
@@ -36,14 +37,20 @@ interface InventoryFormFilterRowPropertyProps {
 
 const ITEMS_PER_PAGE = 50
 
-export const InventoryFormFilterRowProperty = ({ selectedKinds, defaultValue, kinds, onChange }: InventoryFormFilterRowPropertyProps) => {
+export const InventoryFormFilterRowProperty = ({
+  selectedKinds,
+  defaultValue,
+  defaultForcedValue,
+  kinds,
+  onChange,
+}: InventoryFormFilterRowPropertyProps) => {
   const { defaultItem, isDefaultSimple } = useMemo(() => {
-    const defaultItem = defaultProperties.find((i) => i.label === defaultValue)
+    const defaultItem = defaultProperties.find((i) => i.label === defaultValue || i.label === defaultForcedValue)
     return {
       defaultItem,
       isDefaultSimple: kindSimpleTypes.includes(defaultItem?.value as ResourceComplexKindSimpleTypeDefinitions),
     }
-  }, [defaultValue])
+  }, [defaultValue, defaultForcedValue])
 
   const [path, setPath] = useState<string>(() => defaultValue?.split('.').slice(0, -1).join('.') ?? '')
   const [prop, setProp] = useState<string>(() => defaultValue?.split('.').slice(-1)[0] ?? '')
@@ -51,24 +58,27 @@ export const InventoryFormFilterRowProperty = ({ selectedKinds, defaultValue, ki
   const prevPropIndex = useRef(propIndex)
   const [fqn, setFqn] = useState<string | null>(defaultItem ? (isDefaultSimple ? null : defaultItem?.value) : 'object')
   const prevFqn = useRef<string | null>(null)
-  const [hasFocus, setHasFocus] = useState(false)
+  const [open, setOpen] = useState(false)
+  useEffect(() => {
+    setOpen(true)
+  }, [])
   const debouncedPathAndProp = useDebounce(JSON.stringify([path, prop]), panelUI.fastInputChangeDebounce)
-  const [debouncedPath, debouncedProp] = JSON.parse(debouncedPathAndProp) as [string, string]
+  const [debouncedPathDraft, debouncedProp] = JSON.parse(debouncedPathAndProp) as [string, string]
+  const debouncedPath = `${defaultForcedValue ?? ''}${defaultForcedValue && debouncedPathDraft ? '.' : ''}${debouncedPathDraft ?? ''}`
   const [value, setValue] = useState<string | null>(defaultValue || null)
 
   const isDefaultItemSelected = defaultItem?.label == `${path}.${prop}`
   const { selectedWorkspace } = useUserProfile()
   const isDictionary = fqn?.startsWith('dictionary') ?? false
-  const selectedKindsStr = selectedKinds ? JSON.stringify(selectedKinds) : null
   const propertyAttributes = useInfiniteQuery({
     queryKey: [
       'workspace-inventory-property-path-complete-query',
       selectedWorkspace?.id,
       debouncedPath,
-      value === `${debouncedPath}.${debouncedProp}` || value === `${debouncedPath}.${debouncedProp.replace(/\./g, '․')}`
+      value === `${debouncedPathDraft}.${debouncedProp}` || value === `${debouncedPathDraft}.${debouncedProp.replace(/\./g, '․')}`
         ? ''
         : debouncedProp,
-      selectedKindsStr,
+      selectedKinds?.join(',') ?? null,
       fqn?.split(',')[1]?.split(']')[0]?.trim() ?? '',
     ] as const,
     initialPageParam: {
@@ -81,15 +91,13 @@ export const InventoryFormFilterRowProperty = ({ selectedKinds, defaultValue, ki
     throwOnError: false,
     enabled: !!selectedWorkspace?.id && !!kinds.length && isDictionary,
   })
-  const kindsStr = JSON.stringify(kinds)
   const pathComplete = useInfiniteQuery({
     queryKey: [
       'workspace-inventory-property-path-complete-query',
       selectedWorkspace?.id,
       isDefaultItemSelected ? '' : debouncedPath,
       !fqn || isDefaultItemSelected ? '' : debouncedProp,
-      selectedKindsStr,
-      kindsStr,
+      JSON.stringify(selectedKinds ?? kinds),
     ] as const,
     initialPageParam: {
       limit: ITEMS_PER_PAGE,
@@ -110,10 +118,10 @@ export const InventoryFormFilterRowProperty = ({ selectedKinds, defaultValue, ki
     if (error) {
       if (isDictionary) {
         const prop =
-          value === `${debouncedPath}.${debouncedProp}` || value === `${debouncedPath}.${debouncedProp.replace(/\./g, '․')}`
+          value === `${debouncedPathDraft}.${debouncedProp}` || value === `${debouncedPathDraft}.${debouncedProp.replace(/\./g, '․')}`
             ? ''
             : debouncedProp
-        const path = debouncedPath
+        const path = debouncedPathDraft
         inventorySendToGTM('postCostumedWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
           workspaceId: selectedWorkspace?.id,
           prop: `${path.split('.').slice(-1)[0]}${prop ? `=~"${prop.replace(/․/g, '.')}"` : ''}` ? '' : debouncedProp,
@@ -124,20 +132,32 @@ export const InventoryFormFilterRowProperty = ({ selectedKinds, defaultValue, ki
           workspaceId: selectedWorkspace?.id,
           path: isDefaultItemSelected ? '' : debouncedPath,
           prop: !fqn || isDefaultItemSelected ? '' : debouncedProp,
-          kinds: selectedKinds ?? (JSON.parse(kindsStr) as string[]),
+          kinds: selectedKinds ?? kinds,
           fuzzy: true,
         })
       }
     }
-  }, [debouncedPath, debouncedProp, error, fqn, isDefaultItemSelected, isDictionary, kindsStr, selectedKinds, selectedWorkspace?.id, value])
+  }, [
+    debouncedPathDraft,
+    debouncedPath,
+    debouncedProp,
+    error,
+    fqn,
+    isDefaultItemSelected,
+    isDictionary,
+    kinds,
+    selectedKinds,
+    selectedWorkspace?.id,
+    value,
+  ])
 
   useEffect(() => {
     if (prevPropIndex.current > propIndex) {
-      prevFqn.current = 'object'
-      setFqn('object')
+      prevFqn.current = defaultItem ? (isDefaultSimple ? null : defaultItem?.value) : 'object'
+      setFqn(defaultItem ? (isDefaultSimple ? null : defaultItem?.value) : 'object')
     }
     prevPropIndex.current = propIndex
-  }, [propIndex])
+  }, [defaultItem, isDefaultSimple, propIndex])
 
   const handleScroll = (e: ReactUIEvent<HTMLUListElement, UIEvent>) => {
     if (
@@ -177,7 +197,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKinds, defaultValue, ki
       setFqn('object')
     }
     setValue(null)
-    const separatedValue = value.split('.')
+    const separatedValue = defaultForcedValue && value.startsWith(`${defaultForcedValue}.`) ? value.split('.').slice(1) : value.split('.')
     if (!isDictionary || separatedValue[separatedValue.length - 1] !== '') {
       const newProp = separatedValue.splice(separatedValue.length - 1, 1)[0]
       if (newProp !== prop) {
@@ -208,18 +228,29 @@ export const InventoryFormFilterRowProperty = ({ selectedKinds, defaultValue, ki
       const isSimple = kindSimpleTypes.find((item) => item === option.value || `${item}[` === option.value)
       prevFqn.current = fqn
       setFqn(isSimple ? null : option.value)
-      const separatedValue = option.label.split('.')
+      const separatedValue =
+        defaultForcedValue && option.label.startsWith(`${defaultForcedValue}.`) ? option.label.split('.').slice(1) : option.label.split('.')
       const newProp = separatedValue.splice(separatedValue.length - 1, 1)[0]
       const newPath = separatedValue.join('.')
+
       if (isSimple) {
         setValue(option.label)
         setProp(isDictionary ? option.key : newProp)
         setPropIndex(separatedValue.length)
         setPath(newPath)
-        setHasFocus(false)
+        setOpen(false)
         onChange({
-          property: isDictionary && !isValidProp(newProp) ? `${newPath}.\`${option.key}\`` : option.label,
-          op: kindDurationTypes.includes(option.value as (typeof kindDurationTypes)[number]) ? '>=' : '=',
+          property:
+            isDictionary && !isValidProp(newProp)
+              ? `${defaultForcedValue ?? ''}${defaultForcedValue && newPath ? '.' : ''}${newPath}.\`${option.key}\``
+              : defaultForcedValue && !option.label.startsWith(defaultForcedValue)
+                ? `${defaultForcedValue}.${option.label}`
+                : option.label,
+          op: kindDurationTypes.includes(option.value as (typeof kindDurationTypes)[number])
+            ? '>='
+            : option.value === 'boolean'
+              ? '='
+              : 'in',
           fqn: option.value as ResourceComplexKindSimpleTypeDefinitions,
           value: undefined,
         })
@@ -234,7 +265,7 @@ export const InventoryFormFilterRowProperty = ({ selectedKinds, defaultValue, ki
       setPath('')
       setProp('')
       setPropIndex(0)
-      setFqn('object')
+      setFqn(defaultItem ? (isDefaultSimple ? null : defaultItem?.value) : 'object')
       onChange({ property: null, op: null, value: undefined, fqn: null })
     }
   }
@@ -260,9 +291,9 @@ export const InventoryFormFilterRowProperty = ({ selectedKinds, defaultValue, ki
     autoCompleteValue = options[index]
   }
 
-  const hasError = Boolean((prop || path) && !hasFocus && !value)
+  const hasError = Boolean((prop || path) && !open && !value)
 
-  const autoCompleteIsLoading = isLoading || path !== debouncedPath || prop !== debouncedProp
+  const autoCompleteIsLoading = isLoading || path !== debouncedPathDraft || prop !== debouncedProp
 
   return (
     <Autocomplete
@@ -296,13 +327,14 @@ export const InventoryFormFilterRowProperty = ({ selectedKinds, defaultValue, ki
         },
       }}
       options={autoCompleteIsLoading ? [] : options}
-      open={hasFocus}
+      open={open}
       onOpen={() => {
         if (fqn === null && prevFqn.current?.startsWith('dictionary')) {
           setFqn(prevFqn.current)
         }
-        setHasFocus(true)
+        setOpen(true)
       }}
+      onClose={() => setOpen(false)}
       groupBy={(item: (typeof defaultProperties)[number]) => (item.isDefaulted ? 'Default Properties' : 'Properties')}
       filterOptions={(options) => options}
       loading={autoCompleteIsLoading}
@@ -313,9 +345,11 @@ export const InventoryFormFilterRowProperty = ({ selectedKinds, defaultValue, ki
             {...params}
             error={hasError}
             helperText={hasError ? t`Invalid Value` : undefined}
-            focused={hasFocus && !!fqn}
+            focused={open}
+            autoFocus
             InputProps={{
               ...params.InputProps,
+              startAdornment: defaultForcedValue ? <Typography variant="caption">{defaultForcedValue}</Typography> : undefined,
               endAdornment: (
                 <>
                   {isLoading || isFetchingNextPage ? <CircularProgress color="inherit" size={20} /> : null}
@@ -325,12 +359,10 @@ export const InventoryFormFilterRowProperty = ({ selectedKinds, defaultValue, ki
             }}
             inputProps={{
               ...params.inputProps,
+              autoFocus: true,
               value: autoCompleteInputValue,
               onKeyDown: handleInputKeyDown,
-              onFocus: () => setHasFocus(true),
-              onBlur: () => setHasFocus(false),
             }}
-            multiline
             label={<Trans>Property</Trans>}
             onChange={handleInputChange}
           />

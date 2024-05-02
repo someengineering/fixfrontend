@@ -54,7 +54,7 @@ export default function InventoryPage() {
           <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
             <ResourceDetail />
           </NetworkErrorBoundary>
-          {searchCrit && (searchCrit !== 'all' || (hasChanges && history.change)) ? (
+          {searchCrit && (searchCrit !== 'all' || (hasChanges && history.change) || hasError) ? (
             <>
               <NetworkErrorBoundary
                 fallbackRender={({ resetErrorBoundary }) => (

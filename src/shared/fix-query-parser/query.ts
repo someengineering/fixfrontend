@@ -177,7 +177,7 @@ export class Path {
     const propParts = [...this.parts]
     const root = this.root ? '/' : ''
     const pathParts = propParts.splice(0, propParts.length - 1)
-    return [root + pathParts.join('.'), propParts[0].toString()]
+    return [root + pathParts.join('.'), propParts[0].toString().replace(/`/g, '')]
   }
 
   public equalTo(other: Path): boolean {

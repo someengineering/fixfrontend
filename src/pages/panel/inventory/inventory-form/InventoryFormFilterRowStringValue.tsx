@@ -38,7 +38,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
 }: InventoryFormFilterRowStringValueProps<Multiple, NetworkDisabled>) {
   const { selectedWorkspace } = useUserProfile()
   const { query } = useFixQueryParser()
-  const [hasFocus, setHasFocus] = useState(false)
+  const [open, setOpen] = useState(true)
   const [typed, setTyped] = useState(value && !Array.isArray(value) ? value.label : '')
   const debouncedTyped = useDebounce(networkDisabled ? '' : typed, panelUI.fastInputChangeDebounce)
   const selectedTyped = useRef('')
@@ -130,7 +130,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
     props.multiple && !Array.isArray(value) ? (value ? [value] : []) : !props.multiple && Array.isArray(value) ? value[0] : value
   ) as typeof value
 
-  const hasError = Boolean(!hasFocus && typed && (Array.isArray(value) ? !value.length : !value))
+  const hasError = Boolean(!open && typed && (Array.isArray(value) ? !value.length : !value))
 
   const autoCompleteIsLoading = isLoading || (!networkDisabled && debouncedTyped !== typed)
 
@@ -151,7 +151,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
                   .filter((i) => i) as AutoCompleteValue[])
               : option) || null
         if (!Array.isArray(option)) {
-          setHasFocus(false)
+          setOpen(false)
         }
         onChange(
           (props.multiple
@@ -181,7 +181,8 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
           : (options) => options
       }
       getOptionLabel={(option) => (typeof option === 'string' ? option : option.label)}
-      open={hasFocus}
+      onOpen={() => setOpen(true)}
+      open={open}
       freeSolo
       renderOption={(props, option, state) =>
         [
@@ -214,10 +215,11 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
           error={hasError}
           helperText={hasError ? t`Invalid Value` : undefined}
           type={isNumber && typed !== 'null' && typed !== 'Null' ? 'number' : 'text'}
-          focused={hasFocus}
+          autoFocus
+          focused={open}
           inputProps={{
             ...params.inputProps,
-            onFocus: () => setHasFocus(true),
+            autoFocus: true,
             onBlur: () => {
               if (!props.multiple) {
                 const found = options.find((i) => i.label === typed)
@@ -226,22 +228,22 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
                   onChange(found as typeof value)
                 }
               }
-              setHasFocus(false)
             },
             value: typed,
           }}
           InputProps={{
             ...params.InputProps,
+            autoFocus: true,
             endAdornment: (
               <>
                 {autoCompleteIsLoading || isFetchingNextPage ? <CircularProgress color="inherit" size={20} /> : null}
                 {params.InputProps.endAdornment}
               </>
             ),
+            onFocus: () => setOpen(true),
+            onBlur: () => setOpen(false),
           }}
-          onClick={() => setHasFocus(true)}
           onChange={(e) => {
-            setHasFocus(true)
             selectedTyped.current = ''
             if (isNumber) {
               const curValue = e.currentTarget.value

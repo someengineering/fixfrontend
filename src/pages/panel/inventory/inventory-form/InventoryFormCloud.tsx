@@ -1,43 +1,32 @@
 import { t } from '@lingui/macro'
-import { useRef, useState } from 'react'
-import { DefaultPropertiesKeys, Path, useFixQueryParser } from 'src/shared/fix-query-parser'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
+import { useState } from 'react'
+import { DefaultPropertiesKeys, useFixQueryParser } from 'src/shared/fix-query-parser'
+import { InventoryFormCloudValues } from './InventoryFormCloudValues'
 import { InventoryFormField } from './InventoryFormField'
-import { InventoryFormPopover } from './InventoryFormPopover'
+import { termValueToStringArray } from './utils'
 import { AutoCompletePreDefinedItems } from './utils/getAutoCompleteFromKey'
 
 export const InventoryFormCloud = ({ preItems }: { preItems: AutoCompletePreDefinedItems }) => {
   const {
     cloud,
     update: {
-      current: { setPredicate, deletePredicate },
+      current: { deletePredicate },
     },
   } = useFixQueryParser()
   const [open, setOpen] = useState<HTMLDivElement | null>(null)
-  const { current: path } = useRef(Path.from_string(DefaultPropertiesKeys.Cloud))
-  return (
+  const values = termValueToStringArray(cloud?.value)
+  return values.length ? (
     <>
       <InventoryFormField
-        value={cloud ? `${cloud.op} ${JSON.stringify(cloud.value)}` : undefined}
-        label={t`Cloud`}
+        value={cloud}
+        label={t`Clouds`}
         onClick={(e) => setOpen(e.currentTarget)}
         onClear={() => deletePredicate(DefaultPropertiesKeys.Cloud)}
+        endIcon={open ? <ArrowDropUpIcon fontSize="small" /> : <ArrowDropDownIcon fontSize="small" />}
       />
-      <InventoryFormPopover
-        fqn="string"
-        onChange={(term) => {
-          if (term) {
-            setPredicate(DefaultPropertiesKeys.Cloud, term.op, term.value)
-          } else {
-            deletePredicate(DefaultPropertiesKeys.Cloud)
-          }
-        }}
-        defaultPath={path}
-        onClose={() => setOpen(null)}
-        open={open}
-        preItems={preItems}
-        term={cloud}
-        id={1}
-      />
+      <InventoryFormCloudValues onClose={() => setOpen(null)} open={open} preItems={preItems} values={values} />
     </>
-  )
+  ) : null
 }
