@@ -33,7 +33,7 @@ export const postWorkspaceInventoryPropertyPathCompleteFqnQuery = ({
           data,
           { signal },
         )
-        .then((res) => Object.values(res.data)[0] as ResourceComplexKindSimpleTypeDefinitions)) ||
+        .then((res) => (Object.values(res.data)[0] as ResourceComplexKindSimpleTypeDefinitions) ?? 'string')) ||
     null
   )
 }

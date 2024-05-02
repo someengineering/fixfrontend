@@ -1,6 +1,8 @@
 import { Trans } from '@lingui/macro'
-import { Button, MenuItem, Popover, Select, Skeleton, Stack, Typography } from '@mui/material'
+import AddIcon from '@mui/icons-material/Add'
+import { Button, MenuItem, Popover, Select, Skeleton, Stack, Typography, backdropClasses } from '@mui/material'
 import { useMemo, useState } from 'react'
+import { panelUI } from 'src/shared/constants'
 import {
   Path,
   Predicate,
@@ -18,31 +20,22 @@ import { InventoryFormFilterRowProperty } from './InventoryFormFilterRowProperty
 import { InventoryFormFilterRowValues } from './InventoryFormFilterRowValues'
 import { AutoCompletePreDefinedItems, getOpTypeLabel } from './utils'
 
-interface InventoryFormMorePopoverProps {
+interface InventoryFormTagsValueProps {
   id?: number
   open: HTMLElement | null
-  defaultFqn?: ResourceComplexKindSimpleTypeDefinitions
-  defaultValue?: Predicate
   preItems?: AutoCompletePreDefinedItems
+  defaultValue?: Predicate
   onChange: (term: Predicate | undefined) => void
-  onFqnChange?: (fqn?: ResourceComplexKindSimpleTypeDefinitions | null) => void
   onClose: () => void
 }
 
-export const InventoryFormMorePopover = ({
-  onChange,
-  onClose,
-  open,
-  defaultFqn,
-  defaultValue,
-  preItems,
-  id = 0,
-}: InventoryFormMorePopoverProps) => {
+export const InventoryFormTagsValue = ({ onChange, onClose, open, defaultValue, preItems, id = 0 }: InventoryFormTagsValueProps) => {
   const { is } = useFixQueryParser()
-  const [fqn, setFqn] = useState(defaultFqn)
+  const [fqn, setFqn] = useState('dictionary[string, string]')
   const [value, setValue] = useState(defaultValue)
-  const onSubmit = () => {
-    onChange(value)
+  const handleClose = () => {
+    setFqn('dictionary[string, string]')
+    setValue(defaultValue)
     onClose()
   }
 
@@ -67,26 +60,29 @@ export const InventoryFormMorePopover = ({
   )
 
   return (
-    <Popover open={!!open} anchorEl={open} anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }} onClose={onSubmit}>
-      <Stack
-        pb={2}
-        px={2}
-        spacing={1}
-        component="form"
-        onSubmit={(e) => {
-          e.preventDefault()
-          onSubmit()
-        }}
-      >
+    <Popover
+      open={!!open}
+      anchorEl={open}
+      anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+      onClose={handleClose}
+      sx={{
+        [`& .${backdropClasses.root}`]: { bgcolor: 'transparent' },
+        maxHeight: `calc(100% - ${(open?.offsetTop ?? 0) + (open?.offsetHeight ?? 0) + panelUI.headerHeight}px)`,
+      }}
+    >
+      <Stack pb={2} px={2} spacing={1}>
         <Stack direction="row" flexWrap="wrap" overflow="auto" pt={2}>
           <InventoryFormFilterRowProperty
             kinds={preItems?.kinds.map((i) => i.value) ?? []}
             selectedKinds={is()?.kinds ?? null}
-            defaultValue={value?.path.toString()}
+            defaultForcedValue="tags"
             onChange={({ fqn, op, property, value }) => {
               if (fqn && property) {
                 setFqn(fqn)
-                setValue(new Predicate({ path: Path.from_string(property), value: value || null, op: op || '=' }))
+                setValue(new Predicate({ path: Path.from_string(property), value: value === 'null' ? null : value ?? null, op: op || '=' }))
+              } else {
+                setFqn('dictionary[string, string]')
+                setValue(defaultValue)
               }
             }}
           />
@@ -125,9 +121,7 @@ export const InventoryFormMorePopover = ({
                   fqn={fqnType}
                   keyString={`${fqn}_${id}_${value.toString()}`}
                   data={value}
-                  onChange={(newTerm) => {
-                    setValue(newTerm)
-                  }}
+                  onChange={setValue}
                   preItems={preItems}
                 />
               ) : (
@@ -136,9 +130,7 @@ export const InventoryFormMorePopover = ({
                     fqn="string"
                     keyString={`${fqn}_${id}_${value?.toString()}`}
                     data={value}
-                    onChange={(newTerm) => {
-                      setValue(newTerm)
-                    }}
+                    onChange={() => {}}
                     preItems={preItems}
                   />
                 </Skeleton>
@@ -146,32 +138,18 @@ export const InventoryFormMorePopover = ({
             </>
           ) : null}
         </Stack>
-        <Stack direction="row" justifyContent="space-between" spacing={1}>
-          <Stack direction="row" spacing={1} justifyContent="end">
-            <Button
-              color="error"
-              variant="outlined"
-              onClick={() => {
-                onClose()
-              }}
-            >
-              <Trans>Cancel</Trans>
-            </Button>
-            <Button
-              color="warning"
-              variant="outlined"
-              onClick={() => {
-                setValue(undefined)
-              }}
-            >
-              <Trans>clear</Trans>
-            </Button>
-          </Stack>
-          <Stack direction="row" spacing={1} justifyContent="end">
-            <Button color="primary" variant="contained" type="submit">
-              <Trans>Submit</Trans>
-            </Button>
-          </Stack>
+        <Stack alignItems="end">
+          <Button
+            color="success"
+            variant="contained"
+            onClick={() => {
+              onChange(value)
+              handleClose()
+            }}
+            startIcon={<AddIcon fontSize="small" />}
+          >
+            <Trans>Add</Trans>
+          </Button>
         </Stack>
       </Stack>
     </Popover>

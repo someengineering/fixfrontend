@@ -12,6 +12,7 @@ import {
 interface DurationPickerProps {
   value: string
   onChange: (value: string) => void
+  onClose?: () => void
 }
 
 const getAllDuration = (num: number) =>
@@ -69,7 +70,7 @@ const removeZeroValues = (duration: ISO8601DurationType) => {
   return newDuration as Partial<ISO8601DurationType>
 }
 
-export const DurationPicker = ({ onChange, value }: DurationPickerProps) => {
+export const DurationPicker = ({ onChange, value, onClose }: DurationPickerProps) => {
   const [typed, setTyped] = useState('')
   const parsedDuration = parseCustomDuration(value)
   const splittedValue = splitCustomDuration(durationToCustomDurationString(parsedDuration))
@@ -80,6 +81,7 @@ export const DurationPicker = ({ onChange, value }: DurationPickerProps) => {
   ).concat(autoCompleteValue)
   return (
     <Autocomplete
+      onClose={onClose}
       size="small"
       sx={{ minWidth: 250, maxWidth: '100%' }}
       options={options}

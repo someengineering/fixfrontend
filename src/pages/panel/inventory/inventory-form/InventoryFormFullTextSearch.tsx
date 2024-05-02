@@ -1,11 +1,7 @@
-import { t } from '@lingui/macro'
-import { useState } from 'react'
 import { FullTextTerm, useFixQueryParser } from 'src/shared/fix-query-parser'
-import { InventoryFormField } from './InventoryFormField'
-import { InventoryFormFullTextSearchPopover } from './InventoryFormFullTextSearchPopover'
+import { InventoryFormFullTextSearchValue } from './InventoryFormFullTextSearchValue'
 
 export const InventoryFormFullTextSearchItem = ({ fullTextSearch }: { fullTextSearch?: FullTextTerm }) => {
-  const [open, setOpen] = useState<HTMLDivElement | null>(null)
   const {
     update: {
       current: { updateFullTextSearch },
@@ -13,17 +9,9 @@ export const InventoryFormFullTextSearchItem = ({ fullTextSearch }: { fullTextSe
   } = useFixQueryParser()
   return (
     <>
-      <InventoryFormField
-        value={fullTextSearch}
-        label={t`Full-text search`}
-        onClick={(e) => setOpen(e.currentTarget)}
-        onClear={fullTextSearch ? () => updateFullTextSearch(undefined, fullTextSearch.text) : () => {}}
-      />
-      <InventoryFormFullTextSearchPopover
+      <InventoryFormFullTextSearchValue
         fullTextSearch={fullTextSearch?.text ?? ''}
         onChange={(value) => updateFullTextSearch(value, fullTextSearch?.text)}
-        onClose={() => setOpen(null)}
-        open={open}
       />
     </>
   )

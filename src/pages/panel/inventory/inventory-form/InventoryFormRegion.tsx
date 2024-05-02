@@ -1,43 +1,32 @@
 import { t } from '@lingui/macro'
-import { useRef, useState } from 'react'
-import { DefaultPropertiesKeys, Path, useFixQueryParser } from 'src/shared/fix-query-parser'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
+import { useState } from 'react'
+import { DefaultPropertiesKeys, useFixQueryParser } from 'src/shared/fix-query-parser'
 import { InventoryFormField } from './InventoryFormField'
-import { InventoryFormPopover } from './InventoryFormPopover'
+import { InventoryFormRegionValues } from './InventoryFormRegionValues'
+import { termValueToStringArray } from './utils'
 import { AutoCompletePreDefinedItems } from './utils/getAutoCompleteFromKey'
 
 export const InventoryFormRegion = ({ preItems }: { preItems: AutoCompletePreDefinedItems }) => {
   const {
     region,
     update: {
-      current: { setPredicate, deletePredicate },
+      current: { deletePredicate },
     },
   } = useFixQueryParser()
   const [open, setOpen] = useState<HTMLDivElement | null>(null)
-  const { current: path } = useRef(Path.from_string(DefaultPropertiesKeys.Region))
-  return (
+  const values = termValueToStringArray(region?.value)
+  return values.length ? (
     <>
       <InventoryFormField
-        value={region ? `${region.op} ${JSON.stringify(region.value)}` : undefined}
+        value={region}
         label={t`Regions`}
         onClick={(e) => setOpen(e.currentTarget)}
         onClear={() => deletePredicate(DefaultPropertiesKeys.Region)}
+        endIcon={open ? <ArrowDropUpIcon fontSize="small" /> : <ArrowDropDownIcon fontSize="small" />}
       />
-      <InventoryFormPopover
-        fqn="string"
-        onChange={(term) => {
-          if (term) {
-            setPredicate(DefaultPropertiesKeys.Region, term.op, term.value)
-          } else {
-            deletePredicate(DefaultPropertiesKeys.Region)
-          }
-        }}
-        defaultPath={path}
-        onClose={() => setOpen(null)}
-        open={open}
-        preItems={preItems}
-        term={region}
-        id={3}
-      />
+      <InventoryFormRegionValues onClose={() => setOpen(null)} open={open} preItems={preItems} values={values} />
     </>
-  )
+  ) : null
 }

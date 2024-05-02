@@ -20,8 +20,8 @@ export const getOpTypeLabel = (op: OPType) => {
     case '<=':
       return t`Less than or equal`
     case '~':
-      return t`Have`
+      return t`Match`
     case '!~':
-      return t`Not Have`
+      return t`No Match`
   }
 }

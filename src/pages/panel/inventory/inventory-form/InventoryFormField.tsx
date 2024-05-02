@@ -1,33 +1,80 @@
 import ClearIcon from '@mui/icons-material/Clear'
-import { Box, Button, IconButton, Stack, Typography } from '@mui/material'
+import { Box, Button, Chip, IconButton, Stack, Typography, alpha } from '@mui/material'
 import { MouseEventHandler, PropsWithChildren, ReactNode } from 'react'
-import { Term } from 'src/shared/fix-query-parser'
+import { Term, termValueToString } from 'src/shared/fix-query-parser'
 
 interface InventoryFormFieldProps extends PropsWithChildren {
-  value: string | Term | undefined
+  value?: string | Term
+  forceShowClearButton?: boolean
   label: ReactNode
-  onClick: MouseEventHandler<HTMLDivElement>
-  onClear: MouseEventHandler<HTMLButtonElement>
+  onClick?: MouseEventHandler<HTMLDivElement>
+  onClear: MouseEventHandler<HTMLDivElement>
+  endIcon?: ReactNode
 }
 
-export const InventoryFormField = ({ value, onClick, label, onClear }: InventoryFormFieldProps) => {
-  const valueStr = typeof value === 'string' ? value : value?.toString()
+export const InventoryFormField = ({
+  value,
+  onClick,
+  label,
+  onClear,
+  endIcon,
+  children,
+  forceShowClearButton,
+}: InventoryFormFieldProps) => {
+  const valueStr = typeof value === 'string' ? value : value ? termValueToString(value, true) : undefined
+  const hasValue = !!(valueStr && valueStr.length)
+
   return (
     <Box pt={1} pr={1} height="100%">
-      <Button
+      <Stack
         onClick={onClick}
-        component={Stack}
+        component={onClick ? Button : 'div'}
         variant="outlined"
         boxShadow={4}
         direction="row"
-        bgcolor="primary.main"
-        pr={valueStr ? '4px !important' : undefined}
+        pr={hasValue ? '4px !important' : undefined}
         spacing={0.5}
         alignItems="center"
-        sx={{ textTransform: 'none', minHeight: 42 }}
-        endIcon={
-          valueStr ? (
+        sx={{
+          textTransform: 'none',
+          minHeight: 42,
+          ...(onClick
+            ? {}
+            : {
+                px: 2,
+                py: 0.75,
+                borderRadius: 1,
+                color: 'primary.main',
+                borderColor: ({ palette }) => alpha(palette.primary.main, 0.5),
+                borderStyle: 'solid',
+                borderWidth: 1,
+              }),
+        }}
+      >
+        <Stack direction="row" alignItems="center" spacing={0.5} flexWrap="wrap">
+          <Typography variant="body2" fontWeight={700} p={0} width="auto" textAlign="left" whiteSpace="nowrap">
+            {label}
+            {hasValue ? ':' : ''}
+          </Typography>
+          {children ??
+            (hasValue ? (
+              typeof valueStr === 'string' ? (
+                <Typography color="common.black" variant="subtitle1" p={0} width="auto" textAlign="center">
+                  {valueStr}
+                </Typography>
+              ) : (
+                <>
+                  {valueStr.slice(0, 2).map((item, i) => (
+                    <Chip key={i} label={item} color="primary" size="small" variant="outlined" />
+                  ))}
+                  {valueStr.length > 2 ? <Chip label={`+${valueStr.length - 2}`} color="primary" size="small" variant="filled" /> : null}
+                </>
+              )
+            ) : null)}
+          {hasValue || forceShowClearButton ? (
             <IconButton
+              component="div"
+              color="primary"
               onClick={(e) => {
                 e.stopPropagation()
                 onClear(e)
@@ -36,20 +83,11 @@ export const InventoryFormField = ({ value, onClick, label, onClear }: Inventory
             >
               <ClearIcon fontSize="small" />
             </IconButton>
-          ) : null
-        }
-      >
-        <Stack>
-          <Typography variant="body2" fontWeight={700} p={0} width="100%" textAlign="left" whiteSpace="nowrap">
-            {label}
-          </Typography>
-          {valueStr ? (
-            <Typography color="common.black" variant="subtitle1" p={0} width="100%" textAlign="center">
-              {valueStr}
-            </Typography>
-          ) : null}
+          ) : (
+            endIcon
+          )}
         </Stack>
-      </Button>
+      </Stack>
     </Box>
   )
 }

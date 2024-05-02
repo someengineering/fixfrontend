@@ -1,7 +1,7 @@
 import { t } from '@lingui/macro'
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { InventoryFormChangePopover } from './InventoryFormChangesPopover'
+import { InventoryFormChangeValue } from './InventoryFormChangesValue'
 import { InventoryFormField } from './InventoryFormField'
 
 export const InventoryFormChangesComp = () => {
@@ -45,7 +45,7 @@ export const InventoryFormChangesComp = () => {
         onClick={(e) => setOpen(e.currentTarget)}
         onClear={handleReset}
       />
-      <InventoryFormChangePopover
+      <InventoryFormChangeValue
         onChange={handleSubmit}
         onClose={() => setOpen(null)}
         open={open}
