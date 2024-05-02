@@ -15,6 +15,7 @@ import {
   SortP,
   TermP,
   WithClauseP,
+  WithUsageP,
 } from './parser.ts'
 import {
   AllTerm,
@@ -38,6 +39,7 @@ import {
   SortOrder,
   WithClause,
   WithClauseFilter,
+  WithUsage,
 } from './query.ts'
 
 const parse_variable = parse_expr(PathP)
@@ -53,6 +55,7 @@ const parse_query = parse_expr(QueryP)
 const parse_merge_query = parse_expr(MergeQueryP)
 const parse_with_clause = parse_expr(WithClauseP)
 const parse_aggregate = parse_expr(AggregateP)
+const parse_with_usage = parse_expr(WithUsageP)
 
 const foo = Path.from('foo')
 const bar = Path.from('bar')
@@ -171,7 +174,13 @@ test(`Parse Limit`, () => {
 })
 
 test(`Parse Navigation`, () => {
-  assert.deepEqual(parse_navigation('-->'), new Navigation())
+  assert.strictEqual(parse_navigation('-->').toString(), '-->')
+  assert.strictEqual(parse_navigation('-[2:3]->').toString(), '-[2:3]->')
+  assert.strictEqual(parse_navigation('-[2:]->').toString(), '-[2:]->')
+  assert.strictEqual(parse_navigation('-[2]->').toString(), '-[2]->')
+  assert.deepEqual(parse_navigation('-->'), new Navigation({ start: 1, until: 1 }))
+  assert.deepEqual(parse_navigation('-[2]->').toString(), '-[2]->')
+  assert.deepEqual(parse_navigation('-[2:]->').toString(), '-[2:]->')
   assert.deepEqual(parse_navigation('-[2:3]->'), new Navigation({ start: 2, until: 3 }))
   assert.deepEqual(
     parse_navigation('-[2:3]delete->'),
@@ -202,7 +211,7 @@ test(`Parse Navigation`, () => {
 
 test(`Parse WithClause`, () => {
   const with_filter = new WithClauseFilter({ op: '>', num: 0 })
-  const navigation = new Navigation()
+  const navigation = new Navigation({ until: 1 })
   const term = new IsTerm({ kinds: ['instance'] })
   const with_clause = new WithClause({ with_filter, navigation, term })
   assert.deepEqual(parse_with_clause('with(any, --> is(instance))'), with_clause)
@@ -237,7 +246,7 @@ test(`Parse Part`, () => {
       limit,
     }),
   )
-  assert.deepEqual(parse_part('is(instance) -->'), new Part({ term: is, navigation: new Navigation() }))
+  assert.deepEqual(parse_part('is(instance) -->'), new Part({ term: is, navigation: new Navigation({ until: 1 }) }))
 })
 
 test(`Parse Merge Query`, () => {
@@ -247,7 +256,9 @@ test(`Parse Merge Query`, () => {
     parse_merge_query('foo: <-- foo=23'),
     new MergeQuery({
       path: foo,
-      query: new Query({ parts: [new Part({ term: new AllTerm(), navigation: new Navigation({ direction: Direction.inbound }) }), part] }),
+      query: new Query({
+        parts: [new Part({ term: new AllTerm(), navigation: new Navigation({ until: 1, direction: Direction.inbound }) }), part],
+      }),
     }),
   )
 })
@@ -266,7 +277,7 @@ test(`Parse Query`, () => {
   const part = new Part({ term: pred, sort, limit })
   const with_clause = new WithClause({
     with_filter: new WithClauseFilter({ op: '==', num: 0 }),
-    navigation: new Navigation({ direction: Direction.inbound }),
+    navigation: new Navigation({ until: 1, direction: Direction.inbound }),
     term: pred,
   })
   assert.deepEqual(parse_query('foo=23 sort bla limit 10'), new Query({ parts: [part] }))
@@ -276,7 +287,7 @@ test(`Parse Query`, () => {
   )
   assert.deepEqual(
     parse_query('is(instance) and foo=23 and foo.bar.{bla>23} sort bla limit 10 --> foo=23 sort bla limit 10'),
-    new Query({ parts: [new Part({ term: combined, sort, limit, navigation: new Navigation() }), part] }),
+    new Query({ parts: [new Part({ term: combined, sort, limit, navigation: new Navigation({ until: 1 }) }), part] }),
   )
   assert.deepEqual(
     parse_query('is(instance) {foo: --> foo=23, bla: <-- is(instance)}'),
@@ -290,7 +301,7 @@ test(`Parse Query`, () => {
                 path: foo,
                 query: new Query({
                   parts: [
-                    new Part({ term: new AllTerm(), navigation: new Navigation({ direction: Direction.outbound }) }),
+                    new Part({ term: new AllTerm(), navigation: new Navigation({ until: 1, direction: Direction.outbound }) }),
                     new Part({ term: pred }),
                   ],
                 }),
@@ -299,7 +310,7 @@ test(`Parse Query`, () => {
                 path: bla,
                 query: new Query({
                   parts: [
-                    new Part({ term: new AllTerm(), navigation: new Navigation({ direction: Direction.inbound }) }),
+                    new Part({ term: new AllTerm(), navigation: new Navigation({ until: 1, direction: Direction.inbound }) }),
                     new Part({ term: is }),
                   ],
                 }),
@@ -312,13 +323,22 @@ test(`Parse Query`, () => {
   )
 })
 
+test('Parse With Usage', () => {
+  assert.deepEqual(parse_with_usage('with_usage(1d, foo)'), new WithUsage({ start: '1d', metrics: ['foo'] }))
+  assert.deepEqual(parse_with_usage('with_usage(1d, foo, bla, bar)'), new WithUsage({ start: '1d', metrics: ['foo', 'bla', 'bar'] }))
+  assert.deepEqual(parse_with_usage('with_usage(1d, [foo, bla, bar])'), new WithUsage({ start: '1d', metrics: ['foo', 'bla', 'bar'] }))
+  assert.deepEqual(parse_with_usage('with_usage(1d::2d, foo)'), new WithUsage({ start: '1d', end: '2d', metrics: ['foo'] }))
+})
+
 test('Parse Aggregates', () => {
   function assert_aggregate(query: string) {
     assert.strictEqual(parse_aggregate(query).toString(), query)
   }
+
   function assert_query(query: string, expected: string | undefined = undefined) {
     assert.strictEqual(parse_query(query).toString(), expected || query)
   }
+
   assert_aggregate('aggregate("kind" as k, bla as foo, bar: sum(1) as count)')
   assert_aggregate('aggregate(sum(1) as count)')
   assert_aggregate('aggregate(a, b, c, d, e: sum(a.b.c.d.e + 23) as count)')
@@ -512,14 +532,26 @@ test('Parse existing queries', () => {
     'is(aws_ssm_document) and document_shared_with_accounts not in [null, []]',
     'is(aws_ssm_resource_compliance) --> is(aws_ec2_instance, aws_dynamodb_table, aws_ssm_document, aws_s3_bucket)',
     'is(aws_waf_web_acl) and logging_configuration==null',
+    'with_usage(7d, cpu_utilization_percent) is(instance,database) and /usage.cpu_utilization_percent.max < 10',
   ]
 
   for (const query of queries) {
     try {
-      parse_query(query)
+      const q = parse_query(query)
+      assert.deepEqual(q, parse_query(q.toString()))
     } catch (e) {
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       throw new Error(`Failed to parse query: ${query}: ${e}`)
     }
   }
+})
+
+test('Parse s3 bucket query', () => {
+  const parsed = parse_query(
+    'is(aws_s3_bucket) {account_setting: <-- is(aws_account) --> is(aws_s3_account_settings)} account_setting.reported.bucket_public_access_block_configuration.{block_public_acls != true or ignore_public_acls != true or block_public_policy != true or restrict_public_buckets != true} and bucket_public_access_block_configuration.{block_public_acls != true or ignore_public_acls != true or block_public_policy != true or restrict_public_buckets != true} and (bucket_acl.grants[*].{permission in ["READ","READ_ACP","WRITE","WRITE_ACP","FULL_CONTROL"] and grantee.uri = "http://acs.amazonaws.com/groups/global/AllUsers"} or bucket_policy.Statement[*].{Effect = "Allow" and (Principal = "*" or Principal.AWS = "*" or Principal.CanonicalUser = "*") and (Action in ["s3:GetObject","s3:PutObject","s3:Get*","s3:Put*","s3:*","*"] or Action[*] in ["s3:GetObject","s3:PutObject","s3:Get*","s3:Put*","s3:*","*"])})',
+  )
+  assert.strictEqual(parsed.parts.length, 1)
+  const term = parsed.parts[0].term as MergeTerm
+  assert.strictEqual(term.preFilter instanceof IsTerm, true)
+  assert.strictEqual(term.postFilter instanceof CombinedTerm, true)
 })

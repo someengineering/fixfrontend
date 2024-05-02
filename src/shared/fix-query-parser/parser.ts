@@ -32,6 +32,7 @@ import {
   Term,
   WithClause,
   WithClauseFilter,
+  WithUsage,
 } from './query'
 
 export const JsonElementP = rule<T, JsonElement>()
@@ -44,6 +45,7 @@ export const MergeQueryP = rule<T, MergeQuery>()
 export const SortP = rule<T, Sort[]>()
 export const LimitP = rule<T, Limit>()
 export const WithClauseP = rule<T, WithClause>()
+export const WithUsageP = rule<T, WithUsage>()
 export const NavigationP = rule<T, Navigation>()
 export const PartP = rule<T, Part>()
 export const AggregateP = rule<T, Aggregate>()
@@ -190,10 +192,10 @@ const default_edge = apply(tok(T.Default), (_) => EdgeType.default)
 const delete_edge = apply(tok(T.Delete), (_) => EdgeType.delete)
 const edge_type_p = list_sc(alt(default_edge, delete_edge), tok(T.Comma))
 const sepa = alt(tok(T.Comma), tok(T.Colon), tok(T.DotDot))
-const range = apply(kmid(tok(T.LBracket), seq(tok(T.Integer), opt(kright(sepa, opt(tok(T.Integer))))), tok(T.RBracket)), ([start, end]) => [
-  parseInt(start.text),
-  end ? parseInt(end.text) : undefined,
-])
+const range = apply(kmid(tok(T.LBracket), seq(tok(T.Integer), opt(sepa), opt(tok(T.Integer))), tok(T.RBracket)), ([start, sepa, end]) => {
+  const start_num = parseInt(start.text)
+  return sepa ? [start_num, end ? parseInt(end.text) : undefined] : [start_num, start_num]
+})
 const edge_detail = apply(seq(opt(edge_type_p), opt(range), opt(edge_type_p)), ([et_before, range, et_after]) => {
   if (et_before && et_after) {
     throw new Error('Edge type can not be specified both before and after range')
@@ -228,11 +230,20 @@ WithClauseP.setPattern(
   ),
 )
 
+const duration_part = apply(times_n(alt(as_str(T.Float), as_str(T.Integer), as_str(T.Literal))), (ts) => ts.join(''))
+const duration_or_time = apply(times_n_sep(duration_part, tok(T.Colon)), (ts) => ts.join(':'))
+const optional_end = opt(kright(seq(tok(T.Colon), tok(T.Colon)), duration_or_time))
+const with_usage = apply(
+  seq(duration_or_time, optional_end, tok(T.Comma), list_or_simple),
+  ([start, end, _, metrics]) => new WithUsage({ start, end, metrics }),
+)
+WithUsageP.setPattern(kright(tok(T.WithUsage), kmid(tok(T.LParen), with_usage, tok(T.RParen))))
+
 const part_term = apply(
-  seq(TermP, opt(kmid(tok(T.LCurly), times_n_sep(MergeQueryP, tok(T.Comma)), tok(T.RCurly)))),
-  ([preFilter, merge]) => {
+  seq(TermP, opt(kmid(tok(T.LCurly), times_n_sep(MergeQueryP, tok(T.Comma)), tok(T.RCurly))), opt(TermP)),
+  ([preFilter, merge, postFilter]) => {
     if (merge) {
-      return new MergeTerm({ preFilter, merge })
+      return new MergeTerm({ preFilter, merge, postFilter })
     } else {
       return preFilter
     }
@@ -241,11 +252,12 @@ const part_term = apply(
 
 PartP.setPattern(
   apply(
-    seq(part_term, opt(WithClauseP), opt(SortP), opt(LimitP), opt(NavigationP)),
-    ([term, with_clause, sort, limit, navigation]) =>
+    seq(opt(WithUsageP), part_term, opt(WithClauseP), opt(SortP), opt(LimitP), opt(NavigationP)),
+    ([with_usage, term, with_clause, sort, limit, navigation]) =>
       new Part({
         term: term || new AllTerm(),
         with_clause,
+        with_usage,
         sort,
         limit,
         navigation,
