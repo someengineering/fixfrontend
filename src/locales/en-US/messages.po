@@ -1295,10 +1295,6 @@ msgstr "Orphaned Volumes"
 msgid "Other Workspace Settings"
 msgstr "Other Workspace Settings"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:96
-msgid "Others"
-msgstr "Others"
-
 #: src/pages/auth/login/LoginPage.tsx:143
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:204
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:73
@@ -1386,6 +1382,10 @@ msgstr "Product tier changed to {productTier}"
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:53
 msgid "Profile"
 msgstr "Profile"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:96
+msgid "Properties"
+msgstr "Properties"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:366
 msgid "Property"
