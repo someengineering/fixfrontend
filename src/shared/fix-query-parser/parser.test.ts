@@ -533,6 +533,7 @@ test('Parse existing queries', () => {
     'is(aws_ssm_resource_compliance) --> is(aws_ec2_instance, aws_dynamodb_table, aws_ssm_document, aws_s3_bucket)',
     'is(aws_waf_web_acl) and logging_configuration==null',
     'with_usage(7d, cpu_utilization_percent) is(instance,database) and /usage.cpu_utilization_percent.max < 10',
+    '/ancestors.account.reported.id="123456789012"',
   ]
 
   for (const query of queries) {
