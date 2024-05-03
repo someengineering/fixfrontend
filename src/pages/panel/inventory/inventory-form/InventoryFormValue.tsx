@@ -217,12 +217,12 @@ export const InventoryFormValue = ({
   defaultPath,
   defaultValue = null,
   defaultArgs,
-  fqn = 'any',
+  fqn,
   preItems,
   onChange,
 }: InventoryFormValueProps) => {
   const { selectedWorkspace } = useUserProfile()
-  const { data: gotFqn = fqn } = useQuery({
+  const { data: gotFqn = fqn ?? 'any' } = useQuery({
     queryKey: [
       'workspace-inventory-property-path-complete-query-fqn',
       selectedWorkspace?.id,
