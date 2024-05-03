@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/macro'
-import AddIcon from '@mui/icons-material/Add'
+import EditIcon from '@mui/icons-material/Edit'
 import { Button, MenuItem, Popover, Select, Skeleton, Stack, Typography, backdropClasses } from '@mui/material'
 import { useMemo, useState } from 'react'
 import { panelUI } from 'src/shared/constants'
@@ -18,7 +18,7 @@ import {
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
 import { InventoryFormFilterRowProperty } from './InventoryFormFilterRowProperty'
 import { InventoryFormFilterRowValues } from './InventoryFormFilterRowValues'
-import { AutoCompletePreDefinedItems, getOpTypeLabel } from './utils'
+import { AutoCompletePreDefinedItems } from './utils'
 
 interface InventoryFormTagsValueProps {
   id?: number
@@ -110,7 +110,6 @@ export const InventoryFormTagsValue = ({ onChange, onClose, open, defaultValue, 
                 {currentOpTypes.map((op, i) => (
                   <MenuItem value={op} key={`${op}-${i}`}>
                     <Stack direction="row" justifyContent="space-between" width="100%" spacing={1}>
-                      <Typography>{getOpTypeLabel(op)}</Typography>
                       <Typography>{op.toUpperCase()}</Typography>
                     </Stack>
                   </MenuItem>
@@ -140,15 +139,15 @@ export const InventoryFormTagsValue = ({ onChange, onClose, open, defaultValue, 
         </Stack>
         <Stack alignItems="end">
           <Button
-            color="success"
+            color="primary"
             variant="contained"
             onClick={() => {
               onChange(value)
               handleClose()
             }}
-            startIcon={<AddIcon fontSize="small" />}
+            startIcon={<EditIcon fontSize="small" />}
           >
-            <Trans>Add</Trans>
+            <Trans>Change</Trans>
           </Button>
         </Stack>
       </Stack>

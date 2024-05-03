@@ -58,9 +58,9 @@ export const InventoryFormField = ({
           </Typography>
           {children ??
             (hasValue ? (
-              typeof valueStr === 'string' ? (
-                <Typography color="common.black" variant="subtitle1" p={0} width="auto" textAlign="center">
-                  {valueStr}
+              typeof valueStr === 'string' || !valueStr.length ? (
+                <Typography color="common.black" variant="subtitle1" fontWeight={700} p={0} width="auto" textAlign="center">
+                  {typeof valueStr === 'string' ? valueStr : '[]'}
                 </Typography>
               ) : (
                 <>

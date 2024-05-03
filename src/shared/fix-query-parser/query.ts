@@ -1026,9 +1026,9 @@ export class Query {
   public delete_predicate(name: string): Query {
     const path = Path.from_string(name)
     return produce(this, (draft) => {
-      const existing = this.predicates().find((p) => p.path.equalTo(path))
+      const existing = draft.predicates().find((p) => p.path.equalTo(path))
       if (existing) {
-        draft.working_part.term = this.working_part.term.delete_terms((t) => existing === t)
+        draft.working_part.term = draft.working_part.term.delete_terms((t) => existing === t)
       }
     })
   }

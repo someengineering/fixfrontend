@@ -219,12 +219,6 @@ msgstr "Aktionen"
 msgid "Activate"
 msgstr "aktivieren Sie"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:213
-#: src/pages/panel/inventory/inventory-form/InventoryFormMoreValue.tsx:162
-#: src/pages/panel/inventory/inventory-form/InventoryFormTagsValue.tsx:151
-msgid "Add"
-msgstr ""
-
 #: src/shared/add-account-button/AddAccountButton.tsx:16
 msgid "Add an account"
 msgstr "Füge ein Konto hinzu"
@@ -416,7 +410,9 @@ msgstr "Business"
 msgid "Cancel"
 msgstr "Stornieren"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:213
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:211
+#: src/pages/panel/inventory/inventory-form/InventoryFormMoreValue.tsx:161
+#: src/pages/panel/inventory/inventory-form/InventoryFormTagsValue.tsx:150
 msgid "Change"
 msgstr ""
 
@@ -602,10 +598,6 @@ msgstr "Datenexport (CSV, JSON, PDF)"
 msgid "Date"
 msgstr "Datum"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:164
-#~ msgid "Date Picker"
-#~ msgstr "Datumsauswahl"
-
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowDateTimeValue.tsx:24
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowDateValue.tsx:18
 msgid "Date Time Picker"
@@ -765,8 +757,8 @@ msgid "Enterprise"
 msgstr "Unternehmen"
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:11
-msgid "Equal"
-msgstr ""
+#~ msgid "Equal"
+#~ msgstr ""
 
 #: src/shared/event-button/EventButton.tsx:101
 msgid "Events"
@@ -815,10 +807,6 @@ msgstr "Fehlgeschlagene Benchmarks"
 #: src/pages/panel/security/Overview.tsx:93
 msgid "Failing Check Timeline"
 msgstr "Fehler bei der Überprüfung des Zeitplans"
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:145
-#~ msgid "False"
-#~ msgstr "Nein"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:20
 msgid "Features"
@@ -890,15 +878,11 @@ msgid "Get your top 5 recommendations to improve your security once the first sc
 msgstr "Erhalten Sie Ihre fünf wichtigsten Empfehlungen zur Verbesserung Ihrer Sicherheit, sobald der erste Scan abgeschlossen ist, normalerweise innerhalb von 10 Minuten."
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:15
-msgid "Greater than"
-msgstr ""
+#~ msgid "Greater than"
+#~ msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:17
-msgid "Greater than or equal"
-msgstr ""
-
-#: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:23
-#~ msgid "Have"
+#~ msgid "Greater than or equal"
 #~ msgstr ""
 
 #: src/shared/defined-messages/getMessage.ts:8
@@ -984,8 +968,8 @@ msgid "Inactivity reminder"
 msgstr "Inaktivitätserinnerung"
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:7
-msgid "Include"
-msgstr ""
+#~ msgid "Include"
+#~ msgstr ""
 
 #: src/shared/defined-messages/getMessage.ts:17
 msgid "Info"
@@ -1015,10 +999,6 @@ msgstr "Ungültiger Wert"
 #: src/shared/layouts/panel-layout/menuList.tsx:38
 msgid "Inventory"
 msgstr "Inventar"
-
-#: src/shared/layouts/panel-layout/menuList.tsx:46
-msgid "Inventory Changes"
-msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:24
 msgid "Inventory search"
@@ -1056,12 +1036,12 @@ msgid "Last login"
 msgstr "Letzte Anmeldung"
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:19
-msgid "Less than"
-msgstr ""
+#~ msgid "Less than"
+#~ msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:21
-msgid "Less than or equal"
-msgstr ""
+#~ msgid "Less than or equal"
+#~ msgstr ""
 
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:60
 msgid "Load Balancers with no backends"
@@ -1097,8 +1077,8 @@ msgid "Make sure that you are already logged into the correct AWS account, befor
 msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS Konto angemeldet sind, bevor Sie auf die Schaltfläche DEPLOY STACK klicken."
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:23
-msgid "Match"
-msgstr ""
+#~ msgid "Match"
+#~ msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:89
 msgid "maximum of {0} cloud accounts"
@@ -1121,10 +1101,6 @@ msgstr "Monatlich"
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:27
 msgid "Monthly email report"
 msgstr "Monatlicher E-Mail-Bericht"
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:38
-#~ msgid "More"
-#~ msgstr ""
 
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:186
 msgid "More info"
@@ -1203,13 +1179,13 @@ msgstr "Nächste Synchronisierung"
 msgid "No"
 msgstr ""
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:198
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:202
 msgid "No {label} found for {typed}"
 msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:25
-msgid "No Match"
-msgstr ""
+#~ msgid "No Match"
+#~ msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:80
 msgid "Node Compliant"
@@ -1232,16 +1208,12 @@ msgid "Node Vulnerable"
 msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:13
-msgid "Not equal"
-msgstr ""
-
-#: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:25
-#~ msgid "Not Have"
+#~ msgid "Not equal"
 #~ msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:9
-msgid "Not include"
-msgstr ""
+#~ msgid "Not include"
+#~ msgstr ""
 
 #: src/pages/panel/accounts/AccountRow.tsx:373
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
@@ -1255,10 +1227,6 @@ msgstr "Noch nichts zu zeigen"
 #: src/pages/panel/user-settings/UserSettingsPage.tsx:27
 msgid "Notification"
 msgstr "Benachrichtigung"
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:148
-#~ msgid "Null"
-#~ msgstr "Null"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:50
 msgid "Number Of Account Charged"
@@ -1322,10 +1290,6 @@ msgstr "Verwaiste Volumes"
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:38
 msgid "Other Workspace Settings"
 msgstr "Andere Arbeitsbereichseinstellungen"
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:96
-msgid "Others"
-msgstr ""
 
 #: src/pages/auth/login/LoginPage.tsx:143
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:204
@@ -1414,6 +1378,10 @@ msgstr "Produktstufe wurde in {productTier} geändert"
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:53
 msgid "Profile"
 msgstr "Profil"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:96
+msgid "Properties"
+msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:366
 msgid "Property"
@@ -1512,7 +1480,7 @@ msgstr "Risiko"
 msgid "Roles"
 msgstr "Rollen"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:163
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:167
 msgid "Search {0}"
 msgstr ""
 
@@ -1729,10 +1697,6 @@ msgstr "TOTP-Setup"
 #: src/pages/panel/workspace-settings-billing/utils/productTierToLabel.ts:7
 msgid "Trial"
 msgstr "Probezeit"
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:142
-#~ msgid "True"
-#~ msgstr "Ja"
 
 #: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:97
 msgid "Try again"

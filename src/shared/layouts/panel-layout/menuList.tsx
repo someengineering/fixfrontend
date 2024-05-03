@@ -2,7 +2,7 @@ import { Trans } from '@lingui/macro'
 // eslint-disable-next-line no-restricted-imports
 import { SvgIconComponent } from '@mui/icons-material'
 import CloudIcon from '@mui/icons-material/Cloud'
-import HistoryIcon from '@mui/icons-material/History'
+// import HistoryIcon from '@mui/icons-material/History'
 import InventoryIcon from '@mui/icons-material/Inventory'
 import PeopleIcon from '@mui/icons-material/People'
 import ReceiptIcon from '@mui/icons-material/Receipt'
@@ -37,18 +37,18 @@ export const menuList: MenuListItem[] = [
   {
     name: <Trans>Inventory</Trans>,
     route: '/inventory',
-    routeSearch: 'changes=true',
-    notRouteSearchMatch: true,
+    // routeSearch: 'changes=true',
+    // notRouteSearchMatch: true,
     Icon: InventoryIcon,
     useGuard: useHasBenchmarkCheck,
   },
-  {
-    name: <Trans>Inventory Changes</Trans>,
-    route: '/inventory',
-    routeSearch: 'changes=true',
-    Icon: HistoryIcon,
-    useGuard: useHasBenchmarkCheck,
-  },
+  // {
+  //   name: <Trans>History</Trans>,
+  //   route: '/inventory',
+  //   routeSearch: 'changes=true',
+  //   Icon: HistoryIcon,
+  //   useGuard: useHasBenchmarkCheck,
+  // },
   {
     name: <Trans>Security</Trans>,
     route: '/security',

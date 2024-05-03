@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/macro'
-import AddIcon from '@mui/icons-material/Add'
+import EditIcon from '@mui/icons-material/Edit'
 import { Button, MenuItem, Popover, Select, Skeleton, Stack, Typography, backdropClasses } from '@mui/material'
 import { useMemo, useState } from 'react'
 import { panelUI } from 'src/shared/constants'
@@ -18,7 +18,7 @@ import {
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
 import { InventoryFormFilterRowProperty } from './InventoryFormFilterRowProperty'
 import { InventoryFormFilterRowValues } from './InventoryFormFilterRowValues'
-import { AutoCompletePreDefinedItems, getOpTypeLabel } from './utils'
+import { AutoCompletePreDefinedItems } from './utils'
 
 interface InventoryFormMoreValueProps {
   id?: number
@@ -129,7 +129,6 @@ export const InventoryFormMoreValue = ({
                 {currentOpTypes.map((op, i) => (
                   <MenuItem value={op} key={`${op}-${i}`}>
                     <Stack direction="row" justifyContent="space-between" width="100%" spacing={1}>
-                      <Typography>{getOpTypeLabel(op)}</Typography>
                       <Typography>{op.toUpperCase()}</Typography>
                     </Stack>
                   </MenuItem>
@@ -158,8 +157,8 @@ export const InventoryFormMoreValue = ({
           ) : null}
         </Stack>
         <Stack alignItems="end">
-          <Button color="success" variant="contained" type="submit" startIcon={<AddIcon fontSize="small" />}>
-            <Trans>Add</Trans>
+          <Button color="primary" variant="contained" type="submit" startIcon={<EditIcon fontSize="small" />}>
+            <Trans>Change</Trans>
           </Button>
         </Stack>
       </Stack>

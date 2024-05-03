@@ -132,7 +132,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
                     ? (value) => (typeof value === 'boolean' ? value : value === 'true' ? true : value === 'false' ? false : null)
                     : undefined,
               renderCell: (params) =>
-                params.colDef.type === 'boolean' ? (
+                params.colDef?.type === 'boolean' ? (
                   params.value === null || params.value === undefined || params.value === 'null' ? (
                     <Tooltip title={t`Undefined`}>
                       <QuestionMarkIcon fontSize="small" />

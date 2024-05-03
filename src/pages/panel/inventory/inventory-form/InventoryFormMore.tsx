@@ -93,7 +93,7 @@ export const InventoryFormMore = ({ preItems }: { preItems: AutoCompletePreDefin
             <InventoryFormMoreFab Icon={CloudCircleOutlinedIcon} onClick={openFab(setOpenClouds)} label={t`Cloud`} />
             <InventoryFormMoreFab Icon={SouthAmericaOutlinedIcon} onClick={openFab(setOpenRegions)} label={t`Region`} />
             <InventoryFormMoreFab Icon={LocalOfferOutlinedIcon} onClick={openFab(setOpenTags)} label={t`Tags`} />
-            <InventoryFormMoreFab Icon={OtherHousesOutlinedIcon} onClick={openFab(setOpenProperty)} label={t`Others`} />
+            <InventoryFormMoreFab Icon={OtherHousesOutlinedIcon} onClick={openFab(setOpenProperty)} label={t`Properties`} />
           </Stack>
         </Popover>
       </Stack>

@@ -30,12 +30,13 @@ import {
   kindDurationTypes,
   kindNumberTypes,
   numberOpTypes,
+  opTypes,
   stringOPTypes,
   termValueToString,
 } from 'src/shared/fix-query-parser'
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
 import { InventoryFormFilterRowValues } from './InventoryFormFilterRowValues'
-import { AutoCompletePreDefinedItems, getOpTypeLabel } from './utils'
+import { AutoCompletePreDefinedItems } from './utils'
 
 interface InventoryFormValueOpProps {
   op?: OPType
@@ -52,9 +53,11 @@ const InventoryFormValueOp = ({ onChange, op, defaultOp, fqn }: InventoryFormVal
       ? [...durationOpTypes]
       : kindNumberTypes.includes(fqn as (typeof kindNumberTypes)[number])
         ? [...numberOpTypes]
-        : fqn === 'string' || fqn === 'any'
+        : fqn === 'string'
           ? [...stringOPTypes]
-          : [...booleanOPTypes]
+          : fqn === 'any'
+            ? [...opTypes]
+            : [...booleanOPTypes]
     return result
   }, [fqn])
 
@@ -104,7 +107,6 @@ const InventoryFormValueOp = ({ onChange, op, defaultOp, fqn }: InventoryFormVal
                 justifyContent="space-between"
                 spacing={1}
               >
-                <Typography>{getOpTypeLabel(op)}</Typography>
                 <Typography>{op.toUpperCase()}</Typography>
               </ListItemButton>
             </ListItem>
@@ -140,15 +142,14 @@ const InventoryFormValueValue = ({
 }: InventoryFormValueValueProps) => {
   const [open, setOpen] = useState<HTMLElement | null>(null)
   const valueStr = term ? termValueToString(term, true) : undefined
-  const hasValue = !!(valueStr && valueStr.length)
 
   return (
     <>
       <ButtonBase component={Stack} onClick={(e) => setOpen(e.currentTarget)} direction="row">
-        {hasValue ? (
-          typeof valueStr === 'string' ? (
-            <Typography color="common.black" variant="subtitle1" p={0} width="auto" component="span" pl={1}>
-              {valueStr}
+        {valueStr !== undefined ? (
+          typeof valueStr === 'string' || !valueStr.length ? (
+            <Typography color="common.black" variant="subtitle1" fontWeight={700} p={0} width="auto" component="span" pl={1}>
+              {typeof valueStr === 'string' ? valueStr : '[]'}
             </Typography>
           ) : (
             <>
@@ -213,7 +214,7 @@ export const InventoryFormValue = ({
   defaultPath,
   defaultValue = null,
   defaultArgs,
-  fqn,
+  fqn = 'any',
   preItems,
   onChange,
 }: InventoryFormValueProps) => {
@@ -234,7 +235,7 @@ export const InventoryFormValue = ({
       <Divider orientation="vertical" flexItem />
       <InventoryFormValueOp
         op={term?.op as OPType | undefined}
-        fqn={gotFqn ?? 'string'}
+        fqn={gotFqn ?? 'any'}
         defaultOp={defaultOp}
         onChange={(op) => {
           const value = term?.value ?? defaultValue

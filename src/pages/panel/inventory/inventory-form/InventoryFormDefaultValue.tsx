@@ -1,5 +1,4 @@
 import { Trans } from '@lingui/macro'
-import AddIcon from '@mui/icons-material/Add'
 import ClearIcon from '@mui/icons-material/Clear'
 import EditIcon from '@mui/icons-material/Edit'
 import SearchIcon from '@mui/icons-material/Search'
@@ -84,7 +83,12 @@ const InventoryFormDefaultValueItem = ({
             sx={{ p: 0, pr: 1 }}
             {...checkboxProps}
           />
-          <ListItemText id={labelId} primary={showItemLabel ? showItemLabel(item) : item.label} {...listItemTextProps} />
+          <ListItemText
+            id={labelId}
+            primary={showItemLabel ? showItemLabel(item) : item.label}
+            primaryTypographyProps={{ color: 'common.black' }}
+            {...listItemTextProps}
+          />
         </ListItemIcon>
       </ListItemButton>
     </ListItem>
@@ -203,14 +207,8 @@ export const InventoryFormDefaultValue = ({
         )}
         <Divider sx={{ flexGrow: 0, flexShrink: 0 }} />
         <Stack alignItems="end" position="sticky" top={0} left={0} flexGrow={0} flexShrink={0}>
-          <Button
-            variant="contained"
-            color={withAddButton ? 'success' : 'primary'}
-            onClick={onSubmit}
-            size="small"
-            startIcon={withAddButton ? <AddIcon fontSize="small" /> : <EditIcon fontSize="small" />}
-          >
-            {withAddButton ? <Trans>Add</Trans> : <Trans>Change</Trans>}
+          <Button variant="contained" color="primary" onClick={onSubmit} size="small" startIcon={<EditIcon fontSize="small" />}>
+            <Trans>Change</Trans>
           </Button>
         </Stack>
       </Stack>
