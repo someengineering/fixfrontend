@@ -72,14 +72,17 @@ function num(): Parser<T, number> {
 }
 
 const numberP = apply(alt(tok(T.Integer), tok(T.Float)), (t) => parseFloat(t.text))
-const keywordP = alt(as_str(T.All), as_str(T.Count), as_str(T.With), as_str(T.Any), as_str(T.Empty), as_str(T.Default), as_str(T.Delete))
+const keywordP = alt(tok(T.All), tok(T.Count), tok(T.With), tok(T.Any), tok(T.Empty), tok(T.Default), tok(T.Delete), tok(T.IS), tok(T.ID))
+const keywordS = apply(keywordP, (t) => t.text)
+const literalP = alt(tok(T.Literal), keywordP)
+const literalS = apply(literalP, (t) => t.text)
 JsonElementP.setPattern(
   alt(
     apply(tok(T.True), () => true),
     apply(tok(T.False), () => false),
     apply(tok(T.Null), () => null),
     numberP,
-    keywordP,
+    keywordS,
     apply(tok(T.DoubleQuotedString), (t) => t.text.slice(1, -1)),
     apply(times_n(alt(tok(T.Literal), tok(T.Minus), tok(T.Dot), tok(T.Colon), tok(T.Integer), tok(T.Float))), (ts) =>
       ts.map((t) => t.text).join(''),
@@ -87,7 +90,7 @@ JsonElementP.setPattern(
     apply(seq(tok(T.LBracket), tok(T.RBracket)), () => []),
     apply(seq(tok(T.LCurly), tok(T.RCurly)), () => ({})),
     kmid(tok(T.LBracket), list_sc(JsonElementP, tok(T.Comma)), tok(T.RBracket)),
-    apply(kmid(tok(T.LCurly), list_sc(seq(tok(T.Literal), tok(T.Colon), JsonElementP), tok(T.Comma)), tok(T.RCurly)), (pairs) => {
+    apply(kmid(tok(T.LCurly), list_sc(seq(literalP, tok(T.Colon), JsonElementP), tok(T.Comma)), tok(T.RCurly)), (pairs) => {
       const obj: { [key: string]: JsonElement } = {}
       for (const [key, _, value] of pairs) {
         obj[key.text] = value
@@ -99,7 +102,7 @@ JsonElementP.setPattern(
 
 const array_access = apply(kmid(tok(T.LBracket), opt(alt(num(), as_str(T.Star))), tok(T.RBracket)), (ac) => (ac != undefined ? ac : '*'))
 const path_part = alt(
-  apply(seq(as_str(T.Literal), opt(array_access)), ([name, array_access]) => new PathPart({ name, array_access, backtick: false })),
+  apply(seq(literalS, opt(array_access)), ([name, array_access]) => new PathPart({ name, array_access, backtick: false })),
   apply(
     seq(as_str(T.BackTickedString), opt(array_access)),
     ([name, array_access]) => new PathPart({ name: name.slice(1, -1), array_access, backtick: true }),
@@ -127,7 +130,7 @@ OperationP.setPattern(
 )
 
 const list_or_simple = apply(
-  alt(times_n_sep(tok(T.Literal), tok(T.Comma)), kmid(tok(T.LBracket), times_n_sep(tok(T.Literal), tok(T.Comma)), tok(T.RBracket))),
+  alt(times_n_sep(literalP, tok(T.Comma)), kmid(tok(T.LBracket), times_n_sep(literalP, tok(T.Comma)), tok(T.RBracket))),
   (l) => l.map((t) => t.text),
 )
 SimpleTermP.setPattern(
@@ -230,7 +233,7 @@ WithClauseP.setPattern(
   ),
 )
 
-const duration_part = apply(times_n(alt(as_str(T.Float), as_str(T.Integer), as_str(T.Literal))), (ts) => ts.join(''))
+const duration_part = apply(times_n(alt(as_str(T.Float), as_str(T.Integer), literalS)), (ts) => ts.join(''))
 const duration_or_time = apply(times_n_sep(duration_part, tok(T.Colon)), (ts) => ts.join(':'))
 const optional_end = opt(kright(seq(tok(T.Colon), tok(T.Colon)), duration_or_time))
 const with_usage = apply(
@@ -265,11 +268,10 @@ PartP.setPattern(
   ),
 )
 
-const allowed_names = apply(alt(tok(T.Literal), tok(T.Count), tok(T.Empty)), (t) => t.text)
 const aggregate_variable_name = apply(PathP, (path) => new AggregateVariableName({ path }))
 const aggregate_variable_combined = apply(tok(T.DoubleQuotedString), (t) => new AggregateVariableCombined({ name: t.text }))
 const aggregate_variable = apply(
-  seq(alt(aggregate_variable_name, aggregate_variable_combined), opt(kright(str('as'), allowed_names))),
+  seq(alt(aggregate_variable_name, aggregate_variable_combined), opt(kright(str('as'), literalS))),
   ([name, as_name]) => new AggregateVariable({ name, as_name }),
 )
 const aggregate_func_name = alt(str('sum'), str('count'), str('min'), str('max'), str('avg'), str('stddev'), str('variance'))
@@ -279,14 +281,7 @@ const aggregate_func_op = apply(
   ([op, value]) => new AggregateOp({ operation: op.text, value: parseFloat(value.text) }),
 )
 const aggregate_func = apply(
-  seq(
-    aggregate_func_name,
-    tok(T.LParen),
-    alt(PathP, numberP),
-    rep_sc(aggregate_func_op),
-    tok(T.RParen),
-    opt(kright(str('as'), allowed_names)),
-  ),
+  seq(aggregate_func_name, tok(T.LParen), alt(PathP, numberP), rep_sc(aggregate_func_op), tok(T.RParen), opt(kright(str('as'), literalS))),
   ([func, _, path, ops, __, as_name]) => new AggregateFunction({ func: func.text, path, ops, as_name }),
 )
 const aggregate_parameter = seq(
