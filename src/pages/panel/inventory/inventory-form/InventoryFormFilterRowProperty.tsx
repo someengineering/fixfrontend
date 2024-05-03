@@ -58,10 +58,7 @@ export const InventoryFormFilterRowProperty = ({
   const prevPropIndex = useRef(propIndex)
   const [fqn, setFqn] = useState<string | null>(defaultItem ? (isDefaultSimple ? null : defaultItem?.value) : 'object')
   const prevFqn = useRef<string | null>(null)
-  const [open, setOpen] = useState(false)
-  useEffect(() => {
-    setOpen(true)
-  }, [])
+  const [hasFocus, setHasFocus] = useState(false)
   const debouncedPathAndProp = useDebounce(JSON.stringify([path, prop]), panelUI.fastInputChangeDebounce)
   const [debouncedPathDraft, debouncedProp] = JSON.parse(debouncedPathAndProp) as [string, string]
   const debouncedPath = `${defaultForcedValue ?? ''}${defaultForcedValue && debouncedPathDraft ? '.' : ''}${debouncedPathDraft ?? ''}`
@@ -238,7 +235,7 @@ export const InventoryFormFilterRowProperty = ({
         setProp(isDictionary ? option.key : newProp)
         setPropIndex(separatedValue.length)
         setPath(newPath)
-        setOpen(false)
+        setHasFocus(false)
         onChange({
           property:
             isDictionary && !isValidProp(newProp)
@@ -291,7 +288,7 @@ export const InventoryFormFilterRowProperty = ({
     autoCompleteValue = options[index]
   }
 
-  const hasError = Boolean((prop || path) && !open && !value)
+  const hasError = Boolean((prop || path) && !hasFocus && !value)
 
   const autoCompleteIsLoading = isLoading || path !== debouncedPathDraft || prop !== debouncedProp
 
@@ -327,14 +324,13 @@ export const InventoryFormFilterRowProperty = ({
         },
       }}
       options={autoCompleteIsLoading ? [] : options}
-      open={open}
+      open={hasFocus}
       onOpen={() => {
         if (fqn === null && prevFqn.current?.startsWith('dictionary')) {
           setFqn(prevFqn.current)
         }
-        setOpen(true)
+        setHasFocus(true)
       }}
-      onClose={() => setOpen(false)}
       groupBy={(item: (typeof defaultProperties)[number]) => (item.isDefaulted ? 'Default Properties' : 'Properties')}
       filterOptions={(options) => options}
       loading={autoCompleteIsLoading}
@@ -345,7 +341,7 @@ export const InventoryFormFilterRowProperty = ({
             {...params}
             error={hasError}
             helperText={hasError ? t`Invalid Value` : undefined}
-            focused={open}
+            focused={hasFocus && !!fqn}
             autoFocus
             InputProps={{
               ...params.InputProps,
@@ -362,6 +358,8 @@ export const InventoryFormFilterRowProperty = ({
               autoFocus: true,
               value: autoCompleteInputValue,
               onKeyDown: handleInputKeyDown,
+              onFocus: () => setHasFocus(true),
+              onBlur: () => setHasFocus(false),
             }}
             label={<Trans>Property</Trans>}
             onChange={handleInputChange}

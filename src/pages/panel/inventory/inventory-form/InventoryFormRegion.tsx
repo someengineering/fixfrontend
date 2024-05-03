@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
+// import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+// import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 import { useState } from 'react'
 import { DefaultPropertiesKeys, useFixQueryParser } from 'src/shared/fix-query-parser'
 import { InventoryFormField } from './InventoryFormField'
@@ -24,7 +24,7 @@ export const InventoryFormRegion = ({ preItems }: { preItems: AutoCompletePreDef
         label={t`Regions`}
         onClick={(e) => setOpen(e.currentTarget)}
         onClear={() => deletePredicate(DefaultPropertiesKeys.Region)}
-        endIcon={open ? <ArrowDropUpIcon fontSize="small" /> : <ArrowDropDownIcon fontSize="small" />}
+        // endIcon={open ? <ArrowDropUpIcon fontSize="small" color="disabled" /> : <ArrowDropDownIcon fontSize="small" color="disabled" />}
       />
       <InventoryFormRegionValues onClose={() => setOpen(null)} open={open} preItems={preItems} values={values} />
     </>

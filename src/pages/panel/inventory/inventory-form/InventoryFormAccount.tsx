@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
+// import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+// import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 import { useMemo, useState } from 'react'
 import { DefaultPropertiesKeys, useFixQueryParser } from 'src/shared/fix-query-parser'
 import { InventoryFormDefaultValue } from './InventoryFormDefaultValue'
@@ -40,7 +40,7 @@ export const InventoryFormAccount = ({ preItems }: { preItems: AutoCompletePreDe
         label={t`Accounts`}
         onClick={(e) => setOpen(e.currentTarget)}
         onClear={() => deletePredicate(DefaultPropertiesKeys.Account)}
-        endIcon={open ? <ArrowDropUpIcon fontSize="small" /> : <ArrowDropDownIcon fontSize="small" />}
+        // endIcon={open ? <ArrowDropUpIcon fontSize="small" color="disabled" /> : <ArrowDropDownIcon fontSize="small" color="disabled" />}
       />
       <InventoryFormDefaultValue
         onChange={(values) =>

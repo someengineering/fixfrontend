@@ -1,11 +1,10 @@
 import { useMemo } from 'react'
 import { DefaultPropertiesKeys, FixQueryContextValue, Predicate, useFixQueryParser } from 'src/shared/fix-query-parser'
-import { snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 import { InventoryFormField } from './InventoryFormField'
 import { InventoryFormValue } from './InventoryFormValue'
 import { AutoCompletePreDefinedItems } from './utils'
 
-const INDEX_STARTS_FROM = 5
+const INDEX_STARTS_FROM = 7
 
 interface InventoryFormRestItemProps {
   term: Predicate
@@ -18,23 +17,10 @@ const InventoryFormRestItem = ({ term, update, index, preItems }: InventoryFormR
   const {
     current: { deletePredicate, setPredicate },
   } = update
-  const [LastPath, path] = useMemo(
-    () => [
-      snakeCaseWordsToUFStr(
-        term.path.parts.length > 1
-          ? term.path.parts
-              .slice(-2)
-              .map((i) => i.name)
-              .join(' ')
-          : term.path.toString(),
-      ),
-      term.path.toString(),
-    ],
-    [term.path],
-  )
+  const path = term.path.toString()
   return (
     <>
-      <InventoryFormField label={LastPath} onClear={() => deletePredicate(path)} forceShowClearButton>
+      <InventoryFormField label={path} onClear={() => deletePredicate(path)} forceShowClearButton>
         <InventoryFormValue
           onChange={(term) => {
             if (term && term.value !== '') {

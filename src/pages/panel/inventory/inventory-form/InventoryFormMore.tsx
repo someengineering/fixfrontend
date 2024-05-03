@@ -108,7 +108,7 @@ export const InventoryFormMore = ({ preItems }: { preItems: AutoCompletePreDefin
         onClose={() => setOpenTags(null)}
         open={openTags}
         preItems={preItems}
-        id={-1}
+        id={5}
       />
       <InventoryFormMoreValue
         onChange={(term) => {
@@ -119,7 +119,7 @@ export const InventoryFormMore = ({ preItems }: { preItems: AutoCompletePreDefin
         onClose={() => setOpenProperty(null)}
         open={openProperty}
         preItems={preItems}
-        id={-2}
+        id={6}
       />
     </>
   )

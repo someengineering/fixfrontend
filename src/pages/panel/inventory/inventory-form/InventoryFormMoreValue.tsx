@@ -93,7 +93,7 @@ export const InventoryFormMoreValue = ({
           onSubmit()
         }}
       >
-        <Stack direction="row" flexWrap="wrap" overflow="auto" pt={2}>
+        <Stack direction="row" flexWrap="wrap" pt={2}>
           <InventoryFormFilterRowProperty
             kinds={preItems?.kinds.map((i) => i.value) ?? []}
             selectedKinds={is()?.kinds ?? null}
@@ -137,7 +137,7 @@ export const InventoryFormMoreValue = ({
               {fqnType && value && value.path.toString() ? (
                 <InventoryFormFilterRowValues
                   fqn={fqnType}
-                  keyString={`${fqn}_${id}_${value.toString()}`}
+                  keyString={`${fqn}_${id}_${value.path.toString()}`}
                   data={value}
                   onChange={setValue}
                   preItems={preItems}
@@ -146,7 +146,7 @@ export const InventoryFormMoreValue = ({
                 <Skeleton>
                   <InventoryFormFilterRowValues
                     fqn="string"
-                    keyString={`${fqn}_${id}_${value?.toString()}`}
+                    keyString={`${fqn}_${id}_${value?.path?.toString()}`}
                     data={value}
                     onChange={() => {}}
                     preItems={preItems}

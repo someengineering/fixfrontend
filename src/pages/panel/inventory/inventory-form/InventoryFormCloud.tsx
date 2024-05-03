@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
+// import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+// import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 import { useState } from 'react'
 import { DefaultPropertiesKeys, useFixQueryParser } from 'src/shared/fix-query-parser'
 import { InventoryFormCloudValues } from './InventoryFormCloudValues'
@@ -24,7 +24,7 @@ export const InventoryFormCloud = ({ preItems }: { preItems: AutoCompletePreDefi
         label={t`Clouds`}
         onClick={(e) => setOpen(e.currentTarget)}
         onClear={() => deletePredicate(DefaultPropertiesKeys.Cloud)}
-        endIcon={open ? <ArrowDropUpIcon fontSize="small" /> : <ArrowDropDownIcon fontSize="small" />}
+        // endIcon={open ? <ArrowDropUpIcon fontSize="small" color="disabled" /> : <ArrowDropDownIcon fontSize="small" color="disabled" />}
       />
       <InventoryFormCloudValues onClose={() => setOpen(null)} open={open} preItems={preItems} values={values} />
     </>
