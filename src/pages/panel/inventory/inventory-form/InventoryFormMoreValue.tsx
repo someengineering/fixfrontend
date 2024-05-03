@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/macro'
-import AddIcon from '@mui/icons-material/Add'
+import EditIcon from '@mui/icons-material/Edit'
 import { Button, MenuItem, Popover, Select, Skeleton, Stack, Typography, backdropClasses } from '@mui/material'
 import { useMemo, useState } from 'react'
 import { panelUI } from 'src/shared/constants'
@@ -158,8 +158,8 @@ export const InventoryFormMoreValue = ({
           ) : null}
         </Stack>
         <Stack alignItems="end">
-          <Button color="success" variant="contained" type="submit" startIcon={<AddIcon fontSize="small" />}>
-            <Trans>Add</Trans>
+          <Button color="primary" variant="contained" type="submit" startIcon={<EditIcon fontSize="small" />}>
+            <Trans>Change</Trans>
           </Button>
         </Stack>
       </Stack>

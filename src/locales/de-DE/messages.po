@@ -219,12 +219,6 @@ msgstr "Aktionen"
 msgid "Activate"
 msgstr "aktivieren Sie"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:213
-#: src/pages/panel/inventory/inventory-form/InventoryFormMoreValue.tsx:162
-#: src/pages/panel/inventory/inventory-form/InventoryFormTagsValue.tsx:151
-msgid "Add"
-msgstr ""
-
 #: src/shared/add-account-button/AddAccountButton.tsx:16
 msgid "Add an account"
 msgstr "Füge ein Konto hinzu"
@@ -416,7 +410,9 @@ msgstr "Business"
 msgid "Cancel"
 msgstr "Stornieren"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:213
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:206
+#: src/pages/panel/inventory/inventory-form/InventoryFormMoreValue.tsx:162
+#: src/pages/panel/inventory/inventory-form/InventoryFormTagsValue.tsx:151
 msgid "Change"
 msgstr ""
 
@@ -1183,7 +1179,7 @@ msgstr "Nächste Synchronisierung"
 msgid "No"
 msgstr ""
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:198
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:197
 msgid "No {label} found for {typed}"
 msgstr ""
 
@@ -1484,7 +1480,7 @@ msgstr "Risiko"
 msgid "Roles"
 msgstr "Rollen"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:163
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:162
 msgid "Search {0}"
 msgstr ""
 
