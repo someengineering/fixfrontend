@@ -410,9 +410,9 @@ msgstr "Business"
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:206
-#: src/pages/panel/inventory/inventory-form/InventoryFormMoreValue.tsx:162
-#: src/pages/panel/inventory/inventory-form/InventoryFormTagsValue.tsx:151
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:211
+#: src/pages/panel/inventory/inventory-form/InventoryFormMoreValue.tsx:161
+#: src/pages/panel/inventory/inventory-form/InventoryFormTagsValue.tsx:150
 msgid "Change"
 msgstr "Change"
 
@@ -757,8 +757,8 @@ msgid "Enterprise"
 msgstr "Enterprise"
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:11
-msgid "Equal"
-msgstr "Equal"
+#~ msgid "Equal"
+#~ msgstr "Equal"
 
 #: src/shared/event-button/EventButton.tsx:101
 msgid "Events"
@@ -878,12 +878,12 @@ msgid "Get your top 5 recommendations to improve your security once the first sc
 msgstr "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:15
-msgid "Greater than"
-msgstr "Greater than"
+#~ msgid "Greater than"
+#~ msgstr "Greater than"
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:17
-msgid "Greater than or equal"
-msgstr "Greater than or equal"
+#~ msgid "Greater than or equal"
+#~ msgstr "Greater than or equal"
 
 #: src/shared/defined-messages/getMessage.ts:8
 msgid "High"
@@ -968,8 +968,8 @@ msgid "Inactivity reminder"
 msgstr "Inactivity reminder"
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:7
-msgid "Include"
-msgstr "Include"
+#~ msgid "Include"
+#~ msgstr "Include"
 
 #: src/shared/defined-messages/getMessage.ts:17
 msgid "Info"
@@ -1036,12 +1036,12 @@ msgid "Last login"
 msgstr "Last login"
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:19
-msgid "Less than"
-msgstr "Less than"
+#~ msgid "Less than"
+#~ msgstr "Less than"
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:21
-msgid "Less than or equal"
-msgstr "Less than or equal"
+#~ msgid "Less than or equal"
+#~ msgstr "Less than or equal"
 
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:60
 msgid "Load Balancers with no backends"
@@ -1077,8 +1077,8 @@ msgid "Make sure that you are already logged into the correct AWS account, befor
 msgstr "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:23
-msgid "Match"
-msgstr "Match"
+#~ msgid "Match"
+#~ msgstr "Match"
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:89
 msgid "maximum of {0} cloud accounts"
@@ -1179,13 +1179,13 @@ msgstr "Next Sync"
 msgid "No"
 msgstr "No"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:197
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:202
 msgid "No {label} found for {typed}"
 msgstr "No {label} found for {typed}"
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:25
-msgid "No Match"
-msgstr "No Match"
+#~ msgid "No Match"
+#~ msgstr "No Match"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:80
 msgid "Node Compliant"
@@ -1208,12 +1208,12 @@ msgid "Node Vulnerable"
 msgstr "Node Vulnerable"
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:13
-msgid "Not equal"
-msgstr "Not equal"
+#~ msgid "Not equal"
+#~ msgstr "Not equal"
 
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:9
-msgid "Not include"
-msgstr "Not include"
+#~ msgid "Not include"
+#~ msgstr "Not include"
 
 #: src/pages/panel/accounts/AccountRow.tsx:373
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
@@ -1480,7 +1480,7 @@ msgstr "Risk"
 msgid "Roles"
 msgstr "Roles"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:162
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:167
 msgid "Search {0}"
 msgstr "Search {0}"
 

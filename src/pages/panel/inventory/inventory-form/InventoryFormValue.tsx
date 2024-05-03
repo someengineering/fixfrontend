@@ -30,6 +30,7 @@ import {
   kindDurationTypes,
   kindNumberTypes,
   numberOpTypes,
+  opTypes,
   stringOPTypes,
   termValueToString,
 } from 'src/shared/fix-query-parser'
@@ -52,9 +53,11 @@ const InventoryFormValueOp = ({ onChange, op, defaultOp, fqn }: InventoryFormVal
       ? [...durationOpTypes]
       : kindNumberTypes.includes(fqn as (typeof kindNumberTypes)[number])
         ? [...numberOpTypes]
-        : fqn === 'string' || fqn === 'any'
+        : fqn === 'string'
           ? [...stringOPTypes]
-          : [...booleanOPTypes]
+          : fqn === 'any'
+            ? [...opTypes]
+            : [...booleanOPTypes]
     return result
   }, [fqn])
 
@@ -146,7 +149,7 @@ const InventoryFormValueValue = ({
       <ButtonBase component={Stack} onClick={(e) => setOpen(e.currentTarget)} direction="row">
         {hasValue ? (
           typeof valueStr === 'string' ? (
-            <Typography color="common.black" variant="subtitle1" p={0} width="auto" component="span" pl={1}>
+            <Typography color="common.black" variant="subtitle1" fontWeight={700} p={0} width="auto" component="span" pl={1}>
               {valueStr}
             </Typography>
           ) : (
@@ -212,7 +215,7 @@ export const InventoryFormValue = ({
   defaultPath,
   defaultValue = null,
   defaultArgs,
-  fqn,
+  fqn = 'any',
   preItems,
   onChange,
 }: InventoryFormValueProps) => {
@@ -233,7 +236,7 @@ export const InventoryFormValue = ({
       <Divider orientation="vertical" flexItem />
       <InventoryFormValueOp
         op={term?.op as OPType | undefined}
-        fqn={gotFqn ?? 'string'}
+        fqn={gotFqn ?? 'any'}
         defaultOp={defaultOp}
         onChange={(op) => {
           const value = term?.value ?? defaultValue

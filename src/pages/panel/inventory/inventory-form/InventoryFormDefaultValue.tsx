@@ -83,7 +83,12 @@ const InventoryFormDefaultValueItem = ({
             sx={{ p: 0, pr: 1 }}
             {...checkboxProps}
           />
-          <ListItemText id={labelId} primary={showItemLabel ? showItemLabel(item) : item.label} {...listItemTextProps} />
+          <ListItemText
+            id={labelId}
+            primary={showItemLabel ? showItemLabel(item) : item.label}
+            primaryTypographyProps={{ color: 'common.black' }}
+            {...listItemTextProps}
+          />
         </ListItemIcon>
       </ListItemButton>
     </ListItem>
