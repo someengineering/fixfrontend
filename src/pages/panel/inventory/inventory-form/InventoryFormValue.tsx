@@ -142,15 +142,14 @@ const InventoryFormValueValue = ({
 }: InventoryFormValueValueProps) => {
   const [open, setOpen] = useState<HTMLElement | null>(null)
   const valueStr = term ? termValueToString(term, true) : undefined
-  const hasValue = !!(valueStr && valueStr.length)
 
   return (
     <>
       <ButtonBase component={Stack} onClick={(e) => setOpen(e.currentTarget)} direction="row">
-        {hasValue ? (
-          typeof valueStr === 'string' ? (
+        {valueStr !== undefined ? (
+          typeof valueStr === 'string' || !valueStr.length ? (
             <Typography color="common.black" variant="subtitle1" fontWeight={700} p={0} width="auto" component="span" pl={1}>
-              {valueStr}
+              {typeof valueStr === 'string' ? valueStr : '[]'}
             </Typography>
           ) : (
             <>
