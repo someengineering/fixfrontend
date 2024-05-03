@@ -148,14 +148,12 @@ const InventoryFormValueValue = ({
     <>
       <ButtonBase component={Stack} onClick={(e) => setOpen(e.currentTarget)} direction="row" sx={{ pl: 0.5 }}>
         {valueStr !== undefined ? (
-          typeof valueStr === 'string' || !valueStr.length ? (
-            typeof valueStr === 'string' ? (
-              <Chip label={valueStr} color="primary" size="small" variant="outlined" sx={{ mx: 0.5 }} />
-            ) : (
-              <Typography color="common.black" variant="subtitle1" fontWeight={700} p={0} width="auto" component="span" pl={1} pr={1}>
-                []
-              </Typography>
-            )
+          typeof valueStr === 'string' ? (
+            <Chip label={valueStr} color="primary" size="small" variant="outlined" sx={{ mx: 0.5 }} />
+          ) : !valueStr.length ? (
+            <Typography color="common.black" variant="subtitle1" fontWeight={700} p={0} width="auto" component="span" pl={1} pr={1}>
+              []
+            </Typography>
           ) : (
             <Box>
               {valueStr.slice(0, 2).map((item, i) => (

@@ -59,8 +59,12 @@ export const InventoryFormField = ({
           </Typography>
           {children ??
             (hasValue ? (
-              typeof valueStr === 'string' || !valueStr.length ? (
-                <Chip label={typeof valueStr === 'string' ? valueStr : '[]'} color="primary" size="small" variant="outlined" />
+              typeof valueStr === 'string' ? (
+                <Chip label={valueStr} color="primary" size="small" variant="outlined" />
+              ) : !valueStr.length ? (
+                <Typography color="common.black" variant="subtitle1" fontWeight={700} p={0} width="auto" textAlign="center">
+                  []
+                </Typography>
               ) : (
                 <>
                   {valueStr.slice(0, 2).map((item, i) => (
