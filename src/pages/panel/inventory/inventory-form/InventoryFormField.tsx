@@ -29,10 +29,10 @@ export const InventoryFormField = ({
       <Stack
         onClick={onClick}
         component={onClick ? Button : 'div'}
-        variant="outlined"
+        variant={onClick ? 'outlined' : undefined}
         boxShadow={4}
         direction="row"
-        pr={hasValue ? '4px !important' : undefined}
+        pr={hasValue || forceShowClearButton ? '4px !important' : undefined}
         spacing={0.5}
         alignItems="center"
         sx={{
@@ -41,7 +41,8 @@ export const InventoryFormField = ({
           ...(onClick
             ? {}
             : {
-                px: 2,
+                pl: 2,
+                pr: 0.5,
                 py: 0.75,
                 borderRadius: 1,
                 color: 'primary.main',
@@ -58,9 +59,11 @@ export const InventoryFormField = ({
           </Typography>
           {children ??
             (hasValue ? (
-              typeof valueStr === 'string' || !valueStr.length ? (
+              typeof valueStr === 'string' ? (
+                <Chip label={valueStr} color="primary" size="small" variant="outlined" />
+              ) : !valueStr.length ? (
                 <Typography color="common.black" variant="subtitle1" fontWeight={700} p={0} width="auto" textAlign="center">
-                  {typeof valueStr === 'string' ? valueStr : '[]'}
+                  []
                 </Typography>
               ) : (
                 <>

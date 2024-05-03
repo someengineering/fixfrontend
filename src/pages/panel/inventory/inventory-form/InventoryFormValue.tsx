@@ -1,6 +1,7 @@
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
+// import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+// import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 import {
+  Box,
   ButtonBase,
   Chip,
   Divider,
@@ -77,10 +78,10 @@ const InventoryFormValueOp = ({ onChange, op, defaultOp, fqn }: InventoryFormVal
   return (
     <>
       <ButtonBase component={Stack} onClick={(e) => setOpen(e.currentTarget)} direction="row">
-        <Typography fontWeight={700} fontSize={14} pl={1}>
+        <Typography fontWeight={700} fontSize={14} pl={1} pr={1}>
           {value}
         </Typography>
-        {open ? <ArrowDropUpIcon fontSize="small" /> : <ArrowDropDownIcon fontSize="small" />}
+        {/* {open ? <ArrowDropUpIcon fontSize="small" color="disabled" /> : <ArrowDropDownIcon fontSize="small" color="disabled" />} */}
       </ButtonBase>
       <Popover
         open={!!open}
@@ -130,7 +131,7 @@ interface InventoryFormValueValueProps {
 }
 
 const InventoryFormValueValue = ({
-  id = -1,
+  id = Math.random(),
   term,
   defaultValue,
   defaultPath,
@@ -145,24 +146,26 @@ const InventoryFormValueValue = ({
 
   return (
     <>
-      <ButtonBase component={Stack} onClick={(e) => setOpen(e.currentTarget)} direction="row">
+      <ButtonBase component={Stack} onClick={(e) => setOpen(e.currentTarget)} direction="row" sx={{ pl: 0.5 }}>
         {valueStr !== undefined ? (
-          typeof valueStr === 'string' || !valueStr.length ? (
-            <Typography color="common.black" variant="subtitle1" fontWeight={700} p={0} width="auto" component="span" pl={1}>
-              {typeof valueStr === 'string' ? valueStr : '[]'}
+          typeof valueStr === 'string' ? (
+            <Chip label={valueStr} color="primary" size="small" variant="outlined" sx={{ mx: 0.5 }} />
+          ) : !valueStr.length ? (
+            <Typography color="common.black" variant="subtitle1" fontWeight={700} p={0} width="auto" component="span" pl={1} pr={1}>
+              []
             </Typography>
           ) : (
-            <>
+            <Box>
               {valueStr.slice(0, 2).map((item, i) => (
-                <Chip key={i} label={item} color="primary" size="small" variant="outlined" sx={{ ml: 1 }} />
+                <Chip key={i} label={item} color="primary" size="small" variant="outlined" sx={{ mx: 0.5 }} />
               ))}
               {valueStr.length > 2 ? (
-                <Chip label={`+${valueStr.length - 2}`} sx={{ ml: 1 }} color="primary" size="small" variant="filled" />
+                <Chip label={`+${valueStr.length - 2}`} sx={{ mx: 0.5 }} color="primary" size="small" variant="filled" />
               ) : null}
-            </>
+            </Box>
           )
         ) : null}
-        {open ? <ArrowDropUpIcon fontSize="small" /> : <ArrowDropDownIcon fontSize="small" />}
+        {/* {open ? <ArrowDropUpIcon fontSize="small" color="disabled" /> : <ArrowDropDownIcon fontSize="small" color="disabled" />} */}
       </ButtonBase>
       <Popover
         open={!!open}
@@ -177,7 +180,7 @@ const InventoryFormValueValue = ({
         {fqn ? (
           <InventoryFormFilterRowValues
             fqn={fqn}
-            keyString={`${fqn}_${id}_${JSON.stringify(valueStr)}`}
+            keyString={`${fqn}_${id}`}
             data={
               term ??
               new Predicate({ op: defaultOp ?? 'in', path: defaultPath ?? new Path({}), value: defaultValue ?? null, args: defaultArgs })
@@ -214,12 +217,12 @@ export const InventoryFormValue = ({
   defaultPath,
   defaultValue = null,
   defaultArgs,
-  fqn = 'any',
+  fqn,
   preItems,
   onChange,
 }: InventoryFormValueProps) => {
   const { selectedWorkspace } = useUserProfile()
-  const { data: gotFqn = fqn } = useQuery({
+  const { data: gotFqn = fqn ?? 'any' } = useQuery({
     queryKey: [
       'workspace-inventory-property-path-complete-query-fqn',
       selectedWorkspace?.id,
@@ -231,7 +234,7 @@ export const InventoryFormValue = ({
   })
 
   return (
-    <Stack direction="row" flexWrap="wrap" overflow="auto">
+    <Stack direction="row" flexWrap="wrap" alignItems="center">
       <Divider orientation="vertical" flexItem />
       <InventoryFormValueOp
         op={term?.op as OPType | undefined}

@@ -15,7 +15,7 @@ import { inventorySendToGTM } from './utils'
 const ITEMS_PER_PAGE = 50
 
 interface InventoryFormFilterRowStringValueProps<Multiple extends boolean, NetworkDisabled extends boolean>
-  extends Omit<AutocompleteProps<AutoCompleteValue, Multiple, false, true>, 'onChange' | 'value' | 'renderInput' | 'options'> {
+  extends Omit<AutocompleteProps<AutoCompleteValue, Multiple, false, true>, 'onChange' | 'value' | 'renderInput' | 'options' | 'onClose'> {
   multiple: Multiple
   networkDisabled: NetworkDisabled
   defaultOptions?: AutoCompleteValue[]
@@ -24,12 +24,14 @@ interface InventoryFormFilterRowStringValueProps<Multiple extends boolean, Netwo
   isDouble: boolean
   value: Multiple extends true ? AutoCompleteValue[] : AutoCompleteValue | null
   onChange: (option: Multiple extends true ? AutoCompleteValue[] : AutoCompleteValue | null) => void
+  onClose?: () => void
 }
 
 export function InventoryFormFilterRowStringValue<Multiple extends boolean, NetworkDisabled extends boolean>({
   defaultOptions,
   networkDisabled,
   onChange,
+  onClose,
   propertyName,
   isNumber,
   isDouble,
@@ -38,7 +40,25 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
 }: InventoryFormFilterRowStringValueProps<Multiple, NetworkDisabled>) {
   const { selectedWorkspace } = useUserProfile()
   const { query } = useFixQueryParser()
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
+  const initializedRef = useRef(false)
+  useEffect(() => {
+    if (!initializedRef.current) {
+      const timeout = window.setTimeout(() => {
+        initializedRef.current = true
+        setOpen(true)
+      }, 150)
+
+      return () => {
+        window.clearTimeout(timeout)
+      }
+    }
+  }, [])
+  useEffect(() => {
+    if (initializedRef.current && onClose && !open) {
+      onClose()
+    }
+  }, [open, onClose])
   const [typed, setTyped] = useState(value && !Array.isArray(value) ? value.label : '')
   const debouncedTyped = useDebounce(networkDisabled ? '' : typed, panelUI.fastInputChangeDebounce)
   const selectedTyped = useRef('')
@@ -181,7 +201,11 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
           : (options) => options
       }
       getOptionLabel={(option) => (typeof option === 'string' ? option : option.label)}
-      onOpen={() => setOpen(true)}
+      onOpen={() => {
+        if (initializedRef.current) {
+          setOpen(true)
+        }
+      }}
       open={open}
       freeSolo
       renderOption={(props, option, state) =>
@@ -216,7 +240,6 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
           helperText={hasError ? t`Invalid Value` : undefined}
           type={isNumber && typed !== 'null' && typed !== 'Null' ? 'number' : 'text'}
           autoFocus
-          focused={open}
           inputProps={{
             ...params.inputProps,
             autoFocus: true,
@@ -240,7 +263,11 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
                 {params.InputProps.endAdornment}
               </>
             ),
-            onFocus: () => setOpen(true),
+            onFocus: () => {
+              if (initializedRef.current) {
+                setOpen(true)
+              }
+            },
             onBlur: () => setOpen(false),
           }}
           onChange={(e) => {

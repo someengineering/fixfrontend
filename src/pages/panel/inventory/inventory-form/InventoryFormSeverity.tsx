@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
+// import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+// import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 import { Typography } from '@mui/material'
 import { useMemo, useState } from 'react'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
@@ -43,7 +43,7 @@ export const InventoryFormSeverity = ({ preItems }: { preItems: AutoCompletePreD
         label={t`Severities`}
         onClick={(e) => setOpen(e.currentTarget)}
         onClear={() => deletePredicate(DefaultPropertiesKeys.Severity)}
-        endIcon={open ? <ArrowDropUpIcon fontSize="small" /> : <ArrowDropDownIcon fontSize="small" />}
+        // endIcon={open ? <ArrowDropUpIcon fontSize="small" color="disabled" /> : <ArrowDropDownIcon fontSize="small" color="disabled" />}
       />
       <InventoryFormDefaultValue
         onChange={(values) =>

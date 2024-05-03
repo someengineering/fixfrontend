@@ -4,11 +4,11 @@ export const durationOpTypes = ['>', '>=', '<', '<='] as const
 
 export const arrayOpTypes = ['in', 'not in'] as const
 
-export const numberOpTypes = [...durationOpTypes, ...arrayOpTypes] as const
+export const numberOpTypes = [...durationOpTypes, ...arrayOpTypes, ...booleanOPTypes] as const
 
-export const stringOPTypes = [...arrayOpTypes, '~', '!~'] as const
+export const stringOPTypes = [...arrayOpTypes, ...booleanOPTypes, '~', '!~'] as const
 
-export const opTypes = [...stringOPTypes, ...booleanOPTypes, ...durationOpTypes]
+export const opTypes = [...stringOPTypes, ...durationOpTypes]
 
 export const kindDurationTypes = ['duration', 'datetime', 'date'] as const
 
