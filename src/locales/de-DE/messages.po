@@ -602,10 +602,6 @@ msgstr "Datenexport (CSV, JSON, PDF)"
 msgid "Date"
 msgstr "Datum"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:164
-#~ msgid "Date Picker"
-#~ msgstr "Datumsauswahl"
-
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowDateTimeValue.tsx:24
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowDateValue.tsx:18
 msgid "Date Time Picker"
@@ -816,10 +812,6 @@ msgstr "Fehlgeschlagene Benchmarks"
 msgid "Failing Check Timeline"
 msgstr "Fehler bei der Überprüfung des Zeitplans"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:145
-#~ msgid "False"
-#~ msgstr "Nein"
-
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:20
 msgid "Features"
 msgstr "Funktionen"
@@ -896,10 +888,6 @@ msgstr ""
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:17
 msgid "Greater than or equal"
 msgstr ""
-
-#: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:23
-#~ msgid "Have"
-#~ msgstr ""
 
 #: src/shared/defined-messages/getMessage.ts:8
 msgid "High"
@@ -1016,10 +1004,6 @@ msgstr "Ungültiger Wert"
 msgid "Inventory"
 msgstr "Inventar"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:46
-msgid "Inventory Changes"
-msgstr ""
-
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:24
 msgid "Inventory search"
 msgstr "Inventarsuche"
@@ -1121,10 +1105,6 @@ msgstr "Monatlich"
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:27
 msgid "Monthly email report"
 msgstr "Monatlicher E-Mail-Bericht"
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:38
-#~ msgid "More"
-#~ msgstr ""
 
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:186
 msgid "More info"
@@ -1235,10 +1215,6 @@ msgstr ""
 msgid "Not equal"
 msgstr ""
 
-#: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:25
-#~ msgid "Not Have"
-#~ msgstr ""
-
 #: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:9
 msgid "Not include"
 msgstr ""
@@ -1255,10 +1231,6 @@ msgstr "Noch nichts zu zeigen"
 #: src/pages/panel/user-settings/UserSettingsPage.tsx:27
 msgid "Notification"
 msgstr "Benachrichtigung"
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:148
-#~ msgid "Null"
-#~ msgstr "Null"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:50
 msgid "Number Of Account Charged"
@@ -1729,10 +1701,6 @@ msgstr "TOTP-Setup"
 #: src/pages/panel/workspace-settings-billing/utils/productTierToLabel.ts:7
 msgid "Trial"
 msgstr "Probezeit"
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:142
-#~ msgid "True"
-#~ msgstr "Ja"
 
 #: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:97
 msgid "Try again"
