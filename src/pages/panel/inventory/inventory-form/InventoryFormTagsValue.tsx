@@ -18,7 +18,7 @@ import {
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
 import { InventoryFormFilterRowProperty } from './InventoryFormFilterRowProperty'
 import { InventoryFormFilterRowValues } from './InventoryFormFilterRowValues'
-import { AutoCompletePreDefinedItems, getOpTypeLabel } from './utils'
+import { AutoCompletePreDefinedItems } from './utils'
 
 interface InventoryFormTagsValueProps {
   id?: number
@@ -110,7 +110,6 @@ export const InventoryFormTagsValue = ({ onChange, onClose, open, defaultValue, 
                 {currentOpTypes.map((op, i) => (
                   <MenuItem value={op} key={`${op}-${i}`}>
                     <Stack direction="row" justifyContent="space-between" width="100%" spacing={1}>
-                      <Typography>{getOpTypeLabel(op)}</Typography>
                       <Typography>{op.toUpperCase()}</Typography>
                     </Stack>
                   </MenuItem>

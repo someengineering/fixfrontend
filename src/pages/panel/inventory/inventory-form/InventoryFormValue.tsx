@@ -35,7 +35,7 @@ import {
 } from 'src/shared/fix-query-parser'
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
 import { InventoryFormFilterRowValues } from './InventoryFormFilterRowValues'
-import { AutoCompletePreDefinedItems, getOpTypeLabel } from './utils'
+import { AutoCompletePreDefinedItems } from './utils'
 
 interface InventoryFormValueOpProps {
   op?: OPType
@@ -104,7 +104,6 @@ const InventoryFormValueOp = ({ onChange, op, defaultOp, fqn }: InventoryFormVal
                 justifyContent="space-between"
                 spacing={1}
               >
-                <Typography>{getOpTypeLabel(op)}</Typography>
                 <Typography>{op.toUpperCase()}</Typography>
               </ListItemButton>
             </ListItem>
