@@ -25,13 +25,15 @@ export default function InventoryPage() {
   const setSearchCrit = useCallback(
     (crit?: string) => {
       if (!crit || crit === 'all') {
+        setHasError(false)
+        navigate({ pathname: window.location.pathname })
         return
       }
       const searchValues = getLocationSearchValues()
       searchValues['q'] = window.encodeURIComponent(crit)
       const search = mergeLocationSearchValues(searchValues)
       if (search !== window.location.search) {
-        navigate({ pathname: '/inventory', search })
+        navigate({ pathname: window.location.pathname, search })
       }
     },
     [navigate],

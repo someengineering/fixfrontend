@@ -25,7 +25,7 @@ export type FixQueryContextValue = {
   fullTexts: Query['fulltexts']
   provides_security_check_details: Query['provides_security_check_details']
   findPaths: Query['find_paths']
-  ui_simple_query: Query['ui_simple_query']
+  uiSimpleQuery: Query['ui_simple_query']
   update: MutableRefObject<{
     combine: CombineType
     deleteIs: DeleteIsType
@@ -132,7 +132,7 @@ export const FixQueryProvider = ({ searchQuery, children }: FixQueryProviderProp
       provides_security_check_details: query.provides_security_check_details.bind(query),
       fullTexts: query.fulltexts.bind(query),
       findPaths: query.find_paths.bind(query),
-      ui_simple_query: query.ui_simple_query.bind(query),
+      uiSimpleQuery: query.ui_simple_query.bind(query),
     }
   }, [error, query])
   return <FixQueryContext.Provider value={value}>{children}</FixQueryContext.Provider>
