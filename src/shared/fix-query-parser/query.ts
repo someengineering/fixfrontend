@@ -1105,6 +1105,28 @@ export class Query {
     )
   }
 
+  /**
+   * Signals, if this query can be displayed by UI elements in the frontend.
+   */
+  public ui_simple_query(): boolean {
+    const valid_term = (term: Term): boolean =>
+      term instanceof Predicate ||
+      term instanceof IsTerm ||
+      term instanceof FulltextTerm ||
+      (term instanceof CombinedTerm && term.op === 'and')
+    return (
+      this.aggregate == undefined &&
+      this.parts.length == 1 &&
+      this.parts.every(
+        (part) =>
+          part.with_clause == undefined &&
+          part.navigation == undefined &&
+          part.with_usage == undefined &&
+          part.term.find_terms((t) => !valid_term(t)).length == 0,
+      )
+    )
+  }
+
   public get sorts() {
     return this.working_part.sort
   }
