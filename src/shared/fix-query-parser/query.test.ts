@@ -386,3 +386,19 @@ test('get and update properties when navigation is defined', () => {
   const q3 = q2.set_predicate('bla', '==', 'boom')
   assert.strictEqual(q3.toString(), 'is(foo) and bla = true --> bla == "boom"')
 })
+
+test('ui_simple_query', () => {
+  const queries = {
+    'is(aws_secretsmanager_secret) and rotation_enabled==false': true,
+    'is(aws_sns_topic) with(empty, --> is(aws_kms_key))': false,
+    'is(aws_sqs_queue) and sqs_managed_sse_enabled==false and sqs_kms_master_key_id==null': true,
+    'is(aws_ssm_resource_compliance) --> is(aws_ec2_instance, aws_dynamodb_table, aws_s3_bucket)': false,
+    'with_usage(7d, cpu_utilization_percent) is(instance,database) and /usage.cpu_utilization_percent.max < 10': false,
+    '/ancestors.account.reported.id="123456789012"': true,
+    'aggregate(status: sum(1) as count): is(aws_ec2_instance)': false,
+    'is(aws_ec2_instance) {foo: <--}': false,
+  }
+  for (const [query, result] of Object.entries(queries)) {
+    assert.strictEqual(Query.parse(query).ui_simple_query(), result)
+  }
+})
