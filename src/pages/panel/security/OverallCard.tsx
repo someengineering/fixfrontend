@@ -2,7 +2,7 @@ import { Trans } from '@lingui/macro'
 import ErrorIcon from '@mui/icons-material/Error'
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon'
 import { Button, Divider, Grid, Stack, Typography } from '@mui/material'
-import { createInventorySearchTo, showSubtitle } from 'src/pages/panel/shared/utils'
+import { navigateSubtitleQuery, showSubtitle, showSubtitleAccount } from 'src/pages/panel/shared/utils'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { OverviewCard } from 'src/shared/overview-card'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
@@ -111,19 +111,7 @@ export const OverallCard = ({ data }: OverallCardProps) => {
                       <Trans>Most Non-Compliant Accounts</Trans>
                     </Typography>
                     <Typography variant="body1">
-                      {data.changed_vulnerable.accounts_selection.map((accountId, i) => (
-                        <Button
-                          variant="text"
-                          size="small"
-                          sx={{ textTransform: 'initial' }}
-                          key={`${accountId}_${i}`}
-                          onClick={() =>
-                            navigate(createInventorySearchTo(`/ancestors.account.reported.id="${accountId}"`, 'node_vulnerable'))
-                          }
-                        >
-                          {data.accounts.find((acc) => accountId === acc.id)?.name ?? accountId}
-                        </Button>
-                      ))}
+                      {showSubtitleAccount(data.changed_vulnerable, 'node_vulnerable', data.accounts, navigate)}
                     </Typography>
                   </>
                 ) : null}
@@ -141,7 +129,7 @@ export const OverallCard = ({ data }: OverallCardProps) => {
                             size="small"
                             sx={{ textTransform: 'initial' }}
                             key={`${key}_${i}`}
-                            onClick={() => navigate(createInventorySearchTo(`is(${key})`, 'node_vulnerable'))}
+                            onClick={() => navigateSubtitleQuery(`is(${key})`, 'node_vulnerable', navigate)}
                           >
                             {key}
                           </Button>
@@ -196,17 +184,7 @@ export const OverallCard = ({ data }: OverallCardProps) => {
                   <Trans>Most Improved Accounts</Trans>
                 </Typography>
                 <Typography variant="body1">
-                  {data.changed_compliant.accounts_selection.map((accountId, i) => (
-                    <Button
-                      variant="text"
-                      size="small"
-                      sx={{ textTransform: 'initial' }}
-                      key={`${accountId}_${i}`}
-                      onClick={() => navigate(createInventorySearchTo(`/ancestors.account.reported.id="${accountId}"`, 'node_compliant'))}
-                    >
-                      {data.accounts.find((acc) => accountId === acc.id)?.name ?? accountId}
-                    </Button>
-                  ))}
+                  {showSubtitleAccount(data.changed_compliant, 'node_compliant', data.accounts, navigate)}
                 </Typography>
                 <Divider />
                 <Typography variant="body1">
@@ -219,7 +197,7 @@ export const OverallCard = ({ data }: OverallCardProps) => {
                       size="small"
                       sx={{ textTransform: 'initial' }}
                       key={`${key}_${i}`}
-                      onClick={() => navigate(createInventorySearchTo(`is(${key})`, 'node_compliant'))}
+                      onClick={() => navigateSubtitleQuery(`is(${key})`, 'node_compliant', navigate)}
                     >
                       {key}
                     </Button>
