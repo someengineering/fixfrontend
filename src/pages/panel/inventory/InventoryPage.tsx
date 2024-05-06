@@ -17,9 +17,9 @@ export default function InventoryPage() {
   const [hasError, setHasError] = useState(false)
   const searchCrit = searchParams.get('q') || ''
   const history = {
-    change: searchParams.get('change'),
-    after: searchParams.get('after'),
-    before: searchParams.get('before'),
+    changes: searchParams.get('changes')?.split(','),
+    after: searchParams.get('after') || undefined,
+    before: searchParams.get('before') || undefined,
   }
 
   const setSearchCrit = useCallback(
@@ -39,7 +39,7 @@ export default function InventoryPage() {
     [navigate],
   )
 
-  const hasChanges = searchParams.get('changes') === 'true'
+  const hasChanges = !!history.changes
 
   return (
     <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
@@ -56,7 +56,7 @@ export default function InventoryPage() {
           <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
             <ResourceDetail />
           </NetworkErrorBoundary>
-          {searchCrit && (searchCrit !== 'all' || (hasChanges && history.change) || hasError) ? (
+          {searchCrit && (searchCrit !== 'all' || (hasChanges && history.changes) || hasError) ? (
             <>
               <NetworkErrorBoundary
                 fallbackRender={({ resetErrorBoundary }) => (
@@ -65,11 +65,7 @@ export default function InventoryPage() {
               >
                 <InventoryTable
                   searchCrit={searchCrit}
-                  history={
-                    history.after && history.before && history.change
-                      ? (history as { after: string; before: string; change: string })
-                      : undefined
-                  }
+                  history={history.changes ? (history as { changes: string[]; after?: string; before?: string }) : undefined}
                 />
               </NetworkErrorBoundary>
             </>

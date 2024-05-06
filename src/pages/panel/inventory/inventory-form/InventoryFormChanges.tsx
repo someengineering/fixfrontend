@@ -1,29 +1,26 @@
-import { t } from '@lingui/macro'
-import { useState } from 'react'
+import { Box, Divider } from '@mui/material'
 import { useSearchParams } from 'react-router-dom'
 import { InventoryFormChangeValue } from './InventoryFormChangesValue'
-import { InventoryFormField } from './InventoryFormField'
 
 export const InventoryFormChangesComp = () => {
-  const [open, setOpen] = useState<HTMLDivElement | null>(null)
   const [searchParams, setSearchParams] = useSearchParams()
-  const searchParamsChange = searchParams.get('change')
+  const searchParamsChanges = searchParams.get('changes')?.split(',') ?? null
   const searchParamsAfter = searchParams.get('after')
   const searchParamsBefore = searchParams.get('before')
 
   const handleReset = () => {
     setSearchParams((searchParams) => {
-      searchParams.delete('change')
+      searchParams.delete('changes')
       searchParams.delete('after')
       searchParams.delete('before')
       return searchParams
     })
   }
 
-  const handleSubmit = (searchParamsChange: string | null, searchParamsAfter: string | null, searchParamsBefore: string | null) => {
-    if (searchParamsChange && searchParamsAfter && searchParamsBefore) {
+  const handleSubmit = (searchParamsChanges: string[] | null, searchParamsAfter: string | null, searchParamsBefore: string | null) => {
+    if (searchParamsChanges && searchParamsAfter && searchParamsBefore) {
       setSearchParams((searchParams) => {
-        searchParams.set('change', searchParamsChange)
+        searchParams.set('changes', searchParamsChanges.join(','))
         searchParams.set('after', searchParamsAfter)
         searchParams.set('before', searchParamsBefore)
         return searchParams
@@ -35,30 +32,21 @@ export const InventoryFormChangesComp = () => {
 
   return (
     <>
-      <InventoryFormField
-        value={
-          searchParamsChange && searchParamsBefore && searchParamsAfter
-            ? t`${searchParamsChange} From ${searchParamsAfter} to ${searchParamsBefore}`
-            : undefined
-        }
-        label={t`Changes`}
-        onClick={(e) => setOpen(e.currentTarget)}
-        onClear={handleReset}
-      />
       <InventoryFormChangeValue
         onChange={handleSubmit}
-        onClose={() => setOpen(null)}
-        open={open}
         searchParamsAfter={searchParamsAfter}
         searchParamsBefore={searchParamsBefore}
-        searchParamsChange={searchParamsChange}
+        searchParamsChanges={searchParamsChanges}
       />
+      <Box width="100%" flexGrow={1}>
+        <Divider />
+      </Box>
     </>
   )
 }
 
 export const InventoryFormChanges = () => {
   const [searchParams] = useSearchParams()
-  const hasChanges = (searchParams.get('changes') ?? '') === 'true'
+  const hasChanges = searchParams.get('changes') ?? ''
   return hasChanges ? <InventoryFormChangesComp /> : null
 }

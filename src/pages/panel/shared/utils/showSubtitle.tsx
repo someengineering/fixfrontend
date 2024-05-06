@@ -11,7 +11,12 @@ export const showSubtitle = (data: Partial<FailedChecksType>, change: 'node_comp
   sortedSeverities
     .filter((key) => data[key])
     .map((key) => (
-      <Grid item key={key} component={ButtonBase} onClick={() => navigate(createInventorySearchTo(`/security.severity=${key}`, change))}>
+      <Grid
+        item
+        key={key}
+        component={ButtonBase}
+        onClick={() => navigate(createInventorySearchTo(`/diff.${change}[*].severity=${key}`, true))}
+      >
         <Typography color={getColorBySeverity(key)} variant="body2">
           {getMessage(snakeCaseToUFStr(key))}
         </Typography>

@@ -96,10 +96,6 @@ msgstr "{0}: Wir haben {1} nicht konforme Ressourcen von insgesamt {2}."
 msgid "{added} configuration lines added and {removed} lines deleted."
 msgstr "{added} Konfigurationszeilen hinzugefügt und {removed} Zeilen gelöscht."
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChanges.tsx:41
-msgid "{searchParamsChange} From {searchParamsAfter} to {searchParamsBefore}"
-msgstr ""
-
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:77
 msgid "/ month"
 msgstr "/ monat"
@@ -239,7 +235,7 @@ msgstr ""
 msgid "Add Manually"
 msgstr "Manuell hinzufügen"
 
-#: src/pages/panel/accounts/AccountsTable.tsx:25
+#: src/pages/panel/accounts/AccountsTable.tsx:26
 msgid "Added accounts"
 msgstr "Konten hinzugefügt"
 
@@ -344,7 +340,7 @@ msgstr "Automatisches Cloud Setup"
 msgid "AWS Marketplace"
 msgstr "AWS Marketplace"
 
-#: src/shared/constants/consts.ts:6
+#: src/shared/constants/consts.ts:11
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
@@ -393,7 +389,6 @@ msgstr "Business"
 #: src/pages/panel/accounts/AccountRow.tsx:281
 #: src/pages/panel/accounts/AccountRow.tsx:282
 #: src/pages/panel/accounts/AccountRow.tsx:386
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:102
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:68
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:121
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:49
@@ -425,12 +420,11 @@ msgstr "Bezahlungsmethode ändern"
 msgid "Change Product Tier"
 msgstr "Produktstufe ändern"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:55
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:64
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:47
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:75
 msgid "Change Type"
 msgstr ""
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChanges.tsx:44
 #: src/pages/panel/inventory/resource-detail/ResourceDetailChangeLog.tsx:42
 msgid "Changes"
 msgstr "Änderungen"
@@ -442,10 +436,6 @@ msgstr "Änderungen in den letzten 7 Tagen"
 #: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:102
 msgid "Choose Workspace"
 msgstr "Wählen Sie Arbeitsbereich"
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:113
-msgid "clear"
-msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormReset.tsx:15
 msgid "Clear the search"
@@ -464,15 +454,15 @@ msgstr "Schließen"
 msgid "Cloud"
 msgstr "Cloud"
 
-#: src/shared/event-button/EventButton.tsx:55
+#: src/shared/event-button/EventButton.tsx:57
 msgid "Cloud account configured, id: {0}"
 msgstr "Cloud-Konto konfiguriert, ID: {0}"
 
-#: src/shared/event-button/EventButton.tsx:61
+#: src/shared/event-button/EventButton.tsx:63
 msgid "Cloud account degraded, id: {0}"
 msgstr "Cloud-Konto beeinträchtigt, ID: {0}"
 
-#: src/shared/event-button/EventButton.tsx:67
+#: src/shared/event-button/EventButton.tsx:69
 msgid "Cloud account discovered, id: {0}"
 msgstr "Cloud-Konto entdeckt, ID: {0}"
 
@@ -670,7 +660,7 @@ msgstr "Trennen"
 msgid "Disconnect Service"
 msgstr "Dienst trennen"
 
-#: src/pages/panel/accounts/AccountsTable.tsx:32
+#: src/pages/panel/accounts/AccountsTable.tsx:33
 msgid "Discovered but unconfigured accounts"
 msgstr "Erkannte, aber nicht konfigurierte Konten"
 
@@ -756,11 +746,7 @@ msgstr "Engineers kennzeichnen ihre temporären Ressourcen gerne mit der Zeichen
 msgid "Enterprise"
 msgstr "Unternehmen"
 
-#: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:11
-#~ msgid "Equal"
-#~ msgstr ""
-
-#: src/shared/event-button/EventButton.tsx:101
+#: src/shared/event-button/EventButton.tsx:103
 msgid "Events"
 msgstr "Veranstaltungen"
 
@@ -877,14 +863,6 @@ msgstr ""
 msgid "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
 msgstr "Erhalten Sie Ihre fünf wichtigsten Empfehlungen zur Verbesserung Ihrer Sicherheit, sobald der erste Scan abgeschlossen ist, normalerweise innerhalb von 10 Minuten."
 
-#: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:15
-#~ msgid "Greater than"
-#~ msgstr ""
-
-#: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:17
-#~ msgid "Greater than or equal"
-#~ msgstr ""
-
 #: src/shared/defined-messages/getMessage.ts:8
 msgid "High"
 msgstr "Hoch"
@@ -955,7 +933,7 @@ msgstr "Alles ignorieren"
 msgid "Ignored"
 msgstr "Ignoriert"
 
-#: src/pages/panel/security/OverallCard.tsx:162
+#: src/pages/panel/security/OverallCard.tsx:150
 msgid "Improved"
 msgstr "Verbessert"
 
@@ -966,10 +944,6 @@ msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS 
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:77
 msgid "Inactivity reminder"
 msgstr "Inaktivitätserinnerung"
-
-#: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:7
-#~ msgid "Include"
-#~ msgstr ""
 
 #: src/shared/defined-messages/getMessage.ts:17
 msgid "Info"
@@ -991,8 +965,8 @@ msgstr "Integrationsberatung für Ihre spezifische Cloud-Umgebung per Videoanruf
 msgid "Integration Key"
 msgstr "Integrationsschlüssel"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:347
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:216
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:343
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:240
 msgid "Invalid Value"
 msgstr "Ungültiger Wert"
 
@@ -1035,14 +1009,6 @@ msgstr "Arten"
 msgid "Last login"
 msgstr "Letzte Anmeldung"
 
-#: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:19
-#~ msgid "Less than"
-#~ msgstr ""
-
-#: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:21
-#~ msgid "Less than or equal"
-#~ msgstr ""
-
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:60
 msgid "Load Balancers with no backends"
 msgstr "Load Balancer ohne Backends"
@@ -1076,10 +1042,6 @@ msgstr "Recheninstanzen und Datenbanken mit geringer Auslastung"
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS Konto angemeldet sind, bevor Sie auf die Schaltfläche DEPLOY STACK klicken."
 
-#: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:23
-#~ msgid "Match"
-#~ msgstr ""
-
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:89
 msgid "maximum of {0} cloud accounts"
 msgstr "maximal {0} Cloud-Konten"
@@ -1106,11 +1068,11 @@ msgstr "Monatlicher E-Mail-Bericht"
 msgid "More info"
 msgstr "Mehr Info"
 
-#: src/pages/panel/security/OverallCard.tsx:196
+#: src/pages/panel/security/OverallCard.tsx:184
 msgid "Most Improved Accounts"
 msgstr "Am meisten verbesserte Konten"
 
-#: src/pages/panel/security/OverallCard.tsx:213
+#: src/pages/panel/security/OverallCard.tsx:191
 msgid "Most Improved Resources"
 msgstr "Am meisten verbesserte Ressourcen"
 
@@ -1144,7 +1106,7 @@ msgstr "Nachbarschaftsansicht"
 msgid "Neighborhood View"
 msgstr "Nachbarschaftsansicht"
 
-#: src/pages/panel/security/OverallCard.tsx:167
+#: src/pages/panel/security/OverallCard.tsx:155
 msgid "new improved resources in the past {since}"
 msgstr "neue verbesserte Ressourcen in der Vergangenheit {since}"
 
@@ -1183,44 +1145,32 @@ msgstr ""
 msgid "No {label} found for {typed}"
 msgstr ""
 
-#: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:25
-#~ msgid "No Match"
-#~ msgstr ""
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:80
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:31
 msgid "Node Compliant"
 msgstr ""
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:68
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:15
 msgid "Node Created"
 msgstr ""
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:74
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:23
 msgid "Node Deleted"
 msgstr ""
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:71
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:19
 msgid "Node Updated"
 msgstr ""
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:77
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:27
 msgid "Node Vulnerable"
 msgstr ""
-
-#: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:13
-#~ msgid "Not equal"
-#~ msgstr ""
-
-#: src/pages/panel/inventory/inventory-form/utils/getOpTypeLabel.ts:9
-#~ msgid "Not include"
-#~ msgstr ""
 
 #: src/pages/panel/accounts/AccountRow.tsx:373
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Sie löschen gerade ein Management- oder delegiertes Admin-Konto. Beachten Sie bitte, dass wir nach der Löschung nicht mehr in der Lage sein werden, Kontonamen abzurufen, wodurch Sie diese manuell bearbeiten müssen."
 
 #: src/pages/panel/security/OverallCard.tsx:88
-#: src/pages/panel/security/OverallCard.tsx:173
+#: src/pages/panel/security/OverallCard.tsx:161
 msgid "Nothing to show yet"
 msgstr "Noch nichts zu zeigen"
 
@@ -1312,6 +1262,10 @@ msgstr "Eigentümer"
 msgid "Password"
 msgstr "Passwort"
 
+#: src/core/events/WebSocketEvents.tsx:131
+msgid "Payment is required for your workspace, Please contact the workspace owner"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:301
 msgid "Payment Method Required"
 msgstr "Zahlungsmethode erforderlich"
@@ -1323,7 +1277,7 @@ msgstr "Zahlungsmethode erforderlich"
 msgid "Pending Invitations"
 msgstr "Ausstehende Einladungen"
 
-#: src/pages/panel/security/OverallCard.tsx:176
+#: src/pages/panel/security/OverallCard.tsx:164
 msgid "Pick one of the recommendations to the right and improve your security"
 msgstr "Wählen Sie eine der Empfehlungen rechts aus und verbessern Sie Ihre Sicherheit"
 
@@ -1331,7 +1285,7 @@ msgstr "Wählen Sie eine der Empfehlungen rechts aus und verbessern Sie Ihre Sic
 msgid "Please enter your One-Time-Password or one of your Recovery code."
 msgstr "Bitte geben Sie Ihr One-Time-Passwort oder einen Ihrer Wiederherstellungscodes ein."
 
-#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:48
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:58
 msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgstr "Bitte gehen Sie zur Seite <0>Setup Accounts</0>, um zunächst Ihr Konto einzurichten"
 
@@ -1383,7 +1337,7 @@ msgstr "Profil"
 msgid "Properties"
 msgstr ""
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:366
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:364
 msgid "Property"
 msgstr "Eigentum"
 
@@ -1404,7 +1358,7 @@ msgstr "Erneut authentifizieren"
 msgid "Receipts"
 msgstr "Quittungen"
 
-#: src/pages/panel/accounts/AccountsTable.tsx:21
+#: src/pages/panel/accounts/AccountsTable.tsx:22
 msgid "Recently added accounts"
 msgstr "Kürzlich hinzugefügte Konten"
 
@@ -1588,7 +1542,6 @@ msgstr "Quellen"
 #: src/pages/panel/accounts/AccountRow.tsx:266
 #: src/pages/panel/accounts/AccountRow.tsx:267
 #: src/pages/panel/accounts/AccountRow.tsx:272
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:118
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:143
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:144
 msgid "Submit"
@@ -1636,7 +1589,7 @@ msgstr "Der Stack erfordert die folgenden Parameter"
 msgid "The token that you sent is invalid or have been expired please try again"
 msgstr "Das von Ihnen gesendete Token ist ungültig oder abgelaufen. Bitte versuchen Sie es erneut"
 
-#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:45
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:55
 msgid "There's no account configured for this workspace."
 msgstr "Für diesen Arbeitsbereich ist kein Konto konfiguriert."
 
@@ -1668,7 +1621,7 @@ msgstr "Zum AWS Marketplace"
 msgid "To enhance your experience, please select the workspace where you'd like to activate your subscription"
 msgstr "Um Ihr Erlebnis zu verbessern, wählen Sie bitte den Arbeitsbereich aus, in dem Sie Ihr Abonnement aktivieren möchten"
 
-#: src/pages/panel/security/OverallCard.tsx:135
+#: src/pages/panel/security/OverallCard.tsx:123
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:114
 msgid "Top Non-Compliant Resources"
 msgstr "Top Ressourcen mit Compliance-Verstößen"
@@ -1844,6 +1797,10 @@ msgstr "Sie können TOTP über den OTP-Code deaktivieren"
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:91
 msgid "You can deactivate TOTP via recovery code"
 msgstr "Sie können TOTP über den Wiederherstellungscode deaktivieren"
+
+#: src/core/events/WebSocketEvents.tsx:132
+msgid "You don't have access to this workspace"
+msgstr ""
 
 #: src/pages/auth/login/LoginPage.tsx:207
 msgid "You have successfully reset your password."
