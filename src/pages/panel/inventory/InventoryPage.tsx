@@ -24,7 +24,7 @@ export default function InventoryPage() {
 
   const setSearchCrit = useCallback(
     (crit?: string) => {
-      if (crit === undefined) {
+      if (!crit || crit === 'all') {
         return
       }
       const searchValues = getLocationSearchValues()
