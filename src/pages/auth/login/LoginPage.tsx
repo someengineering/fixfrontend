@@ -54,7 +54,7 @@ export default function LoginPage() {
       lastSubmittedValueWithOtp.current = needOtp
       login(values)
         .then(() => {
-          const returnUrl = getSearch.get('returnUrl') ?? '/'
+          const returnUrl = getSearch.get('returnUrl') || '/'
           setAuth(
             {
               isAuthenticated: true,

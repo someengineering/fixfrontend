@@ -52,20 +52,20 @@ export const nodeChangeToDescription = (history: WorkspaceInventoryNodeHistory) 
     case 'node_deleted':
       return null
     case 'node_vulnerable': {
-      const vulnerabilities = history.diff.node_vulnerable.reduce(
+      const vulnerabilities = history.diff.node_vulnerable?.reduce(
         (prev, cur) => ({ ...prev, [cur.severity]: (prev[cur.severity] ?? 0) + 1 }),
         {} as { [key in SeverityType]: number },
       )
-      const compliances = history.diff.node_compliant.reduce(
+      const compliances = history.diff.node_compliant?.reduce(
         (prev, cur) => ({ ...prev, [cur.severity]: (prev[cur.severity] ?? 0) + 1 }),
         {} as { [key in SeverityType]: number },
       )
       return (
         <Typography width="100%" align="left">
-          {history.diff.node_vulnerable.length ? (
+          {history.diff.node_vulnerable?.length ? (
             <>
               <Trans>
-                {Object.entries(vulnerabilities).map(([severity, count], i) => (
+                {Object.entries(vulnerabilities ?? {}).map(([severity, count], i) => (
                   <Typography component="span" color={getColorBySeverity(severity)} key={i}>
                     {count} {severity}{' '}
                   </Typography>
@@ -74,9 +74,9 @@ export const nodeChangeToDescription = (history: WorkspaceInventoryNodeHistory) 
               </Trans>{' '}
             </>
           ) : null}
-          {history.diff.node_compliant.length ? (
+          {history.diff.node_compliant?.length ? (
             <Trans>
-              {Object.entries(compliances).map(([severity, count], i) => (
+              {Object.entries(compliances ?? {}).map(([severity, count], i) => (
                 <Typography component="span" color={getColorBySeverity(severity)} key={i}>
                   {count} {severity}{' '}
                 </Typography>
@@ -88,20 +88,20 @@ export const nodeChangeToDescription = (history: WorkspaceInventoryNodeHistory) 
       )
     }
     case 'node_compliant': {
-      const vulnerabilities = history.diff.node_vulnerable.reduce(
+      const vulnerabilities = history.diff.node_vulnerable?.reduce(
         (prev, cur) => ({ ...prev, [cur.severity]: (prev[cur.severity] ?? 0) + 1 }),
         {} as { [key in SeverityType]: number },
       )
-      const compliances = history.diff.node_compliant.reduce(
+      const compliances = history.diff.node_compliant?.reduce(
         (prev, cur) => ({ ...prev, [cur.severity]: (prev[cur.severity] ?? 0) + 1 }),
         {} as { [key in SeverityType]: number },
       )
       return (
         <Typography width="100%" align="left">
-          {history.diff.node_compliant.length ? (
+          {history.diff.node_compliant?.length ? (
             <>
               <Trans>
-                {Object.entries(compliances).map(([severity, count], i) => (
+                {Object.entries(compliances ?? {}).map(([severity, count], i) => (
                   <Typography component="span" color={getColorBySeverity(severity)} key={i}>
                     {count} {severity}{' '}
                   </Typography>
@@ -110,9 +110,9 @@ export const nodeChangeToDescription = (history: WorkspaceInventoryNodeHistory) 
               </Trans>{' '}
             </>
           ) : null}
-          {history.diff.node_vulnerable.length ? (
+          {history.diff.node_vulnerable?.length ? (
             <Trans>
-              {Object.entries(vulnerabilities).map(([severity, count], i) => (
+              {Object.entries(vulnerabilities ?? {}).map(([severity, count], i) => (
                 <Typography component="span" color={getColorBySeverity(severity)} key={i}>
                   {count} {severity}
                   {'  '}

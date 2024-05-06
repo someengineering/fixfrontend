@@ -19,7 +19,7 @@ interface TemplateData {
   }[]
 }
 
-const templateData: TemplateData[] = [
+const templateData = (): TemplateData[] => [
   {
     header: t`Security`,
     icon: SecurityIcon,
@@ -114,7 +114,7 @@ export const InventoryTemplateBoxes = ({ onChange }: InventoryTemplateBoxesProps
         <Trans>Example searches</Trans>
       </Typography>
       <Grid container spacing={2}>
-        {templateData.map((template, i) => (
+        {templateData().map((template, i) => (
           <Grid item xs={12} sm={6} md={4} lg={4} xl={3} key={i}>
             <Card elevation={4}>
               <CardHeader title={template.header} avatar={<template.icon />} />
