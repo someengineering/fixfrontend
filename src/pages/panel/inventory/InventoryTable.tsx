@@ -29,9 +29,9 @@ import { DownloadCSVButton } from './DownloadCSVButton'
 interface InventoryTableProps {
   searchCrit: string
   history?: {
-    after: string
-    before: string
-    change: string
+    after?: string
+    before?: string
+    changes: string[]
   }
 }
 

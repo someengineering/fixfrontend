@@ -1,125 +1,144 @@
 import { Trans, t } from '@lingui/macro'
-import { Button, FormControl, InputLabel, MenuItem, Popover, Select, Stack } from '@mui/material'
+import { Checkbox, FormControl, InputLabel, MenuItem, OutlinedInput, Select, Stack, alpha } from '@mui/material'
 import { DateTimeRangePicker } from '@mui/x-date-pickers-pro'
 import dayjs from 'dayjs'
-import { useEffect, useState } from 'react'
 
 interface InventoryFormChangeValueProps {
-  open: HTMLElement | null
-  searchParamsChange: string | null
+  searchParamsChanges: string[] | null
   searchParamsAfter: string | null
   searchParamsBefore: string | null
-  onChange: (searchParamsChange: string | null, searchParamsAfter: string | null, searchParamsBefore: string | null) => void
-  onClose: () => void
+  onChange: (searchParamsChanges: string[], searchParamsAfter: string | null, searchParamsBefore: string | null) => void
 }
+
+const getOptions = () => [
+  {
+    label: t`Node Created`,
+    value: 'node_created',
+  },
+  {
+    label: t`Node Updated`,
+    value: 'node_updated',
+  },
+  {
+    label: t`Node Deleted`,
+    value: 'node_deleted',
+  },
+  {
+    label: t`Node Vulnerable`,
+    value: 'node_vulnerable',
+  },
+  {
+    label: t`Node Compliant`,
+    value: 'node_compliant',
+  },
+]
 
 export const InventoryFormChangeValue = ({
   onChange,
-  onClose,
-  open,
   searchParamsAfter,
   searchParamsBefore,
-  searchParamsChange,
+  searchParamsChanges,
 }: InventoryFormChangeValueProps) => {
-  const [change, setChange] = useState(searchParamsChange ?? '')
-  const [after, setAfter] = useState(searchParamsAfter)
-  const [before, setBefore] = useState(searchParamsBefore)
-  useEffect(() => {
-    setChange(searchParamsChange ?? '')
-  }, [searchParamsChange])
-  useEffect(() => {
-    setAfter(searchParamsAfter)
-  }, [searchParamsAfter])
-  useEffect(() => {
-    setBefore(searchParamsBefore)
-  }, [searchParamsBefore])
-  const onSubmit = () => {
-    onChange(change, after, before)
-    onClose()
-  }
-
+  const options = getOptions()
   return (
-    <Popover open={!!open} anchorEl={open} anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }} onClose={onSubmit}>
-      <Stack
-        p={1}
-        spacing={1}
-        component="form"
-        onSubmit={(e) => {
-          e.preventDefault()
-          onSubmit()
-        }}
-      >
-        <Stack direction="row" flexWrap="wrap" overflow="auto" pt={2}>
-          <FormControl>
-            <InputLabel id="change-type">
-              <Trans>Change Type</Trans>
-            </InputLabel>
-            <Select
-              sx={{ minWidth: 200, mb: 1, mr: 1, height: '100%' }}
-              value={change}
-              variant="outlined"
-              onChange={(e) => setChange(e.target.value)}
-              size="small"
-              autoFocus={!change}
+    <Stack py={1} width="100%" flexGrow={1} direction="row" flexWrap="wrap" overflow="auto">
+      <FormControl>
+        <InputLabel id="change-type" color="primary" sx={{ color: 'primary.main', mt: '2px', fontSize: 14, fontWeight: 700 }}>
+          <Trans>Change Type</Trans>
+        </InputLabel>
+        <Select
+          sx={{
+            fontSize: 14,
+            minWidth: 200,
+            mb: 1,
+            mr: 1,
+            height: '100%',
+            '& fieldset': {
+              borderColor: ({ palette }) => alpha(palette.primary.main, 0.5),
+              borderStyle: 'solid',
+              borderWidth: 1,
+              boxShadow: 3,
+              borderRadius: 1,
+            },
+            '& svg': {
+              color: 'primary.main',
+            },
+          }}
+          value={searchParamsChanges ?? []}
+          multiple
+          variant="outlined"
+          onChange={(e) =>
+            onChange(typeof e.target.value === 'string' ? [e.target.value] : e.target.value, searchParamsAfter, searchParamsBefore)
+          }
+          input={
+            <OutlinedInput
               label={t`Change Type`}
-              labelId="change-type"
-            >
-              <MenuItem value="node_created">
-                <Trans>Node Created</Trans>
-              </MenuItem>
-              <MenuItem value="node_updated">
-                <Trans>Node Updated</Trans>
-              </MenuItem>
-              <MenuItem value="node_deleted">
-                <Trans>Node Deleted</Trans>
-              </MenuItem>
-              <MenuItem value="node_vulnerable">
-                <Trans>Node Vulnerable</Trans>
-              </MenuItem>
-              <MenuItem value="node_compliant">
-                <Trans>Node Compliant</Trans>
-              </MenuItem>
-            </Select>
-          </FormControl>
-          <DateTimeRangePicker
-            sx={{ mb: 1 }}
-            value={[after ? dayjs(after) : null, before ? dayjs(before) : null]}
-            onChange={([after, before]) => {
-              setAfter(after?.toISOString() ?? null)
-              setBefore(before?.toISOString() ?? null)
-            }}
-          />
-        </Stack>
-        <Stack direction="row" justifyContent="space-between" spacing={1}>
-          <Stack direction="row" spacing={1} justifyContent="end">
-            <Button
-              color="error"
-              variant="outlined"
-              onClick={() => {
-                onClose()
+              color="primary"
+              slotProps={{
+                input: {
+                  sx: {
+                    color: 'primary.main',
+                    pl: 2,
+                    pr: 0.5,
+                    py: 0.75,
+                    fontWeight: 700,
+                  },
+                },
               }}
-            >
-              <Trans>Cancel</Trans>
-            </Button>
-            <Button
-              color="warning"
-              variant="outlined"
-              onClick={() => {
-                setAfter(null)
-                setBefore(null)
-                setChange('')
-              }}
-            >
-              <Trans>clear</Trans>
-            </Button>
-          </Stack>
-          <Stack direction="row" spacing={1} justifyContent="end">
-            <Button color="primary" variant="contained" type="submit" disabled={!change || !after || !before}>
-              <Trans>Submit</Trans>
-            </Button>
-          </Stack>
-        </Stack>
-      </Stack>
-    </Popover>
+            />
+          }
+          renderValue={(selected) => selected.map((item) => options.find((option) => option.value === item)?.label ?? item).join(', ')}
+          size="small"
+          autoFocus={!searchParamsChanges}
+          labelId="change-type"
+        >
+          {options.map((option) => (
+            <MenuItem value={option.value} dense>
+              <Checkbox checked={(searchParamsChanges?.indexOf(option.value) ?? -1) > -1} size="small" />
+              {option.label}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <DateTimeRangePicker
+        sx={{ mb: 1 }}
+        slotProps={{
+          fieldSeparator: {
+            fontWeight: 700,
+            color: 'primary.main',
+            sx: {
+              mr: '-8px !important',
+              ml: '8px !important',
+            },
+          },
+          textField: {
+            InputLabelProps: {
+              size: 'small',
+              sx: {
+                mt: '2px',
+                fontSize: 14,
+                fontWeight: 700,
+                color: 'primary.main',
+              },
+            },
+            inputProps: {
+              sx: {
+                height: 32,
+                pl: 2,
+                pr: 0.5,
+                py: 0.75,
+                fontSize: 14,
+                fontWeight: 700,
+                color: 'primary.main',
+              },
+            },
+          },
+        }}
+        value={[searchParamsAfter ? dayjs(searchParamsAfter) : null, searchParamsBefore ? dayjs(searchParamsBefore) : null]}
+        onChange={([after, before]) => {
+          onChange(searchParamsChanges ?? [], after?.toISOString() ?? null, before?.toISOString() ?? null)
+        }}
+      />
+    </Stack>
   )
 }
