@@ -36,9 +36,6 @@ export const EventButton = () => {
               if (hasProgress) {
                 newEvents[foundIndex] = ev
               } else {
-                void queryClient.invalidateQueries({
-                  predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace'),
-                })
                 newEvents.splice(foundIndex, 1)
               }
             } else if (hasProgress) {
@@ -48,6 +45,11 @@ export const EventButton = () => {
           })
           break
         }
+        case 'tenant_accounts_collected':
+          void queryClient.invalidateQueries({
+            predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace'),
+          })
+          break
         case 'aws_account_configured':
           void queryClient.invalidateQueries({
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
