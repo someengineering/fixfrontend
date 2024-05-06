@@ -11,8 +11,8 @@ import { ResourceDetailChangeLogSelectedHistoryAccordion } from './ResourceDetai
 type ResourceDetailChangeLogSelectedHistoryDiffProps = WorkspaceInventoryNodeHistory<'node_vulnerable'>['diff']
 
 export const ResourceDetailChangeLogSelectedHistoryDiff = ({
-  node_compliant,
-  node_vulnerable,
+  node_compliant = [],
+  node_vulnerable = [],
 }: ResourceDetailChangeLogSelectedHistoryDiffProps) => {
   const { selectedWorkspace } = useUserProfile()
   const { checkIds, benchmarksIds } = useMemo(
