@@ -46,7 +46,7 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError, 
         try {
           updateQuery(value)
         } catch (e) {
-          console.error(e, value)
+          console.info(e, value)
         }
         timeoutRef.current = undefined
       }, panelUI.inputChangeDebounce)
@@ -81,7 +81,7 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError, 
     try {
       updateQuery(!searchCrit ? '' : searchCrit)
     } catch (e) {
-      console.error(e, !searchCrit ? '' : searchCrit)
+      console.info(e, !searchCrit ? '' : searchCrit)
     }
   }, [searchCrit, updateQuery])
 
