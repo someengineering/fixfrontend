@@ -22,7 +22,7 @@ import {
 } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { Fragment, MutableRefObject, useMemo, useRef, useState } from 'react'
+import { Fragment, MutableRefObject, useRef, useState } from 'react'
 import { AwsLogo } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
@@ -185,7 +185,6 @@ interface ChangePaymentMethodModal {
   productTier: ProductTier
   selectedProductTier: ProductTier
   showModalRef: MutableRefObject<((show?: boolean | undefined) => void) | undefined>
-  noWorkspaceMethod: boolean
   isUpgrade: boolean
   defaultOpen?: boolean
   nextBillingCycle: Date
@@ -197,9 +196,8 @@ const ChangePaymentMethodModal = ({
   selectedProductTier,
   selectedWorkspacePaymentMethod,
   // awsPaymentMethod,
-  stripePaymentMethod,
+  // stripePaymentMethod,
   showModalRef,
-  noWorkspaceMethod,
   isUpgrade,
   defaultOpen,
   nextBillingCycle,
@@ -208,9 +206,7 @@ const ChangePaymentMethodModal = ({
   const {
     i18n: { locale },
   } = useLingui()
-  const [paymentMethod, _setPaymentMethod] = useState<PaymentMethod>(
-    selectedWorkspacePaymentMethod ?? { method: 'stripe', subscription_id: stripePaymentMethod },
-  )
+  const [paymentMethod, _setPaymentMethod] = useState<PaymentMethod>(selectedWorkspacePaymentMethod)
   const { showSnackbar } = useSnackbar()
   const { selectedWorkspace } = useUserProfile()
   const queryClient = useQueryClient()
@@ -241,33 +237,37 @@ const ChangePaymentMethodModal = ({
       width={800}
       actions={
         <Stack direction="row" spacing={1} justifyContent="space-between" width="100%" pt={1}>
-          <Button variant="outlined" onClick={() => showModalRef.current?.(false)}>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              onClose?.()
+              showModalRef.current?.(false)
+            }}
+          >
             Cancel
           </Button>
-          {!noWorkspaceMethod ? (
-            <LoadingButton
-              loadingPosition="end"
-              loading={changeBillingIsPending}
-              color={isUpgrade ? 'success' : 'error'}
-              variant="contained"
-              onClick={() => {
-                changeBilling({
-                  product_tier: selectedProductTier,
-                  workspaceId: selectedWorkspace?.id ?? '',
-                })
-              }}
-              size="large"
-              sx={{ width: 180 }}
-              disabled={paymentMethod.method === 'none' || !paymentMethod.subscription_id}
-              endIcon={<></>}
-            >
-              {isUpgrade === null ? <Trans>Change Product Tier</Trans> : isUpgrade ? <Trans>Upgrade</Trans> : <Trans>Downgrade</Trans>}
-            </LoadingButton>
-          ) : null}
+          <LoadingButton
+            loadingPosition="end"
+            loading={changeBillingIsPending}
+            color={isUpgrade ? 'success' : 'error'}
+            variant="contained"
+            onClick={() => {
+              changeBilling({
+                product_tier: selectedProductTier,
+                workspaceId: selectedWorkspace?.id ?? '',
+              })
+            }}
+            size="large"
+            sx={{ width: 180 }}
+            disabled={paymentMethod.method === 'none' || !paymentMethod.subscription_id}
+            endIcon={<></>}
+          >
+            {isUpgrade ? <Trans>Upgrade</Trans> : <Trans>Downgrade</Trans>}
+          </LoadingButton>
         </Stack>
       }
-      title={noWorkspaceMethod ? t`Payment Method Required` : t`Change product tier`}
-      description={noWorkspaceMethod ? null : <Trans>You are about to change workspace's product tier</Trans>}
+      title={t`Change Product Tier`}
+      description={<Trans>You are about to change workspace's product tier</Trans>}
     >
       {/* <FormControl>
         <InputLabel id="payment_method" color="primary" sx={{ color: 'primary.main' }} size="small">
@@ -343,9 +343,10 @@ const ChangePaymentMethodModal = ({
 interface ChangePaymentNoMethodModalProps {
   showModalRef: MutableRefObject<((show?: boolean | undefined) => void) | undefined>
   defaultOpen?: boolean
+  onClose?: () => void
 }
 
-const ChangePaymentNoMethodModal = ({ showModalRef, defaultOpen }: ChangePaymentNoMethodModalProps) => {
+const ChangePaymentNoMethodModal = ({ showModalRef, defaultOpen, onClose }: ChangePaymentNoMethodModalProps) => {
   const [paymentMethod, _setPaymentMethod] = useState<PaymentMethod>({ method: 'stripe', subscription_id: '' })
   const { selectedWorkspace } = useUserProfile()
 
@@ -353,8 +354,18 @@ const ChangePaymentNoMethodModal = ({ showModalRef, defaultOpen }: ChangePayment
     <Modal
       defaultOpen={defaultOpen}
       openRef={showModalRef}
+      onClose={onClose}
       actions={
-        <>
+        <Stack direction="row" spacing={1} justifyContent={paymentMethod.method === 'none' ? 'end' : 'space-between'} width="100%" pt={1}>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              onClose?.()
+              showModalRef.current?.(false)
+            }}
+          >
+            Cancel
+          </Button>
           {paymentMethod.method === 'none' ? null : (
             <Button
               href={
@@ -367,15 +378,21 @@ const ChangePaymentNoMethodModal = ({ showModalRef, defaultOpen }: ChangePayment
               color="primary"
               endIcon={<OpenInNewIcon />}
             >
-              {paymentMethod.method === 'aws_marketplace' ? <Trans>To AWS Marketplace</Trans> : <Trans>Add Credit/Debit card</Trans>}
+              {paymentMethod.method === 'aws_marketplace' ? (
+                <Trans>To AWS Marketplace</Trans>
+              ) : (
+                <Trans>Add a New Credit or Debit Card</Trans>
+              )}
             </Button>
           )}
-        </>
+        </Stack>
       }
       title={t`Payment Method Required`}
       description={<Trans>You need a payment method to change your product tier</Trans>}
     >
-      <Trans>Please add a payment method in order to change the workspace's product tier</Trans>
+      <Typography py={2} fontWeight={600}>
+        <Trans>Please add a payment method to switch your workspace's product tier</Trans>
+      </Typography>
     </Modal>
   )
 }
@@ -383,34 +400,40 @@ const ChangePaymentNoMethodModal = ({ showModalRef, defaultOpen }: ChangePayment
 export const ChangePaymentMethod = ({
   defaultProductTier,
   selectedWorkspacePaymentMethod,
-  workspacePaymentMethods,
+  // workspacePaymentMethods,
   nextBillingCycle,
 }: ChangePaymentMethodProps) => {
   const { selectedWorkspace } = useUserProfile()
   const tierFromSearchParams = useGetProductTierFromSearchParams()
   const showModalRef = useRef<(show?: boolean | undefined) => void>()
   const showNoMethodModalRef = useRef<(show?: boolean | undefined) => void>()
-  const [productTier, setProductTier] = useState<ProductTier>(() => tierFromSearchParams ?? defaultProductTier)
+
+  const [awsMarketPlacePaymentMethod, stripePaymentMethod] = [
+    selectedWorkspacePaymentMethod.method === 'aws_marketplace' ? selectedWorkspacePaymentMethod : undefined,
+    selectedWorkspacePaymentMethod.method === 'stripe' ? selectedWorkspacePaymentMethod : undefined,
+  ] // useMemo(() => {
+  //   let awsMarketPlacePaymentMethod: PaymentMethod | undefined
+  //   let stripePaymentMethod: PaymentMethod | undefined
+  //   workspacePaymentMethods.forEach((paymentMethod) => {
+  //     if (paymentMethod.method === 'aws_marketplace') {
+  //       awsMarketPlacePaymentMethod = paymentMethod
+  //     } else if (paymentMethod.method === 'stripe') {
+  //       stripePaymentMethod = paymentMethod
+  //     }
+  //   })
+  //   return [awsMarketPlacePaymentMethod, stripePaymentMethod]
+  // }, [workspacePaymentMethods])
+
+  const noWorkspaceMethod = selectedWorkspacePaymentMethod.method !== 'stripe' // selectedWorkspacePaymentMethod.method === 'none' // !stripePaymentMethod && !awsMarketPlacePaymentMethod
+
+  const [productTier, setProductTier] = useState<ProductTier>(() =>
+    noWorkspaceMethod ? defaultProductTier : tierFromSearchParams ?? defaultProductTier,
+  )
 
   const isUpgrade =
     productTier === defaultProductTier || (defaultProductTier === 'Trial' && productTier === 'Free')
       ? null
       : allProductTiers.indexOf(productTier) > allProductTiers.indexOf(defaultProductTier)
-
-  const [awsMarketPlacePaymentMethod, stripePaymentMethod] = useMemo(() => {
-    let awsMarketPlacePaymentMethod: PaymentMethod | undefined
-    let stripePaymentMethod: PaymentMethod | undefined
-    workspacePaymentMethods.forEach((paymentMethod) => {
-      if (paymentMethod.method === 'aws_marketplace') {
-        awsMarketPlacePaymentMethod = paymentMethod
-      } else if (paymentMethod.method === 'stripe') {
-        stripePaymentMethod = paymentMethod
-      }
-    })
-    return [awsMarketPlacePaymentMethod, stripePaymentMethod]
-  }, [workspacePaymentMethods])
-
-  const noWorkspaceMethod = !stripePaymentMethod // && !awsMarketPlacePaymentMethod
 
   return (
     <>
@@ -420,29 +443,43 @@ export const ChangePaymentMethod = ({
           return (
             <Fragment key={curProductTier}>
               {i ? <PaymentMethodDivider /> : null}
-              <ButtonBase
-                LinkComponent={Stack}
-                sx={{
-                  alignItems: 'baseline',
-                  textAlign: 'left',
-                  justifyContent: 'stretch',
-                  px: { xs: 2, lg: 4 },
-                  py: { xs: 2, lg: 4 },
-                  bgcolor: selectedProductTier
-                    ? ({
-                        palette: {
-                          primary: { main },
-                        },
-                      }) => alpha(main, 0.15)
-                    : undefined,
-                  borderRadius: 2,
-                  boxShadow: (theme) => (selectedProductTier ? theme.shadows[12] : undefined),
-                  transition: (theme) => theme.transitions.create(['box-shadow', 'background-color']),
-                }}
-                onClick={noWorkspaceMethod ? () => showNoMethodModalRef.current?.(true) : () => setProductTier(curProductTier)}
-              >
-                <ProductTierComp productTier={curProductTier} />
-              </ButtonBase>
+              {selectedProductTier ? (
+                <Stack
+                  sx={{
+                    alignItems: 'baseline',
+                    textAlign: 'left',
+                    justifyContent: 'stretch',
+                    px: { xs: 2, lg: 4 },
+                    py: { xs: 2, lg: 4 },
+                    bgcolor: ({
+                      palette: {
+                        primary: { main },
+                      },
+                    }) => alpha(main, 0.15),
+                    borderRadius: 2,
+                    boxShadow: 12,
+                    transition: (theme) => theme.transitions.create(['box-shadow', 'background-color']),
+                  }}
+                >
+                  <ProductTierComp productTier={curProductTier} />
+                </Stack>
+              ) : (
+                <ButtonBase
+                  LinkComponent={Stack}
+                  sx={{
+                    alignItems: 'baseline',
+                    textAlign: 'left',
+                    justifyContent: 'stretch',
+                    px: { xs: 2, lg: 4 },
+                    py: { xs: 2, lg: 4 },
+                    borderRadius: 2,
+                    transition: (theme) => theme.transitions.create(['box-shadow', 'background-color']),
+                  }}
+                  onClick={noWorkspaceMethod ? () => showNoMethodModalRef.current?.(true) : () => setProductTier(curProductTier)}
+                >
+                  <ProductTierComp productTier={curProductTier} />
+                </ButtonBase>
+              )}
             </Fragment>
           )
         })}
@@ -451,6 +488,7 @@ export const ChangePaymentMethod = ({
         <ChangePaymentNoMethodModal
           showModalRef={showNoMethodModalRef}
           defaultOpen={tierFromSearchParams && isUpgrade !== null ? true : undefined}
+          onClose={() => setProductTier(defaultProductTier)}
         />
       ) : (
         <Stack alignItems="center" spacing={2} pt={4}>
@@ -501,7 +539,6 @@ export const ChangePaymentMethod = ({
           nextBillingCycle={nextBillingCycle}
           onClose={() => setProductTier(defaultProductTier)}
           isUpgrade={isUpgrade}
-          noWorkspaceMethod={noWorkspaceMethod}
           productTier={defaultProductTier}
           selectedProductTier={productTier}
           selectedWorkspacePaymentMethod={selectedWorkspacePaymentMethod}

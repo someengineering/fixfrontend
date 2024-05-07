@@ -215,16 +215,16 @@ msgstr "Aktionen"
 msgid "Activate"
 msgstr "aktivieren Sie"
 
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:384
+msgid "Add a New Credit or Debit Card"
+msgstr ""
+
 #: src/shared/add-account-button/AddAccountButton.tsx:16
 msgid "Add an account"
 msgstr "Füge ein Konto hinzu"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:472
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:510
 msgid "Add AWS Marketplace payment method"
-msgstr ""
-
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:370
-msgid "Add Credit/Debit card"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:33
@@ -304,7 +304,7 @@ msgstr "Eine E-Mail wurde mit einem 'Passwort zurücksetzen'-Button an Ihren Pos
 msgid "An error occurred while connecting to {0}"
 msgstr "Beim Herstellen der Verbindung zu {0} ist ein Fehler aufgetreten."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:225
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:221
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:31
 msgid "An error occurred, please try again later."
 msgstr "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut."
@@ -421,10 +421,6 @@ msgid "Change"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:269
-msgid "Change product tier"
-msgstr ""
-
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:264
 msgid "Change Product Tier"
 msgstr "Produktstufe ändern"
 
@@ -700,7 +696,7 @@ msgstr "Möchten Sie diesen Benutzer löschen?"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:264
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:265
 msgid "Downgrade"
 msgstr "Downgrade"
 
@@ -1053,11 +1049,11 @@ msgstr "Recheninstanzen und Datenbanken mit geringer Auslastung"
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS Konto angemeldet sind, bevor Sie auf die Schaltfläche DEPLOY STACK klicken."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:472
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:510
 msgid "Manage AWS Market place payment method"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:489
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:527
 msgid "Manage card details"
 msgstr ""
 
@@ -1285,8 +1281,7 @@ msgstr "Passwort"
 msgid "Payment is required for your workspace, Please contact the workspace owner"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:269
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:375
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:390
 msgid "Payment Method Required"
 msgstr "Zahlungsmethode erforderlich"
 
@@ -1301,8 +1296,8 @@ msgstr "Ausstehende Einladungen"
 msgid "Pick one of the recommendations to the right and improve your security"
 msgstr "Wählen Sie eine der Empfehlungen rechts aus und verbessern Sie Ihre Sicherheit"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:378
-msgid "Please add a payment method in order to change the workspace's product tier"
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:394
+msgid "Please add a payment method to switch your workspace's product tier"
 msgstr ""
 
 #: src/pages/auth/login/LoginPage.tsx:187
@@ -1345,7 +1340,7 @@ msgstr "Produktsupport per E-Mail und Live-Chat"
 msgid "Product support via email, live chat, and video call"
 msgstr "Produktsupport per E-Mail, Live-Chat und Videoanruf"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:221
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:217
 msgid "Product tier changed to {selectedProductTier}"
 msgstr ""
 
@@ -1632,7 +1627,7 @@ msgstr "Stufe"
 msgid "To access this resource, please ensure that you are logged into the AWS account: {account}"
 msgstr "Um auf diese Ressource zuzugreifen, stellen Sie bitte sicher, dass Sie beim AWS-Konto angemeldet sind: {account}"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:370
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:382
 msgid "To AWS Marketplace"
 msgstr "Zum AWS Marketplace"
 
@@ -1720,7 +1715,7 @@ msgstr "E-Mail aktualisieren"
 msgid "Update Password"
 msgstr "Kennwort aktualisieren"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:264
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:265
 msgid "Upgrade"
 msgstr "Aktualisierung"
 
@@ -1839,7 +1834,7 @@ msgstr "Sie haben Ihr Passwort erfolgreich zurückgesetzt."
 msgid "You have successfully verified your account."
 msgstr "Sie haben Ihr Konto erfolgreich verifiziert."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:376
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:391
 msgid "You need a payment method to change your product tier"
 msgstr ""
 
