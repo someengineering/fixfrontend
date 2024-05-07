@@ -51,7 +51,7 @@ jobs:
         run: yarn format:check
 
       - name: Run Test Build
-        run: PUBLIC_URL=${{ vars.PUBLIC_URL }}/${{ github.sha }}/ yarn build
+        run: PUBLIC_URL=${{ vars.PUBLIC_TEST_PR_URL }}/${{ github.event.number }}/ yarn build
 
       - name: Run Test Storybook Build
         run: yarn build-storybook
