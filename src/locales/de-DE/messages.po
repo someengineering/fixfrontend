@@ -1262,10 +1262,6 @@ msgstr "Eigentümer"
 msgid "Password"
 msgstr "Passwort"
 
-#: src/core/events/WebSocketEvents.tsx:131
-#~ msgid "Payment is required for your workspace, Please contact the workspace owner"
-#~ msgstr ""
-
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:301
 msgid "Payment Method Required"
 msgstr "Zahlungsmethode erforderlich"
@@ -1804,10 +1800,6 @@ msgstr "Sie können TOTP über den OTP-Code deaktivieren"
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:91
 msgid "You can deactivate TOTP via recovery code"
 msgstr "Sie können TOTP über den Wiederherstellungscode deaktivieren"
-
-#: src/core/events/WebSocketEvents.tsx:132
-#~ msgid "You don't have access to this workspace"
-#~ msgstr ""
 
 #: src/pages/auth/login/LoginPage.tsx:207
 msgid "You have successfully reset your password."
