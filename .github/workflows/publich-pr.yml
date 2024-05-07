@@ -1,4 +1,4 @@
-name: 'PR Checks'
+name: 'Publish PR'
 on: [pull_request]
 
 jobs:
@@ -38,17 +38,15 @@ jobs:
           echo "[]" > mock-apis/data/table.json
           echo "[]" > mock-apis/data/tags.json
 
-      - name: Run tests
-        run: yarn test
+      - name: Run Test Build
+        run: PUBLIC_URL=${{ vars.PUBLIC_TEST_PR_URL }}/${{ github.event.number }}/ yarn build
 
-      - name: Run Lint
-        run: yarn lint
-
-      - name: Run Lint TSC
-        run: yarn lint:tsc
-
-      - name: Run check prettier
-        run: yarn format:check
-
-      - name: Run Test Storybook Build
-        run: yarn build-storybook
+      - name: Publish Test Build
+        uses: BetaHuhn/do-spaces-action@v2
+        with:
+          access_key: ${{ secrets.FIX_UI_DO_SPACES_KEY }}
+          secret_key: ${{ secrets.FIX_UI_DO_SPACES_SECRET }}
+          space_name: ${{ secrets.FIX_UI_DO_SPACE_NAME }}
+          space_region: ${{ secrets.FIX_UI_DO_SPACE_REGION }}
+          out_dir: fix-test-ui-build/${{github.event.number}}
+          source: dist
