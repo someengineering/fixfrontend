@@ -977,7 +977,7 @@ msgid "Integration Key"
 msgstr "Integrationsschlüssel"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:343
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:240
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:244
 msgid "Invalid Value"
 msgstr "Ungültiger Wert"
 
@@ -1685,6 +1685,13 @@ msgstr "Nicht angehängte elastische IPs"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:45
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:71
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:132
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:151
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:249
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:293
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:300
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:142
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:147
 #: src/pages/panel/inventory/InventoryTable.tsx:137
 msgid "Undefined"
 msgstr ""
@@ -1733,7 +1740,7 @@ msgstr "Benachrichtigung über Benutzereinstellungen"
 msgid "Users"
 msgstr "Benutzer"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:178
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:186
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:154
 msgid "Value"
 msgstr "Wert"

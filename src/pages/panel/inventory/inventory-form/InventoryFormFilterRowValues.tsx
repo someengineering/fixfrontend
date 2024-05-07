@@ -1,4 +1,4 @@
-import { Trans } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
 import { TextField } from '@mui/material'
 import { DurationPicker } from 'src/shared/duration-picker'
 import { Predicate } from 'src/shared/fix-query-parser'
@@ -57,26 +57,30 @@ export function InventoryFormFilterRowValues({
                     : null
                 : fqn === 'boolean'
                   ? typeof value === 'string'
-                    ? value.toLowerCase() === 'null'
+                    ? value.toLowerCase() === 'null' || value.toLowerCase() === 'undefined'
                       ? null
                       : value.toLowerCase() === 'true'
                     : value
-                      ? value.map((item) => (item.toLowerCase() === 'null' ? null : item.toLowerCase() === 'true'))
+                      ? value.map((item) =>
+                          item.toLowerCase() === 'null' || item.toLowerCase() === 'undefined' ? null : item.toLowerCase() === 'true',
+                        )
                       : null
                   : fqn === 'date' || fqn === 'datetime'
                     ? typeof value === 'string'
-                      ? value === 'null'
+                      ? value.toLowerCase() === 'null' || value.toLowerCase() === 'undefined'
                         ? null
                         : new Date(value).toISOString()
                       : value
-                        ? value.map((item) => (item === 'null' ? null : new Date(item).toISOString()))
+                        ? value.map((item) =>
+                            item.toLowerCase() === 'null' || item.toLowerCase() === 'undefined' ? null : new Date(item).toISOString(),
+                          )
                         : null
                     : typeof value === 'string'
-                      ? value === 'null'
+                      ? value.toLowerCase() === 'null' || value.toLowerCase() === 'undefined'
                         ? null
                         : value
                       : value
-                        ? value.map((item) => (item === 'null' ? null : item))
+                        ? value.map((item) => (item.toLowerCase() === 'null' || item.toLowerCase() === 'undefined' ? null : item))
                         : value,
             args: data.args,
           }),
@@ -135,10 +139,14 @@ export function InventoryFormFilterRowValues({
               ? getAutocompleteValueFromKey(data.path.toString() || '', preItems, currentValue, true)
               : Array.isArray(currentValue)
                 ? currentValue?.map((value) => ({
-                    label: value === 'null' ? 'NULL' : value,
+                    label: value.toLowerCase() === 'null' || value.toLowerCase() === 'undefined' ? t`Undefined` : value,
                     value: value ?? 'null',
                   }))
-                : { label: currentValue === 'null' ? 'NULL' : currentValue, value: currentValue } || null
+                : {
+                    label:
+                      currentValue.toLowerCase() === 'null' || currentValue.toLowerCase() === 'undefined' ? t`Undefined` : currentValue,
+                    value: currentValue,
+                  } || null
           }
           defaultOptions={preItems ? getAutocompleteDataFromKey(data.path.toString() || '', preItems) : undefined}
           propertyName={data.path.toString() || ''}
