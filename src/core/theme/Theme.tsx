@@ -130,6 +130,20 @@ export function Theme({ children, emotionCache }: ThemeProps) {
             },
           },
         },
+        MuiButton: {
+          styleOverrides: {
+            root: {
+              textTransform: 'none',
+            },
+          },
+        },
+        MuiTab: {
+          styleOverrides: {
+            root: {
+              textTransform: 'none',
+            },
+          },
+        },
         MuiBackdrop: {
           styleOverrides: {
             root: {

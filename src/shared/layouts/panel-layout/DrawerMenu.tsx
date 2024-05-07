@@ -15,6 +15,7 @@ import {
   Tooltip,
 } from '@mui/material'
 import { MouseEvent as ReactMouseEvent, useEffect, useState } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
 import { useMatch, useSearchParams } from 'react-router-dom'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
@@ -30,9 +31,13 @@ type DrawerMenuItemProps = DrawerMenuProps & MenuListItem
 
 const menuListMap = ({ open, onClose }: DrawerMenuProps, item: MenuListItem | MenuModalListItem, index: number) =>
   item.route === 'modal' ? (
-    <DrawerModalMenuItem open={open} onClose={onClose} key={index} {...(item as MenuModalListItem)} route="modal" />
+    <ErrorBoundary fallbackRender={() => null} key={index}>
+      <DrawerModalMenuItem open={open} onClose={onClose} {...(item as MenuModalListItem)} route="modal" />
+    </ErrorBoundary>
   ) : (
-    <DrawerMenuItem open={open} onClose={onClose} key={index} {...item} />
+    <ErrorBoundary fallbackRender={() => null} key={index}>
+      <DrawerMenuItem open={open} onClose={onClose} {...item} />
+    </ErrorBoundary>
   )
 
 const DrawerMenuItem = ({
@@ -102,7 +107,7 @@ const DrawerMenuItem = ({
                 setCollapse((prev) => !prev)
               }}
             >
-              {collapse ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+              {collapse ? <ExpandLessIcon /> : <ExpandMoreIcon />}
             </IconButton>
           ) : null}
         </ListItemButton>

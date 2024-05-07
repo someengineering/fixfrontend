@@ -9,6 +9,6 @@ export const putWorkspaceSubscriptionMutation = async ({
   subscriptionId: string
 }) => {
   return workspaceId
-    ? axiosWithAuth.put<string>(endPoints.workspaces.workspace(workspaceId).subscription(subscriptionId)).then((res) => res.data)
+    ? axiosWithAuth.put<string>(endPoints.workspaces.workspace(workspaceId).subscription.item(subscriptionId)).then((res) => res.data)
     : null
 }

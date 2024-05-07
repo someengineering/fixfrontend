@@ -7,32 +7,34 @@ import { AccountsTableItem } from './AccountsTableItem'
 export const AccountsTable = () => {
   const { selectedWorkspace } = useUserProfile()
   const { data } = useSuspenseQuery({
-    queryKey: ['workspace-cloud-accounts', selectedWorkspace?.id],
+    queryKey: ['workspace-cloud-accounts', selectedWorkspace?.id, false],
     queryFn: getWorkspaceCloudAccountsQuery,
   })
 
   return (
-    <>
-      {data.recent.length ? (
-        <AccountsTableItem
-          data={data.recent}
-          isTop
-          isBottom={!data.discovered.length && !data.added.length}
-          title={t`Recently added accounts`}
-        />
-      ) : null}
-      {data.added.length ? (
-        <AccountsTableItem data={data.added} isTop={!data.recent.length} isBottom={!data.discovered.length} title={t`Added accounts`} />
-      ) : null}
-      {data.discovered.length ? (
-        <AccountsTableItem
-          data={data.discovered}
-          isTop={!data.recent.length && !data.added.length}
-          isBottom
-          title={t`Discovered but unconfigured accounts`}
-          isNotConfigured
-        />
-      ) : null}
-    </>
+    typeof data !== 'string' && (
+      <>
+        {data?.recent.length ? (
+          <AccountsTableItem
+            data={data.recent}
+            isTop
+            isBottom={!data.discovered.length && !data.added.length}
+            title={t`Recently added accounts`}
+          />
+        ) : null}
+        {data?.added.length ? (
+          <AccountsTableItem data={data.added} isTop={!data.recent.length} isBottom={!data.discovered.length} title={t`Added accounts`} />
+        ) : null}
+        {data?.discovered.length ? (
+          <AccountsTableItem
+            data={data.discovered}
+            isTop={!data.recent.length && !data.added.length}
+            isBottom
+            title={t`Discovered but unconfigured accounts`}
+            isNotConfigured
+          />
+        ) : null}
+      </>
+    )
   )
 }
