@@ -235,7 +235,7 @@ msgstr ""
 msgid "Add Manually"
 msgstr "Manuell hinzufügen"
 
-#: src/pages/panel/accounts/AccountsTable.tsx:26
+#: src/pages/panel/accounts/AccountsTable.tsx:25
 msgid "Added accounts"
 msgstr "Konten hinzugefügt"
 
@@ -340,7 +340,7 @@ msgstr "Automatisches Cloud Setup"
 msgid "AWS Marketplace"
 msgstr "AWS Marketplace"
 
-#: src/shared/constants/consts.ts:11
+#: src/shared/constants/consts.ts:6
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
@@ -660,7 +660,7 @@ msgstr "Trennen"
 msgid "Disconnect Service"
 msgstr "Dienst trennen"
 
-#: src/pages/panel/accounts/AccountsTable.tsx:33
+#: src/pages/panel/accounts/AccountsTable.tsx:32
 msgid "Discovered but unconfigured accounts"
 msgstr "Erkannte, aber nicht konfigurierte Konten"
 
@@ -966,7 +966,7 @@ msgid "Integration Key"
 msgstr "Integrationsschlüssel"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:343
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:240
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:244
 msgid "Invalid Value"
 msgstr "Ungültiger Wert"
 
@@ -1263,8 +1263,8 @@ msgid "Password"
 msgstr "Passwort"
 
 #: src/core/events/WebSocketEvents.tsx:131
-msgid "Payment is required for your workspace, Please contact the workspace owner"
-msgstr ""
+#~ msgid "Payment is required for your workspace, Please contact the workspace owner"
+#~ msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:301
 msgid "Payment Method Required"
@@ -1285,7 +1285,7 @@ msgstr "Wählen Sie eine der Empfehlungen rechts aus und verbessern Sie Ihre Sic
 msgid "Please enter your One-Time-Password or one of your Recovery code."
 msgstr "Bitte geben Sie Ihr One-Time-Passwort oder einen Ihrer Wiederherstellungscodes ein."
 
-#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:58
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:48
 msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgstr "Bitte gehen Sie zur Seite <0>Setup Accounts</0>, um zunächst Ihr Konto einzurichten"
 
@@ -1358,7 +1358,7 @@ msgstr "Erneut authentifizieren"
 msgid "Receipts"
 msgstr "Quittungen"
 
-#: src/pages/panel/accounts/AccountsTable.tsx:22
+#: src/pages/panel/accounts/AccountsTable.tsx:21
 msgid "Recently added accounts"
 msgstr "Kürzlich hinzugefügte Konten"
 
@@ -1589,7 +1589,7 @@ msgstr "Der Stack erfordert die folgenden Parameter"
 msgid "The token that you sent is invalid or have been expired please try again"
 msgstr "Das von Ihnen gesendete Token ist ungültig oder abgelaufen. Bitte versuchen Sie es erneut"
 
-#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:55
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:45
 msgid "There's no account configured for this workspace."
 msgstr "Für diesen Arbeitsbereich ist kein Konto konfiguriert."
 
@@ -1666,6 +1666,13 @@ msgstr "Nicht angehängte elastische IPs"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:45
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:71
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:132
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:151
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:249
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:293
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:300
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:142
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:147
 #: src/pages/panel/inventory/InventoryTable.tsx:137
 msgid "Undefined"
 msgstr ""
@@ -1715,7 +1722,7 @@ msgstr "Benachrichtigung über Benutzereinstellungen"
 msgid "Users"
 msgstr "Benutzer"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:178
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:186
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:154
 msgid "Value"
 msgstr "Wert"
@@ -1799,8 +1806,8 @@ msgid "You can deactivate TOTP via recovery code"
 msgstr "Sie können TOTP über den Wiederherstellungscode deaktivieren"
 
 #: src/core/events/WebSocketEvents.tsx:132
-msgid "You don't have access to this workspace"
-msgstr ""
+#~ msgid "You don't have access to this workspace"
+#~ msgstr ""
 
 #: src/pages/auth/login/LoginPage.tsx:207
 msgid "You have successfully reset your password."
