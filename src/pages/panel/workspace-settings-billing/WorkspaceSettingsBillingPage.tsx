@@ -53,12 +53,7 @@ export default function WorkspaceSettingsBillingPage() {
       />
       <Trans>
         <Typography>Billing cycle: {desc.monthly ? t`Monthly` : t`One time`}</Typography>
-        <Typography>
-          Highest product tier this billing cycle: {title}{' '}
-          {desc.cloudAccounts.additionalCost
-            ? t`(${desc.cloudAccounts.additionalCost.toLocaleString(locale, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })} / account)`
-            : ''}
-        </Typography>
+        <Typography>Highest product tier this billing cycle: {title}</Typography>
       </Trans>
       {desc.monthly ? (
         <Trans>
