@@ -10,7 +10,7 @@ export type UserContextRealValues = {
 
 export interface UserContextValue extends Partial<UserContextRealValues> {
   setAuth: (value: UserContextRealValues, url?: string) => void
-  logout: () => Promise<void>
+  logout: (noWorkspace?: boolean) => Promise<void>
   refreshWorkspaces: () => Promise<GetWorkspacesResponse | undefined>
   selectWorkspace: (id: string) => Promise<GetWorkspaceResponse | undefined>
 }

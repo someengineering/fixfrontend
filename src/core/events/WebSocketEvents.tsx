@@ -1,6 +1,8 @@
+import { t } from '@lingui/macro'
 import { PropsWithChildren, useCallback, useEffect, useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { GTMEventNames, endPoints, env } from 'src/shared/constants'
+import { useSnackbar } from 'src/core/snackbar'
+import { GTMEventNames, apiMessages, endPoints, env } from 'src/shared/constants'
 import { sendToGTM } from 'src/shared/google-tag-manager'
 import { WebSocketEvent } from 'src/shared/types/server'
 import { isAuthenticated as getIsAuthenticated } from 'src/shared/utils/cookie'
@@ -17,6 +19,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
   const listeners = useRef<Record<string, (ev: MessageEvent) => void>>({})
   const messagesToSend = useRef<{ message: string; resolve: (value: string) => void; reject: (err: unknown) => void }[]>([])
   const websocket = useRef<WebSocket>()
+  const { showSnackbar } = useSnackbar()
 
   const handleRemoveListener = useCallback((id: string) => {
     if (websocket.current && listeners.current[id]) {
@@ -123,7 +126,16 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
           })
         }
         if (ev.code === WS_SERVER_CLOSE_CODE_NO_RETRY) {
-          void logout()
+          void showSnackbar(
+            ev.reason === apiMessages.paymentOnHold
+              ? t`Payment is required for your workspace, Please contact the workspace owner`
+              : t`You don't have access to this workspace`,
+            {
+              severity: 'error',
+              autoHideDuration: null,
+            },
+          )
+          void logout(true)
         } else if (ev.code !== WS_CLOSE_CODE_NO_RETRY && !noRetry.current) {
           if (isAuthenticated && selectedWorkspace?.id) {
             window.setTimeout(createWebSocket, retryTimeout)
@@ -195,7 +207,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
     } else {
       noRetry.current = false
     }
-  }, [selectedWorkspace?.id, isAuthenticated, logout])
+  }, [selectedWorkspace?.id, isAuthenticated, logout, showSnackbar])
 
   return (
     <WebSocketEventsContext.Provider value={{ addListener: handleAddListener, websocket, send: handleSendData }}>

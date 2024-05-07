@@ -52,20 +52,23 @@ export function AuthGuard({ children }: PropsWithChildren) {
     nextUrl.current = url
   }, [])
 
-  const handleLogout = useCallback(async () => {
-    navigate({
-      pathname: '/auth/login',
-      search: window.location.search.includes('returnUrl')
-        ? window.location.search
-        : `?returnUrl=${window.encodeURIComponent(window.location.pathname + window.location.search + window.location.hash)}`,
-    })
-    try {
-      await logoutMutation()
-    } finally {
-      clearAllCookies()
-      setAuth(defaultAuth)
-    }
-  }, [navigate])
+  const handleLogout = useCallback(
+    async (noWorkspace?: boolean) => {
+      navigate({
+        pathname: '/auth/login',
+        search: window.location.search.includes('returnUrl')
+          ? window.location.search
+          : `?returnUrl=${window.encodeURIComponent(window.location.pathname + window.location.search + (noWorkspace ? '' : window.location.hash))}`,
+      })
+      try {
+        await logoutMutation()
+      } finally {
+        clearAllCookies()
+        setAuth(defaultAuth)
+      }
+    },
+    [navigate],
+  )
 
   const handleRefreshWorkspaces = useCallback(async (instance?: AxiosInstance) => {
     try {

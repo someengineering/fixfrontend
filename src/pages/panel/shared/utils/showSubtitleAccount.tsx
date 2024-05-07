@@ -15,7 +15,6 @@ export const showSubtitleAccount = (
       <Button
         variant="text"
         size="small"
-        sx={{ textTransform: 'initial' }}
         key={`${accountId}_${i}`}
         onClick={() =>
           navigateSubtitleQuery(

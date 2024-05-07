@@ -127,7 +127,6 @@ export const OverallCard = ({ data }: OverallCardProps) => {
                           <Button
                             variant="text"
                             size="small"
-                            sx={{ textTransform: 'initial' }}
                             key={`${key}_${i}`}
                             onClick={() => navigateSubtitleQuery(`is(${key})`, 'node_vulnerable', navigate)}
                           >
@@ -195,7 +194,6 @@ export const OverallCard = ({ data }: OverallCardProps) => {
                     <Button
                       variant="text"
                       size="small"
-                      sx={{ textTransform: 'initial' }}
                       key={`${key}_${i}`}
                       onClick={() => navigateSubtitleQuery(`is(${key})`, 'node_compliant', navigate)}
                     >

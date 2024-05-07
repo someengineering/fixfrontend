@@ -1,9 +1,8 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+import CreditCardIcon from '@mui/icons-material/CreditCard'
 import DoneIcon from '@mui/icons-material/Done'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
-import TrendingDownIcon from '@mui/icons-material/TrendingDown'
-import UpgradeIcon from '@mui/icons-material/Upgrade'
 import { LoadingButton } from '@mui/lab'
 import {
   Alert,
@@ -11,7 +10,6 @@ import {
   Button,
   ButtonBase,
   Divider,
-  Link,
   List,
   ListItem,
   ListItemIcon,
@@ -24,22 +22,24 @@ import {
 } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { Fragment, useRef, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { Fragment, MutableRefObject, useMemo, useRef, useState } from 'react'
+import { AwsLogo } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
-import { env } from 'src/shared/constants'
+import { endPoints, env } from 'src/shared/constants'
 import { Modal } from 'src/shared/modal'
 import { PaymentMethod, ProductTier } from 'src/shared/types/server'
 import { putWorkspaceBillingMutation } from './putWorkspaceBilling.mutation'
-import { productTierToDescription, productTierToLabel } from './utils'
+import { productTierToDescription, productTierToLabel, useGetProductTierFromSearchParams } from './utils'
 
 interface ChangePaymentMethodProps {
-  workspacePaymentMethod: PaymentMethod
+  selectedWorkspacePaymentMethod: PaymentMethod
+  workspacePaymentMethods: PaymentMethod[]
   defaultProductTier: ProductTier
+  nextBillingCycle: Date
 }
 
-const allProductTiers: ProductTier[] = ['Free', 'Plus', 'Business', 'Enterprise']
+const allProductTiers: readonly ProductTier[] = ['Free', 'Plus', 'Business', 'Enterprise'] as const
 
 interface ProductTierCompProps {
   productTier: ProductTier
@@ -178,18 +178,47 @@ const PaymentMethodDivider = () => {
   )
 }
 
-export const ChangePaymentMethod = ({ defaultProductTier, workspacePaymentMethod }: ChangePaymentMethodProps) => {
-  const { selectedWorkspace } = useUserProfile()
-  const [search] = useSearchParams()
-  const showModalRef = useRef<(show?: boolean | undefined) => void>()
+interface ChangePaymentMethodModal {
+  selectedWorkspacePaymentMethod: PaymentMethod
+  awsPaymentMethod?: PaymentMethod
+  stripePaymentMethod?: PaymentMethod
+  productTier: ProductTier
+  selectedProductTier: ProductTier
+  showModalRef: MutableRefObject<((show?: boolean | undefined) => void) | undefined>
+  noWorkspaceMethod: boolean
+  isUpgrade: boolean
+  defaultOpen?: boolean
+  nextBillingCycle: Date
+  onClose?: () => void
+}
+
+const ChangePaymentMethodModal = ({
+  productTier,
+  selectedProductTier,
+  selectedWorkspacePaymentMethod,
+  // awsPaymentMethod,
+  stripePaymentMethod,
+  showModalRef,
+  noWorkspaceMethod,
+  isUpgrade,
+  defaultOpen,
+  nextBillingCycle,
+  onClose,
+}: ChangePaymentMethodModal) => {
+  const {
+    i18n: { locale },
+  } = useLingui()
+  const [paymentMethod, _setPaymentMethod] = useState<PaymentMethod>(
+    selectedWorkspacePaymentMethod ?? { method: 'stripe', subscription_id: stripePaymentMethod },
+  )
   const { showSnackbar } = useSnackbar()
+  const { selectedWorkspace } = useUserProfile()
   const queryClient = useQueryClient()
-  const [productTier, setProductTier] = useState<ProductTier>(() => (search.get('tier') as ProductTier) ?? defaultProductTier)
 
   const { mutate: changeBilling, isPending: changeBillingIsPending } = useMutation({
     mutationFn: putWorkspaceBillingMutation,
     onSuccess: () => {
-      void showSnackbar(t`Product tier changed to ${productTier}`, { severity: 'success' })
+      void showSnackbar(t`Product tier changed to ${selectedProductTier}`, { severity: 'success' })
     },
     onError: (err) => {
       const { response: { data } = { data: { message: '' } } } = err as AxiosError
@@ -204,13 +233,184 @@ export const ChangePaymentMethod = ({ defaultProductTier, workspacePaymentMethod
       showModalRef.current?.(false)
     },
   })
+  return (
+    <Modal
+      defaultOpen={defaultOpen}
+      openRef={showModalRef}
+      onClose={onClose}
+      width={800}
+      actions={
+        <Stack direction="row" spacing={1} justifyContent="space-between" width="100%" pt={1}>
+          <Button variant="outlined" onClick={() => showModalRef.current?.(false)}>
+            Cancel
+          </Button>
+          {!noWorkspaceMethod ? (
+            <LoadingButton
+              loadingPosition="end"
+              loading={changeBillingIsPending}
+              color={isUpgrade ? 'success' : 'error'}
+              variant="contained"
+              onClick={() => {
+                changeBilling({
+                  product_tier: selectedProductTier,
+                  workspaceId: selectedWorkspace?.id ?? '',
+                })
+              }}
+              size="large"
+              sx={{ width: 180 }}
+              disabled={paymentMethod.method === 'none' || !paymentMethod.subscription_id}
+              endIcon={<></>}
+            >
+              {isUpgrade === null ? <Trans>Change Product Tier</Trans> : isUpgrade ? <Trans>Upgrade</Trans> : <Trans>Downgrade</Trans>}
+            </LoadingButton>
+          ) : null}
+        </Stack>
+      }
+      title={noWorkspaceMethod ? t`Payment Method Required` : t`Change product tier`}
+      description={noWorkspaceMethod ? null : <Trans>You are about to change workspace's product tier</Trans>}
+    >
+      {/* <FormControl>
+        <InputLabel id="payment_method" color="primary" sx={{ color: 'primary.main' }} size="small">
+          <Trans>Payment method</Trans>
+        </InputLabel>
+        <Select
+          defaultOpen={selectedWorkspacePaymentMethod.method === 'none'}
+          size="small"
+          value={paymentMethod.method === 'none' ? '' : paymentMethod.method}
+          labelId="payment_method"
+          label={t`Payment method`}
+          onChange={(e) => {
+            setPaymentMethod(
+              e.target.value === 'aws_marketplace'
+                ? awsPaymentMethod ?? { method: 'aws_marketplace', subscription_id: '' }
+                : e.target.value === 'stripe'
+                  ? stripePaymentMethod ?? { method: 'stripe', subscription_id: '' }
+                  : { method: 'none' },
+            )
+          }}
+          autoFocus
+          inputProps={{
+            autoFocus: true,
+          }}
+        >
+          <MenuItem value="aws_marketplace" disabled>
+            <Trans>AWS Marketplace</Trans>
+          </MenuItem>
+          <MenuItem value="stripe">
+            <Trans>Credit/Debit card</Trans>
+          </MenuItem>
+        </Select>
+      </FormControl> */}
+      {paymentMethod.method === 'none' ? (
+        <Typography>
+          <Trans>You need a payment method to upgrade your plan.</Trans>
+        </Typography>
+      ) : (
+        <Stack spacing={1} py={2}>
+          <Typography>
+            <Trans>Current Product Tier</Trans>: {productTierToLabel(productTier)}
+          </Typography>
+          <Typography>
+            <Trans>New Product Tier</Trans>: {productTierToLabel(selectedProductTier)}
+          </Typography>
+          {paymentMethod.method === 'aws_marketplace' && !paymentMethod.subscription_id ? (
+            <Alert color="warning">Make sure to log in to AWS Console before proceeding.</Alert>
+          ) : null}
+          <Alert color="info">
+            <Typography>
+              <Trans>
+                Info: Changes to your product tier will become active immediately and be applied for the current billing cycle!
+                {isUpgrade ? null : ` ${t`Within a billing cycle you will be charged for the highest product tier that was active.`}`}
+                <br />
+                Your next billing cycle starts:{' '}
+                {nextBillingCycle.toLocaleString(locale, {
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })}{' '}
+                UTC
+              </Trans>
+            </Typography>
+          </Alert>
+        </Stack>
+      )}
+    </Modal>
+  )
+}
+
+interface ChangePaymentNoMethodModalProps {
+  showModalRef: MutableRefObject<((show?: boolean | undefined) => void) | undefined>
+  defaultOpen?: boolean
+}
+
+const ChangePaymentNoMethodModal = ({ showModalRef, defaultOpen }: ChangePaymentNoMethodModalProps) => {
+  const [paymentMethod, _setPaymentMethod] = useState<PaymentMethod>({ method: 'stripe', subscription_id: '' })
+  const { selectedWorkspace } = useUserProfile()
+
+  return (
+    <Modal
+      defaultOpen={defaultOpen}
+      openRef={showModalRef}
+      actions={
+        <>
+          {paymentMethod.method === 'none' ? null : (
+            <Button
+              href={
+                paymentMethod.method === 'aws_marketplace'
+                  ? env.aws_marketplace_url
+                  : `${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').subscription.stripe}`
+              }
+              disabled={paymentMethod.method === 'aws_marketplace' && !env.aws_marketplace_url}
+              variant="outlined"
+              color="primary"
+              endIcon={<OpenInNewIcon />}
+            >
+              {paymentMethod.method === 'aws_marketplace' ? <Trans>To AWS Marketplace</Trans> : <Trans>Add Credit/Debit card</Trans>}
+            </Button>
+          )}
+        </>
+      }
+      title={t`Payment Method Required`}
+      description={<Trans>You need a payment method to change your product tier</Trans>}
+    >
+      <Trans>Please add a payment method in order to change the workspace's product tier</Trans>
+    </Modal>
+  )
+}
+
+export const ChangePaymentMethod = ({
+  defaultProductTier,
+  selectedWorkspacePaymentMethod,
+  workspacePaymentMethods,
+  nextBillingCycle,
+}: ChangePaymentMethodProps) => {
+  const { selectedWorkspace } = useUserProfile()
+  const tierFromSearchParams = useGetProductTierFromSearchParams()
+  const showModalRef = useRef<(show?: boolean | undefined) => void>()
+  const showNoMethodModalRef = useRef<(show?: boolean | undefined) => void>()
+  const [productTier, setProductTier] = useState<ProductTier>(() => tierFromSearchParams ?? defaultProductTier)
 
   const isUpgrade =
     productTier === defaultProductTier || (defaultProductTier === 'Trial' && productTier === 'Free')
       ? null
       : allProductTiers.indexOf(productTier) > allProductTiers.indexOf(defaultProductTier)
 
-  const noWorkspaceMethod = workspacePaymentMethod.method === 'none'
+  const [awsMarketPlacePaymentMethod, stripePaymentMethod] = useMemo(() => {
+    let awsMarketPlacePaymentMethod: PaymentMethod | undefined
+    let stripePaymentMethod: PaymentMethod | undefined
+    workspacePaymentMethods.forEach((paymentMethod) => {
+      if (paymentMethod.method === 'aws_marketplace') {
+        awsMarketPlacePaymentMethod = paymentMethod
+      } else if (paymentMethod.method === 'stripe') {
+        stripePaymentMethod = paymentMethod
+      }
+    })
+    return [awsMarketPlacePaymentMethod, stripePaymentMethod]
+  }, [workspacePaymentMethods])
+
+  const noWorkspaceMethod = !stripePaymentMethod // && !awsMarketPlacePaymentMethod
 
   return (
     <>
@@ -239,7 +439,7 @@ export const ChangePaymentMethod = ({ defaultProductTier, workspacePaymentMethod
                   boxShadow: (theme) => (selectedProductTier ? theme.shadows[12] : undefined),
                   transition: (theme) => theme.transitions.create(['box-shadow', 'background-color']),
                 }}
-                onClick={() => setProductTier(curProductTier)}
+                onClick={noWorkspaceMethod ? () => showNoMethodModalRef.current?.(true) : () => setProductTier(curProductTier)}
               >
                 <ProductTierComp productTier={curProductTier} />
               </ButtonBase>
@@ -247,79 +447,70 @@ export const ChangePaymentMethod = ({ defaultProductTier, workspacePaymentMethod
           )
         })}
       </Stack>
-      <Stack alignItems="center" spacing={5} pt={4}>
-        <Button
-          color={isUpgrade === null ? undefined : isUpgrade ? 'success' : 'error'}
-          variant="contained"
-          disabled={isUpgrade === null}
-          onClick={() => showModalRef.current?.(true)}
-          endIcon={isUpgrade === null ? undefined : isUpgrade ? <UpgradeIcon /> : <TrendingDownIcon />}
-        >
-          {isUpgrade === null ? <Trans>Change Product Tier</Trans> : isUpgrade ? <Trans>Upgrade</Trans> : <Trans>Downgrade</Trans>}
-        </Button>
-        <Typography maxWidth={587} textAlign="center">
-          *{' '}
-          <Trans>
-            Our fair-use policy allows for up to 200,000 resources per account. If your needs surpass this amount, please{' '}
-            <Link href="mailto:hi@fix.tt">reach out</Link> to discuss your specific requirements.
-          </Trans>
-        </Typography>
-      </Stack>
-      <Modal
-        defaultOpen={search.get('tier') ? true : undefined}
-        openRef={showModalRef}
-        actions={
-          <>
-            <Button
-              href={env.aws_marketplace_url}
-              disabled={!env.aws_marketplace_url}
-              variant="outlined"
-              color="success"
-              endIcon={<OpenInNewIcon />}
-            >
-              <Trans>To AWS Marketplace</Trans>
-            </Button>
-            {!noWorkspaceMethod ? (
-              <LoadingButton
-                loadingPosition="end"
-                loading={changeBillingIsPending}
-                color={isUpgrade ? 'success' : 'error'}
-                variant="contained"
-                onClick={() => {
-                  changeBilling({
-                    product_tier: productTier,
-                    workspaceId: selectedWorkspace?.id ?? '',
-                  })
-                }}
-                endIcon={isUpgrade ? <UpgradeIcon /> : <TrendingDownIcon />}
-              >
-                {isUpgrade === null ? <Trans>Change Product Tier</Trans> : isUpgrade ? <Trans>Upgrade</Trans> : <Trans>Downgrade</Trans>}
-              </LoadingButton>
-            ) : null}
-          </>
-        }
-        title={noWorkspaceMethod ? t`Payment Method Required` : t`Change payment method`}
-        description={
-          noWorkspaceMethod ? null : (
-            <Trans>You are about to apply changes to your billing information. Please review the new details below:</Trans>
-          )
-        }
-      >
-        {noWorkspaceMethod ? (
-          <>
-            <Typography>
-              <Trans>You need an AWS Marketplace Subscription to upgrade your plan.</Trans>
-            </Typography>
-            <Alert color="warning">Make sure to log in to AWS Console before proceeding.</Alert>
-          </>
-        ) : (
-          <Stack spacing={1}>
-            <Typography>
-              <Trans>Product Tier</Trans>: {productTierToLabel(productTier)}
-            </Typography>
-          </Stack>
-        )}
-      </Modal>
+      {noWorkspaceMethod ? (
+        <ChangePaymentNoMethodModal
+          showModalRef={showNoMethodModalRef}
+          defaultOpen={tierFromSearchParams && isUpgrade !== null ? true : undefined}
+        />
+      ) : (
+        <Stack alignItems="center" spacing={2} pt={4}>
+          {noWorkspaceMethod ? null : (
+            <>
+              <Stack py={1} spacing={1} alignItems="center">
+                {/* <Typography variant="h5" pb={1}>
+              <Trans>Payment Methods</Trans>
+            </Typography> */}
+                {awsMarketPlacePaymentMethod ? (
+                  <Stack direction="row" spacing={1} alignItems="center">
+                    <Button
+                      startIcon={<AwsLogo height={50} />}
+                      endIcon={<OpenInNewIcon fontSize="small" />}
+                      variant="outlined"
+                      href={env.aws_marketplace_url}
+                    >
+                      <Typography color="#ff9900" textTransform="none">
+                        {awsMarketPlacePaymentMethod ? t`Manage AWS Market place payment method` : t`Add AWS Marketplace payment method`}
+                      </Typography>
+                    </Button>
+                  </Stack>
+                ) : null}
+                {stripePaymentMethod ? (
+                  <Stack direction="row" spacing={1} alignItems="center">
+                    <Button
+                      startIcon={<CreditCardIcon fontSize="large" sx={{ fontSize: '48px!important' }} />}
+                      sx={{
+                        maxWidth: '100%',
+                        width: 580,
+                      }}
+                      variant="outlined"
+                      href={`${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').subscription.stripe}`}
+                    >
+                      <Typography textTransform="none">
+                        <Trans>Manage card details</Trans>
+                      </Typography>
+                    </Button>
+                  </Stack>
+                ) : null}
+              </Stack>
+            </>
+          )}
+        </Stack>
+      )}
+      {!noWorkspaceMethod && isUpgrade !== null ? (
+        <ChangePaymentMethodModal
+          nextBillingCycle={nextBillingCycle}
+          onClose={() => setProductTier(defaultProductTier)}
+          isUpgrade={isUpgrade}
+          noWorkspaceMethod={noWorkspaceMethod}
+          productTier={defaultProductTier}
+          selectedProductTier={productTier}
+          selectedWorkspacePaymentMethod={selectedWorkspacePaymentMethod}
+          showModalRef={showModalRef}
+          awsPaymentMethod={awsMarketPlacePaymentMethod}
+          stripePaymentMethod={stripePaymentMethod}
+          defaultOpen={true}
+        />
+      ) : null}
       <Divider />
     </>
   )

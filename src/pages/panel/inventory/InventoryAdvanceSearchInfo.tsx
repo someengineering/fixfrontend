@@ -45,7 +45,6 @@ export const InventoryAdvanceSearchInfo = () => {
           m={2}
           sx={{
             button: {
-              textTransform: 'none',
               fontFamily: 'inherit',
             },
             pre: {

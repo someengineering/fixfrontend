@@ -20,7 +20,7 @@ export const WorkspaceSettingsBillingTable = () => {
   return (
     <>
       <Typography variant="h4">
-        <Trans>Receipts</Trans>
+        <Trans>Billing history</Trans>
       </Typography>
       <TableView
         paginationProps={{
@@ -42,9 +42,6 @@ export const WorkspaceSettingsBillingTable = () => {
               </TableCell>
               <TableCell>
                 <Trans>Tier</Trans>
-              </TableCell>
-              <TableCell>
-                <Trans>Download</Trans>
               </TableCell>
               <TableCell>
                 <Trans>Number Of Account Charged</Trans>
