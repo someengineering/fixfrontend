@@ -55,11 +55,12 @@ export const InventoryForm = () => {
       ...startData,
     }
   }, [startData])
-  const selectedClouds = useMemo(() => {
+  const preDefinedFiltersSelectedClouds = useMemo(() => {
     const possibleValues = [DefaultPropertiesKeys.Cloud, DefaultPropertiesKeys.Account, DefaultPropertiesKeys.Region]
-    const result: string[] = []
+    const result: string[][] = []
     const config = [selectedCloud, selectedAccount, selectedRegion]
     for (let index = 0; index < config.length; index++) {
+      const currentResult = []
       const currentConfig = config[index]
       if (currentConfig instanceof Predicate) {
         const path = currentConfig.path.toString() as DefaultPropertiesKeys
@@ -76,29 +77,29 @@ export const InventoryForm = () => {
               break
           }
           if (currentConfig.op === '!=' && typeof configValue === 'string') {
-            result.push(
+            currentResult.push(
               ...(propertyIndex
                 ? processedStartData[propertyIndex].filter(({ name }) => name !== configValue).map(({ cloud }) => cloud)
                 : processedStartData.clouds.filter((cloud) => cloud !== configValue)),
             )
           } else if (currentConfig.op === '=' && typeof configValue === 'string') {
-            result.push(
+            currentResult.push(
               propertyIndex ? processedStartData[propertyIndex].find(({ name }) => name === configValue)?.cloud ?? '' : configValue,
             )
           } else if ((currentConfig.op === 'in' || currentConfig.op === 'not in') && Array.isArray(configValue)) {
-            result.push(
+            currentResult.push(
               ...(propertyIndex
                 ? processedStartData[propertyIndex].filter(({ name }) => (configValue as string[]).includes(name)).map(({ cloud }) => cloud)
                 : (configValue as string[])),
             )
           } else if (currentConfig.op === '~' && typeof configValue === 'string') {
-            result.push(
+            currentResult.push(
               ...(propertyIndex
                 ? processedStartData[propertyIndex].filter(({ name }) => name.match(configValue)).map(({ cloud }) => cloud)
                 : processedStartData.clouds.filter((cloud) => cloud.match(configValue))),
             )
           } else if (currentConfig.op === '!~' && typeof configValue === 'string') {
-            result.push(
+            currentResult.push(
               ...(propertyIndex
                 ? processedStartData[propertyIndex].filter(({ name }) => !name.match(configValue)).map(({ cloud }) => cloud)
                 : processedStartData.clouds.filter((cloud) => !cloud.match(configValue))),
@@ -106,13 +107,19 @@ export const InventoryForm = () => {
           }
         }
       }
+      result.push(currentResult.filter((cloud) => cloud))
     }
     const selectedKindCloud = processedStartData.kinds.filter(({ id }) => selectedKind?.kinds.includes(id)).map(({ cloud }) => cloud)
     if (selectedKindCloud.length) {
-      result.push(...selectedKindCloud)
+      result.push(selectedKindCloud)
     }
-    return [...new Set(result.filter((cloud) => cloud))]
+    return result
   }, [processedStartData, selectedAccount, selectedCloud, selectedKind, selectedRegion])
+  const selectedClouds = useMemo(() => {
+    return Array.from(new Set(preDefinedFiltersSelectedClouds.flat()))
+  }, [preDefinedFiltersSelectedClouds])
+  const numberOfCloudFilterSelected = preDefinedFiltersSelectedClouds[0].length
+  const numberOfCloudSelected = preDefinedFiltersSelectedClouds.reduce((sum, cloud, index) => (!index ? sum : sum + cloud.length), 0)
   const filteredStartData = useMemo(
     () => ({
       accounts: (selectedClouds.length
@@ -128,11 +135,12 @@ export const InventoryForm = () => {
         : processedStartData.regions
       ).map((region) => ({ value: region.name, label: region.name })),
       severities: processedStartData.severity.map((severity) => ({ label: severity, value: severity })),
-      clouds: selectedClouds.length
-        ? selectedClouds.map((cloud) => ({ label: cloud.toUpperCase(), value: cloud }))
-        : processedStartData.clouds.map((cloud) => ({ label: cloud.toUpperCase(), value: cloud })),
+      clouds:
+        (!numberOfCloudFilterSelected && selectedClouds.length) || (numberOfCloudFilterSelected && numberOfCloudSelected)
+          ? selectedClouds.map((cloud) => ({ label: cloud.toUpperCase(), value: cloud }))
+          : processedStartData.clouds.map((cloud) => ({ label: cloud.toUpperCase(), value: cloud })),
     }),
-    [processedStartData, selectedClouds],
+    [processedStartData, selectedClouds, numberOfCloudFilterSelected, numberOfCloudSelected],
   )
   return (
     <Stack direction="row" width="100%" flexWrap="wrap" overflow="auto" py={1}>
