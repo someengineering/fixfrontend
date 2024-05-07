@@ -27,6 +27,7 @@ import { AwsLogo } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
 import { endPoints, env } from 'src/shared/constants'
+import { LinkButton } from 'src/shared/link-button'
 import { Modal } from 'src/shared/modal'
 import { PaymentMethod, ProductTier } from 'src/shared/types/server'
 import { putWorkspaceBillingMutation } from './putWorkspaceBilling.mutation'
@@ -367,7 +368,7 @@ const ChangePaymentNoMethodModal = ({ showModalRef, defaultOpen, onClose }: Chan
             Cancel
           </Button>
           {paymentMethod.method === 'none' ? null : (
-            <Button
+            <LinkButton
               href={
                 paymentMethod.method === 'aws_marketplace'
                   ? env.aws_marketplace_url
@@ -376,14 +377,13 @@ const ChangePaymentNoMethodModal = ({ showModalRef, defaultOpen, onClose }: Chan
               disabled={paymentMethod.method === 'aws_marketplace' && !env.aws_marketplace_url}
               variant="outlined"
               color="primary"
-              endIcon={<OpenInNewIcon />}
             >
               {paymentMethod.method === 'aws_marketplace' ? (
                 <Trans>To AWS Marketplace</Trans>
               ) : (
                 <Trans>Add a New Credit or Debit Card</Trans>
               )}
-            </Button>
+            </LinkButton>
           )}
         </Stack>
       }
@@ -500,7 +500,7 @@ export const ChangePaymentMethod = ({
             </Typography> */}
                 {awsMarketPlacePaymentMethod ? (
                   <Stack direction="row" spacing={1} alignItems="center">
-                    <Button
+                    <LinkButton
                       startIcon={<AwsLogo height={50} />}
                       endIcon={<OpenInNewIcon fontSize="small" />}
                       variant="outlined"
@@ -509,13 +509,14 @@ export const ChangePaymentMethod = ({
                       <Typography color="#ff9900" textTransform="none">
                         {awsMarketPlacePaymentMethod ? t`Manage AWS Market place payment method` : t`Add AWS Marketplace payment method`}
                       </Typography>
-                    </Button>
+                    </LinkButton>
                   </Stack>
                 ) : null}
                 {stripePaymentMethod ? (
                   <Stack direction="row" spacing={1} alignItems="center">
-                    <Button
+                    <LinkButton
                       startIcon={<CreditCardIcon fontSize="large" sx={{ fontSize: '48px!important' }} />}
+                      endIcon={<></>}
                       sx={{
                         maxWidth: '100%',
                         width: 580,
@@ -524,9 +525,9 @@ export const ChangePaymentMethod = ({
                       href={`${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').subscription.stripe}`}
                     >
                       <Typography textTransform="none">
-                        <Trans>Manage card details</Trans>
+                        <Trans>Manage Card Details</Trans>
                       </Typography>
-                    </Button>
+                    </LinkButton>
                   </Stack>
                 ) : null}
               </Stack>
