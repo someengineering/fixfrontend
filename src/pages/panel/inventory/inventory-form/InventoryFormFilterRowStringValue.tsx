@@ -126,7 +126,11 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
   const rawOptions = (networkDisabled ? defaultOptions : flatData) ?? []
 
   const optionsWithTyped =
-    typed && typed.toLowerCase() !== 'null' && !(Array.isArray(value) ? value.find((i) => i.label === typed) : value?.label === typed)
+    typed &&
+    typed.toLowerCase() !== 'null' &&
+    typed.toLowerCase() !== 'undefined' &&
+    typed.toLowerCase() !== t`Undefined`.toLowerCase() &&
+    !(Array.isArray(value) ? value.find((i) => i.label === typed) : value?.label === typed)
       ? rawOptions.concat({ value: typed, label: typed })
       : rawOptions
 
@@ -144,7 +148,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
       : optionsWithTyped
   const options = optionsWithValues.find((i) => i.value === 'null')
     ? optionsWithValues
-    : optionsWithValues.concat({ label: 'Null', value: 'null' })
+    : optionsWithValues.concat({ label: t`Undefined`, value: 'null' })
 
   const currentValue = (
     props.multiple && !Array.isArray(value) ? (value ? [value] : []) : !props.multiple && Array.isArray(value) ? value[0] : value
@@ -228,7 +232,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
           },
           option.label,
           state,
-          option.value === 'null' ? ({ fontStyle: 'italic', color: 'info.main' } as TypographyProps) : undefined,
+          option.value === 'null' ? ({ color: 'error.dark' } as TypographyProps) : undefined,
         ] as ReactNode
       }
       value={currentValue}
@@ -238,7 +242,14 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
           {...params}
           error={hasError}
           helperText={hasError ? t`Invalid Value` : undefined}
-          type={isNumber && typed !== 'null' && typed !== 'Null' ? 'number' : 'text'}
+          type={
+            isNumber &&
+            typed.toLowerCase() !== 'null' &&
+            typed.toLowerCase() !== 'undefined' &&
+            typed.toLowerCase() !== t`Undefined`.toLowerCase()
+              ? 'number'
+              : 'text'
+          }
           autoFocus
           inputProps={{
             ...params.inputProps,
@@ -275,8 +286,19 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
             if (isNumber) {
               const curValue = e.currentTarget.value
               const num = Number(curValue)
-              if (curValue === '' || curValue === 'null' || curValue === 'Null' || !Number.isNaN(num)) {
-                if (curValue === '' || curValue === 'null' || curValue === 'Null') {
+              if (
+                curValue === '' ||
+                curValue.toLowerCase() === 'null' ||
+                curValue.toLowerCase() === 'undefined' ||
+                curValue.toLowerCase() === t`Undefined`.toLowerCase() ||
+                !Number.isNaN(num)
+              ) {
+                if (
+                  curValue === '' ||
+                  curValue.toLowerCase() === 'null' ||
+                  curValue.toLowerCase() === 'undefined' ||
+                  curValue.toLowerCase() === t`Undefined`.toLowerCase()
+                ) {
                   setTyped(curValue)
                 } else if (isDouble) {
                   setTyped(num.toString())
