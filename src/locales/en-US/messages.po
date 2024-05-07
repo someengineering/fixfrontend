@@ -13,11 +13,11 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:112
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:113
 msgid "({0} / month per additional account)"
 msgstr "({0} / month per additional account)"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:126
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:127
 msgid "({0} max)"
 msgstr "({0} max)"
 
@@ -49,17 +49,17 @@ msgstr "{0, plural, one {# Week} other {# Weeks}}"
 msgid "{0, plural, one {# Year} other {# Years}}"
 msgstr "{0, plural, one {# Year} other {# Years}}"
 
-#: src/pages/panel/inventory/utils/nodeChange.tsx:67
-#: src/pages/panel/inventory/utils/nodeChange.tsx:114
+#: src/pages/panel/inventory/resource-detail/utils/nodeChange.tsx:67
+#: src/pages/panel/inventory/resource-detail/utils/nodeChange.tsx:114
 msgid "{0} checks failed."
 msgstr "{0} checks failed."
 
-#: src/pages/panel/inventory/utils/nodeChange.tsx:78
-#: src/pages/panel/inventory/utils/nodeChange.tsx:103
+#: src/pages/panel/inventory/resource-detail/utils/nodeChange.tsx:78
+#: src/pages/panel/inventory/resource-detail/utils/nodeChange.tsx:103
 msgid "{0} checks fixed."
 msgstr "{0} checks fixed."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:99
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:100
 msgid "{0} cloud accounts included"
 msgstr "{0} cloud accounts included"
 
@@ -71,23 +71,28 @@ msgstr "{0} has been connected"
 msgid "{0} Milliseconds"
 msgstr "{0} Milliseconds"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:121
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:122
 msgid "{0} scans"
 msgstr "{0} scans"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:129
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:130
 msgid "{0} seat max"
 msgstr "{0} seat max"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:125
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:126
 msgid "{0} seats included {1}"
 msgstr "{0} seats included {1}"
 
-#: src/pages/panel/inventory/utils/nodeChange.tsx:46
+#: src/pages/panel/security/OverallScore.tsx:59
+#: src/pages/panel/shared/utils/createPieDataFromNonCompliance.ts:26
+msgid "{0}: We've identified {1} non-compliant resources out of {2}."
+msgstr "{0}: We've identified {1} non-compliant resources out of {2}."
+
+#: src/pages/panel/inventory/resource-detail/utils/nodeChange.tsx:46
 msgid "{added} configuration lines added and {removed} lines deleted."
 msgstr "{added} configuration lines added and {removed} lines deleted."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:77
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:78
 msgid "/ month"
 msgstr "/ month"
 
@@ -95,15 +100,15 @@ msgstr "/ month"
 msgid "© 2024 Some Engineering Inc. All rights reserved."
 msgstr "© 2024 Some Engineering Inc. All rights reserved."
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:49
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:54
 msgid "<0>Billing cycle: {0}</0><1>Highest product tier this billing cycle: {title}</1>"
 msgstr "<0>Billing cycle: {0}</0><1>Highest product tier this billing cycle: {title}</1>"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearchInfo.tsx:59
+#: src/pages/panel/inventory/InventoryAdvanceSearchInfo.tsx:58
 msgid "<0>Fix supports full text search by encasing the search term in double quotes. For instance,<1><2><3>{searchInstance}</3></2></1>enables you to scan your entire infrastructure for a specific IP address.</0><4>Additionally, you can query for any resource attribute by utilizing the <5><6>{attributeOperatorValue}</6></5> format, where the operator can be {0}or <7><8>{1}</8></7>. For example,<9><10><11>{searchTagsOwners}</11></10></9>allows you to find all resources tagged with an <12><13>{owner}</13></12> attribute equal to <14><15>{sre}</15></14>.</4><16>Search queries can be refined using boolean operators {2}<17><18>{3}</18></17> to combine multiple terms. An example would be<19><20><21>{searchEc2InstanceCores}</21></20></19>to identify all EC2 instances possessing more than 4 cores.</16><22>For detailed search syntax guidance, visit <23>https://docs.fix.security/search-syntax<24/></23></22>"
 msgstr "<0>Fix supports full text search by encasing the search term in double quotes. For instance,<1><2><3>{searchInstance}</3></2></1>enables you to scan your entire infrastructure for a specific IP address.</0><4>Additionally, you can query for any resource attribute by utilizing the <5><6>{attributeOperatorValue}</6></5> format, where the operator can be {0}or <7><8>{1}</8></7>. For example,<9><10><11>{searchTagsOwners}</11></10></9>allows you to find all resources tagged with an <12><13>{owner}</13></12> attribute equal to <14><15>{sre}</15></14>.</4><16>Search queries can be refined using boolean operators {2}<17><18>{3}</18></17> to combine multiple terms. An example would be<19><20><21>{searchEc2InstanceCores}</21></20></19>to identify all EC2 instances possessing more than 4 cores.</16><22>For detailed search syntax guidance, visit <23>https://docs.fix.security/search-syntax<24/></23></22>"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:54
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:59
 msgid "<0>Next invoice will be available: {0}</0>"
 msgstr "<0>Next invoice will be available: {0}</0>"
 
@@ -168,7 +173,8 @@ msgstr "Abandoned"
 msgid "Access to your account is broken"
 msgstr "Access to your account is broken"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:226
+#: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:50
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:226
 msgid "Account"
 msgstr "Account"
 
@@ -176,11 +182,12 @@ msgstr "Account"
 msgid "Account: {0}"
 msgstr "Account: {0}"
 
+#: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:40
+#: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:120
 #: src/pages/panel/inventory/InventoryTable.error.tsx:73
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:126
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:42
 #: src/shared/language-button/LanguageButton.stories.tsx:20
-#: src/shared/layouts/panel-layout/menuList.tsx:55
+#: src/shared/layouts/panel-layout/menuList.tsx:67
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:12
 msgid "Accounts"
 msgstr "Accounts"
@@ -204,9 +211,17 @@ msgstr "Actions"
 msgid "Activate"
 msgstr "Activate"
 
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:384
+msgid "Add a New Credit or Debit Card"
+msgstr "Add a New Credit or Debit Card"
+
 #: src/shared/add-account-button/AddAccountButton.tsx:16
 msgid "Add an account"
 msgstr "Add an account"
+
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:510
+msgid "Add AWS Marketplace payment method"
+msgstr "Add AWS Marketplace payment method"
 
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:33
 msgid "Add Directory"
@@ -216,11 +231,15 @@ msgstr "Add Directory"
 msgid "Add external directory"
 msgstr "Add external directory"
 
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:67
+msgid "Add Filter"
+msgstr "Add Filter"
+
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:159
 msgid "Add Manually"
 msgstr "Add Manually"
 
-#: src/pages/panel/accounts/AccountsTable.tsx:25
+#: src/pages/panel/accounts/AccountsTable.tsx:26
 msgid "Added accounts"
 msgstr "Added accounts"
 
@@ -230,11 +249,15 @@ msgstr "Added accounts"
 msgid "Admin"
 msgstr "Admin"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:111
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:108
+msgid "Advanced"
+msgstr "Advanced"
+
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:130
 msgid "Advanced search query"
 msgstr "Advanced search query"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:235
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:235
 #: src/shared/charts/NetworkDiagram.tsx:408
 msgid "Age"
 msgstr "Age"
@@ -247,11 +270,11 @@ msgstr "Alerting integrations (PD, Slack, Discord, Teams)"
 msgid "Alerting Settings"
 msgstr "Alerting Settings"
 
-#: src/pages/panel/inventory/ResourceDetailFailedCheckIgnoredChecks.tsx:48
+#: src/pages/panel/inventory/resource-detail/ResourceDetailFailedCheckIgnoredChecks.tsx:48
 msgid "All checks have been disabled for this resource"
 msgstr "All checks have been disabled for this resource"
 
-#: src/pages/panel/inventory/utils/nodeChange.tsx:27
+#: src/pages/panel/inventory/resource-detail/utils/nodeChange.tsx:27
 msgid "All security issues fixed"
 msgstr "All security issues fixed"
 
@@ -277,7 +300,7 @@ msgstr "An email has been sent to your inbox with a 'Reset Password' button. Ple
 msgid "An error occurred while connecting to {0}"
 msgstr "An error occurred while connecting to {0}"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:196
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:222
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:31
 msgid "An error occurred, please try again later."
 msgstr "An error occurred, please try again later."
@@ -285,10 +308,6 @@ msgstr "An error occurred, please try again later."
 #: src/shared/utils/parseDuration.ts:204
 msgid "and"
 msgstr "and"
-
-#: src/pages/panel/inventory/InventoryForm.tsx:225
-msgid "And"
-msgstr "And"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:79
 msgid "API access"
@@ -325,11 +344,11 @@ msgstr "Automatic Cloud Setup"
 msgid "AWS Marketplace"
 msgstr "AWS Marketplace"
 
-#: src/shared/constants/consts.ts:6
+#: src/shared/constants/consts.ts:13
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace has been successfully subscribed"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:211
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:211
 msgid "Basic Information"
 msgstr "Basic Information"
 
@@ -346,25 +365,26 @@ msgstr "Benchmark"
 msgid "Benchmark: {0}"
 msgstr "Benchmark: {0}"
 
-#: src/pages/panel/inventory/utils/ResourceDetailChangeLogSelectedHistoryAccordion.tsx:54
+#: src/pages/panel/inventory/resource-detail/utils/ResourceDetailChangeLogSelectedHistoryAccordion.tsx:54
 #: src/pages/panel/shared/utils/chartToShow.tsx:16
 msgid "Benchmarks"
 msgstr "Benchmarks"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:33
-#: src/shared/layouts/panel-layout/menuList.tsx:65
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:48
+#: src/shared/layouts/panel-layout/menuList.tsx:77
+#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:20
 msgid "Billing"
 msgstr "Billing"
-
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:48
-#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:20
-msgid "Billing & Receipts"
-msgstr "Billing & Receipts"
 
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:61
 #: src/pages/panel/workspace-settings-users/workspaceSettingsUserRoleToString.ts:13
 msgid "Billing Admin"
 msgstr "Billing Admin"
+
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:23
+msgid "Billing history"
+msgstr "Billing history"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToLabel.ts:13
 msgid "Business"
@@ -390,16 +410,22 @@ msgstr "Business"
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:301
-msgid "Change payment method"
-msgstr "Change payment method"
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:211
+#: src/pages/panel/inventory/inventory-form/InventoryFormMoreValue.tsx:161
+#: src/pages/panel/inventory/inventory-form/InventoryFormTagsValue.tsx:150
+msgid "Change"
+msgstr "Change"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:258
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:296
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:270
 msgid "Change Product Tier"
 msgstr "Change Product Tier"
 
-#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:42
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:47
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:75
+msgid "Change Type"
+msgstr "Change Type"
+
+#: src/pages/panel/inventory/resource-detail/ResourceDetailChangeLog.tsx:42
 msgid "Changes"
 msgstr "Changes"
 
@@ -411,26 +437,32 @@ msgstr "Changes in the past 7 days"
 msgid "Choose Workspace"
 msgstr "Choose Workspace"
 
+#: src/pages/panel/inventory/inventory-form/InventoryFormReset.tsx:15
+msgid "Clear the search"
+msgstr "Clear the search"
+
 #: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:36
 msgid "Close"
 msgstr "Close"
 
 #: src/pages/panel/accounts/AccountRow.tsx:406
 #: src/pages/panel/accounts/AccountsTableItem.tsx:41
-#: src/pages/panel/inventory/ResourceDetail.tsx:222
+#: src/pages/panel/inventory/inventory-form/InventoryFormCloudValues.tsx:48
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:93
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:222
 #: src/pages/panel/security/AccountCard.tsx:37
 msgid "Cloud"
 msgstr "Cloud"
 
-#: src/shared/event-button/EventButton.tsx:55
+#: src/shared/event-button/EventButton.tsx:57
 msgid "Cloud account configured, id: {0}"
 msgstr "Cloud account configured, id: {0}"
 
-#: src/shared/event-button/EventButton.tsx:61
+#: src/shared/event-button/EventButton.tsx:63
 msgid "Cloud account degraded, id: {0}"
 msgstr "Cloud account degraded, id: {0}"
 
-#: src/shared/event-button/EventButton.tsx:67
+#: src/shared/event-button/EventButton.tsx:69
 msgid "Cloud account discovered, id: {0}"
 msgstr "Cloud account discovered, id: {0}"
 
@@ -438,7 +470,8 @@ msgstr "Cloud account discovered, id: {0}"
 msgid "Cloud Setup"
 msgstr "Cloud Setup"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:122
+#: src/pages/panel/inventory/inventory-form/InventoryFormCloud.tsx:24
+#: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:116
 msgid "Clouds"
 msgstr "Clouds"
 
@@ -450,7 +483,7 @@ msgstr "Community support"
 msgid "Compliance"
 msgstr "Compliance"
 
-#: src/pages/panel/inventory/utils/nodeChange.tsx:21
+#: src/pages/panel/inventory/resource-detail/utils/nodeChange.tsx:21
 msgid "Configuration changed"
 msgstr "Configuration changed"
 
@@ -523,13 +556,21 @@ msgstr "Copy"
 msgid "Core CSPM scanning capabilities"
 msgstr "Core CSPM scanning capabilities"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:229
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:229
 msgid "Created Time"
 msgstr "Created Time"
+
+#: src/shared/constants/consts.ts:14
+msgid "Credit/Debit Card has been successfully subscribed"
+msgstr "Credit/Debit Card has been successfully subscribed"
 
 #: src/shared/defined-messages/getMessage.ts:5
 msgid "Critical"
 msgstr "Critical"
+
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:312
+msgid "Current Product Tier"
+msgstr "Current Product Tier"
 
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:282
 msgid "Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is necessary to configure alerting settings."
@@ -555,11 +596,8 @@ msgstr "Data export (CSV, JSON, PDF)"
 msgid "Date"
 msgstr "Date"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:151
-msgid "Date Picker"
-msgstr "Date Picker"
-
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:143
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowDateTimeValue.tsx:24
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowDateValue.tsx:18
 msgid "Date Time Picker"
 msgstr "Date Time Picker"
 
@@ -616,7 +654,7 @@ msgstr "Deploy to organization"
 msgid "Description"
 msgstr "Description"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:307
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:307
 msgid "Details"
 msgstr "Details"
 
@@ -630,7 +668,7 @@ msgstr "Disconnect"
 msgid "Disconnect Service"
 msgstr "Disconnect Service"
 
-#: src/pages/panel/accounts/AccountsTable.tsx:32
+#: src/pages/panel/accounts/AccountsTable.tsx:33
 msgid "Discovered but unconfigured accounts"
 msgstr "Discovered but unconfigured accounts"
 
@@ -654,14 +692,9 @@ msgstr "Do you want to delete this user?"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Don't have an account? Click here to Sign up."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:258
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:296
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:266
 msgid "Downgrade"
 msgstr "Downgrade"
-
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:47
-msgid "Download"
-msgstr "Download"
 
 #: src/pages/panel/inventory/DownloadCSVButton.tsx:100
 #: src/pages/panel/inventory/DownloadCSVButton.tsx:119
@@ -698,8 +731,8 @@ msgstr "Email alerts"
 msgid "Enable"
 msgstr "Enable"
 
-#: src/pages/panel/inventory/ResourceDetailFailedCheckIgnoredChecks.tsx:42
-#: src/pages/panel/inventory/ResourceDetailFailedChecks.tsx:93
+#: src/pages/panel/inventory/resource-detail/ResourceDetailFailedCheckIgnoredChecks.tsx:42
+#: src/pages/panel/inventory/resource-detail/ResourceDetailFailedChecks.tsx:93
 msgid "Enable all"
 msgstr "Enable all"
 
@@ -708,15 +741,15 @@ msgstr "Enable all"
 msgid "Enabled"
 msgstr "Enabled"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:61
-msgid "Engineers like to tag their temporary resources with appropriately chosen names. This searches for the string \"deleteme\" in names, tags and other string properties."
-msgstr "Engineers like to tag their temporary resources with appropriately chosen names. This searches for the string \"deleteme\" in names, tags and other string properties."
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:87
+msgid "Engineers like to tag their temporary resources with the string \"delete\". This performs a full-text search in names, tags and other string properties."
+msgstr "Engineers like to tag their temporary resources with the string \"delete\". This performs a full-text search in names, tags and other string properties."
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToLabel.ts:15
 msgid "Enterprise"
 msgstr "Enterprise"
 
-#: src/shared/event-button/EventButton.tsx:101
+#: src/shared/event-button/EventButton.tsx:103
 msgid "Events"
 msgstr "Events"
 
@@ -732,7 +765,7 @@ msgstr "Everything in Free, and"
 msgid "Everything in Plus, and"
 msgstr "Everything in Plus, and"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:109
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:114
 msgid "Example searches"
 msgstr "Example searches"
 
@@ -752,7 +785,7 @@ msgstr "External Directories"
 msgid "External Id"
 msgstr "External Id"
 
-#: src/pages/panel/inventory/ResourceDetailChangeLog.tsx:52
+#: src/pages/panel/inventory/resource-detail/ResourceDetailChangeLog.tsx:52
 msgid "Failed to retrieve changelog"
 msgstr "Failed to retrieve changelog"
 
@@ -764,23 +797,23 @@ msgstr "Failing benchmarks"
 msgid "Failing Check Timeline"
 msgstr "Failing Check Timeline"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:135
-msgid "False"
-msgstr "False"
-
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:20
 msgid "Features"
 msgstr "Features"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:45
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:77
+msgid "Finds CloudWatch instance alarms where the instance no longer exists."
+msgstr "Finds CloudWatch instance alarms where the instance no longer exists."
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:40
 msgid "Finds databases that aren't encrypted at rest."
 msgstr "Finds databases that aren't encrypted at rest."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:71
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:61
 msgid "Finds load balancers that are not associated with any running instances."
 msgstr "Finds load balancers that are not associated with any running instances."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:81
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:71
 msgid "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
 msgstr "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
 
@@ -788,7 +821,7 @@ msgstr "Finds snapshots of disks that are no longer in use, which potentially co
 msgid "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
 msgstr "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
 
-#: src/pages/panel/inventory/utils/ResourceDetailChangeLogSelectedHistoryDiff.tsx:48
+#: src/pages/panel/inventory/resource-detail/utils/ResourceDetailChangeLogSelectedHistoryDiff.tsx:48
 msgid "Fixed issues"
 msgstr "Fixed issues"
 
@@ -817,9 +850,17 @@ msgstr "Forget your password? Click here to reset your password."
 msgid "Forgot Password"
 msgstr "Forgot Password"
 
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:104
+msgid "Form"
+msgstr "Form"
+
 #: src/pages/panel/workspace-settings-billing/utils/productTierToLabel.ts:9
 msgid "Free"
 msgstr "Free"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearchValue.tsx:42
+msgid "Full-text search"
+msgstr "Full-text search"
 
 #: src/containers/auth/AuthContainer.tsx:67
 msgid "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
@@ -844,25 +885,25 @@ msgstr "How to fix"
 
 #: src/pages/panel/accounts/AccountRow.tsx:403
 #: src/pages/panel/accounts/AccountsTableItem.tsx:44
-#: src/pages/panel/inventory/ResourceDetail.tsx:219
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:219
 #: src/pages/panel/security/AccountCard.tsx:34
 #: src/shared/charts/NetworkDiagram.tsx:406
 msgid "ID"
 msgstr "ID"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:93
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:98
 msgid "Identifies compute instances and databases with low CPU usage, indicating potential over-provisioning."
 msgstr "Identifies compute instances and databases with low CPU usage, indicating potential over-provisioning."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:40
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:45
 msgid "Identifies databases publicly accessible from any IP on the Internet."
 msgstr "Identifies databases publicly accessible from any IP on the Internet."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:29
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:35
 msgid "Identifies EBS volumes that are not encrypted."
 msgstr "Identifies EBS volumes that are not encrypted."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:76
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:82
 msgid "Identifies Elastic IP addresses that are allocated but not associated with any network interface."
 msgstr "Identifies Elastic IP addresses that are allocated but not associated with any network interface."
 
@@ -870,7 +911,7 @@ msgstr "Identifies Elastic IP addresses that are allocated but not associated wi
 msgid "Identifies RDS snapshots that are publicly accessible."
 msgstr "Identifies RDS snapshots that are publicly accessible."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:34
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:29
 msgid "Identifies S3 buckets that are publicly accessible."
 msgstr "Identifies S3 buckets that are publicly accessible."
 
@@ -886,8 +927,8 @@ msgstr "If this security check does not apply to this resource, you can safely i
 msgid "Ignore"
 msgstr "Ignore"
 
-#: src/pages/panel/inventory/ResourceDetailFailedCheckIgnoredChecks.tsx:42
-#: src/pages/panel/inventory/ResourceDetailFailedChecks.tsx:93
+#: src/pages/panel/inventory/resource-detail/ResourceDetailFailedCheckIgnoredChecks.tsx:42
+#: src/pages/panel/inventory/resource-detail/ResourceDetailFailedChecks.tsx:93
 msgid "Ignore all"
 msgstr "Ignore all"
 
@@ -895,7 +936,7 @@ msgstr "Ignore all"
 msgid "Ignored"
 msgstr "Ignored"
 
-#: src/pages/panel/security/OverallCard.tsx:162
+#: src/pages/panel/security/OverallCard.tsx:149
 msgid "Improved"
 msgstr "Improved"
 
@@ -911,9 +952,9 @@ msgstr "Inactivity reminder"
 msgid "Info"
 msgstr "Info"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:63
-msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle! Within a billing cycle you will be charged for the highest product tier that was active. Your next billing cycle starts: {0} UTC"
-msgstr "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle! Within a billing cycle you will be charged for the highest product tier that was active. Your next billing cycle starts: {0} UTC"
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:322
+msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle!{0}<0/>Your next billing cycle starts: {1} UTC"
+msgstr "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle!{0}<0/>Your next billing cycle starts: {1} UTC"
 
 #: src/shared/charts/NetworkDiagram.tsx:420
 msgid "Instance is terminated"
@@ -927,12 +968,12 @@ msgstr "Integration advice for your specific cloud environment via video call"
 msgid "Integration Key"
 msgstr "Integration Key"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:314
-#: src/pages/panel/inventory/InventoryFormFilterRowStringValue.tsx:214
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:343
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:244
 msgid "Invalid Value"
 msgstr "Invalid Value"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:35
+#: src/shared/layouts/panel-layout/menuList.tsx:38
 msgid "Inventory"
 msgstr "Inventory"
 
@@ -954,12 +995,16 @@ msgstr "Invite External User"
 msgid "Invites"
 msgstr "Invites"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:218
+#: src/pages/panel/inventory/inventory-form/InventoryFormKind.tsx:48
+msgid "kind"
+msgstr "kind"
+
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:218
 #: src/shared/charts/NetworkDiagram.tsx:405
 msgid "Kind"
 msgstr "Kind"
 
-#: src/pages/panel/inventory/InventoryForm.tsx:218
+#: src/pages/panel/inventory/inventory-form/InventoryFormKind.tsx:40
 msgid "Kinds"
 msgstr "Kinds"
 
@@ -967,7 +1012,7 @@ msgstr "Kinds"
 msgid "Last login"
 msgstr "Last login"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:70
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:60
 msgid "Load Balancers with no backends"
 msgstr "Load Balancers with no backends"
 
@@ -992,7 +1037,7 @@ msgstr "Logout"
 msgid "Low"
 msgstr "Low"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:92
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:97
 msgid "Low Utilization Compute Instances and Databases"
 msgstr "Low Utilization Compute Instances and Databases"
 
@@ -1000,7 +1045,15 @@ msgstr "Low Utilization Compute Instances and Databases"
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:89
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:510
+msgid "Manage AWS Market place payment method"
+msgstr "Manage AWS Market place payment method"
+
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:528
+msgid "Manage Card Details"
+msgstr "Manage Card Details"
+
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:90
 msgid "maximum of {0} cloud accounts"
 msgstr "maximum of {0} cloud accounts"
 
@@ -1014,7 +1067,7 @@ msgid "Member"
 msgstr "Member"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:19
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:50
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:55
 msgid "Monthly"
 msgstr "Monthly"
 
@@ -1026,11 +1079,11 @@ msgstr "Monthly email report"
 msgid "More info"
 msgstr "More info"
 
-#: src/pages/panel/security/OverallCard.tsx:196
+#: src/pages/panel/security/OverallCard.tsx:183
 msgid "Most Improved Accounts"
 msgstr "Most Improved Accounts"
 
-#: src/pages/panel/security/OverallCard.tsx:213
+#: src/pages/panel/security/OverallCard.tsx:190
 msgid "Most Improved Resources"
 msgstr "Most Improved Resources"
 
@@ -1040,7 +1093,7 @@ msgstr "Most Non-Compliant Accounts"
 
 #: src/pages/panel/accounts/AccountRow.tsx:409
 #: src/pages/panel/accounts/AccountsTableItem.tsx:47
-#: src/pages/panel/inventory/ResourceDetail.tsx:220
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:220
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:18
@@ -1060,15 +1113,15 @@ msgstr "Name"
 msgid "Neighborhood view"
 msgstr "Neighborhood view"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:199
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:199
 msgid "Neighborhood View"
 msgstr "Neighborhood View"
 
-#: src/pages/panel/security/OverallCard.tsx:167
+#: src/pages/panel/security/OverallCard.tsx:154
 msgid "new improved resources in the past {since}"
 msgstr "new improved resources in the past {since}"
 
-#: src/pages/panel/inventory/utils/ResourceDetailChangeLogSelectedHistoryDiff.tsx:65
+#: src/pages/panel/inventory/resource-detail/utils/ResourceDetailChangeLogSelectedHistoryDiff.tsx:65
 msgid "New issues"
 msgstr "New issues"
 
@@ -1081,7 +1134,11 @@ msgstr "new non compliant resources in the past {since}"
 msgid "New Password"
 msgstr "New Password"
 
-#: src/pages/panel/inventory/utils/nodeChange.tsx:25
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:315
+msgid "New Product Tier"
+msgstr "New Product Tier"
+
+#: src/pages/panel/inventory/resource-detail/utils/nodeChange.tsx:25
 msgid "New security issues detected"
 msgstr "New security issues detected"
 
@@ -1093,12 +1150,42 @@ msgstr "Next scan"
 msgid "Next Sync"
 msgstr "Next Sync"
 
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:42
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:68
+#: src/pages/panel/inventory/InventoryTable.tsx:145
+msgid "No"
+msgstr "No"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:202
+msgid "No {label} found for {typed}"
+msgstr "No {label} found for {typed}"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:31
+msgid "Node Compliant"
+msgstr "Node Compliant"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:15
+msgid "Node Created"
+msgstr "Node Created"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:23
+msgid "Node Deleted"
+msgstr "Node Deleted"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:19
+msgid "Node Updated"
+msgstr "Node Updated"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:27
+msgid "Node Vulnerable"
+msgstr "Node Vulnerable"
+
 #: src/pages/panel/accounts/AccountRow.tsx:373
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 
 #: src/pages/panel/security/OverallCard.tsx:88
-#: src/pages/panel/security/OverallCard.tsx:173
+#: src/pages/panel/security/OverallCard.tsx:160
 msgid "Nothing to show yet"
 msgstr "Nothing to show yet"
 
@@ -1106,15 +1193,11 @@ msgstr "Nothing to show yet"
 msgid "Notification"
 msgstr "Notification"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:129
-msgid "Null"
-msgstr "Null"
-
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:50
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:47
 msgid "Number Of Account Charged"
 msgstr "Number Of Account Charged"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:50
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:55
 msgid "One time"
 msgstr "One time"
 
@@ -1122,7 +1205,7 @@ msgstr "One time"
 msgid "Oops, the username or password doesn't seem to match our records. Please try again."
 msgstr "Oops, the username or password doesn't seem to match our records. Please try again."
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:144
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:161
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Oops! It looks like your query didn't match our format. Please check and try again."
 
@@ -1130,7 +1213,7 @@ msgstr "Oops! It looks like your query didn't match our format. Please check and
 msgid "Oops! Something went wrong."
 msgstr "Oops! Something went wrong."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:39
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:44
 msgid "Open Database Access"
 msgstr "Open Database Access"
 
@@ -1138,11 +1221,11 @@ msgstr "Open Database Access"
 msgid "Open drawer"
 msgstr "Open drawer"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:244
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:244
 msgid "Open resource {name} in AWS Console"
 msgstr "Open resource {name} in AWS Console"
 
-#: src/pages/panel/inventory/utils/ResourceDetailChangeLogSelectedHistoryAccordion.tsx:64
+#: src/pages/panel/inventory/resource-detail/utils/ResourceDetailChangeLogSelectedHistoryAccordion.tsx:64
 msgid "Opened at"
 msgstr "Opened at"
 
@@ -1157,7 +1240,11 @@ msgstr "Optional professional services"
 msgid "Or"
 msgstr "Or"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:80
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:76
+msgid "Orphaned CloudWatch Instance Alarms"
+msgstr "Orphaned CloudWatch Instance Alarms"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:70
 msgid "Orphaned Snapshots"
 msgstr "Orphaned Snapshots"
 
@@ -1175,10 +1262,6 @@ msgstr "Other Workspace Settings"
 msgid "OTP Code"
 msgstr "OTP Code"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:262
-msgid "Our fair-use policy allows for up to 200,000 resources per account. If your needs surpass this amount, please <0>reach out</0> to discuss your specific requirements."
-msgstr "Our fair-use policy allows for up to 200,000 resources per account. If your needs surpass this amount, please <0>reach out</0> to discuss your specific requirements."
-
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:59
 #: src/pages/panel/workspace-settings-users/workspaceSettingsUserRoleToString.ts:7
 msgid "Owner"
@@ -1190,7 +1273,11 @@ msgstr "Owner"
 msgid "Password"
 msgstr "Password"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:301
+#: src/core/events/WebSocketEvents.tsx:131
+msgid "Payment is required for your workspace, Please contact the workspace owner"
+msgstr "Payment is required for your workspace, Please contact the workspace owner"
+
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:390
 msgid "Payment Method Required"
 msgstr "Payment Method Required"
 
@@ -1201,15 +1288,19 @@ msgstr "Payment Method Required"
 msgid "Pending Invitations"
 msgstr "Pending Invitations"
 
-#: src/pages/panel/security/OverallCard.tsx:176
+#: src/pages/panel/security/OverallCard.tsx:163
 msgid "Pick one of the recommendations to the right and improve your security"
 msgstr "Pick one of the recommendations to the right and improve your security"
+
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:394
+msgid "Please add a payment method to switch your workspace's product tier"
+msgstr "Please add a payment method to switch your workspace's product tier"
 
 #: src/pages/auth/login/LoginPage.tsx:187
 msgid "Please enter your One-Time-Password or one of your Recovery code."
 msgstr "Please enter your One-Time-Password or one of your Recovery code."
 
-#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:48
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:58
 msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgstr "Please go to <0>Setup Accounts</0> page to setup your account first"
 
@@ -1225,7 +1316,7 @@ msgstr "Plus"
 msgid "Print or copy the following recovery codes"
 msgstr "Print or copy the following recovery codes"
 
-#: src/shared/cloud-avatar/CloudAvatar.tsx:38
+#: src/shared/cloud-avatar/CloudAvatar.tsx:44
 msgid "Privileged"
 msgstr "Privileged"
 
@@ -1245,19 +1336,19 @@ msgstr "Product support via email and live chat"
 msgid "Product support via email, live chat, and video call"
 msgstr "Product support via email, live chat, and video call"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:318
-msgid "Product Tier"
-msgstr "Product Tier"
-
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:192
-msgid "Product tier changed to {productTier}"
-msgstr "Product tier changed to {productTier}"
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:218
+msgid "Product tier changed to {selectedProductTier}"
+msgstr "Product tier changed to {selectedProductTier}"
 
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:53
 msgid "Profile"
 msgstr "Profile"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowProperty.tsx:332
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:96
+msgid "Properties"
+msgstr "Properties"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:364
 msgid "Property"
 msgstr "Property"
 
@@ -1265,7 +1356,7 @@ msgstr "Property"
 msgid "Public RDS Snapshots"
 msgstr "Public RDS Snapshots"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:33
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:28
 msgid "Public S3 Buckets"
 msgstr "Public S3 Buckets"
 
@@ -1273,12 +1364,11 @@ msgstr "Public S3 Buckets"
 msgid "Re-Authenticate"
 msgstr "Re-Authenticate"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:23
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:37
 msgid "Receipts"
 msgstr "Receipts"
 
-#: src/pages/panel/accounts/AccountsTable.tsx:21
+#: src/pages/panel/accounts/AccountsTable.tsx:22
 msgid "Recently added accounts"
 msgstr "Recently added accounts"
 
@@ -1295,11 +1385,14 @@ msgstr "Recovery codes"
 msgid "Regenerate"
 msgstr "Regenerate"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:227
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:94
+#: src/pages/panel/inventory/inventory-form/InventoryFormRegionValues.tsx:46
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:227
 msgid "Region"
 msgstr "Region"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:130
+#: src/pages/panel/inventory/inventory-form/InventoryFormRegion.tsx:24
+#: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:124
 msgid "Regions"
 msgstr "Regions"
 
@@ -1324,11 +1417,11 @@ msgstr "Rename"
 msgid "Reset Password"
 msgstr "Reset Password"
 
-#: src/pages/panel/inventory/utils/nodeChange.tsx:19
+#: src/pages/panel/inventory/resource-detail/utils/nodeChange.tsx:19
 msgid "Resource created"
 msgstr "Resource created"
 
-#: src/pages/panel/inventory/utils/nodeChange.tsx:23
+#: src/pages/panel/inventory/resource-detail/utils/nodeChange.tsx:23
 msgid "Resource deleted"
 msgstr "Resource deleted"
 
@@ -1336,9 +1429,9 @@ msgstr "Resource deleted"
 msgid "Resources"
 msgstr "Resources"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:60
-msgid "Resources with the string \"deleteme\""
-msgstr "Resources with the string \"deleteme\""
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:86
+msgid "Resources with the string \"delete\""
+msgstr "Resources with the string \"delete\""
 
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:104
 msgid "Risk"
@@ -1351,7 +1444,11 @@ msgstr "Risk"
 msgid "Roles"
 msgstr "Roles"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:98
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:167
+msgid "Search {0}"
+msgstr "Search {0}"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:103
 msgid "Searches for database instances with no connections over a significant period, indicating potential waste."
 msgstr "Searches for database instances with no connections over a significant period, indicating potential waste."
 
@@ -1360,7 +1457,7 @@ msgid "Secure read-only access"
 msgstr "Secure read-only access"
 
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:24
-#: src/shared/layouts/panel-layout/menuList.tsx:41
+#: src/shared/layouts/panel-layout/menuList.tsx:53
 msgid "Security"
 msgstr "Security"
 
@@ -1368,11 +1465,11 @@ msgstr "Security"
 msgid "Security benchmarks"
 msgstr "Security benchmarks"
 
-#: src/pages/panel/inventory/ResourceDetailFailedChecks.tsx:81
+#: src/pages/panel/inventory/resource-detail/ResourceDetailFailedChecks.tsx:81
 msgid "Security Issues"
 msgstr "Security Issues"
 
-#: src/pages/panel/inventory/utils/nodeChange.tsx:27
+#: src/pages/panel/inventory/resource-detail/utils/nodeChange.tsx:27
 msgid "Security posture improved"
 msgstr "Security posture improved"
 
@@ -1385,8 +1482,8 @@ msgstr "Security Scan"
 msgid "Security Score"
 msgstr "Security Score"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:255
-#: src/pages/panel/inventory/ResourceDetail.tsx:266
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:255
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:266
 msgid "See this Resource in AWS Console"
 msgstr "See this Resource in AWS Console"
 
@@ -1402,7 +1499,13 @@ msgstr "Send Invite"
 msgid "Setting Up Email Notifications"
 msgstr "Setting Up Email Notifications"
 
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:156
+#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:43
+#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:59
+msgid "Severities"
+msgstr "Severities"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:53
+#: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:150
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:157
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:205
 msgid "Severity"
@@ -1428,11 +1531,11 @@ msgstr "Single Sign on (coming soon!)"
 msgid "Snowflake data export (coming soon!)"
 msgstr "Snowflake data export (coming soon!)"
 
-#: src/pages/panel/inventory/ResourceDetailFailedCheckIgnoredChecks.tsx:52
+#: src/pages/panel/inventory/resource-detail/ResourceDetailFailedCheckIgnoredChecks.tsx:52
 msgid "Some checks have been disabled for this resource"
 msgstr "Some checks have been disabled for this resource"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:282
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:282
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:33
 #: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:23
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:107
@@ -1462,8 +1565,8 @@ msgstr "Subscription successfully added to {0}"
 msgid "Successfully invited {email}"
 msgstr "Successfully invited {email}"
 
-#: src/pages/panel/inventory/InventoryTagAutoComplete.tsx:86
-#: src/pages/panel/inventory/ResourceDetail.tsx:292
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:95
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:292
 msgid "Tags"
 msgstr "Tags"
 
@@ -1484,7 +1587,7 @@ msgstr "The change will be active from the next security scan onwards. Until the
 msgid "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
 msgstr "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:280
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:280
 msgid "The selected resource does not exist anymore."
 msgstr "The selected resource does not exist anymore."
 
@@ -1496,7 +1599,7 @@ msgstr "The Stack requires the following parameters"
 msgid "The token that you sent is invalid or have been expired please try again"
 msgstr "The token that you sent is invalid or have been expired please try again"
 
-#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:45
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:55
 msgid "There's no account configured for this workspace."
 msgstr "There's no account configured for this workspace."
 
@@ -1516,11 +1619,11 @@ msgstr "This will deploy a CloudFormation stack that creates a new IAM role in y
 msgid "Tier"
 msgstr "Tier"
 
-#: src/pages/panel/inventory/ResourceDetail.tsx:261
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:261
 msgid "To access this resource, please ensure that you are logged into the AWS account: {account}"
 msgstr "To access this resource, please ensure that you are logged into the AWS account: {account}"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:280
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:382
 msgid "To AWS Marketplace"
 msgstr "To AWS Marketplace"
 
@@ -1528,7 +1631,7 @@ msgstr "To AWS Marketplace"
 msgid "To enhance your experience, please select the workspace where you'd like to activate your subscription"
 msgstr "To enhance your experience, please select the workspace where you'd like to activate your subscription"
 
-#: src/pages/panel/security/OverallCard.tsx:135
+#: src/pages/panel/security/OverallCard.tsx:123
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:114
 msgid "Top Non-Compliant Resources"
 msgstr "Top Non-Compliant Resources"
@@ -1558,10 +1661,6 @@ msgstr "TOTP Setup"
 msgid "Trial"
 msgstr "Trial"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:132
-msgid "True"
-msgstr "True"
-
 #: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:97
 msgid "Try again"
 msgstr "Try again"
@@ -1571,23 +1670,36 @@ msgstr "Try again"
 msgid "Type"
 msgstr "Type"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:75
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:81
 msgid "Unattached Elastic IPs"
 msgstr "Unattached Elastic IPs"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:88
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:45
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:71
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:132
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:151
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:249
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:293
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:300
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:142
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:147
+#: src/pages/panel/inventory/InventoryTable.tsx:137
+msgid "Undefined"
+msgstr "Undefined"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:93
 msgid "Underutilized"
 msgstr "Underutilized"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:44
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:39
 msgid "Unencrypted Database Storage"
 msgstr "Unencrypted Database Storage"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:28
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:34
 msgid "Unencrypted EBS Volumes"
 msgstr "Unencrypted EBS Volumes"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:97
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:102
 msgid "Unused Database Instances"
 msgstr "Unused Database Instances"
 
@@ -1599,8 +1711,7 @@ msgstr "Update Email"
 msgid "Update Password"
 msgstr "Update Password"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:258
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:296
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:266
 msgid "Upgrade"
 msgstr "Upgrade"
 
@@ -1615,13 +1726,13 @@ msgstr "User Settings Notification"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:27
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:45
-#: src/shared/layouts/panel-layout/menuList.tsx:60
+#: src/shared/layouts/panel-layout/menuList.tsx:72
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:16
 msgid "Users"
 msgstr "Users"
 
-#: src/pages/panel/inventory/InventoryFormFilterRowValues.tsx:164
-#: src/pages/panel/inventory/utils/getAutoCompleteFromKey.tsx:160
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:186
+#: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:154
 msgid "Value"
 msgstr "Value"
 
@@ -1641,11 +1752,6 @@ msgstr "We have sent an email with a confirmation link to your email address. Pl
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 
-#: src/pages/panel/security/OverallScore.tsx:59
-#: src/pages/panel/shared/utils/createPieDataFromNonCompliance.ts:26
-msgid "We've identified {0} non-compliant resources out of {1} {2}-severity security checks."
-msgstr "We've identified {0} non-compliant resources out of {1} {2}-severity security checks."
-
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:143
 msgid "Webhook URL"
 msgstr "Webhook URL"
@@ -1657,6 +1763,10 @@ msgstr "Weekly email report"
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:56
 msgid "Weekly Report"
 msgstr "Weekly Report"
+
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:324
+msgid "Within a billing cycle you will be charged for the highest product tier that was active."
+msgstr "Within a billing cycle you will be charged for the highest product tier that was active."
 
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:150
 msgid "Workspace Alerting Settings"
@@ -1676,7 +1786,7 @@ msgid "Workspace Name"
 msgstr "Workspace Name"
 
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:17
-#: src/shared/layouts/panel-layout/menuList.tsx:49
+#: src/shared/layouts/panel-layout/menuList.tsx:61
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:10
 msgid "Workspace Settings"
 msgstr "Workspace Settings"
@@ -1686,9 +1796,15 @@ msgstr "Workspace Settings"
 msgid "Workspace Users"
 msgstr "Workspace Users"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:304
-msgid "You are about to apply changes to your billing information. Please review the new details below:"
-msgstr "You are about to apply changes to your billing information. Please review the new details below:"
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:39
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:65
+#: src/pages/panel/inventory/InventoryTable.tsx:141
+msgid "Yes"
+msgstr "Yes"
+
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:271
+msgid "You are about to change workspace's product tier"
+msgstr "You are about to change workspace's product tier"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:39
 msgid "You are currently in your trial period, which will end in {0} days.<0/>During your trial period, you have access to all features of the product."
@@ -1702,6 +1818,10 @@ msgstr "You can deactivate TOTP via otp code"
 msgid "You can deactivate TOTP via recovery code"
 msgstr "You can deactivate TOTP via recovery code"
 
+#: src/core/events/WebSocketEvents.tsx:132
+msgid "You don't have access to this workspace"
+msgstr "You don't have access to this workspace"
+
 #: src/pages/auth/login/LoginPage.tsx:207
 msgid "You have successfully reset your password."
 msgstr "You have successfully reset your password."
@@ -1710,9 +1830,13 @@ msgstr "You have successfully reset your password."
 msgid "You have successfully verified your account."
 msgstr "You have successfully verified your account."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:311
-msgid "You need an AWS Marketplace Subscription to upgrade your plan."
-msgstr "You need an AWS Marketplace Subscription to upgrade your plan."
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:391
+msgid "You need a payment method to change your product tier"
+msgstr "You need a payment method to change your product tier"
+
+#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:307
+msgid "You need a payment method to upgrade your plan."
+msgstr "You need a payment method to upgrade your plan."
 
 #: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:44
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:94

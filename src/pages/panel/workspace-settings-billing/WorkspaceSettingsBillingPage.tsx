@@ -14,7 +14,7 @@ export default function WorkspaceSettingsBillingPage() {
   } = useLingui()
   const { selectedWorkspace } = useUserProfile()
   const {
-    data: { product_tier, workspace_payment_method },
+    data: { product_tier, workspace_payment_method, available_payment_methods },
   } = useSuspenseQuery({ queryFn: getWorkspaceBillingQuery, queryKey: ['workspace-billing', selectedWorkspace?.id] })
   const currentDate = new Date()
   currentDate.setMilliseconds(0)
@@ -45,7 +45,12 @@ export default function WorkspaceSettingsBillingPage() {
           </Alert>
         </Stack>
       ) : null}
-      <ChangePaymentMethod defaultProductTier={product_tier} workspacePaymentMethod={workspace_payment_method} />
+      <ChangePaymentMethod
+        defaultProductTier={product_tier}
+        selectedWorkspacePaymentMethod={workspace_payment_method}
+        workspacePaymentMethods={available_payment_methods}
+        nextBillingCycle={nextBillingCycle}
+      />
       <Trans>
         <Typography>Billing cycle: {desc.monthly ? t`Monthly` : t`One time`}</Typography>
         <Typography>Highest product tier this billing cycle: {title}</Typography>
@@ -58,22 +63,6 @@ export default function WorkspaceSettingsBillingPage() {
           </Typography>
         </Trans>
       ) : null}
-      <Alert color="info">
-        <Typography>
-          <Trans>
-            Info: Changes to your product tier will become active immediately and be applied for the current billing cycle! Within a billing
-            cycle you will be charged for the highest product tier that was active. Your next billing cycle starts:{' '}
-            {nextBillingCycle.toLocaleString(locale, {
-              year: 'numeric',
-              month: '2-digit',
-              day: '2-digit',
-              hour: '2-digit',
-              minute: '2-digit',
-            })}{' '}
-            UTC
-          </Trans>
-        </Typography>
-      </Alert>
       <Divider />
       <WorkspaceSettingsBillingTable />
     </Stack>

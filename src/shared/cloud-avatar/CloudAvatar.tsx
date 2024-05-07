@@ -9,27 +9,33 @@ interface CloudAvatar {
   withCrown?: boolean
   tooltip?: ReactNode
   error?: ReactNode
+  small?: boolean
   onErrorClick?: () => void
 }
 
-const CloudIcon = ({ cloud }: CloudAvatar) => {
+const CloudIcon = ({ cloud, small }: CloudAvatar) => {
+  const size = small ? 30 : 40
   switch (cloud.toLowerCase()) {
     case 'fix':
-      return <FixLogo width={40} height={40} />
+      return <FixLogo width={size} height={size} />
     case 'aws':
-      return <AwsLogo width={40} height={40} />
+      return <AwsLogo width={size} height={size} />
     case 'gcp':
-      return <GcpLogo width={40} height={40} />
+      return <GcpLogo width={size} height={size} />
     default:
-      return <Avatar sx={{ bgcolor: 'primary.main' }}>{cloud.substring(0, 2).toUpperCase()}</Avatar>
+      return (
+        <Avatar sx={{ bgcolor: 'primary.main', width: size, height: size, fontSize: size / 2 }}>
+          {cloud.substring(0, 2).toUpperCase()}
+        </Avatar>
+      )
   }
 }
 
-export const CloudAvatar = ({ cloud, withCrown, tooltip, error, onErrorClick }: CloudAvatar) => (
+export const CloudAvatar = ({ cloud, small, withCrown, tooltip, error, onErrorClick }: CloudAvatar) => (
   <Tooltip title={tooltip}>
     <Box position="relative">
       <Box margin="0 auto">
-        <CloudIcon cloud={cloud} />
+        <CloudIcon cloud={cloud} small={small} />
       </Box>
       {withCrown ? (
         <>

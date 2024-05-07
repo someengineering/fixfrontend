@@ -13,7 +13,7 @@ import { getInitiated } from 'src/shared/utils/localstorage'
 export const AccountCheckGuard = () => {
   const { selectedWorkspace } = useUserProfile()
   const { data } = useSuspenseQuery({
-    queryKey: ['workspace-cloud-accounts', selectedWorkspace?.id],
+    queryKey: ['workspace-cloud-accounts', selectedWorkspace?.id, true],
     queryFn: getWorkspaceCloudAccountsQuery,
   })
   const navigate = useAbsoluteNavigate()
@@ -22,13 +22,23 @@ export const AccountCheckGuard = () => {
     navigate('/workspace-settings/accounts/setup-cloud')
   }, [navigate])
 
-  const doesNotHaveAccount = !data.added.length && !data.recent.length && !data.discovered.length
+  const handleGoToPaymentPage = useCallback(() => {
+    navigate('/workspace-settings/billing-receipts')
+  }, [navigate])
+
+  const haveError = !data || typeof data === 'string'
+  const doesNotHaveAccount = haveError ? true : !data.added.length && !data.recent.length && !data.discovered.length
 
   useEffect(() => {
+    if (haveError) {
+      if (data === 'workspace_payment_on_hold') {
+        handleGoToPaymentPage()
+      }
+    }
     if (doesNotHaveAccount && !getInitiated()) {
       handleGoToSetupCloudPage()
     }
-  }, [doesNotHaveAccount, handleGoToSetupCloudPage])
+  }, [data, doesNotHaveAccount, handleGoToPaymentPage, handleGoToSetupCloudPage, haveError])
 
   if (!selectedWorkspace?.id) {
     return <FullPageLoadingSuspenseFallback />

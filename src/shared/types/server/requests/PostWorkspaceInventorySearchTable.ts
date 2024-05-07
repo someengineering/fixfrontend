@@ -1,7 +1,9 @@
+export type HistoryChanges = 'node_created' | 'node_updated' | 'node_deleted' | 'node_vulnerable' | 'node_compliant'
+
 export type WorkspaceInventorySearchTableHistory = {
-  before: string | null
-  after: string | null
-  change: string | null
+  before?: string | null
+  after?: string | null
+  changes: HistoryChanges[]
 }
 
 export type WorkspaceInventorySearchTableSort = {

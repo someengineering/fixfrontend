@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro'
 import EventIcon from '@mui/icons-material/Event'
-import { Badge, Box, Fade, IconButton, Paper, Popper, Tooltip, styled } from '@mui/material'
+import { Box, Fade, IconButton, Paper, Popper, Tooltip, styled } from '@mui/material'
 import { useQueryClient } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
 import { useEvents } from 'src/core/events'
@@ -36,9 +36,6 @@ export const EventButton = () => {
               if (hasProgress) {
                 newEvents[foundIndex] = ev
               } else {
-                void queryClient.invalidateQueries({
-                  predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace'),
-                })
                 newEvents.splice(foundIndex, 1)
               }
             } else if (hasProgress) {
@@ -48,6 +45,11 @@ export const EventButton = () => {
           })
           break
         }
+        case 'tenant_accounts_collected':
+          void queryClient.invalidateQueries({
+            predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace'),
+          })
+          break
         case 'aws_account_configured':
           void queryClient.invalidateQueries({
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
@@ -100,9 +102,7 @@ export const EventButton = () => {
     <Box display="inline-flex" alignItems="center" justifyContent="center">
       <Tooltip title={t`Events`}>
         <IconButton sx={{ p: 0, color: 'white', mr: 2 }} size="large" onClick={handleToggleUserMenu} ref={anchorEl}>
-          <Badge badgeContent="!" color="error">
-            <EventIcon fontSize="large" />
-          </Badge>
+          <EventIcon fontSize="large" />
         </IconButton>
       </Tooltip>
       <PopperContainer

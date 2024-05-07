@@ -2,7 +2,6 @@ import { lingui } from '@lingui/vite-plugin'
 import react from '@vitejs/plugin-react-swc'
 import path from 'path'
 import { defineConfig, loadEnv } from 'vite'
-import mockDevServerPlugin from 'vite-plugin-mock-dev-server'
 import svgr from 'vite-plugin-svgr'
 
 // https://vitejs.dev/config/
@@ -17,16 +16,16 @@ export default defineConfig(({ mode }) => {
       react({ plugins: [['@lingui/swc-plugin', {}]] }),
       svgr(),
       lingui(),
-      mockDevServerPlugin({
-        prefix: '/api',
-        wsPrefix: '^/api/workspaces/[a-z0-9\\-]+/events',
-        include: ['mock-apis/**/*.mock.ts'],
-        log: 'debug',
-        build: {
-          log: 'debug',
-          serverPort: env.PORT ? Number(env.PORT) : undefined,
-        },
-      }),
+      // mockDevServerPlugin({
+      //   prefix: '/api',
+      //   wsPrefix: '^/api/workspaces/[a-z0-9\\-]+/events',
+      //   include: ['mock-apis/**/*.mock.ts'],
+      //   log: 'debug',
+      //   build: {
+      //     log: 'debug',
+      //     serverPort: env.PORT ? Number(env.PORT) : undefined,
+      //   },
+      // }),
     ],
     // build: {
     //   manifest: '/public/manifest.json',

@@ -45,7 +45,7 @@ export default function WorkspaceSettingsPage() {
           <Trans>Users</Trans>
         </Button>
         <Button variant="outlined" onClick={() => navigate('workspace-settings/billing-receipts')} startIcon={<ReceiptIcon />}>
-          <Trans>Billing & Receipts</Trans>
+          <Trans>Billing</Trans>
         </Button>
         {/* <Button variant="outlined" onClick={() => navigate('workspace-settings/external-directories')} startIcon={<FolderCopyIcon />}>
           <Trans>External Directories</Trans>

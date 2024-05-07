@@ -34,7 +34,10 @@ export const endPoints = {
     workspace: (workspaceId: string) => ({
       billing: `api/workspaces/${workspaceId}/billing`,
       billingEntries: `api/workspaces/${workspaceId}/billing_entries/`,
-      subscriptionItem: (subscriptionId: string) => `api/workspaces/${workspaceId}/subscription/${subscriptionId}`,
+      subscription: {
+        item: (subscriptionId: string) => `api/workspaces/${workspaceId}/subscription/${subscriptionId}`,
+        stripe: `api/workspaces/${workspaceId}/subscriptions/stripe`,
+      },
       cloudAccounts: {
         cloudAccount: (cloudAccountId: string) => ({
           self: `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}`,
@@ -104,7 +107,6 @@ export const endPoints = {
         self: (userId: string) => `api/workspaces/${workspaceId}/roles/${userId}`,
       },
       acceptInvite: `api/workspaces/${workspaceId}/accept_invite`,
-      subscription: (subscriptionId: string) => `api/workspaces/${workspaceId}/subscription/${subscriptionId}`,
       cfUrl: `api/workspaces/${workspaceId}/cf_url`,
       cfTemplate: `api/workspaces/${workspaceId}/cf_template`,
       externalId: `api/workspaces/${workspaceId}/external_id`,

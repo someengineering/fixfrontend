@@ -19,8 +19,8 @@ export interface WorkspaceInventoryNodeHistory<NodeChange = WorkspaceInventoryNo
   metadata: NodeMetadata
   diff: NodeChange extends 'node_vulnerable' | 'node_compliant'
     ? {
-        node_compliant: WorkspaceInventoryNodeHistoryDiff[]
-        node_vulnerable: WorkspaceInventoryNodeHistoryDiff[]
+        node_compliant?: WorkspaceInventoryNodeHistoryDiff[]
+        node_vulnerable?: WorkspaceInventoryNodeHistoryDiff[]
       }
     : never
   ancestors?: NodeAncestors

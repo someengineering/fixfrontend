@@ -80,11 +80,11 @@ export default function AuthContainer() {
           <FooterRegion>
             <Typography variant="subtitle2">
               <Trans>
-                <Link target="_blank" href={`${env.landingPageUrl}/terms-and-conditions`}>
+                <Link target="_blank" href={`${env.landingPageUrl}/privacy-policy`}>
                   Privacy policy
                 </Link>{' '}
                 |{' '}
-                <Link target="_blank" href={`${env.landingPageUrl}/privacy-policy`}>
+                <Link target="_blank" href={`${env.landingPageUrl}/terms-and-conditions`}>
                   Terms and conditions
                 </Link>
               </Trans>

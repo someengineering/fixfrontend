@@ -1,0 +1,52 @@
+name: 'Publish PR'
+on: [pull_request]
+
+jobs:
+  pr-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (GitHub)
+        uses: actions/checkout@v3
+
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'yarn'
+
+      - name: Install
+        run: yarn install
+
+      - name: Create env file
+        run: |
+          echo "VITE_FIX_LANDING_PAGE_URL=${{ vars.FIX_LANDING_PAGE_URL }}" > .env.production
+          echo "VITE_VIDEOS_ASSETS_URL=${{ vars.VIDEOS_ASSETS_URL }}" >> .env.production
+          echo "VITE_USE_PROXY=false" >> .env.production
+          echo "VITE_NETWORK_RETRY_COUNT=${{ vars.NETWORK_RETRY_COUNT }}" >> .env.production
+          echo "VITE_WEBSOCKET_RETRY_TIMEOUT=${{ vars.WEBSOCKET_RETRY_TIMEOUT }}" >> .env.production
+          echo "VITE_USE_MOCK=false" >> .env.production
+          echo "VITE_DISCORD_URL=${{ vars.DISCORD_URL }}" >> .env.production
+          echo "VITE_GTM_DEV_ID=${{ secrets.GTM_DEV_ID }}" >> .env.production
+          echo "VITE_GTM_PROD_ID=${{ secrets.GTM_PROD_ID }}" >> .env.production
+          echo "VITE_TRACKJS_TOKEN=${{ secrets.TRACKJS_TOKEN }}" >> .env.production
+          echo "VITE_MUI_LICENSE_KEY=${{ secrets.MUI_LICENSE_KEY }}" >> .env.production
+      
+      - name: Add models
+        run: |
+          echo "[]" > mock-apis/data/model.json
+          echo "{ \"accounts\": [], \"regions\": [], \"kinds\": [], \"severity\": [] }" > mock-apis/data/search-start.json
+          echo "[]" > mock-apis/data/table.json
+          echo "[]" > mock-apis/data/tags.json
+
+      - name: Run Test Build
+        run: PUBLIC_URL=${{ vars.PUBLIC_TEST_PR_URL }}/${{ github.event.number }}/ yarn build
+
+      - name: Publish Test Build
+        uses: BetaHuhn/do-spaces-action@v2
+        with:
+          access_key: ${{ secrets.FIX_UI_DO_SPACES_KEY }}
+          secret_key: ${{ secrets.FIX_UI_DO_SPACES_SECRET }}
+          space_name: ${{ secrets.FIX_UI_DO_SPACE_NAME }}
+          space_region: ${{ secrets.FIX_UI_DO_SPACE_REGION }}
+          out_dir: fix-test-ui-build/${{github.event.number}}
+          source: dist

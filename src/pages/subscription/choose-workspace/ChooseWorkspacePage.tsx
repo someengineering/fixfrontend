@@ -67,7 +67,7 @@ export default function ChooseWorkspacePage() {
 
   return (subscriptionId && workspaces?.length && workspaces.length > 1) || error ? (
     <>
-      <Typography variant="h3" color="primary.main" textAlign="center" mb={2} maxWidth={800}>
+      <Typography variant="h3" color="primary.main" textAlign="center" mb={2}>
         <Trans>Congratulations on your subscription</Trans>
         🎉🎊😍
       </Typography>

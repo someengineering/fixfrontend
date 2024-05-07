@@ -13,6 +13,7 @@ type WebSocketEventKind =
   | 'aws_account_degraded'
   | 'collect-progress'
   | 'collect-error'
+  | 'tenant_accounts_collected'
 
 export type AWSAccountDiscoveredEvent = WebSocketGenericEvent<
   'aws_account_discovered',
@@ -50,6 +51,24 @@ export type AWSAccountDegradedEvent = WebSocketGenericEvent<
   }
 >
 
+export type AWSTenantAccountCollectedEvent = WebSocketGenericEvent<
+  'tenant_accounts_collected',
+  {
+    tenant_id: string
+    cloud_accounts: Record<
+      string,
+      {
+        account_id: string
+        scanned_resources: number
+        duration_seconds: number
+        started_at: string
+        task_id?: string
+      }
+    >
+    next_run?: string
+  }
+>
+
 export type CollectProgressEvent = WebSocketGenericEvent<
   'collect-progress',
   {
@@ -83,5 +102,6 @@ export type WebSocketEvent =
   | AWSAccountDegradedEvent
   | AWSAccountDeletedEvent
   | AWSAccountDiscoveredEvent
+  | AWSTenantAccountCollectedEvent
   | CollectProgressEvent
   | CollectErrorEvent

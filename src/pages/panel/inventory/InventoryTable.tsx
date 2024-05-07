@@ -1,4 +1,8 @@
-import { ButtonBase, Stack } from '@mui/material'
+import { t } from '@lingui/macro'
+import CheckIcon from '@mui/icons-material/Check'
+import CloseIcon from '@mui/icons-material/Close'
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark'
+import { ButtonBase, Stack, Tooltip } from '@mui/material'
 import { GridColDef, GridRow, GridRowProps, GridSortItem } from '@mui/x-data-grid-premium'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
@@ -6,6 +10,7 @@ import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { GTMEventNames, panelUI, settingsStorageKeys } from 'src/shared/constants'
+import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { sendToGTM } from 'src/shared/google-tag-manager'
 import { AdvancedTableView } from 'src/shared/layouts/panel-layout'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
@@ -24,9 +29,9 @@ import { DownloadCSVButton } from './DownloadCSVButton'
 interface InventoryTableProps {
   searchCrit: string
   history?: {
-    after: string
-    before: string
-    change: string
+    after?: string
+    before?: string
+    changes: string[]
   }
 }
 
@@ -37,6 +42,7 @@ type RowType = WorkspaceInventorySearchTableRow['row'] & {
 type ColType = GridColDef & WorkspaceInventorySearchTableColumn
 
 export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => {
+  const { sorts } = useFixQueryParser()
   const [dataCount, setDataCount] = useState(-1)
   const navigate = useAbsoluteNavigate()
   const [page, setPage] = useState(0)
@@ -44,12 +50,16 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
   const { selectedWorkspace } = useUserProfile()
   const [rows, setRows] = useState<RowType[]>([])
   const [columns, setColumns] = useState<ColType[]>([])
-  const [sorting, setSorting] = useState<WorkspaceInventorySearchTableSort[]>([
-    ...(history ? [{ direction: 'asc', path: '/changed_at' } as WorkspaceInventorySearchTableSort] : []),
-    { direction: 'asc', path: '/reported.kind' },
-    { direction: 'asc', path: '/reported.name' },
-    { direction: 'asc', path: '/reported.id' },
-  ])
+  const [sorting, setSorting] = useState<WorkspaceInventorySearchTableSort[]>(
+    sorts.length
+      ? sorts.map((sort) => ({ direction: sort.order, path: sort.path.toString() }))
+      : [
+          ...(history ? [{ direction: 'asc', path: '/changed_at' } as WorkspaceInventorySearchTableSort] : []),
+          { direction: 'asc', path: '/reported.kind' },
+          { direction: 'asc', path: '/reported.name' },
+          { direction: 'asc', path: '/reported.id' },
+        ],
+  )
   const initializedRef = useRef(false)
   const { data: serverData, isLoading } = useQuery({
     queryKey: [
@@ -74,6 +84,12 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
   }, [totalCount, dataCount])
 
   useEffect(() => {
+    if (sorts.length) {
+      setSorting(sorts.map((sort) => ({ direction: sort.order.toLowerCase() as 'asc' | 'desc', path: sort.path.toString() })))
+    }
+  }, [sorts])
+
+  useEffect(() => {
     if (initializedRef.current) {
       setDataCount(-1)
       setPage(0)
@@ -93,22 +109,47 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
     if (!isLoading) {
       const [{ columns: newColumns }, ...newRows] = data ?? [{ columns: [] }]
       setColumns(
-        newColumns.map((i) => ({
-          ...i,
-          field: i.name,
-          headerName: i.display,
-          flex: 1,
-          type:
-            i.kind === 'boolean' || i.kind === 'date'
-              ? i.kind
-              : i.kind === 'datetime'
-                ? 'dateTime'
-                : i.kind === 'double' || i.kind === 'float' || i.kind === 'int32' || i.kind === 'int64'
-                  ? 'number'
-                  : 'string',
-          display: 'text',
-          minWidth: 100,
-        })),
+        newColumns.map(
+          (i) =>
+            ({
+              ...i,
+              field: i.name,
+              headerName: i.display,
+              flex: 1,
+              type:
+                i.kind === 'boolean' || i.kind === 'date'
+                  ? i.kind
+                  : i.kind === 'datetime'
+                    ? 'dateTime'
+                    : i.kind === 'double' || i.kind === 'float' || i.kind === 'int32' || i.kind === 'int64'
+                      ? 'number'
+                      : 'string',
+              display: 'flex',
+              valueGetter:
+                i.kind === 'date' || i.kind === 'datetime'
+                  ? (value) => new Date(value)
+                  : i.kind === 'boolean'
+                    ? (value) => (typeof value === 'boolean' ? value : value === 'true' ? true : value === 'false' ? false : null)
+                    : undefined,
+              renderCell: (params) =>
+                params.colDef?.type === 'boolean' ? (
+                  params.value === null || params.value === undefined || params.value === 'null' ? (
+                    <Tooltip title={t`Undefined`}>
+                      <QuestionMarkIcon fontSize="small" />
+                    </Tooltip>
+                  ) : params.value && params.value !== 'false' ? (
+                    <Tooltip title={t`Yes`}>
+                      <CheckIcon fontSize="small" />
+                    </Tooltip>
+                  ) : (
+                    <Tooltip title={t`No`}>
+                      <CloseIcon fontSize="small" />
+                    </Tooltip>
+                  )
+                ) : undefined,
+              minWidth: 100,
+            }) as ColType,
+        ),
       )
       setRows(newRows.map(({ row, id }, i) => ({ INTERNAL_ID: id + '_' + i, ...row })))
     }
@@ -132,7 +173,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       sortModel={
         sorting
           .map((sort) => {
-            const column = columns.find((column) => column.path === sort.path)
+            const column = columns.find((column) => column.path === sort.path || column.name.toLowerCase() === sort.path.toLowerCase())
             if (column) {
               return {
                 field: column.field,
@@ -179,7 +220,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
           <ButtonBase
             onClick={() =>
               navigate({
-                pathname: `/inventory/resource-detail/${(rowProps.row as RowType)?.INTERNAL_ID.split('_').slice(0, -1).join('_')}`,
+                pathname: `./resource-detail/${(rowProps.row as RowType)?.INTERNAL_ID.split('_').slice(0, -1).join('_')}`,
                 search:
                   typeof rowProps.row?.name === 'string'
                     ? mergeLocationSearchValues({

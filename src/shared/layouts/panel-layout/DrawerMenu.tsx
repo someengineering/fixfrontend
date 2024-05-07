@@ -15,7 +15,8 @@ import {
   Tooltip,
 } from '@mui/material'
 import { MouseEvent as ReactMouseEvent, useEffect, useState } from 'react'
-import { useMatch } from 'react-router-dom'
+import { ErrorBoundary } from 'react-error-boundary'
+import { useMatch, useSearchParams } from 'react-router-dom'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { getInitiated } from 'src/shared/utils/localstorage'
@@ -30,30 +31,55 @@ type DrawerMenuItemProps = DrawerMenuProps & MenuListItem
 
 const menuListMap = ({ open, onClose }: DrawerMenuProps, item: MenuListItem | MenuModalListItem, index: number) =>
   item.route === 'modal' ? (
-    <DrawerModalMenuItem open={open} onClose={onClose} key={index} {...(item as MenuModalListItem)} route="modal" />
+    <ErrorBoundary fallbackRender={() => null} key={index}>
+      <DrawerModalMenuItem open={open} onClose={onClose} {...(item as MenuModalListItem)} route="modal" />
+    </ErrorBoundary>
   ) : (
-    <DrawerMenuItem open={open} onClose={onClose} key={index} {...item} />
+    <ErrorBoundary fallbackRender={() => null} key={index}>
+      <DrawerMenuItem open={open} onClose={onClose} {...item} />
+    </ErrorBoundary>
   )
 
-const DrawerMenuItem = ({ open, onClose, Icon, name, route, useGuard, children }: DrawerMenuItemProps) => {
-  const match = useMatch(route + (children?.length ? '/*' : ''))
-  const [collapse, setCollapse] = useState(match === null)
+const DrawerMenuItem = ({
+  open,
+  onClose,
+  Icon,
+  name,
+  route,
+  routeSearch,
+  notRouteSearchMatch,
+  useGuard,
+  children,
+}: DrawerMenuItemProps) => {
+  const match = useMatch({ path: route + (children?.length ? '/*' : '') })
+  const [searchParams] = useSearchParams()
+  const matchRouteSearch = routeSearch
+    ? routeSearch
+        .split('&')
+        .map((item) => {
+          const [key, value] = item.split('=')
+          return searchParams.get(key) === value
+        })
+        .find((i) => i === (notRouteSearchMatch ? true : false)) === undefined
+    : true
+  const hasMatch = match !== null && matchRouteSearch
+  const [collapse, setCollapse] = useState(hasMatch)
   const show = useGuard?.() ?? true
   const navigate = useAbsoluteNavigate()
   const handleClick = (e: ReactMouseEvent<HTMLAnchorElement, MouseEvent>) => {
     setCollapse(false)
     e.preventDefault()
     onClose?.(e)
-    navigate(route)
+    navigate({ pathname: route, search: notRouteSearchMatch ? undefined : routeSearch })
   }
   useEffect(() => {
-    setCollapse(match === null)
-  }, [match])
+    setCollapse(hasMatch)
+  }, [hasMatch])
   return show ? (
     <>
       <ListItem disablePadding sx={{ display: 'block' }}>
         <ListItemButton
-          selected={match !== null}
+          selected={hasMatch}
           href={route}
           sx={{
             height: panelUI.headerHeight,
@@ -81,7 +107,7 @@ const DrawerMenuItem = ({ open, onClose, Icon, name, route, useGuard, children }
                 setCollapse((prev) => !prev)
               }}
             >
-              {collapse ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+              {collapse ? <ExpandLessIcon /> : <ExpandMoreIcon />}
             </IconButton>
           ) : null}
         </ListItemButton>

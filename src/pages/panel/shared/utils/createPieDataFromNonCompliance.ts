@@ -23,9 +23,9 @@ const createPieDataFromName = (
     label: typeof accountFailedResource === 'number' ? numberToShortHRT(accountFailedResource, locale) : undefined,
     description: noTooltip
       ? undefined
-      : t`We've identified ${
+      : t`${label.toString()}: We've identified ${
           accountFailedResource?.toLocaleString(locale) ?? '0'
-        } non-compliant resources out of ${resourceCount?.toLocaleString(locale)} ${label.toString()}-severity security checks.`,
+        } non-compliant resources out of ${resourceCount?.toLocaleString(locale)}.`,
     onClick: noOnclick
       ? undefined
       : () => {

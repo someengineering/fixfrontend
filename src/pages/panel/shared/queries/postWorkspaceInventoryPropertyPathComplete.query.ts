@@ -1,5 +1,4 @@
 import { QueryFunctionContext } from '@tanstack/react-query'
-import { defaultProperties } from 'src/pages/panel/shared/constants'
 import { endPoints } from 'src/shared/constants'
 import {
   PostWorkspaceInventoryPropertyPathCompleteRequest,
@@ -9,7 +8,7 @@ import { axiosWithAuth } from 'src/shared/utils/axios'
 
 export const postWorkspaceInventoryPropertyPathCompleteQuery = ({
   signal,
-  queryKey: [, workspaceId, path, prop, kind, kinds],
+  queryKey: [, workspaceId, path, prop, kinds],
   pageParam: { skip = 0, limit = 50 },
 }: QueryFunctionContext<
   readonly [
@@ -17,7 +16,6 @@ export const postWorkspaceInventoryPropertyPathCompleteQuery = ({
     string | undefined, // workspaceId
     string, // path
     string, // prop
-    string | null, // kind
     string, // kinds
   ],
   {
@@ -28,7 +26,7 @@ export const postWorkspaceInventoryPropertyPathCompleteQuery = ({
   const data: PostWorkspaceInventoryPropertyPathCompleteRequest = {
     path,
     prop,
-    kinds: kind ? [kind] : (JSON.parse(kinds) as string[]),
+    kinds: JSON.parse(kinds) as string[],
     fuzzy: true,
     limit,
     skip,
@@ -41,16 +39,7 @@ export const postWorkspaceInventoryPropertyPathCompleteQuery = ({
           data,
           { signal },
         )
-        .then((res) => {
-          const data = Object.entries(res.data ?? {}).map(([key, value]) => ({ label: path ? `${path}.${key}` : key, key, value }))
-          return (
-            path || skip
-              ? data
-              : (prop ? defaultProperties.filter((i) => i.label.toLowerCase().includes(prop.toLowerCase())) : defaultProperties).concat(
-                  data,
-                )
-          ) as typeof defaultProperties
-        })) ||
+        .then((res) => Object.entries(res.data ?? {}).map(([key, value]) => ({ label: path ? `${path}.${key}` : key, key, value })))) ||
     null
   )
 }
