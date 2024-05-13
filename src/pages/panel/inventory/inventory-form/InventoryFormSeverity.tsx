@@ -6,6 +6,7 @@ import { useMemo, useState } from 'react'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { DefaultPropertiesKeys, useFixQueryParser } from 'src/shared/fix-query-parser'
 import { SeverityType } from 'src/shared/types/server'
+import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 import { InventoryFormDefaultValue } from './InventoryFormDefaultValue'
 import { InventoryFormField } from './InventoryFormField'
 import { termValueToStringArray } from './utils'
@@ -36,6 +37,7 @@ export const InventoryFormSeverity = ({ preItems }: { preItems: AutoCompletePreD
     return result
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(values), preItems.severities])
+
   return (
     <>
       <InventoryFormField
@@ -53,7 +55,7 @@ export const InventoryFormSeverity = ({ preItems }: { preItems: AutoCompletePreD
         label={t`Severity`}
         showItemLabel={(item) => (
           <Typography color={getColorBySeverity(item.value as SeverityType)} component="span">
-            {item.label}
+            {snakeCaseToUFStr(item.label)}
           </Typography>
         )}
         labelPlural={t`Severities`}

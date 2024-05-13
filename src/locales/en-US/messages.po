@@ -410,8 +410,8 @@ msgstr "Business"
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:211
-#: src/pages/panel/inventory/inventory-form/InventoryFormMoreValue.tsx:161
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:213
+#: src/pages/panel/inventory/inventory-form/InventoryFormMoreValue.tsx:163
 #: src/pages/panel/inventory/inventory-form/InventoryFormTagsValue.tsx:150
 msgid "Change"
 msgstr "Change"
@@ -1156,7 +1156,7 @@ msgstr "Next Sync"
 msgid "No"
 msgstr "No"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:202
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:204
 msgid "No {label} found for {typed}"
 msgstr "No {label} found for {typed}"
 
@@ -1444,7 +1444,7 @@ msgstr "Risk"
 msgid "Roles"
 msgstr "Roles"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:167
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:169
 msgid "Search {0}"
 msgstr "Search {0}"
 
@@ -1499,12 +1499,12 @@ msgstr "Send Invite"
 msgid "Setting Up Email Notifications"
 msgstr "Setting Up Email Notifications"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:43
-#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:59
+#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:45
+#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:61
 msgid "Severities"
 msgstr "Severities"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:53
+#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:55
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:150
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:157
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:205
