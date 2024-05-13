@@ -130,8 +130,8 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError, 
                       <Tooltip
                         title={
                           <Alert color="info" variant="outlined">
-                            <AlertTitle>This search is complex.</AlertTitle>
                             <Trans>
+                              <AlertTitle>This search is complex.</AlertTitle>
                               The combo boxes below may not display all filter details but can help narrow your results. For full control,
                               please use the Advanced tab.
                             </Trans>
