@@ -17,6 +17,22 @@ import { InventoryFormRest } from './InventoryFormRest'
 import { InventoryFormSeverity } from './InventoryFormSeverity'
 import { inventorySendToGTM } from './utils'
 
+function removeStringDuplicates(data?: string[]) {
+  return data ? Array.from(new Set(data)) : []
+}
+
+function removeDuplicates<T>(data?: T[], basedOn?: keyof T) {
+  return data
+    ? Array.from(new Set(data.map((i) => JSON.stringify(basedOn ? i[basedOn] : i)))).map((i) => {
+        const result = JSON.parse(i) as unknown
+        if (basedOn) {
+          return data.find((i) => i[basedOn] === result)!
+        }
+        return result as T
+      })
+    : []
+}
+
 export const InventoryForm = () => {
   const { account: selectedAccount, cloud: selectedCloud, region: selectedRegion, is } = useFixQueryParser()
   const selectedKind = is()
@@ -32,7 +48,18 @@ export const InventoryForm = () => {
       inventorySendToGTM('getWorkspaceInventorySearchStartQuery', false, error as AxiosError, '')
     }
   }, [error])
-  const startData = useMemo(() => originalStartData ?? { accounts: [], kinds: [], regions: [], severity: [] }, [originalStartData])
+  const startData = useMemo(
+    () =>
+      originalStartData
+        ? {
+            accounts: removeDuplicates(originalStartData.accounts, 'name'),
+            kinds: removeDuplicates(originalStartData.kinds, 'name'),
+            regions: removeDuplicates(originalStartData.regions, 'name'),
+            severity: removeStringDuplicates(originalStartData.severity),
+          }
+        : { accounts: [], kinds: [], regions: [], severity: [] },
+    [originalStartData],
+  )
   const processedStartData = useMemo(() => {
     const clouds: string[] = []
     const biggestLength = Math.max(startData.accounts.length, startData.kinds.length, startData.regions.length)
