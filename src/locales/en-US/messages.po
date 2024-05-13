@@ -1034,7 +1034,7 @@ msgstr "Log in with {formattedName}"
 msgid "Login into the AWS account you want to secure. Deploy a CloudFormation stack that creates a new IAM role for FIX."
 msgstr "Login into the AWS account you want to secure. Deploy a CloudFormation stack that creates a new IAM role for FIX."
 
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:125
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:164
 msgid "Logout"
 msgstr "Logout"
 
@@ -1345,7 +1345,7 @@ msgstr "Product support via email, live chat, and video call"
 msgid "Product tier changed to {selectedProductTier}"
 msgstr "Product tier changed to {selectedProductTier}"
 
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:53
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:92
 msgid "Profile"
 msgstr "Profile"
 
@@ -1721,7 +1721,7 @@ msgid "Upgrade"
 msgstr "Upgrade"
 
 #: src/pages/panel/user-settings/UserSettingsPage.tsx:16
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:117
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:156
 msgid "User Settings"
 msgstr "User Settings"
 
@@ -1826,6 +1826,10 @@ msgstr "You can deactivate TOTP via recovery code"
 #: src/core/events/WebSocketEvents.tsx:132
 msgid "You don't have access to this workspace"
 msgstr "You don't have access to this workspace"
+
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:146
+msgid "You don't have the permission to view this workspace, contact the workspace owner for more information."
+msgstr "You don't have the permission to view this workspace, contact the workspace owner for more information."
 
 #: src/pages/auth/login/LoginPage.tsx:207
 msgid "You have successfully reset your password."

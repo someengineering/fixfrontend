@@ -11,6 +11,7 @@ import { getAuthData, setAuthData } from 'src/shared/utils/localstorage'
 import { TrackJS } from 'trackjs'
 import { UserContext, UserContextRealValues } from './UserContext'
 import { getCurrentUserQuery } from './getCurrentUser.query'
+import { getPermissions, maxPermissionNumber } from './getPermissions'
 import { getWorkspacesQuery } from './getWorkspaces.query'
 import { logoutMutation } from './logout.mutation'
 
@@ -34,6 +35,9 @@ export function AuthGuard({ children }: PropsWithChildren) {
             created_at: new Date().toISOString(),
             on_hold_since: null,
             trial_end_days: null,
+            user_has_access: true,
+            user_permissions: maxPermissionNumber,
+            permissions: getPermissions(maxPermissionNumber),
           }
         : undefined,
       isAuthenticated,
@@ -75,8 +79,9 @@ export function AuthGuard({ children }: PropsWithChildren) {
       const workspaces = await getWorkspacesQuery(instance ?? axiosWithAuth)
       setAuth((prev) => {
         const selectedWorkspace =
-          (prev.selectedWorkspace?.id ? workspaces.find((workspace) => workspace.id === prev.selectedWorkspace?.id) : workspaces[0]) ??
-          workspaces[0]
+          (prev.selectedWorkspace?.id
+            ? workspaces.find((workspace) => workspace.id === prev.selectedWorkspace?.id)
+            : workspaces.find((workspace) => workspace.user_has_access && workspace.permissions.includes('read'))) ?? workspaces[0]
         window.setTimeout(() => {
           window.location.hash = selectedWorkspace?.id ?? ''
         })
