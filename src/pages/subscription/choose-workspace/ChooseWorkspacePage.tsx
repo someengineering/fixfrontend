@@ -64,6 +64,10 @@ export default function ChooseWorkspacePage() {
   const handleSubmit = () => {
     void mutateAsync({ workspaceId: selectedWorkspace?.id ?? '', subscriptionId: subscriptionId ?? '' })
   }
+  const handleCancel = () => {
+    setSubscriptionId()
+    navigate('/workspace-settings/billing-receipts')
+  }
 
   return (subscriptionId && workspaces?.length && workspaces.length > 1) || error ? (
     <>
@@ -98,9 +102,14 @@ export default function ChooseWorkspacePage() {
           </Grid>
         ))}
       </Grid>
-      <ChooseWorkspaceButton variant="outlined" onClick={handleSubmit} loading={isPending}>
-        <Trans>Choose Workspace</Trans>
-      </ChooseWorkspaceButton>
+      <Stack direction="row" spacing={1} justifyContent="center">
+        <ChooseWorkspaceButton variant="outlined" color="error" onClick={handleCancel}>
+          <Trans>Cancel</Trans>
+        </ChooseWorkspaceButton>
+        <ChooseWorkspaceButton variant="contained" onClick={handleSubmit} loading={isPending}>
+          <Trans>Choose Workspace</Trans>
+        </ChooseWorkspaceButton>
+      </Stack>
     </>
   ) : (
     <LoadingSuspenseFallback />
