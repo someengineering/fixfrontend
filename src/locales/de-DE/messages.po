@@ -1184,6 +1184,10 @@ msgstr ""
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Sie löschen gerade ein Management- oder delegiertes Admin-Konto. Beachten Sie bitte, dass wir nach der Löschung nicht mehr in der Lage sein werden, Kontonamen abzurufen, wodurch Sie diese manuell bearbeiten müssen."
 
+#: src/pages/panel/inventory/inventory-form/InventoryForm.tsx:178
+msgid "Note: Your query includes elements that are not yet supported for display. We're working to show these soon."
+msgstr ""
+
 #: src/pages/panel/security/OverallCard.tsx:88
 #: src/pages/panel/security/OverallCard.tsx:160
 msgid "Nothing to show yet"
