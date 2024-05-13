@@ -43,8 +43,10 @@ export const InventoryFormMoreValue = ({
   const { is } = useFixQueryParser()
   const [fqn, setFqn] = useState(defaultFqn)
   const [value, setValue] = useState(defaultValue)
-  const onSubmit = () => {
-    onChange(value)
+  const handleSubmit = (_?: unknown, reason?: 'backdropClick' | 'escapeKeyDown') => {
+    if (reason !== 'escapeKeyDown') {
+      onChange(value)
+    }
     setFqn(defaultFqn)
     setValue(defaultValue)
     onClose()
@@ -77,7 +79,7 @@ export const InventoryFormMoreValue = ({
       open={!!open}
       anchorEl={open}
       anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-      onClose={onSubmit}
+      onClose={handleSubmit}
       sx={{
         [`& .${backdropClasses.root}`]: { bgcolor: 'transparent' },
         maxHeight: `calc(100% - ${(open?.offsetTop ?? 0) + (open?.offsetHeight ?? 0) + panelUI.headerHeight}px)`,
@@ -90,7 +92,7 @@ export const InventoryFormMoreValue = ({
         component="form"
         onSubmit={(e) => {
           e.preventDefault()
-          onSubmit()
+          handleSubmit()
         }}
       >
         <Stack direction="row" flexWrap="wrap" pt={2}>

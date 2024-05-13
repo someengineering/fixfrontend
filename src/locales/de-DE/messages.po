@@ -168,8 +168,8 @@ msgstr "In wenigen Minuten bis zum ersten Ergebnis"
 msgid "Abandoned"
 msgstr "Verlassen"
 
-#: src/pages/panel/accounts/AccountRow.tsx:231
-#: src/pages/panel/accounts/AccountRow.tsx:349
+#: src/pages/panel/accounts/AccountRow.tsx:237
+#: src/pages/panel/accounts/AccountRow.tsx:355
 msgid "Access to your account is broken"
 msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 
@@ -325,7 +325,7 @@ msgstr "Möchten Sie die Verbindung zu {name} wirklich trennen?"
 msgid "Are you sure you want to remove the {name} account {0}?"
 msgstr "Sind Sie sicher, dass Sie das {name}-Konto {0} entfernen möchten?"
 
-#: src/pages/panel/accounts/AccountRow.tsx:367
+#: src/pages/panel/accounts/AccountRow.tsx:373
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:81
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:102
 msgid "Are you sure?"
@@ -390,10 +390,10 @@ msgstr ""
 msgid "Business"
 msgstr "Business"
 
-#: src/pages/panel/accounts/AccountRow.tsx:277
-#: src/pages/panel/accounts/AccountRow.tsx:281
-#: src/pages/panel/accounts/AccountRow.tsx:282
-#: src/pages/panel/accounts/AccountRow.tsx:386
+#: src/pages/panel/accounts/AccountRow.tsx:283
+#: src/pages/panel/accounts/AccountRow.tsx:287
+#: src/pages/panel/accounts/AccountRow.tsx:288
+#: src/pages/panel/accounts/AccountRow.tsx:392
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:68
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:121
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:49
@@ -410,8 +410,8 @@ msgstr "Business"
 msgid "Cancel"
 msgstr "Stornieren"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:211
-#: src/pages/panel/inventory/inventory-form/InventoryFormMoreValue.tsx:161
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:213
+#: src/pages/panel/inventory/inventory-form/InventoryFormMoreValue.tsx:163
 #: src/pages/panel/inventory/inventory-form/InventoryFormTagsValue.tsx:150
 msgid "Change"
 msgstr ""
@@ -445,7 +445,7 @@ msgstr ""
 msgid "Close"
 msgstr "Schließen"
 
-#: src/pages/panel/accounts/AccountRow.tsx:406
+#: src/pages/panel/accounts/AccountRow.tsx:412
 #: src/pages/panel/accounts/AccountsTableItem.tsx:41
 #: src/pages/panel/inventory/inventory-form/InventoryFormCloudValues.tsx:48
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:93
@@ -616,10 +616,10 @@ msgstr "Standardrolle"
 msgid "Delayed Effect"
 msgstr "Verzögerte Wirkung"
 
-#: src/pages/panel/accounts/AccountRow.tsx:337
-#: src/pages/panel/accounts/AccountRow.tsx:341
-#: src/pages/panel/accounts/AccountRow.tsx:342
-#: src/pages/panel/accounts/AccountRow.tsx:397
+#: src/pages/panel/accounts/AccountRow.tsx:343
+#: src/pages/panel/accounts/AccountRow.tsx:347
+#: src/pages/panel/accounts/AccountRow.tsx:348
+#: src/pages/panel/accounts/AccountRow.tsx:403
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:79
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:69
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:73
@@ -636,7 +636,7 @@ msgstr "Löschen"
 msgid "Delete Provider"
 msgstr "Anbieter löschen"
 
-#: src/pages/panel/accounts/AccountRow.tsx:354
+#: src/pages/panel/accounts/AccountRow.tsx:360
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:13
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:29
 msgid "Deploy Stack"
@@ -676,7 +676,7 @@ msgstr "Erkannte, aber nicht konfigurierte Konten"
 msgid "Do not show me again"
 msgstr "Zeig es mir nicht noch einmal"
 
-#: src/pages/panel/accounts/AccountRow.tsx:370
+#: src/pages/panel/accounts/AccountRow.tsx:376
 msgid "Do you want to delete this account?"
 msgstr "Möchten Sie dieses Konto löschen?"
 
@@ -701,8 +701,8 @@ msgstr "Downgrade"
 msgid "Download CSV"
 msgstr "CSV herunterladen"
 
-#: src/pages/panel/accounts/AccountRow.tsx:293
-#: src/pages/panel/accounts/AccountRow.tsx:294
+#: src/pages/panel/accounts/AccountRow.tsx:299
+#: src/pages/panel/accounts/AccountRow.tsx:300
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:166
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:167
 msgid "Edit"
@@ -883,7 +883,7 @@ msgstr "Stündlich"
 msgid "How to fix"
 msgstr "Wie repariert man"
 
-#: src/pages/panel/accounts/AccountRow.tsx:403
+#: src/pages/panel/accounts/AccountRow.tsx:409
 #: src/pages/panel/accounts/AccountsTableItem.tsx:44
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:219
 #: src/pages/panel/security/AccountCard.tsx:34
@@ -1091,7 +1091,7 @@ msgstr "Am meisten verbesserte Ressourcen"
 msgid "Most Non-Compliant Accounts"
 msgstr "Die meisten nicht konformen Konten"
 
-#: src/pages/panel/accounts/AccountRow.tsx:409
+#: src/pages/panel/accounts/AccountRow.tsx:415
 #: src/pages/panel/accounts/AccountsTableItem.tsx:47
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:220
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
@@ -1156,7 +1156,7 @@ msgstr "Nächste Synchronisierung"
 msgid "No"
 msgstr ""
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:202
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:204
 msgid "No {label} found for {typed}"
 msgstr ""
 
@@ -1180,7 +1180,7 @@ msgstr ""
 msgid "Node Vulnerable"
 msgstr ""
 
-#: src/pages/panel/accounts/AccountRow.tsx:373
+#: src/pages/panel/accounts/AccountRow.tsx:379
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Sie löschen gerade ein Management- oder delegiertes Admin-Konto. Beachten Sie bitte, dass wir nach der Löschung nicht mehr in der Lage sein werden, Kontonamen abzurufen, wodurch Sie diese manuell bearbeiten müssen."
 
@@ -1324,7 +1324,7 @@ msgstr "Drucken oder kopieren Sie die folgenden Wiederherstellungscodes"
 msgid "Privileged"
 msgstr "Privilegiert"
 
-#: src/pages/panel/accounts/AccountRow.tsx:226
+#: src/pages/panel/accounts/AccountRow.tsx:232
 msgid "Privileged account"
 msgstr "Privilegiertes Konto"
 
@@ -1448,7 +1448,7 @@ msgstr "Risiko"
 msgid "Roles"
 msgstr "Rollen"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:167
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:169
 msgid "Search {0}"
 msgstr ""
 
@@ -1503,12 +1503,12 @@ msgstr "Sende Einladung"
 msgid "Setting Up Email Notifications"
 msgstr "E-Mail-Benachrichtigungen einrichten"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:43
-#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:59
+#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:45
+#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:61
 msgid "Severities"
 msgstr ""
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:53
+#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:55
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:150
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:157
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:205
@@ -1553,9 +1553,9 @@ msgstr "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einma
 msgid "Sources"
 msgstr "Quellen"
 
-#: src/pages/panel/accounts/AccountRow.tsx:266
-#: src/pages/panel/accounts/AccountRow.tsx:267
 #: src/pages/panel/accounts/AccountRow.tsx:272
+#: src/pages/panel/accounts/AccountRow.tsx:273
+#: src/pages/panel/accounts/AccountRow.tsx:278
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:143
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:144
 msgid "Submit"
@@ -1607,7 +1607,7 @@ msgstr "Das von Ihnen gesendete Token ist ungültig oder abgelaufen. Bitte versu
 msgid "There's no account configured for this workspace."
 msgstr "Für diesen Arbeitsbereich ist kein Konto konfiguriert."
 
-#: src/pages/panel/accounts/AccountRow.tsx:359
+#: src/pages/panel/accounts/AccountRow.tsx:365
 msgid "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 msgstr "Dieses Konto befindet sich derzeit in einem nicht-funktionalen Zustand, möglicherweise aufgrund einer Fehlkonfiguration. Fix konnte nicht auf das Konto zugreifen. Um die Sicherheitsscans fortzusetzen, loggen Sie sich bitte in das Konto {accountName} ({0}) ein und erzeugen Sie den CloudFormation-Stacks, der die IAM Vertrauensstellung herstellt, erneut."
 
