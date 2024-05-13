@@ -1,4 +1,5 @@
-import { Stack } from '@mui/material'
+import { Trans } from '@lingui/macro'
+import { Alert, Collapse, Stack } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useEffect, useMemo } from 'react'
@@ -34,7 +35,8 @@ function removeDuplicates<T>(data?: T[], basedOn?: keyof T) {
 }
 
 export const InventoryForm = () => {
-  const { account: selectedAccount, cloud: selectedCloud, region: selectedRegion, is } = useFixQueryParser()
+  const { account: selectedAccount, cloud: selectedCloud, region: selectedRegion, uiSimpleQuery, is, q } = useFixQueryParser()
+  const hasSomethingExtra = !!q && q !== 'all' && !uiSimpleQuery()
   const selectedKind = is()
   const { selectedWorkspace } = useUserProfile()
   const { data: originalStartData, error } = useQuery({
@@ -170,17 +172,24 @@ export const InventoryForm = () => {
     [processedStartData, selectedClouds, numberOfCloudFilterSelected, numberOfCloudSelected],
   )
   return (
-    <Stack direction="row" width="100%" flexWrap="wrap" overflow="auto" py={1}>
-      <InventoryFormReset />
-      <InventoryFormChanges />
-      <InventoryFormFullTextSearches />
-      <InventoryFormKind preItems={filteredStartData} />
-      <InventoryFormCloud preItems={filteredStartData} />
-      <InventoryFormAccount preItems={filteredStartData} />
-      <InventoryFormRegion preItems={filteredStartData} />
-      <InventoryFormSeverity preItems={filteredStartData} />
-      <InventoryFormRest preItems={filteredStartData} />
-      <InventoryFormMore preItems={filteredStartData} />
-    </Stack>
+    <>
+      <Collapse in={hasSomethingExtra}>
+        <Alert color="warning">
+          <Trans>Note: Your query includes elements that are not yet supported for display. We're working to show these soon.</Trans>
+        </Alert>
+      </Collapse>
+      <Stack direction="row" width="100%" flexWrap="wrap" overflow="auto" py={1}>
+        <InventoryFormReset />
+        <InventoryFormChanges />
+        <InventoryFormFullTextSearches />
+        <InventoryFormKind preItems={filteredStartData} />
+        <InventoryFormCloud preItems={filteredStartData} />
+        <InventoryFormAccount preItems={filteredStartData} />
+        <InventoryFormRegion preItems={filteredStartData} />
+        <InventoryFormSeverity preItems={filteredStartData} />
+        <InventoryFormRest preItems={filteredStartData} />
+        <InventoryFormMore preItems={filteredStartData} />
+      </Stack>
+    </>
   )
 }
