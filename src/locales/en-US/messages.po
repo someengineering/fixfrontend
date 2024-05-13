@@ -124,6 +124,10 @@ msgstr "<0>Privacy policy</0> | <1>Terms and conditions</1>"
 msgid "<0>Step 1: Scan the QR Code</0><1>First up, see this QR code on your screen? Grab your phone and open your favorite authenticator app (like Google Authenticator).</1><2>Step 2: Add a New Account</2><3>In the app, tap on \"Add\" or \"+\" to set up a new account. Select \"Scan a QR Code\" and point your phone's camera at the QR code displayed here. This will link your account to the app.</3><4><5/></4><6>Step 3: Enter the Code</6><7>Once linked, the app will display a 6-digit code. It changes every 30 seconds, so it's super fresh! Enter that code in the box below and hit \"Activate\". And voilà, you're all set!</7>"
 msgstr "<0>Step 1: Scan the QR Code</0><1>First up, see this QR code on your screen? Grab your phone and open your favorite authenticator app (like Google Authenticator).</1><2>Step 2: Add a New Account</2><3>In the app, tap on \"Add\" or \"+\" to set up a new account. Select \"Scan a QR Code\" and point your phone's camera at the QR code displayed here. This will link your account to the app.</3><4><5/></4><6>Step 3: Enter the Code</6><7>Once linked, the app will display a 6-digit code. It changes every 30 seconds, so it's super fresh! Enter that code in the box below and hit \"Activate\". And voilà, you're all set!</7>"
 
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:133
+msgid "<0>This search is complex.</0>The combo boxes below may not display all filter details but can help narrow your results. For full control, please use the Advanced tab."
+msgstr "<0>This search is complex.</0>The combo boxes below may not display all filter details but can help narrow your results. For full control, please use the Advanced tab."
+
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:81
 msgid "<0>To ensure you receive timely alerts and notifications directly to your email, we require your email address.<1/>Please note that it is possible to define multiple email addresses.</0>"
 msgstr "<0>To ensure you receive timely alerts and notifications directly to your email, we require your email address.<1/>Please note that it is possible to define multiple email addresses.</0>"
@@ -249,11 +253,11 @@ msgstr "Added accounts"
 msgid "Admin"
 msgstr "Admin"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:108
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:157
 msgid "Advanced"
 msgstr "Advanced"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:130
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:182
 msgid "Advanced search query"
 msgstr "Advanced search query"
 
@@ -850,7 +854,8 @@ msgstr "Forget your password? Click here to reset your password."
 msgid "Forgot Password"
 msgstr "Forgot Password"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:104
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:145
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:148
 msgid "Form"
 msgstr "Form"
 
@@ -1184,10 +1189,6 @@ msgstr "Node Vulnerable"
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 
-#: src/pages/panel/inventory/inventory-form/InventoryForm.tsx:178
-msgid "Note: Your query includes elements that are not yet supported for display. We're working to show these soon."
-msgstr "Note: Your query includes elements that are not yet supported for display. We're working to show these soon."
-
 #: src/pages/panel/security/OverallCard.tsx:88
 #: src/pages/panel/security/OverallCard.tsx:160
 msgid "Nothing to show yet"
@@ -1209,7 +1210,7 @@ msgstr "One time"
 msgid "Oops, the username or password doesn't seem to match our records. Please try again."
 msgstr "Oops, the username or password doesn't seem to match our records. Please try again."
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:161
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:213
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Oops! It looks like your query didn't match our format. Please check and try again."
 

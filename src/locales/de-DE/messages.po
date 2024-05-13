@@ -124,6 +124,10 @@ msgstr "<0>Datenschutzerklärung</0> | <1>Allgemeine Geschäftsbedingungen</1>"
 msgid "<0>Step 1: Scan the QR Code</0><1>First up, see this QR code on your screen? Grab your phone and open your favorite authenticator app (like Google Authenticator).</1><2>Step 2: Add a New Account</2><3>In the app, tap on \"Add\" or \"+\" to set up a new account. Select \"Scan a QR Code\" and point your phone's camera at the QR code displayed here. This will link your account to the app.</3><4><5/></4><6>Step 3: Enter the Code</6><7>Once linked, the app will display a 6-digit code. It changes every 30 seconds, so it's super fresh! Enter that code in the box below and hit \"Activate\". And voilà, you're all set!</7>"
 msgstr "<0>Schritt 1: Scannen Sie den QR-Code</0><1>Zuerst, sehen Sie diesen QR-Code auf Ihrem Bildschirm? Nehmen Sie Ihr Handy und öffnen Sie Ihre bevorzugte Authenticator-App (wie Google Authenticator).</1><2>Schritt 2: Ein neues Konto hinzufügen</2><3>In der App, tippen Sie auf \"Hinzufügen\" oder \"+\", um ein neues Konto einzurichten. Wählen Sie \"QR-Code scannen\" und richten Sie die Kamera Ihres Handys auf den hier angezeigten QR-Code. Dies verknüpft Ihr Konto mit der App.</3><4><5/></4><6>Schritt 3: Geben Sie den Code ein</6><7>Sobald verknüpft, zeigt die App einen 6-stelligen Code an. Er ändert sich alle 30 Sekunden, also ist er super aktuell! Geben Sie diesen Code in das Feld unten ein und klicken Sie auf \"Aktivieren\". Und voilà, Sie sind fertig!</7>"
 
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:133
+msgid "<0>This search is complex.</0>The combo boxes below may not display all filter details but can help narrow your results. For full control, please use the Advanced tab."
+msgstr ""
+
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:81
 msgid "<0>To ensure you receive timely alerts and notifications directly to your email, we require your email address.<1/>Please note that it is possible to define multiple email addresses.</0>"
 msgstr "<0>Um sicherzustellen, dass Sie zeitnahe Benachrichtigungen und Benachrichtigungen direkt an Ihre E-Mail-Adresse erhalten, benötigen wir Ihre E-Mail-Adresse.<1/>Bitte beachten Sie, dass es möglich ist, mehrere E-Mail-Adressen zu definieren.</0>"
@@ -249,11 +253,11 @@ msgstr "Konten hinzugefügt"
 msgid "Admin"
 msgstr "Admin"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:108
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:157
 msgid "Advanced"
 msgstr ""
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:130
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:182
 msgid "Advanced search query"
 msgstr "Erweiterte Suchabfrage"
 
@@ -850,7 +854,8 @@ msgstr "Passwort vergessen? Klicken Sie hier, um Ihr Passwort zurückzusetzen."
 msgid "Forgot Password"
 msgstr "Passwort vergessen"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:104
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:145
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:148
 msgid "Form"
 msgstr ""
 
@@ -1184,10 +1189,6 @@ msgstr ""
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Sie löschen gerade ein Management- oder delegiertes Admin-Konto. Beachten Sie bitte, dass wir nach der Löschung nicht mehr in der Lage sein werden, Kontonamen abzurufen, wodurch Sie diese manuell bearbeiten müssen."
 
-#: src/pages/panel/inventory/inventory-form/InventoryForm.tsx:178
-msgid "Note: Your query includes elements that are not yet supported for display. We're working to show these soon."
-msgstr ""
-
 #: src/pages/panel/security/OverallCard.tsx:88
 #: src/pages/panel/security/OverallCard.tsx:160
 msgid "Nothing to show yet"
@@ -1209,7 +1210,7 @@ msgstr "Einmal"
 msgid "Oops, the username or password doesn't seem to match our records. Please try again."
 msgstr "Hoppla, der Benutzername oder das Passwort scheinen nicht mit unseren Aufzeichnungen übereinzustimmen. Bitte versuche es erneut."
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:161
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:213
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Sie sie und versuchen Sie es erneut."
 
