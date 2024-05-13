@@ -121,8 +121,10 @@ export const InventoryFormDefaultValue = ({
     setSelectedValues(values)
   }, [values])
 
-  const onSubmit = () => {
-    onChange(selectedValues)
+  const onSubmit = (_?: unknown, reason?: 'backdropClick' | 'escapeKeyDown') => {
+    if (reason !== 'escapeKeyDown') {
+      onChange(selectedValues)
+    }
     onClose()
   }
 
