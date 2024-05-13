@@ -23,3 +23,5 @@ export const getPermissions = (value: number) =>
     (prev, [permKey, permValue]) => ((value & permValue) === permValue ? [...prev, permKey] : prev),
     [] as Permissions[],
   )
+
+export const allPermissions = getPermissions(maxPermissionNumber)
