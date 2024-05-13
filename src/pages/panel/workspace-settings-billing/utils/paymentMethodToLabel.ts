@@ -5,8 +5,10 @@ export const paymentMethodToLabel = (paymentMethod: PaymentMethods) => {
   switch (paymentMethod) {
     case 'aws_marketplace':
       return t`AWS Marketplace`
+    case 'stripe':
+      return t`Credit or Debit Card`
     case 'none':
-      return t`Please select a payment method`
+      return t`Nothing`
     default:
       return paymentMethod
   }

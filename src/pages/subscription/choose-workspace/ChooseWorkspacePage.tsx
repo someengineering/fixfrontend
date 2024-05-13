@@ -19,11 +19,17 @@ const ChooseWorkspaceButton = styled(LoadingButton)({
 export default function ChooseWorkspacePage() {
   const { workspaces, selectedWorkspace, selectWorkspace } = useUserProfile()
   const { showSnackbar } = useSnackbar()
+  const navigate = useAbsoluteNavigate()
+
+  const afterSubmit = useCallback(() => {
+    setSubscriptionId()
+    navigate('/workspace-settings/billing-receipts')
+  }, [navigate])
+
   const { mutateAsync, isPending, error } = useMutation({
     mutationFn: putWorkspaceSubscriptionMutation,
     onSuccess: () => {
-      setSubscriptionId()
-      navigate('/workspace-settings/billing-receipts')
+      afterSubmit()
       void showSnackbar(t`Subscription successfully added to ${selectedWorkspace?.name}`, {
         severity: 'success',
         snackbarProps: { sx: { zIndex: ({ zIndex: { tooltip } }) => tooltip + 4 } },
@@ -41,28 +47,22 @@ export default function ChooseWorkspacePage() {
       )
     },
   })
-  const navigate = useAbsoluteNavigate()
   const [getSearch] = useSearchParams()
   const subscriptionId = getSearch.get('subscription_id')
-
-  const afterSubmit = useCallback(() => {
-    setSubscriptionId(undefined)
-    navigate('/')
-  }, [navigate])
 
   useEffect(() => {
     if (subscriptionId) {
       if (workspaces?.length === 1) {
-        void mutateAsync({ workspaceId: workspaces[0].id ?? '', subscriptionId: subscriptionId ?? '' }).then(afterSubmit)
+        void mutateAsync({ workspaceId: workspaces[0].id ?? '', subscriptionId: subscriptionId ?? '' })
       }
       setSubscriptionId(subscriptionId)
     } else {
       navigate('/')
     }
-  }, [subscriptionId, navigate, workspaces, mutateAsync, afterSubmit])
+  }, [subscriptionId, navigate, workspaces, mutateAsync])
 
   const handleSubmit = () => {
-    void mutateAsync({ workspaceId: selectedWorkspace?.id ?? '', subscriptionId: subscriptionId ?? '' }).then(afterSubmit)
+    void mutateAsync({ workspaceId: selectedWorkspace?.id ?? '', subscriptionId: subscriptionId ?? '' })
   }
 
   return (subscriptionId && workspaces?.length && workspaces.length > 1) || error ? (
