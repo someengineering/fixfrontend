@@ -216,6 +216,12 @@ export const AccountRow = ({ account, isNotConfigured }: AccountRowProps) => {
     }
   }
 
+  const nextScanDate = account.next_scan ? new Date(account.next_scan) : undefined
+  const nextScanDateStr = nextScanDate?.toLocaleDateString(locale)
+  const nextScanStr = nextScanDateStr
+    ? `${new Date().toLocaleDateString(locale) === nextScanDateStr ? '' : `${nextScanDateStr} `}${nextScanDate?.toLocaleTimeString(locale)}`
+    : undefined
+
   return (
     <TableRow>
       <TableCell>
@@ -301,7 +307,7 @@ export const AccountRow = ({ account, isNotConfigured }: AccountRowProps) => {
       <TableCell>{account.resources ?? '-'}</TableCell>
       {isNotConfigured ? null : (
         <>
-          <TableCell>{account.next_scan ? new Date(account.next_scan).toLocaleTimeString(locale) : '-'}</TableCell>
+          <TableCell>{nextScanStr ?? '-'}</TableCell>
           <TableCell>
             {enableAccountIsPending || disableAccountIsPending ? (
               <Stack justifyContent="center" direction="column" padding={1} margin="1px">
