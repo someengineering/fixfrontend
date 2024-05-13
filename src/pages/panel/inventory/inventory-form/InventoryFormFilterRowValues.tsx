@@ -42,8 +42,11 @@ export function InventoryFormFilterRowValues({
 }: InventoryFormFilterRowValuesProps) {
   const multiple = data.op === 'in' || data.op === 'not in'
   const handleChangeValue = (value: string | string[] | null | undefined) => {
+    if ((!data.value && !value) || data.value === value) {
+      return
+    }
     onChange(
-      value === undefined || value === ''
+      value === undefined || (value === '' && fqn !== 'duration')
         ? undefined
         : new Predicate({
             path: data.path,
@@ -75,13 +78,17 @@ export function InventoryFormFilterRowValues({
                             item.toLowerCase() === 'null' || item.toLowerCase() === 'undefined' ? null : new Date(item).toISOString(),
                           )
                         : null
-                    : typeof value === 'string'
-                      ? value.toLowerCase() === 'null' || value.toLowerCase() === 'undefined'
+                    : fqn === 'duration' && typeof value === 'string'
+                      ? !value
                         ? null
                         : value
-                      : value
-                        ? value.map((item) => (item.toLowerCase() === 'null' || item.toLowerCase() === 'undefined' ? null : item))
-                        : value,
+                      : typeof value === 'string'
+                        ? value.toLowerCase() === 'null' || value.toLowerCase() === 'undefined'
+                          ? null
+                          : value
+                        : value
+                          ? value.map((item) => (item.toLowerCase() === 'null' || item.toLowerCase() === 'undefined' ? null : item))
+                          : value,
             args: data.args,
           }),
     )
