@@ -968,7 +968,7 @@ msgstr "Integration advice for your specific cloud environment via video call"
 msgid "Integration Key"
 msgstr "Integration Key"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:343
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:333
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:244
 msgid "Invalid Value"
 msgstr "Invalid Value"
@@ -1348,7 +1348,7 @@ msgstr "Profile"
 msgid "Properties"
 msgstr "Properties"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:364
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:355
 msgid "Property"
 msgstr "Property"
 

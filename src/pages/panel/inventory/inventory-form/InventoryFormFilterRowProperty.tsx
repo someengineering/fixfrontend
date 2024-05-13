@@ -1,15 +1,6 @@
 import { Trans, t } from '@lingui/macro'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import {
-  Autocomplete,
-  AutocompleteRenderOptionState,
-  CircularProgress,
-  ListItemButton,
-  Stack,
-  TextField,
-  Tooltip,
-  Typography,
-} from '@mui/material'
+import { Autocomplete, AutocompleteRenderOptionState, CircularProgress, ListItemButton, Stack, TextField, Typography } from '@mui/material'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useDebounce } from '@uidotdev/usehooks'
 import { AxiosError } from 'axios'
@@ -189,7 +180,7 @@ export const InventoryFormFilterRowProperty = ({
     return true
   }
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
+    const value = e.target.value.replace(/\u200B/g, '')
     if (!isDictionary) {
       setFqn('object')
     }
@@ -336,35 +327,34 @@ export const InventoryFormFilterRowProperty = ({
       loading={autoCompleteIsLoading}
       ListboxProps={{ onScroll: handleScroll }}
       renderInput={(params) => (
-        <Tooltip title={autoCompleteInputValue}>
-          <TextField
-            {...params}
-            error={hasError}
-            helperText={hasError ? t`Invalid Value` : undefined}
-            focused={hasFocus && !!fqn}
-            autoFocus
-            InputProps={{
-              ...params.InputProps,
-              startAdornment: defaultForcedValue ? <Typography variant="caption">{defaultForcedValue}</Typography> : undefined,
-              endAdornment: (
-                <>
-                  {isLoading || isFetchingNextPage ? <CircularProgress color="inherit" size={20} /> : null}
-                  {params.InputProps.endAdornment}
-                </>
-              ),
-            }}
-            inputProps={{
-              ...params.inputProps,
-              autoFocus: true,
-              value: autoCompleteInputValue,
-              onKeyDown: handleInputKeyDown,
-              onFocus: () => setHasFocus(true),
-              onBlur: () => setHasFocus(false),
-            }}
-            label={<Trans>Property</Trans>}
-            onChange={handleInputChange}
-          />
-        </Tooltip>
+        <TextField
+          {...params}
+          error={hasError}
+          helperText={hasError ? t`Invalid Value` : undefined}
+          focused={hasFocus && !!fqn}
+          autoFocus
+          InputProps={{
+            ...params.InputProps,
+            startAdornment: defaultForcedValue ? <Typography variant="caption">{defaultForcedValue}</Typography> : undefined,
+            endAdornment: (
+              <>
+                {isLoading || isFetchingNextPage ? <CircularProgress color="inherit" size={20} /> : null}
+                {params.InputProps.endAdornment}
+              </>
+            ),
+          }}
+          multiline
+          inputProps={{
+            ...params.inputProps,
+            autoFocus: true,
+            value: autoCompleteInputValue.replace(/([_.])(?=\S)/g, '$1\u200B'),
+            onKeyDown: handleInputKeyDown,
+            onFocus: () => setHasFocus(true),
+            onBlur: () => setHasFocus(false),
+          }}
+          label={<Trans>Property</Trans>}
+          onChange={handleInputChange}
+        />
       )}
     />
   )
