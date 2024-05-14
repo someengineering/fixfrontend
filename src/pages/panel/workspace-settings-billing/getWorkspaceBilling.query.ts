@@ -11,5 +11,5 @@ export const getWorkspaceBillingQuery = async ({
     ? axiosWithAuth
         .get<GetWorkspaceBillingResponse>(endPoints.workspaces.workspace(workspaceId).billing, { signal })
         .then((res) => res.data)
-    : ({} as GetWorkspaceBillingResponse)
+    : ({ available_payment_methods: [], product_tier: 'Free', workspace_payment_method: { method: 'none' } } as GetWorkspaceBillingResponse)
 }

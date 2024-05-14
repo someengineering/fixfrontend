@@ -3,6 +3,7 @@ import { useLingui } from '@lingui/react'
 import { Alert, Divider, Stack, Typography } from '@mui/material'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useUserProfile } from 'src/core/auth'
+import { useHasBillingPermissionCheck } from 'src/shared/layouts/panel-layout'
 import { ChangePaymentMethod } from './ChangePaymentMethod'
 import { WorkspaceSettingsBillingTable } from './WorkspaceSettingsBillingTable'
 import { getWorkspaceBillingQuery } from './getWorkspaceBilling.query'
@@ -13,9 +14,13 @@ export default function WorkspaceSettingsBillingPage() {
     i18n: { locale },
   } = useLingui()
   const { selectedWorkspace } = useUserProfile()
+  const hasBillingPermission = useHasBillingPermissionCheck()
   const {
     data: { product_tier, workspace_payment_method, available_payment_methods },
-  } = useSuspenseQuery({ queryFn: getWorkspaceBillingQuery, queryKey: ['workspace-billing', selectedWorkspace?.id] })
+  } = useSuspenseQuery({
+    queryFn: getWorkspaceBillingQuery,
+    queryKey: ['workspace-billing', hasBillingPermission ? selectedWorkspace?.id : undefined],
+  })
   const currentDate = new Date()
   currentDate.setMilliseconds(0)
   currentDate.setSeconds(0)
