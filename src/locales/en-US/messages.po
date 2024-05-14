@@ -13,13 +13,13 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:76
-msgid "({0} / month per additional account)"
-msgstr "({0} / month per additional account)"
-
 #: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:90
 msgid "({0} max)"
 msgstr "({0} max)"
+
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:76
+msgid "(${0} / month per additional account)"
+msgstr "(${0} / month per additional account)"
 
 #: src/shared/utils/parseDuration.ts:171
 msgid "{0, plural, one {# Day} other {# Days}}"
@@ -295,6 +295,7 @@ msgid "An error occurred while connecting to {0}"
 msgstr "An error occurred while connecting to {0}"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:55
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:44
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:34
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:31
 msgid "An error occurred, please try again later."
@@ -410,7 +411,7 @@ msgstr "Business"
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:101
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:99
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:111
-#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:120
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:117
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -429,6 +430,7 @@ msgid "Change Payment method"
 msgstr "Change Payment method"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:124
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:92
 msgid "Change Product Tier"
 msgstr "Change Product Tier"
 
@@ -581,6 +583,7 @@ msgid "Critical"
 msgstr "Critical"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:166
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:97
 msgid "Current Product Tier"
 msgstr "Current Product Tier"
 
@@ -705,6 +708,7 @@ msgid "Don't have an account? Click here to Sign up."
 msgstr "Don't have an account? Click here to Sign up."
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:119
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:88
 msgid "Downgrade"
 msgstr "Downgrade"
 
@@ -970,8 +974,9 @@ msgid "Info"
 msgstr "Info"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:176
-msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle!{0}<0/>Your next billing cycle starts: {1} UTC"
-msgstr "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle!{0}<0/>Your next billing cycle starts: {1} UTC"
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:104
+msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle! {0}<0/>Your next billing cycle starts: {1} UTC"
+msgstr "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle! {0}<0/>Your next billing cycle starts: {1} UTC"
 
 #: src/shared/charts/NetworkDiagram.tsx:420
 msgid "Instance is terminated"
@@ -1062,11 +1067,11 @@ msgstr "Low Utilization Compute Instances and Databases"
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:123
+#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:146
 msgid "Manage AWS Market place payment method"
 msgstr "Manage AWS Market place payment method"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:141
+#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:164
 msgid "Manage Card Details"
 msgstr "Manage Card Details"
 
@@ -1152,6 +1157,7 @@ msgid "New Password"
 msgstr "New Password"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:169
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:100
 msgid "New Product Tier"
 msgstr "New Product Tier"
 
@@ -1343,6 +1349,10 @@ msgstr "Please enter your One-Time-Password or one of your Recovery code."
 msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgstr "Please go to <0>Setup Accounts</0> page to setup your account first"
 
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:79
+msgid "Please select the workspace where you would like to activate this subscription."
+msgstr "Please select the workspace where you would like to activate this subscription."
+
 #: src/pages/panel/workspace-settings-billing/utils/productTierToLabel.ts:11
 msgid "Plus"
 msgstr "Plus"
@@ -1374,6 +1384,10 @@ msgstr "Product support via email, live chat, and video call"
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:51
 msgid "Product tier changed to {selectedProductTier}"
 msgstr "Product tier changed to {selectedProductTier}"
+
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:40
+msgid "Product tier changed to Free"
+msgstr "Product tier changed to Free"
 
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:53
 msgid "Profile"
@@ -1664,10 +1678,6 @@ msgstr "To access this resource, please ensure that you are logged into the AWS 
 msgid "To AWS Marketplace"
 msgstr "To AWS Marketplace"
 
-#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:82
-msgid "To enhance your experience, please select the workspace where you'd like to activate your subscription"
-msgstr "To enhance your experience, please select the workspace where you'd like to activate your subscription"
-
 #: src/pages/panel/security/OverallCard.tsx:123
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:114
 msgid "Top Non-Compliant Resources"
@@ -1777,10 +1787,6 @@ msgstr "Value"
 msgid "Warning"
 msgstr "Warning"
 
-#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:79
-msgid "We appreciate your decision to subscribe to our service through AWS Marketplace."
-msgstr "We appreciate your decision to subscribe to our service through AWS Marketplace."
-
 #: src/pages/auth/login/LoginPage.tsx:194
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
@@ -1802,6 +1808,7 @@ msgid "Weekly Report"
 msgstr "Weekly Report"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:178
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:106
 msgid "Within a billing cycle you will be charged for the highest product tier that was active."
 msgstr "Within a billing cycle you will be charged for the highest product tier that was active."
 
@@ -1844,6 +1851,7 @@ msgid "You are about to change workspace's payment method"
 msgstr "You are about to change workspace's payment method"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:125
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:93
 msgid "You are about to change workspace's product tier"
 msgstr "You are about to change workspace's product tier"
 

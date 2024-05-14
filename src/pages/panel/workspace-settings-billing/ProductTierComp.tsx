@@ -34,7 +34,7 @@ export const ProductTierComp = ({ productTier }: ProductTierCompProps) => {
       <Stack direction="column" my={1.5} spacing={0.25} alignItems="baseline">
         <Stack direction="row" spacing={0.5} alignItems="center">
           <Typography variant="h3" fontWeight={700} lineHeight="1.5rem" letterSpacing="-.025em" fontSize="1.875rem !important">
-            {desc.price.toLocaleString(locale, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })}
+            ${desc.price.toLocaleString(locale)}
           </Typography>
           {desc.monthly ? (
             <Typography variant="h6" fontWeight={600} lineHeight="1.5rem" fontSize="1.125rem !important" marginTop=".125rem !important">
@@ -73,7 +73,7 @@ export const ProductTierComp = ({ productTier }: ProductTierCompProps) => {
             fontWeight={400}
             color={({ palette }) => (palette.mode === 'dark' ? palette.grey[400] : palette.grey[700])}
           >
-            {t`(${desc.cloudAccounts.additionalCost.toLocaleString(locale, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })} / month per additional account)`}
+            {t`($${desc.cloudAccounts.additionalCost.toLocaleString(locale)} / month per additional account)`}
           </Typography>
         ) : (
           <Box height="3rem" />

@@ -10,6 +10,7 @@ import { LinkButton } from 'src/shared/link-button'
 import { PaymentMethod, ProductTier } from 'src/shared/types/server'
 import { ChangePaymentNoMethodModal } from './ChangePaymentNoMethodModal'
 import { ChangeProductTierModal } from './ChangeProductTierModal'
+import { ChangeProductTierToFreeModal } from './ChangeProductTierToFreeModal'
 import { ProductTierComp } from './ProductTierComp'
 import { ProductTierDivider } from './ProductTierDivider'
 import { useGetProductTierFromSearchParams } from './utils'
@@ -99,13 +100,35 @@ export const ChangeProductTier = ({
           )
         })}
       </Stack>
-      {noWorkspaceMethod && isUpgrade !== null ? (
-        <ChangePaymentNoMethodModal
-          productTier={productTier}
-          showModalRef={showNoMethodModalRef}
-          defaultOpen={true}
-          onClose={() => setProductTier(defaultProductTier)}
-        />
+      {isUpgrade !== null ? (
+        productTier === 'Free' ? (
+          <ChangeProductTierToFreeModal
+            nextBillingCycle={nextBillingCycle}
+            onClose={() => setProductTier(defaultProductTier)}
+            productTier={defaultProductTier}
+            showModalRef={showModalRef}
+            defaultOpen={true}
+          />
+        ) : noWorkspaceMethod ? (
+          <ChangePaymentNoMethodModal
+            productTier={productTier}
+            showModalRef={showNoMethodModalRef}
+            defaultOpen={true}
+            onClose={() => setProductTier(defaultProductTier)}
+          />
+        ) : (
+          <ChangeProductTierModal
+            workspacePaymentMethods={workspacePaymentMethods}
+            nextBillingCycle={nextBillingCycle}
+            onClose={() => setProductTier(defaultProductTier)}
+            isUpgrade={isUpgrade}
+            productTier={defaultProductTier}
+            selectedProductTier={productTier}
+            selectedWorkspacePaymentMethod={selectedWorkspacePaymentMethod}
+            showModalRef={showModalRef}
+            defaultOpen={true}
+          />
+        )
       ) : (
         <Stack alignItems="center" spacing={2} pt={4}>
           {noWorkspaceMethod ? null : (
@@ -148,19 +171,6 @@ export const ChangeProductTier = ({
           )}
         </Stack>
       )}
-      {!noWorkspaceMethod && isUpgrade !== null ? (
-        <ChangeProductTierModal
-          workspacePaymentMethods={workspacePaymentMethods}
-          nextBillingCycle={nextBillingCycle}
-          onClose={() => setProductTier(defaultProductTier)}
-          isUpgrade={isUpgrade}
-          productTier={defaultProductTier}
-          selectedProductTier={productTier}
-          selectedWorkspacePaymentMethod={selectedWorkspacePaymentMethod}
-          showModalRef={showModalRef}
-          defaultOpen={true}
-        />
-      ) : null}
       <Divider />
     </>
   )
