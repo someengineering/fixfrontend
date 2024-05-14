@@ -100,17 +100,9 @@ msgstr "/ monat"
 msgid "© 2024 Some Engineering Inc. All rights reserved."
 msgstr "© 2024 Some Engineering Inc. Alle Rechte vorbehalten."
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:54
-#~ msgid "<0>Billing cycle: {0}</0><1>Highest product tier this billing cycle: {title}</1>"
-#~ msgstr "<0>Abrechnungszeitraum: {0}</0><1>Höchste Produktstufe in diesem Abrechnungszeitraum: {title}</1>"
-
 #: src/pages/panel/inventory/InventoryAdvanceSearchInfo.tsx:58
 msgid "<0>Fix supports full text search by encasing the search term in double quotes. For instance,<1><2><3>{searchInstance}</3></2></1>enables you to scan your entire infrastructure for a specific IP address.</0><4>Additionally, you can query for any resource attribute by utilizing the <5><6>{attributeOperatorValue}</6></5> format, where the operator can be {0}or <7><8>{1}</8></7>. For example,<9><10><11>{searchTagsOwners}</11></10></9>allows you to find all resources tagged with an <12><13>{owner}</13></12> attribute equal to <14><15>{sre}</15></14>.</4><16>Search queries can be refined using boolean operators {2}<17><18>{3}</18></17> to combine multiple terms. An example would be<19><20><21>{searchEc2InstanceCores}</21></20></19>to identify all EC2 instances possessing more than 4 cores.</16><22>For detailed search syntax guidance, visit <23>https://docs.fix.security/search-syntax<24/></23></22>"
 msgstr "<0>Fix unterstützt die Volltextsuche, indem der Suchbegriff in Anführungszeichen eingeschlossen wird. Zum Beispiel ermöglicht<1><2><3>{searchInstance}</3></2></1>Ihnen, Ihre gesamte Infrastruktur nach einer spezifischen IP-Adresse zu durchsuchen.</0><4>Zusätzlich können Sie jede Ressourceneigenschaft abfragen, indem Sie das Format <5><6>{attributeOperatorValue}</6></5> verwenden, wobei der Operator {0}oder <7><8>{1}</8></7> sein kann. Zum Beispiel erlaubt<9><10><11>{searchTagsOwners}</11></10></9>Ihnen, alle Ressourcen zu finden, die mit einem <12><13>{owner}</13></12>-Attribut gleich <14><15>{sre}</15></14> markiert sind.</4><16>Suchanfragen können verfeinert werden, indem boolesche Operatoren {2}<17><18>{3}</18></17> verwendet werden, um mehrere Begriffe zu kombinieren. Ein Beispiel wäre<19><20><21>{searchEc2InstanceCores}</21></20></19>, um alle EC2-Instanzen zu identifizieren, die mehr als 4 CPU Kerne besitzen.</16><22>Für detaillierte Hilfe zur Suchsyntax besuchen Sie <23>https://docs.fix.security/search-syntax<24/></23></22>"
-
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:59
-#~ msgid "<0>Next invoice will be available: {0}</0>"
-#~ msgstr "<0>Die nächste Rechnung wird verfügbar sein: {0}</0>"
 
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:165
 msgid "<0>Open Your Authenticator App:</0> Head over to your authenticator app and choose to add a new account manually.<1>Enter Account Details:</1> You'll need to type in your account's email address or username, and the key provided below.<2>Your Key:</2> <3/><4>Verification Type:</4> Make sure to select \"Time-based\" as the verification type.<5>Enter the Code:</5> Once your account is added manually, the app will show a 6-digit code. Pop that code into the box below and hit \"Activate\"."
@@ -224,10 +216,6 @@ msgstr ""
 #: src/shared/add-account-button/AddAccountButton.tsx:16
 msgid "Add an account"
 msgstr "Füge ein Konto hinzu"
-
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:510
-#~ msgid "Add AWS Marketplace payment method"
-#~ msgstr ""
 
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:33
 msgid "Add Directory"
@@ -422,7 +410,7 @@ msgstr "Business"
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:101
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:99
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:111
-#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:107
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:120
 msgid "Cancel"
 msgstr "Stornieren"
 
@@ -456,10 +444,6 @@ msgstr "Änderungen"
 #: src/pages/panel/security/Overview.tsx:43
 msgid "Changes in the past 7 days"
 msgstr "Änderungen in den letzten 7 Tagen"
-
-#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:110
-msgid "Choose Workspace"
-msgstr "Wählen Sie Arbeitsbereich"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormReset.tsx:15
 msgid "Clear the search"
@@ -522,7 +506,7 @@ msgstr "Konfigurieren"
 msgid "Confirm"
 msgstr "Bestätigen"
 
-#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:75
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:74
 msgid "Congratulations on your subscription"
 msgstr "Herzlichen Glückwunsch zu Ihrem Abonnement"
 
@@ -1359,10 +1343,6 @@ msgstr "Bitte geben Sie Ihr One-Time-Passwort oder einen Ihrer Wiederherstellung
 msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgstr "Bitte gehen Sie zur Seite <0>Setup Accounts</0>, um zunächst Ihr Konto einzurichten"
 
-#: src/pages/panel/workspace-settings-billing/utils/paymentMethodToLabel.ts:9
-#~ msgid "Please select a payment method"
-#~ msgstr "Bitte Zahlungsart wählen"
-
 #: src/pages/panel/workspace-settings-billing/utils/productTierToLabel.ts:11
 msgid "Plus"
 msgstr "Plus"
@@ -1612,7 +1592,7 @@ msgstr "Quellen"
 msgid "Submit"
 msgstr "Einreichen"
 
-#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:33
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:29
 msgid "Subscription successfully added to {0}"
 msgstr "Abonnement erfolgreich zu {0} hinzugefügt"
 
@@ -1684,7 +1664,7 @@ msgstr "Um auf diese Ressource zuzugreifen, stellen Sie bitte sicher, dass Sie b
 msgid "To AWS Marketplace"
 msgstr "Zum AWS Marketplace"
 
-#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:83
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:82
 msgid "To enhance your experience, please select the workspace where you'd like to activate your subscription"
 msgstr "Um Ihr Erlebnis zu verbessern, wählen Sie bitte den Arbeitsbereich aus, in dem Sie Ihr Abonnement aktivieren möchten"
 
@@ -1797,7 +1777,7 @@ msgstr "Wert"
 msgid "Warning"
 msgstr "Warnung"
 
-#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:80
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:79
 msgid "We appreciate your decision to subscribe to our service through AWS Marketplace."
 msgstr "Wir freuen uns über Ihre Entscheidung, unseren Service über AWS Marketplace zu abonnieren."
 
@@ -1894,10 +1874,6 @@ msgstr "Sie haben Ihr Konto erfolgreich verifiziert."
 #: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:63
 msgid "You need a payment method to change your product tier"
 msgstr ""
-
-#: src/pages/panel/workspace-settings-billing/ChangePaymentMethod.tsx:307
-#~ msgid "You need a payment method to upgrade your plan."
-#~ msgstr ""
 
 #: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:44
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:94
