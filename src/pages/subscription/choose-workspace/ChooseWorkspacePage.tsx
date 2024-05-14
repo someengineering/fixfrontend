@@ -1,6 +1,6 @@
 import { t, Trans } from '@lingui/macro'
 import { LoadingButton } from '@mui/lab'
-import { alpha, ButtonBase, Card, CardHeader, Grid, Stack, styled, Typography } from '@mui/material'
+import { Button, Card, CardHeader, Grid, Stack, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useCallback, useEffect } from 'react'
@@ -11,10 +11,6 @@ import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { setSubscriptionId } from 'src/shared/utils/localstorage'
 import { putWorkspaceSubscriptionMutation } from './putWorkspaceSubscription.mutation'
-
-const ChooseWorkspaceButton = styled(LoadingButton)({
-  minHeight: 50,
-})
 
 export default function ChooseWorkspacePage() {
   const { workspaces, selectedWorkspace, selectWorkspace } = useUserProfile()
@@ -61,8 +57,11 @@ export default function ChooseWorkspacePage() {
     }
   }, [subscriptionId, navigate, workspaces, mutateAsync])
 
-  const handleSubmit = () => {
-    void mutateAsync({ workspaceId: selectedWorkspace?.id ?? '', subscriptionId: subscriptionId ?? '' })
+  const handleSubmit = async (id: string) => {
+    await selectWorkspace(id)
+    window.setTimeout(() => {
+      void mutateAsync({ workspaceId: selectedWorkspace?.id ?? '', subscriptionId: subscriptionId ?? '' })
+    })
   }
   const handleCancel = () => {
     setSubscriptionId()
@@ -86,29 +85,40 @@ export default function ChooseWorkspacePage() {
       <Grid container spacing={2} width="100%" justifyContent="center" mb={2}>
         {workspaces?.map((item) => (
           <Grid item key={item.id}>
-            <ButtonBase
+            <LoadingButton
               onClick={() => {
-                void selectWorkspace(item.id)
+                void handleSubmit(item.id)
               }}
+              disabled={isPending}
+              loading={item.id === selectedWorkspace?.id && isPending}
+              sx={{ p: 0 }}
             >
-              <Card sx={item.id === selectedWorkspace?.id ? { bgcolor: 'primary.dark', color: 'white' } : undefined}>
+              <Card sx={item.id === selectedWorkspace?.id && isPending ? { bgcolor: 'primary.dark', color: 'white' } : undefined}>
                 <CardHeader
                   title={item.name}
+                  titleTypographyProps={{
+                    sx: {
+                      opacity: item.id === selectedWorkspace?.id && isPending ? 0 : 1,
+                      transition: ({ transitions }) => transitions.create('opacity'),
+                    },
+                  }}
                   subheader={item.slug}
-                  subheaderTypographyProps={item.id === selectedWorkspace?.id ? { color: alpha('#ffffff', 0.6) } : undefined}
+                  subheaderTypographyProps={{
+                    sx: {
+                      opacity: item.id === selectedWorkspace?.id && isPending ? 0 : 1,
+                      transition: ({ transitions }) => transitions.create('opacity'),
+                    },
+                  }}
                 />
               </Card>
-            </ButtonBase>
+            </LoadingButton>
           </Grid>
         ))}
       </Grid>
       <Stack direction="row" spacing={1} justifyContent="center">
-        <ChooseWorkspaceButton variant="outlined" color="error" onClick={handleCancel}>
+        <Button variant="outlined" color="error" onClick={handleCancel} sx={{ minHeight: 50 }}>
           <Trans>Cancel</Trans>
-        </ChooseWorkspaceButton>
-        <ChooseWorkspaceButton variant="contained" onClick={handleSubmit} loading={isPending}>
-          <Trans>Choose Workspace</Trans>
-        </ChooseWorkspaceButton>
+        </Button>
       </Stack>
     </>
   ) : (
