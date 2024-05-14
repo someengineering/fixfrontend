@@ -9,6 +9,7 @@ export type { PostWorkspaceInventoryPropertyValuesRequest } from './PostWorkspac
 export type {
   PostWorkspaceInventorySearchTableRequest,
   WorkspaceInventorySearchTableHistory,
+  WorkspaceInventorySearchTableHistoryChanges,
   WorkspaceInventorySearchTableSort,
 } from './PostWorkspaceInventorySearchTable'
 export type { PostWorkspaceInviteRequest } from './PostWorkspaceInvite'
