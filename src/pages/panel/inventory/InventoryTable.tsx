@@ -17,6 +17,7 @@ import { LoadingSuspenseFallback } from 'src/shared/loading'
 import {
   PostWorkspaceInventorySearchTableResponse,
   WorkspaceInventorySearchTableColumn,
+  WorkspaceInventorySearchTableHistory,
   WorkspaceInventorySearchTableRow,
   WorkspaceInventorySearchTableSort,
 } from 'src/shared/types/server'
@@ -28,11 +29,7 @@ import { DownloadCSVButton } from './DownloadCSVButton'
 
 interface InventoryTableProps {
   searchCrit: string
-  history?: {
-    after?: string
-    before?: string
-    changes: string[]
-  }
+  history?: WorkspaceInventorySearchTableHistory
 }
 
 type RowType = WorkspaceInventorySearchTableRow['row'] & {
@@ -212,7 +209,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       getRowId={(row: RowType) => row.INTERNAL_ID}
       headerToolbar={
         <Stack px={1} alignItems="end" width="100%">
-          <DownloadCSVButton query={searchCrit} hasWarning={dataCount > panelUI.maxCSVDownload} />
+          <DownloadCSVButton query={searchCrit} hasWarning={dataCount > panelUI.maxCSVDownload} history={history} sort={sorting} />
         </Stack>
       }
       slots={{

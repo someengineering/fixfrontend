@@ -356,7 +356,7 @@ msgstr "AWS Marketplace has been successfully subscribed"
 msgid "Basic Information"
 msgstr "Basic Information"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:107
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:112
 msgid "Because the data is over {0} Only first {1} items will be downloaded"
 msgstr "Because the data is over {0} Only first {1} items will be downloaded"
 
@@ -700,8 +700,8 @@ msgstr "Don't have an account? Click here to Sign up."
 msgid "Downgrade"
 msgstr "Downgrade"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:100
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:119
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:105
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:124
 msgid "Download CSV"
 msgstr "Download CSV"
 
@@ -1157,7 +1157,7 @@ msgstr "Next Sync"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:42
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:68
-#: src/pages/panel/inventory/InventoryTable.tsx:145
+#: src/pages/panel/inventory/InventoryTable.tsx:142
 msgid "No"
 msgstr "No"
 
@@ -1688,7 +1688,7 @@ msgstr "Unattached Elastic IPs"
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:300
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:149
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:154
-#: src/pages/panel/inventory/InventoryTable.tsx:137
+#: src/pages/panel/inventory/InventoryTable.tsx:134
 msgid "Undefined"
 msgstr "Undefined"
 
@@ -1741,7 +1741,7 @@ msgstr "Users"
 msgid "Value"
 msgstr "Value"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:84
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:89
 msgid "Warning"
 msgstr "Warning"
 
@@ -1803,7 +1803,7 @@ msgstr "Workspace Users"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:39
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:65
-#: src/pages/panel/inventory/InventoryTable.tsx:141
+#: src/pages/panel/inventory/InventoryTable.tsx:138
 msgid "Yes"
 msgstr "Yes"
 
