@@ -10,16 +10,19 @@ import { postWorkspaceInventorySearchTableDownloadMutation } from 'src/pages/pan
 import { GTMEventNames, panelUI } from 'src/shared/constants'
 import { sendToGTM } from 'src/shared/google-tag-manager'
 import { Modal } from 'src/shared/modal'
+import { WorkspaceInventorySearchTableHistory, WorkspaceInventorySearchTableSort } from 'src/shared/types/server'
 import { jsonToStr } from 'src/shared/utils/jsonToStr'
 import { TrackJS } from 'trackjs'
 
 interface DownloadCSVButtonProps {
   query: string
+  history?: WorkspaceInventorySearchTableHistory
+  sort?: WorkspaceInventorySearchTableSort[]
   hasWarning?: boolean
 }
 
 export const DownloadCSVButton = forwardRef(
-  ({ query, hasWarning, ...tooltipProps }: DownloadCSVButtonProps, ref: ForwardedRef<HTMLButtonElement | null>) => {
+  ({ query, history, sort, hasWarning, ...tooltipProps }: DownloadCSVButtonProps, ref: ForwardedRef<HTMLButtonElement | null>) => {
     const {
       i18n: { locale },
     } = useLingui()
@@ -36,6 +39,8 @@ export const DownloadCSVButton = forwardRef(
         onDownloadProgress: (ev) => {
           setProgress(ev.total ? Math.round((ev.loaded * 100) / ev.total) : -1)
         },
+        history,
+        sort,
         query,
         signal: abortController.current.signal,
         workspaceId: selectedWorkspace?.id ?? '',

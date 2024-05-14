@@ -4,6 +4,7 @@ import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { FixQueryProvider } from 'src/shared/fix-query-parser'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
+import { WorkspaceInventorySearchTableHistoryChanges } from 'src/shared/types/server'
 import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { InventoryAdvanceSearch } from './InventoryAdvanceSearch'
 import { InventoryTable } from './InventoryTable'
@@ -17,7 +18,7 @@ export default function InventoryPage() {
   const [hasError, setHasError] = useState(false)
   const searchCrit = searchParams.get('q') || ''
   const history = {
-    changes: searchParams.get('changes')?.split(','),
+    changes: (searchParams.get('changes')?.split(',') ?? []) as WorkspaceInventorySearchTableHistoryChanges[],
     after: searchParams.get('after') || undefined,
     before: searchParams.get('before') || undefined,
   }
@@ -39,7 +40,7 @@ export default function InventoryPage() {
     [navigate],
   )
 
-  const hasChanges = !!history.changes
+  const hasChanges = !!history.changes.length
 
   return (
     <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
@@ -56,17 +57,14 @@ export default function InventoryPage() {
           <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
             <ResourceDetail />
           </NetworkErrorBoundary>
-          {searchCrit && (searchCrit !== 'all' || (hasChanges && history.changes) || hasError) ? (
+          {searchCrit && (searchCrit !== 'all' || (hasChanges && history.changes.length) || hasError) ? (
             <>
               <NetworkErrorBoundary
                 fallbackRender={({ resetErrorBoundary }) => (
                   <InventoryTableError resetErrorBoundary={resetErrorBoundary} searchCrit={searchCrit} setHasError={setHasError} />
                 )}
               >
-                <InventoryTable
-                  searchCrit={searchCrit}
-                  history={history.changes ? (history as { changes: string[]; after?: string; before?: string }) : undefined}
-                />
+                <InventoryTable searchCrit={searchCrit} history={history.changes.length ? history : undefined} />
               </NetworkErrorBoundary>
             </>
           ) : (
