@@ -95,7 +95,7 @@ export const InventoryFormMoreValue = ({
           handleSubmit()
         }}
       >
-        <Stack direction="row" flexWrap="wrap" pt={2}>
+        <Stack direction="row" flexWrap={{ xs: 'wrap', md: 'nowrap' }} pt={2}>
           <InventoryFormFilterRowProperty
             kinds={preItems?.kinds.map((i) => i.value) ?? []}
             selectedKinds={is()?.kinds ?? null}
