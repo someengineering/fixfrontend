@@ -1,6 +1,5 @@
 import { Trans } from '@lingui/macro'
 import CreditCardIcon from '@mui/icons-material/CreditCard'
-import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import { ButtonBase, Divider, Stack, Typography, alpha } from '@mui/material'
 import { Fragment, useRef, useState } from 'react'
 import { AwsLogo } from 'src/assets/icons'
@@ -137,7 +136,8 @@ export const ChangeProductTier = ({
                   <Stack direction="row" spacing={1} alignItems="center">
                     <LinkButton
                       startIcon={<AwsLogo height={50} />}
-                      endIcon={<OpenInNewIcon fontSize="small" />}
+                      endIcon={null}
+                      loadingPosition="start"
                       variant="outlined"
                       href={`${env.aws_marketplace_url}`}
                     >
@@ -151,6 +151,7 @@ export const ChangeProductTier = ({
                   <Stack direction="row" spacing={1} alignItems="center">
                     <LinkButton
                       startIcon={<CreditCardIcon fontSize="large" sx={{ fontSize: '48px!important' }} />}
+                      endIcon={null}
                       loadingPosition="start"
                       sx={{
                         maxWidth: '100%',
