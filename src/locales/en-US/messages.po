@@ -974,8 +974,8 @@ msgid "Info"
 msgstr "Info"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:177
-msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle! {0}<0/>Your next billing cycle starts: {1} UTC"
-msgstr "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle! {0}<0/>Your next billing cycle starts: {1} UTC"
+msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
+msgstr "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
 
 #: src/shared/charts/NetworkDiagram.tsx:420
 msgid "Instance is terminated"
@@ -1070,7 +1070,7 @@ msgstr "Make sure that you are already logged into the correct AWS account, befo
 msgid "Manage AWS Market place payment method"
 msgstr "Manage AWS Market place payment method"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:163
+#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:164
 msgid "Manage Card Details"
 msgstr "Manage Card Details"
 

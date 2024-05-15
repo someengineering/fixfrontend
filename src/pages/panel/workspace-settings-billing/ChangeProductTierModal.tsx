@@ -175,7 +175,7 @@ export const ChangeProductTierModal = ({
         <Alert color="info" icon={<InfoIcon />}>
           <Typography>
             <Trans>
-              Info: Changes to your product tier will become active immediately and be applied for the current billing cycle!{' '}
+              Info: Changes to your product tier will become active immediately and be applied for the current billing cycle.{' '}
               {isUpgrade ? null : ` ${t`Within a billing cycle you will be charged for the highest product tier that was active.`}`}
               <br />
               Your next billing cycle starts:{' '}
