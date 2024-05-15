@@ -71,7 +71,7 @@ export const InventoryFormTagsValue = ({ onChange, onClose, open, defaultValue, 
       }}
     >
       <Stack pb={2} px={2} spacing={1}>
-        <Stack direction="row" flexWrap="wrap" pt={2}>
+        <Stack direction="row" flexWrap={{ xs: 'wrap', md: 'nowrap' }} pt={2}>
           <InventoryFormFilterRowProperty
             kinds={preItems?.kinds.map((i) => i.value) ?? []}
             selectedKinds={is()?.kinds ?? null}

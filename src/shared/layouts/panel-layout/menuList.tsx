@@ -9,6 +9,7 @@ import ReceiptIcon from '@mui/icons-material/Receipt'
 import RoomPreferencesIcon from '@mui/icons-material/RoomPreferences'
 import SecurityIcon from '@mui/icons-material/Security'
 import { ComponentType, ReactNode } from 'react'
+import { useHasBillingPermissionCheck } from './check-hooks'
 import { useHasBenchmarkCheck } from './check-hooks/useHasBenchmarkCheck'
 
 export interface MenuListItem {
@@ -76,6 +77,7 @@ export const bottomMenuList: MenuListItem[] = [
         Icon: ReceiptIcon,
         name: <Trans>Billing</Trans>,
         route: '/workspace-settings/billing-receipts',
+        useGuard: useHasBillingPermissionCheck,
       },
       // {
       //   Icon: FolderCopyIcon,

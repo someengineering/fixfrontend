@@ -4,6 +4,7 @@ import { Alert, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography 
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
+import { useHasBillingPermissionCheck } from 'src/shared/layouts/panel-layout'
 import { PaymentMethodWithoutNone } from 'src/shared/types/server'
 import { ChangeProductTier } from './ChangeProductTier'
 import { ConfirmChangePaymentModal } from './ConfirmChangePaymentModal'
@@ -16,9 +17,13 @@ export default function WorkspaceSettingsBillingPage() {
     i18n: { locale },
   } = useLingui()
   const { selectedWorkspace } = useUserProfile()
+  const hasBillingPermission = useHasBillingPermissionCheck()
   const {
     data: { product_tier, workspace_payment_method, available_payment_methods },
-  } = useSuspenseQuery({ queryFn: getWorkspaceBillingQuery, queryKey: ['workspace-billing', selectedWorkspace?.id] })
+  } = useSuspenseQuery({
+    queryFn: getWorkspaceBillingQuery,
+    queryKey: ['workspace-billing', hasBillingPermission ? selectedWorkspace?.id : undefined],
+  })
   const paymentModalShowRef = useRef<(paymentMethod: PaymentMethodWithoutNone) => void>()
   const handleOnPaymentMethodChange = (event: SelectChangeEvent<'aws_marketplace' | 'stripe'>) => {
     paymentModalShowRef.current?.({
