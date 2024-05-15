@@ -5,15 +5,13 @@ import { useMemo } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryReportChecksQuery } from 'src/pages/panel/shared/queries'
 import { useGetBenchmarks } from 'src/pages/panel/shared/utils'
-import { FailedCheck, WorkspaceInventoryNodeHistory } from 'src/shared/types/server'
+import { FailedCheck, WorkspaceInventoryNodeSecurityHistory } from 'src/shared/types/server'
 import { ResourceDetailChangeLogSelectedHistoryAccordion } from './ResourceDetailChangeLogSelectedHistoryAccordion'
-
-type ResourceDetailChangeLogSelectedHistoryDiffProps = WorkspaceInventoryNodeHistory<'node_vulnerable'>['diff']
 
 export const ResourceDetailChangeLogSelectedHistoryDiff = ({
   node_compliant = [],
   node_vulnerable = [],
-}: ResourceDetailChangeLogSelectedHistoryDiffProps) => {
+}: WorkspaceInventoryNodeSecurityHistory['diff']) => {
   const { selectedWorkspace } = useUserProfile()
   const { checkIds, benchmarksIds } = useMemo(
     () => ({

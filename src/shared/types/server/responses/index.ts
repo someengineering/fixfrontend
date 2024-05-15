@@ -18,6 +18,7 @@ export type {
   WorkspaceInventoryNodeHistory,
   WorkspaceInventoryNodeHistoryChanges,
   WorkspaceInventoryNodeHistoryDiff,
+  WorkspaceInventoryNodeSecurityHistory,
 } from './GetWorkspaceInventoryNodeHistory'
 export type {
   GetWorkspaceInventoryNodeNeighborhoodResponse,

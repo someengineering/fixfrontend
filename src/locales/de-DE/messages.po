@@ -429,7 +429,7 @@ msgstr "Produktstufe ändern"
 msgid "Change Type"
 msgstr ""
 
-#: src/pages/panel/inventory/resource-detail/ResourceDetailChangeLog.tsx:42
+#: src/pages/panel/inventory/resource-detail/ResourceDetailChangeLog.tsx:69
 msgid "Changes"
 msgstr "Änderungen"
 
@@ -789,7 +789,7 @@ msgstr "Externe Verzeichnisse"
 msgid "External Id"
 msgstr "External Id"
 
-#: src/pages/panel/inventory/resource-detail/ResourceDetailChangeLog.tsx:52
+#: src/pages/panel/inventory/resource-detail/ResourceDetailChangeLog.tsx:79
 msgid "Failed to retrieve changelog"
 msgstr "Das Änderungsprotokoll konnte nicht abgerufen werden"
 
@@ -825,7 +825,7 @@ msgstr "Findet Snapshots von Festplatten, die nicht mehr verwendet werden und m�
 msgid "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
 msgstr "Fix scannt Ihre Infrastruktur- und Ressourcenkonfigurationen mithilfe des schreibgeschützten API-Zugriffs. Keine Agenten erforderlich."
 
-#: src/pages/panel/inventory/resource-detail/utils/ResourceDetailChangeLogSelectedHistoryDiff.tsx:48
+#: src/pages/panel/inventory/resource-detail/utils/ResourceDetailChangeLogSelectedHistoryDiff.tsx:46
 msgid "Fixed issues"
 msgstr "Behobene Probleme"
 
@@ -1126,7 +1126,7 @@ msgstr "Nachbarschaftsansicht"
 msgid "new improved resources in the past {since}"
 msgstr "neue verbesserte Ressourcen in der Vergangenheit {since}"
 
-#: src/pages/panel/inventory/resource-detail/utils/ResourceDetailChangeLogSelectedHistoryDiff.tsx:65
+#: src/pages/panel/inventory/resource-detail/utils/ResourceDetailChangeLogSelectedHistoryDiff.tsx:63
 msgid "New issues"
 msgstr "Neue Ausgaben"
 

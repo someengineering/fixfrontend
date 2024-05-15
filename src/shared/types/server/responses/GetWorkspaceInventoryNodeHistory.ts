@@ -22,7 +22,7 @@ type WorkspaceInventoryNodeHistoryBase = {
   updated: string
 }
 
-interface WorkspaceInventoryNodeCreatedHistory extends WorkspaceInventoryNodeHistoryBase {
+interface WorkspaceInventoryNodeExistedHistory extends WorkspaceInventoryNodeHistoryBase {
   change: 'node_created' | 'node_deleted'
 }
 
@@ -31,7 +31,7 @@ interface WorkspaceInventoryNodeUpdatedHistory extends WorkspaceInventoryNodeHis
   before: NodeReported
 }
 
-interface WorkspaceInventoryNodeSecurityHistory extends WorkspaceInventoryNodeHistoryBase {
+export interface WorkspaceInventoryNodeSecurityHistory extends WorkspaceInventoryNodeHistoryBase {
   change: 'node_vulnerable' | 'node_compliant'
   security: NodeSecurity
   diff: {
@@ -41,7 +41,7 @@ interface WorkspaceInventoryNodeSecurityHistory extends WorkspaceInventoryNodeHi
 }
 
 export type WorkspaceInventoryNodeHistory =
-  | WorkspaceInventoryNodeCreatedHistory
+  | WorkspaceInventoryNodeExistedHistory
   | WorkspaceInventoryNodeUpdatedHistory
   | WorkspaceInventoryNodeSecurityHistory
 
