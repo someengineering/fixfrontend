@@ -10,12 +10,17 @@ import { paymentMethodToLabel, paymentMethods } from './utils'
 
 export interface ChangePaymentNoMethodModalProps {
   showModalRef: MutableRefObject<((show?: boolean | undefined) => void) | undefined>
-  productTier: ProductTier
+  selectedProductTier: ProductTier
   defaultOpen?: boolean
   onClose?: () => void
 }
 
-export const ChangePaymentNoMethodModal = ({ showModalRef, defaultOpen, productTier, onClose }: ChangePaymentNoMethodModalProps) => {
+export const ChangePaymentNoMethodModal = ({
+  showModalRef,
+  defaultOpen,
+  selectedProductTier,
+  onClose,
+}: ChangePaymentNoMethodModalProps) => {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>({ method: 'stripe', subscription_id: '' })
   const id = useId()
   const { selectedWorkspace } = useUserProfile()
@@ -41,8 +46,8 @@ export const ChangePaymentNoMethodModal = ({ showModalRef, defaultOpen, productT
             <LinkButton
               href={
                 paymentMethod.method === 'aws_marketplace'
-                  ? `${env.aws_marketplace_url}?product_tier=${productTier}`
-                  : `${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').subscription.stripe}?product_tier=${productTier}`
+                  ? `${env.aws_marketplace_url}?product_tier=${selectedProductTier}`
+                  : `${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').subscription.stripe}?product_tier=${selectedProductTier}`
               }
               endIcon={null}
               loadingPosition="center"

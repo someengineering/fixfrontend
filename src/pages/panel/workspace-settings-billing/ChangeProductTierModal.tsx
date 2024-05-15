@@ -1,5 +1,6 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+import InfoIcon from '@mui/icons-material/Info'
 import { LoadingButton } from '@mui/lab'
 import { Alert, Button, MenuItem, Select, Stack, Typography } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
@@ -171,7 +172,7 @@ export const ChangeProductTierModal = ({
         {paymentMethod.method === 'aws_marketplace' && !paymentMethod.subscription_id ? (
           <Alert color="warning">Make sure to log in to AWS Console before proceeding.</Alert>
         ) : null}
-        <Alert color="info">
+        <Alert color="info" icon={<InfoIcon />}>
           <Typography>
             <Trans>
               Info: Changes to your product tier will become active immediately and be applied for the current billing cycle!{' '}

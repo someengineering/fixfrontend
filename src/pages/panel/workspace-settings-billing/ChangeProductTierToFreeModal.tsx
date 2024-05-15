@@ -1,5 +1,5 @@
 import { Trans, t } from '@lingui/macro'
-import { useLingui } from '@lingui/react'
+import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied'
 import { LoadingButton } from '@mui/lab'
 import { Alert, Button, Stack, Typography } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
@@ -16,20 +16,10 @@ export interface ChangeProductTierModalProps {
   productTier: ProductTier
   showModalRef: MutableRefObject<((show?: boolean | undefined) => void) | undefined>
   defaultOpen?: boolean
-  nextBillingCycle: Date
   onClose?: () => void
 }
 
-export const ChangeProductTierToFreeModal = ({
-  showModalRef,
-  defaultOpen,
-  nextBillingCycle,
-  productTier,
-  onClose,
-}: ChangeProductTierModalProps) => {
-  const {
-    i18n: { locale },
-  } = useLingui()
+export const ChangeProductTierToFreeModal = ({ showModalRef, defaultOpen, productTier, onClose }: ChangeProductTierModalProps) => {
   const { showSnackbar } = useSnackbar()
   const { selectedWorkspace } = useUserProfile()
   const queryClient = useQueryClient()
@@ -99,21 +89,12 @@ export const ChangeProductTierToFreeModal = ({
         <Typography>
           <Trans>New Product Tier</Trans>: {productTierToLabel('Free')}
         </Typography>
-        <Alert color="info">
+        <Alert color="info" icon={<SentimentDissatisfiedIcon color="warning" />}>
           <Typography>
             <Trans>
-              Info: Changes to your product tier will become active immediately and be applied for the current billing cycle!{' '}
-              {t`Within a billing cycle you will be charged for the highest product tier that was active.`}
-              <br />
-              Your next billing cycle starts:{' '}
-              {nextBillingCycle.toLocaleString(locale, {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-              })}{' '}
-              UTC
+              We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific
+              you're missing, please reach out to me personally at lars@some.engineering. I'd love to hear from you and help in any way I
+              can.
             </Trans>
           </Typography>
         </Alert>

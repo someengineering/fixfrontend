@@ -103,7 +103,6 @@ export const ChangeProductTier = ({
       {isUpgrade !== null ? (
         productTier === 'Free' ? (
           <ChangeProductTierToFreeModal
-            nextBillingCycle={nextBillingCycle}
             onClose={() => setProductTier(defaultProductTier)}
             productTier={defaultProductTier}
             showModalRef={showModalRef}
@@ -111,7 +110,7 @@ export const ChangeProductTier = ({
           />
         ) : noWorkspaceMethod ? (
           <ChangePaymentNoMethodModal
-            productTier={productTier}
+            selectedProductTier={productTier}
             showModalRef={showNoMethodModalRef}
             defaultOpen={true}
             onClose={() => setProductTier(defaultProductTier)}
