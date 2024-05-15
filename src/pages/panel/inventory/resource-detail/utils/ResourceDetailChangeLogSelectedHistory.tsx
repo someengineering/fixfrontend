@@ -77,14 +77,14 @@ export const ResourceDetailChangeLogSelectedHistory = ({
                   </Typography>
                 </Box>
               ))
-            ) : selectedHistory.change === 'node_created' || selectedHistory.change === 'node_deleted' ? (
+            ) : selectedHistory.change === 'node_compliant' || selectedHistory.change === 'node_vulnerable' ? (
+              <ResourceDetailChangeLogSelectedHistoryDiff {...selectedHistory.diff} />
+            ) : (
               <Typography component="pre">
                 <code>
                   <YamlHighlighter>{stringify(selectedHistory.reported, null, '  ')}</YamlHighlighter>
                 </code>
               </Typography>
-            ) : (
-              <ResourceDetailChangeLogSelectedHistoryDiff {...selectedHistory.diff} />
             )}
           </Box>
         </>

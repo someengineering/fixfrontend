@@ -429,7 +429,7 @@ msgstr "Change Product Tier"
 msgid "Change Type"
 msgstr "Change Type"
 
-#: src/pages/panel/inventory/resource-detail/ResourceDetailChangeLog.tsx:42
+#: src/pages/panel/inventory/resource-detail/ResourceDetailChangeLog.tsx:69
 msgid "Changes"
 msgstr "Changes"
 
@@ -789,7 +789,7 @@ msgstr "External Directories"
 msgid "External Id"
 msgstr "External Id"
 
-#: src/pages/panel/inventory/resource-detail/ResourceDetailChangeLog.tsx:52
+#: src/pages/panel/inventory/resource-detail/ResourceDetailChangeLog.tsx:79
 msgid "Failed to retrieve changelog"
 msgstr "Failed to retrieve changelog"
 
@@ -825,7 +825,7 @@ msgstr "Finds snapshots of disks that are no longer in use, which potentially co
 msgid "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
 msgstr "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
 
-#: src/pages/panel/inventory/resource-detail/utils/ResourceDetailChangeLogSelectedHistoryDiff.tsx:48
+#: src/pages/panel/inventory/resource-detail/utils/ResourceDetailChangeLogSelectedHistoryDiff.tsx:46
 msgid "Fixed issues"
 msgstr "Fixed issues"
 
@@ -1126,7 +1126,7 @@ msgstr "Neighborhood View"
 msgid "new improved resources in the past {since}"
 msgstr "new improved resources in the past {since}"
 
-#: src/pages/panel/inventory/resource-detail/utils/ResourceDetailChangeLogSelectedHistoryDiff.tsx:65
+#: src/pages/panel/inventory/resource-detail/utils/ResourceDetailChangeLogSelectedHistoryDiff.tsx:63
 msgid "New issues"
 msgstr "New issues"
 

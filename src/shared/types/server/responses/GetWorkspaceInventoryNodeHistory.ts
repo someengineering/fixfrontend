@@ -9,25 +9,40 @@ export type WorkspaceInventoryNodeHistoryDiff = {
   benchmarks: string[]
 }
 
-export interface WorkspaceInventoryNodeHistory<NodeChange = WorkspaceInventoryNodeHistoryChanges> {
+type WorkspaceInventoryNodeHistoryBase = {
   id: string
   type: 'node'
   revision: string
   reported: NodeReported
-  before: NodeChange extends 'node_updated' ? NodeReported : never
-  security: NodeChange extends 'node_vulnerable' | 'node_compliant' ? NodeSecurity : never
   metadata: NodeMetadata
-  diff: NodeChange extends 'node_vulnerable' | 'node_compliant'
-    ? {
-        node_compliant?: WorkspaceInventoryNodeHistoryDiff[]
-        node_vulnerable?: WorkspaceInventoryNodeHistoryDiff[]
-      }
-    : never
   ancestors?: NodeAncestors
-  change: NodeChange
+  change: WorkspaceInventoryNodeHistoryChanges
   changed_at: string
   created: string
   updated: string
 }
+
+interface WorkspaceInventoryNodeExistedHistory extends WorkspaceInventoryNodeHistoryBase {
+  change: 'node_created' | 'node_deleted'
+}
+
+interface WorkspaceInventoryNodeUpdatedHistory extends WorkspaceInventoryNodeHistoryBase {
+  change: 'node_updated'
+  before: NodeReported
+}
+
+export interface WorkspaceInventoryNodeSecurityHistory extends WorkspaceInventoryNodeHistoryBase {
+  change: 'node_vulnerable' | 'node_compliant'
+  security: NodeSecurity
+  diff: {
+    node_compliant?: WorkspaceInventoryNodeHistoryDiff[]
+    node_vulnerable?: WorkspaceInventoryNodeHistoryDiff[]
+  }
+}
+
+export type WorkspaceInventoryNodeHistory =
+  | WorkspaceInventoryNodeExistedHistory
+  | WorkspaceInventoryNodeUpdatedHistory
+  | WorkspaceInventoryNodeSecurityHistory
 
 export type GetWorkspaceInventoryNodeHistoryResponse = WorkspaceInventoryNodeHistory[]

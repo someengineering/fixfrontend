@@ -2,20 +2,21 @@ import { Trans } from '@lingui/macro'
 import { Timeline } from '@mui/lab'
 import { Accordion, AccordionDetails, Divider, Stack, Typography } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryNodeHistoryQuery } from 'src/pages/panel/shared/queries'
 import { Spinner } from 'src/shared/loading'
 import { StickyAccordionSummaryWithIcon } from 'src/shared/sticky-accordion-summary'
-import { WorkspaceInventoryNodeHistory } from 'src/shared/types/server'
+import { WorkspaceInventoryNode, WorkspaceInventoryNodeHistory } from 'src/shared/types/server'
 import { ResourceDetailChangeLogHistory, ResourceDetailChangeLogSelectedHistory } from './utils'
 
 interface ResourceDetailChangeLogProps {
   notFound?: boolean
+  defaultResource?: WorkspaceInventoryNode['resource']
 }
 const severities = ['critical', 'high', 'medium', 'low', 'info']
-export const ResourceDetailChangeLog = ({ notFound }: ResourceDetailChangeLogProps) => {
+export const ResourceDetailChangeLog = ({ notFound, defaultResource }: ResourceDetailChangeLogProps) => {
   const [expanded, setExpanded] = useState(false)
   const [[historyAnchorEl, selectedHistory], setHistory] = useState<[HTMLElement | null, WorkspaceInventoryNodeHistory | undefined]>([
     null,
@@ -23,19 +24,45 @@ export const ResourceDetailChangeLog = ({ notFound }: ResourceDetailChangeLogPro
   ])
   const { selectedWorkspace } = useUserProfile()
   const { resourceDetailId } = useParams()
-  const { data, isLoading, error } = useQuery({
+  const {
+    data: orgData,
+    isLoading,
+    isFetched,
+    error,
+  } = useQuery({
     queryKey: ['workspace-inventory-node-history', selectedWorkspace?.id, resourceDetailId, undefined, undefined, undefined, undefined],
     queryFn: getWorkspaceInventoryNodeHistoryQuery,
     throwOnError: false,
     enabled: !!resourceDetailId && expanded,
   })
+  const data = useMemo(() => {
+    if (isFetched && defaultResource) {
+      return orgData && orgData[orgData.length - 1]?.change === 'node_created'
+        ? orgData
+        : [
+            ...(orgData ?? []),
+            {
+              change: 'node_created',
+              changed_at: defaultResource.reported.ctime,
+              created: defaultResource.reported.ctime,
+              id: Math.random().toString(),
+              metadata: defaultResource.metadata,
+              reported: defaultResource.reported,
+              revision: defaultResource.revision,
+              type: 'node',
+              updated: defaultResource.reported.ctime,
+              ancestors: defaultResource.ancestors,
+            } as WorkspaceInventoryNodeHistory,
+          ]
+    }
+  }, [isFetched, defaultResource, orgData])
   useEffect(() => {
     if (notFound) {
       setExpanded(true)
     }
   }, [notFound])
   const onClosePopup = () => setHistory((prev) => [null, prev[1]])
-  return data?.length || isLoading || error || !expanded ? (
+  return (
     <>
       <Accordion expanded={expanded} onChange={(_, value) => setExpanded(value)}>
         <StickyAccordionSummaryWithIcon offset={6}>
@@ -85,5 +112,5 @@ export const ResourceDetailChangeLog = ({ notFound }: ResourceDetailChangeLogPro
         selectedHistory={selectedHistory}
       />
     </>
-  ) : null
+  )
 }
