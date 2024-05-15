@@ -692,7 +692,7 @@ msgstr "Möchten Sie diese Einladung löschen?"
 msgid "Do you want to delete this user?"
 msgstr "Möchten Sie diesen Benutzer löschen?"
 
-#: src/pages/auth/login/LoginPage.tsx:227
+#: src/pages/auth/login/LoginPage.tsx:230
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 
@@ -713,7 +713,7 @@ msgid "Edit"
 msgstr "Edit"
 
 #: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:62
-#: src/pages/auth/login/LoginPage.tsx:111
+#: src/pages/auth/login/LoginPage.tsx:114
 #: src/pages/auth/register/RegisterPage.tsx:88
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:49
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:69
@@ -845,7 +845,7 @@ msgstr "Für wachsende Teams, die sicher bleiben möchten, während sie die Infr
 msgid "For solo software engineers who want to secure a single cloud account."
 msgstr "Für Solo-Softwareentwickler, die sich ein einziges Cloud-Konto sichern möchten."
 
-#: src/pages/auth/login/LoginPage.tsx:232
+#: src/pages/auth/login/LoginPage.tsx:235
 msgid "Forget your password? Click here to reset your password."
 msgstr "Passwort vergessen? Klicken Sie hier, um Ihr Passwort zurückzusetzen."
 
@@ -1021,8 +1021,8 @@ msgstr "Letzte Anmeldung"
 msgid "Load Balancers with no backends"
 msgstr "Load Balancer ohne Backends"
 
-#: src/pages/auth/login/LoginPage.tsx:102
-#: src/pages/auth/login/LoginPage.tsx:222
+#: src/pages/auth/login/LoginPage.tsx:105
+#: src/pages/auth/login/LoginPage.tsx:225
 msgid "Log in"
 msgstr "Anmeldung"
 
@@ -1034,7 +1034,7 @@ msgstr "Melden Sie sich mit {formattedName} an"
 msgid "Login into the AWS account you want to secure. Deploy a CloudFormation stack that creates a new IAM role for FIX."
 msgstr "Melden Sie sich bei dem AWS-Konto an, das Sie sichern möchten. Stellen Sie einen CloudFormation-Stack bereit, der eine neue IAM-Rolle für FIX erstellt."
 
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:125
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:164
 msgid "Logout"
 msgstr "Ausloggen"
 
@@ -1238,8 +1238,8 @@ msgstr "Geöffnet um"
 msgid "Optional professional services"
 msgstr "Optionale professionelle Dienstleistungen"
 
-#: src/pages/auth/login/LoginPage.tsx:160
-#: src/pages/auth/login/LoginPage.tsx:237
+#: src/pages/auth/login/LoginPage.tsx:163
+#: src/pages/auth/login/LoginPage.tsx:240
 #: src/pages/auth/register/RegisterPage.tsx:135
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:87
 msgid "Or"
@@ -1261,7 +1261,7 @@ msgstr "Verwaiste Volumes"
 msgid "Other Workspace Settings"
 msgstr "Andere Arbeitsbereichseinstellungen"
 
-#: src/pages/auth/login/LoginPage.tsx:143
+#: src/pages/auth/login/LoginPage.tsx:146
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:204
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:73
 msgid "OTP Code"
@@ -1272,7 +1272,7 @@ msgstr "OTP-Code"
 msgid "Owner"
 msgstr "Eigentümer"
 
-#: src/pages/auth/login/LoginPage.tsx:126
+#: src/pages/auth/login/LoginPage.tsx:129
 #: src/pages/auth/register/RegisterPage.tsx:102
 #: src/pages/auth/reset-password/ResetPasswordPage.tsx:96
 msgid "Password"
@@ -1301,7 +1301,7 @@ msgstr "Wählen Sie eine der Empfehlungen rechts aus und verbessern Sie Ihre Sic
 msgid "Please add a payment method to switch your workspace's product tier"
 msgstr ""
 
-#: src/pages/auth/login/LoginPage.tsx:187
+#: src/pages/auth/login/LoginPage.tsx:190
 msgid "Please enter your One-Time-Password or one of your Recovery code."
 msgstr "Bitte geben Sie Ihr One-Time-Passwort oder einen Ihrer Wiederherstellungscodes ein."
 
@@ -1345,7 +1345,7 @@ msgstr "Produktsupport per E-Mail, Live-Chat und Videoanruf"
 msgid "Product tier changed to {selectedProductTier}"
 msgstr ""
 
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:53
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:92
 msgid "Profile"
 msgstr "Profil"
 
@@ -1377,7 +1377,7 @@ msgstr "Quittungen"
 msgid "Recently added accounts"
 msgstr "Kürzlich hinzugefügte Konten"
 
-#: src/pages/auth/login/LoginPage.tsx:169
+#: src/pages/auth/login/LoginPage.tsx:172
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:105
 msgid "Recovery Code"
 msgstr "Wiederherstellungscode"
@@ -1721,7 +1721,7 @@ msgid "Upgrade"
 msgstr "Aktualisierung"
 
 #: src/pages/panel/user-settings/UserSettingsPage.tsx:16
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:117
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:156
 msgid "User Settings"
 msgstr "Benutzereinstellungen"
 
@@ -1749,7 +1749,7 @@ msgstr "Warnung"
 msgid "We appreciate your decision to subscribe to our service through AWS Marketplace."
 msgstr "Wir freuen uns über Ihre Entscheidung, unseren Service über AWS Marketplace zu abonnieren."
 
-#: src/pages/auth/login/LoginPage.tsx:194
+#: src/pages/auth/login/LoginPage.tsx:197
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "Wir haben eine E-Mail mit einem Bestätigungslink an Ihre E-Mail-Adresse gesendet. Bitte folgen Sie dem Link, um Ihr Konto zu aktivieren."
 
@@ -1827,11 +1827,15 @@ msgstr "Sie können TOTP über den Wiederherstellungscode deaktivieren"
 msgid "You don't have access to this workspace"
 msgstr ""
 
-#: src/pages/auth/login/LoginPage.tsx:207
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:146
+msgid "You don't have the permission to view this workspace, contact the workspace owner for more information."
+msgstr ""
+
+#: src/pages/auth/login/LoginPage.tsx:210
 msgid "You have successfully reset your password."
 msgstr "Sie haben Ihr Passwort erfolgreich zurückgesetzt."
 
-#: src/pages/auth/login/LoginPage.tsx:200
+#: src/pages/auth/login/LoginPage.tsx:203
 msgid "You have successfully verified your account."
 msgstr "Sie haben Ihr Konto erfolgreich verifiziert."
 
