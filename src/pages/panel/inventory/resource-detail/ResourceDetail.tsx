@@ -343,7 +343,9 @@ export const ResourceDetail = () => {
               nodeSecurityIssues={data.resource.security?.issues ?? []}
             />
           ) : null}
-          {resourceDetailId && (!error || nodeNotFound) ? <ResourceDetailChangeLog notFound={nodeNotFound} /> : null}
+          {resourceDetailId && (!error || nodeNotFound) ? (
+            <ResourceDetailChangeLog notFound={nodeNotFound} defaultResource={data?.resource} />
+          ) : null}
         </Stack>
       </Slide>
     </Modal>
