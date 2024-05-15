@@ -74,7 +74,7 @@ export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackPro
               onClick={() => {
                 resetErrorBoundary()
                 if (navigate) {
-                  navigate('/')
+                  navigate('/inventory')
                 }
               }}
             >

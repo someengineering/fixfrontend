@@ -100,7 +100,7 @@ export const endPoints = {
       },
       users: {
         list: `api/workspaces/${workspaceId}/users/`,
-        self: (userId: string) => `api/workspaces/${workspaceId}/users/${userId}`,
+        self: (userId: string) => `api/workspaces/${workspaceId}/users/${userId}/`,
       },
       roles: {
         list: `api/workspaces/${workspaceId}/roles`,

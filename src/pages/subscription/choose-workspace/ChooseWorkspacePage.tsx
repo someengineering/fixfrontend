@@ -1,6 +1,6 @@
 import { t, Trans } from '@lingui/macro'
 import { LoadingButton } from '@mui/lab'
-import { alpha, ButtonBase, Card, CardHeader, Grid, Stack, styled, Typography } from '@mui/material'
+import { Button, Card, CardHeader, Grid, Stack, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useCallback, useEffect } from 'react'
@@ -12,18 +12,20 @@ import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { setSubscriptionId } from 'src/shared/utils/localstorage'
 import { putWorkspaceSubscriptionMutation } from './putWorkspaceSubscription.mutation'
 
-const ChooseWorkspaceButton = styled(LoadingButton)({
-  minHeight: 50,
-})
-
 export default function ChooseWorkspacePage() {
   const { workspaces, selectedWorkspace, selectWorkspace } = useUserProfile()
   const { showSnackbar } = useSnackbar()
+  const navigate = useAbsoluteNavigate()
+
+  const afterSubmit = useCallback(() => {
+    setSubscriptionId()
+    navigate('/workspace-settings/billing-receipts')
+  }, [navigate])
+
   const { mutateAsync, isPending, error } = useMutation({
     mutationFn: putWorkspaceSubscriptionMutation,
     onSuccess: () => {
-      setSubscriptionId()
-      navigate('/workspace-settings/billing-receipts')
+      afterSubmit()
       void showSnackbar(t`Subscription successfully added to ${selectedWorkspace?.name}`, {
         severity: 'success',
         snackbarProps: { sx: { zIndex: ({ zIndex: { tooltip } }) => tooltip + 4 } },
@@ -41,28 +43,29 @@ export default function ChooseWorkspacePage() {
       )
     },
   })
-  const navigate = useAbsoluteNavigate()
   const [getSearch] = useSearchParams()
   const subscriptionId = getSearch.get('subscription_id')
-
-  const afterSubmit = useCallback(() => {
-    setSubscriptionId(undefined)
-    navigate('/')
-  }, [navigate])
 
   useEffect(() => {
     if (subscriptionId) {
       if (workspaces?.length === 1) {
-        void mutateAsync({ workspaceId: workspaces[0].id ?? '', subscriptionId: subscriptionId ?? '' }).then(afterSubmit)
+        void mutateAsync({ workspaceId: workspaces[0].id ?? '', subscriptionId: subscriptionId ?? '' })
       }
       setSubscriptionId(subscriptionId)
     } else {
       navigate('/')
     }
-  }, [subscriptionId, navigate, workspaces, mutateAsync, afterSubmit])
+  }, [subscriptionId, navigate, workspaces, mutateAsync])
 
-  const handleSubmit = () => {
-    void mutateAsync({ workspaceId: selectedWorkspace?.id ?? '', subscriptionId: subscriptionId ?? '' }).then(afterSubmit)
+  const handleSubmit = async (id: string) => {
+    await selectWorkspace(id)
+    window.setTimeout(() => {
+      void mutateAsync({ workspaceId: selectedWorkspace?.id ?? '', subscriptionId: subscriptionId ?? '' })
+    })
+  }
+  const handleCancel = () => {
+    setSubscriptionId()
+    navigate('/workspace-settings/billing-receipts')
   }
 
   return (subscriptionId && workspaces?.length && workspaces.length > 1) || error ? (
@@ -73,34 +76,47 @@ export default function ChooseWorkspacePage() {
       </Typography>
       <Stack alignItems="center" justifyContent="center">
         <Typography variant="h5" textAlign="left" mb={4} maxWidth={550}>
-          <Trans>We appreciate your decision to subscribe to our service through AWS Marketplace.</Trans>
-        </Typography>
-        <Typography variant="h6" textAlign="left" mb={4} maxWidth={550}>
-          <Trans>To enhance your experience, please select the workspace where you'd like to activate your subscription</Trans>:
+          <Trans>Please select the workspace where you would like to activate this subscription.</Trans>
         </Typography>
       </Stack>
       <Grid container spacing={2} width="100%" justifyContent="center" mb={2}>
         {workspaces?.map((item) => (
           <Grid item key={item.id}>
-            <ButtonBase
+            <LoadingButton
               onClick={() => {
-                void selectWorkspace(item.id)
+                void handleSubmit(item.id)
               }}
+              disabled={isPending}
+              loading={item.id === selectedWorkspace?.id && isPending}
+              sx={{ p: 0 }}
             >
-              <Card sx={item.id === selectedWorkspace?.id ? { bgcolor: 'primary.dark', color: 'white' } : undefined}>
+              <Card sx={item.id === selectedWorkspace?.id && isPending ? { bgcolor: 'primary.dark', color: 'white' } : undefined}>
                 <CardHeader
                   title={item.name}
+                  titleTypographyProps={{
+                    sx: {
+                      opacity: item.id === selectedWorkspace?.id && isPending ? 0 : 1,
+                      transition: ({ transitions }) => transitions.create('opacity'),
+                    },
+                  }}
                   subheader={item.slug}
-                  subheaderTypographyProps={item.id === selectedWorkspace?.id ? { color: alpha('#ffffff', 0.6) } : undefined}
+                  subheaderTypographyProps={{
+                    sx: {
+                      opacity: item.id === selectedWorkspace?.id && isPending ? 0 : 1,
+                      transition: ({ transitions }) => transitions.create('opacity'),
+                    },
+                  }}
                 />
               </Card>
-            </ButtonBase>
+            </LoadingButton>
           </Grid>
         ))}
       </Grid>
-      <ChooseWorkspaceButton variant="outlined" onClick={handleSubmit} loading={isPending}>
-        <Trans>Choose Workspace</Trans>
-      </ChooseWorkspaceButton>
+      <Stack direction="row" spacing={1} justifyContent="center">
+        <Button variant="outlined" color="error" onClick={handleCancel} sx={{ minHeight: 50 }}>
+          <Trans>Cancel</Trans>
+        </Button>
+      </Stack>
     </>
   ) : (
     <LoadingSuspenseFallback />

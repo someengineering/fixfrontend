@@ -1,13 +1,16 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { Alert, Divider, Stack, Typography } from '@mui/material'
+import { Alert, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography } from '@mui/material'
 import { useSuspenseQuery } from '@tanstack/react-query'
+import { useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { useHasBillingPermissionCheck } from 'src/shared/layouts/panel-layout'
-import { ChangePaymentMethod } from './ChangePaymentMethod'
+import { PaymentMethodWithoutNone } from 'src/shared/types/server'
+import { ChangeProductTier } from './ChangeProductTier'
+import { ConfirmChangePaymentModal } from './ConfirmChangePaymentModal'
 import { WorkspaceSettingsBillingTable } from './WorkspaceSettingsBillingTable'
 import { getWorkspaceBillingQuery } from './getWorkspaceBilling.query'
-import { productTierToDescription, productTierToLabel } from './utils'
+import { paymentMethodToLabel, paymentMethods, productTierToDescription, productTierToLabel } from './utils'
 
 export default function WorkspaceSettingsBillingPage() {
   const {
@@ -21,6 +24,15 @@ export default function WorkspaceSettingsBillingPage() {
     queryFn: getWorkspaceBillingQuery,
     queryKey: ['workspace-billing', hasBillingPermission ? selectedWorkspace?.id : undefined],
   })
+  const paymentModalShowRef = useRef<(paymentMethod: PaymentMethodWithoutNone) => void>()
+  const handleOnPaymentMethodChange = (event: SelectChangeEvent<'aws_marketplace' | 'stripe'>) => {
+    paymentModalShowRef.current?.({
+      method: event.target.value as PaymentMethodWithoutNone['method'],
+      subscription_id:
+        (available_payment_methods.find((paymentMethod) => paymentMethod.method === event.target.value) as PaymentMethodWithoutNone)
+          ?.subscription_id ?? '',
+    })
+  }
   const currentDate = new Date()
   currentDate.setMilliseconds(0)
   currentDate.setSeconds(0)
@@ -50,26 +62,70 @@ export default function WorkspaceSettingsBillingPage() {
           </Alert>
         </Stack>
       ) : null}
-      <ChangePaymentMethod
+      <ChangeProductTier
         defaultProductTier={product_tier}
         selectedWorkspacePaymentMethod={workspace_payment_method}
         workspacePaymentMethods={available_payment_methods}
         nextBillingCycle={nextBillingCycle}
       />
-      <Trans>
-        <Typography>Billing cycle: {desc.monthly ? t`Monthly` : t`One time`}</Typography>
-        <Typography>Highest product tier this billing cycle: {title}</Typography>
-      </Trans>
+      {workspace_payment_method.method !== 'none' ? (
+        <Typography component="div">
+          <strong>
+            <Trans>Payment method</Trans>
+          </strong>
+          :{' '}
+          <Select
+            value={workspace_payment_method.method}
+            onChange={handleOnPaymentMethodChange}
+            variant="filled"
+            size="small"
+            hiddenLabel
+            sx={{
+              bgcolor: 'transparent',
+            }}
+            slotProps={{
+              input: {
+                sx: {
+                  px: 0.5,
+                  py: 0.25,
+                },
+              },
+            }}
+          >
+            {paymentMethods.map((paymentMethod) => (
+              <MenuItem key={paymentMethod} value={paymentMethod}>
+                {paymentMethodToLabel(paymentMethod)}
+              </MenuItem>
+            ))}
+          </Select>
+        </Typography>
+      ) : null}
+
+      <Typography>
+        <strong>
+          <Trans>Billing cycle</Trans>
+        </strong>
+        : {desc.monthly ? t`Monthly` : t`One time`}
+      </Typography>
+
+      <Typography>
+        <strong>
+          <Trans>Highest product tier this billing cycle</Trans>
+        </strong>
+        : {title}
+      </Typography>
+
       {desc.monthly ? (
-        <Trans>
-          <Typography>
-            Next invoice will be available:{' '}
-            {nextBillingCycle.toLocaleDateString(locale, { year: 'numeric', month: '2-digit', day: '2-digit' })}
-          </Typography>
-        </Trans>
+        <Typography>
+          <strong>
+            <Trans>Next invoice will be available</Trans>
+          </strong>
+          : {nextBillingCycle.toLocaleDateString(locale, { year: 'numeric', month: '2-digit', day: '2-digit' })}
+        </Typography>
       ) : null}
       <Divider />
       <WorkspaceSettingsBillingTable />
+      <ConfirmChangePaymentModal paymentModalShowRef={paymentModalShowRef} currentPaymentMethod={workspace_payment_method} />
     </Stack>
   ) : null
 }
