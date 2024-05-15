@@ -1,7 +1,7 @@
 import { Trans, t } from '@lingui/macro'
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied'
 import { LoadingButton } from '@mui/lab'
-import { Alert, Button, Stack, Typography } from '@mui/material'
+import { Alert, Button, Link, Stack, Typography } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { MutableRefObject } from 'react'
@@ -93,8 +93,8 @@ export const ChangeProductTierToFreeModal = ({ showModalRef, defaultOpen, produc
           <Typography>
             <Trans>
               We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific
-              you're missing, please reach out to me personally at lars@some.engineering. I'd love to hear from you and help in any way I
-              can.
+              you're missing, please reach out to me personally at <Link href="mailto:lars@some.engineering">lars@some.engineering</Link>.
+              I'd love to hear from you and help in any way I can.
             </Trans>
           </Typography>
         </Alert>
