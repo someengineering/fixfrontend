@@ -141,7 +141,7 @@ export const ChangeProductTier = ({
                       variant="outlined"
                       href={`${env.aws_marketplace_url}`}
                     >
-                      <Typography color="#ff9900" textTransform="none">
+                      <Typography textTransform="none">
                         <Trans>Manage AWS Market place payment method</Trans>
                       </Typography>
                     </LinkButton>
