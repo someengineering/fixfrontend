@@ -2,11 +2,50 @@ import { Trans, t } from '@lingui/macro'
 import CorporateFareIcon from '@mui/icons-material/CorporateFare'
 import LogoutIcon from '@mui/icons-material/Logout'
 import SettingsIcon from '@mui/icons-material/Settings'
-import { Avatar, Divider, IconButton, ListItemIcon, Menu, MenuItem, MenuList, Tooltip, Typography } from '@mui/material'
+import WarningIcon from '@mui/icons-material/Warning'
+import { Avatar, Badge, Divider, IconButton, ListItemIcon, Menu, MenuItem, MenuList, Tooltip, Typography } from '@mui/material'
 import { MouseEvent as MouseEventReact, useState, useTransition } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
+
+export const WorkspaceMenuItem = ({
+  id,
+  name,
+  disabled,
+  error,
+  handleSelectWorkspace,
+}: {
+  id: string
+  name: string
+  disabled?: boolean
+  error?: string
+  handleSelectWorkspace: (id: string) => void
+}) => {
+  const menuItem = (
+    <>
+      <ListItemIcon>
+        <CorporateFareIcon color="primary" />
+      </ListItemIcon>
+      <Typography textAlign="center" overflow="hidden" textOverflow="ellipsis" whiteSpace="nowrap">
+        {name}
+      </Typography>
+    </>
+  )
+  return error ? (
+    <Tooltip title={error}>
+      <MenuItem sx={{ opacity: 0.4 }}>
+        <Badge badgeContent={<WarningIcon fontSize="small" color="warning" />} anchorOrigin={{ horizontal: 'left', vertical: 'top' }}>
+          {menuItem}
+        </Badge>
+      </MenuItem>
+    </Tooltip>
+  ) : (
+    <MenuItem onClick={() => handleSelectWorkspace(id)} disabled={disabled}>
+      {menuItem}
+    </MenuItem>
+  )
+}
 
 export const UserProfileButton = () => {
   const { logout, workspaces, selectedWorkspace, selectWorkspace } = useUserProfile()
@@ -94,19 +133,19 @@ export const UserProfileButton = () => {
         onClose={handleCloseUserMenu}
       >
         <MenuList>
-          {workspaces?.map(({ name, id }) => (
-            <MenuItem
+          {workspaces?.map(({ name, id, permissions, user_has_access }) => (
+            <WorkspaceMenuItem
               key={id}
-              onClick={selectedWorkspace?.id === id ? undefined : () => handleSelectWorkspace(id)}
+              id={id}
+              handleSelectWorkspace={handleSelectWorkspace}
+              name={name}
               disabled={selectedWorkspace?.id === id}
-            >
-              <ListItemIcon>
-                <CorporateFareIcon color="primary" />
-              </ListItemIcon>
-              <Typography textAlign="center" overflow="hidden" textOverflow="ellipsis" whiteSpace="nowrap">
-                {name}
-              </Typography>
-            </MenuItem>
+              error={
+                permissions.includes('read') && user_has_access
+                  ? undefined
+                  : t`You don't have the permission to view this workspace, contact the workspace owner for more information.`
+              }
+            />
           ))}
           <Divider />
           <MenuItem onClick={handleGoToAccounts}>

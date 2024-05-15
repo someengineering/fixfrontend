@@ -6,7 +6,7 @@ import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { FormEvent, Suspense, useRef, useState } from 'react'
 import { Link, Location, useLocation, useSearchParams } from 'react-router-dom'
-import { useUserProfile } from 'src/core/auth'
+import { allPermissions, maxPermissionNumber, useUserProfile } from 'src/core/auth'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { LoginSocialMedia } from 'src/shared/login-social-media'
 import { PasswordTextField } from 'src/shared/password-text-field'
@@ -68,6 +68,9 @@ export default function LoginPage() {
                 created_at: new Date().toISOString(),
                 on_hold_since: null,
                 trial_end_days: null,
+                permissions: allPermissions,
+                user_has_access: false,
+                user_permissions: maxPermissionNumber,
               },
             },
             returnUrl,

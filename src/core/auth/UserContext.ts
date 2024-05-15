@@ -1,10 +1,13 @@
 import { createContext } from 'react'
 import { GetCurrentUserResponse, GetWorkspaceResponse, GetWorkspacesResponse } from 'src/shared/types/server'
+import { Permissions } from './getPermissions'
+
+export type UserContextWorkspace = GetWorkspaceResponse & { permissions: Permissions[] }
 
 export type UserContextRealValues = {
   isAuthenticated: boolean
-  workspaces: GetWorkspacesResponse | never[]
-  selectedWorkspace?: GetWorkspaceResponse
+  workspaces: UserContextWorkspace[] | never[]
+  selectedWorkspace?: UserContextWorkspace
   currentUser?: GetCurrentUserResponse
 }
 
