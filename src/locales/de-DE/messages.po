@@ -208,7 +208,7 @@ msgid "Activate"
 msgstr "aktivieren Sie"
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:61
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:100
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:101
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:84
 msgid "Add a New Credit or Debit Card"
 msgstr ""
@@ -294,8 +294,8 @@ msgstr "Eine E-Mail wurde mit einem 'Passwort zurücksetzen'-Button an Ihren Pos
 msgid "An error occurred while connecting to {0}"
 msgstr "Beim Herstellen der Verbindung zu {0} ist ein Fehler aufgetreten."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:55
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:33
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:56
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:34
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:34
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:31
 msgid "An error occurred, please try again later."
@@ -429,8 +429,8 @@ msgstr ""
 msgid "Change Payment method"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:124
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:81
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:125
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:82
 msgid "Change Product Tier"
 msgstr "Produktstufe ändern"
 
@@ -582,8 +582,8 @@ msgstr ""
 msgid "Critical"
 msgstr "Kritisch"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:166
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:86
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:167
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:87
 msgid "Current Product Tier"
 msgstr ""
 
@@ -707,8 +707,8 @@ msgstr "Möchten Sie diesen Benutzer löschen?"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:119
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:77
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:120
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:78
 msgid "Downgrade"
 msgstr "Downgrade"
 
@@ -973,7 +973,7 @@ msgstr "Inaktivitätserinnerung"
 msgid "Info"
 msgstr "Info"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:176
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:177
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle! {0}<0/>Your next billing cycle starts: {1} UTC"
 msgstr ""
 
@@ -1155,8 +1155,8 @@ msgstr "neue nicht konforme Ressourcen in der Vergangenheit {since}"
 msgid "New Password"
 msgstr "Neues Kennwort"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:169
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:89
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:170
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:90
 msgid "New Product Tier"
 msgstr ""
 
@@ -1307,7 +1307,7 @@ msgstr "Passwort"
 msgid "Payment is required for your workspace, Please contact the workspace owner"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:130
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:131
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:69
 msgid "Payment method"
 msgstr ""
@@ -1380,11 +1380,11 @@ msgstr "Produktsupport per E-Mail und Live-Chat"
 msgid "Product support via email, live chat, and video call"
 msgstr "Produktsupport per E-Mail, Live-Chat und Videoanruf"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:51
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:52
 msgid "Product tier changed to {selectedProductTier}"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:29
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:30
 msgid "Product tier changed to Free"
 msgstr ""
 
@@ -1672,7 +1672,7 @@ msgid "To access this resource, please ensure that you are logged into the AWS a
 msgstr "Um auf diese Ressource zuzugreifen, stellen Sie bitte sicher, dass Sie beim AWS-Konto angemeldet sind: {account}"
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:59
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:98
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:99
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:82
 msgid "To AWS Marketplace"
 msgstr "Zum AWS Marketplace"
@@ -1757,7 +1757,7 @@ msgstr "E-Mail aktualisieren"
 msgid "Update Password"
 msgstr "Kennwort aktualisieren"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:119
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:120
 msgid "Upgrade"
 msgstr "Aktualisierung"
 
@@ -1790,7 +1790,7 @@ msgstr "Warnung"
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "Wir haben eine E-Mail mit einem Bestätigungslink an Ihre E-Mail-Adresse gesendet. Bitte folgen Sie dem Link, um Ihr Konto zu aktivieren."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:93
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:94
 msgid "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at lars@some.engineering. I'd love to hear from you and help in any way I can."
 msgstr "Es tut uns leid, dass Sie herunterstufen, aber wir sind dankbar, Sie weiterhin in unserer kostenlosen Stufe zu haben. Wenn Ihnen etwas Bestimmtes fehlt, wenden Sie sich bitte direkt an mich, lars@some.engineering. Ich würde gerne von Ihnen hören und Ihnen so gut wie möglich helfen."
 
@@ -1810,7 +1810,7 @@ msgstr "Wöchentlicher E-Mail-Bericht"
 msgid "Weekly Report"
 msgstr "Wöchentlicher Report"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:178
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:179
 msgid "Within a billing cycle you will be charged for the highest product tier that was active."
 msgstr ""
 
@@ -1852,8 +1852,8 @@ msgstr ""
 msgid "You are about to change workspace's payment method"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:125
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:82
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:126
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:83
 msgid "You are about to change workspace's product tier"
 msgstr ""
 
