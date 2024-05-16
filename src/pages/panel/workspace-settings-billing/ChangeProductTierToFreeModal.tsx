@@ -68,7 +68,6 @@ export const ChangeProductTierToFreeModal = ({ showModalRef, defaultOpen, produc
             onClick={() => {
               changeBilling({
                 product_tier: 'Free',
-                workspace_payment_method: { method: 'none' },
                 workspaceId: selectedWorkspace?.id ?? '',
               })
             }}
