@@ -3,7 +3,7 @@ import ClearIcon from '@mui/icons-material/Clear'
 import SearchIcon from '@mui/icons-material/Search'
 import { Box, ButtonBase, Stack, TextField, alpha, outlinedInputClasses } from '@mui/material'
 import { useDebounce } from '@uidotdev/usehooks'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { panelUI } from 'src/shared/constants'
 
 interface InventoryFormFullTextSearchValueProps {
@@ -14,6 +14,7 @@ interface InventoryFormFullTextSearchValueProps {
 export const InventoryFormFullTextSearchValue = ({ onChange, fullTextSearch }: InventoryFormFullTextSearchValueProps) => {
   const [value, setValue] = useState(fullTextSearch ?? '')
   const debouncedValue = useDebounce(value, panelUI.fastInputChangeDebounce)
+  const prevDebouncedValue = useRef(value)
   const [focused, setFocused] = useState(false)
 
   useEffect(() => {
@@ -21,7 +22,10 @@ export const InventoryFormFullTextSearchValue = ({ onChange, fullTextSearch }: I
   }, [fullTextSearch])
 
   useEffect(() => {
-    onChange(debouncedValue)
+    if (prevDebouncedValue.current !== debouncedValue) {
+      onChange(debouncedValue)
+      prevDebouncedValue.current = debouncedValue
+    }
   }, [debouncedValue, onChange])
 
   return (
