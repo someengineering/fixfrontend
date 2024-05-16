@@ -27,27 +27,18 @@ import { InventoryAdvanceSearchInfo } from './InventoryAdvanceSearchInfo'
 import { InventoryForm, InventoryFormsSkeleton } from './inventory-form'
 
 interface InventoryAdvanceSearchProps {
-  value: string
-  onChange: (value?: string, hide?: string) => void
   hasChanges: boolean
   hasError: boolean
 }
 
 type TabsType = 'form' | 'advance'
 
-export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError, hasChanges }: InventoryAdvanceSearchProps) => {
+export const InventoryAdvanceSearch = ({ hasError, hasChanges }: InventoryAdvanceSearchProps) => {
   const [focused, setIsFocused] = useState(false)
   const [tab, setTab] = useState<TabsType>('form')
-  const {
-    update: {
-      current: { updateQuery, reset },
-    },
-    error,
-    uiSimpleQuery,
-    q,
-  } = useFixQueryParser()
-  const [searchCritValue, setSearchCritValue] = useState(!searchCrit && searchCrit !== 'all' ? '' : searchCrit)
-  const hasSomethingExtra = !!q && q !== 'all' && !uiSimpleQuery()
+  const { updateQuery, reset, error, uiSimpleQuery, q } = useFixQueryParser()
+  const [searchCritValue, setSearchCritValue] = useState(!q && q !== 'all' ? '' : q)
+  const hasSomethingExtra = !!q && q !== 'all' && !uiSimpleQuery
 
   const timeoutRef = useRef<number>()
 
@@ -58,7 +49,6 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError, 
         window.clearTimeout(timeoutRef.current)
       }
       timeoutRef.current = window.setTimeout(() => {
-        onChange(value)
         try {
           updateQuery(value)
         } catch (e) {
@@ -67,13 +57,12 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError, 
         timeoutRef.current = undefined
       }, panelUI.inputChangeDebounce)
     },
-    [onChange, updateQuery],
+    [updateQuery],
   )
 
   useEffect(() => {
     setSearchCritValue(q)
-    onChange(q)
-  }, [q, onChange])
+  }, [q])
 
   useEffect(
     () => () => {
@@ -92,19 +81,9 @@ export const InventoryAdvanceSearch = ({ value: searchCrit, onChange, hasError, 
     handleChangeValue(value)
   }
 
-  useEffect(() => {
-    setSearchCritValue(!searchCrit ? '' : searchCrit)
-    try {
-      updateQuery(!searchCrit ? '' : searchCrit)
-    } catch (e) {
-      console.info(e, !searchCrit ? '' : searchCrit)
-    }
-  }, [searchCrit, updateQuery])
-
   const handleReset = () => {
     reset()
     setSearchCritValue('')
-    onChange('')
     updateQuery('')
   }
 

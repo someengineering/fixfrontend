@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { DefaultPropertiesKeys, FixQueryContextValue, Predicate, useFixQueryParser } from 'src/shared/fix-query-parser'
+import { DefaultPropertiesKeys, Predicate, useFixQueryParser } from 'src/shared/fix-query-parser'
 import { InventoryFormField } from './InventoryFormField'
 import { InventoryFormValue } from './InventoryFormValue'
 import { AutoCompletePreDefinedItems } from './utils'
@@ -8,15 +8,12 @@ const INDEX_STARTS_FROM = 7
 
 interface InventoryFormRestItemProps {
   term: Predicate
-  update: FixQueryContextValue['update']
   index: number
   preItems: AutoCompletePreDefinedItems
 }
 
-const InventoryFormRestItem = ({ term, update, index, preItems }: InventoryFormRestItemProps) => {
-  const {
-    current: { deletePredicate, setPredicate },
-  } = update
+const InventoryFormRestItem = ({ term, index, preItems }: InventoryFormRestItemProps) => {
+  const { deletePredicate, setPredicate } = useFixQueryParser()
   const path = term.path.toString()
   return (
     <>
@@ -40,18 +37,18 @@ const InventoryFormRestItem = ({ term, update, index, preItems }: InventoryFormR
 }
 
 export const InventoryFormRest = ({ preItems }: { preItems: AutoCompletePreDefinedItems }) => {
-  const { query, update } = useFixQueryParser()
+  const { predicates: noFilterPredicates } = useFixQueryParser()
 
   const predicates = useMemo(
     () =>
-      query.predicates().filter((term) => !Object.values(DefaultPropertiesKeys).includes(term.path.toString() as DefaultPropertiesKeys)),
-    [query],
+      noFilterPredicates.filter((term) => !Object.values(DefaultPropertiesKeys).includes(term.path.toString() as DefaultPropertiesKeys)),
+    [noFilterPredicates],
   )
 
   return (
     <>
       {predicates.map((term, i) => (
-        <InventoryFormRestItem key={i} term={term} update={update} index={i} preItems={preItems} />
+        <InventoryFormRestItem key={i} term={term} index={i} preItems={preItems} />
       ))}
     </>
   )

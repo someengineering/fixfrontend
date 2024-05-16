@@ -14,12 +14,7 @@ interface InventoryFormRegionValuesProps {
 }
 
 export const InventoryFormRegionValues = ({ preItems, onClose, open, values, withAddButton }: InventoryFormRegionValuesProps) => {
-  const {
-    region,
-    update: {
-      current: { setPredicate, deletePredicate },
-    },
-  } = useFixQueryParser()
+  const { region, setPredicate, deletePredicate } = useFixQueryParser()
   const curValues = values ?? termValueToStringArray(region?.value)
   const regionOptions = useMemo(() => {
     const valuesToAdd = [...curValues]

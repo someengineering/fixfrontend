@@ -9,12 +9,7 @@ import { termValueToStringArray } from './utils'
 import { AutoCompletePreDefinedItems } from './utils/getAutoCompleteFromKey'
 
 export const InventoryFormCloud = ({ preItems }: { preItems: AutoCompletePreDefinedItems }) => {
-  const {
-    cloud,
-    update: {
-      current: { deletePredicate },
-    },
-  } = useFixQueryParser()
+  const { cloud, deletePredicate } = useFixQueryParser()
   const [open, setOpen] = useState<HTMLDivElement | null>(null)
   const values = termValueToStringArray(cloud?.value)
   return values.length ? (

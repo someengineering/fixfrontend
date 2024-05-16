@@ -9,12 +9,7 @@ import { termValueToStringArray } from './utils'
 import { AutoCompletePreDefinedItems } from './utils/getAutoCompleteFromKey'
 
 export const InventoryFormRegion = ({ preItems }: { preItems: AutoCompletePreDefinedItems }) => {
-  const {
-    region,
-    update: {
-      current: { deletePredicate },
-    },
-  } = useFixQueryParser()
+  const { region, deletePredicate } = useFixQueryParser()
   const [open, setOpen] = useState<HTMLDivElement | null>(null)
   const values = termValueToStringArray(region?.value)
   return values.length ? (
