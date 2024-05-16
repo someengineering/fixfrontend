@@ -2,7 +2,7 @@ import { t } from '@lingui/macro'
 import CheckIcon from '@mui/icons-material/Check'
 import CloseIcon from '@mui/icons-material/Close'
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark'
-import { ButtonBase, Stack, Tooltip } from '@mui/material'
+import { Box, ButtonBase, Stack, Tooltip, Typography } from '@mui/material'
 import { GridColDef, GridRow, GridRowProps, GridSortItem } from '@mui/x-data-grid-premium'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
@@ -144,7 +144,37 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
                     </Tooltip>
                   )
                 ) : undefined,
-              minWidth: 100,
+              minWidth: 150,
+              renderHeader: (value) => (
+                <Tooltip
+                  title={
+                    <Typography color="primary.main" variant="caption" fontWeight={800}>
+                      {value.colDef.headerName ?? value.colDef.field}
+                    </Typography>
+                  }
+                >
+                  <Stack
+                    whiteSpace="nowrap"
+                    overflow="hidden"
+                    textOverflow="ellipsis"
+                    flexWrap="wrap"
+                    direction="row-reverse"
+                    justifyContent="start"
+                    spacing={1}
+                    height={16}
+                  >
+                    {(value.colDef.headerName ?? value.colDef.field)
+                      .split(' ➞ ')
+                      .reverse()
+                      .map((chunk, i) => (
+                        <Box whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" key={i} display="inline" component="span">
+                          {chunk}
+                          {i ? ' ➞ ' : ''}
+                        </Box>
+                      ))}
+                  </Stack>
+                </Tooltip>
+              ),
             }) as ColType,
         ),
       )
