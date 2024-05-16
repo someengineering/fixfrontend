@@ -116,7 +116,7 @@ msgstr "<0>Privacy policy</0> | <1>Terms and conditions</1>"
 msgid "<0>Step 1: Scan the QR Code</0><1>First up, see this QR code on your screen? Grab your phone and open your favorite authenticator app (like Google Authenticator).</1><2>Step 2: Add a New Account</2><3>In the app, tap on \"Add\" or \"+\" to set up a new account. Select \"Scan a QR Code\" and point your phone's camera at the QR code displayed here. This will link your account to the app.</3><4><5/></4><6>Step 3: Enter the Code</6><7>Once linked, the app will display a 6-digit code. It changes every 30 seconds, so it's super fresh! Enter that code in the box below and hit \"Activate\". And voilà, you're all set!</7>"
 msgstr "<0>Step 1: Scan the QR Code</0><1>First up, see this QR code on your screen? Grab your phone and open your favorite authenticator app (like Google Authenticator).</1><2>Step 2: Add a New Account</2><3>In the app, tap on \"Add\" or \"+\" to set up a new account. Select \"Scan a QR Code\" and point your phone's camera at the QR code displayed here. This will link your account to the app.</3><4><5/></4><6>Step 3: Enter the Code</6><7>Once linked, the app will display a 6-digit code. It changes every 30 seconds, so it's super fresh! Enter that code in the box below and hit \"Activate\". And voilà, you're all set!</7>"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:133
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:112
 msgid "<0>This search is complex.</0>The combo boxes below may not display all filter details but can help narrow your results. For full control, please use the Advanced tab."
 msgstr "<0>This search is complex.</0>The combo boxes below may not display all filter details but can help narrow your results. For full control, please use the Advanced tab."
 
@@ -160,7 +160,7 @@ msgstr "6-month history"
 msgid "A few minutes to first results"
 msgstr "A few minutes to first results"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:56
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:57
 msgid "Abandoned"
 msgstr "Abandoned"
 
@@ -169,7 +169,7 @@ msgstr "Abandoned"
 msgid "Access to your account is broken"
 msgstr "Access to your account is broken"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:50
+#: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:45
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:226
 msgid "Account"
 msgstr "Account"
@@ -178,7 +178,7 @@ msgstr "Account"
 msgid "Account: {0}"
 msgstr "Account: {0}"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:40
+#: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:35
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:120
 #: src/pages/panel/inventory/InventoryTable.error.tsx:73
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:42
@@ -225,7 +225,7 @@ msgstr "Add Directory"
 msgid "Add external directory"
 msgstr "Add external directory"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:67
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:63
 msgid "Add Filter"
 msgstr "Add Filter"
 
@@ -243,11 +243,11 @@ msgstr "Added accounts"
 msgid "Admin"
 msgstr "Admin"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:157
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:136
 msgid "Advanced"
 msgstr "Advanced"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:182
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:161
 msgid "Advanced search query"
 msgstr "Advanced search query"
 
@@ -273,7 +273,7 @@ msgid "All security issues fixed"
 msgstr "All security issues fixed"
 
 #: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:100
-#: src/pages/auth/register/RegisterPage.tsx:130
+#: src/pages/auth/register/RegisterPage.tsx:131
 #: src/pages/auth/reset-password/ResetPasswordPage.tsx:124
 msgid "Already have an account? Click here to Log in."
 msgstr "Already have an account? Click here to Log in."
@@ -313,7 +313,7 @@ msgstr "API access"
 msgid "API Key"
 msgstr "API Key"
 
-#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:111
+#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:110
 msgid "Are you sure you want to change payment from <0>{0}</0> to <1>{1}</1>?"
 msgstr "Are you sure you want to change payment from <0>{0}</0> to <1>{1}</1>?"
 
@@ -411,7 +411,7 @@ msgstr "Business"
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:101
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:99
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:111
-#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:117
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:118
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -421,16 +421,16 @@ msgstr "Cancel"
 msgid "Change"
 msgstr "Change"
 
-#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:102
+#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:101
 msgid "Change payment"
 msgstr "Change payment"
 
-#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:107
+#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:106
 msgid "Change Payment method"
 msgstr "Change Payment method"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:125
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:82
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:81
 msgid "Change Product Tier"
 msgstr "Change Product Tier"
 
@@ -447,7 +447,7 @@ msgstr "Changes"
 msgid "Changes in the past 7 days"
 msgstr "Changes in the past 7 days"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormReset.tsx:15
+#: src/pages/panel/inventory/inventory-form/InventoryFormReset.tsx:10
 msgid "Clear the search"
 msgstr "Clear the search"
 
@@ -457,8 +457,8 @@ msgstr "Close"
 
 #: src/pages/panel/accounts/AccountRow.tsx:412
 #: src/pages/panel/accounts/AccountsTableItem.tsx:41
-#: src/pages/panel/inventory/inventory-form/InventoryFormCloudValues.tsx:48
-#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:93
+#: src/pages/panel/inventory/inventory-form/InventoryFormCloudValues.tsx:43
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:89
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:222
 #: src/pages/panel/security/AccountCard.tsx:37
 msgid "Cloud"
@@ -480,7 +480,7 @@ msgstr "Cloud account discovered, id: {0}"
 msgid "Cloud Setup"
 msgstr "Cloud Setup"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormCloud.tsx:24
+#: src/pages/panel/inventory/inventory-form/InventoryFormCloud.tsx:19
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:116
 msgid "Clouds"
 msgstr "Clouds"
@@ -508,7 +508,7 @@ msgstr "Configure"
 msgid "Confirm"
 msgstr "Confirm"
 
-#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:74
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:75
 msgid "Congratulations on your subscription"
 msgstr "Congratulations on your subscription"
 
@@ -583,7 +583,7 @@ msgid "Critical"
 msgstr "Critical"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:167
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:87
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:86
 msgid "Current Product Tier"
 msgstr "Current Product Tier"
 
@@ -703,12 +703,12 @@ msgstr "Do you want to delete this invitation?"
 msgid "Do you want to delete this user?"
 msgstr "Do you want to delete this user?"
 
-#: src/pages/auth/login/LoginPage.tsx:230
+#: src/pages/auth/login/LoginPage.tsx:231
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Don't have an account? Click here to Sign up."
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:120
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:78
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:77
 msgid "Downgrade"
 msgstr "Downgrade"
 
@@ -725,8 +725,8 @@ msgid "Edit"
 msgstr "Edit"
 
 #: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:62
-#: src/pages/auth/login/LoginPage.tsx:114
-#: src/pages/auth/register/RegisterPage.tsx:88
+#: src/pages/auth/login/LoginPage.tsx:115
+#: src/pages/auth/register/RegisterPage.tsx:89
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:49
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:69
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:83
@@ -757,7 +757,7 @@ msgstr "Enable all"
 msgid "Enabled"
 msgstr "Enabled"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:87
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:88
 msgid "Engineers like to tag their temporary resources with the string \"delete\". This performs a full-text search in names, tags and other string properties."
 msgstr "Engineers like to tag their temporary resources with the string \"delete\". This performs a full-text search in names, tags and other string properties."
 
@@ -781,7 +781,7 @@ msgstr "Everything in Free, and"
 msgid "Everything in Plus, and"
 msgstr "Everything in Plus, and"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:114
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:116
 msgid "Example searches"
 msgstr "Example searches"
 
@@ -817,19 +817,19 @@ msgstr "Failing Check Timeline"
 msgid "Features"
 msgstr "Features"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:77
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:78
 msgid "Finds CloudWatch instance alarms where the instance no longer exists."
 msgstr "Finds CloudWatch instance alarms where the instance no longer exists."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:40
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:41
 msgid "Finds databases that aren't encrypted at rest."
 msgstr "Finds databases that aren't encrypted at rest."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:61
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:62
 msgid "Finds load balancers that are not associated with any running instances."
 msgstr "Finds load balancers that are not associated with any running instances."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:71
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:72
 msgid "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
 msgstr "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
 
@@ -857,7 +857,7 @@ msgstr "For growing teams looking to stay secure as they build out infrastructur
 msgid "For solo software engineers who want to secure a single cloud account."
 msgstr "For solo software engineers who want to secure a single cloud account."
 
-#: src/pages/auth/login/LoginPage.tsx:235
+#: src/pages/auth/login/LoginPage.tsx:236
 msgid "Forget your password? Click here to reset your password."
 msgstr "Forget your password? Click here to reset your password."
 
@@ -866,8 +866,8 @@ msgstr "Forget your password? Click here to reset your password."
 msgid "Forgot Password"
 msgstr "Forgot Password"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:145
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:148
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:124
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:127
 msgid "Form"
 msgstr "Form"
 
@@ -875,7 +875,7 @@ msgstr "Form"
 msgid "Free"
 msgstr "Free"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearchValue.tsx:42
+#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearchValue.tsx:48
 msgid "Full-text search"
 msgstr "Full-text search"
 
@@ -912,31 +912,31 @@ msgstr "How to fix"
 msgid "ID"
 msgstr "ID"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:98
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:99
 msgid "Identifies compute instances and databases with low CPU usage, indicating potential over-provisioning."
 msgstr "Identifies compute instances and databases with low CPU usage, indicating potential over-provisioning."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:45
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:46
 msgid "Identifies databases publicly accessible from any IP on the Internet."
 msgstr "Identifies databases publicly accessible from any IP on the Internet."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:35
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:36
 msgid "Identifies EBS volumes that are not encrypted."
 msgstr "Identifies EBS volumes that are not encrypted."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:82
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:83
 msgid "Identifies Elastic IP addresses that are allocated but not associated with any network interface."
 msgstr "Identifies Elastic IP addresses that are allocated but not associated with any network interface."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:50
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:51
 msgid "Identifies RDS snapshots that are publicly accessible."
 msgstr "Identifies RDS snapshots that are publicly accessible."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:29
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:30
 msgid "Identifies S3 buckets that are publicly accessible."
 msgstr "Identifies S3 buckets that are publicly accessible."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:66
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:67
 msgid "Identifies storage volumes that are not attached to any running instance and had no read operations in the last 7 days."
 msgstr "Identifies storage volumes that are not attached to any running instance and had no read operations in the last 7 days."
 
@@ -1016,7 +1016,7 @@ msgstr "Invite External User"
 msgid "Invites"
 msgstr "Invites"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormKind.tsx:48
+#: src/pages/panel/inventory/inventory-form/InventoryFormKind.tsx:42
 msgid "kind"
 msgstr "kind"
 
@@ -1025,7 +1025,7 @@ msgstr "kind"
 msgid "Kind"
 msgstr "Kind"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormKind.tsx:40
+#: src/pages/panel/inventory/inventory-form/InventoryFormKind.tsx:34
 msgid "Kinds"
 msgstr "Kinds"
 
@@ -1033,12 +1033,12 @@ msgstr "Kinds"
 msgid "Last login"
 msgstr "Last login"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:60
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:61
 msgid "Load Balancers with no backends"
 msgstr "Load Balancers with no backends"
 
-#: src/pages/auth/login/LoginPage.tsx:105
-#: src/pages/auth/login/LoginPage.tsx:225
+#: src/pages/auth/login/LoginPage.tsx:106
+#: src/pages/auth/login/LoginPage.tsx:226
 msgid "Log in"
 msgstr "Log in"
 
@@ -1050,7 +1050,7 @@ msgstr "Log in with {formattedName}"
 msgid "Login into the AWS account you want to secure. Deploy a CloudFormation stack that creates a new IAM role for FIX."
 msgstr "Login into the AWS account you want to secure. Deploy a CloudFormation stack that creates a new IAM role for FIX."
 
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:164
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:165
 msgid "Logout"
 msgstr "Logout"
 
@@ -1058,7 +1058,7 @@ msgstr "Logout"
 msgid "Low"
 msgstr "Low"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:97
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:98
 msgid "Low Utilization Compute Instances and Databases"
 msgstr "Low Utilization Compute Instances and Databases"
 
@@ -1156,7 +1156,7 @@ msgid "New Password"
 msgstr "New Password"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:170
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:90
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:89
 msgid "New Product Tier"
 msgstr "New Product Tier"
 
@@ -1231,11 +1231,11 @@ msgstr "Number Of Account Charged"
 msgid "One time"
 msgstr "One time"
 
-#: src/pages/auth/login/LoginPage.tsx:25
+#: src/pages/auth/login/LoginPage.tsx:26
 msgid "Oops, the username or password doesn't seem to match our records. Please try again."
 msgstr "Oops, the username or password doesn't seem to match our records. Please try again."
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:213
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:192
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Oops! It looks like your query didn't match our format. Please check and try again."
 
@@ -1243,7 +1243,7 @@ msgstr "Oops! It looks like your query didn't match our format. Please check and
 msgid "Oops! Something went wrong."
 msgstr "Oops! Something went wrong."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:44
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:45
 msgid "Open Database Access"
 msgstr "Open Database Access"
 
@@ -1263,22 +1263,22 @@ msgstr "Opened at"
 msgid "Optional professional services"
 msgstr "Optional professional services"
 
-#: src/pages/auth/login/LoginPage.tsx:163
-#: src/pages/auth/login/LoginPage.tsx:240
-#: src/pages/auth/register/RegisterPage.tsx:135
+#: src/pages/auth/login/LoginPage.tsx:164
+#: src/pages/auth/login/LoginPage.tsx:241
+#: src/pages/auth/register/RegisterPage.tsx:136
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:87
 msgid "Or"
 msgstr "Or"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:76
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:77
 msgid "Orphaned CloudWatch Instance Alarms"
 msgstr "Orphaned CloudWatch Instance Alarms"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:70
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:71
 msgid "Orphaned Snapshots"
 msgstr "Orphaned Snapshots"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:65
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:66
 msgid "Orphaned Volumes"
 msgstr "Orphaned Volumes"
 
@@ -1286,7 +1286,7 @@ msgstr "Orphaned Volumes"
 msgid "Other Workspace Settings"
 msgstr "Other Workspace Settings"
 
-#: src/pages/auth/login/LoginPage.tsx:146
+#: src/pages/auth/login/LoginPage.tsx:147
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:204
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:73
 msgid "OTP Code"
@@ -1297,8 +1297,8 @@ msgstr "OTP Code"
 msgid "Owner"
 msgstr "Owner"
 
-#: src/pages/auth/login/LoginPage.tsx:129
-#: src/pages/auth/register/RegisterPage.tsx:102
+#: src/pages/auth/login/LoginPage.tsx:130
+#: src/pages/auth/register/RegisterPage.tsx:103
 #: src/pages/auth/reset-password/ResetPasswordPage.tsx:96
 msgid "Password"
 msgstr "Password"
@@ -1340,7 +1340,7 @@ msgstr "Pick one of the recommendations to the right and improve your security"
 msgid "Please add a payment method to switch your workspace's product tier"
 msgstr "Please add a payment method to switch your workspace's product tier"
 
-#: src/pages/auth/login/LoginPage.tsx:190
+#: src/pages/auth/login/LoginPage.tsx:191
 msgid "Please enter your One-Time-Password or one of your Recovery code."
 msgstr "Please enter your One-Time-Password or one of your Recovery code."
 
@@ -1348,7 +1348,7 @@ msgstr "Please enter your One-Time-Password or one of your Recovery code."
 msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgstr "Please go to <0>Setup Accounts</0> page to setup your account first"
 
-#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:79
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:80
 msgid "Please select the workspace where you would like to activate this subscription."
 msgstr "Please select the workspace where you would like to activate this subscription."
 
@@ -1388,11 +1388,11 @@ msgstr "Product tier changed to {selectedProductTier}"
 msgid "Product tier changed to Free"
 msgstr "Product tier changed to Free"
 
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:92
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:93
 msgid "Profile"
 msgstr "Profile"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:96
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:92
 msgid "Properties"
 msgstr "Properties"
 
@@ -1400,11 +1400,11 @@ msgstr "Properties"
 msgid "Property"
 msgstr "Property"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:49
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:50
 msgid "Public RDS Snapshots"
 msgstr "Public RDS Snapshots"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:28
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:29
 msgid "Public S3 Buckets"
 msgstr "Public S3 Buckets"
 
@@ -1420,7 +1420,7 @@ msgstr "Receipts"
 msgid "Recently added accounts"
 msgstr "Recently added accounts"
 
-#: src/pages/auth/login/LoginPage.tsx:172
+#: src/pages/auth/login/LoginPage.tsx:173
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:105
 msgid "Recovery Code"
 msgstr "Recovery Code"
@@ -1433,18 +1433,18 @@ msgstr "Recovery codes"
 msgid "Regenerate"
 msgstr "Regenerate"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:94
-#: src/pages/panel/inventory/inventory-form/InventoryFormRegionValues.tsx:46
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:90
+#: src/pages/panel/inventory/inventory-form/InventoryFormRegionValues.tsx:41
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:227
 msgid "Region"
 msgstr "Region"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormRegion.tsx:24
+#: src/pages/panel/inventory/inventory-form/InventoryFormRegion.tsx:19
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:124
 msgid "Regions"
 msgstr "Regions"
 
-#: src/pages/auth/register/RegisterPage.tsx:79
+#: src/pages/auth/register/RegisterPage.tsx:80
 msgid "Register"
 msgstr "Register"
 
@@ -1477,7 +1477,7 @@ msgstr "Resource deleted"
 msgid "Resources"
 msgstr "Resources"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:86
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:87
 msgid "Resources with the string \"delete\""
 msgstr "Resources with the string \"delete\""
 
@@ -1496,7 +1496,7 @@ msgstr "Roles"
 msgid "Search {0}"
 msgstr "Search {0}"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:103
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:104
 msgid "Searches for database instances with no connections over a significant period, indicating potential waste."
 msgstr "Searches for database instances with no connections over a significant period, indicating potential waste."
 
@@ -1504,7 +1504,7 @@ msgstr "Searches for database instances with no connections over a significant p
 msgid "Secure read-only access"
 msgstr "Secure read-only access"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:24
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:25
 #: src/shared/layouts/panel-layout/menuList.tsx:54
 msgid "Security"
 msgstr "Security"
@@ -1547,12 +1547,12 @@ msgstr "Send Invite"
 msgid "Setting Up Email Notifications"
 msgstr "Setting Up Email Notifications"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:45
-#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:61
+#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:40
+#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:56
 msgid "Severities"
 msgstr "Severities"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:55
+#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:50
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:150
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:157
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:205
@@ -1563,7 +1563,7 @@ msgstr "Severity"
 msgid "Show resources"
 msgstr "Show resources"
 
-#: src/pages/auth/register/RegisterPage.tsx:125
+#: src/pages/auth/register/RegisterPage.tsx:126
 msgid "Sign up"
 msgstr "Sign up"
 
@@ -1605,7 +1605,7 @@ msgstr "Sources"
 msgid "Submit"
 msgstr "Submit"
 
-#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:29
+#: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:30
 msgid "Subscription successfully added to {0}"
 msgstr "Subscription successfully added to {0}"
 
@@ -1613,7 +1613,7 @@ msgstr "Subscription successfully added to {0}"
 msgid "Successfully invited {email}"
 msgstr "Successfully invited {email}"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:95
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:91
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:292
 msgid "Tags"
 msgstr "Tags"
@@ -1631,7 +1631,7 @@ msgstr "Test"
 msgid "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 msgstr "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 
-#: src/pages/auth/login/LoginPage.tsx:29
+#: src/pages/auth/login/LoginPage.tsx:30
 msgid "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
 msgstr "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
 
@@ -1655,7 +1655,7 @@ msgstr "There's no account configured for this workspace."
 msgid "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 msgstr "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 
-#: src/pages/auth/register/RegisterPage.tsx:25
+#: src/pages/auth/register/RegisterPage.tsx:26
 msgid "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 msgstr "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 
@@ -1716,7 +1716,7 @@ msgstr "Try again"
 msgid "Type"
 msgstr "Type"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:81
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:82
 msgid "Unattached Elastic IPs"
 msgstr "Unattached Elastic IPs"
 
@@ -1733,19 +1733,19 @@ msgstr "Unattached Elastic IPs"
 msgid "Undefined"
 msgstr "Undefined"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:93
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:94
 msgid "Underutilized"
 msgstr "Underutilized"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:39
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:40
 msgid "Unencrypted Database Storage"
 msgstr "Unencrypted Database Storage"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:34
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:35
 msgid "Unencrypted EBS Volumes"
 msgstr "Unencrypted EBS Volumes"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:102
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:103
 msgid "Unused Database Instances"
 msgstr "Unused Database Instances"
 
@@ -1762,7 +1762,7 @@ msgid "Upgrade"
 msgstr "Upgrade"
 
 #: src/pages/panel/user-settings/UserSettingsPage.tsx:16
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:156
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:157
 msgid "User Settings"
 msgstr "User Settings"
 
@@ -1786,11 +1786,11 @@ msgstr "Value"
 msgid "Warning"
 msgstr "Warning"
 
-#: src/pages/auth/login/LoginPage.tsx:197
+#: src/pages/auth/login/LoginPage.tsx:198
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:94
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:93
 msgid "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 msgstr "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 
@@ -1848,12 +1848,12 @@ msgstr "Workspace Users"
 msgid "Yes"
 msgstr "Yes"
 
-#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:108
+#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:107
 msgid "You are about to change workspace's payment method"
 msgstr "You are about to change workspace's payment method"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:126
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:83
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:82
 msgid "You are about to change workspace's product tier"
 msgstr "You are about to change workspace's product tier"
 
@@ -1873,15 +1873,15 @@ msgstr "You can deactivate TOTP via recovery code"
 msgid "You don't have access to this workspace"
 msgstr "You don't have access to this workspace"
 
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:146
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:147
 msgid "You don't have the permission to view this workspace, contact the workspace owner for more information."
 msgstr "You don't have the permission to view this workspace, contact the workspace owner for more information."
 
-#: src/pages/auth/login/LoginPage.tsx:210
+#: src/pages/auth/login/LoginPage.tsx:211
 msgid "You have successfully reset your password."
 msgstr "You have successfully reset your password."
 
-#: src/pages/auth/login/LoginPage.tsx:203
+#: src/pages/auth/login/LoginPage.tsx:204
 msgid "You have successfully verified your account."
 msgstr "You have successfully verified your account."
 
@@ -1894,7 +1894,7 @@ msgstr "You need a payment method to change your product tier"
 msgid "You've chosen to ignore this security check for the resource. Please note:"
 msgstr "You've chosen to ignore this security check for the resource. Please note:"
 
-#: src/pages/auth/login/LoginPage.tsx:27
+#: src/pages/auth/login/LoginPage.tsx:28
 msgid "Your email address isn't verified yet. Please check your inbox and click on the 'Verify' button to complete the process. Can't find the email? It might be in your spam folder."
 msgstr "Your email address isn't verified yet. Please check your inbox and click on the 'Verify' button to complete the process. Can't find the email? It might be in your spam folder."
 

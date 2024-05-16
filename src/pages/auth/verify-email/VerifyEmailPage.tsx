@@ -2,6 +2,7 @@ import { useSuspenseQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Navigate, useSearchParams } from 'react-router-dom'
+import { panelUI } from 'src/shared/constants'
 import { verifyEmailQuery } from './verifyEmail.query'
 
 interface VerifyEmailProps {
@@ -30,7 +31,7 @@ export default function VerifyEmailPage() {
   const [getSearch] = useSearchParams()
 
   const token = getSearch.get('token') ?? undefined
-  const redirectUrl = getSearch.get('redirectUrl') ?? '/'
+  const redirectUrl = getSearch.get('redirectUrl') ?? panelUI.homePage
 
   return (
     <ErrorBoundary

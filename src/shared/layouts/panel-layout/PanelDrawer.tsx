@@ -45,7 +45,7 @@ const DrawerContent = ({ children, onDrawerClose, open, isDesktop }: PanelAppBar
   return (
     <>
       <DrawerHeader>
-        <ButtonBase onClick={() => navigate('/')}>{children}</ButtonBase>
+        <ButtonBase onClick={() => navigate(panelUI.homePage)}>{children}</ButtonBase>
         <IconButton onClick={onDrawerClose}>
           <ChevronLeftIcon />
         </IconButton>

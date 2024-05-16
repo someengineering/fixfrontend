@@ -44,17 +44,31 @@ export function AuthGuard({ children }: PropsWithChildren) {
     }
   })
 
+  const handleInternalSetAuth = useCallback((value: SetStateAction<UserContextRealValues>) => {
+    setAuth((prev) => {
+      const newAuth = typeof value === 'function' ? value(prev) : value
+      setAuthData({
+        isAuthenticated: newAuth.isAuthenticated,
+        selectedWorkspaceId: newAuth.selectedWorkspace?.id,
+      })
+      return newAuth
+    })
+  }, [])
+
   const navigate = useAbsoluteNavigate()
   const nextUrl = useRef<string>()
 
-  const handleSetAuth = useCallback((data: SetStateAction<UserContextRealValues> | undefined, url?: string) => {
-    if (!data) {
-      setAuth(defaultAuth)
-    } else {
-      setAuth(data)
-    }
-    nextUrl.current = url
-  }, [])
+  const handleSetAuth = useCallback(
+    (data: SetStateAction<UserContextRealValues> | undefined, url?: string) => {
+      if (!data) {
+        handleInternalSetAuth(defaultAuth)
+      } else {
+        handleInternalSetAuth(data)
+      }
+      nextUrl.current = url
+    },
+    [handleInternalSetAuth],
+  )
 
   const handleLogout = useCallback(
     async (noWorkspace?: boolean) => {
@@ -68,50 +82,56 @@ export function AuthGuard({ children }: PropsWithChildren) {
         await logoutMutation()
       } finally {
         clearAllCookies()
-        setAuth(defaultAuth)
+        handleInternalSetAuth(defaultAuth)
       }
     },
-    [navigate],
+    [handleInternalSetAuth, navigate],
   )
 
-  const handleRefreshWorkspaces = useCallback(async (instance?: AxiosInstance) => {
-    try {
-      const workspaces = await getWorkspacesQuery(instance ?? axiosWithAuth)
-      setAuth((prev) => {
-        const selectedWorkspace =
-          (prev.selectedWorkspace?.id
-            ? workspaces.find((workspace) => workspace.id === prev.selectedWorkspace?.id)
-            : workspaces.find((workspace) => workspace.user_has_access && workspace.permissions.includes('read'))) ?? workspaces[0]
-        window.setTimeout(() => {
-          window.location.hash = selectedWorkspace?.id ?? ''
+  const handleRefreshWorkspaces = useCallback(
+    async (instance?: AxiosInstance) => {
+      try {
+        const workspaces = await getWorkspacesQuery(instance ?? axiosWithAuth)
+        handleInternalSetAuth((prev) => {
+          const selectedWorkspace =
+            (prev.selectedWorkspace?.id
+              ? workspaces.find((workspace) => workspace.id === prev.selectedWorkspace?.id)
+              : workspaces.find((workspace) => workspace.user_has_access && workspace.permissions.includes('read'))) ?? workspaces[0]
+          window.setTimeout(() => {
+            window.location.hash = selectedWorkspace?.id ?? ''
+          })
+          return {
+            ...prev,
+            workspaces,
+            selectedWorkspace,
+          }
         })
-        return {
-          ...prev,
-          workspaces,
-          selectedWorkspace,
-        }
-      })
-      return workspaces
-    } catch {
-      setAuth(defaultAuth)
-      return undefined
-    }
-  }, [])
+        return workspaces
+      } catch {
+        handleInternalSetAuth(defaultAuth)
+        return undefined
+      }
+    },
+    [handleInternalSetAuth],
+  )
 
-  const handleSelectWorkspaces = useCallback((id: string) => {
-    return new Promise<GetWorkspaceResponse | undefined>((resolve) => {
-      setAuth((prev) => {
-        const foundWorkspace = prev.workspaces.find((item) => item.id === id)
-        resolve(foundWorkspace)
-        return foundWorkspace
-          ? {
-              ...prev,
-              selectedWorkspace: foundWorkspace,
-            }
-          : prev
+  const handleSelectWorkspaces = useCallback(
+    (id: string) => {
+      return new Promise<GetWorkspaceResponse | undefined>((resolve) => {
+        handleInternalSetAuth((prev) => {
+          const foundWorkspace = prev.workspaces.find((item) => item.id === id)
+          resolve(foundWorkspace)
+          return foundWorkspace
+            ? {
+                ...prev,
+                selectedWorkspace: foundWorkspace,
+              }
+            : prev
+        })
       })
-    })
-  }, [])
+    },
+    [handleInternalSetAuth],
+  )
 
   useEffect(() => {
     if (auth.isAuthenticated) {
@@ -179,16 +199,12 @@ export function AuthGuard({ children }: PropsWithChildren) {
       setAxiosWithAuth(instance)
       void handleRefreshWorkspaces(instance)
       void getCurrentUserQuery(instance).then((currentUser) => {
-        setAuth((prev) => ({ ...prev, currentUser }))
+        handleInternalSetAuth((prev) => ({ ...prev, currentUser }))
       })
     }
-  }, [auth.isAuthenticated, handleRefreshWorkspaces, handleLogout, navigate])
+  }, [auth.isAuthenticated, handleRefreshWorkspaces, handleLogout, navigate, handleInternalSetAuth])
 
   useEffect(() => {
-    setAuthData({
-      isAuthenticated: auth.isAuthenticated,
-      selectedWorkspaceId: auth.selectedWorkspace?.id,
-    })
     if (nextUrl.current && auth.isAuthenticated) {
       navigate(nextUrl.current, { replace: true })
       nextUrl.current = undefined

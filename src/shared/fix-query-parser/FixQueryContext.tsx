@@ -1,3 +1,4 @@
+import { useLingui } from '@lingui/react'
 import { PropsWithChildren, createContext, memo } from 'react'
 import { JsonElement, Query } from './query'
 
@@ -50,6 +51,7 @@ interface FixQueryProviderProps extends PropsWithChildren {
 
 export const FixQueryProvider = memo(
   ({ searchQuery, onChange, children }: FixQueryProviderProps) => {
+    useLingui()
     let query = Query.parse('all')
     let error: Error | undefined
 

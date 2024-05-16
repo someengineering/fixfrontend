@@ -1,4 +1,5 @@
 import { Trans, t } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
 import BrokenImageIcon from '@mui/icons-material/BrokenImage'
 import DynamicFormIcon from '@mui/icons-material/DynamicForm'
 import SecurityIcon from '@mui/icons-material/Security'
@@ -108,6 +109,7 @@ const templateData = (): TemplateData[] => [
 ]
 
 export const InventoryTemplateBoxes = ({ onChange }: InventoryTemplateBoxesProps) => {
+  useLingui()
   return (
     <>
       <Typography variant="h5" mb={2}>

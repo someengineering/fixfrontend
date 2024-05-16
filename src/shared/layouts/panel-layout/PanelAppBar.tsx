@@ -78,7 +78,7 @@ export const PanelAppBar = ({ children, open, isDesktop, onDrawerOpen, onDrawerT
         </MenuIconButton>
         {!open || !isDesktop ? (
           <AppBarLogo>
-            <ButtonBase onClick={() => navigate('/')}>{children}</ButtonBase>
+            <ButtonBase onClick={() => navigate(panelUI.homePage)}>{children}</ButtonBase>
           </AppBarLogo>
         ) : null}
         <AppBarActions>
