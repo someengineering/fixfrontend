@@ -74,7 +74,7 @@ export const InventoryFormTagsValue = ({ onChange, onClose, open, defaultValue, 
         <Stack direction="row" flexWrap={{ xs: 'wrap', md: 'nowrap' }} pt={2}>
           <InventoryFormFilterRowProperty
             kinds={preItems?.kinds.map((i) => i.value) ?? []}
-            selectedKinds={is()?.kinds ?? null}
+            selectedKinds={is?.kinds ?? null}
             defaultForcedValue="tags"
             onChange={({ fqn, op, property, value }) => {
               if (fqn && property) {

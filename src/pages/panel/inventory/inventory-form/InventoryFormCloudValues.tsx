@@ -16,12 +16,7 @@ interface InventoryFormCloudValuesProps {
 }
 
 export const InventoryFormCloudValues = ({ preItems, onClose, open, values, withAddButton }: InventoryFormCloudValuesProps) => {
-  const {
-    cloud,
-    update: {
-      current: { setPredicate, deletePredicate },
-    },
-  } = useFixQueryParser()
+  const { cloud, setPredicate, deletePredicate } = useFixQueryParser()
   const curValues = values ?? termValueToStringArray(cloud?.value)
   const cloudOptions = useMemo(() => {
     const valuesToAdd = [...curValues]

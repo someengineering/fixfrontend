@@ -45,14 +45,9 @@ export default function InventoryPage() {
   return (
     <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
       <Suspense fallback={<LoadingSuspenseFallback />}>
-        <FixQueryProvider searchQuery={searchCrit}>
+        <FixQueryProvider searchQuery={searchCrit} onChange={setSearchCrit}>
           <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-            <InventoryAdvanceSearch
-              value={searchCrit}
-              onChange={setSearchCrit}
-              hasError={!!searchCrit && hasError}
-              hasChanges={hasChanges}
-            />
+            <InventoryAdvanceSearch hasError={!!searchCrit && hasError} hasChanges={hasChanges} />
           </NetworkErrorBoundary>
           <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
             <ResourceDetail />

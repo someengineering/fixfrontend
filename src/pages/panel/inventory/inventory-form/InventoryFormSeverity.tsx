@@ -13,12 +13,7 @@ import { termValueToStringArray } from './utils'
 import { AutoCompletePreDefinedItems } from './utils/getAutoCompleteFromKey'
 
 export const InventoryFormSeverity = ({ preItems }: { preItems: AutoCompletePreDefinedItems }) => {
-  const {
-    severity,
-    update: {
-      current: { setPredicate, deletePredicate },
-    },
-  } = useFixQueryParser()
+  const { severity, setPredicate, deletePredicate } = useFixQueryParser()
   const [open, setOpen] = useState<HTMLDivElement | null>(null)
   const values = termValueToStringArray(severity?.value)
   const severityOptions = useMemo(() => {

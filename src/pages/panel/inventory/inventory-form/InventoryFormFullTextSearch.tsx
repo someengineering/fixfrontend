@@ -2,11 +2,7 @@ import { FullTextTerm, useFixQueryParser } from 'src/shared/fix-query-parser'
 import { InventoryFormFullTextSearchValue } from './InventoryFormFullTextSearchValue'
 
 export const InventoryFormFullTextSearchItem = ({ fullTextSearch }: { fullTextSearch?: FullTextTerm }) => {
-  const {
-    update: {
-      current: { updateFullTextSearch },
-    },
-  } = useFixQueryParser()
+  const { updateFullTextSearch } = useFixQueryParser()
   return (
     <>
       <InventoryFormFullTextSearchValue
@@ -23,6 +19,6 @@ export const InventoryFormFullTextSearches = () => {
   return fullTextSearches.length ? (
     fullTextSearches.map((fullTextSearch, i) => <InventoryFormFullTextSearchItem fullTextSearch={fullTextSearch} key={i} />)
   ) : (
-    <InventoryFormFullTextSearchItem />
+    <InventoryFormFullTextSearchItem key={0} />
   )
 }

@@ -34,8 +34,7 @@ function removeDuplicates<T>(data?: T[], basedOn?: keyof T) {
 }
 
 export const InventoryForm = () => {
-  const { account: selectedAccount, cloud: selectedCloud, region: selectedRegion, is } = useFixQueryParser()
-  const selectedKind = is()
+  const { account: selectedAccount, cloud: selectedCloud, region: selectedRegion, is: selectedKinds } = useFixQueryParser()
   const { selectedWorkspace } = useUserProfile()
   const { data: originalStartData, error } = useQuery({
     queryKey: ['workspace-inventory-search-start', selectedWorkspace?.id],
@@ -136,12 +135,12 @@ export const InventoryForm = () => {
       }
       result.push(currentResult.filter((cloud) => cloud))
     }
-    const selectedKindCloud = processedStartData.kinds.filter(({ id }) => selectedKind?.kinds.includes(id)).map(({ cloud }) => cloud)
+    const selectedKindCloud = processedStartData.kinds.filter(({ id }) => selectedKinds?.kinds.includes(id)).map(({ cloud }) => cloud)
     if (selectedKindCloud.length) {
       result.push(selectedKindCloud)
     }
     return result
-  }, [processedStartData, selectedAccount, selectedCloud, selectedKind, selectedRegion])
+  }, [processedStartData, selectedAccount, selectedCloud, selectedKinds?.kinds, selectedRegion])
   const selectedClouds = useMemo(() => {
     return Array.from(new Set(preDefinedFiltersSelectedClouds.flat()))
   }, [preDefinedFiltersSelectedClouds])

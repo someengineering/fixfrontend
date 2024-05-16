@@ -4,12 +4,7 @@ import { IconButton, Stack, Tooltip } from '@mui/material'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 
 export const InventoryFormReset = () => {
-  const {
-    q,
-    update: {
-      current: { reset },
-    },
-  } = useFixQueryParser()
+  const { q, reset } = useFixQueryParser()
   return q && q !== 'all' ? (
     <Stack pt={1} pr={1} order={1} alignSelf="stretch" alignItems="end" flexGrow={1}>
       <Tooltip title={t`Clear the search`}>

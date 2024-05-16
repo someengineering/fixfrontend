@@ -9,12 +9,7 @@ import { termValueToStringArray } from './utils'
 import { AutoCompletePreDefinedItems } from './utils/getAutoCompleteFromKey'
 
 export const InventoryFormAccount = ({ preItems }: { preItems: AutoCompletePreDefinedItems }) => {
-  const {
-    account,
-    update: {
-      current: { setPredicate, deletePredicate },
-    },
-  } = useFixQueryParser()
+  const { account, setPredicate, deletePredicate } = useFixQueryParser()
   const [open, setOpen] = useState<HTMLDivElement | null>(null)
   const values = termValueToStringArray(account?.value)
   const accountOptions = useMemo(() => {

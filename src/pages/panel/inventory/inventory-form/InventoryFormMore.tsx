@@ -45,11 +45,7 @@ const InventoryFormMoreFab = ({
 }
 
 export const InventoryFormMore = ({ preItems }: { preItems: AutoCompletePreDefinedItems }) => {
-  const {
-    update: {
-      current: { setPredicate },
-    },
-  } = useFixQueryParser()
+  const { setPredicate } = useFixQueryParser()
   const [open, setOpen] = useState<HTMLDivElement | null>(null)
   const [openClouds, setOpenClouds] = useState<HTMLDivElement | null>(null)
   const [openRegions, setOpenRegions] = useState<HTMLDivElement | null>(null)

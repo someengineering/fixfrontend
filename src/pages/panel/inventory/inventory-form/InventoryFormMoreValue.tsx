@@ -98,7 +98,7 @@ export const InventoryFormMoreValue = ({
         <Stack direction="row" flexWrap={{ xs: 'wrap', md: 'nowrap' }} pt={2}>
           <InventoryFormFilterRowProperty
             kinds={preItems?.kinds.map((i) => i.value) ?? []}
-            selectedKinds={is()?.kinds ?? null}
+            selectedKinds={is?.kinds ?? null}
             defaultValue={pathStr?.startsWith('tags.') ? pathStr.split('.').slice(1).join('.') : pathStr}
             onChange={({ fqn, op, property, value }) => {
               if (fqn && property) {

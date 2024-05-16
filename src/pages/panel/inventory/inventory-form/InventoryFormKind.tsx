@@ -8,14 +8,8 @@ import { InventoryFormField } from './InventoryFormField'
 import { AutoCompletePreDefinedItems } from './utils/getAutoCompleteFromKey'
 
 export const InventoryFormKind = ({ preItems }: { preItems: AutoCompletePreDefinedItems }) => {
-  const {
-    is,
-    update: {
-      current: { setIs, deleteIs },
-    },
-  } = useFixQueryParser()
-  const term = is()
-  const values = term?.kinds ?? []
+  const { is, setIs, deleteIs } = useFixQueryParser()
+  const values = is?.kinds ?? []
   const termOptions = useMemo(() => {
     const valuesToAdd = [...values]
     const result = [...preItems.kinds]
@@ -36,7 +30,7 @@ export const InventoryFormKind = ({ preItems }: { preItems: AutoCompletePreDefin
   return (
     <>
       <InventoryFormField
-        value={term}
+        value={is}
         label={t`Kinds`}
         onClick={(e) => setOpen(e.currentTarget)}
         onClear={deleteIs}
