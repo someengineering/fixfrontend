@@ -91,7 +91,6 @@ export const ConfirmChangePaymentModal = ({ paymentModalShowRef, currentPaymentM
               variant="contained"
               onClick={() => {
                 changeBilling({
-                  product_tier: null,
                   workspace_payment_method: paymentMethod,
                   workspaceId: selectedWorkspace?.id ?? '',
                 })
