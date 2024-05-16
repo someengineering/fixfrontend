@@ -15,9 +15,11 @@ export const InventoryFormFullTextSearchValue = ({ onChange, fullTextSearch }: I
   const [value, setValue] = useState(fullTextSearch ?? '')
   const debouncedValue = useDebounce(value, panelUI.fastInputChangeDebounce)
   const [focused, setFocused] = useState(false)
+
   useEffect(() => {
     setValue(fullTextSearch)
   }, [fullTextSearch])
+
   useEffect(() => {
     onChange(debouncedValue)
   }, [debouncedValue, onChange])

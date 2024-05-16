@@ -19,6 +19,6 @@ export const InventoryFormFullTextSearches = () => {
   return fullTextSearches.length ? (
     fullTextSearches.map((fullTextSearch, i) => <InventoryFormFullTextSearchItem fullTextSearch={fullTextSearch} key={i} />)
   ) : (
-    <InventoryFormFullTextSearchItem />
+    <InventoryFormFullTextSearchItem key={0} />
   )
 }
