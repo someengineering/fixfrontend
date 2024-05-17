@@ -7,6 +7,7 @@ import { Avatar, Badge, Divider, IconButton, ListItemIcon, Menu, MenuItem, MenuL
 import { MouseEvent as MouseEventReact, useState, useTransition } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
+import { panelUI } from 'src/shared/constants'
 import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
 
 export const WorkspaceMenuItem = ({
@@ -33,7 +34,7 @@ export const WorkspaceMenuItem = ({
     </>
   )
   return error ? (
-    <Tooltip title={error}>
+    <Tooltip title={error} placement="left">
       <MenuItem sx={{ opacity: 0.4 }}>
         <Badge badgeContent={<WarningIcon fontSize="small" color="warning" />} anchorOrigin={{ horizontal: 'left', vertical: 'top' }}>
           {menuItem}
@@ -74,7 +75,7 @@ export const UserProfileButton = () => {
       void selectWorkspace(id).then((workspace) => {
         if (workspace?.id) {
           window.setTimeout(() => {
-            navigate({ pathname: '/', hash: `#${workspace.id}`, search: '' }, { replace: true })
+            navigate({ pathname: panelUI.homePage, hash: `#${workspace.id}`, search: '' }, { replace: true })
           })
         }
       })

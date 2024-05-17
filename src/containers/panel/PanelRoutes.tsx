@@ -1,5 +1,6 @@
 import { lazy } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { panelUI } from 'src/shared/constants'
 import { AccountCheckGuard, BenchmarkCheckGuard, SubscriptionCheckGuard } from 'src/shared/layouts/panel-layout'
 
 const SecurityPage = lazy(
@@ -80,7 +81,7 @@ export function PanelRoutes() {
       <Route element={<SubscriptionCheckGuard />}>
         <Route
           index
-          element={<Navigate to={{ pathname: '/inventory', search: window.location.search, hash: window.location.hash }} replace />}
+          element={<Navigate to={{ pathname: panelUI.homePage, search: window.location.search, hash: window.location.hash }} replace />}
         />
         <Route element={<AccountCheckGuard />}>
           <Route element={<BenchmarkCheckGuard />}>
@@ -104,7 +105,7 @@ export function PanelRoutes() {
             <Route path="setup-cloud" element={<SetupCloudPage />} />
           </Route>
         </Route>
-        <Route path="*" element={<Navigate to="/inventory" replace />} />
+        <Route path="*" element={<Navigate to={panelUI.homePage} replace />} />
       </Route>
     </Routes>
   )

@@ -1,6 +1,7 @@
 import { Grid } from '@mui/material'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'react-router-dom'
+import { panelUI } from 'src/shared/constants'
 import { SocialMediaButtonFromOauthType } from 'src/shared/social-media-button'
 import { getOAuthProvidersQuery } from './getOAuthProviders.query'
 
@@ -13,7 +14,7 @@ interface LoginSocialMediaProps {
 export const LoginSocialMedia = ({ isSignup, isLoading, onClick }: LoginSocialMediaProps) => {
   const [search] = useSearchParams()
   const { data } = useSuspenseQuery({
-    queryKey: ['LoginSocialMedia', search.get('returnUrl') ?? '/'],
+    queryKey: ['LoginSocialMedia', search.get('returnUrl') ?? panelUI.homePage],
     queryFn: getOAuthProvidersQuery,
   })
 

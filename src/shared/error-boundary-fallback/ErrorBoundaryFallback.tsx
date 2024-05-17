@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import { FallbackProps } from 'react-error-boundary'
 import { DiscordIcon } from 'src/assets/icons'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { GTMEventNames, env } from 'src/shared/constants'
+import { GTMEventNames, env, panelUI } from 'src/shared/constants'
 import { sendToGTM } from 'src/shared/google-tag-manager'
 import { isAuthenticated } from 'src/shared/utils/cookie'
 import { jsonToStr } from 'src/shared/utils/jsonToStr'
@@ -74,7 +74,7 @@ export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackPro
               onClick={() => {
                 resetErrorBoundary()
                 if (navigate) {
-                  navigate('/inventory')
+                  navigate(panelUI.homePage)
                 }
               }}
             >

@@ -7,6 +7,7 @@ import { AxiosError } from 'axios'
 import { FormEvent, Suspense, useRef, useState } from 'react'
 import { Link, Location, useLocation, useSearchParams } from 'react-router-dom'
 import { allPermissions, maxPermissionNumber, useUserProfile } from 'src/core/auth'
+import { panelUI } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { LoginSocialMedia } from 'src/shared/login-social-media'
 import { PasswordTextField } from 'src/shared/password-text-field'
@@ -54,7 +55,7 @@ export default function LoginPage() {
       lastSubmittedValueWithOtp.current = needOtp
       login(values)
         .then(() => {
-          const returnUrl = getSearch.get('returnUrl') || '/'
+          const returnUrl = getSearch.get('returnUrl') || panelUI.homePage
           setAuth(
             {
               isAuthenticated: true,

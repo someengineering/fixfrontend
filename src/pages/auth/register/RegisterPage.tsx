@@ -7,6 +7,7 @@ import { AxiosError } from 'axios'
 import { FormEvent, Suspense, useState } from 'react'
 import { Link, Location, useLocation, useSearchParams } from 'react-router-dom'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
+import { panelUI } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { LoginSocialMedia } from 'src/shared/login-social-media'
 import { PasswordTextField } from 'src/shared/password-text-field'
@@ -40,7 +41,7 @@ export default function RegisterPage() {
     e.preventDefault()
     if (email && password) {
       setIsLoading(true)
-      register({ email, password, redirectUrl: window.encodeURIComponent(getSearch.get('returnUrl') ?? '/') })
+      register({ email, password, redirectUrl: window.encodeURIComponent(getSearch.get('returnUrl') ?? panelUI.homePage) })
         .then(() => {
           navigate(
             {

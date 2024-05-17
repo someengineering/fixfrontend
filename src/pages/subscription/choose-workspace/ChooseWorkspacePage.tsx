@@ -8,6 +8,7 @@ import { useSearchParams } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
+import { panelUI } from 'src/shared/constants'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { setSubscriptionId } from 'src/shared/utils/localstorage'
 import { putWorkspaceSubscriptionMutation } from './putWorkspaceSubscription.mutation'
@@ -53,7 +54,7 @@ export default function ChooseWorkspacePage() {
       }
       setSubscriptionId(subscriptionId)
     } else {
-      navigate('/')
+      navigate(panelUI.homePage)
     }
   }, [subscriptionId, navigate, workspaces, mutateAsync])
 
