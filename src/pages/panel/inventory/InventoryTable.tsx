@@ -149,7 +149,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
                 <Tooltip
                   title={
                     <Typography color="primary.main" variant="caption" fontWeight={800}>
-                      {value.colDef.headerName ?? value.colDef.field}
+                      {value.colDef?.headerName ?? value.colDef?.field ?? ''}
                     </Typography>
                   }
                 >
@@ -163,7 +163,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
                     spacing={1}
                     height={16}
                   >
-                    {(value.colDef.headerName ?? value.colDef.field)
+                    {(value.colDef?.headerName ?? value.colDef?.field ?? '')
                       .split(' ➞ ')
                       .reverse()
                       .map((chunk, i) => (

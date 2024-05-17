@@ -4,7 +4,6 @@ import { Alert, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography 
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { useHasBillingPermissionCheck } from 'src/shared/layouts/panel-layout'
 import { PaymentMethodWithoutNone } from 'src/shared/types/server'
 import { ChangeProductTier } from './ChangeProductTier'
 import { ConfirmChangePaymentModal } from './ConfirmChangePaymentModal'
@@ -16,13 +15,13 @@ export default function WorkspaceSettingsBillingPage() {
   const {
     i18n: { locale },
   } = useLingui()
-  const { selectedWorkspace } = useUserProfile()
-  const hasBillingPermission = useHasBillingPermissionCheck()
+  const { selectedWorkspace, checkPermission } = useUserProfile()
+  const hasPermission = checkPermission('updateBilling')
   const {
     data: { product_tier, workspace_payment_method, available_payment_methods },
   } = useSuspenseQuery({
     queryFn: getWorkspaceBillingQuery,
-    queryKey: ['workspace-billing', hasBillingPermission ? selectedWorkspace?.id : undefined],
+    queryKey: ['workspace-billing', selectedWorkspace?.id],
   })
   const paymentModalShowRef = useRef<(paymentMethod: PaymentMethodWithoutNone) => void>()
   const handleOnPaymentMethodChange = (event: SelectChangeEvent<'aws_marketplace' | 'stripe'>) => {
@@ -74,30 +73,34 @@ export default function WorkspaceSettingsBillingPage() {
             <Trans>Payment method</Trans>
           </strong>
           :{' '}
-          <Select
-            value={workspace_payment_method.method}
-            onChange={handleOnPaymentMethodChange}
-            variant="filled"
-            size="small"
-            hiddenLabel
-            sx={{
-              bgcolor: 'transparent',
-            }}
-            slotProps={{
-              input: {
-                sx: {
-                  px: 0.5,
-                  py: 0.25,
+          {hasPermission ? (
+            <Select
+              value={workspace_payment_method.method}
+              onChange={handleOnPaymentMethodChange}
+              variant="filled"
+              size="small"
+              hiddenLabel
+              sx={{
+                bgcolor: 'transparent',
+              }}
+              slotProps={{
+                input: {
+                  sx: {
+                    px: 0.5,
+                    py: 0.25,
+                  },
                 },
-              },
-            }}
-          >
-            {paymentMethods.map((paymentMethod) => (
-              <MenuItem key={paymentMethod} value={paymentMethod}>
-                {paymentMethodToLabel(paymentMethod)}
-              </MenuItem>
-            ))}
-          </Select>
+              }}
+            >
+              {paymentMethods.map((paymentMethod) => (
+                <MenuItem key={paymentMethod} value={paymentMethod}>
+                  {paymentMethodToLabel(paymentMethod)}
+                </MenuItem>
+              ))}
+            </Select>
+          ) : (
+            paymentMethodToLabel(workspace_payment_method.method)
+          )}
         </Typography>
       ) : null}
 

@@ -2,9 +2,9 @@ import { t } from '@lingui/macro'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceCloudAccountsQuery } from 'src/pages/panel/shared/queries'
-import { AccountsTableItem } from './AccountsTableItem'
+import { WorkspaceSettingsAccountsTableItem } from './WorkspaceSettingsAccountsTableItem'
 
-export const AccountsTable = () => {
+export const WorkspaceSettingsAccountsTable = () => {
   const { selectedWorkspace } = useUserProfile()
   const { data } = useSuspenseQuery({
     queryKey: ['workspace-cloud-accounts', selectedWorkspace?.id, false],
@@ -15,7 +15,7 @@ export const AccountsTable = () => {
     typeof data !== 'string' && (
       <>
         {data?.recent.length ? (
-          <AccountsTableItem
+          <WorkspaceSettingsAccountsTableItem
             data={data.recent}
             isTop
             isBottom={!data.discovered.length && !data.added.length}
@@ -23,10 +23,15 @@ export const AccountsTable = () => {
           />
         ) : null}
         {data?.added.length ? (
-          <AccountsTableItem data={data.added} isTop={!data.recent.length} isBottom={!data.discovered.length} title={t`Added accounts`} />
+          <WorkspaceSettingsAccountsTableItem
+            data={data.added}
+            isTop={!data.recent.length}
+            isBottom={!data.discovered.length}
+            title={t`Added accounts`}
+          />
         ) : null}
         {data?.discovered.length ? (
-          <AccountsTableItem
+          <WorkspaceSettingsAccountsTableItem
             data={data.discovered}
             isTop={!data.recent.length && !data.added.length}
             isBottom

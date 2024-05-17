@@ -1,6 +1,7 @@
 export { AccountCheckGuard } from './AccountCheckGuard'
 export { BenchmarkCheckGuard } from './BenchmarkCheckGuard'
 export { BottomRegion, ContentRegion, LogoRegion, PanelLayout } from './PanelLayout'
+export { PermissionCheckGuard } from './PermissionCheckGuard'
 export { SubscriptionCheckGuard } from './SubscriptionCheckGuard'
-export { useHasBenchmarkCheck, useHasBillingPermissionCheck } from './check-hooks'
+export { useHasBenchmarkCheck, usePermissionCheck } from './check-hooks'
 export { AdvancedTableView, TablePagination, TableView } from './table-view-page'

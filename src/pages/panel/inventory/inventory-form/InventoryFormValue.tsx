@@ -1,7 +1,6 @@
 // import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 // import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 import {
-  Box,
   ButtonBase,
   Chip,
   Divider,
@@ -78,7 +77,7 @@ const InventoryFormValueOp = ({ onChange, op, defaultOp, fqn }: InventoryFormVal
   return (
     <>
       <ButtonBase component={Stack} onClick={(e) => setOpen(e.currentTarget)} direction="row">
-        <Typography fontWeight={700} fontSize={14} pl={1} pr={1}>
+        <Typography fontWeight={700} fontSize={14}>
           {value}
         </Typography>
         {/* {open ? <ArrowDropUpIcon fontSize="small" color="disabled" /> : <ArrowDropDownIcon fontSize="small" color="disabled" />} */}
@@ -106,7 +105,6 @@ const InventoryFormValueOp = ({ onChange, op, defaultOp, fqn }: InventoryFormVal
                 component={Stack}
                 direction="row"
                 justifyContent="space-between"
-                spacing={1}
               >
                 <Typography>{op.toUpperCase()}</Typography>
               </ListItemButton>
@@ -146,23 +144,21 @@ const InventoryFormValueValue = ({
 
   return (
     <>
-      <ButtonBase component={Stack} onClick={(e) => setOpen(e.currentTarget)} direction="row" sx={{ pl: 0.5 }}>
+      <ButtonBase component={Stack} onClick={(e) => setOpen(e.currentTarget)} direction="row" gap={0.5}>
         {valueStr !== undefined ? (
           typeof valueStr === 'string' ? (
-            <Chip label={valueStr} color="primary" size="small" variant="outlined" sx={{ mx: 0.5 }} />
+            <Chip label={valueStr} color="primary" size="small" variant="outlined" />
           ) : !valueStr.length ? (
-            <Typography color="common.black" variant="subtitle1" fontWeight={700} p={0} width="auto" component="span" pl={1} pr={1}>
+            <Typography color="common.black" variant="subtitle1" fontWeight={700} p={0} width="auto" component="span">
               []
             </Typography>
           ) : (
-            <Box>
+            <>
               {valueStr.slice(0, 2).map((item, i) => (
-                <Chip key={i} label={item} color="primary" size="small" variant="outlined" sx={{ mx: 0.5 }} />
+                <Chip key={i} label={item} color="primary" size="small" variant="outlined" />
               ))}
-              {valueStr.length > 2 ? (
-                <Chip label={`+${valueStr.length - 2}`} sx={{ mx: 0.5 }} color="primary" size="small" variant="filled" />
-              ) : null}
-            </Box>
+              {valueStr.length > 2 ? <Chip label={`+${valueStr.length - 2}`} color="primary" size="small" variant="filled" /> : null}
+            </>
           )
         ) : null}
         {/* {open ? <ArrowDropUpIcon fontSize="small" color="disabled" /> : <ArrowDropDownIcon fontSize="small" color="disabled" />} */}
@@ -234,7 +230,7 @@ export const InventoryFormValue = ({
   })
 
   return (
-    <Stack direction="row" flexWrap="wrap" alignItems="center">
+    <Stack direction="row" flexWrap="wrap" alignItems="center" gap={1}>
       <Divider orientation="vertical" flexItem />
       <InventoryFormValueOp
         op={term?.op as OPType | undefined}

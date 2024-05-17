@@ -14,32 +14,43 @@ interface WorkspaceSettingsSlackServiceProps {
 }
 
 export const WorkspaceSettingsSlackService = ({ isConnected, isLoading }: WorkspaceSettingsSlackServiceProps) => {
-  const { selectedWorkspace } = useUserProfile()
+  const { selectedWorkspace, checkPermission } = useUserProfile()
+  const hasPermission = checkPermission('updateSettings')
+
   const theme = useTheme()
-  return (
-    <Stack direction="row" spacing={2} alignItems="center" justifyContent={{ xs: 'space-between', sm: 'start' }}>
+  return hasPermission || isConnected ? (
+    <Stack
+      direction={{ xs: 'column', sm: 'row' }}
+      alignItems={{ xs: 'stretch', sm: 'center' }}
+      justifyContent={{ xs: 'center', sm: 'start' }}
+      minHeight={40}
+      flexWrap="wrap"
+      gap={2}
+    >
       <Stack width={150} justifyContent="center">
         <SlackWithTextLogo fill={theme.palette.common.black} width={100} />
       </Stack>
-      {isConnected ? (
-        <>
-          <WorkspaceSettingsDisconnectServiceModal isLoading={isLoading} channel="slack" name="Slack" />
-          <WorkspaceSettingsTestService channel="slack" isLoading={isLoading} />
-        </>
-      ) : (
-        <LoadingButton
-          loadingPosition={isLoading ? 'start' : undefined}
-          startIcon={<PowerIcon />}
-          href={endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').notification.add('slack')}
-          loading={isLoading}
-          variant="contained"
-          color="primary"
-          sx={{ flexShrink: 0 }}
-          disabled={!selectedWorkspace?.id}
-        >
-          <Trans>Connect</Trans>
-        </LoadingButton>
-      )}
+      {hasPermission ? (
+        isConnected ? (
+          <>
+            <WorkspaceSettingsDisconnectServiceModal isLoading={isLoading} channel="slack" name="Slack" />
+            <WorkspaceSettingsTestService channel="slack" isLoading={isLoading} />
+          </>
+        ) : (
+          <LoadingButton
+            loadingPosition={isLoading ? 'start' : undefined}
+            startIcon={<PowerIcon />}
+            href={endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').notification.add('slack')}
+            loading={isLoading}
+            variant="contained"
+            color="primary"
+            sx={{ flexShrink: 0 }}
+            disabled={!selectedWorkspace?.id}
+          >
+            <Trans>Connect</Trans>
+          </LoadingButton>
+        )
+      ) : null}
     </Stack>
-  )
+  ) : null
 }

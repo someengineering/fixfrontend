@@ -2,11 +2,11 @@ import { Box, Stack, Typography } from '@mui/material'
 import { PropsWithChildren } from 'react'
 import { AddAccountButton } from 'src/shared/add-account-button'
 
-interface AccountTableTitleProps extends PropsWithChildren {
+interface WorkspaceSettingsAccountTableTitleProps extends PropsWithChildren {
   isTop: boolean
 }
 
-export const AccountTableTitle = ({ isTop, children }: AccountTableTitleProps) =>
+export const WorkspaceSettingsAccountTableTitle = ({ isTop, children }: WorkspaceSettingsAccountTableTitleProps) =>
   isTop ? (
     <Stack
       mb={{ xs: 0, sm: 1 }}

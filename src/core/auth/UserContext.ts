@@ -16,6 +16,10 @@ export interface UserContextValue extends Partial<UserContextRealValues> {
   logout: (noWorkspace?: boolean) => Promise<void>
   refreshWorkspaces: () => Promise<GetWorkspacesResponse | undefined>
   selectWorkspace: (id: string) => Promise<GetWorkspaceResponse | undefined>
+  checkPermission: (permission: Permissions) => boolean
+  checkPermissions: <PermissionsToCheck extends Permissions[]>(
+    ...permission: PermissionsToCheck
+  ) => { [Key in keyof PermissionsToCheck]: boolean }
 }
 
 export const UserContext = createContext<UserContextValue | null>(null)

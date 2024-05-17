@@ -5,13 +5,15 @@ import { useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { panelUI, settingsStorageKeys } from 'src/shared/constants'
 import { TableView } from 'src/shared/layouts/panel-layout'
+import { handleScrollIntoViewClickEvent } from 'src/shared/utils/handleScrollIntoViewClickEvent'
 import { usePersistState } from 'src/shared/utils/usePersistState'
 import { InviteExternalUser } from './InviteExternalUser'
 import { WorkspaceSettingsUserRow } from './WorkspaceSettingsUserRow'
 import { getWorkspaceUsersQuery } from './getWorkspaceUsers.query'
 
 export const WorkspaceSettingsUsersTable = () => {
-  const { selectedWorkspace } = useUserProfile()
+  const { selectedWorkspace, checkPermissions } = useUserProfile()
+  const [hasInvitePermission, hasRemoveUserPermission, hasReadRolesPermission] = checkPermissions('inviteTo', 'removeFrom', 'readRoles')
   const { data } = useSuspenseQuery({
     queryKey: ['workspace-users', selectedWorkspace?.id],
     queryFn: getWorkspaceUsersQuery,
@@ -25,10 +27,10 @@ export const WorkspaceSettingsUsersTable = () => {
           <Trans>Workspace Users</Trans>
         </Typography>
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-          <Button href="#pending-invitations" variant="outlined">
+          <Button href="#pending-invitations" onClick={handleScrollIntoViewClickEvent} variant="outlined">
             <Trans>Pending Invitations</Trans>
           </Button>
-          <InviteExternalUser />
+          {hasInvitePermission ? <InviteExternalUser /> : null}
         </Stack>
       </Stack>
       <TableView
@@ -56,18 +58,22 @@ export const WorkspaceSettingsUsersTable = () => {
               <TableCell>
                 <Trans>Email</Trans>
               </TableCell>
-              <TableCell>
-                <Trans>Roles</Trans>
-              </TableCell>
+              {hasReadRolesPermission ? (
+                <TableCell>
+                  <Trans>Roles</Trans>
+                </TableCell>
+              ) : null}
               <TableCell>
                 <Trans>Last login</Trans>
               </TableCell>
               <TableCell>
                 <Trans>Invites</Trans>
               </TableCell>
-              <TableCell>
-                <Trans>Actions</Trans>
-              </TableCell>
+              {hasRemoveUserPermission ? (
+                <TableCell>
+                  <Trans>Actions</Trans>
+                </TableCell>
+              ) : null}
             </TableRow>
           </TableHead>
           <TableBody>

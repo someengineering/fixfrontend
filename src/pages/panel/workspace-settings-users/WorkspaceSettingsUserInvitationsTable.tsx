@@ -10,7 +10,8 @@ import { WorkspaceSettingsUserInvitationRow } from './WorkspaceSettingsUserInvit
 import { getWorkspaceInvitesQuery } from './getWorkspaceInvites.query'
 
 export const WorkspaceSettingsUserInvitationsTable = () => {
-  const { selectedWorkspace } = useUserProfile()
+  const { selectedWorkspace, checkPermission } = useUserProfile()
+  const hasDeleteInvitePermission = checkPermission('update')
   const { data } = useSuspenseQuery({
     queryKey: ['workspace-invites', selectedWorkspace?.id],
     queryFn: getWorkspaceInvitesQuery,
@@ -46,9 +47,11 @@ export const WorkspaceSettingsUserInvitationsTable = () => {
               <TableCell>
                 <Trans>Expires</Trans>
               </TableCell>
-              <TableCell>
-                <Trans>Remove</Trans>
-              </TableCell>
+              {hasDeleteInvitePermission ? (
+                <TableCell>
+                  <Trans>Remove</Trans>
+                </TableCell>
+              ) : null}
             </TableRow>
           </TableHead>
           <TableBody>

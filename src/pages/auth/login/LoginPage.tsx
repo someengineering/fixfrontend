@@ -12,6 +12,7 @@ import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-bo
 import { LoginSocialMedia } from 'src/shared/login-social-media'
 import { PasswordTextField } from 'src/shared/password-text-field'
 import { SocialMediaButtonSkeleton } from 'src/shared/social-media-button'
+import { getAuthData } from 'src/shared/utils/localstorage'
 import { loginMutation } from './login.mutation'
 
 const LOGIN_SUSPENSE_NUMBER_OF_SOCIAL_MEDIA_BUTTON = 2
@@ -61,7 +62,7 @@ export default function LoginPage() {
               isAuthenticated: true,
               workspaces: [],
               selectedWorkspace: {
-                id: returnUrl.split('#')[1],
+                id: returnUrl.split('#')[1] || (getAuthData()?.selectedWorkspaceId as string),
                 members: [],
                 name: '',
                 owners: [],

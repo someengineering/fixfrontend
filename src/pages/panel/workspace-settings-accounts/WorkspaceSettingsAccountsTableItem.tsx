@@ -1,14 +1,15 @@
 import { Trans } from '@lingui/macro'
 import { Box, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { useState } from 'react'
+import { useUserProfile } from 'src/core/auth'
 import { panelUI, settingsStorageKeys } from 'src/shared/constants'
 import { TableView } from 'src/shared/layouts/panel-layout'
 import { Account } from 'src/shared/types/server'
 import { usePersistState } from 'src/shared/utils/usePersistState'
-import { AccountRow } from './AccountRow'
-import { AccountTableTitle } from './AccountTableTitle'
+import { WorkspaceSettingsAccountRow } from './WorkspaceSettingsAccountRow'
+import { WorkspaceSettingsAccountTableTitle } from './WorkspaceSettingsAccountTableTitle'
 
-interface AccountsTableItemProps {
+interface WorkspaceSettingsAccountsTableItemProps {
   data: Account[]
   title: string
   isTop: boolean
@@ -16,12 +17,20 @@ interface AccountsTableItemProps {
   isNotConfigured?: boolean
 }
 
-export const AccountsTableItem = ({ data, title, isTop, isBottom, isNotConfigured }: AccountsTableItemProps) => {
+export const WorkspaceSettingsAccountsTableItem = ({
+  data,
+  title,
+  isTop,
+  isBottom,
+  isNotConfigured,
+}: WorkspaceSettingsAccountsTableItemProps) => {
+  const { checkPermission } = useUserProfile()
+  const hasPermission = checkPermission('updateCloudAccounts')
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = usePersistState(settingsStorageKeys.AccountsTableItem.rowsPerPage, 5)
   return (
     <Box mb={isBottom ? undefined : { xs: 8, sm: 5 }} mt={isTop ? undefined : { sm: 3 }}>
-      <AccountTableTitle isTop={isTop}>{title}</AccountTableTitle>
+      <WorkspaceSettingsAccountTableTitle isTop={isTop}>{title}</WorkspaceSettingsAccountTableTitle>
       <TableView
         stickyPagination
         paginationProps={{
@@ -54,23 +63,31 @@ export const AccountsTableItem = ({ data, title, isTop, isBottom, isNotConfigure
                   <TableCell>
                     <Trans>Next scan</Trans>
                   </TableCell>
-                  <TableCell>
-                    <Trans>Enabled</Trans>
-                  </TableCell>
-                  <TableCell>
-                    <Trans>Security Scan</Trans>
-                  </TableCell>
+                  {hasPermission ? (
+                    <>
+                      <TableCell>
+                        <Trans>Enabled</Trans>
+                      </TableCell>
+                      <TableCell>
+                        <Trans>Security Scan</Trans>
+                      </TableCell>
+                    </>
+                  ) : null}
                 </>
               )}
-              <TableCell>
-                <Trans>Actions</Trans>
-              </TableCell>
+              {hasPermission ? (
+                <TableCell>
+                  <Trans>Actions</Trans>
+                </TableCell>
+              ) : null}
             </TableRow>
           </TableHead>
           <TableBody>
             {data
               ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((account, i) => <AccountRow account={account} key={`${account.id}_${i}`} isNotConfigured={isNotConfigured} />)}
+              .map((account, i) => (
+                <WorkspaceSettingsAccountRow account={account} key={`${account.id}_${i}`} isNotConfigured={isNotConfigured} />
+              ))}
           </TableBody>
         </Table>
       </TableView>

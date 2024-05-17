@@ -53,7 +53,7 @@ export const ResourceDetailChangeLogSelectedHistoryAccordion = ({
             <Typography width={150} component="span">
               <Trans>Benchmarks</Trans>:
             </Typography>
-            <Stack spacing={1} direction="column" flexWrap="wrap" alignItems="start" mt={1}>
+            <Stack gap={1} direction="row" flexWrap="wrap" alignItems="start" mt={1}>
               {(benchmarks ?? data.benchmarks).map((benchmark, i) => (
                 <Chip label={benchmark} key={benchmark + i} color="primary" />
               ))}
