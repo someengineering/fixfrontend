@@ -25,7 +25,7 @@ export const InventoryFormField = ({
   const hasValue = !!(valueStr && valueStr.length)
 
   return (
-    <Box pt={1} pr={1} height="100%">
+    <Box height="100%">
       <Stack
         onClick={onClick}
         component={onClick ? Button : 'div'}
@@ -51,7 +51,7 @@ export const InventoryFormField = ({
               }),
         }}
       >
-        <Stack direction="row" alignItems="center" spacing={0.5} flexWrap="wrap">
+        <Stack direction="row" alignItems="center" gap={0.5} flexWrap="wrap">
           <Typography variant="body2" fontWeight={700} p={0} width="auto" textAlign="left" whiteSpace="nowrap">
             {label}
             {hasValue ? ':' : ''}

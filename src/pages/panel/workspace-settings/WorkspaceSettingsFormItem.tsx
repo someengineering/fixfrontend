@@ -1,6 +1,8 @@
 import { LoadingButton } from '@mui/lab'
 import { Button, Skeleton, Stack, TextField, Typography } from '@mui/material'
 import { FormEvent, MutableRefObject, ReactNode, useEffect, useRef, useState } from 'react'
+import { useUserProfile } from 'src/core/auth'
+import { DisabledWithPermission } from 'src/shared/disabled-with-permission'
 
 interface WorkspaceSettingsFormItemProps {
   label: ReactNode
@@ -12,6 +14,7 @@ interface WorkspaceSettingsFormItemProps {
   readonly?: boolean
   hide?: boolean
   focusedRef?: MutableRefObject<((focused: boolean) => void) | undefined>
+  noDisabledPermission?: boolean
 }
 
 export const WorkspaceSettingsFormItem = ({
@@ -24,7 +27,10 @@ export const WorkspaceSettingsFormItem = ({
   buttonName,
   hide,
   focusedRef,
+  noDisabledPermission,
 }: WorkspaceSettingsFormItemProps) => {
+  const { checkPermission } = useUserProfile()
+  const hasUpdateSettingsPermission = checkPermission('updateSettings')
   const [inputValue, setInputValue] = useState(value)
   const [focused, setFocused] = useState(false)
 
@@ -88,7 +94,7 @@ export const WorkspaceSettingsFormItem = ({
     >
       <Typography width={{ xs: '100%', sm: 150 }}>{label}</Typography>
       <Stack width={{ xs: '100%', sm: 400 }}>
-        {readonly ? (
+        {readonly || !hasUpdateSettingsPermission ? (
           <TextField
             size="small"
             value={hide && !focused ? value.replace(/[\da-zA-Z]/g, '*') : value}
@@ -110,15 +116,29 @@ export const WorkspaceSettingsFormItem = ({
           />
         )}
       </Stack>
-      <LoadingButton
-        variant="contained"
-        type={readonly ? 'button' : 'submit'}
-        onClick={readonly ? () => onSubmit(inputValue) : undefined}
-        disabled={!readonly && inputValue === value}
-        loading={isPending}
-      >
-        {buttonName}
-      </LoadingButton>
+      {noDisabledPermission ? (
+        <LoadingButton
+          variant="contained"
+          type={readonly ? 'button' : 'submit'}
+          onClick={readonly ? () => onSubmit(inputValue) : undefined}
+          disabled={(!noDisabledPermission && !hasUpdateSettingsPermission) || (!readonly && inputValue === value)}
+          loading={isPending}
+        >
+          {buttonName}
+        </LoadingButton>
+      ) : (
+        <DisabledWithPermission hasPermission={hasUpdateSettingsPermission}>
+          <LoadingButton
+            variant="contained"
+            type={readonly ? 'button' : 'submit'}
+            onClick={readonly ? () => onSubmit(inputValue) : undefined}
+            disabled={!hasUpdateSettingsPermission || (!readonly && inputValue === value)}
+            loading={isPending}
+          >
+            {buttonName}
+          </LoadingButton>
+        </DisabledWithPermission>
+      )}
     </Stack>
   )
 }

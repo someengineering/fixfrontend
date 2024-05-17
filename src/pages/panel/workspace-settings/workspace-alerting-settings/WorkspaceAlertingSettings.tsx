@@ -22,6 +22,7 @@ import { useEffect, useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceNotificationsQuery } from 'src/pages/panel/shared/queries'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
+import { DisabledWithPermission } from 'src/shared/disabled-with-permission'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { NotificationChannel, SeverityType } from 'src/shared/types/server'
 import { snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
@@ -42,20 +43,29 @@ interface WorkspaceAlertingSettingsCheckboxProps {
   isPending: boolean
   name: NotificationChannel
   onChange: (benchmark: string, name: NotificationChannel, checked: boolean) => void
+  disabled: boolean
 }
 
-const WorkspaceAlertingSettingsCheckbox = ({ benchmark, checked, isPending, name, onChange }: WorkspaceAlertingSettingsCheckboxProps) => {
+const WorkspaceAlertingSettingsCheckbox = ({
+  benchmark,
+  checked,
+  isPending,
+  name,
+  onChange,
+  disabled,
+}: WorkspaceAlertingSettingsCheckboxProps) => {
   return isPending ? (
     <Stack justifyContent="center" direction="column" padding={1} margin="1px">
       <CircularProgress size={20} />
     </Stack>
   ) : (
-    <Checkbox checked={checked} onChange={(e) => onChange(benchmark, name, e.target.checked)} />
+    <Checkbox checked={checked} onChange={(e) => onChange(benchmark, name, e.target.checked)} disabled={disabled} />
   )
 }
 
 export const WorkspaceAlertingSettings = () => {
-  const { selectedWorkspace } = useUserProfile()
+  const { selectedWorkspace, checkPermission } = useUserProfile()
+  const hasPermission = checkPermission('updateSettings')
   const [
     { data: reportInfo, isLoading: isReportInfoLoading },
     { data: alertingSettings, isLoading: isAlertingSettingsLoading },
@@ -169,41 +179,43 @@ export const WorkspaceAlertingSettings = () => {
             <TableRow key={i}>
               <TableCell>{snakeCaseWordsToUFStr(benchmark)}</TableCell>
               <TableCell>
-                <Autocomplete
-                  options={severityOptions}
-                  disabled={isPending}
-                  size="small"
-                  renderOption={(props, option, { inputValue: _, ...state }) =>
-                    option ? (
-                      <ListItemButton
-                        component="li"
-                        {...props}
-                        {...state}
-                        sx={{
-                          '&:hover ~ &': {
-                            textDecoration: 'none',
-                            bgcolor: 'action.hover',
-                            // Reset on touch devices, it doesn't add specificity
-                            '@media (hover: none)': {
-                              backgroundColor: 'transparent',
+                <DisabledWithPermission hasPermission={hasPermission} sx={{ width: '100%' }}>
+                  <Autocomplete
+                    options={severityOptions}
+                    disabled={isPending || !hasPermission}
+                    size="small"
+                    renderOption={(props, option, { inputValue: _, ...state }) =>
+                      option ? (
+                        <ListItemButton
+                          component="li"
+                          {...props}
+                          {...state}
+                          sx={{
+                            '&:hover ~ &': {
+                              textDecoration: 'none',
+                              bgcolor: 'action.hover',
+                              // Reset on touch devices, it doesn't add specificity
+                              '@media (hover: none)': {
+                                backgroundColor: 'transparent',
+                              },
                             },
-                          },
-                        }}
-                      >
-                        <Typography color={getColorBySeverity(option.value)}>{option.label}</Typography>
-                      </ListItemButton>
-                    ) : (
-                      ''
-                    )
-                  }
-                  isOptionEqualToValue={(option, value) => option.value === value.value}
-                  disablePortal
-                  disableClearable
-                  fullWidth
-                  onChange={(_, severity) => handleSelectedSeverity(severity.value, benchmark)}
-                  defaultValue={severityOptions.find((i) => i.value === alertingSettings?.[benchmark]?.severity) ?? severityOptions[3]}
-                  renderInput={(params) => <TextField {...params} label={<Trans>Severity</Trans>} />}
-                ></Autocomplete>
+                          }}
+                        >
+                          <Typography color={getColorBySeverity(option.value)}>{option.label}</Typography>
+                        </ListItemButton>
+                      ) : (
+                        ''
+                      )
+                    }
+                    isOptionEqualToValue={(option, value) => option.value === value.value}
+                    disablePortal
+                    disableClearable
+                    fullWidth
+                    onChange={(_, severity) => handleSelectedSeverity(severity.value, benchmark)}
+                    defaultValue={severityOptions.find((i) => i.value === alertingSettings?.[benchmark]?.severity) ?? severityOptions[3]}
+                    renderInput={(params) => <TextField {...params} label={<Trans>Severity</Trans>} />}
+                  />
+                </DisabledWithPermission>
               </TableCell>
               {notifications?.email ? (
                 <TableCell>
@@ -213,6 +225,7 @@ export const WorkspaceAlertingSettings = () => {
                     isPending={isPending}
                     name="email"
                     onChange={handleCheckboxChange}
+                    disabled={!hasPermission}
                   />
                 </TableCell>
               ) : undefined}
@@ -224,6 +237,7 @@ export const WorkspaceAlertingSettings = () => {
                     isPending={isPending}
                     name="slack"
                     onChange={handleCheckboxChange}
+                    disabled={!hasPermission}
                   />
                 </TableCell>
               ) : undefined}
@@ -235,6 +249,7 @@ export const WorkspaceAlertingSettings = () => {
                     isPending={isPending}
                     name="teams"
                     onChange={handleCheckboxChange}
+                    disabled={!hasPermission}
                   />
                 </TableCell>
               ) : undefined}
@@ -246,6 +261,7 @@ export const WorkspaceAlertingSettings = () => {
                     isPending={isPending}
                     name="discord"
                     onChange={handleCheckboxChange}
+                    disabled={!hasPermission}
                   />
                 </TableCell>
               ) : undefined}
@@ -257,6 +273,7 @@ export const WorkspaceAlertingSettings = () => {
                     isPending={isPending}
                     name="pagerduty"
                     onChange={handleCheckboxChange}
+                    disabled={!hasPermission}
                   />
                 </TableCell>
               ) : undefined}
@@ -268,6 +285,7 @@ export const WorkspaceAlertingSettings = () => {
                     isPending={isPending}
                     name="opsgenie"
                     onChange={handleCheckboxChange}
+                    disabled={!hasPermission}
                   />
                 </TableCell>
               ) : undefined}

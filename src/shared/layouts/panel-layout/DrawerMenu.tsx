@@ -13,12 +13,14 @@ import {
   ListItemText,
   Modal,
   Tooltip,
+  badgeClasses,
 } from '@mui/material'
 import { MouseEvent as ReactMouseEvent, useEffect, useState } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { useMatch, useSearchParams } from 'react-router-dom'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
+import { DisabledWithPermission } from 'src/shared/disabled-with-permission'
 import { getInitiated } from 'src/shared/utils/localstorage'
 import { MenuListItem, MenuModalListItem, bottomMenuList, menuList } from './menuList'
 
@@ -49,6 +51,7 @@ const DrawerMenuItem = ({
   routeSearch,
   notRouteSearchMatch,
   useGuard,
+  hideOnGuard,
   children,
 }: DrawerMenuItemProps) => {
   const match = useMatch({ path: route + (children?.length ? '/*' : '') })
@@ -75,8 +78,15 @@ const DrawerMenuItem = ({
   useEffect(() => {
     setCollapse(hasMatch)
   }, [hasMatch])
-  return show ? (
-    <>
+  return show || !hideOnGuard ? (
+    <DisabledWithPermission
+      hasPermission={show}
+      access
+      placement="right"
+      badgeProps={{
+        sx: { width: '100%', [`.${badgeClasses.badge}`]: { top: 22, left: 22 } },
+      }}
+    >
       <ListItem disablePadding sx={{ display: 'block' }}>
         <ListItemButton
           selected={hasMatch}
@@ -87,6 +97,7 @@ const DrawerMenuItem = ({
             px: 2.5,
           }}
           onClick={handleClick}
+          disabled={!show}
         >
           <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center' }}>
             <Icon />
@@ -115,7 +126,7 @@ const DrawerMenuItem = ({
       {children?.length ? (
         <Collapse in={!collapse}>{children.map((item, index) => menuListMap({ open, onClose }, item, index))}</Collapse>
       ) : null}
-    </>
+    </DisabledWithPermission>
   ) : null
 }
 

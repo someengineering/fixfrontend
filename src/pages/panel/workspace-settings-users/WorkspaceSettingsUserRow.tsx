@@ -22,7 +22,8 @@ export const WorkspaceSettingsUserRow = ({ workspaceUser }: WorkspaceSettingsUse
   const {
     i18n: { locale },
   } = useLingui()
-  const { selectedWorkspace } = useUserProfile()
+  const { selectedWorkspace, checkPermissions } = useUserProfile()
+  const [hasRemoveUserPermission, hasReadRolesPermission] = checkPermissions('removeFrom', 'readRoles')
   const queryClient = useQueryClient()
 
   const { mutate: deleteWorkspaceUser, isPending: deleteWorkspaceUserIsPending } = useMutation({
@@ -30,13 +31,13 @@ export const WorkspaceSettingsUserRow = ({ workspaceUser }: WorkspaceSettingsUse
   })
 
   const handleDeleteModal = () => {
-    if (showDeleteModalRef.current) {
+    if (showDeleteModalRef.current && hasRemoveUserPermission) {
       showDeleteModalRef.current()
     }
   }
 
   const handleDelete = () => {
-    if (selectedWorkspace?.id) {
+    if (selectedWorkspace?.id && hasRemoveUserPermission) {
       deleteWorkspaceUser(
         { workspaceId: selectedWorkspace.id, userId: workspaceUser.id },
         {
@@ -80,70 +81,76 @@ export const WorkspaceSettingsUserRow = ({ workspaceUser }: WorkspaceSettingsUse
       </TableCell>
       <TableCell>{workspaceUser.name || '-'}</TableCell>
       <TableCell>{workspaceUser.email || '-'}</TableCell>
-      <TableCell>
-        <WorkspaceSettingsUserRoles role={workspaceUser.roles} userId={workspaceUser.id} />
-      </TableCell>
+      {hasReadRolesPermission ? (
+        <TableCell>
+          <WorkspaceSettingsUserRoles role={workspaceUser.roles} userId={workspaceUser.id} />
+        </TableCell>
+      ) : null}
       <TableCell>{workspaceUser.last_login ? new Date(workspaceUser.last_login).toLocaleString(locale) : '-'}</TableCell>
       <TableCell>-</TableCell>
-      <TableCell>
-        {deleteWorkspaceUserIsPending ? (
-          <IconButton aria-label={t`Delete`} disabled>
-            <DeleteIcon />
-          </IconButton>
-        ) : (
-          <Tooltip title={<Trans>Delete</Trans>}>
-            <IconButton aria-label={t`Delete`} color="error" onClick={handleDeleteModal}>
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        )}
-      </TableCell>
-      <Modal
-        title={<Trans>Are you sure?</Trans>}
-        description={
-          <>
-            <Trans>Do you want to delete this user?</Trans>
-          </>
-        }
-        openRef={showDeleteModalRef}
-        actions={
-          <>
-            {deleteWorkspaceUserIsPending ? null : (
-              <Button color="primary" variant="contained" onClick={() => showDeleteModalRef.current?.(false)}>
-                <Trans>Cancel</Trans>
-              </Button>
+      {hasRemoveUserPermission ? (
+        <>
+          <TableCell>
+            {deleteWorkspaceUserIsPending ? (
+              <IconButton aria-label={t`Delete`} disabled>
+                <DeleteIcon />
+              </IconButton>
+            ) : (
+              <Tooltip title={<Trans>Delete</Trans>}>
+                <IconButton aria-label={t`Delete`} color="error" onClick={handleDeleteModal}>
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
             )}
-            <LoadingButton
-              loadingPosition={deleteWorkspaceUserIsPending ? 'start' : undefined}
-              startIcon={<DeleteIcon />}
-              loading={deleteWorkspaceUserIsPending}
-              color="error"
-              variant="outlined"
-              onClick={handleDelete}
-            >
-              <Trans>Delete</Trans>
-            </LoadingButton>
-          </>
-        }
-      >
-        <Typography>
-          <Trans>Email</Trans>: {workspaceUser.email}
-        </Typography>
-        <Typography>
-          <Trans>Name</Trans>: {workspaceUser.name}
-        </Typography>
-        <Stack direction="row" spacing={1} flexWrap="wrap" display="inline-flex" alignItems="center">
-          <Typography>
-            <Trans>Sources</Trans>:{' '}
-          </Typography>
-          {workspaceUser.sources.map(({ source }, i) => (
-            <CloudAvatar key={i} cloud={source} />
-          ))}
-        </Stack>
-        <Typography>
-          <Trans>Roles</Trans>: {workspaceSettingsUserRoleToString(workspaceUser.roles)}
-        </Typography>
-      </Modal>
+          </TableCell>
+          <Modal
+            title={<Trans>Are you sure?</Trans>}
+            description={
+              <>
+                <Trans>Do you want to delete this user?</Trans>
+              </>
+            }
+            openRef={showDeleteModalRef}
+            actions={
+              <>
+                {deleteWorkspaceUserIsPending ? null : (
+                  <Button color="primary" variant="contained" onClick={() => showDeleteModalRef.current?.(false)}>
+                    <Trans>Cancel</Trans>
+                  </Button>
+                )}
+                <LoadingButton
+                  loadingPosition={deleteWorkspaceUserIsPending ? 'start' : undefined}
+                  startIcon={<DeleteIcon />}
+                  loading={deleteWorkspaceUserIsPending}
+                  color="error"
+                  variant="outlined"
+                  onClick={handleDelete}
+                >
+                  <Trans>Delete</Trans>
+                </LoadingButton>
+              </>
+            }
+          >
+            <Typography>
+              <Trans>Email</Trans>: {workspaceUser.email}
+            </Typography>
+            <Typography>
+              <Trans>Name</Trans>: {workspaceUser.name}
+            </Typography>
+            <Stack direction="row" gap={1} flexWrap="wrap" display="inline-flex" alignItems="center">
+              <Typography>
+                <Trans>Sources</Trans>:{' '}
+              </Typography>
+              {workspaceUser.sources.map(({ source }, i) => (
+                <CloudAvatar key={i} cloud={source} />
+              ))}
+            </Stack>
+            <Typography>
+              <Trans>Roles</Trans>: {workspaceSettingsUserRoleToString(workspaceUser.roles)}
+            </Typography>
+          </Modal>
+        </>
+      ) : null}
     </TableRow>
   )
 }

@@ -9,7 +9,7 @@ import ReceiptIcon from '@mui/icons-material/Receipt'
 import RoomPreferencesIcon from '@mui/icons-material/RoomPreferences'
 import SecurityIcon from '@mui/icons-material/Security'
 import { ComponentType, ReactNode } from 'react'
-import { useHasBillingPermissionCheck } from './check-hooks'
+import { usePermissionCheck } from './check-hooks'
 import { useHasBenchmarkCheck } from './check-hooks/useHasBenchmarkCheck'
 
 export interface MenuListItem {
@@ -19,6 +19,7 @@ export interface MenuListItem {
   notRouteSearchMatch?: boolean
   Icon: SvgIconComponent
   useGuard?: () => boolean
+  hideOnGuard?: boolean
   children?: MenuListItem[]
 }
 
@@ -41,6 +42,7 @@ export const menuList: MenuListItem[] = [
     // routeSearch: 'changes=true',
     // notRouteSearchMatch: true,
     Icon: InventoryIcon,
+    hideOnGuard: true,
     useGuard: useHasBenchmarkCheck,
   },
   // {
@@ -62,6 +64,7 @@ export const bottomMenuList: MenuListItem[] = [
     name: <Trans>Workspace Settings</Trans>,
     route: '/workspace-settings',
     Icon: RoomPreferencesIcon,
+    useGuard: () => usePermissionCheck('readSettings'),
     children: [
       {
         Icon: CloudIcon,
@@ -77,7 +80,7 @@ export const bottomMenuList: MenuListItem[] = [
         Icon: ReceiptIcon,
         name: <Trans>Billing</Trans>,
         route: '/workspace-settings/billing-receipts',
-        useGuard: useHasBillingPermissionCheck,
+        useGuard: () => usePermissionCheck('readBilling'),
       },
       // {
       //   Icon: FolderCopyIcon,

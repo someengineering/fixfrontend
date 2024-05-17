@@ -50,6 +50,7 @@ export const WorkspaceSettingsForm = () => {
         onSubmit={(id) => void copyString(id)}
         readonly
         value={data?.id ?? ''}
+        noDisabledPermission
       />
       <WorkspaceSettingsFormItem
         label={<Trans>External Id</Trans>}

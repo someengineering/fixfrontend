@@ -14,32 +14,43 @@ interface WorkspaceSettingsDiscordServiceProps {
 }
 
 export const WorkspaceSettingsDiscordService = ({ isConnected, isLoading }: WorkspaceSettingsDiscordServiceProps) => {
-  const { selectedWorkspace } = useUserProfile()
+  const { selectedWorkspace, checkPermission } = useUserProfile()
+  const hasPermission = checkPermission('updateSettings')
+
   const theme = useTheme()
-  return (
-    <Stack direction="row" spacing={2} alignItems="center" justifyContent={{ xs: 'space-between', sm: 'start' }}>
+  return hasPermission || isConnected ? (
+    <Stack
+      direction={{ xs: 'column', sm: 'row' }}
+      alignItems={{ xs: 'stretch', sm: 'center' }}
+      justifyContent={{ xs: 'center', sm: 'start' }}
+      minHeight={40}
+      flexWrap="wrap"
+      gap={2}
+    >
       <Stack width={150} justifyContent="center">
         <DiscordWithTextLogo fill={theme.palette.common.black} width={120} />
       </Stack>
-      {isConnected ? (
-        <>
-          <WorkspaceSettingsDisconnectServiceModal channel="discord" isLoading={isLoading} name="Discord" />
-          <WorkspaceSettingsTestService channel="discord" isLoading={isLoading} />
-        </>
-      ) : (
-        <LoadingButton
-          loadingPosition={isLoading ? 'start' : undefined}
-          startIcon={<PowerIcon />}
-          href={endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').notification.add('discord')}
-          loading={isLoading}
-          variant="contained"
-          color="primary"
-          sx={{ flexShrink: 0 }}
-          disabled={!selectedWorkspace?.id}
-        >
-          <Trans>Connect</Trans>
-        </LoadingButton>
-      )}
+      {hasPermission ? (
+        isConnected ? (
+          <>
+            <WorkspaceSettingsDisconnectServiceModal channel="discord" isLoading={isLoading} name="Discord" />
+            <WorkspaceSettingsTestService channel="discord" isLoading={isLoading} />
+          </>
+        ) : (
+          <LoadingButton
+            loadingPosition={isLoading ? 'start' : undefined}
+            startIcon={<PowerIcon />}
+            href={endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').notification.add('discord')}
+            loading={isLoading}
+            variant="contained"
+            color="primary"
+            sx={{ flexShrink: 0 }}
+            disabled={!selectedWorkspace?.id}
+          >
+            <Trans>Connect</Trans>
+          </LoadingButton>
+        )
+      ) : null}
     </Stack>
-  )
+  ) : null
 }

@@ -34,18 +34,19 @@ import { patchAccountScanDisableMutation } from './patchAccountScanDisable.mutat
 import { patchAccountScanEnableMutation } from './patchAccountScanEnable.mutation'
 import { replaceRowByAccount } from './replaceRowByAccount'
 
-interface AccountRowProps {
+interface WorkspaceSettingsAccountRowProps {
   account: Account
   isNotConfigured?: boolean
 }
-export const AccountRow = ({ account, isNotConfigured }: AccountRowProps) => {
+export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: WorkspaceSettingsAccountRowProps) => {
   const inputRef = useRef<HTMLInputElement>()
   const {
     i18n: { locale },
   } = useLingui()
   const showDeleteModalRef = useRef<(show?: boolean) => void>()
   const showDegradedModalRef = useRef<(show?: boolean) => void>()
-  const { selectedWorkspace } = useUserProfile()
+  const { selectedWorkspace, checkPermission } = useUserProfile()
+  const hasPermission = checkPermission('updateCloudAccounts')
   const queryClient = useQueryClient()
 
   const { mutate: renameAccount, isPending: renameAccountIsPending } = useMutation({
@@ -245,7 +246,7 @@ export const AccountRow = ({ account, isNotConfigured }: AccountRowProps) => {
       </TableCell>
       <TableCell>{account.account_id}</TableCell>
       <TableCell sx={{ minWidth: 230 }}>
-        {isEdit ? (
+        {isEdit && hasPermission ? (
           <Stack
             component="form"
             name={`rename-for-${account.account_id}`}
@@ -291,7 +292,7 @@ export const AccountRow = ({ account, isNotConfigured }: AccountRowProps) => {
               </Tooltip>
             )}
           </Stack>
-        ) : (
+        ) : hasPermission ? (
           <Stack direction="row" alignItems="center" spacing={1}>
             <Typography flexGrow={1} onClick={() => setIsEdit(true)} sx={{ cursor: 'pointer' }}>
               {accountName ?? '-'}
@@ -302,55 +303,63 @@ export const AccountRow = ({ account, isNotConfigured }: AccountRowProps) => {
               </IconButton>
             </Tooltip>
           </Stack>
+        ) : (
+          <Typography>{accountName ?? '-'}</Typography>
         )}
       </TableCell>
       <TableCell>{account.resources ?? '-'}</TableCell>
       {isNotConfigured ? null : (
         <>
           <TableCell>{nextScanStr ?? '-'}</TableCell>
-          <TableCell>
-            {enableAccountIsPending || disableAccountIsPending ? (
-              <Stack justifyContent="center" direction="column" padding={1} margin="1px">
-                <CircularProgress size={20} />
-              </Stack>
-            ) : (
-              <Checkbox
-                name={`enable-account-${account.account_id}`}
-                disabled={!account.is_configured}
-                checked={account.enabled}
-                onChange={handleEnableChange}
-              />
-            )}
-          </TableCell>
-          <TableCell>
-            {enableScanAccountIsPending || disableScanAccountIsPending ? (
-              <Stack justifyContent="center" direction="column" padding={1} margin="1px">
-                <CircularProgress size={20} />
-              </Stack>
-            ) : (
-              <Checkbox
-                name={`enable-account-${account.account_id}`}
-                disabled={!account.is_configured}
-                checked={account.scan}
-                onChange={handleEnableScanChange}
-              />
-            )}
-          </TableCell>
+          {hasPermission ? (
+            <>
+              <TableCell>
+                {enableAccountIsPending || disableAccountIsPending ? (
+                  <Stack justifyContent="center" direction="column" padding={1} margin="1px">
+                    <CircularProgress size={20} />
+                  </Stack>
+                ) : (
+                  <Checkbox
+                    name={`enable-account-${account.account_id}`}
+                    disabled={!account.is_configured}
+                    checked={account.enabled}
+                    onChange={handleEnableChange}
+                  />
+                )}
+              </TableCell>
+              <TableCell>
+                {enableScanAccountIsPending || disableScanAccountIsPending ? (
+                  <Stack justifyContent="center" direction="column" padding={1} margin="1px">
+                    <CircularProgress size={20} />
+                  </Stack>
+                ) : (
+                  <Checkbox
+                    name={`enable-account-${account.account_id}`}
+                    disabled={!account.is_configured}
+                    checked={account.scan}
+                    onChange={handleEnableScanChange}
+                  />
+                )}
+              </TableCell>
+            </>
+          ) : null}
         </>
       )}
-      <TableCell>
-        {deleteAccountIsPending ? (
-          <IconButton aria-label={t`Delete`} disabled>
-            <DeleteIcon />
-          </IconButton>
-        ) : (
-          <Tooltip title={<Trans>Delete</Trans>}>
-            <IconButton aria-label={t`Delete`} color="error" onClick={handleDeleteModal}>
+      {hasPermission ? (
+        <TableCell>
+          {deleteAccountIsPending ? (
+            <IconButton aria-label={t`Delete`} disabled>
               <DeleteIcon />
             </IconButton>
-          </Tooltip>
-        )}
-      </TableCell>
+          ) : (
+            <Tooltip title={<Trans>Delete</Trans>}>
+              <IconButton aria-label={t`Delete`} color="error" onClick={handleDeleteModal}>
+                <DeleteIcon />
+              </IconButton>
+            </Tooltip>
+          )}
+        </TableCell>
+      ) : null}
       <Modal
         title={<Trans>Access to your account is broken</Trans>}
         width={550}

@@ -15,7 +15,8 @@ interface InviteExternalUserProps {
 }
 
 export const InviteExternalUser = ({ preInvite }: InviteExternalUserProps) => {
-  const { selectedWorkspace } = useUserProfile()
+  const { selectedWorkspace, checkPermission } = useUserProfile()
+  const hasInvitePermission = checkPermission('inviteTo')
   const queryClient = useQueryClient()
   const { showSnackbar } = useSnackbar()
   const [name, setName] = useState(preInvite?.name ?? '')
@@ -39,9 +40,11 @@ export const InviteExternalUser = ({ preInvite }: InviteExternalUserProps) => {
   })
 
   const handleAction = () => {
-    postWorkspaceInvite({ email, name, roles, workspaceId: selectedWorkspace?.id ?? '' })
+    if (hasInvitePermission) {
+      postWorkspaceInvite({ email, name, roles, workspaceId: selectedWorkspace?.id ?? '' })
+    }
   }
-  return (
+  return hasInvitePermission ? (
     <>
       <Button
         variant={preInvite ? 'text' : 'contained'}
@@ -108,5 +111,5 @@ export const InviteExternalUser = ({ preInvite }: InviteExternalUserProps) => {
         </Stack>
       </Modal>
     </>
-  )
+  ) : null
 }

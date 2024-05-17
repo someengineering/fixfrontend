@@ -169,7 +169,7 @@ export const InventoryForm = () => {
     [processedStartData, selectedClouds, numberOfCloudFilterSelected, numberOfCloudSelected],
   )
   return (
-    <Stack direction="row" width="100%" flexWrap="wrap" overflow="auto" py={1}>
+    <Stack direction="row" width="100%" flexWrap="wrap" gap={1} overflow="auto" py={1}>
       <InventoryFormReset />
       <InventoryFormChanges />
       <InventoryFormFullTextSearches />

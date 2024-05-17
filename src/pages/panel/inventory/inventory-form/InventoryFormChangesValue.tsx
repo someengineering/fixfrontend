@@ -41,7 +41,7 @@ export const InventoryFormChangeValue = ({
 }: InventoryFormChangeValueProps) => {
   const options = getOptions()
   return (
-    <Stack py={1} width="100%" flexGrow={1} direction="row" flexWrap="wrap" overflow="auto">
+    <Stack width="100%" flexGrow={1} direction="row" flexWrap="wrap" gap={1} overflow="auto">
       <FormControl>
         <InputLabel id="change-type" color="primary" sx={{ color: 'primary.main', mt: '2px', fontSize: 14, fontWeight: 700 }}>
           <Trans>Change Type</Trans>

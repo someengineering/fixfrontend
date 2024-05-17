@@ -19,7 +19,8 @@ export const WorkspaceSettingsUserInvitationRow = ({ workspaceInvite }: Workspac
     i18n: { locale },
   } = useLingui()
   const showDeleteModalRef = useRef<(show?: boolean) => void>()
-  const { selectedWorkspace } = useUserProfile()
+  const { selectedWorkspace, checkPermission } = useUserProfile()
+  const hasDeletePermission = checkPermission('update')
   const queryClient = useQueryClient()
 
   const { mutate: deleteWorkspaceUser, isPending: deleteWorkspaceUserIsPending } = useMutation({
@@ -27,13 +28,13 @@ export const WorkspaceSettingsUserInvitationRow = ({ workspaceInvite }: Workspac
   })
 
   const handleDeleteModal = () => {
-    if (showDeleteModalRef.current) {
+    if (showDeleteModalRef.current && hasDeletePermission) {
       showDeleteModalRef.current()
     }
   }
 
   const handleDelete = () => {
-    if (selectedWorkspace?.id) {
+    if (selectedWorkspace?.id && hasDeletePermission) {
       deleteWorkspaceUser(
         { workspaceId: selectedWorkspace.id, inviteId: workspaceInvite.invite_id },
         {
@@ -60,58 +61,59 @@ export const WorkspaceSettingsUserInvitationRow = ({ workspaceInvite }: Workspac
       )
     }
   }
+
   return (
     <TableRow>
       <TableCell>{workspaceInvite.user_email || '-'}</TableCell>
       <TableCell>{workspaceInvite.expires_at ? new Date(workspaceInvite.expires_at).toLocaleString(locale) : '-'}</TableCell>
-      <TableCell>
-        {deleteWorkspaceUserIsPending ? (
-          <IconButton aria-label={t`Delete`} disabled>
-            <DeleteIcon />
-          </IconButton>
-        ) : (
-          <Tooltip title={<Trans>Delete</Trans>}>
-            <IconButton aria-label={t`Delete`} color="error" onClick={handleDeleteModal}>
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        )}
-      </TableCell>
-      <Modal
-        title={<Trans>Are you sure?</Trans>}
-        description={
-          <>
-            <Trans>Do you want to delete this invitation?</Trans>
-          </>
-        }
-        openRef={showDeleteModalRef}
-        actions={
-          <>
-            {deleteWorkspaceUserIsPending ? null : (
-              <Button color="primary" variant="contained" onClick={() => showDeleteModalRef.current?.(false)}>
-                <Trans>Cancel</Trans>
-              </Button>
+      {hasDeletePermission ? (
+        <>
+          <TableCell>
+            {deleteWorkspaceUserIsPending ? (
+              <IconButton aria-label={t`Delete`} disabled>
+                <DeleteIcon />
+              </IconButton>
+            ) : (
+              <Tooltip title={<Trans>Delete</Trans>}>
+                <IconButton aria-label={t`Delete`} color="error" onClick={handleDeleteModal}>
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
             )}
-            <LoadingButton
-              loadingPosition={deleteWorkspaceUserIsPending ? 'start' : undefined}
-              startIcon={<DeleteIcon />}
-              loading={deleteWorkspaceUserIsPending}
-              color="error"
-              variant="outlined"
-              onClick={handleDelete}
-            >
-              <Trans>Delete</Trans>
-            </LoadingButton>
-          </>
-        }
-      >
-        <Typography>
-          <Trans>Email</Trans>: {workspaceInvite.user_email}
-        </Typography>
-        <Typography>
-          <Trans>Expires</Trans>: {workspaceInvite.expires_at ? new Date(workspaceInvite.expires_at).toLocaleString(locale) : '-'}
-        </Typography>
-      </Modal>
+          </TableCell>
+          <Modal
+            title={<Trans>Are you sure?</Trans>}
+            description={<Trans>Do you want to delete this invitation?</Trans>}
+            openRef={showDeleteModalRef}
+            actions={
+              <>
+                {deleteWorkspaceUserIsPending ? null : (
+                  <Button color="primary" variant="contained" onClick={() => showDeleteModalRef.current?.(false)}>
+                    <Trans>Cancel</Trans>
+                  </Button>
+                )}
+                <LoadingButton
+                  loadingPosition={deleteWorkspaceUserIsPending ? 'start' : undefined}
+                  startIcon={<DeleteIcon />}
+                  loading={deleteWorkspaceUserIsPending}
+                  color="error"
+                  variant="outlined"
+                  onClick={handleDelete}
+                >
+                  <Trans>Delete</Trans>
+                </LoadingButton>
+              </>
+            }
+          >
+            <Typography>
+              <Trans>Email</Trans>: {workspaceInvite.user_email}
+            </Typography>
+            <Typography>
+              <Trans>Expires</Trans>: {workspaceInvite.expires_at ? new Date(workspaceInvite.expires_at).toLocaleString(locale) : '-'}
+            </Typography>
+          </Modal>
+        </>
+      ) : null}
     </TableRow>
   )
 }

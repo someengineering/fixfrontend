@@ -70,7 +70,8 @@ interface WorkspaceSettingsUserRolesProps {
 }
 
 export const WorkspaceSettingsUserRoles = ({ role, userId }: WorkspaceSettingsUserRolesProps) => {
-  const { selectedWorkspace } = useUserProfile()
+  const { selectedWorkspace, checkPermission } = useUserProfile()
+  const hasUpdateRolesPermission = checkPermission('updateRoles')
   const [rolesValues, setValues] = useState(userRolesToAutocompleteOptions(role))
   const [isEdit, setIsEdit] = useState(false)
   const queryClient = useQueryClient()
@@ -108,7 +109,7 @@ export const WorkspaceSettingsUserRoles = ({ role, userId }: WorkspaceSettingsUs
     setValues(userRolesToAutocompleteOptions(role))
   }
 
-  return isEdit ? (
+  return isEdit && hasUpdateRolesPermission ? (
     <Stack
       component="form"
       name={`change-role-for-${userId}`}
@@ -160,14 +161,20 @@ export const WorkspaceSettingsUserRoles = ({ role, userId }: WorkspaceSettingsUs
     </Stack>
   ) : (
     <Stack direction="row" alignItems="center" spacing={1} minWidth={200}>
-      <Typography flexGrow={1} onClick={handleEdit} sx={{ cursor: 'pointer' }}>
+      <Typography
+        flexGrow={1}
+        onClick={hasUpdateRolesPermission ? handleEdit : undefined}
+        sx={hasUpdateRolesPermission ? { cursor: 'pointer' } : undefined}
+      >
         {workspaceSettingsUserRoleToString(role)}
       </Typography>
-      <Tooltip title={<Trans>Edit</Trans>}>
-        <IconButton aria-label={t`Edit`} color="primary" onClick={handleEdit}>
-          <EditIcon />
-        </IconButton>
-      </Tooltip>
+      {hasUpdateRolesPermission ? (
+        <Tooltip title={<Trans>Edit</Trans>}>
+          <IconButton aria-label={t`Edit`} color="primary" onClick={handleEdit}>
+            <EditIcon />
+          </IconButton>
+        </Tooltip>
+      ) : undefined}
     </Stack>
   )
 }

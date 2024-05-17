@@ -120,19 +120,19 @@ msgstr "<0>Step 1: Scan the QR Code</0><1>First up, see this QR code on your scr
 msgid "<0>This search is complex.</0>The combo boxes below may not display all filter details but can help narrow your results. For full control, please use the Advanced tab."
 msgstr "<0>This search is complex.</0>The combo boxes below may not display all filter details but can help narrow your results. For full control, please use the Advanced tab."
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:81
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:93
 msgid "<0>To ensure you receive timely alerts and notifications directly to your email, we require your email address.<1/>Please note that it is possible to define multiple email addresses.</0>"
 msgstr "<0>To ensure you receive timely alerts and notifications directly to your email, we require your email address.<1/>Please note that it is possible to define multiple email addresses.</0>"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:70
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:80
 msgid "<0>We use the Events API V2 for notifications through PagerDuty.<1/>To create an integration, please follow these steps:<2><3>Log in to PagerDuty with your account credentials.</3><4>Navigate to the dashboard and select \"Services\".</4><5>Choose the service you wish to integrate, go to the \"Integrations\" tab, and then click \"Add Integration\".</5><6>For the integration type, select \"PagerDuty Events API V2\" and click \"Add\".</6><7>Provide a name for the integration for easy reference and copy the \"Integration Key\".</7></2>For more information please visit <8>PagerDuty Services and Integrations</8></0>"
 msgstr "<0>We use the Events API V2 for notifications through PagerDuty.<1/>To create an integration, please follow these steps:<2><3>Log in to PagerDuty with your account credentials.</3><4>Navigate to the dashboard and select \"Services\".</4><5>Choose the service you wish to integrate, go to the \"Integrations\" tab, and then click \"Add Integration\".</5><6>For the integration type, select \"PagerDuty Events API V2\" and click \"Add\".</6><7>Provide a name for the integration for easy reference and copy the \"Integration Key\".</7></2>For more information please visit <8>PagerDuty Services and Integrations</8></0>"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:81
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:91
 msgid "<0>We utilize incoming webhooks to deliver notifications to your Microsoft Teams channels.<1/>To manually add a webhook:<2><3>In Microsoft Teams, click on More options (⋯) next to the channel name and then select Connectors.</3><4>Browse through the list of Connectors to find Incoming Webhook, and click Add.</4><5>Provide a name for the webhook, upload an image to represent data from the webhook, and click Create.</5><6>Copy the webhook URL to your clipboard and keep it safe. This URL is necessary for TrackJS to send notifications.</6><7>Click Done.</7><8>In the text box provided below, paste the Webhook URL you copied and enter the name of the channel.</8></2>More from <9>Microsoft Teams Documentation</9></0>"
 msgstr "<0>We utilize incoming webhooks to deliver notifications to your Microsoft Teams channels.<1/>To manually add a webhook:<2><3>In Microsoft Teams, click on More options (⋯) next to the channel name and then select Connectors.</3><4>Browse through the list of Connectors to find Incoming Webhook, and click Add.</4><5>Provide a name for the webhook, upload an image to represent data from the webhook, and click Create.</5><6>Copy the webhook URL to your clipboard and keep it safe. This URL is necessary for TrackJS to send notifications.</6><7>Click Done.</7><8>In the text box provided below, paste the Webhook URL you copied and enter the name of the channel.</8></2>More from <9>Microsoft Teams Documentation</9></0>"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:69
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:79
 msgid "<0>We utilize the OpsGenie API integration for notifications and alerts.<1/>To set up this Integration, please follow these instructions:<2><3><4>Navigate to the Dashboard:</4> Find and click on the “Teams” section from the sidebar once logged in.</3><5><6>Select Your Team:</6> Choose the team you want to integrate with. Within the team dashboard, go to the “Integrations” tab.</5><7><8>Add Integration:</8> Click on the “+ New Integration” button. Select “API” as the integration type, give it the name “Fix,” and press Continue.</7><9><10>Turn Integration on:</10> When the Integration has been created, it is disabled by default - click “Turn on Integration”.</9><11><12>Copy API Key:</12> Find and copy the API Key in the integration settings.</11></2></0>"
 msgstr "<0>We utilize the OpsGenie API integration for notifications and alerts.<1/>To set up this Integration, please follow these instructions:<2><3><4>Navigate to the Dashboard:</4> Find and click on the “Teams” section from the sidebar once logged in.</3><5><6>Select Your Team:</6> Choose the team you want to integrate with. Within the team dashboard, go to the “Integrations” tab.</5><7><8>Add Integration:</8> Click on the “+ New Integration” button. Select “API” as the integration type, give it the name “Fix,” and press Continue.</7><9><10>Turn Integration on:</10> When the Integration has been created, it is disabled by default - click “Turn on Integration”.</9><11><12>Copy API Key:</12> Find and copy the API Key in the integration settings.</11></2></0>"
 
@@ -164,8 +164,8 @@ msgstr "A few minutes to first results"
 msgid "Abandoned"
 msgstr "Abandoned"
 
-#: src/pages/panel/accounts/AccountRow.tsx:237
-#: src/pages/panel/accounts/AccountRow.tsx:355
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:238
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:364
 msgid "Access to your account is broken"
 msgstr "Access to your account is broken"
 
@@ -183,7 +183,7 @@ msgstr "Account: {0}"
 #: src/pages/panel/inventory/InventoryTable.error.tsx:73
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:42
 #: src/shared/language-button/LanguageButton.stories.tsx:20
-#: src/shared/layouts/panel-layout/menuList.tsx:68
+#: src/shared/layouts/panel-layout/menuList.tsx:71
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:12
 msgid "Accounts"
 msgstr "Accounts"
@@ -196,8 +196,8 @@ msgstr "Accounts Summary"
 msgid "Action"
 msgstr "Action"
 
-#: src/pages/panel/accounts/AccountsTableItem.tsx:66
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:69
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:80
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:74
 msgid "Actions"
 msgstr "Actions"
 
@@ -233,7 +233,7 @@ msgstr "Add Filter"
 msgid "Add Manually"
 msgstr "Add Manually"
 
-#: src/pages/panel/accounts/AccountsTable.tsx:26
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:30
 msgid "Added accounts"
 msgstr "Added accounts"
 
@@ -297,7 +297,7 @@ msgstr "An error occurred while connecting to {0}"
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:56
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:34
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:34
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:31
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:32
 msgid "An error occurred, please try again later."
 msgstr "An error occurred, please try again later."
 
@@ -309,7 +309,7 @@ msgstr "and"
 msgid "API access"
 msgstr "API access"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:133
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:143
 msgid "API Key"
 msgstr "API Key"
 
@@ -325,9 +325,9 @@ msgstr "Are you sure you want to disconnect {name}?"
 msgid "Are you sure you want to remove the {name} account {0}?"
 msgstr "Are you sure you want to remove the {name} account {0}?"
 
-#: src/pages/panel/accounts/AccountRow.tsx:373
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:81
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:102
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:382
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:85
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:107
 msgid "Are you sure?"
 msgstr "Are you sure?"
 
@@ -357,7 +357,7 @@ msgid "Because the data is over {0} Only first {1} items will be downloaded"
 msgstr "Because the data is over {0} Only first {1} items will be downloaded"
 
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:46
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:154
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:164
 msgid "Benchmark"
 msgstr "Benchmark"
 
@@ -370,9 +370,9 @@ msgstr "Benchmark: {0}"
 msgid "Benchmarks"
 msgstr "Benchmarks"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:50
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:49
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:48
-#: src/shared/layouts/panel-layout/menuList.tsx:78
+#: src/shared/layouts/panel-layout/menuList.tsx:81
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:20
 msgid "Billing"
 msgstr "Billing"
@@ -382,7 +382,7 @@ msgstr "Billing"
 msgid "Billing Admin"
 msgstr "Billing Admin"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:106
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:109
 msgid "Billing cycle"
 msgstr "Billing cycle"
 
@@ -394,23 +394,23 @@ msgstr "Billing history"
 msgid "Business"
 msgstr "Business"
 
-#: src/pages/panel/accounts/AccountRow.tsx:283
-#: src/pages/panel/accounts/AccountRow.tsx:287
-#: src/pages/panel/accounts/AccountRow.tsx:288
-#: src/pages/panel/accounts/AccountRow.tsx:392
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:68
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:121
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:49
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:284
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:288
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:289
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:401
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:92
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:150
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:154
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:151
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:155
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:113
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:156
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:118
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsDisconnectServiceModal.tsx:57
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:93
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:101
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:99
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:111
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:105
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:111
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:109
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:123
 #: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:118
 msgid "Cancel"
 msgstr "Cancel"
@@ -455,12 +455,12 @@ msgstr "Clear the search"
 msgid "Close"
 msgstr "Close"
 
-#: src/pages/panel/accounts/AccountRow.tsx:412
-#: src/pages/panel/accounts/AccountsTableItem.tsx:41
 #: src/pages/panel/inventory/inventory-form/InventoryFormCloudValues.tsx:43
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:89
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:222
 #: src/pages/panel/security/AccountCard.tsx:37
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:421
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:50
 msgid "Cloud"
 msgstr "Cloud"
 
@@ -497,10 +497,10 @@ msgstr "Compliance"
 msgid "Configuration changed"
 msgstr "Configuration changed"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:73
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:61
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:62
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:74
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:85
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:71
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:72
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:84
 msgid "Configure"
 msgstr "Configure"
 
@@ -513,28 +513,28 @@ msgid "Congratulations on your subscription"
 msgstr "Congratulations on your subscription"
 
 #: src/pages/panel/user-settings/UserSettingsSocialNetwork.tsx:17
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsDiscordService.tsx:40
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:73
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:104
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:61
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:112
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:62
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:110
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsSlackService.tsx:40
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:74
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:122
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsDiscordService.tsx:50
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:85
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:116
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:71
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:122
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:72
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:120
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsSlackService.tsx:50
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:84
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:134
 msgid "Connect"
 msgstr "Connect"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:67
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:77
 msgid "Connect Opsgenie"
 msgstr "Connect Opsgenie"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:68
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:78
 msgid "Connect PagerDuty"
 msgstr "Connect PagerDuty"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:79
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:89
 msgid "Connect Teams"
 msgstr "Connect Teams"
 
@@ -587,7 +587,7 @@ msgstr "Critical"
 msgid "Current Product Tier"
 msgstr "Current Product Tier"
 
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:282
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:300
 msgid "Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is necessary to configure alerting settings."
 msgstr "Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is necessary to configure alerting settings."
 
@@ -631,19 +631,19 @@ msgstr "Default Role"
 msgid "Delayed Effect"
 msgstr "Delayed Effect"
 
-#: src/pages/panel/accounts/AccountRow.tsx:343
-#: src/pages/panel/accounts/AccountRow.tsx:347
-#: src/pages/panel/accounts/AccountRow.tsx:348
-#: src/pages/panel/accounts/AccountRow.tsx:403
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:79
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:69
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:351
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:355
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:356
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:412
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:73
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:74
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:77
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:78
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:103
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:90
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:94
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:95
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:124
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:99
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:100
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:129
 msgid "Delete"
 msgstr "Delete"
 
@@ -651,9 +651,9 @@ msgstr "Delete"
 msgid "Delete Provider"
 msgstr "Delete Provider"
 
-#: src/pages/panel/accounts/AccountRow.tsx:360
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:13
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:29
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:369
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
@@ -683,7 +683,7 @@ msgstr "Disconnect"
 msgid "Disconnect Service"
 msgstr "Disconnect Service"
 
-#: src/pages/panel/accounts/AccountsTable.tsx:33
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:38
 msgid "Discovered but unconfigured accounts"
 msgstr "Discovered but unconfigured accounts"
 
@@ -691,19 +691,19 @@ msgstr "Discovered but unconfigured accounts"
 msgid "Do not show me again"
 msgstr "Do not show me again"
 
-#: src/pages/panel/accounts/AccountRow.tsx:376
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:385
 msgid "Do you want to delete this account?"
 msgstr "Do you want to delete this account?"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:84
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:86
 msgid "Do you want to delete this invitation?"
 msgstr "Do you want to delete this invitation?"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:105
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:110
 msgid "Do you want to delete this user?"
 msgstr "Do you want to delete this user?"
 
-#: src/pages/auth/login/LoginPage.tsx:231
+#: src/pages/auth/login/LoginPage.tsx:232
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Don't have an account? Click here to Sign up."
 
@@ -717,25 +717,25 @@ msgstr "Downgrade"
 msgid "Download CSV"
 msgstr "Download CSV"
 
-#: src/pages/panel/accounts/AccountRow.tsx:299
-#: src/pages/panel/accounts/AccountRow.tsx:300
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:166
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:167
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:300
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:301
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:172
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:173
 msgid "Edit"
 msgstr "Edit"
 
 #: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:62
-#: src/pages/auth/login/LoginPage.tsx:115
+#: src/pages/auth/login/LoginPage.tsx:116
 #: src/pages/auth/register/RegisterPage.tsx:89
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:49
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:69
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:83
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:87
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:86
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:90
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:109
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:44
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:130
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:57
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:131
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:45
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:135
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:59
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:143
 msgid "Email"
 msgstr "Email"
 
@@ -752,8 +752,8 @@ msgstr "Enable"
 msgid "Enable all"
 msgstr "Enable all"
 
-#: src/pages/panel/accounts/AccountsTableItem.tsx:58
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:49
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:69
 msgid "Enabled"
 msgstr "Enabled"
 
@@ -786,7 +786,7 @@ msgid "Example searches"
 msgstr "Example searches"
 
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:112
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:47
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:48
 msgid "Expires"
 msgstr "Expires"
 
@@ -797,7 +797,7 @@ msgid "External Directories"
 msgstr "External Directories"
 
 #: src/pages/panel/setup-cloud/SetupCloudPage.tsx:128
-#: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:55
+#: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:56
 msgid "External Id"
 msgstr "External Id"
 
@@ -857,7 +857,7 @@ msgstr "For growing teams looking to stay secure as they build out infrastructur
 msgid "For solo software engineers who want to secure a single cloud account."
 msgstr "For solo software engineers who want to secure a single cloud account."
 
-#: src/pages/auth/login/LoginPage.tsx:236
+#: src/pages/auth/login/LoginPage.tsx:237
 msgid "Forget your password? Click here to reset your password."
 msgstr "Forget your password? Click here to reset your password."
 
@@ -875,7 +875,7 @@ msgstr "Form"
 msgid "Free"
 msgstr "Free"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearchValue.tsx:48
+#: src/pages/panel/inventory/inventory-form/InventoryFormFullTextSearchValue.tsx:42
 msgid "Full-text search"
 msgstr "Full-text search"
 
@@ -887,7 +887,7 @@ msgstr "Get your top 5 recommendations to improve your security once the first s
 msgid "High"
 msgstr "High"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:113
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:116
 msgid "Highest product tier this billing cycle"
 msgstr "Highest product tier this billing cycle"
 
@@ -904,10 +904,10 @@ msgstr "Hourly"
 msgid "How to fix"
 msgstr "How to fix"
 
-#: src/pages/panel/accounts/AccountRow.tsx:409
-#: src/pages/panel/accounts/AccountsTableItem.tsx:44
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:219
 #: src/pages/panel/security/AccountCard.tsx:34
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:418
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:53
 #: src/shared/charts/NetworkDiagram.tsx:406
 msgid "ID"
 msgstr "ID"
@@ -985,7 +985,7 @@ msgstr "Instance is terminated"
 msgid "Integration advice for your specific cloud environment via video call"
 msgstr "Integration advice for your specific cloud environment via video call"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:131
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:141
 msgid "Integration Key"
 msgstr "Integration Key"
 
@@ -994,7 +994,7 @@ msgstr "Integration Key"
 msgid "Invalid Value"
 msgstr "Invalid Value"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:39
+#: src/shared/layouts/panel-layout/menuList.tsx:40
 msgid "Inventory"
 msgstr "Inventory"
 
@@ -1002,17 +1002,17 @@ msgstr "Inventory"
 msgid "Inventory search"
 msgstr "Inventory search"
 
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:51
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:54
 msgid "Invite"
 msgstr "Invite"
 
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:36
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:51
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:67
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:54
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:70
 msgid "Invite External User"
 msgstr "Invite External User"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:66
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:70
 msgid "Invites"
 msgstr "Invites"
 
@@ -1029,7 +1029,7 @@ msgstr "Kind"
 msgid "Kinds"
 msgstr "Kinds"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:63
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:67
 msgid "Last login"
 msgstr "Last login"
 
@@ -1037,8 +1037,8 @@ msgstr "Last login"
 msgid "Load Balancers with no backends"
 msgstr "Load Balancers with no backends"
 
-#: src/pages/auth/login/LoginPage.tsx:106
-#: src/pages/auth/login/LoginPage.tsx:226
+#: src/pages/auth/login/LoginPage.tsx:107
+#: src/pages/auth/login/LoginPage.tsx:227
 msgid "Log in"
 msgstr "Log in"
 
@@ -1066,11 +1066,11 @@ msgstr "Low Utilization Compute Instances and Databases"
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:145
+#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:150
 msgid "Manage AWS Market place payment method"
 msgstr "Manage AWS Market place payment method"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:164
+#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:169
 msgid "Manage Card Details"
 msgstr "Manage Card Details"
 
@@ -1088,7 +1088,7 @@ msgid "Member"
 msgstr "Member"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:19
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:108
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:111
 msgid "Monthly"
 msgstr "Monthly"
 
@@ -1112,20 +1112,20 @@ msgstr "Most Improved Resources"
 msgid "Most Non-Compliant Accounts"
 msgstr "Most Non-Compliant Accounts"
 
-#: src/pages/panel/accounts/AccountRow.tsx:415
-#: src/pages/panel/accounts/AccountsTableItem.tsx:47
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:220
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:424
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:56
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:18
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:73
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:77
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:133
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:54
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:114
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:122
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:120
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:132
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:76
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:80
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:138
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:56
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:126
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:132
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:130
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:144
 #: src/shared/charts/NetworkDiagram.tsx:407
 msgid "Name"
 msgstr "Name"
@@ -1164,11 +1164,11 @@ msgstr "New Product Tier"
 msgid "New security issues detected"
 msgstr "New security issues detected"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:121
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:124
 msgid "Next invoice will be available"
 msgstr "Next invoice will be available"
 
-#: src/pages/panel/accounts/AccountsTableItem.tsx:55
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:64
 msgid "Next scan"
 msgstr "Next scan"
 
@@ -1206,7 +1206,7 @@ msgstr "Node Updated"
 msgid "Node Vulnerable"
 msgstr "Node Vulnerable"
 
-#: src/pages/panel/accounts/AccountRow.tsx:379
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:388
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 
@@ -1227,11 +1227,11 @@ msgstr "Notification"
 msgid "Number Of Account Charged"
 msgstr "Number Of Account Charged"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:108
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:111
 msgid "One time"
 msgstr "One time"
 
-#: src/pages/auth/login/LoginPage.tsx:26
+#: src/pages/auth/login/LoginPage.tsx:27
 msgid "Oops, the username or password doesn't seem to match our records. Please try again."
 msgstr "Oops, the username or password doesn't seem to match our records. Please try again."
 
@@ -1263,8 +1263,8 @@ msgstr "Opened at"
 msgid "Optional professional services"
 msgstr "Optional professional services"
 
-#: src/pages/auth/login/LoginPage.tsx:164
-#: src/pages/auth/login/LoginPage.tsx:241
+#: src/pages/auth/login/LoginPage.tsx:165
+#: src/pages/auth/login/LoginPage.tsx:242
 #: src/pages/auth/register/RegisterPage.tsx:136
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:87
 msgid "Or"
@@ -1286,7 +1286,7 @@ msgstr "Orphaned Volumes"
 msgid "Other Workspace Settings"
 msgstr "Other Workspace Settings"
 
-#: src/pages/auth/login/LoginPage.tsx:147
+#: src/pages/auth/login/LoginPage.tsx:148
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:204
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:73
 msgid "OTP Code"
@@ -1297,7 +1297,7 @@ msgstr "OTP Code"
 msgid "Owner"
 msgstr "Owner"
 
-#: src/pages/auth/login/LoginPage.tsx:130
+#: src/pages/auth/login/LoginPage.tsx:131
 #: src/pages/auth/register/RegisterPage.tsx:103
 #: src/pages/auth/reset-password/ResetPasswordPage.tsx:96
 msgid "Password"
@@ -1308,7 +1308,7 @@ msgid "Payment is required for your workspace, Please contact the workspace owne
 msgstr "Payment is required for your workspace, Please contact the workspace owner"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:131
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:74
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:73
 msgid "Payment method"
 msgstr "Payment method"
 
@@ -1325,9 +1325,9 @@ msgstr "Payment Method Required"
 msgid "Payment method to add"
 msgstr "Payment method to add"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:24
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:40
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:29
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:25
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:41
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:31
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:18
 msgid "Pending Invitations"
 msgstr "Pending Invitations"
@@ -1340,7 +1340,7 @@ msgstr "Pick one of the recommendations to the right and improve your security"
 msgid "Please add a payment method to switch your workspace's product tier"
 msgstr "Please add a payment method to switch your workspace's product tier"
 
-#: src/pages/auth/login/LoginPage.tsx:191
+#: src/pages/auth/login/LoginPage.tsx:192
 msgid "Please enter your One-Time-Password or one of your Recovery code."
 msgstr "Please enter your One-Time-Password or one of your Recovery code."
 
@@ -1364,7 +1364,7 @@ msgstr "Print or copy the following recovery codes"
 msgid "Privileged"
 msgstr "Privileged"
 
-#: src/pages/panel/accounts/AccountRow.tsx:232
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:233
 msgid "Privileged account"
 msgstr "Privileged account"
 
@@ -1416,11 +1416,11 @@ msgstr "Re-Authenticate"
 msgid "Receipts"
 msgstr "Receipts"
 
-#: src/pages/panel/accounts/AccountsTable.tsx:22
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:22
 msgid "Recently added accounts"
 msgstr "Recently added accounts"
 
-#: src/pages/auth/login/LoginPage.tsx:173
+#: src/pages/auth/login/LoginPage.tsx:174
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:105
 msgid "Recovery Code"
 msgstr "Recovery Code"
@@ -1429,7 +1429,7 @@ msgstr "Recovery Code"
 msgid "Recovery codes"
 msgstr "Recovery codes"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:56
+#: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:57
 msgid "Regenerate"
 msgstr "Regenerate"
 
@@ -1452,7 +1452,7 @@ msgstr "Register"
 msgid "Remediation recommendations"
 msgstr "Remediation recommendations"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:50
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:52
 msgid "Remove"
 msgstr "Remove"
 
@@ -1473,7 +1473,7 @@ msgstr "Resource created"
 msgid "Resource deleted"
 msgstr "Resource deleted"
 
-#: src/pages/panel/accounts/AccountsTableItem.tsx:50
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:59
 msgid "Resources"
 msgstr "Resources"
 
@@ -1485,10 +1485,10 @@ msgstr "Resources with the string \"delete\""
 msgid "Risk"
 msgstr "Risk"
 
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:93
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:104
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:144
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:60
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:96
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:107
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:149
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:63
 msgid "Roles"
 msgstr "Roles"
 
@@ -1505,7 +1505,7 @@ msgid "Secure read-only access"
 msgstr "Secure read-only access"
 
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:25
-#: src/shared/layouts/panel-layout/menuList.tsx:54
+#: src/shared/layouts/panel-layout/menuList.tsx:56
 msgid "Security"
 msgstr "Security"
 
@@ -1521,7 +1521,7 @@ msgstr "Security Issues"
 msgid "Security posture improved"
 msgstr "Security posture improved"
 
-#: src/pages/panel/accounts/AccountsTableItem.tsx:61
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:72
 msgid "Security Scan"
 msgstr "Security Scan"
 
@@ -1539,11 +1539,11 @@ msgstr "See this Resource in AWS Console"
 msgid "Select Language"
 msgstr "Select Language"
 
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:64
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:67
 msgid "Send Invite"
 msgstr "Send Invite"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:79
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:91
 msgid "Setting Up Email Notifications"
 msgstr "Setting Up Email Notifications"
 
@@ -1554,8 +1554,8 @@ msgstr "Severities"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:50
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:150
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:157
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:205
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:167
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:216
 msgid "Severity"
 msgstr "Severity"
 
@@ -1592,16 +1592,16 @@ msgstr "Some checks have been disabled for this resource"
 msgid "Something went wrong please try again later."
 msgstr "Something went wrong please try again later."
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:137
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:51
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:142
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:53
 msgid "Sources"
 msgstr "Sources"
 
-#: src/pages/panel/accounts/AccountRow.tsx:272
-#: src/pages/panel/accounts/AccountRow.tsx:273
-#: src/pages/panel/accounts/AccountRow.tsx:278
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:143
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:273
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:274
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:279
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:144
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:145
 msgid "Submit"
 msgstr "Submit"
 
@@ -1609,7 +1609,7 @@ msgstr "Submit"
 msgid "Subscription successfully added to {0}"
 msgstr "Subscription successfully added to {0}"
 
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:28
+#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:29
 msgid "Successfully invited {email}"
 msgstr "Successfully invited {email}"
 
@@ -1631,7 +1631,7 @@ msgstr "Test"
 msgid "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 msgstr "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 
-#: src/pages/auth/login/LoginPage.tsx:30
+#: src/pages/auth/login/LoginPage.tsx:31
 msgid "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
 msgstr "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
 
@@ -1651,7 +1651,7 @@ msgstr "The token that you sent is invalid or have been expired please try again
 msgid "There's no account configured for this workspace."
 msgstr "There's no account configured for this workspace."
 
-#: src/pages/panel/accounts/AccountRow.tsx:365
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:374
 msgid "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 msgstr "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 
@@ -1772,7 +1772,7 @@ msgstr "User Settings Notification"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:27
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:45
-#: src/shared/layouts/panel-layout/menuList.tsx:73
+#: src/shared/layouts/panel-layout/menuList.tsx:76
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:16
 msgid "Users"
 msgstr "Users"
@@ -1786,7 +1786,7 @@ msgstr "Value"
 msgid "Warning"
 msgstr "Warning"
 
-#: src/pages/auth/login/LoginPage.tsx:198
+#: src/pages/auth/login/LoginPage.tsx:199
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 
@@ -1798,7 +1798,7 @@ msgstr "We're sad to see you downgrade, but we're grateful to still have you wit
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 
-#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:143
+#: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:155
 msgid "Webhook URL"
 msgstr "Webhook URL"
 
@@ -1814,7 +1814,7 @@ msgstr "Weekly Report"
 msgid "Within a billing cycle you will be charged for the highest product tier that was active."
 msgstr "Within a billing cycle you will be charged for the highest product tier that was active."
 
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:150
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:160
 msgid "Workspace Alerting Settings"
 msgstr "Workspace Alerting Settings"
 
@@ -1832,13 +1832,13 @@ msgid "Workspace Name"
 msgstr "Workspace Name"
 
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:17
-#: src/shared/layouts/panel-layout/menuList.tsx:62
+#: src/shared/layouts/panel-layout/menuList.tsx:64
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:10
 msgid "Workspace Settings"
 msgstr "Workspace Settings"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:25
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:47
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:27
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:49
 msgid "Workspace Users"
 msgstr "Workspace Users"
 
@@ -1857,7 +1857,7 @@ msgstr "You are about to change workspace's payment method"
 msgid "You are about to change workspace's product tier"
 msgstr "You are about to change workspace's product tier"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:56
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:55
 msgid "You are currently in your trial period, which will end in {0} days.<0/>During your trial period, you have access to all features of the product."
 msgstr "You are currently in your trial period, which will end in {0} days.<0/>During your trial period, you have access to all features of the product."
 
@@ -1873,15 +1873,23 @@ msgstr "You can deactivate TOTP via recovery code"
 msgid "You don't have access to this workspace"
 msgstr "You don't have access to this workspace"
 
+#: src/shared/disabled-with-permission/DisabledWithPermission.tsx:20
+msgid "You don't have the permission to access this, contact the workspace owner for more information."
+msgstr "You don't have the permission to access this, contact the workspace owner for more information."
+
+#: src/shared/disabled-with-permission/DisabledWithPermission.tsx:21
+msgid "You don't have the permission to change this, contact the workspace owner for more information."
+msgstr "You don't have the permission to change this, contact the workspace owner for more information."
+
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:147
 msgid "You don't have the permission to view this workspace, contact the workspace owner for more information."
 msgstr "You don't have the permission to view this workspace, contact the workspace owner for more information."
 
-#: src/pages/auth/login/LoginPage.tsx:211
+#: src/pages/auth/login/LoginPage.tsx:212
 msgid "You have successfully reset your password."
 msgstr "You have successfully reset your password."
 
-#: src/pages/auth/login/LoginPage.tsx:204
+#: src/pages/auth/login/LoginPage.tsx:205
 msgid "You have successfully verified your account."
 msgstr "You have successfully verified your account."
 
@@ -1894,7 +1902,7 @@ msgstr "You need a payment method to change your product tier"
 msgid "You've chosen to ignore this security check for the resource. Please note:"
 msgstr "You've chosen to ignore this security check for the resource. Please note:"
 
-#: src/pages/auth/login/LoginPage.tsx:28
+#: src/pages/auth/login/LoginPage.tsx:29
 msgid "Your email address isn't verified yet. Please check your inbox and click on the 'Verify' button to complete the process. Can't find the email? It might be in your spam folder."
 msgstr "Your email address isn't verified yet. Please check your inbox and click on the 'Verify' button to complete the process. Can't find the email? It might be in your spam folder."
 

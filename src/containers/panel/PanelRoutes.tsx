@@ -1,7 +1,7 @@
 import { lazy } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { panelUI } from 'src/shared/constants'
-import { AccountCheckGuard, BenchmarkCheckGuard, SubscriptionCheckGuard } from 'src/shared/layouts/panel-layout'
+import { AccountCheckGuard, BenchmarkCheckGuard, PermissionCheckGuard, SubscriptionCheckGuard } from 'src/shared/layouts/panel-layout'
 
 const SecurityPage = lazy(
   () =>
@@ -19,11 +19,11 @@ const SetupCloudPage = lazy(
     ),
 )
 
-const AccountsPage = lazy(
+const WorkspaceSettingsAccountsPage = lazy(
   () =>
     import(
       /* webpackChunkName: "accounts" */
-      'src/pages/panel/accounts/AccountsPage'
+      'src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsPage'
     ),
 )
 
@@ -91,18 +91,24 @@ export function PanelRoutes() {
               <Route path="resource-detail/:resourceDetailId" element={<InventoryPage />} />
             </Route>
           </Route>
-          <Route path="workspace-settings">
-            <Route path="accounts" element={<AccountsPage />} />
+          <Route element={<PermissionCheckGuard permissionToCheck="readSettings" />}>
+            <Route path="workspace-settings">
+              <Route path="accounts" element={<WorkspaceSettingsAccountsPage />} />
+            </Route>
           </Route>
         </Route>
         <Route path="user-settings" element={<UserSettingsPage />} />
-        <Route path="workspace-settings">
-          <Route index element={<WorkspaceSettingsPage />} />
-          <Route path="users" element={<WorkspaceSettingsUsersPage />} />
-          <Route path="billing-receipts" element={<WorkspaceSettingsBillingPage />} />
-          <Route path="external-directories" element={<WorkspaceSettingsExternalDirectoryPage />} />
-          <Route path="accounts">
-            <Route path="setup-cloud" element={<SetupCloudPage />} />
+        <Route element={<PermissionCheckGuard permissionToCheck="readSettings" />}>
+          <Route path="workspace-settings">
+            <Route index element={<WorkspaceSettingsPage />} />
+            <Route path="users" element={<WorkspaceSettingsUsersPage />} />
+            <Route element={<PermissionCheckGuard permissionToCheck="readBilling" />}>
+              <Route path="billing-receipts" element={<WorkspaceSettingsBillingPage />} />
+            </Route>
+            <Route path="external-directories" element={<WorkspaceSettingsExternalDirectoryPage />} />
+            <Route path="accounts">
+              <Route path="setup-cloud" element={<SetupCloudPage />} />
+            </Route>
           </Route>
         </Route>
         <Route path="*" element={<Navigate to={panelUI.homePage} replace />} />

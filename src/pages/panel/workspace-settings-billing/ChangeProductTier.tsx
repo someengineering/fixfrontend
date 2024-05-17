@@ -29,7 +29,8 @@ export const ChangeProductTier = ({
   workspacePaymentMethods,
   nextBillingCycle,
 }: ChangeProductTierProps) => {
-  const { selectedWorkspace } = useUserProfile()
+  const { selectedWorkspace, checkPermission } = useUserProfile()
+  const hasPermission = checkPermission('updateBilling')
   const tierFromSearchParams = useGetProductTierFromSearchParams()
   const showModalRef = useRef<(show?: boolean | undefined) => void>()
   const showNoMethodModalRef = useRef<(show?: boolean | undefined) => void>()
@@ -58,7 +59,7 @@ export const ChangeProductTier = ({
           return (
             <Fragment key={curProductTier}>
               {i ? <ProductTierDivider /> : null}
-              {selectedProductTier ? (
+              {selectedProductTier || !hasPermission ? (
                 <Stack
                   sx={{
                     alignItems: 'baseline',
@@ -66,13 +67,15 @@ export const ChangeProductTier = ({
                     justifyContent: 'stretch',
                     px: { xs: 2, lg: 4 },
                     py: { xs: 2, lg: 4 },
-                    bgcolor: ({
-                      palette: {
-                        primary: { main },
-                      },
-                    }) => alpha(main, 0.15),
+                    bgcolor: selectedProductTier
+                      ? ({
+                          palette: {
+                            primary: { main },
+                          },
+                        }) => alpha(main, 0.15)
+                      : undefined,
                     borderRadius: 2,
-                    boxShadow: 12,
+                    boxShadow: selectedProductTier ? 12 : undefined,
                     transition: (theme) => theme.transitions.create(['box-shadow', 'background-color']),
                   }}
                 >
@@ -90,7 +93,7 @@ export const ChangeProductTier = ({
                     borderRadius: 2,
                     transition: (theme) => theme.transitions.create(['box-shadow', 'background-color']),
                   }}
-                  onClick={() => setProductTier(curProductTier)}
+                  onClick={hasPermission ? () => setProductTier(curProductTier) : undefined}
                 >
                   <ProductTierComp productTier={curProductTier} />
                 </ButtonBase>
@@ -99,78 +102,82 @@ export const ChangeProductTier = ({
           )
         })}
       </Stack>
-      {isUpgrade !== null ? (
-        productTier === 'Free' ? (
-          <ChangeProductTierToFreeModal
-            onClose={() => setProductTier(defaultProductTier)}
-            productTier={defaultProductTier}
-            showModalRef={showModalRef}
-            defaultOpen={true}
-          />
-        ) : noWorkspaceMethod ? (
-          <ChangePaymentNoMethodModal
-            selectedProductTier={productTier}
-            showModalRef={showNoMethodModalRef}
-            defaultOpen={true}
-            onClose={() => setProductTier(defaultProductTier)}
-          />
-        ) : (
-          <ChangeProductTierModal
-            workspacePaymentMethods={workspacePaymentMethods}
-            nextBillingCycle={nextBillingCycle}
-            onClose={() => setProductTier(defaultProductTier)}
-            isUpgrade={isUpgrade}
-            productTier={defaultProductTier}
-            selectedProductTier={productTier}
-            selectedWorkspacePaymentMethod={selectedWorkspacePaymentMethod}
-            showModalRef={showModalRef}
-            defaultOpen={true}
-          />
-        )
-      ) : (
-        <Stack alignItems="center" spacing={2} pt={4}>
-          {noWorkspaceMethod ? null : (
-            <>
-              <Stack py={1} spacing={1} alignItems="center">
-                {awsMarketPlacePaymentMethod ? (
-                  <Stack direction="row" spacing={1} alignItems="center">
-                    <LinkButton
-                      startIcon={<AwsLogo height={50} />}
-                      endIcon={null}
-                      loadingPosition="start"
-                      variant="outlined"
-                      href={`${env.aws_marketplace_url}`}
-                    >
-                      <Typography textTransform="none">
-                        <Trans>Manage AWS Market place payment method</Trans>
-                      </Typography>
-                    </LinkButton>
+      {hasPermission ? (
+        <>
+          {isUpgrade !== null ? (
+            productTier === 'Free' ? (
+              <ChangeProductTierToFreeModal
+                onClose={() => setProductTier(defaultProductTier)}
+                productTier={defaultProductTier}
+                showModalRef={showModalRef}
+                defaultOpen={true}
+              />
+            ) : noWorkspaceMethod ? (
+              <ChangePaymentNoMethodModal
+                selectedProductTier={productTier}
+                showModalRef={showNoMethodModalRef}
+                defaultOpen={true}
+                onClose={() => setProductTier(defaultProductTier)}
+              />
+            ) : (
+              <ChangeProductTierModal
+                workspacePaymentMethods={workspacePaymentMethods}
+                nextBillingCycle={nextBillingCycle}
+                onClose={() => setProductTier(defaultProductTier)}
+                isUpgrade={isUpgrade}
+                productTier={defaultProductTier}
+                selectedProductTier={productTier}
+                selectedWorkspacePaymentMethod={selectedWorkspacePaymentMethod}
+                showModalRef={showModalRef}
+                defaultOpen={true}
+              />
+            )
+          ) : (
+            <Stack alignItems="center" spacing={2} pt={4}>
+              {noWorkspaceMethod ? null : (
+                <>
+                  <Stack py={1} spacing={1} alignItems="center">
+                    {awsMarketPlacePaymentMethod ? (
+                      <Stack direction="row" spacing={1} alignItems="center">
+                        <LinkButton
+                          startIcon={<AwsLogo height={50} />}
+                          endIcon={null}
+                          loadingPosition="start"
+                          variant="outlined"
+                          href={`${env.aws_marketplace_url}`}
+                        >
+                          <Typography textTransform="none">
+                            <Trans>Manage AWS Market place payment method</Trans>
+                          </Typography>
+                        </LinkButton>
+                      </Stack>
+                    ) : null}
+                    {stripePaymentMethod ? (
+                      <Stack direction="row" spacing={1} alignItems="center">
+                        <LinkButton
+                          startIcon={<CreditCardIcon fontSize="large" sx={{ fontSize: '48px!important' }} />}
+                          endIcon={null}
+                          loadingPosition="start"
+                          sx={{
+                            maxWidth: '100%',
+                            width: 580,
+                          }}
+                          variant="outlined"
+                          href={`${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').subscription.stripe}`}
+                        >
+                          <Typography textTransform="none">
+                            <Trans>Manage Card Details</Trans>
+                          </Typography>
+                        </LinkButton>
+                      </Stack>
+                    ) : null}
                   </Stack>
-                ) : null}
-                {stripePaymentMethod ? (
-                  <Stack direction="row" spacing={1} alignItems="center">
-                    <LinkButton
-                      startIcon={<CreditCardIcon fontSize="large" sx={{ fontSize: '48px!important' }} />}
-                      endIcon={null}
-                      loadingPosition="start"
-                      sx={{
-                        maxWidth: '100%',
-                        width: 580,
-                      }}
-                      variant="outlined"
-                      href={`${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').subscription.stripe}`}
-                    >
-                      <Typography textTransform="none">
-                        <Trans>Manage Card Details</Trans>
-                      </Typography>
-                    </LinkButton>
-                  </Stack>
-                ) : null}
-              </Stack>
-            </>
+                </>
+              )}
+            </Stack>
           )}
-        </Stack>
-      )}
+        </>
+      ) : null}
       <Divider />
     </>
   )
