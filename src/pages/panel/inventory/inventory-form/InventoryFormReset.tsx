@@ -8,7 +8,7 @@ export const InventoryFormReset = () => {
   return q && q !== 'all' ? (
     <Stack order={1} alignSelf="stretch" alignItems="end" flexGrow={1}>
       <Tooltip title={t`Clear the search`}>
-        <IconButton onClick={reset} color="info" sx={{ height: 42, boxShadow: 4 }}>
+        <IconButton onClick={reset} color="info" sx={{ height: 42 }}>
           <HighlightOffIcon />
         </IconButton>
       </Tooltip>
