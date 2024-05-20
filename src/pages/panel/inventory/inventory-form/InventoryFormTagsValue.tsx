@@ -1,21 +1,11 @@
 import { Trans } from '@lingui/macro'
 import EditIcon from '@mui/icons-material/Edit'
-import { Button, MenuItem, Popover, Select, Skeleton, Stack, Typography, backdropClasses } from '@mui/material'
-import { useMemo, useState } from 'react'
+import { Button, Popover, Skeleton, Stack, backdropClasses } from '@mui/material'
+import { useState } from 'react'
 import { panelUI } from 'src/shared/constants'
-import {
-  Path,
-  Predicate,
-  arrayOpTypes,
-  booleanOPTypes,
-  durationOpTypes,
-  kindDurationTypes,
-  kindNumberTypes,
-  numberOpTypes,
-  stringOPTypes,
-  useFixQueryParser,
-} from 'src/shared/fix-query-parser'
+import { Path, Predicate, useFixQueryParser } from 'src/shared/fix-query-parser'
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
+import { InventoryFormFilterRowOpType } from './InventoryFormFilterRowOpType'
 import { InventoryFormFilterRowProperty } from './InventoryFormFilterRowProperty'
 import { InventoryFormFilterRowValues } from './InventoryFormFilterRowValues'
 import { AutoCompletePreDefinedItems } from './utils'
@@ -42,22 +32,6 @@ export const InventoryFormTagsValue = ({ onChange, onClose, open, defaultValue, 
   const realFqn = fqn?.split('[')
   const arrayOnly = (realFqn?.length ?? 0) > 1
   const fqnType = realFqn?.[0] as ResourceComplexKindSimpleTypeDefinitions | undefined
-
-  const currentOpTypes = useMemo(
-    () =>
-      arrayOnly
-        ? arrayOpTypes
-        : fqnType
-          ? kindDurationTypes.includes(fqnType as (typeof kindDurationTypes)[number])
-            ? durationOpTypes
-            : kindNumberTypes.includes(fqnType as (typeof kindNumberTypes)[number])
-              ? numberOpTypes
-              : fqnType === 'string' || fqnType === 'any'
-                ? stringOPTypes
-                : booleanOPTypes
-          : [],
-    [fqnType, arrayOnly],
-  )
 
   return (
     <Popover
@@ -88,33 +62,21 @@ export const InventoryFormTagsValue = ({ onChange, onClose, open, defaultValue, 
           />
           {value && value.path.toString() ? (
             <>
-              <Select
-                size="small"
-                value={value?.op && (currentOpTypes as string[]).includes(value.op) ? value.op : currentOpTypes[0]}
-                onChange={(e) =>
+              <InventoryFormFilterRowOpType
+                fqn={fqnType}
+                arrayOnly={arrayOnly}
+                onChange={(op) =>
                   setValue(
                     (prev) =>
                       new Predicate({
                         path: prev?.path ?? new Path({}),
-                        op: e.target.value,
+                        op,
                         value: prev?.value ?? '',
                       }),
                   )
                 }
-                autoFocus
-                inputProps={{
-                  autoFocus: true,
-                }}
-                sx={{ mx: 1, mb: 1, height: 'fit-content' }}
-              >
-                {currentOpTypes.map((op, i) => (
-                  <MenuItem value={op} key={`${op}-${i}`}>
-                    <Stack direction="row" justifyContent="space-between" width="100%" spacing={1}>
-                      <Typography>{op.toUpperCase()}</Typography>
-                    </Stack>
-                  </MenuItem>
-                ))}
-              </Select>
+                op={value?.op}
+              />
               {fqnType && value && value.path.toString() ? (
                 <InventoryFormFilterRowValues
                   fqn={fqnType}
