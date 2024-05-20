@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import { Autocomplete, AutocompleteProps, CircularProgress, TextField, TypographyProps } from '@mui/material'
+import { Autocomplete, AutocompleteProps, Chip, CircularProgress, TextField, TypographyProps } from '@mui/material'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useDebounce } from '@uidotdev/usehooks'
 import { AxiosError } from 'axios'
@@ -236,6 +236,25 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
         ] as ReactNode
       }
       value={currentValue}
+      renderTags={
+        props.multiple
+          ? (tagValue, getTagProps) =>
+              tagValue.map((option, index) => {
+                const { key, ...tagProps } = getTagProps({ index })
+                return (
+                  <Chip
+                    key={key}
+                    variant="outlined"
+                    label={option.label}
+                    size="small"
+                    color={option.label === 'null' ? 'error' : 'primary'}
+                    {...tagProps}
+                  />
+                )
+              })
+          : undefined
+      }
+      autoFocus
       {...props}
       renderInput={(params) => (
         <TextField
@@ -250,10 +269,10 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
               ? 'number'
               : 'text'
           }
+          focused={open}
           autoFocus
           inputProps={{
             ...params.inputProps,
-            autoFocus: true,
             onBlur: () => {
               if (!props.multiple) {
                 const found = options.find((i) => i.label === typed)
@@ -264,10 +283,10 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
               }
             },
             value: typed,
+            autoFocus: true,
           }}
           InputProps={{
             ...params.InputProps,
-            autoFocus: true,
             endAdornment: (
               <>
                 {autoCompleteIsLoading || isFetchingNextPage ? <CircularProgress color="inherit" size={20} /> : null}
@@ -280,6 +299,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
               }
             },
             onBlur: () => setOpen(false),
+            autoFocus: true,
           }}
           onChange={(e) => {
             selectedTyped.current = ''
