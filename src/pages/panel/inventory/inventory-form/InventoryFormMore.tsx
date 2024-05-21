@@ -4,7 +4,7 @@ import CloudCircleOutlinedIcon from '@mui/icons-material/CloudCircleOutlined'
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined'
 import OtherHousesOutlinedIcon from '@mui/icons-material/OtherHousesOutlined'
 import SouthAmericaOutlinedIcon from '@mui/icons-material/SouthAmericaOutlined'
-import { Fab, Popover, Stack, SvgIcon, Tooltip, Typography, backdropClasses } from '@mui/material'
+import { Fab, IconButton, Popover, Stack, SvgIcon, Tooltip, Typography, alpha, backdropClasses } from '@mui/material'
 import { useState } from 'react'
 import { panelUI } from 'src/shared/constants'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
@@ -31,6 +31,7 @@ const InventoryFormMoreFab = ({
       size="small"
       variant="extended"
       sx={{
+        bgcolor: 'primary.dark',
         boxShadow: 2,
       }}
     >
@@ -61,9 +62,15 @@ export const InventoryFormMore = ({ preItems }: { preItems: AutoCompletePreDefin
     <>
       <Stack height="auto" justifyContent="center" position="relative">
         <Tooltip title={t`Add Filter`}>
-          <Fab color="success" aria-label="add" onClick={(e) => setOpen(e.currentTarget)} component={Stack} boxShadow={4} size="small">
+          <IconButton
+            color="success"
+            aria-label="add"
+            onClick={(e) => setOpen(e.currentTarget)}
+            component={Stack}
+            sx={{ boxShadow: 0, borderColor: ({ palette }) => alpha(palette.success.main, 0.5), borderStyle: 'solid', borderWidth: 1 }}
+          >
             <AddCircleOutlineIcon fontSize="small" />
-          </Fab>
+          </IconButton>
         </Tooltip>
         <Popover
           onClose={() => setOpen(null)}

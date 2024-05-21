@@ -1,29 +1,13 @@
 import { Trans } from '@lingui/macro'
-import CloseIcon from '@mui/icons-material/Close'
 import InfoIcon from '@mui/icons-material/Info'
 import ListAltIcon from '@mui/icons-material/ListAlt'
 import ManageSearchIcon from '@mui/icons-material/ManageSearch'
-import SearchIcon from '@mui/icons-material/Search'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
-import {
-  Alert,
-  AlertTitle,
-  Badge,
-  Box,
-  Collapse,
-  FormHelperText,
-  IconButton,
-  Stack,
-  Tab,
-  TextField,
-  Tooltip,
-  Typography,
-} from '@mui/material'
-import { ChangeEvent, Suspense, useCallback, useEffect, useRef, useState } from 'react'
-import { panelUI } from 'src/shared/constants'
+import { Alert, AlertTitle, Badge, Box, Collapse, FormHelperText, Stack, Tab, Tooltip, Typography } from '@mui/material'
+import { Suspense, useState } from 'react'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
-import { InventoryAdvanceSearchInfo } from './InventoryAdvanceSearchInfo'
+import { InventoryAdvanceSearchTextField } from './InventoryAdvanceSearchTextField'
 import { InventoryForm, InventoryFormsSkeleton } from './inventory-form'
 
 interface InventoryAdvanceSearchProps {
@@ -34,58 +18,9 @@ interface InventoryAdvanceSearchProps {
 type TabsType = 'form' | 'advance'
 
 export const InventoryAdvanceSearch = ({ hasError, hasChanges }: InventoryAdvanceSearchProps) => {
-  const [focused, setIsFocused] = useState(false)
   const [tab, setTab] = useState<TabsType>('form')
-  const { updateQuery, reset, error, uiSimpleQuery, q } = useFixQueryParser()
-  const [searchCritValue, setSearchCritValue] = useState(!q && q !== 'all' ? '' : q)
+  const { error, uiSimpleQuery, q } = useFixQueryParser()
   const hasSomethingExtra = !!q && q !== 'all' && !uiSimpleQuery
-
-  const timeoutRef = useRef<number>()
-
-  const handleChangeValue = useCallback(
-    (value: string) => {
-      setSearchCritValue(!value ? '' : value)
-      if (timeoutRef.current) {
-        window.clearTimeout(timeoutRef.current)
-      }
-      timeoutRef.current = window.setTimeout(() => {
-        try {
-          updateQuery(value)
-        } catch (e) {
-          console.info(e, value)
-        }
-        timeoutRef.current = undefined
-      }, panelUI.inputChangeDebounce)
-    },
-    [updateQuery],
-  )
-
-  useEffect(() => {
-    setSearchCritValue(q)
-  }, [q])
-
-  useEffect(
-    () => () => {
-      if (timeoutRef.current) {
-        window.clearTimeout(timeoutRef.current)
-      }
-    },
-    [],
-  )
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target
-    if (!value) {
-      reset()
-    }
-    handleChangeValue(value)
-  }
-
-  const handleReset = () => {
-    reset()
-    setSearchCritValue('')
-    updateQuery('')
-  }
 
   return (
     <Box mb={2}>
@@ -139,7 +74,7 @@ export const InventoryAdvanceSearch = ({ hasError, hasChanges }: InventoryAdvanc
             />
           </TabList>
         </Stack>
-        <TabPanel value="form" sx={{ p: 0 }}>
+        <TabPanel value="form" sx={{ p: 0, pt: 1 }}>
           {!error ? (
             <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
               <Suspense fallback={<InventoryFormsSkeleton withChange={hasChanges} />}>
@@ -148,42 +83,8 @@ export const InventoryAdvanceSearch = ({ hasError, hasChanges }: InventoryAdvanc
             </NetworkErrorBoundary>
           ) : null}
         </TabPanel>
-        <TabPanel value="advance" sx={{ p: 0 }}>
-          <TextField
-            variant="outlined"
-            margin="dense"
-            multiline
-            label={
-              <Stack direction="row" gap={1}>
-                <Collapse in={!focused && !searchCritValue} orientation="horizontal">
-                  <SearchIcon />
-                </Collapse>
-                <Trans>Advanced search query</Trans>
-              </Stack>
-            }
-            fullWidth
-            size="small"
-            inputProps={{ sx: { ml: 1 } }}
-            value={searchCritValue}
-            onChange={handleChange}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-            onReset={reset}
-            InputProps={{
-              startAdornment: focused || searchCritValue ? <SearchIcon /> : undefined,
-              endAdornment: (
-                <Stack direction="row" alignItems="center" mr={-1}>
-                  {searchCritValue ? (
-                    <IconButton size="small" onClick={handleReset}>
-                      <CloseIcon />
-                    </IconButton>
-                  ) : null}
-                  <InventoryAdvanceSearchInfo />
-                </Stack>
-              ),
-            }}
-            error={!!error || hasError}
-          />
+        <TabPanel value="advance" sx={{ p: 0, pt: 1 }}>
+          <InventoryAdvanceSearchTextField hasError={hasError} />
         </TabPanel>
       </TabContext>
       <Collapse in={!!error || hasError}>

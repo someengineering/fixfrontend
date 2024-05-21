@@ -61,12 +61,7 @@ const InventoryFormValueOp = ({ onChange, op, defaultOp, fqn }: InventoryFormVal
     return result
   }, [fqn])
 
-  const value =
-    op && currentOpTypes.includes(op)
-      ? op
-      : currentOpTypes.includes(defaultOp as OPType)
-        ? defaultOp ?? currentOpTypes[0]
-        : currentOpTypes[0]
+  const value = op ?? defaultOp ?? currentOpTypes[0]
 
   useEffect(() => {
     if (value !== op && currentOpTypes.indexOf(value)) {

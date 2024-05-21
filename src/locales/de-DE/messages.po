@@ -116,7 +116,7 @@ msgstr "<0>Datenschutzerklärung</0> | <1>Allgemeine Geschäftsbedingungen</1>"
 msgid "<0>Step 1: Scan the QR Code</0><1>First up, see this QR code on your screen? Grab your phone and open your favorite authenticator app (like Google Authenticator).</1><2>Step 2: Add a New Account</2><3>In the app, tap on \"Add\" or \"+\" to set up a new account. Select \"Scan a QR Code\" and point your phone's camera at the QR code displayed here. This will link your account to the app.</3><4><5/></4><6>Step 3: Enter the Code</6><7>Once linked, the app will display a 6-digit code. It changes every 30 seconds, so it's super fresh! Enter that code in the box below and hit \"Activate\". And voilà, you're all set!</7>"
 msgstr "<0>Schritt 1: Scannen Sie den QR-Code</0><1>Zuerst, sehen Sie diesen QR-Code auf Ihrem Bildschirm? Nehmen Sie Ihr Handy und öffnen Sie Ihre bevorzugte Authenticator-App (wie Google Authenticator).</1><2>Schritt 2: Ein neues Konto hinzufügen</2><3>In der App, tippen Sie auf \"Hinzufügen\" oder \"+\", um ein neues Konto einzurichten. Wählen Sie \"QR-Code scannen\" und richten Sie die Kamera Ihres Handys auf den hier angezeigten QR-Code. Dies verknüpft Ihr Konto mit der App.</3><4><5/></4><6>Schritt 3: Geben Sie den Code ein</6><7>Sobald verknüpft, zeigt die App einen 6-stelligen Code an. Er ändert sich alle 30 Sekunden, also ist er super aktuell! Geben Sie diesen Code in das Feld unten ein und klicken Sie auf \"Aktivieren\". Und voilà, Sie sind fertig!</7>"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:112
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:47
 msgid "<0>This search is complex.</0>The combo boxes below may not display all filter details but can help narrow your results. For full control, please use the Advanced tab."
 msgstr ""
 
@@ -225,7 +225,7 @@ msgstr "Verzeichnis hinzufügen"
 msgid "Add external directory"
 msgstr "Externes Verzeichnis hinzufügen"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:63
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:64
 msgid "Add Filter"
 msgstr ""
 
@@ -243,11 +243,11 @@ msgstr "Konten hinzugefügt"
 msgid "Admin"
 msgstr "Admin"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:136
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:71
 msgid "Advanced"
 msgstr ""
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:161
+#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:78
 msgid "Advanced search query"
 msgstr "Erweiterte Suchabfrage"
 
@@ -416,8 +416,8 @@ msgid "Cancel"
 msgstr "Stornieren"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:213
-#: src/pages/panel/inventory/inventory-form/InventoryFormMoreValue.tsx:163
-#: src/pages/panel/inventory/inventory-form/InventoryFormTagsValue.tsx:150
+#: src/pages/panel/inventory/inventory-form/InventoryFormMoreValue.tsx:125
+#: src/pages/panel/inventory/inventory-form/InventoryFormTagsValue.tsx:112
 msgid "Change"
 msgstr ""
 
@@ -456,7 +456,7 @@ msgid "Close"
 msgstr "Schließen"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormCloudValues.tsx:43
-#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:89
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:96
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:222
 #: src/pages/panel/security/AccountCard.tsx:37
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:421
@@ -866,8 +866,8 @@ msgstr "Passwort vergessen? Klicken Sie hier, um Ihr Passwort zurückzusetzen."
 msgid "Forgot Password"
 msgstr "Passwort vergessen"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:124
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:127
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:59
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:62
 msgid "Form"
 msgstr ""
 
@@ -990,7 +990,7 @@ msgid "Integration Key"
 msgstr "Integrationsschlüssel"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:333
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:244
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:263
 msgid "Invalid Value"
 msgstr "Ungültiger Wert"
 
@@ -1235,7 +1235,7 @@ msgstr "Einmal"
 msgid "Oops, the username or password doesn't seem to match our records. Please try again."
 msgstr "Hoppla, der Benutzername oder das Passwort scheinen nicht mit unseren Aufzeichnungen übereinzustimmen. Bitte versuche es erneut."
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:192
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:93
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Sie sie und versuchen Sie es erneut."
 
@@ -1392,7 +1392,7 @@ msgstr ""
 msgid "Profile"
 msgstr "Profil"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:92
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:99
 msgid "Properties"
 msgstr ""
 
@@ -1433,7 +1433,7 @@ msgstr "Wiederherstellungscodes"
 msgid "Regenerate"
 msgstr "Regenerieren"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:90
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:97
 #: src/pages/panel/inventory/inventory-form/InventoryFormRegionValues.tsx:41
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:227
 msgid "Region"
@@ -1613,7 +1613,7 @@ msgstr "Abonnement erfolgreich zu {0} hinzugefügt"
 msgid "Successfully invited {email}"
 msgstr "{email} erfolgreich eingeladen"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:91
+#: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:98
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:292
 msgid "Tags"
 msgstr "Stichworte"
@@ -1724,9 +1724,9 @@ msgstr "Nicht angehängte elastische IPs"
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:71
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:132
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:151
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:249
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:293
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:300
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:268
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:313
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:320
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:149
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:154
 #: src/pages/panel/inventory/InventoryTable.tsx:134

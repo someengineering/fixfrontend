@@ -30,7 +30,6 @@ export const InventoryFormField = ({
         onClick={onClick}
         component={onClick ? Button : 'div'}
         variant={onClick ? 'outlined' : undefined}
-        boxShadow={4}
         direction="row"
         pr={hasValue || forceShowClearButton ? '4px !important' : undefined}
         spacing={0.5}

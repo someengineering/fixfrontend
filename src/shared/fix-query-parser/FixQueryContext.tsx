@@ -103,7 +103,7 @@ export const FixQueryProvider = memo(
       updateQuery: (q: string) => {
         if (query.toString() !== (q || 'all')) {
           const newQuery = Query.parse(q || 'all')
-          const result = query.toString()
+          const result = newQuery.toString()
           onChange(result)
           return newQuery
         } else {

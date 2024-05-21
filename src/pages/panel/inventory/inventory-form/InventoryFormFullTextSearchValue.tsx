@@ -30,7 +30,7 @@ export const InventoryFormFullTextSearchValue = ({ onChange, fullTextSearch }: I
 
   return (
     <Stack gap={1} width={focused ? 270 : value ? 190 : 170} sx={{ transition: ({ transitions: { create } }) => create('width') }}>
-      <Box boxShadow={4} borderRadius={1} height={42}>
+      <Box borderRadius={1} height={42}>
         <TextField
           fullWidth
           focused={focused}

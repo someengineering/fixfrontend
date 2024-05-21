@@ -1,5 +1,5 @@
 import { AutocompleteRenderOptionState, ListItemButton, Tooltip, Typography, TypographyProps, useMediaQuery, useTheme } from '@mui/material'
-import { HTMLAttributes, ReactElement, ReactNode, forwardRef } from 'react'
+import { HTMLAttributes, Key, ReactElement, ReactNode, forwardRef } from 'react'
 import { ListChildComponentProps, VariableSizeList } from 'react-window'
 import { useNonce } from 'src/shared/providers'
 import { OuterElementContext } from './helper/OuterElementContext'
@@ -8,14 +8,14 @@ import { useResetCache } from './helper/useResetCache'
 
 const LIST_BOX_PADDING = 16
 
-type DataItemType = [HTMLAttributes<HTMLLIElement>, ReactNode, AutocompleteRenderOptionState, TypographyProps | undefined]
+type DataItemType = [HTMLAttributes<HTMLLIElement> & { key: Key }, ReactNode, AutocompleteRenderOptionState, TypographyProps | undefined]
 
 function RenderRow({
   data,
   index,
   style: { background: _background, backgroundColor: _backgroundColor, ...style },
 }: ListChildComponentProps) {
-  const [props, option, { inputValue: _state, ...state }, typographyProps] = (data as DataItemType[])[index]
+  const [{ key, ...props }, option, { inputValue: _state, ...state }, typographyProps] = (data as DataItemType[])[index]
   const nonce = useNonce()
 
   const inlineStyle = {
@@ -25,7 +25,7 @@ function RenderRow({
 
   return (
     <Tooltip title={option} arrow enterDelay={400} enterNextDelay={400}>
-      <ListItemButton component="li" {...props} {...state} style={inlineStyle} nonce={nonce}>
+      <ListItemButton key={key} component="li" {...props} {...state} style={inlineStyle} nonce={nonce}>
         <Typography noWrap {...typographyProps}>
           {option}
         </Typography>

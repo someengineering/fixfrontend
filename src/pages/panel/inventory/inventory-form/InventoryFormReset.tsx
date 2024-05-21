@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
-import { IconButton, Stack, Tooltip } from '@mui/material'
+import { IconButton, Stack, Tooltip, alpha } from '@mui/material'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 
 export const InventoryFormReset = () => {
@@ -8,8 +8,12 @@ export const InventoryFormReset = () => {
   return q && q !== 'all' ? (
     <Stack order={1} alignSelf="stretch" alignItems="end" flexGrow={1}>
       <Tooltip title={t`Clear the search`}>
-        <IconButton onClick={reset} color="info" sx={{ height: 42, boxShadow: 4 }}>
-          <HighlightOffIcon />
+        <IconButton
+          onClick={reset}
+          color="info"
+          sx={{ boxShadow: 0, borderColor: ({ palette }) => alpha(palette.info.main, 0.5), borderStyle: 'solid', borderWidth: 1 }}
+        >
+          <HighlightOffIcon fontSize="small" />
         </IconButton>
       </Tooltip>
     </Stack>
