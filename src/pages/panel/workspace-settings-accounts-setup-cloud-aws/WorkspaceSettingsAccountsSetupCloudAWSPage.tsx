@@ -16,7 +16,7 @@ import { SetupTemplateButton } from './SetupTemplateButton'
 import { SetupTemplateButtonSkeleton } from './SetupTemplateButton.skeleton'
 import { WorkspaceId } from './WorkspaceId'
 
-export default function SetupCloud() {
+export default function WorkspaceSettingsAccountsSetupCloudAWSPage() {
   const { addListener } = useEvents()
   const navigate = useAbsoluteNavigate()
   const hasBenchmark = useHasBenchmarkCheck()

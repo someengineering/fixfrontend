@@ -278,13 +278,17 @@ msgstr "All security issues fixed"
 msgid "Already have an account? Click here to Log in."
 msgstr "Already have an account? Click here to Log in."
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:109
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:109
 msgid "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
 msgstr "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:104
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:104
 msgid "Alternatively: Manual Cloud Setup"
 msgstr "Alternatively: Manual Cloud Setup"
+
+#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:16
+msgid "Amazon Web Services"
+msgstr "Amazon Web Services"
 
 #: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:77
 msgid "An email has been sent to your inbox with a 'Reset Password' button. Please check your email and click on it to reset your password."
@@ -335,7 +339,7 @@ msgstr "Are you sure?"
 msgid "Asset inventory"
 msgstr "Asset inventory"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:39
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:39
 #: src/shared/tabs/Tabs.tsx:43
 msgid "Automatic Cloud Setup"
 msgstr "Automatic Cloud Setup"
@@ -373,7 +377,7 @@ msgstr "Benchmarks"
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:49
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:48
 #: src/shared/layouts/panel-layout/menuList.tsx:81
-#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:20
+#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:24
 msgid "Billing"
 msgstr "Billing"
 
@@ -550,14 +554,14 @@ msgstr "Connected Accounts"
 msgid "Connected Services"
 msgstr "Connected Services"
 
-#: src/pages/panel/setup-cloud/WorkspaceId.tsx:16
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceId.tsx:16
 #: src/shared/utils/useCopyString.ts:18
 msgid "Copied to Clipboard!"
 msgstr "Copied to Clipboard!"
 
-#: src/pages/panel/setup-cloud/ExternalId.tsx:56
-#: src/pages/panel/setup-cloud/WorkspaceId.tsx:46
 #: src/pages/panel/user-settings/UserSettingsTotpShowSecret.tsx:49
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/ExternalId.tsx:56
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceId.tsx:46
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:48
 msgid "Copy"
 msgstr "Copy"
@@ -657,11 +661,11 @@ msgstr "Delete Provider"
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:68
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:68
 msgid "Deploy to a single account"
 msgstr "Deploy to a single account"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:86
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:86
 msgid "Deploy to organization"
 msgstr "Deploy to organization"
 
@@ -792,11 +796,11 @@ msgstr "Expires"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:10
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:14
-#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:22
+#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:26
 msgid "External Directories"
 msgstr "External Directories"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:128
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:128
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:56
 msgid "External Id"
 msgstr "External Id"
@@ -883,6 +887,10 @@ msgstr "Full-text search"
 msgid "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
 msgstr "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
 
+#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:18
+msgid "Google Cloud Platform"
+msgstr "Google Cloud Platform"
+
 #: src/shared/defined-messages/getMessage.ts:8
 msgid "High"
 msgstr "High"
@@ -961,7 +969,7 @@ msgstr "Ignored"
 msgid "Improved"
 msgstr "Improved"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:42
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:42
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 
@@ -1062,7 +1070,7 @@ msgstr "Low"
 msgid "Low Utilization Compute Instances and Databases"
 msgstr "Low Utilization Compute Instances and Databases"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:47
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:47
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 
@@ -1328,7 +1336,7 @@ msgstr "Payment method to add"
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:25
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:41
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:31
-#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:18
+#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:22
 msgid "Pending Invitations"
 msgstr "Pending Invitations"
 
@@ -1639,7 +1647,7 @@ msgstr "The OTP or recovery code you entered is incorrect or the OTP has expired
 msgid "The selected resource does not exist anymore."
 msgstr "The selected resource does not exist anymore."
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:117
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:117
 msgid "The Stack requires the following parameters"
 msgstr "The Stack requires the following parameters"
 
@@ -1659,7 +1667,7 @@ msgstr "This account is currently in a degraded state possibly due to a misconfi
 msgid "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 msgstr "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:95
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:95
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 
@@ -1773,7 +1781,7 @@ msgstr "User Settings Notification"
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:27
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:45
 #: src/shared/layouts/panel-layout/menuList.tsx:76
-#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:16
+#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:20
 msgid "Users"
 msgstr "Users"
 
@@ -1822,7 +1830,7 @@ msgstr "Workspace Alerting Settings"
 msgid "Workspace analytics (coming soon!)"
 msgstr "Workspace analytics (coming soon!)"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:146
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:146
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:47
 msgid "Workspace Id"
 msgstr "Workspace Id"
