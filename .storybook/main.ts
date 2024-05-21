@@ -4,7 +4,15 @@ const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
   typescript: {
-    reactDocgen: 'react-docgen', // 👈 react-docgen configured here.
+    reactDocgen: 'react-docgen-typescript', // 👈 react-docgen configured here.
+    reactDocgenTypescriptOptions: {
+      // Makes union prop types like variant and size appear as select controls
+      shouldExtractLiteralValuesFromEnum: true,
+      // Makes string and boolean types that can be undefined appear as inputs and switches
+      shouldRemoveUndefinedFromOptional: true,
+      // Filter out third-party props from node_modules except @mui packages
+      propFilter: (prop: { parent?: { fileName: string } }) => (prop.parent ? !/node_modules\/(?!@mui)/.test(prop.parent.fileName) : true),
+    },
   },
   framework: {
     name: '@storybook/react-vite',
@@ -17,9 +25,7 @@ const config: StorybookConfig = {
   env: {
     VITE_USE_MOCK: 'true',
   },
-  docs: {
-    autodocs: 'tag',
-  },
+  docs: {},
   core: {
     disableTelemetry: true,
   },
