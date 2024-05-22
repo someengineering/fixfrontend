@@ -27,7 +27,7 @@ export default function SetupCloud() {
 
   useEffect(() => {
     return addListener('event-button', (ev) => {
-      if (ev.kind === 'aws_account_discovered') {
+      if (ev.kind === 'aws_account_discovered' || ev.kind === 'cloud_account_discovered') {
         navigate(hasBenchmark ? '/accounts' : '/security')
       }
     })
