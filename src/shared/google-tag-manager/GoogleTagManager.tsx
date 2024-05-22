@@ -8,7 +8,6 @@ import { userId } from './setGTMConfig'
 declare global {
   interface Window {
     dataLayer: unknown[] | undefined
-    [key: string]: unknown
   }
 }
 
@@ -37,7 +36,7 @@ export const GTMContextDispatch = createContext<((data: DataEventTypes) => void)
 
 function dataReducer(state: SnippetsParams, data: DataEventTypes) {
   data.user_id = userId
-  sendToGTM({ data, dataLayerName: state?.dataLayerName ?? '' })
+  sendToGTM({ data, dataLayerName: (state?.dataLayerName as keyof Window) ?? '' })
   return state
 }
 

@@ -16,6 +16,11 @@ if (nonceEl) {
   nonceEl = undefined
 }
 
+if (window._load_page_timeout) {
+  window.clearTimeout(window._load_page_timeout)
+  delete window._load_page_timeout
+}
+
 const root = ReactDOM.createRoot(window.document.getElementById('root') as HTMLElement)
 root.render(<App nonce={nonce} />)
 

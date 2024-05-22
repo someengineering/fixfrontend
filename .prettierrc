@@ -1,14 +1,14 @@
 {
-    "singleQuote": true,
-    "printWidth": 140,
-    "semi": false,
-    "overrides": [
-        {
-            "files": "**/*.json",
-            "options": {
-                "trailingComma": "none"
-            }
-        }
-    ],
-    "plugins": ["prettier-plugin-organize-imports"]
+  "singleQuote": true,
+  "printWidth": 140,
+  "semi": false,
+  "overrides": [
+    {
+      "files": "**/*.json",
+      "options": {
+        "trailingComma": "none"
+      }
+    }
+  ],
+  "plugins": ["prettier-plugin-organize-imports"]
 }

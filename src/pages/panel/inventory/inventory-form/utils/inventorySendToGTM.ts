@@ -4,7 +4,6 @@ import { sendToGTM } from 'src/shared/google-tag-manager'
 import { isAuthenticated } from 'src/shared/utils/cookie'
 import { jsonToStr } from 'src/shared/utils/jsonToStr'
 import { getAuthData } from 'src/shared/utils/localstorage'
-import { TrackJS } from 'trackjs'
 
 type queryFnStr =
   | 'getWorkspaceInventorySearchStartQuery'
@@ -38,8 +37,8 @@ const queryFnStrToApi = (queryFn: queryFnStr, workspaceId: string, id?: string) 
 }
 
 export const inventorySendToGTM = (queryFn: queryFnStr, isAdvanceSearch: boolean, error: AxiosError, params: unknown, id?: string) => {
-  if (TrackJS.isInstalled()) {
-    TrackJS.track(error)
+  if (window.TrackJS?.isInstalled()) {
+    window.TrackJS.track(error)
   }
   const { message, name, response, stack, status } = error
   const authorized = isAuthenticated()

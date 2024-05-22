@@ -28,6 +28,7 @@ const env = {
   gtmId: undefined as string | undefined,
   aws_marketplace_url: undefined as string | undefined,
   muiLicenseKey: import.meta.env.VITE_MUI_LICENSE_KEY,
+  loadPageTimeout: envToNumber(import.meta.env.VITE_LOAD_PAGE_TIMEOUT) ?? 30_000,
 }
 
 export { env }

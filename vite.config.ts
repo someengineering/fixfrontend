@@ -1,6 +1,6 @@
 import { lingui } from '@lingui/vite-plugin'
 import react from '@vitejs/plugin-react-swc'
-import path from 'path'
+import { resolve } from 'path'
 import { PluginOption, ProxyOptions, defineConfig, loadEnv } from 'vite'
 import mockDevServerPlugin from 'vite-plugin-mock-dev-server'
 import svgr from 'vite-plugin-svgr'
@@ -67,7 +67,7 @@ export default defineConfig(({ mode }) => {
     server: serverOptions,
     preview: serverOptions,
     resolve: {
-      alias: [{ find: 'src', replacement: path.resolve(__dirname, 'src') }],
+      alias: [{ find: 'src', replacement: resolve(__dirname, 'src') }],
     },
   }
 })
