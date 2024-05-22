@@ -1,9 +1,9 @@
-// eslint-disable-next-line prettier/prettier, @typescript-eslint/no-unused-vars
 import { TrackJS } from 'trackjs'
 
 declare global {
   interface Window {
     _load_page_timeout: number | undefined
+    TrackJS: typeof TrackJS | undefined
   }
 }
 
