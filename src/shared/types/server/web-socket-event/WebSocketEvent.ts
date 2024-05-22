@@ -6,21 +6,27 @@ interface WebSocketGenericEvent<Kind extends WebSocketEventKind, Data extends ob
   data: Data
 }
 
+type CloudAccountType = 'aws' | 'gcp'
+
+// TODO: remove aws specific events
 type WebSocketEventKind =
-  | 'aws_account_discovered'
+  | 'cloud_account_configured'
   | 'aws_account_configured'
+  | 'cloud_account_deleted'
   | 'aws_account_deleted'
+  | 'aws_account_discovered'
   | 'aws_account_degraded'
   | 'collect-progress'
   | 'collect-error'
   | 'tenant_accounts_collected'
 
-export type AWSAccountDiscoveredEvent = WebSocketGenericEvent<
-  'aws_account_discovered',
+export type CloudAccountConfiguredEvent = WebSocketGenericEvent<
+  'cloud_account_configured',
   {
+    cloud: CloudAccountType
     cloud_account_id: string
     workspace_id: string
-    aws_account_id: string
+    account_id: string
   }
 >
 
@@ -33,8 +39,27 @@ export type AWSAccountConfiguredEvent = WebSocketGenericEvent<
   }
 >
 
+export type CloudAccountDeletedEvent = WebSocketGenericEvent<
+  'cloud_account_deleted',
+  {
+    cloud: CloudAccountType
+    cloud_account_id: string
+    workspace_id: string
+    account_id: string
+  }
+>
+
 export type AWSAccountDeletedEvent = WebSocketGenericEvent<
   'aws_account_deleted',
+  {
+    cloud_account_id: string
+    workspace_id: string
+    aws_account_id: string
+  }
+>
+
+export type AWSAccountDiscoveredEvent = WebSocketGenericEvent<
+  'aws_account_discovered',
   {
     cloud_account_id: string
     workspace_id: string
@@ -98,7 +123,9 @@ export type CollectErrorEvent = WebSocketGenericEvent<
 >
 
 export type WebSocketEvent =
+  | CloudAccountConfiguredEvent
   | AWSAccountConfiguredEvent
+  | CloudAccountDeletedEvent
   | AWSAccountDegradedEvent
   | AWSAccountDeletedEvent
   | AWSAccountDiscoveredEvent
