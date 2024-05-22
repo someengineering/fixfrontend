@@ -14,7 +14,16 @@ const meta = {
       at: { control: 'date' },
       id: { control: 'text' },
       kind: {
-        options: ['aws_account_discovered', 'aws_account_configured', 'aws_account_deleted', 'aws_account_degraded'],
+        options: [
+          'cloud_account_discovered',
+          'aws_account_discovered',
+          'cloud_account_configured',
+          'aws_account_configured',
+          'cloud_account_deleted',
+          'aws_account_deleted',
+          'cloud_account_degraded',
+          'aws_account_degraded',
+        ],
       },
       publisher: { control: 'text' },
       data: {

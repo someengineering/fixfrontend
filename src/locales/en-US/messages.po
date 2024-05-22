@@ -59,6 +59,21 @@ msgstr "{0} checks failed."
 msgid "{0} checks fixed."
 msgstr "{0} checks fixed."
 
+#: src/shared/event-button/EventButton.tsx:57
+#: src/shared/event-button/EventButton.tsx:63
+msgid "{0} Cloud account configured, id: {1}"
+msgstr "{0} Cloud account configured, id: {1}"
+
+#: src/shared/event-button/EventButton.tsx:69
+#: src/shared/event-button/EventButton.tsx:75
+msgid "{0} Cloud account degraded, id: {1}"
+msgstr "{0} Cloud account degraded, id: {1}"
+
+#: src/shared/event-button/EventButton.tsx:81
+#: src/shared/event-button/EventButton.tsx:87
+msgid "{0} Cloud account discovered, id: {1}"
+msgstr "{0} Cloud account discovered, id: {1}"
+
 #: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:63
 msgid "{0} cloud accounts included"
 msgstr "{0} cloud accounts included"
@@ -464,18 +479,6 @@ msgstr "Close"
 msgid "Cloud"
 msgstr "Cloud"
 
-#: src/shared/event-button/EventButton.tsx:57
-msgid "Cloud account configured, id: {0}"
-msgstr "Cloud account configured, id: {0}"
-
-#: src/shared/event-button/EventButton.tsx:63
-msgid "Cloud account degraded, id: {0}"
-msgstr "Cloud account degraded, id: {0}"
-
-#: src/shared/event-button/EventButton.tsx:69
-msgid "Cloud account discovered, id: {0}"
-msgstr "Cloud account discovered, id: {0}"
-
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:14
 msgid "Cloud Setup"
 msgstr "Cloud Setup"
@@ -765,7 +768,7 @@ msgstr "Engineers like to tag their temporary resources with the string \"delete
 msgid "Enterprise"
 msgstr "Enterprise"
 
-#: src/shared/event-button/EventButton.tsx:103
+#: src/shared/event-button/EventButton.tsx:121
 msgid "Events"
 msgstr "Events"
 

@@ -6,21 +6,29 @@ interface WebSocketGenericEvent<Kind extends WebSocketEventKind, Data extends ob
   data: Data
 }
 
+type CloudAccountType = 'aws' | 'gcp'
+
+// TODO: remove aws specific events
 type WebSocketEventKind =
-  | 'aws_account_discovered'
+  | 'cloud_account_configured'
   | 'aws_account_configured'
+  | 'cloud_account_deleted'
   | 'aws_account_deleted'
+  | 'cloud_account_discovered'
+  | 'aws_account_discovered'
+  | 'cloud_account_degraded'
   | 'aws_account_degraded'
   | 'collect-progress'
   | 'collect-error'
   | 'tenant_accounts_collected'
 
-export type AWSAccountDiscoveredEvent = WebSocketGenericEvent<
-  'aws_account_discovered',
+export type CloudAccountConfiguredEvent = WebSocketGenericEvent<
+  'cloud_account_configured',
   {
+    cloud: CloudAccountType
     cloud_account_id: string
     workspace_id: string
-    aws_account_id: string
+    account_id: string
   }
 >
 
@@ -33,12 +41,51 @@ export type AWSAccountConfiguredEvent = WebSocketGenericEvent<
   }
 >
 
+export type CloudAccountDeletedEvent = WebSocketGenericEvent<
+  'cloud_account_deleted',
+  {
+    cloud: CloudAccountType
+    cloud_account_id: string
+    workspace_id: string
+    account_id: string
+  }
+>
+
 export type AWSAccountDeletedEvent = WebSocketGenericEvent<
   'aws_account_deleted',
   {
     cloud_account_id: string
     workspace_id: string
     aws_account_id: string
+  }
+>
+
+export type CloudAccountDiscoveredEvent = WebSocketGenericEvent<
+  'cloud_account_discovered',
+  {
+    cloud: CloudAccountType
+    cloud_account_id: string
+    workspace_id: string
+    account_id: string
+  }
+>
+
+export type AWSAccountDiscoveredEvent = WebSocketGenericEvent<
+  'aws_account_discovered',
+  {
+    cloud_account_id: string
+    workspace_id: string
+    aws_account_id: string
+  }
+>
+
+export type CloudAccountDegradedEvent = WebSocketGenericEvent<
+  'cloud_account_degraded',
+  {
+    cloud: CloudAccountType
+    cloud_account_id: string
+    workspace_id: string
+    account_id: string
   }
 >
 
@@ -51,7 +98,7 @@ export type AWSAccountDegradedEvent = WebSocketGenericEvent<
   }
 >
 
-export type AWSTenantAccountCollectedEvent = WebSocketGenericEvent<
+export type TenantAccountCollectedEvent = WebSocketGenericEvent<
   'tenant_accounts_collected',
   {
     tenant_id: string
@@ -98,10 +145,14 @@ export type CollectErrorEvent = WebSocketGenericEvent<
 >
 
 export type WebSocketEvent =
+  | CloudAccountConfiguredEvent
   | AWSAccountConfiguredEvent
+  | CloudAccountDegradedEvent
   | AWSAccountDegradedEvent
+  | CloudAccountDeletedEvent
   | AWSAccountDeletedEvent
+  | CloudAccountDiscoveredEvent
   | AWSAccountDiscoveredEvent
-  | AWSTenantAccountCollectedEvent
+  | TenantAccountCollectedEvent
   | CollectProgressEvent
   | CollectErrorEvent
