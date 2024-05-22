@@ -13,8 +13,10 @@ const getSeverity = (kind: WebSocketEvent['kind']): AlertProps['severity'] => {
     case 'cloud_account_configured':
     case 'aws_account_configured':
       return 'success'
+    case 'cloud_account_degraded':
     case 'aws_account_degraded':
       return 'warning'
+    case 'cloud_account_discovered':
     case 'aws_account_discovered':
     case 'collect-progress':
       return 'info'
