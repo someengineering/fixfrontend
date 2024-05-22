@@ -7,7 +7,6 @@ import { sendToGTM } from 'src/shared/google-tag-manager'
 import { WebSocketEvent } from 'src/shared/types/server'
 import { isAuthenticated as getIsAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData } from 'src/shared/utils/localstorage'
-import { TrackJS } from 'trackjs'
 import { WebSocketEventsContext } from './WebSocketEventsContext'
 
 const WS_CLOSE_CODE_NO_RETRY = 4001
@@ -36,8 +35,8 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
           const message = JSON.parse(ev.data) as WebSocketEvent
           onMessage(message)
         } catch (err) {
-          if (TrackJS.isInstalled()) {
-            TrackJS.track(err as Error)
+          if (window.TrackJS?.isInstalled()) {
+            window.TrackJS.track(err as Error)
           }
           const { message, name, stack = 'unknown' } = err as Error
           const authorized = getIsAuthenticated()
@@ -79,8 +78,8 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
           messagesToSend.current.push({ message, resolve, reject })
         }
       } catch (err) {
-        if (TrackJS.isInstalled()) {
-          TrackJS.track(err as Error)
+        if (window.TrackJS?.isInstalled()) {
+          window.TrackJS.track(err as Error)
         }
         const { message, name, stack = 'unknown' } = err as Error
         const authorized = getIsAuthenticated()
@@ -107,8 +106,8 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
       const onClose = (ev: CloseEvent) => {
         if (ev.code !== 1000) {
           const err = new Error('Websocket connection closed')
-          if (TrackJS.isInstalled()) {
-            TrackJS.track(err)
+          if (window.TrackJS?.isInstalled()) {
+            window.TrackJS.track(err)
           }
           const { stack = 'unknown', name, message } = err
           const authorized = getIsAuthenticated()
@@ -149,8 +148,8 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
             websocket.current?.send(message)
             resolve(message)
           } catch (err) {
-            if (TrackJS.isInstalled()) {
-              TrackJS.track(err as Error)
+            if (window.TrackJS?.isInstalled()) {
+              window.TrackJS.track(err as Error)
             }
             const { message, name, stack = 'unknown' } = err as Error
             const authorized = getIsAuthenticated()
