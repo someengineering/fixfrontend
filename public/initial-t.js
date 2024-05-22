@@ -80,7 +80,7 @@
       }).observe(window.document, { childList: true, subtree: true })
     }
 
-    // if it's not install, install it
+    // if it's not installed, install it
     if (!window.TrackJS.isInstalled()) {
       window.TrackJS.install({
         token: token,
