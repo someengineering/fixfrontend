@@ -11,7 +11,6 @@ import { sendToGTM } from 'src/shared/google-tag-manager'
 import { isAuthenticated } from 'src/shared/utils/cookie'
 import { jsonToStr } from 'src/shared/utils/jsonToStr'
 import { getAuthData } from 'src/shared/utils/localstorage'
-import { TrackJS } from 'trackjs'
 
 const ModalContent = styled(Stack)(({ theme }) => ({
   position: 'absolute',
@@ -31,8 +30,8 @@ export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackPro
 
   useEffect(() => {
     if (!('isAxiosError' in error) || !(error as AxiosError).isAxiosError) {
-      if (TrackJS.isInstalled()) {
-        TrackJS.track(error as Error)
+      if (window.TrackJS?.isInstalled()) {
+        window.TrackJS.track(error as Error)
       }
       const { message, name, stack } = error as Error
       const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'

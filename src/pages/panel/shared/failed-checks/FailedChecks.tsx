@@ -172,6 +172,7 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, 
                       </Typography>
                     </Stack>
                   }
+                  arrow
                 >
                   <FailedCheckIgnoreButton ignored={ignored} {...ignoreProps} />
                 </Tooltip>

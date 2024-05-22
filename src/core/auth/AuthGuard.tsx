@@ -8,7 +8,6 @@ import { axiosWithAuth, defaultAxiosConfig, setAxiosWithAuth } from 'src/shared/
 import { clearAllCookies, isAuthenticated as isCookieAuthenticated } from 'src/shared/utils/cookie'
 import { jsonToStr } from 'src/shared/utils/jsonToStr'
 import { getAuthData as getPersistedAuthData, setAuthData as setPersistedAuthData } from 'src/shared/utils/localstorage'
-import { TrackJS } from 'trackjs'
 import { UserContext, UserContextRealValues, UserContextValue } from './UserContext'
 import { getCurrentUserQuery } from './getCurrentUser.query'
 import { Permissions, getPermissions, maxPermissionNumber } from './getPermissions'
@@ -143,8 +142,8 @@ export function AuthGuard({ children }: PropsWithChildren) {
         (request) => request,
         (error: AxiosError | Error) => {
           if ((error as AxiosError)?.code !== 'ERR_CANCELED') {
-            if (TrackJS.isInstalled()) {
-              TrackJS.track(error)
+            if (window.TrackJS?.isInstalled()) {
+              window.TrackJS.track(error)
             }
             const { message, name, stack = 'unknown' } = error ?? {}
             const authorized = isCookieAuthenticated()
@@ -167,8 +166,8 @@ export function AuthGuard({ children }: PropsWithChildren) {
             return handleLogout()
           }
           if ('isAxiosError' in error && error.isAxiosError && error.code !== 'ERR_CANCELED') {
-            if (TrackJS.isInstalled()) {
-              TrackJS.track(error)
+            if (window.TrackJS?.isInstalled()) {
+              window.TrackJS.track(error)
             }
             const { response, name, message, cause, status, stack, config, code } = error
             const request = error.request as unknown

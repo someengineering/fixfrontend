@@ -59,6 +59,21 @@ msgstr "{0} Prüfungen sind fehlgeschlagen."
 msgid "{0} checks fixed."
 msgstr "{0} Prüfungen behoben"
 
+#: src/shared/event-button/EventButton.tsx:57
+#: src/shared/event-button/EventButton.tsx:66
+msgid "{0} Cloud account configured, id: {1}"
+msgstr "{0} Cloud-Konto konfiguriert, ID: {1}"
+
+#: src/shared/event-button/EventButton.tsx:75
+#: src/shared/event-button/EventButton.tsx:84
+msgid "{0} Cloud account degraded, id: {1}"
+msgstr "{0} Cloud-Konto beeinträchtigt, ID: {1}"
+
+#: src/shared/event-button/EventButton.tsx:93
+#: src/shared/event-button/EventButton.tsx:99
+msgid "{0} Cloud account discovered, id: {1}"
+msgstr "{0} Cloud-Konto entdeckt, ID: {1}"
+
 #: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:63
 msgid "{0} cloud accounts included"
 msgstr "{0} Cloud-Konten enthalten"
@@ -243,7 +258,7 @@ msgstr "Konten hinzugefügt"
 msgid "Admin"
 msgstr "Admin"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:71
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:72
 msgid "Advanced"
 msgstr ""
 
@@ -356,7 +371,7 @@ msgstr "AWS Marketplace wurde erfolgreich abonniert"
 msgid "Basic Information"
 msgstr "Grundinformation"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:112
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:111
 msgid "Because the data is over {0} Only first {1} items will be downloaded"
 msgstr "Da die Daten über {0} liegen, werden nur die ersten {1} Elemente heruntergeladen"
 
@@ -468,18 +483,6 @@ msgstr "Schließen"
 msgid "Cloud"
 msgstr "Cloud"
 
-#: src/shared/event-button/EventButton.tsx:57
-msgid "Cloud account configured, id: {0}"
-msgstr "Cloud-Konto konfiguriert, ID: {0}"
-
-#: src/shared/event-button/EventButton.tsx:63
-msgid "Cloud account degraded, id: {0}"
-msgstr "Cloud-Konto beeinträchtigt, ID: {0}"
-
-#: src/shared/event-button/EventButton.tsx:69
-msgid "Cloud account discovered, id: {0}"
-msgstr "Cloud-Konto entdeckt, ID: {0}"
-
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:14
 msgid "Cloud Setup"
 msgstr "Cloud Setup"
@@ -555,7 +558,7 @@ msgid "Connected Services"
 msgstr "Vernetzte Dienste"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceId.tsx:16
-#: src/shared/utils/useCopyString.ts:18
+#: src/shared/utils/useCopyString.ts:17
 msgid "Copied to Clipboard!"
 msgstr "In die Zwischenablage kopiert!"
 
@@ -716,8 +719,8 @@ msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 msgid "Downgrade"
 msgstr "Downgrade"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:105
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:124
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:104
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:126
 msgid "Download CSV"
 msgstr "CSV herunterladen"
 
@@ -769,7 +772,7 @@ msgstr "Engineers kennzeichnen ihre temporären Ressourcen gerne mit der Zeichen
 msgid "Enterprise"
 msgstr "Unternehmen"
 
-#: src/shared/event-button/EventButton.tsx:103
+#: src/shared/event-button/EventButton.tsx:135
 msgid "Events"
 msgstr "Veranstaltungen"
 
@@ -870,8 +873,8 @@ msgstr "Passwort vergessen? Klicken Sie hier, um Ihr Passwort zurückzusetzen."
 msgid "Forgot Password"
 msgstr "Passwort vergessen"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:59
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:62
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:60
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:63
 msgid "Form"
 msgstr ""
 
@@ -899,7 +902,7 @@ msgstr "Hoch"
 msgid "Highest product tier this billing cycle"
 msgstr ""
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:81
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:80
 msgid "Homepage"
 msgstr "Startseite"
 
@@ -1104,7 +1107,7 @@ msgstr "Monatliche"
 msgid "Monthly email report"
 msgstr "Monatlicher E-Mail-Bericht"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:186
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:187
 msgid "More info"
 msgstr "Mehr Info"
 
@@ -1243,11 +1246,11 @@ msgstr "Einmal"
 msgid "Oops, the username or password doesn't seem to match our records. Please try again."
 msgstr "Hoppla, der Benutzername oder das Passwort scheinen nicht mit unseren Aufzeichnungen übereinzustimmen. Bitte versuche es erneut."
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:93
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:94
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Sie sie und versuchen Sie es erneut."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:56
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:55
 msgid "Oops! Something went wrong."
 msgstr "Hoppla! Etwas ist schief gelaufen."
 
@@ -1311,7 +1314,7 @@ msgstr "Eigentümer"
 msgid "Password"
 msgstr "Passwort"
 
-#: src/core/events/WebSocketEvents.tsx:131
+#: src/core/events/WebSocketEvents.tsx:130
 msgid "Payment is required for your workspace, Please contact the workspace owner"
 msgstr ""
 
@@ -1567,7 +1570,7 @@ msgstr ""
 msgid "Severity"
 msgstr "Schwere"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:182
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:183
 msgid "Show resources"
 msgstr "Ressourcen anzeigen"
 
@@ -1715,7 +1718,7 @@ msgstr "TOTP-Setup"
 msgid "Trial"
 msgstr "Probezeit"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:97
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:96
 msgid "Try again"
 msgstr "Versuchen Sie es erneut"
 
@@ -1790,7 +1793,7 @@ msgstr "Benutzer"
 msgid "Value"
 msgstr "Wert"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:89
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:88
 msgid "Warning"
 msgstr "Warnung"
 
@@ -1802,7 +1805,7 @@ msgstr "Wir haben eine E-Mail mit einem Bestätigungslink an Ihre E-Mail-Adresse
 msgid "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 msgstr "Es tut uns leid, dass Sie herunterstufen, aber wir sind dankbar, Sie weiterhin in unserer kostenlosen Stufe zu haben. Wenn Ihnen etwas Bestimmtes fehlt, wenden Sie sich bitte direkt an mich, <0>lars@some.engineering</0>. Ich würde gerne von Ihnen hören und Ihnen so gut wie möglich helfen."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:59
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:58
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "Wir entschuldigen uns für die Unannehmlichkeiten. Unser Team wurde benachrichtigt und das Problem wird untersucht. Bitte versuchen Sie es in ein paar Minuten noch einmal. Wenn das Problem weiterhin besteht, können Sie uns gerne <0>auf Discord</0> kontaktieren. Danke für Ihre Geduld!"
 
@@ -1877,15 +1880,15 @@ msgstr "Sie können TOTP über den OTP-Code deaktivieren"
 msgid "You can deactivate TOTP via recovery code"
 msgstr "Sie können TOTP über den Wiederherstellungscode deaktivieren"
 
-#: src/core/events/WebSocketEvents.tsx:132
+#: src/core/events/WebSocketEvents.tsx:131
 msgid "You don't have access to this workspace"
 msgstr ""
 
-#: src/shared/disabled-with-permission/DisabledWithPermission.tsx:20
+#: src/shared/disabled-with-permission/DisabledWithPermission.tsx:29
 msgid "You don't have the permission to access this, contact the workspace owner for more information."
 msgstr ""
 
-#: src/shared/disabled-with-permission/DisabledWithPermission.tsx:21
+#: src/shared/disabled-with-permission/DisabledWithPermission.tsx:30
 msgid "You don't have the permission to change this, contact the workspace owner for more information."
 msgstr ""
 

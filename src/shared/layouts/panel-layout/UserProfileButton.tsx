@@ -10,19 +10,14 @@ import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
 
-export const WorkspaceMenuItem = ({
-  id,
-  name,
-  disabled,
-  error,
-  handleSelectWorkspace,
-}: {
+interface WorkspaceMenuItemProps {
   id: string
   name: string
-  disabled?: boolean
+  selectedWorkspace?: boolean
   error?: string
   handleSelectWorkspace: (id: string) => void
-}) => {
+}
+export const WorkspaceMenuItem = ({ id, name, selectedWorkspace, error, handleSelectWorkspace }: WorkspaceMenuItemProps) => {
   const menuItem = (
     <>
       <ListItemIcon>
@@ -34,7 +29,7 @@ export const WorkspaceMenuItem = ({
     </>
   )
   return error ? (
-    <Tooltip title={error} placement="left">
+    <Tooltip title={error} placement="left" arrow>
       <MenuItem sx={{ opacity: 0.4 }}>
         <Badge badgeContent={<WarningIcon fontSize="small" color="warning" />} anchorOrigin={{ horizontal: 'left', vertical: 'top' }}>
           {menuItem}
@@ -42,7 +37,12 @@ export const WorkspaceMenuItem = ({
       </MenuItem>
     </Tooltip>
   ) : (
-    <MenuItem onClick={() => handleSelectWorkspace(id)} disabled={disabled}>
+    <MenuItem
+      onClick={selectedWorkspace ? undefined : () => handleSelectWorkspace(id)}
+      selected={selectedWorkspace}
+      disabled={selectedWorkspace}
+      sx={selectedWorkspace ? { opacity: '1!important' } : undefined}
+    >
       {menuItem}
     </MenuItem>
   )
@@ -90,7 +90,7 @@ export const UserProfileButton = () => {
   return (
     <>
       {isPending ? <FullPageLoadingSuspenseFallback forceFullPage /> : null}
-      <Tooltip title={t`Profile`}>
+      <Tooltip title={t`Profile`} arrow>
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} color="primary">
           <Avatar alt={selectedWorkspace?.slug} sx={{ bgcolor: 'primary.main' }} />
         </IconButton>
@@ -140,7 +140,7 @@ export const UserProfileButton = () => {
               id={id}
               handleSelectWorkspace={handleSelectWorkspace}
               name={name}
-              disabled={selectedWorkspace?.id === id}
+              selectedWorkspace={selectedWorkspace?.id === id}
               error={
                 permissions.includes('read') && user_has_access
                   ? undefined

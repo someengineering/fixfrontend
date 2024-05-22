@@ -93,6 +93,9 @@
         }
       }
     </style>
+    <script type="text/javascript" src="/t.min.js"></script>
+    <script nonce="{{ nonce }}" id="remove-me-t">window._T="%VITE_TRACKJS_TOKEN%";window._webapp_version="%VITE_VERSION%";window._load_page_timeout="%VITE_LOAD_PAGE_TIMEOUT%";</script>
+    <script type="text/javascript" src="/initial-t.js"></script>
     <script type="text/javascript" src="/particles.min.js"></script>
     <title>Fix by Some Engineering Inc.</title>
   </head>
@@ -155,5 +158,6 @@
       </script>
     </div>
     <script type="module" src="/src/Main.tsx"></script>
+    <script nonce="{{ nonce }}"></script>
   </body>
 </html>

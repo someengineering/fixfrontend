@@ -127,7 +127,7 @@ export const WorkspaceSettingsFormItem = ({
           {buttonName}
         </LoadingButton>
       ) : (
-        <DisabledWithPermission hasPermission={hasUpdateSettingsPermission}>
+        <DisabledWithPermission hasPermission={hasUpdateSettingsPermission} placement="right">
           <LoadingButton
             variant="contained"
             type={readonly ? 'button' : 'submit'}
