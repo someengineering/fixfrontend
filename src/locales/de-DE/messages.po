@@ -60,17 +60,17 @@ msgid "{0} checks fixed."
 msgstr "{0} Prüfungen behoben"
 
 #: src/shared/event-button/EventButton.tsx:57
-#: src/shared/event-button/EventButton.tsx:63
+#: src/shared/event-button/EventButton.tsx:66
 msgid "{0} Cloud account configured, id: {1}"
 msgstr "{0} Cloud-Konto konfiguriert, ID: {1}"
 
-#: src/shared/event-button/EventButton.tsx:69
 #: src/shared/event-button/EventButton.tsx:75
+#: src/shared/event-button/EventButton.tsx:84
 msgid "{0} Cloud account degraded, id: {1}"
 msgstr "{0} Cloud-Konto beeinträchtigt, ID: {1}"
 
-#: src/shared/event-button/EventButton.tsx:81
-#: src/shared/event-button/EventButton.tsx:87
+#: src/shared/event-button/EventButton.tsx:93
+#: src/shared/event-button/EventButton.tsx:99
 msgid "{0} Cloud account discovered, id: {1}"
 msgstr "{0} Cloud-Konto entdeckt, ID: {1}"
 
@@ -768,7 +768,7 @@ msgstr "Engineers kennzeichnen ihre temporären Ressourcen gerne mit der Zeichen
 msgid "Enterprise"
 msgstr "Unternehmen"
 
-#: src/shared/event-button/EventButton.tsx:121
+#: src/shared/event-button/EventButton.tsx:135
 msgid "Events"
 msgstr "Veranstaltungen"
 
