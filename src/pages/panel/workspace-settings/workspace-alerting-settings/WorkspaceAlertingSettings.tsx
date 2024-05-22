@@ -179,7 +179,7 @@ export const WorkspaceAlertingSettings = () => {
             <TableRow key={i}>
               <TableCell>{snakeCaseWordsToUFStr(benchmark)}</TableCell>
               <TableCell>
-                <DisabledWithPermission hasPermission={hasPermission} sx={{ width: '100%' }}>
+                <DisabledWithPermission hasPermission={hasPermission} sx={{ width: '100%' }} placement="left">
                   <Autocomplete
                     options={severityOptions}
                     disabled={isPending || !hasPermission}

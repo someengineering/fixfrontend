@@ -15,7 +15,7 @@ const AccountCardContainer = styled(Card, { shouldForwardProp })<{ score?: numbe
 
 const CardText = (props: Omit<TypographyProps, 'whiteSpace' | 'textOverflow' | 'overflow' | 'width'>) => {
   return (
-    <Tooltip title={props.children}>
+    <Tooltip title={props.children} arrow>
       <Typography {...props} whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden" width="100%" />
     </Tooltip>
   )

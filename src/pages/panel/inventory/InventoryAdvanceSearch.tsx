@@ -51,6 +51,7 @@ export const InventoryAdvanceSearch = ({ hasError, hasChanges }: InventoryAdvanc
                             </Trans>
                           </Alert>
                         }
+                        arrow
                       >
                         <InfoIcon color="info" />
                       </Tooltip>
