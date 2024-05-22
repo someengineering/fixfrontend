@@ -88,12 +88,6 @@
         application: 'fix',
         console: { display: false },
         onError: function (payload) {
-          payload.network = payload.network.filter(function (item) {
-            if (item.url.indexOf('posthog.com') === -1) {
-              sendOrQueueError(payload)
-            }
-            return false
-          })
           sendOrQueueError(payload)
           return false
         },
