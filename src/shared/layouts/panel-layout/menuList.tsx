@@ -80,6 +80,7 @@ export const bottomMenuList: MenuListItem[] = [
         Icon: ReceiptIcon,
         name: <Trans>Billing</Trans>,
         route: '/workspace-settings/billing-receipts',
+        hideOnGuard: true,
         useGuard: () => usePermissionCheck('readBilling'),
       },
       // {
