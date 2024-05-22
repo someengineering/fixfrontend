@@ -99,16 +99,16 @@ const DrawerMenuItem = ({
           onClick={handleClick}
           disabled={!show}
         >
-          <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center' }}>
-            <Icon />
-          </ListItemIcon>
-          <Tooltip title={name} enterNextDelay={panelUI.fastTooltipDelay} enterDelay={panelUI.fastTooltipDelay}>
-            <ListItemText
-              primary={name}
-              sx={{ opacity: open ? 1 : 0 }}
-              primaryTypographyProps={{ overflow: 'hidden', textOverflow: 'ellipsis' }}
-            />
+          <Tooltip title={name} enterNextDelay={panelUI.fastTooltipDelay} enterDelay={panelUI.fastTooltipDelay} arrow placement="right">
+            <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center' }}>
+              <Icon />
+            </ListItemIcon>
           </Tooltip>
+          <ListItemText
+            primary={name}
+            sx={{ opacity: open ? 1 : 0 }}
+            primaryTypographyProps={{ overflow: 'hidden', textOverflow: 'ellipsis' }}
+          />
           {children ? (
             <IconButton
               size="small"

@@ -38,7 +38,7 @@ export const LanguageButton = ({ iconButtonProps, whiteMode, menuProps }: Langua
 
   return (
     <Box display="flex" alignItems="center" justifyContent="center" mt="0 !important">
-      <Tooltip title={t`Select Language`}>
+      <Tooltip title={t`Select Language`} arrow>
         <LanguageIconButton whiteMode={whiteMode ?? false} size="large" {...(iconButtonProps ?? {})} onClick={handleOpenUserMenu}>
           <LanguageIcon fontSize="large" />
         </LanguageIconButton>

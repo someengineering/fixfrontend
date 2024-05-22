@@ -61,7 +61,7 @@ export const InventoryFormMore = ({ preItems }: { preItems: AutoCompletePreDefin
   return (
     <>
       <Stack height="auto" justifyContent="center" position="relative">
-        <Tooltip title={t`Add Filter`}>
+        <Tooltip title={t`Add Filter`} arrow>
           <IconButton
             color="success"
             aria-label="add"

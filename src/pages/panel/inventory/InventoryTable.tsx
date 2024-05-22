@@ -131,15 +131,15 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
               renderCell: (params) =>
                 params.colDef?.type === 'boolean' ? (
                   params.value === null || params.value === undefined || params.value === 'null' ? (
-                    <Tooltip title={t`Undefined`}>
+                    <Tooltip title={t`Undefined`} arrow>
                       <QuestionMarkIcon fontSize="small" />
                     </Tooltip>
                   ) : params.value && params.value !== 'false' ? (
-                    <Tooltip title={t`Yes`}>
+                    <Tooltip title={t`Yes`} arrow>
                       <CheckIcon fontSize="small" />
                     </Tooltip>
                   ) : (
-                    <Tooltip title={t`No`}>
+                    <Tooltip title={t`No`} arrow>
                       <CloseIcon fontSize="small" />
                     </Tooltip>
                   )
@@ -152,6 +152,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
                       {value.colDef?.headerName ?? value.colDef?.field ?? ''}
                     </Typography>
                   }
+                  arrow
                 >
                   <Stack
                     whiteSpace="nowrap"

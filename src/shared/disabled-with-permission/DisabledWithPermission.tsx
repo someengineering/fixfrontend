@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro'
 import WarningIcon from '@mui/icons-material/Warning'
-import { Badge, BadgeProps, Tooltip, TooltipProps } from '@mui/material'
+import { Badge, BadgeProps, Theme, Tooltip, TooltipProps, useMediaQuery } from '@mui/material'
 import { PropsWithChildren, ReactNode } from 'react'
 
 interface DisabledWithPermissionProps extends PropsWithChildren<Omit<TooltipProps, 'title' | 'children'>> {
@@ -10,7 +10,16 @@ interface DisabledWithPermissionProps extends PropsWithChildren<Omit<TooltipProp
   badgeProps?: BadgeProps
 }
 
-export const DisabledWithPermission = ({ hasPermission, access, title, children, badgeProps, ...props }: DisabledWithPermissionProps) => {
+export const DisabledWithPermission = ({
+  hasPermission,
+  placement,
+  access,
+  title,
+  children,
+  badgeProps,
+  ...props
+}: DisabledWithPermissionProps) => {
+  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
   return hasPermission ? (
     children
   ) : children ? (
@@ -20,7 +29,9 @@ export const DisabledWithPermission = ({ hasPermission, access, title, children,
           ? t`You don't have the permission to access this, contact the workspace owner for more information.`
           : t`You don't have the permission to change this, contact the workspace owner for more information.`
       }
+      arrow
       {...props}
+      placement={placement && isMobile && !placement.includes('top') && !placement.includes('bottom') ? 'bottom' : placement}
     >
       <Badge
         badgeContent={<WarningIcon fontSize="small" color="warning" />}

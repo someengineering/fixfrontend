@@ -270,7 +270,7 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
             {renameAccountIsPending ? (
               <CircularProgress size={20} />
             ) : editedName !== accountName ? (
-              <Tooltip title={<Trans>Submit</Trans>}>
+              <Tooltip title={<Trans>Submit</Trans>} arrow>
                 <IconButton aria-label={t`Submit`} color="success" type="submit">
                   <SendIcon />
                 </IconButton>
@@ -285,7 +285,7 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
                 <CancelIcon />
               </IconButton>
             ) : (
-              <Tooltip title={<Trans>Cancel</Trans>}>
+              <Tooltip title={<Trans>Cancel</Trans>} arrow>
                 <IconButton aria-label={t`Cancel`} color="error" onClick={cancelEdit}>
                   <CancelIcon />
                 </IconButton>
@@ -297,7 +297,7 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
             <Typography flexGrow={1} onClick={() => setIsEdit(true)} sx={{ cursor: 'pointer' }}>
               {accountName ?? '-'}
             </Typography>
-            <Tooltip title={<Trans>Edit</Trans>}>
+            <Tooltip title={<Trans>Edit</Trans>} arrow>
               <IconButton aria-label={t`Edit`} color="primary" onClick={() => setIsEdit(true)}>
                 <EditIcon />
               </IconButton>
@@ -352,7 +352,7 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
               <DeleteIcon />
             </IconButton>
           ) : (
-            <Tooltip title={<Trans>Delete</Trans>}>
+            <Tooltip title={<Trans>Delete</Trans>} arrow>
               <IconButton aria-label={t`Delete`} color="error" onClick={handleDeleteModal}>
                 <DeleteIcon />
               </IconButton>

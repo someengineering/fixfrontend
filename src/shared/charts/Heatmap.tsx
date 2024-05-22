@@ -35,7 +35,13 @@ const HeatmapCell = ({ title, value, tooltip }: HeatmapData) => {
       {value >= 0 ? title : '-'}
     </Stack>
   )
-  return tooltip ? <Tooltip title={tooltip}>{comp}</Tooltip> : comp
+  return tooltip ? (
+    <Tooltip title={tooltip} arrow>
+      {comp}
+    </Tooltip>
+  ) : (
+    comp
+  )
 }
 
 export const Heatmap = ({ data }: HeatmapProps) => {
