@@ -29,9 +29,11 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+storybook.log*
 
 # dependencies
 node_modules
+public/t.min.js
 
 # Editor directories and files
 .vscode/*

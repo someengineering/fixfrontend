@@ -60,17 +60,17 @@ msgid "{0} checks fixed."
 msgstr "{0} checks fixed."
 
 #: src/shared/event-button/EventButton.tsx:57
-#: src/shared/event-button/EventButton.tsx:63
+#: src/shared/event-button/EventButton.tsx:66
 msgid "{0} Cloud account configured, id: {1}"
 msgstr "{0} Cloud account configured, id: {1}"
 
-#: src/shared/event-button/EventButton.tsx:69
 #: src/shared/event-button/EventButton.tsx:75
+#: src/shared/event-button/EventButton.tsx:84
 msgid "{0} Cloud account degraded, id: {1}"
 msgstr "{0} Cloud account degraded, id: {1}"
 
-#: src/shared/event-button/EventButton.tsx:81
-#: src/shared/event-button/EventButton.tsx:87
+#: src/shared/event-button/EventButton.tsx:93
+#: src/shared/event-button/EventButton.tsx:99
 msgid "{0} Cloud account discovered, id: {1}"
 msgstr "{0} Cloud account discovered, id: {1}"
 
@@ -367,7 +367,7 @@ msgstr "AWS Marketplace has been successfully subscribed"
 msgid "Basic Information"
 msgstr "Basic Information"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:112
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:111
 msgid "Because the data is over {0} Only first {1} items will be downloaded"
 msgstr "Because the data is over {0} Only first {1} items will be downloaded"
 
@@ -554,7 +554,7 @@ msgid "Connected Services"
 msgstr "Connected Services"
 
 #: src/pages/panel/setup-cloud/WorkspaceId.tsx:16
-#: src/shared/utils/useCopyString.ts:18
+#: src/shared/utils/useCopyString.ts:17
 msgid "Copied to Clipboard!"
 msgstr "Copied to Clipboard!"
 
@@ -715,8 +715,8 @@ msgstr "Don't have an account? Click here to Sign up."
 msgid "Downgrade"
 msgstr "Downgrade"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:105
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:124
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:104
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:123
 msgid "Download CSV"
 msgstr "Download CSV"
 
@@ -768,7 +768,7 @@ msgstr "Engineers like to tag their temporary resources with the string \"delete
 msgid "Enterprise"
 msgstr "Enterprise"
 
-#: src/shared/event-button/EventButton.tsx:121
+#: src/shared/event-button/EventButton.tsx:135
 msgid "Events"
 msgstr "Events"
 
@@ -894,7 +894,7 @@ msgstr "High"
 msgid "Highest product tier this billing cycle"
 msgstr "Highest product tier this billing cycle"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:81
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:80
 msgid "Homepage"
 msgstr "Homepage"
 
@@ -1242,7 +1242,7 @@ msgstr "Oops, the username or password doesn't seem to match our records. Please
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Oops! It looks like your query didn't match our format. Please check and try again."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:56
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:55
 msgid "Oops! Something went wrong."
 msgstr "Oops! Something went wrong."
 
@@ -1306,7 +1306,7 @@ msgstr "Owner"
 msgid "Password"
 msgstr "Password"
 
-#: src/core/events/WebSocketEvents.tsx:131
+#: src/core/events/WebSocketEvents.tsx:130
 msgid "Payment is required for your workspace, Please contact the workspace owner"
 msgstr "Payment is required for your workspace, Please contact the workspace owner"
 
@@ -1710,7 +1710,7 @@ msgstr "TOTP Setup"
 msgid "Trial"
 msgstr "Trial"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:97
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:96
 msgid "Try again"
 msgstr "Try again"
 
@@ -1785,7 +1785,7 @@ msgstr "Users"
 msgid "Value"
 msgstr "Value"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:89
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:88
 msgid "Warning"
 msgstr "Warning"
 
@@ -1797,7 +1797,7 @@ msgstr "We have sent an email with a confirmation link to your email address. Pl
 msgid "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 msgstr "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:59
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:58
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 
@@ -1872,7 +1872,7 @@ msgstr "You can deactivate TOTP via otp code"
 msgid "You can deactivate TOTP via recovery code"
 msgstr "You can deactivate TOTP via recovery code"
 
-#: src/core/events/WebSocketEvents.tsx:132
+#: src/core/events/WebSocketEvents.tsx:131
 msgid "You don't have access to this workspace"
 msgstr "You don't have access to this workspace"
 

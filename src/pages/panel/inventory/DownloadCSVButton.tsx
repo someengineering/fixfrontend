@@ -12,7 +12,6 @@ import { sendToGTM } from 'src/shared/google-tag-manager'
 import { Modal } from 'src/shared/modal'
 import { WorkspaceInventorySearchTableHistory, WorkspaceInventorySearchTableSort } from 'src/shared/types/server'
 import { jsonToStr } from 'src/shared/utils/jsonToStr'
-import { TrackJS } from 'trackjs'
 
 interface DownloadCSVButtonProps {
   query: string
@@ -61,8 +60,8 @@ export const DownloadCSVButton = forwardRef(
         })
         .catch((error) => {
           if (!axios.isAxiosError(error)) {
-            if (TrackJS.isInstalled()) {
-              TrackJS.track(error as Error)
+            if (window.TrackJS?.isInstalled()) {
+              window.TrackJS.track(error as Error)
             }
             const { message, name, stack = 'unknown' } = (error as Error) ?? {}
             sendToGTM({
