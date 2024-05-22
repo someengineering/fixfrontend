@@ -340,6 +340,10 @@ msgstr "Asset inventory"
 msgid "Automatic Cloud Setup"
 msgstr "Automatic Cloud Setup"
 
+#: src/shared/event-button/EventButton.tsx:63
+msgid "AWS account configured, id: {0}"
+msgstr "AWS account configured, id: {0}"
+
 #: src/pages/panel/workspace-settings-billing/utils/paymentMethodToLabel.ts:7
 msgid "AWS Marketplace"
 msgstr "AWS Marketplace"
@@ -468,11 +472,11 @@ msgstr "Cloud"
 msgid "Cloud account configured, id: {0}"
 msgstr "Cloud account configured, id: {0}"
 
-#: src/shared/event-button/EventButton.tsx:63
+#: src/shared/event-button/EventButton.tsx:69
 msgid "Cloud account degraded, id: {0}"
 msgstr "Cloud account degraded, id: {0}"
 
-#: src/shared/event-button/EventButton.tsx:69
+#: src/shared/event-button/EventButton.tsx:75
 msgid "Cloud account discovered, id: {0}"
 msgstr "Cloud account discovered, id: {0}"
 
@@ -765,7 +769,7 @@ msgstr "Engineers like to tag their temporary resources with the string \"delete
 msgid "Enterprise"
 msgstr "Enterprise"
 
-#: src/shared/event-button/EventButton.tsx:103
+#: src/shared/event-button/EventButton.tsx:109
 msgid "Events"
 msgstr "Events"
 
