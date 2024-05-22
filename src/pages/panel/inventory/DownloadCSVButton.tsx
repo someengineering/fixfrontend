@@ -121,6 +121,12 @@ export const DownloadCSVButton = forwardRef(
         {isPending ? <CircularProgress size={16} /> : <DownloadIcon />}
       </IconButton>
     )
-    return isPending ? children : <Tooltip title={<Trans>Download CSV</Trans>}>{children}</Tooltip>
+    return isPending ? (
+      children
+    ) : (
+      <Tooltip title={<Trans>Download CSV</Trans>} arrow>
+        {children}
+      </Tooltip>
+    )
   },
 )

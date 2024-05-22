@@ -74,7 +74,7 @@ export const WorkspaceSettingsUserInvitationRow = ({ workspaceInvite }: Workspac
                 <DeleteIcon />
               </IconButton>
             ) : (
-              <Tooltip title={<Trans>Delete</Trans>}>
+              <Tooltip title={<Trans>Delete</Trans>} arrow>
                 <IconButton aria-label={t`Delete`} color="error" onClick={handleDeleteModal}>
                   <DeleteIcon />
                 </IconButton>

@@ -141,7 +141,7 @@ export const WorkspaceSettingsUserRoles = ({ role, userId }: WorkspaceSettingsUs
       {changeRoleIsPending ? (
         <CircularProgress size={20} />
       ) : (
-        <Tooltip title={<Trans>Submit</Trans>}>
+        <Tooltip title={<Trans>Submit</Trans>} arrow>
           <IconButton aria-label={t`Submit`} color="success" type="submit">
             <SendIcon />
           </IconButton>
@@ -152,7 +152,7 @@ export const WorkspaceSettingsUserRoles = ({ role, userId }: WorkspaceSettingsUs
           <CancelIcon />
         </IconButton>
       ) : (
-        <Tooltip title={<Trans>Cancel</Trans>}>
+        <Tooltip title={<Trans>Cancel</Trans>} arrow>
           <IconButton aria-label={t`Cancel`} color="error" onClick={() => setIsEdit(false)}>
             <CancelIcon />
           </IconButton>
@@ -169,7 +169,7 @@ export const WorkspaceSettingsUserRoles = ({ role, userId }: WorkspaceSettingsUs
         {workspaceSettingsUserRoleToString(role)}
       </Typography>
       {hasUpdateRolesPermission ? (
-        <Tooltip title={<Trans>Edit</Trans>}>
+        <Tooltip title={<Trans>Edit</Trans>} arrow>
           <IconButton aria-label={t`Edit`} color="primary" onClick={handleEdit}>
             <EditIcon />
           </IconButton>
