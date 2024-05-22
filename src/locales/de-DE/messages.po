@@ -243,7 +243,7 @@ msgstr "Konten hinzugefügt"
 msgid "Admin"
 msgstr "Admin"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:71
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:72
 msgid "Advanced"
 msgstr ""
 
@@ -713,7 +713,7 @@ msgid "Downgrade"
 msgstr "Downgrade"
 
 #: src/pages/panel/inventory/DownloadCSVButton.tsx:105
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:124
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:127
 msgid "Download CSV"
 msgstr "CSV herunterladen"
 
@@ -866,8 +866,8 @@ msgstr "Passwort vergessen? Klicken Sie hier, um Ihr Passwort zurückzusetzen."
 msgid "Forgot Password"
 msgstr "Passwort vergessen"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:59
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:62
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:60
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:63
 msgid "Form"
 msgstr ""
 
@@ -1096,7 +1096,7 @@ msgstr "Monatliche"
 msgid "Monthly email report"
 msgstr "Monatlicher E-Mail-Bericht"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:186
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:187
 msgid "More info"
 msgstr "Mehr Info"
 
@@ -1235,7 +1235,7 @@ msgstr "Einmal"
 msgid "Oops, the username or password doesn't seem to match our records. Please try again."
 msgstr "Hoppla, der Benutzername oder das Passwort scheinen nicht mit unseren Aufzeichnungen übereinzustimmen. Bitte versuche es erneut."
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:93
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:94
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Sie sie und versuchen Sie es erneut."
 
@@ -1559,7 +1559,7 @@ msgstr ""
 msgid "Severity"
 msgstr "Schwere"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:182
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:183
 msgid "Show resources"
 msgstr "Ressourcen anzeigen"
 
@@ -1873,11 +1873,11 @@ msgstr "Sie können TOTP über den Wiederherstellungscode deaktivieren"
 msgid "You don't have access to this workspace"
 msgstr ""
 
-#: src/shared/disabled-with-permission/DisabledWithPermission.tsx:20
+#: src/shared/disabled-with-permission/DisabledWithPermission.tsx:29
 msgid "You don't have the permission to access this, contact the workspace owner for more information."
 msgstr ""
 
-#: src/shared/disabled-with-permission/DisabledWithPermission.tsx:21
+#: src/shared/disabled-with-permission/DisabledWithPermission.tsx:30
 msgid "You don't have the permission to change this, contact the workspace owner for more information."
 msgstr ""
 

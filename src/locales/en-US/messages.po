@@ -243,7 +243,7 @@ msgstr "Added accounts"
 msgid "Admin"
 msgstr "Admin"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:71
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:72
 msgid "Advanced"
 msgstr "Advanced"
 
@@ -713,7 +713,7 @@ msgid "Downgrade"
 msgstr "Downgrade"
 
 #: src/pages/panel/inventory/DownloadCSVButton.tsx:105
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:124
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:127
 msgid "Download CSV"
 msgstr "Download CSV"
 
@@ -866,8 +866,8 @@ msgstr "Forget your password? Click here to reset your password."
 msgid "Forgot Password"
 msgstr "Forgot Password"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:59
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:62
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:60
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:63
 msgid "Form"
 msgstr "Form"
 
@@ -1096,7 +1096,7 @@ msgstr "Monthly"
 msgid "Monthly email report"
 msgstr "Monthly email report"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:186
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:187
 msgid "More info"
 msgstr "More info"
 
@@ -1235,7 +1235,7 @@ msgstr "One time"
 msgid "Oops, the username or password doesn't seem to match our records. Please try again."
 msgstr "Oops, the username or password doesn't seem to match our records. Please try again."
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:93
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:94
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Oops! It looks like your query didn't match our format. Please check and try again."
 
@@ -1559,7 +1559,7 @@ msgstr "Severities"
 msgid "Severity"
 msgstr "Severity"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:182
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:183
 msgid "Show resources"
 msgstr "Show resources"
 
@@ -1873,11 +1873,11 @@ msgstr "You can deactivate TOTP via recovery code"
 msgid "You don't have access to this workspace"
 msgstr "You don't have access to this workspace"
 
-#: src/shared/disabled-with-permission/DisabledWithPermission.tsx:20
+#: src/shared/disabled-with-permission/DisabledWithPermission.tsx:29
 msgid "You don't have the permission to access this, contact the workspace owner for more information."
 msgstr "You don't have the permission to access this, contact the workspace owner for more information."
 
-#: src/shared/disabled-with-permission/DisabledWithPermission.tsx:21
+#: src/shared/disabled-with-permission/DisabledWithPermission.tsx:30
 msgid "You don't have the permission to change this, contact the workspace owner for more information."
 msgstr "You don't have the permission to change this, contact the workspace owner for more information."
 
