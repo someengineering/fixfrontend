@@ -5,13 +5,24 @@
 import '@testing-library/jest-dom/vitest'
 import querystring from 'querystring'
 
+const location = {
+  ...global.location,
+  hostname: 'localhost',
+  pathname: '/',
+  hash: '',
+  origin: `${import.meta.env.VITE_SERVER}`,
+}
+
+global.location = {
+  ...global.location,
+  ...location,
+}
+
 global.window = {
   ...global,
   location: {
     ...global.location,
-    hostname: 'localhost',
-    pathname: '/',
-    origin: `${import.meta.env.VITE_SERVER}`,
+    ...location,
   },
   localStorage: (() => {
     let items = {} as Record<string, string>
