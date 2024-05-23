@@ -4,14 +4,13 @@ import DownloadIcon from '@mui/icons-material/Download'
 import { Button, CircularProgress, IconButton, LinearProgress, Stack, Tooltip, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
+import { usePostHog } from 'posthog-js/react'
 import { ForwardedRef, forwardRef, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventorySearchTableDownloadMutation } from 'src/pages/panel/shared/queries'
-import { GTMEventNames, panelUI } from 'src/shared/constants'
-import { sendToGTM } from 'src/shared/google-tag-manager'
+import { PosthogEvent, panelUI } from 'src/shared/constants'
 import { Modal } from 'src/shared/modal'
 import { WorkspaceInventorySearchTableHistory, WorkspaceInventorySearchTableSort } from 'src/shared/types/server'
-import { jsonToStr } from 'src/shared/utils/jsonToStr'
 
 interface DownloadCSVButtonProps {
   query: string
@@ -22,11 +21,12 @@ interface DownloadCSVButtonProps {
 
 export const DownloadCSVButton = forwardRef(
   ({ query, history, sort, hasWarning, ...tooltipProps }: DownloadCSVButtonProps, ref: ForwardedRef<HTMLButtonElement | null>) => {
+    const posthog = usePostHog()
     const {
       i18n: { locale },
     } = useLingui()
     const warningModal = useRef<(show?: boolean | undefined) => void>()
-    const { selectedWorkspace } = useUserProfile()
+    const { currentUser, selectedWorkspace } = useUserProfile()
     const [progress, setProgress] = useState(-1)
     const { mutateAsync, isPending } = useMutation({
       mutationFn: postWorkspaceInventorySearchTableDownloadMutation,
@@ -63,14 +63,15 @@ export const DownloadCSVButton = forwardRef(
             if (window.TrackJS?.isInstalled()) {
               window.TrackJS.track(error as Error)
             }
-            const { message, name, stack = 'unknown' } = (error as Error) ?? {}
-            sendToGTM({
-              event: GTMEventNames.Error,
-              message: jsonToStr(message),
-              name: jsonToStr(name),
-              stack: jsonToStr(stack),
-              workspaceId: selectedWorkspace?.id ?? 'unknown',
-              authorized: true,
+            const { name: error_name, message: error_message, stack: error_stack } = (error as Error) ?? {}
+            posthog.capture(PosthogEvent.Error, {
+              $set: { ...currentUser },
+              authenticated: true,
+              user_id: currentUser?.id,
+              workspace_id: selectedWorkspace?.id,
+              error_name,
+              error_message,
+              error_stack,
             })
           }
         })

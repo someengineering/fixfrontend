@@ -4,6 +4,7 @@ import { Autocomplete, AutocompleteRenderOptionState, CircularProgress, ListItem
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useDebounce } from '@uidotdev/usehooks'
 import { AxiosError } from 'axios'
+import { usePostHog } from 'posthog-js/react'
 import { ChangeEvent, HTMLAttributes, KeyboardEvent, UIEvent as ReactUIEvent, useEffect, useMemo, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventoryPropertyPathCompleteQuery } from 'src/pages/panel/shared/queries'
@@ -11,7 +12,7 @@ import { isValidProp } from 'src/pages/panel/shared/utils'
 import { panelUI } from 'src/shared/constants'
 import { OPType, defaultProperties, kindDurationTypes, kindSimpleTypes } from 'src/shared/fix-query-parser'
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
-import { inventorySendToGTM, postCostumedWorkspaceInventoryPropertyAttributesQuery } from './utils'
+import { postCostumedWorkspaceInventoryPropertyAttributesQuery, sendInventoryError } from './utils'
 
 interface InventoryFormFilterRowPropertyProps {
   selectedKinds: string[] | null
@@ -35,6 +36,7 @@ export const InventoryFormFilterRowProperty = ({
   kinds,
   onChange,
 }: InventoryFormFilterRowPropertyProps) => {
+  const posthog = usePostHog()
   const { defaultItem, isDefaultSimple } = useMemo(() => {
     const defaultItem = defaultProperties.find((i) => i.label === defaultValue || i.label === defaultForcedValue)
     return {
@@ -56,7 +58,7 @@ export const InventoryFormFilterRowProperty = ({
   const [value, setValue] = useState<string | null>(defaultValue || null)
 
   const isDefaultItemSelected = defaultItem?.label == `${path}.${prop}`
-  const { selectedWorkspace } = useUserProfile()
+  const { currentUser, selectedWorkspace } = useUserProfile()
   const isDictionary = fqn?.startsWith('dictionary') ?? false
   const propertyAttributes = useInfiniteQuery({
     queryKey: [
@@ -110,18 +112,32 @@ export const InventoryFormFilterRowProperty = ({
             ? ''
             : debouncedProp
         const path = debouncedPathDraft
-        inventorySendToGTM('postCostumedWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
+        sendInventoryError({
+          currentUser,
           workspaceId: selectedWorkspace?.id,
-          prop: `${path.split('.').slice(-1)[0]}${prop ? `=~"${prop.replace(/․/g, '.')}"` : ''}` ? '' : debouncedProp,
-          query: selectedKinds ? `is(${selectedKinds.join(',')})` : 'all',
+          queryFn: 'postCostumedWorkspaceInventoryPropertyAttributesQuery',
+          isAdvancedSearch: false,
+          error: error as AxiosError,
+          params: {
+            property: `${path.split('.').slice(-1)[0]}${prop ? `=~"${prop.replace(/․/g, '.')}"` : ''}` ? '' : debouncedProp,
+            query: selectedKinds ? `is(${selectedKinds.join(',')})` : 'all',
+          },
+          posthog,
         })
       } else {
-        inventorySendToGTM('postCostumedWorkspaceInventoryPropertyAttributesQuery', false, error as AxiosError, {
+        sendInventoryError({
+          currentUser,
           workspaceId: selectedWorkspace?.id,
-          path: isDefaultItemSelected ? '' : debouncedPath,
-          prop: !fqn || isDefaultItemSelected ? '' : debouncedProp,
-          kinds: selectedKinds ?? kinds,
-          fuzzy: true,
+          queryFn: 'postCostumedWorkspaceInventoryPropertyAttributesQuery',
+          isAdvancedSearch: false,
+          error: error as AxiosError,
+          params: {
+            path: isDefaultItemSelected ? '' : debouncedPath,
+            property: !fqn || isDefaultItemSelected ? '' : debouncedProp,
+            kinds: selectedKinds ?? kinds,
+            fuzzy: true,
+          },
+          posthog,
         })
       }
     }
@@ -137,6 +153,8 @@ export const InventoryFormFilterRowProperty = ({
     selectedKinds,
     selectedWorkspace?.id,
     value,
+    posthog,
+    currentUser,
   ])
 
   useEffect(() => {

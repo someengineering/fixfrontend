@@ -1,4 +1,4 @@
-name: 'publish' 
+name: 'publish'
 on:
   push:
     branches:
@@ -9,7 +9,6 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout (GitHub)
         uses: actions/checkout@v3
 
@@ -22,13 +21,15 @@ jobs:
           echo "VITE_WEBSOCKET_RETRY_TIMEOUT=${{ vars.WEBSOCKET_RETRY_TIMEOUT }}" >> .env.production
           echo "VITE_USE_MOCK=false" >> .env.production
           echo "VITE_DISCORD_URL=${{ vars.DISCORD_URL }}" >> .env.production
-          echo "VITE_GTM_DEV_ID=${{ secrets.GTM_DEV_ID }}" >> .env.production
-          echo "VITE_GTM_PROD_ID=${{ secrets.GTM_PROD_ID }}" >> .env.production
           echo "VITE_TRACKJS_TOKEN=${{ secrets.TRACKJS_TOKEN }}" >> .env.production
           echo "VITE_MUI_LICENSE_KEY=${{ secrets.MUI_LICENSE_KEY }}" >> .env.production
           echo "VITE_VERSION=${{ github.sha }}" >> .env.production
           echo "VITE_LOAD_PAGE_TIMEOUT=${{ vars.LOAD_PAGE_TIMEOUT }}" >> .env.production
-      
+          echo "VITE_POSTHOG_DEV_PROJECT_API_KEY=${{ secrets.POSTHOG_DEV_PROJECT_API_KEY }}" >> .env.production
+          echo "VITE_POSTHOG_PROD_PROJECT_API_KEY=${{ secrets.POSTHOG_PROD_PROJECT_API_KEY }}" >> .env.production
+          echo "VITE_POSTHOG_API_HOST=${{ vars.POSTHOG_API_HOST }}" >> .env.production
+          echo "VITE_POSTHOG_UI_HOST=${{ vars.POSTHOG_UI_HOST }}" >> .env.production
+
       - name: Add models
         run: |
           echo "[]" > mock-apis/data/model.json
@@ -51,7 +52,7 @@ jobs:
         with:
           runCmd: yarn build-storybook
 
-      - name: Publish the new version to the CDN 
+      - name: Publish the new version to the CDN
         uses: BetaHuhn/do-spaces-action@v2
         with:
           access_key: ${{ secrets.FIX_UI_DO_SPACES_KEY }}
@@ -61,7 +62,7 @@ jobs:
           out_dir: fix-ui
           source: target
 
-      - name: Update the edge version on the CDN 
+      - name: Update the edge version on the CDN
         uses: BetaHuhn/do-spaces-action@v2
         with:
           access_key: ${{ secrets.FIX_UI_DO_SPACES_KEY }}
@@ -71,7 +72,7 @@ jobs:
           out_dir: fix-ui/edge
           source: target/${{ github.sha }}/index.html
 
-      - name: Publish storybook to the CDN 
+      - name: Publish storybook to the CDN
         uses: BetaHuhn/do-spaces-action@v2
         with:
           access_key: ${{ secrets.FIX_UI_DO_SPACES_KEY }}

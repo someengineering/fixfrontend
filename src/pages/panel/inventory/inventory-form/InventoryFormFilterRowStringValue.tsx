@@ -3,6 +3,7 @@ import { Autocomplete, AutocompleteProps, Chip, CircularProgress, TextField, Typ
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useDebounce } from '@uidotdev/usehooks'
 import { AxiosError } from 'axios'
+import { usePostHog } from 'posthog-js/react'
 import { ChangeEvent, ReactNode, UIEvent as ReactUIEvent, useEffect, useMemo, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventoryPropertyValuesQuery } from 'src/pages/panel/shared/queries'
@@ -10,7 +11,7 @@ import { panelUI } from 'src/shared/constants'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { ListboxComponent } from 'src/shared/react-window'
 import { AutoCompleteValue } from 'src/shared/types/shared'
-import { inventorySendToGTM } from './utils'
+import { sendInventoryError } from './utils'
 
 const ITEMS_PER_PAGE = 50
 
@@ -38,7 +39,8 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
   value,
   ...props
 }: InventoryFormFilterRowStringValueProps<Multiple, NetworkDisabled>) {
-  const { selectedWorkspace } = useUserProfile()
+  const posthog = usePostHog()
+  const { currentUser, selectedWorkspace } = useUserProfile()
   const { query } = useFixQueryParser()
   const [open, setOpen] = useState(false)
   const initializedRef = useRef(false)
@@ -93,18 +95,25 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
   })
   useEffect(() => {
     if (error) {
-      inventorySendToGTM('postWorkspaceInventoryPropertyValuesQuery', false, error as AxiosError, {
+      sendInventoryError({
+        currentUser,
         workspaceId: selectedWorkspace?.id,
-        query:
-          debouncedTyped &&
-          (!selectedTyped.current || selectedTyped.current !== debouncedTyped) &&
-          (!value || (Array.isArray(value) ? !value.find((i) => i.label === debouncedTyped) : value.label !== debouncedTyped))
-            ? `${q} and ${propertyName} ~ ".*${debouncedTyped}.*"`
-            : q,
-        prop: propertyName,
+        queryFn: 'postWorkspaceInventoryPropertyValuesQuery',
+        isAdvancedSearch: false,
+        error: error as AxiosError,
+        params: {
+          property: propertyName,
+          query:
+            debouncedTyped &&
+            (!selectedTyped.current || selectedTyped.current !== debouncedTyped) &&
+            (!value || (Array.isArray(value) ? !value.find((i) => i.label === debouncedTyped) : value.label !== debouncedTyped))
+              ? `${q} and ${propertyName} ~ ".*${debouncedTyped}.*"`
+              : q,
+        },
+        posthog,
       })
     }
-  }, [debouncedTyped, error, propertyName, q, selectedWorkspace?.id, value])
+  }, [currentUser, debouncedTyped, error, posthog, propertyName, q, selectedWorkspace?.id, value])
   const flatData = useMemo(
     () =>
       data?.pages

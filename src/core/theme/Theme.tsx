@@ -40,7 +40,7 @@ export function Theme({ children, emotionCache }: ThemeProps) {
   const palette: PaletteOptions = useMemo(
     () => ({
       primary: {
-        main: mode === 'dark' ? '#648DE5' : '#1C4396',
+        main: mode === 'dark' ? '#648DE5' : '#3d58d3',
       },
       secondary: {
         main: '#B1C8FA',

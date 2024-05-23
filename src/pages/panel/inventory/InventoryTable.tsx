@@ -5,13 +5,13 @@ import QuestionMarkIcon from '@mui/icons-material/QuestionMark'
 import { Box, ButtonBase, Stack, Tooltip, Typography } from '@mui/material'
 import { GridColDef, GridRow, GridRowProps, GridSortItem } from '@mui/x-data-grid-premium'
 import { useQuery } from '@tanstack/react-query'
+import { usePostHog } from 'posthog-js/react'
 import { useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { GTMEventNames, panelUI, settingsStorageKeys } from 'src/shared/constants'
+import { PosthogEvent, panelUI, settingsStorageKeys } from 'src/shared/constants'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
-import { sendToGTM } from 'src/shared/google-tag-manager'
 import { AdvancedTableView } from 'src/shared/layouts/panel-layout'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import {
@@ -21,8 +21,7 @@ import {
   WorkspaceInventorySearchTableRow,
   WorkspaceInventorySearchTableSort,
 } from 'src/shared/types/server'
-import { isAuthenticated as getIsAuthenticated } from 'src/shared/utils/cookie'
-import { getAuthData } from 'src/shared/utils/localstorage'
+import { isAuthenticated } from 'src/shared/utils/cookie'
 import { usePersistState } from 'src/shared/utils/usePersistState'
 import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { DownloadCSVButton } from './DownloadCSVButton'
@@ -39,12 +38,13 @@ type RowType = WorkspaceInventorySearchTableRow['row'] & {
 type ColType = GridColDef & WorkspaceInventorySearchTableColumn
 
 export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => {
+  const posthog = usePostHog()
   const { sorts } = useFixQueryParser()
   const [dataCount, setDataCount] = useState(-1)
   const navigate = useAbsoluteNavigate()
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = usePersistState(settingsStorageKeys.InventoryTable.rowsPerPage, 10)
-  const { selectedWorkspace } = useUserProfile()
+  const { currentUser, selectedWorkspace } = useUserProfile()
   const [rows, setRows] = useState<RowType[]>([])
   const [columns, setColumns] = useState<ColType[]>([])
   const [sorting, setSorting] = useState<WorkspaceInventorySearchTableSort[]>(
@@ -92,15 +92,14 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       setPage(0)
     }
     initializedRef.current = true
-    const authorized = getIsAuthenticated()
-    const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
-    sendToGTM({
-      event: GTMEventNames.InventorySearch,
-      authorized,
-      q: searchCrit,
-      workspaceId,
+    posthog.capture(PosthogEvent.InventorySearch, {
+      $set: { ...currentUser },
+      authenticated: isAuthenticated(),
+      user_id: currentUser?.id,
+      workspace_id: selectedWorkspace?.id,
+      query: searchCrit,
     })
-  }, [searchCrit])
+  }, [currentUser, posthog, searchCrit, selectedWorkspace?.id])
 
   useEffect(() => {
     if (!isLoading) {

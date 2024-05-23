@@ -1,9 +1,9 @@
 import { t } from '@lingui/macro'
+import { usePostHog } from 'posthog-js/react'
 import { PropsWithChildren, useCallback, useEffect, useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
-import { GTMEventNames, apiMessages, endPoints, env } from 'src/shared/constants'
-import { sendToGTM } from 'src/shared/google-tag-manager'
+import { PosthogEvent, apiMessages, endPoints, env } from 'src/shared/constants'
 import { WebSocketEvent } from 'src/shared/types/server'
 import { isAuthenticated as getIsAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData } from 'src/shared/utils/localstorage'
@@ -13,7 +13,8 @@ const WS_CLOSE_CODE_NO_RETRY = 4001
 const WS_SERVER_CLOSE_CODE_NO_RETRY = 4401
 
 export const WebSocketEvents = ({ children }: PropsWithChildren) => {
-  const { selectedWorkspace, isAuthenticated, logout } = useUserProfile()
+  const posthog = usePostHog()
+  const { currentUser, selectedWorkspace, isAuthenticated, logout } = useUserProfile()
   const noRetry = useRef(false)
   const listeners = useRef<Record<string, (ev: MessageEvent) => void>>({})
   const messagesToSend = useRef<{ message: string; resolve: (value: string) => void; reject: (err: unknown) => void }[]>([])
@@ -38,19 +39,19 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
           if (window.TrackJS?.isInstalled()) {
             window.TrackJS.track(err as Error)
           }
-          const { message, name, stack = 'unknown' } = err as Error
-          const authorized = getIsAuthenticated()
-          const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
-          sendToGTM({
-            event: GTMEventNames.WebsocketError,
-            api: `${env.wsUrl}/${endPoints.workspaces.workspace(workspaceId).events}`,
-            message: message,
-            name,
-            stack,
+          const { name: error_name, message: error_message, stack: error_stack } = err as Error
+          const workspaceId = getAuthData()?.selectedWorkspaceId || undefined
+          posthog.capture(PosthogEvent.WebsocketError, {
+            $set: { ...currentUser },
+            authenticated: getIsAuthenticated(),
+            user_id: currentUser?.id,
+            workspace_id: workspaceId,
+            api_endpoint: `${env.wsUrl}/${endPoints.workspaces.workspace(workspaceId ?? 'unknown').events}`,
+            error_name,
+            error_message,
+            error_stack,
             state: 'on-message',
-            params: ev.data,
-            authorized,
-            workspaceId,
+            data: ev.data,
           })
         }
       }
@@ -59,46 +60,49 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
       }
       return () => handleRemoveListener(randomId)
     },
-    [handleRemoveListener],
+    [currentUser, handleRemoveListener, posthog],
   )
 
-  const handleSendData = useCallback((data: WebSocketEvent) => {
-    const message = JSON.stringify(data)
-    return new Promise<string>((resolve, reject) => {
-      try {
-        if (websocket.current && websocket.current.readyState === websocket.current.OPEN) {
-          websocket.current.send(message)
-          resolve(message)
-        } else if (websocket.current && websocket.current.readyState === websocket.current.CONNECTING) {
-          websocket.current.addEventListener('open', () => {
-            websocket.current?.send(JSON.stringify(data))
+  const handleSendData = useCallback(
+    (data: WebSocketEvent) => {
+      const message = JSON.stringify(data)
+      return new Promise<string>((resolve, reject) => {
+        try {
+          if (websocket.current && websocket.current.readyState === websocket.current.OPEN) {
+            websocket.current.send(message)
             resolve(message)
+          } else if (websocket.current && websocket.current.readyState === websocket.current.CONNECTING) {
+            websocket.current.addEventListener('open', () => {
+              websocket.current?.send(JSON.stringify(data))
+              resolve(message)
+            })
+          } else {
+            messagesToSend.current.push({ message, resolve, reject })
+          }
+        } catch (err) {
+          if (window.TrackJS?.isInstalled()) {
+            window.TrackJS.track(err as Error)
+          }
+          const { name: error_name, message: error_message, stack: error_stack } = err as Error
+          const workspaceId = getAuthData()?.selectedWorkspaceId || undefined
+          posthog.capture(PosthogEvent.WebsocketError, {
+            $set: { ...currentUser },
+            authenticated: getIsAuthenticated(),
+            user_id: currentUser?.id,
+            workspace_id: workspaceId,
+            api_endpoint: `${env.wsUrl}/${endPoints.workspaces.workspace(workspaceId ?? 'unknown').events}`,
+            error_name,
+            error_message,
+            error_stack,
+            state: 'send-message',
+            message,
           })
-        } else {
-          messagesToSend.current.push({ message, resolve, reject })
+          reject(err)
         }
-      } catch (err) {
-        if (window.TrackJS?.isInstalled()) {
-          window.TrackJS.track(err as Error)
-        }
-        const { message, name, stack = 'unknown' } = err as Error
-        const authorized = getIsAuthenticated()
-        const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
-        sendToGTM({
-          event: GTMEventNames.WebsocketError,
-          api: `${env.wsUrl}/${endPoints.workspaces.workspace(workspaceId).events}`,
-          authorized,
-          message: message,
-          name,
-          stack,
-          state: 'send-message',
-          params: message,
-          workspaceId,
-        })
-        reject(err)
-      }
-    })
-  }, [])
+      })
+    },
+    [currentUser, posthog],
+  )
 
   useEffect(() => {
     if (isAuthenticated && selectedWorkspace?.id) {
@@ -109,19 +113,20 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
           if (window.TrackJS?.isInstalled()) {
             window.TrackJS.track(err)
           }
-          const { stack = 'unknown', name, message } = err
-          const authorized = getIsAuthenticated()
-          const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
-          sendToGTM({
-            event: GTMEventNames.WebsocketError,
-            api: `${env.wsUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? 'unknown').events}`,
-            authorized,
-            message,
-            name,
-            stack,
+          const workspaceId = getAuthData()?.selectedWorkspaceId || undefined
+          posthog.capture(PosthogEvent.WebsocketError, {
+            $set: { ...currentUser },
+            authenticated: getIsAuthenticated(),
+            user_id: currentUser?.id,
+            workspace_id: workspaceId,
+            api_endpoint: `${env.wsUrl}/${endPoints.workspaces.workspace(workspaceId ?? 'unknown').events}`,
+            error_name: err.name,
+            error_message: err.message,
+            error_stack: err.stack,
             state: 'on-open',
-            params: `reason: ${ev.reason}, code: ${ev.code}, was clean: ${ev.wasClean}`,
-            workspaceId,
+            close_code: ev.code,
+            close_reason: ev.reason,
+            close_was_clean: ev.wasClean,
           })
         }
         if (ev.code === WS_SERVER_CLOSE_CODE_NO_RETRY) {
@@ -151,19 +156,19 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
             if (window.TrackJS?.isInstalled()) {
               window.TrackJS.track(err as Error)
             }
-            const { message, name, stack = 'unknown' } = err as Error
-            const authorized = getIsAuthenticated()
-            const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
-            sendToGTM({
-              event: GTMEventNames.WebsocketError,
-              api: `${env.wsUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? 'unknown').events}`,
-              authorized,
-              message: message,
-              name,
-              stack,
+            const { name: error_name, message: error_message, stack: error_stack } = err as Error
+            const workspaceId = getAuthData()?.selectedWorkspaceId || undefined
+            posthog.capture(PosthogEvent.WebsocketError, {
+              $set: { ...currentUser },
+              authenticated: getIsAuthenticated(),
+              user_id: currentUser?.id,
+              workspace_id: workspaceId,
+              api_endpoint: `${env.wsUrl}/${endPoints.workspaces.workspace(workspaceId ?? 'unknown').events}`,
+              error_name,
+              error_message,
+              error_stack,
               state: 'on-open',
-              params: message,
-              workspaceId,
+              message,
             })
             reject(err)
           }
@@ -206,7 +211,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
     } else {
       noRetry.current = false
     }
-  }, [selectedWorkspace?.id, isAuthenticated, logout, showSnackbar])
+  }, [selectedWorkspace?.id, isAuthenticated, logout, showSnackbar, posthog, currentUser])
 
   return (
     <WebSocketEventsContext.Provider value={{ addListener: handleAddListener, websocket, send: handleSendData }}>

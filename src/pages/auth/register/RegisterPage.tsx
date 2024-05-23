@@ -4,8 +4,10 @@ import { LoadingButton } from '@mui/lab'
 import { Divider, Grid, styled, TextField, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
+import { usePostHog } from 'posthog-js/react'
 import { FormEvent, Suspense, useState } from 'react'
 import { Link, Location, useLocation, useSearchParams } from 'react-router-dom'
+import { useUserProfile } from 'src/core/auth'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
@@ -30,6 +32,8 @@ const getErrorMessage = (error: string) => {
 }
 
 export default function RegisterPage() {
+  const posthog = usePostHog()
+  const { currentUser } = useUserProfile()
   const { mutateAsync: register, isPending: isRegisterLoading, error } = useMutation({ mutationFn: registerMutation })
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -43,11 +47,13 @@ export default function RegisterPage() {
       setIsLoading(true)
       register({ email, password, redirectUrl: window.encodeURIComponent(getSearch.get('returnUrl') ?? panelUI.homePage) })
         .then(() => {
+          if (currentUser) {
+            posthog.identify(currentUser.id, { ...currentUser })
+          }
+
           navigate(
             {
-              search: search
-                ? `${search}&verify=true&email=${window.encodeURIComponent(email)}`
-                : `?verify=true&email=${window.encodeURIComponent(email)}`,
+              search: `${search ? `${search}&` : '?'}verify=true&email=${window.encodeURIComponent(email)}`,
               pathname: '/auth/login',
             },
             { state },
