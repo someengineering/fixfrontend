@@ -1,17 +1,33 @@
+import { useSuspenseQuery } from '@tanstack/react-query'
 import posthog from 'posthog-js'
 import { PostHogProvider as Provider } from 'posthog-js/react'
 import { useEffect } from 'react'
 import { env } from 'src/shared/constants'
+import { getEnvironmentQuery } from './getEnvironment.query'
 
-export const PosthogProvider = ({ projectApiKey, children }: { projectApiKey?: string; children: React.ReactNode }) => {
+export const PosthogProvider = ({ children }: { children: React.ReactNode }) => {
+  const {
+    data: { aws_marketplace_url, environment },
+  } = useSuspenseQuery({
+    queryKey: ['environment'],
+    queryFn: getEnvironmentQuery,
+    refetchInterval: Number.POSITIVE_INFINITY,
+    staleTime: Number.POSITIVE_INFINITY,
+    refetchOnWindowFocus: false,
+    refetchIntervalInBackground: false,
+  })
   useEffect(() => {
+    const projectApiKey =
+      environment === 'prd' ? import.meta.env.VITE_POSTHOG_PROD_PROJECT_API_KEY : import.meta.env.VITE_POSTHOG_DEV_PROJECT_API_KEY
+    env.isProd = environment === 'prd'
+    env.aws_marketplace_url = aws_marketplace_url
     if (projectApiKey && !posthog.__loaded) {
       posthog.init(projectApiKey, {
         api_host: env.posthogApiHost,
         ui_host: env.posthogUiHost,
-        cross_subdomain_cookie: !!env.isProd,
-        secure_cookie: !env.isLocal,
-        debug: env.isLocal,
+        cross_subdomain_cookie: env.isProd,
+        secure_cookie: true,
+        debug: !env.isProd,
         capture_pageview: false, // Page views are captured manually
         capture_pageleave: true,
 
@@ -23,7 +39,7 @@ export const PosthogProvider = ({ projectApiKey, children }: { projectApiKey?: s
         enable_recording_console_log: false,
       })
     }
-  }, [projectApiKey])
+  }, [aws_marketplace_url, environment])
 
   return <Provider client={posthog}>{children}</Provider>
 }
