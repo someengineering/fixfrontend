@@ -21,6 +21,7 @@ import {
 } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
+import { usePostHog } from 'posthog-js/react'
 import { ReactNode, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
@@ -38,7 +39,7 @@ import { YamlHighlighter } from 'src/shared/yaml-highlighter'
 import { stringify } from 'yaml'
 import { ResourceDetailChangeLog } from './ResourceDetailChangeLog'
 import { ResourceDetailFailedChecks } from './ResourceDetailFailedChecks'
-import { inventorySendToGTM } from './utils'
+import { sendInventoryError } from './utils'
 
 const Modal = styled(MuiModal)(({ theme }) => ({
   position: 'fixed',
@@ -115,10 +116,11 @@ const GridItem = ({ property, value, color, isReactNode }: GridItemProps) => {
 }
 
 export const ResourceDetail = () => {
+  const posthog = usePostHog()
   const { resourceDetailId } = useParams()
   const navigate = useAbsoluteNavigate()
   const openResourceModalRef = useRef<(show?: boolean | undefined) => void>()
-  const { selectedWorkspace } = useUserProfile()
+  const { currentUser, selectedWorkspace } = useUserProfile()
   const {
     i18n: { locale },
   } = useLingui()
@@ -133,9 +135,17 @@ export const ResourceDetail = () => {
 
   useEffect(() => {
     if (error) {
-      inventorySendToGTM('getWorkspaceInventoryNodeQuery', false, error as AxiosError, resourceDetailId, resourceDetailId)
+      sendInventoryError({
+        currentUser,
+        workspaceId: selectedWorkspace?.id,
+        queryFn: 'getWorkspaceInventoryNodeQuery',
+        isAdvancedSearch: false,
+        error: error as AxiosError,
+        id: resourceDetailId,
+        posthog,
+      })
     }
-  }, [resourceDetailId, error])
+  }, [resourceDetailId, error, posthog, selectedWorkspace?.id, currentUser])
 
   const handleClose = () => {
     const search = getLocationSearchValues(window.location.search)

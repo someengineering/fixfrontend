@@ -1,6 +1,7 @@
 import { Stack } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
+import { usePostHog } from 'posthog-js/react'
 import { useEffect, useMemo } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventorySearchStartQuery } from 'src/pages/panel/shared/queries'
@@ -15,7 +16,7 @@ import { InventoryFormRegion } from './InventoryFormRegion'
 import { InventoryFormReset } from './InventoryFormReset'
 import { InventoryFormRest } from './InventoryFormRest'
 import { InventoryFormSeverity } from './InventoryFormSeverity'
-import { inventorySendToGTM } from './utils'
+import { sendInventoryError } from './utils'
 
 function removeStringDuplicates(data?: string[]) {
   return data ? Array.from(new Set(data)) : []
@@ -34,8 +35,9 @@ function removeDuplicates<T>(data?: T[], basedOn?: keyof T) {
 }
 
 export const InventoryForm = () => {
+  const posthog = usePostHog()
   const { account: selectedAccount, cloud: selectedCloud, region: selectedRegion, is: selectedKinds } = useFixQueryParser()
-  const { selectedWorkspace } = useUserProfile()
+  const { currentUser, selectedWorkspace } = useUserProfile()
   const { data: originalStartData, error } = useQuery({
     queryKey: ['workspace-inventory-search-start', selectedWorkspace?.id],
     queryFn: getWorkspaceInventorySearchStartQuery,
@@ -44,9 +46,16 @@ export const InventoryForm = () => {
   })
   useEffect(() => {
     if (error) {
-      inventorySendToGTM('getWorkspaceInventorySearchStartQuery', false, error as AxiosError, '')
+      sendInventoryError({
+        currentUser,
+        workspaceId: selectedWorkspace?.id,
+        queryFn: 'getWorkspaceInventorySearchStartQuery',
+        isAdvancedSearch: false,
+        error: error as AxiosError,
+        posthog,
+      })
     }
-  }, [error])
+  }, [currentUser, error, posthog, selectedWorkspace?.id])
   const startData = useMemo(
     () =>
       originalStartData

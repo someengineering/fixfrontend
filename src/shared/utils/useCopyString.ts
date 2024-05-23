@@ -1,12 +1,13 @@
 import { t } from '@lingui/macro'
 import { useCopyToClipboard } from '@uidotdev/usehooks'
+import { usePostHog } from 'posthog-js/react'
 import { useCallback } from 'react'
 import { useSnackbar } from 'src/core/snackbar'
-import { GTMEventNames } from 'src/shared/constants'
-import { sendToGTM } from 'src/shared/google-tag-manager'
+import { PosthogEvent } from 'src/shared/constants'
 import { getAuthData } from './localstorage'
 
 export const useCopyString = (withSnackbar = true) => {
+  const posthog = usePostHog()
   const { showSnackbar } = useSnackbar()
   const [, copyString] = useCopyToClipboard()
   const handleCopy = useCallback(
@@ -20,19 +21,18 @@ export const useCopyString = (withSnackbar = true) => {
         if (window.TrackJS?.isInstalled()) {
           window.TrackJS.track(err as Error)
         }
-        const { message, name, stack } = err as Error
+        const { name: error_name, message: error_message, stack: error_stack } = err as Error
         const { isAuthenticated, selectedWorkspaceId } = getAuthData() || {}
-        sendToGTM({
-          event: GTMEventNames.Error,
-          message,
-          name,
-          stack: stack || '',
-          authorized: isAuthenticated || false,
-          workspaceId: selectedWorkspaceId || '',
+        posthog.capture(PosthogEvent.Error, {
+          authenticated: isAuthenticated ?? false,
+          workspace_id: selectedWorkspaceId,
+          error_name,
+          error_message,
+          error_stack,
         })
       }
     },
-    [copyString, showSnackbar, withSnackbar],
+    [copyString, posthog, showSnackbar, withSnackbar],
   )
   return handleCopy
 }

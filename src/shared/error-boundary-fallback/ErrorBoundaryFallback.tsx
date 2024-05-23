@@ -2,14 +2,13 @@ import { Trans } from '@lingui/macro'
 import BuildIcon from '@mui/icons-material/Build'
 import { Button, Divider, Link, Modal, Stack, Typography, styled } from '@mui/material'
 import { AxiosError } from 'axios'
+import { usePostHog } from 'posthog-js/react'
 import { useEffect } from 'react'
 import { FallbackProps } from 'react-error-boundary'
 import { DiscordIcon } from 'src/assets/icons'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { GTMEventNames, env, panelUI } from 'src/shared/constants'
-import { sendToGTM } from 'src/shared/google-tag-manager'
+import { PosthogEvent, env, panelUI } from 'src/shared/constants'
 import { isAuthenticated } from 'src/shared/utils/cookie'
-import { jsonToStr } from 'src/shared/utils/jsonToStr'
 import { getAuthData } from 'src/shared/utils/localstorage'
 
 const ModalContent = styled(Stack)(({ theme }) => ({
@@ -26,6 +25,7 @@ const ModalContent = styled(Stack)(({ theme }) => ({
 }))
 
 export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
+  const posthog = usePostHog()
   const navigate = useAbsoluteNavigate(true)
 
   useEffect(() => {
@@ -33,19 +33,16 @@ export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackPro
       if (window.TrackJS?.isInstalled()) {
         window.TrackJS.track(error as Error)
       }
-      const { message, name, stack } = error as Error
-      const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
-      const authorized = isAuthenticated() || false
-      sendToGTM({
-        event: GTMEventNames.Error,
-        message: jsonToStr(message),
-        name: jsonToStr(name),
-        stack: jsonToStr(stack),
-        workspaceId,
-        authorized,
+      const { name: error_name, message: error_message, stack: error_stack } = error as Error
+      posthog.capture(PosthogEvent.Error, {
+        authenticated: isAuthenticated(),
+        workspace_id: getAuthData()?.selectedWorkspaceId,
+        error_name,
+        error_message,
+        error_stack,
       })
     }
-  }, [error])
+  }, [error, posthog])
 
   return (
     <Modal open onClose={resetErrorBoundary} aria-labelledby="modal-error-title" aria-describedby="modal-error-description">

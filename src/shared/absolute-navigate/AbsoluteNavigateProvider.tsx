@@ -1,9 +1,5 @@
-import { useLingui } from '@lingui/react'
 import { PropsWithChildren, useCallback, useEffect, useRef } from 'react'
 import { NavigateFunction, NavigateOptions, To, useLocation, useNavigate } from 'react-router-dom'
-import { useThemeMode } from 'src/core/theme'
-import { GTMEventNames } from 'src/shared/constants'
-import { sendToGTM } from 'src/shared/google-tag-manager'
 import { isAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData } from 'src/shared/utils/localstorage'
 import { AbsoluteNavigateInnerProvider } from './AbsoluteNavigateInnerProvider'
@@ -12,10 +8,6 @@ import { handleRelationalPathname } from './handleRelationalPathname'
 export const AbsoluteNavigateProvider = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate()
   const location = useLocation()
-  const { mode } = useThemeMode()
-  const {
-    i18n: { locale },
-  } = useLingui()
 
   const ignorePathChangeOnce = useRef(false)
 
@@ -65,21 +57,6 @@ export const AbsoluteNavigateProvider = ({ children }: PropsWithChildren) => {
     }
     ignorePathChangeOnce.current = false
   }, [location.hash, location.pathname, location.search, location.state, handleNavigate])
-
-  useEffect(() => {
-    const { isAuthenticated, selectedWorkspaceId } = getAuthData() || {}
-    sendToGTM({
-      event: GTMEventNames.Page,
-      hash: location.hash,
-      language: locale.replace('-', '_'),
-      path: location.pathname,
-      search: location.search,
-      state: JSON.stringify(location.state),
-      workspaceId: selectedWorkspaceId || 'unknown',
-      darkMode: mode === 'dark',
-      authorized: isAuthenticated || false,
-    })
-  }, [location, locale, mode])
 
   return <AbsoluteNavigateInnerProvider useNavigate={handleNavigate}>{children}</AbsoluteNavigateInnerProvider>
 }

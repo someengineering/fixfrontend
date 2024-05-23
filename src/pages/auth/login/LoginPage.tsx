@@ -4,6 +4,7 @@ import { LoadingButton } from '@mui/lab'
 import { Divider, Grid, styled, TextField, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
+import { usePostHog } from 'posthog-js/react'
 import { FormEvent, Suspense, useRef, useState } from 'react'
 import { Link, Location, useLocation, useSearchParams } from 'react-router-dom'
 import { allPermissions, maxPermissionNumber, useUserProfile } from 'src/core/auth'
@@ -35,8 +36,9 @@ const getErrorMessage = (error: string) => {
 }
 
 export default function LoginPage() {
+  const posthog = usePostHog()
   const { mutateAsync: login, isPending: isLoginLoading, error } = useMutation({ mutationFn: loginMutation })
-  const { setAuth } = useUserProfile()
+  const { setAuth, currentUser } = useUserProfile()
   const [getSearch] = useSearchParams()
   const lastSubmittedValueWithOtp = useRef(false)
   const [username, setUsername] = useState(getSearch.get('email') ?? '')
@@ -56,13 +58,23 @@ export default function LoginPage() {
       lastSubmittedValueWithOtp.current = needOtp
       login(values)
         .then(() => {
+          const workspaceId = getAuthData()?.selectedWorkspaceId
+
+          if (currentUser) {
+            posthog.identify(currentUser.id, { ...currentUser })
+
+            if (workspaceId) {
+              posthog.group('workspace_id', workspaceId)
+            }
+          }
+
           const returnUrl = getSearch.get('returnUrl') || panelUI.homePage
           setAuth(
             {
               isAuthenticated: true,
               workspaces: [],
               selectedWorkspace: {
-                id: returnUrl.split('#')[1] || (getAuthData()?.selectedWorkspaceId as string),
+                id: returnUrl.split('#')[1] || (workspaceId as string),
                 members: [],
                 name: '',
                 owners: [],

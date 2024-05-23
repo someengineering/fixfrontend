@@ -179,13 +179,17 @@ msgstr "In wenigen Minuten bis zum ersten Ergebnis"
 msgid "Abandoned"
 msgstr "Verlassen"
 
+#: src/shared/cookie-consent/CookieConsent.tsx:63
+msgid "Accept"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:238
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:364
 msgid "Access to your account is broken"
 msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:45
-#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:226
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:236
 msgid "Account"
 msgstr "Konto"
 
@@ -266,7 +270,7 @@ msgstr ""
 msgid "Advanced search query"
 msgstr "Erweiterte Suchabfrage"
 
-#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:235
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:245
 #: src/shared/charts/NetworkDiagram.tsx:408
 msgid "Age"
 msgstr "Alter"
@@ -288,7 +292,7 @@ msgid "All security issues fixed"
 msgstr "Alle Sicherheitsprobleme behoben"
 
 #: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:100
-#: src/pages/auth/register/RegisterPage.tsx:131
+#: src/pages/auth/register/RegisterPage.tsx:137
 #: src/pages/auth/reset-password/ResetPasswordPage.tsx:124
 msgid "Already have an account? Click here to Log in."
 msgstr "Sie haben bereits ein Konto? Klicken Sie hier, um sich einzuloggen."
@@ -363,11 +367,11 @@ msgstr "AWS Marketplace"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
-#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:211
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:221
 msgid "Basic Information"
 msgstr "Grundinformation"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:111
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:112
 msgid "Because the data is over {0} Only first {1} items will be downloaded"
 msgstr "Da die Daten über {0} liegen, werden nur die ersten {1} Elemente heruntergeladen"
 
@@ -472,7 +476,7 @@ msgstr "Schließen"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormCloudValues.tsx:43
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:96
-#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:222
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:232
 #: src/pages/panel/security/AccountCard.tsx:37
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:421
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:50
@@ -554,7 +558,7 @@ msgid "Connected Services"
 msgstr "Vernetzte Dienste"
 
 #: src/pages/panel/setup-cloud/WorkspaceId.tsx:16
-#: src/shared/utils/useCopyString.ts:17
+#: src/shared/utils/useCopyString.ts:18
 msgid "Copied to Clipboard!"
 msgstr "In die Zwischenablage kopiert!"
 
@@ -569,7 +573,7 @@ msgstr "Kopieren"
 msgid "Core CSPM scanning capabilities"
 msgstr "Kern-CSPM-Scanfunktionen"
 
-#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:229
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:239
 msgid "Created Time"
 msgstr "Erstellte Zeit"
 
@@ -672,7 +676,7 @@ msgstr "Für die Organisation bereitstellen"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:307
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:317
 msgid "Details"
 msgstr "Einzelheiten"
 
@@ -706,7 +710,7 @@ msgstr "Möchten Sie diese Einladung löschen?"
 msgid "Do you want to delete this user?"
 msgstr "Möchten Sie diesen Benutzer löschen?"
 
-#: src/pages/auth/login/LoginPage.tsx:232
+#: src/pages/auth/login/LoginPage.tsx:244
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 
@@ -715,8 +719,8 @@ msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 msgid "Downgrade"
 msgstr "Downgrade"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:104
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:126
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:105
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:127
 msgid "Download CSV"
 msgstr "CSV herunterladen"
 
@@ -728,8 +732,8 @@ msgid "Edit"
 msgstr "Edit"
 
 #: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:62
-#: src/pages/auth/login/LoginPage.tsx:116
-#: src/pages/auth/register/RegisterPage.tsx:89
+#: src/pages/auth/login/LoginPage.tsx:128
+#: src/pages/auth/register/RegisterPage.tsx:95
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:49
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:69
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:86
@@ -860,7 +864,7 @@ msgstr "Für wachsende Teams, die sicher bleiben möchten, während sie die Infr
 msgid "For solo software engineers who want to secure a single cloud account."
 msgstr "Für Solo-Softwareentwickler, die sich ein einziges Cloud-Konto sichern möchten."
 
-#: src/pages/auth/login/LoginPage.tsx:237
+#: src/pages/auth/login/LoginPage.tsx:249
 msgid "Forget your password? Click here to reset your password."
 msgstr "Passwort vergessen? Klicken Sie hier, um Ihr Passwort zurückzusetzen."
 
@@ -894,7 +898,7 @@ msgstr "Hoch"
 msgid "Highest product tier this billing cycle"
 msgstr ""
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:80
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:77
 msgid "Homepage"
 msgstr "Startseite"
 
@@ -907,7 +911,7 @@ msgstr "Stündliche"
 msgid "How to fix"
 msgstr "Wie repariert man"
 
-#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:219
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:229
 #: src/pages/panel/security/AccountCard.tsx:34
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:418
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:53
@@ -992,8 +996,8 @@ msgstr "Integrationsberatung für Ihre spezifische Cloud-Umgebung per Videoanruf
 msgid "Integration Key"
 msgstr "Integrationsschlüssel"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:333
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:263
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:351
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:272
 msgid "Invalid Value"
 msgstr "Ungültiger Wert"
 
@@ -1023,7 +1027,7 @@ msgstr "Lädt ein"
 msgid "kind"
 msgstr ""
 
-#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:218
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:228
 #: src/shared/charts/NetworkDiagram.tsx:405
 msgid "Kind"
 msgstr "Art"
@@ -1040,8 +1044,8 @@ msgstr "Letzte Anmeldung"
 msgid "Load Balancers with no backends"
 msgstr "Load Balancer ohne Backends"
 
-#: src/pages/auth/login/LoginPage.tsx:107
-#: src/pages/auth/login/LoginPage.tsx:227
+#: src/pages/auth/login/LoginPage.tsx:119
+#: src/pages/auth/login/LoginPage.tsx:239
 msgid "Log in"
 msgstr "Anmeldung"
 
@@ -1115,7 +1119,7 @@ msgstr "Am meisten verbesserte Ressourcen"
 msgid "Most Non-Compliant Accounts"
 msgstr "Die meisten nicht konformen Konten"
 
-#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:220
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:230
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:424
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:56
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
@@ -1137,7 +1141,7 @@ msgstr "Name"
 msgid "Neighborhood view"
 msgstr "Nachbarschaftsansicht"
 
-#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:199
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:209
 msgid "Neighborhood View"
 msgstr "Nachbarschaftsansicht"
 
@@ -1181,7 +1185,7 @@ msgstr "Nächste Synchronisierung"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:42
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:68
-#: src/pages/panel/inventory/InventoryTable.tsx:142
+#: src/pages/panel/inventory/InventoryTable.tsx:141
 msgid "No"
 msgstr ""
 
@@ -1234,7 +1238,7 @@ msgstr "Anzahl der belasteten Konten"
 msgid "One time"
 msgstr "Einmal"
 
-#: src/pages/auth/login/LoginPage.tsx:27
+#: src/pages/auth/login/LoginPage.tsx:28
 msgid "Oops, the username or password doesn't seem to match our records. Please try again."
 msgstr "Hoppla, der Benutzername oder das Passwort scheinen nicht mit unseren Aufzeichnungen übereinzustimmen. Bitte versuche es erneut."
 
@@ -1242,7 +1246,7 @@ msgstr "Hoppla, der Benutzername oder das Passwort scheinen nicht mit unseren Au
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Sie sie und versuchen Sie es erneut."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:55
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:52
 msgid "Oops! Something went wrong."
 msgstr "Hoppla! Etwas ist schief gelaufen."
 
@@ -1254,7 +1258,7 @@ msgstr "Öffnen Sie den Datenbankzugriff"
 msgid "Open drawer"
 msgstr "Öffene die Schublade"
 
-#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:244
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:254
 msgid "Open resource {name} in AWS Console"
 msgstr "Öffnen Sie die Ressource {name} in der AWS-Konsole"
 
@@ -1266,9 +1270,9 @@ msgstr "Geöffnet um"
 msgid "Optional professional services"
 msgstr "Optionale professionelle Dienstleistungen"
 
-#: src/pages/auth/login/LoginPage.tsx:165
-#: src/pages/auth/login/LoginPage.tsx:242
-#: src/pages/auth/register/RegisterPage.tsx:136
+#: src/pages/auth/login/LoginPage.tsx:177
+#: src/pages/auth/login/LoginPage.tsx:254
+#: src/pages/auth/register/RegisterPage.tsx:142
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:87
 msgid "Or"
 msgstr "Oder"
@@ -1289,7 +1293,7 @@ msgstr "Verwaiste Volumes"
 msgid "Other Workspace Settings"
 msgstr "Andere Arbeitsbereichseinstellungen"
 
-#: src/pages/auth/login/LoginPage.tsx:148
+#: src/pages/auth/login/LoginPage.tsx:160
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:204
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:73
 msgid "OTP Code"
@@ -1300,13 +1304,13 @@ msgstr "OTP-Code"
 msgid "Owner"
 msgstr "Eigentümer"
 
-#: src/pages/auth/login/LoginPage.tsx:131
-#: src/pages/auth/register/RegisterPage.tsx:103
+#: src/pages/auth/login/LoginPage.tsx:143
+#: src/pages/auth/register/RegisterPage.tsx:109
 #: src/pages/auth/reset-password/ResetPasswordPage.tsx:96
 msgid "Password"
 msgstr "Passwort"
 
-#: src/core/events/WebSocketEvents.tsx:130
+#: src/core/events/WebSocketEvents.tsx:135
 msgid "Payment is required for your workspace, Please contact the workspace owner"
 msgstr ""
 
@@ -1343,7 +1347,7 @@ msgstr "Wählen Sie eine der Empfehlungen rechts aus und verbessern Sie Ihre Sic
 msgid "Please add a payment method to switch your workspace's product tier"
 msgstr ""
 
-#: src/pages/auth/login/LoginPage.tsx:192
+#: src/pages/auth/login/LoginPage.tsx:204
 msgid "Please enter your One-Time-Password or one of your Recovery code."
 msgstr "Bitte geben Sie Ihr One-Time-Passwort oder einen Ihrer Wiederherstellungscodes ein."
 
@@ -1399,7 +1403,7 @@ msgstr "Profil"
 msgid "Properties"
 msgstr ""
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:355
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:373
 msgid "Property"
 msgstr "Eigentum"
 
@@ -1423,7 +1427,7 @@ msgstr "Quittungen"
 msgid "Recently added accounts"
 msgstr "Kürzlich hinzugefügte Konten"
 
-#: src/pages/auth/login/LoginPage.tsx:174
+#: src/pages/auth/login/LoginPage.tsx:186
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:105
 msgid "Recovery Code"
 msgstr "Wiederherstellungscode"
@@ -1438,7 +1442,7 @@ msgstr "Regenerieren"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:97
 #: src/pages/panel/inventory/inventory-form/InventoryFormRegionValues.tsx:41
-#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:227
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:237
 msgid "Region"
 msgstr "Region"
 
@@ -1447,9 +1451,13 @@ msgstr "Region"
 msgid "Regions"
 msgstr "Regionen"
 
-#: src/pages/auth/register/RegisterPage.tsx:80
+#: src/pages/auth/register/RegisterPage.tsx:86
 msgid "Register"
 msgstr "Registrieren"
+
+#: src/shared/cookie-consent/CookieConsent.tsx:78
+msgid "Reject"
+msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:28
 msgid "Remediation recommendations"
@@ -1533,8 +1541,8 @@ msgstr "Sicherheitsscan"
 msgid "Security Score"
 msgstr "Sicherheitsbewertung"
 
-#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:255
-#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:266
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:265
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:276
 msgid "See this Resource in AWS Console"
 msgstr "Sehen Sie sich diese Ressource in der AWS-Konsole an"
 
@@ -1566,7 +1574,7 @@ msgstr "Schwere"
 msgid "Show resources"
 msgstr "Ressourcen anzeigen"
 
-#: src/pages/auth/register/RegisterPage.tsx:126
+#: src/pages/auth/register/RegisterPage.tsx:132
 msgid "Sign up"
 msgstr "Melden Sie sich an"
 
@@ -1586,7 +1594,7 @@ msgstr "Snowflake-Datenexport (bald verfügbar!)"
 msgid "Some checks have been disabled for this resource"
 msgstr "Einige Prüfungen wurden für diese Ressource deaktiviert"
 
-#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:282
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:292
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:33
 #: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:23
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:107
@@ -1617,7 +1625,7 @@ msgid "Successfully invited {email}"
 msgstr "{email} erfolgreich eingeladen"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:98
-#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:292
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:302
 msgid "Tags"
 msgstr "Stichworte"
 
@@ -1634,11 +1642,11 @@ msgstr "Prüfen"
 msgid "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 msgstr "Die Änderung wird ab dem nächsten Sicherheitsscan aktiv. Bis zum nächsten Scan zeigt die Ressource weiterhin die fehlgeschlagene Prüfung an."
 
-#: src/pages/auth/login/LoginPage.tsx:31
+#: src/pages/auth/login/LoginPage.tsx:32
 msgid "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
 msgstr "Das von Ihnen eingegebene OTP oder Wiederherstellungscode ist falsch oder das OTP ist abgelaufen. Bitte versuchen Sie es erneut einzugeben."
 
-#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:280
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:290
 msgid "The selected resource does not exist anymore."
 msgstr "Die ausgewählte Ressource existiert nicht mehr."
 
@@ -1658,7 +1666,7 @@ msgstr "Für diesen Arbeitsbereich ist kein Konto konfiguriert."
 msgid "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 msgstr "Dieses Konto befindet sich derzeit in einem nicht-funktionalen Zustand, möglicherweise aufgrund einer Fehlkonfiguration. Fix konnte nicht auf das Konto zugreifen. Um die Sicherheitsscans fortzusetzen, loggen Sie sich bitte in das Konto {accountName} ({0}) ein und erzeugen Sie den CloudFormation-Stacks, der die IAM Vertrauensstellung herstellt, erneut."
 
-#: src/pages/auth/register/RegisterPage.tsx:26
+#: src/pages/auth/register/RegisterPage.tsx:28
 msgid "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 msgstr "Diese Email-Adresse ist bereits registriert. Wenn dies Ihre E-Mail-Adresse ist, versuchen Sie bitte, sich anzumelden, oder klicken Sie auf der Anmeldeseite auf „Passwort vergessen“, um Ihr Passwort zurückzusetzen."
 
@@ -1670,7 +1678,7 @@ msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM 
 msgid "Tier"
 msgstr "Stufe"
 
-#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:261
+#: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:271
 msgid "To access this resource, please ensure that you are logged into the AWS account: {account}"
 msgstr "Um auf diese Ressource zuzugreifen, stellen Sie bitte sicher, dass Sie beim AWS-Konto angemeldet sind: {account}"
 
@@ -1710,7 +1718,7 @@ msgstr "TOTP-Setup"
 msgid "Trial"
 msgstr "Probezeit"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:96
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:93
 msgid "Try again"
 msgstr "Versuchen Sie es erneut"
 
@@ -1725,14 +1733,14 @@ msgstr "Nicht angehängte elastische IPs"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:45
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:71
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:132
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:151
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:268
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:313
-#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:320
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:141
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:160
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:277
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:322
+#: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:329
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:149
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:154
-#: src/pages/panel/inventory/InventoryTable.tsx:134
+#: src/pages/panel/inventory/InventoryTable.tsx:133
 msgid "Undefined"
 msgstr ""
 
@@ -1785,19 +1793,23 @@ msgstr "Benutzer"
 msgid "Value"
 msgstr "Wert"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:88
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:89
 msgid "Warning"
 msgstr "Warnung"
 
-#: src/pages/auth/login/LoginPage.tsx:199
+#: src/pages/auth/login/LoginPage.tsx:211
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "Wir haben eine E-Mail mit einem Bestätigungslink an Ihre E-Mail-Adresse gesendet. Bitte folgen Sie dem Link, um Ihr Konto zu aktivieren."
+
+#: src/shared/cookie-consent/CookieConsent.tsx:38
+msgid "We use cookies and other tracking technologies to analyze site usage and assist in marketing efforts. For details, see our <0>cookie policy<1/></0>."
+msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:93
 msgid "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 msgstr "Es tut uns leid, dass Sie herunterstufen, aber wir sind dankbar, Sie weiterhin in unserer kostenlosen Stufe zu haben. Wenn Ihnen etwas Bestimmtes fehlt, wenden Sie sich bitte direkt an mich, <0>lars@some.engineering</0>. Ich würde gerne von Ihnen hören und Ihnen so gut wie möglich helfen."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:58
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:55
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "Wir entschuldigen uns für die Unannehmlichkeiten. Unser Team wurde benachrichtigt und das Problem wird untersucht. Bitte versuchen Sie es in ein paar Minuten noch einmal. Wenn das Problem weiterhin besteht, können Sie uns gerne <0>auf Discord</0> kontaktieren. Danke für Ihre Geduld!"
 
@@ -1847,7 +1859,7 @@ msgstr "Workspace-Benutzer"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:39
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:65
-#: src/pages/panel/inventory/InventoryTable.tsx:138
+#: src/pages/panel/inventory/InventoryTable.tsx:137
 msgid "Yes"
 msgstr ""
 
@@ -1872,7 +1884,7 @@ msgstr "Sie können TOTP über den OTP-Code deaktivieren"
 msgid "You can deactivate TOTP via recovery code"
 msgstr "Sie können TOTP über den Wiederherstellungscode deaktivieren"
 
-#: src/core/events/WebSocketEvents.tsx:131
+#: src/core/events/WebSocketEvents.tsx:136
 msgid "You don't have access to this workspace"
 msgstr ""
 
@@ -1888,11 +1900,11 @@ msgstr ""
 msgid "You don't have the permission to view this workspace, contact the workspace owner for more information."
 msgstr ""
 
-#: src/pages/auth/login/LoginPage.tsx:212
+#: src/pages/auth/login/LoginPage.tsx:224
 msgid "You have successfully reset your password."
 msgstr "Sie haben Ihr Passwort erfolgreich zurückgesetzt."
 
-#: src/pages/auth/login/LoginPage.tsx:205
+#: src/pages/auth/login/LoginPage.tsx:217
 msgid "You have successfully verified your account."
 msgstr "Sie haben Ihr Konto erfolgreich verifiziert."
 
@@ -1905,7 +1917,7 @@ msgstr ""
 msgid "You've chosen to ignore this security check for the resource. Please note:"
 msgstr "Sie haben sich entschieden, diese Sicherheitsüberprüfung für die Ressource zu ignorieren. Bitte beachten Sie:"
 
-#: src/pages/auth/login/LoginPage.tsx:29
+#: src/pages/auth/login/LoginPage.tsx:30
 msgid "Your email address isn't verified yet. Please check your inbox and click on the 'Verify' button to complete the process. Can't find the email? It might be in your spam folder."
 msgstr "Ihre E-Mail-Adresse ist noch nicht verifiziert. Bitte überprüfen Sie Ihren Posteingang und klicken Sie auf den 'Verifizieren'-Button, um den Prozess abzuschließen. Sie können die E-Mail nicht finden? Möglicherweise befindet sie sich in Ihrem Spam-Ordner."
 
