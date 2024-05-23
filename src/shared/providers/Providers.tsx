@@ -5,8 +5,8 @@ import { AuthGuard } from 'src/core/auth'
 import { AbsoluteNavigateProvider } from 'src/shared/absolute-navigate'
 import { env } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
-import { GTMProvider } from 'src/shared/google-tag-manager'
 import { FullPageLoadingProvider } from 'src/shared/loading'
+import { PosthogProvider } from 'src/shared/posthog'
 import { getEnvironmentStr } from 'src/shared/utils/getEnvironment'
 import { BasicProviders } from './BasicProviders'
 import { queryClient } from './queryClient'
@@ -14,40 +14,32 @@ import { queryClient } from './queryClient'
 const inLocalhost = window?.location?.host?.indexOf?.('localhost') === 0 || window?.location?.host?.indexOf?.('127.0.0.1') === 0 || false
 
 export const Providers = ({ children, nonce }: PropsWithChildren<{ nonce?: string }>) => {
-  const [gtmId, setGtmId] = useState<string>()
+  const [posthogProjectApiKey, setPosthogProjectApiKey] = useState<string>()
 
   useEffect(() => {
     if (import.meta.env.MODE !== 'test' && !inLocalhost) {
       getEnvironmentStr()
         .then((envStr) => {
+          env.isLocal = inLocalhost
+          env.isProd = envStr.environment === 'prd'
           env.aws_marketplace_url = envStr.aws_marketplace_url
-          setGtmId(
-            envStr.environment === 'prd' ? (env.gtmId = import.meta.env.VITE_GTM_PROD_ID) : (env.gtmId = import.meta.env.VITE_GTM_DEV_ID),
+          setPosthogProjectApiKey(
+            envStr.environment === 'prd'
+              ? import.meta.env.VITE_POSTHOG_PROD_PROJECT_API_KEY
+              : import.meta.env.VITE_POSTHOG_DEV_PROJECT_API_KEY,
           )
         })
         .catch(() => {})
     } else {
-      env.gtmId = 'gtmId_test'
+      env.isLocal = inLocalhost
+      env.isProd = false
       env.aws_marketplace_url = 'https://aws_marketplace_url.test'
+      setPosthogProjectApiKey(import.meta.env.VITE_POSTHOG_DEV_PROJECT_API_KEY)
     }
   }, [])
 
-  return import.meta.env.MODE === 'test' ? (
-    <BasicProviders nonce={nonce}>
-      <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-        <QueryClientProvider client={queryClient}>
-          <BrowserRouter>
-            <AbsoluteNavigateProvider>
-              <FullPageLoadingProvider>
-                <AuthGuard>{children}</AuthGuard>
-              </FullPageLoadingProvider>
-            </AbsoluteNavigateProvider>
-          </BrowserRouter>
-        </QueryClientProvider>
-      </NetworkErrorBoundary>
-    </BasicProviders>
-  ) : (
-    <GTMProvider state={gtmId ? { id: gtmId, nonce } : undefined}>
+  return (
+    <PosthogProvider projectApiKey={posthogProjectApiKey}>
       <BasicProviders nonce={nonce}>
         <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
           <QueryClientProvider client={queryClient}>
@@ -61,6 +53,6 @@ export const Providers = ({ children, nonce }: PropsWithChildren<{ nonce?: strin
           </QueryClientProvider>
         </NetworkErrorBoundary>
       </BasicProviders>
-    </GTMProvider>
+    </PosthogProvider>
   )
 }

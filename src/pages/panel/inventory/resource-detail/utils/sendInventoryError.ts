@@ -1,8 +1,8 @@
 import { AxiosError } from 'axios'
-import { GTMEventNames, endPoints } from 'src/shared/constants'
-import { sendToGTM } from 'src/shared/google-tag-manager'
+import { PostHog } from 'posthog-js/react'
+import { endPoints, PosthogEvent } from 'src/shared/constants'
+import { GetCurrentUserResponse } from 'src/shared/types/server'
 import { isAuthenticated } from 'src/shared/utils/cookie'
-import { jsonToStr } from 'src/shared/utils/jsonToStr'
 import { getAuthData } from 'src/shared/utils/localstorage'
 
 type queryFnStr =
@@ -13,7 +13,7 @@ type queryFnStr =
   | 'postWorkspaceInventoryPropertyPathCompleteQuery'
   | 'postWorkspaceInventoryPropertyValuesQuery'
 
-const queryFnStrToApi = (queryFn: queryFnStr, workspaceId: string, id?: string) => {
+const queryFnStrToApiEndpoint = (queryFn: queryFnStr, workspaceId: string, id?: string) => {
   switch (queryFn) {
     case 'getWorkspaceInventorySearchStartQuery':
       return endPoints.workspaces.workspace(workspaceId).inventory.search.start
@@ -36,25 +36,45 @@ const queryFnStrToApi = (queryFn: queryFnStr, workspaceId: string, id?: string) 
   }
 }
 
-export const inventorySendToGTM = (queryFn: queryFnStr, isAdvanceSearch: boolean, error: AxiosError, params: unknown, id?: string) => {
+export const sendInventoryError = ({
+  currentUser,
+  workspaceId,
+  queryFn,
+  isAdvancedSearch,
+  error,
+  params,
+  id,
+  posthog,
+}: {
+  currentUser?: GetCurrentUserResponse
+  workspaceId?: string
+  queryFn: queryFnStr
+  isAdvancedSearch: boolean
+  error: AxiosError
+  params?: Record<string, unknown>
+  id?: string
+  posthog: PostHog
+}) => {
   if (window.TrackJS?.isInstalled()) {
     window.TrackJS.track(error)
   }
-  const { message, name, response, stack, status } = error
-  const authorized = isAuthenticated()
-  const workspaceId = getAuthData()?.selectedWorkspaceId || 'unknown'
-  sendToGTM({
-    event: GTMEventNames.InventoryError,
-    api: queryFnStrToApi(queryFn, workspaceId, id),
-    authorized,
-    isAdvanceSearch,
-    params,
-    name: jsonToStr(name),
-    stack: jsonToStr(stack),
-    message: jsonToStr(message),
-    request: jsonToStr(error.request as unknown),
-    response: jsonToStr(response),
-    status: jsonToStr(status),
-    workspaceId,
-  })
+
+  if (posthog) {
+    const selectedWorkspaceId = workspaceId || getAuthData()?.selectedWorkspaceId || undefined
+
+    posthog.capture(PosthogEvent.InventoryError, {
+      ...params,
+      $set: { ...currentUser },
+      authenticated: isAuthenticated(),
+      user_id: currentUser?.id,
+      workspace_id: selectedWorkspaceId,
+      api_endpoint: queryFnStrToApiEndpoint(queryFn, selectedWorkspaceId || 'unknown', id),
+      advanced_search: isAdvancedSearch,
+      error_name: error.name,
+      error_message: error.message,
+      error_status: error.status,
+      error_stack: error.stack,
+      error_response: error.response ? JSON.stringify(error.response) : undefined,
+    })
+  }
 }
