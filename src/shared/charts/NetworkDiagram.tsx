@@ -378,7 +378,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
         .style('line-height', '1.15')
         .style(
           'font-family',
-          "'Nunito Sans Variable,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'",
+          "'Plus Jakarta Sans Variable',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'",
         )
         .style('overflow', 'hidden')
         .style('text-overflow', 'ellipsis')
