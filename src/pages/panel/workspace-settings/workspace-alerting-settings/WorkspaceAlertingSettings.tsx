@@ -1,4 +1,6 @@
 import { Trans, t } from '@lingui/macro'
+import CheckIcon from '@mui/icons-material/Check'
+import CloseIcon from '@mui/icons-material/Close'
 import {
   Alert,
   Autocomplete,
@@ -22,7 +24,6 @@ import { useEffect, useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceNotificationsQuery } from 'src/pages/panel/shared/queries'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
-import { DisabledWithPermission } from 'src/shared/disabled-with-permission'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { NotificationChannel, SeverityType } from 'src/shared/types/server'
 import { snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
@@ -43,7 +44,7 @@ interface WorkspaceAlertingSettingsCheckboxProps {
   isPending: boolean
   name: NotificationChannel
   onChange: (benchmark: string, name: NotificationChannel, checked: boolean) => void
-  disabled: boolean
+  hasPermission: boolean
 }
 
 const WorkspaceAlertingSettingsCheckbox = ({
@@ -52,14 +53,18 @@ const WorkspaceAlertingSettingsCheckbox = ({
   isPending,
   name,
   onChange,
-  disabled,
+  hasPermission,
 }: WorkspaceAlertingSettingsCheckboxProps) => {
   return isPending ? (
     <Stack justifyContent="center" direction="column" padding={1} margin="1px">
       <CircularProgress size={20} />
     </Stack>
+  ) : hasPermission ? (
+    <Checkbox checked={checked} onChange={(e) => onChange(benchmark, name, e.target.checked)} />
+  ) : checked ? (
+    <CheckIcon color="success" />
   ) : (
-    <Checkbox checked={checked} onChange={(e) => onChange(benchmark, name, e.target.checked)} disabled={disabled} />
+    <CloseIcon color="disabled" />
   )
 }
 
@@ -179,7 +184,7 @@ export const WorkspaceAlertingSettings = () => {
             <TableRow key={i}>
               <TableCell>{snakeCaseWordsToUFStr(benchmark)}</TableCell>
               <TableCell>
-                <DisabledWithPermission hasPermission={hasPermission} sx={{ width: '100%' }} placement="left">
+                {hasPermission ? (
                   <Autocomplete
                     options={severityOptions}
                     disabled={isPending || !hasPermission}
@@ -215,7 +220,11 @@ export const WorkspaceAlertingSettings = () => {
                     defaultValue={severityOptions.find((i) => i.value === alertingSettings?.[benchmark]?.severity) ?? severityOptions[3]}
                     renderInput={(params) => <TextField {...params} label={<Trans>Severity</Trans>} />}
                   />
-                </DisabledWithPermission>
+                ) : (
+                  <Typography>
+                    {(severityOptions.find((i) => i.value === alertingSettings?.[benchmark]?.severity) ?? severityOptions[3]).label}
+                  </Typography>
+                )}
               </TableCell>
               {notifications?.email ? (
                 <TableCell>
@@ -225,7 +234,7 @@ export const WorkspaceAlertingSettings = () => {
                     isPending={isPending}
                     name="email"
                     onChange={handleCheckboxChange}
-                    disabled={!hasPermission}
+                    hasPermission={hasPermission}
                   />
                 </TableCell>
               ) : undefined}
@@ -237,7 +246,7 @@ export const WorkspaceAlertingSettings = () => {
                     isPending={isPending}
                     name="slack"
                     onChange={handleCheckboxChange}
-                    disabled={!hasPermission}
+                    hasPermission={hasPermission}
                   />
                 </TableCell>
               ) : undefined}
@@ -249,7 +258,7 @@ export const WorkspaceAlertingSettings = () => {
                     isPending={isPending}
                     name="teams"
                     onChange={handleCheckboxChange}
-                    disabled={!hasPermission}
+                    hasPermission={hasPermission}
                   />
                 </TableCell>
               ) : undefined}
@@ -261,7 +270,7 @@ export const WorkspaceAlertingSettings = () => {
                     isPending={isPending}
                     name="discord"
                     onChange={handleCheckboxChange}
-                    disabled={!hasPermission}
+                    hasPermission={hasPermission}
                   />
                 </TableCell>
               ) : undefined}
@@ -273,7 +282,7 @@ export const WorkspaceAlertingSettings = () => {
                     isPending={isPending}
                     name="pagerduty"
                     onChange={handleCheckboxChange}
-                    disabled={!hasPermission}
+                    hasPermission={hasPermission}
                   />
                 </TableCell>
               ) : undefined}
@@ -285,7 +294,7 @@ export const WorkspaceAlertingSettings = () => {
                     isPending={isPending}
                     name="opsgenie"
                     onChange={handleCheckboxChange}
-                    disabled={!hasPermission}
+                    hasPermission={hasPermission}
                   />
                 </TableCell>
               ) : undefined}
