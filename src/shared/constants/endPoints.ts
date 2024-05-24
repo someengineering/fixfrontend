@@ -50,6 +50,9 @@ export const endPoints = {
         }),
         self: `api/workspaces/${workspaceId}/cloud_accounts`,
         lastScan: `api/workspaces/${workspaceId}/cloud_accounts/lastScan`,
+        gcp: {
+          key: `api/workspaces/${workspaceId}/cloud_accounts/gcp/key`,
+        },
       },
       inventory: {
         reportSummary: `api/workspaces/${workspaceId}/inventory/report-summary`,
