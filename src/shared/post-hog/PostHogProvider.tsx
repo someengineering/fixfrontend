@@ -7,7 +7,7 @@ import { getEnvironmentQuery } from './getEnvironment.query'
 
 export const PostHogProvider = ({ children }: { children: React.ReactNode }) => {
   const {
-    data: { aws_marketplace_url, environment },
+    data: { environment },
   } = useSuspenseQuery({
     queryKey: ['environment'],
     queryFn: getEnvironmentQuery,
@@ -20,7 +20,6 @@ export const PostHogProvider = ({ children }: { children: React.ReactNode }) => 
     const projectApiKey =
       environment === 'prd' ? import.meta.env.VITE_POSTHOG_PROD_PROJECT_API_KEY : import.meta.env.VITE_POSTHOG_DEV_PROJECT_API_KEY
     env.isProd = environment === 'prd'
-    env.aws_marketplace_url = aws_marketplace_url
     if (projectApiKey && !posthog.__loaded) {
       posthog.init(projectApiKey, {
         api_host: env.postHogApiHost,
@@ -39,7 +38,7 @@ export const PostHogProvider = ({ children }: { children: React.ReactNode }) => 
         enable_recording_console_log: false,
       })
     }
-  }, [aws_marketplace_url, environment])
+  }, [environment])
 
   return <Provider client={posthog}>{children}</Provider>
 }

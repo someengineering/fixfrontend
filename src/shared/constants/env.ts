@@ -27,7 +27,6 @@ const env = {
   retryCount: envToNumber(import.meta.env.VITE_NETWORK_RETRY_COUNT) ?? 5,
   webSocketRetryTimeout: envToNumber(import.meta.env.VITE_WEBSOCKET_RETRY_TIMEOUT) ?? 5_000,
   discordUrl: import.meta.env.VITE_DISCORD_URL ?? '#',
-  aws_marketplace_url: 'https://aws_marketplace_url.test',
   muiLicenseKey: import.meta.env.VITE_MUI_LICENSE_KEY,
   loadPageTimeout: envToNumber(import.meta.env.VITE_LOAD_PAGE_TIMEOUT) ?? 30_000,
   postHogProjectApiKey: undefined as string | undefined,

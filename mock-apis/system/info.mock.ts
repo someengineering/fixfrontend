@@ -4,5 +4,5 @@ export default defineMock({
   // info
   url: '/api/info',
   method: 'GET',
-  body: { environment: 'dev', aws_marketplace_url: 'https://aws_marketplace_url.test' },
+  body: { environment: 'dev' },
 })

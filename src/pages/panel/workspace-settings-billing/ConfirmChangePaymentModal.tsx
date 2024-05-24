@@ -69,10 +69,9 @@ export const ConfirmChangePaymentModal = ({ paymentModalShowRef, currentPaymentM
             <LinkButton
               href={
                 paymentMethod.method === 'aws_marketplace'
-                  ? `${env.aws_marketplace_url}`
+                  ? `${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').awsMarketplaceProduct}`
                   : `${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').subscription.stripe}`
               }
-              disabled={paymentMethod.method === 'aws_marketplace' && !env.aws_marketplace_url}
               variant="outlined"
               color="primary"
               loadingPosition="center"
