@@ -3,7 +3,7 @@ import BugReportIcon from '@mui/icons-material/BugReport'
 import { LoadingButton } from '@mui/lab'
 import { useMutation } from '@tanstack/react-query'
 import { useUserProfile } from 'src/core/auth'
-import { NotificationChannel } from 'src/shared/types/server'
+import { NotificationChannel } from 'src/shared/types/server-shared'
 import { postWorkspaceNotificationTestMutation } from './postWorkspaceNotificationTest.mutation'
 
 interface WorkspaceSettingsTestServiceProps {

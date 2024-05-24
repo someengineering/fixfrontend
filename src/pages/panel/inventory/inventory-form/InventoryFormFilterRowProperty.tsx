@@ -8,11 +8,11 @@ import { usePostHog } from 'posthog-js/react'
 import { ChangeEvent, HTMLAttributes, KeyboardEvent, UIEvent as ReactUIEvent, useEffect, useMemo, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventoryPropertyPathCompleteQuery } from 'src/pages/panel/shared/queries'
-import { isValidProp } from 'src/pages/panel/shared/utils'
+import { isValidProp, sendInventoryError } from 'src/pages/panel/shared/utils'
 import { panelUI } from 'src/shared/constants'
 import { OPType, defaultProperties, kindDurationTypes, kindSimpleTypes } from 'src/shared/fix-query-parser'
-import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
-import { postCostumedWorkspaceInventoryPropertyAttributesQuery, sendInventoryError } from './utils'
+import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server-shared'
+import { postCostumedWorkspaceInventoryPropertyAttributesQuery } from './utils'
 
 interface InventoryFormFilterRowPropertyProps {
   selectedKinds: string[] | null

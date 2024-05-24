@@ -28,7 +28,7 @@
     "test:dev": "vitest --config=./vite.config.test.ts",
     "test:coverage:all": "yarn test --coverage",
     "test:coverage": "yarn test --coverage.enabled=true --coverage.all=false",
-    "test:inspect": "yarn test --inspect-brk",
+    "test:inspect": "yarn test --inspect --no-file-parallelism --maxConcurrency=1 --bail=1",
     "test:ui": "yarn test --ui"
   },
   "dependencies": {

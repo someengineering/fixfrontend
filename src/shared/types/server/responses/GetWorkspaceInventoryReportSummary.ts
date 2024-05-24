@@ -1,4 +1,4 @@
-import { Benchmark, FailedCheck, SeverityType } from './shared'
+import { Benchmark, FailedCheck, SeverityType } from 'src/shared/types/server-shared'
 
 export type FailedChecksType<value = number> = Record<SeverityType, value>
 

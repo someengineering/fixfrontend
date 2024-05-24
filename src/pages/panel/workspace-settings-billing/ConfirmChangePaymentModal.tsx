@@ -9,7 +9,7 @@ import { useSnackbar } from 'src/core/snackbar'
 import { endPoints, env } from 'src/shared/constants'
 import { LinkButton } from 'src/shared/link-button'
 import { Modal } from 'src/shared/modal'
-import { PaymentMethod, PaymentMethodWithoutNone } from 'src/shared/types/server'
+import { PaymentMethod, PaymentMethodWithoutNone } from 'src/shared/types/server-shared'
 import { putWorkspaceBillingMutation } from './putWorkspaceBilling.mutation'
 import { paymentMethodToLabel } from './utils'
 

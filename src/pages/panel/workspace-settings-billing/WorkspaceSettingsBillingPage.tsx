@@ -4,7 +4,7 @@ import { Alert, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography 
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { PaymentMethodWithoutNone } from 'src/shared/types/server'
+import { PaymentMethodWithoutNone } from 'src/shared/types/server-shared'
 import { ChangeProductTier } from './ChangeProductTier'
 import { ConfirmChangePaymentModal } from './ConfirmChangePaymentModal'
 import { WorkspaceSettingsBillingTable } from './WorkspaceSettingsBillingTable'

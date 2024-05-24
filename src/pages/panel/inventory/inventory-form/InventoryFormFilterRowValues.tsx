@@ -2,7 +2,7 @@ import { Trans, t } from '@lingui/macro'
 import { TextField } from '@mui/material'
 import { DurationPicker } from 'src/shared/duration-picker'
 import { Predicate } from 'src/shared/fix-query-parser'
-import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
+import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server-shared'
 import {
   BooleanValues,
   InventoryFormFilterRowBooleanValue,
