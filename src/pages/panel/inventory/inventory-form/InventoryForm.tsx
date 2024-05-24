@@ -35,7 +35,7 @@ function removeDuplicates<T>(data?: T[], basedOn?: keyof T) {
 }
 
 export const InventoryForm = () => {
-  const postHog = usePostHog()
+  const posthog = usePostHog()
   const { account: selectedAccount, cloud: selectedCloud, region: selectedRegion, is: selectedKinds } = useFixQueryParser()
   const { currentUser, selectedWorkspace } = useUserProfile()
   const { data: originalStartData, error } = useQuery({
@@ -52,10 +52,10 @@ export const InventoryForm = () => {
         queryFn: 'getWorkspaceInventorySearchStartQuery',
         isAdvancedSearch: false,
         error: error as AxiosError,
-        postHog,
+        posthog,
       })
     }
-  }, [currentUser, error, postHog, selectedWorkspace?.id])
+  }, [currentUser, error, posthog, selectedWorkspace?.id])
   const startData = useMemo(
     () =>
       originalStartData

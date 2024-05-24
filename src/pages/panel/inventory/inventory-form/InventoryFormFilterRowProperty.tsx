@@ -36,7 +36,7 @@ export const InventoryFormFilterRowProperty = ({
   kinds,
   onChange,
 }: InventoryFormFilterRowPropertyProps) => {
-  const postHog = usePostHog()
+  const posthog = usePostHog()
   const { defaultItem, isDefaultSimple } = useMemo(() => {
     const defaultItem = defaultProperties.find((i) => i.label === defaultValue || i.label === defaultForcedValue)
     return {
@@ -122,7 +122,7 @@ export const InventoryFormFilterRowProperty = ({
             property: `${path.split('.').slice(-1)[0]}${prop ? `=~"${prop.replace(/․/g, '.')}"` : ''}` ? '' : debouncedProp,
             query: selectedKinds ? `is(${selectedKinds.join(',')})` : 'all',
           },
-          postHog,
+          posthog,
         })
       } else {
         sendInventoryError({
@@ -137,7 +137,7 @@ export const InventoryFormFilterRowProperty = ({
             kinds: selectedKinds ?? kinds,
             fuzzy: true,
           },
-          postHog,
+          posthog,
         })
       }
     }
@@ -153,7 +153,7 @@ export const InventoryFormFilterRowProperty = ({
     selectedKinds,
     selectedWorkspace?.id,
     value,
-    postHog,
+    posthog,
     currentUser,
   ])
 

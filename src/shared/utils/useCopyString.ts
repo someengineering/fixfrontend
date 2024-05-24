@@ -3,11 +3,11 @@ import { useCopyToClipboard } from '@uidotdev/usehooks'
 import { usePostHog } from 'posthog-js/react'
 import { useCallback } from 'react'
 import { useSnackbar } from 'src/core/snackbar'
-import { PostHogEvent } from 'src/shared/post-hog'
+import { PostHogEvent } from 'src/shared/posthog'
 import { getAuthData } from './localstorage'
 
 export const useCopyString = (withSnackbar = true) => {
-  const postHog = usePostHog()
+  const posthog = usePostHog()
   const { showSnackbar } = useSnackbar()
   const [, copyString] = useCopyToClipboard()
   const handleCopy = useCallback(
@@ -23,7 +23,7 @@ export const useCopyString = (withSnackbar = true) => {
         }
         const { name: error_name, message: error_message, stack: error_stack } = err as Error
         const { isAuthenticated, selectedWorkspaceId } = getAuthData() || {}
-        postHog.capture(PostHogEvent.Error, {
+        posthog.capture(PostHogEvent.Error, {
           authenticated: isAuthenticated ?? false,
           workspace_id: selectedWorkspaceId,
           error_name,
@@ -32,7 +32,7 @@ export const useCopyString = (withSnackbar = true) => {
         })
       }
     },
-    [copyString, postHog, showSnackbar, withSnackbar],
+    [copyString, posthog, showSnackbar, withSnackbar],
   )
   return handleCopy
 }

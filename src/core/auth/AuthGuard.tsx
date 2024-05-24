@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosInstance } from 'axios'
 import { usePostHog } from 'posthog-js/react'
 import { PropsWithChildren, SetStateAction, useCallback, useEffect, useRef, useState } from 'react'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { PostHogEvent } from 'src/shared/post-hog'
+import { PostHogEvent } from 'src/shared/posthog'
 import { GetWorkspaceResponse } from 'src/shared/types/server'
 import { axiosWithAuth, defaultAxiosConfig, setAxiosWithAuth } from 'src/shared/utils/axios'
 import { clearAllCookies, isAuthenticated as isCookieAuthenticated } from 'src/shared/utils/cookie'
@@ -16,7 +16,7 @@ import { logoutMutation } from './logout.mutation'
 const defaultAuth = { isAuthenticated: false, workspaces: [], selectedWorkspace: undefined, currentUser: undefined }
 
 export function AuthGuard({ children }: PropsWithChildren) {
-  const postHog = usePostHog()
+  const posthog = usePostHog()
   const [auth, setAuth] = useState<UserContextRealValues>(() => {
     const isAuthenticated = isCookieAuthenticated()
     const selectedWorkspaceId = isAuthenticated
@@ -80,12 +80,12 @@ export function AuthGuard({ children }: PropsWithChildren) {
       try {
         await logoutMutation()
       } finally {
-        postHog.reset()
+        posthog.reset()
         clearAllCookies()
         handleInternalSetAuth(defaultAuth)
       }
     },
-    [handleInternalSetAuth, navigate, postHog],
+    [handleInternalSetAuth, navigate, posthog],
   )
 
   const handleRefreshWorkspaces = useCallback(
@@ -123,7 +123,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
           resolve(foundWorkspace)
 
           if (foundWorkspace) {
-            postHog.group('workspace_id', foundWorkspace.id)
+            posthog.group('workspace_id', foundWorkspace.id)
           }
 
           return foundWorkspace
@@ -135,7 +135,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
         })
       })
     },
-    [handleInternalSetAuth, postHog],
+    [handleInternalSetAuth, posthog],
   )
 
   useEffect(() => {
@@ -151,7 +151,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
             if (window.TrackJS?.isInstalled()) {
               window.TrackJS.track(error)
             }
-            postHog.capture(PostHogEvent.Error, {
+            posthog.capture(PostHogEvent.Error, {
               authenticated: isCookieAuthenticated(),
               workspace_id: getPersistedAuthData()?.selectedWorkspaceId || undefined,
               error_name: error.name,
@@ -171,7 +171,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
             if (window.TrackJS?.isInstalled()) {
               window.TrackJS.track(error)
             }
-            postHog.capture(PostHogEvent.NetworkError, {
+            posthog.capture(PostHogEvent.NetworkError, {
               authenticated: isCookieAuthenticated(),
               workspace_id: getPersistedAuthData()?.selectedWorkspaceId || undefined,
               api_endpoint: error.response?.config.url || undefined,
@@ -194,7 +194,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
         handleInternalSetAuth((prev) => ({ ...prev, currentUser }))
       })
     }
-  }, [auth.isAuthenticated, handleRefreshWorkspaces, handleLogout, navigate, handleInternalSetAuth, postHog])
+  }, [auth.isAuthenticated, handleRefreshWorkspaces, handleLogout, navigate, handleInternalSetAuth, posthog])
 
   useEffect(() => {
     if (nextUrl.current && auth.isAuthenticated) {

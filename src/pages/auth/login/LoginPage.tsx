@@ -36,7 +36,7 @@ const getErrorMessage = (error: string) => {
 }
 
 export default function LoginPage() {
-  const postHog = usePostHog()
+  const posthog = usePostHog()
   const { mutateAsync: login, isPending: isLoginLoading, error } = useMutation({ mutationFn: loginMutation })
   const { setAuth, currentUser } = useUserProfile()
   const [getSearch] = useSearchParams()
@@ -61,10 +61,10 @@ export default function LoginPage() {
           const workspaceId = getAuthData()?.selectedWorkspaceId
 
           if (currentUser) {
-            postHog.identify(currentUser.id, { ...currentUser })
+            posthog.identify(currentUser.id, { ...currentUser })
 
             if (workspaceId) {
-              postHog.group('workspace_id', workspaceId)
+              posthog.group('workspace_id', workspaceId)
             }
           }
 
