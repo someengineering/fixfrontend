@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios'
 import { PostHog } from 'posthog-js/react'
 import { endPoints } from 'src/shared/constants'
-import { PostHogEvent } from 'src/shared/posthog'
+import { PostHogEvent } from 'src/shared/post-hog'
 import { GetCurrentUserResponse } from 'src/shared/types/server'
 import { isAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData } from 'src/shared/utils/localstorage'
@@ -45,7 +45,7 @@ export const sendInventoryError = ({
   error,
   params,
   id,
-  posthog,
+  postHog,
 }: {
   currentUser?: GetCurrentUserResponse
   workspaceId?: string
@@ -54,16 +54,16 @@ export const sendInventoryError = ({
   error: AxiosError
   params?: Record<string, unknown>
   id?: string
-  posthog: PostHog
+  postHog: PostHog
 }) => {
   if (window.TrackJS?.isInstalled()) {
     window.TrackJS.track(error)
   }
 
-  if (posthog) {
+  if (postHog) {
     const selectedWorkspaceId = workspaceId || getAuthData()?.selectedWorkspaceId || undefined
 
-    posthog.capture(PostHogEvent.InventoryError, {
+    postHog.capture(PostHogEvent.InventoryError, {
       ...params,
       $set: { ...currentUser },
       authenticated: isAuthenticated(),

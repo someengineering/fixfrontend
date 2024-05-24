@@ -39,7 +39,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
   value,
   ...props
 }: InventoryFormFilterRowStringValueProps<Multiple, NetworkDisabled>) {
-  const posthog = usePostHog()
+  const postHog = usePostHog()
   const { currentUser, selectedWorkspace } = useUserProfile()
   const { query } = useFixQueryParser()
   const [open, setOpen] = useState(false)
@@ -110,10 +110,10 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
               ? `${q} and ${propertyName} ~ ".*${debouncedTyped}.*"`
               : q,
         },
-        posthog,
+        postHog,
       })
     }
-  }, [currentUser, debouncedTyped, error, posthog, propertyName, q, selectedWorkspace?.id, value])
+  }, [currentUser, debouncedTyped, error, postHog, propertyName, q, selectedWorkspace?.id, value])
   const flatData = useMemo(
     () =>
       data?.pages

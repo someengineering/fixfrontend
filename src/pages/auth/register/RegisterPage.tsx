@@ -32,7 +32,7 @@ const getErrorMessage = (error: string) => {
 }
 
 export default function RegisterPage() {
-  const posthog = usePostHog()
+  const postHog = usePostHog()
   const { currentUser } = useUserProfile()
   const { mutateAsync: register, isPending: isRegisterLoading, error } = useMutation({ mutationFn: registerMutation })
   const [email, setEmail] = useState('')
@@ -48,7 +48,7 @@ export default function RegisterPage() {
       register({ email, password, redirectUrl: window.encodeURIComponent(getSearch.get('returnUrl') ?? panelUI.homePage) })
         .then(() => {
           if (currentUser) {
-            posthog.identify(currentUser.id, { ...currentUser })
+            postHog.identify(currentUser.id, { ...currentUser })
           }
 
           navigate(

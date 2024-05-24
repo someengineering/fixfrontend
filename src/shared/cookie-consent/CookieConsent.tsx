@@ -5,21 +5,21 @@ import Cookies from 'js-cookie'
 import { usePostHog } from 'posthog-js/react'
 import { useEffect, useRef, useState } from 'react'
 import { env } from 'src/shared/constants'
-import { PostHogPageView } from 'src/shared/posthog'
+import { PostHogPageView } from 'src/shared/post-hog'
 
 const CookieConsentComp = () => {
-  const posthog = usePostHog()
+  const postHog = usePostHog()
   const containerRef = useRef<HTMLDivElement>(null)
-  const [showConsent, setShowConsent] = useState(posthog.has_opted_in_capturing() ? false : Cookies.get('cookie_consent') !== 'false')
+  const [showConsent, setShowConsent] = useState(postHog.has_opted_in_capturing() ? false : Cookies.get('cookie_consent') !== 'false')
 
   useEffect(() => {
-    if (posthog.has_opted_in_capturing() || Cookies.get('cookie_consent') !== 'false') {
+    if (postHog.has_opted_in_capturing() || Cookies.get('cookie_consent') !== 'false') {
       Cookies.remove('cookie_consent', {
         domain: env.isProd ? '.fix.security' : undefined,
         secure: !env.isLocal,
       })
     }
-  }, [posthog])
+  }, [postHog])
 
   return (
     <Drawer
@@ -60,7 +60,7 @@ const CookieConsentComp = () => {
           variant="contained"
           onClick={() => {
             setShowConsent(false)
-            posthog.opt_in_capturing({ enable_persistence: true })
+            postHog.opt_in_capturing({ enable_persistence: true })
           }}
         >
           <Trans>Accept</Trans>
@@ -74,7 +74,7 @@ const CookieConsentComp = () => {
               domain: env.isProd ? '.fix.security' : undefined,
               secure: !env.isLocal,
             })
-            posthog.opt_out_capturing()
+            postHog.opt_out_capturing()
           }}
         >
           <Trans>Reject</Trans>

@@ -116,7 +116,7 @@ const GridItem = ({ property, value, color, isReactNode }: GridItemProps) => {
 }
 
 export const ResourceDetail = () => {
-  const posthog = usePostHog()
+  const postHog = usePostHog()
   const { resourceDetailId } = useParams()
   const navigate = useAbsoluteNavigate()
   const openResourceModalRef = useRef<(show?: boolean | undefined) => void>()
@@ -142,10 +142,10 @@ export const ResourceDetail = () => {
         isAdvancedSearch: false,
         error: error as AxiosError,
         id: resourceDetailId,
-        posthog,
+        postHog,
       })
     }
-  }, [resourceDetailId, error, posthog, selectedWorkspace?.id, currentUser])
+  }, [resourceDetailId, error, postHog, selectedWorkspace?.id, currentUser])
 
   const handleClose = () => {
     const search = getLocationSearchValues(window.location.search)
