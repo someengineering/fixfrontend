@@ -179,7 +179,7 @@ msgstr "In wenigen Minuten bis zum ersten Ergebnis"
 msgid "Abandoned"
 msgstr "Verlassen"
 
-#: src/shared/cookie-consent/CookieConsent.tsx:66
+#: src/shared/cookie-consent/CookieConsent.tsx:70
 msgid "Accept"
 msgstr ""
 
@@ -1455,7 +1455,7 @@ msgstr "Regionen"
 msgid "Register"
 msgstr "Registrieren"
 
-#: src/shared/cookie-consent/CookieConsent.tsx:80
+#: src/shared/cookie-consent/CookieConsent.tsx:84
 msgid "Reject"
 msgstr ""
 
@@ -1801,7 +1801,7 @@ msgstr "Warnung"
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "Wir haben eine E-Mail mit einem Bestätigungslink an Ihre E-Mail-Adresse gesendet. Bitte folgen Sie dem Link, um Ihr Konto zu aktivieren."
 
-#: src/shared/cookie-consent/CookieConsent.tsx:42
+#: src/shared/cookie-consent/CookieConsent.tsx:46
 msgid "We use cookies and other tracking technologies to analyze site usage and assist in marketing efforts. For details, see our <0>cookie policy<1/></0>."
 msgstr ""
 
