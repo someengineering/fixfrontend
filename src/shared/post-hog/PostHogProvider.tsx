@@ -27,7 +27,7 @@ export const PostHogProvider = ({ children }: { children: React.ReactNode }) => 
         ui_host: env.postHogUiHost,
         cross_subdomain_cookie: env.isProd,
         secure_cookie: !env.isLocal,
-        debug: !env.isProd,
+        debug: env.isLocal,
         capture_pageview: false, // Page views are captured manually
         capture_pageleave: true,
 
