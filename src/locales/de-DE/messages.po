@@ -179,7 +179,7 @@ msgstr "In wenigen Minuten bis zum ersten Ergebnis"
 msgid "Abandoned"
 msgstr "Verlassen"
 
-#: src/shared/cookie-consent/CookieConsent.tsx:63
+#: src/shared/cookie-consent/CookieConsent.tsx:66
 msgid "Accept"
 msgstr ""
 
@@ -226,9 +226,9 @@ msgstr "Aktionen"
 msgid "Activate"
 msgstr "aktivieren Sie"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:61
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:101
-#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:84
+#: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:60
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:100
+#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:83
 msgid "Add a New Credit or Debit Card"
 msgstr ""
 
@@ -332,7 +332,7 @@ msgstr "API-Zugriff"
 msgid "API Key"
 msgstr "API-Schlüssel"
 
-#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:110
+#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:109
 msgid "Are you sure you want to change payment from <0>{0}</0> to <1>{1}</1>?"
 msgstr ""
 
@@ -371,7 +371,7 @@ msgstr "AWS Marketplace wurde erfolgreich abonniert"
 msgid "Basic Information"
 msgstr "Grundinformation"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:112
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:113
 msgid "Because the data is over {0} Only first {1} items will be downloaded"
 msgstr "Da die Daten über {0} liegen, werden nur die ersten {1} Elemente heruntergeladen"
 
@@ -440,15 +440,15 @@ msgstr "Stornieren"
 msgid "Change"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:101
+#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:100
 msgid "Change payment"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:106
+#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:105
 msgid "Change Payment method"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:125
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:124
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:81
 msgid "Change Product Tier"
 msgstr "Produktstufe ändern"
@@ -589,7 +589,7 @@ msgstr ""
 msgid "Critical"
 msgstr "Kritisch"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:167
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:166
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:86
 msgid "Current Product Tier"
 msgstr ""
@@ -714,13 +714,13 @@ msgstr "Möchten Sie diesen Benutzer löschen?"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:120
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:119
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:77
 msgid "Downgrade"
 msgstr "Downgrade"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:105
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:127
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:106
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:128
 msgid "Download CSV"
 msgstr "CSV herunterladen"
 
@@ -898,7 +898,7 @@ msgstr "Hoch"
 msgid "Highest product tier this billing cycle"
 msgstr ""
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:77
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:78
 msgid "Homepage"
 msgstr "Startseite"
 
@@ -980,7 +980,7 @@ msgstr "Inaktivitätserinnerung"
 msgid "Info"
 msgstr "Info"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:177
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:176
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
 msgstr ""
 
@@ -1162,7 +1162,7 @@ msgstr "neue nicht konforme Ressourcen in der Vergangenheit {since}"
 msgid "New Password"
 msgstr "Neues Kennwort"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:170
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:169
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:89
 msgid "New Product Tier"
 msgstr ""
@@ -1185,7 +1185,7 @@ msgstr "Nächste Synchronisierung"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:42
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:68
-#: src/pages/panel/inventory/InventoryTable.tsx:141
+#: src/pages/panel/inventory/InventoryTable.tsx:142
 msgid "No"
 msgstr ""
 
@@ -1246,7 +1246,7 @@ msgstr "Hoppla, der Benutzername oder das Passwort scheinen nicht mit unseren Au
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Sie sie und versuchen Sie es erneut."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:52
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:53
 msgid "Oops! Something went wrong."
 msgstr "Hoppla! Etwas ist schief gelaufen."
 
@@ -1310,11 +1310,11 @@ msgstr "Eigentümer"
 msgid "Password"
 msgstr "Passwort"
 
-#: src/core/events/WebSocketEvents.tsx:135
+#: src/core/events/WebSocketEvents.tsx:136
 msgid "Payment is required for your workspace, Please contact the workspace owner"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:131
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:130
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:73
 msgid "Payment method"
 msgstr ""
@@ -1323,12 +1323,12 @@ msgstr ""
 msgid "Payment method changed to {0}"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:67
+#: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:66
 msgid "Payment Method Required"
 msgstr "Zahlungsmethode erforderlich"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:75
-#: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:80
+#: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:74
+#: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:79
 msgid "Payment method to add"
 msgstr ""
 
@@ -1343,7 +1343,7 @@ msgstr "Ausstehende Einladungen"
 msgid "Pick one of the recommendations to the right and improve your security"
 msgstr "Wählen Sie eine der Empfehlungen rechts aus und verbessern Sie Ihre Sicherheit"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:71
+#: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:70
 msgid "Please add a payment method to switch your workspace's product tier"
 msgstr ""
 
@@ -1455,7 +1455,7 @@ msgstr "Regionen"
 msgid "Register"
 msgstr "Registrieren"
 
-#: src/shared/cookie-consent/CookieConsent.tsx:78
+#: src/shared/cookie-consent/CookieConsent.tsx:80
 msgid "Reject"
 msgstr ""
 
@@ -1682,9 +1682,9 @@ msgstr "Stufe"
 msgid "To access this resource, please ensure that you are logged into the AWS account: {account}"
 msgstr "Um auf diese Ressource zuzugreifen, stellen Sie bitte sicher, dass Sie beim AWS-Konto angemeldet sind: {account}"
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:59
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:99
-#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:82
+#: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:58
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:98
+#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:81
 msgid "To AWS Marketplace"
 msgstr "Zum AWS Marketplace"
 
@@ -1718,7 +1718,7 @@ msgstr "TOTP-Setup"
 msgid "Trial"
 msgstr "Probezeit"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:93
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:94
 msgid "Try again"
 msgstr "Versuchen Sie es erneut"
 
@@ -1740,7 +1740,7 @@ msgstr "Nicht angehängte elastische IPs"
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:329
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:149
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:154
-#: src/pages/panel/inventory/InventoryTable.tsx:133
+#: src/pages/panel/inventory/InventoryTable.tsx:134
 msgid "Undefined"
 msgstr ""
 
@@ -1768,7 +1768,7 @@ msgstr "E-Mail aktualisieren"
 msgid "Update Password"
 msgstr "Kennwort aktualisieren"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:120
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:119
 msgid "Upgrade"
 msgstr "Aktualisierung"
 
@@ -1793,7 +1793,7 @@ msgstr "Benutzer"
 msgid "Value"
 msgstr "Wert"
 
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:89
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:90
 msgid "Warning"
 msgstr "Warnung"
 
@@ -1801,7 +1801,7 @@ msgstr "Warnung"
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "Wir haben eine E-Mail mit einem Bestätigungslink an Ihre E-Mail-Adresse gesendet. Bitte folgen Sie dem Link, um Ihr Konto zu aktivieren."
 
-#: src/shared/cookie-consent/CookieConsent.tsx:38
+#: src/shared/cookie-consent/CookieConsent.tsx:42
 msgid "We use cookies and other tracking technologies to analyze site usage and assist in marketing efforts. For details, see our <0>cookie policy<1/></0>."
 msgstr ""
 
@@ -1809,7 +1809,7 @@ msgstr ""
 msgid "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 msgstr "Es tut uns leid, dass Sie herunterstufen, aber wir sind dankbar, Sie weiterhin in unserer kostenlosen Stufe zu haben. Wenn Ihnen etwas Bestimmtes fehlt, wenden Sie sich bitte direkt an mich, <0>lars@some.engineering</0>. Ich würde gerne von Ihnen hören und Ihnen so gut wie möglich helfen."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:55
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:56
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "Wir entschuldigen uns für die Unannehmlichkeiten. Unser Team wurde benachrichtigt und das Problem wird untersucht. Bitte versuchen Sie es in ein paar Minuten noch einmal. Wenn das Problem weiterhin besteht, können Sie uns gerne <0>auf Discord</0> kontaktieren. Danke für Ihre Geduld!"
 
@@ -1825,7 +1825,7 @@ msgstr "Wöchentlicher E-Mail-Bericht"
 msgid "Weekly Report"
 msgstr "Wöchentlicher Report"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:179
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:178
 msgid "Within a billing cycle you will be charged for the highest product tier that was active."
 msgstr ""
 
@@ -1859,15 +1859,15 @@ msgstr "Workspace-Benutzer"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:39
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:65
-#: src/pages/panel/inventory/InventoryTable.tsx:137
+#: src/pages/panel/inventory/InventoryTable.tsx:138
 msgid "Yes"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:107
+#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:106
 msgid "You are about to change workspace's payment method"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:126
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:125
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:82
 msgid "You are about to change workspace's product tier"
 msgstr ""
@@ -1884,7 +1884,7 @@ msgstr "Sie können TOTP über den OTP-Code deaktivieren"
 msgid "You can deactivate TOTP via recovery code"
 msgstr "Sie können TOTP über den Wiederherstellungscode deaktivieren"
 
-#: src/core/events/WebSocketEvents.tsx:136
+#: src/core/events/WebSocketEvents.tsx:137
 msgid "You don't have access to this workspace"
 msgstr ""
 
@@ -1908,7 +1908,7 @@ msgstr "Sie haben Ihr Passwort erfolgreich zurückgesetzt."
 msgid "You have successfully verified your account."
 msgstr "Sie haben Ihr Konto erfolgreich verifiziert."
 
-#: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:68
+#: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:67
 msgid "You need a payment method to change your product tier"
 msgstr ""
 

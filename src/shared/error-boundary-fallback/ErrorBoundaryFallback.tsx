@@ -7,7 +7,8 @@ import { useEffect } from 'react'
 import { FallbackProps } from 'react-error-boundary'
 import { DiscordIcon } from 'src/assets/icons'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { PosthogEvent, env, panelUI } from 'src/shared/constants'
+import { env, panelUI } from 'src/shared/constants'
+import { PostHogEvent } from 'src/shared/posthog'
 import { isAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData } from 'src/shared/utils/localstorage'
 
@@ -25,7 +26,7 @@ const ModalContent = styled(Stack)(({ theme }) => ({
 }))
 
 export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
-  const posthog = usePostHog()
+  const postHog = usePostHog()
   const navigate = useAbsoluteNavigate(true)
 
   useEffect(() => {
@@ -34,7 +35,7 @@ export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackPro
         window.TrackJS.track(error as Error)
       }
       const { name: error_name, message: error_message, stack: error_stack } = error as Error
-      posthog.capture(PosthogEvent.Error, {
+      postHog.capture(PostHogEvent.Error, {
         authenticated: isAuthenticated(),
         workspace_id: getAuthData()?.selectedWorkspaceId,
         error_name,
@@ -42,7 +43,7 @@ export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackPro
         error_stack,
       })
     }
-  }, [error, posthog])
+  }, [error, postHog])
 
   return (
     <Modal open onClose={resetErrorBoundary} aria-labelledby="modal-error-title" aria-describedby="modal-error-description">

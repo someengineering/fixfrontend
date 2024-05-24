@@ -16,6 +16,7 @@ interface ImportMetaEnv {
   readonly VITE_POSTHOG_PROD_PROJECT_API_KEY?: string
   readonly VITE_POSTHOG_API_HOST?: string
   readonly VITE_POSTHOG_UI_HOST?: string
+  readonly VITE_POSTHOG_TEST?: string
 }
 
 interface ImportMeta {

@@ -6,7 +6,7 @@ import { useUserProfile } from 'src/core/auth'
 import { useThemeMode } from 'src/core/theme'
 import { isAuthenticated } from 'src/shared/utils/cookie'
 
-export const PosthogPageView = () => {
+export const PostHogPageView = () => {
   const posthog = usePostHog()
   const { pathname } = useLocation()
   const [searchParams] = useSearchParams()

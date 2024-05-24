@@ -8,8 +8,9 @@ import { usePostHog } from 'posthog-js/react'
 import { ForwardedRef, forwardRef, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventorySearchTableDownloadMutation } from 'src/pages/panel/shared/queries'
-import { PosthogEvent, panelUI } from 'src/shared/constants'
+import { panelUI } from 'src/shared/constants'
 import { Modal } from 'src/shared/modal'
+import { PostHogEvent } from 'src/shared/posthog'
 import { WorkspaceInventorySearchTableHistory, WorkspaceInventorySearchTableSort } from 'src/shared/types/server'
 
 interface DownloadCSVButtonProps {
@@ -21,7 +22,7 @@ interface DownloadCSVButtonProps {
 
 export const DownloadCSVButton = forwardRef(
   ({ query, history, sort, hasWarning, ...tooltipProps }: DownloadCSVButtonProps, ref: ForwardedRef<HTMLButtonElement | null>) => {
-    const posthog = usePostHog()
+    const postHog = usePostHog()
     const {
       i18n: { locale },
     } = useLingui()
@@ -64,7 +65,7 @@ export const DownloadCSVButton = forwardRef(
               window.TrackJS.track(error as Error)
             }
             const { name: error_name, message: error_message, stack: error_stack } = (error as Error) ?? {}
-            posthog.capture(PosthogEvent.Error, {
+            postHog.capture(PostHogEvent.Error, {
               $set: { ...currentUser },
               authenticated: true,
               user_id: currentUser?.id,

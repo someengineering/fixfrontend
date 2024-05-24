@@ -3,7 +3,8 @@ import { usePostHog } from 'posthog-js/react'
 import { PropsWithChildren, useCallback, useEffect, useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
-import { PosthogEvent, apiMessages, endPoints, env } from 'src/shared/constants'
+import { apiMessages, endPoints, env } from 'src/shared/constants'
+import { PostHogEvent } from 'src/shared/posthog'
 import { WebSocketEvent } from 'src/shared/types/server'
 import { isAuthenticated as getIsAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData } from 'src/shared/utils/localstorage'
@@ -13,7 +14,7 @@ const WS_CLOSE_CODE_NO_RETRY = 4001
 const WS_SERVER_CLOSE_CODE_NO_RETRY = 4401
 
 export const WebSocketEvents = ({ children }: PropsWithChildren) => {
-  const posthog = usePostHog()
+  const postHog = usePostHog()
   const { currentUser, selectedWorkspace, isAuthenticated, logout } = useUserProfile()
   const noRetry = useRef(false)
   const listeners = useRef<Record<string, (ev: MessageEvent) => void>>({})
@@ -41,7 +42,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
           }
           const { name: error_name, message: error_message, stack: error_stack } = err as Error
           const workspaceId = getAuthData()?.selectedWorkspaceId || undefined
-          posthog.capture(PosthogEvent.WebsocketError, {
+          postHog.capture(PostHogEvent.WebsocketError, {
             $set: { ...currentUser },
             authenticated: getIsAuthenticated(),
             user_id: currentUser?.id,
@@ -60,7 +61,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
       }
       return () => handleRemoveListener(randomId)
     },
-    [currentUser, handleRemoveListener, posthog],
+    [currentUser, handleRemoveListener, postHog],
   )
 
   const handleSendData = useCallback(
@@ -85,7 +86,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
           }
           const { name: error_name, message: error_message, stack: error_stack } = err as Error
           const workspaceId = getAuthData()?.selectedWorkspaceId || undefined
-          posthog.capture(PosthogEvent.WebsocketError, {
+          postHog.capture(PostHogEvent.WebsocketError, {
             $set: { ...currentUser },
             authenticated: getIsAuthenticated(),
             user_id: currentUser?.id,
@@ -101,7 +102,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
         }
       })
     },
-    [currentUser, posthog],
+    [currentUser, postHog],
   )
 
   useEffect(() => {
@@ -114,7 +115,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
             window.TrackJS.track(err)
           }
           const workspaceId = getAuthData()?.selectedWorkspaceId || undefined
-          posthog.capture(PosthogEvent.WebsocketError, {
+          postHog.capture(PostHogEvent.WebsocketError, {
             $set: { ...currentUser },
             authenticated: getIsAuthenticated(),
             user_id: currentUser?.id,
@@ -158,7 +159,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
             }
             const { name: error_name, message: error_message, stack: error_stack } = err as Error
             const workspaceId = getAuthData()?.selectedWorkspaceId || undefined
-            posthog.capture(PosthogEvent.WebsocketError, {
+            postHog.capture(PostHogEvent.WebsocketError, {
               $set: { ...currentUser },
               authenticated: getIsAuthenticated(),
               user_id: currentUser?.id,
@@ -211,7 +212,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
     } else {
       noRetry.current = false
     }
-  }, [selectedWorkspace?.id, isAuthenticated, logout, showSnackbar, posthog, currentUser])
+  }, [selectedWorkspace?.id, isAuthenticated, logout, showSnackbar, postHog, currentUser])
 
   return (
     <WebSocketEventsContext.Provider value={{ addListener: handleAddListener, websocket, send: handleSendData }}>

@@ -46,12 +46,11 @@ export const ChangePaymentNoMethodModal = ({
             <LinkButton
               href={
                 paymentMethod.method === 'aws_marketplace'
-                  ? `${env.aws_marketplace_url}?product_tier=${selectedProductTier}`
+                  ? `${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').awsMarketplaceProduct}?product_tier=${selectedProductTier}`
                   : `${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').subscription.stripe}?product_tier=${selectedProductTier}`
               }
               endIcon={null}
               loadingPosition="center"
-              disabled={paymentMethod.method === 'aws_marketplace' && !env.aws_marketplace_url}
               variant="outlined"
               color="primary"
             >

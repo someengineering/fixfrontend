@@ -31,6 +31,7 @@ This project requires [NodeJS](https://nodejs.org) version 18 (>= v18.17.1) and 
 | `VITE_POSTHOG_PROD_PROJECT_API_KEY` | `string`  | Production PostHog project API key (if undefined, PostHog won't be initialized in production environments)                | `undefined`                             |
 | `VITE_POSTHOG_API_HOST`             | `string`  | URL of PostHog instance                                                                                                   | `https://eu.posthog.com`                |
 | `VITE_POSTHOG_UI_HOST`              | `string`  | PostHog app URL (required if using a reverse proxy for `VITE_POSTHOG_API_HOST`)                                           | `undefined`                             |
+| `VITE_POSTHOG_TEST`                 | `boolean` | Test PostHog locally for development purposes                                                                             | `false`                                 |
 
 ## Scripts
 

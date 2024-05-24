@@ -10,10 +10,11 @@ import { useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { PosthogEvent, panelUI, settingsStorageKeys } from 'src/shared/constants'
+import { panelUI, settingsStorageKeys } from 'src/shared/constants'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { AdvancedTableView } from 'src/shared/layouts/panel-layout'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
+import { PostHogEvent } from 'src/shared/posthog'
 import {
   PostWorkspaceInventorySearchTableResponse,
   WorkspaceInventorySearchTableColumn,
@@ -38,7 +39,7 @@ type RowType = WorkspaceInventorySearchTableRow['row'] & {
 type ColType = GridColDef & WorkspaceInventorySearchTableColumn
 
 export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => {
-  const posthog = usePostHog()
+  const postHog = usePostHog()
   const { sorts } = useFixQueryParser()
   const [dataCount, setDataCount] = useState(-1)
   const navigate = useAbsoluteNavigate()
@@ -92,14 +93,14 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       setPage(0)
     }
     initializedRef.current = true
-    posthog.capture(PosthogEvent.InventorySearch, {
+    postHog.capture(PostHogEvent.InventorySearch, {
       $set: { ...currentUser },
       authenticated: isAuthenticated(),
       user_id: currentUser?.id,
       workspace_id: selectedWorkspace?.id,
       query: searchCrit,
     })
-  }, [currentUser, posthog, searchCrit, selectedWorkspace?.id])
+  }, [currentUser, postHog, searchCrit, selectedWorkspace?.id])
 
   useEffect(() => {
     if (!isLoading) {
