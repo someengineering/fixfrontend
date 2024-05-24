@@ -89,6 +89,7 @@ module.exports = {
               '!src/shared/utils/*',
               '!src/shared/types/shared',
               '!src/shared/types/server',
+              '!src/shared/types/server-shared',
               'src/shared/types/server/*',
               '!src/shared/layouts/*',
               'src/shared/layouts/*/*',
