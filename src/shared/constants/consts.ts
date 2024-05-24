@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import { SeverityType } from 'src/shared/types/server'
+import { SeverityType } from 'src/shared/types/server-shared'
 
 export const sortedSeverities: SeverityType[] = ['critical', 'high', 'medium', 'low', 'info']
 export const apiMessages = {

@@ -1,4 +1,4 @@
-import { SeverityType } from 'src/shared/types/server'
+import { SeverityType } from 'src/shared/types/server-shared'
 import { colorsBySeverity } from './colorsBySeverity'
 
 export function getColorBySeverity(failedChecks: SeverityType): string

@@ -8,7 +8,7 @@ import { MutableRefObject } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
 import { Modal } from 'src/shared/modal'
-import { ProductTier } from 'src/shared/types/server'
+import { ProductTier } from 'src/shared/types/server-shared'
 import { putWorkspaceBillingMutation } from './putWorkspaceBilling.mutation'
 import { productTierToLabel } from './utils'
 

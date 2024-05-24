@@ -4,7 +4,7 @@ import { Button, Popover, Skeleton, Stack, backdropClasses } from '@mui/material
 import { useState } from 'react'
 import { panelUI } from 'src/shared/constants'
 import { Path, Predicate, useFixQueryParser } from 'src/shared/fix-query-parser'
-import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
+import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server-shared'
 import { InventoryFormFilterRowOpType } from './InventoryFormFilterRowOpType'
 import { InventoryFormFilterRowProperty } from './InventoryFormFilterRowProperty'
 import { InventoryFormFilterRowValues } from './InventoryFormFilterRowValues'

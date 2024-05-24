@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material'
 import { FailedChecks } from 'src/pages/panel/shared/failed-checks'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { FailedCheck } from 'src/shared/types/server'
+import { FailedCheck } from 'src/shared/types/server-shared'
 
 interface TopFiveChecksCardProps {
   failedChecks?: FailedCheck[]

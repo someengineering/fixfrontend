@@ -5,7 +5,7 @@ import { useUserProfile } from 'src/core/auth'
 import { endPoints, env } from 'src/shared/constants'
 import { LinkButton } from 'src/shared/link-button'
 import { Modal } from 'src/shared/modal'
-import { PaymentMethod, PaymentMethods, ProductTier } from 'src/shared/types/server'
+import { PaymentMethod, PaymentMethods, ProductTier } from 'src/shared/types/server-shared'
 import { paymentMethodToLabel, paymentMethods } from './utils'
 
 export interface ChangePaymentNoMethodModalProps {

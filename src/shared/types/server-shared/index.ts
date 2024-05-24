@@ -6,7 +6,9 @@ export type { NodeMetadata } from './NodeMetadata'
 export type { NodeReported } from './NodeReported'
 export type { NodeSecurity } from './NodeSecurity'
 export type { NodeType } from './NodeType'
+export type { NotificationChannel } from './NotificationChannel'
 export type { OAuthProviderNames } from './OAuthProviderNames'
+export type { PaymentMethod, PaymentMethodWithoutNone, PaymentMethods, ProductTier } from './Payment'
 export type {
   ResourceComplexKindProperty,
   ResourceComplexKindPropertyKind,

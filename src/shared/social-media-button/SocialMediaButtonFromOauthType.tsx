@@ -1,5 +1,5 @@
 import { LoadingButtonProps } from '@mui/lab'
-import { OAuthProviderNames } from 'src/shared/types/server'
+import { OAuthProviderNames } from 'src/shared/types/server-shared'
 import { IconFromOAuthType } from './IconFromOAuthType'
 import { SocialMediaButton } from './SocialMediaButton'
 import { getColorFromOAuthType } from './getColorFromOAuthType'

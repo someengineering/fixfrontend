@@ -1,5 +1,4 @@
-import { NotificationChannel } from 'src/shared/types/server'
-import { SeverityType } from './shared'
+import { NotificationChannel, SeverityType } from 'src/shared/types/server-shared'
 
 export type WorkspaceAlertingSetting = {
   severity: SeverityType

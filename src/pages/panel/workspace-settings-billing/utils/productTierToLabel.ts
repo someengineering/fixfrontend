@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import { ProductTier } from 'src/shared/types/server'
+import { ProductTier } from 'src/shared/types/server-shared'
 
 export const productTierToLabel = (productTier: ProductTier) => {
   switch (productTier) {

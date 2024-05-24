@@ -10,7 +10,8 @@ import { IconButton, Theme, Typography } from '@mui/material'
 import { diffLines } from 'diff'
 import { MouseEventHandler } from 'react'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
-import { SeverityType, WorkspaceInventoryNodeHistory } from 'src/shared/types/server'
+import { WorkspaceInventoryNodeHistory } from 'src/shared/types/server'
+import { SeverityType } from 'src/shared/types/server-shared'
 import { stringify } from 'yaml'
 
 export const nodeChangeToStr = (history: WorkspaceInventoryNodeHistory) => {

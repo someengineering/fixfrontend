@@ -1,5 +1,5 @@
 import { endPoints } from 'src/shared/constants'
-import { Account } from 'src/shared/types/server'
+import { Account } from 'src/shared/types/server-shared'
 import { axiosWithAuth } from 'src/shared/utils/axios'
 
 export const patchAccountMutation = async ({ id, name, workspaceId }: { id: string; name: string | null; workspaceId: string }) => {

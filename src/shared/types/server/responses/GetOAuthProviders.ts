@@ -1,4 +1,4 @@
-import { OAuthProviderNames } from './shared'
+import { OAuthProviderNames } from 'src/shared/types/server-shared'
 
 export interface OAuthProviderResponse {
   name: OAuthProviderNames
