@@ -1,11 +1,13 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
 import posthog from 'posthog-js'
 import { PostHogProvider as Provider } from 'posthog-js/react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { env } from 'src/shared/constants'
+import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { getEnvironmentQuery } from './getEnvironment.query'
 
 export const PostHogProvider = ({ children }: { children: React.ReactNode }) => {
+  const [initialized, setInitialized] = useState(false)
   const {
     data: { environment },
   } = useSuspenseQuery({
@@ -38,7 +40,8 @@ export const PostHogProvider = ({ children }: { children: React.ReactNode }) => 
         enable_recording_console_log: false,
       })
     }
+    setInitialized(true)
   }, [environment])
 
-  return <Provider client={posthog}>{children}</Provider>
+  return <Provider client={posthog}>{initialized ? children : <LoadingSuspenseFallback />}</Provider>
 }

@@ -8,7 +8,7 @@ import { FallbackProps } from 'react-error-boundary'
 import { DiscordIcon } from 'src/assets/icons'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { env, panelUI } from 'src/shared/constants'
-import { PostHogEvent } from 'src/shared/post-hog'
+import { PostHogEvent } from 'src/shared/posthog'
 import { isAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData } from 'src/shared/utils/localstorage'
 

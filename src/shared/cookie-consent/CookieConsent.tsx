@@ -5,7 +5,7 @@ import Cookies from 'js-cookie'
 import { usePostHog } from 'posthog-js/react'
 import { useEffect, useRef, useState } from 'react'
 import { env } from 'src/shared/constants'
-import { PostHogPageView } from 'src/shared/post-hog'
+import { PostHogPageView } from 'src/shared/posthog'
 
 const CookieConsentComp = () => {
   const postHog = usePostHog()

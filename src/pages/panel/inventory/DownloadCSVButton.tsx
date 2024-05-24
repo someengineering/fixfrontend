@@ -10,7 +10,7 @@ import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventorySearchTableDownloadMutation } from 'src/pages/panel/shared/queries'
 import { panelUI } from 'src/shared/constants'
 import { Modal } from 'src/shared/modal'
-import { PostHogEvent } from 'src/shared/post-hog'
+import { PostHogEvent } from 'src/shared/posthog'
 import { WorkspaceInventorySearchTableHistory, WorkspaceInventorySearchTableSort } from 'src/shared/types/server'
 
 interface DownloadCSVButtonProps {

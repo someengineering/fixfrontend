@@ -6,7 +6,7 @@ import { AbsoluteNavigateProvider } from 'src/shared/absolute-navigate'
 import { env } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { FullPageLoadingProvider, FullPageLoadingSuspenseFallback } from 'src/shared/loading'
-import { PostHogProvider } from 'src/shared/post-hog'
+import { PostHogProvider } from 'src/shared/posthog'
 import { BasicProviders } from './BasicProviders'
 import { queryClient } from './queryClient'
 

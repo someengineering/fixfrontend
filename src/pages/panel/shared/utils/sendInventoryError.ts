@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios'
 import { PostHog } from 'posthog-js/react'
 import { endPoints } from 'src/shared/constants'
-import { PostHogEvent } from 'src/shared/post-hog'
+import { PostHogEvent } from 'src/shared/posthog'
 import { GetCurrentUserResponse } from 'src/shared/types/server'
 import { isAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData } from 'src/shared/utils/localstorage'
