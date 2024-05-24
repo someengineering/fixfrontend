@@ -1,5 +1,5 @@
 import { colors } from '@mui/material'
-import { OAuthProviderNames } from 'src/shared/types/server'
+import { OAuthProviderNames } from 'src/shared/types/server-shared'
 
 export const getColorFromOAuthType = (name: OAuthProviderNames) => {
   switch (name) {

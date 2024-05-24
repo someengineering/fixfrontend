@@ -1,4 +1,4 @@
-import { NotificationChannel } from 'src/shared/types/server'
+import { NotificationChannel } from 'src/shared/types/server-shared'
 
 export type WorkspaceNotificationSetting = {
   name: string

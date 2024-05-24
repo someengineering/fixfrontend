@@ -7,11 +7,11 @@ import { usePostHog } from 'posthog-js/react'
 import { ChangeEvent, ReactNode, UIEvent as ReactUIEvent, useEffect, useMemo, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventoryPropertyValuesQuery } from 'src/pages/panel/shared/queries'
+import { sendInventoryError } from 'src/pages/panel/shared/utils'
 import { panelUI } from 'src/shared/constants'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { ListboxComponent } from 'src/shared/react-window'
 import { AutoCompleteValue } from 'src/shared/types/shared'
-import { sendInventoryError } from './utils'
 
 const ITEMS_PER_PAGE = 50
 

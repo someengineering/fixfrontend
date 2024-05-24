@@ -1,5 +1,5 @@
 import { GithubSEBIcon, GoogleSEBIcon } from 'src/assets/icons'
-import { OAuthProviderNames } from 'src/shared/types/server'
+import { OAuthProviderNames } from 'src/shared/types/server-shared'
 
 interface IconFromOAuthTypeProps {
   name: OAuthProviderNames

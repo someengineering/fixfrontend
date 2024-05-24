@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import { OAuthProviderNames } from 'src/shared/types/server'
+import { OAuthProviderNames } from 'src/shared/types/server-shared'
 import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 
 export const getNameFromOAuthType = (name: OAuthProviderNames, isSignup?: boolean) => {

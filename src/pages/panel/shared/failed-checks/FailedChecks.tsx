@@ -25,7 +25,7 @@ import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
 import { createInventorySearchTo, getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { getMessage } from 'src/shared/defined-messages'
-import { FailedCheck } from 'src/shared/types/server'
+import { FailedCheck } from 'src/shared/types/server-shared'
 import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 import { FailedCheckIgnoreButton } from './FailedCheckIgnoreButton'
 

@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import { PaymentMethods } from 'src/shared/types/server'
+import { PaymentMethods } from 'src/shared/types/server-shared'
 
 export const paymentMethodToLabel = (paymentMethod: PaymentMethods) => {
   switch (paymentMethod) {

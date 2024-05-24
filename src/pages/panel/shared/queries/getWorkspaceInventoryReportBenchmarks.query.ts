@@ -1,6 +1,7 @@
 import { QueryFunctionContext } from '@tanstack/react-query'
 import { endPoints } from 'src/shared/constants'
-import { Benchmark, GetWorkspaceInventoryReportBenchmarksResponse } from 'src/shared/types/server'
+import { GetWorkspaceInventoryReportBenchmarksResponse } from 'src/shared/types/server'
+import { Benchmark } from 'src/shared/types/server-shared'
 import { axiosWithAuth } from 'src/shared/utils/axios'
 
 export const getWorkspaceInventoryReportBenchmarksQuery = ({

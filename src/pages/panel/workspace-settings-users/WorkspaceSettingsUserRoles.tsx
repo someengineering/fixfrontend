@@ -6,7 +6,8 @@ import { Autocomplete, CircularProgress, IconButton, Stack, TextField, Tooltip, 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { FormEvent, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { GetWorkspaceUsersResponse, UserRole } from 'src/shared/types/server'
+import { GetWorkspaceUsersResponse } from 'src/shared/types/server'
+import { UserRole } from 'src/shared/types/server-shared'
 import { putWorkspaceRolesMutation } from './putWorkspaceRoles.mutation'
 import { workspaceSettingsUserRoleToString } from './workspaceSettingsUserRoleToString'
 

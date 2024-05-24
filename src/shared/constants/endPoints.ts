@@ -1,4 +1,4 @@
-import { NotificationChannel } from 'src/shared/types/server'
+import { NotificationChannel } from 'src/shared/types/server-shared'
 
 export const endPoints = {
   auth: {

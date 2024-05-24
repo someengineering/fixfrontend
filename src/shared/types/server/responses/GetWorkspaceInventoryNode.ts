@@ -1,4 +1,4 @@
-import { FailedCheck, NodeAncestors, NodeMetadata, NodeReported, NodeSecurity, NodeType } from './shared'
+import { FailedCheck, NodeAncestors, NodeMetadata, NodeReported, NodeSecurity, NodeType } from 'src/shared/types/server-shared'
 
 export interface WorkspaceInventoryNode {
   resource: {
