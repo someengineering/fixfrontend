@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { env } from 'src/shared/constants'
 import { getEnvironmentQuery } from './getEnvironment.query'
 
-export const PosthogProvider = ({ children }: { children: React.ReactNode }) => {
+export const PostHogProvider = ({ children }: { children: React.ReactNode }) => {
   const {
     data: { aws_marketplace_url, environment },
   } = useSuspenseQuery({
@@ -23,10 +23,10 @@ export const PosthogProvider = ({ children }: { children: React.ReactNode }) => 
     env.aws_marketplace_url = aws_marketplace_url
     if (projectApiKey && !posthog.__loaded) {
       posthog.init(projectApiKey, {
-        api_host: env.posthogApiHost,
-        ui_host: env.posthogUiHost,
+        api_host: env.postHogApiHost,
+        ui_host: env.postHogUiHost,
         cross_subdomain_cookie: env.isProd,
-        secure_cookie: true,
+        secure_cookie: !env.isLocal,
         debug: !env.isProd,
         capture_pageview: false, // Page views are captured manually
         capture_pageleave: true,

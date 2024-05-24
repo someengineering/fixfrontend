@@ -179,7 +179,7 @@ msgstr "A few minutes to first results"
 msgid "Abandoned"
 msgstr "Abandoned"
 
-#: src/shared/cookie-consent/CookieConsent.tsx:63
+#: src/shared/cookie-consent/CookieConsent.tsx:66
 msgid "Accept"
 msgstr "Accept"
 
@@ -376,7 +376,7 @@ msgid "Because the data is over {0} Only first {1} items will be downloaded"
 msgstr "Because the data is over {0} Only first {1} items will be downloaded"
 
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:46
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:164
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:169
 msgid "Benchmark"
 msgstr "Benchmark"
 
@@ -594,7 +594,7 @@ msgstr "Critical"
 msgid "Current Product Tier"
 msgstr "Current Product Tier"
 
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:300
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:309
 msgid "Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is necessary to configure alerting settings."
 msgstr "Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is necessary to configure alerting settings."
 
@@ -1455,7 +1455,7 @@ msgstr "Regions"
 msgid "Register"
 msgstr "Register"
 
-#: src/shared/cookie-consent/CookieConsent.tsx:78
+#: src/shared/cookie-consent/CookieConsent.tsx:80
 msgid "Reject"
 msgstr "Reject"
 
@@ -1565,8 +1565,8 @@ msgstr "Severities"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:50
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:150
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:167
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:216
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:172
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:221
 msgid "Severity"
 msgstr "Severity"
 
@@ -1801,7 +1801,7 @@ msgstr "Warning"
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 
-#: src/shared/cookie-consent/CookieConsent.tsx:38
+#: src/shared/cookie-consent/CookieConsent.tsx:42
 msgid "We use cookies and other tracking technologies to analyze site usage and assist in marketing efforts. For details, see our <0>cookie policy<1/></0>."
 msgstr "We use cookies and other tracking technologies to analyze site usage and assist in marketing efforts. For details, see our <0>cookie policy<1/></0>."
 
@@ -1829,7 +1829,7 @@ msgstr "Weekly Report"
 msgid "Within a billing cycle you will be charged for the highest product tier that was active."
 msgstr "Within a billing cycle you will be charged for the highest product tier that was active."
 
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:160
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:165
 msgid "Workspace Alerting Settings"
 msgstr "Workspace Alerting Settings"
 

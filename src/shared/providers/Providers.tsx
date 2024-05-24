@@ -6,12 +6,12 @@ import { AbsoluteNavigateProvider } from 'src/shared/absolute-navigate'
 import { env } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { FullPageLoadingProvider, FullPageLoadingSuspenseFallback } from 'src/shared/loading'
-import { PosthogProvider } from 'src/shared/posthog'
+import { PostHogProvider } from 'src/shared/post-hog'
 import { BasicProviders } from './BasicProviders'
 import { queryClient } from './queryClient'
 
 export const Providers = ({ children, nonce }: PropsWithChildren<{ nonce?: string }>) => {
-  return import.meta.env.MODE !== 'test' && !env.isLocal ? (
+  return (!env.isTest && !env.isLocal) || env.postHogTest ? (
     <BasicProviders nonce={nonce}>
       <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
         <QueryClientProvider client={queryClient}>
@@ -19,9 +19,9 @@ export const Providers = ({ children, nonce }: PropsWithChildren<{ nonce?: strin
             <AbsoluteNavigateProvider>
               <FullPageLoadingProvider>
                 <Suspense fallback={<FullPageLoadingSuspenseFallback />}>
-                  <PosthogProvider>
+                  <PostHogProvider>
                     <AuthGuard>{children}</AuthGuard>
-                  </PosthogProvider>
+                  </PostHogProvider>
                 </Suspense>
               </FullPageLoadingProvider>
             </AbsoluteNavigateProvider>

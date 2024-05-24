@@ -30,9 +30,10 @@ const env = {
   aws_marketplace_url: 'https://aws_marketplace_url.test',
   muiLicenseKey: import.meta.env.VITE_MUI_LICENSE_KEY,
   loadPageTimeout: envToNumber(import.meta.env.VITE_LOAD_PAGE_TIMEOUT) ?? 30_000,
-  posthogProjectApiKey: undefined as string | undefined,
-  posthogApiHost: import.meta.env.VITE_POSTHOG_API_HOST ?? 'https://eu.posthog.com',
-  posthogUiHost: import.meta.env.VITE_POSTHOG_UI_HOST,
+  postHogProjectApiKey: undefined as string | undefined,
+  postHogApiHost: import.meta.env.VITE_POSTHOG_API_HOST ?? 'https://eu.posthog.com',
+  postHogUiHost: import.meta.env.VITE_POSTHOG_UI_HOST,
+  postHogTest: import.meta.env.VITE_POSTHOG_TEST === 'true',
 }
 
 export { env }
