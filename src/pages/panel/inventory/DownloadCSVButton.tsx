@@ -8,8 +8,9 @@ import { usePostHog } from 'posthog-js/react'
 import { ForwardedRef, forwardRef, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventorySearchTableDownloadMutation } from 'src/pages/panel/shared/queries'
-import { PostHogEvent, panelUI } from 'src/shared/constants'
+import { panelUI } from 'src/shared/constants'
 import { Modal } from 'src/shared/modal'
+import { PostHogEvent } from 'src/shared/post-hog'
 import { WorkspaceInventorySearchTableHistory, WorkspaceInventorySearchTableSort } from 'src/shared/types/server'
 
 interface DownloadCSVButtonProps {

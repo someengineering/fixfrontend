@@ -3,7 +3,7 @@ import { useCopyToClipboard } from '@uidotdev/usehooks'
 import { usePostHog } from 'posthog-js/react'
 import { useCallback } from 'react'
 import { useSnackbar } from 'src/core/snackbar'
-import { PostHogEvent } from 'src/shared/constants'
+import { PostHogEvent } from 'src/shared/post-hog'
 import { getAuthData } from './localstorage'
 
 export const useCopyString = (withSnackbar = true) => {
