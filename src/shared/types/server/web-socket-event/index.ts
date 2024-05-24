@@ -1,11 +1,11 @@
 export type {
-  AWSAccountConfiguredEvent,
-  AWSAccountDegradedEvent,
-  AWSAccountDeletedEvent,
-  AWSAccountDiscoveredEvent,
   CloudAccountConfiguredEvent,
+  CloudAccountDegradedEvent,
+  CloudAccountDegradedReason,
   CloudAccountDeletedEvent,
+  CloudAccountDiscoveredEvent,
   CollectErrorEvent,
   CollectProgressEvent,
+  TenantAccountsCollectedEvent,
   WebSocketEvent,
 } from './WebSocketEvent'
