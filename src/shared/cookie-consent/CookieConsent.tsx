@@ -27,6 +27,10 @@ const CookieConsentComp = () => {
       anchor="right"
       ref={containerRef}
       hideBackdrop
+      disableEnforceFocus
+      disableEscapeKeyDown
+      disableRestoreFocus
+      disableScrollLock
       sx={{
         height: 'auto',
         maxWidth: 576,
