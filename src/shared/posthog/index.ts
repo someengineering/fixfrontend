@@ -1,2 +1,3 @@
-export { PosthogPageView } from './PosthogPageView'
-export { PosthogProvider } from './PosthogProvider'
+export { PostHogEvent } from './PostHogEvent'
+export { PostHogPageView } from './PostHogPageView'
+export { PostHogProvider } from './PostHogProvider'

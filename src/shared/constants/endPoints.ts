@@ -32,6 +32,7 @@ export const endPoints = {
   workspaces: {
     self: 'api/workspaces/',
     workspace: (workspaceId: string) => ({
+      awsMarketplaceProduct: `api/workspaces/${workspaceId}/aws_marketplace_product`,
       billing: `api/workspaces/${workspaceId}/billing`,
       billingEntries: `api/workspaces/${workspaceId}/billing_entries/`,
       subscription: {

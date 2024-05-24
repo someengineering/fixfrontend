@@ -144,7 +144,7 @@ export const ChangeProductTier = ({
                           endIcon={null}
                           loadingPosition="start"
                           variant="outlined"
-                          href={`${env.aws_marketplace_url}`}
+                          href={`${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').awsMarketplaceProduct}`}
                         >
                           <Typography textTransform="none">
                             <Trans>Manage AWS Market place payment method</Trans>

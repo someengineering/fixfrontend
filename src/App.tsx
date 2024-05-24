@@ -1,7 +1,5 @@
-import { Suspense } from 'react'
 import { AppRouter } from './AppRouter'
 import { CookieConsent } from './shared/cookie-consent'
-import { PosthogPageView } from './shared/posthog'
 import { Providers } from './shared/providers'
 
 interface AppProps {
@@ -13,9 +11,6 @@ export const App = ({ nonce }: AppProps) => {
     <Providers nonce={nonce}>
       <AppRouter />
       <CookieConsent />
-      <Suspense>
-        <PosthogPageView />
-      </Suspense>
     </Providers>
   )
 }
