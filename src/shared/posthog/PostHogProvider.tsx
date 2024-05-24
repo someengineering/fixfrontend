@@ -43,5 +43,5 @@ export const PostHogProvider = ({ children }: { children: React.ReactNode }) => 
     setInitialized(true)
   }, [environment])
 
-  return <Provider client={posthog}>{initialized ? children : <LoadingSuspenseFallback />}</Provider>
+  return initialized ? <Provider client={posthog}>{children}</Provider> : <LoadingSuspenseFallback />
 }
