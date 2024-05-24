@@ -1,5 +1,4 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
-import Cookies from 'js-cookie'
 import postHog from 'posthog-js'
 import { PostHogProvider as Provider } from 'posthog-js/react'
 import { useEffect, useState } from 'react'
@@ -24,15 +23,6 @@ export const PostHogProvider = ({ children }: { children: React.ReactNode }) => 
       environment === 'prd' ? import.meta.env.VITE_POSTHOG_PROD_PROJECT_API_KEY : import.meta.env.VITE_POSTHOG_DEV_PROJECT_API_KEY
     env.isProd = environment === 'prd'
     if (projectApiKey && !postHog.__loaded) {
-      const postHogCookie = Cookies.get(`ph_${projectApiKey}_posthog`)
-      let parsedPostHogCookie: { distinct_id?: string } | undefined
-      if (postHogCookie) {
-        try {
-          parsedPostHogCookie = JSON.parse(postHogCookie) as { distinct_id?: string } | undefined
-        } catch {
-          parsedPostHogCookie = undefined
-        }
-      }
       postHog.init(projectApiKey, {
         api_host: env.postHogApiHost,
         ui_host: env.postHogUiHost,
@@ -49,9 +39,6 @@ export const PostHogProvider = ({ children }: { children: React.ReactNode }) => 
         disable_surveys: true,
         enable_recording_console_log: false,
       })
-      if (!window.localStorage.getItem(`ph_${projectApiKey}_posthog`) && parsedPostHogCookie?.distinct_id) {
-        postHog.opt_in_capturing({ enable_persistence: true })
-      }
     }
     setInitialized(true)
   }, [environment])

@@ -10,10 +10,16 @@ import { PostHogPageView } from 'src/shared/posthog'
 const CookieConsentComp = () => {
   const postHog = usePostHog()
   const containerRef = useRef<HTMLDivElement>(null)
-  const [showConsent, setShowConsent] = useState(postHog.has_opted_in_capturing() ? false : Cookies.get('cookie_consent') !== 'false')
+  const [showConsent, setShowConsent] = useState(false)
 
   useEffect(() => {
-    if (postHog.has_opted_in_capturing() || Cookies.get('cookie_consent') !== 'false') {
+    if (Cookies.get('cookie_consent') === 'true') {
+      postHog.opt_in_capturing({ enable_persistence: true })
+    } else if (!postHog.has_opted_in_capturing()) {
+      setShowConsent(Cookies.get('cookie_consent') !== 'false')
+    }
+
+    if (Cookies.get('cookie_consent') !== 'true' && Cookies.get('cookie_consent') !== 'false') {
       Cookies.remove('cookie_consent', {
         domain: env.isProd ? '.fix.security' : undefined,
         secure: !env.isLocal,
@@ -64,6 +70,11 @@ const CookieConsentComp = () => {
           variant="contained"
           onClick={() => {
             setShowConsent(false)
+            Cookies.set('cookie_consent', 'true', {
+              domain: env.isProd ? '.fix.security' : undefined,
+              secure: !env.isLocal,
+              expires: 365,
+            })
             postHog.opt_in_capturing({ enable_persistence: true })
           }}
         >
