@@ -5,7 +5,8 @@ import { useMemo } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryReportChecksQuery } from 'src/pages/panel/shared/queries'
 import { useGetBenchmarks } from 'src/pages/panel/shared/utils'
-import { FailedCheck, WorkspaceInventoryNodeSecurityHistory } from 'src/shared/types/server'
+import { WorkspaceInventoryNodeSecurityHistory } from 'src/shared/types/server'
+import { FailedCheck } from 'src/shared/types/server-shared'
 import { ResourceDetailChangeLogSelectedHistoryAccordion } from './ResourceDetailChangeLogSelectedHistoryAccordion'
 
 export const ResourceDetailChangeLogSelectedHistoryDiff = ({

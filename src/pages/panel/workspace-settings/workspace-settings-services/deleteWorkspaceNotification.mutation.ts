@@ -1,5 +1,5 @@
 import { endPoints } from 'src/shared/constants'
-import { NotificationChannel } from 'src/shared/types/server'
+import { NotificationChannel } from 'src/shared/types/server-shared'
 import { axiosWithAuth } from 'src/shared/utils/axios'
 
 export const deleteWorkspaceNotificationMutation = async ({

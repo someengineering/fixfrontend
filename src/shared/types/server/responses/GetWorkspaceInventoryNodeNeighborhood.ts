@@ -1,4 +1,4 @@
-import { NodeType } from './shared'
+import { NodeType } from 'src/shared/types/server-shared'
 
 export interface WorkspaceInventoryNodeNeighborhoodNodeType {
   id: string

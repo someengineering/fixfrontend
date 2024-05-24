@@ -1,4 +1,4 @@
-import { NodeAncestors, NodeMetadata, NodeReported, NodeSecurity, SeverityType } from './shared'
+import { NodeAncestors, NodeMetadata, NodeReported, NodeSecurity, SeverityType } from 'src/shared/types/server-shared'
 
 export type WorkspaceInventoryNodeHistoryChanges = 'node_created' | 'node_updated' | 'node_deleted' | 'node_vulnerable' | 'node_compliant'
 

@@ -1,4 +1,6 @@
-import { ThemeContextRealValues } from 'src/core/theme'
+// for circular dependency workaround
+// eslint-disable-next-line no-restricted-imports
+import { ThemeContextRealValues } from 'src/core/theme/ThemeContext'
 import { StorageKeys } from 'src/shared/constants'
 
 function getStorageObject<ReturnType = unknown>(key: StorageKeys) {

@@ -1,4 +1,4 @@
-import { Account } from 'src/shared/types/server'
+import { Account } from 'src/shared/types/server-shared'
 import { getAccountName } from './getAccountName'
 
 test('getAccountName should get account names in a correct order fashion', () => {

@@ -58,4 +58,3 @@ export type {
   WorkspaceInventorySearchTableColumn,
   WorkspaceInventorySearchTableRow,
 } from './PostWorkspaceInventorySearchTable'
-export * from './shared'

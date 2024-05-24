@@ -3,7 +3,7 @@ import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew'
 import ApartmentIcon from '@mui/icons-material/Apartment'
 import BusinessIcon from '@mui/icons-material/Business'
 import WarehouseIcon from '@mui/icons-material/Warehouse'
-import { ProductTier } from 'src/shared/types/server'
+import { ProductTier } from 'src/shared/types/server-shared'
 
 export const productTierToDescription = (productTier: ProductTier) => {
   switch (productTier) {

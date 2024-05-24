@@ -1,11 +1,11 @@
 import { endPoints } from 'src/shared/constants'
 import {
-  NotificationChannel,
   PutWorkspaceNotificationAddEmailRequest,
   PutWorkspaceNotificationAddOpsgenieRequest,
   PutWorkspaceNotificationAddPagerdutyRequest,
   PutWorkspaceNotificationAddTeamsRequest,
 } from 'src/shared/types/server'
+import { NotificationChannel } from 'src/shared/types/server-shared'
 import { axiosWithAuth } from 'src/shared/utils/axios'
 
 type PutWorkspaceNotificationParamType = Exclude<NotificationChannel, 'slack' | 'discord'>
