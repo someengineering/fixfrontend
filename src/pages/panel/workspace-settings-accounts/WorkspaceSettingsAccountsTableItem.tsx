@@ -2,7 +2,7 @@ import { Trans } from '@lingui/macro'
 import { Box, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { panelUI, settingsStorageKeys } from 'src/shared/constants'
+import { panelUI } from 'src/shared/constants'
 import { TableView } from 'src/shared/layouts/panel-layout'
 import { Account } from 'src/shared/types/server-shared'
 import { usePersistState } from 'src/shared/utils/usePersistState'
@@ -27,7 +27,7 @@ export const WorkspaceSettingsAccountsTableItem = ({
   const { checkPermission } = useUserProfile()
   const hasPermission = checkPermission('updateCloudAccounts')
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = usePersistState(settingsStorageKeys.AccountsTableItem.rowsPerPage, 5)
+  const [rowsPerPage, setRowsPerPage] = usePersistState('AccountsTableItem.rowsPerPage', 5)
   return (
     <Box mb={isBottom ? undefined : { xs: 8, sm: 5 }} mt={isTop ? undefined : { sm: 3 }}>
       <WorkspaceSettingsAccountTableTitle isTop={isTop}>{title}</WorkspaceSettingsAccountTableTitle>

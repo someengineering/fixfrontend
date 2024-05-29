@@ -52,6 +52,7 @@ export default function WorkspaceSettingsAccountsSetupCloudAWSPage() {
         <Tabs
           tabs={[
             {
+              id: 'deploy_to_account',
               content: (
                 <Box
                   component="video"
@@ -66,9 +67,9 @@ export default function WorkspaceSettingsAccountsSetupCloudAWSPage() {
                 </Box>
               ),
               title: <Trans>Deploy to a single account</Trans>,
-              id: 'deploy_to_account',
             },
             {
+              id: 'deploy_to_org',
               content: (
                 <Box
                   component="video"
@@ -82,7 +83,6 @@ export default function WorkspaceSettingsAccountsSetupCloudAWSPage() {
                   <source src={`${env.videosAssetsUrl}/deploy_to_org.mp4`} type="video/mp4" />
                 </Box>
               ),
-              id: 'deploy_to_org',
               title: <Trans>Deploy to organization</Trans>,
             },
           ]}

@@ -6,10 +6,11 @@ import {
   SnackbarProps as MuiSnackbarProps,
   Slide,
   SnackbarOrigin,
+  Typography,
   styled,
   useTheme,
 } from '@mui/material'
-import { PropsWithChildren, SyntheticEvent, createContext, useCallback, useMemo, useState } from 'react'
+import { PropsWithChildren, ReactNode, SyntheticEvent, createContext, useCallback, useMemo, useState } from 'react'
 import { panelUI } from 'src/shared/constants'
 import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
 
@@ -31,12 +32,12 @@ const DEFAULT_SNACKBAR_OPTIONS: SnackbarOptions = {
 
 export interface SnackbarValue {
   open: boolean
-  message: string
+  message: ReactNode
   options: SnackbarOptions
 }
 
 export interface SnackbarContextValue {
-  showSnackbar: (message: string, options?: Partial<SnackbarOptions>) => Promise<number>
+  showSnackbar: (message: ReactNode, options?: Partial<SnackbarOptions>) => Promise<number>
   closeSnackbar: (key: number) => Promise<boolean>
 }
 export const SnackbarContext = createContext<SnackbarContextValue | null>(null)
@@ -83,7 +84,7 @@ export function SnackbarElement({
       anchorOrigin={options?.anchorOrigin}
     >
       <Alert {...(options?.alertProps ?? {})} onClose={handleClose} severity={options?.severity}>
-        {message}
+        <Typography fontSize={18}>{message}</Typography>
       </Alert>
     </Snackbar>
   )
@@ -122,7 +123,7 @@ export function SnackbarProvider({ children }: PropsWithChildren) {
 
   const handleShow = useCallback(
     (
-      message: string,
+      message: ReactNode,
       {
         alertProps = { ...DEFAULT_SNACKBAR_OPTIONS.alertProps },
         anchorOrigin = { ...DEFAULT_SNACKBAR_OPTIONS.anchorOrigin },
