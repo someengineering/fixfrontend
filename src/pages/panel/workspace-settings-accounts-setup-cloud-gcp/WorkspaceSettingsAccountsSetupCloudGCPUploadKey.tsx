@@ -43,7 +43,7 @@ export const WorkspaceSettingsAccountsSetupCloudGCPUploadKey = ({ isMobile }: Wo
     }
   }
 
-  return selectedWorkspace?.id && data?.created_at ? (
+  return selectedWorkspace?.id && data ? (
     <Dropzone onChange={handleChange} mimeType={['application/JSON']} isPending={isPending} disabled={isSuccess} minHeight={300} flex={1}>
       <Stack p={1} alignItems="center" gap={1}>
         <Collapse in={!isSuccess}>

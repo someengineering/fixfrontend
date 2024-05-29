@@ -13,5 +13,19 @@ export const getWorkspaceCloudAccountGCPKeyQuery = async ({
           signal,
         })
         .then((res) => res.data)
-    : ({} as Partial<GetWorkspaceCloudAccountGCPKeyResponse>)
+        .catch(
+          () =>
+            ({
+              can_access_sa: null,
+              created_at: '',
+              id: '',
+              workspace_id: workspaceId,
+            }) as GetWorkspaceCloudAccountGCPKeyResponse,
+        )
+    : ({
+        can_access_sa: null,
+        created_at: '',
+        id: '',
+        workspace_id: workspaceId,
+      } as GetWorkspaceCloudAccountGCPKeyResponse)
 }
