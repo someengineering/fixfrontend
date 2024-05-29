@@ -212,7 +212,7 @@ msgstr "Account: {0}"
 #: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:35
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:120
 #: src/pages/panel/inventory/InventoryTable.error.tsx:73
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:48
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:42
 #: src/shared/language-button/LanguageButton.stories.tsx:20
 #: src/shared/layouts/panel-layout/menuList.tsx:72
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:12
@@ -291,7 +291,7 @@ msgstr "Age"
 msgid "Alerting integrations (PD, Slack, Discord, Teams)"
 msgstr "Alerting integrations (PD, Slack, Discord, Teams)"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:35
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:31
 msgid "Alerting Settings"
 msgstr "Alerting Settings"
 
@@ -401,7 +401,7 @@ msgid "below"
 msgstr "below"
 
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:46
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:160
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:169
 msgid "Benchmark"
 msgstr "Benchmark"
 
@@ -415,7 +415,7 @@ msgid "Benchmarks"
 msgstr "Benchmarks"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:49
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:54
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:48
 #: src/shared/layouts/panel-layout/menuList.tsx:82
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:24
 msgid "Billing"
@@ -590,7 +590,7 @@ msgstr "Connect your AWS account"
 msgid "Connected Accounts"
 msgstr "Connected Accounts"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:28
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:24
 msgid "Connected Services"
 msgstr "Connected Services"
 
@@ -639,7 +639,7 @@ msgstr "Critical"
 msgid "Current Product Tier"
 msgstr "Current Product Tier"
 
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:300
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:309
 msgid "Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is necessary to configure alerting settings."
 msgstr "Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is necessary to configure alerting settings."
 
@@ -1387,7 +1387,7 @@ msgstr "Orphaned Snapshots"
 msgid "Orphaned Volumes"
 msgstr "Orphaned Volumes"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:44
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:38
 msgid "Other Workspace Settings"
 msgstr "Other Workspace Settings"
 
@@ -1449,7 +1449,7 @@ msgstr "Please add a payment method to switch your workspace's product tier"
 msgid "Please enter your One-Time-Password or one of your Recovery code."
 msgstr "Please enter your One-Time-Password or one of your Recovery code."
 
-#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:51
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:58
 msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgstr "Please go to <0>Setup Accounts</0> page to setup your account first"
 
@@ -1691,8 +1691,8 @@ msgstr "Severities"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:50
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:150
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:163
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:212
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:172
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:221
 msgid "Severity"
 msgstr "Severity"
 
@@ -1788,7 +1788,7 @@ msgstr "The Stack requires the following parameters"
 msgid "The token that you sent is invalid or have been expired please try again"
 msgstr "The token that you sent is invalid or have been expired please try again"
 
-#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:48
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:55
 msgid "There's no account configured for this workspace."
 msgstr "There's no account configured for this workspace."
 
@@ -1916,7 +1916,7 @@ msgid "User Settings Notification"
 msgstr "User Settings Notification"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:27
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:51
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:45
 #: src/shared/layouts/panel-layout/menuList.tsx:77
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:20
 msgid "Users"
@@ -1963,7 +1963,7 @@ msgstr "Weekly Report"
 msgid "Within a billing cycle you will be charged for the highest product tier that was active."
 msgstr "Within a billing cycle you will be charged for the highest product tier that was active."
 
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:156
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:165
 msgid "Workspace Alerting Settings"
 msgstr "Workspace Alerting Settings"
 
@@ -1980,7 +1980,7 @@ msgstr "Workspace Id"
 msgid "Workspace Name"
 msgstr "Workspace Name"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:19
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:17
 #: src/shared/layouts/panel-layout/menuList.tsx:64
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:10
 msgid "Workspace Settings"
