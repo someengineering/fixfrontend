@@ -17,7 +17,11 @@ if (nonceEl) {
 }
 
 if (window._load_page_timeout) {
-  window.clearTimeout(window._load_page_timeout)
+  try {
+    window.clearTimeout(window._load_page_timeout)
+  } catch {
+    /* empty */
+  }
   delete window._load_page_timeout
 }
 
