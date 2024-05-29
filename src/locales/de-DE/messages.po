@@ -192,6 +192,7 @@ msgid "above"
 msgstr ""
 
 #: src/shared/cookie-consent/CookieConsent.tsx:70
+#: src/shared/cookie-consent/CookieConsent.tsx:81
 msgid "Accept"
 msgstr ""
 
@@ -1562,6 +1563,7 @@ msgid "Register"
 msgstr "Registrieren"
 
 #: src/shared/cookie-consent/CookieConsent.tsx:84
+#: src/shared/cookie-consent/CookieConsent.tsx:95
 msgid "Reject"
 msgstr ""
 
@@ -1936,6 +1938,7 @@ msgid "We have sent an email with a confirmation link to your email address. Ple
 msgstr "Wir haben eine E-Mail mit einem Bestätigungslink an Ihre E-Mail-Adresse gesendet. Bitte folgen Sie dem Link, um Ihr Konto zu aktivieren."
 
 #: src/shared/cookie-consent/CookieConsent.tsx:46
+#: src/shared/cookie-consent/CookieConsent.tsx:52
 msgid "We use cookies and other tracking technologies to analyze site usage and assist in marketing efforts. For details, see our <0>cookie policy<1/></0>."
 msgstr ""
 

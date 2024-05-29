@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
-import posthog from 'posthog-js'
+import postHog from 'posthog-js'
 import { PostHogProvider as Provider } from 'posthog-js/react'
 import { useEffect, useState } from 'react'
 import { env } from 'src/shared/constants'
@@ -22,8 +22,8 @@ export const PostHogProvider = ({ children }: { children: React.ReactNode }) => 
     const projectApiKey =
       environment === 'prd' ? import.meta.env.VITE_POSTHOG_PROD_PROJECT_API_KEY : import.meta.env.VITE_POSTHOG_DEV_PROJECT_API_KEY
     env.isProd = environment === 'prd'
-    if (projectApiKey && !posthog.__loaded) {
-      posthog.init(projectApiKey, {
+    if (projectApiKey && !postHog.__loaded) {
+      postHog.init(projectApiKey, {
         api_host: env.postHogApiHost,
         ui_host: env.postHogUiHost,
         cross_subdomain_cookie: env.isProd,
@@ -43,5 +43,5 @@ export const PostHogProvider = ({ children }: { children: React.ReactNode }) => 
     setInitialized(true)
   }, [environment])
 
-  return initialized ? <Provider client={posthog}>{children}</Provider> : <LoadingSuspenseFallback />
+  return initialized ? <Provider client={postHog}>{children}</Provider> : <LoadingSuspenseFallback />
 }
