@@ -19,9 +19,8 @@ export function AuthGuard({ children }: PropsWithChildren) {
   const postHog = usePostHog()
   const [auth, setAuth] = useState<UserContextRealValues>(() => {
     const isAuthenticated = isCookieAuthenticated()
-    const selectedWorkspaceId = isAuthenticated
-      ? window.location.hash?.substring(1) || getPersistedAuthData()?.selectedWorkspaceId || undefined
-      : undefined
+    const selectedWorkspaceId = isAuthenticated ? getPersistedAuthData()?.selectedWorkspaceId : undefined
+
     return {
       ...defaultAuth,
       selectedWorkspace: selectedWorkspaceId
@@ -97,9 +96,6 @@ export function AuthGuard({ children }: PropsWithChildren) {
             (prev.selectedWorkspace?.id
               ? workspaces.find((workspace) => workspace.id === prev.selectedWorkspace?.id)
               : workspaces.find((workspace) => workspace.user_has_access && workspace.permissions.includes('read'))) ?? workspaces[0]
-          window.setTimeout(() => {
-            window.location.hash = selectedWorkspace?.id ?? ''
-          })
           return {
             ...prev,
             workspaces,
