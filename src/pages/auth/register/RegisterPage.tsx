@@ -4,16 +4,16 @@ import { LoadingButton } from '@mui/lab'
 import { Divider, Grid, styled, TextField, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { usePostHog } from 'posthog-js/react'
 import { FormEvent, Suspense, useState } from 'react'
 import { Link, Location, useLocation, useSearchParams } from 'react-router-dom'
-import { useUserProfile } from 'src/core/auth'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { LoginSocialMedia } from 'src/shared/login-social-media'
 import { PasswordTextField } from 'src/shared/password-text-field'
 import { SocialMediaButtonSkeleton } from 'src/shared/social-media-button'
+import { PostAuthRegisterErrorResponse } from 'src/shared/types/server'
+import { getErrorDetailMessage } from 'src/shared/utils/getErrorMessage'
 import { registerMutation } from './register.mutation'
 
 const REGISTER_SUSPENSE_NUMBER_OF_SOCIAL_MEDIA_BUTTON = 2
@@ -22,18 +22,7 @@ const RegisterButton = styled(LoadingButton)({
   minHeight: 50,
 })
 
-const getErrorMessage = (error: string) => {
-  switch (error) {
-    case 'REGISTER_USER_ALREADY_EXISTS':
-      return t`This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password.`
-    default:
-      return error
-  }
-}
-
 export default function RegisterPage() {
-  const postHog = usePostHog()
-  const { currentUser } = useUserProfile()
   const { mutateAsync: register, isPending: isRegisterLoading, error } = useMutation({ mutationFn: registerMutation })
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -47,10 +36,6 @@ export default function RegisterPage() {
       setIsLoading(true)
       register({ email, password, redirectUrl: window.encodeURIComponent(getSearch.get('returnUrl') ?? panelUI.homePage) })
         .then(() => {
-          if (currentUser) {
-            postHog.identify(currentUser.id, { ...currentUser })
-          }
-
           navigate(
             {
               search: `${search ? `${search}&` : '?'}verify=true&email=${window.encodeURIComponent(email)}`,
@@ -65,8 +50,12 @@ export default function RegisterPage() {
     }
   }
   const isLoadingGeneric = isLoading || isRegisterLoading
-  let registerError = ((error as AxiosError)?.response?.data as { detail: string | { code: string; reason: string } })?.detail || undefined
-  registerError = registerError ? (typeof registerError === 'string' ? getErrorMessage(registerError) : registerError.reason) : undefined
+  const registerErrorDetail = (error as AxiosError<PostAuthRegisterErrorResponse>)?.response?.data?.detail || undefined
+  const registerError = registerErrorDetail
+    ? typeof registerErrorDetail === 'string'
+      ? getErrorDetailMessage(registerErrorDetail)
+      : registerErrorDetail.reason
+    : undefined
   return (
     <>
       <Grid

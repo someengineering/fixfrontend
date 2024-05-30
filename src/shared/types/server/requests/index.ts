@@ -1,7 +1,17 @@
 export type { PatchWorkspaceInventoryNodeSecurityIgnoreRequest } from './PatchWorkspaceInventoryNodeSecurityIgnore'
 export type { PatchWorkspaceSettingsRequest } from './PatchWorkspaceSetting'
 export type { PostAuthForgotPasswordRequest } from './PostAuthForgotPassword'
-export type { PostAuthRegisterRequest } from './PostAuthRegister'
+export type { PostAuthJWTLoginErrorResponse, PostAuthJWTLoginRequest, PostAuthJWTLoginResponse } from './PostAuthJWTLogin'
+export type { PostAuthMfaAddErrorResponse, PostAuthMfaAddRequest, PostAuthMfaAddResponse } from './PostAuthMfaAdd'
+export type { PostAuthMfaDisableErrorResponse, PostAuthMfaDisableRequest, PostAuthMfaDisableResponse } from './PostAuthMfaDisable'
+export type { PostAuthMfaEnableErrorResponse, PostAuthMfaEnableRequest, PostAuthMfaEnableResponse } from './PostAuthMfaEnable'
+export type {
+  PostAuthRegisterErrorResponse,
+  PostAuthRegisterLiteralErrorResponse,
+  PostAuthRegisterObjectErrorResponse,
+  PostAuthRegisterRequest,
+  PostAuthRegisterResponse,
+} from './PostAuthRegister'
 export type { PostAuthResetPasswordRequest } from './PostAuthResetPassword'
 export type { PostWorkspaceInventoryPropertyAttributesRequest } from './PostWorkspaceInventoryPropertyAttributes'
 export type { PostWorkspaceInventoryPropertyPathCompleteRequest } from './PostWorkspaceInventoryPropertyPathComplete'
