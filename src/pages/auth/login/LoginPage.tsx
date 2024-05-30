@@ -4,7 +4,6 @@ import { LoadingButton } from '@mui/lab'
 import { Divider, Grid, styled, TextField, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { usePostHog } from 'posthog-js/react'
 import { FormEvent, Suspense, useRef, useState } from 'react'
 import { Link, Location, useLocation, useSearchParams } from 'react-router-dom'
 import { allPermissions, maxPermissionNumber, useUserProfile } from 'src/core/auth'
@@ -13,6 +12,8 @@ import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-bo
 import { LoginSocialMedia } from 'src/shared/login-social-media'
 import { PasswordTextField } from 'src/shared/password-text-field'
 import { SocialMediaButtonSkeleton } from 'src/shared/social-media-button'
+import { PostAuthJWTLoginErrorResponse } from 'src/shared/types/server'
+import { getErrorDetailMessage } from 'src/shared/utils/getErrorMessage'
 import { getAuthData } from 'src/shared/utils/localstorage'
 import { loginMutation } from './login.mutation'
 
@@ -22,23 +23,9 @@ const LoginButton = styled(LoadingButton)({
   minHeight: 50,
 })
 
-const getErrorMessage = (error: string) => {
-  switch (error) {
-    case 'LOGIN_BAD_CREDENTIALS':
-      return t`Oops, the username or password doesn't seem to match our records. Please try again.`
-    case 'LOGIN_USER_NOT_VERIFIED':
-      return t`Your email address isn't verified yet. Please check your inbox and click on the 'Verify' button to complete the process. Can't find the email? It might be in your spam folder.`
-    case 'OTP_NOT_PROVIDED_OR_INVALID':
-      return t`The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again.`
-    default:
-      return error
-  }
-}
-
 export default function LoginPage() {
-  const postHog = usePostHog()
   const { mutateAsync: login, isPending: isLoginLoading, error } = useMutation({ mutationFn: loginMutation })
-  const { setAuth, currentUser } = useUserProfile()
+  const { setAuth } = useUserProfile()
   const [getSearch] = useSearchParams()
   const lastSubmittedValueWithOtp = useRef(false)
   const [username, setUsername] = useState(getSearch.get('email') ?? '')
@@ -47,7 +34,7 @@ export default function LoginPage() {
   const [recoveryCode, setRecoveryCode] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const { search, state } = useLocation() as Location<unknown>
-  const loginErrorDetail = ((error as AxiosError)?.response?.data as { detail: string })?.detail
+  const loginErrorDetail = (error as AxiosError<PostAuthJWTLoginErrorResponse>)?.response?.data?.detail
   const needOtp = loginErrorDetail === 'OTP_NOT_PROVIDED_OR_INVALID'
   const handleSubmit = (e?: FormEvent<HTMLFormElement>, newOtp?: string) => {
     e?.preventDefault()
@@ -59,15 +46,6 @@ export default function LoginPage() {
       login(values)
         .then(() => {
           const workspaceId = getAuthData()?.selectedWorkspaceId
-
-          if (currentUser) {
-            postHog.identify(currentUser.id, { ...currentUser })
-
-            if (workspaceId) {
-              postHog.group('workspace_id', workspaceId)
-            }
-          }
-
           const returnUrl = getSearch.get('returnUrl') || panelUI.homePage
           setAuth(
             {
@@ -196,7 +174,7 @@ export default function LoginPage() {
         ) : null}
         {loginError ? (
           <Grid item>
-            <Typography color="error.main">{getErrorMessage(loginError)}</Typography>
+            <Typography color="error.main">{getErrorDetailMessage(loginError)}</Typography>
           </Grid>
         ) : needOtp ? (
           <Grid item>

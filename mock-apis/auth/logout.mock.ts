@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-imports */
 import { defineMock } from 'vite-plugin-mock-dev-server'
 
 export default defineMock({

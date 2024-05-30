@@ -115,16 +115,24 @@ export function AuthGuard({ children }: PropsWithChildren) {
     [handleInternalSetAuth],
   )
 
+  useEffect(() => {
+    if (auth.currentUser) {
+      postHog.identify(auth.currentUser.id, { ...auth.currentUser })
+    }
+  }, [auth.currentUser, postHog])
+
+  useEffect(() => {
+    if (auth.selectedWorkspace?.id) {
+      postHog.group('workspace_id', auth.selectedWorkspace.id)
+    }
+  }, [auth.selectedWorkspace?.id, postHog])
+
   const handleSelectWorkspaces = useCallback(
     (id: string) => {
       return new Promise<GetWorkspaceResponse | undefined>((resolve) => {
         handleInternalSetAuth((prev) => {
           const foundWorkspace = prev.workspaces.find((item) => item.id === id)
           resolve(foundWorkspace)
-
-          if (foundWorkspace) {
-            postHog.group('workspace_id', foundWorkspace.id)
-          }
 
           return foundWorkspace
             ? {
@@ -135,7 +143,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
         })
       })
     },
-    [handleInternalSetAuth, postHog],
+    [handleInternalSetAuth],
   )
 
   useEffect(() => {
