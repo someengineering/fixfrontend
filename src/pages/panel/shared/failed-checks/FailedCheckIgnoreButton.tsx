@@ -3,7 +3,6 @@ import BlockIcon from '@mui/icons-material/Block'
 import { LoadingButton, LoadingButtonProps } from '@mui/lab'
 import { Button, Checkbox, Divider, FormControlLabel, Typography } from '@mui/material'
 import { forwardRef, useRef } from 'react'
-import { settingsStorageKeys } from 'src/shared/constants'
 import { Modal } from 'src/shared/modal'
 import { usePersistState } from 'src/shared/utils/usePersistState'
 
@@ -17,7 +16,7 @@ interface FailedCheckIgnoreButtonProps extends Exclude<LoadingButtonProps, 'load
 export const FailedCheckIgnoreButton = forwardRef<HTMLButtonElement, FailedCheckIgnoreButtonProps>(
   ({ currentIgnoreSecurityIssue, ignored, pending, onToggle, startIcon, children, ...rest }, ref) => {
     const modalRef = useRef<(show?: boolean | undefined) => void>()
-    const [acknowledge, setAcknowledge] = usePersistState(settingsStorageKeys.SetupTemplateButtonComponent.acknowledge as never, false)
+    const [acknowledge, setAcknowledge] = usePersistState('SetupTemplateButtonComponent.acknowledge' as never, false)
     const handleClick = () => {
       if (ignored || acknowledge) {
         onToggle?.(currentIgnoreSecurityIssue ?? '', !ignored)

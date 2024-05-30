@@ -16,6 +16,11 @@ export type { PostWorkspaceInviteRequest } from './PostWorkspaceInvite'
 export type { PutNotificationUserRequest } from './PutNotificationUser'
 export type { PutWorkspaceAlertingSettingsRequest } from './PutWorkspaceAlertingSettings'
 export type { PutWorkspaceBillingRequest } from './PutWorkspaceBilling'
+export type {
+  PutWorkspaceCloudAccountGCPKeyErrorResponse,
+  PutWorkspaceCloudAccountGCPKeyRequest,
+  PutWorkspaceCloudAccountGCPKeyResponse,
+} from './PutWorkspaceCloudAccountGCPKey'
 export type { PutWorkspaceNotificationAddEmailRequest } from './PutWorkspaceNotificationAddEmail'
 export type { PutWorkspaceNotificationAddOpsgenieRequest } from './PutWorkspaceNotificationAddOpsgenie'
 export type { PutWorkspaceNotificationAddPagerdutyRequest } from './PutWorkspaceNotificationAddPagerduty'

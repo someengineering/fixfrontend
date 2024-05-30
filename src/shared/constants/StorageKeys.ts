@@ -1,3 +1,5 @@
+import { RecursiveValueExtractor } from 'src/shared/types/shared'
+
 export enum StorageKeys {
   settings = 'fix.SETTINGS',
   themeMode = 'fix.THEME_MODE',
@@ -27,4 +29,9 @@ export const settingsStorageKeys = {
   SetupTemplateButtonComponent: {
     acknowledge: 'SetupTemplateButtonComponent.acknowledge',
   },
-}
+  WorkspaceSettingsAccountsSetupCloudGCP: {
+    activeStep: 'WorkspaceSettingsAccountsSetupCloudGCP.activeStep',
+  },
+} as const
+
+export type SettingsStorageKey = RecursiveValueExtractor<typeof settingsStorageKeys>

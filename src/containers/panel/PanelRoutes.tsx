@@ -11,22 +11,6 @@ const SecurityPage = lazy(
     ),
 )
 
-const SetupCloudPage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "setup-cloud" */
-      'src/pages/panel/setup-cloud/SetupCloudPage'
-    ),
-)
-
-const WorkspaceSettingsAccountsPage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "accounts" */
-      'src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsPage'
-    ),
-)
-
 const InventoryPage = lazy(
   () =>
     import(
@@ -40,6 +24,38 @@ const WorkspaceSettingsPage = lazy(
     import(
       /* webpackChunkName: "workspace-settings" */
       'src/pages/panel/workspace-settings/WorkspaceSettingsPage'
+    ),
+)
+
+const WorkspaceSettingsAccountsPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "workspace-settings-accounts" */
+      'src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsPage'
+    ),
+)
+
+const WorkspaceSettingsAccountsCloudSetupPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "workspace-settings-accounts-setup-cloud" */
+      'src/pages/panel/workspace-settings-accounts-setup-cloud/WorkspaceSettingsAccountsSetupCloudPage'
+    ),
+)
+
+const WorkspaceSettingsAccountsSetupCloudAWSPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "workspace-settings-accounts-setup-cloud-aws" */
+      'src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage'
+    ),
+)
+
+const WorkspaceSettingsAccountsSetupCloudGCPPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "workspace-settings-accounts-setup-cloud-gcp" */
+      'src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPPage'
     ),
 )
 
@@ -107,7 +123,11 @@ export function PanelRoutes() {
             </Route>
             <Route path="external-directories" element={<WorkspaceSettingsExternalDirectoryPage />} />
             <Route path="accounts">
-              <Route path="setup-cloud" element={<SetupCloudPage />} />
+              <Route path="setup-cloud">
+                <Route index element={<WorkspaceSettingsAccountsCloudSetupPage />} />
+                <Route path="aws" element={<WorkspaceSettingsAccountsSetupCloudAWSPage />} />
+                <Route path="gcp" element={<WorkspaceSettingsAccountsSetupCloudGCPPage />} />
+              </Route>
             </Route>
           </Route>
         </Route>
