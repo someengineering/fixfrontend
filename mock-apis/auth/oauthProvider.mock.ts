@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-imports */
 import { loadEnv } from 'vite'
 import { defineMock } from 'vite-plugin-mock-dev-server'
 
