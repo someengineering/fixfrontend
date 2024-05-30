@@ -23,7 +23,10 @@ export const InventoryFormTagsValue = ({ onChange, onClose, open, defaultValue, 
   const { is } = useFixQueryParser()
   const [fqn, setFqn] = useState('dictionary[string, string]')
   const [value, setValue] = useState(defaultValue)
-  const handleClose = () => {
+  const handleSubmit = (_?: unknown, reason?: 'backdropClick' | 'escapeKeyDown') => {
+    if (reason !== 'escapeKeyDown') {
+      onChange(value)
+    }
     setFqn('dictionary[string, string]')
     setValue(defaultValue)
     onClose()
@@ -38,7 +41,7 @@ export const InventoryFormTagsValue = ({ onChange, onClose, open, defaultValue, 
       open={!!open}
       anchorEl={open}
       anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-      onClose={handleClose}
+      onClose={handleSubmit}
       sx={{
         [`& .${backdropClasses.root}`]: { bgcolor: 'transparent' },
         maxHeight: `calc(100% - ${(open?.offsetTop ?? 0) + (open?.offsetHeight ?? 0) + panelUI.headerHeight}px)`,
@@ -105,7 +108,7 @@ export const InventoryFormTagsValue = ({ onChange, onClose, open, defaultValue, 
             variant="contained"
             onClick={() => {
               onChange(value)
-              handleClose()
+              handleSubmit()
             }}
             startIcon={<EditIcon fontSize="small" />}
           >

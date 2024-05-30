@@ -1,42 +1,26 @@
 import { Box, Divider } from '@mui/material'
-import { useSearchParams } from 'react-router-dom'
+import { useFixQueryParser } from 'src/shared/fix-query-parser'
+import { WorkspaceInventorySearchTableHistory } from 'src/shared/types/server'
 import { InventoryFormChangeValue } from './InventoryFormChangesValue'
 
 export const InventoryFormChangesComp = () => {
-  const [searchParams, setSearchParams] = useSearchParams()
-  const searchParamsChanges = searchParams.get('changes')?.split(',') ?? null
-  const searchParamsAfter = searchParams.get('after')
-  const searchParamsBefore = searchParams.get('before')
-
-  const handleReset = () => {
-    setSearchParams((searchParams) => {
-      searchParams.delete('changes')
-      searchParams.delete('after')
-      searchParams.delete('before')
-      return searchParams
-    })
-  }
+  const { history, onHistoryChange } = useFixQueryParser()
 
   const handleSubmit = (searchParamsChanges: string[] | null, searchParamsAfter: string | null, searchParamsBefore: string | null) => {
-    if (searchParamsChanges && searchParamsAfter && searchParamsBefore) {
-      setSearchParams((searchParams) => {
-        searchParams.set('changes', searchParamsChanges.join(','))
-        searchParams.set('after', searchParamsAfter)
-        searchParams.set('before', searchParamsBefore)
-        return searchParams
-      })
-    } else {
-      handleReset()
-    }
+    onHistoryChange({
+      changes: (searchParamsChanges ?? []) as WorkspaceInventorySearchTableHistory['changes'],
+      after: searchParamsAfter,
+      before: searchParamsBefore,
+    })
   }
 
   return (
     <>
       <InventoryFormChangeValue
         onChange={handleSubmit}
-        searchParamsAfter={searchParamsAfter}
-        searchParamsBefore={searchParamsBefore}
-        searchParamsChanges={searchParamsChanges}
+        searchParamsAfter={history.after ?? null}
+        searchParamsBefore={history.before ?? null}
+        searchParamsChanges={history.changes}
       />
       <Box width="100%" flexGrow={1}>
         <Divider />
@@ -46,7 +30,7 @@ export const InventoryFormChangesComp = () => {
 }
 
 export const InventoryFormChanges = () => {
-  const [searchParams] = useSearchParams()
-  const hasChanges = searchParams.get('changes') ?? ''
-  return hasChanges ? <InventoryFormChangesComp /> : null
+  const { history } = useFixQueryParser()
+
+  return history.changes.length ? <InventoryFormChangesComp /> : null
 }

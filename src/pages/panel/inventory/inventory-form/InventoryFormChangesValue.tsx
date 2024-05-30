@@ -41,7 +41,7 @@ export const InventoryFormChangeValue = ({
 }: InventoryFormChangeValueProps) => {
   const options = getOptions()
   return (
-    <Stack width="100%" flexGrow={1} direction="row" flexWrap="wrap" gap={1} overflow="auto">
+    <Stack width="100%" flexGrow={1} direction="row" flexWrap="wrap" gap={1} overflow="auto" pt={1} mt={-1}>
       <FormControl>
         <InputLabel id="change-type" color="primary" sx={{ color: 'primary.main', mt: '2px', fontSize: 14, fontWeight: 700 }}>
           <Trans>Change Type</Trans>
@@ -92,8 +92,8 @@ export const InventoryFormChangeValue = ({
           autoFocus={!searchParamsChanges}
           labelId="change-type"
         >
-          {options.map((option) => (
-            <MenuItem value={option.value} dense>
+          {options.map((option, index) => (
+            <MenuItem value={option.value} dense key={index}>
               <Checkbox checked={(searchParamsChanges?.indexOf(option.value) ?? -1) > -1} size="small" />
               {option.label}
             </MenuItem>
@@ -101,6 +101,7 @@ export const InventoryFormChangeValue = ({
         </Select>
       </FormControl>
       <DateTimeRangePicker
+        disableFuture
         sx={{ mb: 1 }}
         slotProps={{
           fieldSeparator: {
@@ -132,6 +133,9 @@ export const InventoryFormChangeValue = ({
                 color: 'primary.main',
               },
             },
+          },
+          actionBar: {
+            actions: ['today', 'accept', 'cancel'],
           },
         }}
         value={[searchParamsAfter ? dayjs(searchParamsAfter) : null, searchParamsBefore ? dayjs(searchParamsBefore) : null]}

@@ -467,9 +467,9 @@ msgstr "Business"
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:213
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:211
 #: src/pages/panel/inventory/inventory-form/InventoryFormMoreValue.tsx:125
-#: src/pages/panel/inventory/inventory-form/InventoryFormTagsValue.tsx:112
+#: src/pages/panel/inventory/inventory-form/InventoryFormTagsValue.tsx:115
 msgid "Change"
 msgstr "Change"
 
@@ -519,7 +519,7 @@ msgstr "Click the service Account, go to the \"Keys\" Tab, and Click \"Add Key\"
 msgid "Close"
 msgstr "Close"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormCloudValues.tsx:43
+#: src/pages/panel/inventory/inventory-form/InventoryFormCloudValues.tsx:42
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:96
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:232
 #: src/pages/panel/security/AccountCard.tsx:37
@@ -1286,7 +1286,7 @@ msgstr "Next Sync"
 msgid "No"
 msgstr "No"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:204
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:202
 msgid "No {label} found for {typed}"
 msgstr "No {label} found for {typed}"
 
@@ -1559,7 +1559,7 @@ msgid "Regenerate"
 msgstr "Regenerate"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:97
-#: src/pages/panel/inventory/inventory-form/InventoryFormRegionValues.tsx:41
+#: src/pages/panel/inventory/inventory-form/InventoryFormRegionValues.tsx:40
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:237
 msgid "Region"
 msgstr "Region"
@@ -1621,7 +1621,7 @@ msgstr "Risk"
 msgid "Roles"
 msgstr "Roles"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:169
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:167
 msgid "Search {0}"
 msgstr "Search {0}"
 

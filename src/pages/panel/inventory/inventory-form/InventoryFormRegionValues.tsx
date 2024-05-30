@@ -10,10 +10,9 @@ interface InventoryFormRegionValuesProps {
   onClose: () => void
   preItems: AutoCompletePreDefinedItems
   values?: string[]
-  withAddButton?: boolean
 }
 
-export const InventoryFormRegionValues = ({ preItems, onClose, open, values, withAddButton }: InventoryFormRegionValuesProps) => {
+export const InventoryFormRegionValues = ({ preItems, onClose, open, values }: InventoryFormRegionValuesProps) => {
   const { region, setPredicate, deletePredicate } = useFixQueryParser()
   const curValues = values ?? termValueToStringArray(region?.value)
   const regionOptions = useMemo(() => {
@@ -42,7 +41,6 @@ export const InventoryFormRegionValues = ({ preItems, onClose, open, values, wit
       onClose={onClose}
       open={open}
       options={regionOptions}
-      withAddButton={withAddButton}
     />
   )
 }
