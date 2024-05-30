@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { panelUI, settingsStorageKeys } from 'src/shared/constants'
+import { panelUI } from 'src/shared/constants'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { AdvancedTableView } from 'src/shared/layouts/panel-layout'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
@@ -44,7 +44,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
   const [dataCount, setDataCount] = useState(-1)
   const navigate = useAbsoluteNavigate()
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = usePersistState(settingsStorageKeys.InventoryTable.rowsPerPage, 10)
+  const [rowsPerPage, setRowsPerPage] = usePersistState('InventoryTable.rowsPerPage', 10)
   const { currentUser, selectedWorkspace } = useUserProfile()
   const [rows, setRows] = useState<RowType[]>([])
   const [columns, setColumns] = useState<ColType[]>([])

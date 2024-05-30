@@ -16,7 +16,7 @@ import { SetupTemplateButton } from './SetupTemplateButton'
 import { SetupTemplateButtonSkeleton } from './SetupTemplateButton.skeleton'
 import { WorkspaceId } from './WorkspaceId'
 
-export default function SetupCloud() {
+export default function WorkspaceSettingsAccountsSetupCloudAWSPage() {
   const { addListener } = useEvents()
   const navigate = useAbsoluteNavigate()
   const hasBenchmark = useHasBenchmarkCheck()
@@ -52,6 +52,7 @@ export default function SetupCloud() {
         <Tabs
           tabs={[
             {
+              id: 'deploy_to_account',
               content: (
                 <Box
                   component="video"
@@ -66,9 +67,9 @@ export default function SetupCloud() {
                 </Box>
               ),
               title: <Trans>Deploy to a single account</Trans>,
-              id: 'deploy_to_account',
             },
             {
+              id: 'deploy_to_org',
               content: (
                 <Box
                   component="video"
@@ -82,7 +83,6 @@ export default function SetupCloud() {
                   <source src={`${env.videosAssetsUrl}/deploy_to_org.mp4`} type="video/mp4" />
                 </Box>
               ),
-              id: 'deploy_to_org',
               title: <Trans>Deploy to organization</Trans>,
             },
           ]}

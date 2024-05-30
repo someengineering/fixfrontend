@@ -1,7 +1,7 @@
 // for circular dependency workaround
 // eslint-disable-next-line no-restricted-imports
 import { ThemeContextRealValues } from 'src/core/theme/ThemeContext'
-import { StorageKeys } from 'src/shared/constants'
+import { SettingsStorageKey, StorageKeys } from 'src/shared/constants'
 
 function getStorageObject<ReturnType = unknown>(key: StorageKeys) {
   const returnDataString = window.localStorage.getItem(key)
@@ -43,9 +43,10 @@ export const getThemeMode = () => getStorageObject<ThemeContextRealValues>(Stora
 
 export const setThemeMode = (themeMode?: ThemeContextRealValues) => setStorageObject(StorageKeys.themeMode, themeMode)
 
-export const getSettings = <Type = unknown>(name: string) => getStorageObject<Record<string, Type>>(StorageKeys.settings)?.[name]
+export const getSettings = <Type = unknown>(name: SettingsStorageKey) =>
+  getStorageObject<Record<string, Type>>(StorageKeys.settings)?.[name]
 
-export const setSettings = <Type = unknown>(name: string, data: Type) => {
+export const setSettings = <Type = unknown>(name: SettingsStorageKey, data: Type) => {
   const prevData = getStorageObject<Record<string, Type>>(StorageKeys.settings) ?? {}
   setStorageObject(StorageKeys.settings, { ...prevData, [name]: data })
 }

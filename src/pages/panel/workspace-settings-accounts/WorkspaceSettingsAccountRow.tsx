@@ -107,7 +107,7 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
         {
           onSuccess: (data) => {
             void queryClient.invalidateQueries({
-              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
+              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
             })
             replaceRowByAccount(queryClient, data, selectedWorkspace?.id)
           },
@@ -124,7 +124,7 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
         {
           onSuccess: (data) => {
             void queryClient.invalidateQueries({
-              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
+              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
             })
             replaceRowByAccount(queryClient, data, selectedWorkspace?.id)
           },
@@ -140,7 +140,7 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
         {
           onSuccess: (data) => {
             void queryClient.invalidateQueries({
-              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
+              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
             })
             replaceRowByAccount(queryClient, data, selectedWorkspace?.id)
           },
@@ -202,7 +202,7 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
               },
             )
             void queryClient.invalidateQueries({
-              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
+              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
             })
           },
           onError: () => {

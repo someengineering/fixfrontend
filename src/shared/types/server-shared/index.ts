@@ -1,6 +1,7 @@
 export type { Account } from './Account'
 export type { Benchmark } from './Benchmark'
 export type { FailedCheck } from './FailedCheck'
+export type { GenericServerError } from './GenericServerError'
 export type { NodeAncestors } from './NodeAncestors'
 export type { NodeMetadata } from './NodeMetadata'
 export type { NodeReported } from './NodeReported'
