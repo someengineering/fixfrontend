@@ -135,7 +135,7 @@ export const InventoryFormChangeValue = ({
             },
           },
           actionBar: {
-            actions: ['clear', 'today', 'accept', 'cancel'],
+            actions: ['today', 'accept', 'cancel'],
           },
         }}
         value={[searchParamsAfter ? dayjs(searchParamsAfter) : null, searchParamsBefore ? dayjs(searchParamsBefore) : null]}

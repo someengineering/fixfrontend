@@ -1547,7 +1547,7 @@ msgid "Regenerate"
 msgstr "Regenerate"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:97
-#: src/pages/panel/inventory/inventory-form/InventoryFormRegionValues.tsx:41
+#: src/pages/panel/inventory/inventory-form/InventoryFormRegionValues.tsx:40
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:237
 msgid "Region"
 msgstr "Region"
