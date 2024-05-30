@@ -151,6 +151,10 @@ msgstr "<0>Wir nutzen eingehende Webhooks, um Benachrichtigungen an Ihre Microso
 msgid "<0>We utilize the OpsGenie API integration for notifications and alerts.<1/>To set up this Integration, please follow these instructions:<2><3><4>Navigate to the Dashboard:</4> Find and click on the “Teams” section from the sidebar once logged in.</3><5><6>Select Your Team:</6> Choose the team you want to integrate with. Within the team dashboard, go to the “Integrations” tab.</5><7><8>Add Integration:</8> Click on the “+ New Integration” button. Select “API” as the integration type, give it the name “Fix,” and press Continue.</7><9><10>Turn Integration on:</10> When the Integration has been created, it is disabled by default - click “Turn on Integration”.</9><11><12>Copy API Key:</12> Find and copy the API Key in the integration settings.</11></2></0>"
 msgstr "<0>Wir nutzen die OpsGenie-API-Integration für Benachrichtigungen und Warnungen.<1/>Um diese Integration einzurichten, folgen Sie bitte diesen Anweisungen:<2><3><4>Navigieren Sie zum Dashboard:</4> Suchen und klicken Sie Klicken Sie nach der Anmeldung auf den Abschnitt „Teams“ in der Seitenleiste.</3><5><6>Wählen Sie Ihr Team aus:</6> Wählen Sie das Team aus, in das Sie sich integrieren möchten. Gehen Sie im Team-Dashboard zur Registerkarte „Integrationen“.</5><7><8>Integration hinzufügen:</8> Klicken Sie auf die Schaltfläche „+ Neue Integration“. Wählen Sie „API“ als Integrationstyp, geben Sie ihm den Namen „Fix“ und klicken Sie auf „Weiter“.</7><9><10>Integration aktivieren:</10> Wenn die Integration erstellt wurde, wird sie deaktiviert Standardmäßig – klicken Sie auf „Integration aktivieren“.</9><11><12>API-Schlüssel kopieren:</12> Suchen und kopieren Sie den API-Schlüssel in den Integrationseinstellungen.</11></2></0>"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:77
+msgid "<0>You need to assign three roles for Fix Security to work:</0><1>{0}</1><2>And Press Save.</2>"
+msgstr ""
+
 #: src/shared/layouts/panel-layout/BenchmarkCheckGuard.tsx:25
 msgid "<0>Your cloud account has been successfully added!</0><1>Thank you for deploying the CloudFormation stack in your AWS account.</1><2>Here’s what’s happening behind the scenes:</2><3><4>Initial Trust Establishment (5-15 minutes): After deployment, a cross-account trust for the role included in the stack is established between your and Fix's AWS accounts. Due to AWS's distributed infrastructure, this step can take anywhere from 5 to 15 minutes as we wait for the trust to become active across their network. During this time, our backend continuously probes to confirm when the trust is operational.</4><5>First Security Scan (2-10 minutes): Once the trust is established, we proceed with the initial security scan of your environment. Depending on the size and complexity of your cloud account, this scan can take anywhere from 2 to 10 minutes.</5><6>Email Notification: You won't have to wait in front of your browser to know when we're done. After the first security scan is completed, we'll notify you by email.</6></3><7>What to Expect Next:</7><8><9>Dashboard Availability: Your dashboard and inventory will be available shortly after the completion of the initial security scan. This gives you a comprehensive view of your security posture and any findings we have identified.</9><10>Subsequent Scans: After the initial scan, subsequent security scans will also take 2 to 10 minutes each, without the initial delay, since the trust has to be established only once.</10></8><11>We appreciate your patience during this setup process. If you have any questions or need assistance, please do not hesitate to contact us directly <12>on our Discord server<13/></12>.</11>"
 msgstr "<0>Ihr Cloud-Konto wurde erfolgreich hinzugefügt!</0><1>Vielen Dank, dass Sie den CloudFormation-Stack in Ihrem AWS-Konto bereitgestellt haben.</1><2>Hier ist, was im Hintergrund geschieht:</2><3><4>Erstmalige Vertrauensstellung (5-15 Minuten): Nach der Bereitstellung wird zwischen Ihrem und Fix's AWS-Konten ein Cross-Account-Vertrauen für die im Stack enthaltene Rolle hergestellt. Aufgrund der verteilten Infrastruktur von AWS kann dieser Schritt zwischen 5 und 15 Minuten dauern, da wir darauf warten, dass die Vertrauensstellung im gesamten Netzwerk aktiv wird. Während dieser Zeit überprüft unser Backend kontinuierlich, wann der Zugriff funktionsfähig ist.</4><5>Erster Sicherheitsscan (2-10 Minuten): Sobald die Vertrauensstellung hergestellt ist, führen wir den ersten Sicherheitsscan Ihrer Umgebung durch. Abhängig von der Größe und Komplexität Ihres Cloud-Kontos kann dieser Scan zwischen 2 und 10 Minuten dauern.</5><6>E-Mail-Benachrichtigung: Sie müssen nicht vor Ihrem Browser warten, um zu wissen, wann wir fertig sind. Nachdem der erste Sicherheitsscan abgeschlossen ist, werden wir Sie per E-Mail benachrichtigen.</6></3><7>Was Sie als Nächstes erwarten können:</7><8><9>Dashboard-Verfügbarkeit: Ihr Dashboard und Inventar werden kurz nach Abschluss des ersten Sicherheitsscans verfügbar sein. Dies gibt Ihnen einen umfassenden Überblick über Ihre Sicherheitslage.</9><10>Nachfolgende Scans: Nach dem ersten Scan werden auch nachfolgende Sicherheitsscans jeweils 2 bis 10 Minuten dauern, ohne die anfängliche Verzögerung, da die Vertrauensstellung nur einmal hergestellt werden muss.</10></8><11>Wir danken Ihnen für Ihre Geduld während dieses Einrichtungsprozesses. Wenn Sie Fragen haben oder Hilfe benötigen, zögern Sie bitte nicht, uns direkt auf <12>unserem Discord-Server<13/></12>zu kontaktieren.</11>"
@@ -175,9 +179,21 @@ msgstr "6-monatige Historie"
 msgid "A few minutes to first results"
 msgstr "In wenigen Minuten bis zum ersten Ergebnis"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:63
+msgid "A Google Cloud Service Account is connected to this workspace. Drop file to replace it."
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:67
+msgid "A Google Cloud Service Account key file has been uploaded - we are currently trying to list your projects. Please stay tuned - we will send you an Email when cloud accounts have been collected."
+msgstr ""
+
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:57
 msgid "Abandoned"
 msgstr "Verlassen"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:110
+msgid "above"
+msgstr ""
 
 #: src/shared/cookie-consent/CookieConsent.tsx:81
 msgid "Accept"
@@ -202,7 +218,7 @@ msgstr "Konto: {0}"
 #: src/pages/panel/inventory/InventoryTable.error.tsx:73
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:42
 #: src/shared/language-button/LanguageButton.stories.tsx:20
-#: src/shared/layouts/panel-layout/menuList.tsx:71
+#: src/shared/layouts/panel-layout/menuList.tsx:72
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:12
 msgid "Accounts"
 msgstr "Konten"
@@ -266,7 +282,7 @@ msgstr "Admin"
 msgid "Advanced"
 msgstr ""
 
-#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:78
+#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:85
 msgid "Advanced search query"
 msgstr "Erweiterte Suchabfrage"
 
@@ -297,13 +313,17 @@ msgstr "Alle Sicherheitsprobleme behoben"
 msgid "Already have an account? Click here to Log in."
 msgstr "Sie haben bereits ein Konto? Klicken Sie hier, um sich einzuloggen."
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:109
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:109
 msgid "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
 msgstr "Wenn Sie den Stack alternativ manuell bereitstellen möchten, können Sie folgendes CloudFormation-Template verwenden"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:104
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:104
 msgid "Alternatively: Manual Cloud Setup"
 msgstr "Alternativ: Manuelles Cloud Setup"
+
+#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:16
+msgid "Amazon Web Services"
+msgstr ""
 
 #: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:77
 msgid "An email has been sent to your inbox with a 'Reset Password' button. Please check your email and click on it to reset your password."
@@ -354,8 +374,9 @@ msgstr "Bist du sicher?"
 msgid "Asset inventory"
 msgstr "Cloud-Asset-Inventar"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:39
-#: src/shared/tabs/Tabs.tsx:43
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:39
+#: src/shared/tabs/Tabs.tsx:45
+#: src/shared/tabs/Tabs.tsx:86
 msgid "Automatic Cloud Setup"
 msgstr "Automatisches Cloud Setup"
 
@@ -367,6 +388,10 @@ msgstr "AWS Marketplace"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:83
+msgid "Back"
+msgstr ""
+
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:221
 msgid "Basic Information"
 msgstr "Grundinformation"
@@ -374,6 +399,10 @@ msgstr "Grundinformation"
 #: src/pages/panel/inventory/DownloadCSVButton.tsx:113
 msgid "Because the data is over {0} Only first {1} items will be downloaded"
 msgstr "Da die Daten über {0} liegen, werden nur die ersten {1} Elemente heruntergeladen"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:92
+msgid "below"
+msgstr ""
 
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:46
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:169
@@ -391,8 +420,8 @@ msgstr "Benchmarks"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:49
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:48
-#: src/shared/layouts/panel-layout/menuList.tsx:81
-#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:20
+#: src/shared/layouts/panel-layout/menuList.tsx:82
+#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:24
 msgid "Billing"
 msgstr "Abrechnung"
 
@@ -470,6 +499,18 @@ msgstr "Änderungen in den letzten 7 Tagen"
 msgid "Clear the search"
 msgstr ""
 
+#: src/shared/dropzone/Dropzone.tsx:100
+msgid "Click or Drop your file here"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:74
+msgid "Click or Drop your Google Cloud Service Account file here"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:56
+msgid "Click the service Account, go to the \"Keys\" Tab, and Click \"Add Key\" -> \"Create new Key\".<0/>A file is downloaded to your Downloads folder. We will need this file later on."
+msgstr ""
+
 #: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:36
 msgid "Close"
 msgstr "Schließen"
@@ -511,7 +552,7 @@ msgstr "Konfiguration geändert"
 msgid "Configure"
 msgstr "Konfigurieren"
 
-#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:38
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:37
 msgid "Confirm"
 msgstr "Bestätigen"
 
@@ -557,14 +598,18 @@ msgstr "Verbundene Konten"
 msgid "Connected Services"
 msgstr "Vernetzte Dienste"
 
-#: src/pages/panel/setup-cloud/WorkspaceId.tsx:16
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:78
+msgid "Continue"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceId.tsx:16
 #: src/shared/utils/useCopyString.ts:18
 msgid "Copied to Clipboard!"
 msgstr "In die Zwischenablage kopiert!"
 
-#: src/pages/panel/setup-cloud/ExternalId.tsx:56
-#: src/pages/panel/setup-cloud/WorkspaceId.tsx:46
 #: src/pages/panel/user-settings/UserSettingsTotpShowSecret.tsx:49
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/ExternalId.tsx:56
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceId.tsx:46
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:48
 msgid "Copy"
 msgstr "Kopieren"
@@ -572,6 +617,10 @@ msgstr "Kopieren"
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:29
 msgid "Core CSPM scanning capabilities"
 msgstr "Kern-CSPM-Scanfunktionen"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:46
+msgid "Create Service Account"
+msgstr ""
 
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:239
 msgid "Created Time"
@@ -633,7 +682,11 @@ msgstr "Deaktivieren"
 msgid "Default Role"
 msgstr "Standardrolle"
 
-#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:41
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:73
+msgid "Define Roles"
+msgstr ""
+
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:40
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:92
 msgid "Delayed Effect"
 msgstr "Verzögerte Wirkung"
@@ -664,11 +717,11 @@ msgstr "Anbieter löschen"
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:68
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:69
 msgid "Deploy to a single account"
 msgstr "Bereitstellung für ein einzelnes Konto"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:86
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:86
 msgid "Deploy to organization"
 msgstr "Für die Organisation bereitstellen"
 
@@ -694,7 +747,7 @@ msgstr "Dienst trennen"
 msgid "Discovered but unconfigured accounts"
 msgstr "Erkannte, aber nicht konfigurierte Konten"
 
-#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:55
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:54
 msgid "Do not show me again"
 msgstr "Zeig es mir nicht noch einmal"
 
@@ -724,6 +777,10 @@ msgstr "Downgrade"
 msgid "Download CSV"
 msgstr "CSV herunterladen"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:89
+msgid "Drop Service Account Key File"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:301
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:302
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:173
@@ -746,11 +803,15 @@ msgstr "Edit"
 msgid "Email"
 msgstr "Email"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:48
+msgid "Email Address"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:44
 msgid "Email alerts"
 msgstr "E-Mail-Alarmierungen"
 
-#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:67
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:66
 msgid "Enable"
 msgstr "Aktivieren"
 
@@ -799,11 +860,11 @@ msgstr "Läuft ab"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:10
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:14
-#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:22
+#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:26
 msgid "External Directories"
 msgstr "Externe Verzeichnisse"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:128
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:128
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:56
 msgid "External Id"
 msgstr "External Id"
@@ -890,6 +951,22 @@ msgstr ""
 msgid "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
 msgstr "Erhalten Sie Ihre fünf wichtigsten Empfehlungen zur Verbesserung Ihrer Sicherheit, sobald der erste Scan abgeschlossen ist, normalerweise innerhalb von 10 Minuten."
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:45
+msgid "Go To IAM and select Service Accounts."
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:91
+msgid "Go to your download folder and drop the service account JSON file in the drop zone {0}."
+msgstr ""
+
+#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:18
+msgid "Google Cloud Platform"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:68
+msgid "Grant Access"
+msgstr ""
+
 #: src/shared/defined-messages/getMessage.ts:8
 msgid "High"
 msgstr "Hoch"
@@ -910,6 +987,10 @@ msgstr "Stündliche"
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:108
 msgid "How to fix"
 msgstr "Wie repariert man"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:45
+msgid "IAM"
+msgstr ""
 
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:229
 #: src/pages/panel/security/AccountCard.tsx:34
@@ -951,7 +1032,7 @@ msgstr "Identifiziert Speichervolumes, die keiner laufenden Instanz zugeordnet s
 msgid "If this security check does not apply to this resource, you can safely ignore it."
 msgstr "Wenn diese Sicherheitsüberprüfung für diese Ressource nicht gilt, können Sie sie getrost ignorieren."
 
-#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:67
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:66
 msgid "Ignore"
 msgstr "Ignorieren"
 
@@ -968,7 +1049,7 @@ msgstr "Ignoriert"
 msgid "Improved"
 msgstr "Verbessert"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:42
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:42
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS Konto ein."
 
@@ -995,6 +1076,10 @@ msgstr "Integrationsberatung für Ihre spezifische Cloud-Umgebung per Videoanruf
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:141
 msgid "Integration Key"
 msgstr "Integrationsschlüssel"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:110
+msgid "Invalid file, Please follow the step-by-step instructions {0}."
+msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:351
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:272
@@ -1069,7 +1154,7 @@ msgstr "Niedrig"
 msgid "Low Utilization Compute Instances and Databases"
 msgstr "Recheninstanzen und Datenbanken mit geringer Auslastung"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:47
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:47
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS Konto angemeldet sind, bevor Sie auf die Schaltfläche DEPLOY STACK klicken."
 
@@ -1230,9 +1315,21 @@ msgstr "Noch nichts zu zeigen"
 msgid "Notification"
 msgstr "Benachrichtigung"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:65
+msgid "Now, switch to the organization or folder that holds the resources you want to connect."
+msgstr ""
+
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:47
 msgid "Number Of Account Charged"
 msgstr "Anzahl der belasteten Konten"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:92
+msgid "on the left side"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:110
+msgid "on the right side"
+msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:111
 msgid "One time"
@@ -1243,6 +1340,7 @@ msgid "Oops, the username or password doesn't seem to match our records. Please 
 msgstr "Hoppla, der Benutzername oder das Passwort scheinen nicht mit unseren Aufzeichnungen übereinzustimmen. Bitte versuche es erneut."
 
 #: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:94
+#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:114
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Sie sie und versuchen Sie es erneut."
 
@@ -1335,7 +1433,7 @@ msgstr ""
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:25
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:41
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:31
-#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:18
+#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:22
 msgid "Pending Invitations"
 msgstr "Ausstehende Einladungen"
 
@@ -1362,6 +1460,14 @@ msgstr ""
 #: src/pages/panel/workspace-settings-billing/utils/productTierToLabel.ts:11
 msgid "Plus"
 msgstr "Plus"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:50
+msgid "Press Done. This will bring you to the list of service accounts. Copy the email address of the created service account."
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:46
+msgid "Press: Create Service and fill out the form."
+msgstr ""
 
 #: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:25
 msgid "Print or copy the following recovery codes"
@@ -1546,13 +1652,33 @@ msgstr "Sicherheitsbewertung"
 msgid "See this Resource in AWS Console"
 msgstr "Sehen Sie sich diese Ressource in der AWS-Konsole an"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:70
+msgid "Select IAM and press Grant Access. Fill out the form by pasting the email address as the new principal."
+msgstr ""
+
 #: src/shared/language-button/LanguageButton.tsx:41
 msgid "Select Language"
 msgstr "Sprache auswählen"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:63
+msgid "Select Organization"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:41
+msgid "Select Project"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:43
+msgid "Select the project in Google Cloud Console that should hold the service account."
+msgstr ""
+
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:67
 msgid "Send Invite"
 msgstr "Sende Einladung"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:53
+msgid "Service Account Key"
+msgstr ""
 
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:91
 msgid "Setting Up Email Notifications"
@@ -1637,10 +1763,18 @@ msgstr "Integrationen zur Aufgabenverwaltung (bald verfügbar!)"
 msgid "Test"
 msgstr "Prüfen"
 
-#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:47
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:46
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:96
 msgid "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 msgstr "Die Änderung wird ab dem nächsten Sicherheitsscan aktiv. Bis zum nächsten Scan zeigt die Ressource weiterhin die fehlgeschlagene Prüfung an."
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:118
+msgid "The Google Cloud Service Account has been updated successfully.<0/>We will process the file and add the accounts that we find.<1/>This process may take a <2>few minutes</2>.<3/>We will send you an email once the projects are ready."
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:101
+msgid "The Google Cloud Service Account key file is valid but did not allow us to list available projects. It is important to ensure that it has the necessary permissions and that the required APIs are enabled to avoid this error. The following message was created by GCP when we tried to list the projects:"
+msgstr ""
 
 #: src/pages/auth/login/LoginPage.tsx:32
 msgid "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
@@ -1650,7 +1784,7 @@ msgstr "Das von Ihnen eingegebene OTP oder Wiederherstellungscode ist falsch ode
 msgid "The selected resource does not exist anymore."
 msgstr "Die ausgewählte Ressource existiert nicht mehr."
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:117
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:117
 msgid "The Stack requires the following parameters"
 msgstr "Der Stack erfordert die folgenden Parameter"
 
@@ -1670,7 +1804,7 @@ msgstr "Dieses Konto befindet sich derzeit in einem nicht-funktionalen Zustand, 
 msgid "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 msgstr "Diese Email-Adresse ist bereits registriert. Wenn dies Ihre E-Mail-Adresse ist, versuchen Sie bitte, sich anzumelden, oder klicken Sie auf der Anmeldeseite auf „Passwort vergessen“, um Ihr Passwort zurückzusetzen."
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:95
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:95
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM Rolle in Ihrem AWS Konto erstellt. Diese Rolle wird von FIX verwendet, um in Ihrem AWS Konto Sicherheitsscans durchzuführen."
 
@@ -1772,6 +1906,10 @@ msgstr "Kennwort aktualisieren"
 msgid "Upgrade"
 msgstr "Aktualisierung"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:59
+msgid "Uploading your Google Cloud Service Account file..."
+msgstr ""
+
 #: src/pages/panel/user-settings/UserSettingsPage.tsx:16
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:157
 msgid "User Settings"
@@ -1783,8 +1921,8 @@ msgstr "Benachrichtigung über Benutzereinstellungen"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:27
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:45
-#: src/shared/layouts/panel-layout/menuList.tsx:76
-#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:16
+#: src/shared/layouts/panel-layout/menuList.tsx:77
+#: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:20
 msgid "Users"
 msgstr "Benutzer"
 
@@ -1837,7 +1975,7 @@ msgstr "Workspace-Benachrichtigungseinstellungen"
 msgid "Workspace analytics (coming soon!)"
 msgstr "Arbeitsbereichsanalyse (bald verfügbar!)"
 
-#: src/pages/panel/setup-cloud/SetupCloudPage.tsx:146
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:146
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:47
 msgid "Workspace Id"
 msgstr "Workspace Id"
@@ -1912,7 +2050,7 @@ msgstr "Sie haben Ihr Konto erfolgreich verifiziert."
 msgid "You need a payment method to change your product tier"
 msgstr ""
 
-#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:44
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:43
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:94
 msgid "You've chosen to ignore this security check for the resource. Please note:"
 msgstr "Sie haben sich entschieden, diese Sicherheitsüberprüfung für die Ressource zu ignorieren. Bitte beachten Sie:"

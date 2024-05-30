@@ -1,4 +1,5 @@
 export { StorageKeys, settingsStorageKeys } from './StorageKeys'
+export type { SettingsStorageKey } from './StorageKeys'
 export { colorFromRedToGreen } from './colorFromRedToGreen'
 export { apiMessages, panelMessages, sortedSeverities } from './consts'
 export { endPoints } from './endPoints'

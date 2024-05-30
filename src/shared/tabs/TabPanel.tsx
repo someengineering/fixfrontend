@@ -1,10 +1,11 @@
-import { Box, BoxProps } from '@mui/material'
+import { Box, BoxProps, TabProps } from '@mui/material'
 import { ReactNode } from 'react'
 
 export type TabType<TabKeyType extends number | string | undefined = undefined> = {
   title: ReactNode
   content: ReactNode
-  props?: BoxProps
+  props?: TabProps
+  contentProps?: BoxProps
 } & (TabKeyType extends undefined ? { id?: never } : { id: TabKeyType })
 
 type TabPanelProps<TabKeyType extends number | string | undefined = undefined> = Exclude<TabType<TabKeyType>, 'id'> & {
@@ -16,10 +17,10 @@ type TabPanelProps<TabKeyType extends number | string | undefined = undefined> =
 export function TabPanel<TabKeyType extends number | string | undefined = undefined>({
   content,
   id,
-  props,
+  contentProps,
   index,
   value,
-}: TabPanelProps<TabKeyType>) {
+}: Omit<TabPanelProps<TabKeyType>, 'title' | 'props'>) {
   const currentId = id ?? index
   return (
     <Box
@@ -27,7 +28,7 @@ export function TabPanel<TabKeyType extends number | string | undefined = undefi
       hidden={value !== currentId}
       id={`simple-tabpanel-${currentId}`}
       aria-labelledby={`simple-tab-${currentId}`}
-      {...props}
+      {...contentProps}
     >
       {value === currentId ? content : null}
     </Box>

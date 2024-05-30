@@ -65,6 +65,7 @@ export const bottomMenuList: MenuListItem[] = [
     route: '/workspace-settings',
     Icon: RoomPreferencesIcon,
     useGuard: () => usePermissionCheck('readSettings'),
+    hideOnGuard: true,
     children: [
       {
         Icon: CloudIcon,

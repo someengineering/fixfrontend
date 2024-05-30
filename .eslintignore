@@ -1,4 +1,0 @@
-!.storybook
-__mocks__/*
-public/*.min.js
-src/locales/**/messages.po

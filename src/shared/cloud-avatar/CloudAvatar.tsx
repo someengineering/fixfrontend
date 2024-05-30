@@ -4,7 +4,7 @@ import { Avatar, Box, ButtonBase, Paper, Tooltip, Typography } from '@mui/materi
 import { ReactNode } from 'react'
 import { AwsLogo, Crown, FixLogo, GcpLogo } from 'src/assets/icons'
 
-interface CloudAvatar {
+export interface CloudAvatarProps {
   cloud: string
   withCrown?: boolean
   tooltip?: ReactNode
@@ -13,15 +13,15 @@ interface CloudAvatar {
   onErrorClick?: () => void
 }
 
-const CloudIcon = ({ cloud, small }: CloudAvatar) => {
+const CloudIcon = ({ cloud, small, withCrown }: CloudAvatarProps) => {
   const size = small ? 30 : 40
   switch (cloud.toLowerCase()) {
     case 'fix':
-      return <FixLogo width={size} height={size} />
+      return <FixLogo width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
     case 'aws':
-      return <AwsLogo width={size} height={size} />
+      return <AwsLogo width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
     case 'gcp':
-      return <GcpLogo width={size} height={size} />
+      return <GcpLogo width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
     default:
       return (
         <Avatar sx={{ bgcolor: 'primary.main', width: size, height: size, fontSize: size / 2 }}>
@@ -31,11 +31,11 @@ const CloudIcon = ({ cloud, small }: CloudAvatar) => {
   }
 }
 
-export const CloudAvatar = ({ cloud, small, withCrown, tooltip, error, onErrorClick }: CloudAvatar) => (
+export const CloudAvatar = ({ cloud, small, withCrown, tooltip, error, onErrorClick }: CloudAvatarProps) => (
   <Tooltip title={tooltip}>
     <Box position="relative">
       <Box margin="0 auto">
-        <CloudIcon cloud={cloud} small={small} />
+        <CloudIcon cloud={cloud} small={small} withCrown={withCrown} />
       </Box>
       {withCrown ? (
         <>
