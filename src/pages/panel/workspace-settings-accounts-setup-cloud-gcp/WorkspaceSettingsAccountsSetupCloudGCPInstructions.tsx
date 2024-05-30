@@ -1,4 +1,4 @@
-import { Trans, t } from '@lingui/macro'
+import { Trans } from '@lingui/macro'
 import { Button, Skeleton, Stack, Step, StepContent, StepLabel, Stepper, Typography, styled } from '@mui/material'
 import { useEffect, useRef } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
@@ -73,9 +73,11 @@ export const WorkspaceSettingsAccountsSetupCloudGCPInstructions = ({
                   />
                 ) : null}
                 <Stack direction="row" spacing={1}>
-                  <Button onClick={() => setActiveStep(index + 1)} variant="contained" disabled={instructions.length - 1 === index}>
-                    {instructions.length - 1 === index ? t`Finished` : t`Continue`}
-                  </Button>
+                  {instructions.length - 1 > index ? (
+                    <Button onClick={() => setActiveStep(index + 1)} variant="contained">
+                      <Trans>Continue`</Trans>
+                    </Button>
+                  ) : null}
                   {index ? (
                     <Button onClick={() => setActiveStep(index - 1)}>
                       <Trans>Back</Trans>
