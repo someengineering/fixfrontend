@@ -45,7 +45,8 @@ export const WorkspaceSettingsAccountsSetupCloudGCPUploadKey = ({ isMobile }: Wo
     }
   }
 
-  const errorMessage = (error as AxiosError<PutWorkspaceCloudAccountGCPKeyErrorResponse>)?.response?.data
+  const errorResponse = (error as AxiosError<PutWorkspaceCloudAccountGCPKeyErrorResponse>)?.response
+  const errorMessage = errorResponse?.data
 
   return selectedWorkspace?.id && data ? (
     <Dropzone onChange={handleChange} mimeType={['application/JSON']} isPending={isPending} disabled={isSuccess} minHeight={300} flex={1}>
@@ -94,7 +95,7 @@ export const WorkspaceSettingsAccountsSetupCloudGCPUploadKey = ({ isMobile }: Wo
         <Collapse in={!!error}>
           <Alert variant="outlined" severity="error" sx={{ pointerEvents: 'all', cursor: 'initial' }} onClick={(e) => e.stopPropagation()}>
             <Typography textAlign="center">
-              {errorMessage?.status_code === 422 ? (
+              {errorResponse?.status === 422 && errorMessage?.detail ? (
                 <Trans>
                   The Google Cloud Service Account key file is valid but did not allow us to list available projects.
                   <br />
