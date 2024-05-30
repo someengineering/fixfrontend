@@ -179,15 +179,19 @@ msgstr "6-monatige Historie"
 msgid "A few minutes to first results"
 msgstr "In wenigen Minuten bis zum ersten Ergebnis"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:55
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:61
 msgid "A Google Cloud Service Account is connected to this workspace. Drop file to replace it."
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:65
+msgid "A Google Cloud Service Account key file has been uploaded - we are currently trying to list your projects. Please stay tuned - we will send you an Email when cloud accounts have been collected."
 msgstr ""
 
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:57
 msgid "Abandoned"
 msgstr "Verlassen"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:82
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:109
 msgid "above"
 msgstr ""
 
@@ -499,7 +503,7 @@ msgstr ""
 msgid "Click or Drop your file here"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:57
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:72
 msgid "Click or Drop your Google Cloud Service Account file here"
 msgstr ""
 
@@ -1077,8 +1081,8 @@ msgstr "Integrationsberatung für Ihre spezifische Cloud-Umgebung per Videoanruf
 msgid "Integration Key"
 msgstr "Integrationsschlüssel"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:82
-msgid "Invalid file, Please follow the step-by-step instruction {0}."
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:109
+msgid "Invalid file, Please follow the step-by-step instructions {0}."
 msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowProperty.tsx:351
@@ -1327,7 +1331,7 @@ msgstr "Anzahl der belasteten Konten"
 msgid "on the left side"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:82
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:109
 msgid "on the right side"
 msgstr ""
 
@@ -1768,8 +1772,12 @@ msgstr "Prüfen"
 msgid "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 msgstr "Die Änderung wird ab dem nächsten Sicherheitsscan aktiv. Bis zum nächsten Scan zeigt die Ressource weiterhin die fehlgeschlagene Prüfung an."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:89
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:117
 msgid "The Google Cloud Service Account has been updated successfully.<0/>We will process the file and add the accounts that we find.<1/>This process may take a <2>few minutes</2>.<3/>We will send you an email once the projects are ready."
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:98
+msgid "The Google Cloud Service Account key file is valid but did not allow us to list available projects.<0/>It is important to ensure that it has the necessary permissions and that the required APIs are enabled to avoid this error.<1/>The following message was created by GCP when we tried to list the projects:<2/>{0}"
 msgstr ""
 
 #: src/pages/auth/login/LoginPage.tsx:32
@@ -1902,7 +1910,7 @@ msgstr "Kennwort aktualisieren"
 msgid "Upgrade"
 msgstr "Aktualisierung"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:53
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:57
 msgid "Uploading your Google Cloud Service Account file..."
 msgstr ""
 
