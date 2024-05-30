@@ -63,7 +63,7 @@ export const EventButton = () => {
           void queryClient.invalidateQueries({
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
-          void showSnackbar(t`${ev.data.aws_account_id ? 'AWS ' : ''}Cloud account configured, id: ${ev.data.aws_account_id}`, {
+          void showSnackbar(t`${ev.data.aws_account_id ? 'AWS ' : ''} Cloud account configured, id: ${ev.data.aws_account_id}`, {
             severity: 'success',
             autoHideDuration: null,
           })
