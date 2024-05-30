@@ -37,7 +37,7 @@ export const ResourceDetailChangeLogSelectedHistoryDiff = ({
       }
     },
   })
-  const benchmarks = useGetBenchmarks(benchmarksIds)
+  const { data: benchmarks } = useGetBenchmarks(false, benchmarksIds)
   return (
     <Stack>
       {node_compliant.length ? (

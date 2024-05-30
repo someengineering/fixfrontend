@@ -1,21 +1,17 @@
 import { Trans } from '@lingui/macro'
 import { Button, Stack, Typography } from '@mui/material'
-import { useSuspenseQuery } from '@tanstack/react-query'
 import { useCallback, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
-import { getWorkspaceCloudAccountsQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { AddAccountButton } from 'src/shared/add-account-button'
 import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
 import { getInitiated } from 'src/shared/utils/localstorage'
+import { useHasAccountsCheck } from './check-hooks/useHasAccountsCheck'
 
 export const AccountCheckGuard = () => {
   const { selectedWorkspace } = useUserProfile()
-  const { data } = useSuspenseQuery({
-    queryKey: ['workspace-cloud-accounts', selectedWorkspace?.id, true],
-    queryFn: getWorkspaceCloudAccountsQuery,
-  })
+  const { haveError, doesNotHaveAccount, paymentOnHold } = useHasAccountsCheck()
   const navigate = useAbsoluteNavigate()
 
   const handleGoToSetupCloudPage = useCallback(() => {
@@ -26,19 +22,16 @@ export const AccountCheckGuard = () => {
     navigate('/workspace-settings/billing-receipts')
   }, [navigate])
 
-  const haveError = !data || typeof data === 'string'
-  const doesNotHaveAccount = haveError ? true : !data.added.length && !data.recent.length && !data.discovered.length
-
   useEffect(() => {
     if (haveError) {
-      if (data === 'workspace_payment_on_hold') {
+      if (paymentOnHold) {
         handleGoToPaymentPage()
       }
     }
     if (doesNotHaveAccount && !getInitiated()) {
       handleGoToSetupCloudPage()
     }
-  }, [data, doesNotHaveAccount, handleGoToPaymentPage, handleGoToSetupCloudPage, haveError])
+  }, [paymentOnHold, doesNotHaveAccount, handleGoToPaymentPage, handleGoToSetupCloudPage, haveError])
 
   if (!selectedWorkspace?.id) {
     return <FullPageLoadingSuspenseFallback />
