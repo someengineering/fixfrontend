@@ -1,5 +1,6 @@
 import { useLingui } from '@lingui/react'
 import { PropsWithChildren, createContext, memo } from 'react'
+import { WorkspaceInventorySearchTableHistory } from 'src/shared/types/server'
 import { JsonElement, Query } from './query'
 
 type CombineType = Query['combine']
@@ -28,6 +29,7 @@ export type FixQueryContextValue = {
   predicates: ReturnType<Query['predicates']>
   provides_security_check_details: ReturnType<Query['provides_security_check_details']>
   uiSimpleQuery: ReturnType<Query['ui_simple_query']>
+  history: WorkspaceInventorySearchTableHistory
   // get methods
   findPaths: Query['find_paths']
   // update
@@ -39,6 +41,7 @@ export type FixQueryContextValue = {
   updateFullTextSearch: UpdateFullTextType
   deleteMatching: Query['delete_matching']
   updateQuery: (q: string) => Query
+  onHistoryChange: (history?: WorkspaceInventorySearchTableHistory) => void
   reset: () => Query
 }
 
@@ -46,11 +49,13 @@ export const FixQueryContext = createContext<FixQueryContextValue | null>(null)
 
 interface FixQueryProviderProps extends PropsWithChildren {
   searchQuery?: string
-  onChange: (searchQuery: string) => void
+  history: WorkspaceInventorySearchTableHistory
+  onHistoryChange: (history?: WorkspaceInventorySearchTableHistory) => void
+  onChange: (searchQuery?: string) => void
 }
 
 export const FixQueryProvider = memo(
-  ({ searchQuery, onChange, children }: FixQueryProviderProps) => {
+  ({ searchQuery, onChange, history, onHistoryChange, children }: FixQueryProviderProps) => {
     useLingui()
     let query = Query.parse('all')
     let error: Error | undefined
@@ -72,6 +77,9 @@ export const FixQueryProvider = memo(
 
     const { account, cloud, parts, region, severity, tags, aggregate, sorts } = query
     const value = {
+      //history
+      history,
+      onHistoryChange,
       // default variables
       error,
       query,
@@ -119,5 +127,11 @@ export const FixQueryProvider = memo(
 
     return <FixQueryContext.Provider value={value}>{children}</FixQueryContext.Provider>
   },
-  (prev, next) => prev.searchQuery === next.searchQuery && prev.onChange === next.onChange,
+  (prev, next) =>
+    prev.searchQuery === next.searchQuery &&
+    prev.history.changes.sort().join(',') === next.history.changes.sort().join(',') &&
+    prev.history.after === next.history.after &&
+    prev.history.before === next.history.before &&
+    prev.onChange === next.onChange &&
+    prev.onHistoryChange === next.onHistoryChange,
 )

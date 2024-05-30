@@ -101,6 +101,7 @@ export const InventoryFormChangeValue = ({
         </Select>
       </FormControl>
       <DateTimeRangePicker
+        disableFuture
         sx={{ mb: 1 }}
         slotProps={{
           fieldSeparator: {
@@ -132,6 +133,9 @@ export const InventoryFormChangeValue = ({
                 color: 'primary.main',
               },
             },
+          },
+          actionBar: {
+            actions: ['clear', 'today', 'accept', 'cancel'],
           },
         }}
         value={[searchParamsAfter ? dayjs(searchParamsAfter) : null, searchParamsBefore ? dayjs(searchParamsBefore) : null]}
