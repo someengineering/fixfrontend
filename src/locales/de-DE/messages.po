@@ -197,7 +197,7 @@ msgstr ""
 
 #: src/shared/cookie-consent/CookieConsent.tsx:81
 msgid "Accept"
-msgstr ""
+msgstr "Akzeptieren"
 
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:239
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:365
@@ -1563,7 +1563,7 @@ msgstr "Registrieren"
 
 #: src/shared/cookie-consent/CookieConsent.tsx:95
 msgid "Reject"
-msgstr ""
+msgstr "Ablehnen"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:28
 msgid "Remediation recommendations"
