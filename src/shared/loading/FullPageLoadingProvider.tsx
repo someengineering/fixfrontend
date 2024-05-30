@@ -1,4 +1,5 @@
 import { MutableRefObject, PropsWithChildren, useCallback, useEffect, useRef, useState } from 'react'
+import { env } from 'src/shared/constants'
 import { FullPageLoading } from './FullPageLoading'
 import { LoadingContext, LoadingStateType } from './LoadingContext'
 
@@ -8,7 +9,8 @@ interface FullPageLoadingContainerProps {
 
 const FullPageLoadingContainer = ({ setLoadingStateRef }: FullPageLoadingContainerProps) => {
   const [loadingState, setLoadingState] = useState<LoadingStateType>(LoadingStateType.SHOW)
-  const alreadyShown = useRef<boolean | undefined>(undefined)
+  const firstTimeShown = useRef<number | false>()
+  const alreadyShown = useRef<boolean>()
   useEffect(() => {
     setLoadingStateRef.current = (loadingStateToSet: LoadingStateType, forceFullPage?: boolean) => {
       setLoadingState(
@@ -23,6 +25,22 @@ const FullPageLoadingContainer = ({ setLoadingStateRef }: FullPageLoadingContain
       }
     }
   }, [setLoadingStateRef])
+  useEffect(() => {
+    if (firstTimeShown.current === undefined) {
+      firstTimeShown.current = window.setTimeout(() => {
+        if (window.TrackJS?.isInstalled()) {
+          window.TrackJS.track(new Error(`It took more than ${env.loadPageTimeout / 1000}s to load the page`))
+        }
+        window.setTimeout(function () {
+          window.location.reload()
+        }, 3_000)
+      }, env.loadPageTimeout)
+    }
+    if (loadingState === LoadingStateType.HIDE && firstTimeShown.current) {
+      window.clearTimeout(firstTimeShown.current)
+      firstTimeShown.current = false
+    }
+  }, [loadingState])
   return <FullPageLoading loadingState={loadingState} />
 }
 
