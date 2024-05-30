@@ -2,9 +2,11 @@ import { Trans, t } from '@lingui/macro'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import { Alert, Box, CircularProgress, Collapse, Skeleton, Stack, Typography } from '@mui/material'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
 import { useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { Dropzone } from 'src/shared/dropzone'
+import { PutWorkspaceCloudAccountGCPKeyErrorResponse } from 'src/shared/types/server'
 import { getWorkspaceCloudAccountGCPKeyQuery } from './getWorkspaceCloudAccountGCPKey.query'
 import { putWorkspaceCloudAccountGCPKeyMutation } from './putWorkspaceCloudAccountGCPKey.mutation'
 
@@ -43,20 +45,33 @@ export const WorkspaceSettingsAccountsSetupCloudGCPUploadKey = ({ isMobile }: Wo
     }
   }
 
+  const errorMessage = (error as AxiosError<PutWorkspaceCloudAccountGCPKeyErrorResponse>)?.response?.data
+
   return selectedWorkspace?.id && data ? (
     <Dropzone onChange={handleChange} mimeType={['application/JSON']} isPending={isPending} disabled={isSuccess} minHeight={300} flex={1}>
       <Stack p={1} alignItems="center" gap={1}>
         <Collapse in={!isSuccess}>
           <Stack direction="row" gap={1} alignItems="center">
-            <Typography variant="h4" textAlign="center">
-              {isPending ? (
+            {isPending ? (
+              <Typography variant="h4" textAlign="center">
                 <Trans>Uploading your Google Cloud Service Account file...</Trans>
-              ) : data.can_access_sa !== null ? (
+              </Typography>
+            ) : data.can_access_sa ? (
+              <Typography variant="h4" textAlign="center">
                 <Trans>A Google Cloud Service Account is connected to this workspace. Drop file to replace it.</Trans>
-              ) : (
+              </Typography>
+            ) : data.can_access_sa === null ? (
+              <Typography variant="h5" textAlign="center">
+                <Trans>
+                  A Google Cloud Service Account key file has been uploaded - we are currently trying to list your projects. Please stay
+                  tuned - we will send you an Email when cloud accounts have been collected.
+                </Trans>
+              </Typography>
+            ) : (
+              <Typography variant="h4" textAlign="center">
                 <Trans>Click or Drop your Google Cloud Service Account file here</Trans>
-              )}
-            </Typography>
+              </Typography>
+            )}
             <Box sx={{ position: 'relative', display: 'inline-flex' }}>
               <CircularProgress variant={progress === 100 ? 'indeterminate' : 'determinate'} value={progress} />
               <Box
@@ -79,7 +94,20 @@ export const WorkspaceSettingsAccountsSetupCloudGCPUploadKey = ({ isMobile }: Wo
         <Collapse in={!!error}>
           <Alert variant="outlined" severity="error" sx={{ pointerEvents: 'all', cursor: 'initial' }} onClick={(e) => e.stopPropagation()}>
             <Typography textAlign="center">
-              <Trans>Invalid file, Please follow the step-by-step instruction {isMobile ? t`above` : t`on the right side`}.</Trans>
+              {errorMessage?.status_code === 422 ? (
+                <Trans>
+                  The Google Cloud Service Account key file is valid but did not allow us to list available projects.
+                  <br />
+                  It is important to ensure that it has the necessary permissions and that the required APIs are enabled to avoid this
+                  error.
+                  <br />
+                  The following message was created by GCP when we tried to list the projects:
+                  <br />
+                  {errorMessage.detail}
+                </Trans>
+              ) : (
+                <Trans>Invalid file, Please follow the step-by-step instructions {isMobile ? t`above` : t`on the right side`}.</Trans>
+              )}
             </Typography>
           </Alert>
         </Collapse>
