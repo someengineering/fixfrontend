@@ -12,10 +12,9 @@ interface InventoryFormCloudValuesProps {
   onClose: () => void
   preItems: AutoCompletePreDefinedItems
   values?: string[]
-  withAddButton?: boolean
 }
 
-export const InventoryFormCloudValues = ({ preItems, onClose, open, values, withAddButton }: InventoryFormCloudValuesProps) => {
+export const InventoryFormCloudValues = ({ preItems, onClose, open, values }: InventoryFormCloudValuesProps) => {
   const { cloud, setPredicate, deletePredicate } = useFixQueryParser()
   const curValues = values ?? termValueToStringArray(cloud?.value)
   const cloudOptions = useMemo(() => {
@@ -52,7 +51,6 @@ export const InventoryFormCloudValues = ({ preItems, onClose, open, values, with
           <Typography>{item.label}</Typography>
         </Stack>
       )}
-      withAddButton={withAddButton}
     />
   )
 }
