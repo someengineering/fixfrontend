@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-restricted-imports
 import { CacheProvider, EmotionCache } from '@emotion/react'
-import '@fontsource-variable/nunito-sans'
+import '@fontsource-variable/plus-jakarta-sans'
 import { useLingui } from '@lingui/react'
 import {
   CssBaseline,
@@ -71,7 +71,7 @@ export function Theme({ children, emotionCache }: ThemeProps) {
   )
 
   const fontFamily = [
-    'Nunito Sans Variable',
+    '"Plus Jakarta Sans Variable"',
     '-apple-system',
     'BlinkMacSystemFont',
     '"Segoe UI"',
