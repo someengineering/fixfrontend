@@ -216,7 +216,7 @@ msgstr "Konto: {0}"
 #: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:35
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:120
 #: src/pages/panel/inventory/InventoryTable.error.tsx:73
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:42
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:48
 #: src/shared/language-button/LanguageButton.stories.tsx:20
 #: src/shared/layouts/panel-layout/menuList.tsx:72
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:12
@@ -295,7 +295,7 @@ msgstr "Alter"
 msgid "Alerting integrations (PD, Slack, Discord, Teams)"
 msgstr "Alarmierungsintegrationen (PD, Slack, Discord, Teams)"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:31
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:35
 msgid "Alerting Settings"
 msgstr "Benachrichtigungseinstellungen"
 
@@ -405,7 +405,7 @@ msgid "below"
 msgstr ""
 
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:46
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:169
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:160
 msgid "Benchmark"
 msgstr "Benchmark"
 
@@ -419,7 +419,7 @@ msgid "Benchmarks"
 msgstr "Benchmarks"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:49
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:48
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:54
 #: src/shared/layouts/panel-layout/menuList.tsx:82
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:24
 msgid "Billing"
@@ -594,7 +594,7 @@ msgstr "Verbinden Sie Ihr AWS-Konto"
 msgid "Connected Accounts"
 msgstr "Verbundene Konten"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:24
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:28
 msgid "Connected Services"
 msgstr "Vernetzte Dienste"
 
@@ -643,7 +643,7 @@ msgstr "Kritisch"
 msgid "Current Product Tier"
 msgstr ""
 
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:309
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:300
 msgid "Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is necessary to configure alerting settings."
 msgstr "Derzeit stehen keine verbundenen Dienste zur Konfiguration zur Verfügung. Bitte beachten Sie, dass zum Konfigurieren der Alarmeinstellungen die Verbindung mindestens eines Dienstes erforderlich ist."
 
@@ -1387,7 +1387,7 @@ msgstr "Verwaiste Snapshots"
 msgid "Orphaned Volumes"
 msgstr "Verwaiste Volumes"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:38
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:44
 msgid "Other Workspace Settings"
 msgstr "Andere Arbeitsbereichseinstellungen"
 
@@ -1449,7 +1449,7 @@ msgstr ""
 msgid "Please enter your One-Time-Password or one of your Recovery code."
 msgstr "Bitte geben Sie Ihr One-Time-Passwort oder einen Ihrer Wiederherstellungscodes ein."
 
-#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:58
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:51
 msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
 msgstr "Bitte gehen Sie zur Seite <0>Setup Accounts</0>, um zunächst Ihr Konto einzurichten"
 
@@ -1691,8 +1691,8 @@ msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:50
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:150
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:172
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:221
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:163
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:212
 msgid "Severity"
 msgstr "Schwere"
 
@@ -1792,7 +1792,7 @@ msgstr "Der Stack erfordert die folgenden Parameter"
 msgid "The token that you sent is invalid or have been expired please try again"
 msgstr "Das von Ihnen gesendete Token ist ungültig oder abgelaufen. Bitte versuchen Sie es erneut"
 
-#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:55
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:48
 msgid "There's no account configured for this workspace."
 msgstr "Für diesen Arbeitsbereich ist kein Konto konfiguriert."
 
@@ -1920,7 +1920,7 @@ msgid "User Settings Notification"
 msgstr "Benachrichtigung über Benutzereinstellungen"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:27
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:45
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:51
 #: src/shared/layouts/panel-layout/menuList.tsx:77
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:20
 msgid "Users"
@@ -1967,7 +1967,7 @@ msgstr "Wöchentlicher Report"
 msgid "Within a billing cycle you will be charged for the highest product tier that was active."
 msgstr ""
 
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:165
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:156
 msgid "Workspace Alerting Settings"
 msgstr "Workspace-Benachrichtigungseinstellungen"
 
@@ -1984,7 +1984,7 @@ msgstr "Workspace Id"
 msgid "Workspace Name"
 msgstr "Arbeitsbereichsname"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:17
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:19
 #: src/shared/layouts/panel-layout/menuList.tsx:64
 #: src/shared/layouts/panel-layout/PanelBreadcrumbs.tsx:10
 msgid "Workspace Settings"
