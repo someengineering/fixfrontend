@@ -179,11 +179,11 @@ msgstr "6-monatige Historie"
 msgid "A few minutes to first results"
 msgstr "In wenigen Minuten bis zum ersten Ergebnis"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:61
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:63
 msgid "A Google Cloud Service Account is connected to this workspace. Drop file to replace it."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:65
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:67
 msgid "A Google Cloud Service Account key file has been uploaded - we are currently trying to list your projects. Please stay tuned - we will send you an Email when cloud accounts have been collected."
 msgstr ""
 
@@ -191,7 +191,7 @@ msgstr ""
 msgid "Abandoned"
 msgstr "Verlassen"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:109
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:110
 msgid "above"
 msgstr ""
 
@@ -388,7 +388,7 @@ msgstr "AWS Marketplace"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:81
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:83
 msgid "Back"
 msgstr ""
 
@@ -503,7 +503,7 @@ msgstr ""
 msgid "Click or Drop your file here"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:72
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:74
 msgid "Click or Drop your Google Cloud Service Account file here"
 msgstr ""
 
@@ -598,7 +598,7 @@ msgstr "Verbundene Konten"
 msgid "Connected Services"
 msgstr "Vernetzte Dienste"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:77
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:78
 msgid "Continue"
 msgstr ""
 
@@ -901,10 +901,6 @@ msgstr "Findet Load Balancer, die keiner laufenden Instanz zugeordnet sind."
 msgid "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
 msgstr "Findet Snapshots von Festplatten, die nicht mehr verwendet werden und möglicherweise gelöscht werden könnten, um die Speicherkosten zu senken."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:77
-msgid "Finished"
-msgstr ""
-
 #: src/containers/auth/AuthContainer.tsx:50
 msgid "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
 msgstr "Fix scannt Ihre Infrastruktur- und Ressourcenkonfigurationen mithilfe des schreibgeschützten API-Zugriffs. Keine Agenten erforderlich."
@@ -1081,7 +1077,7 @@ msgstr "Integrationsberatung für Ihre spezifische Cloud-Umgebung per Videoanruf
 msgid "Integration Key"
 msgstr "Integrationsschlüssel"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:109
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:110
 msgid "Invalid file, Please follow the step-by-step instructions {0}."
 msgstr ""
 
@@ -1331,7 +1327,7 @@ msgstr "Anzahl der belasteten Konten"
 msgid "on the left side"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:109
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:110
 msgid "on the right side"
 msgstr ""
 
@@ -1772,12 +1768,12 @@ msgstr "Prüfen"
 msgid "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 msgstr "Die Änderung wird ab dem nächsten Sicherheitsscan aktiv. Bis zum nächsten Scan zeigt die Ressource weiterhin die fehlgeschlagene Prüfung an."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:117
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:118
 msgid "The Google Cloud Service Account has been updated successfully.<0/>We will process the file and add the accounts that we find.<1/>This process may take a <2>few minutes</2>.<3/>We will send you an email once the projects are ready."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:98
-msgid "The Google Cloud Service Account key file is valid but did not allow us to list available projects.<0/>It is important to ensure that it has the necessary permissions and that the required APIs are enabled to avoid this error.<1/>The following message was created by GCP when we tried to list the projects:<2/>{0}"
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:101
+msgid "The Google Cloud Service Account key file is valid but did not allow us to list available projects. It is important to ensure that it has the necessary permissions and that the required APIs are enabled to avoid this error. The following message was created by GCP when we tried to list the projects:"
 msgstr ""
 
 #: src/pages/auth/login/LoginPage.tsx:32
@@ -1910,7 +1906,7 @@ msgstr "Kennwort aktualisieren"
 msgid "Upgrade"
 msgstr "Aktualisierung"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:57
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:59
 msgid "Uploading your Google Cloud Service Account file..."
 msgstr ""
 

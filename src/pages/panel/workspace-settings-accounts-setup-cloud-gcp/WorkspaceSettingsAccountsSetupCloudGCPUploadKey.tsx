@@ -1,12 +1,13 @@
 import { Trans, t } from '@lingui/macro'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
-import { Alert, Box, CircularProgress, Collapse, Skeleton, Stack, Typography } from '@mui/material'
+import { Alert, Box, CircularProgress, Collapse, Divider, Skeleton, Stack, Typography } from '@mui/material'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { Dropzone } from 'src/shared/dropzone'
 import { PutWorkspaceCloudAccountGCPKeyErrorResponse } from 'src/shared/types/server'
+import { extractAndSplitUrlFromText } from 'src/shared/utils/extractAndSplitUrlFromText'
 import { getWorkspaceCloudAccountGCPKeyQuery } from './getWorkspaceCloudAccountGCPKey.query'
 import { putWorkspaceCloudAccountGCPKeyMutation } from './putWorkspaceCloudAccountGCPKey.mutation'
 
@@ -46,7 +47,7 @@ export const WorkspaceSettingsAccountsSetupCloudGCPUploadKey = ({ isMobile }: Wo
   }
 
   const errorResponse = (error as AxiosError<PutWorkspaceCloudAccountGCPKeyErrorResponse>)?.response
-  const errorMessage = errorResponse?.data
+  const errorMessageDetail = errorResponse?.data?.detail
 
   return selectedWorkspace?.id && data ? (
     <Dropzone onChange={handleChange} mimeType={['application/JSON']} isPending={isPending} disabled={isSuccess} minHeight={300} flex={1}>
@@ -94,18 +95,17 @@ export const WorkspaceSettingsAccountsSetupCloudGCPUploadKey = ({ isMobile }: Wo
         </Collapse>
         <Collapse in={!!error}>
           <Alert variant="outlined" severity="error" sx={{ pointerEvents: 'all', cursor: 'initial' }} onClick={(e) => e.stopPropagation()}>
-            <Typography textAlign="center">
-              {errorResponse?.status === 422 && errorMessage?.detail ? (
-                <Trans>
-                  The Google Cloud Service Account key file is valid but did not allow us to list available projects.
-                  <br />
-                  It is important to ensure that it has the necessary permissions and that the required APIs are enabled to avoid this
-                  error.
-                  <br />
-                  The following message was created by GCP when we tried to list the projects:
-                  <br />
-                  {errorMessage.detail}
-                </Trans>
+            <Typography textAlign="left" component="div" fontWeight={500}>
+              {errorResponse?.status === 422 && errorMessageDetail ? (
+                <>
+                  <Trans>
+                    The Google Cloud Service Account key file is valid but did not allow us to list available projects. It is important to
+                    ensure that it has the necessary permissions and that the required APIs are enabled to avoid this error. The following
+                    message was created by GCP when we tried to list the projects:
+                  </Trans>
+                  <Divider sx={{ my: 2 }} />
+                  <Typography fontWeight={700}>{extractAndSplitUrlFromText(errorMessageDetail)}</Typography>
+                </>
               ) : (
                 <Trans>Invalid file, Please follow the step-by-step instructions {isMobile ? t`above` : t`on the right side`}.</Trans>
               )}
@@ -114,7 +114,7 @@ export const WorkspaceSettingsAccountsSetupCloudGCPUploadKey = ({ isMobile }: Wo
         </Collapse>
         <Collapse in={!!isSuccess}>
           <Alert variant="outlined" severity="success">
-            <Typography textAlign="center" fontSize={18}>
+            <Typography textAlign="center" fontSize={18} fontWeight={600}>
               <Trans>
                 The Google Cloud Service Account has been updated successfully.
                 <br />

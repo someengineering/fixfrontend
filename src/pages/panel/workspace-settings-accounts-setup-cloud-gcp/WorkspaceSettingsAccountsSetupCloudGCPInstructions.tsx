@@ -75,7 +75,7 @@ export const WorkspaceSettingsAccountsSetupCloudGCPInstructions = ({
                 <Stack direction="row" spacing={1}>
                   {instructions.length - 1 > index ? (
                     <Button onClick={() => setActiveStep(index + 1)} variant="contained">
-                      <Trans>Continue`</Trans>
+                      <Trans>Continue</Trans>
                     </Button>
                   ) : null}
                   {index ? (
