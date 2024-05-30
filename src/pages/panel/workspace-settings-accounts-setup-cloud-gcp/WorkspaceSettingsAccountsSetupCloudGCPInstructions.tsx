@@ -42,7 +42,14 @@ export const WorkspaceSettingsAccountsSetupCloudGCPInstructions = ({
   }, [activeStep])
 
   return (
-    <Stack maxWidth={maxInstructionImageWidth} flex={1} minHeight={300} overflow={isMobile ? undefined : 'auto'} height="100%">
+    <Stack
+      maxWidth={maxInstructionImageWidth}
+      flex={1}
+      minHeight={300}
+      overflow={isMobile ? undefined : 'auto'}
+      // TODO: fix layout in a way that the content can be easily set to maximize height
+      height={isMobile ? undefined : 'calc(100vh - 235px)'}
+    >
       <Stepper activeStep={activeStep} orientation="vertical">
         {instructions.map(({ instruction, label, divComponent, image }, index) => (
           <Step key={index}>
