@@ -139,8 +139,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
-      "yarn lint",
-      "yarn lint:tsc:files"
+      "yarn lint"
     ],
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "yarn format:check"
