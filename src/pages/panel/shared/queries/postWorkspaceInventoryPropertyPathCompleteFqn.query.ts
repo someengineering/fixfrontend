@@ -12,7 +12,7 @@ export const postWorkspaceInventoryPropertyPathCompleteFqnQuery = ({
   queryKey: [, workspaceId, path, prop],
 }: QueryFunctionContext<
   readonly [
-    'workspace-inventory-property-path-complete-query-fqn',
+    'workspace-inventory-property-path-complete-fqn',
     string | undefined, // workspaceId
     string, // path
     string, // prop

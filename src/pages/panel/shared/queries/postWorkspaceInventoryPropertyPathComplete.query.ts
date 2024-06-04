@@ -12,7 +12,7 @@ export const postWorkspaceInventoryPropertyPathCompleteQuery = ({
   pageParam: { skip = 0, limit = 50 },
 }: QueryFunctionContext<
   readonly [
-    'workspace-inventory-property-path-complete-query',
+    'workspace-inventory-property-path-complete',
     string | undefined, // workspaceId
     string, // path
     string, // prop

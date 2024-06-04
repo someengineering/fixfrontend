@@ -62,7 +62,7 @@ export const InventoryFormFilterRowProperty = ({
   const isDictionary = fqn?.startsWith('dictionary') ?? false
   const propertyAttributes = useInfiniteQuery({
     queryKey: [
-      'workspace-inventory-property-path-complete-query',
+      'workspace-inventory-property-path-complete',
       selectedWorkspace?.id,
       debouncedPath,
       value === `${debouncedPathDraft}.${debouncedProp}` || value === `${debouncedPathDraft}.${debouncedProp.replace(/\./g, '․')}`
@@ -83,7 +83,7 @@ export const InventoryFormFilterRowProperty = ({
   })
   const pathComplete = useInfiniteQuery({
     queryKey: [
-      'workspace-inventory-property-path-complete-query',
+      'workspace-inventory-property-path-complete',
       selectedWorkspace?.id,
       isDefaultItemSelected ? '' : debouncedPath,
       !fqn || isDefaultItemSelected ? '' : debouncedProp,

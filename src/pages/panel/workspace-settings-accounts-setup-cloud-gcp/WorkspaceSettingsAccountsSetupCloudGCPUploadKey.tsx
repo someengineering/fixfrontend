@@ -21,7 +21,7 @@ export const WorkspaceSettingsAccountsSetupCloudGCPUploadKey = ({ isMobile }: Wo
   const handleSetProgress = useRef<(progress?: number) => void>()
   const queryClient = useQueryClient()
   const { data } = useQuery({
-    queryKey: ['workspace-cloud-account-gcp-key-query', selectedWorkspace?.id],
+    queryKey: ['workspace-cloud-account-gcp-key', selectedWorkspace?.id],
     queryFn: getWorkspaceCloudAccountGCPKeyQuery,
   })
   const { mutate, isSuccess, error, isPending } = useMutation({
@@ -29,7 +29,7 @@ export const WorkspaceSettingsAccountsSetupCloudGCPUploadKey = ({ isMobile }: Wo
     onSettled: () => {
       handleSetProgress.current = undefined
       void queryClient.invalidateQueries({
-        predicate: (query) => query.queryKey[0] === 'workspace-cloud-account-gcp-key-query',
+        predicate: (query) => query.queryKey[0] === 'workspace-cloud-account-gcp-key',
       })
       setProgress(0)
     },

@@ -215,7 +215,7 @@ export const InventoryFormValue = ({
   const { selectedWorkspace } = useUserProfile()
   const { data: gotFqn = fqn ?? 'any' } = useQuery({
     queryKey: [
-      'workspace-inventory-property-path-complete-query-fqn',
+      'workspace-inventory-property-path-complete-fqn',
       selectedWorkspace?.id,
       ...(defaultPath?.getPathAndProp() ?? ['', '']),
     ] as const,
