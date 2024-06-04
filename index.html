@@ -95,7 +95,7 @@
     </style>
     <script type="text/javascript" src="/t.min.js"></script>
     <script nonce="{{ nonce }}">
-      ;(function initialT() {
+      (function initialT() {
         // if track js exists
         if (
           window.location.host.indexOf('localhost') !== 0 &&
@@ -169,8 +169,8 @@
             }
 
             new Observer(function (mutations) {
-              ;[].forEach.call(mutations, function (mutation) {
-                ;[].forEach.call(mutation.addedNodes, listenForLoadError)
+              [].forEach.call(mutations, function (mutation) {
+                [].forEach.call(mutation.addedNodes, listenForLoadError)
               })
             }).observe(window.document, { childList: true, subtree: true })
           }

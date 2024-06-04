@@ -4,4 +4,4 @@ coverage/
 storybook-static/
 src/locales/*/
 public/*.min.js
-public/initial-t.js
+index.html
