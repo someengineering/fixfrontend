@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/macro'
-import NotAccessibleIcon from '@mui/icons-material/NotAccessible'
+import DoNotDisturbIcon from '@mui/icons-material/DoNotDisturb'
 import { Button, Stack } from '@mui/material'
 import { PropsWithChildren, memo, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
@@ -37,10 +37,20 @@ export const WorkspaceGuard = ({ value, children }: WorkspaceGuardProps) => {
 
   const hasAccess = value.selectedWorkspace?.user_has_access !== false && value.selectedWorkspace?.permissions.includes('read')
 
+  const persistedLastWorkingWorkspaceId = getAuthData()?.lastWorkingWorkspaceId
+
+  const persistedLastWorkingWorkspace = persistedLastWorkingWorkspaceId
+    ? value.workspaces?.find((workspace) => workspace.id === persistedLastWorkingWorkspaceId)
+    : undefined
+
   const defaultWorkspaceId =
-    value.workspaces?.[0]?.id && value.workspaces[0].user_has_access !== false && value.workspaces[0].permissions.includes('read')
-      ? value.workspaces[0].id
-      : undefined
+    persistedLastWorkingWorkspace &&
+    persistedLastWorkingWorkspace.user_has_access !== false &&
+    persistedLastWorkingWorkspace.permissions.includes('read')
+      ? persistedLastWorkingWorkspace.id
+      : value.workspaces?.[0]?.id && value.workspaces[0].user_has_access !== false && value.workspaces[0].permissions.includes('read')
+        ? value.workspaces[0].id
+        : undefined
 
   useEffect(() => {
     if (hashWorkspaceId && currentWorkspaceId !== hashWorkspaceId) {
@@ -64,33 +74,26 @@ export const WorkspaceGuard = ({ value, children }: WorkspaceGuardProps) => {
     <WorkspaceInnerComp value={value}>{children}</WorkspaceInnerComp>
   ) : (
     <ErrorModal
-      errorIcon={<NotAccessibleIcon color="error" />}
-      title={<Trans>Oops! You do not have access to this workspace.</Trans>}
-      description={<Trans>You don't have access to this workspace. Please log out or switch to your primary workspace.</Trans>}
+      errorIcon={<DoNotDisturbIcon color="error" />}
+      title={<Trans>You don't have access to this workspace.</Trans>}
+      description={<Trans>The workspace you requested cannot be accessed. Please request access from the workspace administrator.</Trans>}
       actions={
         <>
           <Stack justifySelf="start" mb={{ xs: 1, sm: 0 }} mr={{ xs: 1, sm: 0 }}>
             <Button
-              variant="outlined"
-              color="primary"
+              variant={defaultWorkspaceId ? 'contained' : 'outlined'}
+              color={defaultWorkspaceId ? 'primary' : 'warning'}
               onClick={() => {
                 if (defaultWorkspaceId) {
                   void value.selectWorkspace(defaultWorkspaceId)
+                } else {
+                  void value.logout()
                 }
               }}
-              disabled={!defaultWorkspaceId}
             >
-              {defaultWorkspaceId ? <Trans>Switch to Primary Workspace</Trans> : <Trans>No Active Workspaces to Switch To</Trans>}
+              {defaultWorkspaceId ? <Trans>Ok</Trans> : <Trans>Logout</Trans>}
             </Button>
           </Stack>
-          <Button
-            onClick={() => void value.logout(true)}
-            variant="outlined"
-            color="warning"
-            sx={{ mb: { xs: 1, sm: 0 }, mr: { xs: 1, sm: 0 } }}
-          >
-            <Trans>Log Out</Trans>
-          </Button>
         </>
       }
     />
