@@ -51,12 +51,16 @@ export const AbsoluteNavigateProvider = ({ children }: PropsWithChildren) => {
       !location.pathname.startsWith('/subscription')
     ) {
       const selectedWorkspaceId = getAuthData()?.selectedWorkspaceId
-      if (selectedWorkspaceId !== location.hash.substring(1)) {
+      if (selectedWorkspaceId !== location.hash?.substring(1)) {
         handleNavigate({ pathname: location.pathname, search: location.search }, { replace: true, state: location.state as unknown })
       }
     }
     ignorePathChangeOnce.current = false
   }, [location.hash, location.pathname, location.search, location.state, handleNavigate])
 
-  return <AbsoluteNavigateInnerProvider useNavigate={handleNavigate}>{children}</AbsoluteNavigateInnerProvider>
+  return (
+    <AbsoluteNavigateInnerProvider useNavigate={handleNavigate} workspaceId={location.hash?.substring(1) ?? ''}>
+      {children}
+    </AbsoluteNavigateInnerProvider>
+  )
 }

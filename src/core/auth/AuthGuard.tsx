@@ -7,7 +7,8 @@ import { GetWorkspaceResponse } from 'src/shared/types/server'
 import { axiosWithAuth, defaultAxiosConfig, setAxiosWithAuth } from 'src/shared/utils/axios'
 import { clearAllCookies, isAuthenticated as isCookieAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData as getPersistedAuthData, setAuthData as setPersistedAuthData } from 'src/shared/utils/localstorage'
-import { UserContext, UserContextRealValues, UserContextValue } from './UserContext'
+import { UserContextRealValues, UserContextValue } from './UserContext'
+import { WorkspaceGuard } from './WorkspaceGuard'
 import { getCurrentUserQuery } from './getCurrentUser.query'
 import { Permissions, getPermissions, maxPermissionNumber } from './getPermissions'
 import { getWorkspacesQuery } from './getWorkspaces.query'
@@ -92,14 +93,9 @@ export function AuthGuard({ children }: PropsWithChildren) {
       try {
         const workspaces = await getWorkspacesQuery(instance ?? axiosWithAuth)
         handleInternalSetAuth((prev) => {
-          const selectedWorkspace =
-            (prev.selectedWorkspace?.id
-              ? workspaces.find((workspace) => workspace.id === prev.selectedWorkspace?.id)
-              : workspaces.find((workspace) => workspace.user_has_access && workspace.permissions.includes('read'))) ?? workspaces[0]
           return {
             ...prev,
             workspaces,
-            selectedWorkspace,
           }
         })
         return workspaces
@@ -123,19 +119,29 @@ export function AuthGuard({ children }: PropsWithChildren) {
     }
   }, [auth.selectedWorkspace?.id, postHog])
 
-  const handleSelectWorkspaces = useCallback(
+  const handleSelectWorkspace = useCallback(
     (id: string) => {
       return new Promise<GetWorkspaceResponse | undefined>((resolve) => {
         handleInternalSetAuth((prev) => {
           const foundWorkspace = prev.workspaces.find((item) => item.id === id)
           resolve(foundWorkspace)
 
-          return foundWorkspace
-            ? {
-                ...prev,
-                selectedWorkspace: foundWorkspace,
-              }
-            : prev
+          return {
+            ...prev,
+            selectedWorkspace: foundWorkspace ?? {
+              created_at: '',
+              id,
+              members: [],
+              name: '',
+              on_hold_since: null,
+              owners: [],
+              permissions: [],
+              slug: '',
+              trial_end_days: null,
+              user_has_access: null,
+              user_permissions: 0,
+            },
+          }
         })
       })
     },
@@ -198,7 +204,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
         handleInternalSetAuth((prev) => ({ ...prev, currentUser }))
       })
     }
-  }, [auth.isAuthenticated, handleRefreshWorkspaces, handleLogout, navigate, handleInternalSetAuth, postHog])
+  }, [auth.isAuthenticated, handleRefreshWorkspaces, handleLogout, handleInternalSetAuth, postHog])
 
   useEffect(() => {
     if (nextUrl.current && auth.isAuthenticated) {
@@ -220,18 +226,18 @@ export function AuthGuard({ children }: PropsWithChildren) {
   )
 
   return (
-    <UserContext.Provider
+    <WorkspaceGuard
       value={{
         ...auth,
         setAuth: handleSetAuth,
         logout: handleLogout,
         refreshWorkspaces: handleRefreshWorkspaces,
-        selectWorkspace: handleSelectWorkspaces,
+        selectWorkspace: handleSelectWorkspace,
         checkPermission: handleCheckPermission,
         checkPermissions: handleCheckPermissions as UserContextValue['checkPermissions'],
       }}
     >
       {children}
-    </UserContext.Provider>
+    </WorkspaceGuard>
   )
 }

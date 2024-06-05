@@ -983,7 +983,7 @@ msgstr "Hoch"
 msgid "Highest product tier this billing cycle"
 msgstr ""
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:78
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:64
 msgid "Homepage"
 msgstr "Startseite"
 
@@ -1146,6 +1146,10 @@ msgstr "Anmeldung"
 msgid "Log in with {formattedName}"
 msgstr "Melden Sie sich mit {formattedName} an"
 
+#: src/core/auth/WorkspaceGuard.tsx:82
+msgid "Log Out"
+msgstr ""
+
 #: src/containers/auth/AuthContainer.tsx:33
 msgid "Login into the AWS account you want to secure. Deploy a CloudFormation stack that creates a new IAM role for FIX."
 msgstr "Melden Sie sich bei dem AWS-Konto an, das Sie sichern möchten. Stellen Sie einen CloudFormation-Stack bereit, der eine neue IAM-Rolle für FIX erstellt."
@@ -1290,6 +1294,10 @@ msgstr ""
 msgid "No {label} found for {typed}"
 msgstr ""
 
+#: src/core/auth/WorkspaceGuard.tsx:73
+msgid "No Active Workspaces to Switch To"
+msgstr ""
+
 #: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:31
 msgid "Node Compliant"
 msgstr ""
@@ -1356,9 +1364,13 @@ msgstr "Hoppla, der Benutzername oder das Passwort scheinen nicht mit unseren Au
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Sie sie und versuchen Sie es erneut."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:53
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:40
 msgid "Oops! Something went wrong."
 msgstr "Hoppla! Etwas ist schief gelaufen."
+
+#: src/core/auth/WorkspaceGuard.tsx:58
+msgid "Oops! You do not have access to this workspace."
+msgstr ""
 
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:45
 msgid "Open Database Access"
@@ -1762,6 +1774,10 @@ msgstr "Abonnement erfolgreich zu {0} hinzugefügt"
 msgid "Successfully invited {email}"
 msgstr "{email} erfolgreich eingeladen"
 
+#: src/core/auth/WorkspaceGuard.tsx:73
+msgid "Switch to Primary Workspace"
+msgstr ""
+
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:98
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:302
 msgid "Tags"
@@ -1864,7 +1880,7 @@ msgstr "TOTP-Setup"
 msgid "Trial"
 msgstr "Probezeit"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:94
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:79
 msgid "Try again"
 msgstr "Versuchen Sie es erneut"
 
@@ -1959,7 +1975,7 @@ msgstr ""
 msgid "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 msgstr "Es tut uns leid, dass Sie herunterstufen, aber wir sind dankbar, Sie weiterhin in unserer kostenlosen Stufe zu haben. Wenn Ihnen etwas Bestimmtes fehlt, wenden Sie sich bitte direkt an mich, <0>lars@some.engineering</0>. Ich würde gerne von Ihnen hören und Ihnen so gut wie möglich helfen."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:56
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:42
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "Wir entschuldigen uns für die Unannehmlichkeiten. Unser Team wurde benachrichtigt und das Problem wird untersucht. Bitte versuchen Sie es in ein paar Minuten noch einmal. Wenn das Problem weiterhin besteht, können Sie uns gerne <0>auf Discord</0> kontaktieren. Danke für Ihre Geduld!"
 
@@ -2036,6 +2052,10 @@ msgstr "Sie können TOTP über den Wiederherstellungscode deaktivieren"
 
 #: src/core/events/WebSocketEvents.tsx:137
 msgid "You don't have access to this workspace"
+msgstr ""
+
+#: src/core/auth/WorkspaceGuard.tsx:59
+msgid "You don't have access to this workspace. Please log out or switch to your primary workspace."
 msgstr ""
 
 #: src/shared/disabled-with-permission/DisabledWithPermission.tsx:29
