@@ -5,6 +5,7 @@ import { PropsWithChildren, memo, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { ErrorModal } from 'src/shared/error-boundary-fallback'
 import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
+import { getAuthData } from 'src/shared/utils/localstorage'
 import { UserContext, UserContextValue } from './UserContext'
 
 interface WorkspaceGuardProps extends PropsWithChildren {
@@ -34,24 +35,32 @@ export const WorkspaceGuard = ({ value, children }: WorkspaceGuardProps) => {
   const hashWorkspaceId = location.hash?.substring(1)
   const currentWorkspaceId = value.selectedWorkspace?.id
 
-  useEffect(() => {
-    if (currentWorkspaceId !== hashWorkspaceId) {
-      void value.selectWorkspace(hashWorkspaceId)
-    }
-  }, [hashWorkspaceId, currentWorkspaceId, value])
-
-  const hasAccess = value.selectedWorkspace?.user_has_access && value.selectedWorkspace?.permissions.includes('read')
+  const hasAccess = value.selectedWorkspace?.user_has_access !== false && value.selectedWorkspace?.permissions.includes('read')
 
   const defaultWorkspaceId =
-    value.workspaces?.[0]?.id && value.workspaces[0].user_has_access && value.workspaces[0].permissions.includes('read')
+    value.workspaces?.[0]?.id && value.workspaces[0].user_has_access !== false && value.workspaces[0].permissions.includes('read')
       ? value.workspaces[0].id
       : undefined
 
+  useEffect(() => {
+    if (hashWorkspaceId && currentWorkspaceId !== hashWorkspaceId) {
+      void value.selectWorkspace(hashWorkspaceId)
+    } else if (currentWorkspaceId) {
+      window.location.hash = currentWorkspaceId
+    }
+    if (!hashWorkspaceId) {
+      const persistedWorkspaceId = getAuthData()?.selectedWorkspaceId || defaultWorkspaceId
+      if (persistedWorkspaceId) {
+        void value.selectWorkspace(persistedWorkspaceId)
+      }
+    }
+  }, [hashWorkspaceId, currentWorkspaceId, value, defaultWorkspaceId])
+
   const isNotInsidePanel = location.pathname.startsWith('/auth') || location.pathname.startsWith('/subscription')
 
-  return !isNotInsidePanel && (!currentWorkspaceId || !hashWorkspaceId) ? (
+  return !isNotInsidePanel && value.isAuthenticated && (!currentWorkspaceId || !hashWorkspaceId) ? (
     <FullPageLoadingSuspenseFallback />
-  ) : hasAccess || isNotInsidePanel ? (
+  ) : hasAccess || isNotInsidePanel || !value.isAuthenticated ? (
     <WorkspaceInnerComp value={value}>{children}</WorkspaceInnerComp>
   ) : (
     <ErrorModal

@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosInstance } from 'axios'
 import { usePostHog } from 'posthog-js/react'
 import { PropsWithChildren, SetStateAction, useCallback, useEffect, useRef, useState } from 'react'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
+import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
 import { PostHogEvent } from 'src/shared/posthog'
 import { GetWorkspaceResponse } from 'src/shared/types/server'
 import { axiosWithAuth, defaultAxiosConfig, setAxiosWithAuth } from 'src/shared/utils/axios'
@@ -42,6 +43,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
       isAuthenticated,
     }
   })
+  const [isFetching, setIsFetching] = useState(false)
 
   const handleInternalSetAuth = useCallback((value: SetStateAction<UserContextRealValues>) => {
     setAuth((prev) => {
@@ -89,18 +91,31 @@ export function AuthGuard({ children }: PropsWithChildren) {
   )
 
   const handleRefreshWorkspaces = useCallback(
-    async (instance?: AxiosInstance) => {
+    async (instance?: AxiosInstance, _internalFetch?: boolean) => {
+      if (!_internalFetch) {
+        setIsFetching(true)
+      }
       try {
         const workspaces = await getWorkspacesQuery(instance ?? axiosWithAuth)
         handleInternalSetAuth((prev) => {
+          const prevSelectedWorkspaceId = prev.selectedWorkspace?.id
           return {
             ...prev,
             workspaces,
+            selectedWorkspace: prevSelectedWorkspaceId
+              ? workspaces.find((workspace) => workspace.id === prevSelectedWorkspaceId)
+              : prev.selectedWorkspace,
           }
         })
+        if (!_internalFetch) {
+          setIsFetching(false)
+        }
         return workspaces
       } catch {
         handleInternalSetAuth(defaultAuth)
+        if (!_internalFetch) {
+          setIsFetching(false)
+        }
         return undefined
       }
     },
@@ -199,10 +214,13 @@ export function AuthGuard({ children }: PropsWithChildren) {
         },
       )
       setAxiosWithAuth(instance)
-      void handleRefreshWorkspaces(instance)
-      void getCurrentUserQuery(instance).then((currentUser) => {
-        handleInternalSetAuth((prev) => ({ ...prev, currentUser }))
-      })
+      setIsFetching(true)
+      void Promise.all([
+        handleRefreshWorkspaces(instance, true),
+        getCurrentUserQuery(instance).then((currentUser) => {
+          handleInternalSetAuth((prev) => ({ ...prev, currentUser }))
+        }),
+      ]).finally(() => setIsFetching(false))
     }
   }, [auth.isAuthenticated, handleRefreshWorkspaces, handleLogout, handleInternalSetAuth, postHog])
 
@@ -225,7 +243,9 @@ export function AuthGuard({ children }: PropsWithChildren) {
     [handleCheckPermission],
   )
 
-  return (
+  return isFetching ? (
+    <FullPageLoadingSuspenseFallback forceFullPage />
+  ) : (
     <WorkspaceGuard
       value={{
         ...auth,

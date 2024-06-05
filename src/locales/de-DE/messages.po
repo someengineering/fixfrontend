@@ -1146,7 +1146,7 @@ msgstr "Anmeldung"
 msgid "Log in with {formattedName}"
 msgstr "Melden Sie sich mit {formattedName} an"
 
-#: src/core/auth/WorkspaceGuard.tsx:83
+#: src/core/auth/WorkspaceGuard.tsx:92
 msgid "Log Out"
 msgstr ""
 
@@ -1294,7 +1294,7 @@ msgstr ""
 msgid "No {label} found for {typed}"
 msgstr ""
 
-#: src/core/auth/WorkspaceGuard.tsx:74
+#: src/core/auth/WorkspaceGuard.tsx:83
 msgid "No Active Workspaces to Switch To"
 msgstr ""
 
@@ -1368,7 +1368,7 @@ msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Si
 msgid "Oops! Something went wrong."
 msgstr "Hoppla! Etwas ist schief gelaufen."
 
-#: src/core/auth/WorkspaceGuard.tsx:59
+#: src/core/auth/WorkspaceGuard.tsx:68
 msgid "Oops! You do not have access to this workspace."
 msgstr ""
 
@@ -1774,7 +1774,7 @@ msgstr "Abonnement erfolgreich zu {0} hinzugefügt"
 msgid "Successfully invited {email}"
 msgstr "{email} erfolgreich eingeladen"
 
-#: src/core/auth/WorkspaceGuard.tsx:74
+#: src/core/auth/WorkspaceGuard.tsx:83
 msgid "Switch to Primary Workspace"
 msgstr ""
 
@@ -2054,7 +2054,7 @@ msgstr "Sie können TOTP über den Wiederherstellungscode deaktivieren"
 msgid "You don't have access to this workspace"
 msgstr ""
 
-#: src/core/auth/WorkspaceGuard.tsx:60
+#: src/core/auth/WorkspaceGuard.tsx:69
 msgid "You don't have access to this workspace. Please log out or switch to your primary workspace."
 msgstr ""
 
