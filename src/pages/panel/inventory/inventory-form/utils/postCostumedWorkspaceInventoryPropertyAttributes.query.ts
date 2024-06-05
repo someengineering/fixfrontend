@@ -9,7 +9,7 @@ export const postCostumedWorkspaceInventoryPropertyAttributesQuery = async ({
   meta,
 }: QueryFunctionContext<
   readonly [
-    'workspace-inventory-property-path-complete-query',
+    'workspace-inventory-property-path-complete',
     string | undefined, // workspaceId
     string, // path
     string, // prop

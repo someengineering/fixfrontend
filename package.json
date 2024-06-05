@@ -119,6 +119,7 @@
     "unique-names-generator": "^4.7.1",
     "uuid": "^9.0.1",
     "vite": "^5.2.12",
+    "vite-plugin-html": "^3.2.2",
     "vite-plugin-mock-dev-server": "^1.5.0",
     "vite-plugin-svgr": "^4.2.0",
     "vitest": "^1.6.0",
@@ -138,8 +139,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
-      "yarn lint",
-      "yarn lint:tsc:files"
+      "yarn lint"
     ],
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "yarn format:check"

@@ -97,7 +97,12 @@
     <script nonce="{{ nonce }}">
       (function initialT() {
         // if track js exists
-        if (window.location.host.indexOf('localhost') !== 0 && window.location.host.indexOf('127.0.0.1') !== 0 && window.TrackJS && token) {
+        if (
+          window.location.host.indexOf('localhost') !== 0 &&
+          window.location.host.indexOf('127.0.0.1') !== 0 &&
+          window.TrackJS &&
+          '%VITE_TRACKJS_TOKEN%'
+        ) {
           // for offline support
           var offlineErrors = []
 
@@ -203,7 +208,7 @@
 
         window._load_page_timeout = window.setTimeout(function () {
           if (window.TrackJS && window.TrackJS.isInstalled()) {
-            window.TrackJS.track(new Error('It took more than ' + (timeout / 1000) + 's to load the page'))
+            window.TrackJS.track(new Error('It took more than ' + timeout / 1000 + 's to load the page'))
           }
           window.setTimeout(function () {
             window.location.reload()
