@@ -983,7 +983,7 @@ msgstr "High"
 msgid "Highest product tier this billing cycle"
 msgstr "Highest product tier this billing cycle"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:78
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:62
 msgid "Homepage"
 msgstr "Homepage"
 
@@ -1146,6 +1146,10 @@ msgstr "Log in"
 msgid "Log in with {formattedName}"
 msgstr "Log in with {formattedName}"
 
+#: src/core/auth/WorkspaceGuard.tsx:92
+msgid "Log Out"
+msgstr "Log Out"
+
 #: src/containers/auth/AuthContainer.tsx:33
 msgid "Login into the AWS account you want to secure. Deploy a CloudFormation stack that creates a new IAM role for FIX."
 msgstr "Login into the AWS account you want to secure. Deploy a CloudFormation stack that creates a new IAM role for FIX."
@@ -1290,6 +1294,10 @@ msgstr "No"
 msgid "No {label} found for {typed}"
 msgstr "No {label} found for {typed}"
 
+#: src/core/auth/WorkspaceGuard.tsx:83
+msgid "No Active Workspaces to Switch To"
+msgstr "No Active Workspaces to Switch To"
+
 #: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:31
 msgid "Node Compliant"
 msgstr "Node Compliant"
@@ -1356,9 +1364,13 @@ msgstr "Oops, the username or password doesn't seem to match our records. Please
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Oops! It looks like your query didn't match our format. Please check and try again."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:53
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:38
 msgid "Oops! Something went wrong."
 msgstr "Oops! Something went wrong."
+
+#: src/core/auth/WorkspaceGuard.tsx:68
+msgid "Oops! You do not have access to this workspace."
+msgstr "Oops! You do not have access to this workspace."
 
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:45
 msgid "Open Database Access"
@@ -1762,6 +1774,10 @@ msgstr "Subscription successfully added to {0}"
 msgid "Successfully invited {email}"
 msgstr "Successfully invited {email}"
 
+#: src/core/auth/WorkspaceGuard.tsx:83
+msgid "Switch to Primary Workspace"
+msgstr "Switch to Primary Workspace"
+
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:98
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:302
 msgid "Tags"
@@ -1864,7 +1880,7 @@ msgstr "TOTP Setup"
 msgid "Trial"
 msgstr "Trial"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:94
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:76
 msgid "Try again"
 msgstr "Try again"
 
@@ -1959,7 +1975,7 @@ msgstr "We use cookies and other tracking technologies to analyze site usage and
 msgid "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 msgstr "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:56
+#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:40
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 
@@ -2037,6 +2053,10 @@ msgstr "You can deactivate TOTP via recovery code"
 #: src/core/events/WebSocketEvents.tsx:137
 msgid "You don't have access to this workspace"
 msgstr "You don't have access to this workspace"
+
+#: src/core/auth/WorkspaceGuard.tsx:69
+msgid "You don't have access to this workspace. Please log out or switch to your primary workspace."
+msgstr "You don't have access to this workspace. Please log out or switch to your primary workspace."
 
 #: src/shared/disabled-with-permission/DisabledWithPermission.tsx:29
 msgid "You don't have the permission to access this, contact the workspace owner for more information."

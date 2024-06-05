@@ -22,10 +22,18 @@ function setStorageObject<ObjectType>(key: StorageKeys, obj?: ObjectType) {
   }
 }
 
-export const getAuthData = () => getStorageObject<{ isAuthenticated: boolean; selectedWorkspaceId: string }>(StorageKeys.authData)
+export const getAuthData = () => {
+  const data = getStorageObject<{ isAuthenticated: boolean; selectedWorkspaceId: string }>(StorageKeys.authData)
+  return {
+    ...data,
+    selectedWorkspaceId: window.location.hash?.substring(1) || data?.selectedWorkspaceId,
+  }
+}
 
-export const setAuthData = (authData?: { isAuthenticated: boolean; selectedWorkspaceId?: string }) =>
+export const setAuthData = (authData?: { isAuthenticated: boolean; selectedWorkspaceId?: string }) => {
   setStorageObject(StorageKeys.authData, authData)
+  window.location.hash = authData?.selectedWorkspaceId ?? ''
+}
 
 export const getLocale = () => getStorageObject<string>(StorageKeys.locale)
 
