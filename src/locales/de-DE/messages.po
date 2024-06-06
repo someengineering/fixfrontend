@@ -1147,13 +1147,14 @@ msgid "Log in with {formattedName}"
 msgstr "Melden Sie sich mit {formattedName} an"
 
 #: src/core/auth/WorkspaceGuard.tsx:92
-msgid "Log Out"
-msgstr ""
+#~ msgid "Log Out"
+#~ msgstr ""
 
 #: src/containers/auth/AuthContainer.tsx:33
 msgid "Login into the AWS account you want to secure. Deploy a CloudFormation stack that creates a new IAM role for FIX."
 msgstr "Melden Sie sich bei dem AWS-Konto an, das Sie sichern möchten. Stellen Sie einen CloudFormation-Stack bereit, der eine neue IAM-Rolle für FIX erstellt."
 
+#: src/core/auth/WorkspaceGuard.tsx:94
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:165
 msgid "Logout"
 msgstr "Ausloggen"
@@ -1295,8 +1296,8 @@ msgid "No {label} found for {typed}"
 msgstr ""
 
 #: src/core/auth/WorkspaceGuard.tsx:83
-msgid "No Active Workspaces to Switch To"
-msgstr ""
+#~ msgid "No Active Workspaces to Switch To"
+#~ msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:31
 msgid "Node Compliant"
@@ -1343,6 +1344,10 @@ msgstr ""
 msgid "Number Of Account Charged"
 msgstr "Anzahl der belasteten Konten"
 
+#: src/core/auth/WorkspaceGuard.tsx:94
+msgid "Ok"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:92
 msgid "on the left side"
 msgstr ""
@@ -1369,8 +1374,8 @@ msgid "Oops! Something went wrong."
 msgstr "Hoppla! Etwas ist schief gelaufen."
 
 #: src/core/auth/WorkspaceGuard.tsx:68
-msgid "Oops! You do not have access to this workspace."
-msgstr ""
+#~ msgid "Oops! You do not have access to this workspace."
+#~ msgstr ""
 
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:45
 msgid "Open Database Access"
@@ -1775,8 +1780,8 @@ msgid "Successfully invited {email}"
 msgstr "{email} erfolgreich eingeladen"
 
 #: src/core/auth/WorkspaceGuard.tsx:83
-msgid "Switch to Primary Workspace"
-msgstr ""
+#~ msgid "Switch to Primary Workspace"
+#~ msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:98
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:302
@@ -1819,6 +1824,10 @@ msgstr "Der Stack erfordert die folgenden Parameter"
 #: src/pages/auth/reset-password/ResetPasswordPage.tsx:20
 msgid "The token that you sent is invalid or have been expired please try again"
 msgstr "Das von Ihnen gesendete Token ist ungültig oder abgelaufen. Bitte versuchen Sie es erneut"
+
+#: src/core/auth/WorkspaceGuard.tsx:79
+msgid "The workspace you requested cannot be accessed. Please request access from the workspace administrator."
+msgstr ""
 
 #: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:48
 msgid "There's no account configured for this workspace."
@@ -2054,9 +2063,13 @@ msgstr "Sie können TOTP über den Wiederherstellungscode deaktivieren"
 msgid "You don't have access to this workspace"
 msgstr ""
 
-#: src/core/auth/WorkspaceGuard.tsx:69
-msgid "You don't have access to this workspace. Please log out or switch to your primary workspace."
+#: src/core/auth/WorkspaceGuard.tsx:78
+msgid "You don't have access to this workspace."
 msgstr ""
+
+#: src/core/auth/WorkspaceGuard.tsx:69
+#~ msgid "You don't have access to this workspace. Please log out or switch to your primary workspace."
+#~ msgstr ""
 
 #: src/shared/disabled-with-permission/DisabledWithPermission.tsx:29
 msgid "You don't have the permission to access this, contact the workspace owner for more information."
