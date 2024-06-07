@@ -39,6 +39,9 @@ jobs:
           echo "{ \"accounts\": [], \"regions\": [], \"kinds\": [], \"severity\": [] }" > mock-apis/data/search-start.json
           echo "[]" > mock-apis/data/table.json
           echo "[]" > mock-apis/data/tags.json
+      
+      - name: Update translation
+        run: yarn i18n:extract
 
       - name: Run Test Build
         run: PUBLIC_URL=${{ vars.PUBLIC_TEST_PR_URL }}/${{ github.event.number }}/ yarn build
