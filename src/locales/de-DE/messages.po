@@ -1146,14 +1146,14 @@ msgstr "Anmeldung"
 msgid "Log in with {formattedName}"
 msgstr "Melden Sie sich mit {formattedName} an"
 
+#: src/core/auth/WorkspaceGuard.tsx:94
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:165
+msgid "Log Out"
+msgstr "Ausloggen"
+
 #: src/containers/auth/AuthContainer.tsx:33
 msgid "Login into the AWS account you want to secure. Deploy a CloudFormation stack that creates a new IAM role for FIX."
 msgstr "Melden Sie sich bei dem AWS-Konto an, das Sie sichern möchten. Stellen Sie einen CloudFormation-Stack bereit, der eine neue IAM-Rolle für FIX erstellt."
-
-#: src/core/auth/WorkspaceGuard.tsx:94
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:165
-msgid "Logout"
-msgstr "Ausloggen"
 
 #: src/shared/defined-messages/getMessage.ts:14
 msgid "Low"
