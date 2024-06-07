@@ -1146,10 +1146,6 @@ msgstr "Anmeldung"
 msgid "Log in with {formattedName}"
 msgstr "Melden Sie sich mit {formattedName} an"
 
-#: src/core/auth/WorkspaceGuard.tsx:92
-#~ msgid "Log Out"
-#~ msgstr ""
-
 #: src/containers/auth/AuthContainer.tsx:33
 msgid "Login into the AWS account you want to secure. Deploy a CloudFormation stack that creates a new IAM role for FIX."
 msgstr "Melden Sie sich bei dem AWS-Konto an, das Sie sichern möchten. Stellen Sie einen CloudFormation-Stack bereit, der eine neue IAM-Rolle für FIX erstellt."
@@ -1295,10 +1291,6 @@ msgstr ""
 msgid "No {label} found for {typed}"
 msgstr ""
 
-#: src/core/auth/WorkspaceGuard.tsx:83
-#~ msgid "No Active Workspaces to Switch To"
-#~ msgstr ""
-
 #: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:31
 msgid "Node Compliant"
 msgstr ""
@@ -1372,10 +1364,6 @@ msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Si
 #: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:38
 msgid "Oops! Something went wrong."
 msgstr "Hoppla! Etwas ist schief gelaufen."
-
-#: src/core/auth/WorkspaceGuard.tsx:68
-#~ msgid "Oops! You do not have access to this workspace."
-#~ msgstr ""
 
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:45
 msgid "Open Database Access"
@@ -1779,10 +1767,6 @@ msgstr "Abonnement erfolgreich zu {0} hinzugefügt"
 msgid "Successfully invited {email}"
 msgstr "{email} erfolgreich eingeladen"
 
-#: src/core/auth/WorkspaceGuard.tsx:83
-#~ msgid "Switch to Primary Workspace"
-#~ msgstr ""
-
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:98
 #: src/pages/panel/inventory/resource-detail/ResourceDetail.tsx:302
 msgid "Tags"
@@ -2066,10 +2050,6 @@ msgstr ""
 #: src/core/auth/WorkspaceGuard.tsx:78
 msgid "You don't have access to this workspace."
 msgstr ""
-
-#: src/core/auth/WorkspaceGuard.tsx:69
-#~ msgid "You don't have access to this workspace. Please log out or switch to your primary workspace."
-#~ msgstr ""
 
 #: src/shared/disabled-with-permission/DisabledWithPermission.tsx:29
 msgid "You don't have the permission to access this, contact the workspace owner for more information."
