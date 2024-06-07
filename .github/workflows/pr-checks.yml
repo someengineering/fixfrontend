@@ -38,6 +38,9 @@ jobs:
           echo "{ \"accounts\": [], \"regions\": [], \"kinds\": [], \"severity\": [] }" > mock-apis/data/search-start.json
           echo "[]" > mock-apis/data/table.json
           echo "[]" > mock-apis/data/tags.json
+      
+      - name: Update translation and exit if wrong
+        run: yarn i18n:extract && git diff --exit-code -- '*.po'
 
       - name: Run tests
         run: yarn test

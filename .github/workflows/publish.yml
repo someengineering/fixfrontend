@@ -37,6 +37,9 @@ jobs:
           echo "{ \"accounts\": [], \"regions\": [], \"kinds\": [], \"severity\": [] }" > mock-apis/data/search-start.json
           echo "[]" > mock-apis/data/table.json
           echo "[]" > mock-apis/data/tags.json
+      
+      - name: Update translation
+        run: yarn i18n:extract
 
       - name: Create a production build
         uses: devcontainers/ci@v0.3
