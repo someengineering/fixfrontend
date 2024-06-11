@@ -91,7 +91,7 @@ export const WorkspaceGuard = ({ value, children }: WorkspaceGuardProps) => {
                 }
               }}
             >
-              {defaultWorkspaceId ? <Trans>Ok</Trans> : <Trans>Logout</Trans>}
+              {defaultWorkspaceId ? <Trans>Ok</Trans> : <Trans>Log Out</Trans>}
             </Button>
           </Stack>
         </>
