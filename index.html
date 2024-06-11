@@ -178,7 +178,7 @@
               token: token,
               version: '%VITE_VERSION%',
               application: isDev ? 'fixdev' : 'fix',
-              console: { display: false },
+              console: { display: isDev },
               onError: function (payload) {
                 sendOrQueueError(payload)
                 return false
