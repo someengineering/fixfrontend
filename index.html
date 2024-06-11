@@ -178,7 +178,7 @@
           // if it's not installed, install it
           if (!window.TrackJS.isInstalled()) {
             window.TrackJS.install({
-              token: token,
+              token: '%VITE_TRACKJS_TOKEN%',
               version: '%VITE_VERSION%',
               application: 'fix',
               console: { display: false },
