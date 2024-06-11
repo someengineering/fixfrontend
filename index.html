@@ -97,12 +97,9 @@
     <script nonce="{{ nonce }}">
       (function initialT() {
         // if track js exists
-        if (
-          window.location.host.indexOf('localhost') !== 0 &&
-          window.location.host.indexOf('127.0.0.1') !== 0 &&
-          window.TrackJS &&
-          '%VITE_TRACKJS_TOKEN%'
-        ) {
+        var isLocalhost = window.location.host.indexOf('localhost') === 0 || window.location.host.indexOf('127.0.0.1') === 0
+        var isDev = window.location.host.indexOf('app.dev.') > -1
+        if (isLocalhost && window.TrackJS && '%VITE_TRACKJS_TOKEN%') {
           // for offline support
           var offlineErrors = []
 
@@ -180,8 +177,8 @@
             window.TrackJS.install({
               token: '%VITE_TRACKJS_TOKEN%',
               version: '%VITE_VERSION%',
-              application: 'fix',
-              console: { display: false },
+              application: isDev ? 'fixdev' : 'fix',
+              console: { display: isDev },
               onError: function (payload) {
                 sendOrQueueError(payload)
                 return false
