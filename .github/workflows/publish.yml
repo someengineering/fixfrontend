@@ -37,14 +37,11 @@ jobs:
           echo "{ \"accounts\": [], \"regions\": [], \"kinds\": [], \"severity\": [] }" > mock-apis/data/search-start.json
           echo "[]" > mock-apis/data/table.json
           echo "[]" > mock-apis/data/tags.json
-      
-      - name: Update translation
-        run: yarn i18n:extract
 
       - name: Create a production build
         uses: devcontainers/ci@v0.3
         with:
-          runCmd: PUBLIC_URL=${{ vars.PUBLIC_URL }}/${{ github.sha }}/ yarn build
+          runCmd: yarn i18n:extract && yarn i18n:compile && PUBLIC_URL=${{ vars.PUBLIC_URL }}/${{ github.sha }}/ yarn build
 
       - name: Move dist to target
         run: |
