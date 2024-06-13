@@ -11,15 +11,17 @@ export const TopFiveChecksCard = ({ failedChecks }: TopFiveChecksCardProps) => {
   const navigate = useAbsoluteNavigate()
   return failedChecks ? (
     <Grid container spacing={2} my={{ xs: 2, md: 0 }}>
-      {failedChecks.map((failedCheck, i) => (
-        <FailedChecks
-          failedCheck={failedCheck}
-          key={i}
-          navigate={navigate}
-          withResources
-          benchmarks={failedCheck.benchmarks.map((benchmark) => benchmark.title)}
-        />
-      ))}
+      {failedChecks.map((failedCheck, i) =>
+        failedCheck.benchmarks ? (
+          <FailedChecks
+            failedCheck={failedCheck}
+            key={i}
+            navigate={navigate}
+            withResources
+            benchmarks={failedCheck.benchmarks.map((benchmark) => benchmark.title)}
+          />
+        ) : null,
+      )}
     </Grid>
   ) : null
 }

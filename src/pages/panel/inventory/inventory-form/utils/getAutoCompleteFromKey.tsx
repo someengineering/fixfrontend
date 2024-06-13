@@ -70,10 +70,13 @@ export function getAutocompleteValueFromKey(
 
 export const getAutocompleteDataFromKey = (key: string, items: AutoCompletePreDefinedItems) => {
   switch (key as DefaultPropertiesKeys) {
+    case DefaultPropertiesKeys.AccountId:
     case DefaultPropertiesKeys.Account:
       return items.accounts
+    case DefaultPropertiesKeys.CloudId:
     case DefaultPropertiesKeys.Cloud:
       return items.clouds
+    case DefaultPropertiesKeys.RegionId:
     case DefaultPropertiesKeys.Region:
       return items.regions
     case DefaultPropertiesKeys.Severity:
@@ -85,6 +88,7 @@ export const getAutocompleteDataFromKey = (key: string, items: AutoCompletePreDe
 
 export const getAutoCompletePropsFromKey = (key: string) => {
   switch (key as DefaultPropertiesKeys) {
+    case DefaultPropertiesKeys.CloudId:
     case DefaultPropertiesKeys.Cloud:
       return {
         renderOption: (
@@ -115,10 +119,12 @@ export const getAutoCompletePropsFromKey = (key: string) => {
         ListboxProps: undefined,
         renderInput: (params: AutocompleteRenderInputParams) => <TextField {...params} label={<Trans>Clouds</Trans>} />,
       }
+    case DefaultPropertiesKeys.AccountId:
     case DefaultPropertiesKeys.Account:
       return {
         renderInput: (params: AutocompleteRenderInputParams) => <TextField {...params} label={<Trans>Accounts</Trans>} />,
       }
+    case DefaultPropertiesKeys.RegionId:
     case DefaultPropertiesKeys.Region:
       return {
         renderInput: (params: AutocompleteRenderInputParams) => <TextField {...params} label={<Trans>Regions</Trans>} />,

@@ -7,4 +7,4 @@ export const colorsBySeverity = {
   Low: colorFromRedToGreen[80],
   Info: 'info.main',
   Passed: colorFromRedToGreen[100],
-}
+} as const

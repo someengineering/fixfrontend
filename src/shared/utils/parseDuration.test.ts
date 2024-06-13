@@ -46,7 +46,7 @@ describe('parseDuration', () => {
       duration: dateEnd.valueOf(),
     })
   })
-  test('durationToCustomDurationString should translate iso8601 duration to resoto duration', () => {
+  test('durationToCustomDurationString should translate iso8601 duration to fix duration', () => {
     const duration = {
       years: 1,
       months: 1,
@@ -98,7 +98,7 @@ describe('parseDuration', () => {
     expect(durationString).toBe('1 Year and 1 Month and 1 Week and 1 Day and 1 Hour and 1 Minute and 1 Second')
     expect(durationMilString).toBe('15 Milliseconds')
   })
-  test('parseCustomDuration should get iso8601 duration from resoto duration', () => {
+  test('parseCustomDuration should get iso8601 duration from fix duration', () => {
     const customDurationFullStringMany = '2 years and 2 months and 2 weeks and 2 days and 2 hours and 2 minutes and 2 seconds'
     const customDurationFullString = '1 year and 1 month and 1 week and 1 day and 1 hour and 1 minute and 1 second'
     const customDurationString = '1 yr , 1 mo , 1 w , 1 d , 1 h , 1 min , 1 s'

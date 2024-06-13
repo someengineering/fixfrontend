@@ -1,1 +1,0 @@
-export { ResourceDetail } from './ResourceDetail'

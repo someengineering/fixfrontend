@@ -14,14 +14,14 @@ describe('getAutoCompleteFromKey', () => {
   ] as const
 
   const items: AutoCompletePreDefinedItems = {
-    accounts: [{ label: 'accounts', value: 'accounts' }],
+    accounts: [{ label: 'accounts', value: 'accounts', id: 'accounts' }],
     clouds: [
-      { label: 'clouds', value: 'clouds' },
-      { label: 'clouds2', value: 'clouds2' },
+      { label: 'clouds', value: 'clouds', id: 'clouds' },
+      { label: 'clouds2', value: 'clouds2', id: 'clouds2' },
     ],
     kinds: [],
-    regions: [{ label: 'regions', value: 'regions' }],
-    severities: [{ label: 'severities', value: 'severities' }],
+    regions: [{ label: 'regions', value: 'regions', id: 'regions' }],
+    severities: [{ label: 'severities', value: 'severities', id: 'severities' }],
   }
 
   test('getAutocompleteValueFromKey should get autocomplete values from key with give items and no values', () => {

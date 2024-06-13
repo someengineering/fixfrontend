@@ -44,13 +44,37 @@ export default function WorkspaceSettingsPage() {
         <Trans>Other Workspace Settings</Trans>
       </Typography>
       <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} alignItems="start">
-        <Button variant="outlined" onClick={() => navigate('workspace-settings/accounts')} startIcon={<CloudIcon />}>
+        <Button
+          variant="outlined"
+          href="workspace-settings/accounts"
+          onClick={(e) => {
+            e.preventDefault()
+            navigate('workspace-settings/accounts')
+          }}
+          startIcon={<CloudIcon />}
+        >
           <Trans>Accounts</Trans>
         </Button>
-        <Button variant="outlined" onClick={() => navigate('workspace-settings/users')} startIcon={<PeopleIcon />}>
+        <Button
+          variant="outlined"
+          href="workspace-settings/users"
+          onClick={(e) => {
+            e.preventDefault()
+            navigate('workspace-settings/users')
+          }}
+          startIcon={<PeopleIcon />}
+        >
           <Trans>Users</Trans>
         </Button>
-        <Button variant="outlined" onClick={() => navigate('workspace-settings/billing-receipts')} startIcon={<ReceiptIcon />}>
+        <Button
+          variant="outlined"
+          href="workspace-settings/billing-receipts"
+          onClick={(e) => {
+            e.preventDefault()
+            navigate('workspace-settings/billing-receipts')
+          }}
+          startIcon={<ReceiptIcon />}
+        >
           <Trans>Billing</Trans>
         </Button>
         {/* <Button variant="outlined" onClick={() => navigate('workspace-settings/external-directories')} startIcon={<FolderCopyIcon />}>
