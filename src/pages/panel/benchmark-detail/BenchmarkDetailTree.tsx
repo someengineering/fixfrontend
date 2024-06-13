@@ -84,7 +84,7 @@ export const BenchmarkDetailTree = () => {
         flexShrink={1}
         onClick={() => {
           if (checkId) {
-            navigate('../../')
+            navigate('../..')
           }
           setCount((prev) => prev + 1)
         }}
