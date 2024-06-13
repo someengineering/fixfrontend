@@ -222,7 +222,7 @@ msgstr "Account: {0}"
 #: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:43
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:125
 #: src/pages/panel/inventory/InventoryTable.error.tsx:73
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:56
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:57
 #: src/shared/language-button/LanguageButton.stories.tsx:20
 #: src/shared/layouts/panel-layout/menuList.tsx:72
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:9
@@ -305,7 +305,7 @@ msgstr "Age"
 msgid "Alerting integrations (PD, Slack, Discord, Teams)"
 msgstr "Alerting integrations (PD, Slack, Discord, Teams)"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:35
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:36
 msgid "Alerting Settings"
 msgstr "Alerting Settings"
 
@@ -434,7 +434,7 @@ msgid "Benchmarks"
 msgstr "Benchmarks"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:49
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:78
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:80
 #: src/shared/layouts/panel-layout/menuList.tsx:82
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:21
 msgid "Billing"
@@ -615,7 +615,7 @@ msgstr "Connect your AWS account"
 msgid "Connected Accounts"
 msgstr "Connected Accounts"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:28
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:29
 msgid "Connected Services"
 msgstr "Connected Services"
 
@@ -1469,7 +1469,7 @@ msgstr "Orphaned Snapshots"
 msgid "Orphaned Volumes"
 msgstr "Orphaned Volumes"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:44
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:45
 msgid "Other Workspace Settings"
 msgstr "Other Workspace Settings"
 
@@ -2009,7 +2009,7 @@ msgid "User Settings Notification"
 msgstr "User Settings Notification"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:27
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:67
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:68
 #: src/shared/layouts/panel-layout/menuList.tsx:77
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:17
 msgid "Users"
@@ -2089,7 +2089,7 @@ msgstr "Workspace Id"
 msgid "Workspace Name"
 msgstr "Workspace Name"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:19
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:20
 #: src/shared/layouts/panel-layout/menuList.tsx:64
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:7
 msgid "Workspace Settings"
