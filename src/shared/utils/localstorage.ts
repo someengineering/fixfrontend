@@ -23,14 +23,16 @@ function setStorageObject<ObjectType>(key: StorageKeys, obj?: ObjectType) {
 }
 
 export const getAuthData = () => {
-  const data = getStorageObject<{ isAuthenticated: boolean; selectedWorkspaceId: string }>(StorageKeys.authData)
+  const data = getStorageObject<{ isAuthenticated: boolean; selectedWorkspaceId: string; lastWorkingWorkspaceId?: string }>(
+    StorageKeys.authData,
+  )
   return {
     ...data,
     selectedWorkspaceId: window.location.hash?.substring(1) || data?.selectedWorkspaceId,
   }
 }
 
-export const setAuthData = (authData?: { isAuthenticated: boolean; selectedWorkspaceId?: string }) => {
+export const setAuthData = (authData?: { isAuthenticated: boolean; selectedWorkspaceId?: string; lastWorkingWorkspaceId?: string }) => {
   setStorageObject(StorageKeys.authData, authData)
   window.location.hash = authData?.selectedWorkspaceId ?? ''
 }

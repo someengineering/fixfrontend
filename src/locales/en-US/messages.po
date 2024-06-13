@@ -1194,17 +1194,14 @@ msgstr "Log in"
 msgid "Log in with {formattedName}"
 msgstr "Log in with {formattedName}"
 
-#: src/core/auth/WorkspaceGuard.tsx:92
+#: src/core/auth/WorkspaceGuard.tsx:94
+#: src/shared/layouts/panel-layout/UserProfileButton.tsx:165
 msgid "Log Out"
 msgstr "Log Out"
 
 #: src/containers/auth/AuthContainer.tsx:33
 msgid "Login into the AWS account you want to secure. Deploy a CloudFormation stack that creates a new IAM role for FIX."
 msgstr "Login into the AWS account you want to secure. Deploy a CloudFormation stack that creates a new IAM role for FIX."
-
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:165
-msgid "Logout"
-msgstr "Logout"
 
 #: src/shared/defined-messages/getMessage.ts:14
 msgid "Low"
@@ -1351,10 +1348,6 @@ msgstr "No"
 msgid "No {label} found for {typed}"
 msgstr "No {label} found for {typed}"
 
-#: src/core/auth/WorkspaceGuard.tsx:83
-msgid "No Active Workspaces to Switch To"
-msgstr "No Active Workspaces to Switch To"
-
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:168
 msgid "No resources that are affected by this check"
 msgstr "No resources that are affected by this check"
@@ -1408,6 +1401,10 @@ msgstr "Now, switch to the organization or folder that holds the resources you w
 msgid "Number Of Account Charged"
 msgstr "Number Of Account Charged"
 
+#: src/core/auth/WorkspaceGuard.tsx:94
+msgid "Ok"
+msgstr "Ok"
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:92
 msgid "on the left side"
 msgstr "on the left side"
@@ -1432,10 +1429,6 @@ msgstr "Oops! It looks like your query didn't match our format. Please check and
 #: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:38
 msgid "Oops! Something went wrong."
 msgstr "Oops! Something went wrong."
-
-#: src/core/auth/WorkspaceGuard.tsx:68
-msgid "Oops! You do not have access to this workspace."
-msgstr "Oops! You do not have access to this workspace."
 
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:45
 msgid "Open Database Access"
@@ -1842,10 +1835,6 @@ msgstr "Subscription successfully added to {0}"
 msgid "Successfully invited {email}"
 msgstr "Successfully invited {email}"
 
-#: src/core/auth/WorkspaceGuard.tsx:83
-msgid "Switch to Primary Workspace"
-msgstr "Switch to Primary Workspace"
-
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:98
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:305
 msgid "Tags"
@@ -1887,6 +1876,10 @@ msgstr "The Stack requires the following parameters"
 #: src/pages/auth/reset-password/ResetPasswordPage.tsx:20
 msgid "The token that you sent is invalid or have been expired please try again"
 msgstr "The token that you sent is invalid or have been expired please try again"
+
+#: src/core/auth/WorkspaceGuard.tsx:79
+msgid "The workspace you requested cannot be accessed. Please request access from the workspace administrator."
+msgstr "The workspace you requested cannot be accessed. Please request access from the workspace administrator."
 
 #: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:48
 msgid "There's no account configured for this workspace."
@@ -2138,9 +2131,9 @@ msgstr "You can deactivate TOTP via recovery code"
 msgid "You don't have access to this workspace"
 msgstr "You don't have access to this workspace"
 
-#: src/core/auth/WorkspaceGuard.tsx:69
-msgid "You don't have access to this workspace. Please log out or switch to your primary workspace."
-msgstr "You don't have access to this workspace. Please log out or switch to your primary workspace."
+#: src/core/auth/WorkspaceGuard.tsx:78
+msgid "You don't have access to this workspace."
+msgstr "You don't have access to this workspace."
 
 #: src/shared/disabled-with-permission/DisabledWithPermission.tsx:29
 msgid "You don't have the permission to access this, contact the workspace owner for more information."

@@ -41,7 +41,7 @@ jobs:
       - name: Create a production build
         uses: devcontainers/ci@v0.3
         with:
-          runCmd: PUBLIC_URL=${{ vars.PUBLIC_URL }}/${{ github.sha }}/ yarn build
+          runCmd: yarn i18n:extract && yarn i18n:compile && PUBLIC_URL=${{ vars.PUBLIC_URL }}/${{ github.sha }}/ yarn build
 
       - name: Move dist to target
         run: |

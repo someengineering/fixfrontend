@@ -48,9 +48,13 @@ export function AuthGuard({ children }: PropsWithChildren) {
   const handleInternalSetAuth = useCallback((value: SetStateAction<UserContextRealValues>) => {
     setAuth((prev) => {
       const newAuth = typeof value === 'function' ? value(prev) : value
+      const selectedWorkspaceId = newAuth.selectedWorkspace?.id ?? prev.selectedWorkspace?.id
       setPersistedAuthData({
         isAuthenticated: newAuth.isAuthenticated,
-        selectedWorkspaceId: newAuth.selectedWorkspace?.id ?? prev.selectedWorkspace?.id,
+        lastWorkingWorkspaceId: newAuth.workspaces.find((workspace) => workspace.id === newAuth.selectedWorkspace?.id)
+          ? selectedWorkspaceId
+          : prev.selectedWorkspace?.id,
+        selectedWorkspaceId,
       })
       return newAuth
     })

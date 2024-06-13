@@ -97,12 +97,9 @@
     <script nonce="{{ nonce }}">
       (function initialT() {
         // if track js exists
-        if (
-          window.location.host.indexOf('localhost') !== 0 &&
-          window.location.host.indexOf('127.0.0.1') !== 0 &&
-          window.TrackJS &&
-          '%VITE_TRACKJS_TOKEN%'
-        ) {
+        var isLocalhost = window.location.host.indexOf('localhost') === 0 || window.location.host.indexOf('127.0.0.1') === 0
+        var isDev = window.location.host.indexOf('app.dev.') > -1
+        if (!isLocalhost && window.TrackJS && '%VITE_TRACKJS_TOKEN%') {
           // for offline support
           var offlineErrors = []
 
@@ -178,10 +175,10 @@
           // if it's not installed, install it
           if (!window.TrackJS.isInstalled()) {
             window.TrackJS.install({
-              token: token,
+              token: '%VITE_TRACKJS_TOKEN%',
               version: '%VITE_VERSION%',
-              application: 'fix',
-              console: { display: false },
+              application: isDev ? 'fixdev' : 'fix',
+              console: { display: isDev },
               onError: function (payload) {
                 sendOrQueueError(payload)
                 return false
@@ -189,15 +186,6 @@
             })
           }
         }
-        // vite preload error
-        window.addEventListener('vite:preloadError', (event) => {
-          if (window.TrackJS && window.TrackJS.isInstalled()) {
-            window.TrackJS.track(event.payload)
-          }
-          window.setTimeout(function () {
-            window.location.reload()
-          }, 3_000)
-        })
 
         var timeout
         try {
@@ -207,6 +195,7 @@
         }
 
         window._load_page_timeout = window.setTimeout(function () {
+          delete window._load_page_timeout
           if (window.TrackJS && window.TrackJS.isInstalled()) {
             window.TrackJS.track(new Error('It took more than ' + timeout / 1000 + 's to load the page'))
           }
@@ -214,6 +203,20 @@
             window.location.reload()
           }, 3_000)
         }, timeout)
+
+        // vite preload error
+        window.addEventListener('vite:preloadError', (event) => {
+          if (window.TrackJS && window.TrackJS.isInstalled()) {
+            window.TrackJS.track(event.payload)
+          }
+          if (window._load_page_timeout) {
+            window.clearTimeout(window._load_page_timeout)
+            delete window._load_page_timeout
+          }
+          window.setTimeout(function () {
+            window.location.reload()
+          }, 3_000)
+        })
       })()
     </script>
     <script type="text/javascript" src="/particles.min.js"></script>
