@@ -107,6 +107,14 @@ msgstr "{0}: Wir haben {1} nicht konforme Ressourcen von insgesamt {2}."
 msgid "{added} configuration lines added and {removed} lines deleted."
 msgstr "{added} Konfigurationszeilen hinzugefügt und {removed} Zeilen gelöscht."
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput.tsx:28
+msgid "{label} is not valid"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput.tsx:26
+msgid "{label} is required"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:41
 msgid "/ month"
 msgstr "/ Monat"
@@ -199,6 +207,10 @@ msgstr ""
 msgid "Accept"
 msgstr "Akzeptieren"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:139
+msgid "Access Control (IAM)"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:239
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:365
 msgid "Access to your account is broken"
@@ -242,6 +254,10 @@ msgstr "Aktionen"
 msgid "Activate"
 msgstr "aktivieren Sie"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:94
+msgid "Add a client secret"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:60
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:100
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:83
@@ -267,6 +283,22 @@ msgstr ""
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:159
 msgid "Add Manually"
 msgstr "Manuell hinzufügen"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:109
+msgid "Add permission"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:124
+msgid "Add Permissions"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:144
+msgid "Add Role Assignment"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:129
+msgid "Add the Role assignment to the App"
+msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:30
 msgid "Added accounts"
@@ -356,6 +388,11 @@ msgstr "API-Zugriff"
 msgid "API Key"
 msgstr "API-Schlüssel"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:79
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:97
+msgid "Application (client) ID"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:109
 msgid "Are you sure you want to change payment from <0>{0}</0> to <1>{1}</1>?"
 msgstr ""
@@ -378,6 +415,10 @@ msgstr "Bist du sicher?"
 msgid "Asset inventory"
 msgstr "Cloud-Asset-Inventar"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:104
+msgid "Assign permission to the App"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:39
 #: src/shared/tabs/Tabs.tsx:45
 #: src/shared/tabs/Tabs.tsx:86
@@ -392,6 +433,11 @@ msgstr "AWS Marketplace"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:114
+msgid "Azure Service Management"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureInstructions.tsx:90
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:90
 msgid "Back"
 msgstr ""
@@ -503,6 +549,30 @@ msgstr "Änderungen in den letzten 7 Tagen"
 msgid "Clear the search"
 msgstr ""
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:111
+msgid "Click Add permission:"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:146
+msgid "Click Add Role Assignment"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:91
+msgid "Click New client secret:"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:156
+msgid "Click Next:"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:171
+msgid "Click on it and then click select:"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:136
+msgid "Click on the Subscriptions link, then navigate to your subscription:"
+msgstr ""
+
 #: src/shared/dropzone/Dropzone.tsx:100
 msgid "Click or Drop your file here"
 msgstr ""
@@ -511,8 +581,24 @@ msgstr ""
 msgid "Click or Drop your Google Cloud Service Account file here"
 msgstr ""
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:180
+msgid "Click review and assign one more time, and Done. 🎉🎊"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:176
+msgid "Click review and assign:"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:126
+msgid "Click the Add permissions button:"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:56
 msgid "Click the service Account, go to the \"Keys\" Tab, and Click \"Add Key\" -> \"Create new Key\".<0/>A file is downloaded to your Downloads folder. We will need this file later on."
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:99
+msgid "Client secret"
 msgstr ""
 
 #: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:36
@@ -602,6 +688,7 @@ msgstr "Verbundene Konten"
 msgid "Connected Services"
 msgstr "Vernetzte Dienste"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureInstructions.tsx:85
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:85
 msgid "Continue"
 msgstr ""
@@ -621,6 +708,10 @@ msgstr "Kopieren"
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:29
 msgid "Core CSPM scanning capabilities"
 msgstr "Kern-CSPM-Scanfunktionen"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:84
+msgid "Create an App secret"
+msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:46
 msgid "Create Service Account"
@@ -737,6 +828,10 @@ msgstr "Beschreibung"
 msgid "Details"
 msgstr "Einzelheiten"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:90
+msgid "Directory (tenant) ID"
+msgstr ""
+
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:59
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsDisconnectServiceModal.tsx:48
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsDisconnectServiceModal.tsx:68
@@ -836,6 +931,10 @@ msgstr "Ermöglicht"
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:88
 msgid "Engineers like to tag their temporary resources with the string \"delete\". This performs a full-text search in names, tags and other string properties."
 msgstr "Engineers kennzeichnen ihre temporären Ressourcen gerne mit der Zeichenfolge \"delete\". Hiermit wird in Namen, Tags und anderen Zeichenfolgen nach \"delete\" gesucht."
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:96
+msgid "Enter the secret description and set the expiration date:"
+msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToLabel.ts:15
 msgid "Enterprise"
@@ -959,8 +1058,20 @@ msgstr ""
 msgid "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
 msgstr "Erhalten Sie Ihre fünf wichtigsten Empfehlungen zur Verbesserung Ihrer Sicherheit, sobald der erste Scan abgeschlossen ist, normalerweise innerhalb von 10 Minuten."
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:116
+msgid "Go to Azure Service Management:"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:45
 msgid "Go To IAM and select Service Accounts."
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:141
+msgid "Go to the Access Control (IAM):"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:106
+msgid "Go to the App permissions page:"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:91
@@ -1057,9 +1168,21 @@ msgstr "Ignoriert"
 msgid "Improved"
 msgstr "Verbessert"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:70
+msgid "In the Azure console search, type App Registrations and go to App Registrations page."
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:42
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS Konto ein."
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:131
+msgid "In the search field, type Subscriptions:"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:166
+msgid "In the Select Members window, type the name of the App you created earlier:"
+msgstr ""
 
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:77
 msgid "Inactivity reminder"
@@ -1243,6 +1366,10 @@ msgstr "Nachbarschaftsansicht"
 msgid "Neighborhood View"
 msgstr "Nachbarschaftsansicht"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:89
+msgid "New client secret"
+msgstr ""
+
 #: src/pages/panel/security/OverallCard.tsx:154
 msgid "new improved resources in the past {since}"
 msgstr "neue verbesserte Ressourcen in der Vergangenheit {since}"
@@ -1263,6 +1390,10 @@ msgstr "Neues Kennwort"
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:169
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:89
 msgid "New Product Tier"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:72
+msgid "New registration"
 msgstr ""
 
 #: src/pages/panel/inventory/resource-detail/utils/nodeChange.tsx:26
@@ -1328,6 +1459,10 @@ msgstr "Noch nichts zu zeigen"
 msgid "Notification"
 msgstr "Benachrichtigung"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:86
+msgid "Now, Go to the certificates and secrets section."
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:65
 msgid "Now, switch to the organization or folder that holds the resources you want to connect."
 msgstr ""
@@ -1340,8 +1475,28 @@ msgstr "Anzahl der belasteten Konten"
 msgid "Ok"
 msgstr ""
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:151
+msgid "On the Add Role Assignment page, select the reader Role:"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:72
+msgid "On the App Registration, click New registration."
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:92
 msgid "on the left side"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:81
+msgid "On the new screen, write down the Application (client) ID and Directory (tenant) ID. You will need them at a later step."
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:161
+msgid "On the next step click Select Members:"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:76
+msgid "On the Register an application page, fill the name of the application. Write the name down, it will be needed later. The rest can be left as is. Click the Register button."
 msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:110
@@ -1578,6 +1733,14 @@ msgstr "Regionen"
 msgid "Register"
 msgstr "Registrieren"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:68
+msgid "Register a new App"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:74
+msgid "Register an application"
+msgstr ""
+
 #: src/shared/cookie-consent/CookieConsent.tsx:95
 msgid "Reject"
 msgstr "Ablehnen"
@@ -1615,6 +1778,14 @@ msgstr "Ressourcen"
 msgid "Resources with the string \"delete\""
 msgstr "Ressourcen mit der Zeichenfolge \"delete\""
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:174
+msgid "Review and assign (1)"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:179
+msgid "Review and assign (2)"
+msgstr ""
+
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:104
 msgid "Risk"
 msgstr "Risiko"
@@ -1633,6 +1804,10 @@ msgstr ""
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:104
 msgid "Searches for database instances with no connections over a significant period, indicating potential waste."
 msgstr "Sucht nach Datenbankinstanzen ohne Verbindungen über einen längeren Zeitraum, was auf potenzielle Verschwendung hinweist."
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:103
+msgid "Secret ID"
+msgstr ""
 
 #: src/containers/auth/AuthContainer.tsx:44
 msgid "Secure read-only access"
@@ -1677,6 +1852,18 @@ msgstr ""
 msgid "Select Language"
 msgstr "Sprache auswählen"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:159
+msgid "Select Members (1)"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:164
+msgid "Select Members (2)"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:169
+msgid "Select Members (3)"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:63
 msgid "Select Organization"
 msgstr ""
@@ -1687,6 +1874,18 @@ msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:43
 msgid "Select the project in Google Cloud Console that should hold the service account."
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:149
+msgid "Select the reader Role (1)"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:154
+msgid "Select the reader Role (2)"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:121
+msgid "Select User Impersonation permission:"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:67
@@ -1751,6 +1950,7 @@ msgstr "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einma
 msgid "Sources"
 msgstr "Quellen"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:113
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:274
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:275
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:280
@@ -1762,6 +1962,10 @@ msgstr "Einreichen"
 #: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:30
 msgid "Subscription successfully added to {0}"
 msgstr "Abonnement erfolgreich zu {0} hinzugefügt"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:134
+msgid "Subscriptions"
+msgstr ""
 
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:29
 msgid "Successfully invited {email}"
@@ -1931,6 +2135,10 @@ msgstr "Aktualisierung"
 msgid "Uploading your Google Cloud Service Account file..."
 msgstr ""
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:119
+msgid "User Impersonation permission"
+msgstr ""
+
 #: src/pages/panel/user-settings/UserSettingsPage.tsx:16
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:157
 msgid "User Settings"
@@ -2015,6 +2223,10 @@ msgstr "Arbeitsbereichseinstellungen"
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:49
 msgid "Workspace Users"
 msgstr "Workspace-Benutzer"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:101
+msgid "Write down the value of the created secret, you will need it later:"
+msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:39
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:65
