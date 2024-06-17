@@ -107,11 +107,11 @@ msgstr "{0}: We've identified {1} non-compliant resources out of {2}."
 msgid "{added} configuration lines added and {removed} lines deleted."
 msgstr "{added} configuration lines added and {removed} lines deleted."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput.tsx:28
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput.tsx:30
 msgid "{label} is not valid"
 msgstr "{label} is not valid"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput.tsx:26
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput.tsx:28
 msgid "{label} is required"
 msgstr "{label} is required"
 
@@ -295,8 +295,8 @@ msgid "Add permission"
 msgstr "Add permission"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:124
-msgid "Add Permissions"
-msgstr "Add Permissions"
+msgid "Add Permission"
+msgstr "Add Permission"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:144
 msgid "Add Role Assignment"
@@ -405,7 +405,7 @@ msgid "API Key"
 msgstr "API Key"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:79
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:97
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:90
 msgid "Application (client) ID"
 msgstr "Application (client) ID"
 
@@ -612,8 +612,8 @@ msgid "Click review and assign:"
 msgstr "Click review and assign:"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:126
-msgid "Click the Add permissions button:"
-msgstr "Click the Add permissions button:"
+msgid "Click the Add a permission button:"
+msgstr "Click the Add a permission button:"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:56
 msgid "Click the service Account, go to the \"Keys\" Tab, and Click \"Add Key\" -> \"Create new Key\".<0/>A file is downloaded to your Downloads folder. We will need this file later on."
@@ -855,7 +855,7 @@ msgstr "Description"
 msgid "Details"
 msgstr "Details"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:90
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:97
 msgid "Directory (tenant) ID"
 msgstr "Directory (tenant) ID"
 
@@ -1107,8 +1107,8 @@ msgid "Go to the Access Control (IAM):"
 msgstr "Go to the Access Control (IAM):"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:106
-msgid "Go to the App permissions page:"
-msgstr "Go to the App permissions page:"
+msgid "Go to the App permissions page under manage section:"
+msgstr "Go to the App permissions page under manage section:"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:91
 msgid "Go to your download folder and drop the service account JSON file in the drop zone {0}."
@@ -1873,9 +1873,9 @@ msgstr "Search {0}"
 msgid "Searches for database instances with no connections over a significant period, indicating potential waste."
 msgstr "Searches for database instances with no connections over a significant period, indicating potential waste."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:103
-msgid "Secret ID"
-msgstr "Secret ID"
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:104
+msgid "Secret Value"
+msgstr "Secret Value"
 
 #: src/containers/auth/AuthContainer.tsx:44
 msgid "Secure read-only access"
@@ -2020,7 +2020,7 @@ msgstr "Something went wrong please try again later."
 msgid "Sources"
 msgstr "Sources"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:113
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:114
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:274
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:275
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:280

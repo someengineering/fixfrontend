@@ -103,7 +103,7 @@ export const getInstructions = (): InstructionType[] => [
   {
     label: t`Assign permission to the App`,
     image: instructionImage10,
-    instruction: t`Go to the App permissions page:`,
+    instruction: t`Go to the App permissions page under manage section:`,
   },
   {
     label: t`Add permission`,
@@ -121,9 +121,9 @@ export const getInstructions = (): InstructionType[] => [
     instruction: t`Select User Impersonation permission:`,
   },
   {
-    label: t`Add Permissions`,
+    label: t`Add Permission`,
     image: instructionImage14,
-    instruction: t`Click the Add permissions button:`,
+    instruction: t`Click the Add a permission button:`,
   },
   {
     label: t`Add the Role assignment to the App`,

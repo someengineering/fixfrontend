@@ -28,7 +28,7 @@ export const WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials = ({
     queryFn: getWorkspaceCloudAccountAzureCredentialsQuery,
   })
   const formData = useRef<Record<AzureFormNames, { hasError: boolean; value: string }>>({
-    azure_tenant_id: { hasError: !data.id, value: data.id },
+    azure_tenant_id: { hasError: true, value: '' },
     client_id: { hasError: true, value: '' },
     client_secret: { hasError: true, value: '' },
   })
@@ -86,21 +86,22 @@ export const WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials = ({
       autoComplete="off"
     >
       <WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput
-        name="azure_tenant_id"
-        label={t`Directory (tenant) ID`}
-        defaultValue={data.id}
-        onChange={handleChange}
-        onError={handleError}
-      />
-      <WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput
         name="client_id"
         label={t`Application (client) ID`}
         onChange={handleChange}
         onError={handleError}
+        uuidRegex
+      />
+      <WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput
+        name="azure_tenant_id"
+        label={t`Directory (tenant) ID`}
+        onChange={handleChange}
+        onError={handleError}
+        uuidRegex
       />
       <WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput
         name="client_secret"
-        label={t`Secret ID`}
+        label={t`Secret Value`}
         onChange={handleChange}
         onError={handleError}
       />
