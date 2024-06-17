@@ -56,7 +56,7 @@ const HeatmapCell = ({ title, value, tooltip, href }: HeatmapData) => {
   }
   if (tooltip) {
     comp = (
-      <Tooltip title={tooltip} arrow>
+      <Tooltip title={tooltip} arrow PopperProps={{ sx: { pointerEvents: 'none' } }}>
         {comp}
       </Tooltip>
     )
