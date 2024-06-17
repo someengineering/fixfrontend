@@ -198,6 +198,19 @@
           delete window._load_page_timeout
           if (window.TrackJS && window.TrackJS.isInstalled()) {
             window.TrackJS.track(new Error('It took more than ' + timeout / 1000 + 's to load the page'))
+            window.console = {
+              error: () => {},
+              info: () => {},
+              log: () => {},
+              warn: () => {},
+              assert: () => {},
+              debug: () => {},
+              trace: () => {}
+            }
+            window.TrackJS = {
+              isInstalled: () => false,
+              track: () => {}
+            }
           }
           window.setTimeout(function () {
             window.location.reload()
