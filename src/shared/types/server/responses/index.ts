@@ -25,9 +25,16 @@ export type {
 export type {
   GetWorkspaceInventoryNodeNeighborhoodResponse,
   WorkspaceInventoryNodeNeighborhood,
-  WorkspaceInventoryNodeNeighborhoodEdgeType,
   WorkspaceInventoryNodeNeighborhoodNodeType,
 } from './GetWorkspaceInventoryNodeNeighborhood'
+export type { GetWorkspaceInventoryReportBenchmarkResponse } from './GetWorkspaceInventoryReportBenchmark'
+export type {
+  BenchmarkCheckCollectionNode,
+  BenchmarkCheckResultNode,
+  BenchmarkReportNode,
+  GetWorkspaceInventoryReportBenchmarkResultItem,
+  GetWorkspaceInventoryReportBenchmarkResultResponse,
+} from './GetWorkspaceInventoryReportBenchmarkResult'
 export type { GetWorkspaceInventoryReportBenchmarksResponse } from './GetWorkspaceInventoryReportBenchmarks'
 export type { GetWorkspaceInventoryReportChecksResponse } from './GetWorkspaceInventoryReportChecks'
 export type { GetWorkspaceInventoryReportInfoResponse } from './GetWorkspaceInventoryReportInfo'

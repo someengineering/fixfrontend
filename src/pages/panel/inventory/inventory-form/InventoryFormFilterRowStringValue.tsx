@@ -119,7 +119,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
       data?.pages
         .flat()
         .filter((i) => i)
-        .map((i) => ({ label: i as string, value: i as string })) ?? null,
+        .map((i) => ({ label: i as string, value: i as string, id: i as string })) ?? null,
     [data],
   )
 
@@ -140,7 +140,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
     typed.toLowerCase() !== 'undefined' &&
     typed.toLowerCase() !== t`Undefined`.toLowerCase() &&
     !(Array.isArray(value) ? value.find((i) => i.label === typed) : value?.label === typed)
-      ? rawOptions.concat({ value: typed, label: typed })
+      ? rawOptions.concat({ value: typed, label: typed, id: typed })
       : rawOptions
 
   const optionsWithValues =
@@ -157,7 +157,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
       : optionsWithTyped
   const options = optionsWithValues.find((i) => i.value === 'null')
     ? optionsWithValues
-    : optionsWithValues.concat({ label: t`Undefined`, value: 'null' })
+    : optionsWithValues.concat({ label: t`Undefined`, value: 'null', id: 'null' })
 
   const currentValue = (
     props.multiple && !Array.isArray(value) ? (value ? [value] : []) : !props.multiple && Array.isArray(value) ? value[0] : value

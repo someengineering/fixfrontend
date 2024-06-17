@@ -1,17 +1,17 @@
+import { NodeReported } from './NodeReported'
 import { SeverityType } from './SeverityType'
 
 export interface FailedCheck {
-  benchmarks: {
+  benchmarks?: {
     id: string
     title: string
   }[]
   categories: string[]
-  default_values: null | {
-    certificate_expiration: string
-  }
+  default_values: null | Record<string, string>
   detect: {
-    resoto_cmd?: string
-    resoto?: string
+    fix_cmd?: string
+    fix?: string
+    manual?: string
   }
   id: string
   provider: string
@@ -22,10 +22,13 @@ export interface FailedCheck {
     text: string
     url: string
   }
-  result_kind: string
+  result_kinds: string[]
+  number_of_resources_failing_by_account?: Record<string, number>
+  resources_failing_by_account?: Record<string, NodeReported[]>
+  number_of_resources_failing?: number
   risk: string
   service: string
   severity: SeverityType
   title: string
-  url: null
+  url: string | null
 }

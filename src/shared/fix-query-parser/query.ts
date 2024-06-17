@@ -871,9 +871,9 @@ export class Aggregate {
   }
 }
 
-const CloudIdentifier = new Set(['/ancestors.cloud.reported.id', '/ancestors.cloud.reported.name'])
-const AccountIdentifier = new Set(['/ancestors.account.reported.id', '/ancestors.account.reported.name'])
-const RegionIdentifier = new Set(['/ancestors.region.reported.id', '/ancestors.region.reported.name'])
+const CloudIdentifier = ['/ancestors.cloud.reported.id', '/ancestors.cloud.reported.name'] as const
+const AccountIdentifier = ['/ancestors.account.reported.id', '/ancestors.account.reported.name'] as const
+const RegionIdentifier = ['/ancestors.region.reported.id', '/ancestors.region.reported.name'] as const
 
 export class Query {
   [immerable] = true
@@ -975,15 +975,20 @@ export class Query {
   }
 
   public get cloud(): Predicate | undefined {
-    return this.predicates().find((p) => CloudIdentifier.has(p.path.toString()))
+    return this.predicates().find((p) => CloudIdentifier.includes(p.path.toString() as (typeof CloudIdentifier)[number]))
   }
 
   public get account(): Predicate | undefined {
-    return this.predicates().find((p) => AccountIdentifier.has(p.path.toString()))
+    return this.predicates().find((p) => AccountIdentifier.includes(p.path.toString() as (typeof AccountIdentifier)[number]))
   }
 
   public get region(): Predicate | undefined {
-    return this.predicates().find((p) => RegionIdentifier.has(p.path.toString()))
+    return this.predicates().find((p) => RegionIdentifier.includes(p.path.toString() as (typeof RegionIdentifier)[number]))
+  }
+
+  public set_cloud_account_region(name: 'cloud' | 'account' | 'region', op: string, value: JsonElement, useName?: boolean): Query {
+    const predicateName = (name === 'account' ? AccountIdentifier : name === 'cloud' ? CloudIdentifier : RegionIdentifier)[useName ? 1 : 0]
+    return this.set_predicate(predicateName, op, value)
   }
 
   public set_predicate(name: string, op: string, value: JsonElement): Query {
@@ -1021,6 +1026,11 @@ export class Query {
         }
       }
     })
+  }
+
+  public delete_cloud_account_region(name: 'cloud' | 'account' | 'region', useName?: boolean): Query {
+    const predicateName = (name === 'account' ? AccountIdentifier : name === 'cloud' ? CloudIdentifier : RegionIdentifier)[useName ? 1 : 0]
+    return this.delete_predicate(predicateName)
   }
 
   public delete_predicate(name: string): Query {

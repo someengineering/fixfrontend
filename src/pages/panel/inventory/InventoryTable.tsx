@@ -191,7 +191,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       autoHeight
       columns={columns}
       rows={rows}
-      pageSizeOptions={panelUI.tableRowsPerPages}
+      pageSizeOptions={panelUI.tableRowsPerPages.filter((_, i, arr) => dataCount > (arr[i - 1] ?? 0))}
       filterMode="server"
       sortingMode="server"
       rowSelection={false}
@@ -225,7 +225,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
             .filter((i) => i) as WorkspaceInventorySearchTableSort[],
         )
       }
-      pagination={dataCount > 10}
+      pagination={dataCount > panelUI.tableRowsPerPages[0]}
       paginationModel={{ page, pageSize: rowsPerPage }}
       onPaginationModelChange={(model) => {
         if (model.pageSize !== rowsPerPage) {
@@ -244,28 +244,31 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
         </Stack>
       }
       slots={{
-        row: (rowProps: GridRowProps) => (
-          <ButtonBase
-            onClick={() =>
-              navigate({
-                pathname: `./resource-detail/${(rowProps.row as RowType)?.INTERNAL_ID.split('_').slice(0, -1).join('_')}`,
-                search:
-                  typeof rowProps.row?.name === 'string'
-                    ? mergeLocationSearchValues({
-                        ...getLocationSearchValues(window.location.search),
-                        name: window.encodeURIComponent(rowProps.row?.name ?? '-'),
-                      })
-                    : window.location.search,
-              })
-            }
-          >
-            <GridRow {...rowProps} />
-          </ButtonBase>
-        ),
-      }}
-      slotProps={{
-        row: {
-          style: { cursor: 'pointer' },
+        row: (rowProps: GridRowProps) => {
+          const id = (rowProps.row as RowType)?.INTERNAL_ID.split('_').slice(0, -1).join('_')
+          if (!id || id === 'null' || id === 'undefined') {
+            return <GridRow {...rowProps} />
+          }
+          const search =
+            typeof rowProps.row?.name === 'string'
+              ? mergeLocationSearchValues({
+                  ...getLocationSearchValues(window.location.search),
+                  name: window.encodeURIComponent(rowProps.row?.name ?? '-'),
+                })
+              : window.location.search
+          const href = `./resource-detail/${id}${search?.[0] === '?' || !search ? search ?? '' : `?${search}`}`
+          return (
+            <ButtonBase
+              href={href}
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                navigate(href)
+              }}
+            >
+              <GridRow {...rowProps} />
+            </ButtonBase>
+          )
         },
       }}
     />

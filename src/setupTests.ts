@@ -18,6 +18,7 @@ global.location = {
   ...location,
 }
 
+// @ts-expect-error for minimal implementation of window
 global.window = {
   ...global,
   location: {
@@ -42,8 +43,11 @@ global.window = {
     }
   })(),
   encodeURIComponent: (uriComponent: string | number | boolean) => querystring.stringify({ query: uriComponent }).substring(6),
-  // @ts-expect-error define custom document
-  document: {},
+  document: { ...global.document },
+  name: '',
+  particlesJS: () => {},
+  pJSDom: [],
+  _load_page_timeout: 0,
 }
 
 vi.mock('@lingui/core')

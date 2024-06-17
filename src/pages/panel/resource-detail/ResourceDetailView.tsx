@@ -115,9 +115,9 @@ const GridItem = ({ property, value, color, isReactNode }: GridItemProps) => {
   )
 }
 
-export const ResourceDetail = () => {
+export default function ResourceDetailView() {
   const postHog = usePostHog()
-  const { resourceDetailId } = useParams()
+  const { resourceDetailId } = useParams<'resourceDetailId'>()
   const navigate = useAbsoluteNavigate()
   const openResourceModalRef = useRef<(show?: boolean | undefined) => void>()
   const { currentUser, selectedWorkspace } = useUserProfile()
@@ -149,7 +149,8 @@ export const ResourceDetail = () => {
 
   const handleClose = () => {
     const search = getLocationSearchValues(window.location.search)
-    navigate({ pathname: '/inventory', search: removeLocationSearchValues(search, 'name') })
+    const pathname = window.location.pathname.split('/').slice(0, -2).join('/')
+    navigate({ pathname, search: removeLocationSearchValues(search, 'name'), hash: window.location.hash })
   }
 
   const {
@@ -160,7 +161,9 @@ export const ResourceDetail = () => {
     age: _age,
     tags,
   } = data?.resource.reported ?? {}
-  const cloud = data?.resource.ancestors?.cloud?.reported?.name ?? '-'
+  const cloud =
+    data?.resource.ancestors?.cloud?.reported?.name ??
+    (window.decodeURIComponent(getLocationSearchValues(window.location.search)?.cloud || '') || '-')
   const accountObj = data?.resource.ancestors?.account?.reported
   const account = accountObj ? `${accountObj?.name} (${accountObj?.id})` : '-'
   const region = data?.resource.ancestors?.region?.reported?.name ?? '-'

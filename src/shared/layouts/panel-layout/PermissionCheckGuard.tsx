@@ -1,5 +1,6 @@
-import { Navigate, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { Permissions } from 'src/core/auth'
+import { Navigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { usePermissionCheck } from './check-hooks'
 

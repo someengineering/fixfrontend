@@ -2,16 +2,23 @@ import { t } from '@lingui/macro'
 // import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 // import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 import { useMemo, useState } from 'react'
-import { DefaultPropertiesKeys, useFixQueryParser } from 'src/shared/fix-query-parser'
+import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { InventoryFormDefaultValue } from './InventoryFormDefaultValue'
 import { InventoryFormField } from './InventoryFormField'
 import { termValueToStringArray } from './utils'
 import { AutoCompletePreDefinedItems } from './utils/getAutoCompleteFromKey'
 
 export const InventoryFormAccount = ({ preItems }: { preItems: AutoCompletePreDefinedItems }) => {
-  const { account, setPredicate, deletePredicate } = useFixQueryParser()
+  const { account, setCloudAccountRegion, deleteCloudAccountRegion, changeCloudAccountRegionFromIdToName } = useFixQueryParser()
+  const isId = account?.path.parts.at(-1)?.name === 'id'
   const [open, setOpen] = useState<HTMLDivElement | null>(null)
-  const values = termValueToStringArray(account?.value)
+  let values = termValueToStringArray(account?.value)
+  if (isId && preItems.accounts.length) {
+    values = values.map((value) => preItems.accounts.find((i) => i.id === value)?.value).filter((i) => i) as string[]
+    window.setTimeout(() => {
+      changeCloudAccountRegionFromIdToName('account', values, 'in')
+    })
+  }
   const accountOptions = useMemo(() => {
     const valuesToAdd = [...values]
     const result = [...preItems.accounts]
@@ -24,23 +31,31 @@ export const InventoryFormAccount = ({ preItems }: { preItems: AutoCompletePreDe
         valuesToAdd.splice(index, 1)
       }
     }
-    valuesToAdd.forEach((value) => result.push({ label: value, value }))
+    valuesToAdd.forEach((value) => result.push({ label: value, value, id: value }))
     return result
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(values), preItems.accounts])
+
   return (
     <>
       <InventoryFormField
         value={account}
         label={t`Accounts`}
         onClick={(e) => setOpen(e.currentTarget)}
-        onClear={() => deletePredicate(DefaultPropertiesKeys.Account)}
+        onClear={() => deleteCloudAccountRegion('account', !isId)}
         // endIcon={open ? <ArrowDropUpIcon fontSize="small" color="disabled" /> : <ArrowDropDownIcon fontSize="small" color="disabled" />}
       />
       <InventoryFormDefaultValue
-        onChange={(values) =>
-          values.length ? setPredicate(DefaultPropertiesKeys.Account, 'in', values) : deletePredicate(DefaultPropertiesKeys.Account)
-        }
+        onChange={(values) => {
+          if (isId) {
+            deleteCloudAccountRegion('account')
+          }
+          if (values) {
+            setCloudAccountRegion('account', 'in', values, true)
+          } else {
+            deleteCloudAccountRegion('account', true)
+          }
+        }}
         values={values}
         label={t`Account`}
         onClose={() => setOpen(null)}

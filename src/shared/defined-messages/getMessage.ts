@@ -17,6 +17,9 @@ export const Messages = [
   defineMessage({
     message: 'Info',
   }),
+  defineMessage({
+    message: 'Passed',
+  }),
 ]
 
 export const getMessage = (id: string) => {
