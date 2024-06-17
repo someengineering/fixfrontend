@@ -1,5 +1,6 @@
 import { lazy } from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
+import { Navigate } from 'src/shared/absolute-navigate'
 
 const LoginPage = lazy(
   () =>

@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryNodeHistoryQuery } from 'src/pages/panel/shared/queries'
+import { sortedSeverities } from 'src/shared/constants'
 import { Spinner } from 'src/shared/loading'
 import { StickyAccordionSummaryWithIcon } from 'src/shared/sticky-accordion-summary'
 import { WorkspaceInventoryNode, WorkspaceInventoryNodeHistory } from 'src/shared/types/server'
@@ -15,7 +16,7 @@ interface ResourceDetailChangeLogProps {
   notFound?: boolean
   defaultResource?: WorkspaceInventoryNode['resource']
 }
-const severities = ['critical', 'high', 'medium', 'low', 'info']
+
 export const ResourceDetailChangeLog = ({ notFound, defaultResource }: ResourceDetailChangeLogProps) => {
   const [expanded, setExpanded] = useState(false)
   const [[historyAnchorEl, selectedHistory], setHistory] = useState<[HTMLElement | null, WorkspaceInventoryNodeHistory | undefined]>([
@@ -88,10 +89,12 @@ export const ResourceDetailChangeLog = ({ notFound, defaultResource }: ResourceD
                           ...history,
                           diff: {
                             node_compliant: history.diff.node_compliant?.sort(
-                              (a, b) => severities.findIndex((i) => i === a.severity) - severities.findIndex((i) => i === b.severity),
+                              (a, b) =>
+                                sortedSeverities.findIndex((i) => i === a.severity) - sortedSeverities.findIndex((i) => i === b.severity),
                             ),
                             node_vulnerable: history.diff.node_vulnerable?.sort(
-                              (a, b) => severities.findIndex((i) => i === a.severity) - severities.findIndex((i) => i === b.severity),
+                              (a, b) =>
+                                sortedSeverities.findIndex((i) => i === a.severity) - sortedSeverities.findIndex((i) => i === b.severity),
                             ),
                           },
                         }

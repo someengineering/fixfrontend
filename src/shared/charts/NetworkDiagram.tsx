@@ -12,7 +12,8 @@ import { getWorkspaceInventoryNodeHistoryNeighborhoodQuery } from 'src/pages/pan
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { FullscreenAbleContainer } from 'src/shared/fullscreen-able-container'
 import { useNonce } from 'src/shared/providers'
-import { WorkspaceInventoryNodeNeighborhoodEdgeType, WorkspaceInventoryNodeNeighborhoodNodeType } from 'src/shared/types/server'
+import { WorkspaceInventoryNodeNeighborhoodNodeType } from 'src/shared/types/server'
+import { EdgeType } from 'src/shared/types/server-shared'
 import { iso8601DurationToString, parseCustomDuration } from 'src/shared/utils/parseDuration'
 import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 
@@ -149,7 +150,7 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
 
         // Prepare nodes and links for Dagre
         const nodes = data.filter((d) => d.type === 'node') as NodesType[]
-        const links = (data.filter((d) => d.type === 'edge' && d) as WorkspaceInventoryNodeNeighborhoodEdgeType[])
+        const links = (data.filter((d) => d.type === 'edge' && d) as EdgeType[])
           .map((link) => {
             return {
               ...link,

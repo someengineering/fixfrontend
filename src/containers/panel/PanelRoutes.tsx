@@ -1,5 +1,6 @@
 import { lazy } from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
+import { Navigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { AccountCheckGuard, BenchmarkCheckGuard, PermissionCheckGuard, SubscriptionCheckGuard } from 'src/shared/layouts/panel-layout'
 
@@ -91,6 +92,22 @@ const WorkspaceSettingsExternalDirectoryPage = lazy(
     ),
 )
 
+const BenchmarkDetailPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "benchmark-detail" */
+      'src/pages/panel/benchmark-detail/BenchmarkDetailPage'
+    ),
+)
+
+const ResourceDetailView = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "resource-detail" */
+      'src/pages/panel/resource-detail/ResourceDetailView'
+    ),
+)
+
 export function PanelRoutes() {
   return (
     <Routes>
@@ -102,9 +119,11 @@ export function PanelRoutes() {
         <Route element={<AccountCheckGuard />}>
           <Route element={<BenchmarkCheckGuard />}>
             <Route path="security" element={<SecurityPage />} />
-            <Route path="inventory">
-              <Route index element={<InventoryPage />} />
-              <Route path="resource-detail/:resourceDetailId" element={<InventoryPage />} />
+            <Route path="inventory" element={<InventoryPage />}>
+              <Route path="resource-detail/:resourceDetailId" element={<ResourceDetailView />} />
+            </Route>
+            <Route path="benchmark/:benchmarkId/:accountId?/check-detail?/:checkId?" element={<BenchmarkDetailPage />}>
+              <Route path="resource-detail/:resourceDetailId" element={<ResourceDetailView />} />
             </Route>
           </Route>
           <Route element={<PermissionCheckGuard permissionToCheck="readSettings" />}>

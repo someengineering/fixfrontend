@@ -1,51 +1,23 @@
-import { t } from '@lingui/macro'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 import { Breadcrumbs, Button, Typography } from '@mui/material'
-import { useLocation } from 'react-router-dom'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-
-const pathnameToTitle = (pathname: string) => {
-  switch (pathname) {
-    case '/workspace-settings':
-      return t`Workspace Settings`
-    case '/workspace-settings/accounts':
-      return t`Accounts`
-    case '/workspace-settings/accounts/setup-cloud':
-      return t`Cloud Setup`
-    case '/workspace-settings/accounts/setup-cloud/aws':
-      return t`Amazon Web Services`
-    case '/workspace-settings/accounts/setup-cloud/gcp':
-      return t`Google Cloud Platform`
-    case '/workspace-settings/users':
-      return t`Users`
-    case '/workspace-settings/users/invitations':
-      return t`Pending Invitations`
-    case '/workspace-settings/billing-receipts':
-      return t`Billing`
-    case '/workspace-settings/external-directories':
-      return t`External Directories`
-  }
-}
+import { useBreadcrumbs } from './useBreadcrumbs'
 
 export const PanelBreadcrumbs = () => {
-  const { pathname: path } = useLocation()
+  const paths = useBreadcrumbs()
   const navigate = useAbsoluteNavigate()
-  const paths = path
-    .split('/')
-    .slice(1)
-    .reduce(
-      (prev, pathname) => {
-        const to = `${prev.slice(-1)[0]?.to ?? ''}/${pathname}`
-        const title = pathnameToTitle(to)
-        return title ? [...prev, { title, to }] : prev
-      },
-      [] as { title: string; to: string }[],
-    )
   const lastTitle = paths.splice(-1, 1)[0]?.title
   return paths.length ? (
-    <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} sx={{ mb: 1 }}>
+    <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} sx={{ p: 3, pb: 0, flexShrink: 0 }}>
       {paths.map(({ title, to }, i) => (
-        <Button key={i} onClick={() => navigate(to)}>
+        <Button
+          key={i}
+          href={to}
+          onClick={(e) => {
+            e.preventDefault()
+            navigate(to)
+          }}
+        >
           {title}
         </Button>
       ))}

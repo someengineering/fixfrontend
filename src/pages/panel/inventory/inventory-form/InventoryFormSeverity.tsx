@@ -28,7 +28,7 @@ export const InventoryFormSeverity = ({ preItems }: { preItems: AutoCompletePreD
         valuesToAdd.splice(index, 1)
       }
     }
-    valuesToAdd.forEach((value) => result.push({ label: value, value }))
+    valuesToAdd.forEach((value) => result.push({ label: value, value, id: value }))
     return result
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(values), preItems.severities])

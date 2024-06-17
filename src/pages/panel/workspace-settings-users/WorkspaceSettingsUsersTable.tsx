@@ -37,7 +37,7 @@ export const WorkspaceSettingsUsersTable = () => {
         paginationProps={{
           dataCount: data.length ?? 0,
           page,
-          pages: [5, ...panelUI.tableRowsPerPages],
+          pages: panelUI.tableRowsPerPages,
           rowsPerPage,
           setPage,
           setRowsPerPage,

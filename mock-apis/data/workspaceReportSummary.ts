@@ -207,13 +207,13 @@ export const workspaceReportSummary = {
         {
           categories: ['security', 'compliance'],
           default_values: null,
-          detect: { resoto: 'is(aws_rds_instance) and db_publicly_accessible==true' },
+          detect: { fix: 'is(aws_rds_instance) and db_publicly_accessible==true' },
           id: 'aws_rds_no_public_access',
           provider: 'aws',
           related: null,
           remediation: {
             action: null,
-            kind: 'resoto_core_report_check_remediation',
+            kind: 'fix_core_report_check_remediation',
             text: 'Do not allow public access.',
             url: 'https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_RDS_Configuring.html',
           },
@@ -227,13 +227,13 @@ export const workspaceReportSummary = {
         {
           categories: ['security', 'compliance'],
           default_values: null,
-          detect: { resoto: 'is(aws_root_user) and mfa_active!=true' },
+          detect: { fix: 'is(aws_root_user) and mfa_active!=true' },
           id: 'aws_iam_root_mfa_enabled',
           provider: 'aws',
           related: null,
           remediation: {
             action: null,
-            kind: 'resoto_core_report_check_remediation',
+            kind: 'fix_core_report_check_remediation',
             text: 'Using IAM console navigate to Dashboard and expand Activate MFA on your root account.',
             url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_mfa',
           },
@@ -247,13 +247,13 @@ export const workspaceReportSummary = {
         {
           categories: ['security', 'compliance'],
           default_values: null,
-          detect: { resoto: 'is(aws_root_user) and user_virtual_mfa_devices!=null and user_virtual_mfa_devices!=[]' },
+          detect: { fix: 'is(aws_root_user) and user_virtual_mfa_devices!=null and user_virtual_mfa_devices!=[]' },
           id: 'aws_iam_root_hardware_mfa_enabled',
           provider: 'aws',
           related: null,
           remediation: {
             action: null,
-            kind: 'resoto_core_report_check_remediation',
+            kind: 'fix_core_report_check_remediation',
             text: 'Using IAM console navigate to Dashboard and expand Activate MFA on your root account.',
             url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_mfa',
           },
@@ -267,7 +267,7 @@ export const workspaceReportSummary = {
         {
           categories: ['security', 'compliance'],
           default_values: { certificate_expiration: '0d' },
-          detect: { resoto: 'is(aws_iam_server_certificate) and expires<{{certificate_expiration.from_now}}' },
+          detect: { fix: 'is(aws_iam_server_certificate) and expires<{{certificate_expiration.from_now}}' },
           id: 'aws_iam_expired_server_certificates',
           provider: 'aws',
           related: null,
@@ -276,7 +276,7 @@ export const workspaceReportSummary = {
               cli: 'search is(aws_iam_server_certificate) and expires<@UTC@ | clean',
               aws_cli: 'aws iam delete-server-certificate --server-certificate-name {{name}}',
             },
-            kind: 'resoto_core_report_check_remediation',
+            kind: 'fix_core_report_check_remediation',
             text: 'Deleting the certificate could have implications for your application if you are using an expired server certificate with Elastic Load Balancing, CloudFront, etc. One has to make configurations at respective services to ensure there is no interruption in application functionality.',
             url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html',
           },
@@ -291,15 +291,14 @@ export const workspaceReportSummary = {
           categories: ['security', 'compliance'],
           default_values: null,
           detect: {
-            resoto:
-              'is(aws_cloud_trail) and trail_status.is_logging==true --> is(aws_s3_bucket) and bucket_public_access_block_configuration.{block_public_acls!=true or ignore_public_acls!=true or block_public_policy!=true or restrict_public_buckets!=true} or bucket_acl.grants[*].{permission in [READ, READ_ACP] and grantee.uri=="http://acs.amazonaws.com/groups/global/AllUsers"}}',
+            fix: 'is(aws_cloud_trail) and trail_status.is_logging==true --> is(aws_s3_bucket) and bucket_public_access_block_configuration.{block_public_acls!=true or ignore_public_acls!=true or block_public_policy!=true or restrict_public_buckets!=true} or bucket_acl.grants[*].{permission in [READ, READ_ACP] and grantee.uri=="http://acs.amazonaws.com/groups/global/AllUsers"}}',
           },
           id: 'aws_cloudtrail_logs_s3_bucket_is_not_publicly_accessible',
           provider: 'aws',
           related: null,
           remediation: {
             action: null,
-            kind: 'resoto_core_report_check_remediation',
+            kind: 'fix_core_report_check_remediation',
             text: 'Analyze Bucket policy to validate appropriate permissions. Ensure the AllUsers principal is not granted privileges. Ensure the AuthenticatedUsers principal is not granted privileges.',
             url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html',
           },

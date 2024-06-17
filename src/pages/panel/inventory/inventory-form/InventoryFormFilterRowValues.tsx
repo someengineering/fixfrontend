@@ -148,11 +148,13 @@ export function InventoryFormFilterRowValues({
                 ? currentValue?.map((value) => ({
                     label: value.toLowerCase() === 'null' || value.toLowerCase() === 'undefined' ? t`Undefined` : value,
                     value: value ?? 'null',
+                    id: value ?? 'null',
                   }))
                 : {
                     label:
                       currentValue.toLowerCase() === 'null' || currentValue.toLowerCase() === 'undefined' ? t`Undefined` : currentValue,
                     value: currentValue,
+                    id: currentValue,
                   } || null
           }
           defaultOptions={preItems ? getAutocompleteDataFromKey(data.path.toString() || '', preItems) : undefined}

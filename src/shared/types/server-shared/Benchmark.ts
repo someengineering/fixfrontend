@@ -6,3 +6,19 @@ export interface Benchmark {
   clouds: string[]
   description: string
 }
+
+export type BenchmarkDetail =
+  | {
+      checks: null
+      children: BenchmarkDetail[]
+      description: string
+      documentation: null
+      title: string
+    }
+  | {
+      checks: string[]
+      children: null
+      description: string
+      documentation: null
+      title: string
+    }

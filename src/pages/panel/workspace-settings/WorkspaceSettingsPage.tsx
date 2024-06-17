@@ -4,7 +4,7 @@ import PeopleIcon from '@mui/icons-material/People'
 import ReceiptIcon from '@mui/icons-material/Receipt'
 import { Button, Divider, Stack, Typography } from '@mui/material'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { useHasAccountsCheck } from 'src/shared/layouts/panel-layout'
+import { useHasAccountsCheck, usePermissionCheck } from 'src/shared/layouts/panel-layout'
 import { WorkspaceSettingsForm } from './WorkspaceSettingsForm'
 import { WorkspaceAlertingSettings } from './workspace-alerting-settings'
 import { WorkspaceSettingsConnectedServices } from './workspace-settings-services'
@@ -12,6 +12,7 @@ import { WorkspaceSettingsConnectedServices } from './workspace-settings-service
 export default function WorkspaceSettingsPage() {
   const navigate = useAbsoluteNavigate()
   const { doesNotHaveAccount, haveError, paymentOnHold } = useHasAccountsCheck()
+  const hasReadBillingPermission = usePermissionCheck('readBilling')
 
   return (
     <Stack direction="column" spacing={2}>
@@ -44,15 +45,41 @@ export default function WorkspaceSettingsPage() {
         <Trans>Other Workspace Settings</Trans>
       </Typography>
       <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} alignItems="start">
-        <Button variant="outlined" onClick={() => navigate('workspace-settings/accounts')} startIcon={<CloudIcon />}>
+        <Button
+          variant="outlined"
+          href="workspace-settings/accounts"
+          onClick={(e) => {
+            e.preventDefault()
+            navigate('workspace-settings/accounts')
+          }}
+          startIcon={<CloudIcon />}
+        >
           <Trans>Accounts</Trans>
         </Button>
-        <Button variant="outlined" onClick={() => navigate('workspace-settings/users')} startIcon={<PeopleIcon />}>
+        <Button
+          variant="outlined"
+          href="workspace-settings/users"
+          onClick={(e) => {
+            e.preventDefault()
+            navigate('workspace-settings/users')
+          }}
+          startIcon={<PeopleIcon />}
+        >
           <Trans>Users</Trans>
         </Button>
-        <Button variant="outlined" onClick={() => navigate('workspace-settings/billing-receipts')} startIcon={<ReceiptIcon />}>
-          <Trans>Billing</Trans>
-        </Button>
+        {hasReadBillingPermission ? (
+          <Button
+            variant="outlined"
+            href="workspace-settings/billing-receipts"
+            onClick={(e) => {
+              e.preventDefault()
+              navigate('workspace-settings/billing-receipts')
+            }}
+            startIcon={<ReceiptIcon />}
+          >
+            <Trans>Billing</Trans>
+          </Button>
+        ) : null}
         {/* <Button variant="outlined" onClick={() => navigate('workspace-settings/external-directories')} startIcon={<FolderCopyIcon />}>
           <Trans>External Directories</Trans>
         </Button> */}
