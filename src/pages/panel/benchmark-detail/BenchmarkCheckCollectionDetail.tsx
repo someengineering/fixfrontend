@@ -2,12 +2,14 @@ import { Trans, t } from '@lingui/macro'
 import GppGoodIcon from '@mui/icons-material/GppGood'
 import { ButtonBase, Divider, Stack, Typography } from '@mui/material'
 import { DataGridPremium, GridRow, GridToolbar } from '@mui/x-data-grid-premium'
+import { useRef } from 'react'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { panelUI, sortedSeverities } from 'src/shared/constants'
 import { getMessage } from 'src/shared/defined-messages'
 import { BenchmarkCheckCollectionNode } from 'src/shared/types/server'
 import { SeverityType } from 'src/shared/types/server-shared'
 import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
+import { usePersistState } from 'src/shared/utils/usePersistState'
 import { BenchmarkCheckCollectionNodeWithChildren } from './BenchmarkDetailTreeItem'
 import { getAllChildrenCheckResult } from './getAllChildrenCheckResult'
 
@@ -19,8 +21,11 @@ interface BenchmarkCheckCollectionDetailProps {
 }
 
 export const BenchmarkCheckCollectionDetail = ({ id, bench, child, onSelect }: BenchmarkCheckCollectionDetailProps) => {
+  const page = useRef(0)
+  const [pageSize, setPageSize] = usePersistState('BenchmarkCheckCollectionDetail.rowsPerPage', 5)
   const allChecks = getAllChildrenCheckResult(child)
   const allFailingCheckResults = allChecks.filter((i) => i.number_of_resources_failing)
+  const paginationSizeOption = panelUI.tableRowsPerPages.filter((_, i, arr) => allFailingCheckResults.length > (arr[i - 1] ?? 0))
 
   return (
     <Stack id={id} spacing={1} height={allFailingCheckResults.length ? 'auto' : '100%'}>
@@ -61,8 +66,8 @@ export const BenchmarkCheckCollectionDetail = ({ id, bench, child, onSelect }: B
           <DataGridPremium
             disableRowSelectionOnClick
             autoHeight
-            pagination={allFailingCheckResults.length > 5}
-            pageSizeOptions={[5, ...panelUI.tableRowsPerPages].filter((_, i, arr) => allFailingCheckResults.length > (arr[i - 1] ?? 0))}
+            pagination={allFailingCheckResults.length > panelUI.tableRowsPerPages[0]}
+            pageSizeOptions={paginationSizeOption}
             sx={{ minHeight: 300, minWidth: 100 }}
             columns={[
               {
@@ -116,15 +121,6 @@ export const BenchmarkCheckCollectionDetail = ({ id, bench, child, onSelect }: B
               },
             }}
             initialState={{
-              pagination:
-                allFailingCheckResults.length > 5
-                  ? {
-                      paginationModel: {
-                        pageSize: 5,
-                        page: 0,
-                      },
-                    }
-                  : undefined,
               sorting: {
                 sortModel: [
                   {
@@ -137,6 +133,22 @@ export const BenchmarkCheckCollectionDetail = ({ id, bench, child, onSelect }: B
                   },
                 ],
               },
+            }}
+            paginationModel={
+              allFailingCheckResults.length > 5
+                ? {
+                    pageSize: paginationSizeOption.includes(pageSize)
+                      ? pageSize
+                      : pageSize > paginationSizeOption[paginationSizeOption.length - 1]
+                        ? pageSize
+                        : 5,
+                    page: page.current,
+                  }
+                : undefined
+            }
+            onPaginationModelChange={(current) => {
+              page.current = current.page
+              setPageSize(current.pageSize)
             }}
             rows={allFailingCheckResults}
           />

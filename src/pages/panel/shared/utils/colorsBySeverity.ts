@@ -5,6 +5,6 @@ export const colorsBySeverity = {
   High: colorFromRedToGreen[35],
   Medium: colorFromRedToGreen[50],
   Low: colorFromRedToGreen[65],
-  Info: 'info.main',
+  Info: 'grey.500',
   Passed: colorFromRedToGreen[100],
 } as const

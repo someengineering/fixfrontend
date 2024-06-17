@@ -225,7 +225,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
             .filter((i) => i) as WorkspaceInventorySearchTableSort[],
         )
       }
-      pagination={dataCount > 10}
+      pagination={dataCount > panelUI.tableRowsPerPages[0]}
       paginationModel={{ page, pageSize: rowsPerPage }}
       onPaginationModelChange={(model) => {
         if (model.pageSize !== rowsPerPage) {

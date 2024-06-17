@@ -1,7 +1,8 @@
 import Splitter, { GutterTheme, SplitDirection } from '@devbookhq/splitter'
 import { Stack, Theme, useMediaQuery } from '@mui/material'
-import { ReactNode, useEffect, useMemo, useState } from 'react'
+import { ReactNode, useMemo } from 'react'
 import { useThemeMode } from 'src/core/theme'
+import { usePersistState } from 'src/shared/utils/usePersistState'
 
 export interface BenchmarkDetailSplitterProps {
   children: ReactNode[]
@@ -15,24 +16,17 @@ const getChildSizes = (children: BenchmarkDetailSplitterProps['children']) => {
 }
 
 export const BenchmarkDetailDesktopSplitter = ({ children, isMobile }: BenchmarkDetailSplitterProps) => {
-  const [sizes, setSizes] = useState<number[] | undefined>(() => getChildSizes(children))
-  useEffect(() => {
-    setSizes(() => getChildSizes(children))
-  }, [children])
+  const [sizes, setSizes] = usePersistState<number[] | undefined>('BenchmarkDetailDesktopSplitter.initialSizes', () =>
+    getChildSizes(children),
+  )
   const { mode } = useThemeMode()
 
   return (
-    <Stack
-      width="100%"
-      height="100%"
-      boxShadow={4}
-      sx={sizes ? { '& .dbk-child-wrapper': { width: 0, transition: ({ transitions }) => transitions.create('width') } } : undefined}
-    >
+    <Stack width="100%" height="100%" boxShadow={4}>
       <Splitter
         direction={isMobile ? SplitDirection.Vertical : SplitDirection.Horizontal}
-        initialSizes={sizes ?? []}
+        initialSizes={sizes}
         gutterTheme={mode === 'dark' ? GutterTheme.Dark : GutterTheme.Light}
-        onResizeStarted={() => setSizes(undefined)}
         onResizeFinished={(_, newSizes) => setSizes(newSizes)}
         classes={children.map(() => 'dbk-child-wrapper')}
       >

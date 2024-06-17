@@ -202,13 +202,18 @@ export const BenchmarkDetailTreeWithDetail = ({
             />
           ) : (
             <BenchmarkDetailCheckDetail
+              key={2}
               id={currentData.nodeId}
               check={currentData?.reported}
               accountName={accountName === accountId ? undefined : accountName}
+              description={
+                currentData?.parent?.reported?.kind === 'report_check_collection' ? currentData?.parent.reported.description : undefined
+              }
             />
           )
         ) : benchmarkDetail ? (
           <BenchmarkDetailView
+            key={3}
             id={benchmarkDetail.id}
             benchmarkDetail={benchmarkDetail.reported}
             child={dataWithChildren}

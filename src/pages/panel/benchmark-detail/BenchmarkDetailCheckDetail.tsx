@@ -5,20 +5,27 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import SearchIcon from '@mui/icons-material/Search'
 import { Button, ButtonBase, Divider, Stack, Typography } from '@mui/material'
 import { DataGridPremium, GridRow, GridToolbar } from '@mui/x-data-grid-premium'
+import { useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { panelUI } from 'src/shared/constants'
 import { FixQueryParser } from 'src/shared/fix-query-parser'
 import { BenchmarkCheckResultNode } from 'src/shared/types/server'
+import { usePersistState } from 'src/shared/utils/usePersistState'
 
 interface BenchmarkDetailCheckDetailProps {
   check: BenchmarkCheckResultNode
+  description?: string
   accountName?: string
   id?: string
 }
 
-export const BenchmarkDetailCheckDetail = ({ check, accountName, id }: BenchmarkDetailCheckDetailProps) => {
+const MAX_CONTAINER_WIDTH = 800
+
+export const BenchmarkDetailCheckDetail = ({ check, description, accountName, id }: BenchmarkDetailCheckDetailProps) => {
+  const page = useRef(0)
+  const [pageSize, setPageSize] = usePersistState('BenchmarkDetailCheckDetail.rowsPerPage', 5)
   const {
     i18n: { locale },
   } = useLingui()
@@ -47,15 +54,23 @@ export const BenchmarkDetailCheckDetail = ({ check, accountName, id }: Benchmark
     }
     query = `/inventory?q=${window.encodeURIComponent(parser.toString())}`
   }
+  const paginationSizeOption = resources?.length
+    ? panelUI.tableRowsPerPages.filter((_, i, arr) => resources.length > (arr[i - 1] ?? 0))
+    : []
   return (
     <Stack id={id} spacing={1} height={resources?.length ? 'auto' : '100%'} mb={1}>
       {query ? (
-        <Stack direction="row" justifyContent="space-between" flexWrap="wrap" alignItems="center" gap={1} width="100%">
-          <Typography variant="h5">{check.title ?? check.name}</Typography>
+        <Stack justifyContent="space-between" flexWrap="wrap" gap={1} width="100%">
+          <Typography variant="h4">{check.title ?? check.name}</Typography>
+          {description ? (
+            <Typography variant="h6" maxWidth={MAX_CONTAINER_WIDTH}>
+              {description}
+            </Typography>
+          ) : undefined}
           <Button
             href={query}
             sx={{ ml: 'auto', mr: 0 }}
-            startIcon={<SearchIcon />}
+            endIcon={<SearchIcon />}
             variant="contained"
             onClick={(e) => {
               e.preventDefault()
@@ -63,11 +78,18 @@ export const BenchmarkDetailCheckDetail = ({ check, accountName, id }: Benchmark
               navigate(query)
             }}
           >
-            <Trans>Search</Trans>
+            <Trans>Inspect Detection Search in Inventory</Trans>
           </Button>
         </Stack>
       ) : (
-        <Typography variant="h5">{check.title ?? check.name}</Typography>
+        <Stack spacing={1}>
+          <Typography variant="h4">{check.title ?? check.name}</Typography>
+          {description ? (
+            <Typography variant="h6" maxWidth={MAX_CONTAINER_WIDTH}>
+              {description}
+            </Typography>
+          ) : undefined}
+        </Stack>
       )}
       <Divider flexItem />
       {check.url ? (
@@ -76,7 +98,7 @@ export const BenchmarkDetailCheckDetail = ({ check, accountName, id }: Benchmark
             <Trans>Why does it matter</Trans>
           </Typography>
           <Button href={check.url} target="_blank" rel="noopener noreferrer" endIcon={<OpenInNewIcon />} sx={{ ml: 'auto', mr: 0 }}>
-            <Trans>More info about check</Trans>
+            <Trans>Learn more about the associated risk</Trans>
           </Button>
         </Stack>
       ) : (
@@ -84,12 +106,12 @@ export const BenchmarkDetailCheckDetail = ({ check, accountName, id }: Benchmark
           <Trans>Why does it matter</Trans>
         </Typography>
       )}
-      <Typography>{check.risk}</Typography>
+      <Typography maxWidth={MAX_CONTAINER_WIDTH}>{check.risk}</Typography>
       <Divider flexItem />
       <Typography variant="h5">
         <Trans>How to fix</Trans>
       </Typography>
-      <Typography>{check.remediation.text}</Typography>
+      <Typography maxWidth={MAX_CONTAINER_WIDTH}>{check.remediation.text}</Typography>
       {check.remediation.url ? (
         <Stack direction="row" justifyContent="end" width="100%">
           <Button
@@ -99,7 +121,7 @@ export const BenchmarkDetailCheckDetail = ({ check, accountName, id }: Benchmark
             endIcon={<OpenInNewIcon />}
             sx={{ ml: 'auto', mr: 0 }}
           >
-            <Trans>More info about fix</Trans>
+            <Trans>Practical remediation guidance</Trans>
           </Button>
         </Stack>
       ) : null}
@@ -131,8 +153,8 @@ export const BenchmarkDetailCheckDetail = ({ check, accountName, id }: Benchmark
             sx={{ minHeight: 300, minWidth: 100 }}
             disableRowSelectionOnClick
             autoHeight
-            pagination={resources.length > 5}
-            pageSizeOptions={[5, ...panelUI.tableRowsPerPages].filter((_, i, arr) => resources.length > (arr[i - 1] ?? 0))}
+            pagination={resources.length > panelUI.tableRowsPerPages[0]}
+            pageSizeOptions={paginationSizeOption}
             columns={[
               {
                 field: 'cloud',
@@ -179,16 +201,21 @@ export const BenchmarkDetailCheckDetail = ({ check, accountName, id }: Benchmark
                 minWidth: 100,
               },
             ]}
-            initialState={{
-              pagination:
-                resources.length > 5
-                  ? {
-                      paginationModel: {
-                        pageSize: 5,
-                        page: 0,
-                      },
-                    }
-                  : undefined,
+            paginationModel={
+              resources.length > 5
+                ? {
+                    pageSize: paginationSizeOption.includes(pageSize)
+                      ? pageSize
+                      : pageSize > paginationSizeOption[paginationSizeOption.length - 1]
+                        ? pageSize
+                        : 5,
+                    page: page.current,
+                  }
+                : undefined
+            }
+            onPaginationModelChange={(current) => {
+              page.current = current.page
+              setPageSize(current.pageSize)
             }}
             rows={resources}
           />

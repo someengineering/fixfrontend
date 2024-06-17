@@ -62,7 +62,10 @@ export const BenchmarkDetailTree = () => {
             from.children = [to]
           }
           from.numberOfResourceFailing += to.numberOfResourceFailing
-          if (!from.severity || (to.severity && sortedSeverities.indexOf(to.severity) < sortedSeverities.indexOf(from.severity))) {
+          if (
+            !from.severity ||
+            (to.severity && to.numberOfResourceFailing && sortedSeverities.indexOf(to.severity) < sortedSeverities.indexOf(from.severity))
+          ) {
             from.severity = to.severity
           }
           to.parent = from

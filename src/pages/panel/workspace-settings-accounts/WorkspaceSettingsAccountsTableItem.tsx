@@ -39,7 +39,7 @@ export const WorkspaceSettingsAccountsTableItem = ({
           rowsPerPage,
           setPage,
           setRowsPerPage,
-          pages: [5, ...panelUI.tableRowsPerPages],
+          pages: panelUI.tableRowsPerPages,
           id: `AccountsTableItem_${title}`,
         }}
       >

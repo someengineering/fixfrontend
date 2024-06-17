@@ -32,6 +32,18 @@ export const settingsStorageKeys = {
   WorkspaceSettingsAccountsSetupCloudGCP: {
     activeStep: 'WorkspaceSettingsAccountsSetupCloudGCP.activeStep',
   },
+  BenchmarkDetailDesktopSplitter: {
+    initialSizes: 'BenchmarkDetailDesktopSplitter.initialSizes',
+  },
+  BenchmarkDetailCheckDetail: {
+    rowsPerPage: 'BenchmarkDetailCheckDetail.rowsPerPage',
+  },
+  BenchmarkCheckCollectionDetail: {
+    rowsPerPage: 'BenchmarkCheckCollectionDetail.rowsPerPage',
+  },
+  BenchmarkDetailView: {
+    rowsPerPage: 'BenchmarkDetailView.rowsPerPage',
+  },
 } as const
 
 export type SettingsStorageKey = RecursiveValueExtractor<typeof settingsStorageKeys>
