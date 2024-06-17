@@ -2,19 +2,23 @@ import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import GppGoodIcon from '@mui/icons-material/GppGood'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
+import SearchIcon from '@mui/icons-material/Search'
 import { Button, ButtonBase, Divider, Stack, Typography } from '@mui/material'
 import { DataGridPremium, GridRow, GridToolbar } from '@mui/x-data-grid-premium'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
+import { panelUI } from 'src/shared/constants'
 import { FixQueryParser } from 'src/shared/fix-query-parser'
 import { BenchmarkCheckResultNode } from 'src/shared/types/server'
 
 interface BenchmarkDetailCheckDetailProps {
   check: BenchmarkCheckResultNode
+  accountName?: string
+  id?: string
 }
 
-export const BenchmarkDetailCheckDetail = ({ check }: BenchmarkDetailCheckDetailProps) => {
+export const BenchmarkDetailCheckDetail = ({ check, accountName, id }: BenchmarkDetailCheckDetailProps) => {
   const {
     i18n: { locale },
   } = useLingui()
@@ -39,26 +43,47 @@ export const BenchmarkDetailCheckDetail = ({ check }: BenchmarkDetailCheckDetail
   if (check.detect.fix) {
     let parser = FixQueryParser.parse(check.detect.fix, check.default_values ?? undefined)
     if (accountId) {
-      parser = parser.set_cloud_account_region('account', '=', accountId)
+      parser = parser.set_cloud_account_region('account', '=', accountName ?? accountId, true)
     }
-    query = parser.toString()
+    query = `/inventory?q=${window.encodeURIComponent(parser.toString())}`
   }
   return (
-    <>
-      {check.url ? (
+    <Stack id={id} spacing={1} height={resources?.length ? 'auto' : '100%'} mb={1}>
+      {query ? (
         <Stack direction="row" justifyContent="space-between" flexWrap="wrap" alignItems="center" gap={1} width="100%">
           <Typography variant="h5">{check.title ?? check.name}</Typography>
-          <Button href={check.url} target="_blank" rel="noopener noreferrer" endIcon={<OpenInNewIcon />} sx={{ ml: 'auto', mr: 0 }}>
-            <Trans>More info about check</Trans>
+          <Button
+            href={query}
+            sx={{ ml: 'auto', mr: 0 }}
+            startIcon={<SearchIcon />}
+            variant="contained"
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              navigate(query)
+            }}
+          >
+            <Trans>Search</Trans>
           </Button>
         </Stack>
       ) : (
         <Typography variant="h5">{check.title ?? check.name}</Typography>
       )}
       <Divider flexItem />
-      <Typography variant="h5">
-        <Trans>Why does it matter</Trans>
-      </Typography>
+      {check.url ? (
+        <Stack direction="row" justifyContent="space-between" flexWrap="wrap" alignItems="center" gap={1} width="100%">
+          <Typography variant="h5">
+            <Trans>Why does it matter</Trans>
+          </Typography>
+          <Button href={check.url} target="_blank" rel="noopener noreferrer" endIcon={<OpenInNewIcon />} sx={{ ml: 'auto', mr: 0 }}>
+            <Trans>More info about check</Trans>
+          </Button>
+        </Stack>
+      ) : (
+        <Typography variant="h5">
+          <Trans>Why does it matter</Trans>
+        </Typography>
+      )}
       <Typography>{check.risk}</Typography>
       <Divider flexItem />
       <Typography variant="h5">
@@ -78,9 +103,9 @@ export const BenchmarkDetailCheckDetail = ({ check }: BenchmarkDetailCheckDetail
           </Button>
         </Stack>
       ) : null}
-      <Divider flexItem />
       {resources?.length ? (
         <>
+          <Divider flexItem />
           <Typography variant="h5">
             <Trans>Affected resources</Trans>
           </Typography>
@@ -93,7 +118,10 @@ export const BenchmarkDetailCheckDetail = ({ check }: BenchmarkDetailCheckDetail
                   onClick={(e) => {
                     e.preventDefault()
                     e.stopPropagation()
-                    navigate(`./resource-detail/${(rowProps.row as (typeof resources)[number])?.id}`)
+                    navigate({
+                      pathname: `./resource-detail/${(rowProps.row as (typeof resources)[number])?.id}`,
+                      search: window.location.search,
+                    })
                   }}
                 >
                   <GridRow {...rowProps} />
@@ -102,7 +130,9 @@ export const BenchmarkDetailCheckDetail = ({ check }: BenchmarkDetailCheckDetail
             }}
             sx={{ minHeight: 300, minWidth: 100 }}
             disableRowSelectionOnClick
-            autoPageSize
+            autoHeight
+            pagination={resources.length > 5}
+            pageSizeOptions={[5, ...panelUI.tableRowsPerPages].filter((_, i, arr) => resources.length > (arr[i - 1] ?? 0))}
             columns={[
               {
                 field: 'cloud',
@@ -150,72 +180,30 @@ export const BenchmarkDetailCheckDetail = ({ check }: BenchmarkDetailCheckDetail
               },
             ]}
             initialState={{
-              pagination: {
-                paginationModel: {
-                  pageSize: 10,
-                  page: 0,
-                },
-              },
+              pagination:
+                resources.length > 5
+                  ? {
+                      paginationModel: {
+                        pageSize: 5,
+                        page: 0,
+                      },
+                    }
+                  : undefined,
             }}
-            pagination
             rows={resources}
           />
         </>
-      ) : (
-        <Stack flex={1} justifyContent="center" alignItems="center" spacing={1}>
-          <GppGoodIcon fontSize="large" color="success" sx={{ fontSize: 48 }} />
-          <Typography color="success.main" variant="h5" textAlign="center">
-            <Trans>No resources that are affected by this check</Trans>
-          </Typography>
-        </Stack>
-      )}
-
-      {detectType ? (
+      ) : detectType !== 'text' ? (
         <>
           <Divider flexItem />
-          <Typography variant="h5">
-            {detectType === 'monospace' ? (
-              <>
-                <Trans>How we detect</Trans>{' '}
-                <Typography component="span" variant="body1" fontWeight={700}>
-                  {query ? (
-                    <>
-                      (
-                      <Trans>
-                        with search,{' '}
-                        <Link
-                          onClick={(e) => {
-                            e.preventDefault()
-                            e.stopPropagation()
-                            navigate(`/inventory?q=${window.encodeURIComponent(query)}`)
-                          }}
-                          to={`/inventory?q=${window.encodeURIComponent(query)}`}
-                        >
-                          try it
-                        </Link>
-                      </Trans>
-                      )
-                    </>
-                  ) : (
-                    <Trans>with command line</Trans>
-                  )}
-                </Typography>
-              </>
-            ) : (
-              <Trans>How you can detect</Trans>
-            )}
-          </Typography>
-          <Typography
-            fontFamily={detectType === 'monospace' ? 'monospace' : undefined}
-            py={detectType === 'monospace' ? 1 : undefined}
-            px={detectType === 'monospace' ? 0.5 : undefined}
-            bgcolor={detectType === 'monospace' ? 'common.black' : undefined}
-            color={detectType === 'monospace' ? 'common.white' : undefined}
-          >
-            {query ?? check.detect.fix_cmd ?? check.detect.manual}
-          </Typography>
+          <Stack flex={1} justifyContent="center" alignItems="center" spacing={1}>
+            <GppGoodIcon fontSize="large" color="success" sx={{ fontSize: 48 }} />
+            <Typography color="success.main" variant="h5" textAlign="center">
+              <Trans>All resources passed the check</Trans>
+            </Typography>
+          </Stack>
         </>
       ) : null}
-    </>
+    </Stack>
   )
 }

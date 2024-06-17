@@ -191,7 +191,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       autoHeight
       columns={columns}
       rows={rows}
-      pageSizeOptions={panelUI.tableRowsPerPages}
+      pageSizeOptions={panelUI.tableRowsPerPages.filter((_, i, arr) => dataCount > (arr[i - 1] ?? 0))}
       filterMode="server"
       sortingMode="server"
       rowSelection={false}

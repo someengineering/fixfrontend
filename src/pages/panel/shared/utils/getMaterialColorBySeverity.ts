@@ -4,7 +4,7 @@ import { materialColorsBySeverity } from './materialColorsBySeverity'
 type MaterialColorsBySeverityType = typeof materialColorsBySeverity
 
 export function getMaterialColorBySeverity(failedChecks: SeverityType): MaterialColorsBySeverityType[keyof MaterialColorsBySeverityType]
-export function getMaterialColorBySeverity(failedChecks: string): string
+export function getMaterialColorBySeverity(failedChecks: string): MaterialColorsBySeverityType[keyof MaterialColorsBySeverityType]
 export function getMaterialColorBySeverity(failedChecks: string) {
   switch (failedChecks.toLowerCase()) {
     case 'critical':

@@ -115,8 +115,8 @@ msgstr "/ month"
 msgid "© 2024 Some Engineering Inc. All rights reserved."
 msgstr "© 2024 Some Engineering Inc. All rights reserved."
 
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:53
-#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:76
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:54
+#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:77
 msgid "<0>{0} checks failing</0> out of {1}"
 msgstr "<0>{0} checks failing</0> out of {1}"
 
@@ -209,7 +209,7 @@ msgstr "Accept"
 msgid "Access to your account is broken"
 msgstr "Access to your account is broken"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:139
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:169
 #: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:60
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:239
 msgid "Account"
@@ -292,7 +292,7 @@ msgstr "Advanced"
 msgid "Advanced search query"
 msgstr "Advanced search query"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:85
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:110
 msgid "Affected resources"
 msgstr "Affected resources"
 
@@ -312,6 +312,12 @@ msgstr "Alerting Settings"
 #: src/pages/panel/resource-detail/ResourceDetailFailedCheckIgnoredChecks.tsx:48
 msgid "All checks have been disabled for this resource"
 msgstr "All checks have been disabled for this resource"
+
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:148
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:202
+#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:171
+msgid "All resources passed the check"
+msgstr "All resources passed the check"
 
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:28
 msgid "All security issues fixed"
@@ -418,7 +424,7 @@ msgstr "Because the data is over {0} Only first {1} items will be downloaded"
 msgid "below"
 msgstr "below"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:93
+#: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:98
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:46
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:160
 msgid "Benchmark"
@@ -510,8 +516,8 @@ msgstr "Changes"
 msgid "Changes in the past 7 days"
 msgstr "Changes in the past 7 days"
 
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:88
-#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:111
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:91
+#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:114
 msgid "Check Name"
 msgstr "Check Name"
 
@@ -535,7 +541,7 @@ msgstr "Click the service Account, go to the \"Keys\" Tab, and Click \"Add Key\"
 msgid "Close"
 msgstr "Close"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:109
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:139
 #: src/pages/panel/inventory/inventory-form/InventoryFormCloudValues.tsx:57
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:96
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:235
@@ -647,7 +653,7 @@ msgstr "Create Service Account"
 msgid "Created Time"
 msgstr "Created Time"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:145
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:175
 msgid "Creation Date"
 msgstr "Creation Date"
 
@@ -910,8 +916,8 @@ msgstr "Failing benchmarks"
 msgid "Failing Check Timeline"
 msgstr "Failing Check Timeline"
 
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:82
-#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:105
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:85
+#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:108
 msgid "Failing Resources"
 msgstr "Failing Resources"
 
@@ -973,7 +979,7 @@ msgstr "Forgot Password"
 msgid "Form"
 msgstr "Form"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:50
+#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:51
 msgid "Framework"
 msgstr "Framework"
 
@@ -1022,24 +1028,24 @@ msgstr "Homepage"
 msgid "Hourly"
 msgstr "Hourly"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:65
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:90
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:111
 msgid "How to fix"
 msgstr "How to fix"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:179
-msgid "How we detect"
-msgstr "How we detect"
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:185
+#~ msgid "How we detect"
+#~ msgstr "How we detect"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:205
-msgid "How you can detect"
-msgstr "How you can detect"
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:211
+#~ msgid "How you can detect"
+#~ msgstr "How you can detect"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:45
 msgid "IAM"
 msgstr "IAM"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:115
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:145
 msgid "Id"
 msgstr "Id"
 
@@ -1100,7 +1106,7 @@ msgstr "Ignored"
 msgid "Improved"
 msgstr "Improved"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:97
+#: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:102
 msgid "in account"
 msgstr "in account"
 
@@ -1167,7 +1173,7 @@ msgstr "Invites"
 msgid "kind"
 msgstr "kind"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:133
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:163
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:231
 #: src/shared/charts/NetworkDiagram.tsx:406
 msgid "Kind"
@@ -1253,11 +1259,11 @@ msgstr "Monthly email report"
 msgid "More info"
 msgstr "More info"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:52
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:79
 msgid "More info about check"
 msgstr "More info about check"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:77
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:102
 msgid "More info about fix"
 msgstr "More info about fix"
 
@@ -1273,7 +1279,7 @@ msgstr "Most Improved Resources"
 msgid "Most Non-Compliant Accounts"
 msgstr "Most Non-Compliant Accounts"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:121
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:151
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:233
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:425
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:56
@@ -1348,9 +1354,11 @@ msgstr "No"
 msgid "No {label} found for {typed}"
 msgstr "No {label} found for {typed}"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:168
-msgid "No resources that are affected by this check"
-msgstr "No resources that are affected by this check"
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:145
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:174
+#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:168
+#~ msgid "No resources that are affected by this check"
+#~ msgstr "No resources that are affected by this check"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:31
 msgid "Node Compliant"
@@ -1483,6 +1491,10 @@ msgstr "OTP Code"
 #: src/pages/panel/workspace-settings-users/workspaceSettingsUserRoleToString.ts:7
 msgid "Owner"
 msgstr "Owner"
+
+#: src/shared/defined-messages/getMessage.ts:20
+msgid "Passed"
+msgstr "Passed"
 
 #: src/pages/auth/login/LoginPage.tsx:121
 #: src/pages/auth/register/RegisterPage.tsx:98
@@ -1628,7 +1640,7 @@ msgstr "Recovery codes"
 msgid "Regenerate"
 msgstr "Regenerate"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:127
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:157
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:97
 #: src/pages/panel/inventory/inventory-form/InventoryFormRegionValues.tsx:54
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:240
@@ -1691,6 +1703,10 @@ msgstr "Risk"
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:63
 msgid "Roles"
 msgstr "Roles"
+
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:66
+msgid "Search"
+msgstr "Search"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:167
 msgid "Search {0}"
@@ -1772,8 +1788,8 @@ msgstr "Setting Up Email Notifications"
 msgid "Severities"
 msgstr "Severities"
 
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:67
-#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:90
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:70
+#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:93
 #: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:50
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:156
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:163
@@ -2020,7 +2036,7 @@ msgstr "Users"
 msgid "Value"
 msgstr "Value"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:60
+#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:61
 msgid "Version"
 msgstr "Version"
 
@@ -2056,17 +2072,18 @@ msgstr "Weekly email report"
 msgid "Weekly Report"
 msgstr "Weekly Report"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:60
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:76
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:84
 msgid "Why does it matter"
 msgstr "Why does it matter"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:200
-msgid "with command line"
-msgstr "with command line"
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:206
+#~ msgid "with command line"
+#~ msgstr "with command line"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:184
-msgid "with search, <0>try it</0>"
-msgstr "with search, <0>try it</0>"
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:190
+#~ msgid "with search, <0>try it</0>"
+#~ msgstr "with search, <0>try it</0>"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:178
 msgid "Within a billing cycle you will be charged for the highest product tier that was active."

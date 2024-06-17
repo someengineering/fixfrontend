@@ -1,7 +1,7 @@
 import { Trans } from '@lingui/macro'
 import { Typography } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
@@ -9,12 +9,12 @@ import { sortedSeverities } from 'src/shared/constants'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { BenchmarkReportNode } from 'src/shared/types/server'
 import { NodeType } from 'src/shared/types/server-shared'
+import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { BenchmarkCheckCollectionNodeWithChildren } from './BenchmarkDetailTreeItem'
 import { BenchmarkDetailTreeWithDetail } from './BenchmarkDetailTreeWithDetail'
 import { getWorkspaceInventoryReportBenchmarkQuery } from './getWorkspaceInventoryReportBenchmarkResult.query'
 
 export const BenchmarkDetailTree = () => {
-  const [count, setCount] = useState(0)
   const navigate = useAbsoluteNavigate()
   const { selectedWorkspace } = useUserProfile()
   const { accountId, benchmarkId, checkId } = useParams<'benchmarkId' | 'accountId' | 'checkId'>()
@@ -77,16 +77,21 @@ export const BenchmarkDetailTree = () => {
     ]
   }, [accountId, data])
 
+  const oneParentId = dataWithChildren.length === 1 ? dataWithChildren[0].nodeId : undefined
+
   return (
     <>
       <Typography
         variant="h5"
         flexShrink={1}
         onClick={() => {
-          if (checkId) {
-            navigate('../..')
+          const searches = getLocationSearchValues()
+          delete searches['expanded-items']
+          if (oneParentId) {
+            searches['expanded-items'] = oneParentId
           }
-          setCount((prev) => prev + 1)
+          delete searches['selected-id']
+          navigate({ pathname: checkId ? '../..' : '.', search: mergeLocationSearchValues(searches) })
         }}
         sx={{ cursor: 'pointer' }}
       >
@@ -102,9 +107,9 @@ export const BenchmarkDetailTree = () => {
         <LoadingSuspenseFallback />
       ) : dataWithChildren && allData ? (
         <BenchmarkDetailTreeWithDetail
-          key={count}
           benchmarkDetail={benchmarkDetail}
           accountId={accountId}
+          accountName={accountName}
           benchmarkId={benchmarkId}
           checkId={checkId}
           dataWithChildren={dataWithChildren}

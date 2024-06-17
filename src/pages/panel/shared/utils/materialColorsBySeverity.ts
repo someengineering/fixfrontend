@@ -2,7 +2,7 @@ export const materialColorsBySeverity = {
   Critical: 'error',
   High: 'error',
   Medium: 'warning',
-  Low: 'success',
+  Low: 'warning',
   Info: 'info',
   Passed: 'success',
 } as const

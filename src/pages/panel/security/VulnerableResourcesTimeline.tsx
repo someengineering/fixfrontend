@@ -19,9 +19,6 @@ export const VulnerableResourcesTimeline = ({ data }: { data: VulnerableResource
   const {
     palette: {
       info: { main: infoColor },
-      error: { main: errorColor },
-      warning: { main: warningColor },
-      success: { main: successColor },
     },
   } = useTheme()
   const { series, labels } = useMemo(() => {
@@ -38,21 +35,7 @@ export const VulnerableResourcesTimeline = ({ data }: { data: VulnerableResource
           currentDataIndex = newLabels.findIndex((i) => i.valueOf() === curDate.valueOf())
         }
         const currentLabel = snakeCaseToUFStr(cur.group.severity)
-        let currentColor = infoColor
-        switch (cur.group.severity) {
-          case 'critical':
-            currentColor = errorColor
-            break
-          case 'high':
-            currentColor = warningColor
-            break
-          case 'medium':
-            currentColor = getColorBySeverity('medium')
-            break
-          case 'low':
-            currentColor = successColor
-            break
-        }
+        let currentColor = getColorBySeverity(cur.group.severity)
         if (currentColor === 'info.main') {
           currentColor = infoColor
         }
@@ -101,7 +84,7 @@ export const VulnerableResourcesTimeline = ({ data }: { data: VulnerableResource
         .filter((i) => i) as LineChartProps['series'],
       labels,
     }
-  }, [data.data, errorColor, infoColor, locale, successColor, warningColor])
+  }, [data.data, infoColor, locale])
   return (
     <Box width="100%" overflow="auto">
       <Box minWidth={labels.length * 50} height={350}>

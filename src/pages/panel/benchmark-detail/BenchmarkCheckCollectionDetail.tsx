@@ -1,9 +1,9 @@
 import { Trans, t } from '@lingui/macro'
-import { ButtonBase, Divider, Typography } from '@mui/material'
+import GppGoodIcon from '@mui/icons-material/GppGood'
+import { ButtonBase, Divider, Stack, Typography } from '@mui/material'
 import { DataGridPremium, GridRow, GridToolbar } from '@mui/x-data-grid-premium'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
-import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { sortedSeverities } from 'src/shared/constants'
+import { panelUI, sortedSeverities } from 'src/shared/constants'
 import { getMessage } from 'src/shared/defined-messages'
 import { BenchmarkCheckCollectionNode } from 'src/shared/types/server'
 import { SeverityType } from 'src/shared/types/server-shared'
@@ -12,17 +12,18 @@ import { BenchmarkCheckCollectionNodeWithChildren } from './BenchmarkDetailTreeI
 import { getAllChildrenCheckResult } from './getAllChildrenCheckResult'
 
 interface BenchmarkCheckCollectionDetailProps {
+  id?: string
   bench: BenchmarkCheckCollectionNode
   child: BenchmarkCheckCollectionNodeWithChildren[] | undefined
+  onSelect: (checkId: string) => void
 }
 
-export const BenchmarkCheckCollectionDetail = ({ bench, child }: BenchmarkCheckCollectionDetailProps) => {
-  const navigate = useAbsoluteNavigate()
+export const BenchmarkCheckCollectionDetail = ({ id, bench, child, onSelect }: BenchmarkCheckCollectionDetailProps) => {
   const allChecks = getAllChildrenCheckResult(child)
   const allFailingCheckResults = allChecks.filter((i) => i.number_of_resources_failing)
 
   return (
-    <>
+    <Stack id={id} spacing={1} height={allFailingCheckResults.length ? 'auto' : '100%'}>
       {bench.title ? (
         <Typography variant="h5" component="span">
           {bench.title}
@@ -59,7 +60,9 @@ export const BenchmarkCheckCollectionDetail = ({ bench, child }: BenchmarkCheckC
           </Typography>
           <DataGridPremium
             disableRowSelectionOnClick
-            autoPageSize
+            autoHeight
+            pagination={allFailingCheckResults.length > 5}
+            pageSizeOptions={[5, ...panelUI.tableRowsPerPages].filter((_, i, arr) => allFailingCheckResults.length > (arr[i - 1] ?? 0))}
             sx={{ minHeight: 300, minWidth: 100 }}
             columns={[
               {
@@ -92,26 +95,36 @@ export const BenchmarkCheckCollectionDetail = ({ bench, child }: BenchmarkCheckC
             ]}
             slots={{
               toolbar: GridToolbar,
-              row: (rowProps) => (
-                <ButtonBase
-                  href={`./check-detail/${(rowProps.row as (typeof allFailingCheckResults)[number])?.checkId}`}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    e.stopPropagation()
-                    navigate(`./check-detail/${(rowProps.row as (typeof allFailingCheckResults)[number])?.checkId}`)
-                  }}
-                >
-                  <GridRow {...rowProps} />
-                </ButtonBase>
-              ),
+              row: (rowProps) => {
+                const checkId = (rowProps.row as (typeof allFailingCheckResults)[number])?.checkId
+                const id = (rowProps.row as (typeof allFailingCheckResults)[number])?.id
+                if (id && checkId) {
+                  return (
+                    <ButtonBase
+                      href={`./check-detail/${checkId}`}
+                      onClick={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        onSelect(id)
+                      }}
+                    >
+                      <GridRow {...rowProps} />
+                    </ButtonBase>
+                  )
+                }
+                return <GridRow {...rowProps} />
+              },
             }}
             initialState={{
-              pagination: {
-                paginationModel: {
-                  pageSize: 10,
-                  page: 0,
-                },
-              },
+              pagination:
+                allFailingCheckResults.length > 5
+                  ? {
+                      paginationModel: {
+                        pageSize: 5,
+                        page: 0,
+                      },
+                    }
+                  : undefined,
               sorting: {
                 sortModel: [
                   {
@@ -125,11 +138,17 @@ export const BenchmarkCheckCollectionDetail = ({ bench, child }: BenchmarkCheckC
                 ],
               },
             }}
-            pagination
             rows={allFailingCheckResults}
           />
         </>
-      ) : null}
-    </>
+      ) : (
+        <Stack flex={1} justifyContent="center" alignItems="center" spacing={1}>
+          <GppGoodIcon fontSize="large" color="success" sx={{ fontSize: 48 }} />
+          <Typography color="success.main" variant="h5" textAlign="center">
+            <Trans>All resources passed the check</Trans>
+          </Typography>
+        </Stack>
+      )}
+    </Stack>
   )
 }
