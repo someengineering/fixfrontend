@@ -1106,10 +1106,6 @@ msgstr ""
 msgid "Go to the Access Control (IAM):"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:106
-msgid "Go to the App permissions page under manage section:"
-msgstr ""
-
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:91
 msgid "Go to your download folder and drop the service account JSON file in the drop zone {0}."
 msgstr ""
@@ -1590,6 +1586,10 @@ msgstr "Öffene die Schublade"
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:257
 msgid "Open resource {name} in AWS Console"
 msgstr "Öffnen Sie die Ressource {name} in der AWS-Konsole"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:106
+msgid "Open the Manage section and go to the App permissions page:"
+msgstr ""
 
 #: src/pages/panel/resource-detail/utils/ResourceDetailChangeLogSelectedHistoryAccordion.tsx:64
 msgid "Opened at"

@@ -1106,10 +1106,6 @@ msgstr "Go To IAM and select Service Accounts."
 msgid "Go to the Access Control (IAM):"
 msgstr "Go to the Access Control (IAM):"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:106
-msgid "Go to the App permissions page under manage section:"
-msgstr "Go to the App permissions page under manage section:"
-
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:91
 msgid "Go to your download folder and drop the service account JSON file in the drop zone {0}."
 msgstr "Go to your download folder and drop the service account JSON file in the drop zone {0}."
@@ -1590,6 +1586,10 @@ msgstr "Open drawer"
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:257
 msgid "Open resource {name} in AWS Console"
 msgstr "Open resource {name} in AWS Console"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:106
+msgid "Open the Manage section and go to the App permissions page:"
+msgstr "Open the Manage section and go to the App permissions page:"
 
 #: src/pages/panel/resource-detail/utils/ResourceDetailChangeLogSelectedHistoryAccordion.tsx:64
 msgid "Opened at"

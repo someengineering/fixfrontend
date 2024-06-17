@@ -103,7 +103,7 @@ export const getInstructions = (): InstructionType[] => [
   {
     label: t`Assign permission to the App`,
     image: instructionImage10,
-    instruction: t`Go to the App permissions page under manage section:`,
+    instruction: t`Open the Manage section and go to the App permissions page:`,
   },
   {
     label: t`Add permission`,
