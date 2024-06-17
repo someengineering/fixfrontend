@@ -1144,14 +1144,6 @@ msgstr "Hourly"
 msgid "How to fix"
 msgstr "How to fix"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:185
-#~ msgid "How we detect"
-#~ msgstr "How we detect"
-
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:211
-#~ msgid "How you can detect"
-#~ msgstr "How you can detect"
-
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:45
 msgid "IAM"
 msgstr "IAM"
@@ -1217,13 +1209,13 @@ msgstr "Ignored"
 msgid "Improved"
 msgstr "Improved"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:70
-msgid "In the Azure console search, type App Registrations and go to App Registrations page."
-msgstr "In the Azure console search, type App Registrations and go to App Registrations page."
-
 #: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:105
 msgid "in account"
 msgstr "in account"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:70
+msgid "In the Azure console search, type App Registrations and go to App Registrations page."
+msgstr "In the Azure console search, type App Registrations and go to App Registrations page."
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:42
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
@@ -1390,14 +1382,6 @@ msgstr "Monthly email report"
 msgid "More info"
 msgstr "More info"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:79
-#~ msgid "More info about check"
-#~ msgstr "More info about check"
-
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:102
-#~ msgid "More info about fix"
-#~ msgstr "More info about fix"
-
 #: src/pages/panel/security/OverallCard.tsx:183
 msgid "Most Improved Accounts"
 msgstr "Most Improved Accounts"
@@ -1467,7 +1451,6 @@ msgstr "New Product Tier"
 msgid "New registration"
 msgstr "New registration"
 
-#: src/pages/panel/inventory/resource-detail/utils/nodeChange.tsx:26
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:26
 msgid "New security issues detected"
 msgstr "New security issues detected"
@@ -1493,12 +1476,6 @@ msgstr "No"
 #: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:202
 msgid "No {label} found for {typed}"
 msgstr "No {label} found for {typed}"
-
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:145
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:174
-#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:168
-#~ msgid "No resources that are affected by this check"
-#~ msgstr "No resources that are affected by this check"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:31
 msgid "Node Compliant"
@@ -1877,7 +1854,6 @@ msgstr "Review and assign (1)"
 msgid "Review and assign (2)"
 msgstr "Review and assign (2)"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:104
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:107
 msgid "Risk"
 msgstr "Risk"
@@ -1888,10 +1864,6 @@ msgstr "Risk"
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:63
 msgid "Roles"
 msgstr "Roles"
-
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:66
-#~ msgid "Search"
-#~ msgstr "Search"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:167
 msgid "Search {0}"
@@ -2298,14 +2270,6 @@ msgstr "Weekly Report"
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:106
 msgid "Why does it matter"
 msgstr "Why does it matter"
-
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:206
-#~ msgid "with command line"
-#~ msgstr "with command line"
-
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:190
-#~ msgid "with search, <0>try it</0>"
-#~ msgstr "with search, <0>try it</0>"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:178
 msgid "Within a billing cycle you will be charged for the highest product tier that was active."
