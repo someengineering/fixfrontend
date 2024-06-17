@@ -32,6 +32,9 @@ export const settingsStorageKeys = {
   WorkspaceSettingsAccountsSetupCloudGCP: {
     activeStep: 'WorkspaceSettingsAccountsSetupCloudGCP.activeStep',
   },
+  WorkspaceSettingsAccountsSetupCloudAzure: {
+    activeStep: 'WorkspaceSettingsAccountsSetupCloudAzure.activeStep',
+  },
 } as const
 
 export type SettingsStorageKey = RecursiveValueExtractor<typeof settingsStorageKeys>

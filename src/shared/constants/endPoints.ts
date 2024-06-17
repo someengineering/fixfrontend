@@ -54,6 +54,9 @@ export const endPoints = {
         gcp: {
           key: `api/workspaces/${workspaceId}/cloud_accounts/gcp/key`,
         },
+        azure: {
+          credentials: `api/workspaces/${workspaceId}/cloud_accounts/azure/credentials`,
+        },
       },
       inventory: {
         reportSummary: `api/workspaces/${workspaceId}/inventory/report-summary`,

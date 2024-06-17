@@ -1,4 +1,5 @@
 import AwsLogoComp from './aws-logo.svg?react'
+import AzureLogoComp from './azure-logo.svg?react'
 import { createIcon } from './createIcon'
 import CrownComp from './crown.svg?react'
 import DiscordIconComp from './discord-icon.svg?react'
@@ -22,6 +23,7 @@ export const DiscordWithTextLogo = createIcon(DiscordWithTextLogoComp)
 export const FixBetaLogo = createIcon(FixBetaLogoComp)
 export const FixLogo = createIcon(FixLogoComp)
 export const GcpLogo = createIcon(GcpLogoComp)
+export const AzureLogo = createIcon(AzureLogoComp)
 export const GithubSEBIcon = createIcon(GithubSEBIconComp)
 export const GoogleSEBIcon = createIcon(GoogleSEBIconComp)
 export const LogoWhiteNoBackground = createIcon(LogoWhiteNoBackgroundComp)
