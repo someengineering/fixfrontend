@@ -51,17 +51,17 @@
 }
 
 .__dbk__gutter.Light {
-  background: #EDF0EF;
+  background: #edf0ef;
 }
 .__dbk__gutter.Light:hover > .__dbk__dragger {
-  background: #76747B;
+  background: #76747b;
 }
 
 .__dbk__gutter.Dark {
   background: #020203;
 }
 .__dbk__gutter.Dark:hover > .__dbk__dragger {
-  background: #9995A3;
+  background: #9995a3;
 }
 /* ====== */
 
@@ -72,16 +72,16 @@
 
 .__dbk__dragger.Horizontal {
   width: 4px;
-  height: 24px;  
+  height: 24px;
 }
 
 .__dbk__dragger.Vertical {
   width: 24px;
-  height: 4px;  
+  height: 4px;
 }
 
 .__dbk__dragger.Light {
-  background: #A6ACB5;
+  background: #a6acb5;
 }
 
 .__dbk__dragger.Dark {
