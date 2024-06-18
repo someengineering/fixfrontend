@@ -72,7 +72,7 @@ export default function WorkspaceSettingsAccountsSetupCloudPage() {
               alignItems: 'center',
             }}
           >
-            <AzureLogo style={{ maxWidth: '500px', maxHeight: '500px' }} />
+            <AzureLogo nonce={nonce} style={{ maxWidth: '500px', maxHeight: '500px' }} />
             <Typography variant="h3" textAlign="center">
               Azure
             </Typography>

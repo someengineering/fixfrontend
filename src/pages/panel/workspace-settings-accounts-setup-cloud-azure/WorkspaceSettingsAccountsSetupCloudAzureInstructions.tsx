@@ -3,6 +3,7 @@ import { Button, Skeleton, Stack, Step, StepContent, StepLabel, Stepper, Typogra
 import { useEffect, useRef } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { panelUI } from 'src/shared/constants'
+import { useNonce } from 'src/shared/providers'
 import { usePersistState } from 'src/shared/utils/usePersistState'
 import { getInstructions, maxInstructionImageWidth } from './getInstructions'
 
@@ -22,6 +23,7 @@ const StyledImage = styled(LazyLoadImage)(({ theme, width }) => ({
 export const WorkspaceSettingsAccountsSetupCloudAzureInstructions = ({
   isMobile,
 }: WorkspaceSettingsAccountsSetupCloudAzureInstructionsProps) => {
+  const nonce = useNonce()
   const [activeStep, setActiveStep] = usePersistState('WorkspaceSettingsAccountsSetupCloudAzure.activeStep', 0)
   const timeout = useRef<number>()
   const instructions = getInstructions()
@@ -69,6 +71,7 @@ export const WorkspaceSettingsAccountsSetupCloudAzureInstructions = ({
                     effect="opacity"
                     placeholder={<Skeleton width={image.width / 2} height={image.height / 2} variant="rounded" />}
                     wrapperProps={{
+                      nonce,
                       style: {
                         color: 'transparent',
                         display: 'inline-block',

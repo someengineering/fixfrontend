@@ -7,6 +7,7 @@ interface WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInputProps<Na
   label: string
   uuidRegex?: boolean
   defaultValue?: string
+  disabled?: boolean
   onChange: (name: Name, value: string) => void
   onError: (name: Name, error?: string) => void
 }
@@ -17,6 +18,7 @@ export function WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput<N
   name,
   uuidRegex,
   defaultValue,
+  disabled,
   onChange,
   onError,
 }: WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInputProps<Name>) {
@@ -43,6 +45,7 @@ export function WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput<N
       sx={{ width: 500, maxWidth: '100%' }}
       error={!!error}
       helperText={error}
+      disabled={disabled}
     />
   )
 }
