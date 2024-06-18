@@ -1,8 +1,10 @@
 import { Button, Stack, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { AwsLogo, AzureLogo, GcpLogo } from 'src/assets/icons'
+import { useNonce } from 'src/shared/providers'
 
 export default function WorkspaceSettingsAccountsSetupCloudPage() {
+  const nonce = useNonce()
   return (
     <Stack
       height={{ xs: 'calc(100vh - 220px)', lg: 'calc(100vh - 220px)' }}
@@ -28,7 +30,7 @@ export default function WorkspaceSettingsAccountsSetupCloudPage() {
               alignItems: 'center',
             }}
           >
-            <AwsLogo style={{ maxWidth: '500px', maxHeight: '500px' }} />
+            <AwsLogo nonce={nonce} style={{ maxWidth: '500px', maxHeight: '500px' }} />
             <Typography variant="h3" textAlign="center">
               Amazon Web Services
             </Typography>
@@ -49,7 +51,7 @@ export default function WorkspaceSettingsAccountsSetupCloudPage() {
               alignItems: 'center',
             }}
           >
-            <GcpLogo style={{ maxWidth: '500px', maxHeight: '500px' }} />
+            <GcpLogo nonce={nonce} style={{ maxWidth: '500px', maxHeight: '500px' }} />
             <Typography variant="h3" textAlign="center">
               Google Cloud Platform
             </Typography>

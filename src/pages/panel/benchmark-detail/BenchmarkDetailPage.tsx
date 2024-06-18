@@ -11,7 +11,7 @@ export default function BenchmarkDetailPage() {
       spacing={1}
       height={{ xs: 'calc(100vh - 185px)', lg: 'calc(100vh - 185px)' }}
       maxHeight={{ xs: 'calc(100vh - 185px)', lg: 'calc(100vh - 185px)' }}
-      minHeight={{ xs: 400, lg: 400 }}
+      minHeight={{ xs: 300, lg: 300 }}
       width="100%"
     >
       <BenchmarkDetailTree />
