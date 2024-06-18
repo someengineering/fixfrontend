@@ -1,7 +1,8 @@
-import Splitter, { GutterTheme, SplitDirection } from '@devbookhq/splitter'
 import { Stack, Theme, useMediaQuery } from '@mui/material'
 import { ReactNode, useMemo } from 'react'
 import { useThemeMode } from 'src/core/theme'
+import { useNonce } from 'src/shared/providers'
+import { GutterTheme, SplitDirection, Splitter } from 'src/shared/splitter'
 import { usePersistState } from 'src/shared/utils/usePersistState'
 
 export interface BenchmarkDetailSplitterProps {
@@ -16,6 +17,7 @@ const getChildSizes = (children: BenchmarkDetailSplitterProps['children']) => {
 }
 
 export const BenchmarkDetailDesktopSplitter = ({ children, isMobile }: BenchmarkDetailSplitterProps) => {
+  const nonce = useNonce()
   const [sizes, setSizes] = usePersistState<number[] | undefined>('BenchmarkDetailDesktopSplitter.initialSizes', () =>
     getChildSizes(children),
   )
@@ -29,6 +31,7 @@ export const BenchmarkDetailDesktopSplitter = ({ children, isMobile }: Benchmark
         gutterTheme={mode === 'dark' ? GutterTheme.Dark : GutterTheme.Light}
         onResizeFinished={(_, newSizes) => setSizes(newSizes)}
         classes={children.map(() => 'dbk-child-wrapper')}
+        nonce={nonce}
       >
         {children}
       </Splitter>

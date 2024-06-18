@@ -1033,14 +1033,6 @@ msgstr "Stündliche"
 msgid "How to fix"
 msgstr "Wie repariert man"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:185
-#~ msgid "How we detect"
-#~ msgstr ""
-
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:211
-#~ msgid "How you can detect"
-#~ msgstr ""
-
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:45
 msgid "IAM"
 msgstr ""
@@ -1267,14 +1259,6 @@ msgstr "Monatlicher E-Mail-Bericht"
 msgid "More info"
 msgstr "Mehr Info"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:79
-#~ msgid "More info about check"
-#~ msgstr ""
-
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:102
-#~ msgid "More info about fix"
-#~ msgstr ""
-
 #: src/pages/panel/security/OverallCard.tsx:183
 msgid "Most Improved Accounts"
 msgstr "Am meisten verbesserte Konten"
@@ -1361,12 +1345,6 @@ msgstr ""
 #: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:202
 msgid "No {label} found for {typed}"
 msgstr ""
-
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:145
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:174
-#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:168
-#~ msgid "No resources that are affected by this check"
-#~ msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:31
 msgid "Node Compliant"
@@ -1715,10 +1693,6 @@ msgstr "Risiko"
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:63
 msgid "Roles"
 msgstr "Rollen"
-
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:66
-#~ msgid "Search"
-#~ msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:167
 msgid "Search {0}"
@@ -2088,14 +2062,6 @@ msgstr "Wöchentlicher Report"
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:106
 msgid "Why does it matter"
 msgstr ""
-
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:206
-#~ msgid "with command line"
-#~ msgstr ""
-
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:190
-#~ msgid "with search, <0>try it</0>"
-#~ msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:178
 msgid "Within a billing cycle you will be charged for the highest product tier that was active."
