@@ -25,8 +25,10 @@ export const BenchmarkDetailView = ({ id, benchmarkDetail, child, onSelect }: Be
   const allFailingCheckResults = allChecks.filter((i) => i.number_of_resources_failing)
   const paginationSizeOption = panelUI.tableRowsPerPages.filter((_, i, arr) => allFailingCheckResults.length > (arr[i - 1] ?? 0))
   const page = useRef(0)
-  const [pageSize, setPageSize] = usePersistState('BenchmarkDetailView.rowsPerPage', panelUI.tableRowsPerPages[0] as number, (state) =>
-    (panelUI.tableRowsPerPages as unknown as number[]).includes(state),
+  const [pageSize, setPageSize] = usePersistState(
+    'BenchmarkDetailView.rowsPerPage',
+    panelUI.tableRowsPerPages[0] as number,
+    (state) => typeof state === 'number' && (panelUI.tableRowsPerPages as unknown as number[]).includes(state),
   )
 
   return (

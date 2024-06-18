@@ -20,7 +20,7 @@ export const WorkspaceSettingsUserInvitationsTable = () => {
   const [rowsPerPage, setRowsPerPage] = usePersistState(
     settingsStorageKeys.WorkspaceSettingsUserInvitationsTable.rowsPerPage,
     panelUI.tableRowsPerPages[0] as number,
-    (state) => (panelUI.tableRowsPerPages as unknown as number[]).includes(state),
+    (state) => typeof state === 'number' && (panelUI.tableRowsPerPages as unknown as number[]).includes(state),
   )
   return (
     <>

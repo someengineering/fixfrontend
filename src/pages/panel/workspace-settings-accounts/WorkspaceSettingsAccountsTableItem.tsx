@@ -27,8 +27,10 @@ export const WorkspaceSettingsAccountsTableItem = ({
   const { checkPermission } = useUserProfile()
   const hasPermission = checkPermission('updateCloudAccounts')
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = usePersistState('AccountsTableItem.rowsPerPage', panelUI.tableRowsPerPages[0] as number, (state) =>
-    (panelUI.tableRowsPerPages as unknown as number[]).includes(state),
+  const [rowsPerPage, setRowsPerPage] = usePersistState(
+    'AccountsTableItem.rowsPerPage',
+    panelUI.tableRowsPerPages[0] as number,
+    (state) => typeof state === 'number' && (panelUI.tableRowsPerPages as unknown as number[]).includes(state),
   )
   return (
     <Box mb={isBottom ? undefined : { xs: 8, sm: 5 }} mt={isTop ? undefined : { sm: 3 }}>

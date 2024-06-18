@@ -25,7 +25,7 @@ export const BenchmarkCheckCollectionDetail = ({ id, bench, child, onSelect }: B
   const [pageSize, setPageSize] = usePersistState(
     'BenchmarkCheckCollectionDetail.rowsPerPage',
     panelUI.tableRowsPerPages[0] as number,
-    (state) => (panelUI.tableRowsPerPages as unknown as number[]).includes(state),
+    (state) => typeof state === 'number' && (panelUI.tableRowsPerPages as unknown as number[]).includes(state),
   )
   const allChecks = getAllChildrenCheckResult(child)
   const allFailingCheckResults = allChecks.filter((i) => i.number_of_resources_failing)

@@ -28,7 +28,7 @@ export const BenchmarkDetailCheckDetail = ({ check, description, accountName, id
   const [pageSize, setPageSize] = usePersistState(
     'BenchmarkDetailCheckDetail.rowsPerPage',
     panelUI.tableRowsPerPages[0] as number,
-    (state) => (panelUI.tableRowsPerPages as unknown as number[]).includes(state),
+    (state) => typeof state === 'number' && (panelUI.tableRowsPerPages as unknown as number[]).includes(state),
   )
   const {
     i18n: { locale },
