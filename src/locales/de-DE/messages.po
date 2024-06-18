@@ -107,11 +107,11 @@ msgstr "{0}: Wir haben {1} nicht konforme Ressourcen von insgesamt {2}."
 msgid "{added} configuration lines added and {removed} lines deleted."
 msgstr "{added} Konfigurationszeilen hinzugefügt und {removed} Zeilen gelöscht."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput.tsx:30
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput.tsx:32
 msgid "{label} is not valid"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput.tsx:28
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput.tsx:30
 msgid "{label} is required"
 msgstr ""
 
@@ -216,8 +216,6 @@ msgstr "Akzeptieren"
 msgid "Access Control (IAM)"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:239
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:365
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:241
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:367
 msgid "Access to your account is broken"
@@ -407,7 +405,7 @@ msgid "API Key"
 msgstr "API-Schlüssel"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:79
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:90
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:102
 msgid "Application (client) ID"
 msgstr ""
 
@@ -455,8 +453,7 @@ msgstr "AWS Marketplace wurde erfolgreich abonniert"
 msgid "Azure Service Management"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureInstructions.tsx:90
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:90
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureInstructions.tsx:93
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:93
 msgid "Back"
 msgstr ""
@@ -714,8 +711,7 @@ msgstr "Verbundene Konten"
 msgid "Connected Services"
 msgstr "Vernetzte Dienste"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureInstructions.tsx:85
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:85
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureInstructions.tsx:88
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:88
 msgid "Continue"
 msgstr ""
@@ -859,7 +855,7 @@ msgstr "Beschreibung"
 msgid "Details"
 msgstr "Einzelheiten"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:97
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:110
 msgid "Directory (tenant) ID"
 msgstr ""
 
@@ -900,6 +896,11 @@ msgstr "Möchten Sie diesen Benutzer löschen?"
 #: src/pages/auth/login/LoginPage.tsx:222
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:43
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:86
+msgid "Done! We will now import your Azure accounts, this usually takes a couple of minutes."
+msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:119
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:77
@@ -1716,7 +1717,7 @@ msgstr ""
 msgid "Print or copy the following recovery codes"
 msgstr "Drucken oder kopieren Sie die folgenden Wiederherstellungscodes"
 
-#: src/shared/cloud-avatar/CloudAvatar.tsx:46
+#: src/shared/cloud-avatar/CloudAvatar.tsx:48
 msgid "Privileged"
 msgstr "Privilegiert"
 
@@ -1877,7 +1878,7 @@ msgstr ""
 msgid "Searches for database instances with no connections over a significant period, indicating potential waste."
 msgstr "Sucht nach Datenbankinstanzen ohne Verbindungen über einen längeren Zeitraum, was auf potenzielle Verschwendung hinweist."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:104
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:118
 msgid "Secret Value"
 msgstr ""
 
@@ -2024,12 +2025,7 @@ msgstr "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einma
 msgid "Sources"
 msgstr "Quellen"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:114
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:274
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:275
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:280
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:145
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:146
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:136
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:276
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:277
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:282
