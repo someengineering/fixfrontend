@@ -7,6 +7,7 @@ import { Alert, AlertTitle, Badge, Box, Collapse, FormHelperText, Stack, Tab, To
 import { Suspense, useState } from 'react'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
+import { useNonce } from 'src/shared/providers'
 import { InventoryAdvanceSearchTextField } from './InventoryAdvanceSearchTextField'
 import { InventoryForm, InventoryFormsSkeleton } from './inventory-form'
 
@@ -18,6 +19,7 @@ interface InventoryAdvanceSearchProps {
 type TabsType = 'form' | 'advance'
 
 export const InventoryAdvanceSearch = ({ hasError, hasChanges }: InventoryAdvanceSearchProps) => {
+  const nonce = useNonce()
   const [tab, setTab] = useState<TabsType>('form')
   const { error, uiSimpleQuery, q } = useFixQueryParser()
   const hasSomethingExtra = !!q && q !== 'all' && !uiSimpleQuery
@@ -36,6 +38,7 @@ export const InventoryAdvanceSearch = ({ hasError, hasChanges }: InventoryAdvanc
                   <Badge
                     slotProps={{
                       badge: {
+                        nonce,
                         style: { left: -30 },
                       },
                     }}

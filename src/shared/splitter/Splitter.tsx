@@ -51,6 +51,16 @@ export interface SplitterProps {
   nonce?: string
 }
 
+const setNonce = (elements: HTMLElement[], nonce?: string) => {
+  if (nonce) {
+    for (const el of elements) {
+      if (el.nonce !== nonce) {
+        el.nonce = nonce
+      }
+    }
+  }
+}
+
 export const Splitter = ({
   direction = SplitDirection.Horizontal,
   minWidths = [],
@@ -94,6 +104,8 @@ export const Splitter = ({
       const pair = state.pairs[gutterIdx]
       onResizeStarted?.(pair.idx)
 
+      setNonce([pair.a, pair.b, pair.gutter, pair.parent, window.document.body], nonce)
+
       // Disable selection.
       pair.a.style.userSelect = 'none'
       pair.b.style.userSelect = 'none'
@@ -109,50 +121,54 @@ export const Splitter = ({
     [state.pairs],
   )
 
-  const stopDragging = useCallback(() => {
-    dispatch({
-      type: ActionType.StopDragging,
-    })
+  const stopDragging = useCallback(
+    () => {
+      dispatch({
+        type: ActionType.StopDragging,
+      })
 
-    // The callback receives an index of the resized pair and new sizes of all child elements.
-    const allSizes: number[] = []
-    for (let idx = 0; idx < state.pairs.length; idx++) {
-      const pair = state.pairs[idx]
-      const parentSize = getInnerSize(direction, pair.parent)
-      if (parentSize === undefined) throw new Error(`Cannot call the 'onResizeFinished' callback - parentSize is undefined`)
-      if (pair.gutterSize === undefined) throw new Error(`Cannot call 'onResizeFinished' callback - gutterSize is undefined`)
+      // The callback receives an index of the resized pair and new sizes of all child elements.
+      const allSizes: number[] = []
+      for (let idx = 0; idx < state.pairs.length; idx++) {
+        const pair = state.pairs[idx]
+        const parentSize = getInnerSize(direction, pair.parent)
+        if (parentSize === undefined) throw new Error(`Cannot call the 'onResizeFinished' callback - parentSize is undefined`)
+        if (pair.gutterSize === undefined) throw new Error(`Cannot call 'onResizeFinished' callback - gutterSize is undefined`)
 
-      const isFirst = idx === 0
-      const isLast = idx === state.pairs.length - 1
+        const isFirst = idx === 0
+        const isLast = idx === state.pairs.length - 1
 
-      const aSize = pair.a.getBoundingClientRect()[direction === SplitDirection.Horizontal ? 'width' : 'height']
-      const { aGutterSize, bGutterSize } = getGutterSizes(pair.gutterSize, isFirst, isLast)
-      const aSizePct = ((aSize + aGutterSize) / parentSize) * 100
-      allSizes.push(aSizePct)
+        const aSize = pair.a.getBoundingClientRect()[direction === SplitDirection.Horizontal ? 'width' : 'height']
+        const { aGutterSize, bGutterSize } = getGutterSizes(pair.gutterSize, isFirst, isLast)
+        const aSizePct = ((aSize + aGutterSize) / parentSize) * 100
+        allSizes.push(aSizePct)
 
-      if (isLast) {
-        const bSize = pair.b.getBoundingClientRect()[direction === SplitDirection.Horizontal ? 'width' : 'height']
-        const bSizePct = ((bSize + bGutterSize) / parentSize) * 100
-        allSizes.push(bSizePct)
+        if (isLast) {
+          const bSize = pair.b.getBoundingClientRect()[direction === SplitDirection.Horizontal ? 'width' : 'height']
+          const bSizePct = ((bSize + bGutterSize) / parentSize) * 100
+          allSizes.push(bSizePct)
+        }
       }
-    }
 
-    if (state.draggingIdx === undefined) throw new Error(`Could not reset cursor and user-select because 'state.draggingIdx' is undefined`)
-    const pair = state.pairs[state.draggingIdx]
-    onResizeFinished?.(pair.idx, allSizes)
+      if (state.draggingIdx === undefined)
+        throw new Error(`Could not reset cursor and user-select because 'state.draggingIdx' is undefined`)
+      const pair = state.pairs[state.draggingIdx]
+      onResizeFinished?.(pair.idx, allSizes)
 
-    // Disable selection.
-    pair.a.style.userSelect = ''
-    pair.b.style.userSelect = ''
+      // Disable selection.
+      pair.a.style.userSelect = ''
+      pair.b.style.userSelect = ''
 
-    // Set the mouse cursor.
-    // Must be done at multiple levels, not just for a gutter.
-    // The mouse cursor might move outside of the gutter element.
-    pair.gutter.style.cursor = ''
-    pair.parent.style.cursor = ''
-    window.document.body.style.cursor = ''
+      // Set the mouse cursor.
+      // Must be done at multiple levels, not just for a gutter.
+      // The mouse cursor might move outside of the gutter element.
+      pair.gutter.style.cursor = ''
+      pair.parent.style.cursor = ''
+      window.document.body.style.cursor = ''
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.draggingIdx, state.pairs, direction])
+    [state.draggingIdx, state.pairs, direction],
+  )
 
   const calculateSizes = useCallback((direction: SplitDirection, gutterIdx: number) => {
     dispatch({
@@ -172,7 +188,7 @@ export const Splitter = ({
   // This method is called on the initial render.
   // It iterates through the all children sets their initial sizes.
   const setInitialSizes = useCallback(
-    (direction: SplitDirection, children: HTMLElement[], gutters: HTMLElement[], initialSizes?: number[]) => {
+    (direction: SplitDirection, children: HTMLElement[], gutters: HTMLElement[], initialSizes?: number[], nonce?: string) => {
       // All children must have common parent.
       const parent = children[0].parentNode
       if (!parent) throw new Error(`Cannot set initial sizes - parent is undefined`)
@@ -197,6 +213,8 @@ export const Splitter = ({
           // '100 / children.length' makes all the children same wide.
           calc = `calc(${100 / children.length}% - ${gutterSize}px)`
         }
+
+        setNonce([c], nonce)
 
         if (direction === SplitDirection.Horizontal) {
           c.style.width = calc
@@ -245,6 +263,7 @@ export const Splitter = ({
 
       const aCalc = `calc(${aSizePct}% - ${aGutterSize}px)`
       const bCalc = `calc(${bSizePct}% - ${bGutterSize}px)`
+
       if (direction === SplitDirection.Horizontal) {
         pair.a.style.width = aCalc
         pair.b.style.width = bCalc
@@ -364,14 +383,14 @@ export const Splitter = ({
 
       // Don't create pairs if there's only one child.
       if (children.length <= 1) {
-        setInitialSizes(direction, childRefs.current, gutterRefs.current, initialSizes)
+        setInitialSizes(direction, childRefs.current, gutterRefs.current, initialSizes, nonce)
       } else {
-        setInitialSizes(direction, childRefs.current, gutterRefs.current, initialSizes)
+        setInitialSizes(direction, childRefs.current, gutterRefs.current, initialSizes, nonce)
         createPairs(direction, childRefs.current, gutterRefs.current)
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [reactChildren, state.isReady, direction, setInitialSizes, createPairs, initialSizes],
+    [reactChildren, state.isReady, direction, setInitialSizes, createPairs, initialSizes, nonce],
   )
 
   function addRef(refs: typeof childRefs, el: HTMLElement | null) {

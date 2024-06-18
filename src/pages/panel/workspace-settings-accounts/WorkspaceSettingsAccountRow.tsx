@@ -24,6 +24,7 @@ import { Link } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { Modal } from 'src/shared/modal'
+import { useNonce } from 'src/shared/providers'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { Account } from 'src/shared/types/server-shared'
 import { getAccountName } from 'src/shared/utils/getAccountName'
@@ -49,6 +50,7 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
   const { selectedWorkspace, checkPermission } = useUserProfile()
   const hasPermission = checkPermission('updateCloudAccounts')
   const queryClient = useQueryClient()
+  const nonce = useNonce()
 
   const { mutate: renameAccount, isPending: renameAccountIsPending } = useMutation({
     mutationFn: patchAccountMutation,
@@ -264,7 +266,7 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
               variant="standard"
               autoFocus
               margin="none"
-              inputProps={{ style: { padding: '0' } }}
+              inputProps={{ nonce, style: { padding: '0' } }}
               inputRef={inputRef}
               disabled={renameAccountIsPending}
             />
