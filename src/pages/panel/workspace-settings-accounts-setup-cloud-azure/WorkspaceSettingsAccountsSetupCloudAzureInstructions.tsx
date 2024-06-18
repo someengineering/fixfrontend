@@ -26,7 +26,7 @@ export const WorkspaceSettingsAccountsSetupCloudAzureInstructions = ({
   const nonce = useNonce()
   const [activeStep, setActiveStep] = usePersistState('WorkspaceSettingsAccountsSetupCloudAzure.activeStep', 0)
   const timeout = useRef<number>()
-  const instructions = getInstructions()
+  const instructions = getInstructions(isMobile)
 
   useEffect(() => {
     if (timeout.current) {

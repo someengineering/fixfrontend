@@ -604,7 +604,7 @@ msgid "Click or Drop your Google Cloud Service Account file here"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:180
-msgid "Click review and assign one more time, and Done. 🎉🎊"
+msgid "Click review and assign one more time, press the submit button {0}, and Done. 🎉🎊"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:176
@@ -727,6 +727,10 @@ msgstr "In die Zwischenablage kopiert!"
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:48
 msgid "Copy"
 msgstr "Kopieren"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:101
+msgid "Copy the Secret Value of the created secret and paste it in the Secret Value field {0}, but don't press the submit button yet."
+msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:29
 msgid "Core CSPM scanning capabilities"
@@ -1548,7 +1552,7 @@ msgid "on the left side"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:81
-msgid "On the new screen, write down the Application (client) ID and Directory (tenant) ID. You will need them at a later step."
+msgid "On the new screen, copy Application (client) ID and Directory (tenant) ID and paste them in the fields {0}."
 msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:161
@@ -2307,10 +2311,6 @@ msgstr "Arbeitsbereichseinstellungen"
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:49
 msgid "Workspace Users"
 msgstr "Workspace-Benutzer"
-
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:101
-msgid "Write down the value of the created secret, you will need it later:"
-msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:39
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:65
