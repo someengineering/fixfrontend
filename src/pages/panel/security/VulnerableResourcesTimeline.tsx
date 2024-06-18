@@ -12,7 +12,12 @@ import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 
 const getNumberFormatter = (locale: string) => (value: number | null) => (value ? Math.round(value).toLocaleString(locale) : '-')
 
-export const VulnerableResourcesTimeline = ({ data }: { data: VulnerableResources }) => {
+interface VulnerableResourcesTimelineProps {
+  data: VulnerableResources
+  onSeveritySelect?: (severity: SeverityType) => void
+}
+
+export const VulnerableResourcesTimeline = ({ data }: VulnerableResourcesTimelineProps) => {
   const {
     i18n: { locale },
   } = useLingui()

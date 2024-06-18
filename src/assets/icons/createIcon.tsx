@@ -1,11 +1,13 @@
 import { Palette, useTheme } from '@mui/material'
 import { FC, FunctionComponent, SVGProps } from 'react'
+import { useNonce } from 'src/shared/providers'
 
-type SvgIconProps = SVGProps<SVGSVGElement> & { title?: string | undefined }
+type SvgIconProps = SVGProps<SVGSVGElement> & { title?: string; nonce?: string }
 
 export const createIcon = (Icon: FunctionComponent<SvgIconProps>) => {
   const SvgIconComp: FC<SvgIconProps> = ({ color, fill, ...props }) => {
     const { palette } = useTheme()
+    const nonce = useNonce()
     type KeyOfPalette = 'common'
     type PaletteAsObject = Palette[KeyOfPalette]
     type KeyOfPaletteAsObject = keyof PaletteAsObject
@@ -20,7 +22,7 @@ export const createIcon = (Icon: FunctionComponent<SvgIconProps>) => {
     ) {
       iconColor = palette[firstColorKey][secondColorKey as KeyOfPaletteAsObject]
     }
-    return <Icon {...props} fill={iconColor} />
+    return <Icon nonce={nonce} {...props} fill={iconColor} />
   }
   SvgIconComp.displayName = Icon.displayName || Icon.name
   return SvgIconComp
