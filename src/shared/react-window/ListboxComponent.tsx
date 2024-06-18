@@ -25,7 +25,7 @@ function RenderRow({
 
   return (
     <Tooltip title={option} arrow enterDelay={400} enterNextDelay={400}>
-      <ListItemButton key={key} component="li" {...props} {...state} style={inlineStyle} nonce={nonce}>
+      <ListItemButton key={key} component="li" {...props} {...state} nonce={nonce} style={inlineStyle}>
         <Typography noWrap {...typographyProps}>
           {option}
         </Typography>

@@ -3,6 +3,7 @@ import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import { Avatar, Box, ButtonBase, Paper, Tooltip, Typography } from '@mui/material'
 import { ReactNode } from 'react'
 import { AwsLogo, Crown, FixLogo, GcpLogo } from 'src/assets/icons'
+import { useNonce } from 'src/shared/providers'
 
 export interface CloudAvatarProps {
   cloud: string
@@ -14,14 +15,15 @@ export interface CloudAvatarProps {
 }
 
 const CloudIcon = ({ cloud, small, withCrown }: CloudAvatarProps) => {
+  const nonce = useNonce()
   const size = small ? 30 : 40
   switch (cloud.toLowerCase()) {
     case 'fix':
-      return <FixLogo width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
+      return <FixLogo nonce={nonce} width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
     case 'aws':
-      return <AwsLogo width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
+      return <AwsLogo nonce={nonce} width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
     case 'gcp':
-      return <GcpLogo width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
+      return <GcpLogo nonce={nonce} width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
     default:
       return (
         <Avatar sx={{ bgcolor: 'primary.main', width: size, height: size, fontSize: size / 2 }}>
