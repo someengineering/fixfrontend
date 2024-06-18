@@ -25,7 +25,11 @@ const MAX_CONTAINER_WIDTH = 800
 
 export const BenchmarkDetailCheckDetail = ({ check, description, accountName, id }: BenchmarkDetailCheckDetailProps) => {
   const page = useRef(0)
-  const [pageSize, setPageSize] = usePersistState('BenchmarkDetailCheckDetail.rowsPerPage', 5)
+  const [pageSize, setPageSize] = usePersistState(
+    'BenchmarkDetailCheckDetail.rowsPerPage',
+    panelUI.tableRowsPerPages[0] as number,
+    (state) => (panelUI.tableRowsPerPages as unknown as number[]).includes(state),
+  )
   const {
     i18n: { locale },
   } = useLingui()
@@ -204,7 +208,7 @@ export const BenchmarkDetailCheckDetail = ({ check, description, accountName, id
             paginationModel={
               resources.length > 5
                 ? {
-                    pageSize: paginationSizeOption.includes(pageSize)
+                    pageSize: (paginationSizeOption as number[]).includes(pageSize)
                       ? pageSize
                       : pageSize > paginationSizeOption[paginationSizeOption.length - 1]
                         ? pageSize

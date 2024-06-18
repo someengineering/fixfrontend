@@ -7,7 +7,7 @@ import { usePageScroll } from '../usePageScroll'
 export interface TablePaginationProps {
   dataCount: number
   page: number
-  pages?: number[]
+  pages?: readonly number[]
   rowsPerPage: number
   setPage: (page: number) => void
   setRowsPerPage: (page: number) => void
@@ -50,7 +50,7 @@ export const TablePagination = ({
       component="div"
       labelDisplayedRows={dataCount < 0 ? () => `${page * rowsPerPage} - ${page * rowsPerPage + rowsPerPage}` : undefined}
       count={dataCount}
-      rowsPerPage={rowsPerPage}
+      rowsPerPage={rowsPerPage < pages[0] ? pages[0] : rowsPerPage}
       page={page}
       onPageChange={handleChangePage}
       onRowsPerPageChange={handleChangeRowsPerPage}

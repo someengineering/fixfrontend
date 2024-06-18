@@ -17,4 +17,4 @@ export const panelUI = {
   minLargeModalWidth: 700,
   tableRowsPerPages: [25, 50, 100],
   maxCSVDownload: 1000,
-}
+} as const

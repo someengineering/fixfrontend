@@ -19,7 +19,11 @@ export const WorkspaceSettingsUsersTable = () => {
     queryFn: getWorkspaceUsersQuery,
   })
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = usePersistState(settingsStorageKeys.WorkspaceSettingsUsersTable.rowsPerPage, 5)
+  const [rowsPerPage, setRowsPerPage] = usePersistState(
+    settingsStorageKeys.WorkspaceSettingsUsersTable.rowsPerPage,
+    panelUI.tableRowsPerPages[0] as number,
+    (state) => (panelUI.tableRowsPerPages as unknown as number[]).includes(state),
+  )
   return (
     <>
       <Stack pb={2} justifyContent="space-between" direction={{ xs: 'column', md: 'row' }} spacing={2}>

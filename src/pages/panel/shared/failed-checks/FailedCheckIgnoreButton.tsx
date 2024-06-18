@@ -16,7 +16,7 @@ interface FailedCheckIgnoreButtonProps extends Exclude<LoadingButtonProps, 'load
 export const FailedCheckIgnoreButton = forwardRef<HTMLButtonElement, FailedCheckIgnoreButtonProps>(
   ({ currentIgnoreSecurityIssue, ignored, pending, onToggle, startIcon, children, ...rest }, ref) => {
     const modalRef = useRef<(show?: boolean | undefined) => void>()
-    const [acknowledge, setAcknowledge] = usePersistState('SetupTemplateButtonComponent.acknowledge' as never, false)
+    const [acknowledge, setAcknowledge] = usePersistState<boolean>('SetupTemplateButtonComponent.acknowledge' as never, false)
     const handleClick = () => {
       if (ignored || acknowledge) {
         onToggle?.(currentIgnoreSecurityIssue ?? '', !ignored)

@@ -24,7 +24,7 @@ export const WorkspaceSettingsAccountsSetupCloudGCPInstructions = ({
   isMobile,
 }: WorkspaceSettingsAccountsSetupCloudGCPInstructionsProps) => {
   const nonce = useNonce()
-  const [activeStep, setActiveStep] = usePersistState('WorkspaceSettingsAccountsSetupCloudGCP.activeStep', 0)
+  const [activeStep, setActiveStep] = usePersistState<number>('WorkspaceSettingsAccountsSetupCloudGCP.activeStep', 0)
   const timeout = useRef<number>()
   const instructions = getInstructions(isMobile)
 

@@ -24,7 +24,7 @@ export const WorkspaceSettingsAccountsSetupCloudAzureInstructions = ({
   isMobile,
 }: WorkspaceSettingsAccountsSetupCloudAzureInstructionsProps) => {
   const nonce = useNonce()
-  const [activeStep, setActiveStep] = usePersistState('WorkspaceSettingsAccountsSetupCloudAzure.activeStep', 0)
+  const [activeStep, setActiveStep] = usePersistState<number>('WorkspaceSettingsAccountsSetupCloudAzure.activeStep', 0)
   const timeout = useRef<number>()
   const instructions = getInstructions(isMobile)
 
