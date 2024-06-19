@@ -6,7 +6,14 @@ import { useNonce } from 'src/shared/providers'
 export default function WorkspaceSettingsAccountsSetupCloudPage() {
   const nonce = useNonce()
   return (
-    <Stack height="100%" alignItems="center" justifyContent="center">
+    <Stack
+      height={{ xs: 'calc(100vh - 220px)', lg: 'calc(100vh - 220px)' }}
+      maxHeight={{ xs: 'calc(100vh - 220px)', lg: 'calc(100vh - 220px)' }}
+      minHeight={{ xs: 400, lg: 400 }}
+      width="100%"
+      alignItems="center"
+      justifyContent="center"
+    >
       <Stack direction="row" width="100%" height="100%" flex={1} flexWrap="wrap" alignItems="center" justifyContent="center">
         <Stack direction="row" width="50%" height="100%" p={1} alignItems="stretch" justifyContent="center">
           <Button

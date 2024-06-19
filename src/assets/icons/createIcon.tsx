@@ -3,14 +3,17 @@ import { FC, FunctionComponent, SVGProps, forwardRef } from 'react'
 
 type SvgIconProps = SVGProps<SVGSVGElement> & { title?: string; nonce?: string }
 
-export const createIcon = (Icon: FunctionComponent<SvgIconProps>) => {
+export const createIcon = (Icon: FunctionComponent<SvgIconProps>, colors?: [string, string?]) => {
+  const whiteColor = colors?.[0]
+  const darkColor = colors?.[1]
   const SvgIconComp: FC<SvgIconProps> = forwardRef(({ color, fill, ...props }, ref) => {
     const { palette } = useTheme()
     type KeyOfPalette = 'common'
     type PaletteAsObject = Palette[KeyOfPalette]
     type KeyOfPaletteAsObject = keyof PaletteAsObject
-    let iconColor = fill || color || palette.primary.main
-    const [firstColorKey, secondColorKey] = (color?.split('.') ?? []) as KeyOfPalette[]
+    let iconColor =
+      fill || color || (colors ? (palette.mode === 'dark' ? darkColor || whiteColor : whiteColor) : undefined) || palette.common.black
+    const [firstColorKey, secondColorKey] = (iconColor?.split('.') ?? []) as KeyOfPalette[]
     if (
       !fill &&
       firstColorKey &&
@@ -20,7 +23,7 @@ export const createIcon = (Icon: FunctionComponent<SvgIconProps>) => {
     ) {
       iconColor = palette[firstColorKey][secondColorKey as KeyOfPaletteAsObject]
     }
-    return <Icon {...props} ref={ref} fill={iconColor} />
+    return <Icon key={iconColor} {...props} ref={ref} fill={iconColor} />
   })
   SvgIconComp.displayName = Icon.displayName || Icon.name
   return SvgIconComp
