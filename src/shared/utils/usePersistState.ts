@@ -38,7 +38,8 @@ export function usePersistState<StateType extends SimpleTypes | SimpleTypes[] = 
         return result
       })
     },
-    [checkCorrectness, name],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [name],
   ) as React.Dispatch<React.SetStateAction<StateType | undefined>>
 
   return [state, setNewState]
