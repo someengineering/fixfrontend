@@ -22,9 +22,9 @@ interface BenchmarkCheckCollectionDetailProps {
 
 export const BenchmarkCheckCollectionDetail = ({ id, bench, child, onSelect }: BenchmarkCheckCollectionDetailProps) => {
   const page = useRef(0)
-  const [pageSize, setPageSize] = usePersistState(
+  const [pageSize, setPageSize] = usePersistState<number>(
     'BenchmarkCheckCollectionDetail.rowsPerPage',
-    panelUI.tableRowsPerPages[0] as number,
+    panelUI.tableRowsPerPages[0],
     (state) => typeof state === 'number' && (panelUI.tableRowsPerPages as unknown as number[]).includes(state),
   )
   const allChecks = getAllChildrenCheckResult(child)

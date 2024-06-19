@@ -25,9 +25,9 @@ const MAX_CONTAINER_WIDTH = 800
 
 export const BenchmarkDetailCheckDetail = ({ check, description, accountName, id }: BenchmarkDetailCheckDetailProps) => {
   const page = useRef(0)
-  const [pageSize, setPageSize] = usePersistState(
+  const [pageSize, setPageSize] = usePersistState<number>(
     'BenchmarkDetailCheckDetail.rowsPerPage',
-    panelUI.tableRowsPerPages[0] as number,
+    panelUI.tableRowsPerPages[0],
     (state) => typeof state === 'number' && (panelUI.tableRowsPerPages as unknown as number[]).includes(state),
   )
   const {

@@ -44,9 +44,9 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
   const [dataCount, setDataCount] = useState(-1)
   const navigate = useAbsoluteNavigate()
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = usePersistState(
+  const [rowsPerPage, setRowsPerPage] = usePersistState<number>(
     'InventoryTable.rowsPerPage',
-    panelUI.tableRowsPerPages[0] as number,
+    panelUI.tableRowsPerPages[0],
     (state) => typeof state === 'number' && (panelUI.tableRowsPerPages as unknown as number[]).includes(state),
   )
   const { currentUser, selectedWorkspace } = useUserProfile()
