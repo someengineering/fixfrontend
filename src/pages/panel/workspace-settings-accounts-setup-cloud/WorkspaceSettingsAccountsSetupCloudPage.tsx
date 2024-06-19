@@ -15,7 +15,7 @@ export default function WorkspaceSettingsAccountsSetupCloudPage() {
       justifyContent="center"
     >
       <Stack direction="row" width="100%" height="100%" flex={1} flexWrap="wrap" alignItems="center" justifyContent="center">
-        <Stack direction="row" width="50%" height="50%" p={1} alignItems="center" justifyContent="center">
+        <Stack direction="row" width="50%" height="100%" p={1} alignItems="stretch" justifyContent="center">
           <Button
             component={Link}
             to="/workspace-settings/accounts/setup-cloud/aws"
@@ -36,7 +36,7 @@ export default function WorkspaceSettingsAccountsSetupCloudPage() {
             </Typography>
           </Button>
         </Stack>
-        <Stack direction="row" width="50%" height="50%" p={1} alignItems="stretch" justifyContent="center">
+        <Stack direction="row" width="50%" height="100%" p={1} alignItems="stretch" justifyContent="center">
           <Button
             component={Link}
             to="/workspace-settings/accounts/setup-cloud/gcp"
