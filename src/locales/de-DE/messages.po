@@ -115,8 +115,8 @@ msgstr "/ Monat"
 msgid "© 2024 Some Engineering Inc. All rights reserved."
 msgstr "© 2024 Some Engineering Inc. Alle Rechte vorbehalten."
 
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:59
-#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:82
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:63
+#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:86
 msgid "<0>{0} checks failing</0> out of {1}"
 msgstr ""
 
@@ -209,7 +209,7 @@ msgstr "Akzeptieren"
 msgid "Access to your account is broken"
 msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:191
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:195
 #: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:60
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:239
 msgid "Account"
@@ -237,8 +237,8 @@ msgstr "Zusammenfassung der Konten"
 msgid "Action"
 msgstr "Aktion"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:80
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:74
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:83
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:78
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -292,7 +292,7 @@ msgstr ""
 msgid "Advanced search query"
 msgstr "Erweiterte Suchabfrage"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:132
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:136
 msgid "Affected resources"
 msgstr ""
 
@@ -313,9 +313,9 @@ msgstr "Benachrichtigungseinstellungen"
 msgid "All checks have been disabled for this resource"
 msgstr "Für diese Ressource wurden alle Prüfungen deaktiviert"
 
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:160
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:229
-#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:183
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:164
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:233
+#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:187
 msgid "All resources passed the check"
 msgstr ""
 
@@ -408,7 +408,7 @@ msgstr "AWS Marketplace"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:93
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:97
 msgid "Back"
 msgstr ""
 
@@ -455,7 +455,7 @@ msgstr "Abrechnungsadmin"
 msgid "Billing cycle"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:23
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:27
 msgid "Billing history"
 msgstr ""
 
@@ -516,8 +516,8 @@ msgstr "Änderungen"
 msgid "Changes in the past 7 days"
 msgstr "Änderungen in den letzten 7 Tagen"
 
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:96
-#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:119
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:100
+#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:123
 msgid "Check Name"
 msgstr ""
 
@@ -541,13 +541,13 @@ msgstr ""
 msgid "Close"
 msgstr "Schließen"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:161
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:165
 #: src/pages/panel/inventory/inventory-form/InventoryFormCloudValues.tsx:57
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:96
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:235
 #: src/pages/panel/security/AccountCard.tsx:37
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:424
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:50
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:53
 msgid "Cloud"
 msgstr "Cloud"
 
@@ -579,7 +579,7 @@ msgstr "Konfiguration geändert"
 msgid "Configure"
 msgstr "Konfigurieren"
 
-#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:37
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:41
 msgid "Confirm"
 msgstr "Bestätigen"
 
@@ -625,7 +625,7 @@ msgstr "Verbundene Konten"
 msgid "Connected Services"
 msgstr "Vernetzte Dienste"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:88
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:92
 msgid "Continue"
 msgstr ""
 
@@ -653,7 +653,7 @@ msgstr ""
 msgid "Created Time"
 msgstr "Erstellte Zeit"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:197
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:201
 msgid "Creation Date"
 msgstr ""
 
@@ -694,7 +694,7 @@ msgstr "Tägliche"
 msgid "Data export (CSV, JSON, PDF)"
 msgstr "Datenexport (CSV, JSON, PDF)"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:41
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:45
 msgid "Date"
 msgstr "Datum"
 
@@ -717,7 +717,7 @@ msgstr "Standardrolle"
 msgid "Define Roles"
 msgstr ""
 
-#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:40
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:44
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:95
 msgid "Delayed Effect"
 msgstr "Verzögerte Wirkung"
@@ -782,7 +782,7 @@ msgstr "Erkannte, aber nicht konfigurierte Konten"
 msgid "Disposable email domains are not allowed"
 msgstr ""
 
-#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:54
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:58
 msgid "Do not show me again"
 msgstr "Zeig es mir nicht noch einmal"
 
@@ -831,9 +831,9 @@ msgstr "Edit"
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:86
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:90
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:109
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:45
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:49
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:135
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:59
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:63
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:143
 msgid "Email"
 msgstr "Email"
@@ -846,7 +846,7 @@ msgstr ""
 msgid "Email alerts"
 msgstr "E-Mail-Alarmierungen"
 
-#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:66
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:70
 msgid "Enable"
 msgstr "Aktivieren"
 
@@ -856,7 +856,7 @@ msgid "Enable all"
 msgstr "Alle aktivieren"
 
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:49
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:69
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:72
 msgid "Enabled"
 msgstr "Ermöglicht"
 
@@ -889,7 +889,7 @@ msgid "Example searches"
 msgstr "Beispielsuchen"
 
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:112
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:48
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:52
 msgid "Expires"
 msgstr "Läuft ab"
 
@@ -916,8 +916,8 @@ msgstr "Fehlgeschlagene Benchmarks"
 msgid "Failing Check Timeline"
 msgstr "Fehler bei der Überprüfung des Zeitplans"
 
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:90
-#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:113
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:94
+#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:117
 msgid "Failing Resources"
 msgstr ""
 
@@ -979,7 +979,7 @@ msgstr "Passwort vergessen"
 msgid "Form"
 msgstr ""
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:56
+#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:60
 msgid "Framework"
 msgstr ""
 
@@ -1028,7 +1028,7 @@ msgstr "Startseite"
 msgid "Hourly"
 msgstr "Stündliche"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:112
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:116
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:111
 msgid "How to fix"
 msgstr "Wie repariert man"
@@ -1037,14 +1037,14 @@ msgstr "Wie repariert man"
 msgid "IAM"
 msgstr ""
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:167
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:171
 msgid "Id"
 msgstr ""
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:232
 #: src/pages/panel/security/AccountCard.tsx:34
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:421
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:53
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:56
 #: src/shared/charts/NetworkDiagram.tsx:407
 msgid "ID"
 msgstr "ID"
@@ -1081,7 +1081,7 @@ msgstr "Identifiziert Speichervolumes, die keiner laufenden Instanz zugeordnet s
 msgid "If this security check does not apply to this resource, you can safely ignore it."
 msgstr "Wenn diese Sicherheitsüberprüfung für diese Ressource nicht gilt, können Sie sie getrost ignorieren."
 
-#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:66
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:70
 msgid "Ignore"
 msgstr "Ignorieren"
 
@@ -1118,7 +1118,7 @@ msgstr "Info"
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
 msgstr ""
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:81
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:85
 msgid "Inspect Detection Search in Inventory"
 msgstr ""
 
@@ -1161,7 +1161,7 @@ msgstr "Einladen"
 msgid "Invite External User"
 msgstr "Externen Benutzer einladen"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:70
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:74
 msgid "Invites"
 msgstr "Lädt ein"
 
@@ -1169,7 +1169,7 @@ msgstr "Lädt ein"
 msgid "kind"
 msgstr ""
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:185
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:189
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:231
 #: src/shared/charts/NetworkDiagram.tsx:406
 msgid "Kind"
@@ -1179,11 +1179,11 @@ msgstr "Art"
 msgid "Kinds"
 msgstr "Arten"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:67
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:71
 msgid "Last login"
 msgstr "Letzte Anmeldung"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:101
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:105
 msgid "Learn more about the associated risk"
 msgstr ""
 
@@ -1271,17 +1271,17 @@ msgstr "Am meisten verbesserte Ressourcen"
 msgid "Most Non-Compliant Accounts"
 msgstr "Die meisten nicht konformen Konten"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:173
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:177
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:233
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:427
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:56
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:59
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:18
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:76
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:80
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:138
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:56
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:60
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:126
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:132
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:130
@@ -1328,7 +1328,7 @@ msgstr "Neue Sicherheitsprobleme entdeckt"
 msgid "Next invoice will be available"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:64
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:67
 msgid "Next scan"
 msgstr "Nächster Scan"
 
@@ -1338,7 +1338,7 @@ msgstr "Nächste Synchronisierung"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:42
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:68
-#: src/pages/panel/inventory/InventoryTable.tsx:142
+#: src/pages/panel/inventory/InventoryTable.tsx:146
 msgid "No"
 msgstr ""
 
@@ -1391,7 +1391,7 @@ msgstr "Benachrichtigung"
 msgid "Now, switch to the organization or folder that holds the resources you want to connect."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:47
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:51
 msgid "Number Of Account Charged"
 msgstr "Anzahl der belasteten Konten"
 
@@ -1510,9 +1510,9 @@ msgstr "Zahlungsmethode erforderlich"
 msgid "Payment method to add"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:25
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:41
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:31
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:29
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:45
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:35
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:19
 msgid "Pending Invitations"
 msgstr "Ausstehende Einladungen"
@@ -1541,7 +1541,7 @@ msgstr ""
 msgid "Plus"
 msgstr "Plus"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:124
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:128
 msgid "Practical remediation guidance"
 msgstr ""
 
@@ -1557,7 +1557,7 @@ msgstr ""
 msgid "Print or copy the following recovery codes"
 msgstr "Drucken oder kopieren Sie die folgenden Wiederherstellungscodes"
 
-#: src/shared/cloud-avatar/CloudAvatar.tsx:46
+#: src/shared/cloud-avatar/CloudAvatar.tsx:48
 msgid "Privileged"
 msgstr "Privilegiert"
 
@@ -1609,7 +1609,7 @@ msgstr "Öffentliche S3-Buckets"
 msgid "Re-Authenticate"
 msgstr "Erneut authentifizieren"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:37
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:41
 msgid "Receipts"
 msgstr "Quittungen"
 
@@ -1630,7 +1630,7 @@ msgstr "Wiederherstellungscodes"
 msgid "Regenerate"
 msgstr "Regenerieren"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:179
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:183
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:97
 #: src/pages/panel/inventory/inventory-form/InventoryFormRegionValues.tsx:54
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:240
@@ -1654,7 +1654,7 @@ msgstr "Ablehnen"
 msgid "Remediation recommendations"
 msgstr "Empfehlungen zur Fehlerbehebung"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:52
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:56
 msgid "Remove"
 msgstr "Entfernen"
 
@@ -1675,7 +1675,7 @@ msgstr "Ressource erstellt"
 msgid "Resource deleted"
 msgstr "Ressource gelöscht"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:59
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:62
 msgid "Resources"
 msgstr "Ressourcen"
 
@@ -1690,7 +1690,7 @@ msgstr "Risiko"
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:96
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:107
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:149
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:63
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:67
 msgid "Roles"
 msgstr "Rollen"
 
@@ -1723,7 +1723,7 @@ msgstr "Sicherheitsprobleme"
 msgid "Security posture improved"
 msgstr "Die Sicherheitslage wurde verbessert"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:72
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:75
 msgid "Security Scan"
 msgstr "Sicherheitsscan"
 
@@ -1774,8 +1774,8 @@ msgstr "E-Mail-Benachrichtigungen einrichten"
 msgid "Severities"
 msgstr ""
 
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:75
-#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:98
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:79
+#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:102
 #: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:50
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:156
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:163
@@ -1817,7 +1817,7 @@ msgid "Something went wrong please try again later."
 msgstr "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal."
 
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:142
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:53
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:57
 msgid "Sources"
 msgstr "Quellen"
 
@@ -1850,7 +1850,7 @@ msgstr "Integrationen zur Aufgabenverwaltung (bald verfügbar!)"
 msgid "Test"
 msgstr "Prüfen"
 
-#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:46
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:50
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:99
 msgid "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 msgstr "Die Änderung wird ab dem nächsten Sicherheitsscan aktiv. Bis zum nächsten Scan zeigt die Ressource weiterhin die fehlgeschlagene Prüfung an."
@@ -1899,7 +1899,7 @@ msgstr "Diese Email-Adresse ist bereits registriert. Wenn dies Ihre E-Mail-Adres
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM Rolle in Ihrem AWS Konto erstellt. Diese Rolle wird von FIX verwendet, um in Ihrem AWS Konto Sicherheitsscans durchzuführen."
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:44
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:48
 msgid "Tier"
 msgstr "Stufe"
 
@@ -1965,7 +1965,7 @@ msgstr "Nicht angehängte elastische IPs"
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:329
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:149
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:155
-#: src/pages/panel/inventory/InventoryTable.tsx:134
+#: src/pages/panel/inventory/InventoryTable.tsx:138
 msgid "Undefined"
 msgstr ""
 
@@ -2022,7 +2022,7 @@ msgstr "Benutzer"
 msgid "Value"
 msgstr "Wert"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:66
+#: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:70
 msgid "Version"
 msgstr ""
 
@@ -2058,8 +2058,8 @@ msgstr "Wöchentlicher E-Mail-Bericht"
 msgid "Weekly Report"
 msgstr "Wöchentlicher Report"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:98
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:106
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:102
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:110
 msgid "Why does it matter"
 msgstr ""
 
@@ -2090,14 +2090,14 @@ msgstr "Arbeitsbereichsname"
 msgid "Workspace Settings"
 msgstr "Arbeitsbereichseinstellungen"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:27
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:49
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:31
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:53
 msgid "Workspace Users"
 msgstr "Workspace-Benutzer"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:39
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:65
-#: src/pages/panel/inventory/InventoryTable.tsx:138
+#: src/pages/panel/inventory/InventoryTable.tsx:142
 msgid "Yes"
 msgstr ""
 
@@ -2154,7 +2154,7 @@ msgstr "Sie haben Ihr Konto erfolgreich verifiziert."
 msgid "You need a payment method to change your product tier"
 msgstr ""
 
-#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:43
+#: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:47
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:97
 msgid "You've chosen to ignore this security check for the resource. Please note:"
 msgstr "Sie haben sich entschieden, diese Sicherheitsüberprüfung für die Ressource zu ignorieren. Bitte beachten Sie:"

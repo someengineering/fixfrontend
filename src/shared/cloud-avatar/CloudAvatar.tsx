@@ -2,7 +2,7 @@ import { Trans } from '@lingui/macro'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import { Avatar, Box, ButtonBase, Paper, Tooltip, Typography } from '@mui/material'
 import { ReactNode } from 'react'
-import { AwsLogo, Crown, FixLogo, GcpLogo } from 'src/assets/icons'
+import { AwsLogo, AzureLogo, Crown, FixLogo, GcpLogo } from 'src/assets/icons'
 import { useNonce } from 'src/shared/providers'
 
 export interface CloudAvatarProps {
@@ -18,6 +18,8 @@ const CloudIcon = ({ cloud, small, withCrown }: CloudAvatarProps) => {
   const nonce = useNonce()
   const size = small ? 30 : 40
   switch (cloud.toLowerCase()) {
+    case 'azure':
+      return <AzureLogo nonce={nonce} width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
     case 'fix':
       return <FixLogo nonce={nonce} width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
     case 'aws':

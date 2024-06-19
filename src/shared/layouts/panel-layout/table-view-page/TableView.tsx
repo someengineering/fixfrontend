@@ -12,7 +12,7 @@ interface TableViewProps extends PropsWithChildren {
 
 export const TableView = forwardRef<HTMLDivElement | null, TableViewProps>(
   ({ headerToolbar, paginationProps, minHeight, children, stickyPagination }, ref) => {
-    const pages = paginationProps?.pages ?? panelUI.tableRowsPerPages
+    const pages = paginationProps?.pages ?? [...panelUI.tableRowsPerPages]
     const shouldHavePagination = paginationProps && paginationProps?.dataCount > pages[0]
     return (
       <Stack component={Paper} sx={{ width: '100%', minHeight }} flexGrow={1}>

@@ -10,16 +10,20 @@ export interface BenchmarkDetailSplitterProps {
   isMobile?: boolean
 }
 
+const getChildLength = (children: BenchmarkDetailSplitterProps['children']) => children.filter((i) => i).length
+
 const getChildSizes = (children: BenchmarkDetailSplitterProps['children']) => {
-  const numberOfValidChildren = children.filter((i) => i).length
+  const numberOfValidChildren = getChildLength(children)
   const childSize = 100 / numberOfValidChildren
   return children.map((i) => (i ? childSize : 0))
 }
 
 export const BenchmarkDetailDesktopSplitter = ({ children, isMobile }: BenchmarkDetailSplitterProps) => {
   const nonce = useNonce()
-  const [sizes, setSizes] = usePersistState<number[] | undefined>('BenchmarkDetailDesktopSplitter.initialSizes', () =>
-    getChildSizes(children),
+  const [sizes, setSizes] = usePersistState<number[] | undefined>(
+    'BenchmarkDetailDesktopSplitter.initialSizes',
+    () => getChildSizes(children),
+    (state) => state === undefined || (Array.isArray(state) && state.length === getChildLength(children)),
   )
   const { mode } = useThemeMode()
 

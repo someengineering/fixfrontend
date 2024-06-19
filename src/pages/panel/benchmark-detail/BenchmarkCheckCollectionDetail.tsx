@@ -22,7 +22,11 @@ interface BenchmarkCheckCollectionDetailProps {
 
 export const BenchmarkCheckCollectionDetail = ({ id, bench, child, onSelect }: BenchmarkCheckCollectionDetailProps) => {
   const page = useRef(0)
-  const [pageSize, setPageSize] = usePersistState('BenchmarkCheckCollectionDetail.rowsPerPage', 5)
+  const [pageSize, setPageSize] = usePersistState(
+    'BenchmarkCheckCollectionDetail.rowsPerPage',
+    panelUI.tableRowsPerPages[0] as number,
+    (state) => typeof state === 'number' && (panelUI.tableRowsPerPages as unknown as number[]).includes(state),
+  )
   const allChecks = getAllChildrenCheckResult(child)
   const allFailingCheckResults = allChecks.filter((i) => i.number_of_resources_failing)
   const paginationSizeOption = panelUI.tableRowsPerPages.filter((_, i, arr) => allFailingCheckResults.length > (arr[i - 1] ?? 0))
@@ -137,7 +141,7 @@ export const BenchmarkCheckCollectionDetail = ({ id, bench, child, onSelect }: B
             paginationModel={
               allFailingCheckResults.length > 5
                 ? {
-                    pageSize: paginationSizeOption.includes(pageSize)
+                    pageSize: (paginationSizeOption as number[]).includes(pageSize)
                       ? pageSize
                       : pageSize > paginationSizeOption[paginationSizeOption.length - 1]
                         ? pageSize
