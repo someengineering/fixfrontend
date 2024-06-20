@@ -27,6 +27,11 @@ export type { PutNotificationUserRequest } from './PutNotificationUser'
 export type { PutWorkspaceAlertingSettingsRequest } from './PutWorkspaceAlertingSettings'
 export type { PutWorkspaceBillingRequest } from './PutWorkspaceBilling'
 export type {
+  PutWorkspaceCloudAccountAzureCredentialsErrorResponse,
+  PutWorkspaceCloudAccountAzureCredentialsRequest,
+  PutWorkspaceCloudAccountAzureCredentialsResponse,
+} from './PutWorkspaceCloudAccountAzureCredentials'
+export type {
   PutWorkspaceCloudAccountGCPKeyErrorResponse,
   PutWorkspaceCloudAccountGCPKeyRequest,
   PutWorkspaceCloudAccountGCPKeyResponse,

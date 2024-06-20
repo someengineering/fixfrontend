@@ -60,6 +60,14 @@ const WorkspaceSettingsAccountsSetupCloudGCPPage = lazy(
     ),
 )
 
+const WorkspaceSettingsAccountsSetupCloudAzurePage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "workspace-settings-accounts-setup-cloud-azure" */
+      'src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzurePage'
+    ),
+)
+
 const WorkspaceSettingsUsersPage = lazy(
   () =>
     import(
@@ -146,6 +154,7 @@ export function PanelRoutes() {
                 <Route index element={<WorkspaceSettingsAccountsCloudSetupPage />} />
                 <Route path="aws" element={<WorkspaceSettingsAccountsSetupCloudAWSPage />} />
                 <Route path="gcp" element={<WorkspaceSettingsAccountsSetupCloudGCPPage />} />
+                <Route path="azure" element={<WorkspaceSettingsAccountsSetupCloudAzurePage />} />
               </Route>
             </Route>
           </Route>
