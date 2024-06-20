@@ -18,7 +18,7 @@ export interface TablePaginationProps {
 export const TablePagination = ({
   dataCount,
   page,
-  pages = panelUI.tableRowsPerPages,
+  pages = [...panelUI.tableRowsPerPages],
   rowsPerPage,
   setPage,
   setRowsPerPage,

@@ -178,6 +178,10 @@ export function AuthGuard({ children }: PropsWithChildren) {
         (error: AxiosError | Error) => {
           if ((error as AxiosError)?.code !== 'ERR_CANCELED') {
             if (window.TrackJS?.isInstalled()) {
+              const data = (error as AxiosError)?.response?.data
+              if (data) {
+                window.TrackJS.console.info(data)
+              }
               window.TrackJS.track(error)
             }
             postHog.capture(PostHogEvent.Error, {
@@ -198,6 +202,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
           }
           if ('isAxiosError' in error && error.isAxiosError && error.code !== 'ERR_CANCELED') {
             if (window.TrackJS?.isInstalled()) {
+              window.TrackJS.console.info(error.response?.data ?? 'no data from server')
               window.TrackJS.track(error)
             }
             postHog.capture(PostHogEvent.NetworkError, {

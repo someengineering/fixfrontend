@@ -17,9 +17,9 @@ export const WorkspaceSettingsUserInvitationsTable = () => {
     queryFn: getWorkspaceInvitesQuery,
   })
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = usePersistState(
+  const [rowsPerPage, setRowsPerPage] = usePersistState<number>(
     settingsStorageKeys.WorkspaceSettingsUserInvitationsTable.rowsPerPage,
-    panelUI.tableRowsPerPages[0] as number,
+    panelUI.tableRowsPerPages[0],
     (state) => typeof state === 'number' && (panelUI.tableRowsPerPages as unknown as number[]).includes(state),
   )
   return (
@@ -33,7 +33,7 @@ export const WorkspaceSettingsUserInvitationsTable = () => {
         paginationProps={{
           dataCount: data.length ?? 0,
           page,
-          pages: panelUI.tableRowsPerPages,
+          pages: [...panelUI.tableRowsPerPages],
           rowsPerPage,
           setPage,
           setRowsPerPage,
