@@ -7,7 +7,7 @@ import { usePageScroll } from '../usePageScroll'
 export interface TablePaginationProps {
   dataCount: number
   page: number
-  pages?: readonly number[]
+  pages?: number[]
   rowsPerPage: number
   setPage: (page: number) => void
   setRowsPerPage: (page: number) => void
