@@ -2,6 +2,7 @@ import { createDraft, Draft, finishDraft, immerable, produce } from 'immer'
 import { combineOptional } from 'src/shared/utils/optional.ts'
 import { parse_path, parse_query } from './parser.ts'
 import { render } from './templater.ts'
+import { escapeQuotes } from './utils.ts'
 
 export type SimpleValue = string | number | boolean | null
 export type JsonElement = SimpleValue | Record<string, unknown> | (SimpleValue | Record<string, unknown> | unknown[])[]
@@ -426,7 +427,7 @@ export class FulltextTerm extends Term {
   }
 
   toString(): string {
-    return `"${this.text}"`
+    return `"${escapeQuotes(this.text)}"`
   }
 }
 

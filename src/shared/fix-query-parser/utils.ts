@@ -1,5 +1,8 @@
 import { AllTerm, CombinedTerm, ContextTerm, FulltextTerm, IdTerm, IsTerm, NotTerm, Predicate, Term } from './query'
 
+export function escapeQuotes(value: string): string {
+  return value.replace(/(?<!\\)"/g, '\\"')
+}
 export function jsonElementToString<WithArrayString extends boolean>(
   value: unknown,
   withArrayString: WithArrayString,
