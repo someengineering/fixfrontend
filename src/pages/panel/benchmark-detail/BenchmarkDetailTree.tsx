@@ -63,8 +63,9 @@ export const BenchmarkDetailTree = () => {
           }
           from.numberOfResourceFailing += to.numberOfResourceFailing
           if (
-            !from.severity ||
-            (to.severity && to.numberOfResourceFailing && sortedSeverities.indexOf(to.severity) < sortedSeverities.indexOf(from.severity))
+            to.severity &&
+            to.numberOfResourceFailing &&
+            (!from.severity || sortedSeverities.indexOf(to.severity) < sortedSeverities.indexOf(from.severity))
           ) {
             from.severity = to.severity
           }
