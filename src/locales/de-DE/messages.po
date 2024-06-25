@@ -497,7 +497,7 @@ msgstr "Abrechnung"
 msgid "Billing Admin"
 msgstr "Abrechnungsadmin"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:109
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:110
 msgid "Billing cycle"
 msgstr ""
 
@@ -1131,7 +1131,7 @@ msgstr ""
 msgid "High"
 msgstr "Hoch"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:116
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:117
 msgid "Highest product tier this billing cycle"
 msgstr ""
 
@@ -1349,11 +1349,11 @@ msgstr "Recheninstanzen und Datenbanken mit geringer Auslastung"
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS Konto angemeldet sind, bevor Sie auf die Schaltfläche DEPLOY STACK klicken."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:150
+#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:154
 msgid "Manage AWS Market place payment method"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:169
+#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:173
 msgid "Manage Card Details"
 msgstr ""
 
@@ -1375,7 +1375,7 @@ msgid "MFA already enabled"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:19
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:111
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:112
 msgid "Monthly"
 msgstr "Monatliche"
 
@@ -1460,7 +1460,7 @@ msgstr ""
 msgid "New security issues detected"
 msgstr "Neue Sicherheitsprobleme entdeckt"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:124
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:125
 msgid "Next invoice will be available"
 msgstr ""
 
@@ -1567,7 +1567,7 @@ msgstr ""
 msgid "on the right side"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:111
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:112
 msgid "One time"
 msgstr "Einmal"
 
@@ -1657,7 +1657,7 @@ msgid "Payment is required for your workspace, Please contact the workspace owne
 msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:130
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:73
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:74
 msgid "Payment method"
 msgstr ""
 

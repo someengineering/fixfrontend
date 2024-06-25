@@ -497,7 +497,7 @@ msgstr "Billing"
 msgid "Billing Admin"
 msgstr "Billing Admin"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:109
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:110
 msgid "Billing cycle"
 msgstr "Billing cycle"
 
@@ -1131,7 +1131,7 @@ msgstr "Grant Access"
 msgid "High"
 msgstr "High"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:116
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:117
 msgid "Highest product tier this billing cycle"
 msgstr "Highest product tier this billing cycle"
 
@@ -1349,11 +1349,11 @@ msgstr "Low Utilization Compute Instances and Databases"
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:150
+#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:154
 msgid "Manage AWS Market place payment method"
 msgstr "Manage AWS Market place payment method"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:169
+#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:173
 msgid "Manage Card Details"
 msgstr "Manage Card Details"
 
@@ -1375,7 +1375,7 @@ msgid "MFA already enabled"
 msgstr "MFA already enabled"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:19
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:111
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:112
 msgid "Monthly"
 msgstr "Monthly"
 
@@ -1460,7 +1460,7 @@ msgstr "New registration"
 msgid "New security issues detected"
 msgstr "New security issues detected"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:124
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:125
 msgid "Next invoice will be available"
 msgstr "Next invoice will be available"
 
@@ -1567,7 +1567,7 @@ msgstr "On the Register an application page, fill the name of the application. W
 msgid "on the right side"
 msgstr "on the right side"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:111
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:112
 msgid "One time"
 msgstr "One time"
 
@@ -1657,7 +1657,7 @@ msgid "Payment is required for your workspace, Please contact the workspace owne
 msgstr "Payment is required for your workspace, Please contact the workspace owner"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:130
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:73
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:74
 msgid "Payment method"
 msgstr "Payment method"
 

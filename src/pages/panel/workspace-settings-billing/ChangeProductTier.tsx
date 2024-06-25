@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/macro'
 import CreditCardIcon from '@mui/icons-material/CreditCard'
-import { ButtonBase, Divider, Stack, Typography, alpha } from '@mui/material'
+import { Box, ButtonBase, Divider, Stack, Typography, alpha } from '@mui/material'
 import { Fragment, useRef, useState } from 'react'
 import { AwsLogo } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
@@ -140,7 +140,11 @@ export const ChangeProductTier = ({
                     {awsMarketPlacePaymentMethod ? (
                       <Stack direction="row" spacing={1} alignItems="center">
                         <LinkButton
-                          startIcon={<AwsLogo height={50} />}
+                          startIcon={
+                            <Box py={1} height={48}>
+                              <AwsLogo height="100%" />
+                            </Box>
+                          }
                           endIcon={null}
                           loadingPosition="start"
                           variant="outlined"

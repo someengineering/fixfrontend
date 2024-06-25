@@ -18,7 +18,7 @@ export default function WorkspaceSettingsBillingPage() {
   const { selectedWorkspace, checkPermission } = useUserProfile()
   const hasPermission = checkPermission('updateBilling')
   const {
-    data: { product_tier, workspace_payment_method, available_payment_methods },
+    data: { product_tier, workspace_payment_method, available_payment_methods, selected_product_tier },
   } = useSuspenseQuery({
     queryFn: getWorkspaceBillingQuery,
     queryKey: ['workspace-billing', selectedWorkspace?.id],
@@ -40,15 +40,15 @@ export default function WorkspaceSettingsBillingPage() {
   currentDate.setDate(1)
   const nextBillingCycle = new Date(currentDate.valueOf())
   nextBillingCycle.setMonth(currentDate.getMonth() + 1)
-  const title = productTierToLabel(product_tier)
-  const desc = productTierToDescription(product_tier)
+  const title = productTierToLabel(selected_product_tier)
+  const desc = productTierToDescription(selected_product_tier)
 
   return desc ? (
     <Stack spacing={2}>
       <Typography variant="h3">
         <Trans>Billing</Trans>
       </Typography>
-      {product_tier === 'Trial' ? (
+      {selected_product_tier === 'Trial' ? (
         <Stack direction="row" justifyContent="center">
           <Alert variant="outlined" severity="success">
             <Typography variant="h5">
@@ -62,7 +62,8 @@ export default function WorkspaceSettingsBillingPage() {
         </Stack>
       ) : null}
       <ChangeProductTier
-        defaultProductTier={product_tier}
+        key={product_tier + selected_product_tier}
+        defaultProductTier={selected_product_tier}
         selectedWorkspacePaymentMethod={workspace_payment_method}
         workspacePaymentMethods={available_payment_methods}
         nextBillingCycle={nextBillingCycle}
