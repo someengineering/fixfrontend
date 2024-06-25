@@ -18,6 +18,7 @@ interface ChangeProductTierProps {
   selectedWorkspacePaymentMethod: PaymentMethod
   workspacePaymentMethods: PaymentMethod[]
   defaultProductTier: ProductTier
+  currentProductTier: ProductTier
   nextBillingCycle: Date
 }
 
@@ -25,6 +26,7 @@ const allProductTiers: readonly ProductTier[] = ['Free', 'Plus', 'Business', 'En
 
 export const ChangeProductTier = ({
   defaultProductTier,
+  currentProductTier,
   selectedWorkspacePaymentMethod,
   workspacePaymentMethods,
   nextBillingCycle,
@@ -108,7 +110,7 @@ export const ChangeProductTier = ({
             productTier === 'Free' ? (
               <ChangeProductTierToFreeModal
                 onClose={() => setProductTier(defaultProductTier)}
-                productTier={defaultProductTier}
+                currentProductTier={currentProductTier}
                 showModalRef={showModalRef}
                 defaultOpen={true}
               />
@@ -125,8 +127,8 @@ export const ChangeProductTier = ({
                 nextBillingCycle={nextBillingCycle}
                 onClose={() => setProductTier(defaultProductTier)}
                 isUpgrade={isUpgrade}
-                productTier={defaultProductTier}
                 selectedProductTier={productTier}
+                currentProductTier={currentProductTier}
                 selectedWorkspacePaymentMethod={selectedWorkspacePaymentMethod}
                 showModalRef={showModalRef}
                 defaultOpen={true}

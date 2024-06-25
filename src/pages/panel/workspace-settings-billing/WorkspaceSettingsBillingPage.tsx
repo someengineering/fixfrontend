@@ -40,6 +40,8 @@ export default function WorkspaceSettingsBillingPage() {
   currentDate.setDate(1)
   const nextBillingCycle = new Date(currentDate.valueOf())
   nextBillingCycle.setMonth(currentDate.getMonth() + 1)
+  const endOfTheMonth = new Date(nextBillingCycle)
+  endOfTheMonth.setMilliseconds(-1)
   const title = productTierToLabel(selected_product_tier)
   const desc = productTierToDescription(selected_product_tier)
 
@@ -48,7 +50,7 @@ export default function WorkspaceSettingsBillingPage() {
       <Typography variant="h3">
         <Trans>Billing</Trans>
       </Typography>
-      {selected_product_tier === 'Trial' ? (
+      {product_tier === 'Trial' ? (
         <Stack direction="row" justifyContent="center">
           <Alert variant="outlined" severity="success">
             <Typography variant="h5">
@@ -61,9 +63,22 @@ export default function WorkspaceSettingsBillingPage() {
           </Alert>
         </Stack>
       ) : null}
+      {selected_product_tier !== product_tier ? (
+        <Stack direction="row" justifyContent="center">
+          <Alert variant="outlined" severity="success">
+            <Typography variant="h5">
+              <Trans>
+                You are currently subscribed to {productTierToLabel(product_tier)}, Your subscription will change to {title} by the end of
+                the day on {endOfTheMonth.toLocaleDateString(locale, { year: 'numeric', month: '2-digit', day: '2-digit' })}.
+              </Trans>
+            </Typography>
+          </Alert>
+        </Stack>
+      ) : null}
       <ChangeProductTier
         key={product_tier + selected_product_tier}
         defaultProductTier={selected_product_tier}
+        currentProductTier={product_tier}
         selectedWorkspacePaymentMethod={workspace_payment_method}
         workspacePaymentMethods={available_payment_methods}
         nextBillingCycle={nextBillingCycle}

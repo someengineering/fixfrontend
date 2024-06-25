@@ -265,7 +265,7 @@ msgid "Add a client secret"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:60
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:100
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:102
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:83
 msgid "Add a New Credit or Debit Card"
 msgstr ""
@@ -485,7 +485,7 @@ msgstr "Benchmark: {0}"
 msgid "Benchmarks"
 msgstr "Benchmarks"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:49
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:51
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:80
 #: src/shared/layouts/panel-layout/menuList.tsx:82
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:21
@@ -497,7 +497,7 @@ msgstr "Abrechnung"
 msgid "Billing Admin"
 msgstr "Abrechnungsadmin"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:110
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:125
 msgid "Billing cycle"
 msgstr ""
 
@@ -544,7 +544,7 @@ msgstr ""
 msgid "Change Payment method"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:124
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:126
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:81
 msgid "Change Product Tier"
 msgstr "Produktstufe ändern"
@@ -764,7 +764,7 @@ msgstr ""
 msgid "Critical"
 msgstr "Kritisch"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:166
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:168
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:86
 msgid "Current Product Tier"
 msgstr ""
@@ -906,7 +906,7 @@ msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 msgid "Done! We will now import your Azure accounts, this usually takes a couple of minutes."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:119
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:121
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:77
 msgid "Downgrade"
 msgstr "Downgrade"
@@ -1131,7 +1131,7 @@ msgstr ""
 msgid "High"
 msgstr "Hoch"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:117
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:132
 msgid "Highest product tier this billing cycle"
 msgstr ""
 
@@ -1242,7 +1242,7 @@ msgstr "Inaktivitätserinnerung"
 msgid "Info"
 msgstr "Info"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:176
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:178
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
 msgstr ""
 
@@ -1349,11 +1349,11 @@ msgstr "Recheninstanzen und Datenbanken mit geringer Auslastung"
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS Konto angemeldet sind, bevor Sie auf die Schaltfläche DEPLOY STACK klicken."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:154
+#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:156
 msgid "Manage AWS Market place payment method"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:173
+#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:175
 msgid "Manage Card Details"
 msgstr ""
 
@@ -1375,7 +1375,7 @@ msgid "MFA already enabled"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:19
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:112
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:127
 msgid "Monthly"
 msgstr "Monatliche"
 
@@ -1447,7 +1447,7 @@ msgstr "neue nicht konforme Ressourcen in der Vergangenheit {since}"
 msgid "New Password"
 msgstr "Neues Kennwort"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:169
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:171
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:89
 msgid "New Product Tier"
 msgstr ""
@@ -1460,7 +1460,7 @@ msgstr ""
 msgid "New security issues detected"
 msgstr "Neue Sicherheitsprobleme entdeckt"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:125
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:140
 msgid "Next invoice will be available"
 msgstr ""
 
@@ -1567,7 +1567,7 @@ msgstr ""
 msgid "on the right side"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:112
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:127
 msgid "One time"
 msgstr "Einmal"
 
@@ -1656,8 +1656,8 @@ msgstr "Passwort"
 msgid "Payment is required for your workspace, Please contact the workspace owner"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:130
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:74
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:132
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:89
 msgid "Payment method"
 msgstr ""
 
@@ -2121,7 +2121,7 @@ msgid "To access this resource, please ensure that you are logged into the AWS a
 msgstr "Um auf diese Ressource zuzugreifen, stellen Sie bitte sicher, dass Sie beim AWS-Konto angemeldet sind: {account}"
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:58
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:98
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:100
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:81
 msgid "To AWS Marketplace"
 msgstr "Zum AWS Marketplace"
@@ -2206,7 +2206,7 @@ msgstr "E-Mail aktualisieren"
 msgid "Update Password"
 msgstr "Kennwort aktualisieren"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:119
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:121
 msgid "Upgrade"
 msgstr "Aktualisierung"
 
@@ -2280,7 +2280,7 @@ msgstr "Wöchentlicher Report"
 msgid "Why does it matter"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:178
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:180
 msgid "Within a billing cycle you will be charged for the highest product tier that was active."
 msgstr ""
 
@@ -2322,14 +2322,18 @@ msgstr ""
 msgid "You are about to change workspace's payment method"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:125
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:127
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:82
 msgid "You are about to change workspace's product tier"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:55
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:57
 msgid "You are currently in your trial period, which will end in {0} days.<0/>During your trial period, you have access to all features of the product."
 msgstr "Sie befinden sich derzeit in Ihrer Testphase, die in {0} Tagen endet.<0/>In dieser Zeit haben Sie Zugang zu allen Funktionen des Produkts."
+
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:70
+msgid "You are currently subscribed to {0}, Your subscription will change to {title} by the end of the day on {1}."
+msgstr ""
 
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:59
 msgid "You can deactivate TOTP via otp code"
