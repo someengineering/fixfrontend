@@ -13,7 +13,11 @@ export const BillingEntryRow = ({ billingEntry }: BillingEntryRowProps) => {
   } = useLingui()
   return (
     <TableRow>
-      <TableCell>{billingEntry.period_start ? new Date(billingEntry.period_start).toLocaleDateString(locale) : '-'}</TableCell>
+      <TableCell>
+        {billingEntry.period_start
+          ? new Date(billingEntry.period_start).toLocaleDateString(locale, { year: 'numeric', month: '2-digit', day: '2-digit' })
+          : '-'}
+      </TableCell>
       <TableCell>{billingEntry.tier ? productTierToLabel(billingEntry.tier) : '-'}</TableCell>
       <TableCell>{billingEntry.nr_of_accounts_charged ?? '-'}</TableCell>
     </TableRow>

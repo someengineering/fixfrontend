@@ -265,7 +265,7 @@ msgid "Add a client secret"
 msgstr "Add a client secret"
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:60
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:100
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:102
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:83
 msgid "Add a New Credit or Debit Card"
 msgstr "Add a New Credit or Debit Card"
@@ -485,7 +485,7 @@ msgstr "Benchmark: {0}"
 msgid "Benchmarks"
 msgstr "Benchmarks"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:49
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:51
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:80
 #: src/shared/layouts/panel-layout/menuList.tsx:82
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:21
@@ -497,7 +497,7 @@ msgstr "Billing"
 msgid "Billing Admin"
 msgstr "Billing Admin"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:109
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:125
 msgid "Billing cycle"
 msgstr "Billing cycle"
 
@@ -544,7 +544,7 @@ msgstr "Change payment"
 msgid "Change Payment method"
 msgstr "Change Payment method"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:124
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:126
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:81
 msgid "Change Product Tier"
 msgstr "Change Product Tier"
@@ -764,7 +764,7 @@ msgstr "Credit/Debit Card has been successfully subscribed"
 msgid "Critical"
 msgstr "Critical"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:166
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:168
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:86
 msgid "Current Product Tier"
 msgstr "Current Product Tier"
@@ -906,7 +906,7 @@ msgstr "Don't have an account? Click here to Sign up."
 msgid "Done! We will now import your Azure accounts, this usually takes a couple of minutes."
 msgstr "Done! We will now import your Azure accounts, this usually takes a couple of minutes."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:119
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:121
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:77
 msgid "Downgrade"
 msgstr "Downgrade"
@@ -1131,7 +1131,7 @@ msgstr "Grant Access"
 msgid "High"
 msgstr "High"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:116
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:132
 msgid "Highest product tier this billing cycle"
 msgstr "Highest product tier this billing cycle"
 
@@ -1242,7 +1242,7 @@ msgstr "Inactivity reminder"
 msgid "Info"
 msgstr "Info"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:176
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:178
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
 msgstr "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
 
@@ -1349,11 +1349,11 @@ msgstr "Low Utilization Compute Instances and Databases"
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:150
+#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:156
 msgid "Manage AWS Market place payment method"
 msgstr "Manage AWS Market place payment method"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:169
+#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:175
 msgid "Manage Card Details"
 msgstr "Manage Card Details"
 
@@ -1375,7 +1375,7 @@ msgid "MFA already enabled"
 msgstr "MFA already enabled"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:19
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:111
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:127
 msgid "Monthly"
 msgstr "Monthly"
 
@@ -1447,7 +1447,7 @@ msgstr "new non compliant resources in the past {since}"
 msgid "New Password"
 msgstr "New Password"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:169
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:171
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:89
 msgid "New Product Tier"
 msgstr "New Product Tier"
@@ -1460,7 +1460,7 @@ msgstr "New registration"
 msgid "New security issues detected"
 msgstr "New security issues detected"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:124
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:140
 msgid "Next invoice will be available"
 msgstr "Next invoice will be available"
 
@@ -1567,7 +1567,7 @@ msgstr "On the Register an application page, fill the name of the application. W
 msgid "on the right side"
 msgstr "on the right side"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:111
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:127
 msgid "One time"
 msgstr "One time"
 
@@ -1656,8 +1656,8 @@ msgstr "Password"
 msgid "Payment is required for your workspace, Please contact the workspace owner"
 msgstr "Payment is required for your workspace, Please contact the workspace owner"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:130
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:73
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:132
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:89
 msgid "Payment method"
 msgstr "Payment method"
 
@@ -2121,7 +2121,7 @@ msgid "To access this resource, please ensure that you are logged into the AWS a
 msgstr "To access this resource, please ensure that you are logged into the AWS account: {account}"
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:58
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:98
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:100
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:81
 msgid "To AWS Marketplace"
 msgstr "To AWS Marketplace"
@@ -2206,7 +2206,7 @@ msgstr "Update Email"
 msgid "Update Password"
 msgstr "Update Password"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:119
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:121
 msgid "Upgrade"
 msgstr "Upgrade"
 
@@ -2280,7 +2280,7 @@ msgstr "Weekly Report"
 msgid "Why does it matter"
 msgstr "Why does it matter"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:178
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:180
 msgid "Within a billing cycle you will be charged for the highest product tier that was active."
 msgstr "Within a billing cycle you will be charged for the highest product tier that was active."
 
@@ -2322,14 +2322,18 @@ msgstr "Yes"
 msgid "You are about to change workspace's payment method"
 msgstr "You are about to change workspace's payment method"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:125
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:127
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:82
 msgid "You are about to change workspace's product tier"
 msgstr "You are about to change workspace's product tier"
 
-#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:55
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:57
 msgid "You are currently in your trial period, which will end in {0} days.<0/>During your trial period, you have access to all features of the product."
 msgstr "You are currently in your trial period, which will end in {0} days.<0/>During your trial period, you have access to all features of the product."
+
+#: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:70
+msgid "You are currently subscribed to {0}, Your subscription will change to {title} by the end of the day on {1}."
+msgstr "You are currently subscribed to {0}, Your subscription will change to {title} by the end of the day on {1}."
 
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:59
 msgid "You can deactivate TOTP via otp code"

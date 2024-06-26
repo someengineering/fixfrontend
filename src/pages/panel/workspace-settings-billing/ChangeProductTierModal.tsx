@@ -16,10 +16,10 @@ import { putWorkspaceBillingMutation } from './putWorkspaceBilling.mutation'
 import { paymentMethodToLabel, paymentMethods, productTierToLabel } from './utils'
 
 export interface ChangeProductTierModalProps {
-  productTier: ProductTier
   workspacePaymentMethods: PaymentMethod[]
   selectedWorkspacePaymentMethod: PaymentMethodWithoutNone
   selectedProductTier: ProductTier
+  currentProductTier: ProductTier
   showModalRef: MutableRefObject<((show?: boolean | undefined) => void) | undefined>
   isUpgrade: boolean
   defaultOpen?: boolean
@@ -28,9 +28,9 @@ export interface ChangeProductTierModalProps {
 }
 
 export const ChangeProductTierModal = ({
-  productTier,
   workspacePaymentMethods,
   selectedProductTier,
+  currentProductTier,
   selectedWorkspacePaymentMethod,
   showModalRef,
   isUpgrade,
@@ -52,10 +52,12 @@ export const ChangeProductTierModal = ({
       void showSnackbar(t`Product tier changed to ${selectedProductTier}`, { severity: 'success' })
     },
     onError: (err) => {
-      const { response: { data } = { data: { message: '' } } } = err as AxiosError
-      void showSnackbar((data as { message: string } | undefined)?.message ?? t`An error occurred, please try again later.`, {
+      const { response: { data } = { data: { message: '' } } } = err as AxiosError<{ message?: string } | undefined>
+      void showSnackbar(data?.message ?? t`An error occurred, please try again later.`, {
         severity: 'error',
+        autoHideDuration: null,
       })
+      onClose?.()
     },
     onSettled: () => {
       void queryClient.invalidateQueries({
@@ -86,8 +88,8 @@ export const ChangeProductTierModal = ({
             <LinkButton
               href={
                 paymentMethod.method === 'aws_marketplace'
-                  ? `${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').awsMarketplaceProduct}?product_tier=${productTier}`
-                  : `${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').subscription.stripe}?product_tier=${productTier}`
+                  ? `${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').awsMarketplaceProduct}?product_tier=${selectedProductTier}`
+                  : `${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').subscription.stripe}?product_tier=${selectedProductTier}`
               }
               variant="outlined"
               color="primary"
@@ -163,7 +165,7 @@ export const ChangeProductTierModal = ({
           </Select>
         </Typography>
         <Typography>
-          <Trans>Current Product Tier</Trans>: {productTierToLabel(productTier)}
+          <Trans>Current Product Tier</Trans>: {productTierToLabel(currentProductTier)}
         </Typography>
         <Typography>
           <Trans>New Product Tier</Trans>: {productTierToLabel(selectedProductTier)}

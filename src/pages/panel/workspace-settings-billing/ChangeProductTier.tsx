@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/macro'
 import CreditCardIcon from '@mui/icons-material/CreditCard'
-import { ButtonBase, Divider, Stack, Typography, alpha } from '@mui/material'
+import { Box, ButtonBase, Divider, Stack, Typography, alpha } from '@mui/material'
 import { Fragment, useRef, useState } from 'react'
 import { AwsLogo } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
@@ -18,6 +18,7 @@ interface ChangeProductTierProps {
   selectedWorkspacePaymentMethod: PaymentMethod
   workspacePaymentMethods: PaymentMethod[]
   defaultProductTier: ProductTier
+  currentProductTier: ProductTier
   nextBillingCycle: Date
 }
 
@@ -25,6 +26,7 @@ const allProductTiers: readonly ProductTier[] = ['Free', 'Plus', 'Business', 'En
 
 export const ChangeProductTier = ({
   defaultProductTier,
+  currentProductTier,
   selectedWorkspacePaymentMethod,
   workspacePaymentMethods,
   nextBillingCycle,
@@ -108,7 +110,7 @@ export const ChangeProductTier = ({
             productTier === 'Free' ? (
               <ChangeProductTierToFreeModal
                 onClose={() => setProductTier(defaultProductTier)}
-                productTier={defaultProductTier}
+                currentProductTier={currentProductTier}
                 showModalRef={showModalRef}
                 defaultOpen={true}
               />
@@ -125,8 +127,8 @@ export const ChangeProductTier = ({
                 nextBillingCycle={nextBillingCycle}
                 onClose={() => setProductTier(defaultProductTier)}
                 isUpgrade={isUpgrade}
-                productTier={defaultProductTier}
                 selectedProductTier={productTier}
+                currentProductTier={currentProductTier}
                 selectedWorkspacePaymentMethod={selectedWorkspacePaymentMethod}
                 showModalRef={showModalRef}
                 defaultOpen={true}
@@ -140,7 +142,11 @@ export const ChangeProductTier = ({
                     {awsMarketPlacePaymentMethod ? (
                       <Stack direction="row" spacing={1} alignItems="center">
                         <LinkButton
-                          startIcon={<AwsLogo height={50} />}
+                          startIcon={
+                            <Box py={1} height={48}>
+                              <AwsLogo height="100%" />
+                            </Box>
+                          }
                           endIcon={null}
                           loadingPosition="start"
                           variant="outlined"

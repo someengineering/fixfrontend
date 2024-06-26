@@ -71,12 +71,13 @@ const DrawerMenuItem = ({
   const navigate = useAbsoluteNavigate()
   const handleClick = (e: ReactMouseEvent<HTMLAnchorElement, MouseEvent>) => {
     setCollapse(false)
+    e.stopPropagation()
     e.preventDefault()
     onClose?.(e)
     navigate({ pathname: route, search: notRouteSearchMatch ? undefined : routeSearch })
   }
   useEffect(() => {
-    setCollapse(hasMatch)
+    setCollapse(!hasMatch)
   }, [hasMatch])
   return show || !hideOnGuard ? (
     <DisabledWithPermission
