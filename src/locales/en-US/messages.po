@@ -470,7 +470,7 @@ msgstr "Because the data is over {0} Only first {1} items will be downloaded"
 msgid "below"
 msgstr "below"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:101
+#: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:102
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:46
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:160
 msgid "Benchmark"
@@ -1214,7 +1214,7 @@ msgstr "Ignored"
 msgid "Improved"
 msgstr "Improved"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:105
+#: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:106
 msgid "in account"
 msgstr "in account"
 
