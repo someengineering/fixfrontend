@@ -50,7 +50,7 @@ export const Modal = ({ children, actions, description, title, openRef, defaultO
       }}
     >
       <ModalContent
-        spacing={1}
+        spacing={2}
         width={width}
         component={onSubmit ? 'form' : 'div'}
         onSubmit={

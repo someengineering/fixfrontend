@@ -404,8 +404,9 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
               Fix was unable to gather data from this project.
               <br />
               <br />
-              To resume security scans, please ensure that the service account you configured is set up correctly. You may also recreate and
-              upload the service account definition.
+              To resume security scans, please ensure that the service account you configured is set up correctly.
+              <br />
+              You may also recreate and upload the service account definition.
             </Trans>
           ) : account.cloud === 'azure' ? (
             <Trans>
@@ -414,8 +415,9 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
               Fix was unable to gather data from this subscription.
               <br />
               <br />
-              To resume security scans, please ensure that the application permissions are set up correctly. You may also recreate and
-              redefine the access credentials.
+              To resume security scans, please ensure that the application permissions are set up correctly.
+              <br />
+              You may also recreate and redefine the access credentials.
             </Trans>
           ) : (
             <Trans>
