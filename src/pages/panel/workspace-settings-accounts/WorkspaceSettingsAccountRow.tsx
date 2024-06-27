@@ -372,45 +372,56 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
             <Button variant="outlined" onClick={() => showDegradedModalRef.current?.(false)}>
               <Trans>Close</Trans>
             </Button>
-            {account.cloud === 'aws' || account.cloud === 'gcp' || account.cloud === 'azure' ? (
-              <InternalLinkButton variant="contained" to={`/workspace-settings/accounts/setup-cloud/${account.cloud}`}>
-                {account.cloud === 'aws' ? (
-                  <Trans>Deploy Stack</Trans>
-                ) : account.cloud === 'gcp' ? (
-                  <Trans>Connect GCP Service Account</Trans>
-                ) : account.cloud === 'azure' ? (
-                  <Trans>Configure Service Principal</Trans>
-                ) : (
-                  <Trans>Setup cloud</Trans>
-                )}
-              </InternalLinkButton>
-            ) : null}
+            <InternalLinkButton variant="contained" to={`/workspace-settings/accounts/setup-cloud/${account.cloud}`}>
+              {account.cloud === 'aws' ? (
+                <Trans>Deploy Stack</Trans>
+              ) : account.cloud === 'gcp' ? (
+                <Trans>Connect GCP Service Account</Trans>
+              ) : account.cloud === 'azure' ? (
+                <Trans>Configure Service Principal</Trans>
+              ) : (
+                <Trans>Setup cloud</Trans>
+              )}
+            </InternalLinkButton>
           </Stack>
         }
       >
         <Typography>
           {account.cloud === 'aws' ? (
             <Trans>
-              This account is currently in a degraded state. Fix was unable to gather data from this account. To resume security scans,
-              please log into the {accountName} account ({account.account_id}) and re-deploy the CloudFormation stack that establishes the
-              IAM role trust.
+              This account is currently in a degraded state.
+              <br />
+              Fix was unable to gather data from this account.
+              <br />
+              <br />
+              To resume security scans, please log into the {accountName} account ({account.account_id}) and re-deploy the CloudFormation
+              stack that establishes the IAM role trust.
             </Trans>
           ) : account.cloud === 'gcp' ? (
             <Trans>
-              This project is currently in a degraded state. Fix was unable to gather data from this project. To resume security scans,
-              please ensure that the service account you configured is set up correctly. You may also recreate and upload the service
-              account definition.
+              This project is currently in a degraded state.
+              <br />
+              Fix was unable to gather data from this project.
+              <br />
+              <br />
+              To resume security scans, please ensure that the service account you configured is set up correctly. You may also recreate and
+              upload the service account definition.
             </Trans>
           ) : account.cloud === 'azure' ? (
             <Trans>
-              This subscription is currently in a degraded state. Fix was unable to gather data from this subscription. To resume security
-              scans, please ensure that the application permissions are set up correctly. You may also recreate and redefine the access
-              credentials.
+              This subscription is currently in a degraded state.
+              <br />
+              Fix was unable to gather data from this subscription.
+              <br />
+              <br />
+              To resume security scans, please ensure that the application permissions are set up correctly. You may also recreate and
+              redefine the access credentials.
             </Trans>
           ) : (
             <Trans>
-              This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to gather data from this
-              account.
+              This account is currently in a degraded state possibly due to a misconfiguration.
+              <br />
+              Fix was unable to gather data from this account.
             </Trans>
           )}
         </Typography>
