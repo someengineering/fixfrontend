@@ -20,9 +20,9 @@ import {
 } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
+import { InternalLinkButton } from 'src/shared/link-button'
 import { Modal } from 'src/shared/modal'
 import { useNonce } from 'src/shared/providers'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
@@ -368,17 +368,51 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
         width={550}
         openRef={showDegradedModalRef}
         actions={
-          <Button variant="outlined" component={Link} to="/workspace-settings/accounts/setup-cloud">
-            <Trans>Deploy Stack</Trans>
-          </Button>
+          <Stack direction="row" spacing={1} justifyContent="space-between" width="100%">
+            <Button variant="outlined" onClick={() => showDegradedModalRef.current?.(false)}>
+              <Trans>Close</Trans>
+            </Button>
+            {account.cloud === 'aws' || account.cloud === 'gcp' || account.cloud === 'azure' ? (
+              <InternalLinkButton variant="contained" to={`/workspace-settings/accounts/setup-cloud/${account.cloud}`}>
+                {account.cloud === 'aws' ? (
+                  <Trans>Deploy Stack</Trans>
+                ) : account.cloud === 'gcp' ? (
+                  <Trans>Connect GCP Service Account</Trans>
+                ) : account.cloud === 'azure' ? (
+                  <Trans>Configure Service Principal</Trans>
+                ) : (
+                  <Trans>Setup cloud</Trans>
+                )}
+              </InternalLinkButton>
+            ) : null}
+          </Stack>
         }
       >
         <Typography>
-          <Trans>
-            This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To
-            resume security scans, please log into account {accountName} ({account.account_id}) and re-deploy the CloudFormation stack that
-            establishes the IAM role trust.
-          </Trans>
+          {account.cloud === 'aws' ? (
+            <Trans>
+              This account is currently in a degraded state. Fix was unable to gather data from this account. To resume security scans,
+              please log into the {accountName} account ({account.account_id}) and re-deploy the CloudFormation stack that establishes the
+              IAM role trust.
+            </Trans>
+          ) : account.cloud === 'gcp' ? (
+            <Trans>
+              This project is currently in a degraded state. Fix was unable to gather data from this project. To resume security scans,
+              please ensure that the service account you configured is set up correctly. You may also recreate and upload the service
+              account definition.
+            </Trans>
+          ) : account.cloud === 'azure' ? (
+            <Trans>
+              This subscription is currently in a degraded state. Fix was unable to gather data from this subscription. To resume security
+              scans, please ensure that the application permissions are set up correctly. You may also recreate and redefine the access
+              credentials.
+            </Trans>
+          ) : (
+            <Trans>
+              This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to gather data from this
+              account.
+            </Trans>
+          )}
         </Typography>
       </Modal>
       <Modal

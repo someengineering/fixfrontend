@@ -421,7 +421,7 @@ msgstr "Möchten Sie die Verbindung zu {name} wirklich trennen?"
 msgid "Are you sure you want to remove the {name} account {0}?"
 msgstr "Sind Sie sicher, dass Sie das {name}-Konto {0} entfernen möchten?"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:385
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:419
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:85
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:107
 msgid "Are you sure?"
@@ -515,7 +515,7 @@ msgstr "Business"
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:287
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:291
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:292
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:404
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:438
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:92
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:154
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:158
@@ -624,6 +624,7 @@ msgid "Client secret"
 msgstr ""
 
 #: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:36
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:373
 msgid "Close"
 msgstr "Schließen"
 
@@ -632,7 +633,7 @@ msgstr "Schließen"
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:96
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:235
 #: src/pages/panel/security/AccountCard.tsx:37
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:424
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:458
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:53
 msgid "Cloud"
 msgstr "Cloud"
@@ -665,6 +666,10 @@ msgstr "Konfiguration geändert"
 msgid "Configure"
 msgstr "Konfigurieren"
 
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:382
+msgid "Configure Service Principal"
+msgstr ""
+
 #: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:41
 msgid "Confirm"
 msgstr "Bestätigen"
@@ -686,6 +691,10 @@ msgstr "Herzlichen Glückwunsch zu Ihrem Abonnement"
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:134
 msgid "Connect"
 msgstr "Verbinden"
+
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:380
+msgid "Connect GCP Service Account"
+msgstr ""
 
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:77
 msgid "Connect Opsgenie"
@@ -821,7 +830,7 @@ msgstr "Verzögerte Wirkung"
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:354
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:358
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:359
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:415
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:449
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:73
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:77
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:78
@@ -839,7 +848,7 @@ msgstr "Anbieter löschen"
 
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:13
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:29
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:372
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:378
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
@@ -885,7 +894,7 @@ msgstr ""
 msgid "Do not show me again"
 msgstr "Zeig es mir nicht noch einmal"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:388
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:422
 msgid "Do you want to delete this account?"
 msgstr "Möchten Sie dieses Konto löschen?"
 
@@ -1159,7 +1168,7 @@ msgstr ""
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:232
 #: src/pages/panel/security/AccountCard.tsx:34
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:421
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:455
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:56
 #: src/shared/charts/NetworkDiagram.tsx:407
 msgid "ID"
@@ -1401,7 +1410,7 @@ msgstr "Die meisten nicht konformen Konten"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:177
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:233
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:427
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:461
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:59
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
@@ -1506,7 +1515,7 @@ msgstr ""
 msgid "Non-Compliant Resources"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:391
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:425
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Sie löschen gerade ein Management- oder delegiertes Admin-Konto. Beachten Sie bitte, dass wir nach der Löschung nicht mehr in der Lage sein werden, Kontonamen abzurufen, wodurch Sie diese manuell bearbeiten müssen."
 
@@ -1721,7 +1730,7 @@ msgstr ""
 msgid "Print or copy the following recovery codes"
 msgstr "Drucken oder kopieren Sie die folgenden Wiederherstellungscodes"
 
-#: src/shared/cloud-avatar/CloudAvatar.tsx:48
+#: src/shared/cloud-avatar/CloudAvatar.tsx:49
 msgid "Privileged"
 msgstr "Privilegiert"
 
@@ -1977,6 +1986,10 @@ msgstr ""
 msgid "Setting Up Email Notifications"
 msgstr "E-Mail-Benachrichtigungen einrichten"
 
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:384
+msgid "Setup cloud"
+msgstr ""
+
 #: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:40
 #: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:56
 msgid "Severities"
@@ -2100,13 +2113,25 @@ msgstr ""
 msgid "There's no account configured for this workspace."
 msgstr "Für diesen Arbeitsbereich ist kein Konto konfiguriert."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:377
-msgid "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To resume security scans, please log into account {accountName} ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
-msgstr "Dieses Konto befindet sich derzeit in einem nicht-funktionalen Zustand, möglicherweise aufgrund einer Fehlkonfiguration. Fix konnte nicht auf das Konto zugreifen. Um die Sicherheitsscans fortzusetzen, loggen Sie sich bitte in das Konto {accountName} ({0}) ein und erzeugen Sie den CloudFormation-Stacks, der die IAM Vertrauensstellung herstellt, erneut."
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:411
+msgid "This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to gather data from this account."
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:393
+msgid "This account is currently in a degraded state. Fix was unable to gather data from this account. To resume security scans, please log into the {accountName} account ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
+msgstr ""
 
 #: src/shared/utils/getErrorMessage.ts:30
 msgid "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 msgstr "Diese Email-Adresse ist bereits registriert. Wenn dies Ihre E-Mail-Adresse ist, versuchen Sie bitte, sich anzumelden, oder klicken Sie auf der Anmeldeseite auf „Passwort vergessen“, um Ihr Passwort zurückzusetzen."
+
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:399
+msgid "This project is currently in a degraded state. Fix was unable to gather data from this project. To resume security scans, please ensure that the service account you configured is set up correctly. You may also recreate and upload the service account definition."
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:405
+msgid "This subscription is currently in a degraded state. Fix was unable to gather data from this subscription. To resume security scans, please ensure that the application permissions are set up correctly. You may also recreate and redefine the access credentials."
+msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:95
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."

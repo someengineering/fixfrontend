@@ -1,4 +1,4 @@
-export type { Account } from './Account'
+export type { Account, AccountCloud } from './Account'
 export type { Benchmark, BenchmarkDetail } from './Benchmark'
 export type { FailedCheck } from './FailedCheck'
 export type { GenericServerError } from './GenericServerError'

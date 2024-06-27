@@ -4,9 +4,10 @@ import { Avatar, Box, ButtonBase, Paper, Tooltip, Typography } from '@mui/materi
 import { ReactNode } from 'react'
 import { AwsLogo, AzureLogo, Crown, FixLogo, GcpLogo } from 'src/assets/icons'
 import { useNonce } from 'src/shared/providers'
+import { AccountCloud } from 'src/shared/types/server-shared'
 
 export interface CloudAvatarProps {
-  cloud: string
+  cloud: AccountCloud
   withCrown?: boolean
   tooltip?: ReactNode
   error?: ReactNode
