@@ -9,7 +9,7 @@ import { MutableRefObject, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
 import { endPoints, env } from 'src/shared/constants'
-import { LinkButton } from 'src/shared/link-button'
+import { ExternalLinkLoadingButton } from 'src/shared/link-button'
 import { Modal } from 'src/shared/modal'
 import { PaymentMethod, PaymentMethodWithoutNone, PaymentMethods, ProductTier } from 'src/shared/types/server-shared'
 import { putWorkspaceBillingMutation } from './putWorkspaceBilling.mutation'
@@ -85,7 +85,7 @@ export const ChangeProductTierModal = ({
             Cancel
           </Button>
           {paymentMethod.method === 'none' ? null : !paymentMethod.subscription_id ? (
-            <LinkButton
+            <ExternalLinkLoadingButton
               href={
                 paymentMethod.method === 'aws_marketplace'
                   ? `${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').awsMarketplaceProduct}?product_tier=${selectedProductTier}`
@@ -101,7 +101,7 @@ export const ChangeProductTierModal = ({
               ) : (
                 <Trans>Add a New Credit or Debit Card</Trans>
               )}
-            </LinkButton>
+            </ExternalLinkLoadingButton>
           ) : (
             <LoadingButton
               loadingPosition="center"

@@ -3,8 +3,7 @@ import { LoadingButton, LoadingButtonProps } from '@mui/lab'
 import { ButtonTypeMap } from '@mui/material'
 import { ElementType, useState } from 'react'
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export function LinkButton<RootComponent extends ElementType = ButtonTypeMap['defaultComponent'], AdditionalProps = {}>(
+export function ExternalLinkLoadingButton<RootComponent extends ElementType = ButtonTypeMap['defaultComponent'], AdditionalProps = unknown>(
   props: LoadingButtonProps<RootComponent, AdditionalProps>,
 ) {
   const [loading, setLoading] = useState(false)

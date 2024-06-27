@@ -155,6 +155,7 @@ export function PanelRoutes() {
                 <Route path="aws" element={<WorkspaceSettingsAccountsSetupCloudAWSPage />} />
                 <Route path="gcp" element={<WorkspaceSettingsAccountsSetupCloudGCPPage />} />
                 <Route path="azure" element={<WorkspaceSettingsAccountsSetupCloudAzurePage />} />
+                <Route path="*" element={<Navigate to=".." replace />} />
               </Route>
             </Route>
           </Route>

@@ -1,6 +1,10 @@
+import { LiteralUnion } from 'src/shared/types/shared'
+
+export type AccountCloud = LiteralUnion<'azure' | 'fix' | 'aws' | 'gcp', string>
+
 export interface Account {
   id: string
-  cloud: string
+  cloud: AccountCloud
   account_id: string
   enabled: boolean
   scan: boolean
