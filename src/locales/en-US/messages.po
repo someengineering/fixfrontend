@@ -144,6 +144,10 @@ msgstr "<0>Privacy policy</0> | <1>Terms and conditions</1>"
 msgid "<0>Step 1: Scan the QR Code</0><1>First up, see this QR code on your screen? Grab your phone and open your favorite authenticator app (like Google Authenticator).</1><2>Step 2: Add a New Account</2><3>In the app, tap on \"Add\" or \"+\" to set up a new account. Select \"Scan a QR Code\" and point your phone's camera at the QR code displayed here. This will link your account to the app.</3><4><5/></4><6>Step 3: Enter the Code</6><7>Once linked, the app will display a 6-digit code. It changes every 30 seconds, so it's super fresh! Enter that code in the box below and hit \"Activate\". And voilà, you're all set!</7>"
 msgstr "<0>Step 1: Scan the QR Code</0><1>First up, see this QR code on your screen? Grab your phone and open your favorite authenticator app (like Google Authenticator).</1><2>Step 2: Add a New Account</2><3>In the app, tap on \"Add\" or \"+\" to set up a new account. Select \"Scan a QR Code\" and point your phone's camera at the QR code displayed here. This will link your account to the app.</3><4><5/></4><6>Step 3: Enter the Code</6><7>Once linked, the app will display a 6-digit code. It changes every 30 seconds, so it's super fresh! Enter that code in the box below and hit \"Activate\". And voilà, you're all set!</7>"
 
+#: src/shared/layouts/panel-layout/MoveToFreeAcknowledge.tsx:55
+msgid "<0>Thank you</0> for exploring the capabilities of Fix Security during your trial period!<1/>You've seen firsthand how our platform transforms cloud security with continuous, comprehensive monitoring and protection.<2/><3/>We have stopped synchronizing your cloud accounts and moved your workspace into the Free Tier.<4/>One account will be synchronized on a monthly base, while no additional user is allowed to access this workspace."
+msgstr "<0>Thank you</0> for exploring the capabilities of Fix Security during your trial period!<1/>You've seen firsthand how our platform transforms cloud security with continuous, comprehensive monitoring and protection.<2/><3/>We have stopped synchronizing your cloud accounts and moved your workspace into the Free Tier.<4/>One account will be synchronized on a monthly base, while no additional user is allowed to access this workspace."
+
 #: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:50
 msgid "<0>This search is complex.</0>The combo boxes below may not display all filter details but can help narrow your results. For full control, please use the Advanced tab."
 msgstr "<0>This search is complex.</0>The combo boxes below may not display all filter details but can help narrow your results. For full control, please use the Advanced tab."
@@ -163,6 +167,10 @@ msgstr "<0>We utilize incoming webhooks to deliver notifications to your Microso
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:79
 msgid "<0>We utilize the OpsGenie API integration for notifications and alerts.<1/>To set up this Integration, please follow these instructions:<2><3><4>Navigate to the Dashboard:</4> Find and click on the “Teams” section from the sidebar once logged in.</3><5><6>Select Your Team:</6> Choose the team you want to integrate with. Within the team dashboard, go to the “Integrations” tab.</5><7><8>Add Integration:</8> Click on the “+ New Integration” button. Select “API” as the integration type, give it the name “Fix,” and press Continue.</7><9><10>Turn Integration on:</10> When the Integration has been created, it is disabled by default - click “Turn on Integration”.</9><11><12>Copy API Key:</12> Find and copy the API Key in the integration settings.</11></2></0>"
 msgstr "<0>We utilize the OpsGenie API integration for notifications and alerts.<1/>To set up this Integration, please follow these instructions:<2><3><4>Navigate to the Dashboard:</4> Find and click on the “Teams” section from the sidebar once logged in.</3><5><6>Select Your Team:</6> Choose the team you want to integrate with. Within the team dashboard, go to the “Integrations” tab.</5><7><8>Add Integration:</8> Click on the “+ New Integration” button. Select “API” as the integration type, give it the name “Fix,” and press Continue.</7><9><10>Turn Integration on:</10> When the Integration has been created, it is disabled by default - click “Turn on Integration”.</9><11><12>Copy API Key:</12> Find and copy the API Key in the integration settings.</11></2></0>"
+
+#: src/shared/layouts/panel-layout/MoveToFreeAcknowledge.tsx:69
+msgid "<0>Why Upgrade to a Paid Tier?</0><1><2><3>Continuous Protection:</3></2> As your cloud environment grows and changes, Fix Security remains your steadfast partner in security, ensuring your infrastructure adapts to new threats seamlessly.</1><4><5><6>Advanced Features:</6></5> Gain deeper insights and more control with advanced features such as custom policies, expanded ticketing, and alerting systems. Harness the full potential of API integrations and webhooks for streamlined operations.</4><7><8><9>Priority Support:</9></8> Receive priority support from our dedicated team. We're here to assist you with faster response times and expert advice, helping you maintain an optimal security posture.</7><10><11><12>Stay Ahead of Compliance:</12></11> With regulations constantly evolving, our preconfigured benchmarks and dynamic compliance rules ensure you're always ahead, reducing risks and avoiding potential fines.</10><13/>"
+msgstr "<0>Why Upgrade to a Paid Tier?</0><1><2><3>Continuous Protection:</3></2> As your cloud environment grows and changes, Fix Security remains your steadfast partner in security, ensuring your infrastructure adapts to new threats seamlessly.</1><4><5><6>Advanced Features:</6></5> Gain deeper insights and more control with advanced features such as custom policies, expanded ticketing, and alerting systems. Harness the full potential of API integrations and webhooks for streamlined operations.</4><7><8><9>Priority Support:</9></8> Receive priority support from our dedicated team. We're here to assist you with faster response times and expert advice, helping you maintain an optimal security posture.</7><10><11><12>Stay Ahead of Compliance:</12></11> With regulations constantly evolving, our preconfigured benchmarks and dynamic compliance rules ensure you're always ahead, reducing risks and avoiding potential fines.</10><13/>"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:77
 msgid "<0>You need to assign three roles for Fix Security to work:</0><1>{0}</1><2>And Press Save.</2>"
@@ -421,7 +429,7 @@ msgstr "Are you sure you want to disconnect {name}?"
 msgid "Are you sure you want to remove the {name} account {0}?"
 msgstr "Are you sure you want to remove the {name} account {0}?"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:432
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:436
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:85
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:107
 msgid "Are you sure?"
@@ -515,7 +523,7 @@ msgstr "Business"
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:287
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:291
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:292
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:451
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:455
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:92
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:154
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:158
@@ -633,7 +641,7 @@ msgstr "Close"
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:96
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:235
 #: src/pages/panel/security/AccountCard.tsx:37
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:471
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:475
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:53
 msgid "Cloud"
 msgstr "Cloud"
@@ -666,7 +674,7 @@ msgstr "Configuration changed"
 msgid "Configure"
 msgstr "Configure"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:381
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:385
 msgid "Configure Service Principal"
 msgstr "Configure Service Principal"
 
@@ -692,7 +700,7 @@ msgstr "Congratulations on your subscription"
 msgid "Connect"
 msgstr "Connect"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:379
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:383
 msgid "Connect GCP Service Account"
 msgstr "Connect GCP Service Account"
 
@@ -830,7 +838,7 @@ msgstr "Delayed Effect"
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:354
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:358
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:359
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:462
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:466
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:73
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:77
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:78
@@ -848,7 +856,7 @@ msgstr "Delete Provider"
 
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:13
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:29
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:377
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:381
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
@@ -894,7 +902,11 @@ msgstr "Disposable email domains are not allowed"
 msgid "Do not show me again"
 msgstr "Do not show me again"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:435
+#: src/shared/layouts/panel-layout/MoveToFreeAcknowledge.tsx:101
+msgid "Do not show this message again."
+msgstr "Do not show this message again."
+
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:439
 msgid "Do you want to delete this account?"
 msgstr "Do you want to delete this account?"
 
@@ -906,7 +918,7 @@ msgstr "Do you want to delete this invitation?"
 msgid "Do you want to delete this user?"
 msgstr "Do you want to delete this user?"
 
-#: src/pages/auth/login/LoginPage.tsx:222
+#: src/pages/auth/login/LoginPage.tsx:224
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Don't have an account? Click here to Sign up."
 
@@ -937,7 +949,7 @@ msgid "Edit"
 msgstr "Edit"
 
 #: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:62
-#: src/pages/auth/login/LoginPage.tsx:106
+#: src/pages/auth/login/LoginPage.tsx:108
 #: src/pages/auth/register/RegisterPage.tsx:84
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:49
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:69
@@ -1082,7 +1094,7 @@ msgstr "For growing teams looking to stay secure as they build out infrastructur
 msgid "For solo software engineers who want to secure a single cloud account."
 msgstr "For solo software engineers who want to secure a single cloud account."
 
-#: src/pages/auth/login/LoginPage.tsx:227
+#: src/pages/auth/login/LoginPage.tsx:229
 msgid "Forget your password? Click here to reset your password."
 msgstr "Forget your password? Click here to reset your password."
 
@@ -1168,7 +1180,7 @@ msgstr "Id"
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:232
 #: src/pages/panel/security/AccountCard.tsx:34
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:468
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:472
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:56
 #: src/shared/charts/NetworkDiagram.tsx:407
 msgid "ID"
@@ -1328,8 +1340,8 @@ msgstr "Learn more about the associated risk"
 msgid "Load Balancers with no backends"
 msgstr "Load Balancers with no backends"
 
-#: src/pages/auth/login/LoginPage.tsx:97
-#: src/pages/auth/login/LoginPage.tsx:217
+#: src/pages/auth/login/LoginPage.tsx:99
+#: src/pages/auth/login/LoginPage.tsx:219
 msgid "Log in"
 msgstr "Log in"
 
@@ -1410,7 +1422,7 @@ msgstr "Most Non-Compliant Accounts"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:177
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:233
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:474
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:478
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:59
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
@@ -1491,6 +1503,10 @@ msgstr "No"
 msgid "No {label} found for {typed}"
 msgstr "No {label} found for {typed}"
 
+#: src/shared/layouts/panel-layout/MoveToFreeAcknowledge.tsx:44
+msgid "No Thanks"
+msgstr "No Thanks"
+
 #: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:31
 msgid "Node Compliant"
 msgstr "Node Compliant"
@@ -1515,7 +1531,7 @@ msgstr "Node Vulnerable"
 msgid "Non-Compliant Resources"
 msgstr "Non-Compliant Resources"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:438
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:442
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 
@@ -1617,8 +1633,8 @@ msgstr "Opened at"
 msgid "Optional professional services"
 msgstr "Optional professional services"
 
-#: src/pages/auth/login/LoginPage.tsx:155
-#: src/pages/auth/login/LoginPage.tsx:232
+#: src/pages/auth/login/LoginPage.tsx:157
+#: src/pages/auth/login/LoginPage.tsx:234
 #: src/pages/auth/register/RegisterPage.tsx:131
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:87
 msgid "Or"
@@ -1640,7 +1656,7 @@ msgstr "Orphaned Volumes"
 msgid "Other Workspace Settings"
 msgstr "Other Workspace Settings"
 
-#: src/pages/auth/login/LoginPage.tsx:138
+#: src/pages/auth/login/LoginPage.tsx:140
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:204
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:73
 msgid "OTP Code"
@@ -1655,7 +1671,7 @@ msgstr "Owner"
 msgid "Passed"
 msgstr "Passed"
 
-#: src/pages/auth/login/LoginPage.tsx:121
+#: src/pages/auth/login/LoginPage.tsx:123
 #: src/pages/auth/register/RegisterPage.tsx:98
 #: src/pages/auth/reset-password/ResetPasswordPage.tsx:96
 msgid "Password"
@@ -1698,7 +1714,7 @@ msgstr "Pick one of the recommendations to the right and improve your security"
 msgid "Please add a payment method to switch your workspace's product tier"
 msgstr "Please add a payment method to switch your workspace's product tier"
 
-#: src/pages/auth/login/LoginPage.tsx:182
+#: src/pages/auth/login/LoginPage.tsx:184
 msgid "Please enter your One-Time-Password or one of your Recovery code."
 msgstr "Please enter your One-Time-Password or one of your Recovery code."
 
@@ -1790,7 +1806,7 @@ msgstr "Receipts"
 msgid "Recently added accounts"
 msgstr "Recently added accounts"
 
-#: src/pages/auth/login/LoginPage.tsx:164
+#: src/pages/auth/login/LoginPage.tsx:166
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:105
 msgid "Recovery Code"
 msgstr "Recovery Code"
@@ -1899,6 +1915,10 @@ msgstr "Secret Value"
 msgid "Secure read-only access"
 msgstr "Secure read-only access"
 
+#: src/shared/layouts/panel-layout/MoveToFreeAcknowledge.tsx:50
+msgid "Secure Your Cloud, Elevate Your Peace of Mind"
+msgstr "Secure Your Cloud, Elevate Your Peace of Mind"
+
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:25
 #: src/shared/layouts/panel-layout/menuList.tsx:56
 msgid "Security"
@@ -1986,7 +2006,7 @@ msgstr "Service Account Key"
 msgid "Setting Up Email Notifications"
 msgstr "Setting Up Email Notifications"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:383
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:387
 msgid "Setup cloud"
 msgstr "Setup cloud"
 
@@ -2113,11 +2133,11 @@ msgstr "The workspace you requested cannot be accessed. Please request access fr
 msgid "There's no account configured for this workspace."
 msgstr "There's no account configured for this workspace."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:423
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:427
 msgid "This account is currently in a degraded state possibly due to a misconfiguration.<0/>Fix was unable to gather data from this account."
 msgstr "This account is currently in a degraded state possibly due to a misconfiguration.<0/>Fix was unable to gather data from this account."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:391
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:395
 msgid "This account is currently in a degraded state.<0/>Fix was unable to gather data from this account.<1/><2/>To resume security scans, please log into the {accountName} account ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 msgstr "This account is currently in a degraded state.<0/>Fix was unable to gather data from this account.<1/><2/>To resume security scans, please log into the {accountName} account ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 
@@ -2125,11 +2145,11 @@ msgstr "This account is currently in a degraded state.<0/>Fix was unable to gath
 msgid "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 msgstr "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:401
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:405
 msgid "This project is currently in a degraded state.<0/>Fix was unable to gather data from this project.<1/><2/>To resume security scans, please ensure that the service account you configured is set up correctly.<3/>You may also recreate and upload the service account definition."
 msgstr "This project is currently in a degraded state.<0/>Fix was unable to gather data from this project.<1/><2/>To resume security scans, please ensure that the service account you configured is set up correctly.<3/>You may also recreate and upload the service account definition."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:412
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:416
 msgid "This subscription is currently in a degraded state.<0/>Fix was unable to gather data from this subscription.<1/><2/>To resume security scans, please ensure that the application permissions are set up correctly.<3/>You may also recreate and redefine the access credentials."
 msgstr "This subscription is currently in a degraded state.<0/>Fix was unable to gather data from this subscription.<1/><2/>To resume security scans, please ensure that the application permissions are set up correctly.<3/>You may also recreate and redefine the access credentials."
 
@@ -2235,6 +2255,10 @@ msgstr "Update Password"
 msgid "Upgrade"
 msgstr "Upgrade"
 
+#: src/shared/layouts/panel-layout/MoveToFreeAcknowledge.tsx:41
+msgid "Upgrade to Paid Tier"
+msgstr "Upgrade to Paid Tier"
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:59
 msgid "Uploading your Google Cloud Service Account file..."
 msgstr "Uploading your Google Cloud Service Account file..."
@@ -2272,7 +2296,7 @@ msgstr "Version"
 msgid "Warning"
 msgstr "Warning"
 
-#: src/pages/auth/login/LoginPage.tsx:189
+#: src/pages/auth/login/LoginPage.tsx:191
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 
@@ -2388,11 +2412,11 @@ msgstr "You don't have the permission to change this, contact the workspace owne
 msgid "You don't have the permission to view this workspace, contact the workspace owner for more information."
 msgstr "You don't have the permission to view this workspace, contact the workspace owner for more information."
 
-#: src/pages/auth/login/LoginPage.tsx:202
+#: src/pages/auth/login/LoginPage.tsx:204
 msgid "You have successfully reset your password."
 msgstr "You have successfully reset your password."
 
-#: src/pages/auth/login/LoginPage.tsx:195
+#: src/pages/auth/login/LoginPage.tsx:197
 msgid "You have successfully verified your account."
 msgstr "You have successfully verified your account."
 

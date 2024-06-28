@@ -372,7 +372,11 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
             <Button variant="outlined" onClick={() => showDegradedModalRef.current?.(false)}>
               <Trans>Close</Trans>
             </Button>
-            <InternalLinkButton variant="contained" to={`/workspace-settings/accounts/setup-cloud/${account.cloud}`}>
+            <InternalLinkButton
+              variant="contained"
+              to={`/workspace-settings/accounts/setup-cloud/${account.cloud}`}
+              onClick={() => showDegradedModalRef.current?.(false)}
+            >
               {account.cloud === 'aws' ? (
                 <Trans>Deploy Stack</Trans>
               ) : account.cloud === 'gcp' ? (
