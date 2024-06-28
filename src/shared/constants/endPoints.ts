@@ -114,6 +114,7 @@ export const endPoints = {
         self: (userId: string) => `api/workspaces/${workspaceId}/roles/${userId}`,
       },
       acceptInvite: `api/workspaces/${workspaceId}/accept_invite`,
+      ackMoveToFree: `api/workspaces/${workspaceId}/ack_move_to_free`,
       cfUrl: `api/workspaces/${workspaceId}/cf_url`,
       cfTemplate: `api/workspaces/${workspaceId}/cf_template`,
       externalId: `api/workspaces/${workspaceId}/external_id`,

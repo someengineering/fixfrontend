@@ -20,7 +20,10 @@ export function InternalLinkButton<RootComponent extends ElementType = ButtonTyp
   const navigate = useAbsoluteNavigate()
   const handleClick = (e: ReactMouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault()
+    if ('onClick' in props && typeof props.onClick === 'function') {
+      props.onClick(e)
+    }
     navigate(to, options)
   }
-  return <Button href={href ?? getHrefFromTo(to)} onClick={handleClick} {...props} />
+  return <Button href={href ?? getHrefFromTo(to)} {...props} onClick={handleClick} />
 }

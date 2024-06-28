@@ -60,6 +60,8 @@ export default function LoginPage() {
                 created_at: new Date().toISOString(),
                 on_hold_since: null,
                 trial_end_days: null,
+                move_to_free_acknowledged_at: new Date().toISOString(),
+                tier: 'Free',
                 permissions: allPermissions,
                 user_has_access: false,
                 user_permissions: maxPermissionNumber,

@@ -1,10 +1,10 @@
-import { useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
+import { PropsWithChildren, useEffect } from 'react'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
 import { getSubscriptionId } from 'src/shared/utils/localstorage'
+import { TrialPeriodEndedCheckGuard } from './TrialPeriodEndedCheckGuard'
 
-export const SubscriptionCheckGuard = () => {
+export const SubscriptionCheckGuard = ({ children }: PropsWithChildren) => {
   const navigate = useAbsoluteNavigate()
 
   const subscriptionId = getSubscriptionId()
@@ -19,5 +19,5 @@ export const SubscriptionCheckGuard = () => {
     return <FullPageLoadingSuspenseFallback />
   }
 
-  return <Outlet />
+  return <TrialPeriodEndedCheckGuard>{children}</TrialPeriodEndedCheckGuard>
 }

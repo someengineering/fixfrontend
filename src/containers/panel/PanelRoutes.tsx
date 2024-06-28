@@ -2,7 +2,7 @@ import { lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { Navigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
-import { AccountCheckGuard, BenchmarkCheckGuard, PermissionCheckGuard, SubscriptionCheckGuard } from 'src/shared/layouts/panel-layout'
+import { AccountCheckGuard, BenchmarkCheckGuard, PermissionCheckGuard, PreLoadCheckGuard } from 'src/shared/layouts/panel-layout'
 
 const SecurityPage = lazy(
   () =>
@@ -119,7 +119,7 @@ const ResourceDetailView = lazy(
 export function PanelRoutes() {
   return (
     <Routes>
-      <Route element={<SubscriptionCheckGuard />}>
+      <Route element={<PreLoadCheckGuard />}>
         <Route
           index
           element={<Navigate to={{ pathname: panelUI.homePage, search: window.location.search, hash: window.location.hash }} replace />}
