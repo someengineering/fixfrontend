@@ -1,6 +1,7 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import GppGoodIcon from '@mui/icons-material/GppGood'
+import InfoIcon from '@mui/icons-material/Info'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import SearchIcon from '@mui/icons-material/Search'
 import { Button, ButtonBase, Divider, Stack, Typography } from '@mui/material'
@@ -62,7 +63,7 @@ export const BenchmarkDetailCheckDetail = ({ check, description, accountName, id
     ? panelUI.tableRowsPerPages.filter((_, i, arr) => resources.length > (arr[i - 1] ?? 0))
     : []
   return (
-    <Stack id={id} spacing={1} height={resources?.length ? 'auto' : '100%'} mb={1}>
+    <Stack id={id} spacing={1} height={resources?.length ? 'auto' : '100%'}>
       {query ? (
         <Stack justifyContent="space-between" flexWrap="wrap" gap={1} width="100%">
           <Typography variant="h4">{check.title ?? check.name}</Typography>
@@ -112,9 +113,18 @@ export const BenchmarkDetailCheckDetail = ({ check, description, accountName, id
       )}
       <Typography maxWidth={MAX_CONTAINER_WIDTH}>{check.risk}</Typography>
       <Divider flexItem />
-      <Typography variant="h5">
-        <Trans>How to fix</Trans>
-      </Typography>
+      <Stack component={Typography} variant="h5" display="flex" flexDirection="row" gap={1}>
+        <Trans>
+          How to fix
+          {detectType === 'text' ? (
+            <Typography component="span" color="info.main">
+              (<Trans>manual</Trans>)
+            </Typography>
+          ) : (
+            ''
+          )}
+        </Trans>
+      </Stack>
       <Typography maxWidth={MAX_CONTAINER_WIDTH}>{check.remediation.text}</Typography>
       {check.remediation.url ? (
         <Stack direction="row" justifyContent="end" width="100%">
@@ -129,9 +139,9 @@ export const BenchmarkDetailCheckDetail = ({ check, description, accountName, id
           </Button>
         </Stack>
       ) : null}
+      <Divider flexItem />
       {resources?.length ? (
         <>
-          <Divider flexItem />
           <Typography variant="h5">
             <Trans>Affected resources</Trans>
           </Typography>
@@ -226,15 +236,25 @@ export const BenchmarkDetailCheckDetail = ({ check, description, accountName, id
         </>
       ) : detectType !== 'text' ? (
         <>
-          <Divider flexItem />
-          <Stack flex={1} justifyContent="center" alignItems="center" spacing={1}>
+          <Stack flex={1} justifyContent="center" alignItems="center" spacing={1} pb={2}>
             <GppGoodIcon fontSize="large" color="success" sx={{ fontSize: 48 }} />
             <Typography color="success.main" variant="h5" textAlign="center">
               <Trans>All resources passed the check</Trans>
             </Typography>
           </Stack>
         </>
-      ) : null}
+      ) : (
+        <Stack flex={1} justifyContent="center" alignItems="center" spacing={1} px={1} pb={2}>
+          <InfoIcon fontSize="large" color="info" sx={{ fontSize: 48 }} />
+          <Typography color="info.main" variant="h5" textAlign="center" display="inline-block">
+            <Trans>
+              This section does not contain any controls that can be automated.
+              <br />
+              Manual checks or processes are required for compliance.
+            </Trans>
+          </Typography>
+        </Stack>
+      )}
     </Stack>
   )
 }
