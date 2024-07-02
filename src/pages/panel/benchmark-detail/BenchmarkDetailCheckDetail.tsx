@@ -118,7 +118,7 @@ export const BenchmarkDetailCheckDetail = ({ check, description, accountName, id
           How to fix
           {detectType === 'text' ? (
             <Typography component="span" color="info.main">
-              (<Trans>manual</Trans>)
+              ({t`manual`})
             </Typography>
           ) : (
             ''
