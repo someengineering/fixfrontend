@@ -1,4 +1,4 @@
-import { ProductTier } from 'src/shared/types/server'
+import { ProductTier } from 'src/shared/types/server-shared'
 
 export interface WorkspaceBillingEntry {
   id: string

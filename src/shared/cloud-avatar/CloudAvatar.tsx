@@ -2,10 +2,12 @@ import { Trans } from '@lingui/macro'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import { Avatar, Box, ButtonBase, Paper, Tooltip, Typography } from '@mui/material'
 import { ReactNode } from 'react'
-import { AwsLogo, Crown, FixLogo, GcpLogo } from 'src/assets/icons'
+import { AwsLogo, AzureLogo, Crown, FixLogo, GcpLogo } from 'src/assets/icons'
+import { useNonce } from 'src/shared/providers'
+import { AccountCloud } from 'src/shared/types/server-shared'
 
-interface CloudAvatar {
-  cloud: string
+export interface CloudAvatarProps {
+  cloud: AccountCloud
   withCrown?: boolean
   tooltip?: ReactNode
   error?: ReactNode
@@ -13,15 +15,18 @@ interface CloudAvatar {
   onErrorClick?: () => void
 }
 
-const CloudIcon = ({ cloud, small }: CloudAvatar) => {
+const CloudIcon = ({ cloud, small, withCrown }: CloudAvatarProps) => {
+  const nonce = useNonce()
   const size = small ? 30 : 40
   switch (cloud.toLowerCase()) {
+    case 'azure':
+      return <AzureLogo nonce={nonce} width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
     case 'fix':
-      return <FixLogo width={size} height={size} />
+      return <FixLogo nonce={nonce} width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
     case 'aws':
-      return <AwsLogo width={size} height={size} />
+      return <AwsLogo nonce={nonce} width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
     case 'gcp':
-      return <GcpLogo width={size} height={size} />
+      return <GcpLogo nonce={nonce} width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
     default:
       return (
         <Avatar sx={{ bgcolor: 'primary.main', width: size, height: size, fontSize: size / 2 }}>
@@ -31,11 +36,11 @@ const CloudIcon = ({ cloud, small }: CloudAvatar) => {
   }
 }
 
-export const CloudAvatar = ({ cloud, small, withCrown, tooltip, error, onErrorClick }: CloudAvatar) => (
+export const CloudAvatar = ({ cloud, small, withCrown, tooltip, error, onErrorClick }: CloudAvatarProps) => (
   <Tooltip title={tooltip}>
     <Box position="relative">
       <Box margin="0 auto">
-        <CloudIcon cloud={cloud} small={small} />
+        <CloudIcon cloud={cloud} small={small} withCrown={withCrown} />
       </Box>
       {withCrown ? (
         <>

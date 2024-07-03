@@ -1,5 +1,7 @@
-import { ThemeContextRealValues } from 'src/core/theme'
-import { StorageKeys } from 'src/shared/constants'
+// for circular dependency workaround
+// eslint-disable-next-line no-restricted-imports
+import { ThemeContextRealValues } from 'src/core/theme/ThemeContext'
+import { SettingsStorageKey, StorageKeys } from 'src/shared/constants'
 
 function getStorageObject<ReturnType = unknown>(key: StorageKeys) {
   const returnDataString = window.localStorage.getItem(key)
@@ -20,10 +22,20 @@ function setStorageObject<ObjectType>(key: StorageKeys, obj?: ObjectType) {
   }
 }
 
-export const getAuthData = () => getStorageObject<{ isAuthenticated: boolean; selectedWorkspaceId: string }>(StorageKeys.authData)
+export const getAuthData = () => {
+  const data = getStorageObject<{ isAuthenticated: boolean; selectedWorkspaceId: string; lastWorkingWorkspaceId?: string }>(
+    StorageKeys.authData,
+  )
+  return {
+    ...data,
+    selectedWorkspaceId: window.location.hash?.substring(1) || data?.selectedWorkspaceId,
+  }
+}
 
-export const setAuthData = (authData?: { isAuthenticated: boolean; selectedWorkspaceId?: string }) =>
+export const setAuthData = (authData?: { isAuthenticated: boolean; selectedWorkspaceId?: string; lastWorkingWorkspaceId?: string }) => {
   setStorageObject(StorageKeys.authData, authData)
+  window.location.hash = authData?.selectedWorkspaceId ?? ''
+}
 
 export const getLocale = () => getStorageObject<string>(StorageKeys.locale)
 
@@ -41,9 +53,10 @@ export const getThemeMode = () => getStorageObject<ThemeContextRealValues>(Stora
 
 export const setThemeMode = (themeMode?: ThemeContextRealValues) => setStorageObject(StorageKeys.themeMode, themeMode)
 
-export const getSettings = <Type = unknown>(name: string) => getStorageObject<Record<string, Type>>(StorageKeys.settings)?.[name]
+export const getSettings = <Type = unknown>(name: SettingsStorageKey) =>
+  getStorageObject<Record<string, Type>>(StorageKeys.settings)?.[name]
 
-export const setSettings = <Type = unknown>(name: string, data: Type) => {
+export const setSettings = <Type = unknown>(name: SettingsStorageKey, data: Type) => {
   const prevData = getStorageObject<Record<string, Type>>(StorageKeys.settings) ?? {}
   setStorageObject(StorageKeys.settings, { ...prevData, [name]: data })
 }

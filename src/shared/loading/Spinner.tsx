@@ -16,21 +16,23 @@ const Container = styled('div')({
   position: 'absolute',
 })
 
-const SpinnerCircle = styled('div', { shouldForwardProp })<{ width: number; isLoading?: boolean }>(({ theme, width, isLoading }) => ({
-  position: 'absolute',
-  backgroundColor: isLoading ? 'rgba(0, 0, 0, 0.2)' : 'rgba(28, 67, 150, 0.8)',
-  left: '50%',
-  top: '50%',
-  width: width,
-  height: width,
-  borderRadius: isLoading ? '50%' : '0',
-  boxShadow: 'inset 0 0 0 1px rgba(255, 255, 255, 0.1)',
-  marginLeft: -(width / 2),
-  marginTop: -(width / 2),
-  transition: theme.transitions.create(['background-color', 'border-radius', 'box-shadow'], {
-    duration: theme.transitions.duration.longer,
+const SpinnerCircle = styled('div', { shouldForwardProp })<{ width: number; isLoading?: boolean; withBackground?: boolean }>(
+  ({ theme, width, isLoading, withBackground }) => ({
+    position: 'absolute',
+    backgroundColor: !withBackground && isLoading ? 'rgba(0, 0, 0, 0.2)' : 'rgba(28, 67, 150, 0.8)',
+    left: '50%',
+    top: '50%',
+    width: width,
+    height: width,
+    borderRadius: isLoading ? '50%' : '0',
+    boxShadow: 'inset 0 0 0 2px rgba(255, 255, 255, 0.1)',
+    marginLeft: -(width / 2),
+    marginTop: -(width / 2),
+    transition: theme.transitions.create(['background-color', 'border-radius', 'box-shadow'], {
+      duration: theme.transitions.duration.longer,
+    }),
   }),
-}))
+)
 
 const SpinnerCircleMask = styled('div', { shouldForwardProp })<{ width: number }>(({ width }) => ({
   position: 'absolute',
@@ -51,7 +53,7 @@ const SpinnerCircleMaskLine = styled('div', { shouldForwardProp })<{ width: numb
   width: width,
   height: width,
   borderRadius: '50%',
-  boxShadow: 'inset 0 0 0 1px rgba(255, 255, 255, 0.5)',
+  boxShadow: 'inset 0 0 0 2px rgba(255, 255, 255, 0.5)',
 }))
 
 const LogoWhiteNoBackgroundStyled = styled(LogoWhiteNoBackground)(({ theme }) => ({
@@ -59,11 +61,13 @@ const LogoWhiteNoBackgroundStyled = styled(LogoWhiteNoBackground)(({ theme }) =>
   transition: theme.transitions.create(['width', 'height', 'box-shadow'], {
     duration: theme.transitions.duration.longer,
   }),
+  fill: 'white',
 }))
 
 interface SpinnerProps {
   width?: number
   isLoading?: boolean
+  withBackground?: boolean
 }
 
 const SpinnerContainer = styled(Container, { shouldForwardProp })<{ isLoading?: boolean }>(({ theme, isLoading }) => ({
@@ -75,11 +79,11 @@ const SpinnerContainer = styled(Container, { shouldForwardProp })<{ isLoading?: 
   },
 }))
 
-export const Spinner = ({ width = 110, isLoading }: SpinnerProps) => {
+export const Spinner = ({ width = 110, isLoading, withBackground }: SpinnerProps) => {
   return (
     <SpinnerContainer isLoading={isLoading}>
-      <LogoWhiteNoBackgroundStyled width={isLoading ? width * 0.625 : width} height={isLoading ? width * 0.625 : width} fill="white" />
-      <SpinnerCircle width={width} isLoading={isLoading} />
+      <LogoWhiteNoBackgroundStyled width={isLoading ? width * 0.625 : width} height={isLoading ? width * 0.625 : width} />
+      <SpinnerCircle width={width} isLoading={isLoading} withBackground={withBackground} />
       {isLoading ? (
         <SpinnerCircleMask width={width}>
           <SpinnerCircleMaskLine width={width} />

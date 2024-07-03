@@ -6,7 +6,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { Modal } from 'src/shared/modal'
-import { NotificationChannel } from 'src/shared/types/server'
+import { NotificationChannel } from 'src/shared/types/server-shared'
 import { deleteWorkspaceNotificationMutation } from './deleteWorkspaceNotification.mutation'
 
 interface WorkspaceSettingsDisconnectServiceModalProps {

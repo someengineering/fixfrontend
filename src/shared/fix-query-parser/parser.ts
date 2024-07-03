@@ -141,7 +141,7 @@ SimpleTermP.setPattern(
     apply(seq(PathP, OperationP, JsonElementP), ([name, op, value]) => new Predicate({ path: name, op, value })),
     apply(kright(tok(T.IS), kmid(tok(T.LParen), list_or_simple, tok(T.RParen))), (t) => new IsTerm({ kinds: t })),
     apply(kright(tok(T.ID), kmid(tok(T.LParen), list_or_simple, tok(T.RParen))), (t) => new IdTerm({ ids: t })),
-    apply(tok(T.DoubleQuotedString), (t) => new FulltextTerm({ text: t.text.slice(1, -1) })),
+    apply(tok(T.DoubleQuotedString), (t) => new FulltextTerm({ text: t.text.slice(1, -1).replace(/\\"/g, '"') })),
     apply(tok(T.All), (_) => new AllTerm()),
   ),
 )

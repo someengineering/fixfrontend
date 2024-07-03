@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom'
-import { ProductTier } from 'src/shared/types/server'
+import { ProductTier } from 'src/shared/types/server-shared'
 
 export const useGetProductTierFromSearchParams = (): ProductTier | undefined => {
   const [search] = useSearchParams()

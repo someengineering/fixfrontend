@@ -62,6 +62,11 @@ const PieCardItem = ({ id, data, score, title, cloud }: PieCardItemProps) => {
       }, theme.transitions.duration.standard)
     }
   }
+  const to = createInventorySearchTo(`/security.has_issues=true and /ancestors.account.reported.id="${id}"`) as {
+    pathname: string
+    search: string
+  }
+  const href = `${to.pathname}${to.search}`
   return (
     <Grid
       item
@@ -75,7 +80,12 @@ const PieCardItem = ({ id, data, score, title, cloud }: PieCardItemProps) => {
     >
       <PieCardItemPaper>
         <ButtonBase
-          onClick={() => navigate(createInventorySearchTo(`/security.has_issues=true and /ancestors.account.reported.id="${id}"`))}
+          href={href}
+          onClick={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            navigate(href)
+          }}
         >
           <Stack direction="row" spacing={1} alignItems="center" justifyContent="center" width="100%">
             <Typography variant="body1" flex={1} align="left">

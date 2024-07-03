@@ -18,7 +18,7 @@ export interface TablePaginationProps {
 export const TablePagination = ({
   dataCount,
   page,
-  pages = panelUI.tableRowsPerPages,
+  pages = [...panelUI.tableRowsPerPages],
   rowsPerPage,
   setPage,
   setRowsPerPage,
@@ -50,7 +50,7 @@ export const TablePagination = ({
       component="div"
       labelDisplayedRows={dataCount < 0 ? () => `${page * rowsPerPage} - ${page * rowsPerPage + rowsPerPage}` : undefined}
       count={dataCount}
-      rowsPerPage={rowsPerPage}
+      rowsPerPage={rowsPerPage < pages[0] ? pages[0] : rowsPerPage}
       page={page}
       onPageChange={handleChangePage}
       onRowsPerPageChange={handleChangeRowsPerPage}

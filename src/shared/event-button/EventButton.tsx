@@ -52,7 +52,7 @@ export const EventButton = () => {
           break
         case 'cloud_account_configured':
           void queryClient.invalidateQueries({
-            predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
+            predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
           void showSnackbar(t`${ev.data.cloud.toUpperCase()} Cloud account configured, id: ${ev.data.account_id}`, {
             severity: 'success',
@@ -61,16 +61,16 @@ export const EventButton = () => {
           break
         case 'aws_account_configured': // TODO: remove aws specific events
           void queryClient.invalidateQueries({
-            predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
+            predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
-          void showSnackbar(t`${ev.data.aws_account_id ? 'AWS' : ''} Cloud account configured, id: ${ev.data.aws_account_id}`, {
+          void showSnackbar(t`${ev.data.aws_account_id ? 'AWS ' : ''} Cloud account configured, id: ${ev.data.aws_account_id}`, {
             severity: 'success',
             autoHideDuration: null,
           })
           break
         case 'cloud_account_degraded':
           void queryClient.invalidateQueries({
-            predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
+            predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
           void showSnackbar(t`${ev.data.cloud.toUpperCase()} Cloud account degraded, id: ${ev.data.account_id}`, {
             severity: 'warning',
@@ -79,22 +79,22 @@ export const EventButton = () => {
           break
         case 'aws_account_degraded':
           void queryClient.invalidateQueries({
-            predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
+            predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
-          void showSnackbar(t`${ev.data.aws_account_id ? 'AWS' : ''} Cloud account degraded, id: ${ev.data.aws_account_id}`, {
+          void showSnackbar(t`${ev.data.cloud.toUpperCase()} Cloud account degraded, id: ${ev.data.account_id}`, {
             severity: 'warning',
             autoHideDuration: null,
           })
           break
         case 'cloud_account_discovered':
           void queryClient.invalidateQueries({
-            predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
+            predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
           void showSnackbar(t`${ev.data.cloud.toUpperCase()} Cloud account discovered, id: ${ev.data.account_id}`, { severity: 'info' })
           break
         case 'aws_account_discovered':
           void queryClient.invalidateQueries({
-            predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
+            predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
           void showSnackbar(t`${ev.data.aws_account_id ? 'AWS' : ''} Cloud account discovered, id: ${ev.data.aws_account_id}`, {
             severity: 'info',

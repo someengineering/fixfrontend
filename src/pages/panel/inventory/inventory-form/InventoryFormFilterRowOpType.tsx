@@ -9,7 +9,7 @@ import {
   numberOpTypes,
   stringOPTypes,
 } from 'src/shared/fix-query-parser'
-import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
+import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server-shared'
 
 interface InventoryFormFilterRowOpTypeProps {
   op?: string

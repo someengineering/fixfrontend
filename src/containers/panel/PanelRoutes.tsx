@@ -1,29 +1,14 @@
 import { lazy } from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
+import { Navigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
-import { AccountCheckGuard, BenchmarkCheckGuard, PermissionCheckGuard, SubscriptionCheckGuard } from 'src/shared/layouts/panel-layout'
+import { AccountCheckGuard, BenchmarkCheckGuard, PermissionCheckGuard, PreLoadCheckGuard } from 'src/shared/layouts/panel-layout'
 
 const SecurityPage = lazy(
   () =>
     import(
       /* webpackChunkName: "security" */
       'src/pages/panel/security/SecurityPage'
-    ),
-)
-
-const SetupCloudPage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "setup-cloud" */
-      'src/pages/panel/setup-cloud/SetupCloudPage'
-    ),
-)
-
-const WorkspaceSettingsAccountsPage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "accounts" */
-      'src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsPage'
     ),
 )
 
@@ -40,6 +25,46 @@ const WorkspaceSettingsPage = lazy(
     import(
       /* webpackChunkName: "workspace-settings" */
       'src/pages/panel/workspace-settings/WorkspaceSettingsPage'
+    ),
+)
+
+const WorkspaceSettingsAccountsPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "workspace-settings-accounts" */
+      'src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsPage'
+    ),
+)
+
+const WorkspaceSettingsAccountsCloudSetupPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "workspace-settings-accounts-setup-cloud" */
+      'src/pages/panel/workspace-settings-accounts-setup-cloud/WorkspaceSettingsAccountsSetupCloudPage'
+    ),
+)
+
+const WorkspaceSettingsAccountsSetupCloudAWSPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "workspace-settings-accounts-setup-cloud-aws" */
+      'src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage'
+    ),
+)
+
+const WorkspaceSettingsAccountsSetupCloudGCPPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "workspace-settings-accounts-setup-cloud-gcp" */
+      'src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPPage'
+    ),
+)
+
+const WorkspaceSettingsAccountsSetupCloudAzurePage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "workspace-settings-accounts-setup-cloud-azure" */
+      'src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzurePage'
     ),
 )
 
@@ -75,10 +100,26 @@ const WorkspaceSettingsExternalDirectoryPage = lazy(
     ),
 )
 
+const BenchmarkDetailPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "benchmark-detail" */
+      'src/pages/panel/benchmark-detail/BenchmarkDetailPage'
+    ),
+)
+
+const ResourceDetailView = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "resource-detail" */
+      'src/pages/panel/resource-detail/ResourceDetailView'
+    ),
+)
+
 export function PanelRoutes() {
   return (
     <Routes>
-      <Route element={<SubscriptionCheckGuard />}>
+      <Route element={<PreLoadCheckGuard />}>
         <Route
           index
           element={<Navigate to={{ pathname: panelUI.homePage, search: window.location.search, hash: window.location.hash }} replace />}
@@ -86,9 +127,11 @@ export function PanelRoutes() {
         <Route element={<AccountCheckGuard />}>
           <Route element={<BenchmarkCheckGuard />}>
             <Route path="security" element={<SecurityPage />} />
-            <Route path="inventory">
-              <Route index element={<InventoryPage />} />
-              <Route path="resource-detail/:resourceDetailId" element={<InventoryPage />} />
+            <Route path="inventory" element={<InventoryPage />}>
+              <Route path="resource-detail/:resourceDetailId" element={<ResourceDetailView />} />
+            </Route>
+            <Route path="benchmark/:benchmarkId/:accountId?/check-detail?/:checkId?" element={<BenchmarkDetailPage />}>
+              <Route path="resource-detail/:resourceDetailId" element={<ResourceDetailView />} />
             </Route>
           </Route>
           <Route element={<PermissionCheckGuard permissionToCheck="readSettings" />}>
@@ -107,7 +150,13 @@ export function PanelRoutes() {
             </Route>
             <Route path="external-directories" element={<WorkspaceSettingsExternalDirectoryPage />} />
             <Route path="accounts">
-              <Route path="setup-cloud" element={<SetupCloudPage />} />
+              <Route path="setup-cloud">
+                <Route index element={<WorkspaceSettingsAccountsCloudSetupPage />} />
+                <Route path="aws" element={<WorkspaceSettingsAccountsSetupCloudAWSPage />} />
+                <Route path="gcp" element={<WorkspaceSettingsAccountsSetupCloudGCPPage />} />
+                <Route path="azure" element={<WorkspaceSettingsAccountsSetupCloudAzurePage />} />
+                <Route path="*" element={<Navigate to=".." replace />} />
+              </Route>
             </Route>
           </Route>
         </Route>

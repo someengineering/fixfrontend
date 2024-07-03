@@ -8,18 +8,18 @@ import { MutableRefObject } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
 import { Modal } from 'src/shared/modal'
-import { ProductTier } from 'src/shared/types/server'
+import { ProductTier } from 'src/shared/types/server-shared'
 import { putWorkspaceBillingMutation } from './putWorkspaceBilling.mutation'
 import { productTierToLabel } from './utils'
 
 export interface ChangeProductTierModalProps {
-  productTier: ProductTier
+  currentProductTier: ProductTier
   showModalRef: MutableRefObject<((show?: boolean | undefined) => void) | undefined>
   defaultOpen?: boolean
   onClose?: () => void
 }
 
-export const ChangeProductTierToFreeModal = ({ showModalRef, defaultOpen, productTier, onClose }: ChangeProductTierModalProps) => {
+export const ChangeProductTierToFreeModal = ({ showModalRef, defaultOpen, currentProductTier, onClose }: ChangeProductTierModalProps) => {
   const { showSnackbar } = useSnackbar()
   const { selectedWorkspace } = useUserProfile()
   const queryClient = useQueryClient()
@@ -83,7 +83,7 @@ export const ChangeProductTierToFreeModal = ({ showModalRef, defaultOpen, produc
     >
       <Stack spacing={1} py={2}>
         <Typography>
-          <Trans>Current Product Tier</Trans>: {productTierToLabel(productTier)}
+          <Trans>Current Product Tier</Trans>: {productTierToLabel(currentProductTier)}
         </Typography>
         <Typography>
           <Trans>New Product Tier</Trans>: {productTierToLabel('Free')}

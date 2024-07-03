@@ -34,7 +34,7 @@ import {
   stringOPTypes,
   termValueToString,
 } from 'src/shared/fix-query-parser'
-import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
+import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server-shared'
 import { InventoryFormFilterRowValues } from './InventoryFormFilterRowValues'
 import { AutoCompletePreDefinedItems } from './utils'
 
@@ -215,7 +215,7 @@ export const InventoryFormValue = ({
   const { selectedWorkspace } = useUserProfile()
   const { data: gotFqn = fqn ?? 'any' } = useQuery({
     queryKey: [
-      'workspace-inventory-property-path-complete-query-fqn',
+      'workspace-inventory-property-path-complete-fqn',
       selectedWorkspace?.id,
       ...(defaultPath?.getPathAndProp() ?? ['', '']),
     ] as const,

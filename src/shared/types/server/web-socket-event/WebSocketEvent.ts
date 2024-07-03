@@ -82,26 +82,35 @@ export type AWSAccountDiscoveredEvent = WebSocketGenericEvent<
 export type CloudAccountDegradedEvent = WebSocketGenericEvent<
   'cloud_account_degraded',
   {
-    cloud: CloudAccountType
-    cloud_account_id: string
-    workspace_id: string
     account_id: string
+    account_name: string
+    cloud: CloudAccountType
+    created_at: string
+    error: string
+    cloud_account_id: string
+    id: string
+    reason: 'other'
   }
 >
 
 export type AWSAccountDegradedEvent = WebSocketGenericEvent<
   'aws_account_degraded',
   {
+    account_id: string
+    account_name: string
+    cloud: CloudAccountType
+    created_at: string
+    error: string
     cloud_account_id: string
-    workspace_id: string
-    aws_account_id: string
+    id: string
+    reason: 'other'
   }
 >
 
 export type TenantAccountCollectedEvent = WebSocketGenericEvent<
   'tenant_accounts_collected',
   {
-    tenant_id: string
+    id: string
     cloud_accounts: Record<
       string,
       {

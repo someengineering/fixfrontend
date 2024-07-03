@@ -1,10 +1,12 @@
-import { SeverityType } from 'src/shared/types/server'
+import { SeverityType } from 'src/shared/types/server-shared'
 import { colorsBySeverity } from './colorsBySeverity'
 
-export function getColorBySeverity(failedChecks: SeverityType): string
+type MaterialColorsBySeverityType = typeof colorsBySeverity
+
+export function getColorBySeverity(failedChecks: SeverityType): MaterialColorsBySeverityType[keyof MaterialColorsBySeverityType]
 export function getColorBySeverity(failedChecks: string): string
 export function getColorBySeverity(failedChecks: string) {
-  switch (failedChecks) {
+  switch (failedChecks.toLowerCase()) {
     case 'critical':
       return colorsBySeverity.Critical
     case 'high':
@@ -13,6 +15,8 @@ export function getColorBySeverity(failedChecks: string) {
       return colorsBySeverity.Medium
     case 'low':
       return colorsBySeverity.Low
+    case 'passed':
+      return colorsBySeverity.Passed
     default:
       return colorsBySeverity.Info
   }

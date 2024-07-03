@@ -42,7 +42,6 @@ interface InventoryFormDefaultValueProps {
   showItemLabel?: (item: AutoCompleteValue) => ReactNode
   onChange: (values: string[]) => void
   onClose: () => void
-  withAddButton?: boolean
 }
 
 interface InventoryFormDefaultValueItemProp {
@@ -105,7 +104,6 @@ export const InventoryFormDefaultValue = ({
   labelPlural,
   options,
   showItemLabel,
-  withAddButton,
 }: InventoryFormDefaultValueProps) => {
   const [typed, setTyped] = useState('')
   const [selectedValues, setSelectedValues] = useState(values)
@@ -149,7 +147,7 @@ export const InventoryFormDefaultValue = ({
       open={!!open}
       anchorEl={open}
       anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-      onClose={withAddButton ? onClose : onSubmit}
+      onClose={onSubmit}
       slotProps={{
         paper: {
           sx: {

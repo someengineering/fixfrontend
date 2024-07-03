@@ -5,6 +5,7 @@ import { usePostHog } from 'posthog-js/react'
 import { useEffect, useMemo } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventorySearchStartQuery } from 'src/pages/panel/shared/queries'
+import { sendInventoryError } from 'src/pages/panel/shared/utils'
 import { DefaultPropertiesKeys, Predicate, useFixQueryParser } from 'src/shared/fix-query-parser'
 import { InventoryFormAccount } from './InventoryFormAccount'
 import { InventoryFormChanges } from './InventoryFormChanges'
@@ -16,7 +17,6 @@ import { InventoryFormRegion } from './InventoryFormRegion'
 import { InventoryFormReset } from './InventoryFormReset'
 import { InventoryFormRest } from './InventoryFormRest'
 import { InventoryFormSeverity } from './InventoryFormSeverity'
-import { sendInventoryError } from './utils'
 
 function removeStringDuplicates(data?: string[]) {
   return data ? Array.from(new Set(data)) : []
@@ -35,7 +35,7 @@ function removeDuplicates<T>(data?: T[], basedOn?: keyof T) {
 }
 
 export const InventoryForm = () => {
-  const posthog = usePostHog()
+  const postHog = usePostHog()
   const { account: selectedAccount, cloud: selectedCloud, region: selectedRegion, is: selectedKinds } = useFixQueryParser()
   const { currentUser, selectedWorkspace } = useUserProfile()
   const { data: originalStartData, error } = useQuery({
@@ -52,10 +52,10 @@ export const InventoryForm = () => {
         queryFn: 'getWorkspaceInventorySearchStartQuery',
         isAdvancedSearch: false,
         error: error as AxiosError,
-        posthog,
+        postHog,
       })
     }
-  }, [currentUser, error, posthog, selectedWorkspace?.id])
+  }, [currentUser, error, postHog, selectedWorkspace?.id])
   const startData = useMemo(
     () =>
       originalStartData
@@ -91,7 +91,14 @@ export const InventoryForm = () => {
     }
   }, [startData])
   const preDefinedFiltersSelectedClouds = useMemo(() => {
-    const possibleValues = [DefaultPropertiesKeys.Cloud, DefaultPropertiesKeys.Account, DefaultPropertiesKeys.Region]
+    const possibleValues = [
+      DefaultPropertiesKeys.CloudId,
+      DefaultPropertiesKeys.Cloud,
+      DefaultPropertiesKeys.AccountId,
+      DefaultPropertiesKeys.Account,
+      DefaultPropertiesKeys.RegionId,
+      DefaultPropertiesKeys.Region,
+    ]
     const result: string[][] = []
     const config = [selectedCloud, selectedAccount, selectedRegion]
     for (let index = 0; index < config.length; index++) {
@@ -104,9 +111,11 @@ export const InventoryForm = () => {
           const configValue = currentConfig.value
 
           switch (path) {
+            case DefaultPropertiesKeys.AccountId:
             case DefaultPropertiesKeys.Account:
               propertyIndex = 'accounts'
               break
+            case DefaultPropertiesKeys.RegionId:
             case DefaultPropertiesKeys.Region:
               propertyIndex = 'regions'
               break
@@ -160,20 +169,20 @@ export const InventoryForm = () => {
       accounts: (selectedClouds.length
         ? processedStartData.accounts.filter((account) => selectedClouds.includes(account.cloud))
         : processedStartData.accounts
-      ).map((account) => ({ value: account.name, label: account.name })),
+      ).map((account) => ({ value: account.name, label: account.name, id: account.id })),
       kinds: (selectedClouds.length
         ? processedStartData.kinds.filter((kind) => selectedClouds.includes(kind.cloud))
         : processedStartData.kinds
-      ).map((kind) => ({ value: kind.id, label: kind.name })),
+      ).map((kind) => ({ value: kind.id, label: kind.name, id: kind.id })),
       regions: (selectedClouds.length
         ? processedStartData.regions.filter((region) => selectedClouds.includes(region.cloud))
         : processedStartData.regions
-      ).map((region) => ({ value: region.name, label: region.name })),
-      severities: processedStartData.severity.map((severity) => ({ label: severity, value: severity })),
+      ).map((region) => ({ value: region.name, label: region.name, id: region.id })),
+      severities: processedStartData.severity.map((severity) => ({ label: severity, value: severity, id: severity })),
       clouds:
         (!numberOfCloudFilterSelected && selectedClouds.length) || (numberOfCloudFilterSelected && numberOfCloudSelected)
-          ? selectedClouds.map((cloud) => ({ label: cloud.toUpperCase(), value: cloud }))
-          : processedStartData.clouds.map((cloud) => ({ label: cloud.toUpperCase(), value: cloud })),
+          ? selectedClouds.map((cloud) => ({ label: cloud.toUpperCase(), value: cloud, id: cloud }))
+          : processedStartData.clouds.map((cloud) => ({ value: cloud, label: cloud.toUpperCase(), id: cloud })),
     }),
     [processedStartData, selectedClouds, numberOfCloudFilterSelected, numberOfCloudSelected],
   )

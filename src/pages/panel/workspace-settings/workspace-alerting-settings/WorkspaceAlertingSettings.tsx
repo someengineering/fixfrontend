@@ -23,12 +23,10 @@ import { useMutation, useQueries, useQueryClient } from '@tanstack/react-query'
 import { useEffect, useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceNotificationsQuery } from 'src/pages/panel/shared/queries'
-import { getColorBySeverity } from 'src/pages/panel/shared/utils'
+import { getColorBySeverity, useGetBenchmarks } from 'src/pages/panel/shared/utils'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
-import { NotificationChannel, SeverityType } from 'src/shared/types/server'
-import { snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
+import { NotificationChannel, SeverityType } from 'src/shared/types/server-shared'
 import { getWorkspaceAlertingSettingsQuery } from './getWorkspaceAlertingSettings.query'
-import { getWorkspaceInventoryReportInfoQuery } from './getWorkspaceInventoryReportInfo.query'
 import { putWorkspaceAlertingSettingsQuery } from './putWorkspaceAlertingSettings.query'
 
 const severityOptions = [
@@ -71,29 +69,22 @@ const WorkspaceAlertingSettingsCheckbox = ({
 export const WorkspaceAlertingSettings = () => {
   const { selectedWorkspace, checkPermission } = useUserProfile()
   const hasPermission = checkPermission('updateSettings')
-  const [
-    { data: reportInfo, isLoading: isReportInfoLoading },
-    { data: alertingSettings, isLoading: isAlertingSettingsLoading },
-    { data: notifications, isLoading: isNotificationsLoading },
-  ] = useQueries({
-    queries: [
-      {
-        queryKey: ['workspace-inventory-report-info', selectedWorkspace?.id],
-        queryFn: getWorkspaceInventoryReportInfoQuery,
-        enabled: !!selectedWorkspace?.id,
-      },
-      {
-        queryKey: ['workspace-alerting-settings', selectedWorkspace?.id],
-        queryFn: getWorkspaceAlertingSettingsQuery,
-        enabled: !!selectedWorkspace?.id,
-      },
-      {
-        queryKey: ['workspace-notifications', selectedWorkspace?.id],
-        queryFn: getWorkspaceNotificationsQuery,
-        enabled: !!selectedWorkspace?.id,
-      },
-    ],
-  })
+  const { data: benchmarks, isLoading: isBenchmarksLoading } = useGetBenchmarks(true)
+  const [{ data: alertingSettings, isLoading: isAlertingSettingsLoading }, { data: notifications, isLoading: isNotificationsLoading }] =
+    useQueries({
+      queries: [
+        {
+          queryKey: ['workspace-alerting-settings', selectedWorkspace?.id],
+          queryFn: getWorkspaceAlertingSettingsQuery,
+          enabled: !!selectedWorkspace?.id,
+        },
+        {
+          queryKey: ['workspace-notifications', selectedWorkspace?.id],
+          queryFn: getWorkspaceNotificationsQuery,
+          enabled: !!selectedWorkspace?.id,
+        },
+      ],
+    })
   const queryClient = useQueryClient()
   const { mutate, isPending } = useMutation({
     mutationFn: putWorkspaceAlertingSettingsQuery,
@@ -105,12 +96,12 @@ export const WorkspaceAlertingSettings = () => {
   })
   const selectedSeverities = useRef<Record<string, SeverityType>>({})
   useEffect(() => {
-    if (alertingSettings && reportInfo) {
-      reportInfo.benchmarks.forEach((benchmark) => {
-        selectedSeverities.current[benchmark] = alertingSettings[benchmark]?.severity ?? 'critical'
+    if (alertingSettings && benchmarks) {
+      benchmarks.forEach((benchmark) => {
+        selectedSeverities.current[benchmark.id] = alertingSettings[benchmark.id]?.severity ?? 'critical'
       })
     }
-  }, [alertingSettings, reportInfo])
+  }, [alertingSettings, benchmarks])
   const handleSelectedSeverity = (severity: SeverityType, benchmark: string) => {
     if (alertingSettings?.[benchmark] && selectedWorkspace?.id) {
       const body = { ...alertingSettings, [benchmark]: { channels: [...alertingSettings[benchmark].channels], severity } }
@@ -153,9 +144,9 @@ export const WorkspaceAlertingSettings = () => {
       }
     }
   }
-  const isLoading = isReportInfoLoading || isNotificationsLoading || isAlertingSettingsLoading
+  const isLoading = isBenchmarksLoading || isNotificationsLoading || isAlertingSettingsLoading
 
-  const hasData = Boolean(notifications && Object.keys(notifications).length)
+  const hasData = Boolean(notifications && Object.keys(notifications).length && benchmarks?.length)
   return isLoading ? (
     <Box height={200} width="100%">
       <LoadingSuspenseFallback />
@@ -180,9 +171,9 @@ export const WorkspaceAlertingSettings = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {reportInfo?.benchmarks.map((benchmark, i) => (
+          {benchmarks?.map(({ id: benchmarkId, title: benchmarkTitle }, i) => (
             <TableRow key={i}>
-              <TableCell>{snakeCaseWordsToUFStr(benchmark)}</TableCell>
+              <TableCell>{benchmarkTitle}</TableCell>
               <TableCell>
                 {hasPermission ? (
                   <Autocomplete
@@ -216,21 +207,21 @@ export const WorkspaceAlertingSettings = () => {
                     disablePortal
                     disableClearable
                     fullWidth
-                    onChange={(_, severity) => handleSelectedSeverity(severity.value, benchmark)}
-                    defaultValue={severityOptions.find((i) => i.value === alertingSettings?.[benchmark]?.severity) ?? severityOptions[3]}
+                    onChange={(_, severity) => handleSelectedSeverity(severity.value, benchmarkId)}
+                    defaultValue={severityOptions.find((i) => i.value === alertingSettings?.[benchmarkId]?.severity) ?? severityOptions[3]}
                     renderInput={(params) => <TextField {...params} label={<Trans>Severity</Trans>} />}
                   />
                 ) : (
                   <Typography>
-                    {(severityOptions.find((i) => i.value === alertingSettings?.[benchmark]?.severity) ?? severityOptions[3]).label}
+                    {(severityOptions.find((i) => i.value === alertingSettings?.[benchmarkId]?.severity) ?? severityOptions[3]).label}
                   </Typography>
                 )}
               </TableCell>
               {notifications?.email ? (
                 <TableCell>
                   <WorkspaceAlertingSettingsCheckbox
-                    benchmark={benchmark}
-                    checked={(alertingSettings?.[benchmark]?.channels.indexOf('email') ?? -1) > -1}
+                    benchmark={benchmarkId}
+                    checked={(alertingSettings?.[benchmarkId]?.channels.indexOf('email') ?? -1) > -1}
                     isPending={isPending}
                     name="email"
                     onChange={handleCheckboxChange}
@@ -241,8 +232,8 @@ export const WorkspaceAlertingSettings = () => {
               {notifications?.slack ? (
                 <TableCell>
                   <WorkspaceAlertingSettingsCheckbox
-                    benchmark={benchmark}
-                    checked={(alertingSettings?.[benchmark]?.channels.indexOf('slack') ?? -1) > -1}
+                    benchmark={benchmarkId}
+                    checked={(alertingSettings?.[benchmarkId]?.channels.indexOf('slack') ?? -1) > -1}
                     isPending={isPending}
                     name="slack"
                     onChange={handleCheckboxChange}
@@ -253,8 +244,8 @@ export const WorkspaceAlertingSettings = () => {
               {notifications?.teams ? (
                 <TableCell>
                   <WorkspaceAlertingSettingsCheckbox
-                    benchmark={benchmark}
-                    checked={(alertingSettings?.[benchmark]?.channels.indexOf('teams') ?? -1) > -1}
+                    benchmark={benchmarkId}
+                    checked={(alertingSettings?.[benchmarkId]?.channels.indexOf('teams') ?? -1) > -1}
                     isPending={isPending}
                     name="teams"
                     onChange={handleCheckboxChange}
@@ -265,8 +256,8 @@ export const WorkspaceAlertingSettings = () => {
               {notifications?.discord ? (
                 <TableCell>
                   <WorkspaceAlertingSettingsCheckbox
-                    benchmark={benchmark}
-                    checked={(alertingSettings?.[benchmark]?.channels.indexOf('discord') ?? -1) > -1}
+                    benchmark={benchmarkId}
+                    checked={(alertingSettings?.[benchmarkId]?.channels.indexOf('discord') ?? -1) > -1}
                     isPending={isPending}
                     name="discord"
                     onChange={handleCheckboxChange}
@@ -277,8 +268,8 @@ export const WorkspaceAlertingSettings = () => {
               {notifications?.pagerduty ? (
                 <TableCell>
                   <WorkspaceAlertingSettingsCheckbox
-                    benchmark={benchmark}
-                    checked={(alertingSettings?.[benchmark]?.channels.indexOf('pagerduty') ?? -1) > -1}
+                    benchmark={benchmarkId}
+                    checked={(alertingSettings?.[benchmarkId]?.channels.indexOf('pagerduty') ?? -1) > -1}
                     isPending={isPending}
                     name="pagerduty"
                     onChange={handleCheckboxChange}
@@ -289,8 +280,8 @@ export const WorkspaceAlertingSettings = () => {
               {notifications?.opsgenie ? (
                 <TableCell>
                   <WorkspaceAlertingSettingsCheckbox
-                    benchmark={benchmark}
-                    checked={(alertingSettings?.[benchmark]?.channels.indexOf('opsgenie') ?? -1) > -1}
+                    benchmark={benchmarkId}
+                    checked={(alertingSettings?.[benchmarkId]?.channels.indexOf('opsgenie') ?? -1) > -1}
                     isPending={isPending}
                     name="opsgenie"
                     onChange={handleCheckboxChange}

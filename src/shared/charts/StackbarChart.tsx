@@ -87,7 +87,7 @@ export function StackbarChart({ data, colors }: StackbarChartProps) {
               <Paper component={Stack} direction="row" justifyContent="center" spacing={3} p={2} sx={{ flexWrap: 'wrap' }} width="auto">
                 {payload?.map(({ value, color }, i) => (
                   <Stack direction="row" py={1} spacing={1} key={i}>
-                    <div style={{ background: color, width: 16, height: 16 }} nonce={nonce} />
+                    <div nonce={nonce} style={{ background: color, width: 16, height: 16 }} />
                     <Typography display="flex" key={i} color={color}>
                       {value}
                     </Typography>

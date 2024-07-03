@@ -26,6 +26,7 @@ export const HeatmapCard = ({ data }: HeatmapCardProps) => {
       : {
           data: data.benchmarks.map((benchmark) => ({
             title: benchmark.title,
+            titleHref: `/benchmark/${benchmark.id}`,
             cells: data.accounts
               .filter((account) => (benchmark.account_summary[account.id]?.score ?? -1) >= 0)
               .map((account) => ({
@@ -49,6 +50,7 @@ export const HeatmapCard = ({ data }: HeatmapCardProps) => {
                     />
                   </Stack>
                 ),
+                href: `/benchmark/${benchmark.id}/${account.id}`,
               })),
           })),
         }

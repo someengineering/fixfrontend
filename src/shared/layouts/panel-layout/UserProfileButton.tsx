@@ -162,7 +162,7 @@ export const UserProfileButton = () => {
               <LogoutIcon color="error" />
             </ListItemIcon>
             <Typography textAlign="center">
-              <Trans>Logout</Trans>
+              <Trans>Log Out</Trans>
             </Typography>
           </MenuItem>
         </MenuList>

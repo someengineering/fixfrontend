@@ -3,7 +3,7 @@ import { NavigateFunction, NavigateOptions, To, useLocation, useNavigate } from 
 import { isAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData } from 'src/shared/utils/localstorage'
 import { AbsoluteNavigateInnerProvider } from './AbsoluteNavigateInnerProvider'
-import { handleRelationalPathname } from './handleRelationalPathname'
+import { getHrefObjFromTo } from './getHrefFromTo'
 
 export const AbsoluteNavigateProvider = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate()
@@ -16,27 +16,11 @@ export const AbsoluteNavigateProvider = ({ children }: PropsWithChildren) => {
       if (typeof to === 'number') {
         return navigate(to)
       }
-      const selectedWorkspaceId = getAuthData()?.selectedWorkspaceId
-      if (typeof to === 'object') {
-        const newTo = {
-          ...to,
-          pathname: to.pathname ? handleRelationalPathname(to.pathname) : undefined,
-          hash: to.hash ?? (selectedWorkspaceId ? `#${selectedWorkspaceId}` : undefined),
-        }
-        if (to.hash) {
-          ignorePathChangeOnce.current = true
-        }
-        return navigate(newTo, options)
-      }
-      const hashSplitted = to.split('#')
-      const hash = (hashSplitted[1] ? `#${hashSplitted[1]}` : undefined) ?? (selectedWorkspaceId ? `#${selectedWorkspaceId}` : '')
-      if (hashSplitted[1]) {
+      const { hasHash, ...newTo } = getHrefObjFromTo(to)
+      if (hasHash) {
         ignorePathChangeOnce.current = true
       }
-      const searchSplitted = hashSplitted[0].split('?')
-      const search = searchSplitted[1] ? `?${searchSplitted[1]}` : ''
-      const pathname = handleRelationalPathname(searchSplitted[0])
-      return navigate(`${pathname}${search}${hash}`, options)
+      return navigate(newTo, options)
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
@@ -51,12 +35,16 @@ export const AbsoluteNavigateProvider = ({ children }: PropsWithChildren) => {
       !location.pathname.startsWith('/subscription')
     ) {
       const selectedWorkspaceId = getAuthData()?.selectedWorkspaceId
-      if (selectedWorkspaceId !== location.hash.substring(1)) {
+      if (selectedWorkspaceId !== location.hash?.substring(1)) {
         handleNavigate({ pathname: location.pathname, search: location.search }, { replace: true, state: location.state as unknown })
       }
     }
     ignorePathChangeOnce.current = false
   }, [location.hash, location.pathname, location.search, location.state, handleNavigate])
 
-  return <AbsoluteNavigateInnerProvider useNavigate={handleNavigate}>{children}</AbsoluteNavigateInnerProvider>
+  return (
+    <AbsoluteNavigateInnerProvider useNavigate={handleNavigate} workspaceId={location.hash?.substring(1) ?? ''}>
+      {children}
+    </AbsoluteNavigateInnerProvider>
+  )
 }

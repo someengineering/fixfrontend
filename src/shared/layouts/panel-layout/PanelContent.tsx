@@ -15,10 +15,8 @@ export const PanelContent = ({ children, bottom }: PanelContent) => {
     <PageScrollContext.Provider value={mainRef}>
       <Stack width="100%" flexGrow={1} overflow="hidden" height="100vh">
         <Stack mt={panelUI.headerHeight + 'px'} flexGrow={1} position="relative" sx={{ overflowY: 'auto' }} ref={mainRef}>
-          <Box p={3}>
-            <PanelBreadcrumbs />
-          </Box>
-          <Box component="main" p={3} pt={0} flexGrow={1}>
+          <PanelBreadcrumbs />
+          <Box component="main" p={3} flexGrow={1}>
             {children}
           </Box>
           <PanelBottom>{bottom}</PanelBottom>

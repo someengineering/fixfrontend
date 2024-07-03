@@ -1,12 +1,12 @@
 import { Trans } from '@lingui/macro'
 import CreditCardIcon from '@mui/icons-material/CreditCard'
-import { ButtonBase, Divider, Stack, Typography, alpha } from '@mui/material'
+import { Box, ButtonBase, Divider, Stack, Typography, alpha } from '@mui/material'
 import { Fragment, useRef, useState } from 'react'
 import { AwsLogo } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { endPoints, env } from 'src/shared/constants'
-import { LinkButton } from 'src/shared/link-button'
-import { PaymentMethod, ProductTier } from 'src/shared/types/server'
+import { ExternalLinkLoadingButton } from 'src/shared/link-button'
+import { PaymentMethod, ProductTier } from 'src/shared/types/server-shared'
 import { ChangePaymentNoMethodModal } from './ChangePaymentNoMethodModal'
 import { ChangeProductTierModal } from './ChangeProductTierModal'
 import { ChangeProductTierToFreeModal } from './ChangeProductTierToFreeModal'
@@ -18,6 +18,7 @@ interface ChangeProductTierProps {
   selectedWorkspacePaymentMethod: PaymentMethod
   workspacePaymentMethods: PaymentMethod[]
   defaultProductTier: ProductTier
+  currentProductTier: ProductTier
   nextBillingCycle: Date
 }
 
@@ -25,6 +26,7 @@ const allProductTiers: readonly ProductTier[] = ['Free', 'Plus', 'Business', 'En
 
 export const ChangeProductTier = ({
   defaultProductTier,
+  currentProductTier,
   selectedWorkspacePaymentMethod,
   workspacePaymentMethods,
   nextBillingCycle,
@@ -108,7 +110,7 @@ export const ChangeProductTier = ({
             productTier === 'Free' ? (
               <ChangeProductTierToFreeModal
                 onClose={() => setProductTier(defaultProductTier)}
-                productTier={defaultProductTier}
+                currentProductTier={currentProductTier}
                 showModalRef={showModalRef}
                 defaultOpen={true}
               />
@@ -125,8 +127,8 @@ export const ChangeProductTier = ({
                 nextBillingCycle={nextBillingCycle}
                 onClose={() => setProductTier(defaultProductTier)}
                 isUpgrade={isUpgrade}
-                productTier={defaultProductTier}
                 selectedProductTier={productTier}
+                currentProductTier={currentProductTier}
                 selectedWorkspacePaymentMethod={selectedWorkspacePaymentMethod}
                 showModalRef={showModalRef}
                 defaultOpen={true}
@@ -139,22 +141,26 @@ export const ChangeProductTier = ({
                   <Stack py={1} spacing={1} alignItems="center">
                     {awsMarketPlacePaymentMethod ? (
                       <Stack direction="row" spacing={1} alignItems="center">
-                        <LinkButton
-                          startIcon={<AwsLogo height={50} />}
+                        <ExternalLinkLoadingButton
+                          startIcon={
+                            <Box py={1} height={48}>
+                              <AwsLogo height="100%" />
+                            </Box>
+                          }
                           endIcon={null}
                           loadingPosition="start"
                           variant="outlined"
-                          href={`${env.aws_marketplace_url}`}
+                          href={`${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').awsMarketplaceProduct}`}
                         >
                           <Typography textTransform="none">
                             <Trans>Manage AWS Market place payment method</Trans>
                           </Typography>
-                        </LinkButton>
+                        </ExternalLinkLoadingButton>
                       </Stack>
                     ) : null}
                     {stripePaymentMethod ? (
                       <Stack direction="row" spacing={1} alignItems="center">
-                        <LinkButton
+                        <ExternalLinkLoadingButton
                           startIcon={<CreditCardIcon fontSize="large" sx={{ fontSize: '48px!important' }} />}
                           endIcon={null}
                           loadingPosition="start"
@@ -168,7 +174,7 @@ export const ChangeProductTier = ({
                           <Typography textTransform="none">
                             <Trans>Manage Card Details</Trans>
                           </Typography>
-                        </LinkButton>
+                        </ExternalLinkLoadingButton>
                       </Stack>
                     ) : null}
                   </Stack>

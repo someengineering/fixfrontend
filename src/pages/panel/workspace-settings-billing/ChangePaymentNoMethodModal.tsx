@@ -3,9 +3,9 @@ import { Button, FormControl, InputLabel, MenuItem, Select, Stack, Typography } 
 import { MutableRefObject, useId, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { endPoints, env } from 'src/shared/constants'
-import { LinkButton } from 'src/shared/link-button'
+import { ExternalLinkLoadingButton } from 'src/shared/link-button'
 import { Modal } from 'src/shared/modal'
-import { PaymentMethod, PaymentMethods, ProductTier } from 'src/shared/types/server'
+import { PaymentMethod, PaymentMethods, ProductTier } from 'src/shared/types/server-shared'
 import { paymentMethodToLabel, paymentMethods } from './utils'
 
 export interface ChangePaymentNoMethodModalProps {
@@ -43,15 +43,14 @@ export const ChangePaymentNoMethodModal = ({
             Cancel
           </Button>
           {paymentMethod.method === 'none' ? null : (
-            <LinkButton
+            <ExternalLinkLoadingButton
               href={
                 paymentMethod.method === 'aws_marketplace'
-                  ? `${env.aws_marketplace_url}?product_tier=${selectedProductTier}`
+                  ? `${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').awsMarketplaceProduct}?product_tier=${selectedProductTier}`
                   : `${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').subscription.stripe}?product_tier=${selectedProductTier}`
               }
               endIcon={null}
               loadingPosition="center"
-              disabled={paymentMethod.method === 'aws_marketplace' && !env.aws_marketplace_url}
               variant="outlined"
               color="primary"
             >
@@ -60,7 +59,7 @@ export const ChangePaymentNoMethodModal = ({
               ) : (
                 <Trans>Add a New Credit or Debit Card</Trans>
               )}
-            </LinkButton>
+            </ExternalLinkLoadingButton>
           )}
         </Stack>
       }

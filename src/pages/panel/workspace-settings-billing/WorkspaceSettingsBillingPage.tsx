@@ -4,7 +4,7 @@ import { Alert, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography 
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { PaymentMethodWithoutNone } from 'src/shared/types/server'
+import { PaymentMethodWithoutNone } from 'src/shared/types/server-shared'
 import { ChangeProductTier } from './ChangeProductTier'
 import { ConfirmChangePaymentModal } from './ConfirmChangePaymentModal'
 import { WorkspaceSettingsBillingTable } from './WorkspaceSettingsBillingTable'
@@ -18,7 +18,7 @@ export default function WorkspaceSettingsBillingPage() {
   const { selectedWorkspace, checkPermission } = useUserProfile()
   const hasPermission = checkPermission('updateBilling')
   const {
-    data: { product_tier, workspace_payment_method, available_payment_methods },
+    data: { product_tier, workspace_payment_method, available_payment_methods, selected_product_tier },
   } = useSuspenseQuery({
     queryFn: getWorkspaceBillingQuery,
     queryKey: ['workspace-billing', selectedWorkspace?.id],
@@ -40,8 +40,10 @@ export default function WorkspaceSettingsBillingPage() {
   currentDate.setDate(1)
   const nextBillingCycle = new Date(currentDate.valueOf())
   nextBillingCycle.setMonth(currentDate.getMonth() + 1)
-  const title = productTierToLabel(product_tier)
-  const desc = productTierToDescription(product_tier)
+  const endOfTheMonth = new Date(nextBillingCycle)
+  endOfTheMonth.setMilliseconds(-1)
+  const title = productTierToLabel(selected_product_tier)
+  const desc = productTierToDescription(selected_product_tier)
 
   return desc ? (
     <Stack spacing={2}>
@@ -61,8 +63,22 @@ export default function WorkspaceSettingsBillingPage() {
           </Alert>
         </Stack>
       ) : null}
+      {selected_product_tier !== product_tier ? (
+        <Stack direction="row" justifyContent="center">
+          <Alert variant="outlined" severity="success">
+            <Typography variant="h5">
+              <Trans>
+                You are currently subscribed to {productTierToLabel(product_tier)}, Your subscription will change to {title} by the end of
+                the day on {endOfTheMonth.toLocaleDateString(locale, { year: 'numeric', month: '2-digit', day: '2-digit' })}.
+              </Trans>
+            </Typography>
+          </Alert>
+        </Stack>
+      ) : null}
       <ChangeProductTier
-        defaultProductTier={product_tier}
+        key={product_tier + selected_product_tier}
+        defaultProductTier={selected_product_tier}
+        currentProductTier={product_tier}
         selectedWorkspacePaymentMethod={workspace_payment_method}
         workspacePaymentMethods={available_payment_methods}
         nextBillingCycle={nextBillingCycle}

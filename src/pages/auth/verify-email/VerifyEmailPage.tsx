@@ -1,7 +1,8 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { ErrorBoundary } from 'react-error-boundary'
-import { Navigate, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
+import { Navigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { verifyEmailQuery } from './verifyEmail.query'
 

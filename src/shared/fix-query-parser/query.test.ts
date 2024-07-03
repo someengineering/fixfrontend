@@ -300,6 +300,25 @@ test('real world example', () => {
 
   query = Query.parse('foo==all')
   assert.strictEqual(query.toString(), 'foo == "all"')
+
+  query = Query.parse('"\\""') // fulltext term with a single double quotes
+  assert.strictEqual(query.toString(), '"\\""')
+
+  query = Query.parse('"\\"test\\"and something\\"else"') // fulltext term containing double quotes
+  assert.strictEqual(query.toString(), '"\\"test\\"and something\\"else"')
+
+  query = Query.parse('"\\""')
+  assert.strictEqual(query.fulltexts()[0].text, '"')
+  assert.strictEqual(query.toString(), '"\\""')
+
+  query = Query.parse('all')
+  query = query.update_fulltext('"test"and something"else', undefined) // all double quotes
+  assert.strictEqual(query.fulltexts()[0].text, '"test"and something"else')
+  assert.strictEqual(query.toString(), '"\\"test\\"and something\\"else"')
+
+  query = Query.parse('all')
+  query = query.update_fulltext('"test\\"and something"else', undefined) // some double quotes
+  assert.strictEqual(query.toString(), '"\\"test\\"and something\\"else"')
 })
 
 test('fulltext searches', () => {

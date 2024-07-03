@@ -100,8 +100,8 @@ export const InventoryFormMore = ({ preItems }: { preItems: AutoCompletePreDefin
           </Stack>
         </Popover>
       </Stack>
-      <InventoryFormCloudValues onClose={() => setOpenClouds(null)} open={openClouds} preItems={preItems} withAddButton />
-      <InventoryFormRegionValues onClose={() => setOpenRegions(null)} open={openRegions} preItems={preItems} withAddButton />
+      <InventoryFormCloudValues onClose={() => setOpenClouds(null)} open={openClouds} preItems={preItems} />
+      <InventoryFormRegionValues onClose={() => setOpenRegions(null)} open={openRegions} preItems={preItems} />
       <InventoryFormTagsValue
         onChange={(term) => {
           if (term) {

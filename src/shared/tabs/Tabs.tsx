@@ -11,6 +11,7 @@ interface TabsA11Props {
 interface TabsProps<TabKeyType extends number | string | undefined = undefined> {
   tabs: TabType<TabKeyType>[]
   defaultTab?: TabKeyType extends undefined ? number : TabKeyType
+  value?: TabKeyType extends undefined ? number : TabKeyType
   containerProps?: BoxProps
   tabsProps?: BoxProps
   a11yProps?: (id: string, title: string) => TabsA11Props
@@ -24,31 +25,30 @@ function defaultA11yProps(id: string, title: string) {
   } as TabsA11Props
 }
 
-export function Tabs<TabKeyType extends number | string | undefined = undefined>({
+function UnControlledTabs<TabKeyType extends number | string | undefined = undefined>({
   tabs,
   defaultTab,
   a11yProps = defaultA11yProps,
   containerProps,
   onChange,
   tabsProps,
-}: TabsProps<TabKeyType>) {
-  const [value, setValue] = useState<number>((defaultTab ? defaultTab : 0) as number)
-  const handleChange = (_: unknown, newValue: number) => {
-    onChange?.((tabs[newValue].id ?? newValue) as TabKeyType extends undefined ? number : TabKeyType)
+}: Omit<TabsProps<TabKeyType>, 'value'>) {
+  type CurrentTabKeyType = TabKeyType extends undefined ? number : TabKeyType
+  const [value, setValue] = useState<CurrentTabKeyType>((defaultTab ?? 0) as CurrentTabKeyType)
+  const handleChange = (_: unknown, newValue: CurrentTabKeyType) => {
+    onChange?.(newValue)
     setValue(newValue)
   }
   return (
     <Box sx={{ width: '100%' }} {...containerProps}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }} {...tabsProps}>
         <MuiTabs value={value} onChange={handleChange} aria-label={t`Automatic Cloud Setup`}>
-          {tabs.map((item, index) => (
+          {tabs.map(({ title, id, props }, index) => (
             <Tab
-              label={item.title}
-              key={(item.id?.toString() ?? '') + index.toString()}
-              {...a11yProps(
-                typeof item.id === 'string' ? item.id : `tab-${index}`,
-                typeof item.title === 'string' ? item.title : `tabpanel-${index}`,
-              )}
+              label={title}
+              key={(id?.toString() ?? '') + index.toString()}
+              {...a11yProps(typeof id === 'string' ? id : `tab-${index}`, typeof title === 'string' ? title : `tabpanel-${index}`)}
+              {...props}
             />
           ))}
         </MuiTabs>
@@ -57,13 +57,57 @@ export function Tabs<TabKeyType extends number | string | undefined = undefined>
         <TabPanel
           content={item.content}
           id={index}
-          title={item.title}
-          props={item.props}
+          contentProps={item.contentProps}
           key={(item.id?.toString() ?? '') + index.toString()}
           index={index}
-          value={value}
+          value={value as number}
         />
       ))}
     </Box>
   )
+}
+
+function ControlledTabs<TabKeyType extends number | string | undefined = undefined>({
+  tabs,
+  value,
+  a11yProps = defaultA11yProps,
+  containerProps,
+  onChange,
+  tabsProps,
+}: Omit<TabsProps<TabKeyType>, 'defaultTab'>) {
+  type CurrentTabKeyType = TabKeyType extends undefined ? number : TabKeyType
+  const handleChange = (_: unknown, newValue: CurrentTabKeyType) => {
+    onChange?.(newValue)
+  }
+  const valueIndex = tabs.findIndex((item) => item.id === value) ?? 0
+  return (
+    <Box sx={{ width: '100%' }} {...containerProps}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }} {...tabsProps}>
+        <MuiTabs value={valueIndex} onChange={handleChange} aria-label={t`Automatic Cloud Setup`}>
+          {tabs.map(({ title, id, props }, index) => (
+            <Tab
+              label={title}
+              key={(id?.toString() ?? '') + index.toString()}
+              {...a11yProps(typeof id === 'string' ? id : `tab-${index}`, typeof title === 'string' ? title : `tabpanel-${index}`)}
+              {...props}
+            />
+          ))}
+        </MuiTabs>
+      </Box>
+      {tabs.map((item, index) => (
+        <TabPanel
+          content={item.content}
+          id={index}
+          contentProps={item.contentProps}
+          key={(item.id?.toString() ?? '') + index.toString()}
+          index={index}
+          value={value as number}
+        />
+      ))}
+    </Box>
+  )
+}
+
+export function Tabs<TabKeyType extends number | string | undefined = undefined>({ value, defaultTab, ...props }: TabsProps<TabKeyType>) {
+  return value ? <ControlledTabs value={value} {...props} /> : <UnControlledTabs defaultTab={defaultTab} {...props} />
 }

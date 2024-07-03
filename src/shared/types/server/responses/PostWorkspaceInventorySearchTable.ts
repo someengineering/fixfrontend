@@ -1,4 +1,4 @@
-import { ResourceComplexKindSimpleTypeDefinitions } from './shared'
+import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server-shared'
 
 export interface WorkspaceInventorySearchTableDefaultRow {
   kind: string

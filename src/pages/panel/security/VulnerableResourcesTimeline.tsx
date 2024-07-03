@@ -5,22 +5,25 @@ import dayjs from 'dayjs'
 import { useMemo } from 'react'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { sortedSeverities } from 'src/shared/constants'
-import { SeverityType, VulnerableResources } from 'src/shared/types/server'
+import { VulnerableResources } from 'src/shared/types/server'
+import { SeverityType } from 'src/shared/types/server-shared'
 import { parseISO8601Duration } from 'src/shared/utils/parseDuration'
 import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 
 const getNumberFormatter = (locale: string) => (value: number | null) => (value ? Math.round(value).toLocaleString(locale) : '-')
 
-export const VulnerableResourcesTimeline = ({ data }: { data: VulnerableResources }) => {
+interface VulnerableResourcesTimelineProps {
+  data: VulnerableResources
+  onSeveritySelect?: (severity: SeverityType) => void
+}
+
+export const VulnerableResourcesTimeline = ({ data }: VulnerableResourcesTimelineProps) => {
   const {
     i18n: { locale },
   } = useLingui()
   const {
     palette: {
       info: { main: infoColor },
-      error: { main: errorColor },
-      warning: { main: warningColor },
-      success: { main: successColor },
     },
   } = useTheme()
   const { series, labels } = useMemo(() => {
@@ -37,21 +40,7 @@ export const VulnerableResourcesTimeline = ({ data }: { data: VulnerableResource
           currentDataIndex = newLabels.findIndex((i) => i.valueOf() === curDate.valueOf())
         }
         const currentLabel = snakeCaseToUFStr(cur.group.severity)
-        let currentColor = infoColor
-        switch (cur.group.severity) {
-          case 'critical':
-            currentColor = errorColor
-            break
-          case 'high':
-            currentColor = warningColor
-            break
-          case 'medium':
-            currentColor = getColorBySeverity('medium')
-            break
-          case 'low':
-            currentColor = successColor
-            break
-        }
+        let currentColor = getColorBySeverity(cur.group.severity)
         if (currentColor === 'info.main') {
           currentColor = infoColor
         }
@@ -100,7 +89,7 @@ export const VulnerableResourcesTimeline = ({ data }: { data: VulnerableResource
         .filter((i) => i) as LineChartProps['series'],
       labels,
     }
-  }, [data.data, errorColor, infoColor, locale, successColor, warningColor])
+  }, [data.data, infoColor, locale])
   return (
     <Box width="100%" overflow="auto">
       <Box minWidth={labels.length * 50} height={350}>

@@ -21,6 +21,7 @@ jobs:
         run: |
           echo "VITE_FIX_LANDING_PAGE_URL=${{ vars.FIX_LANDING_PAGE_URL }}" > .env.production
           echo "VITE_VIDEOS_ASSETS_URL=${{ vars.VIDEOS_ASSETS_URL }}" >> .env.production
+          echo "VITE_IMAGES_ASSETS_URL=${{ vars.IMAGES_ASSETS_URL }}" >> .env.production
           echo "VITE_USE_PROXY=false" >> .env.production
           echo "VITE_NETWORK_RETRY_COUNT=${{ vars.NETWORK_RETRY_COUNT }}" >> .env.production
           echo "VITE_WEBSOCKET_RETRY_TIMEOUT=${{ vars.WEBSOCKET_RETRY_TIMEOUT }}" >> .env.production
@@ -37,6 +38,9 @@ jobs:
           echo "{ \"accounts\": [], \"regions\": [], \"kinds\": [], \"severity\": [] }" > mock-apis/data/search-start.json
           echo "[]" > mock-apis/data/table.json
           echo "[]" > mock-apis/data/tags.json
+      
+      - name: Update translation and exit if wrong
+        run: yarn i18n:extract && git diff --exit-code -- '*.po'
 
       - name: Run tests
         run: yarn test

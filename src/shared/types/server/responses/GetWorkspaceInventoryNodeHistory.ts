@@ -1,4 +1,4 @@
-import { NodeAncestors, NodeMetadata, NodeReported, NodeSecurity, SeverityType } from './shared'
+import { NodeAncestors, NodeMetadata, NodeReported, NodeSecurity, NodeType, SeverityType } from 'src/shared/types/server-shared'
 
 export type WorkspaceInventoryNodeHistoryChanges = 'node_created' | 'node_updated' | 'node_deleted' | 'node_vulnerable' | 'node_compliant'
 
@@ -9,9 +9,7 @@ export type WorkspaceInventoryNodeHistoryDiff = {
   benchmarks: string[]
 }
 
-type WorkspaceInventoryNodeHistoryBase = {
-  id: string
-  type: 'node'
+type WorkspaceInventoryNodeHistoryBase = NodeType<{
   revision: string
   reported: NodeReported
   metadata: NodeMetadata
@@ -20,7 +18,7 @@ type WorkspaceInventoryNodeHistoryBase = {
   changed_at: string
   created: string
   updated: string
-}
+}>
 
 interface WorkspaceInventoryNodeExistedHistory extends WorkspaceInventoryNodeHistoryBase {
   change: 'node_created' | 'node_deleted'

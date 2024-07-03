@@ -2,7 +2,7 @@ import { Trans, t } from '@lingui/macro'
 import { TextField } from '@mui/material'
 import { DurationPicker } from 'src/shared/duration-picker'
 import { Predicate } from 'src/shared/fix-query-parser'
-import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
+import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server-shared'
 import {
   BooleanValues,
   InventoryFormFilterRowBooleanValue,
@@ -148,11 +148,13 @@ export function InventoryFormFilterRowValues({
                 ? currentValue?.map((value) => ({
                     label: value.toLowerCase() === 'null' || value.toLowerCase() === 'undefined' ? t`Undefined` : value,
                     value: value ?? 'null',
+                    id: value ?? 'null',
                   }))
                 : {
                     label:
                       currentValue.toLowerCase() === 'null' || currentValue.toLowerCase() === 'undefined' ? t`Undefined` : currentValue,
                     value: currentValue,
+                    id: currentValue,
                   } || null
           }
           defaultOptions={preItems ? getAutocompleteDataFromKey(data.path.toString() || '', preItems) : undefined}

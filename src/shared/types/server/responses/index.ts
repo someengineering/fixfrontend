@@ -8,6 +8,8 @@ export type { GetWorkspaceBillingResponse } from './GetWorkspaceBilling'
 export type { GetWorkspaceBillingEntriesResponse, WorkspaceBillingEntry } from './GetWorkspaceBillingEntries'
 export type { GetWorkspaceCfTemplateResponse } from './GetWorkspaceCfTemplate'
 export type { GetWorkspaceCfUrlResponse } from './GetWorkspaceCfUrl'
+export type { GetWorkspaceCloudAccountAzureCredentialsResponse } from './GetWorkspaceCloudAccountAzureCredentials'
+export type { GetWorkspaceCloudAccountGCPKeyResponse } from './GetWorkspaceCloudAccountGCPKey'
 export type { GetWorkspaceCloudAccountsResponse } from './GetWorkspaceCloudAccounts'
 export type { GetWorkspaceCloudAccountsLastScanResponse, WorkspaceCloudAccountsLastScanAccount } from './GetWorkspaceCloudAccountsLastScan'
 export type { GetWorkspaceExternalIdResponse } from './GetWorkspaceExternalId'
@@ -23,9 +25,16 @@ export type {
 export type {
   GetWorkspaceInventoryNodeNeighborhoodResponse,
   WorkspaceInventoryNodeNeighborhood,
-  WorkspaceInventoryNodeNeighborhoodEdgeType,
   WorkspaceInventoryNodeNeighborhoodNodeType,
 } from './GetWorkspaceInventoryNodeNeighborhood'
+export type { GetWorkspaceInventoryReportBenchmarkResponse } from './GetWorkspaceInventoryReportBenchmark'
+export type {
+  BenchmarkCheckCollectionNode,
+  BenchmarkCheckResultNode,
+  BenchmarkReportNode,
+  GetWorkspaceInventoryReportBenchmarkResultItem,
+  GetWorkspaceInventoryReportBenchmarkResultResponse,
+} from './GetWorkspaceInventoryReportBenchmarkResult'
 export type { GetWorkspaceInventoryReportBenchmarksResponse } from './GetWorkspaceInventoryReportBenchmarks'
 export type { GetWorkspaceInventoryReportChecksResponse } from './GetWorkspaceInventoryReportChecks'
 export type { GetWorkspaceInventoryReportInfoResponse } from './GetWorkspaceInventoryReportInfo'
@@ -49,7 +58,6 @@ export type { GetWorkspaceNotificationsResponse } from './GetWorkspaceNotificati
 export type { GetWorkspaceSettingsResponse } from './GetWorkspaceSettings'
 export type { GetWorkspaceUsersResponse, WorkspaceUser } from './GetWorkspaceUsers'
 export type { GetWorkspaceResponse, GetWorkspacesResponse } from './GetWorkspaces'
-export type { PostAuthMfaAddResponse } from './PostAuthMfaAdd'
 export type { PostWorkspaceInventoryPropertyAttributesResponse } from './PostWorkspaceInventoryPropertyAttributes'
 export type { PostWorkspaceInventoryPropertyPathCompleteResponse } from './PostWorkspaceInventoryPropertyPathComplete'
 export type { PostWorkspaceInventoryPropertyValuesResponse } from './PostWorkspaceInventoryPropertyValues'
@@ -58,4 +66,3 @@ export type {
   WorkspaceInventorySearchTableColumn,
   WorkspaceInventorySearchTableRow,
 } from './PostWorkspaceInventorySearchTable'
-export * from './shared'

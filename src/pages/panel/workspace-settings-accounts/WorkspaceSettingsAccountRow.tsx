@@ -20,11 +20,13 @@ import {
 } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
+import { InternalLinkButton } from 'src/shared/link-button'
 import { Modal } from 'src/shared/modal'
-import { Account, GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
+import { useNonce } from 'src/shared/providers'
+import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
+import { Account } from 'src/shared/types/server-shared'
 import { getAccountName } from 'src/shared/utils/getAccountName'
 import { deleteAccountMutation } from './deleteAccount.mutation'
 import { patchAccountMutation } from './patchAccount.mutation'
@@ -48,6 +50,7 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
   const { selectedWorkspace, checkPermission } = useUserProfile()
   const hasPermission = checkPermission('updateCloudAccounts')
   const queryClient = useQueryClient()
+  const nonce = useNonce()
 
   const { mutate: renameAccount, isPending: renameAccountIsPending } = useMutation({
     mutationFn: patchAccountMutation,
@@ -106,7 +109,7 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
         {
           onSuccess: (data) => {
             void queryClient.invalidateQueries({
-              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
+              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
             })
             replaceRowByAccount(queryClient, data, selectedWorkspace?.id)
           },
@@ -123,7 +126,7 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
         {
           onSuccess: (data) => {
             void queryClient.invalidateQueries({
-              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
+              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
             })
             replaceRowByAccount(queryClient, data, selectedWorkspace?.id)
           },
@@ -139,7 +142,7 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
         {
           onSuccess: (data) => {
             void queryClient.invalidateQueries({
-              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
+              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
             })
             replaceRowByAccount(queryClient, data, selectedWorkspace?.id)
           },
@@ -201,7 +204,7 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
               },
             )
             void queryClient.invalidateQueries({
-              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-accounts'),
+              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
             })
           },
           onError: () => {
@@ -263,7 +266,7 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
               variant="standard"
               autoFocus
               margin="none"
-              inputProps={{ style: { padding: '0' } }}
+              inputProps={{ nonce, style: { padding: '0' } }}
               inputRef={inputRef}
               disabled={renameAccountIsPending}
             />
@@ -365,17 +368,68 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
         width={550}
         openRef={showDegradedModalRef}
         actions={
-          <Button variant="outlined" component={Link} to="/workspace-settings/accounts/setup-cloud">
-            <Trans>Deploy Stack</Trans>
-          </Button>
+          <Stack direction="row" spacing={1} justifyContent="space-between" width="100%">
+            <Button variant="outlined" onClick={() => showDegradedModalRef.current?.(false)}>
+              <Trans>Close</Trans>
+            </Button>
+            <InternalLinkButton
+              variant="contained"
+              to={`/workspace-settings/accounts/setup-cloud/${account.cloud}`}
+              onClick={() => showDegradedModalRef.current?.(false)}
+            >
+              {account.cloud === 'aws' ? (
+                <Trans>Deploy Stack</Trans>
+              ) : account.cloud === 'gcp' ? (
+                <Trans>Connect GCP Service Account</Trans>
+              ) : account.cloud === 'azure' ? (
+                <Trans>Configure Service Principal</Trans>
+              ) : (
+                <Trans>Setup cloud</Trans>
+              )}
+            </InternalLinkButton>
+          </Stack>
         }
       >
         <Typography>
-          <Trans>
-            This account is currently in a degraded state possibly due to a misconfiguration. Fix was unable to access the account. To
-            resume security scans, please log into account {accountName} ({account.account_id}) and re-deploy the CloudFormation stack that
-            establishes the IAM role trust.
-          </Trans>
+          {account.cloud === 'aws' ? (
+            <Trans>
+              This account is currently in a degraded state.
+              <br />
+              Fix was unable to gather data from this account.
+              <br />
+              <br />
+              To resume security scans, please log into the {accountName} account ({account.account_id}) and re-deploy the CloudFormation
+              stack that establishes the IAM role trust.
+            </Trans>
+          ) : account.cloud === 'gcp' ? (
+            <Trans>
+              This project is currently in a degraded state.
+              <br />
+              Fix was unable to gather data from this project.
+              <br />
+              <br />
+              To resume security scans, please ensure that the service account you configured is set up correctly.
+              <br />
+              You may also recreate and upload the service account definition.
+            </Trans>
+          ) : account.cloud === 'azure' ? (
+            <Trans>
+              This subscription is currently in a degraded state.
+              <br />
+              Fix was unable to gather data from this subscription.
+              <br />
+              <br />
+              To resume security scans, please ensure that the application permissions are set up correctly.
+              <br />
+              You may also recreate and redefine the access credentials.
+            </Trans>
+          ) : (
+            <Trans>
+              This account is currently in a degraded state possibly due to a misconfiguration.
+              <br />
+              Fix was unable to gather data from this account.
+            </Trans>
+          )}
         </Typography>
       </Modal>
       <Modal

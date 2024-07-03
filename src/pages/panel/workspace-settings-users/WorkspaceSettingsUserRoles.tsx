@@ -6,7 +6,9 @@ import { Autocomplete, CircularProgress, IconButton, Stack, TextField, Tooltip, 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { FormEvent, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { GetWorkspaceUsersResponse, UserRole } from 'src/shared/types/server'
+import { useNonce } from 'src/shared/providers'
+import { GetWorkspaceUsersResponse } from 'src/shared/types/server'
+import { UserRole } from 'src/shared/types/server-shared'
 import { putWorkspaceRolesMutation } from './putWorkspaceRoles.mutation'
 import { workspaceSettingsUserRoleToString } from './workspaceSettingsUserRoleToString'
 
@@ -70,6 +72,7 @@ interface WorkspaceSettingsUserRolesProps {
 }
 
 export const WorkspaceSettingsUserRoles = ({ role, userId }: WorkspaceSettingsUserRolesProps) => {
+  const nonce = useNonce()
   const { selectedWorkspace, checkPermission } = useUserProfile()
   const hasUpdateRolesPermission = checkPermission('updateRoles')
   const [rolesValues, setValues] = useState(userRolesToAutocompleteOptions(role))
@@ -133,7 +136,7 @@ export const WorkspaceSettingsUserRoles = ({ role, userId }: WorkspaceSettingsUs
             autoFocus
             variant="standard"
             margin="none"
-            inputProps={{ ...params.inputProps, style: { ...params.inputProps.style, padding: '0' } }}
+            inputProps={{ ...params.inputProps, nonce, style: { ...params.inputProps.style, padding: '0' } }}
           />
         )}
       />

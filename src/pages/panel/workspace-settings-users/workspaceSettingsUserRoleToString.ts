@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import { UserRole } from 'src/shared/types/server'
+import { UserRole } from 'src/shared/types/server-shared'
 
 export const workspaceSettingsUserRoleToString = (role: UserRole) => {
   const roles = [] as string[]

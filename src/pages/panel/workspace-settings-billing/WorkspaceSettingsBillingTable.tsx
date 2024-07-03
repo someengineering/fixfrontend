@@ -16,7 +16,11 @@ export const WorkspaceSettingsBillingTable = () => {
     queryFn: getWorkspaceBillingEntriesQuery,
   })
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = usePersistState(settingsStorageKeys.WorkspaceSettingsBillingTable.rowsPerPage, 10)
+  const [rowsPerPage, setRowsPerPage] = usePersistState<number>(
+    settingsStorageKeys.WorkspaceSettingsBillingTable.rowsPerPage,
+    panelUI.tableRowsPerPages[0],
+    (state) => typeof state === 'number' && (panelUI.tableRowsPerPages as unknown as number[]).includes(state),
+  )
   return (
     <>
       <Typography variant="h4">

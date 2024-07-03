@@ -1,1 +1,2 @@
-export { LinkButton } from './LinkButton'
+export { ExternalLinkLoadingButton } from './ExternalLinkLoadingButton'
+export { InternalLinkButton } from './InternalLinkButton'

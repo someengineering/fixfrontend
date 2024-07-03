@@ -2,7 +2,7 @@ import { t } from '@lingui/macro'
 import { Stack, Typography } from '@mui/material'
 import { useMemo } from 'react'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
-import { DefaultPropertiesKeys, useFixQueryParser } from 'src/shared/fix-query-parser'
+import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { InventoryFormDefaultValue } from './InventoryFormDefaultValue'
 import { termValueToStringArray } from './utils'
 import { AutoCompletePreDefinedItems } from './utils/getAutoCompleteFromKey'
@@ -12,12 +12,18 @@ interface InventoryFormCloudValuesProps {
   onClose: () => void
   preItems: AutoCompletePreDefinedItems
   values?: string[]
-  withAddButton?: boolean
 }
 
-export const InventoryFormCloudValues = ({ preItems, onClose, open, values, withAddButton }: InventoryFormCloudValuesProps) => {
-  const { cloud, setPredicate, deletePredicate } = useFixQueryParser()
-  const curValues = values ?? termValueToStringArray(cloud?.value)
+export const InventoryFormCloudValues = ({ preItems, onClose, open, values }: InventoryFormCloudValuesProps) => {
+  const { cloud, setCloudAccountRegion, deleteCloudAccountRegion, changeCloudAccountRegionFromIdToName } = useFixQueryParser()
+  const isId = cloud?.path.parts.at(-1)?.name === 'id'
+  let curValues = values ?? termValueToStringArray(cloud?.value)
+  if (isId && preItems.clouds.length) {
+    curValues = curValues.map((value) => preItems.clouds.find((i) => i.id === value)?.value).filter((i) => i) as string[]
+    window.setTimeout(() => {
+      changeCloudAccountRegionFromIdToName('account', curValues, 'in')
+    })
+  }
   const cloudOptions = useMemo(() => {
     const valuesToAdd = [...curValues]
     const result = [...preItems.clouds]
@@ -30,15 +36,23 @@ export const InventoryFormCloudValues = ({ preItems, onClose, open, values, with
         valuesToAdd.splice(index, 1)
       }
     }
-    valuesToAdd.forEach((value) => result.push({ label: value, value }))
+    valuesToAdd.forEach((value) => result.push({ label: value, value, id: value }))
     return result
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(values), preItems.clouds])
+
   return (
     <InventoryFormDefaultValue
-      onChange={(values) =>
-        values.length ? setPredicate(DefaultPropertiesKeys.Cloud, 'in', values) : deletePredicate(DefaultPropertiesKeys.Cloud)
-      }
+      onChange={(values) => {
+        if (isId) {
+          deleteCloudAccountRegion('cloud')
+        }
+        if (values) {
+          setCloudAccountRegion('cloud', 'in', values, true)
+        } else {
+          deleteCloudAccountRegion('cloud', true)
+        }
+      }}
       values={curValues}
       label={t`Cloud`}
       onClose={onClose}
@@ -52,7 +66,6 @@ export const InventoryFormCloudValues = ({ preItems, onClose, open, values, with
           <Typography>{item.label}</Typography>
         </Stack>
       )}
-      withAddButton={withAddButton}
     />
   )
 }

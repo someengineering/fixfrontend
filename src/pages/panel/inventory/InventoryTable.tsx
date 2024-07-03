@@ -10,10 +10,11 @@ import { useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { PosthogEvent, panelUI, settingsStorageKeys } from 'src/shared/constants'
+import { panelUI } from 'src/shared/constants'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { AdvancedTableView } from 'src/shared/layouts/panel-layout'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
+import { PostHogEvent } from 'src/shared/posthog'
 import {
   PostWorkspaceInventorySearchTableResponse,
   WorkspaceInventorySearchTableColumn,
@@ -38,12 +39,16 @@ type RowType = WorkspaceInventorySearchTableRow['row'] & {
 type ColType = GridColDef & WorkspaceInventorySearchTableColumn
 
 export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => {
-  const posthog = usePostHog()
+  const postHog = usePostHog()
   const { sorts } = useFixQueryParser()
   const [dataCount, setDataCount] = useState(-1)
   const navigate = useAbsoluteNavigate()
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = usePersistState(settingsStorageKeys.InventoryTable.rowsPerPage, 10)
+  const [rowsPerPage, setRowsPerPage] = usePersistState<number>(
+    'InventoryTable.rowsPerPage',
+    panelUI.tableRowsPerPages[0],
+    (state) => typeof state === 'number' && (panelUI.tableRowsPerPages as unknown as number[]).includes(state),
+  )
   const { currentUser, selectedWorkspace } = useUserProfile()
   const [rows, setRows] = useState<RowType[]>([])
   const [columns, setColumns] = useState<ColType[]>([])
@@ -92,14 +97,14 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       setPage(0)
     }
     initializedRef.current = true
-    posthog.capture(PosthogEvent.InventorySearch, {
+    postHog.capture(PostHogEvent.InventorySearch, {
       $set: { ...currentUser },
       authenticated: isAuthenticated(),
       user_id: currentUser?.id,
       workspace_id: selectedWorkspace?.id,
       query: searchCrit,
     })
-  }, [currentUser, posthog, searchCrit, selectedWorkspace?.id])
+  }, [currentUser, postHog, searchCrit, selectedWorkspace?.id])
 
   useEffect(() => {
     if (!isLoading) {
@@ -190,7 +195,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       autoHeight
       columns={columns}
       rows={rows}
-      pageSizeOptions={panelUI.tableRowsPerPages}
+      pageSizeOptions={panelUI.tableRowsPerPages.filter((_, i, arr) => dataCount > (arr[i - 1] ?? 0))}
       filterMode="server"
       sortingMode="server"
       rowSelection={false}
@@ -224,7 +229,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
             .filter((i) => i) as WorkspaceInventorySearchTableSort[],
         )
       }
-      pagination={dataCount > 10}
+      pagination={dataCount > panelUI.tableRowsPerPages[0]}
       paginationModel={{ page, pageSize: rowsPerPage }}
       onPaginationModelChange={(model) => {
         if (model.pageSize !== rowsPerPage) {
@@ -243,28 +248,31 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
         </Stack>
       }
       slots={{
-        row: (rowProps: GridRowProps) => (
-          <ButtonBase
-            onClick={() =>
-              navigate({
-                pathname: `./resource-detail/${(rowProps.row as RowType)?.INTERNAL_ID.split('_').slice(0, -1).join('_')}`,
-                search:
-                  typeof rowProps.row?.name === 'string'
-                    ? mergeLocationSearchValues({
-                        ...getLocationSearchValues(window.location.search),
-                        name: window.encodeURIComponent(rowProps.row?.name ?? '-'),
-                      })
-                    : window.location.search,
-              })
-            }
-          >
-            <GridRow {...rowProps} />
-          </ButtonBase>
-        ),
-      }}
-      slotProps={{
-        row: {
-          style: { cursor: 'pointer' },
+        row: (rowProps: GridRowProps) => {
+          const id = (rowProps.row as RowType)?.INTERNAL_ID.split('_').slice(0, -1).join('_')
+          if (!id || id === 'null' || id === 'undefined') {
+            return <GridRow {...rowProps} />
+          }
+          const search =
+            typeof rowProps.row?.name === 'string'
+              ? mergeLocationSearchValues({
+                  ...getLocationSearchValues(window.location.search),
+                  name: window.encodeURIComponent(rowProps.row?.name ?? '-'),
+                })
+              : window.location.search
+          const href = `./resource-detail/${id}${search?.[0] === '?' || !search ? search ?? '' : `?${search}`}`
+          return (
+            <ButtonBase
+              href={href}
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                navigate(href)
+              }}
+            >
+              <GridRow {...rowProps} />
+            </ButtonBase>
+          )
         },
       }}
     />

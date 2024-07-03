@@ -2,7 +2,7 @@ import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import DoneIcon from '@mui/icons-material/Done'
 import { Box, Divider, List, ListItem, ListItemIcon, ListItemText, Stack, Typography } from '@mui/material'
-import { ProductTier } from 'src/shared/types/server'
+import { ProductTier } from 'src/shared/types/server-shared'
 import { productTierToDescription, productTierToLabel } from './utils'
 
 export interface ProductTierCompProps {

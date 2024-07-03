@@ -2,12 +2,14 @@ import axios, { AxiosError, AxiosInstance } from 'axios'
 import { usePostHog } from 'posthog-js/react'
 import { PropsWithChildren, SetStateAction, useCallback, useEffect, useRef, useState } from 'react'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { PosthogEvent } from 'src/shared/constants'
+import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
+import { PostHogEvent } from 'src/shared/posthog'
 import { GetWorkspaceResponse } from 'src/shared/types/server'
 import { axiosWithAuth, defaultAxiosConfig, setAxiosWithAuth } from 'src/shared/utils/axios'
 import { clearAllCookies, isAuthenticated as isCookieAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData as getPersistedAuthData, setAuthData as setPersistedAuthData } from 'src/shared/utils/localstorage'
-import { UserContext, UserContextRealValues, UserContextValue } from './UserContext'
+import { UserContextRealValues, UserContextValue } from './UserContext'
+import { WorkspaceGuard } from './WorkspaceGuard'
 import { getCurrentUserQuery } from './getCurrentUser.query'
 import { Permissions, getPermissions, maxPermissionNumber } from './getPermissions'
 import { getWorkspacesQuery } from './getWorkspaces.query'
@@ -16,12 +18,11 @@ import { logoutMutation } from './logout.mutation'
 const defaultAuth = { isAuthenticated: false, workspaces: [], selectedWorkspace: undefined, currentUser: undefined }
 
 export function AuthGuard({ children }: PropsWithChildren) {
-  const posthog = usePostHog()
+  const postHog = usePostHog()
   const [auth, setAuth] = useState<UserContextRealValues>(() => {
     const isAuthenticated = isCookieAuthenticated()
-    const selectedWorkspaceId = isAuthenticated
-      ? window.location.hash?.substring(1) || getPersistedAuthData()?.selectedWorkspaceId || undefined
-      : undefined
+    const selectedWorkspaceId = isAuthenticated ? getPersistedAuthData()?.selectedWorkspaceId : undefined
+
     return {
       ...defaultAuth,
       selectedWorkspace: selectedWorkspaceId
@@ -34,6 +35,8 @@ export function AuthGuard({ children }: PropsWithChildren) {
             created_at: new Date().toISOString(),
             on_hold_since: null,
             trial_end_days: null,
+            move_to_free_acknowledged_at: new Date().toISOString(),
+            tier: 'Free',
             user_has_access: true,
             user_permissions: maxPermissionNumber,
             permissions: getPermissions(maxPermissionNumber),
@@ -42,13 +45,18 @@ export function AuthGuard({ children }: PropsWithChildren) {
       isAuthenticated,
     }
   })
+  const [isFetching, setIsFetching] = useState(false)
 
   const handleInternalSetAuth = useCallback((value: SetStateAction<UserContextRealValues>) => {
     setAuth((prev) => {
       const newAuth = typeof value === 'function' ? value(prev) : value
+      const selectedWorkspaceId = newAuth.selectedWorkspace?.id ?? prev.selectedWorkspace?.id
       setPersistedAuthData({
         isAuthenticated: newAuth.isAuthenticated,
-        selectedWorkspaceId: newAuth.selectedWorkspace?.id ?? prev.selectedWorkspace?.id,
+        lastWorkingWorkspaceId: newAuth.workspaces.find((workspace) => workspace.id === newAuth.selectedWorkspace?.id)
+          ? selectedWorkspaceId
+          : prev.selectedWorkspace?.id,
+        selectedWorkspaceId,
       })
       return newAuth
     })
@@ -80,62 +88,87 @@ export function AuthGuard({ children }: PropsWithChildren) {
       try {
         await logoutMutation()
       } finally {
-        posthog.reset()
+        postHog.reset()
         clearAllCookies()
         handleInternalSetAuth(defaultAuth)
       }
     },
-    [handleInternalSetAuth, navigate, posthog],
+    [handleInternalSetAuth, navigate, postHog],
   )
 
   const handleRefreshWorkspaces = useCallback(
-    async (instance?: AxiosInstance) => {
+    async (instance?: AxiosInstance, _internalFetch?: boolean) => {
+      if (!_internalFetch) {
+        setIsFetching(true)
+      }
       try {
         const workspaces = await getWorkspacesQuery(instance ?? axiosWithAuth)
         handleInternalSetAuth((prev) => {
-          const selectedWorkspace =
-            (prev.selectedWorkspace?.id
-              ? workspaces.find((workspace) => workspace.id === prev.selectedWorkspace?.id)
-              : workspaces.find((workspace) => workspace.user_has_access && workspace.permissions.includes('read'))) ?? workspaces[0]
-          window.setTimeout(() => {
-            window.location.hash = selectedWorkspace?.id ?? ''
-          })
+          const prevSelectedWorkspaceId = prev.selectedWorkspace?.id
           return {
             ...prev,
             workspaces,
-            selectedWorkspace,
+            selectedWorkspace: prevSelectedWorkspaceId
+              ? workspaces.find((workspace) => workspace.id === prevSelectedWorkspaceId)
+              : prev.selectedWorkspace,
           }
         })
+        if (!_internalFetch) {
+          setIsFetching(false)
+        }
         return workspaces
       } catch {
         handleInternalSetAuth(defaultAuth)
+        if (!_internalFetch) {
+          setIsFetching(false)
+        }
         return undefined
       }
     },
     [handleInternalSetAuth],
   )
 
-  const handleSelectWorkspaces = useCallback(
+  useEffect(() => {
+    if (auth.currentUser) {
+      postHog.identify(auth.currentUser.id, { ...auth.currentUser })
+    }
+  }, [auth.currentUser, postHog])
+
+  useEffect(() => {
+    if (auth.selectedWorkspace?.id) {
+      postHog.group('workspace_id', auth.selectedWorkspace.id)
+    }
+  }, [auth.selectedWorkspace?.id, postHog])
+
+  const handleSelectWorkspace = useCallback(
     (id: string) => {
       return new Promise<GetWorkspaceResponse | undefined>((resolve) => {
         handleInternalSetAuth((prev) => {
           const foundWorkspace = prev.workspaces.find((item) => item.id === id)
           resolve(foundWorkspace)
 
-          if (foundWorkspace) {
-            posthog.group('workspace_id', foundWorkspace.id)
+          return {
+            ...prev,
+            selectedWorkspace: foundWorkspace ?? {
+              created_at: '',
+              id,
+              members: [],
+              name: '',
+              on_hold_since: null,
+              owners: [],
+              permissions: [],
+              slug: '',
+              trial_end_days: null,
+              move_to_free_acknowledged_at: new Date().toISOString(),
+              tier: 'Free',
+              user_has_access: null,
+              user_permissions: 0,
+            },
           }
-
-          return foundWorkspace
-            ? {
-                ...prev,
-                selectedWorkspace: foundWorkspace,
-              }
-            : prev
         })
       })
     },
-    [handleInternalSetAuth, posthog],
+    [handleInternalSetAuth],
   )
 
   useEffect(() => {
@@ -149,9 +182,13 @@ export function AuthGuard({ children }: PropsWithChildren) {
         (error: AxiosError | Error) => {
           if ((error as AxiosError)?.code !== 'ERR_CANCELED') {
             if (window.TrackJS?.isInstalled()) {
+              const data = (error as AxiosError)?.response?.data
+              if (data) {
+                window.TrackJS.console.info(data)
+              }
               window.TrackJS.track(error)
             }
-            posthog.capture(PosthogEvent.Error, {
+            postHog.capture(PostHogEvent.Error, {
               authenticated: isCookieAuthenticated(),
               workspace_id: getPersistedAuthData()?.selectedWorkspaceId || undefined,
               error_name: error.name,
@@ -169,9 +206,10 @@ export function AuthGuard({ children }: PropsWithChildren) {
           }
           if ('isAxiosError' in error && error.isAxiosError && error.code !== 'ERR_CANCELED') {
             if (window.TrackJS?.isInstalled()) {
+              window.TrackJS.console.info(error.response?.data ?? 'no data from server')
               window.TrackJS.track(error)
             }
-            posthog.capture(PosthogEvent.NetworkError, {
+            postHog.capture(PostHogEvent.NetworkError, {
               authenticated: isCookieAuthenticated(),
               workspace_id: getPersistedAuthData()?.selectedWorkspaceId || undefined,
               api_endpoint: error.response?.config.url || undefined,
@@ -189,12 +227,15 @@ export function AuthGuard({ children }: PropsWithChildren) {
         },
       )
       setAxiosWithAuth(instance)
-      void handleRefreshWorkspaces(instance)
-      void getCurrentUserQuery(instance).then((currentUser) => {
-        handleInternalSetAuth((prev) => ({ ...prev, currentUser }))
-      })
+      setIsFetching(true)
+      void Promise.all([
+        handleRefreshWorkspaces(instance, true),
+        getCurrentUserQuery(instance).then((currentUser) => {
+          handleInternalSetAuth((prev) => ({ ...prev, currentUser }))
+        }),
+      ]).finally(() => setIsFetching(false))
     }
-  }, [auth.isAuthenticated, handleRefreshWorkspaces, handleLogout, navigate, handleInternalSetAuth, posthog])
+  }, [auth.isAuthenticated, handleRefreshWorkspaces, handleLogout, handleInternalSetAuth, postHog])
 
   useEffect(() => {
     if (nextUrl.current && auth.isAuthenticated) {
@@ -215,19 +256,21 @@ export function AuthGuard({ children }: PropsWithChildren) {
     [handleCheckPermission],
   )
 
-  return (
-    <UserContext.Provider
+  return isFetching ? (
+    <FullPageLoadingSuspenseFallback forceFullPage />
+  ) : (
+    <WorkspaceGuard
       value={{
         ...auth,
         setAuth: handleSetAuth,
         logout: handleLogout,
         refreshWorkspaces: handleRefreshWorkspaces,
-        selectWorkspace: handleSelectWorkspaces,
+        selectWorkspace: handleSelectWorkspace,
         checkPermission: handleCheckPermission,
         checkPermissions: handleCheckPermissions as UserContextValue['checkPermissions'],
       }}
     >
       {children}
-    </UserContext.Provider>
+    </WorkspaceGuard>
   )
 }

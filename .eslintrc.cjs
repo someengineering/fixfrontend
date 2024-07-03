@@ -8,7 +8,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:storybook/recommended',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  ignorePatterns: ['!.storybook', '__mocks__/*', 'index.html', 'public/*.min.js', 'src/locales/**/messages.po', 'dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
@@ -89,6 +89,7 @@ module.exports = {
               '!src/shared/utils/*',
               '!src/shared/types/shared',
               '!src/shared/types/server',
+              '!src/shared/types/server-shared',
               'src/shared/types/server/*',
               '!src/shared/layouts/*',
               'src/shared/layouts/*/*',

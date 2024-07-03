@@ -1,8 +1,6 @@
-import { NodeType } from './shared'
+import { EdgeType, NodeType } from 'src/shared/types/server-shared'
 
-export interface WorkspaceInventoryNodeNeighborhoodNodeType {
-  id: string
-  type: NodeType
+export type WorkspaceInventoryNodeNeighborhoodNodeType = NodeType<{
   metadata?: {
     icon?: string
     group?: string
@@ -16,14 +14,8 @@ export interface WorkspaceInventoryNodeNeighborhoodNodeType {
     kind: string
     name: string
   }
-}
+}>
 
-export interface WorkspaceInventoryNodeNeighborhoodEdgeType {
-  type: 'edge'
-  from: string
-  to: string
-}
-
-export type WorkspaceInventoryNodeNeighborhood = WorkspaceInventoryNodeNeighborhoodNodeType | WorkspaceInventoryNodeNeighborhoodEdgeType
+export type WorkspaceInventoryNodeNeighborhood = WorkspaceInventoryNodeNeighborhoodNodeType | EdgeType
 
 export type GetWorkspaceInventoryNodeNeighborhoodResponse = WorkspaceInventoryNodeNeighborhood[]

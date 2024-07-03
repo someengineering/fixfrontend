@@ -7,11 +7,11 @@ import { usePostHog } from 'posthog-js/react'
 import { ChangeEvent, ReactNode, UIEvent as ReactUIEvent, useEffect, useMemo, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventoryPropertyValuesQuery } from 'src/pages/panel/shared/queries'
+import { sendInventoryError } from 'src/pages/panel/shared/utils'
 import { panelUI } from 'src/shared/constants'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { ListboxComponent } from 'src/shared/react-window'
 import { AutoCompleteValue } from 'src/shared/types/shared'
-import { sendInventoryError } from './utils'
 
 const ITEMS_PER_PAGE = 50
 
@@ -39,7 +39,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
   value,
   ...props
 }: InventoryFormFilterRowStringValueProps<Multiple, NetworkDisabled>) {
-  const posthog = usePostHog()
+  const postHog = usePostHog()
   const { currentUser, selectedWorkspace } = useUserProfile()
   const { query } = useFixQueryParser()
   const [open, setOpen] = useState(false)
@@ -110,16 +110,16 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
               ? `${q} and ${propertyName} ~ ".*${debouncedTyped}.*"`
               : q,
         },
-        posthog,
+        postHog,
       })
     }
-  }, [currentUser, debouncedTyped, error, posthog, propertyName, q, selectedWorkspace?.id, value])
+  }, [currentUser, debouncedTyped, error, postHog, propertyName, q, selectedWorkspace?.id, value])
   const flatData = useMemo(
     () =>
       data?.pages
         .flat()
         .filter((i) => i)
-        .map((i) => ({ label: i as string, value: i as string })) ?? null,
+        .map((i) => ({ label: i as string, value: i as string, id: i as string })) ?? null,
     [data],
   )
 
@@ -140,7 +140,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
     typed.toLowerCase() !== 'undefined' &&
     typed.toLowerCase() !== t`Undefined`.toLowerCase() &&
     !(Array.isArray(value) ? value.find((i) => i.label === typed) : value?.label === typed)
-      ? rawOptions.concat({ value: typed, label: typed })
+      ? rawOptions.concat({ value: typed, label: typed, id: typed })
       : rawOptions
 
   const optionsWithValues =
@@ -157,7 +157,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
       : optionsWithTyped
   const options = optionsWithValues.find((i) => i.value === 'null')
     ? optionsWithValues
-    : optionsWithValues.concat({ label: t`Undefined`, value: 'null' })
+    : optionsWithValues.concat({ label: t`Undefined`, value: 'null', id: 'null' })
 
   const currentValue = (
     props.multiple && !Array.isArray(value) ? (value ? [value] : []) : !props.multiple && Array.isArray(value) ? value[0] : value

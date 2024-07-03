@@ -1,4 +1,4 @@
-import { NotificationChannel } from 'src/shared/types/server'
+import { NotificationChannel } from 'src/shared/types/server-shared'
 
 export const endPoints = {
   auth: {
@@ -32,6 +32,7 @@ export const endPoints = {
   workspaces: {
     self: 'api/workspaces/',
     workspace: (workspaceId: string) => ({
+      awsMarketplaceProduct: `api/workspaces/${workspaceId}/aws_marketplace_product`,
       billing: `api/workspaces/${workspaceId}/billing`,
       billingEntries: `api/workspaces/${workspaceId}/billing_entries/`,
       subscription: {
@@ -50,6 +51,12 @@ export const endPoints = {
         }),
         self: `api/workspaces/${workspaceId}/cloud_accounts`,
         lastScan: `api/workspaces/${workspaceId}/cloud_accounts/lastScan`,
+        gcp: {
+          key: `api/workspaces/${workspaceId}/cloud_accounts/gcp/key`,
+        },
+        azure: {
+          credentials: `api/workspaces/${workspaceId}/cloud_accounts/azure/credentials`,
+        },
       },
       inventory: {
         reportSummary: `api/workspaces/${workspaceId}/inventory/report-summary`,
@@ -107,6 +114,7 @@ export const endPoints = {
         self: (userId: string) => `api/workspaces/${workspaceId}/roles/${userId}`,
       },
       acceptInvite: `api/workspaces/${workspaceId}/accept_invite`,
+      ackMoveToFree: `api/workspaces/${workspaceId}/ack_move_to_free`,
       cfUrl: `api/workspaces/${workspaceId}/cf_url`,
       cfTemplate: `api/workspaces/${workspaceId}/cf_template`,
       externalId: `api/workspaces/${workspaceId}/external_id`,

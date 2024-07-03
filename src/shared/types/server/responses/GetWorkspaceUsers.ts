@@ -1,4 +1,4 @@
-import { UserRole } from './shared'
+import { UserRole } from 'src/shared/types/server-shared'
 
 export interface WorkspaceUser {
   id: string

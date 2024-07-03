@@ -19,13 +19,13 @@ import {
   Typography,
 } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
-import { useState } from 'react'
+import { MouseEvent, useState } from 'react'
 import { NavigateFunction } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
 import { createInventorySearchTo, getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { getMessage } from 'src/shared/defined-messages'
-import { FailedCheck } from 'src/shared/types/server'
+import { FailedCheck } from 'src/shared/types/server-shared'
 import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 import { FailedCheckIgnoreButton } from './FailedCheckIgnoreButton'
 
@@ -41,6 +41,7 @@ interface FailedChecks {
   }
   ignored?: boolean
   benchmarks?: string[]
+  to?: string | (() => string)
 }
 
 export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, benchmarks, ignored, ignoreProps }: FailedChecks) => {
@@ -50,9 +51,11 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, 
   const { data, isLoading } = useQuery({
     queryFn: postWorkspaceInventorySearchTableQuery,
     queryKey: ['workspace-inventory-search-table', selectedWorkspace?.id ?? '', query, 0, 5, false, '', ''],
-    enabled: !!(withResources && selectedWorkspace?.id && expanded && query),
+    enabled: !!(withResources === true && selectedWorkspace?.id && expanded && query),
   })
   const [[_, ...resources]] = data ?? [[]]
+  const to = createInventorySearchTo(query) as { pathname: string; search: string }
+  const href = `${to.pathname}${to.search}`
   return (
     <Grid
       item
@@ -115,26 +118,32 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, 
               </Typography>
               <Stack direction="row" flexWrap="wrap" gap={1} my={1}>
                 {resources.length
-                  ? resources.map((resource) => (
-                      <Chip
-                        key={resource.id}
-                        label={`${resource.row.name} ${resource.row.account ? `(${resource.row.account})` : ''}`}
-                        variant="outlined"
-                        color="info"
-                        onClick={
-                          navigate
-                            ? () => {
-                                const to = createInventorySearchTo(query)
-                                if (typeof to === 'object') {
-                                  to.pathname += `/resource-detail/${resource.id}`
-                                  to.search += `&name=${resource.row.name}`
-                                }
-                                navigate(to)
+                  ? resources.map((resource) => {
+                      const to = createInventorySearchTo(query) as { pathname: string; search: string }
+                      if (typeof to === 'object') {
+                        to.pathname += `/resource-detail/${resource.id}`
+                        to.search += `&name=${resource.row.name}`
+                      }
+                      const href = `${to.pathname}${to.search}`
+                      return (
+                        <Chip
+                          key={resource.id}
+                          label={`${resource.row.name} ${resource.row.account ? `(${resource.row.account})` : ''}`}
+                          variant="outlined"
+                          color="info"
+                          {...(navigate
+                            ? {
+                                component: 'a',
+                                href,
+                                onClick: (e: MouseEvent) => {
+                                  e.preventDefault()
+                                  navigate(href)
+                                },
                               }
-                            : undefined
-                        }
-                      />
-                    ))
+                            : {})}
+                        />
+                      )
+                    })
                   : isLoading
                     ? new Array(5)
                         .fill('')
@@ -143,14 +152,61 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, 
               </Stack>
             </>
           ) : null}
-          {benchmarks && benchmarks.length ? (
+          {failedCheck.resources_failing_by_account ? (
+            <>
+              <Typography variant={smallText ? 'h6' : 'h5'} fontWeight={smallText ? 800 : undefined} mt={2}>
+                <Trans>Non-Compliant Resources</Trans>
+              </Typography>
+              {Object.entries(failedCheck.resources_failing_by_account).map(([accountId, resources]) => (
+                <Accordion key={accountId}>
+                  <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="manual-setup-content" id="manual-setup-header">
+                    <Typography variant="h5">
+                      {resources.find((resource) => typeof resource.account === 'string')?.account ?? accountId}
+                    </Typography>
+                  </AccordionSummary>
+                  <Divider />
+                  <AccordionDetails>
+                    <Stack direction="row" flexWrap="wrap" gap={1} my={1}>
+                      {resources.map((resource) => {
+                        const href = `${window.location.pathname}/resource-detail/${resource.node_id}${window.location.search === '?' ? '' : window.location.search ? `${window.location.search}&` : '?'}${resource.name ? `name=${resource.name}` : ''}${resource.cloud ? `&cloud=${resource.cloud}` : ''}`
+                        return (
+                          <Chip
+                            key={resource.node_id ?? resource.id}
+                            label={`${resource.name} ${resource.account && typeof resource.account === 'string' ? `(${resource.account})` : ''}`}
+                            variant="outlined"
+                            color="info"
+                            {...(navigate && resource.node_id
+                              ? {
+                                  component: 'a',
+                                  href,
+                                  onClick: (e: MouseEvent) => {
+                                    e.preventDefault()
+                                    navigate(href)
+                                  },
+                                }
+                              : {})}
+                          />
+                        )
+                      })}
+                    </Stack>
+                  </AccordionDetails>
+                </Accordion>
+              ))}
+            </>
+          ) : null}
+          {failedCheck.benchmarks?.length || benchmarks?.length ? (
             <>
               <Typography variant={smallText ? 'h6' : 'h5'} fontWeight={smallText ? 800 : undefined} mt={2}>
                 <Trans>Failing benchmarks</Trans>
               </Typography>
               <Stack direction="row" flexWrap="wrap" gap={1} my={1}>
-                {benchmarks.map((benchmark, i) => (
-                  <Chip label={benchmark} key={i} variant="outlined" color="info" />
+                {(failedCheck.benchmarks || benchmarks)?.map((benchmark, i) => (
+                  <Chip
+                    label={typeof benchmark === 'string' ? benchmark : benchmark.title || benchmark.id}
+                    key={i}
+                    variant="outlined"
+                    color="info"
+                  />
                 ))}
               </Stack>
             </>
@@ -178,8 +234,16 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, 
                 </Tooltip>
               )
             ) : null}
+
             {navigate && (
-              <Button onClick={() => navigate(createInventorySearchTo(query))} variant="outlined">
+              <Button
+                href={href}
+                onClick={(e) => {
+                  e.preventDefault()
+                  navigate(href)
+                }}
+                variant="outlined"
+              >
                 <Trans>Show resources</Trans>
               </Button>
             )}

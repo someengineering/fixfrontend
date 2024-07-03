@@ -8,11 +8,11 @@ import { usePostHog } from 'posthog-js/react'
 import { ChangeEvent, HTMLAttributes, KeyboardEvent, UIEvent as ReactUIEvent, useEffect, useMemo, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventoryPropertyPathCompleteQuery } from 'src/pages/panel/shared/queries'
-import { isValidProp } from 'src/pages/panel/shared/utils'
+import { isValidProp, sendInventoryError } from 'src/pages/panel/shared/utils'
 import { panelUI } from 'src/shared/constants'
 import { OPType, defaultProperties, kindDurationTypes, kindSimpleTypes } from 'src/shared/fix-query-parser'
-import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server'
-import { postCostumedWorkspaceInventoryPropertyAttributesQuery, sendInventoryError } from './utils'
+import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server-shared'
+import { postCostumedWorkspaceInventoryPropertyAttributesQuery } from './utils'
 
 interface InventoryFormFilterRowPropertyProps {
   selectedKinds: string[] | null
@@ -36,7 +36,7 @@ export const InventoryFormFilterRowProperty = ({
   kinds,
   onChange,
 }: InventoryFormFilterRowPropertyProps) => {
-  const posthog = usePostHog()
+  const postHog = usePostHog()
   const { defaultItem, isDefaultSimple } = useMemo(() => {
     const defaultItem = defaultProperties.find((i) => i.label === defaultValue || i.label === defaultForcedValue)
     return {
@@ -62,7 +62,7 @@ export const InventoryFormFilterRowProperty = ({
   const isDictionary = fqn?.startsWith('dictionary') ?? false
   const propertyAttributes = useInfiniteQuery({
     queryKey: [
-      'workspace-inventory-property-path-complete-query',
+      'workspace-inventory-property-path-complete',
       selectedWorkspace?.id,
       debouncedPath,
       value === `${debouncedPathDraft}.${debouncedProp}` || value === `${debouncedPathDraft}.${debouncedProp.replace(/\./g, '․')}`
@@ -83,7 +83,7 @@ export const InventoryFormFilterRowProperty = ({
   })
   const pathComplete = useInfiniteQuery({
     queryKey: [
-      'workspace-inventory-property-path-complete-query',
+      'workspace-inventory-property-path-complete',
       selectedWorkspace?.id,
       isDefaultItemSelected ? '' : debouncedPath,
       !fqn || isDefaultItemSelected ? '' : debouncedProp,
@@ -122,7 +122,7 @@ export const InventoryFormFilterRowProperty = ({
             property: `${path.split('.').slice(-1)[0]}${prop ? `=~"${prop.replace(/․/g, '.')}"` : ''}` ? '' : debouncedProp,
             query: selectedKinds ? `is(${selectedKinds.join(',')})` : 'all',
           },
-          posthog,
+          postHog,
         })
       } else {
         sendInventoryError({
@@ -137,7 +137,7 @@ export const InventoryFormFilterRowProperty = ({
             kinds: selectedKinds ?? kinds,
             fuzzy: true,
           },
-          posthog,
+          postHog,
         })
       }
     }
@@ -153,7 +153,7 @@ export const InventoryFormFilterRowProperty = ({
     selectedKinds,
     selectedWorkspace?.id,
     value,
-    posthog,
+    postHog,
     currentUser,
   ])
 
