@@ -20,7 +20,7 @@ import {
   Typography,
 } from '@mui/material'
 import { useMutation, useQueries, useQueryClient } from '@tanstack/react-query'
-import { useEffect, useRef } from 'react'
+import { HTMLAttributes, useEffect, useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceNotificationsQuery } from 'src/pages/panel/shared/queries'
 import { getColorBySeverity, useGetBenchmarks } from 'src/pages/panel/shared/utils'
@@ -180,12 +180,17 @@ export const WorkspaceAlertingSettings = () => {
                     options={severityOptions}
                     disabled={isPending || !hasPermission}
                     size="small"
-                    renderOption={(props, option, { inputValue: _, ...state }) =>
+                    renderOption={(
+                      { key, ...props }: HTMLAttributes<HTMLLIElement> & { key?: string },
+                      option,
+                      { inputValue: _, ...state },
+                    ) =>
                       option ? (
                         <ListItemButton
                           component="li"
                           {...props}
                           {...state}
+                          key={key}
                           sx={{
                             '&:hover ~ &': {
                               textDecoration: 'none',

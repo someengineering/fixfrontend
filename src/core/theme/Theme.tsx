@@ -86,20 +86,21 @@ export function Theme({ children, emotionCache }: ThemeProps) {
 
   const typography: ThemeOptions['typography'] = {
     fontFamily,
-    h1: { fontSize: '55px', fontWeight: 700, lineHeight: 1.15, letterSpacing: '-2.75px' },
-    h2: { fontSize: '40px', fontWeight: 700, lineHeight: 1.15, letterSpacing: '-2px' },
-    h3: { fontSize: '30px', fontWeight: 600, lineHeight: 1.15, letterSpacing: '-1.5px' },
-    h4: { fontSize: '25px', fontWeight: 600, lineHeight: 1.15, letterSpacing: '-1.25px' },
-    h5: { fontSize: '20px', fontWeight: 600, lineHeight: 1.15, letterSpacing: '-1px' },
-    h6: { fontSize: '18px', fontWeight: 500, lineHeight: 1.15 },
-    body1: { fontSize: '16px', fontWeight: 400, lineHeight: 1.15 },
-    body2: { fontSize: '14px', fontWeight: 400, lineHeight: 1.15 },
-    caption: { fontSize: '13px', fontWeight: 300, lineHeight: 1.15 },
-    subtitle1: { fontSize: '12px', fontWeight: 300, lineHeight: 1.15 },
+    h1: { fontSize: '3rem', fontWeight: 800, lineHeight: 1 },
+    h2: { fontSize: '2.25rem', fontWeight: 700, lineHeight: 1.11 },
+    h3: { fontSize: '1.875rem', fontWeight: 700, lineHeight: 1.2 },
+    h4: { fontSize: '1.5rem', fontWeight: 700, lineHeight: 1.33 },
+    h5: { fontSize: '1.25rem', fontWeight: 600, lineHeight: 1.4 },
+    h6: { fontSize: '1.125rem', fontWeight: 500, lineHeight: 1.56 },
+    body1: { fontSize: '1rem', fontWeight: 400, lineHeight: 1.5 },
+    body2: { fontSize: '0.875rem', fontWeight: 400, lineHeight: 1.43 },
+    caption: { fontSize: '0.8125rem', fontWeight: 300, lineHeight: 1.23 },
+    subtitle1: { fontSize: '0.75rem', fontWeight: 300, lineHeight: 1.33 },
     button: {
-      fontSize: '14px',
+      fontSize: '0.875rem',
       fontWeight: 600,
       fontFamily,
+      lineHeight: 1.43,
     },
   }
 
