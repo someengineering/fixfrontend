@@ -201,6 +201,7 @@ export const BenchmarkDetailTreeWithDetail = ({
               bench={currentData.reported}
               child={currentData.children}
               onSelect={handleManualSelect}
+              isManual={currentData.isManual}
             />
           ) : (
             <BenchmarkDetailCheckDetail

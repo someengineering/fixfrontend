@@ -1,7 +1,6 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import GppGoodIcon from '@mui/icons-material/GppGood'
-import InfoIcon from '@mui/icons-material/Info'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import SearchIcon from '@mui/icons-material/Search'
 import { Button, ButtonBase, Divider, Stack, Typography } from '@mui/material'
@@ -113,18 +112,9 @@ export const BenchmarkDetailCheckDetail = ({ check, description, accountName, id
       )}
       <Typography maxWidth={MAX_CONTAINER_WIDTH}>{check.risk}</Typography>
       <Divider flexItem />
-      <Stack component={Typography} variant="h5" display="flex" flexDirection="row" gap={1}>
-        <Trans>
-          How to fix
-          {detectType === 'text' ? (
-            <Typography component="span" color="info.main">
-              ({t`manual`})
-            </Typography>
-          ) : (
-            ''
-          )}
-        </Trans>
-      </Stack>
+      <Typography variant="h5">
+        <Trans>How to fix</Trans>
+      </Typography>
       <Typography maxWidth={MAX_CONTAINER_WIDTH}>{check.remediation.text}</Typography>
       {check.remediation.url ? (
         <Stack direction="row" justifyContent="end" width="100%">
@@ -243,18 +233,7 @@ export const BenchmarkDetailCheckDetail = ({ check, description, accountName, id
             </Typography>
           </Stack>
         </>
-      ) : (
-        <Stack flex={1} justifyContent="center" alignItems="center" spacing={1} px={1} pb={2}>
-          <InfoIcon fontSize="large" color="info" sx={{ fontSize: 48 }} />
-          <Typography color="info.main" variant="h5" textAlign="center" display="inline-block">
-            <Trans>
-              This section does not contain any controls that can be automated.
-              <br />
-              Manual checks or processes are required for compliance.
-            </Trans>
-          </Typography>
-        </Stack>
-      )}
+      ) : null}
     </Stack>
   )
 }

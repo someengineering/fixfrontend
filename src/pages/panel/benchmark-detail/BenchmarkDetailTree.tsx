@@ -42,12 +42,13 @@ export const BenchmarkDetailTree = () => {
           }
           workingData[item.id] =
             item.reported.kind === 'report_check_collection'
-              ? { reported: item.reported, nodeId: item.id, children: [], numberOfResourceFailing: 0 }
+              ? { reported: item.reported, nodeId: item.id, children: [], numberOfResourceFailing: 0, isManual: true }
               : {
                   reported: item.reported,
                   nodeId: item.id,
                   numberOfResourceFailing: item.reported.number_of_resources_failing ?? 0,
                   severity: item.reported.severity,
+                  isManual: !!item.reported.detect.manual,
                 }
         } else {
           benchmarkDetail = item as NodeType<{ reported: BenchmarkReportNode }> | undefined
@@ -68,6 +69,9 @@ export const BenchmarkDetailTree = () => {
             (!from.severity || sortedSeverities.indexOf(to.severity) < sortedSeverities.indexOf(from.severity))
           ) {
             from.severity = to.severity
+          }
+          if (!to.isManual) {
+            from.isManual = false
           }
           to.parent = from
         }
