@@ -1,5 +1,6 @@
 import { Trans, t } from '@lingui/macro'
 import GppGoodIcon from '@mui/icons-material/GppGood'
+import InfoIcon from '@mui/icons-material/Info'
 import { ButtonBase, Divider, Stack, Typography } from '@mui/material'
 import { DataGridPremium, GridRow, GridToolbar } from '@mui/x-data-grid-premium'
 import { useRef } from 'react'
@@ -18,9 +19,10 @@ interface BenchmarkCheckCollectionDetailProps {
   bench: BenchmarkCheckCollectionNode
   child: BenchmarkCheckCollectionNodeWithChildren[] | undefined
   onSelect: (checkId: string) => void
+  isManual: boolean
 }
 
-export const BenchmarkCheckCollectionDetail = ({ id, bench, child, onSelect }: BenchmarkCheckCollectionDetailProps) => {
+export const BenchmarkCheckCollectionDetail = ({ id, bench, child, onSelect, isManual }: BenchmarkCheckCollectionDetailProps) => {
   const page = useRef(0)
   const [pageSize, setPageSize] = usePersistState<number>(
     'BenchmarkCheckCollectionDetail.rowsPerPage',
@@ -157,6 +159,17 @@ export const BenchmarkCheckCollectionDetail = ({ id, bench, child, onSelect }: B
             rows={allFailingCheckResults}
           />
         </>
+      ) : isManual ? (
+        <Stack flex={1} justifyContent="center" alignItems="center" spacing={1} px={1} pb={2}>
+          <InfoIcon fontSize="large" color="info" sx={{ fontSize: 48 }} />
+          <Typography color="info.main" variant="h5" textAlign="center" display="inline-block">
+            <Trans>
+              This section does not contain any controls that can be automated.
+              <br />
+              Manual checks or processes are required for compliance.
+            </Trans>
+          </Typography>
+        </Stack>
       ) : (
         <Stack flex={1} justifyContent="center" alignItems="center" spacing={1}>
           <GppGoodIcon fontSize="large" color="success" sx={{ fontSize: 48 }} />

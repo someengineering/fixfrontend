@@ -123,7 +123,7 @@ msgstr "/ month"
 msgid "© 2024 Some Engineering Inc. All rights reserved."
 msgstr "© 2024 Some Engineering Inc. All rights reserved."
 
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:63
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:65
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:86
 msgid "<0>{0} checks failing</0> out of {1}"
 msgstr "<0>{0} checks failing</0> out of {1}"
@@ -353,8 +353,8 @@ msgstr "Alerting Settings"
 msgid "All checks have been disabled for this resource"
 msgstr "All checks have been disabled for this resource"
 
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:164
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:233
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:177
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:232
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:187
 msgid "All resources passed the check"
 msgstr "All resources passed the check"
@@ -478,7 +478,7 @@ msgstr "Because the data is over {0} Only first {1} items will be downloaded"
 msgid "below"
 msgstr "below"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:102
+#: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:106
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:46
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:160
 msgid "Benchmark"
@@ -570,7 +570,7 @@ msgstr "Changes"
 msgid "Changes in the past 7 days"
 msgstr "Changes in the past 7 days"
 
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:100
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:102
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:123
 msgid "Check Name"
 msgstr "Check Name"
@@ -1045,7 +1045,7 @@ msgstr "Failing benchmarks"
 msgid "Failing Check Timeline"
 msgstr "Failing Check Timeline"
 
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:94
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:96
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:117
 msgid "Failing Resources"
 msgstr "Failing Resources"
@@ -1235,7 +1235,7 @@ msgstr "Ignored"
 msgid "Improved"
 msgstr "Improved"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:106
+#: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:110
 msgid "in account"
 msgstr "in account"
 
@@ -1377,6 +1377,10 @@ msgstr "Manage AWS Market place payment method"
 #: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:175
 msgid "Manage Card Details"
 msgstr "Manage Card Details"
+
+#: src/pages/panel/benchmark-detail/BenchmarkDetailTreeItem.tsx:48
+msgid "Manual"
+msgstr "Manual"
 
 #: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:53
 msgid "maximum of {0} cloud accounts"
@@ -2015,7 +2019,7 @@ msgstr "Setup cloud"
 msgid "Severities"
 msgstr "Severities"
 
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:79
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:81
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:102
 #: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:50
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:156
@@ -2148,6 +2152,10 @@ msgstr "This email address is already registered. If this is your email, please 
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:405
 msgid "This project is currently in a degraded state.<0/>Fix was unable to gather data from this project.<1/><2/>To resume security scans, please ensure that the service account you configured is set up correctly.<3/>You may also recreate and upload the service account definition."
 msgstr "This project is currently in a degraded state.<0/>Fix was unable to gather data from this project.<1/><2/>To resume security scans, please ensure that the service account you configured is set up correctly.<3/>You may also recreate and upload the service account definition."
+
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:166
+msgid "This section does not contain any controls that can be automated.<0/>Manual checks or processes are required for compliance."
+msgstr "This section does not contain any controls that can be automated.<0/>Manual checks or processes are required for compliance."
 
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:416
 msgid "This subscription is currently in a degraded state.<0/>Fix was unable to gather data from this subscription.<1/><2/>To resume security scans, please ensure that the application permissions are set up correctly.<3/>You may also recreate and redefine the access credentials."

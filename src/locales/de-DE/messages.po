@@ -123,7 +123,7 @@ msgstr "/ Monat"
 msgid "© 2024 Some Engineering Inc. All rights reserved."
 msgstr "© 2024 Some Engineering Inc. Alle Rechte vorbehalten."
 
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:63
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:65
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:86
 msgid "<0>{0} checks failing</0> out of {1}"
 msgstr ""
@@ -353,8 +353,8 @@ msgstr "Benachrichtigungseinstellungen"
 msgid "All checks have been disabled for this resource"
 msgstr "Für diese Ressource wurden alle Prüfungen deaktiviert"
 
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:164
-#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:233
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:177
+#: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:232
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:187
 msgid "All resources passed the check"
 msgstr ""
@@ -478,7 +478,7 @@ msgstr "Da die Daten über {0} liegen, werden nur die ersten {1} Elemente herunt
 msgid "below"
 msgstr ""
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:102
+#: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:106
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:46
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:160
 msgid "Benchmark"
@@ -570,7 +570,7 @@ msgstr "Änderungen"
 msgid "Changes in the past 7 days"
 msgstr "Änderungen in den letzten 7 Tagen"
 
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:100
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:102
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:123
 msgid "Check Name"
 msgstr ""
@@ -1045,7 +1045,7 @@ msgstr "Fehlgeschlagene Benchmarks"
 msgid "Failing Check Timeline"
 msgstr "Fehler bei der Überprüfung des Zeitplans"
 
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:94
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:96
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:117
 msgid "Failing Resources"
 msgstr ""
@@ -1235,7 +1235,7 @@ msgstr "Ignoriert"
 msgid "Improved"
 msgstr "Verbessert"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:106
+#: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:110
 msgid "in account"
 msgstr ""
 
@@ -1376,6 +1376,10 @@ msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:175
 msgid "Manage Card Details"
+msgstr ""
+
+#: src/pages/panel/benchmark-detail/BenchmarkDetailTreeItem.tsx:48
+msgid "Manual"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:53
@@ -2015,7 +2019,7 @@ msgstr ""
 msgid "Severities"
 msgstr ""
 
-#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:79
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:81
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:102
 #: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:50
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:156
@@ -2147,6 +2151,10 @@ msgstr "Diese Email-Adresse ist bereits registriert. Wenn dies Ihre E-Mail-Adres
 
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:405
 msgid "This project is currently in a degraded state.<0/>Fix was unable to gather data from this project.<1/><2/>To resume security scans, please ensure that the service account you configured is set up correctly.<3/>You may also recreate and upload the service account definition."
+msgstr ""
+
+#: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:166
+msgid "This section does not contain any controls that can be automated.<0/>Manual checks or processes are required for compliance."
 msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:416

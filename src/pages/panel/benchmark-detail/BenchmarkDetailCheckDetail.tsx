@@ -62,7 +62,7 @@ export const BenchmarkDetailCheckDetail = ({ check, description, accountName, id
     ? panelUI.tableRowsPerPages.filter((_, i, arr) => resources.length > (arr[i - 1] ?? 0))
     : []
   return (
-    <Stack id={id} spacing={1} height={resources?.length ? 'auto' : '100%'} mb={1}>
+    <Stack id={id} spacing={1} height={resources?.length ? 'auto' : '100%'}>
       {query ? (
         <Stack justifyContent="space-between" flexWrap="wrap" gap={1} width="100%">
           <Typography variant="h4">{check.title ?? check.name}</Typography>
@@ -129,9 +129,9 @@ export const BenchmarkDetailCheckDetail = ({ check, description, accountName, id
           </Button>
         </Stack>
       ) : null}
+      <Divider flexItem />
       {resources?.length ? (
         <>
-          <Divider flexItem />
           <Typography variant="h5">
             <Trans>Affected resources</Trans>
           </Typography>
@@ -226,8 +226,7 @@ export const BenchmarkDetailCheckDetail = ({ check, description, accountName, id
         </>
       ) : detectType !== 'text' ? (
         <>
-          <Divider flexItem />
-          <Stack flex={1} justifyContent="center" alignItems="center" spacing={1}>
+          <Stack flex={1} justifyContent="center" alignItems="center" spacing={1} pb={2}>
             <GppGoodIcon fontSize="large" color="success" sx={{ fontSize: 48 }} />
             <Typography color="success.main" variant="h5" textAlign="center">
               <Trans>All resources passed the check</Trans>

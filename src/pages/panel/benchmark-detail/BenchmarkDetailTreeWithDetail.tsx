@@ -1,5 +1,5 @@
 import { SimpleTreeView, treeItemClasses } from '@mui/x-tree-view'
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { BenchmarkReportNode } from 'src/shared/types/server'
@@ -34,6 +34,7 @@ export const BenchmarkDetailTreeWithDetail = ({
   const params = useSearchParams()[0]
   const expandedItems = params.get('expanded-items')?.split(',') ?? []
   const selectedId = params.get('selected-id')
+  const previousSelected = useRef(selectedId)
   const oneParentId = dataWithChildren.length === 1 ? dataWithChildren[0].nodeId : undefined
 
   const navigateWithQueryParams = useCallback(
@@ -125,12 +126,13 @@ export const BenchmarkDetailTreeWithDetail = ({
         let pathname = `/benchmark/${benchmarkId}${accountId ? `/${accountId}` : ''}`
         const foundExpandedItemIndex = expandedItems.indexOf(itemId)
         if (!oneParentId || expandedItems[foundExpandedItemIndex] !== oneParentId) {
-          if (foundExpandedItemIndex > -1) {
+          if (foundExpandedItemIndex > -1 && previousSelected.current === itemId) {
             expandedItems.splice(foundExpandedItemIndex, 1)
           } else {
             expandedItems.push(itemId)
           }
         }
+        previousSelected.current = itemId
         const item = allData[itemId]
         if (item) {
           if (item.reported.kind === 'report_check_result') {
@@ -170,11 +172,11 @@ export const BenchmarkDetailTreeWithDetail = ({
           key={0}
           expandedItems={expandedItems}
           selectedItems={selectedId}
-          slots={{
-            // expandIcon: FiberManualRecordIcon,
-            // collapseIcon: FiberManualRecordOutlinedIcon,
-            endIcon: () => '•',
-          }}
+          // slots={{
+          //   // expandIcon: FiberManualRecordIcon,
+          //   // collapseIcon: FiberManualRecordOutlinedIcon,
+          //   endIcon: () => '•',
+          // }}
           sx={{
             [`& .${treeItemClasses.iconContainer}`]: ({
               palette: {
@@ -199,6 +201,7 @@ export const BenchmarkDetailTreeWithDetail = ({
               bench={currentData.reported}
               child={currentData.children}
               onSelect={handleManualSelect}
+              isManual={currentData.isManual}
             />
           ) : (
             <BenchmarkDetailCheckDetail
