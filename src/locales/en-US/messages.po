@@ -1378,7 +1378,7 @@ msgstr "Manage AWS Market place payment method"
 msgid "Manage Card Details"
 msgstr "Manage Card Details"
 
-#: src/pages/panel/benchmark-detail/BenchmarkDetailTreeItem.tsx:34
+#: src/pages/panel/benchmark-detail/BenchmarkDetailTreeItem.tsx:48
 msgid "Manual"
 msgstr "Manual"
 
