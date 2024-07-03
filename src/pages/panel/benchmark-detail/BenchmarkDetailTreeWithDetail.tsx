@@ -172,11 +172,11 @@ export const BenchmarkDetailTreeWithDetail = ({
           key={0}
           expandedItems={expandedItems}
           selectedItems={selectedId}
-          slots={{
-            // expandIcon: FiberManualRecordIcon,
-            // collapseIcon: FiberManualRecordOutlinedIcon,
-            endIcon: () => '•',
-          }}
+          // slots={{
+          //   // expandIcon: FiberManualRecordIcon,
+          //   // collapseIcon: FiberManualRecordOutlinedIcon,
+          //   endIcon: () => '•',
+          // }}
           sx={{
             [`& .${treeItemClasses.iconContainer}`]: ({
               palette: {
