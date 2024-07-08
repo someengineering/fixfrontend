@@ -1,5 +1,6 @@
 import { Trans, plural, t } from '@lingui/macro'
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied'
+import WarningIcon from '@mui/icons-material/Warning'
 import { LoadingButton } from '@mui/lab'
 import { Alert, Button, Link, Stack, Typography } from '@mui/material'
 import { useMutation, useQueries, useQueryClient } from '@tanstack/react-query'
@@ -127,7 +128,7 @@ export const ChangeProductTierToFreeModal = ({
           </Typography>
         </Alert>
         {hasNumberOfCloudAccountLimitation ? (
-          <Alert color="warning">
+          <Alert color="warning" icon={<WarningIcon />}>
             <Typography>
               <Trans>
                 You currently have{' '}
@@ -146,7 +147,7 @@ export const ChangeProductTierToFreeModal = ({
           </Alert>
         ) : null}
         {hasNumberOfUserLimitation ? (
-          <Alert color="warning">
+          <Alert color="warning" icon={<WarningIcon />}>
             <Typography>
               <Trans>
                 You currently have{' '}
