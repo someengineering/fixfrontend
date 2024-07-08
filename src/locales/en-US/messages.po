@@ -22,7 +22,7 @@ msgid "(${0} / month per additional account)"
 msgstr "(${0} / month per additional account)"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:229
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:139
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:140
 msgid "{0, plural, one {# cloud account} other {# cloud accounts}}"
 msgstr "{0, plural, one {# cloud account} other {# cloud accounts}}"
 
@@ -47,7 +47,7 @@ msgid "{0, plural, one {# Second} other {# Seconds}}"
 msgstr "{0, plural, one {# Second} other {# Seconds}}"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:248
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:158
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:159
 msgid "{0, plural, one {# user} other {# users}}"
 msgstr "{0, plural, one {# user} other {# users}}"
 
@@ -122,7 +122,7 @@ msgid "{added} configuration lines added and {removed} lines deleted."
 msgstr "{added} configuration lines added and {removed} lines deleted."
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:224
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:134
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:135
 msgid "{cloudAccountsLength, plural, one {# cloud account} other {# cloud accounts}}"
 msgstr "{cloudAccountsLength, plural, one {# cloud account} other {# cloud accounts}}"
 
@@ -139,7 +139,7 @@ msgid "{scanIntervalStr} scans"
 msgstr "{scanIntervalStr} scans"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:243
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:153
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:154
 msgid "{usersLength, plural, one {# user} other {# users}}"
 msgstr "{usersLength, plural, one {# user} other {# users}}"
 
@@ -402,7 +402,7 @@ msgid "An error occurred while connecting to {0}"
 msgstr "An error occurred while connecting to {0}"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:79
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:62
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:63
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:34
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:32
 msgid "An error occurred, please try again later."
@@ -565,7 +565,7 @@ msgid "Change Payment method"
 msgstr "Change Payment method"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:151
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:110
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:111
 msgid "Change Product Tier"
 msgstr "Change Product Tier"
 
@@ -794,7 +794,7 @@ msgid "Critical"
 msgstr "Critical"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:193
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:115
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:116
 msgid "Current Product Tier"
 msgstr "Current Product Tier"
 
@@ -940,7 +940,7 @@ msgid "Done! We will now import your Azure accounts, this usually takes a couple
 msgstr "Done! We will now import your Azure accounts, this usually takes a couple of minutes."
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:146
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:106
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:107
 msgid "Downgrade"
 msgstr "Downgrade"
 
@@ -1484,7 +1484,7 @@ msgid "New Password"
 msgstr "New Password"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:196
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:118
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:119
 msgid "New Product Tier"
 msgstr "New Product Tier"
 
@@ -1785,7 +1785,7 @@ msgstr "Product support via email, live chat, and video call"
 msgid "Product tier changed to {selectedProductTier}"
 msgstr "Product tier changed to {selectedProductTier}"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:58
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:59
 msgid "Product tier changed to Free"
 msgstr "Product tier changed to Free"
 
@@ -2323,7 +2323,7 @@ msgstr "We have sent an email with a confirmation link to your email address. Pl
 msgid "We use cookies and other tracking technologies to analyze site usage and assist in marketing efforts. For details, see our <0>cookie policy<1/></0>."
 msgstr "We use cookies and other tracking technologies to analyze site usage and assist in marketing efforts. For details, see our <0>cookie policy<1/></0>."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:122
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:123
 msgid "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 msgstr "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 
@@ -2395,7 +2395,7 @@ msgid "You are about to change workspace's payment method"
 msgstr "You are about to change workspace's payment method"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:152
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:111
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:112
 msgid "You are about to change workspace's product tier"
 msgstr "You are about to change workspace's product tier"
 
@@ -2416,12 +2416,12 @@ msgid "You can deactivate TOTP via recovery code"
 msgstr "You can deactivate TOTP via recovery code"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:241
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:151
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:152
 msgid "You currently have {0} attached to this workspace. There must only be {1} in order to downgrade to the free tier."
 msgstr "You currently have {0} attached to this workspace. There must only be {1} in order to downgrade to the free tier."
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:222
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:132
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:133
 msgid "You currently have {0}. There must only be {1} in order to downgrade to the free tier."
 msgstr "You currently have {0}. There must only be {1} in order to downgrade to the free tier."
 
