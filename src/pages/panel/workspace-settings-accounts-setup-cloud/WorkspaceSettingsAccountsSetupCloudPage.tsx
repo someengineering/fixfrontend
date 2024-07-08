@@ -1,10 +1,11 @@
 import { Button, Stack, Typography } from '@mui/material'
-import { Link } from 'react-router-dom'
 import { AwsLogo, AzureLogo, GcpLogo } from 'src/assets/icons'
+import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { useNonce } from 'src/shared/providers'
 
 export default function WorkspaceSettingsAccountsSetupCloudPage() {
   const nonce = useNonce()
+  const navigate = useAbsoluteNavigate()
   return (
     <Stack
       height={{ xs: 'calc(100vh - 220px)', lg: 'calc(100vh - 220px)' }}
@@ -17,8 +18,7 @@ export default function WorkspaceSettingsAccountsSetupCloudPage() {
       <Stack direction="row" width="100%" height="100%" flex={1} flexWrap="wrap" alignItems="center" justifyContent="center">
         <Stack direction="row" width="50%" height="50%" p={1} alignItems="center" justifyContent="center">
           <Button
-            component={Link}
-            to="/workspace-settings/accounts/setup-cloud/aws"
+            onClick={() => navigate('/workspace-settings/accounts/setup-cloud/aws')}
             color="primary"
             sx={{
               borderRadius: 5,
@@ -38,8 +38,7 @@ export default function WorkspaceSettingsAccountsSetupCloudPage() {
         </Stack>
         <Stack direction="row" width="50%" height="50%" p={1} alignItems="stretch" justifyContent="center">
           <Button
-            component={Link}
-            to="/workspace-settings/accounts/setup-cloud/gcp"
+            onClick={() => navigate('/workspace-settings/accounts/setup-cloud/gcp')}
             color="primary"
             sx={{
               borderRadius: 5,
@@ -59,8 +58,7 @@ export default function WorkspaceSettingsAccountsSetupCloudPage() {
         </Stack>
         <Stack direction="row" width="50%" height="50%" p={1} alignItems="stretch" justifyContent="center">
           <Button
-            component={Link}
-            to="/workspace-settings/accounts/setup-cloud/azure"
+            onClick={() => navigate('/workspace-settings/accounts/setup-cloud/azure')}
             color="primary"
             sx={{
               borderRadius: 5,

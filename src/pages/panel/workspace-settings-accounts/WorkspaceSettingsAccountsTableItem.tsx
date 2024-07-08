@@ -15,6 +15,7 @@ interface WorkspaceSettingsAccountsTableItemProps {
   isTop: boolean
   isBottom: boolean
   isNotConfigured?: boolean
+  canInviteBasedOnTier?: boolean
 }
 
 export const WorkspaceSettingsAccountsTableItem = ({
@@ -23,6 +24,7 @@ export const WorkspaceSettingsAccountsTableItem = ({
   isTop,
   isBottom,
   isNotConfigured,
+  canInviteBasedOnTier,
 }: WorkspaceSettingsAccountsTableItemProps) => {
   const { checkPermission } = useUserProfile()
   const hasPermission = checkPermission('updateCloudAccounts')
@@ -34,7 +36,9 @@ export const WorkspaceSettingsAccountsTableItem = ({
   )
   return (
     <Box mb={isBottom ? undefined : { xs: 8, sm: 5 }} mt={isTop ? undefined : { sm: 3 }}>
-      <WorkspaceSettingsAccountTableTitle isTop={isTop}>{title}</WorkspaceSettingsAccountTableTitle>
+      <WorkspaceSettingsAccountTableTitle isTop={isTop} withAddButton={canInviteBasedOnTier}>
+        {title}
+      </WorkspaceSettingsAccountTableTitle>
       <TableView
         stickyPagination
         paginationProps={{

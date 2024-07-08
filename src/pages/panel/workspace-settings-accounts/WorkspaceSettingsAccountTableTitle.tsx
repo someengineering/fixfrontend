@@ -4,9 +4,10 @@ import { AddAccountButton } from 'src/shared/add-account-button'
 
 interface WorkspaceSettingsAccountTableTitleProps extends PropsWithChildren {
   isTop: boolean
+  withAddButton?: boolean
 }
 
-export const WorkspaceSettingsAccountTableTitle = ({ isTop, children }: WorkspaceSettingsAccountTableTitleProps) =>
+export const WorkspaceSettingsAccountTableTitle = ({ isTop, withAddButton, children }: WorkspaceSettingsAccountTableTitleProps) =>
   isTop ? (
     <Stack
       mb={{ xs: 0, sm: 1 }}
@@ -16,7 +17,7 @@ export const WorkspaceSettingsAccountTableTitle = ({ isTop, children }: Workspac
       justifyContent={isTop ? 'space-between' : undefined}
     >
       <Typography variant="h4">{children}</Typography>
-      <AddAccountButton />
+      {withAddButton ? <AddAccountButton /> : null}
     </Stack>
   ) : (
     <Box mb={{ xs: 0, sm: 1 }}>

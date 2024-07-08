@@ -11,6 +11,8 @@ export { getWorkspaceInventoryReportChecksQuery } from './getWorkspaceInventoryR
 export { getWorkspaceInventoryReportSummaryQuery } from './getWorkspaceInventoryReportSummary.query'
 export { getWorkspaceInventorySearchStartQuery } from './getWorkspaceInventorySearchStart.query'
 export { getWorkspaceNotificationsQuery } from './getWorkspaceNotifications.query'
+export { getWorkspaceProductTiersQuery } from './getWorkspaceProductTiers.query'
+export { getWorkspaceUsersQuery } from './getWorkspaceUsers.query'
 export { patchWorkspaceInventoryNodeSecurityIgnoreQuery } from './patchWorkspaceInventoryNodeSecurityIgnore.query'
 export { postWorkspaceInventoryPropertyAttributesQuery } from './postWorkspaceInventoryPropertyAttributes.query'
 export { postWorkspaceInventoryPropertyPathCompleteQuery } from './postWorkspaceInventoryPropertyPathComplete.query'

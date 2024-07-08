@@ -1,23 +1,36 @@
 import { Trans, t } from '@lingui/macro'
 import { Button, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
-import { useSuspenseQuery } from '@tanstack/react-query'
+import { useSuspenseQueries } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
+import { getWorkspaceProductTiersQuery, getWorkspaceUsersQuery } from 'src/pages/panel/shared/queries'
 import { panelUI, settingsStorageKeys } from 'src/shared/constants'
 import { TableView } from 'src/shared/layouts/panel-layout'
+import { GetWorkspaceProductTiersResponse } from 'src/shared/types/server'
 import { handleScrollIntoViewClickEvent } from 'src/shared/utils/handleScrollIntoViewClickEvent'
 import { usePersistState } from 'src/shared/utils/usePersistState'
 import { InviteExternalUser } from './InviteExternalUser'
 import { WorkspaceSettingsUserRow } from './WorkspaceSettingsUserRow'
-import { getWorkspaceUsersQuery } from './getWorkspaceUsers.query'
 
 export const WorkspaceSettingsUsersTable = () => {
   const { selectedWorkspace, checkPermissions } = useUserProfile()
   const [hasInvitePermission, hasRemoveUserPermission, hasReadRolesPermission] = checkPermissions('inviteTo', 'removeFrom', 'readRoles')
-  const { data } = useSuspenseQuery({
-    queryKey: ['workspace-users', selectedWorkspace?.id],
-    queryFn: getWorkspaceUsersQuery,
+  const [{ data }, { data: currentTier }] = useSuspenseQueries({
+    queries: [
+      {
+        queryKey: ['workspace-users', selectedWorkspace?.id],
+        queryFn: getWorkspaceUsersQuery,
+      },
+      {
+        queryFn: getWorkspaceProductTiersQuery,
+        queryKey: ['workspace-product-tiers', selectedWorkspace?.id],
+        select: (data: GetWorkspaceProductTiersResponse) => (selectedWorkspace?.tier ? data[selectedWorkspace.tier] : undefined),
+      },
+    ],
   })
+
+  const canInviteBasedOnTier = (currentTier?.seats_max ?? Number.POSITIVE_INFINITY) > data.length
+
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = usePersistState<number>(
     settingsStorageKeys.WorkspaceSettingsUsersTable.rowsPerPage,
@@ -34,7 +47,7 @@ export const WorkspaceSettingsUsersTable = () => {
           <Button href="#pending-invitations" onClick={handleScrollIntoViewClickEvent} variant="outlined">
             <Trans>Pending Invitations</Trans>
           </Button>
-          {hasInvitePermission ? <InviteExternalUser /> : null}
+          {hasInvitePermission && canInviteBasedOnTier ? <InviteExternalUser /> : null}
         </Stack>
       </Stack>
       <TableView
