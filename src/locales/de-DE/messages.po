@@ -13,13 +13,18 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:90
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:106
 msgid "({0} max)"
 msgstr "({0} max)"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:76
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:92
 msgid "(${0} / month per additional account)"
 msgstr "(${0} / Monat pro zusätzlichem Konto)"
+
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:229
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:139
+msgid "{0, plural, one {# cloud account} other {# cloud accounts}}"
+msgstr ""
 
 #: src/shared/utils/parseDuration.ts:171
 msgid "{0, plural, one {# Day} other {# Days}}"
@@ -40,6 +45,11 @@ msgstr "{0, plural, one {# Monat} other {# Monate}}"
 #: src/shared/utils/parseDuration.ts:195
 msgid "{0, plural, one {# Second} other {# Seconds}}"
 msgstr "{0, plural, one {# Sekunde} other {# Sekunden}}"
+
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:248
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:158
+msgid "{0, plural, one {# user} other {# users}}"
+msgstr ""
 
 #: src/shared/utils/parseDuration.ts:163
 msgid "{0, plural, one {# Week} other {# Weeks}}"
@@ -74,7 +84,7 @@ msgstr "{0} Cloud-Konto beeinträchtigt, ID: {1}"
 msgid "{0} Cloud account discovered, id: {1}"
 msgstr "{0} Cloud-Konto entdeckt, ID: {1}"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:63
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:79
 msgid "{0} cloud accounts included"
 msgstr "{0} Cloud-Konten enthalten"
 
@@ -86,17 +96,21 @@ msgstr "{0} wurde verbunden"
 msgid "{0} Milliseconds"
 msgstr "{0} Millisekunden"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:85
-msgid "{0} scans"
-msgstr "{0} Scans"
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:30
+msgid "{0} per"
+msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:93
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:109
 msgid "{0} seat max"
 msgstr "{0} Sitzplatz max"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:89
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:105
 msgid "{0} seats included {1}"
 msgstr "{0} Sitzplätze inbegriffen {1}"
+
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:31
+msgid "{0}-month history"
+msgstr "{0}-monatige Historie"
 
 #: src/pages/panel/security/OverallScore.tsx:59
 #: src/pages/panel/shared/utils/createPieDataFromNonCompliance.ts:26
@@ -107,6 +121,11 @@ msgstr "{0}: Wir haben {1} nicht konforme Ressourcen von insgesamt {2}."
 msgid "{added} configuration lines added and {removed} lines deleted."
 msgstr "{added} Konfigurationszeilen hinzugefügt und {removed} Zeilen gelöscht."
 
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:224
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:134
+msgid "{cloudAccountsLength, plural, one {# cloud account} other {# cloud accounts}}"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput.tsx:32
 msgid "{label} is not valid"
 msgstr ""
@@ -115,7 +134,16 @@ msgstr ""
 msgid "{label} is required"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:41
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:101
+msgid "{scanIntervalStr} scans"
+msgstr "{scanIntervalStr} Scans"
+
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:243
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:153
+msgid "{usersLength, plural, one {# user} other {# users}}"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:57
 msgid "/ month"
 msgstr "/ Monat"
 
@@ -180,22 +208,6 @@ msgstr ""
 msgid "<0>Your cloud account has been successfully added!</0><1>Thank you for deploying the CloudFormation stack in your AWS account.</1><2>Here’s what’s happening behind the scenes:</2><3><4>Initial Trust Establishment (5-15 minutes): After deployment, a cross-account trust for the role included in the stack is established between your and Fix's AWS accounts. Due to AWS's distributed infrastructure, this step can take anywhere from 5 to 15 minutes as we wait for the trust to become active across their network. During this time, our backend continuously probes to confirm when the trust is operational.</4><5>First Security Scan (2-10 minutes): Once the trust is established, we proceed with the initial security scan of your environment. Depending on the size and complexity of your cloud account, this scan can take anywhere from 2 to 10 minutes.</5><6>Email Notification: You won't have to wait in front of your browser to know when we're done. After the first security scan is completed, we'll notify you by email.</6></3><7>What to Expect Next:</7><8><9>Dashboard Availability: Your dashboard and inventory will be available shortly after the completion of the initial security scan. This gives you a comprehensive view of your security posture and any findings we have identified.</9><10>Subsequent Scans: After the initial scan, subsequent security scans will also take 2 to 10 minutes each, without the initial delay, since the trust has to be established only once.</10></8><11>We appreciate your patience during this setup process. If you have any questions or need assistance, please do not hesitate to contact us directly <12>on our Discord server<13/></12>.</11>"
 msgstr "<0>Ihr Cloud-Konto wurde erfolgreich hinzugefügt!</0><1>Vielen Dank, dass Sie den CloudFormation-Stack in Ihrem AWS-Konto bereitgestellt haben.</1><2>Hier ist, was im Hintergrund geschieht:</2><3><4>Erstmalige Vertrauensstellung (5-15 Minuten): Nach der Bereitstellung wird zwischen Ihrem und Fix's AWS-Konten ein Cross-Account-Vertrauen für die im Stack enthaltene Rolle hergestellt. Aufgrund der verteilten Infrastruktur von AWS kann dieser Schritt zwischen 5 und 15 Minuten dauern, da wir darauf warten, dass die Vertrauensstellung im gesamten Netzwerk aktiv wird. Während dieser Zeit überprüft unser Backend kontinuierlich, wann der Zugriff funktionsfähig ist.</4><5>Erster Sicherheitsscan (2-10 Minuten): Sobald die Vertrauensstellung hergestellt ist, führen wir den ersten Sicherheitsscan Ihrer Umgebung durch. Abhängig von der Größe und Komplexität Ihres Cloud-Kontos kann dieser Scan zwischen 2 und 10 Minuten dauern.</5><6>E-Mail-Benachrichtigung: Sie müssen nicht vor Ihrem Browser warten, um zu wissen, wann wir fertig sind. Nachdem der erste Sicherheitsscan abgeschlossen ist, werden wir Sie per E-Mail benachrichtigen.</6></3><7>Was Sie als Nächstes erwarten können:</7><8><9>Dashboard-Verfügbarkeit: Ihr Dashboard und Inventar werden kurz nach Abschluss des ersten Sicherheitsscans verfügbar sein. Dies gibt Ihnen einen umfassenden Überblick über Ihre Sicherheitslage.</9><10>Nachfolgende Scans: Nach dem ersten Scan werden auch nachfolgende Sicherheitsscans jeweils 2 bis 10 Minuten dauern, ohne die anfängliche Verzögerung, da die Vertrauensstellung nur einmal hergestellt werden muss.</10></8><11>Wir danken Ihnen für Ihre Geduld während dieses Einrichtungsprozesses. Wenn Sie Fragen haben oder Hilfe benötigen, zögern Sie bitte nicht, uns direkt auf <12>unserem Discord-Server<13/></12>zu kontaktieren.</11>"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:22
-msgid "1-month history"
-msgstr "1-monatige Historie"
-
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:78
-msgid "18-month history"
-msgstr "18-monatige Geschichte"
-
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:44
-msgid "3-month history"
-msgstr "3-monatige Historie"
-
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:59
-msgid "6-month history"
-msgstr "6-monatige Historie"
-
 #: src/containers/auth/AuthContainer.tsx:61
 msgid "A few minutes to first results"
 msgstr "In wenigen Minuten bis zum ersten Ergebnis"
@@ -257,8 +269,8 @@ msgstr "Zusammenfassung der Konten"
 msgid "Action"
 msgstr "Aktion"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:83
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:78
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:87
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:91
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -273,7 +285,7 @@ msgid "Add a client secret"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:60
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:102
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:126
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:83
 msgid "Add a New Credit or Debit Card"
 msgstr ""
@@ -314,7 +326,7 @@ msgstr ""
 msgid "Add the Role assignment to the App"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:30
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:45
 msgid "Added accounts"
 msgstr "Konten hinzugefügt"
 
@@ -341,7 +353,7 @@ msgstr ""
 msgid "Age"
 msgstr "Alter"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:61
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:47
 msgid "Alerting integrations (PD, Slack, Discord, Teams)"
 msgstr "Alarmierungsintegrationen (PD, Slack, Discord, Teams)"
 
@@ -389,8 +401,8 @@ msgstr "Eine E-Mail wurde mit einem 'Passwort zurücksetzen'-Button an Ihren Pos
 msgid "An error occurred while connecting to {0}"
 msgstr "Beim Herstellen der Verbindung zu {0} ist ein Fehler aufgetreten."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:56
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:34
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:79
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:62
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:34
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:32
 msgid "An error occurred, please try again later."
@@ -404,7 +416,7 @@ msgstr ""
 msgid "and"
 msgstr "und"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:79
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:60
 msgid "API access"
 msgstr "API-Zugriff"
 
@@ -435,7 +447,7 @@ msgstr "Sind Sie sicher, dass Sie das {name}-Konto {0} entfernen möchten?"
 msgid "Are you sure?"
 msgstr "Bist du sicher?"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:23
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:18
 msgid "Asset inventory"
 msgstr "Cloud-Asset-Inventar"
 
@@ -552,8 +564,8 @@ msgstr ""
 msgid "Change Payment method"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:126
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:81
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:151
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:110
 msgid "Change Product Tier"
 msgstr "Produktstufe ändern"
 
@@ -642,7 +654,7 @@ msgstr "Schließen"
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:235
 #: src/pages/panel/security/AccountCard.tsx:37
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:475
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:53
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:57
 msgid "Cloud"
 msgstr "Cloud"
 
@@ -655,7 +667,7 @@ msgstr "Cloud Setup"
 msgid "Clouds"
 msgstr "Clouds"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:31
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:26
 msgid "Community support"
 msgstr "Gemeinschaftliche Unterstützung"
 
@@ -749,7 +761,7 @@ msgstr "Kopieren"
 msgid "Copy the Secret Value of the created secret and paste it in the Secret Value field {0}, but don't press the submit button yet."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:29
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:24
 msgid "Core CSPM scanning capabilities"
 msgstr "Kern-CSPM-Scanfunktionen"
 
@@ -781,8 +793,8 @@ msgstr ""
 msgid "Critical"
 msgstr "Kritisch"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:168
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:86
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:193
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:115
 msgid "Current Product Tier"
 msgstr ""
 
@@ -790,19 +802,19 @@ msgstr ""
 msgid "Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is necessary to configure alerting settings."
 msgstr "Derzeit stehen keine verbundenen Dienste zur Konfiguration zur Verfügung. Bitte beachten Sie, dass zum Konfigurieren der Alarmeinstellungen die Verbindung mindestens eines Dienstes erforderlich ist."
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:80
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:61
 msgid "Custom alerting webhooks"
 msgstr "Benutzerdefinierte Benachrichtigungs-Webhooks"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:60
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:46
 msgid "Custom policies (coming soon!)"
 msgstr "Benutzerdefinierte Richtlinien (in Kürze verfügbar!)"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:42
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:27
 msgid "Daily"
 msgstr "Tägliche"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:44
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:35
 msgid "Data export (CSV, JSON, PDF)"
 msgstr "Datenexport (CSV, JSON, PDF)"
 
@@ -890,7 +902,7 @@ msgstr "Trennen"
 msgid "Disconnect Service"
 msgstr "Dienst trennen"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:38
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:54
 msgid "Discovered but unconfigured accounts"
 msgstr "Erkannte, aber nicht konfigurierte Konten"
 
@@ -927,8 +939,8 @@ msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 msgid "Done! We will now import your Azure accounts, this usually takes a couple of minutes."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:121
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:77
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:146
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:106
 msgid "Downgrade"
 msgstr "Downgrade"
 
@@ -958,7 +970,7 @@ msgstr "Edit"
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:109
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:49
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:135
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:63
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:76
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:143
 msgid "Email"
 msgstr "Email"
@@ -967,7 +979,7 @@ msgstr "Email"
 msgid "Email Address"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:44
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:35
 msgid "Email alerts"
 msgstr "E-Mail-Alarmierungen"
 
@@ -981,7 +993,7 @@ msgid "Enable all"
 msgstr "Alle aktivieren"
 
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:49
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:72
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:76
 msgid "Enabled"
 msgstr "Ermöglicht"
 
@@ -1001,15 +1013,15 @@ msgstr "Unternehmen"
 msgid "Events"
 msgstr "Veranstaltungen"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:76
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:58
 msgid "Everything in Business, and"
 msgstr "Alles im Geschäft, und"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:43
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:34
 msgid "Everything in Free, and"
 msgstr "Alles in Free, und"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:57
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:44
 msgid "Everything in Plus, and"
 msgstr "Alles in Plus, und"
 
@@ -1050,7 +1062,7 @@ msgstr "Fehler bei der Überprüfung des Zeitplans"
 msgid "Failing Resources"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:20
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:16
 msgid "Features"
 msgstr "Funktionen"
 
@@ -1078,15 +1090,15 @@ msgstr "Fix scannt Ihre Infrastruktur- und Ressourcenkonfigurationen mithilfe de
 msgid "Fixed issues"
 msgstr "Behobene Probleme"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:69
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:55
 msgid "For dedicated security teams looking to build an integrated security toolchain."
 msgstr "Für engagierte Sicherheitsteams, die eine integrierte Sicherheits-Toolchain aufbauen möchten."
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:50
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:41
 msgid "For engineering teams looking to automate their cloud infrastructure security."
 msgstr "Für Engineering-Teams, die die Sicherheit ihrer Cloud-Infrastruktur automatisieren möchten."
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:36
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:31
 msgid "For growing teams looking to stay secure as they build out infrastructure."
 msgstr "Für wachsende Teams, die sicher bleiben möchten, während sie die Infrastruktur aufbauen."
 
@@ -1160,8 +1172,7 @@ msgstr ""
 msgid "Homepage"
 msgstr "Startseite"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:56
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:75
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:29
 msgid "Hourly"
 msgstr "Stündliche"
 
@@ -1181,7 +1192,7 @@ msgstr ""
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:232
 #: src/pages/panel/security/AccountCard.tsx:34
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:472
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:56
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:60
 #: src/shared/charts/NetworkDiagram.tsx:407
 msgid "ID"
 msgstr "ID"
@@ -1263,7 +1274,7 @@ msgstr "Inaktivitätserinnerung"
 msgid "Info"
 msgstr "Info"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:178
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:203
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
 msgstr ""
 
@@ -1275,7 +1286,7 @@ msgstr ""
 msgid "Instance is terminated"
 msgstr "Instanz wird beendet"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:87
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:68
 msgid "Integration advice for your specific cloud environment via video call"
 msgstr "Integrationsberatung für Ihre spezifische Cloud-Umgebung per Videoanruf"
 
@@ -1296,7 +1307,7 @@ msgstr "Ungültiger Wert"
 msgid "Inventory"
 msgstr "Inventar"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:24
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:19
 msgid "Inventory search"
 msgstr "Inventarsuche"
 
@@ -1310,7 +1321,7 @@ msgstr "Einladen"
 msgid "Invite External User"
 msgstr "Externen Benutzer einladen"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:74
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:87
 msgid "Invites"
 msgstr "Lädt ein"
 
@@ -1328,7 +1339,7 @@ msgstr "Art"
 msgid "Kinds"
 msgstr "Arten"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:71
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:84
 msgid "Last login"
 msgstr "Letzte Anmeldung"
 
@@ -1370,11 +1381,11 @@ msgstr "Recheninstanzen und Datenbanken mit geringer Auslastung"
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS Konto angemeldet sind, bevor Sie auf die Schaltfläche DEPLOY STACK klicken."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:156
+#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:185
 msgid "Manage AWS Market place payment method"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:175
+#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:204
 msgid "Manage Card Details"
 msgstr ""
 
@@ -1382,7 +1393,7 @@ msgstr ""
 msgid "Manual"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:53
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:69
 msgid "maximum of {0} cloud accounts"
 msgstr "maximal {0} Cloud-Konten"
 
@@ -1399,12 +1410,12 @@ msgstr "Mitglied"
 msgid "MFA already enabled"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:19
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:25
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:127
 msgid "Monthly"
 msgstr "Monatliche"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:27
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:22
 msgid "Monthly email report"
 msgstr "Monatlicher E-Mail-Bericht"
 
@@ -1427,14 +1438,14 @@ msgstr "Die meisten nicht konformen Konten"
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:177
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:233
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:478
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:59
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:63
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:18
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:76
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:80
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:138
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:60
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:73
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:126
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:132
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:130
@@ -1443,7 +1454,7 @@ msgstr "Die meisten nicht konformen Konten"
 msgid "Name"
 msgstr "Name"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:25
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:20
 msgid "Neighborhood view"
 msgstr "Nachbarschaftsansicht"
 
@@ -1472,8 +1483,8 @@ msgstr "neue nicht konforme Ressourcen in der Vergangenheit {since}"
 msgid "New Password"
 msgstr "Neues Kennwort"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:171
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:89
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:196
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:118
 msgid "New Product Tier"
 msgstr ""
 
@@ -1489,7 +1500,7 @@ msgstr "Neue Sicherheitsprobleme entdeckt"
 msgid "Next invoice will be available"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:67
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:71
 msgid "Next scan"
 msgstr "Nächster Scan"
 
@@ -1633,7 +1644,7 @@ msgstr ""
 msgid "Opened at"
 msgstr "Geöffnet um"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:88
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:69
 msgid "Optional professional services"
 msgstr "Optionale professionelle Dienstleistungen"
 
@@ -1685,7 +1696,7 @@ msgstr "Passwort"
 msgid "Payment is required for your workspace, Please contact the workspace owner"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:132
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:157
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:89
 msgid "Payment method"
 msgstr ""
@@ -1705,7 +1716,7 @@ msgstr ""
 
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:29
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:45
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:35
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:48
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:19
 msgid "Pending Invitations"
 msgstr "Ausstehende Einladungen"
@@ -1758,23 +1769,23 @@ msgstr "Privilegiert"
 msgid "Privileged account"
 msgstr "Privilegiertes Konto"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:45
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:36
 msgid "Product support via email"
 msgstr "Produktsupport per E-Mail"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:64
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:50
 msgid "Product support via email and live chat"
 msgstr "Produktsupport per E-Mail und Live-Chat"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:86
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:67
 msgid "Product support via email, live chat, and video call"
 msgstr "Produktsupport per E-Mail, Live-Chat und Videoanruf"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:52
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:75
 msgid "Product tier changed to {selectedProductTier}"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:30
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:58
 msgid "Product tier changed to Free"
 msgstr ""
 
@@ -1806,7 +1817,7 @@ msgstr "Erneut authentifizieren"
 msgid "Receipts"
 msgstr "Quittungen"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:22
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:36
 msgid "Recently added accounts"
 msgstr "Kürzlich hinzugefügte Konten"
 
@@ -1851,7 +1862,7 @@ msgstr ""
 msgid "Reject"
 msgstr "Ablehnen"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:28
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:23
 msgid "Remediation recommendations"
 msgstr "Empfehlungen zur Fehlerbehebung"
 
@@ -1876,7 +1887,7 @@ msgstr "Ressource erstellt"
 msgid "Resource deleted"
 msgstr "Ressource gelöscht"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:62
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:66
 msgid "Resources"
 msgstr "Ressourcen"
 
@@ -1899,7 +1910,7 @@ msgstr "Risiko"
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:96
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:107
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:149
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:67
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:80
 msgid "Roles"
 msgstr "Rollen"
 
@@ -1928,7 +1939,7 @@ msgstr ""
 msgid "Security"
 msgstr "Sicherheit"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:26
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:21
 msgid "Security benchmarks"
 msgstr "Sicherheitsbenchmarks"
 
@@ -1940,7 +1951,7 @@ msgstr "Sicherheitsprobleme"
 msgid "Security posture improved"
 msgstr "Die Sicherheitslage wurde verbessert"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:75
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:79
 msgid "Security Scan"
 msgstr "Sicherheitsscan"
 
@@ -2040,11 +2051,11 @@ msgstr "Melden Sie sich an"
 msgid "Sign up with {formattedName}"
 msgstr "Melden Sie sich mit {formattedName} an"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:81
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:62
 msgid "Single Sign on (coming soon!)"
 msgstr "Single Sign-on (bald verfügbar!)"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:83
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:64
 msgid "Snowflake data export (coming soon!)"
 msgstr "Snowflake-Datenexport (bald verfügbar!)"
 
@@ -2062,7 +2073,7 @@ msgid "Something went wrong please try again later."
 msgstr "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal."
 
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:142
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:57
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:70
 msgid "Sources"
 msgstr "Quellen"
 
@@ -2092,7 +2103,7 @@ msgstr "{email} erfolgreich eingeladen"
 msgid "Tags"
 msgstr "Stichworte"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:62
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:48
 msgid "Task management integrations (coming soon!)"
 msgstr "Integrationen zur Aufgabenverwaltung (bald verfügbar!)"
 
@@ -2174,7 +2185,7 @@ msgid "To access this resource, please ensure that you are logged into the AWS a
 msgstr "Um auf diese Ressource zuzugreifen, stellen Sie bitte sicher, dass Sie beim AWS-Konto angemeldet sind: {account}"
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:58
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:100
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:124
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:81
 msgid "To AWS Marketplace"
 msgstr "Zum AWS Marketplace"
@@ -2259,7 +2270,7 @@ msgstr "E-Mail aktualisieren"
 msgid "Update Password"
 msgstr "Kennwort aktualisieren"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:121
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:146
 msgid "Upgrade"
 msgstr "Aktualisierung"
 
@@ -2312,7 +2323,7 @@ msgstr "Wir haben eine E-Mail mit einem Bestätigungslink an Ihre E-Mail-Adresse
 msgid "We use cookies and other tracking technologies to analyze site usage and assist in marketing efforts. For details, see our <0>cookie policy<1/></0>."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:93
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:122
 msgid "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 msgstr "Es tut uns leid, dass Sie herunterstufen, aber wir sind dankbar, Sie weiterhin in unserer kostenlosen Stufe zu haben. Wenn Ihnen etwas Bestimmtes fehlt, wenden Sie sich bitte direkt an mich, <0>lars@some.engineering</0>. Ich würde gerne von Ihnen hören und Ihnen so gut wie möglich helfen."
 
@@ -2324,7 +2335,7 @@ msgstr "Wir entschuldigen uns für die Unannehmlichkeiten. Unser Team wurde bena
 msgid "Webhook URL"
 msgstr "Webhook-URL"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:44
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:35
 msgid "Weekly email report"
 msgstr "Wöchentlicher E-Mail-Bericht"
 
@@ -2337,7 +2348,7 @@ msgstr "Wöchentlicher Report"
 msgid "Why does it matter"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:180
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:205
 msgid "Within a billing cycle you will be charged for the highest product tier that was active."
 msgstr ""
 
@@ -2345,7 +2356,7 @@ msgstr ""
 msgid "Workspace Alerting Settings"
 msgstr "Workspace-Benachrichtigungseinstellungen"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:82
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:63
 msgid "Workspace analytics (coming soon!)"
 msgstr "Arbeitsbereichsanalyse (bald verfügbar!)"
 
@@ -2364,10 +2375,14 @@ msgstr "Arbeitsbereichsname"
 msgid "Workspace Settings"
 msgstr "Arbeitsbereichseinstellungen"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:31
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:53
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:44
+#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:66
 msgid "Workspace Users"
 msgstr "Workspace-Benutzer"
+
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:23
+msgid "Yearly"
+msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:39
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:65
@@ -2379,8 +2394,8 @@ msgstr ""
 msgid "You are about to change workspace's payment method"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:127
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:82
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:152
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:111
 msgid "You are about to change workspace's product tier"
 msgstr ""
 
@@ -2399,6 +2414,16 @@ msgstr "Sie können TOTP über den OTP-Code deaktivieren"
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:91
 msgid "You can deactivate TOTP via recovery code"
 msgstr "Sie können TOTP über den Wiederherstellungscode deaktivieren"
+
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:241
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:151
+msgid "You currently have {0} attached to this workspace. There must only be {1} in order to downgrade to the free tier."
+msgstr ""
+
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:222
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:132
+msgid "You currently have {0}. There must only be {1} in order to downgrade to the free tier."
+msgstr ""
 
 #: src/core/events/WebSocketEvents.tsx:137
 msgid "You don't have access to this workspace"
