@@ -1,6 +1,7 @@
 import { Trans, plural, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import InfoIcon from '@mui/icons-material/Info'
+import WarningIcon from '@mui/icons-material/Warning'
 import { LoadingButton } from '@mui/lab'
 import { Alert, Button, MenuItem, Select, Stack, Typography } from '@mui/material'
 import { useMutation, useQueries, useQueryClient } from '@tanstack/react-query'
@@ -54,7 +55,15 @@ export const ChangeProductTierModal = ({
         queryFn: getWorkspaceCloudAccountsQuery,
         queryKey: ['workspace-cloud-accounts', selectedWorkspace?.id, true],
         select: (data?: string | GetWorkspaceCloudAccountsResponse) =>
-          typeof data === 'object' ? data.added.length + data.discovered.length + data.recent.length : 0,
+          typeof data === 'object'
+            ? [
+                ...new Set(
+                  [...data.added, ...data.discovered, ...data.recent]
+                    .filter((acc) => acc.enabled && acc.is_configured)
+                    .map((acc) => acc.id),
+                ),
+              ].length
+            : 0,
       },
       {
         queryFn: getWorkspaceUsersQuery,
@@ -217,18 +226,18 @@ export const ChangeProductTierModal = ({
           </Typography>
         </Alert>
         {hasNumberOfCloudAccountLimitation ? (
-          <Alert color="warning">
+          <Alert color="warning" icon={<WarningIcon />}>
             <Typography>
               <Trans>
                 You currently have{' '}
                 {plural(cloudAccountsLength, {
-                  one: '# cloud account',
-                  other: '# cloud accounts',
+                  one: '# enabled cloud account',
+                  other: '# enabled cloud accounts',
                 })}
                 . There must only be{' '}
                 {plural(productTierData.account_limit ?? 1, {
-                  one: '# cloud account',
-                  other: '# cloud accounts',
+                  one: '# enabled cloud account',
+                  other: '# enabled cloud accounts',
                 })}{' '}
                 in order to downgrade to the free tier.
               </Trans>
@@ -236,7 +245,7 @@ export const ChangeProductTierModal = ({
           </Alert>
         ) : null}
         {hasNumberOfUserLimitation ? (
-          <Alert color="warning">
+          <Alert color="warning" icon={<WarningIcon />}>
             <Typography>
               <Trans>
                 You currently have{' '}

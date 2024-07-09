@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/macro'
 import { Box, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { panelUI } from 'src/shared/constants'
 import { TableView } from 'src/shared/layouts/panel-layout'
@@ -16,6 +16,7 @@ interface WorkspaceSettingsAccountsTableItemProps {
   isBottom: boolean
   isNotConfigured?: boolean
   canInviteBasedOnTier?: boolean
+  enableErrorModalContent: ReactNode
 }
 
 export const WorkspaceSettingsAccountsTableItem = ({
@@ -25,6 +26,7 @@ export const WorkspaceSettingsAccountsTableItem = ({
   isBottom,
   isNotConfigured,
   canInviteBasedOnTier,
+  enableErrorModalContent,
 }: WorkspaceSettingsAccountsTableItemProps) => {
   const { checkPermission } = useUserProfile()
   const hasPermission = checkPermission('updateCloudAccounts')
@@ -93,7 +95,13 @@ export const WorkspaceSettingsAccountsTableItem = ({
             {data
               ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((account, i) => (
-                <WorkspaceSettingsAccountRow account={account} key={`${account.id}_${i}`} isNotConfigured={isNotConfigured} />
+                <WorkspaceSettingsAccountRow
+                  account={account}
+                  key={`${account.id}_${i}`}
+                  isNotConfigured={isNotConfigured}
+                  canEnable={canInviteBasedOnTier}
+                  enableErrorModalContent={enableErrorModalContent}
+                />
               ))}
           </TableBody>
         </Table>

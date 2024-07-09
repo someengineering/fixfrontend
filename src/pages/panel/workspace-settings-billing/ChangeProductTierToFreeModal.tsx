@@ -38,7 +38,15 @@ export const ChangeProductTierToFreeModal = ({
         queryFn: getWorkspaceCloudAccountsQuery,
         queryKey: ['workspace-cloud-accounts', selectedWorkspace?.id, true],
         select: (data?: string | GetWorkspaceCloudAccountsResponse) =>
-          typeof data === 'object' ? data.added.length + data.discovered.length + data.recent.length : 0,
+          typeof data === 'object'
+            ? [
+                ...new Set(
+                  [...data.added, ...data.discovered, ...data.recent]
+                    .filter((acc) => acc.enabled && acc.is_configured)
+                    .map((acc) => acc.id),
+                ),
+              ].length
+            : 0,
       },
       {
         queryFn: getWorkspaceUsersQuery,
@@ -133,13 +141,13 @@ export const ChangeProductTierToFreeModal = ({
               <Trans>
                 You currently have{' '}
                 {plural(cloudAccountsLength, {
-                  one: '# cloud account',
-                  other: '# cloud accounts',
+                  one: '# enabled cloud account',
+                  other: '# enabled cloud accounts',
                 })}
                 . There must only be{' '}
                 {plural(productTierData.account_limit ?? 1, {
-                  one: '# cloud account',
-                  other: '# cloud accounts',
+                  one: '# enabled cloud account',
+                  other: '# enabled cloud accounts',
                 })}{' '}
                 in order to downgrade to the free tier.
               </Trans>

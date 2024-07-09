@@ -19,7 +19,8 @@ import {
   Typography,
 } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { FormEvent, useCallback, useEffect, useRef, useState } from 'react'
+import { AxiosError } from 'axios'
+import { FormEvent, ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { InternalLinkButton } from 'src/shared/link-button'
@@ -38,13 +39,21 @@ import { replaceRowByAccount } from './replaceRowByAccount'
 
 interface WorkspaceSettingsAccountRowProps {
   account: Account
+  enableErrorModalContent?: ReactNode
   isNotConfigured?: boolean
+  canEnable?: boolean
 }
-export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: WorkspaceSettingsAccountRowProps) => {
+export const WorkspaceSettingsAccountRow = ({
+  account,
+  enableErrorModalContent,
+  isNotConfigured,
+  canEnable,
+}: WorkspaceSettingsAccountRowProps) => {
   const inputRef = useRef<HTMLInputElement>()
   const {
     i18n: { locale },
   } = useLingui()
+  const showCannotEnableModalRef = useRef<(show?: boolean) => void>()
   const showDeleteModalRef = useRef<(show?: boolean) => void>()
   const showDegradedModalRef = useRef<(show?: boolean) => void>()
   const { selectedWorkspace, checkPermission } = useUserProfile()
@@ -120,18 +129,27 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
   }
 
   const handleEnableChange = (_: unknown, checked: boolean) => {
-    if (selectedWorkspace?.id) {
-      return (checked ? enableAccount : disableAccount)(
-        { workspaceId: selectedWorkspace.id, id: account.id },
-        {
-          onSuccess: (data) => {
-            void queryClient.invalidateQueries({
-              predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
-            })
-            replaceRowByAccount(queryClient, data, selectedWorkspace?.id)
+    if (canEnable || !checked) {
+      if (selectedWorkspace?.id) {
+        return (checked ? enableAccount : disableAccount)(
+          { workspaceId: selectedWorkspace.id, id: account.id },
+          {
+            onSuccess: (data) => {
+              void queryClient.invalidateQueries({
+                predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
+              })
+              replaceRowByAccount(queryClient, data, selectedWorkspace?.id)
+            },
+            onError: (err) => {
+              if ((err as AxiosError)?.status === 403) {
+                showCannotEnableModalRef.current?.(true)
+              }
+            },
           },
-        },
-      )
+        )
+      }
+    } else {
+      showCannotEnableModalRef.current?.(true)
     }
   }
 
@@ -477,6 +495,17 @@ export const WorkspaceSettingsAccountRow = ({ account, isNotConfigured }: Worksp
         <Typography>
           <Trans>Name</Trans>: {accountName}
         </Typography>
+      </Modal>
+      <Modal
+        title={<Trans>Cannot enable this account</Trans>}
+        openRef={showCannotEnableModalRef}
+        actions={
+          <Button color="primary" variant="contained" onClick={() => showCannotEnableModalRef.current?.(false)}>
+            <Trans>Ok</Trans>
+          </Button>
+        }
+      >
+        {enableErrorModalContent}
       </Modal>
     </TableRow>
   )

@@ -21,14 +21,18 @@ msgstr "({0} max)"
 msgid "(${0} / month per additional account)"
 msgstr "(${0} / month per additional account)"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:229
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:140
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:48
 msgid "{0, plural, one {# cloud account} other {# cloud accounts}}"
 msgstr "{0, plural, one {# cloud account} other {# cloud accounts}}"
 
 #: src/shared/utils/parseDuration.ts:171
 msgid "{0, plural, one {# Day} other {# Days}}"
 msgstr "{0, plural, one {# Day} other {# Days}}"
+
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:238
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:148
+msgid "{0, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
+msgstr "{0, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
 
 #: src/shared/utils/parseDuration.ts:179
 msgid "{0, plural, one {# Hour} other {# Hours}}"
@@ -46,8 +50,8 @@ msgstr "{0, plural, one {# Month} other {# Months}}"
 msgid "{0, plural, one {# Second} other {# Seconds}}"
 msgstr "{0, plural, one {# Second} other {# Seconds}}"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:248
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:159
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:257
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:167
 msgid "{0, plural, one {# user} other {# users}}"
 msgstr "{0, plural, one {# user} other {# users}}"
 
@@ -117,14 +121,18 @@ msgstr "{0}-month history"
 msgid "{0}: We've identified {1} non-compliant resources out of {2}."
 msgstr "{0}: We've identified {1} non-compliant resources out of {2}."
 
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:43
+msgid "{accountLength, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
+msgstr "{accountLength, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
+
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:47
 msgid "{added} configuration lines added and {removed} lines deleted."
 msgstr "{added} configuration lines added and {removed} lines deleted."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:224
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:135
-msgid "{cloudAccountsLength, plural, one {# cloud account} other {# cloud accounts}}"
-msgstr "{cloudAccountsLength, plural, one {# cloud account} other {# cloud accounts}}"
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:233
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:143
+msgid "{cloudAccountsLength, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
+msgstr "{cloudAccountsLength, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput.tsx:32
 msgid "{label} is not valid"
@@ -138,8 +146,8 @@ msgstr "{label} is required"
 msgid "{scanIntervalStr} scans"
 msgstr "{scanIntervalStr} scans"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:243
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:154
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:252
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:162
 msgid "{usersLength, plural, one {# user} other {# users}}"
 msgstr "{usersLength, plural, one {# user} other {# users}}"
 
@@ -236,8 +244,8 @@ msgstr "Accept"
 msgid "Access Control (IAM)"
 msgstr "Access Control (IAM)"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:241
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:367
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:259
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:385
 msgid "Access to your account is broken"
 msgstr "Access to your account is broken"
 
@@ -269,7 +277,7 @@ msgstr "Accounts Summary"
 msgid "Action"
 msgstr "Action"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:87
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:89
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:91
 msgid "Actions"
 msgstr "Actions"
@@ -285,7 +293,7 @@ msgid "Add a client secret"
 msgstr "Add a client secret"
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:60
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:126
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:135
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:83
 msgid "Add a New Credit or Debit Card"
 msgstr "Add a New Credit or Debit Card"
@@ -326,7 +334,7 @@ msgstr "Add Role Assignment"
 msgid "Add the Role assignment to the App"
 msgstr "Add the Role assignment to the App"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:45
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:77
 msgid "Added accounts"
 msgstr "Added accounts"
 
@@ -401,8 +409,8 @@ msgstr "An email has been sent to your inbox with a 'Reset Password' button. Ple
 msgid "An error occurred while connecting to {0}"
 msgstr "An error occurred while connecting to {0}"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:79
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:63
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:88
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:71
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:34
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:32
 msgid "An error occurred, please try again later."
@@ -441,7 +449,7 @@ msgstr "Are you sure you want to disconnect {name}?"
 msgid "Are you sure you want to remove the {name} account {0}?"
 msgstr "Are you sure you want to remove the {name} account {0}?"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:436
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:454
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:85
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:107
 msgid "Are you sure?"
@@ -532,10 +540,10 @@ msgstr "Business"
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:68
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:121
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:49
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:287
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:291
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:292
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:455
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:305
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:309
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:310
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:473
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:92
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:154
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:158
@@ -549,6 +557,10 @@ msgstr "Business"
 #: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:118
 msgid "Cancel"
 msgstr "Cancel"
+
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:500
+msgid "Cannot enable this account"
+msgstr "Cannot enable this account"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:211
 #: src/pages/panel/inventory/inventory-form/InventoryFormMoreValue.tsx:125
@@ -564,8 +576,8 @@ msgstr "Change payment"
 msgid "Change Payment method"
 msgstr "Change Payment method"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:151
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:111
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:160
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:119
 msgid "Change Product Tier"
 msgstr "Change Product Tier"
 
@@ -644,7 +656,7 @@ msgid "Client secret"
 msgstr "Client secret"
 
 #: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:36
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:373
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:391
 msgid "Close"
 msgstr "Close"
 
@@ -653,8 +665,8 @@ msgstr "Close"
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:96
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:235
 #: src/pages/panel/security/AccountCard.tsx:37
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:475
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:57
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:493
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:59
 msgid "Cloud"
 msgstr "Cloud"
 
@@ -686,7 +698,7 @@ msgstr "Configuration changed"
 msgid "Configure"
 msgstr "Configure"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:385
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:403
 msgid "Configure Service Principal"
 msgstr "Configure Service Principal"
 
@@ -712,7 +724,7 @@ msgstr "Congratulations on your subscription"
 msgid "Connect"
 msgstr "Connect"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:383
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:401
 msgid "Connect GCP Service Account"
 msgstr "Connect GCP Service Account"
 
@@ -793,8 +805,8 @@ msgstr "Credit/Debit Card has been successfully subscribed"
 msgid "Critical"
 msgstr "Critical"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:193
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:116
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:202
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:124
 msgid "Current Product Tier"
 msgstr "Current Product Tier"
 
@@ -847,10 +859,10 @@ msgid "Delayed Effect"
 msgstr "Delayed Effect"
 
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:79
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:354
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:358
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:359
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:466
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:372
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:376
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:377
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:484
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:73
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:77
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:78
@@ -868,7 +880,7 @@ msgstr "Delete Provider"
 
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:13
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:29
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:381
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:399
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
@@ -902,7 +914,7 @@ msgstr "Disconnect"
 msgid "Disconnect Service"
 msgstr "Disconnect Service"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:54
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:87
 msgid "Discovered but unconfigured accounts"
 msgstr "Discovered but unconfigured accounts"
 
@@ -918,7 +930,7 @@ msgstr "Do not show me again"
 msgid "Do not show this message again."
 msgstr "Do not show this message again."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:439
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:457
 msgid "Do you want to delete this account?"
 msgstr "Do you want to delete this account?"
 
@@ -939,8 +951,8 @@ msgstr "Don't have an account? Click here to Sign up."
 msgid "Done! We will now import your Azure accounts, this usually takes a couple of minutes."
 msgstr "Done! We will now import your Azure accounts, this usually takes a couple of minutes."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:146
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:107
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:155
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:115
 msgid "Downgrade"
 msgstr "Downgrade"
 
@@ -953,8 +965,8 @@ msgstr "Download CSV"
 msgid "Drop Service Account Key File"
 msgstr "Drop Service Account Key File"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:303
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:304
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:321
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:322
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:175
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:176
 msgid "Edit"
@@ -993,7 +1005,7 @@ msgid "Enable all"
 msgstr "Enable all"
 
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:49
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:76
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:78
 msgid "Enabled"
 msgstr "Enabled"
 
@@ -1191,8 +1203,8 @@ msgstr "Id"
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:232
 #: src/pages/panel/security/AccountCard.tsx:34
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:472
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:60
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:490
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:62
 #: src/shared/charts/NetworkDiagram.tsx:407
 msgid "ID"
 msgstr "ID"
@@ -1274,7 +1286,7 @@ msgstr "Inactivity reminder"
 msgid "Info"
 msgstr "Info"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:203
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:212
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
 msgstr "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
 
@@ -1437,8 +1449,8 @@ msgstr "Most Non-Compliant Accounts"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:177
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:233
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:478
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:63
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:496
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:65
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:18
@@ -1483,8 +1495,8 @@ msgstr "new non compliant resources in the past {since}"
 msgid "New Password"
 msgstr "New Password"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:196
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:119
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:205
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:127
 msgid "New Product Tier"
 msgstr "New Product Tier"
 
@@ -1500,7 +1512,7 @@ msgstr "New security issues detected"
 msgid "Next invoice will be available"
 msgstr "Next invoice will be available"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:71
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:73
 msgid "Next scan"
 msgstr "Next scan"
 
@@ -1546,7 +1558,7 @@ msgstr "Node Vulnerable"
 msgid "Non-Compliant Resources"
 msgstr "Non-Compliant Resources"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:442
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:460
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 
@@ -1576,6 +1588,7 @@ msgid "Number Of Account Charged"
 msgstr "Number Of Account Charged"
 
 #: src/core/auth/WorkspaceGuard.tsx:94
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:504
 msgid "Ok"
 msgstr "Ok"
 
@@ -1696,7 +1709,7 @@ msgstr "Password"
 msgid "Payment is required for your workspace, Please contact the workspace owner"
 msgstr "Payment is required for your workspace, Please contact the workspace owner"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:157
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:166
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:89
 msgid "Payment method"
 msgstr "Payment method"
@@ -1765,7 +1778,7 @@ msgstr "Print or copy the following recovery codes"
 msgid "Privileged"
 msgstr "Privileged"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:236
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:254
 msgid "Privileged account"
 msgstr "Privileged account"
 
@@ -1781,11 +1794,11 @@ msgstr "Product support via email and live chat"
 msgid "Product support via email, live chat, and video call"
 msgstr "Product support via email, live chat, and video call"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:75
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:84
 msgid "Product tier changed to {selectedProductTier}"
 msgstr "Product tier changed to {selectedProductTier}"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:59
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:67
 msgid "Product tier changed to Free"
 msgstr "Product tier changed to Free"
 
@@ -1817,7 +1830,7 @@ msgstr "Re-Authenticate"
 msgid "Receipts"
 msgstr "Receipts"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:36
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:67
 msgid "Recently added accounts"
 msgstr "Recently added accounts"
 
@@ -1887,7 +1900,7 @@ msgstr "Resource created"
 msgid "Resource deleted"
 msgstr "Resource deleted"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:66
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:68
 msgid "Resources"
 msgstr "Resources"
 
@@ -1951,7 +1964,7 @@ msgstr "Security Issues"
 msgid "Security posture improved"
 msgstr "Security posture improved"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:79
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:81
 msgid "Security Scan"
 msgstr "Security Scan"
 
@@ -2021,7 +2034,7 @@ msgstr "Service Account Key"
 msgid "Setting Up Email Notifications"
 msgstr "Setting Up Email Notifications"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:387
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:405
 msgid "Setup cloud"
 msgstr "Setup cloud"
 
@@ -2078,9 +2091,9 @@ msgid "Sources"
 msgstr "Sources"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:136
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:276
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:277
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:282
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:294
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:295
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:300
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:147
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:148
 msgid "Submit"
@@ -2148,11 +2161,11 @@ msgstr "The workspace you requested cannot be accessed. Please request access fr
 msgid "There's no account configured for this workspace."
 msgstr "There's no account configured for this workspace."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:427
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:445
 msgid "This account is currently in a degraded state possibly due to a misconfiguration.<0/>Fix was unable to gather data from this account."
 msgstr "This account is currently in a degraded state possibly due to a misconfiguration.<0/>Fix was unable to gather data from this account."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:395
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:413
 msgid "This account is currently in a degraded state.<0/>Fix was unable to gather data from this account.<1/><2/>To resume security scans, please log into the {accountName} account ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 msgstr "This account is currently in a degraded state.<0/>Fix was unable to gather data from this account.<1/><2/>To resume security scans, please log into the {accountName} account ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 
@@ -2160,7 +2173,7 @@ msgstr "This account is currently in a degraded state.<0/>Fix was unable to gath
 msgid "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 msgstr "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:405
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:423
 msgid "This project is currently in a degraded state.<0/>Fix was unable to gather data from this project.<1/><2/>To resume security scans, please ensure that the service account you configured is set up correctly.<3/>You may also recreate and upload the service account definition."
 msgstr "This project is currently in a degraded state.<0/>Fix was unable to gather data from this project.<1/><2/>To resume security scans, please ensure that the service account you configured is set up correctly.<3/>You may also recreate and upload the service account definition."
 
@@ -2168,7 +2181,7 @@ msgstr "This project is currently in a degraded state.<0/>Fix was unable to gath
 msgid "This section does not contain any controls that can be automated.<0/>Manual checks or processes are required for compliance."
 msgstr "This section does not contain any controls that can be automated.<0/>Manual checks or processes are required for compliance."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:416
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:434
 msgid "This subscription is currently in a degraded state.<0/>Fix was unable to gather data from this subscription.<1/><2/>To resume security scans, please ensure that the application permissions are set up correctly.<3/>You may also recreate and redefine the access credentials."
 msgstr "This subscription is currently in a degraded state.<0/>Fix was unable to gather data from this subscription.<1/><2/>To resume security scans, please ensure that the application permissions are set up correctly.<3/>You may also recreate and redefine the access credentials."
 
@@ -2185,7 +2198,7 @@ msgid "To access this resource, please ensure that you are logged into the AWS a
 msgstr "To access this resource, please ensure that you are logged into the AWS account: {account}"
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:58
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:124
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:133
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:81
 msgid "To AWS Marketplace"
 msgstr "To AWS Marketplace"
@@ -2270,7 +2283,7 @@ msgstr "Update Email"
 msgid "Update Password"
 msgstr "Update Password"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:146
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:155
 msgid "Upgrade"
 msgstr "Upgrade"
 
@@ -2323,7 +2336,7 @@ msgstr "We have sent an email with a confirmation link to your email address. Pl
 msgid "We use cookies and other tracking technologies to analyze site usage and assist in marketing efforts. For details, see our <0>cookie policy<1/></0>."
 msgstr "We use cookies and other tracking technologies to analyze site usage and assist in marketing efforts. For details, see our <0>cookie policy<1/></0>."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:123
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:131
 msgid "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 msgstr "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 
@@ -2348,7 +2361,7 @@ msgstr "Weekly Report"
 msgid "Why does it matter"
 msgstr "Why does it matter"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:205
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:214
 msgid "Within a billing cycle you will be charged for the highest product tier that was active."
 msgstr "Within a billing cycle you will be charged for the highest product tier that was active."
 
@@ -2394,8 +2407,8 @@ msgstr "Yes"
 msgid "You are about to change workspace's payment method"
 msgstr "You are about to change workspace's payment method"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:152
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:112
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:161
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:120
 msgid "You are about to change workspace's product tier"
 msgstr "You are about to change workspace's product tier"
 
@@ -2415,13 +2428,17 @@ msgstr "You can deactivate TOTP via otp code"
 msgid "You can deactivate TOTP via recovery code"
 msgstr "You can deactivate TOTP via recovery code"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:241
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:152
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:250
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:160
 msgid "You currently have {0} attached to this workspace. There must only be {1} in order to downgrade to the free tier."
 msgstr "You currently have {0} attached to this workspace. There must only be {1} in order to downgrade to the free tier."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:222
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:133
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:41
+msgid "You currently have {0}. There must only be {1} enabled in {2} tier. To increase your cloud account limit, you can upgrade your product tier <0>here</0>."
+msgstr "You currently have {0}. There must only be {1} enabled in {2} tier. To increase your cloud account limit, you can upgrade your product tier <0>here</0>."
+
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:231
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:141
 msgid "You currently have {0}. There must only be {1} in order to downgrade to the free tier."
 msgstr "You currently have {0}. There must only be {1} in order to downgrade to the free tier."
 
