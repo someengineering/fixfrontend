@@ -1,16 +1,19 @@
-import { Trans, t } from '@lingui/macro'
+import { Trans, plural, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import InfoIcon from '@mui/icons-material/Info'
+import WarningIcon from '@mui/icons-material/Warning'
 import { LoadingButton } from '@mui/lab'
 import { Alert, Button, MenuItem, Select, Stack, Typography } from '@mui/material'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueries, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { MutableRefObject, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
+import { getWorkspaceCloudAccountsQuery, getWorkspaceUsersQuery } from 'src/pages/panel/shared/queries'
 import { endPoints, env } from 'src/shared/constants'
 import { ExternalLinkLoadingButton } from 'src/shared/link-button'
 import { Modal } from 'src/shared/modal'
+import { GetWorkspaceCloudAccountsResponse, GetWorkspaceProductTier, GetWorkspaceUsersResponse } from 'src/shared/types/server'
 import { PaymentMethod, PaymentMethodWithoutNone, PaymentMethods, ProductTier } from 'src/shared/types/server-shared'
 import { putWorkspaceBillingMutation } from './putWorkspaceBilling.mutation'
 import { paymentMethodToLabel, paymentMethods, productTierToLabel } from './utils'
@@ -24,6 +27,7 @@ export interface ChangeProductTierModalProps {
   isUpgrade: boolean
   defaultOpen?: boolean
   nextBillingCycle: Date
+  productTierData: GetWorkspaceProductTier
   onClose?: () => void
 }
 
@@ -36,6 +40,7 @@ export const ChangeProductTierModal = ({
   isUpgrade,
   defaultOpen,
   nextBillingCycle,
+  productTierData,
   onClose,
 }: ChangeProductTierModalProps) => {
   const {
@@ -43,7 +48,34 @@ export const ChangeProductTierModal = ({
   } = useLingui()
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(selectedWorkspacePaymentMethod)
   const { showSnackbar } = useSnackbar()
-  const { selectedWorkspace } = useUserProfile()
+  const { selectedWorkspace, refreshWorkspaces } = useUserProfile()
+  const [{ data: cloudAccountsLength = 0 }, { data: usersLength = 0 }] = useQueries({
+    queries: [
+      {
+        queryFn: getWorkspaceCloudAccountsQuery,
+        queryKey: ['workspace-cloud-accounts', selectedWorkspace?.id, true],
+        select: (data?: string | GetWorkspaceCloudAccountsResponse) =>
+          typeof data === 'object'
+            ? [
+                ...new Set(
+                  [...data.added, ...data.discovered, ...data.recent]
+                    .filter((acc) => acc.enabled && acc.is_configured)
+                    .map((acc) => acc.id),
+                ),
+              ].length
+            : 0,
+      },
+      {
+        queryFn: getWorkspaceUsersQuery,
+        queryKey: ['workspace-users', selectedWorkspace?.id],
+        select: (data?: GetWorkspaceUsersResponse) => data?.length ?? 0,
+      },
+    ],
+  })
+  const hasNumberOfCloudAccountLimitation = cloudAccountsLength > (productTierData.account_limit || Number.POSITIVE_INFINITY)
+  const hasNumberOfUserLimitation = usersLength > (productTierData.seats_max || Number.POSITIVE_INFINITY)
+
+  const hasLimitation = hasNumberOfCloudAccountLimitation || hasNumberOfUserLimitation
   const queryClient = useQueryClient()
 
   const { mutate: changeBilling, isPending: changeBillingIsPending } = useMutation({
@@ -63,6 +95,7 @@ export const ChangeProductTierModal = ({
       void queryClient.invalidateQueries({
         queryKey: ['workspace-billing'],
       })
+      void refreshWorkspaces()
       showModalRef.current?.(false)
     },
   })
@@ -80,7 +113,7 @@ export const ChangeProductTierModal = ({
               onClose?.()
               showModalRef.current?.(false)
             }}
-            color="error"
+            color={isUpgrade ? 'error' : undefined}
           >
             Cancel
           </Button>
@@ -117,6 +150,7 @@ export const ChangeProductTierModal = ({
               }}
               size="large"
               sx={{ width: 180 }}
+              disabled={hasLimitation}
             >
               {isUpgrade ? <Trans>Upgrade</Trans> : <Trans>Downgrade</Trans>}
             </LoadingButton>
@@ -191,6 +225,44 @@ export const ChangeProductTierModal = ({
             </Trans>
           </Typography>
         </Alert>
+        {hasNumberOfCloudAccountLimitation ? (
+          <Alert color="warning" icon={<WarningIcon />}>
+            <Typography>
+              <Trans>
+                You currently have{' '}
+                {plural(cloudAccountsLength, {
+                  one: '# enabled cloud account',
+                  other: '# enabled cloud accounts',
+                })}
+                . There must only be{' '}
+                {plural(productTierData.account_limit ?? 1, {
+                  one: '# enabled cloud account',
+                  other: '# enabled cloud accounts',
+                })}{' '}
+                in order to downgrade to the free tier.
+              </Trans>
+            </Typography>
+          </Alert>
+        ) : null}
+        {hasNumberOfUserLimitation ? (
+          <Alert color="warning" icon={<WarningIcon />}>
+            <Typography>
+              <Trans>
+                You currently have{' '}
+                {plural(usersLength, {
+                  one: '# user',
+                  other: '# users',
+                })}{' '}
+                attached to this workspace. There must only be{' '}
+                {plural(productTierData.seats_max ?? 1, {
+                  one: '# user',
+                  other: '# users',
+                })}{' '}
+                in order to downgrade to the free tier.
+              </Trans>
+            </Typography>
+          </Alert>
+        ) : null}
       </Stack>
     </Modal>
   )

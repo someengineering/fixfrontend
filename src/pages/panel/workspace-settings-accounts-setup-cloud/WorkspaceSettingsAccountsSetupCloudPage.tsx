@@ -1,6 +1,6 @@
-import { Button, Stack, Typography } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Stack, Typography } from '@mui/material'
 import { AwsLogo, AzureLogo, GcpLogo } from 'src/assets/icons'
+import { InternalLinkButton } from 'src/shared/link-button'
 import { useNonce } from 'src/shared/providers'
 
 export default function WorkspaceSettingsAccountsSetupCloudPage() {
@@ -16,8 +16,7 @@ export default function WorkspaceSettingsAccountsSetupCloudPage() {
     >
       <Stack direction="row" width="100%" height="100%" flex={1} flexWrap="wrap" alignItems="center" justifyContent="center">
         <Stack direction="row" width="50%" height="50%" p={1} alignItems="center" justifyContent="center">
-          <Button
-            component={Link}
+          <InternalLinkButton
             to="/workspace-settings/accounts/setup-cloud/aws"
             color="primary"
             sx={{
@@ -34,11 +33,10 @@ export default function WorkspaceSettingsAccountsSetupCloudPage() {
             <Typography variant="h3" textAlign="center">
               Amazon Web Services
             </Typography>
-          </Button>
+          </InternalLinkButton>
         </Stack>
         <Stack direction="row" width="50%" height="50%" p={1} alignItems="stretch" justifyContent="center">
-          <Button
-            component={Link}
+          <InternalLinkButton
             to="/workspace-settings/accounts/setup-cloud/gcp"
             color="primary"
             sx={{
@@ -55,11 +53,10 @@ export default function WorkspaceSettingsAccountsSetupCloudPage() {
             <Typography variant="h3" textAlign="center">
               Google Cloud Platform
             </Typography>
-          </Button>
+          </InternalLinkButton>
         </Stack>
         <Stack direction="row" width="50%" height="50%" p={1} alignItems="stretch" justifyContent="center">
-          <Button
-            component={Link}
+          <InternalLinkButton
             to="/workspace-settings/accounts/setup-cloud/azure"
             color="primary"
             sx={{
@@ -76,7 +73,7 @@ export default function WorkspaceSettingsAccountsSetupCloudPage() {
             <Typography variant="h3" textAlign="center">
               Azure
             </Typography>
-          </Button>
+          </InternalLinkButton>
         </Stack>
       </Stack>
     </Stack>

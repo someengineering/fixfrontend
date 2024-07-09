@@ -144,7 +144,7 @@ describe('parseDuration', () => {
       hours: 1,
       minutes: 1,
       seconds: 1,
-      duration: -949366861000,
+      duration: -34822861000,
     })
   })
   test('splitCustomDuration should split duration string that comes from durationToCustomDurationString', () => {

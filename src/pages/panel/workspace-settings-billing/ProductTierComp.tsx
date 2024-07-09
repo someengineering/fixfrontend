@@ -3,17 +3,33 @@ import { useLingui } from '@lingui/react'
 import DoneIcon from '@mui/icons-material/Done'
 import { Box, Divider, List, ListItem, ListItemIcon, ListItemText, Stack, Typography } from '@mui/material'
 import { Fragment } from 'react'
+import { GetWorkspaceProductTier } from 'src/shared/types/server'
 import { ProductTier } from 'src/shared/types/server-shared'
+import { getISO8601DurationFromTimestamp, iso8601DurationToString, parseISO8601Duration } from 'src/shared/utils/parseDuration'
 import { productTierToDescription, productTierToLabel } from './utils'
 
 export interface ProductTierCompProps {
   productTier: ProductTier
+  productTierData: GetWorkspaceProductTier
 }
 
-export const ProductTierComp = ({ productTier }: ProductTierCompProps) => {
+export const ProductTierComp = ({ productTier, productTierData }: ProductTierCompProps) => {
   const {
     i18n: { locale },
   } = useLingui()
+  const scanInterval = getISO8601DurationFromTimestamp(parseISO8601Duration(productTierData.scan_interval).duration)
+  const historyMax = getISO8601DurationFromTimestamp(parseISO8601Duration(productTierData.retention_period).duration)
+  const scanIntervalStr =
+    scanInterval.years === 1
+      ? t`Yearly`
+      : scanInterval.months === 1
+        ? t`Monthly`
+        : scanInterval.days === 1
+          ? t`Daily`
+          : scanInterval.hours === 1
+            ? t`Hourly`
+            : t`${iso8601DurationToString(scanInterval, 2)} per`
+  const historyMaxStr = t`${historyMax.years * 12 + historyMax.months}-month history`
   const label = productTierToLabel(productTier)
   const desc = productTierToDescription(productTier)
   if (!desc) {
@@ -40,7 +56,7 @@ export const ProductTierComp = ({ productTier }: ProductTierCompProps) => {
       <Stack direction="column" my={1.5} spacing={0.25} alignItems="baseline">
         <Stack direction="row" spacing={0.5} alignItems="center">
           <Typography variant="h3" fontWeight={700} lineHeight="1.5rem" letterSpacing="-.025em" fontSize="1.875rem !important">
-            ${desc.price.toLocaleString(locale)}
+            ${((productTierData.price_per_account_cents / 100) * productTierData.accounts_included).toLocaleString(locale)}
           </Typography>
           {desc.monthly ? (
             <Typography variant="h6" fontWeight={600} lineHeight="1.5rem" fontSize="1.125rem !important" marginTop=".125rem !important">
@@ -48,7 +64,7 @@ export const ProductTierComp = ({ productTier }: ProductTierCompProps) => {
             </Typography>
           ) : null}
         </Stack>
-        {desc.cloudAccounts.maximum ? (
+        {productTierData.account_limit !== null ? (
           <Typography
             variant="subtitle1"
             fontSize="1rem !important"
@@ -56,9 +72,9 @@ export const ProductTierComp = ({ productTier }: ProductTierCompProps) => {
             fontWeight={400}
             color={({ palette }) => (palette.mode === 'dark' ? palette.grey[400] : palette.grey[700])}
           >
-            {t`maximum of ${desc.cloudAccounts.maximum} cloud accounts`}
+            {t`maximum of ${productTierData.account_limit} cloud accounts`}
           </Typography>
-        ) : desc.cloudAccounts.included ? (
+        ) : productTierData.accounts_included ? (
           <Typography
             variant="subtitle1"
             fontSize="1rem !important"
@@ -66,12 +82,12 @@ export const ProductTierComp = ({ productTier }: ProductTierCompProps) => {
             fontWeight={400}
             color={({ palette }) => (palette.mode === 'dark' ? palette.grey[400] : palette.grey[700])}
           >
-            {t`${desc.cloudAccounts.included} cloud accounts included`}
+            {t`${productTierData.accounts_included} cloud accounts included`}
           </Typography>
         ) : (
           <Box height="1.5rem" />
         )}
-        {desc.cloudAccounts.additionalCost ? (
+        {productTierData.price_per_account_cents ? (
           <Typography
             variant="subtitle1"
             fontSize="1rem !important"
@@ -79,7 +95,7 @@ export const ProductTierComp = ({ productTier }: ProductTierCompProps) => {
             fontWeight={400}
             color={({ palette }) => (palette.mode === 'dark' ? palette.grey[400] : palette.grey[700])}
           >
-            {t`($${desc.cloudAccounts.additionalCost.toLocaleString(locale)} / month per additional account)`}
+            {t`($${(productTierData.price_per_account_cents / 100).toLocaleString(locale)} / month per additional account)`}
           </Typography>
         ) : (
           <Box height="calc(1.5rem + 2px)" />
@@ -88,21 +104,29 @@ export const ProductTierComp = ({ productTier }: ProductTierCompProps) => {
       <Divider />
       <Stack mt={1.5} spacing={0.75}>
         <Typography>
-          <Trans>{desc.scanFrequency} scans</Trans>
+          <Trans>{scanIntervalStr} scans</Trans>
         </Typography>
         <Typography>
-          {desc.seats.included ? (
+          {productTierData.seats_included > 1 ? (
             <Trans>
-              {desc.seats.included} seats included {desc.seats.maximum ? t`(${desc.seats.maximum} max)` : ''}
+              {productTierData.seats_included} seats included {productTierData.seats_max ? t`(${productTierData.seats_max} max)` : ''}
             </Trans>
-          ) : (
-            <Trans>{desc.seats.maximum} seat max</Trans>
-          )}
+          ) : productTierData.seats_max ? (
+            <Trans>{productTierData.seats_max} seat max</Trans>
+          ) : null}
         </Typography>
       </Stack>
       <Stack spacing={0.75}>
         <Typography fontWeight={600}>{desc.featuresTitle}:</Typography>
         <List dense>
+          <ListItem sx={{ p: 0 }}>
+            <ListItemIcon sx={{ minWidth: 36 }}>
+              <DoneIcon color="primary" />
+            </ListItemIcon>
+            <ListItemText>
+              <Typography variant="body2">{historyMaxStr}</Typography>
+            </ListItemText>
+          </ListItem>
           {desc.features.map((feature, i) => (
             <ListItem key={i} sx={{ p: 0 }}>
               <ListItemIcon sx={{ minWidth: 36 }}>
@@ -116,7 +140,7 @@ export const ProductTierComp = ({ productTier }: ProductTierCompProps) => {
         </List>
       </Stack>
       <Stack justifyContent="end" flexGrow={1}>
-        <Stack height={155} spacing={0.75}>
+        <Stack height={210} spacing={0.75}>
           <Typography fontWeight={600}>Support:</Typography>
           <List dense>
             {desc.support.map((support, i) => (

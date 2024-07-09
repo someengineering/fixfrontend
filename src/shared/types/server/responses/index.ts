@@ -55,6 +55,7 @@ export type {
 } from './GetWorkspaceInventorySearchStart'
 export type { GetWorkspaceInvitesResponse, WorkspaceInvite } from './GetWorkspaceInvites'
 export type { GetWorkspaceNotificationsResponse } from './GetWorkspaceNotifications'
+export type { GetWorkspaceProductTier, GetWorkspaceProductTiersResponse } from './GetWorkspaceProductTiers'
 export type { GetWorkspaceSettingsResponse } from './GetWorkspaceSettings'
 export type { GetWorkspaceUsersResponse, WorkspaceUser } from './GetWorkspaceUsers'
 export type { GetWorkspaceResponse, GetWorkspacesResponse } from './GetWorkspaces'

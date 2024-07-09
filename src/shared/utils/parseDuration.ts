@@ -129,7 +129,7 @@ export const parseISO8601Duration = (iso8601Duration: string) => {
       parsedDuration.days * 60 * 60 * 24 +
       parsedDuration.weeks * 60 * 60 * 24 * 7 +
       parsedDuration.months * 60 * 60 * 24 * 30 +
-      parsedDuration.years * 60 * 60 * 24 * 30 * 365) *
+      parsedDuration.years * 60 * 60 * 24 * 365) *
     1000
 
   return parsedDuration

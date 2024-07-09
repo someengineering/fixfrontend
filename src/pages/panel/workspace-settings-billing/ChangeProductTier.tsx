@@ -1,11 +1,14 @@
 import { Trans } from '@lingui/macro'
 import CreditCardIcon from '@mui/icons-material/CreditCard'
 import { Box, ButtonBase, Divider, Stack, Typography, alpha } from '@mui/material'
+import { useQuery } from '@tanstack/react-query'
 import { Fragment, useRef, useState } from 'react'
 import { AwsLogo } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
+import { getWorkspaceProductTiersQuery } from 'src/pages/panel/shared/queries'
 import { endPoints, env } from 'src/shared/constants'
 import { ExternalLinkLoadingButton } from 'src/shared/link-button'
+import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { PaymentMethod, ProductTier } from 'src/shared/types/server-shared'
 import { ChangePaymentNoMethodModal } from './ChangePaymentNoMethodModal'
 import { ChangeProductTierModal } from './ChangeProductTierModal'
@@ -32,6 +35,10 @@ export const ChangeProductTier = ({
   nextBillingCycle,
 }: ChangeProductTierProps) => {
   const { selectedWorkspace, checkPermission } = useUserProfile()
+  const { data } = useQuery({
+    queryFn: getWorkspaceProductTiersQuery,
+    queryKey: ['workspace-product-tiers', selectedWorkspace?.id],
+  })
   const hasPermission = checkPermission('updateBilling')
   const tierFromSearchParams = useGetProductTierFromSearchParams()
   const showModalRef = useRef<(show?: boolean | undefined) => void>()
@@ -53,12 +60,12 @@ export const ChangeProductTier = ({
       ? null
       : allProductTiers.indexOf(productTier) > allProductTiers.indexOf(defaultProductTier)
 
-  return (
+  return data ? (
     <>
       <Stack direction={{ xs: 'column', sm: 'row' }} flexWrap="wrap" alignItems={{ xs: 'center', sm: 'stretch' }} justifyContent="center">
         {allProductTiers.map((curProductTier, i) => {
           const selectedProductTier = curProductTier === productTier || (productTier === 'Trial' && curProductTier === 'Free')
-          return (
+          return data[curProductTier] ? (
             <Fragment key={curProductTier}>
               {i ? <ProductTierDivider /> : null}
               {selectedProductTier || !hasPermission ? (
@@ -81,7 +88,7 @@ export const ChangeProductTier = ({
                     transition: (theme) => theme.transitions.create(['box-shadow', 'background-color']),
                   }}
                 >
-                  <ProductTierComp productTier={curProductTier} />
+                  <ProductTierComp productTier={curProductTier} productTierData={data[curProductTier]} />
                 </Stack>
               ) : (
                 <ButtonBase
@@ -97,11 +104,11 @@ export const ChangeProductTier = ({
                   }}
                   onClick={hasPermission ? () => setProductTier(curProductTier) : undefined}
                 >
-                  <ProductTierComp productTier={curProductTier} />
+                  <ProductTierComp productTier={curProductTier} productTierData={data[curProductTier]} />
                 </ButtonBase>
               )}
             </Fragment>
-          )
+          ) : null
         })}
       </Stack>
       {hasPermission ? (
@@ -113,6 +120,17 @@ export const ChangeProductTier = ({
                 currentProductTier={currentProductTier}
                 showModalRef={showModalRef}
                 defaultOpen={true}
+                productTierData={
+                  data.Free ?? {
+                    account_limit: 0,
+                    accounts_included: 0,
+                    price_per_account_cents: 0,
+                    retention_period: 'P0s',
+                    scan_interval: 'P0s',
+                    seats_included: 0,
+                    seats_max: 0,
+                  }
+                }
               />
             ) : noWorkspaceMethod ? (
               <ChangePaymentNoMethodModal
@@ -132,6 +150,17 @@ export const ChangeProductTier = ({
                 selectedWorkspacePaymentMethod={selectedWorkspacePaymentMethod}
                 showModalRef={showModalRef}
                 defaultOpen={true}
+                productTierData={
+                  data[productTier] ?? {
+                    account_limit: 0,
+                    accounts_included: 0,
+                    price_per_account_cents: 0,
+                    retention_period: 'P0s',
+                    scan_interval: 'P0s',
+                    seats_included: 0,
+                    seats_max: 0,
+                  }
+                }
               />
             )
           ) : (
@@ -186,5 +215,7 @@ export const ChangeProductTier = ({
       ) : null}
       <Divider />
     </>
+  ) : (
+    <LoadingSuspenseFallback />
   )
 }

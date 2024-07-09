@@ -119,6 +119,7 @@ export const endPoints = {
       cfTemplate: `api/workspaces/${workspaceId}/cf_template`,
       externalId: `api/workspaces/${workspaceId}/external_id`,
       events: `api/workspaces/${workspaceId}/events`,
+      productTiers: `api/workspaces/${workspaceId}/product_tiers`,
     }),
   },
 }
