@@ -13,6 +13,8 @@ const pathnameToTitle = (pathname: string) => {
       return t`Amazon Web Services`
     case '/workspace-settings/accounts/setup-cloud/gcp':
       return t`Google Cloud Platform`
+    case '/workspace-settings/accounts/setup-cloud/azure':
+      return t`Azure`
     case '/workspace-settings/users':
       return t`Users`
     case '/workspace-settings/users/invitations':

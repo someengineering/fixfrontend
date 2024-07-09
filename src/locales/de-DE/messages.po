@@ -13,11 +13,11 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:90
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:96
 msgid "({0} max)"
 msgstr "({0} max)"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:76
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:82
 msgid "(${0} / month per additional account)"
 msgstr "(${0} / Monat pro zusätzlichem Konto)"
 
@@ -74,7 +74,7 @@ msgstr "{0} Cloud-Konto beeinträchtigt, ID: {1}"
 msgid "{0} Cloud account discovered, id: {1}"
 msgstr "{0} Cloud-Konto entdeckt, ID: {1}"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:63
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:69
 msgid "{0} cloud accounts included"
 msgstr "{0} Cloud-Konten enthalten"
 
@@ -86,15 +86,15 @@ msgstr "{0} wurde verbunden"
 msgid "{0} Milliseconds"
 msgstr "{0} Millisekunden"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:85
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:91
 msgid "{0} scans"
 msgstr "{0} Scans"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:93
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:99
 msgid "{0} seat max"
 msgstr "{0} Sitzplatz max"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:89
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:95
 msgid "{0} seats included {1}"
 msgstr "{0} Sitzplätze inbegriffen {1}"
 
@@ -115,7 +115,7 @@ msgstr ""
 msgid "{label} is required"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:41
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:47
 msgid "/ month"
 msgstr "/ Monat"
 
@@ -457,6 +457,10 @@ msgstr "AWS Marketplace"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
+#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:17
+msgid "Azure"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:114
 msgid "Azure Service Management"
 msgstr ""
@@ -496,7 +500,7 @@ msgstr "Benchmarks"
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:51
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:80
 #: src/shared/layouts/panel-layout/menuList.tsx:82
-#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:21
+#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:23
 msgid "Billing"
 msgstr "Abrechnung"
 
@@ -786,7 +790,7 @@ msgstr "Kritisch"
 msgid "Current Product Tier"
 msgstr ""
 
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:300
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:305
 msgid "Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is necessary to configure alerting settings."
 msgstr "Derzeit stehen keine verbundenen Dienste zur Konfiguration zur Verfügung. Bitte beachten Sie, dass zum Konfigurieren der Alarmeinstellungen die Verbindung mindestens eines Dienstes erforderlich ist."
 
@@ -1024,7 +1028,7 @@ msgstr "Läuft ab"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:10
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:14
-#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:23
+#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:25
 msgid "External Directories"
 msgstr "Externe Verzeichnisse"
 
@@ -1087,12 +1091,12 @@ msgid "For engineering teams looking to automate their cloud infrastructure secu
 msgstr "Für Engineering-Teams, die die Sicherheit ihrer Cloud-Infrastruktur automatisieren möchten."
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:36
-msgid "For growing teams looking to stay secure as they build out infrastructure."
-msgstr "Für wachsende Teams, die sicher bleiben möchten, während sie die Infrastruktur aufbauen."
+msgid "For growing teams looking to stay secure as they build out infrastructure.\\n"
+msgstr "Für wachsende Teams, die sicher bleiben möchten, während sie die Infrastruktur aufbauen.\\n"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:13
-msgid "For solo software engineers who want to secure a single cloud account."
-msgstr "Für Solo-Softwareentwickler, die sich ein einziges Cloud-Konto sichern möchten."
+msgid "For solo software engineers who want to secure a single cloud account.\\n"
+msgstr "Für Solo-Softwareentwickler, die sich ein einziges Cloud-Konto sichern möchten.\\n"
 
 #: src/pages/auth/login/LoginPage.tsx:229
 msgid "Forget your password? Click here to reset your password."
@@ -1382,7 +1386,7 @@ msgstr ""
 msgid "Manual"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:53
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:59
 msgid "maximum of {0} cloud accounts"
 msgstr "maximal {0} Cloud-Konten"
 
@@ -1706,7 +1710,7 @@ msgstr ""
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:29
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:45
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:35
-#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:19
+#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:21
 msgid "Pending Invitations"
 msgstr "Ausstehende Einladungen"
 
@@ -2024,7 +2028,7 @@ msgstr ""
 #: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:50
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:156
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:163
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:212
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:217
 msgid "Severity"
 msgstr "Schwere"
 
@@ -2287,7 +2291,7 @@ msgstr "Benachrichtigung über Benutzereinstellungen"
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:27
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:68
 #: src/shared/layouts/panel-layout/menuList.tsx:77
-#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:17
+#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:19
 msgid "Users"
 msgstr "Benutzer"
 
