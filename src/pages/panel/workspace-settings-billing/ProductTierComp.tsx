@@ -2,6 +2,7 @@ import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import DoneIcon from '@mui/icons-material/Done'
 import { Box, Divider, List, ListItem, ListItemIcon, ListItemText, Stack, Typography } from '@mui/material'
+import { Fragment } from 'react'
 import { GetWorkspaceProductTier } from 'src/shared/types/server'
 import { ProductTier } from 'src/shared/types/server-shared'
 import { getISO8601DurationFromTimestamp, iso8601DurationToString, parseISO8601Duration } from 'src/shared/utils/parseDuration'
@@ -44,7 +45,12 @@ export const ProductTierComp = ({ productTier, productTierData }: ProductTierCom
       </Typography>
       <Typography>
         <Typography fontWeight={500} component="span">
-          {desc.description}
+          {desc.description.split('\\n').map((text, i) => (
+            <Fragment key={i}>
+              {text}
+              <br />
+            </Fragment>
+          ))}
         </Typography>{' '}
       </Typography>
       <Stack direction="column" my={1.5} spacing={0.25} alignItems="baseline">
@@ -92,7 +98,7 @@ export const ProductTierComp = ({ productTier, productTierData }: ProductTierCom
             {t`($${(productTierData.price_per_account_cents / 100).toLocaleString(locale)} / month per additional account)`}
           </Typography>
         ) : (
-          <Box height="3rem" />
+          <Box height="calc(1.5rem + 2px)" />
         )}
       </Stack>
       <Divider />

@@ -13,11 +13,11 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:106
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:112
 msgid "({0} max)"
 msgstr "({0} max)"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:92
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:98
 msgid "(${0} / month per additional account)"
 msgstr "(${0} / month per additional account)"
 
@@ -88,7 +88,7 @@ msgstr "{0} Cloud account degraded, id: {1}"
 msgid "{0} Cloud account discovered, id: {1}"
 msgstr "{0} Cloud account discovered, id: {1}"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:79
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:85
 msgid "{0} cloud accounts included"
 msgstr "{0} cloud accounts included"
 
@@ -100,19 +100,19 @@ msgstr "{0} has been connected"
 msgid "{0} Milliseconds"
 msgstr "{0} Milliseconds"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:30
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:31
 msgid "{0} per"
 msgstr "{0} per"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:109
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:115
 msgid "{0} seat max"
 msgstr "{0} seat max"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:105
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:111
 msgid "{0} seats included {1}"
 msgstr "{0} seats included {1}"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:31
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:32
 msgid "{0}-month history"
 msgstr "{0}-month history"
 
@@ -142,7 +142,7 @@ msgstr "{label} is not valid"
 msgid "{label} is required"
 msgstr "{label} is required"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:101
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:107
 msgid "{scanIntervalStr} scans"
 msgstr "{scanIntervalStr} scans"
 
@@ -151,7 +151,7 @@ msgstr "{scanIntervalStr} scans"
 msgid "{usersLength, plural, one {# user} other {# users}}"
 msgstr "{usersLength, plural, one {# user} other {# users}}"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:57
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:63
 msgid "/ month"
 msgstr "/ month"
 
@@ -477,6 +477,10 @@ msgstr "AWS Marketplace"
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace has been successfully subscribed"
 
+#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:17
+msgid "Azure"
+msgstr "Azure"
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:114
 msgid "Azure Service Management"
 msgstr "Azure Service Management"
@@ -516,7 +520,7 @@ msgstr "Benchmarks"
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:51
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:80
 #: src/shared/layouts/panel-layout/menuList.tsx:82
-#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:21
+#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:23
 msgid "Billing"
 msgstr "Billing"
 
@@ -810,7 +814,7 @@ msgstr "Critical"
 msgid "Current Product Tier"
 msgstr "Current Product Tier"
 
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:300
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:305
 msgid "Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is necessary to configure alerting settings."
 msgstr "Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is necessary to configure alerting settings."
 
@@ -822,7 +826,7 @@ msgstr "Custom alerting webhooks"
 msgid "Custom policies (coming soon!)"
 msgstr "Custom policies (coming soon!)"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:27
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:28
 msgid "Daily"
 msgstr "Daily"
 
@@ -1048,7 +1052,7 @@ msgstr "Expires"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:10
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:14
-#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:23
+#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:25
 msgid "External Directories"
 msgstr "External Directories"
 
@@ -1111,12 +1115,12 @@ msgid "For engineering teams looking to automate their cloud infrastructure secu
 msgstr "For engineering teams looking to automate their cloud infrastructure security."
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:31
-msgid "For growing teams looking to stay secure as they build out infrastructure."
-msgstr "For growing teams looking to stay secure as they build out infrastructure."
+msgid "For growing teams looking to stay secure as they build out infrastructure.\\n"
+msgstr "For growing teams looking to stay secure as they build out infrastructure.\\n"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:13
-msgid "For solo software engineers who want to secure a single cloud account."
-msgstr "For solo software engineers who want to secure a single cloud account."
+msgid "For solo software engineers who want to secure a single cloud account.\\n"
+msgstr "For solo software engineers who want to secure a single cloud account.\\n"
 
 #: src/pages/auth/login/LoginPage.tsx:229
 msgid "Forget your password? Click here to reset your password."
@@ -1184,7 +1188,7 @@ msgstr "Highest product tier this billing cycle"
 msgid "Homepage"
 msgstr "Homepage"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:29
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:30
 msgid "Hourly"
 msgstr "Hourly"
 
@@ -1405,7 +1409,7 @@ msgstr "Manage Card Details"
 msgid "Manual"
 msgstr "Manual"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:69
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:75
 msgid "maximum of {0} cloud accounts"
 msgstr "maximum of {0} cloud accounts"
 
@@ -1422,7 +1426,7 @@ msgstr "Member"
 msgid "MFA already enabled"
 msgstr "MFA already enabled"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:25
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:26
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:127
 msgid "Monthly"
 msgstr "Monthly"
@@ -1730,7 +1734,7 @@ msgstr "Payment method to add"
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:29
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:45
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:48
-#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:19
+#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:21
 msgid "Pending Invitations"
 msgstr "Pending Invitations"
 
@@ -2048,7 +2052,7 @@ msgstr "Severities"
 #: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:50
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:156
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:163
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:212
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:217
 msgid "Severity"
 msgstr "Severity"
 
@@ -2311,7 +2315,7 @@ msgstr "User Settings Notification"
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:27
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:68
 #: src/shared/layouts/panel-layout/menuList.tsx:77
-#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:17
+#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:19
 msgid "Users"
 msgstr "Users"
 
@@ -2393,7 +2397,7 @@ msgstr "Workspace Settings"
 msgid "Workspace Users"
 msgstr "Workspace Users"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:23
+#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:24
 msgid "Yearly"
 msgstr "Yearly"
 

@@ -54,7 +54,7 @@ const DrawerMenuItem = ({
   hideOnGuard,
   children,
 }: DrawerMenuItemProps) => {
-  const match = useMatch({ path: route + (children?.length ? '/*' : '') })
+  const match = useMatch({ path: `${route}/*` })
   const [searchParams] = useSearchParams()
   const matchRouteSearch = routeSearch
     ? routeSearch

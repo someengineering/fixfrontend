@@ -1909,10 +1909,10 @@
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.1.tgz#16308cea045f0fc777b6ff20a9f25474dd8293d2"
   integrity sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==
 
-"@fontsource-variable/nunito-sans@^5.0.14":
-  version "5.0.14"
-  resolved "https://registry.yarnpkg.com/@fontsource-variable/nunito-sans/-/nunito-sans-5.0.14.tgz#b28b6b6a7a348f555f8693b5803b29b108d51e84"
-  integrity sha512-C+zzqbHcWdCftYzSOMTjppd3c9Qb2/WgOJGFFui2vPDN2Dcrcuv7grzNFKtImQln+fMDt0vVQYol6SdvZAvlxA==
+"@fontsource-variable/plus-jakarta-sans@^5.0.21":
+  version "5.0.21"
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/plus-jakarta-sans/-/plus-jakarta-sans-5.0.21.tgz#3bb6e0d16add99f0b93981443d4d763ea85ad13b"
+  integrity sha512-VTQB+MnaYbjLNmfxQJ/Fc2rayLGlqTiZa6nZTpplS0lJF3XKcWPPItilGFMZW4lfwIiroo+FIfBewBOF3MrMPQ==
 
 "@humanwhocodes/config-array@^0.11.14":
   version "0.11.14"

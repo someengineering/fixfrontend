@@ -124,7 +124,7 @@ export default function WorkspaceSettingsAccountsSetupCloudAWSPage() {
               alignItems="center"
               alignSelf="center"
             >
-              <Typography variant="body1" mb={{ xs: 1, md: 0 }} alignSelf={{ xs: 'start', md: 'center' }} width={100}>
+              <Typography variant="body2" mb={{ xs: 1, md: 0 }} alignSelf={{ xs: 'start', md: 'center' }} width={100}>
                 <Trans>External Id</Trans>:
               </Typography>
               <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
@@ -142,7 +142,7 @@ export default function WorkspaceSettingsAccountsSetupCloudAWSPage() {
               alignItems="center"
               alignSelf="center"
             >
-              <Typography variant="body1" mb={{ xs: 1, md: 0 }} alignSelf={{ xs: 'start', md: 'center' }} width={100}>
+              <Typography variant="body2" mb={{ xs: 1, md: 0 }} alignSelf={{ xs: 'start', md: 'center' }} width={100}>
                 <Trans>Workspace Id</Trans>:
               </Typography>
               <WorkspaceId />

@@ -10,7 +10,7 @@ export const productTierToDescription = (productTier: ProductTier) => {
     case 'Trial':
     case 'Free':
       return {
-        description: t`For solo software engineers who want to secure a single cloud account.`,
+        description: t`For solo software engineers who want to secure a single cloud account.\n`,
         icon: AccessibilityNewIcon,
         monthly: false,
         featuresTitle: t`Features`,
@@ -28,7 +28,7 @@ export const productTierToDescription = (productTier: ProductTier) => {
       }
     case 'Plus':
       return {
-        description: t`For growing teams looking to stay secure as they build out infrastructure.`,
+        description: t`For growing teams looking to stay secure as they build out infrastructure.\n`,
         icon: WarehouseIcon,
         monthly: true,
         featuresTitle: t`Everything in Free, and`,
