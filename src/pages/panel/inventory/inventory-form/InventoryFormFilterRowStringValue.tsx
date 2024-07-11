@@ -64,7 +64,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
   const [typed, setTyped] = useState(value && !Array.isArray(value) ? value.label : '')
   const debouncedTyped = useDebounce(networkDisabled ? '' : typed, panelUI.fastInputChangeDebounce)
   const selectedTyped = useRef('')
-  const q = useMemo(() => query.delete_predicate(propertyName), [propertyName, query]).toString()
+  const q = useMemo(() => query?.delete_predicate(propertyName), [propertyName, query])?.toString() ?? 'all'
   const {
     data = null,
     isLoading,
