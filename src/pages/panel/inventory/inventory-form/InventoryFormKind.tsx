@@ -1,7 +1,7 @@
 import { t } from '@lingui/macro'
 // import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 // import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
-import { useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { InventoryFormDefaultValue } from './InventoryFormDefaultValue'
 import { InventoryFormField } from './InventoryFormField'
@@ -27,6 +27,9 @@ export const InventoryFormKind = ({ preItems }: { preItems: AutoCompletePreDefin
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(values), preItems.kinds])
   const [open, setOpen] = useState<HTMLDivElement | null>(null)
+
+  const handleChange = useCallback((values: string[]) => (values.length ? setIs(values) : deleteIs()), [deleteIs, setIs])
+
   return (
     <>
       <InventoryFormField
@@ -37,7 +40,7 @@ export const InventoryFormKind = ({ preItems }: { preItems: AutoCompletePreDefin
         // endIcon={open ? <ArrowDropUpIcon fontSize="small" color="disabled" /> : <ArrowDropDownIcon fontSize="small" color="disabled" />}
       />
       <InventoryFormDefaultValue
-        onChange={(values) => (values.length ? setIs(values) : deleteIs())}
+        onChange={handleChange}
         values={values}
         label={t`kind`}
         onClose={() => setOpen(null)}

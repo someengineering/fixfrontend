@@ -3,6 +3,8 @@ import { PropsWithChildren, createContext, memo } from 'react'
 import { WorkspaceInventorySearchTableHistory } from 'src/shared/types/server'
 import { JsonElement, Query } from './query'
 
+type ReturnTypeWithUndefined<T> = T extends (...args: infer Args) => unknown ? (...args: Args) => ReturnType<T> | undefined : never
+
 type CombineType = Query['combine']
 type DeleteIsType = Query['delete_is']
 type DeletePredicateType = Query['delete_predicate']
@@ -14,15 +16,15 @@ type UpdateFullTextType = Query['update_fulltext']
 
 export type FixQueryContextValue = {
   // default variables
-  error: Error | undefined
-  query: Query
-  account: Query['account']
-  cloud: Query['cloud']
-  parts: Query['parts']
-  region: Query['region']
-  severity: Query['severity']
+  error?: Error
+  query: Query | undefined
+  account?: Query['account']
+  cloud?: Query['cloud']
+  parts?: Query['parts']
+  region?: Query['region']
+  severity?: Query['severity']
   tags: Query['tags']
-  aggregate: Query['aggregate']
+  aggregate?: Query['aggregate']
   sorts: Query['sorts']
   // get
   fullTextSearches: ReturnType<Query['fulltexts']>
@@ -35,19 +37,19 @@ export type FixQueryContextValue = {
   // get methods
   findPaths: Query['find_paths']
   // update
-  combine: CombineType
-  deleteIs: DeleteIsType
-  deletePredicate: DeletePredicateType
-  deleteCloudAccountRegion: DeleteCloudAccountRegionType
-  setIs: (kinds: string[]) => Query
-  setPredicate: (name: string, op: string, value: JsonElement) => Query
-  setCloudAccountRegion: (name: 'cloud' | 'account' | 'region', op: string, value: JsonElement, useName?: boolean) => Query
-  changeCloudAccountRegionFromIdToName: (name: 'cloud' | 'account' | 'region', newValue: JsonElement, op?: string) => Query
-  updateFullTextSearch: UpdateFullTextType
+  combine: ReturnTypeWithUndefined<CombineType>
+  deleteIs: ReturnTypeWithUndefined<DeleteIsType>
+  deletePredicate: ReturnTypeWithUndefined<DeletePredicateType>
+  deleteCloudAccountRegion: ReturnTypeWithUndefined<DeleteCloudAccountRegionType>
+  setIs: (kinds: string[]) => Query | undefined
+  setPredicate: (name: string, op: string, value: JsonElement) => Query | undefined
+  setCloudAccountRegion: (name: 'cloud' | 'account' | 'region', op: string, value: JsonElement, useName?: boolean) => Query | undefined
+  changeCloudAccountRegionFromIdToName: (name: 'cloud' | 'account' | 'region', newValue: JsonElement, op?: string) => Query | undefined
+  updateFullTextSearch: ReturnTypeWithUndefined<UpdateFullTextType>
   deleteMatching: Query['delete_matching']
-  updateQuery: (q: string) => Query
+  updateQuery: (q: string) => Query | undefined
   onHistoryChange: (history?: WorkspaceInventorySearchTableHistory) => void
-  reset: () => Query
+  reset: () => Query | undefined
 }
 
 export const FixQueryContext = createContext<FixQueryContextValue | null>(null)
@@ -62,25 +64,32 @@ interface FixQueryProviderProps extends PropsWithChildren {
 export const FixQueryProvider = memo(
   ({ searchQuery, onChange, history, onHistoryChange, children }: FixQueryProviderProps) => {
     useLingui()
-    let query = Query.parse('all')
+    let query: Query | undefined
+    let queryOrAll = query ?? Query.parse('all')
     let error: Error | undefined
 
-    try {
-      query = Query.parse(searchQuery || 'all')
-    } catch (err) {
-      error = err as Error
+    if (searchQuery) {
+      try {
+        queryOrAll = query = Query.parse(searchQuery)
+      } catch (err) {
+        error = err as Error
+      }
     }
 
     function forceUpdateAndCall<Args extends unknown[]>(fn: (...args: Args) => Query) {
       return (...params: Args) => {
         const query = fn(...params)
         const result = query.toString()
+        if (result === 'all') {
+          onChange('')
+          return undefined
+        }
         onChange(result)
         return query
       }
     }
 
-    const { account, cloud, parts, region, severity, tags, aggregate, sorts } = query
+    const { account, cloud, parts = [], region, severity, tags = {}, aggregate, sorts = [] } = query || {}
     const value = {
       //history
       history,
@@ -97,37 +106,41 @@ export const FixQueryProvider = memo(
       aggregate,
       sorts,
       // get
-      fullTextSearches: query.fulltexts(),
-      is: query.is(),
-      q: query.toString(),
-      predicates: query.predicates(),
-      provides_security_check_details: query.provides_security_check_details(),
-      uiSimpleQuery: query.ui_simple_query(),
+      fullTextSearches: query?.fulltexts() ?? [],
+      is: query?.is(),
+      q: query?.toString() ?? '',
+      predicates: query?.predicates() ?? [],
+      provides_security_check_details: query?.provides_security_check_details() ?? false,
+      uiSimpleQuery: query?.ui_simple_query() ?? true,
       // get methods
-      findPaths: query.find_paths.bind(query),
+      findPaths: query?.find_paths.bind(query) ?? (() => []),
       // update
-      combine: forceUpdateAndCall<Parameters<CombineType>>(query.combine.bind(query)),
-      deleteIs: forceUpdateAndCall<Parameters<DeleteIsType>>(query.delete_is.bind(query)),
-      deletePredicate: forceUpdateAndCall<Parameters<DeletePredicateType>>(query.delete_predicate.bind(query)),
-      deleteCloudAccountRegion: forceUpdateAndCall<Parameters<DeleteCloudAccountRegionType>>(query.delete_cloud_account_region.bind(query)),
-      setIs: forceUpdateAndCall<Parameters<SetIsType>>(query.set_is.bind(query)),
-      setPredicate: forceUpdateAndCall<Parameters<SetPredicateType>>(query.set_predicate.bind(query)),
-      setCloudAccountRegion: forceUpdateAndCall<Parameters<SetCloudAccountRegionType>>(query.set_cloud_account_region.bind(query)),
-      updateFullTextSearch: forceUpdateAndCall<Parameters<UpdateFullTextType>>(query.update_fulltext.bind(query)),
-      deleteMatching: query.delete_matching.bind(query),
+      combine: forceUpdateAndCall<Parameters<CombineType>>(queryOrAll.combine.bind(queryOrAll)),
+      deleteIs: forceUpdateAndCall<Parameters<DeleteIsType>>(queryOrAll.delete_is.bind(queryOrAll)),
+      deletePredicate: forceUpdateAndCall<Parameters<DeletePredicateType>>(queryOrAll.delete_predicate.bind(queryOrAll)),
+      deleteCloudAccountRegion: forceUpdateAndCall<Parameters<DeleteCloudAccountRegionType>>(
+        queryOrAll.delete_cloud_account_region.bind(queryOrAll),
+      ),
+      setIs: forceUpdateAndCall<Parameters<SetIsType>>(queryOrAll.set_is.bind(queryOrAll)),
+      setPredicate: forceUpdateAndCall<Parameters<SetPredicateType>>(queryOrAll.set_predicate.bind(queryOrAll)),
+      setCloudAccountRegion: forceUpdateAndCall<Parameters<SetCloudAccountRegionType>>(
+        queryOrAll.set_cloud_account_region.bind(queryOrAll),
+      ),
+      updateFullTextSearch: forceUpdateAndCall<Parameters<UpdateFullTextType>>(queryOrAll.update_fulltext.bind(queryOrAll)),
+      deleteMatching: query?.delete_matching.bind(queryOrAll) ?? (() => null),
       changeCloudAccountRegionFromIdToName: (name: 'cloud' | 'account' | 'region', newValue: JsonElement, op?: string) => {
         const prevPredicate = name === 'cloud' ? cloud : name === 'account' ? account : region
-        const newQuery = query
-          .delete_cloud_account_region(name)
+        const newQuery = queryOrAll
+          ?.delete_cloud_account_region(name)
           .set_cloud_account_region(name, op ?? prevPredicate?.op ?? 'in', newValue, true)
-        const result = newQuery.toString()
+        const result = newQuery.toString() ?? ''
         onChange(result)
         return newQuery
       },
       updateQuery: (q: string) => {
-        if (query.toString() !== (q || 'all')) {
-          const newQuery = Query.parse(q || 'all')
-          const result = newQuery.toString()
+        if ((query?.toString() ?? '') !== q) {
+          const newQuery = q ? Query.parse(q) : undefined
+          const result = newQuery?.toString() ?? ''
           window.setTimeout(() => {
             onChange(result)
           })
@@ -137,11 +150,10 @@ export const FixQueryProvider = memo(
         }
       },
       reset: () => {
-        const query = Query.parse('all')
         window.setTimeout(() => {
-          onChange('all')
+          onChange('')
         })
-        return query
+        return undefined
       },
     }
 

@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { InventoryFormDefaultValue } from './InventoryFormDefaultValue'
 import { termValueToStringArray } from './utils'
@@ -38,18 +38,24 @@ export const InventoryFormRegionValues = ({ preItems, onClose, open, values }: I
     return result
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(values), preItems.regions])
+
+  const handleChange = useCallback(
+    (values: string[]) => {
+      if (isId) {
+        deleteCloudAccountRegion('region')
+      }
+      if (values) {
+        setCloudAccountRegion('region', 'in', values, true)
+      } else {
+        deleteCloudAccountRegion('region', true)
+      }
+    },
+    [deleteCloudAccountRegion, isId, setCloudAccountRegion],
+  )
+
   return (
     <InventoryFormDefaultValue
-      onChange={(values) => {
-        if (isId) {
-          deleteCloudAccountRegion('region')
-        }
-        if (values) {
-          setCloudAccountRegion('region', 'in', values, true)
-        } else {
-          deleteCloudAccountRegion('region', true)
-        }
-      }}
+      onChange={handleChange}
       values={curValues}
       label={t`Region`}
       onClose={onClose}
