@@ -2,12 +2,18 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { useUserProfile } from './useUserProfile'
 
-export function RequireAuth() {
+interface RequireAuthProps {
+  reverse?: boolean
+}
+
+export function RequireAuth({ reverse }: RequireAuthProps) {
   const navigate = useAbsoluteNavigate()
   const location = useLocation()
   const user = useUserProfile()
 
-  if (!user.isAuthenticated && location.pathname !== '/auth/login') {
+  const isAuthenticated = !user.isAuthenticated && location.pathname !== '/auth/login'
+
+  if (isAuthenticated && !reverse) {
     window.setTimeout(() => {
       navigate(
         {
@@ -18,6 +24,11 @@ export function RequireAuth() {
         },
         { replace: true },
       )
+    })
+    return null
+  } else if (reverse && !isAuthenticated) {
+    window.setTimeout(() => {
+      navigate(window.decodeURIComponent(location.search?.split('returnUrl=')[1]?.split('&')[0] ?? '/'), { replace: true })
     })
     return null
   }
