@@ -31,7 +31,9 @@ export const AppRouter = memo(
   () => (
     <Suspense fallback={<FullPageLoadingSuspenseFallback forceFullPage />}>
       <Routes>
-        <Route path="/auth/*" element={<AuthContainer />} />
+        <Route element={<RequireAuth reverse />}>
+          <Route path="/auth/*" element={<AuthContainer />} />
+        </Route>
         <Route element={<RequireAuth />}>
           <Route path="/subscription/*" element={<SubscriptionContainer />} />
           <Route path="/*" element={<PanelContainer />} />
