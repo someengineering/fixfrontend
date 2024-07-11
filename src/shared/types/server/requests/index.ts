@@ -1,5 +1,7 @@
+export type { DeleteApiTokenRequest } from './DeleteApiToken'
 export type { PatchWorkspaceInventoryNodeSecurityIgnoreRequest } from './PatchWorkspaceInventoryNodeSecurityIgnore'
 export type { PatchWorkspaceSettingsRequest } from './PatchWorkspaceSetting'
+export type { PostApiTokenRequest } from './PostApiToken'
 export type { PostAuthForgotPasswordRequest } from './PostAuthForgotPassword'
 export type { PostAuthJWTLoginErrorResponse, PostAuthJWTLoginRequest, PostAuthJWTLoginResponse } from './PostAuthJWTLogin'
 export type { PostAuthMfaAddErrorResponse, PostAuthMfaAddRequest, PostAuthMfaAddResponse } from './PostAuthMfaAdd'

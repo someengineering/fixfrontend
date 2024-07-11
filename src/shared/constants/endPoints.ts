@@ -1,6 +1,11 @@
 import { NotificationChannel } from 'src/shared/types/server-shared'
 
 export const endPoints = {
+  token: {
+    self: '/api/token/',
+    access: '/api/token/access',
+    info: '/api/token/info',
+  },
   auth: {
     forgotPassword: 'api/auth/forgot-password',
     jwt: {
