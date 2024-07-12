@@ -2,6 +2,8 @@ import { Trans } from '@lingui/macro'
 import { Divider, Stack, Typography } from '@mui/material'
 import { Suspense } from 'react'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
+import { LoadingSuspenseFallback } from 'src/shared/loading'
+import { UserSettingsApiTokens } from './UserSettingsApiTokens'
 import { UserSettingsFormEmail } from './UserSettingsFormEmail'
 import { UserSettingsFormPassword } from './UserSettingsFormPassword'
 import { UserSettingsNotification } from './UserSettingsNotification'
@@ -41,6 +43,12 @@ export default function UserSettingsPage() {
           }
         >
           <UserSettingsSocialNetworkList />
+        </Suspense>
+      </NetworkErrorBoundary>
+      <Divider />
+      <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+        <Suspense fallback={<LoadingSuspenseFallback />}>
+          <UserSettingsApiTokens />
         </Suspense>
       </NetworkErrorBoundary>
     </Stack>

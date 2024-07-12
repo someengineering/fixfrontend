@@ -63,6 +63,10 @@ msgstr "{0, plural, one {# Woche} other {# Wochen}}"
 msgid "{0, plural, one {# Year} other {# Years}}"
 msgstr "{0, plural, one {# Jahr} other {# Jahre}}"
 
+#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:31
+msgid "{0} ago"
+msgstr ""
+
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:68
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:115
 msgid "{0} checks failed."
@@ -432,6 +436,11 @@ msgstr "API-Zugriff"
 msgid "API Key"
 msgstr "API-Schlüssel"
 
+#: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:15
+#: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:20
+msgid "API Tokens"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:79
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:102
 msgid "Application (client) ID"
@@ -449,6 +458,7 @@ msgstr "Möchten Sie die Verbindung zu {name} wirklich trennen?"
 msgid "Are you sure you want to remove the {name} account {0}?"
 msgstr "Sind Sie sicher, dass Sie das {name}-Konto {0} entfernen möchten?"
 
+#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:52
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:454
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:85
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:107
@@ -541,6 +551,7 @@ msgstr ""
 msgid "Business"
 msgstr "Business"
 
+#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:59
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:68
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:121
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:49
@@ -659,6 +670,7 @@ msgstr ""
 msgid "Client secret"
 msgstr ""
 
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:78
 #: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:36
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:391
 msgid "Close"
@@ -748,7 +760,7 @@ msgstr "Verbinden Sie Teams"
 msgid "Connect your AWS account"
 msgstr "Verbinden Sie Ihr AWS-Konto"
 
-#: src/pages/panel/user-settings/UserSettingsPage.tsx:32
+#: src/pages/panel/user-settings/UserSettingsPage.tsx:34
 msgid "Connected Accounts"
 msgstr "Verbundene Konten"
 
@@ -781,12 +793,32 @@ msgstr ""
 msgid "Core CSPM scanning capabilities"
 msgstr "Kern-CSPM-Scanfunktionen"
 
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:90
+msgid "Create"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:84
 msgid "Create an App secret"
 msgstr ""
 
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:64
+msgid "Create new API token"
+msgstr ""
+
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:72
+msgid "Create new API Token"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:46
 msgid "Create Service Account"
+msgstr ""
+
+#: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:27
+msgid "Created"
+msgstr ""
+
+#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:95
+msgid "Created At"
 msgstr ""
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:242
@@ -862,6 +894,11 @@ msgstr ""
 msgid "Delayed Effect"
 msgstr "Verzögerte Wirkung"
 
+#: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:33
+#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:40
+#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:44
+#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:45
+#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:86
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:79
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:372
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:376
@@ -896,6 +933,8 @@ msgstr "Bereitstellung für ein einzelnes Konto"
 msgid "Deploy to organization"
 msgstr "Für die Organisation bereitstellen"
 
+#: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:24
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:97
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:24
 msgid "Description"
 msgstr "Beschreibung"
@@ -937,6 +976,10 @@ msgstr ""
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:457
 msgid "Do you want to delete this account?"
 msgstr "Möchten Sie dieses Konto löschen?"
+
+#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:53
+msgid "Do you want to delete this API Token?"
+msgstr ""
 
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:86
 msgid "Do you want to delete this invitation?"
@@ -1359,6 +1402,11 @@ msgstr "Arten"
 msgid "Last login"
 msgstr "Letzte Anmeldung"
 
+#: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:30
+#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:98
+msgid "Last used"
+msgstr ""
+
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:105
 msgid "Learn more about the associated risk"
 msgstr ""
@@ -1453,6 +1501,7 @@ msgstr "Die meisten nicht konformen Konten"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:177
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:233
+#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:92
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:496
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:65
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
@@ -1575,7 +1624,7 @@ msgstr ""
 msgid "Nothing to show yet"
 msgstr "Noch nichts zu zeigen"
 
-#: src/pages/panel/user-settings/UserSettingsPage.tsx:27
+#: src/pages/panel/user-settings/UserSettingsPage.tsx:29
 msgid "Notification"
 msgstr "Benachrichtigung"
 
@@ -1744,6 +1793,10 @@ msgstr "Wählen Sie eine der Empfehlungen rechts aus und verbessern Sie Ihre Sic
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:70
 msgid "Please add a payment method to switch your workspace's product tier"
+msgstr ""
+
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:105
+msgid "Please enter a brief description"
 msgstr ""
 
 #: src/pages/auth/login/LoginPage.tsx:184
@@ -2161,6 +2214,10 @@ msgstr "Das von Ihnen gesendete Token ist ungültig oder abgelaufen. Bitte versu
 msgid "The workspace you requested cannot be accessed. Please request access from the workspace administrator."
 msgstr ""
 
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:104
+msgid "There's already another api tokens with the same description"
+msgstr ""
+
 #: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:48
 msgid "There's no account configured for this workspace."
 msgstr "Für diesen Arbeitsbereich ist kein Konto konfiguriert."
@@ -2303,7 +2360,7 @@ msgstr ""
 msgid "User Impersonation permission"
 msgstr ""
 
-#: src/pages/panel/user-settings/UserSettingsPage.tsx:16
+#: src/pages/panel/user-settings/UserSettingsPage.tsx:18
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:157
 msgid "User Settings"
 msgstr "Benutzereinstellungen"
