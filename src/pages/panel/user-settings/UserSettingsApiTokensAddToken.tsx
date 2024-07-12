@@ -1,7 +1,7 @@
 import { t, Trans } from '@lingui/macro'
 import AddIcon from '@mui/icons-material/Add'
 import { LoadingButton } from '@mui/lab'
-import { Button, TextField } from '@mui/material'
+import { Box, Button, Stack, TextField, Typography } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useRef, useState } from 'react'
@@ -101,9 +101,18 @@ export const UserSettingsApiTokensAddToken = ({ forbiddenNames, onClose }: UserS
         }
       >
         {isSuccess && data?.token ? (
-          <>
-            Token: <SecretField secret={data.token} numberOfCharacter={68} />
-          </>
+          <Typography component={Stack}>
+            <Box mb={2}>
+              <Trans>
+                <b>Important</b>: Copy and securely store this token immediately.
+                <br />
+                You will not be able to view the token again after you navigate away from this page.
+              </Trans>
+            </Box>
+            <Box>
+              <Trans>Token</Trans>: <SecretField secret={data.token} numberOfCharacter={68} slotProps={{ containerStack: { mt: 1 } }} />
+            </Box>
+          </Typography>
         ) : (
           <TextField
             label={t`Description`}
