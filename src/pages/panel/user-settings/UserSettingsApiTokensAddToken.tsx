@@ -1,61 +1,70 @@
 import { t, Trans } from '@lingui/macro'
 import AddIcon from '@mui/icons-material/Add'
 import { LoadingButton } from '@mui/lab'
-import { Button, Stack, TextField } from '@mui/material'
+import { Button, TextField } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
 import { useRef, useState } from 'react'
 import { useThemeMode } from 'src/core/theme'
 import { Modal } from 'src/shared/modal'
-import { ApiTokenItem } from 'src/shared/types/server'
+import { SecretField } from 'src/shared/secret-field'
+import { ApiTokenItem, PostApiTokenErrorResponse } from 'src/shared/types/server'
 import { postApiTokenMutation } from './postApiToken.mutation'
 
 interface UserSettingsApiTokensAddTokenProps {
   forbiddenNames: string[]
+  onClose?: () => void
 }
 
-export const UserSettingsApiTokensAddToken = ({ forbiddenNames }: UserSettingsApiTokensAddTokenProps) => {
+export const UserSettingsApiTokensAddToken = ({ forbiddenNames, onClose }: UserSettingsApiTokensAddTokenProps) => {
   const [submitted, setSubmitted] = useState(false)
   const [description, setDescription] = useState('')
   const { mode } = useThemeMode()
 
   const modalRef = useRef<(show?: boolean | undefined) => void>()
   const queryClient = useQueryClient()
-  const { mutate, isPending } = useMutation({
+  const { mutate, isPending, data, isSuccess, error, reset } = useMutation({
     mutationFn: postApiTokenMutation,
+    onSuccess: () => {
+      const newDate = new Date().toISOString()
+      queryClient.setQueryData(['api-token'], (oldData: ApiTokenItem[]) => [
+        {
+          created_at: newDate,
+          last_used_at: null,
+          name: description,
+          permission: null,
+          workspace_id: null,
+          updated_at: newDate,
+        },
+        ...oldData,
+      ])
+    },
     onSettled: () => {
-      modalRef.current?.(false)
-      setDescription('')
-      setSubmitted(false)
       void queryClient.invalidateQueries({ queryKey: ['api-token'] })
     },
   })
 
-  const hasErrorBeforeSubmitted = !description || forbiddenNames.includes(description)
-  const hasError = submitted && hasErrorBeforeSubmitted
+  const hasErrorAfterSubmit = (error as AxiosError<PostApiTokenErrorResponse>)?.response?.data?.detail
+  const hasErrorBeforeSubmitted = !!hasErrorAfterSubmit || !description || forbiddenNames.includes(description)
+  const hasError = (submitted && hasErrorBeforeSubmitted) || !!hasErrorAfterSubmit
 
   const onSubmit = () => {
     setSubmitted(true)
     if (!hasErrorBeforeSubmitted) {
-      mutate(
-        { name: description, permission: null, workspace_id: null },
-        {
-          onSuccess: () => {
-            const newDate = new Date().toISOString()
-            queryClient.setQueryData(['api-token'], (oldData: ApiTokenItem[]) => [
-              {
-                created_at: newDate,
-                last_used_at: null,
-                name: description,
-                permission: null,
-                workspace_id: null,
-                updated_at: newDate,
-              },
-              ...oldData,
-            ])
-          },
-        },
-      )
+      mutate({ name: description, permission: null, workspace_id: null })
     }
+  }
+
+  const handleReset = () => {
+    setDescription('')
+    setSubmitted(false)
+    reset()
+  }
+
+  const handleClose = () => {
+    handleReset()
+    modalRef.current?.(false)
+    onClose?.()
   }
 
   return (
@@ -64,35 +73,38 @@ export const UserSettingsApiTokensAddToken = ({ forbiddenNames }: UserSettingsAp
         <Trans>Create new API token</Trans>
       </Button>
       <Modal
-        onClose={() => {
-          setDescription('')
-          setSubmitted(false)
-        }}
+        onClose={handleReset}
         openRef={modalRef}
         title={<Trans>Create new API Token</Trans>}
         onSubmit={onSubmit}
         actions={
           <>
             {isPending ? null : (
-              <Button color="inherit" onClick={() => modalRef.current?.(false)}>
+              <Button color="inherit" onClick={handleClose}>
                 <Trans>Close</Trans>
               </Button>
             )}
-            <LoadingButton
-              loadingPosition={isPending ? 'start' : undefined}
-              startIcon={<AddIcon />}
-              loading={isPending}
-              color="success"
-              variant="outlined"
-              disabled={hasError}
-              onClick={onSubmit}
-            >
-              <Trans>Create</Trans>
-            </LoadingButton>
+            {isSuccess && data?.token ? null : (
+              <LoadingButton
+                loadingPosition={isPending ? 'start' : undefined}
+                startIcon={<AddIcon />}
+                loading={isPending}
+                color="success"
+                variant="outlined"
+                disabled={hasError}
+                onClick={onSubmit}
+              >
+                <Trans>Create</Trans>
+              </LoadingButton>
+            )}
           </>
         }
       >
-        <Stack direction={{ xs: 'column', md: 'row' }} spacing={1} alignItems="center">
+        {isSuccess && data?.token ? (
+          <>
+            Token: <SecretField secret={data.token} numberOfCharacter={68} />
+          </>
+        ) : (
           <TextField
             label={t`Description`}
             error={hasError}
@@ -100,7 +112,7 @@ export const UserSettingsApiTokensAddToken = ({ forbiddenNames }: UserSettingsAp
             size="small"
             helperText={
               hasError
-                ? description
+                ? hasErrorAfterSubmit ?? description
                   ? t`There's already another api tokens with the same description`
                   : t`Please enter a brief description`
                 : undefined
@@ -109,7 +121,7 @@ export const UserSettingsApiTokensAddToken = ({ forbiddenNames }: UserSettingsAp
             value={description}
             onChange={(e) => setDescription(e.currentTarget.value)}
           />
-        </Stack>
+        )}
       </Modal>
     </>
   )

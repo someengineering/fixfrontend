@@ -670,7 +670,7 @@ msgstr ""
 msgid "Client secret"
 msgstr ""
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:78
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:84
 #: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:36
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:391
 msgid "Close"
@@ -778,10 +778,10 @@ msgstr ""
 msgid "Copied to Clipboard!"
 msgstr "In die Zwischenablage kopiert!"
 
-#: src/pages/panel/user-settings/UserSettingsTotpShowSecret.tsx:49
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/ExternalId.tsx:56
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceId.tsx:46
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:48
+#: src/shared/secret-field/SecretField.tsx:65
 msgid "Copy"
 msgstr "Kopieren"
 
@@ -793,7 +793,7 @@ msgstr ""
 msgid "Core CSPM scanning capabilities"
 msgstr "Kern-CSPM-Scanfunktionen"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:90
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:97
 msgid "Create"
 msgstr ""
 
@@ -801,11 +801,11 @@ msgstr ""
 msgid "Create an App secret"
 msgstr ""
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:64
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:73
 msgid "Create new API token"
 msgstr ""
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:72
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:78
 msgid "Create new API Token"
 msgstr ""
 
@@ -934,7 +934,7 @@ msgid "Deploy to organization"
 msgstr "Für die Organisation bereitstellen"
 
 #: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:24
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:97
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:109
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:24
 msgid "Description"
 msgstr "Beschreibung"
@@ -1738,7 +1738,7 @@ msgid "Other Workspace Settings"
 msgstr "Andere Arbeitsbereichseinstellungen"
 
 #: src/pages/auth/login/LoginPage.tsx:140
-#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:204
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:215
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:73
 msgid "OTP Code"
 msgstr "OTP-Code"
@@ -1795,7 +1795,7 @@ msgstr "Wählen Sie eine der Empfehlungen rechts aus und verbessern Sie Ihre Sic
 msgid "Please add a payment method to switch your workspace's product tier"
 msgstr ""
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:105
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:117
 msgid "Please enter a brief description"
 msgstr ""
 
@@ -2214,7 +2214,7 @@ msgstr "Das von Ihnen gesendete Token ist ungültig oder abgelaufen. Bitte versu
 msgid "The workspace you requested cannot be accessed. Please request access from the workspace administrator."
 msgstr ""
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:104
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:116
 msgid "There's already another api tokens with the same description"
 msgstr ""
 

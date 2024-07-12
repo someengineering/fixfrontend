@@ -670,7 +670,7 @@ msgstr "Click the service Account, go to the \"Keys\" Tab, and Click \"Add Key\"
 msgid "Client secret"
 msgstr "Client secret"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:78
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:84
 #: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:36
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:391
 msgid "Close"
@@ -778,10 +778,10 @@ msgstr "Continue"
 msgid "Copied to Clipboard!"
 msgstr "Copied to Clipboard!"
 
-#: src/pages/panel/user-settings/UserSettingsTotpShowSecret.tsx:49
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/ExternalId.tsx:56
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceId.tsx:46
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:48
+#: src/shared/secret-field/SecretField.tsx:65
 msgid "Copy"
 msgstr "Copy"
 
@@ -793,7 +793,7 @@ msgstr "Copy the Secret Value of the created secret and paste it in the Secret V
 msgid "Core CSPM scanning capabilities"
 msgstr "Core CSPM scanning capabilities"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:90
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:97
 msgid "Create"
 msgstr "Create"
 
@@ -801,11 +801,11 @@ msgstr "Create"
 msgid "Create an App secret"
 msgstr "Create an App secret"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:64
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:73
 msgid "Create new API token"
 msgstr "Create new API token"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:72
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:78
 msgid "Create new API Token"
 msgstr "Create new API Token"
 
@@ -934,7 +934,7 @@ msgid "Deploy to organization"
 msgstr "Deploy to organization"
 
 #: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:24
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:97
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:109
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:24
 msgid "Description"
 msgstr "Description"
@@ -1738,7 +1738,7 @@ msgid "Other Workspace Settings"
 msgstr "Other Workspace Settings"
 
 #: src/pages/auth/login/LoginPage.tsx:140
-#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:204
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:215
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:73
 msgid "OTP Code"
 msgstr "OTP Code"
@@ -1795,7 +1795,7 @@ msgstr "Pick one of the recommendations to the right and improve your security"
 msgid "Please add a payment method to switch your workspace's product tier"
 msgstr "Please add a payment method to switch your workspace's product tier"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:105
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:117
 msgid "Please enter a brief description"
 msgstr "Please enter a brief description"
 
@@ -2214,7 +2214,7 @@ msgstr "The token that you sent is invalid or have been expired please try again
 msgid "The workspace you requested cannot be accessed. Please request access from the workspace administrator."
 msgstr "The workspace you requested cannot be accessed. Please request access from the workspace administrator."
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:104
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:116
 msgid "There's already another api tokens with the same description"
 msgstr "There's already another api tokens with the same description"
 
