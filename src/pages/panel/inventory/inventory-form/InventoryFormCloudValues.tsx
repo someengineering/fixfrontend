@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro'
 import { Stack, Typography } from '@mui/material'
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { InventoryFormDefaultValue } from './InventoryFormDefaultValue'
@@ -41,18 +41,23 @@ export const InventoryFormCloudValues = ({ preItems, onClose, open, values }: In
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(values), preItems.clouds])
 
+  const handleChange = useCallback(
+    (values: string[]) => {
+      if (isId) {
+        deleteCloudAccountRegion('cloud')
+      }
+      if (values) {
+        setCloudAccountRegion('cloud', 'in', values, true)
+      } else {
+        deleteCloudAccountRegion('cloud', true)
+      }
+    },
+    [deleteCloudAccountRegion, isId, setCloudAccountRegion],
+  )
+
   return (
     <InventoryFormDefaultValue
-      onChange={(values) => {
-        if (isId) {
-          deleteCloudAccountRegion('cloud')
-        }
-        if (values) {
-          setCloudAccountRegion('cloud', 'in', values, true)
-        } else {
-          deleteCloudAccountRegion('cloud', true)
-        }
-      }}
+      onChange={handleChange}
       values={curValues}
       label={t`Cloud`}
       onClose={onClose}

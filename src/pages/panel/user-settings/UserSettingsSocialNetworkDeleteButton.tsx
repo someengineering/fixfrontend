@@ -7,7 +7,7 @@ import { useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { Modal } from 'src/shared/modal'
 import { GetOAuthAssociatesResponse } from 'src/shared/types/server'
-import { deleteOAuthAssociateQuery } from './deleteOAuthAssociate.query'
+import { deleteOAuthAssociateMutation } from './deleteOAuthAssociate.mutation'
 
 interface UserSettingsSocialNetworkDeleteButtonProps {
   providerId: string
@@ -17,7 +17,7 @@ interface UserSettingsSocialNetworkDeleteButtonProps {
 
 export const UserSettingsSocialNetworkDeleteButton = ({ providerId, email, name }: UserSettingsSocialNetworkDeleteButtonProps) => {
   const { currentUser } = useUserProfile()
-  const { mutate, isPending } = useMutation({ mutationFn: deleteOAuthAssociateQuery })
+  const { mutate, isPending } = useMutation({ mutationFn: deleteOAuthAssociateMutation })
   const queryClient = useQueryClient()
 
   const openRef = useRef<(show?: boolean | undefined) => void>()

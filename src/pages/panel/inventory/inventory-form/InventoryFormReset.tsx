@@ -5,7 +5,7 @@ import { useFixQueryParser } from 'src/shared/fix-query-parser'
 
 export const InventoryFormReset = () => {
   const { q, reset } = useFixQueryParser()
-  return q && q !== 'all' ? (
+  return q ? (
     <Stack order={1} alignSelf="stretch" alignItems="end" flexGrow={1}>
       <Tooltip title={t`Clear the search`} arrow>
         <IconButton
