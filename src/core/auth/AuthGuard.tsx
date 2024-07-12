@@ -85,12 +85,13 @@ export function AuthGuard({ children }: PropsWithChildren) {
           ? window.location.search
           : `?returnUrl=${window.encodeURIComponent(window.location.pathname + window.location.search + (noWorkspace ? '' : window.location.hash))}`,
       })
+      postHog.reset()
+      clearAllCookies()
+      handleInternalSetAuth(defaultAuth)
       try {
         await logoutMutation()
-      } finally {
-        postHog.reset()
-        clearAllCookies()
-        handleInternalSetAuth(defaultAuth)
+      } catch {
+        /* empty */
       }
     },
     [handleInternalSetAuth, navigate, postHog],
