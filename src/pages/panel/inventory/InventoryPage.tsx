@@ -25,7 +25,7 @@ export default function InventoryPage() {
   const handleSetSearchCrit = useCallback(
     (crit?: string) => {
       const searchValues = getLocationSearchValues()
-      if (!crit || crit === 'all') {
+      if (!crit) {
         setHasError(false)
         delete searchValues['q']
       } else {
@@ -79,7 +79,7 @@ export default function InventoryPage() {
           <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
             <Outlet />
           </NetworkErrorBoundary>
-          {searchCrit && (searchCrit !== 'all' || (hasChanges && history.changes.length) || hasError) ? (
+          {searchCrit || hasChanges || hasError ? (
             <>
               <NetworkErrorBoundary
                 fallbackRender={({ resetErrorBoundary }) => (

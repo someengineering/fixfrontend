@@ -1,7 +1,7 @@
 import { t } from '@lingui/macro'
 // import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 // import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
-import { useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { InventoryFormDefaultValue } from './InventoryFormDefaultValue'
 import { InventoryFormField } from './InventoryFormField'
@@ -36,6 +36,20 @@ export const InventoryFormAccount = ({ preItems }: { preItems: AutoCompletePreDe
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(values), preItems.accounts])
 
+  const handleChange = useCallback(
+    (values: string[]) => {
+      if (isId) {
+        deleteCloudAccountRegion('account')
+      }
+      if (values) {
+        setCloudAccountRegion('account', 'in', values, true)
+      } else {
+        deleteCloudAccountRegion('account', true)
+      }
+    },
+    [deleteCloudAccountRegion, isId, setCloudAccountRegion],
+  )
+
   return (
     <>
       <InventoryFormField
@@ -46,16 +60,7 @@ export const InventoryFormAccount = ({ preItems }: { preItems: AutoCompletePreDe
         // endIcon={open ? <ArrowDropUpIcon fontSize="small" color="disabled" /> : <ArrowDropDownIcon fontSize="small" color="disabled" />}
       />
       <InventoryFormDefaultValue
-        onChange={(values) => {
-          if (isId) {
-            deleteCloudAccountRegion('account')
-          }
-          if (values) {
-            setCloudAccountRegion('account', 'in', values, true)
-          } else {
-            deleteCloudAccountRegion('account', true)
-          }
-        }}
+        onChange={handleChange}
         values={values}
         label={t`Account`}
         onClose={() => setOpen(null)}

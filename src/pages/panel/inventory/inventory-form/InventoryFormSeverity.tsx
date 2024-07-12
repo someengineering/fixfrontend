@@ -2,7 +2,7 @@ import { t } from '@lingui/macro'
 // import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 // import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 import { Typography } from '@mui/material'
-import { useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { DefaultPropertiesKeys, useFixQueryParser } from 'src/shared/fix-query-parser'
 import { SeverityType } from 'src/shared/types/server-shared'
@@ -33,6 +33,12 @@ export const InventoryFormSeverity = ({ preItems }: { preItems: AutoCompletePreD
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(values), preItems.severities])
 
+  const handleChange = useCallback(
+    (values: string[]) =>
+      values.length ? setPredicate(DefaultPropertiesKeys.Severity, 'in', values) : deletePredicate(DefaultPropertiesKeys.Severity),
+    [deletePredicate, setPredicate],
+  )
+
   return (
     <>
       <InventoryFormField
@@ -43,9 +49,7 @@ export const InventoryFormSeverity = ({ preItems }: { preItems: AutoCompletePreD
         // endIcon={open ? <ArrowDropUpIcon fontSize="small" color="disabled" /> : <ArrowDropDownIcon fontSize="small" color="disabled" />}
       />
       <InventoryFormDefaultValue
-        onChange={(values) =>
-          values.length ? setPredicate(DefaultPropertiesKeys.Severity, 'in', values) : deletePredicate(DefaultPropertiesKeys.Severity)
-        }
+        onChange={handleChange}
         values={values}
         label={t`Severity`}
         showItemLabel={(item) => (

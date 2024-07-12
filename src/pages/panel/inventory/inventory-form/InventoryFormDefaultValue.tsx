@@ -23,7 +23,7 @@ import {
   backdropClasses,
 } from '@mui/material'
 import { useDebounce } from '@uidotdev/usehooks'
-import { ReactNode, useEffect, useId, useState } from 'react'
+import { ReactNode, useEffect, useId, useRef, useState } from 'react'
 import { panelUI } from 'src/shared/constants'
 import { AutoCompleteValue } from 'src/shared/types/shared'
 
@@ -108,9 +108,11 @@ export const InventoryFormDefaultValue = ({
   const [typed, setTyped] = useState('')
   const [selectedValues, setSelectedValues] = useState(values)
   const debouncedValues = useDebounce(values, panelUI.fastInputChangeDebounce)
+  const previousValue = useRef(debouncedValues)
 
   useEffect(() => {
-    if (open) {
+    if (open && JSON.stringify(previousValue.current) !== JSON.stringify(debouncedValues)) {
+      previousValue.current = debouncedValues
       onChange(debouncedValues)
     }
   }, [debouncedValues, onChange, open])

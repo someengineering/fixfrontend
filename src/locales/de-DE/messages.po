@@ -250,7 +250,7 @@ msgid "Access to your account is broken"
 msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:195
-#: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:60
+#: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:65
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:239
 msgid "Account"
 msgstr "Konto"
@@ -259,7 +259,7 @@ msgstr "Konto"
 msgid "Account: {0}"
 msgstr "Konto: {0}"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:43
+#: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:57
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:125
 #: src/pages/panel/inventory/InventoryTable.error.tsx:73
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:57
@@ -348,7 +348,7 @@ msgstr "Admin"
 msgid "Advanced"
 msgstr ""
 
-#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:85
+#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:83
 msgid "Advanced search query"
 msgstr "Erweiterte Suchabfrage"
 
@@ -566,7 +566,7 @@ msgstr "Stornieren"
 msgid "Cannot enable this account"
 msgstr ""
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:211
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:213
 #: src/pages/panel/inventory/inventory-form/InventoryFormMoreValue.tsx:125
 #: src/pages/panel/inventory/inventory-form/InventoryFormTagsValue.tsx:115
 msgid "Change"
@@ -665,7 +665,7 @@ msgid "Close"
 msgstr "Schließen"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:165
-#: src/pages/panel/inventory/inventory-form/InventoryFormCloudValues.tsx:57
+#: src/pages/panel/inventory/inventory-form/InventoryFormCloudValues.tsx:62
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:96
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:235
 #: src/pages/panel/security/AccountCard.tsx:37
@@ -1341,7 +1341,7 @@ msgstr "Externen Benutzer einladen"
 msgid "Invites"
 msgstr "Lädt ein"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormKind.tsx:42
+#: src/pages/panel/inventory/inventory-form/InventoryFormKind.tsx:45
 msgid "kind"
 msgstr ""
 
@@ -1351,7 +1351,7 @@ msgstr ""
 msgid "Kind"
 msgstr "Art"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormKind.tsx:34
+#: src/pages/panel/inventory/inventory-form/InventoryFormKind.tsx:37
 msgid "Kinds"
 msgstr "Arten"
 
@@ -1530,7 +1530,7 @@ msgstr "Nächste Synchronisierung"
 msgid "No"
 msgstr ""
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:202
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:204
 msgid "No {label} found for {typed}"
 msgstr ""
 
@@ -1633,7 +1633,7 @@ msgid "Oops, the username or password doesn't seem to match our records. Please 
 msgstr "Hoppla, der Benutzername oder das Passwort scheinen nicht mit unseren Aufzeichnungen übereinzustimmen. Bitte versuche es erneut."
 
 #: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:97
-#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:114
+#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:112
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Sie sie und versuchen Sie es erneut."
 
@@ -1853,7 +1853,7 @@ msgstr "Regenerieren"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:183
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:97
-#: src/pages/panel/inventory/inventory-form/InventoryFormRegionValues.tsx:54
+#: src/pages/panel/inventory/inventory-form/InventoryFormRegionValues.tsx:60
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:240
 msgid "Region"
 msgstr "Region"
@@ -1931,7 +1931,7 @@ msgstr "Risiko"
 msgid "Roles"
 msgstr "Rollen"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:167
+#: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:169
 msgid "Search {0}"
 msgstr ""
 
@@ -2042,14 +2042,14 @@ msgstr "E-Mail-Benachrichtigungen einrichten"
 msgid "Setup cloud"
 msgstr ""
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:40
-#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:56
+#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:46
+#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:60
 msgid "Severities"
 msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:81
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:102
-#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:50
+#: src/pages/panel/inventory/inventory-form/InventoryFormSeverity.tsx:54
 #: src/pages/panel/inventory/inventory-form/utils/getAutoCompleteFromKey.tsx:156
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:163
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:217

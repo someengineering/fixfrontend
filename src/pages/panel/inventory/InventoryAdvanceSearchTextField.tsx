@@ -16,7 +16,7 @@ export const InventoryAdvanceSearchTextField = ({ hasError }: InventoryAdvanceSe
   const [hasTextError, setHasTextError] = useState(false)
   const { updateQuery, reset, error, q } = useFixQueryParser()
 
-  const [searchCritValue, setSearchCritValue] = useState(!q && q !== 'all' ? '' : q)
+  const [searchCritValue, setSearchCritValue] = useState(q ?? '')
 
   const timeoutRef = useRef<number>()
 
@@ -69,8 +69,6 @@ export const InventoryAdvanceSearchTextField = ({ hasError }: InventoryAdvanceSe
     setHasTextError(false)
   }
 
-  const searchCritValueWithoutAll = searchCritValue === 'all' ? '' : searchCritValue
-
   return (
     <>
       <TextField
@@ -78,8 +76,8 @@ export const InventoryAdvanceSearchTextField = ({ hasError }: InventoryAdvanceSe
         margin="dense"
         multiline
         label={
-          <Stack direction="row" gap={1} mt={!focused && !searchCritValueWithoutAll ? 0.5 : undefined}>
-            <Collapse in={!focused && !searchCritValueWithoutAll} orientation="horizontal">
+          <Stack direction="row" gap={1} mt={!focused && !searchCritValue ? 0.5 : undefined}>
+            <Collapse in={!focused && !searchCritValue} orientation="horizontal">
               <SearchIcon />
             </Collapse>
             <Trans>Advanced search query</Trans>
@@ -88,16 +86,16 @@ export const InventoryAdvanceSearchTextField = ({ hasError }: InventoryAdvanceSe
         fullWidth
         size="small"
         inputProps={{ sx: { ml: 1 } }}
-        value={searchCritValueWithoutAll}
+        value={searchCritValue}
         onChange={handleChange}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         onReset={reset}
         InputProps={{
-          startAdornment: focused || searchCritValueWithoutAll ? <SearchIcon /> : undefined,
+          startAdornment: focused || searchCritValue ? <SearchIcon /> : undefined,
           endAdornment: (
             <Stack direction="row" alignItems="center" mr={-1}>
-              {searchCritValueWithoutAll ? (
+              {searchCritValue ? (
                 <IconButton size="small" onClick={handleReset}>
                   <CloseIcon />
                 </IconButton>
