@@ -2,15 +2,27 @@ import { Trans } from '@lingui/macro'
 import CopyAllIcon from '@mui/icons-material/CopyAll'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
-import { Box, Button, IconButton, Stack, Typography } from '@mui/material'
+import { Box, BoxProps, Button, ButtonProps, IconButton, Stack, StackProps, Typography, TypographyProps } from '@mui/material'
 import { useState } from 'react'
 import { useCopyString } from 'src/shared/utils/useCopyString'
 
-interface UserSettingsTotpShowSecretProps {
+interface SecretFieldProps {
   secret?: string
+  numberOfCharacter?: number
+  slotProps?: {
+    containerStack?: StackProps
+    typographyContainerBox?: BoxProps
+    typography?: TypographyProps
+    copyButtonContainerBox?: BoxProps
+    copyButton?: ButtonProps
+  }
 }
 
-export const UserSettingsTotpShowSecret = ({ secret }: UserSettingsTotpShowSecretProps) => {
+export const SecretField = ({
+  secret,
+  numberOfCharacter,
+  slotProps: { containerStack, copyButton, copyButtonContainerBox, typographyContainerBox, typography } = {},
+}: SecretFieldProps) => {
   const [showSecret, setShowSecret] = useState(false)
   const copyString = useCopyString()
   const handleCopy = () => {
@@ -22,16 +34,13 @@ export const UserSettingsTotpShowSecret = ({ secret }: UserSettingsTotpShowSecre
     setShowSecret((prev) => !prev)
   }
   return (
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row" spacing={1} {...containerStack}>
       <Box
         display="inline-flex"
         bgcolor={({ palette }) => (palette.mode === 'light' ? 'grey.300' : 'grey.800')}
         alignItems="center"
         justifyContent="space-between"
-        ml={{ xs: 0, md: 2 }}
-        mb={{ xs: 1, md: 0 }}
-        width={350}
-        minHeight={40}
+        {...typographyContainerBox}
       >
         <Typography
           variant="h6"
@@ -39,13 +48,20 @@ export const UserSettingsTotpShowSecret = ({ secret }: UserSettingsTotpShowSecre
           p={{ xs: 1, md: 2 }}
           whiteSpace="nowrap"
           fontSize={{ xs: 12, md: 'initial' }}
+          {...typography}
         >
-          {showSecret ? secret : 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'}
+          {showSecret ? secret : new Array(secret?.length ?? numberOfCharacter ?? 12).fill('X')}
         </Typography>
         <IconButton onClick={handleToggleShowSecret}>{showSecret ? <VisibilityIcon /> : <VisibilityOffIcon />}</IconButton>
       </Box>
-      <Box ml={2} alignSelf={{ xs: 'end', md: 'stretch' }}>
-        <Button variant="contained" startIcon={<CopyAllIcon />} onClick={handleCopy} sx={{ height: { xs: 'auto', md: '100%' } }}>
+      <Box ml={2} alignSelf={{ xs: 'end', md: 'stretch' }} {...copyButtonContainerBox}>
+        <Button
+          variant="contained"
+          startIcon={<CopyAllIcon />}
+          onClick={handleCopy}
+          sx={{ height: { xs: 'auto', md: '100%' } }}
+          {...copyButton}
+        >
           <Trans>Copy</Trans>
         </Button>
       </Box>

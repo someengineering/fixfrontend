@@ -172,6 +172,10 @@ msgstr "<0>{0} checks failing</0> out of {1}"
 msgid "<0>Fix supports full text search by encasing the search term in double quotes. For instance,<1><2><3>{searchInstance}</3></2></1>enables you to scan your entire infrastructure for a specific IP address.</0><4>Additionally, you can query for any resource attribute by utilizing the <5><6>{attributeOperatorValue}</6></5> format, where the operator can be {0}or <7><8>{1}</8></7>. For example,<9><10><11>{searchTagsOwners}</11></10></9>allows you to find all resources tagged with an <12><13>{owner}</13></12> attribute equal to <14><15>{sre}</15></14>.</4><16>Search queries can be refined using boolean operators {2}<17><18>{3}</18></17> to combine multiple terms. An example would be<19><20><21>{searchEc2InstanceCores}</21></20></19>to identify all EC2 instances possessing more than 4 cores.</16><22>For detailed search syntax guidance, visit <23>https://docs.fix.security/search-syntax<24/></23></22>"
 msgstr "<0>Fix supports full text search by encasing the search term in double quotes. For instance,<1><2><3>{searchInstance}</3></2></1>enables you to scan your entire infrastructure for a specific IP address.</0><4>Additionally, you can query for any resource attribute by utilizing the <5><6>{attributeOperatorValue}</6></5> format, where the operator can be {0}or <7><8>{1}</8></7>. For example,<9><10><11>{searchTagsOwners}</11></10></9>allows you to find all resources tagged with an <12><13>{owner}</13></12> attribute equal to <14><15>{sre}</15></14>.</4><16>Search queries can be refined using boolean operators {2}<17><18>{3}</18></17> to combine multiple terms. An example would be<19><20><21>{searchEc2InstanceCores}</21></20></19>to identify all EC2 instances possessing more than 4 cores.</16><22>For detailed search syntax guidance, visit <23>https://docs.fix.security/search-syntax<24/></23></22>"
 
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:106
+msgid "<0>Important</0>: Copy and securely store this token immediately.<1/>You will not be able to view the token again after you navigate away from this page."
+msgstr "<0>Important</0>: Copy and securely store this token immediately.<1/>You will not be able to view the token again after you navigate away from this page."
+
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:165
 msgid "<0>Open Your Authenticator App:</0> Head over to your authenticator app and choose to add a new account manually.<1>Enter Account Details:</1> You'll need to type in your account's email address or username, and the key provided below.<2>Your Key:</2> <3/><4>Verification Type:</4> Make sure to select \"Time-based\" as the verification type.<5>Enter the Code:</5> Once your account is added manually, the app will show a 6-digit code. Pop that code into the box below and hit \"Activate\"."
 msgstr "<0>Open Your Authenticator App:</0> Head over to your authenticator app and choose to add a new account manually.<1>Enter Account Details:</1> You'll need to type in your account's email address or username, and the key provided below.<2>Your Key:</2> <3/><4>Verification Type:</4> Make sure to select \"Time-based\" as the verification type.<5>Enter the Code:</5> Once your account is added manually, the app will show a 6-digit code. Pop that code into the box below and hit \"Activate\"."
@@ -670,7 +674,7 @@ msgstr "Click the service Account, go to the \"Keys\" Tab, and Click \"Add Key\"
 msgid "Client secret"
 msgstr "Client secret"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:78
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:84
 #: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:36
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:391
 msgid "Close"
@@ -778,10 +782,10 @@ msgstr "Continue"
 msgid "Copied to Clipboard!"
 msgstr "Copied to Clipboard!"
 
-#: src/pages/panel/user-settings/UserSettingsTotpShowSecret.tsx:49
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/ExternalId.tsx:56
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceId.tsx:46
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:48
+#: src/shared/secret-field/SecretField.tsx:65
 msgid "Copy"
 msgstr "Copy"
 
@@ -793,7 +797,7 @@ msgstr "Copy the Secret Value of the created secret and paste it in the Secret V
 msgid "Core CSPM scanning capabilities"
 msgstr "Core CSPM scanning capabilities"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:90
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:97
 msgid "Create"
 msgstr "Create"
 
@@ -801,11 +805,11 @@ msgstr "Create"
 msgid "Create an App secret"
 msgstr "Create an App secret"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:64
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:73
 msgid "Create new API token"
 msgstr "Create new API token"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:72
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:78
 msgid "Create new API Token"
 msgstr "Create new API Token"
 
@@ -934,7 +938,7 @@ msgid "Deploy to organization"
 msgstr "Deploy to organization"
 
 #: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:24
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:97
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:118
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:24
 msgid "Description"
 msgstr "Description"
@@ -1738,7 +1742,7 @@ msgid "Other Workspace Settings"
 msgstr "Other Workspace Settings"
 
 #: src/pages/auth/login/LoginPage.tsx:140
-#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:204
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:215
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:73
 msgid "OTP Code"
 msgstr "OTP Code"
@@ -1795,7 +1799,7 @@ msgstr "Pick one of the recommendations to the right and improve your security"
 msgid "Please add a payment method to switch your workspace's product tier"
 msgstr "Please add a payment method to switch your workspace's product tier"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:105
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:126
 msgid "Please enter a brief description"
 msgstr "Please enter a brief description"
 
@@ -2214,7 +2218,7 @@ msgstr "The token that you sent is invalid or have been expired please try again
 msgid "The workspace you requested cannot be accessed. Please request access from the workspace administrator."
 msgstr "The workspace you requested cannot be accessed. Please request access from the workspace administrator."
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:104
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:125
 msgid "There's already another api tokens with the same description"
 msgstr "There's already another api tokens with the same description"
 
@@ -2263,6 +2267,10 @@ msgstr "To access this resource, please ensure that you are logged into the AWS 
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:81
 msgid "To AWS Marketplace"
 msgstr "To AWS Marketplace"
+
+#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:113
+msgid "Token"
+msgstr "Token"
 
 #: src/pages/panel/security/OverallCard.tsx:123
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:117

@@ -22,9 +22,9 @@ import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { FixLogoUrl } from 'src/assets/icons'
 import { Spinner } from 'src/shared/loading'
 import { Modal } from 'src/shared/modal'
+import { SecretField } from 'src/shared/secret-field'
 import { GetCurrentUserResponse } from 'src/shared/types/server'
 import { UserSettingsTotpRecoveryCodesModal } from './UserSettingsTotpRecoveryCodesModal'
-import { UserSettingsTotpShowSecret } from './UserSettingsTotpShowSecret'
 import { postAuthMfaAddMutation } from './postAuthMfaAdd.mutation'
 import { postAuthMfaEnableMutation } from './postAuthMfaEnable.mutation'
 
@@ -174,7 +174,18 @@ export const UserSettingsTotpActivationModal = ({ activationModalRef, isLoading,
                     <Typography variant="h5" component="span">
                       Your Key:
                     </Typography>{' '}
-                    <UserSettingsTotpShowSecret secret={data.secret} />
+                    <SecretField
+                      secret={data.secret}
+                      numberOfCharacter={32}
+                      slotProps={{
+                        typographyContainerBox: {
+                          ml: { xs: 0, md: 2 },
+                          mb: { xs: 1, md: 0 },
+                          width: 350,
+                          minHeight: 40,
+                        },
+                      }}
+                    />
                     <Typography variant="h5" component="span">
                       Verification Type:
                     </Typography>{' '}

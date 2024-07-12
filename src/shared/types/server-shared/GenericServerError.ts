@@ -9,3 +9,7 @@ type ErrorTupleToObject<ErrorMessage, T extends [number, ErrorMessage[]]> = T ex
 export type GenericServerError<T extends [number, ErrorMessage[]][], ErrorMessage = unknown> = {
   [P in keyof T]: T[P] extends [number, ErrorMessage[]] ? ErrorTupleToObject<ErrorMessage, T[P]> : never
 }[number]
+
+export type GenericServerErrorWithMessage = {
+  message: string
+}
