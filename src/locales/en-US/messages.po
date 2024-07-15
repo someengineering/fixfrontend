@@ -442,7 +442,7 @@ msgid "API Tokens"
 msgstr "API Tokens"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:82
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:112
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:120
 msgid "Application (client) ID"
 msgstr "Application (client) ID"
 
@@ -959,7 +959,7 @@ msgstr "Description"
 msgid "Details"
 msgstr "Details"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:120
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:128
 msgid "Directory (tenant) ID"
 msgstr "Directory (tenant) ID"
 
@@ -1009,8 +1009,8 @@ msgstr "Do you want to delete this user?"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Don't have an account? Click here to Sign up."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:49
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:105
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:58
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:113
 msgid "Done! We will now import your Azure accounts, this usually takes a couple of minutes."
 msgstr "Done! We will now import your Azure accounts, this usually takes a couple of minutes."
 
@@ -1348,6 +1348,10 @@ msgstr "In the Select Members window, type the name of the App you created earli
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:77
 msgid "Inactivity reminder"
 msgstr "Inactivity reminder"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:27
+msgid "Incorrect credentials. Please carefully review and re-enter your Application ID, Directory ID, and Secret Value correctly, then submit again."
+msgstr "Incorrect credentials. Please carefully review and re-enter your Application ID, Directory ID, and Secret Value correctly, then submit again."
 
 #: src/shared/defined-messages/getMessage.ts:17
 msgid "Info"
@@ -2024,7 +2028,7 @@ msgstr "Search {0}"
 msgid "Searches for database instances with no connections over a significant period, indicating potential waste."
 msgstr "Searches for database instances with no connections over a significant period, indicating potential waste."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:128
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:136
 msgid "Secret Value"
 msgstr "Secret Value"
 
@@ -2178,6 +2182,10 @@ msgstr "Something went wrong please try again later."
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:70
 msgid "Sources"
 msgstr "Sources"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:144
+msgid "Submission Error"
+msgstr "Submission Error"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzurePage.tsx:17
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:294

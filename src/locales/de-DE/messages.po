@@ -442,7 +442,7 @@ msgid "API Tokens"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:82
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:112
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:120
 msgid "Application (client) ID"
 msgstr ""
 
@@ -959,7 +959,7 @@ msgstr "Beschreibung"
 msgid "Details"
 msgstr "Einzelheiten"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:120
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:128
 msgid "Directory (tenant) ID"
 msgstr ""
 
@@ -1009,8 +1009,8 @@ msgstr "Möchten Sie diesen Benutzer löschen?"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:49
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:105
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:58
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:113
 msgid "Done! We will now import your Azure accounts, this usually takes a couple of minutes."
 msgstr ""
 
@@ -1348,6 +1348,10 @@ msgstr ""
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:77
 msgid "Inactivity reminder"
 msgstr "Inaktivitätserinnerung"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:27
+msgid "Incorrect credentials. Please carefully review and re-enter your Application ID, Directory ID, and Secret Value correctly, then submit again."
+msgstr ""
 
 #: src/shared/defined-messages/getMessage.ts:17
 msgid "Info"
@@ -2024,7 +2028,7 @@ msgstr ""
 msgid "Searches for database instances with no connections over a significant period, indicating potential waste."
 msgstr "Sucht nach Datenbankinstanzen ohne Verbindungen über einen längeren Zeitraum, was auf potenzielle Verschwendung hinweist."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:128
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:136
 msgid "Secret Value"
 msgstr ""
 
@@ -2178,6 +2182,10 @@ msgstr "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einma
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:70
 msgid "Sources"
 msgstr "Quellen"
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:144
+msgid "Submission Error"
+msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzurePage.tsx:17
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:294

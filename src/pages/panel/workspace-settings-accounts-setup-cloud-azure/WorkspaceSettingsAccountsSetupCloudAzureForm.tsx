@@ -139,9 +139,9 @@ export const WorkspaceSettingsAccountsSetupCloudAzureForm = ({
               disabled={isPending}
             />
             {errorMessageDetail ? (
-              <Alert severity="error" sx={{ width: 500, maxWidth: '100%' }} title={t``}>
+              <Alert severity="error" sx={{ width: 500, maxWidth: '100%' }}>
                 <AlertTitle>
-                  <Trans>Submission Error:</Trans>
+                  <Trans>Submission Error</Trans>:
                 </AlertTitle>
                 {errorMessageDetail}
               </Alert>
