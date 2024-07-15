@@ -1,5 +1,5 @@
 import { env } from 'src/shared/constants'
-const gcpUploadConfigInstructionsAssetsURL = `${env.imagesAssetsUrl}/azure-config-instructions/staged`
+const gcpUploadConfigInstructionsAssetsURL = `${env.imagesAssetsUrl}/azure-config-instructions/20240715T164452`
 
 const instructionImage1 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction1.png`, width: 1332, height: 432 }
 const instructionImage2 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction2.png`, width: 542, height: 476 }
