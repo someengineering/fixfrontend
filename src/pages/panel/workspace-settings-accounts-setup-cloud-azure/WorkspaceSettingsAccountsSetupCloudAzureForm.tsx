@@ -1,5 +1,5 @@
 import { Trans, t } from '@lingui/macro'
-import { Skeleton, Stack, Typography } from '@mui/material'
+import { Alert, AlertTitle, Skeleton, Stack, Typography } from '@mui/material'
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { Dispatch, FormEvent, PropsWithChildren, ReactNode, SetStateAction, useEffect, useRef } from 'react'
@@ -19,6 +19,15 @@ interface WorkspaceSettingsAccountsSetupCloudAzureFormProps extends PropsWithChi
 }
 
 type AzureFormNames = 'azure_tenant_id' | 'client_id' | 'client_secret'
+
+const errorResponseToMessage = (error?: AxiosError<PutWorkspaceCloudAccountAzureCredentialsErrorResponse>) => {
+  const detail = error?.response?.data?.detail
+  switch (detail) {
+    case 'invalid_credentials':
+      return t`Incorrect credentials. Please carefully review and re-enter your Application ID, Directory ID, and Secret Value correctly, then submit again.`
+  }
+  return detail
+}
 
 export const WorkspaceSettingsAccountsSetupCloudAzureForm = ({
   isMobile,
@@ -77,8 +86,7 @@ export const WorkspaceSettingsAccountsSetupCloudAzureForm = ({
     }
   }
 
-  const errorResponse = (error as AxiosError<PutWorkspaceCloudAccountAzureCredentialsErrorResponse>)?.response
-  const errorMessageDetail = errorResponse?.data?.detail
+  const errorMessageDetail = errorResponseToMessage(error as AxiosError<PutWorkspaceCloudAccountAzureCredentialsErrorResponse>)
 
   const handleChange = (name: AzureFormNames, value: string) => {
     formData.current[name].value = value
@@ -131,9 +139,12 @@ export const WorkspaceSettingsAccountsSetupCloudAzureForm = ({
               disabled={isPending}
             />
             {errorMessageDetail ? (
-              <Typography color="error.main" variant="h6">
+              <Alert severity="error" sx={{ width: 500, maxWidth: '100%' }} title={t``}>
+                <AlertTitle>
+                  <Trans>Submission Error:</Trans>
+                </AlertTitle>
                 {errorMessageDetail}
-              </Typography>
+              </Alert>
             ) : null}
             {submitButton}
           </Stack>
