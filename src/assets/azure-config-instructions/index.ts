@@ -1,5 +1,5 @@
 import { env } from 'src/shared/constants'
-const gcpUploadConfigInstructionsAssetsURL = `${env.imagesAssetsUrl}/azure-config-instructions`
+const gcpUploadConfigInstructionsAssetsURL = `${env.imagesAssetsUrl}/azure-config-instructions/staged`
 
 const instructionImage1 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction1.png`, width: 1332, height: 432 }
 const instructionImage2 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction2.png`, width: 542, height: 476 }
@@ -14,16 +14,19 @@ const instructionImage10 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instr
 const instructionImage11 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction11.png`, width: 2006, height: 1240 }
 const instructionImage12 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction12.png`, width: 2084, height: 1488 }
 const instructionImage13 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction13.png`, width: 702, height: 262 }
-const instructionImage14 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction14.png`, width: 1326, height: 420 }
-const instructionImage15 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction15.png`, width: 730, height: 334 }
-const instructionImage16 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction16.png`, width: 690, height: 862 }
+const instructionImage14 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction14.png`, width: 1410, height: 464 }
+const instructionImage15 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction15.png`, width: 1704, height: 642 }
+const instructionImage16 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction16.png`, width: 738, height: 808 }
 const instructionImage17 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction17.png`, width: 454, height: 354 }
-const instructionImage18 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction18.png`, width: 2332, height: 1044 }
+const instructionImage18 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction18.png`, width: 1720, height: 1026 }
 const instructionImage19 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction19.png`, width: 970, height: 134 }
 const instructionImage20 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction20.png`, width: 1044, height: 978 }
 const instructionImage21 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction21.png`, width: 1054, height: 1466 }
 const instructionImage22 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction22.png`, width: 1044, height: 1458 }
 const instructionImage23 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction23.png`, width: 1820, height: 1672 }
+const instructionImage24 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction24.png`, width: 2326, height: 972 }
+const instructionImage25 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction25.png`, width: 1038, height: 134 }
+const instructionImage26 = { src: `${gcpUploadConfigInstructionsAssetsURL}/instruction26.png`, width: 2736, height: 1686 }
 
 export {
   instructionImage1,
@@ -42,6 +45,9 @@ export {
   instructionImage21,
   instructionImage22,
   instructionImage23,
+  instructionImage24,
+  instructionImage25,
+  instructionImage26,
   instructionImage3,
   instructionImage4,
   instructionImage5,

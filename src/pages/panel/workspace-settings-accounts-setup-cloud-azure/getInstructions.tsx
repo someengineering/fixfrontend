@@ -17,6 +17,9 @@ import {
   instructionImage21,
   instructionImage22,
   instructionImage23,
+  instructionImage24,
+  instructionImage25,
+  instructionImage26,
   instructionImage3,
   instructionImage4,
   instructionImage5,
@@ -78,12 +81,12 @@ export const getInstructions = (isMobile: boolean): InstructionType[] => [
   {
     label: t`Application (client) ID`,
     image: instructionImage4,
-    instruction: t`On the new screen, copy Application (client) ID and Directory (tenant) ID and paste them in the fields ${isMobile ? t`bellow` : t`on the left side`}.`,
+    instruction: t`On the new screen, copy the Application (client) ID and Directory (tenant) ID into the fields ${isMobile ? t`bellow` : t`on the left side`}.`,
   },
   {
     label: t`Create an App secret`,
     image: instructionImage5,
-    instruction: t`Now, Go to the certificates and secrets section.`,
+    instruction: t`Go to the certificates and secrets section.`,
   },
   {
     label: t`New client secret`,
@@ -123,17 +126,17 @@ export const getInstructions = (isMobile: boolean): InstructionType[] => [
   {
     label: t`Add Permission`,
     image: instructionImage13,
-    instruction: t`Click the Add a permission button:`,
+    instruction: t`Click the Add permissions button:`,
   },
   {
-    label: t`Add the Role assignment to the App`,
+    label: t`Create a Role Assignment between the App and your Management Group`,
     image: instructionImage14,
-    instruction: t`In the search field, type Subscriptions:`,
+    instruction: t`In the search field, type Management groups:`,
   },
   {
-    label: t`Subscriptions`,
+    label: t`Management Group or subscription`,
     image: instructionImage15,
-    instruction: t`Click on the Subscriptions link, then navigate to your subscription:`,
+    instruction: t`Click on the Management Groups link, then navigate to the desired management group or subscription. If you want to connect all your subscriptions to Fix, choose the Tenant Root Group:`,
   },
   {
     label: t`Access Control (IAM)`,
@@ -171,12 +174,27 @@ export const getInstructions = (isMobile: boolean): InstructionType[] => [
     instruction: t`Click on it and then click select:`,
   },
   {
-    label: t`Review and assign (1)`,
+    label: t`Review and assign`,
     image: instructionImage23,
     instruction: t`Click review and assign:`,
   },
   {
-    label: t`Review and assign (2)`,
-    instruction: t`Click review and assign one more time, press the submit button ${isMobile ? t`bellow` : t`on the left side`}, and Done. 🎉🎊`,
+    label: t`Check the detail`,
+    image: instructionImage24,
+    instruction: t`Check the Application name and Scope for correctness:`,
+  },
+  {
+    label: t`Review and assign (again)`,
+    image: instructionImage25,
+    instruction: t`Click Review + Assign:`,
+  },
+  {
+    label: t`Check the newly created role assignment`,
+    image: instructionImage26,
+    instruction: t`On the Access Control (IAM) page, you can check the newly created role assignment: it should assign a Reader role to the application you created (Fix Security in this example) with the scope of current resource (Management Group):`,
+  },
+  {
+    label: t`Press submit and done 🎉🎊`,
+    instruction: t`Press the submit button, and Done. 🎉🎊`,
   },
 ]
