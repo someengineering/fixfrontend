@@ -27,7 +27,7 @@ export type {
 export type { PostWorkspaceInviteRequest } from './PostWorkspaceInvite'
 export type { PutNotificationUserRequest } from './PutNotificationUser'
 export type { PutWorkspaceAlertingSettingsRequest } from './PutWorkspaceAlertingSettings'
-export type { PutWorkspaceBillingRequest } from './PutWorkspaceBilling'
+export type { PutWorkspaceBillingErrorResponse, PutWorkspaceBillingRequest } from './PutWorkspaceBilling'
 export type {
   PutWorkspaceCloudAccountAzureCredentialsErrorResponse,
   PutWorkspaceCloudAccountAzureCredentialsRequest,

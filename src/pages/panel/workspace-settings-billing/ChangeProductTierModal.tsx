@@ -13,8 +13,14 @@ import { getWorkspaceCloudAccountsQuery, getWorkspaceUsersQuery } from 'src/page
 import { endPoints, env } from 'src/shared/constants'
 import { ExternalLinkLoadingButton } from 'src/shared/link-button'
 import { Modal } from 'src/shared/modal'
-import { GetWorkspaceCloudAccountsResponse, GetWorkspaceProductTier, GetWorkspaceUsersResponse } from 'src/shared/types/server'
+import {
+  GetWorkspaceCloudAccountsResponse,
+  GetWorkspaceProductTier,
+  GetWorkspaceUsersResponse,
+  PutWorkspaceBillingErrorResponse,
+} from 'src/shared/types/server'
 import { PaymentMethod, PaymentMethodWithoutNone, PaymentMethods, ProductTier } from 'src/shared/types/server-shared'
+import { changeProductTierErrorResponseToMessage } from './changeProductTierErrorResponseToMessage'
 import { putWorkspaceBillingMutation } from './putWorkspaceBilling.mutation'
 import { paymentMethodToLabel, paymentMethods, productTierToLabel } from './utils'
 
@@ -83,9 +89,9 @@ export const ChangeProductTierModal = ({
     onSuccess: () => {
       void showSnackbar(t`Product tier changed to ${selectedProductTier}`, { severity: 'success' })
     },
-    onError: (err) => {
-      const { response: { data } = { data: { message: '' } } } = err as AxiosError<{ message?: string } | undefined>
-      void showSnackbar(data?.message ?? t`An error occurred, please try again later.`, {
+    onError: (error) => {
+      const errorMessageDetail = changeProductTierErrorResponseToMessage(error as AxiosError<PutWorkspaceBillingErrorResponse>)
+      void showSnackbar(errorMessageDetail ?? t`An error occurred, please try again later.`, {
         severity: 'error',
         autoHideDuration: null,
       })
