@@ -3,7 +3,7 @@ import { AxiosError } from 'axios'
 import { PutWorkspaceBillingErrorResponse } from 'src/shared/types/server'
 
 export const changeProductTierErrorResponseToMessage = (error?: AxiosError<PutWorkspaceBillingErrorResponse & { message?: string }>) => {
-  const detail = error?.response?.data?.detail
+  const detail = error?.response?.data?.detail ?? error?.response?.data?.message
   switch (detail) {
     case 'downgrade_not_allowed':
       return t`Removal of payment method not permitted: Active payment is essential for paid product tiers. Consider switching to the free product tier or contact support for further guidance.`
@@ -16,5 +16,5 @@ export const changeProductTierErrorResponseToMessage = (error?: AxiosError<PutWo
     case 'unknown_payment_method':
       return t`Payment method unrecognized: Ensure you are using a payment method that is supported by our system.`
   }
-  return detail ?? error?.response?.data?.message
+  return detail
 }
