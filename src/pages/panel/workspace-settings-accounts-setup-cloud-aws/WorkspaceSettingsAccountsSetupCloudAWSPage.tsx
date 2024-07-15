@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/macro'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { Accordion, AccordionDetails, AccordionSummary, Alert, Box, Divider, Typography } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Alert, AlertTitle, Box, Divider, Typography } from '@mui/material'
 import { Suspense, useEffect } from 'react'
 import { useEvents } from 'src/core/events'
 import { SetupCloudButton } from 'src/pages/panel/shared/setup-cloud-button'
@@ -42,10 +42,10 @@ export default function WorkspaceSettingsAccountsSetupCloudAWSPage() {
         <Trans>In the next step we are going to set up the trust between FIX and your AWS cloud account.</Trans>
       </Typography>
       <Box mt={1}>
-        <Alert color="warning" sx={{ display: 'inline-flex' }}>
-          <Typography variant="h6" color="warning.main">
+        <Alert severity="warning" sx={{ display: 'inline-flex' }}>
+          <AlertTitle>
             <Trans>Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button.</Trans>
-          </Typography>
+          </AlertTitle>
         </Alert>
       </Box>
       <Box mt={3} display="flex" flexDirection="column" justifyContent="start" height={507}>

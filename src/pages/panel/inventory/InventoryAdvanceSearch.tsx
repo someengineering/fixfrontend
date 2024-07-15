@@ -46,7 +46,7 @@ export const InventoryAdvanceSearch = ({ hasError, hasChanges }: InventoryAdvanc
                     badgeContent={
                       <Tooltip
                         title={
-                          <Alert color="info" variant="outlined">
+                          <Alert severity="info" variant="outlined">
                             <Trans>
                               <AlertTitle>This search is complex.</AlertTitle>
                               The combo boxes below may not display all filter details but can help narrow your results. For full control,

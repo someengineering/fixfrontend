@@ -1,7 +1,7 @@
 import { t, Trans } from '@lingui/macro'
 import SendIcon from '@mui/icons-material/Send'
 import { LoadingButton } from '@mui/lab'
-import { Divider, Grid, styled, TextField, Typography } from '@mui/material'
+import { Alert, Divider, Grid, styled, TextField, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { FormEvent, Suspense, useState } from 'react'
@@ -104,7 +104,7 @@ export default function RegisterPage() {
         </Grid>
         {registerError && (
           <Grid item>
-            <Typography color="error.main">{registerError}</Typography>
+            <Alert severity="error">{registerError}</Alert>
           </Grid>
         )}
         <Grid item>

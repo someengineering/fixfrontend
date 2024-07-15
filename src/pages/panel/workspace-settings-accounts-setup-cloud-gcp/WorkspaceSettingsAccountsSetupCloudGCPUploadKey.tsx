@@ -1,6 +1,6 @@
 import { Trans, t } from '@lingui/macro'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
-import { Alert, Box, CircularProgress, Collapse, Divider, Skeleton, Stack, Typography } from '@mui/material'
+import { Alert, AlertTitle, Box, CircularProgress, Collapse, Divider, Skeleton, Stack, Typography } from '@mui/material'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useRef, useState } from 'react'
@@ -95,26 +95,28 @@ export const WorkspaceSettingsAccountsSetupCloudGCPUploadKey = ({ isMobile }: Wo
         </Collapse>
         <Collapse in={!!error}>
           <Alert variant="outlined" severity="error" sx={{ pointerEvents: 'all', cursor: 'initial' }} onClick={(e) => e.stopPropagation()}>
-            <Typography textAlign="left" component="div" fontWeight={500}>
-              {errorResponse?.status === 422 && errorMessageDetail ? (
-                <>
+            {errorResponse?.status === 422 && errorMessageDetail ? (
+              <>
+                <AlertTitle>
                   <Trans>
                     The Google Cloud Service Account key file is valid but did not allow us to list available projects. It is important to
                     ensure that it has the necessary permissions and that the required APIs are enabled to avoid this error. The following
                     message was created by GCP when we tried to list the projects:
                   </Trans>
                   <Divider sx={{ my: 2 }} />
-                  <Typography fontWeight={700}>{extractAndSplitUrlFromText(errorMessageDetail)}</Typography>
-                </>
-              ) : (
+                </AlertTitle>
+                <Typography fontWeight={700}>{extractAndSplitUrlFromText(errorMessageDetail)}</Typography>
+              </>
+            ) : (
+              <AlertTitle>
                 <Trans>Invalid file, Please follow the step-by-step instructions {isMobile ? t`above` : t`on the right side`}.</Trans>
-              )}
-            </Typography>
+              </AlertTitle>
+            )}
           </Alert>
         </Collapse>
         <Collapse in={!!isSuccess}>
           <Alert variant="outlined" severity="success">
-            <Typography textAlign="center" fontSize={18} fontWeight={600}>
+            <AlertTitle>
               <Trans>
                 The Google Cloud Service Account has been updated successfully.
                 <br />
@@ -124,7 +126,7 @@ export const WorkspaceSettingsAccountsSetupCloudGCPUploadKey = ({ isMobile }: Wo
                 <br />
                 We will send you an email once the projects are ready.
               </Trans>
-            </Typography>
+            </AlertTitle>
           </Alert>
         </Collapse>
       </Stack>

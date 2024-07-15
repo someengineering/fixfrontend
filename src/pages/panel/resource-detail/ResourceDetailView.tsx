@@ -6,6 +6,7 @@ import {
   Accordion,
   AccordionDetails,
   Alert,
+  AlertTitle,
   Box,
   Button,
   Divider,
@@ -269,10 +270,10 @@ export default function ResourceDetailView() {
                             </Button>
                           }
                         >
-                          <Alert color="warning">
-                            <Typography>
+                          <Alert severity="warning">
+                            <AlertTitle>
                               <Trans>To access this resource, please ensure that you are logged into the AWS account: {account}</Trans>
-                            </Typography>
+                            </AlertTitle>
                           </Alert>
                         </PopupModal>
                         <Button variant="contained" onClick={() => openResourceModalRef.current?.(true)} endIcon={<OpenInNewIcon />}>

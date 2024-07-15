@@ -1,13 +1,13 @@
 import { Trans } from '@lingui/macro'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
-import WarningIcon from '@mui/icons-material/Warning'
 import {
   Accordion,
   AccordionActions,
   AccordionDetails,
   AccordionSummary,
   Alert,
+  AlertTitle,
   Box,
   Button,
   Chip,
@@ -92,15 +92,15 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, 
         <AccordionDetails>
           {ignored ? (
             <Alert color="warning">
-              <Trans>Delayed Effect</Trans>:<br />
-              <Typography variant="h6">
-                <Trans>You've chosen to ignore this security check for the resource. Please note:</Trans>
-                <br />
-                <Trans>
-                  The change will be active from the next security scan onwards. Until the next scan, the resource will still show the
-                  failing check.
-                </Trans>
-              </Typography>
+              <AlertTitle>
+                <Trans>Delayed Effect</Trans>:
+              </AlertTitle>
+              <Trans>You've chosen to ignore this security check for the resource. Please note:</Trans>
+              <br />
+              <Trans>
+                The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing
+                check.
+              </Trans>
             </Alert>
           ) : null}
           <Typography variant={smallText ? 'h6' : 'h5'} fontWeight={smallText ? 800 : undefined} mt={2}>
@@ -221,13 +221,13 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, 
               ) : (
                 <Tooltip
                   title={
-                    <Stack direction="row" spacing={1} alignItems="center">
-                      <WarningIcon color="warning" />
-                      <Typography color="warning.main">
+                    <Alert severity="warning">
+                      <AlertTitle>
                         <Trans>If this security check does not apply to this resource, you can safely ignore it.</Trans>
-                      </Typography>
-                    </Stack>
+                      </AlertTitle>
+                    </Alert>
                   }
+                  slotProps={{ tooltip: { sx: { p: 0 } } }}
                   arrow
                 >
                   <FailedCheckIgnoreButton ignored={ignored} {...ignoreProps} />

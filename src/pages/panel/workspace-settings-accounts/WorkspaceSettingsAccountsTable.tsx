@@ -1,5 +1,5 @@
 import { plural, t, Trans } from '@lingui/macro'
-import { Alert, Typography } from '@mui/material'
+import { Alert, AlertTitle } from '@mui/material'
 import { useSuspenseQueries } from '@tanstack/react-query'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceCloudAccountsQuery, getWorkspaceProductTiersQuery } from 'src/pages/panel/shared/queries'
@@ -36,8 +36,8 @@ export const WorkspaceSettingsAccountsTable = () => {
   const canInviteBasedOnTier = accountLimit > accountLength
 
   const enableErrorModalContent = canInviteBasedOnTier ? null : (
-    <Alert color="warning">
-      <Typography>
+    <Alert severity="warning">
+      <AlertTitle>
         <Trans>
           You currently have{' '}
           {plural(accountLength, {
@@ -52,7 +52,7 @@ export const WorkspaceSettingsAccountsTable = () => {
           enabled in {selectedWorkspace?.tier} tier. To increase your cloud account limit, you can upgrade your product tier{' '}
           <InternalLink to="/workspace-settings/billing-receipts">here</InternalLink>.
         </Trans>
-      </Typography>
+      </AlertTitle>
     </Alert>
   )
 

@@ -1,8 +1,7 @@
 import { Trans, plural, t } from '@lingui/macro'
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied'
-import WarningIcon from '@mui/icons-material/Warning'
 import { LoadingButton } from '@mui/lab'
-import { Alert, Button, Link, Stack, Typography } from '@mui/material'
+import { Alert, AlertTitle, Button, Link, Stack, Typography } from '@mui/material'
 import { useMutation, useQueries, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { MutableRefObject } from 'react'
@@ -126,18 +125,18 @@ export const ChangeProductTierToFreeModal = ({
         <Typography>
           <Trans>New Product Tier</Trans>: {productTierToLabel('Free')}
         </Typography>
-        <Alert color="info" icon={<SentimentDissatisfiedIcon color="warning" />}>
-          <Typography>
+        <Alert severity="info" icon={<SentimentDissatisfiedIcon color="warning" />}>
+          <AlertTitle>
             <Trans>
               We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific
               you're missing, please reach out to me personally at <Link href="mailto:lars@some.engineering">lars@some.engineering</Link>.
               I'd love to hear from you and help in any way I can.
             </Trans>
-          </Typography>
+          </AlertTitle>
         </Alert>
         {hasNumberOfCloudAccountLimitation ? (
-          <Alert color="warning" icon={<WarningIcon />}>
-            <Typography>
+          <Alert severity="warning">
+            <AlertTitle>
               <Trans>
                 You currently have{' '}
                 {plural(cloudAccountsLength, {
@@ -151,12 +150,12 @@ export const ChangeProductTierToFreeModal = ({
                 })}{' '}
                 in order to downgrade to the free tier.
               </Trans>
-            </Typography>
+            </AlertTitle>
           </Alert>
         ) : null}
         {hasNumberOfUserLimitation ? (
-          <Alert color="warning" icon={<WarningIcon />}>
-            <Typography>
+          <Alert severity="warning">
+            <AlertTitle>
               <Trans>
                 You currently have{' '}
                 {plural(usersLength, {
@@ -170,7 +169,7 @@ export const ChangeProductTierToFreeModal = ({
                 })}{' '}
                 in order to downgrade to the free tier.
               </Trans>
-            </Typography>
+            </AlertTitle>
           </Alert>
         ) : null}
       </Stack>

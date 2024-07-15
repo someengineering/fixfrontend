@@ -29,8 +29,8 @@ msgstr ""
 msgid "{0, plural, one {# Day} other {# Days}}"
 msgstr "{0, plural, one {# Tag} other {# Tage}}"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:238
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:148
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:236
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:147
 msgid "{0, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
 msgstr ""
 
@@ -50,8 +50,8 @@ msgstr "{0, plural, one {# Monat} other {# Monate}}"
 msgid "{0, plural, one {# Second} other {# Seconds}}"
 msgstr "{0, plural, one {# Sekunde} other {# Sekunden}}"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:257
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:167
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:255
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:166
 msgid "{0, plural, one {# user} other {# users}}"
 msgstr ""
 
@@ -133,8 +133,8 @@ msgstr ""
 msgid "{added} configuration lines added and {removed} lines deleted."
 msgstr "{added} Konfigurationszeilen hinzugefügt und {removed} Zeilen gelöscht."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:233
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:143
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:231
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:142
 msgid "{cloudAccountsLength, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
 msgstr ""
 
@@ -150,8 +150,8 @@ msgstr ""
 msgid "{scanIntervalStr} scans"
 msgstr "{scanIntervalStr} Scans"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:252
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:162
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:250
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:161
 msgid "{usersLength, plural, one {# user} other {# users}}"
 msgstr ""
 
@@ -240,7 +240,7 @@ msgstr ""
 msgid "Abandoned"
 msgstr "Verlassen"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:110
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:112
 msgid "above"
 msgstr ""
 
@@ -259,7 +259,7 @@ msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:195
 #: src/pages/panel/inventory/inventory-form/InventoryFormAccount.tsx:65
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:239
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:240
 msgid "Account"
 msgstr "Konto"
 
@@ -301,7 +301,7 @@ msgid "Add a client secret"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:60
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:135
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:133
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:83
 msgid "Add a New Credit or Debit Card"
 msgstr ""
@@ -364,7 +364,7 @@ msgstr "Erweiterte Suchabfrage"
 msgid "Affected resources"
 msgstr ""
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:248
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:249
 #: src/shared/charts/NetworkDiagram.tsx:409
 msgid "Age"
 msgstr "Alter"
@@ -417,8 +417,8 @@ msgstr "Eine E-Mail wurde mit einem 'Passwort zurücksetzen'-Button an Ihren Pos
 msgid "An error occurred while connecting to {0}"
 msgstr "Beim Herstellen der Verbindung zu {0} ist ein Fehler aufgetreten."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:88
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:71
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:86
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:70
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:34
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:32
 msgid "An error occurred, please try again later."
@@ -504,7 +504,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:224
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:225
 msgid "Basic Information"
 msgstr "Grundinformation"
 
@@ -595,8 +595,8 @@ msgstr ""
 msgid "Change Payment method"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:160
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:119
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:158
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:118
 msgid "Change Product Tier"
 msgstr "Produktstufe ändern"
 
@@ -683,7 +683,7 @@ msgstr "Schließen"
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:165
 #: src/pages/panel/inventory/inventory-form/InventoryFormCloudValues.tsx:62
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:96
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:235
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:236
 #: src/pages/panel/security/AccountCard.tsx:37
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:493
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:59
@@ -825,7 +825,7 @@ msgstr ""
 msgid "Created At"
 msgstr ""
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:242
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:243
 msgid "Created Time"
 msgstr "Erstellte Zeit"
 
@@ -845,8 +845,8 @@ msgstr ""
 msgid "Critical"
 msgstr "Kritisch"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:202
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:124
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:200
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:123
 msgid "Current Product Tier"
 msgstr ""
 
@@ -894,7 +894,7 @@ msgid "Define Roles"
 msgstr ""
 
 #: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:44
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:95
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:96
 msgid "Delayed Effect"
 msgstr "Verzögerte Wirkung"
 
@@ -943,7 +943,7 @@ msgstr "Für die Organisation bereitstellen"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:320
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:321
 msgid "Details"
 msgstr "Einzelheiten"
 
@@ -1002,8 +1002,8 @@ msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 msgid "Done! We will now import your Azure accounts, this usually takes a couple of minutes."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:155
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:115
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:153
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:114
 msgid "Downgrade"
 msgstr "Downgrade"
 
@@ -1252,7 +1252,7 @@ msgstr ""
 msgid "Id"
 msgstr ""
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:232
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:233
 #: src/pages/panel/security/AccountCard.tsx:34
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:490
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:62
@@ -1288,7 +1288,7 @@ msgstr "Identifiziert S3-Buckets, die öffentlich zugänglich sind."
 msgid "Identifies storage volumes that are not attached to any running instance and had no read operations in the last 7 days."
 msgstr "Identifiziert Speichervolumes, die keiner laufenden Instanz zugeordnet sind und in den letzten 7 Tagen keine Lesevorgänge durchgeführt haben."
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:227
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:226
 msgid "If this security check does not apply to this resource, you can safely ignore it."
 msgstr "Wenn diese Sicherheitsüberprüfung für diese Ressource nicht gilt, können Sie sie getrost ignorieren."
 
@@ -1337,7 +1337,7 @@ msgstr "Inaktivitätserinnerung"
 msgid "Info"
 msgstr "Info"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:212
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:210
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
 msgstr ""
 
@@ -1357,7 +1357,7 @@ msgstr "Integrationsberatung für Ihre spezifische Cloud-Umgebung per Videoanruf
 msgid "Integration Key"
 msgstr "Integrationsschlüssel"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:110
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:112
 msgid "Invalid file, Please follow the step-by-step instructions {0}."
 msgstr ""
 
@@ -1393,7 +1393,7 @@ msgid "kind"
 msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:189
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:231
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:232
 #: src/shared/charts/NetworkDiagram.tsx:406
 msgid "Kind"
 msgstr "Art"
@@ -1504,7 +1504,7 @@ msgid "Most Non-Compliant Accounts"
 msgstr "Die meisten nicht konformen Konten"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:177
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:233
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:234
 #: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:92
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:496
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:65
@@ -1527,7 +1527,7 @@ msgstr "Name"
 msgid "Neighborhood view"
 msgstr "Nachbarschaftsansicht"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:212
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:213
 msgid "Neighborhood View"
 msgstr "Nachbarschaftsansicht"
 
@@ -1552,8 +1552,8 @@ msgstr "neue nicht konforme Ressourcen in der Vergangenheit {since}"
 msgid "New Password"
 msgstr "Neues Kennwort"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:205
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:127
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:203
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:126
 msgid "New Product Tier"
 msgstr ""
 
@@ -1673,7 +1673,7 @@ msgstr ""
 msgid "On the Register an application page, fill the name of the application. Write the name down, it will be needed later. The rest can be left as is. Click the Register button."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:110
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:112
 msgid "on the right side"
 msgstr ""
 
@@ -1702,7 +1702,7 @@ msgstr "Öffnen Sie den Datenbankzugriff"
 msgid "Open drawer"
 msgstr "Öffene die Schublade"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:257
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:258
 msgid "Open resource {name} in AWS Console"
 msgstr "Öffnen Sie die Ressource {name} in der AWS-Konsole"
 
@@ -1766,7 +1766,7 @@ msgstr "Passwort"
 msgid "Payment is required for your workspace, Please contact the workspace owner"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:166
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:164
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:89
 msgid "Payment method"
 msgstr ""
@@ -1855,11 +1855,11 @@ msgstr "Produktsupport per E-Mail und Live-Chat"
 msgid "Product support via email, live chat, and video call"
 msgstr "Produktsupport per E-Mail, Live-Chat und Videoanruf"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:84
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:82
 msgid "Product tier changed to {selectedProductTier}"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:67
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:66
 msgid "Product tier changed to Free"
 msgstr ""
 
@@ -1911,7 +1911,7 @@ msgstr "Regenerieren"
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:183
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:97
 #: src/pages/panel/inventory/inventory-form/InventoryFormRegionValues.tsx:60
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:240
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:241
 msgid "Region"
 msgstr "Region"
 
@@ -2034,8 +2034,8 @@ msgstr "Sicherheitsscan"
 msgid "Security Score"
 msgstr "Sicherheitsbewertung"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:268
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:279
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:269
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:280
 msgid "See this Resource in AWS Console"
 msgstr "Sehen Sie sich diese Ressource in der AWS-Konsole an"
 
@@ -2133,11 +2133,11 @@ msgstr "Single Sign-on (bald verfügbar!)"
 msgid "Snowflake data export (coming soon!)"
 msgstr "Snowflake-Datenexport (bald verfügbar!)"
 
-#: src/pages/panel/resource-detail/ResourceDetailFailedCheckIgnoredChecks.tsx:52
+#: src/pages/panel/resource-detail/ResourceDetailFailedCheckIgnoredChecks.tsx:51
 msgid "Some checks have been disabled for this resource"
 msgstr "Einige Prüfungen wurden für diese Ressource deaktiviert"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:295
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:296
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:33
 #: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:23
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:107
@@ -2173,7 +2173,7 @@ msgid "Successfully invited {email}"
 msgstr "{email} erfolgreich eingeladen"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormMore.tsx:98
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:305
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:306
 msgid "Tags"
 msgstr "Stichworte"
 
@@ -2186,11 +2186,11 @@ msgid "Test"
 msgstr "Prüfen"
 
 #: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:50
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:99
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:100
 msgid "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 msgstr "Die Änderung wird ab dem nächsten Sicherheitsscan aktiv. Bis zum nächsten Scan zeigt die Ressource weiterhin die fehlgeschlagene Prüfung an."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:118
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:120
 msgid "The Google Cloud Service Account has been updated successfully.<0/>We will process the file and add the accounts that we find.<1/>This process may take a <2>few minutes</2>.<3/>We will send you an email once the projects are ready."
 msgstr ""
 
@@ -2202,7 +2202,7 @@ msgstr ""
 msgid "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
 msgstr "Das von Ihnen eingegebene OTP oder Wiederherstellungscode ist falsch oder das OTP ist abgelaufen. Bitte versuchen Sie es erneut einzugeben."
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:293
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:294
 msgid "The selected resource does not exist anymore."
 msgstr "Die ausgewählte Ressource existiert nicht mehr."
 
@@ -2258,12 +2258,12 @@ msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM 
 msgid "Tier"
 msgstr "Stufe"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:274
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:275
 msgid "To access this resource, please ensure that you are logged into the AWS account: {account}"
 msgstr "Um auf diese Ressource zuzugreifen, stellen Sie bitte sicher, dass Sie beim AWS-Konto angemeldet sind: {account}"
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:58
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:133
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:131
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:81
 msgid "To AWS Marketplace"
 msgstr "Zum AWS Marketplace"
@@ -2352,7 +2352,7 @@ msgstr "E-Mail aktualisieren"
 msgid "Update Password"
 msgstr "Kennwort aktualisieren"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:155
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:153
 msgid "Upgrade"
 msgstr "Aktualisierung"
 
@@ -2405,7 +2405,7 @@ msgstr "Wir haben eine E-Mail mit einem Bestätigungslink an Ihre E-Mail-Adresse
 msgid "We use cookies and other tracking technologies to analyze site usage and assist in marketing efforts. For details, see our <0>cookie policy<1/></0>."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:131
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:130
 msgid "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 msgstr "Es tut uns leid, dass Sie herunterstufen, aber wir sind dankbar, Sie weiterhin in unserer kostenlosen Stufe zu haben. Wenn Ihnen etwas Bestimmtes fehlt, wenden Sie sich bitte direkt an mich, <0>lars@some.engineering</0>. Ich würde gerne von Ihnen hören und Ihnen so gut wie möglich helfen."
 
@@ -2430,7 +2430,7 @@ msgstr "Wöchentlicher Report"
 msgid "Why does it matter"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:214
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:212
 msgid "Within a billing cycle you will be charged for the highest product tier that was active."
 msgstr ""
 
@@ -2476,8 +2476,8 @@ msgstr ""
 msgid "You are about to change workspace's payment method"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:161
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:120
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:159
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:119
 msgid "You are about to change workspace's product tier"
 msgstr ""
 
@@ -2497,8 +2497,8 @@ msgstr "Sie können TOTP über den OTP-Code deaktivieren"
 msgid "You can deactivate TOTP via recovery code"
 msgstr "Sie können TOTP über den Wiederherstellungscode deaktivieren"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:250
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:160
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:248
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:159
 msgid "You currently have {0} attached to this workspace. There must only be {1} in order to downgrade to the free tier."
 msgstr ""
 
@@ -2506,8 +2506,8 @@ msgstr ""
 msgid "You currently have {0}. There must only be {1} enabled in {2} tier. To increase your cloud account limit, you can upgrade your product tier <0>here</0>."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:231
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:141
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:229
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:140
 msgid "You currently have {0}. There must only be {1} in order to downgrade to the free tier."
 msgstr ""
 
@@ -2544,7 +2544,7 @@ msgid "You need a payment method to change your product tier"
 msgstr ""
 
 #: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:47
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:97
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:98
 msgid "You've chosen to ignore this security check for the resource. Please note:"
 msgstr "Sie haben sich entschieden, diese Sicherheitsüberprüfung für die Ressource zu ignorieren. Bitte beachten Sie:"
 
