@@ -1,13 +1,13 @@
 import { Trans } from '@lingui/macro'
 import { Button, Skeleton, Stack, Step, StepContent, StepLabel, Stepper, Typography, styled } from '@mui/material'
-import { useEffect, useRef } from 'react'
+import { PropsWithChildren, useEffect, useRef } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { panelUI } from 'src/shared/constants'
 import { useNonce } from 'src/shared/providers'
 import { usePersistState } from 'src/shared/utils/usePersistState'
 import { getInstructions, maxInstructionImageWidth } from './getInstructions'
 
-interface WorkspaceSettingsAccountsSetupCloudAzureInstructionsProps {
+interface WorkspaceSettingsAccountsSetupCloudAzureInstructionsProps extends PropsWithChildren {
   isMobile: boolean
 }
 
@@ -22,6 +22,7 @@ const StyledImage = styled(LazyLoadImage)(({ theme, width }) => ({
 
 export const WorkspaceSettingsAccountsSetupCloudAzureInstructions = ({
   isMobile,
+  children,
 }: WorkspaceSettingsAccountsSetupCloudAzureInstructionsProps) => {
   const nonce = useNonce()
   const instructions = getInstructions(isMobile)
@@ -59,7 +60,11 @@ export const WorkspaceSettingsAccountsSetupCloudAzureInstructions = ({
       <Stepper activeStep={activeStep} orientation="vertical">
         {instructions.map(({ instruction, label, divComponent, image }, index) => (
           <Step key={index}>
-            <StepLabel id={`workspace-settings-accounts-setup-cloud-gcp-label-${index}`} onClick={() => setActiveStep(index)}>
+            <StepLabel
+              id={`workspace-settings-accounts-setup-cloud-gcp-label-${index}`}
+              onClick={() => setActiveStep(index)}
+              sx={activeStep === index ? undefined : { cursor: 'pointer!important' }}
+            >
               {label}
             </StepLabel>
             <StepContent transitionDuration={panelUI.fastTooltipDelay}>
@@ -91,7 +96,9 @@ export const WorkspaceSettingsAccountsSetupCloudAzureInstructions = ({
                     <Button onClick={() => setActiveStep(index + 1)} variant="contained">
                       <Trans>Continue</Trans>
                     </Button>
-                  ) : null}
+                  ) : (
+                    children
+                  )}
                   {index ? (
                     <Button onClick={() => setActiveStep(index - 1)}>
                       <Trans>Back</Trans>
