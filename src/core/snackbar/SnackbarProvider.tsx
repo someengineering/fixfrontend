@@ -1,12 +1,12 @@
 import {
   Alert,
   AlertColor,
+  AlertTitle,
   AlertProps as MuiAlertProps,
   Snackbar as MuiSnackbar,
   SnackbarProps as MuiSnackbarProps,
   Slide,
   SnackbarOrigin,
-  Typography,
   styled,
   useTheme,
 } from '@mui/material'
@@ -84,7 +84,7 @@ export function SnackbarElement({
       anchorOrigin={options?.anchorOrigin}
     >
       <Alert {...(options?.alertProps ?? {})} onClose={handleClose} severity={options?.severity}>
-        <Typography fontSize={18}>{message}</Typography>
+        <AlertTitle fontSize={18}>{message}</AlertTitle>
       </Alert>
     </Snackbar>
   )

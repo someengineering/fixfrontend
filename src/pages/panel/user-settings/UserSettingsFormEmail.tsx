@@ -36,7 +36,7 @@ export const UserSettingsFormEmail = ({ ...rest }: UserSettingsFormEmailProps) =
     <>
       {isSuccess ? (
         <Stack direction="row" pb={2}>
-          <Alert variant="outlined" color="warning">
+          <Alert variant="outlined" severity="warning">
             *{' '}
             <Trans>
               Your new email address will become active once you have verified it by clicking on the confirmation link we have sent to your

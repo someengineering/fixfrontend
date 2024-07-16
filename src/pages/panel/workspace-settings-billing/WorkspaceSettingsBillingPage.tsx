@@ -1,6 +1,6 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { Alert, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography } from '@mui/material'
+import { Alert, AlertTitle, Divider, MenuItem, Select, SelectChangeEvent, Stack, Typography } from '@mui/material'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
@@ -50,28 +50,28 @@ export default function WorkspaceSettingsBillingPage() {
       <Typography variant="h3">
         <Trans>Billing</Trans>
       </Typography>
-      {product_tier === 'Trial' ? (
+      {product_tier !== 'Trial' ? (
         <Stack direction="row" justifyContent="center">
           <Alert variant="outlined" severity="success">
-            <Typography variant="h5">
+            <AlertTitle fontSize={20}>
               <Trans>
                 You are currently in your trial period, which will end in {selectedWorkspace?.trial_end_days ?? 14} days.
                 <br />
                 During your trial period, you have access to all features of the product.
               </Trans>
-            </Typography>
+            </AlertTitle>
           </Alert>
         </Stack>
       ) : null}
       {selected_product_tier !== product_tier ? (
         <Stack direction="row" justifyContent="center">
           <Alert variant="outlined" severity="success">
-            <Typography variant="h5">
+            <AlertTitle fontSize={20}>
               <Trans>
                 You are currently subscribed to {productTierToLabel(product_tier)}, Your subscription will change to {title} by the end of
                 the day on {endOfTheMonth.toLocaleDateString(locale, { year: 'numeric', month: '2-digit', day: '2-digit' })}.
               </Trans>
-            </Typography>
+            </AlertTitle>
           </Alert>
         </Stack>
       ) : null}

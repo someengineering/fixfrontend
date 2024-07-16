@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/macro'
 import DoneAllIcon from '@mui/icons-material/DoneAll'
-import { Alert, FormControlLabel, Stack, Switch, Typography } from '@mui/material'
+import { Alert, FormControlLabel, Stack, Switch } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { FailedCheckIgnoreButton } from 'src/pages/panel/shared/failed-checks'
 
@@ -25,7 +25,7 @@ export const ResourceDetailFailedCheckIgnoredChecks = ({
   }, [ignoredChecks])
   return (
     <Alert
-      color={securityIgnore === '*' ? 'error' : 'warning'}
+      severity={securityIgnore === '*' ? 'error' : 'warning'}
       action={
         securityIgnore === '*' ? (
           <FailedCheckIgnoreButton
@@ -48,9 +48,7 @@ export const ResourceDetailFailedCheckIgnoredChecks = ({
         <Trans>All checks have been disabled for this resource</Trans>
       ) : (
         <Stack spacing={1}>
-          <Typography variant="caption">
-            <Trans>Some checks have been disabled for this resource</Trans>
-          </Typography>
+          <Trans>Some checks have been disabled for this resource</Trans>
           <Stack spacing={1}>
             {persistIgnoredChecks.map((item) => (
               <FormControlLabel

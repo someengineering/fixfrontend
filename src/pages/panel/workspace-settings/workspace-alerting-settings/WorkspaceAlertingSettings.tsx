@@ -301,7 +301,7 @@ export const WorkspaceAlertingSettings = () => {
     </TableContainer>
   ) : (
     <Stack>
-      <Alert color="warning">
+      <Alert severity="warning">
         <Trans>
           Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is
           necessary to configure alerting settings.

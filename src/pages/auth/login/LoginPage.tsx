@@ -1,7 +1,7 @@
 import { t, Trans } from '@lingui/macro'
 import SendIcon from '@mui/icons-material/Send'
 import { LoadingButton } from '@mui/lab'
-import { Divider, Grid, styled, TextField, Typography } from '@mui/material'
+import { Alert, Divider, Grid, styled, TextField, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { FormEvent, Suspense, useRef, useState } from 'react'
@@ -176,7 +176,7 @@ export default function LoginPage() {
         ) : null}
         {loginError ? (
           <Grid item>
-            <Typography color="error.main">{getErrorDetailMessage(loginError)}</Typography>
+            <Alert severity="error">{getErrorDetailMessage(loginError)}</Alert>
           </Grid>
         ) : needOtp ? (
           <Grid item>

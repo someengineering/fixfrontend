@@ -1,9 +1,7 @@
 import { Trans, plural, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import InfoIcon from '@mui/icons-material/Info'
-import WarningIcon from '@mui/icons-material/Warning'
 import { LoadingButton } from '@mui/lab'
-import { Alert, Button, MenuItem, Select, Stack, Typography } from '@mui/material'
+import { Alert, AlertTitle, Button, MenuItem, Select, Stack, Typography } from '@mui/material'
 import { useMutation, useQueries, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { MutableRefObject, useState } from 'react'
@@ -211,10 +209,10 @@ export const ChangeProductTierModal = ({
           <Trans>New Product Tier</Trans>: {productTierToLabel(selectedProductTier)}
         </Typography>
         {paymentMethod.method === 'aws_marketplace' && !paymentMethod.subscription_id ? (
-          <Alert color="warning">Make sure to log in to AWS Console before proceeding.</Alert>
+          <Alert severity="warning">Make sure to log in to AWS Console before proceeding.</Alert>
         ) : null}
-        <Alert color="info" icon={<InfoIcon />}>
-          <Typography>
+        <Alert severity="info">
+          <AlertTitle>
             <Trans>
               Info: Changes to your product tier will become active immediately and be applied for the current billing cycle.{' '}
               {isUpgrade ? null : ` ${t`Within a billing cycle you will be charged for the highest product tier that was active.`}`}
@@ -229,11 +227,11 @@ export const ChangeProductTierModal = ({
               })}{' '}
               UTC
             </Trans>
-          </Typography>
+          </AlertTitle>
         </Alert>
         {hasNumberOfCloudAccountLimitation ? (
-          <Alert color="warning" icon={<WarningIcon />}>
-            <Typography>
+          <Alert severity="warning">
+            <AlertTitle>
               <Trans>
                 You currently have{' '}
                 {plural(cloudAccountsLength, {
@@ -247,12 +245,12 @@ export const ChangeProductTierModal = ({
                 })}{' '}
                 in order to downgrade to the free tier.
               </Trans>
-            </Typography>
+            </AlertTitle>
           </Alert>
         ) : null}
         {hasNumberOfUserLimitation ? (
-          <Alert color="warning" icon={<WarningIcon />}>
-            <Typography>
+          <Alert severity="warning">
+            <AlertTitle>
               <Trans>
                 You currently have{' '}
                 {plural(usersLength, {
@@ -266,7 +264,7 @@ export const ChangeProductTierModal = ({
                 })}{' '}
                 in order to downgrade to the free tier.
               </Trans>
-            </Typography>
+            </AlertTitle>
           </Alert>
         ) : null}
       </Stack>
