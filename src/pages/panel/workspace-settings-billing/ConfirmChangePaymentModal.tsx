@@ -9,7 +9,9 @@ import { useSnackbar } from 'src/core/snackbar'
 import { endPoints, env } from 'src/shared/constants'
 import { ExternalLinkLoadingButton } from 'src/shared/link-button'
 import { Modal } from 'src/shared/modal'
+import { PutWorkspaceBillingErrorResponse } from 'src/shared/types/server'
 import { PaymentMethod, PaymentMethodWithoutNone } from 'src/shared/types/server-shared'
+import { changeProductTierErrorResponseToMessage } from './changeProductTierErrorResponseToMessage'
 import { putWorkspaceBillingMutation } from './putWorkspaceBilling.mutation'
 import { paymentMethodToLabel } from './utils'
 
@@ -29,9 +31,9 @@ export const ConfirmChangePaymentModal = ({ paymentModalShowRef, currentPaymentM
     onSuccess: () => {
       void showSnackbar(t`Payment method changed to ${paymentMethodToLabel(paymentMethod.method)}`, { severity: 'success' })
     },
-    onError: (err) => {
-      const { response: { data } = { data: { message: '' } } } = err as AxiosError
-      void showSnackbar((data as { message: string } | undefined)?.message ?? t`An error occurred, please try again later.`, {
+    onError: (error) => {
+      const errorMessageDetail = changeProductTierErrorResponseToMessage(error as AxiosError<PutWorkspaceBillingErrorResponse>)
+      void showSnackbar(errorMessageDetail ?? t`An error occurred, please try again later.`, {
         severity: 'error',
       })
     },

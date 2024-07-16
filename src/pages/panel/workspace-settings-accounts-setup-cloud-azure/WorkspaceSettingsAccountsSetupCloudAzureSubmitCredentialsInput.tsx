@@ -29,10 +29,13 @@ export function WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput<N
     if (!value) {
       error = t`${label} is required`
     } else if (uuidRegex && !UUIDRegex.test(value)) {
-      error = t`${label} is not valid`
+      const regex = new RegExp(UUIDRegex)
+      if (!regex.test(value)) {
+        error = t`${label} is not valid`
+      }
     }
-    onError(name, error)
     setError(error)
+    onError(name, error)
     onChange(name, value)
   }
   return (

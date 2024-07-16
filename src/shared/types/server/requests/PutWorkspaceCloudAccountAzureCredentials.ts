@@ -8,4 +8,4 @@ export type PutWorkspaceCloudAccountAzureCredentialsRequest = {
   client_secret: string
 }
 
-export type PutWorkspaceCloudAccountAzureCredentialsErrorResponse = GenericServerError<[[422, [string]]]>
+export type PutWorkspaceCloudAccountAzureCredentialsErrorResponse = GenericServerError<[[422, ['invalid_credentials']]]>

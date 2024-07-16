@@ -1,23 +1,36 @@
-import { Skeleton, Stack, Theme, useMediaQuery } from '@mui/material'
-import { Suspense } from 'react'
+import { Trans } from '@lingui/macro'
+import SendIcon from '@mui/icons-material/Send'
+import { LoadingButton } from '@mui/lab'
+import { Theme, useMediaQuery } from '@mui/material'
+import { Suspense, useState } from 'react'
+import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
+import { WorkspaceSettingsAccountsSetupCloudAzureForm } from './WorkspaceSettingsAccountsSetupCloudAzureForm'
 import { WorkspaceSettingsAccountsSetupCloudAzureInstructions } from './WorkspaceSettingsAccountsSetupCloudAzureInstructions'
-import { WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials } from './WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials'
 
 export default function WorkspaceSettingsAccountsSetupCloudAzurePage() {
   const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('lg'))
+  const [hasError, setHasError] = useState(true)
+  const [isPending, setIsPending] = useState(true)
+
+  const submitButton = (
+    <LoadingButton type="submit" variant="contained" loading={isPending} loadingPosition="end" endIcon={<SendIcon />} disabled={hasError}>
+      <Trans>Submit</Trans>
+    </LoadingButton>
+  )
 
   return (
-    <Stack direction={isMobile ? 'column-reverse' : 'row'} spacing={1}>
-      <Suspense
-        fallback={
-          <Stack width={isMobile ? '100%' : '50%'} spacing={1} justifyContent="center" alignItems="center">
-            <Skeleton width="100%" height="100%" variant="rounded" />
-          </Stack>
-        }
+    <Suspense fallback={<FullPageLoadingSuspenseFallback />}>
+      <WorkspaceSettingsAccountsSetupCloudAzureForm
+        isMobile={isMobile}
+        hasError={hasError}
+        setIsPending={setIsPending}
+        setHasError={setHasError}
+        submitButton={submitButton}
       >
-        <WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials isMobile={isMobile} />
-      </Suspense>
-      <WorkspaceSettingsAccountsSetupCloudAzureInstructions isMobile={isMobile} />
-    </Stack>
+        <WorkspaceSettingsAccountsSetupCloudAzureInstructions isMobile={isMobile}>
+          {submitButton}
+        </WorkspaceSettingsAccountsSetupCloudAzureInstructions>
+      </WorkspaceSettingsAccountsSetupCloudAzureForm>
+    </Suspense>
   )
 }

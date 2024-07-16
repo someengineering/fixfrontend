@@ -29,8 +29,8 @@ msgstr ""
 msgid "{0, plural, one {# Day} other {# Days}}"
 msgstr "{0, plural, one {# Tag} other {# Tage}}"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:236
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:147
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:242
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:153
 msgid "{0, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
 msgstr ""
 
@@ -50,8 +50,8 @@ msgstr "{0, plural, one {# Monat} other {# Monate}}"
 msgid "{0, plural, one {# Second} other {# Seconds}}"
 msgstr "{0, plural, one {# Sekunde} other {# Sekunden}}"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:255
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:166
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:261
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:172
 msgid "{0, plural, one {# user} other {# users}}"
 msgstr ""
 
@@ -133,12 +133,12 @@ msgstr ""
 msgid "{added} configuration lines added and {removed} lines deleted."
 msgstr "{added} Konfigurationszeilen hinzugefügt und {removed} Zeilen gelöscht."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:231
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:142
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:237
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:148
 msgid "{cloudAccountsLength, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput.tsx:32
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput.tsx:34
 msgid "{label} is not valid"
 msgstr ""
 
@@ -150,8 +150,8 @@ msgstr ""
 msgid "{scanIntervalStr} scans"
 msgstr "{scanIntervalStr} Scans"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:250
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:161
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:256
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:167
 msgid "{usersLength, plural, one {# user} other {# users}}"
 msgstr ""
 
@@ -248,7 +248,7 @@ msgstr ""
 msgid "Accept"
 msgstr "Akzeptieren"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:139
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:142
 msgid "Access Control (IAM)"
 msgstr ""
 
@@ -296,13 +296,13 @@ msgstr "Aktionen"
 msgid "Activate"
 msgstr "aktivieren Sie"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:94
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:97
 msgid "Add a client secret"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:60
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:133
-#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:83
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:139
+#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:85
 msgid "Add a New Credit or Debit Card"
 msgstr ""
 
@@ -326,20 +326,16 @@ msgstr ""
 msgid "Add Manually"
 msgstr "Manuell hinzufügen"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:109
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:112
 msgid "Add permission"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:124
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:127
 msgid "Add Permission"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:144
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:147
 msgid "Add Role Assignment"
-msgstr ""
-
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:129
-msgid "Add the Role assignment to the App"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:77
@@ -417,9 +413,9 @@ msgstr "Eine E-Mail wurde mit einem 'Passwort zurücksetzen'-Button an Ihren Pos
 msgid "An error occurred while connecting to {0}"
 msgstr "Beim Herstellen der Verbindung zu {0} ist ein Fehler aufgetreten."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:86
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:70
-#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:34
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:92
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:76
+#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:36
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:32
 msgid "An error occurred, please try again later."
 msgstr "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut."
@@ -445,12 +441,12 @@ msgstr "API-Schlüssel"
 msgid "API Tokens"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:79
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:102
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:82
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:120
 msgid "Application (client) ID"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:109
+#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:111
 msgid "Are you sure you want to change payment from <0>{0}</0> to <1>{1}</1>?"
 msgstr ""
 
@@ -473,7 +469,7 @@ msgstr "Bist du sicher?"
 msgid "Asset inventory"
 msgstr "Cloud-Asset-Inventar"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:104
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:107
 msgid "Assign permission to the App"
 msgstr ""
 
@@ -495,11 +491,11 @@ msgstr "AWS Marketplace wurde erfolgreich abonniert"
 msgid "Azure"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:114
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:117
 msgid "Azure Service Management"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureInstructions.tsx:97
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureInstructions.tsx:104
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:97
 msgid "Back"
 msgstr ""
@@ -587,16 +583,16 @@ msgstr ""
 msgid "Change"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:100
+#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:102
 msgid "Change payment"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:105
+#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:107
 msgid "Change Payment method"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:158
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:118
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:164
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:124
 msgid "Change Product Tier"
 msgstr "Produktstufe ändern"
 
@@ -618,32 +614,44 @@ msgstr "Änderungen in den letzten 7 Tagen"
 msgid "Check Name"
 msgstr ""
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:184
+msgid "Check the Application name and Scope for correctness:"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:182
+msgid "Check the detail"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:192
+msgid "Check the newly created role assignment"
+msgstr ""
+
 #: src/pages/panel/inventory/inventory-form/InventoryFormReset.tsx:10
 msgid "Clear the search"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:111
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:114
 msgid "Click Add permission:"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:146
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:149
 msgid "Click Add Role Assignment"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:91
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:94
 msgid "Click New client secret:"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:156
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:159
 msgid "Click Next:"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:171
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:174
 msgid "Click on it and then click select:"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:136
-msgid "Click on the Subscriptions link, then navigate to your subscription:"
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:139
+msgid "Click on the Management Groups link, then navigate to the desired management group or subscription. If you want to connect all your subscriptions to Fix, choose the Tenant Root Group:"
 msgstr ""
 
 #: src/shared/dropzone/Dropzone.tsx:100
@@ -654,23 +662,23 @@ msgstr ""
 msgid "Click or Drop your Google Cloud Service Account file here"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:180
-msgid "Click review and assign one more time, press the submit button {0}, and Done. 🎉🎊"
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:189
+msgid "Click Review + Assign:"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:176
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:179
 msgid "Click review and assign:"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:126
-msgid "Click the Add a permission button:"
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:129
+msgid "Click the Add permissions button:"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:56
 msgid "Click the service Account, go to the \"Keys\" Tab, and Click \"Add Key\" -> \"Create new Key\".<0/>A file is downloaded to your Downloads folder. We will need this file later on."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:99
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:102
 msgid "Client secret"
 msgstr ""
 
@@ -772,7 +780,7 @@ msgstr "Verbundene Konten"
 msgid "Connected Services"
 msgstr "Vernetzte Dienste"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureInstructions.tsx:92
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureInstructions.tsx:97
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:92
 msgid "Continue"
 msgstr ""
@@ -789,7 +797,7 @@ msgstr "In die Zwischenablage kopiert!"
 msgid "Copy"
 msgstr "Kopieren"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:101
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:104
 msgid "Copy the Secret Value of the created secret and paste it in the Secret Value field {0}, but don't press the submit button yet."
 msgstr ""
 
@@ -801,7 +809,11 @@ msgstr "Kern-CSPM-Scanfunktionen"
 msgid "Create"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:84
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:132
+msgid "Create a Role Assignment between the App and your Management Group"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:87
 msgid "Create an App secret"
 msgstr ""
 
@@ -845,8 +857,8 @@ msgstr ""
 msgid "Critical"
 msgstr "Kritisch"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:200
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:123
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:206
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:129
 msgid "Current Product Tier"
 msgstr ""
 
@@ -947,7 +959,7 @@ msgstr "Beschreibung"
 msgid "Details"
 msgstr "Einzelheiten"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:110
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:128
 msgid "Directory (tenant) ID"
 msgstr ""
 
@@ -997,13 +1009,13 @@ msgstr "Möchten Sie diesen Benutzer löschen?"
 msgid "Don't have an account? Click here to Sign up."
 msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:43
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:86
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:58
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:113
 msgid "Done! We will now import your Azure accounts, this usually takes a couple of minutes."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:153
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:114
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:159
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:120
 msgid "Downgrade"
 msgstr "Downgrade"
 
@@ -1064,7 +1076,7 @@ msgstr "Ermöglicht"
 msgid "Engineers like to tag their temporary resources with the string \"delete\". This performs a full-text search in names, tags and other string properties."
 msgstr "Engineers kennzeichnen ihre temporären Ressourcen gerne mit der Zeichenfolge \"delete\". Hiermit wird in Namen, Tags und anderen Zeichenfolgen nach \"delete\" gesucht."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:96
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:99
 msgid "Enter the secret description and set the expiration date:"
 msgstr ""
 
@@ -1199,7 +1211,7 @@ msgstr ""
 msgid "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
 msgstr "Erhalten Sie Ihre fünf wichtigsten Empfehlungen zur Verbesserung Ihrer Sicherheit, sobald der erste Scan abgeschlossen ist, normalerweise innerhalb von 10 Minuten."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:116
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:119
 msgid "Go to Azure Service Management:"
 msgstr ""
 
@@ -1207,8 +1219,12 @@ msgstr ""
 msgid "Go To IAM and select Service Accounts."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:141
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:144
 msgid "Go to the Access Control (IAM):"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:89
+msgid "Go to the certificates and secrets section."
 msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:91
@@ -1313,7 +1329,7 @@ msgstr "Verbessert"
 msgid "in account"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:70
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:73
 msgid "In the Azure console search, type App Registrations and go to App Registrations page."
 msgstr ""
 
@@ -1321,11 +1337,11 @@ msgstr ""
 msgid "In the next step we are going to set up the trust between FIX and your AWS cloud account."
 msgstr "Im nächsten Schritt richten wir einen Trust zwischen FIX und Ihrem AWS Konto ein."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:131
-msgid "In the search field, type Subscriptions:"
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:134
+msgid "In the search field, type Management groups:"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:166
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:169
 msgid "In the Select Members window, type the name of the App you created earlier:"
 msgstr ""
 
@@ -1333,11 +1349,15 @@ msgstr ""
 msgid "Inactivity reminder"
 msgstr "Inaktivitätserinnerung"
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:27
+msgid "Incorrect credentials. Please carefully review and re-enter your Application ID, Directory ID, and Secret Value correctly, then submit again."
+msgstr ""
+
 #: src/shared/defined-messages/getMessage.ts:17
 msgid "Info"
 msgstr "Info"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:210
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:216
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
 msgstr ""
 
@@ -1457,6 +1477,10 @@ msgstr ""
 msgid "Manage Card Details"
 msgstr ""
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:137
+msgid "Management Group or subscription"
+msgstr ""
+
 #: src/pages/panel/benchmark-detail/BenchmarkDetailTreeItem.tsx:48
 msgid "Manual"
 msgstr ""
@@ -1531,7 +1555,7 @@ msgstr "Nachbarschaftsansicht"
 msgid "Neighborhood View"
 msgstr "Nachbarschaftsansicht"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:89
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:92
 msgid "New client secret"
 msgstr ""
 
@@ -1552,12 +1576,12 @@ msgstr "neue nicht konforme Ressourcen in der Vergangenheit {since}"
 msgid "New Password"
 msgstr "Neues Kennwort"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:203
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:126
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:209
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:132
 msgid "New Product Tier"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:72
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:75
 msgid "New registration"
 msgstr ""
 
@@ -1632,10 +1656,6 @@ msgstr "Noch nichts zu zeigen"
 msgid "Notification"
 msgstr "Benachrichtigung"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:86
-msgid "Now, Go to the certificates and secrets section."
-msgstr ""
-
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:65
 msgid "Now, switch to the organization or folder that holds the resources you want to connect."
 msgstr ""
@@ -1649,11 +1669,15 @@ msgstr "Anzahl der belasteten Konten"
 msgid "Ok"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:151
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:194
+msgid "On the Access Control (IAM) page, you can check the newly created role assignment: it should assign a Reader role to the application you created (Fix Security in this example) with the scope of current resource (Management Group):"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:154
 msgid "On the Add Role Assignment page, select the reader Role:"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:72
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:75
 msgid "On the App Registration, click New registration."
 msgstr ""
 
@@ -1661,15 +1685,15 @@ msgstr ""
 msgid "on the left side"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:81
-msgid "On the new screen, copy Application (client) ID and Directory (tenant) ID and paste them in the fields {0}."
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:84
+msgid "On the new screen, copy the Application (client) ID and Directory (tenant) ID into the fields {0}."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:161
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:164
 msgid "On the next step click Select Members:"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:76
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:79
 msgid "On the Register an application page, fill the name of the application. Write the name down, it will be needed later. The rest can be left as is. Click the Register button."
 msgstr ""
 
@@ -1706,7 +1730,7 @@ msgstr "Öffene die Schublade"
 msgid "Open resource {name} in AWS Console"
 msgstr "Öffnen Sie die Ressource {name} in der AWS-Konsole"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:106
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:109
 msgid "Open the Manage section and go to the App permissions page:"
 msgstr ""
 
@@ -1766,12 +1790,12 @@ msgstr "Passwort"
 msgid "Payment is required for your workspace, Please contact the workspace owner"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:164
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:170
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:89
 msgid "Payment method"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:30
+#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:32
 msgid "Payment method changed to {0}"
 msgstr ""
 
@@ -1782,6 +1806,14 @@ msgstr "Zahlungsmethode erforderlich"
 #: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:74
 #: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:79
 msgid "Payment method to add"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-billing/changeProductTierErrorResponseToMessage.ts:17
+msgid "Payment method unrecognized: Ensure you are using a payment method that is supported by our system."
+msgstr ""
+
+#: src/pages/panel/workspace-settings-billing/changeProductTierErrorResponseToMessage.ts:11
+msgid "Payment update failed: The provided payment method is unrecognized. Please verify your details and use a supported payment method."
 msgstr ""
 
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:29
@@ -1827,6 +1859,14 @@ msgstr ""
 msgid "Press Done. This will bring you to the list of service accounts. Copy the email address of the created service account."
 msgstr ""
 
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:197
+msgid "Press submit and done 🎉🎊"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:198
+msgid "Press the submit button, and Done. 🎉🎊"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:46
 msgid "Press: Create Service and fill out the form."
 msgstr ""
@@ -1855,12 +1895,20 @@ msgstr "Produktsupport per E-Mail und Live-Chat"
 msgid "Product support via email, live chat, and video call"
 msgstr "Produktsupport per E-Mail, Live-Chat und Videoanruf"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:82
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:88
 msgid "Product tier changed to {selectedProductTier}"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:66
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:72
 msgid "Product tier changed to Free"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-billing/changeProductTierErrorResponseToMessage.ts:13
+msgid "Product tier downgrade not available: Excessive cloud accounts exceed the limits for the desired product tier. Please deactivate or remove excess cloud accounts and attempt the downgrade again."
+msgstr ""
+
+#: src/pages/panel/workspace-settings-billing/changeProductTierErrorResponseToMessage.ts:15
+msgid "Product tier downgrade not available: User count exceeds the limits for the desired product tier. Please reduce the number of users and try again."
 msgstr ""
 
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:93
@@ -1924,11 +1972,11 @@ msgstr "Regionen"
 msgid "Register"
 msgstr "Registrieren"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:68
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:71
 msgid "Register a new App"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:74
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:77
 msgid "Register an application"
 msgstr ""
 
@@ -1939,6 +1987,10 @@ msgstr "Ablehnen"
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:23
 msgid "Remediation recommendations"
 msgstr "Empfehlungen zur Fehlerbehebung"
+
+#: src/pages/panel/workspace-settings-billing/changeProductTierErrorResponseToMessage.ts:9
+msgid "Removal of payment method not permitted: Active payment is essential for paid product tiers. Consider switching to the free product tier or contact support for further guidance."
+msgstr ""
 
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:56
 msgid "Remove"
@@ -1969,12 +2021,12 @@ msgstr "Ressourcen"
 msgid "Resources with the string \"delete\""
 msgstr "Ressourcen mit der Zeichenfolge \"delete\""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:174
-msgid "Review and assign (1)"
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:177
+msgid "Review and assign"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:179
-msgid "Review and assign (2)"
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:187
+msgid "Review and assign (again)"
 msgstr ""
 
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:107
@@ -1996,7 +2048,7 @@ msgstr ""
 msgid "Searches for database instances with no connections over a significant period, indicating potential waste."
 msgstr "Sucht nach Datenbankinstanzen ohne Verbindungen über einen längeren Zeitraum, was auf potenzielle Verschwendung hinweist."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:118
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:136
 msgid "Secret Value"
 msgstr ""
 
@@ -2047,15 +2099,15 @@ msgstr ""
 msgid "Select Language"
 msgstr "Sprache auswählen"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:159
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:162
 msgid "Select Members (1)"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:164
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:167
 msgid "Select Members (2)"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:169
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:172
 msgid "Select Members (3)"
 msgstr ""
 
@@ -2071,15 +2123,15 @@ msgstr ""
 msgid "Select the project in Google Cloud Console that should hold the service account."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:149
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:152
 msgid "Select the reader Role (1)"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:154
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:157
 msgid "Select the reader Role (2)"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:121
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:124
 msgid "Select User Impersonation permission:"
 msgstr ""
 
@@ -2151,7 +2203,11 @@ msgstr "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einma
 msgid "Sources"
 msgstr "Quellen"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentials.tsx:136
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:144
+msgid "Submission Error"
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzurePage.tsx:17
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:294
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:295
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:300
@@ -2163,10 +2219,6 @@ msgstr "Einreichen"
 #: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:30
 msgid "Subscription successfully added to {0}"
 msgstr "Abonnement erfolgreich zu {0} hinzugefügt"
-
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:134
-msgid "Subscriptions"
-msgstr ""
 
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:29
 msgid "Successfully invited {email}"
@@ -2263,8 +2315,8 @@ msgid "To access this resource, please ensure that you are logged into the AWS a
 msgstr "Um auf diese Ressource zuzugreifen, stellen Sie bitte sicher, dass Sie beim AWS-Konto angemeldet sind: {account}"
 
 #: src/pages/panel/workspace-settings-billing/ChangePaymentNoMethodModal.tsx:58
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:131
-#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:81
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:137
+#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:83
 msgid "To AWS Marketplace"
 msgstr "Zum AWS Marketplace"
 
@@ -2352,7 +2404,7 @@ msgstr "E-Mail aktualisieren"
 msgid "Update Password"
 msgstr "Kennwort aktualisieren"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:153
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:159
 msgid "Upgrade"
 msgstr "Aktualisierung"
 
@@ -2364,7 +2416,7 @@ msgstr ""
 msgid "Uploading your Google Cloud Service Account file..."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:119
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:122
 msgid "User Impersonation permission"
 msgstr ""
 
@@ -2405,7 +2457,7 @@ msgstr "Wir haben eine E-Mail mit einem Bestätigungslink an Ihre E-Mail-Adresse
 msgid "We use cookies and other tracking technologies to analyze site usage and assist in marketing efforts. For details, see our <0>cookie policy<1/></0>."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:130
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:136
 msgid "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 msgstr "Es tut uns leid, dass Sie herunterstufen, aber wir sind dankbar, Sie weiterhin in unserer kostenlosen Stufe zu haben. Wenn Ihnen etwas Bestimmtes fehlt, wenden Sie sich bitte direkt an mich, <0>lars@some.engineering</0>. Ich würde gerne von Ihnen hören und Ihnen so gut wie möglich helfen."
 
@@ -2430,7 +2482,7 @@ msgstr "Wöchentlicher Report"
 msgid "Why does it matter"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:212
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:218
 msgid "Within a billing cycle you will be charged for the highest product tier that was active."
 msgstr ""
 
@@ -2472,12 +2524,12 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:106
+#: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:108
 msgid "You are about to change workspace's payment method"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:159
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:119
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:165
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:125
 msgid "You are about to change workspace's product tier"
 msgstr ""
 
@@ -2497,8 +2549,8 @@ msgstr "Sie können TOTP über den OTP-Code deaktivieren"
 msgid "You can deactivate TOTP via recovery code"
 msgstr "Sie können TOTP über den Wiederherstellungscode deaktivieren"
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:248
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:159
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:254
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:165
 msgid "You currently have {0} attached to this workspace. There must only be {1} in order to downgrade to the free tier."
 msgstr ""
 
@@ -2506,8 +2558,8 @@ msgstr ""
 msgid "You currently have {0}. There must only be {1} enabled in {2} tier. To increase your cloud account limit, you can upgrade your product tier <0>here</0>."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:229
-#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:140
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:235
+#: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:146
 msgid "You currently have {0}. There must only be {1} in order to downgrade to the free tier."
 msgstr ""
 

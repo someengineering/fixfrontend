@@ -9,8 +9,14 @@ import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
 import { getWorkspaceCloudAccountsQuery, getWorkspaceUsersQuery } from 'src/pages/panel/shared/queries'
 import { Modal } from 'src/shared/modal'
-import { GetWorkspaceCloudAccountsResponse, GetWorkspaceProductTier, GetWorkspaceUsersResponse } from 'src/shared/types/server'
+import {
+  GetWorkspaceCloudAccountsResponse,
+  GetWorkspaceProductTier,
+  GetWorkspaceUsersResponse,
+  PutWorkspaceBillingErrorResponse,
+} from 'src/shared/types/server'
 import { ProductTier } from 'src/shared/types/server-shared'
+import { changeProductTierErrorResponseToMessage } from './changeProductTierErrorResponseToMessage'
 import { putWorkspaceBillingMutation } from './putWorkspaceBilling.mutation'
 import { productTierToLabel } from './utils'
 
@@ -65,9 +71,9 @@ export const ChangeProductTierToFreeModal = ({
     onSuccess: () => {
       void showSnackbar(t`Product tier changed to Free`, { severity: 'success' })
     },
-    onError: (err) => {
-      const { response: { data } = { data: { message: '' } } } = err as AxiosError
-      void showSnackbar((data as { message: string } | undefined)?.message ?? t`An error occurred, please try again later.`, {
+    onError: (error) => {
+      const errorMessageDetail = changeProductTierErrorResponseToMessage(error as AxiosError<PutWorkspaceBillingErrorResponse>)
+      void showSnackbar(errorMessageDetail ?? t`An error occurred, please try again later.`, {
         severity: 'error',
       })
     },
