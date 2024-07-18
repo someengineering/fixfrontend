@@ -862,7 +862,7 @@ msgstr "Kritisch"
 msgid "Current Product Tier"
 msgstr ""
 
-#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:305
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:306
 msgid "Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is necessary to configure alerting settings."
 msgstr "Derzeit stehen keine verbundenen Dienste zur Konfiguration zur Verfügung. Bitte beachten Sie, dass zum Konfigurieren der Alarmeinstellungen die Verbindung mindestens eines Dienstes erforderlich ist."
 
@@ -2448,6 +2448,10 @@ msgstr ""
 #: src/pages/panel/inventory/DownloadCSVButton.tsx:90
 msgid "Warning"
 msgstr "Warnung"
+
+#: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:311
+msgid "We are currently trying to list your projects. Please stay tuned - we will send you an Email when cloud accounts have been collected"
+msgstr ""
 
 #: src/pages/auth/login/LoginPage.tsx:191
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
