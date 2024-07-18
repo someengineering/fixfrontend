@@ -10,17 +10,28 @@ import { InventoryAdvanceSearch } from './InventoryAdvanceSearch'
 import { InventoryTable } from './InventoryTable'
 import { InventoryTableError } from './InventoryTable.error'
 import { InventoryTemplateBoxes } from './InventoryTemplateBoxes'
+import { allHistoryChangesOptions } from './inventory-form/utils/allHistoryChangesOptions'
 
-export default function InventoryPage() {
+interface InventoryPageProps {
+  withHistory?: boolean
+}
+
+export default function InventoryPage({ withHistory }: InventoryPageProps) {
   const [searchParams] = useSearchParams()
   const navigate = useAbsoluteNavigate()
   const [hasError, setHasError] = useState(false)
   const searchCrit = searchParams.get('q') || ''
-  const history = {
-    changes: (searchParams.get('changes')?.split(',') ?? []) as WorkspaceInventorySearchTableHistoryChanges[],
-    after: searchParams.get('after') || undefined,
-    before: searchParams.get('before') || undefined,
-  }
+  const history = withHistory
+    ? {
+        changes: (searchParams.get('changes')?.split(',') ?? [
+          ...allHistoryChangesOptions,
+        ]) as WorkspaceInventorySearchTableHistoryChanges[],
+        after: searchParams.get('after') || undefined,
+        before: searchParams.get('before') || undefined,
+      }
+    : {
+        changes: [] as WorkspaceInventorySearchTableHistoryChanges[],
+      }
 
   const handleSetSearchCrit = useCallback(
     (crit?: string) => {
@@ -67,19 +78,17 @@ export default function InventoryPage() {
     [navigate],
   )
 
-  const hasChanges = !!history.changes.length
-
   return (
     <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
       <Suspense fallback={<LoadingSuspenseFallback />}>
         <FixQueryProvider searchQuery={searchCrit} history={history} onHistoryChange={handleSetHistory} onChange={handleSetSearchCrit}>
           <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-            <InventoryAdvanceSearch hasError={!!searchCrit && hasError} hasChanges={hasChanges} />
+            <InventoryAdvanceSearch hasError={!!searchCrit && hasError} hasChanges={withHistory ?? false} />
           </NetworkErrorBoundary>
           <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
             <Outlet />
           </NetworkErrorBoundary>
-          {searchCrit || hasChanges || hasError ? (
+          {searchCrit || (withHistory && history.changes.length) || hasError ? (
             <>
               <NetworkErrorBoundary
                 fallbackRender={({ resetErrorBoundary }) => (

@@ -41,7 +41,7 @@ export const InventoryFormAccount = ({ preItems }: { preItems: AutoCompletePreDe
       if (isId) {
         deleteCloudAccountRegion('account')
       }
-      if (values) {
+      if (values?.length) {
         setCloudAccountRegion('account', 'in', values, true)
       } else {
         deleteCloudAccountRegion('account', true)

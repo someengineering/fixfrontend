@@ -258,6 +258,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
               ? mergeLocationSearchValues({
                   ...getLocationSearchValues(window.location.search),
                   name: window.encodeURIComponent(rowProps.row?.name ?? '-'),
+                  ...(typeof rowProps.row?.cloud === 'string' ? { cloud: window.encodeURIComponent(rowProps.row?.cloud ?? '-') } : {}),
                 })
               : window.location.search
           const href = `./resource-detail/${id}${search?.[0] === '?' || !search ? search ?? '' : `?${search}`}`

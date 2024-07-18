@@ -34,7 +34,11 @@ function removeDuplicates<T>(data?: T[], basedOn?: keyof T) {
     : []
 }
 
-export const InventoryForm = () => {
+interface InventoryFormProps {
+  withChanges: boolean
+}
+
+export const InventoryForm = ({ withChanges }: InventoryFormProps) => {
   const postHog = usePostHog()
   const { account: selectedAccount, cloud: selectedCloud, region: selectedRegion, is: selectedKinds } = useFixQueryParser()
   const { currentUser, selectedWorkspace } = useUserProfile()
@@ -189,7 +193,7 @@ export const InventoryForm = () => {
   return (
     <Stack direction="row" width="100%" flexWrap="wrap" gap={1} overflow="auto" py={1}>
       <InventoryFormReset />
-      <InventoryFormChanges />
+      {withChanges ? <InventoryFormChanges /> : null}
       <InventoryFormFullTextSearches />
       <InventoryFormKind preItems={filteredStartData} />
       <InventoryFormCloud preItems={filteredStartData} />

@@ -81,8 +81,8 @@ export const InventoryAdvanceSearch = ({ hasError, hasChanges }: InventoryAdvanc
         <TabPanel value="form" sx={{ p: 0, pt: 1 }}>
           {!error ? (
             <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-              <Suspense fallback={<InventoryFormsSkeleton withChange={hasChanges} />}>
-                <InventoryForm />
+              <Suspense fallback={<InventoryFormsSkeleton withChanges={hasChanges} />}>
+                <InventoryForm withChanges={hasChanges} />
               </Suspense>
             </NetworkErrorBoundary>
           ) : null}

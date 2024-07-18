@@ -46,7 +46,7 @@ export const InventoryFormCloudValues = ({ preItems, onClose, open, values }: In
       if (isId) {
         deleteCloudAccountRegion('cloud')
       }
-      if (values) {
+      if (values?.length) {
         setCloudAccountRegion('cloud', 'in', values, true)
       } else {
         deleteCloudAccountRegion('cloud', true)

@@ -27,18 +27,19 @@ import { MenuListItem, MenuModalListItem, bottomMenuList, menuList } from './men
 interface DrawerMenuProps {
   open: boolean
   onClose?: (event: ReactMouseEvent<HTMLElement, MouseEvent>) => void
+  indent?: number
 }
 
 type DrawerMenuItemProps = DrawerMenuProps & MenuListItem
 
-const menuListMap = ({ open, onClose }: DrawerMenuProps, item: MenuListItem | MenuModalListItem, index: number) =>
+const menuListMap = ({ open, onClose, indent }: DrawerMenuProps, item: MenuListItem | MenuModalListItem, index: number) =>
   item.route === 'modal' ? (
     <ErrorBoundary fallbackRender={() => null} key={index}>
       <DrawerModalMenuItem open={open} onClose={onClose} {...(item as MenuModalListItem)} route="modal" />
     </ErrorBoundary>
   ) : (
     <ErrorBoundary fallbackRender={() => null} key={index}>
-      <DrawerMenuItem open={open} onClose={onClose} {...item} />
+      <DrawerMenuItem open={open} onClose={onClose} {...item} indent={indent} />
     </ErrorBoundary>
   )
 
@@ -53,6 +54,7 @@ const DrawerMenuItem = ({
   useGuard,
   hideOnGuard,
   children,
+  indent = 0,
 }: DrawerMenuItemProps) => {
   const match = useMatch({ path: `${route}/*` })
   const [searchParams] = useSearchParams()
@@ -88,14 +90,26 @@ const DrawerMenuItem = ({
         sx: { width: '100%', [`.${badgeClasses.badge}`]: { top: 22, left: 22 } },
       }}
     >
-      <ListItem disablePadding sx={{ display: 'block' }}>
+      <ListItem
+        disablePadding
+        sx={{
+          display: 'block',
+          pl: indent,
+        }}
+      >
         <ListItemButton
           selected={hasMatch}
           href={route}
           sx={{
             height: panelUI.headerHeight,
             justifyContent: open ? 'initial' : 'center',
-            px: 2.5,
+            ...(indent
+              ? {
+                  borderLeftStyle: 'dashed',
+                  borderLeftWidth: 1,
+                  borderLeftColor: 'grey.400',
+                }
+              : {}),
           }}
           onClick={handleClick}
           disabled={!show}
@@ -125,7 +139,7 @@ const DrawerMenuItem = ({
         </ListItemButton>
       </ListItem>
       {children?.length ? (
-        <Collapse in={!collapse}>{children.map((item, index) => menuListMap({ open, onClose }, item, index))}</Collapse>
+        <Collapse in={!collapse}>{children.map((item, index) => menuListMap({ open, onClose, indent: indent + 1 }, item, index))}</Collapse>
       ) : null}
     </DisabledWithPermission>
   ) : null
