@@ -69,7 +69,7 @@ const WorkspaceAlertingSettingsCheckbox = ({
 export const WorkspaceAlertingSettings = () => {
   const { selectedWorkspace, checkPermission } = useUserProfile()
   const hasPermission = checkPermission('updateSettings')
-  const { data: benchmarks, isLoading: isBenchmarksLoading } = useGetBenchmarks(true)
+  const { data: benchmarks, isLoading: isBenchmarksLoading } = useGetBenchmarks(true, undefined, true)
   const [{ data: alertingSettings, isLoading: isAlertingSettingsLoading }, { data: notifications, isLoading: isNotificationsLoading }] =
     useQueries({
       queries: [
@@ -301,11 +301,18 @@ export const WorkspaceAlertingSettings = () => {
     </TableContainer>
   ) : (
     <Stack>
-      <Alert severity="warning">
-        <Trans>
-          Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is
-          necessary to configure alerting settings.
-        </Trans>
+      <Alert severity={benchmarks?.length ? 'warning' : 'info'}>
+        {benchmarks?.length ? (
+          <Trans>
+            Currently, there are no connected services available for configuration. Please be informed that connecting at least one service
+            is necessary to configure alerting settings.
+          </Trans>
+        ) : (
+          <Trans>
+            We are currently trying to list your projects. Please stay tuned - we will send you an Email when cloud accounts have been
+            collected
+          </Trans>
+        )}
       </Alert>
     </Stack>
   )
