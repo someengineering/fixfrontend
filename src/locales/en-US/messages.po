@@ -272,7 +272,7 @@ msgstr "Account: {0}"
 #: src/pages/panel/inventory/InventoryTable.error.tsx:73
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:57
 #: src/shared/language-button/LanguageButton.stories.tsx:20
-#: src/shared/layouts/panel-layout/menuList.tsx:72
+#: src/shared/layouts/panel-layout/menuList.tsx:86
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:9
 msgid "Accounts"
 msgstr "Accounts"
@@ -372,6 +372,10 @@ msgstr "Alerting integrations (PD, Slack, Discord, Teams)"
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:36
 msgid "Alerting Settings"
 msgstr "Alerting Settings"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:95
+msgid "All"
+msgstr "All"
 
 #: src/pages/panel/resource-detail/ResourceDetailFailedCheckIgnoredChecks.tsx:48
 msgid "All checks have been disabled for this resource"
@@ -529,7 +533,7 @@ msgstr "Benchmarks"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:51
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:80
-#: src/shared/layouts/panel-layout/menuList.tsx:82
+#: src/shared/layouts/panel-layout/menuList.tsx:96
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:23
 msgid "Billing"
 msgstr "Billing"
@@ -596,8 +600,8 @@ msgstr "Change Payment method"
 msgid "Change Product Tier"
 msgstr "Change Product Tier"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:47
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:75
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:55
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:78
 msgid "Change Type"
 msgstr "Change Type"
 
@@ -626,7 +630,7 @@ msgstr "Check the detail"
 msgid "Check the newly created role assignment"
 msgstr "Check the newly created role assignment"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormReset.tsx:10
+#: src/pages/panel/inventory/inventory-form/InventoryFormReset.tsx:11
 msgid "Clear the search"
 msgstr "Clear the search"
 
@@ -1247,6 +1251,10 @@ msgstr "High"
 msgid "Highest product tier this billing cycle"
 msgstr "Highest product tier this billing cycle"
 
+#: src/shared/layouts/panel-layout/menuList.tsx:57
+msgid "History"
+msgstr "History"
+
 #: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:62
 msgid "Homepage"
 msgstr "Homepage"
@@ -1386,7 +1394,7 @@ msgstr "Invalid file, Please follow the step-by-step instructions {0}."
 msgid "Invalid Value"
 msgstr "Invalid Value"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:40
+#: src/shared/layouts/panel-layout/menuList.tsx:42
 msgid "Inventory"
 msgstr "Inventory"
 
@@ -1615,23 +1623,23 @@ msgstr "No {label} found for {typed}"
 msgid "No Thanks"
 msgstr "No Thanks"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:31
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:18
 msgid "Node Compliant"
 msgstr "Node Compliant"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:15
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:20
 msgid "Node Created"
 msgstr "Node Created"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:23
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:24
 msgid "Node Deleted"
 msgstr "Node Deleted"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:19
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:22
 msgid "Node Updated"
 msgstr "Node Updated"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:27
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:26
 msgid "Node Vulnerable"
 msgstr "Node Vulnerable"
 
@@ -2040,6 +2048,10 @@ msgstr "Risk"
 msgid "Roles"
 msgstr "Roles"
 
+#: src/shared/layouts/panel-layout/menuList.tsx:52
+msgid "Search"
+msgstr "Search"
+
 #: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:169
 msgid "Search {0}"
 msgstr "Search {0}"
@@ -2061,7 +2073,7 @@ msgid "Secure Your Cloud, Elevate Your Peace of Mind"
 msgstr "Secure Your Cloud, Elevate Your Peace of Mind"
 
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:25
-#: src/shared/layouts/panel-layout/menuList.tsx:56
+#: src/shared/layouts/panel-layout/menuList.tsx:70
 msgid "Security"
 msgstr "Security"
 
@@ -2431,7 +2443,7 @@ msgstr "User Settings Notification"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:27
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:68
-#: src/shared/layouts/panel-layout/menuList.tsx:77
+#: src/shared/layouts/panel-layout/menuList.tsx:91
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:19
 msgid "Users"
 msgstr "Users"
@@ -2504,7 +2516,7 @@ msgid "Workspace Name"
 msgstr "Workspace Name"
 
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:20
-#: src/shared/layouts/panel-layout/menuList.tsx:64
+#: src/shared/layouts/panel-layout/menuList.tsx:78
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:7
 msgid "Workspace Settings"
 msgstr "Workspace Settings"
