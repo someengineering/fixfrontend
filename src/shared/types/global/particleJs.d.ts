@@ -142,7 +142,7 @@ interface Stroke {
 
 declare global {
   interface Window {
-    particlesJS: (elementId: string, options: ParticleJS) => void
+    particlesJS: (elementId: string, options: ParticleJS, nonce?: string) => void
     pJSDom: {
       pJS: {
         fn: {
