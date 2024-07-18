@@ -6,12 +6,13 @@ import { axiosWithAuth } from 'src/shared/utils/axios'
 
 export const getWorkspaceInventoryReportBenchmarksQuery = ({
   signal,
-  queryKey: [, workspaceId, benchmark_ids, short, with_checks, ids_only],
+  queryKey: [, workspaceId, benchmark_ids, short, with_checks, ids_only, withError0Result],
 }: QueryFunctionContext<
   [
     'workspace-inventory-report-benchmarks',
     string | undefined,
     string | undefined,
+    boolean | undefined,
     boolean | undefined,
     boolean | undefined,
     boolean | undefined,
@@ -37,5 +38,11 @@ export const getWorkspaceInventoryReportBenchmarksQuery = ({
           params: Object.keys(params).length ? params : undefined,
         })
         .then((res) => res.data)
+        .catch((e) => {
+          if (withError0Result) {
+            return [] as Benchmark[]
+          }
+          throw e
+        })
     : ([] as Benchmark[])
 }
