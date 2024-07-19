@@ -195,7 +195,7 @@ export const InventoryFormChangeValue = ({
         onChange={([after, before]) => {
           if (after && !before) {
             setRangePosition('end')
-          } else {
+          } else if (!after) {
             setRangePosition('start')
           }
           onChange(
