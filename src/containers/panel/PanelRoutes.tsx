@@ -128,9 +128,28 @@ export function PanelRoutes() {
         <Route element={<AccountCheckGuard />}>
           <Route element={<BenchmarkCheckGuard />}>
             <Route path="security" element={<SecurityPage />} />
+            {/* TODO: remove bellow route and add the following:
+              <Route path="inventory">
+                <Route index element={<InventorySummaryPage key={1} />} />
+                <Route path="search" element={<InventoryPage key={1} />}>
+                  {withResourceDetailRoute}
+                </Route>
+                <Route path="history" element={<InventoryPage key={2} withHistory />}>
+                  {withResourceDetailRoute}
+                </Route>
+              </Route>
+            */}
             <Route path="inventory">
               <Route index element={<InventoryPage key={1} />} />
-              {withResourceDetailRoute}
+              <Route
+                path="resource-detail/:resourceDetailId"
+                element={
+                  <>
+                    <InventoryPage key={1} />
+                    <ResourceDetailView />
+                  </>
+                }
+              />
               <Route path="history" element={<InventoryPage key={2} withHistory />}>
                 {withResourceDetailRoute}
               </Route>

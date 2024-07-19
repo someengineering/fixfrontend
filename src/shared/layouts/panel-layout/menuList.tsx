@@ -41,8 +41,6 @@ export const menuList: MenuListItem[] = [
   {
     name: <Trans>Inventory</Trans>,
     route: '/inventory',
-    // routeSearch: 'changes=true',
-    // notRouteSearchMatch: true,
     Icon: InventoryIcon,
     hideOnGuard: true,
     useGuard: useHasBenchmarkCheck,
@@ -50,7 +48,8 @@ export const menuList: MenuListItem[] = [
       {
         Icon: SearchIcon,
         name: <Trans>Search</Trans>,
-        route: '/inventory/search',
+        // TODO: /inventory/search
+        route: '/inventory',
       },
       {
         Icon: HistoryIcon,
@@ -59,13 +58,6 @@ export const menuList: MenuListItem[] = [
       },
     ],
   },
-  // {
-  //   name: <Trans>History</Trans>,
-  //   route: '/inventory',
-  //   routeSearch: 'changes=true',
-  //   Icon: HistoryIcon,
-  //   useGuard: useHasBenchmarkCheck,
-  // },
   {
     name: <Trans>Security</Trans>,
     route: '/security',
