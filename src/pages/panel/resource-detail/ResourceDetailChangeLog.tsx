@@ -29,6 +29,8 @@ export const ResourceDetailChangeLog = ({ notFound, defaultResource }: ResourceD
     data: orgData,
     isLoading,
     isFetched,
+    isError,
+    isSuccess,
     error,
   } = useQuery({
     queryKey: ['workspace-inventory-node-history', selectedWorkspace?.id, resourceDetailId, undefined, undefined, undefined, undefined],
@@ -37,23 +39,27 @@ export const ResourceDetailChangeLog = ({ notFound, defaultResource }: ResourceD
     enabled: !!resourceDetailId && expanded,
   })
   const data = useMemo(() => {
-    if (isFetched && defaultResource) {
+    if (isFetched) {
       return orgData && orgData[orgData.length - 1]?.change === 'node_created'
         ? orgData
         : [
             ...(orgData ?? []),
-            {
-              change: 'node_created',
-              changed_at: defaultResource.reported.ctime,
-              created: defaultResource.reported.ctime,
-              id: Math.random().toString(),
-              metadata: defaultResource.metadata,
-              reported: defaultResource.reported,
-              revision: defaultResource.revision,
-              type: 'node',
-              updated: defaultResource.reported.ctime,
-              ancestors: defaultResource.ancestors,
-            } as WorkspaceInventoryNodeHistory,
+            ...(defaultResource
+              ? [
+                  {
+                    change: 'node_created',
+                    changed_at: defaultResource.reported.ctime,
+                    created: defaultResource.reported.ctime,
+                    id: Math.random().toString(),
+                    metadata: defaultResource.metadata,
+                    reported: defaultResource.reported,
+                    revision: defaultResource.revision,
+                    type: 'node',
+                    updated: defaultResource.reported.ctime,
+                    ancestors: defaultResource.ancestors,
+                  } as WorkspaceInventoryNodeHistory,
+                ]
+              : []),
           ]
     }
   }, [isFetched, defaultResource, orgData])
@@ -63,7 +69,8 @@ export const ResourceDetailChangeLog = ({ notFound, defaultResource }: ResourceD
     }
   }, [notFound])
   const onClosePopup = () => setHistory((prev) => [null, prev[1]])
-  return (
+
+  return (isError || isSuccess) && !data?.length ? null : (
     <>
       <Accordion expanded={expanded} onChange={(_, value) => setExpanded(value)}>
         <StickyAccordionSummaryWithIcon offset={6}>
