@@ -50,7 +50,7 @@ export default function WorkspaceSettingsBillingPage() {
       <Typography variant="h3">
         <Trans>Billing</Trans>
       </Typography>
-      {product_tier !== 'Trial' ? (
+      {product_tier === 'Trial' ? (
         <Stack direction="row" justifyContent="center">
           <Alert variant="outlined" severity="success">
             <AlertTitle fontSize={20}>
