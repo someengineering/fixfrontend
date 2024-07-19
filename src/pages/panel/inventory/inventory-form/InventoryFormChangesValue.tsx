@@ -1,12 +1,25 @@
 import { Trans, t } from '@lingui/macro'
-import { Checkbox, FormControl, InputLabel, MenuItem, OutlinedInput, Select, Stack, formLabelClasses } from '@mui/material'
+import {
+  Button,
+  Checkbox,
+  Divider,
+  FormControl,
+  InputLabel,
+  ListSubheader,
+  MenuItem,
+  OutlinedInput,
+  Select,
+  Stack,
+  formLabelClasses,
+} from '@mui/material'
 import { DateTimeRangePicker } from '@mui/x-date-pickers-pro'
 import dayjs from 'dayjs'
+import { useState } from 'react'
 import { WorkspaceInventorySearchTableHistoryChanges } from 'src/shared/types/server'
 import { allHistoryChangesOptions } from './utils/allHistoryChangesOptions'
 
 interface InventoryFormChangeValueProps {
-  searchParamsChanges: string[] | null
+  searchParamsChanges: string[]
   searchParamsAfter: string | null
   searchParamsBefore: string | null
   onChange: (searchParamsChanges: string[], searchParamsAfter: string | null, searchParamsBefore: string | null) => void
@@ -15,20 +28,36 @@ interface InventoryFormChangeValueProps {
 const getOptionsLabel = (option: WorkspaceInventorySearchTableHistoryChanges) => {
   switch (option) {
     case 'node_compliant':
-      return t`Node Compliant`
-    case 'node_created':
-      return t`Node Created`
-    case 'node_updated':
-      return t`Node Updated`
-    case 'node_deleted':
-      return t`Node Deleted`
+      return [t`Security`, t`Compliant`]
     case 'node_vulnerable':
-      return t`Node Vulnerable`
+      return [t`Security`, t`Vulnerable`]
+    case 'node_created':
+      return [t`Resource`, t`Created`]
+    case 'node_updated':
+      return [t`Resource`, t`Updated`]
+    case 'node_deleted':
+      return [t`Resource`, t`Deleted`]
   }
   return option
 }
 
-const getOptions = () => allHistoryChangesOptions.map((value) => ({ value, label: getOptionsLabel(value) }))
+const getOptions = () =>
+  allHistoryChangesOptions.map((value) => {
+    const [group, label] = getOptionsLabel(value)
+    return { value, label, group }
+  })
+
+const getGroupsWithOptions = () => {
+  const options = getOptions()
+  const groupsWithOptionsObj = options.reduce(
+    (prev, option) => {
+      const { group, ...item } = option
+      return { ...prev, [group]: [...(prev[group] ?? []), item] }
+    },
+    {} as Record<string, { label: string; value: string }[]>,
+  )
+  return [options, Object.entries(groupsWithOptionsObj).map(([group, options]) => ({ group, options }))] as const
+}
 
 export const InventoryFormChangeValue = ({
   onChange,
@@ -36,20 +65,22 @@ export const InventoryFormChangeValue = ({
   searchParamsBefore,
   searchParamsChanges,
 }: InventoryFormChangeValueProps) => {
-  const options = getOptions()
-  const value = searchParamsChanges?.length ? searchParamsChanges : [...allHistoryChangesOptions]
+  const [options, groupsWithOptions] = getGroupsWithOptions()
+  const [rangePosition, setRangePosition] = useState<'start' | 'end'>(searchParamsAfter ? 'end' : 'start')
+  const allIsSelected = searchParamsChanges.length === allHistoryChangesOptions.length
   return (
     <Stack width="100%" flexGrow={1} direction="row" flexWrap="wrap" overflow="auto" mt={-2} pt={2} mb={-1}>
-      <FormControl sx={{ pt: 1, mt: -1 }}>
+      <FormControl>
         <InputLabel
           id="change-type"
           color="primary"
           sx={{
             color: 'primary.main',
-            mt: '3px',
             fontSize: 14,
             fontWeight: 700,
-            [`&.${formLabelClasses.filled},&.${formLabelClasses.focused}`]: { mt: '9px' },
+            transition: ({ transitions }) => transitions.create(['margin-top', 'color', 'transform', 'max-width'], { duration: 200 }),
+            mt: '-5px',
+            [`&.${formLabelClasses.filled},&.${formLabelClasses.focused}`]: { mt: '2px' },
           }}
         >
           <Trans>Change Type</Trans>
@@ -58,20 +89,17 @@ export const InventoryFormChangeValue = ({
           sx={{
             fontSize: 14,
             minWidth: 200,
-            mb: 1,
             mr: 1,
-            height: '100%',
             '& svg': {
               color: 'primary.main',
             },
           }}
-          value={value}
+          size="small"
+          value={searchParamsChanges}
           multiple
           variant="outlined"
           onChange={(e) => {
-            if (value.length) {
-              onChange(typeof e.target.value === 'string' ? [e.target.value] : e.target.value, searchParamsAfter, searchParamsBefore)
-            }
+            onChange(typeof e.target.value === 'string' ? [e.target.value] : e.target.value, searchParamsAfter, searchParamsBefore)
           }}
           input={
             <OutlinedInput
@@ -83,7 +111,7 @@ export const InventoryFormChangeValue = ({
                     color: 'primary.main',
                     pl: 2,
                     pr: 0.5,
-                    py: 0.75,
+                    py: 1.5,
                     fontWeight: 700,
                   },
                 },
@@ -95,22 +123,38 @@ export const InventoryFormChangeValue = ({
               ? t`All`
               : selected.map((item) => options.find((option) => option.value === item)?.label ?? item).join(', ')
           }
-          size="small"
           autoFocus={!searchParamsChanges}
           labelId="change-type"
         >
-          {options.map((option, index) => {
-            return (
-              <MenuItem value={option.value} dense key={index} disabled={(value.indexOf(option.value) ?? -1) > -1 && value.length === 1}>
-                <Checkbox checked={(value.indexOf(option.value) ?? -1) > -1} size="small" />
-                {option.label}
+          {groupsWithOptions.map(({ group, options }, index) => [
+            <ListSubheader key={index}>{group}</ListSubheader>,
+            ...options.map(({ label, value: optionValue }, optionIndex) => (
+              <MenuItem value={optionValue} dense key={`${index}_${optionIndex}`}>
+                <Checkbox checked={(searchParamsChanges.indexOf(optionValue) ?? -1) > -1} size="small" />
+                {label}
               </MenuItem>
-            )
-          })}
+            )),
+          ])}
+          <Divider />
+          <Stack direction="row" justifyContent="end" px={1}>
+            {
+              <Button
+                variant="outlined"
+                color={allIsSelected ? 'error' : 'primary'}
+                size="small"
+                onClick={() => onChange(allIsSelected ? [] : [...allHistoryChangesOptions], searchParamsAfter, searchParamsBefore)}
+              >
+                {allIsSelected ? <Trans>Clear</Trans> : <Trans>Select All</Trans>}
+              </Button>
+            }
+          </Stack>
         </Select>
       </FormControl>
       <DateTimeRangePicker
         disableFuture
+        closeOnSelect
+        rangePosition={rangePosition}
+        onRangePositionChange={setRangePosition}
         sx={{ mb: 1 }}
         slotProps={{
           fieldSeparator: {
@@ -149,7 +193,16 @@ export const InventoryFormChangeValue = ({
         }}
         value={[searchParamsAfter ? dayjs(searchParamsAfter) : null, searchParamsBefore ? dayjs(searchParamsBefore) : null]}
         onChange={([after, before]) => {
-          onChange(searchParamsChanges ?? [], after?.toISOString() ?? null, before?.toISOString() ?? null)
+          if (after && !before) {
+            setRangePosition('end')
+          } else {
+            setRangePosition('start')
+          }
+          onChange(
+            searchParamsChanges?.length ? searchParamsChanges : [...allHistoryChangesOptions],
+            after?.toISOString() ?? null,
+            before?.toISOString() ?? null,
+          )
         }}
       />
     </Stack>

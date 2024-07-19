@@ -91,6 +91,8 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
     }
   }, [sorts])
 
+  const historyStr = `${(history?.changes ?? []).join(',')}_from_${history?.after}_to_${history?.before}`
+
   useEffect(() => {
     if (initializedRef.current) {
       setDataCount(-1)
@@ -103,8 +105,9 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       user_id: currentUser?.id,
       workspace_id: selectedWorkspace?.id,
       query: searchCrit,
+      historyStr,
     })
-  }, [currentUser, postHog, searchCrit, selectedWorkspace?.id])
+  }, [currentUser, postHog, searchCrit, historyStr, selectedWorkspace?.id])
 
   useEffect(() => {
     if (!isLoading) {

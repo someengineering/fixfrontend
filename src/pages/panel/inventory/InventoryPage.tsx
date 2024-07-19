@@ -23,9 +23,7 @@ export default function InventoryPage({ withHistory }: InventoryPageProps) {
   const searchCrit = searchParams.get('q') || ''
   const history = withHistory
     ? {
-        changes: (searchParams.get('changes')?.split(',') ?? [
-          ...allHistoryChangesOptions,
-        ]) as WorkspaceInventorySearchTableHistoryChanges[],
+        changes: (searchParams.get('changes')?.split(',') ?? []) as WorkspaceInventorySearchTableHistoryChanges[],
         after: searchParams.get('after') || undefined,
         before: searchParams.get('before') || undefined,
       }
@@ -81,7 +79,14 @@ export default function InventoryPage({ withHistory }: InventoryPageProps) {
   return (
     <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
       <Suspense fallback={<LoadingSuspenseFallback />}>
-        <FixQueryProvider searchQuery={searchCrit} history={history} onHistoryChange={handleSetHistory} onChange={handleSetSearchCrit}>
+        <FixQueryProvider
+          withHistory={withHistory}
+          allHistory={allHistoryChangesOptions}
+          searchQuery={searchCrit}
+          history={history}
+          onHistoryChange={handleSetHistory}
+          onChange={handleSetSearchCrit}
+        >
           <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
             <InventoryAdvanceSearch hasError={!!searchCrit && hasError} hasChanges={withHistory ?? false} />
           </NetworkErrorBoundary>
