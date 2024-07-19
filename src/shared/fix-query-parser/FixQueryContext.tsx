@@ -1,6 +1,6 @@
 import { useLingui } from '@lingui/react'
 import { PropsWithChildren, createContext, memo } from 'react'
-import { WorkspaceInventorySearchTableHistory } from 'src/shared/types/server'
+import { WorkspaceInventorySearchTableHistory, WorkspaceInventorySearchTableHistoryChanges } from 'src/shared/types/server'
 import { JsonElement, Query } from './query'
 
 type ReturnTypeWithUndefined<T> = T extends (...args: infer Args) => unknown ? (...args: Args) => ReturnType<T> | undefined : never
@@ -56,13 +56,15 @@ export const FixQueryContext = createContext<FixQueryContextValue | null>(null)
 
 interface FixQueryProviderProps extends PropsWithChildren {
   searchQuery?: string
+  withHistory?: boolean
   history: WorkspaceInventorySearchTableHistory
+  allHistory?: readonly WorkspaceInventorySearchTableHistoryChanges[]
   onHistoryChange: (history?: WorkspaceInventorySearchTableHistory) => void
   onChange: (searchQuery?: string) => void
 }
 
 export const FixQueryProvider = memo(
-  ({ searchQuery, onChange, history, onHistoryChange, children }: FixQueryProviderProps) => {
+  ({ searchQuery, onChange, withHistory, history, onHistoryChange, allHistory = [], children }: FixQueryProviderProps) => {
     useLingui()
     let query: Query | undefined
     let queryOrAll = query ?? Query.parse('all')
@@ -84,6 +86,9 @@ export const FixQueryProvider = memo(
           onChange('')
           return undefined
         }
+        if (withHistory && !history.changes.length) {
+          onHistoryChange({ changes: [...allHistory] })
+        }
         onChange(result)
         return query
       }
@@ -91,7 +96,7 @@ export const FixQueryProvider = memo(
 
     const { account, cloud, parts = [], region, severity, tags = {}, aggregate, sorts = [] } = query || {}
     const value = {
-      //history
+      // history
       history,
       onHistoryChange,
       // default variables
