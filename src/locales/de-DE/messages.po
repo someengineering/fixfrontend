@@ -272,7 +272,7 @@ msgstr "Konto: {0}"
 #: src/pages/panel/inventory/InventoryTable.error.tsx:73
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:57
 #: src/shared/language-button/LanguageButton.stories.tsx:20
-#: src/shared/layouts/panel-layout/menuList.tsx:86
+#: src/shared/layouts/panel-layout/menuList.tsx:78
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:9
 msgid "Accounts"
 msgstr "Konten"
@@ -373,7 +373,7 @@ msgstr "Alarmierungsintegrationen (PD, Slack, Discord, Teams)"
 msgid "Alerting Settings"
 msgstr "Benachrichtigungseinstellungen"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:95
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:123
 msgid "All"
 msgstr ""
 
@@ -533,7 +533,7 @@ msgstr "Benchmarks"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:51
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:80
-#: src/shared/layouts/panel-layout/menuList.tsx:96
+#: src/shared/layouts/panel-layout/menuList.tsx:88
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:23
 msgid "Billing"
 msgstr "Abrechnung"
@@ -600,12 +600,12 @@ msgstr ""
 msgid "Change Product Tier"
 msgstr "Produktstufe ändern"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:55
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:78
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:86
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:106
 msgid "Change Type"
 msgstr ""
 
-#: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:70
+#: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:77
 msgid "Changes"
 msgstr "Änderungen"
 
@@ -630,7 +630,11 @@ msgstr ""
 msgid "Check the newly created role assignment"
 msgstr ""
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormReset.tsx:11
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:147
+msgid "Clear"
+msgstr ""
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormReset.tsx:10
 msgid "Clear the search"
 msgstr ""
 
@@ -718,6 +722,10 @@ msgstr "Gemeinschaftliche Unterstützung"
 #: src/pages/panel/security/OverallCard.tsx:77
 msgid "Compliance"
 msgstr "Compliance"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:31
+msgid "Compliant"
+msgstr ""
 
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:22
 msgid "Configuration changed"
@@ -833,6 +841,7 @@ msgstr ""
 msgid "Create Service Account"
 msgstr ""
 
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:35
 #: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:27
 msgid "Created"
 msgstr ""
@@ -938,6 +947,10 @@ msgstr "Löschen"
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:62
 msgid "Delete Provider"
 msgstr "Anbieter löschen"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:39
+msgid "Deleted"
+msgstr ""
 
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:13
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:29
@@ -1124,7 +1137,7 @@ msgstr "Externe Verzeichnisse"
 msgid "External Id"
 msgstr "External Id"
 
-#: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:80
+#: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:87
 msgid "Failed to retrieve changelog"
 msgstr "Das Änderungsprotokoll konnte nicht abgerufen werden"
 
@@ -1251,7 +1264,7 @@ msgstr "Hoch"
 msgid "Highest product tier this billing cycle"
 msgstr ""
 
-#: src/shared/layouts/panel-layout/menuList.tsx:57
+#: src/shared/layouts/panel-layout/menuList.tsx:56
 msgid "History"
 msgstr ""
 
@@ -1611,7 +1624,7 @@ msgstr "Nächste Synchronisierung"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:42
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:68
-#: src/pages/panel/inventory/InventoryTable.tsx:146
+#: src/pages/panel/inventory/InventoryTable.tsx:149
 msgid "No"
 msgstr ""
 
@@ -1621,26 +1634,6 @@ msgstr ""
 
 #: src/shared/layouts/panel-layout/MoveToFreeAcknowledge.tsx:44
 msgid "No Thanks"
-msgstr ""
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:18
-msgid "Node Compliant"
-msgstr ""
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:20
-msgid "Node Created"
-msgstr ""
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:24
-msgid "Node Deleted"
-msgstr ""
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:22
-msgid "Node Updated"
-msgstr ""
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:26
-msgid "Node Vulnerable"
 msgstr ""
 
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:158
@@ -2013,6 +2006,12 @@ msgstr "Umbenennen"
 msgid "Reset Password"
 msgstr "Passwort zurücksetzen"
 
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:35
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:37
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:39
+msgid "Resource"
+msgstr ""
+
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:20
 msgid "Resource created"
 msgstr "Ressource erstellt"
@@ -2048,7 +2047,7 @@ msgstr "Risiko"
 msgid "Roles"
 msgstr "Rollen"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:52
+#: src/shared/layouts/panel-layout/menuList.tsx:50
 msgid "Search"
 msgstr ""
 
@@ -2072,8 +2071,10 @@ msgstr "Sicherer Lesezugriff"
 msgid "Secure Your Cloud, Elevate Your Peace of Mind"
 msgstr ""
 
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:31
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:33
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:25
-#: src/shared/layouts/panel-layout/menuList.tsx:70
+#: src/shared/layouts/panel-layout/menuList.tsx:62
 msgid "Security"
 msgstr "Sicherheit"
 
@@ -2102,6 +2103,10 @@ msgstr "Sicherheitsbewertung"
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:280
 msgid "See this Resource in AWS Console"
 msgstr "Sehen Sie sich diese Ressource in der AWS-Konsole an"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:147
+msgid "Select All"
+msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:70
 msgid "Select IAM and press Grant Access. Fill out the form by pasting the email address as the new principal."
@@ -2388,7 +2393,7 @@ msgstr "Nicht angehängte elastische IPs"
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:329
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:149
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:155
-#: src/pages/panel/inventory/InventoryTable.tsx:138
+#: src/pages/panel/inventory/InventoryTable.tsx:141
 msgid "Undefined"
 msgstr ""
 
@@ -2415,6 +2420,10 @@ msgstr "E-Mail aktualisieren"
 #: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:32
 msgid "Update Password"
 msgstr "Kennwort aktualisieren"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:37
+msgid "Updated"
+msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:159
 msgid "Upgrade"
@@ -2443,7 +2452,7 @@ msgstr "Benachrichtigung über Benutzereinstellungen"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:27
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:68
-#: src/shared/layouts/panel-layout/menuList.tsx:91
+#: src/shared/layouts/panel-layout/menuList.tsx:83
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:19
 msgid "Users"
 msgstr "Benutzer"
@@ -2455,6 +2464,10 @@ msgstr "Wert"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:70
 msgid "Version"
+msgstr ""
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:33
+msgid "Vulnerable"
 msgstr ""
 
 #: src/pages/panel/inventory/DownloadCSVButton.tsx:90
@@ -2520,7 +2533,7 @@ msgid "Workspace Name"
 msgstr "Arbeitsbereichsname"
 
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:20
-#: src/shared/layouts/panel-layout/menuList.tsx:78
+#: src/shared/layouts/panel-layout/menuList.tsx:70
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:7
 msgid "Workspace Settings"
 msgstr "Arbeitsbereichseinstellungen"
@@ -2536,7 +2549,7 @@ msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:39
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:65
-#: src/pages/panel/inventory/InventoryTable.tsx:142
+#: src/pages/panel/inventory/InventoryTable.tsx:145
 msgid "Yes"
 msgstr ""
 
