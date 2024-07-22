@@ -63,19 +63,13 @@ msgstr "{0, plural, one {# Week} other {# Weeks}}"
 msgid "{0, plural, one {# Year} other {# Years}}"
 msgstr "{0, plural, one {# Year} other {# Years}}"
 
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:82
+msgid "{0, plural, one {check} other {checks}}"
+msgstr "{0, plural, one {check} other {checks}}"
+
 #: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:31
 msgid "{0} ago"
 msgstr "{0} ago"
-
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:68
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:115
-msgid "{0} checks failed."
-msgstr "{0} checks failed."
-
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:79
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:104
-msgid "{0} checks fixed."
-msgstr "{0} checks fixed."
 
 #: src/shared/event-button/EventButton.tsx:57
 #: src/shared/event-button/EventButton.tsx:66
@@ -129,7 +123,7 @@ msgstr "{0}: We've identified {1} non-compliant resources out of {2}."
 msgid "{accountLength, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
 msgstr "{accountLength, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:47
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:140
 msgid "{added} configuration lines added and {removed} lines deleted."
 msgstr "{added} configuration lines added and {removed} lines deleted."
 
@@ -137,6 +131,14 @@ msgstr "{added} configuration lines added and {removed} lines deleted."
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:148
 msgid "{cloudAccountsLength, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
 msgstr "{cloudAccountsLength, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
+
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:95
+msgid "{icon}{0} {checkOrChecksStr} {fixedOrFailedStr}."
+msgstr "{icon}{0} {checkOrChecksStr} {fixedOrFailedStr}."
+
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:103
+msgid "{icon}Checks {fixedOrFailedStr}: {numberOfChecks}."
+msgstr "{icon}Checks {fixedOrFailedStr}: {numberOfChecks}."
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput.tsx:34
 msgid "{label} is not valid"
@@ -387,7 +389,7 @@ msgstr "All checks have been disabled for this resource"
 msgid "All resources passed the check"
 msgstr "All resources passed the check"
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:28
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:48
 msgid "All security issues fixed"
 msgstr "All security issues fixed"
 
@@ -605,7 +607,7 @@ msgstr "Change Product Tier"
 msgid "Change Type"
 msgstr "Change Type"
 
-#: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:77
+#: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:79
 msgid "Changes"
 msgstr "Changes"
 
@@ -727,7 +729,7 @@ msgstr "Compliance"
 msgid "Compliant"
 msgstr "Compliant"
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:22
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:32
 msgid "Configuration changed"
 msgstr "Configuration changed"
 
@@ -1137,7 +1139,11 @@ msgstr "External Directories"
 msgid "External Id"
 msgstr "External Id"
 
-#: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:87
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:80
+msgid "failed"
+msgstr "failed"
+
+#: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:89
 msgid "Failed to retrieve changelog"
 msgstr "Failed to retrieve changelog"
 
@@ -1177,6 +1183,10 @@ msgstr "Finds snapshots of disks that are no longer in use, which potentially co
 #: src/containers/auth/AuthContainer.tsx:50
 msgid "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
 msgstr "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
+
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:80
+msgid "fixed"
+msgstr "fixed"
 
 #: src/pages/panel/resource-detail/utils/ResourceDetailChangeLogSelectedHistoryDiff.tsx:47
 msgid "Fixed issues"
@@ -1606,7 +1616,7 @@ msgstr "New Product Tier"
 msgid "New registration"
 msgstr "New registration"
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:26
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:45
 msgid "New security issues detected"
 msgstr "New security issues detected"
 
@@ -1701,6 +1711,10 @@ msgstr "On the Register an application page, fill the name of the application. W
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:112
 msgid "on the right side"
 msgstr "on the right side"
+
+#: src/shared/utils/oneTwoThreeWordedNumber.ts:4
+msgid "One"
+msgstr "One"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:127
 msgid "One time"
@@ -2012,11 +2026,11 @@ msgstr "Reset Password"
 msgid "Resource"
 msgstr "Resource"
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:20
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:30
 msgid "Resource created"
 msgstr "Resource created"
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:24
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:34
 msgid "Resource deleted"
 msgstr "Resource deleted"
 
@@ -2086,7 +2100,11 @@ msgstr "Security benchmarks"
 msgid "Security Issues"
 msgstr "Security Issues"
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:28
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:41
+msgid "Security posture changed"
+msgstr "Security posture changed"
+
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:43
 msgid "Security posture improved"
 msgstr "Security posture improved"
 
@@ -2323,6 +2341,10 @@ msgstr "This subscription is currently in a degraded state.<0/>Fix was unable to
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 
+#: src/shared/utils/oneTwoThreeWordedNumber.ts:4
+msgid "Three"
+msgstr "Three"
+
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:48
 msgid "Tier"
 msgstr "Tier"
@@ -2374,6 +2396,10 @@ msgstr "Trial"
 #: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:76
 msgid "Try again"
 msgstr "Try again"
+
+#: src/shared/utils/oneTwoThreeWordedNumber.ts:4
+msgid "Two"
+msgstr "Two"
 
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:52
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:21

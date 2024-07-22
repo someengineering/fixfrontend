@@ -63,19 +63,13 @@ msgstr "{0, plural, one {# Woche} other {# Wochen}}"
 msgid "{0, plural, one {# Year} other {# Years}}"
 msgstr "{0, plural, one {# Jahr} other {# Jahre}}"
 
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:82
+msgid "{0, plural, one {check} other {checks}}"
+msgstr "{0, plural, one {Prüfung} other {Prüfungen}}"
+
 #: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:31
 msgid "{0} ago"
 msgstr ""
-
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:68
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:115
-msgid "{0} checks failed."
-msgstr "{0} Prüfungen sind fehlgeschlagen."
-
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:79
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:104
-msgid "{0} checks fixed."
-msgstr "{0} Prüfungen behoben"
 
 #: src/shared/event-button/EventButton.tsx:57
 #: src/shared/event-button/EventButton.tsx:66
@@ -129,7 +123,7 @@ msgstr "{0}: Wir haben {1} nicht konforme Ressourcen von insgesamt {2}."
 msgid "{accountLength, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
 msgstr ""
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:47
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:140
 msgid "{added} configuration lines added and {removed} lines deleted."
 msgstr "{added} Konfigurationszeilen hinzugefügt und {removed} Zeilen gelöscht."
 
@@ -137,6 +131,14 @@ msgstr "{added} Konfigurationszeilen hinzugefügt und {removed} Zeilen gelöscht
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:148
 msgid "{cloudAccountsLength, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
 msgstr ""
+
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:95
+msgid "{icon}{0} {checkOrChecksStr} {fixedOrFailedStr}."
+msgstr "{icon}{0} {checkOrChecksStr} {fixedOrFailedStr}."
+
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:103
+msgid "{icon}Checks {fixedOrFailedStr}: {numberOfChecks}."
+msgstr "{icon}Checks {fixedOrFailedStr}: {numberOfChecks}."
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput.tsx:34
 msgid "{label} is not valid"
@@ -387,7 +389,7 @@ msgstr "Für diese Ressource wurden alle Prüfungen deaktiviert"
 msgid "All resources passed the check"
 msgstr ""
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:28
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:48
 msgid "All security issues fixed"
 msgstr "Alle Sicherheitsprobleme behoben"
 
@@ -605,7 +607,7 @@ msgstr "Produktstufe ändern"
 msgid "Change Type"
 msgstr ""
 
-#: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:77
+#: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:79
 msgid "Changes"
 msgstr "Änderungen"
 
@@ -727,7 +729,7 @@ msgstr "Compliance"
 msgid "Compliant"
 msgstr ""
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:22
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:32
 msgid "Configuration changed"
 msgstr "Konfiguration geändert"
 
@@ -1137,7 +1139,11 @@ msgstr "Externe Verzeichnisse"
 msgid "External Id"
 msgstr "External Id"
 
-#: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:87
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:80
+msgid "failed"
+msgstr "sind fehlgeschlagen"
+
+#: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:89
 msgid "Failed to retrieve changelog"
 msgstr "Das Änderungsprotokoll konnte nicht abgerufen werden"
 
@@ -1177,6 +1183,10 @@ msgstr "Findet Snapshots von Festplatten, die nicht mehr verwendet werden und m�
 #: src/containers/auth/AuthContainer.tsx:50
 msgid "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
 msgstr "Fix scannt Ihre Infrastruktur- und Ressourcenkonfigurationen mithilfe des schreibgeschützten API-Zugriffs. Keine Agenten erforderlich."
+
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:80
+msgid "fixed"
+msgstr "behoben"
 
 #: src/pages/panel/resource-detail/utils/ResourceDetailChangeLogSelectedHistoryDiff.tsx:47
 msgid "Fixed issues"
@@ -1606,7 +1616,7 @@ msgstr ""
 msgid "New registration"
 msgstr ""
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:26
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:45
 msgid "New security issues detected"
 msgstr "Neue Sicherheitsprobleme entdeckt"
 
@@ -1701,6 +1711,10 @@ msgstr ""
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:112
 msgid "on the right side"
 msgstr ""
+
+#: src/shared/utils/oneTwoThreeWordedNumber.ts:4
+msgid "One"
+msgstr "Eins"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:127
 msgid "One time"
@@ -2012,11 +2026,11 @@ msgstr "Passwort zurücksetzen"
 msgid "Resource"
 msgstr ""
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:20
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:30
 msgid "Resource created"
 msgstr "Ressource erstellt"
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:24
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:34
 msgid "Resource deleted"
 msgstr "Ressource gelöscht"
 
@@ -2086,7 +2100,11 @@ msgstr "Sicherheitsbenchmarks"
 msgid "Security Issues"
 msgstr "Sicherheitsprobleme"
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:28
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:41
+msgid "Security posture changed"
+msgstr ""
+
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:43
 msgid "Security posture improved"
 msgstr "Die Sicherheitslage wurde verbessert"
 
@@ -2323,6 +2341,10 @@ msgstr ""
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM Rolle in Ihrem AWS Konto erstellt. Diese Rolle wird von FIX verwendet, um in Ihrem AWS Konto Sicherheitsscans durchzuführen."
 
+#: src/shared/utils/oneTwoThreeWordedNumber.ts:4
+msgid "Three"
+msgstr "Drei"
+
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:48
 msgid "Tier"
 msgstr "Stufe"
@@ -2374,6 +2396,10 @@ msgstr "Probezeit"
 #: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:76
 msgid "Try again"
 msgstr "Versuchen Sie es erneut"
+
+#: src/shared/utils/oneTwoThreeWordedNumber.ts:4
+msgid "Two"
+msgstr "Zwei"
 
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:52
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:21
