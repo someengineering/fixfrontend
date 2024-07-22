@@ -194,7 +194,7 @@ export const InventoryForm = ({ withChanges }: InventoryFormProps) => {
     <Stack direction="row" width="100%" flexWrap="wrap" gap={1} overflow="auto" py={1}>
       <InventoryFormReset />
       {withChanges ? <InventoryFormChanges /> : null}
-      <InventoryFormFullTextSearches />
+      {withChanges ? null : <InventoryFormFullTextSearches />}
       <InventoryFormKind preItems={filteredStartData} />
       <InventoryFormCloud preItems={filteredStartData} />
       <InventoryFormAccount preItems={filteredStartData} />
