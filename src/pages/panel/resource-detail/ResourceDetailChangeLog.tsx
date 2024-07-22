@@ -40,27 +40,29 @@ export const ResourceDetailChangeLog = ({ notFound, defaultResource }: ResourceD
   })
   const data = useMemo(() => {
     if (isFetched) {
-      return orgData && orgData[orgData.length - 1]?.change === 'node_created'
-        ? orgData
-        : [
-            ...(orgData ?? []),
-            ...(defaultResource
-              ? [
-                  {
-                    change: 'node_created',
-                    changed_at: defaultResource.reported.ctime,
-                    created: defaultResource.reported.ctime,
-                    id: Math.random().toString(),
-                    metadata: defaultResource.metadata,
-                    reported: defaultResource.reported,
-                    revision: defaultResource.revision,
-                    type: 'node',
-                    updated: defaultResource.reported.ctime,
-                    ancestors: defaultResource.ancestors,
-                  } as WorkspaceInventoryNodeHistory,
-                ]
-              : []),
-          ]
+      return [
+        ...(orgData && orgData[orgData.length - 1]?.change === 'node_created'
+          ? orgData
+          : [
+              ...(defaultResource
+                ? [
+                    {
+                      change: 'node_created',
+                      changed_at: defaultResource.reported.ctime,
+                      created: defaultResource.reported.ctime,
+                      id: Math.random().toString(),
+                      metadata: defaultResource.metadata,
+                      reported: defaultResource.reported,
+                      revision: defaultResource.revision,
+                      type: 'node',
+                      updated: defaultResource.reported.ctime,
+                      ancestors: defaultResource.ancestors,
+                    } as WorkspaceInventoryNodeHistory,
+                  ]
+                : []),
+              ...(orgData ?? []),
+            ]),
+      ].sort((a, b) => new Date(b.changed_at).valueOf() - new Date(a.changed_at).valueOf())
     }
   }, [isFetched, defaultResource, orgData])
   useEffect(() => {
