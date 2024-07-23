@@ -222,7 +222,7 @@ const templateHistoryData = (): TemplateData[] => {
       icon: DynamicFormIcon,
       content: [
         {
-          title: t`Last 7 days change count by kind`,
+          title: t`Change count by Resource Kind`,
           description: t`Number of changes in the last 7 days counted by kind.`,
           search: 'aggregate(kind, /change: sum(1) as count): all sort /count desc, /group.kind asc',
           history: {

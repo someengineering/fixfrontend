@@ -597,6 +597,10 @@ msgstr "Cannot enable this account"
 msgid "Change"
 msgstr "Change"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:225
+msgid "Change count by Resource Kind"
+msgstr "Change count by Resource Kind"
+
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:102
 msgid "Change payment"
 msgstr "Change payment"
@@ -1492,10 +1496,6 @@ msgstr "Kind"
 #: src/pages/panel/inventory/inventory-form/InventoryFormKind.tsx:37
 msgid "Kinds"
 msgstr "Kinds"
-
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:225
-msgid "Last 7 days change count by kind"
-msgstr "Last 7 days change count by kind"
 
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:84
 msgid "Last login"
