@@ -193,10 +193,8 @@ export const InventoryFormChangeValue = ({
         }}
         value={[searchParamsAfter ? dayjs(searchParamsAfter) : null, searchParamsBefore ? dayjs(searchParamsBefore) : null]}
         onChange={([after, before]) => {
-          if (after && !before) {
+          if (after) {
             setRangePosition('end')
-          } else if (!after) {
-            setRangePosition('start')
           }
           onChange(
             searchParamsChanges?.length ? searchParamsChanges : [...allHistoryChangesOptions],

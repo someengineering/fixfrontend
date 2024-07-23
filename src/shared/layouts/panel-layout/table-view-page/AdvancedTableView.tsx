@@ -1,10 +1,11 @@
-import { Box, Paper, Stack } from '@mui/material'
+import { Box, Paper, Stack, stackClasses } from '@mui/material'
 import {
   DataGridPremium,
   DataGridPremiumProps,
   GridToolbarColumnsButton,
   GridToolbarContainer,
   GridToolbarDensitySelector,
+  gridClasses,
   useGridApiRef,
 } from '@mui/x-data-grid-premium'
 import { ReactNode } from 'react'
@@ -37,14 +38,17 @@ export function AdvancedTableView<RowType extends readonly []>({ headerToolbar, 
           ...props.slots,
         }}
         sx={{
-          '.MuiDataGrid-main': {
+          [`.${gridClasses.main}`]: {
             overflow: 'initial',
             position: 'relative',
-            '.MuiDataGrid-columnHeaders': {
+            [`.${gridClasses.columnHeader}`]: {
               position: 'sticky',
               bgcolor: 'background.default',
               zIndex: 1,
               top: 0,
+              [`.${gridClasses.columnHeaderTitleContainerContent} .${stackClasses.root}`]: {
+                height: 'auto',
+              },
             },
           },
           ...props.sx,

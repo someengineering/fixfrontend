@@ -16,6 +16,33 @@ interface InventoryPageProps {
   withHistory?: boolean
 }
 
+const getSearchCrit = (crit?: string, history?: WorkspaceInventorySearchTableHistory) => {
+  const searchValues = getLocationSearchValues()
+  if (!crit) {
+    delete searchValues['q']
+  } else {
+    searchValues['q'] = window.encodeURIComponent(crit)
+  }
+  if (!history || !history.changes.length) {
+    delete searchValues['changes']
+    delete searchValues['after']
+    delete searchValues['before']
+  } else {
+    searchValues['changes'] = window.encodeURIComponent(history.changes.join(','))
+    if (history.after) {
+      searchValues['after'] = window.encodeURIComponent(history.after)
+    } else {
+      delete searchValues['after']
+    }
+    if (history.before) {
+      searchValues['before'] = window.encodeURIComponent(history.before)
+    } else {
+      delete searchValues['before']
+    }
+  }
+  return mergeLocationSearchValues(searchValues)
+}
+
 export default function InventoryPage({ withHistory }: InventoryPageProps) {
   const [searchParams] = useSearchParams()
   const navigate = useAbsoluteNavigate()
@@ -32,43 +59,11 @@ export default function InventoryPage({ withHistory }: InventoryPageProps) {
       }
 
   const handleSetSearchCrit = useCallback(
-    (crit?: string) => {
-      const searchValues = getLocationSearchValues()
+    (crit?: string, history?: WorkspaceInventorySearchTableHistory) => {
       if (!crit) {
         setHasError(false)
-        delete searchValues['q']
-      } else {
-        searchValues['q'] = window.encodeURIComponent(crit)
       }
-      const search = mergeLocationSearchValues(searchValues)
-      if (search !== window.location.search) {
-        navigate({ pathname: window.location.pathname, search })
-      }
-    },
-    [navigate],
-  )
-
-  const handleSetHistory = useCallback(
-    (history?: WorkspaceInventorySearchTableHistory) => {
-      const searchValues = getLocationSearchValues()
-      if (!history || !history.changes.length) {
-        delete searchValues['changes']
-        delete searchValues['after']
-        delete searchValues['before']
-      } else {
-        searchValues['changes'] = window.encodeURIComponent(history.changes.join(','))
-        if (history.after) {
-          searchValues['after'] = window.encodeURIComponent(history.after)
-        } else {
-          delete searchValues['after']
-        }
-        if (history.before) {
-          searchValues['before'] = window.encodeURIComponent(history.before)
-        } else {
-          delete searchValues['before']
-        }
-      }
-      const search = mergeLocationSearchValues(searchValues)
+      const search = getSearchCrit(crit, history)
       if (search !== window.location.search) {
         navigate({ pathname: window.location.pathname, search })
       }
@@ -84,7 +79,6 @@ export default function InventoryPage({ withHistory }: InventoryPageProps) {
           allHistory={allHistoryChangesOptions}
           searchQuery={searchCrit}
           history={history}
-          onHistoryChange={handleSetHistory}
           onChange={handleSetSearchCrit}
         >
           <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
@@ -104,7 +98,7 @@ export default function InventoryPage({ withHistory }: InventoryPageProps) {
               </NetworkErrorBoundary>
             </>
           ) : (
-            <InventoryTemplateBoxes onChange={handleSetSearchCrit} />
+            <InventoryTemplateBoxes onChange={handleSetSearchCrit} withHistory={withHistory} />
           )}
         </FixQueryProvider>
       </Suspense>

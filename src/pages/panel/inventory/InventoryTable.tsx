@@ -191,7 +191,9 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
   }, [data, isLoading])
 
   return isLoading && !rows.length && !columns.length ? (
-    <LoadingSuspenseFallback />
+    <Box height="calc(100% - 180px)">
+      <LoadingSuspenseFallback />
+    </Box>
   ) : columns.length ? (
     <AdvancedTableView
       loading={Boolean(isLoading && rows.length && columns.length)}

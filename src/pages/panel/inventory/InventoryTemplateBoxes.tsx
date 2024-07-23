@@ -2,12 +2,15 @@ import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import BrokenImageIcon from '@mui/icons-material/BrokenImage'
 import DynamicFormIcon from '@mui/icons-material/DynamicForm'
+import HistoryIcon from '@mui/icons-material/History'
 import SecurityIcon from '@mui/icons-material/Security'
 import { Box, Card, CardContent, CardHeader, Divider, Grid, Link, Stack, Typography } from '@mui/material'
 import { FC, Fragment } from 'react'
+import { WorkspaceInventorySearchTableHistoryChanges } from 'src/shared/types/server'
 
 interface InventoryTemplateBoxesProps {
-  onChange: (value?: string) => void
+  onChange: (value?: string, history?: { changes: WorkspaceInventorySearchTableHistoryChanges[]; after?: string; before?: string }) => void
+  withHistory?: boolean
 }
 
 interface TemplateData {
@@ -17,6 +20,11 @@ interface TemplateData {
     title: string
     description: string
     search: string
+    history?: {
+      changes: WorkspaceInventorySearchTableHistoryChanges[]
+      after?: string
+      before?: string
+    }
   }[]
 }
 
@@ -108,7 +116,167 @@ const templateData = (): TemplateData[] => [
   },
 ]
 
-export const InventoryTemplateBoxes = ({ onChange }: InventoryTemplateBoxesProps) => {
+const templateHistoryData = (): TemplateData[] => {
+  const aDay = 24 * 60 * 60 * 1000
+  const aWeek = 7 * aDay
+  const aMonth = 30 * aDay
+  const thirtyOneDays = 30 * aDay
+  const currentDate = new Date()
+  const sevenDaysAgo = new Date(currentDate.getTime() - aWeek)
+  const twentyFourHoursAgo = new Date(currentDate.getTime() - aDay)
+  const thirtyDaysAgo = new Date(currentDate.getTime() - aMonth)
+  const thirtyOneDaysAgo = new Date(currentDate.getTime() - thirtyOneDays)
+  return [
+    {
+      header: t`Resource Changes`,
+      icon: HistoryIcon,
+      content: [
+        {
+          title: t`All Changes`,
+          description: t`All changes over all resources.`,
+          search: 'all',
+          history: {
+            changes: ['node_compliant', 'node_vulnerable', 'node_created', 'node_updated', 'node_deleted'],
+          },
+        },
+        {
+          title: t`Created in the last 7 days`,
+          description: t`Resources Created in the last 7 days.`,
+          search: 'all',
+          history: {
+            changes: ['node_created'],
+            after: sevenDaysAgo.toISOString(),
+            before: currentDate.toISOString(),
+          },
+        },
+        {
+          title: t`Updated in the last 7 days`,
+          description: t`Resources Updated in the last 7 days.`,
+          search: 'all',
+          history: {
+            changes: ['node_updated'],
+            after: sevenDaysAgo.toISOString(),
+            before: currentDate.toISOString(),
+          },
+        },
+        {
+          title: t`Deleted in the last 7 days`,
+          description: t`Resources Deleted in the last 7 days.`,
+          search: 'all',
+          history: {
+            changes: ['node_deleted'],
+            after: sevenDaysAgo.toISOString(),
+            before: currentDate.toISOString(),
+          },
+        },
+      ],
+    },
+    {
+      header: t`Security Changes`,
+      icon: SecurityIcon,
+      content: [
+        {
+          title: t`Vulnerable in the last 24 hours`,
+          description: t`Vulnerable Resources detected in the last 24 hours.`,
+          search: 'all',
+          history: {
+            changes: ['node_vulnerable'],
+            after: twentyFourHoursAgo.toISOString(),
+            before: currentDate.toISOString(),
+          },
+        },
+        {
+          title: t`Vulnerable in the last 7 days`,
+          description: t`Vulnerable Resources detected in the last 7 days.`,
+          search: 'all',
+          history: {
+            changes: ['node_vulnerable'],
+            after: sevenDaysAgo.toISOString(),
+            before: currentDate.toISOString(),
+          },
+        },
+        {
+          title: t`Vulnerable in the last 31 days`,
+          description: t`Vulnerable Resources detected in the last 31 days.`,
+          search: 'all',
+          history: {
+            changes: ['node_vulnerable'],
+            after: thirtyOneDaysAgo.toISOString(),
+            before: currentDate.toISOString(),
+          },
+        },
+        {
+          title: t`Compliant in the last 7 days`,
+          description: t`Resources became compliant in the last 7 days.`,
+          search: 'all',
+          history: {
+            changes: ['node_compliant'],
+            after: sevenDaysAgo.toISOString(),
+            before: currentDate.toISOString(),
+          },
+        },
+      ],
+    },
+    {
+      header: t`Drill Down`,
+      icon: DynamicFormIcon,
+      content: [
+        {
+          title: t`Last 7 days change count by kind`,
+          description: t`Number of changes in the last 7 days counted by kind.`,
+          search: 'aggregate(kind, /change: sum(1) as count): all sort /count desc, /group.kind asc',
+          history: {
+            changes: ['node_created', 'node_updated', 'node_deleted'],
+            after: sevenDaysAgo.toISOString(),
+            before: currentDate.toISOString(),
+          },
+        },
+        {
+          title: t`Serverless function changes`,
+          description: t`Serverless function changes in the last 30 days.`,
+          search: 'is(serverless_function)',
+          history: {
+            changes: ['node_created', 'node_updated', 'node_deleted'],
+            after: thirtyDaysAgo.toISOString(),
+            before: currentDate.toISOString(),
+          },
+        },
+        {
+          title: t`IAM Role changes`,
+          description: t`IAM Role changes in the last 30 days.`,
+          search: 'is(role)',
+          history: {
+            changes: ['node_created', 'node_updated', 'node_deleted'],
+            after: thirtyDaysAgo.toISOString(),
+            before: currentDate.toISOString(),
+          },
+        },
+        {
+          title: t`Compute Changes`,
+          description: t`Compute changes in the last 30 days.`,
+          search: 'is(instance)',
+          history: {
+            changes: ['node_created', 'node_updated', 'node_deleted'],
+            after: thirtyDaysAgo.toISOString(),
+            before: currentDate.toISOString(),
+          },
+        },
+        {
+          title: t`Resource changes with owner tag`,
+          description: t`Number of Resources changed, broken down by owner tag in the last 30 days.`,
+          search: 'aggregate(tags.owner, /change: sum(1) as count): tags.owner != null sort /count desc, /group.owner asc',
+          history: {
+            changes: ['node_created', 'node_updated', 'node_deleted'],
+            after: thirtyDaysAgo.toISOString(),
+            before: currentDate.toISOString(),
+          },
+        },
+      ],
+    },
+  ]
+}
+
+export const InventoryTemplateBoxes = ({ onChange, withHistory }: InventoryTemplateBoxesProps) => {
   useLingui()
   return (
     <>
@@ -116,7 +284,7 @@ export const InventoryTemplateBoxes = ({ onChange }: InventoryTemplateBoxesProps
         <Trans>Example searches</Trans>
       </Typography>
       <Grid container spacing={2}>
-        {templateData().map((template, i) => (
+        {(withHistory ? templateHistoryData() : templateData()).map((template, i) => (
           <Grid item xs={12} sm={6} md={4} lg={4} xl={3} key={i}>
             <Card elevation={4}>
               <CardHeader title={template.header} avatar={<template.icon />} />
@@ -124,14 +292,21 @@ export const InventoryTemplateBoxes = ({ onChange }: InventoryTemplateBoxesProps
                 {template.content.map((content, i) => (
                   <Fragment key={i}>
                     <Stack spacing={1}>
-                      <Link component={Typography} variant="h6" onClick={() => onChange(content.search)} sx={{ cursor: 'pointer' }}>
+                      <Link
+                        component={Typography}
+                        variant="h6"
+                        onClick={() => onChange(content.search, content.history)}
+                        sx={{ cursor: 'pointer' }}
+                      >
                         {content.title}
                       </Link>
                       <Typography>{content.description}</Typography>
                     </Stack>
-                    <Box my={1}>
-                      <Divider />
-                    </Box>
+                    {i === template.content.length - 1 ? null : (
+                      <Box my={1}>
+                        <Divider />
+                      </Box>
+                    )}
                   </Fragment>
                 ))}
               </CardContent>

@@ -238,7 +238,7 @@ msgstr "A Google Cloud Service Account is connected to this workspace. Drop file
 msgid "A Google Cloud Service Account key file has been uploaded - we are currently trying to list your projects. Please stay tuned - we will send you an Email when cloud accounts have been collected."
 msgstr "A Google Cloud Service Account key file has been uploaded - we are currently trying to list your projects. Please stay tuned - we will send you an Email when cloud accounts have been collected."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:57
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:65
 msgid "Abandoned"
 msgstr "Abandoned"
 
@@ -379,6 +379,14 @@ msgstr "Alerting Settings"
 msgid "All"
 msgstr "All"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:135
+msgid "All Changes"
+msgstr "All Changes"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:136
+msgid "All changes over all resources."
+msgstr "All changes over all resources."
+
 #: src/pages/panel/resource-detail/ResourceDetailFailedCheckIgnoredChecks.tsx:48
 msgid "All checks have been disabled for this resource"
 msgstr "All checks have been disabled for this resource"
@@ -489,7 +497,7 @@ msgstr "Automatic Cloud Setup"
 msgid "AWS Marketplace"
 msgstr "AWS Marketplace"
 
-#: src/shared/constants/consts.ts:13
+#: src/containers/panel/PanelInitialMessageHandler.tsx:17
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace has been successfully subscribed"
 
@@ -729,6 +737,18 @@ msgstr "Compliance"
 msgid "Compliant"
 msgstr "Compliant"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:209
+msgid "Compliant in the last 7 days"
+msgstr "Compliant in the last 7 days"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:255
+msgid "Compute Changes"
+msgstr "Compute Changes"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:256
+msgid "Compute changes in the last 30 days."
+msgstr "Compute changes in the last 30 days."
+
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:32
 msgid "Configuration changed"
 msgstr "Configuration changed"
@@ -852,6 +872,10 @@ msgstr "Created"
 msgid "Created At"
 msgstr "Created At"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:143
+msgid "Created in the last 7 days"
+msgstr "Created in the last 7 days"
+
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:243
 msgid "Created Time"
 msgstr "Created Time"
@@ -864,7 +888,7 @@ msgstr "Creation Date"
 msgid "Credit or Debit Card"
 msgstr "Credit or Debit Card"
 
-#: src/shared/constants/consts.ts:14
+#: src/containers/panel/PanelInitialMessageHandler.tsx:19
 msgid "Credit/Debit Card has been successfully subscribed"
 msgstr "Credit/Debit Card has been successfully subscribed"
 
@@ -953,6 +977,10 @@ msgstr "Delete Provider"
 #: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:39
 msgid "Deleted"
 msgstr "Deleted"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:163
+msgid "Deleted in the last 7 days"
+msgstr "Deleted in the last 7 days"
 
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:13
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:29
@@ -1043,6 +1071,10 @@ msgstr "Downgrade"
 msgid "Download CSV"
 msgstr "Download CSV"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:221
+msgid "Drill Down"
+msgstr "Drill Down"
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:89
 msgid "Drop Service Account Key File"
 msgstr "Drop Service Account Key File"
@@ -1091,7 +1123,7 @@ msgstr "Enable all"
 msgid "Enabled"
 msgstr "Enabled"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:88
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:96
 msgid "Engineers like to tag their temporary resources with the string \"delete\". This performs a full-text search in names, tags and other string properties."
 msgstr "Engineers like to tag their temporary resources with the string \"delete\". This performs a full-text search in names, tags and other string properties."
 
@@ -1119,7 +1151,7 @@ msgstr "Everything in Free, and"
 msgid "Everything in Plus, and"
 msgstr "Everything in Plus, and"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:116
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:284
 msgid "Example searches"
 msgstr "Example searches"
 
@@ -1164,19 +1196,19 @@ msgstr "Failing Resources"
 msgid "Features"
 msgstr "Features"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:78
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:86
 msgid "Finds CloudWatch instance alarms where the instance no longer exists."
 msgstr "Finds CloudWatch instance alarms where the instance no longer exists."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:41
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:49
 msgid "Finds databases that aren't encrypted at rest."
 msgstr "Finds databases that aren't encrypted at rest."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:62
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:70
 msgid "Finds load balancers that are not associated with any running instances."
 msgstr "Finds load balancers that are not associated with any running instances."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:72
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:80
 msgid "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
 msgstr "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
 
@@ -1295,6 +1327,14 @@ msgstr "How to fix"
 msgid "IAM"
 msgstr "IAM"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:245
+msgid "IAM Role changes"
+msgstr "IAM Role changes"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:246
+msgid "IAM Role changes in the last 30 days."
+msgstr "IAM Role changes in the last 30 days."
+
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:171
 msgid "Id"
 msgstr "Id"
@@ -1307,31 +1347,31 @@ msgstr "Id"
 msgid "ID"
 msgstr "ID"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:99
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:107
 msgid "Identifies compute instances and databases with low CPU usage, indicating potential over-provisioning."
 msgstr "Identifies compute instances and databases with low CPU usage, indicating potential over-provisioning."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:46
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:54
 msgid "Identifies databases publicly accessible from any IP on the Internet."
 msgstr "Identifies databases publicly accessible from any IP on the Internet."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:36
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:44
 msgid "Identifies EBS volumes that are not encrypted."
 msgstr "Identifies EBS volumes that are not encrypted."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:83
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:91
 msgid "Identifies Elastic IP addresses that are allocated but not associated with any network interface."
 msgstr "Identifies Elastic IP addresses that are allocated but not associated with any network interface."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:51
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:59
 msgid "Identifies RDS snapshots that are publicly accessible."
 msgstr "Identifies RDS snapshots that are publicly accessible."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:30
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:38
 msgid "Identifies S3 buckets that are publicly accessible."
 msgstr "Identifies S3 buckets that are publicly accessible."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:67
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:75
 msgid "Identifies storage volumes that are not attached to any running instance and had no read operations in the last 7 days."
 msgstr "Identifies storage volumes that are not attached to any running instance and had no read operations in the last 7 days."
 
@@ -1453,6 +1493,10 @@ msgstr "Kind"
 msgid "Kinds"
 msgstr "Kinds"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:225
+msgid "Last 7 days change count by kind"
+msgstr "Last 7 days change count by kind"
+
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:84
 msgid "Last login"
 msgstr "Last login"
@@ -1466,7 +1510,7 @@ msgstr "Last used"
 msgid "Learn more about the associated risk"
 msgstr "Learn more about the associated risk"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:61
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:69
 msgid "Load Balancers with no backends"
 msgstr "Load Balancers with no backends"
 
@@ -1492,7 +1536,7 @@ msgstr "Login into the AWS account you want to secure. Deploy a CloudFormation s
 msgid "Low"
 msgstr "Low"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:98
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:106
 msgid "Low Utilization Compute Instances and Databases"
 msgstr "Low Utilization Compute Instances and Databases"
 
@@ -1675,6 +1719,14 @@ msgstr "Now, switch to the organization or folder that holds the resources you w
 msgid "Number Of Account Charged"
 msgstr "Number Of Account Charged"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:226
+msgid "Number of changes in the last 7 days counted by kind."
+msgstr "Number of changes in the last 7 days counted by kind."
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:266
+msgid "Number of Resources changed, broken down by owner tag in the last 30 days."
+msgstr "Number of Resources changed, broken down by owner tag in the last 30 days."
+
 #: src/core/auth/WorkspaceGuard.tsx:94
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:504
 msgid "Ok"
@@ -1733,7 +1785,7 @@ msgstr "Oops! It looks like your query didn't match our format. Please check and
 msgid "Oops! Something went wrong."
 msgstr "Oops! Something went wrong."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:45
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:53
 msgid "Open Database Access"
 msgstr "Open Database Access"
 
@@ -1764,15 +1816,15 @@ msgstr "Optional professional services"
 msgid "Or"
 msgstr "Or"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:77
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:85
 msgid "Orphaned CloudWatch Instance Alarms"
 msgstr "Orphaned CloudWatch Instance Alarms"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:71
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:79
 msgid "Orphaned Snapshots"
 msgstr "Orphaned Snapshots"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:66
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:74
 msgid "Orphaned Volumes"
 msgstr "Orphaned Volumes"
 
@@ -1938,11 +1990,11 @@ msgstr "Properties"
 msgid "Property"
 msgstr "Property"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:50
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:58
 msgid "Public RDS Snapshots"
 msgstr "Public RDS Snapshots"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:29
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:37
 msgid "Public S3 Buckets"
 msgstr "Public S3 Buckets"
 
@@ -2026,6 +2078,14 @@ msgstr "Reset Password"
 msgid "Resource"
 msgstr "Resource"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:131
+msgid "Resource Changes"
+msgstr "Resource Changes"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:265
+msgid "Resource changes with owner tag"
+msgstr "Resource changes with owner tag"
+
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:30
 msgid "Resource created"
 msgstr "Resource created"
@@ -2038,7 +2098,23 @@ msgstr "Resource deleted"
 msgid "Resources"
 msgstr "Resources"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:87
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:210
+msgid "Resources became compliant in the last 7 days."
+msgstr "Resources became compliant in the last 7 days."
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:144
+msgid "Resources Created in the last 7 days."
+msgstr "Resources Created in the last 7 days."
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:164
+msgid "Resources Deleted in the last 7 days."
+msgstr "Resources Deleted in the last 7 days."
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:154
+msgid "Resources Updated in the last 7 days."
+msgstr "Resources Updated in the last 7 days."
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:95
 msgid "Resources with the string \"delete\""
 msgstr "Resources with the string \"delete\""
 
@@ -2069,7 +2145,7 @@ msgstr "Search"
 msgid "Search {0}"
 msgstr "Search {0}"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:104
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:112
 msgid "Searches for database instances with no connections over a significant period, indicating potential waste."
 msgstr "Searches for database instances with no connections over a significant period, indicating potential waste."
 
@@ -2087,7 +2163,7 @@ msgstr "Secure Your Cloud, Elevate Your Peace of Mind"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:31
 #: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:33
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:25
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:33
 #: src/shared/layouts/panel-layout/menuList.tsx:62
 msgid "Security"
 msgstr "Security"
@@ -2095,6 +2171,10 @@ msgstr "Security"
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:21
 msgid "Security benchmarks"
 msgstr "Security benchmarks"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:175
+msgid "Security Changes"
+msgstr "Security Changes"
 
 #: src/pages/panel/resource-detail/ResourceDetailFailedChecks.tsx:82
 msgid "Security Issues"
@@ -2173,6 +2253,14 @@ msgstr "Select User Impersonation permission:"
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:67
 msgid "Send Invite"
 msgstr "Send Invite"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:235
+msgid "Serverless function changes"
+msgstr "Serverless function changes"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:236
+msgid "Serverless function changes in the last 30 days."
+msgstr "Serverless function changes in the last 30 days."
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:53
 msgid "Service Account Key"
@@ -2406,7 +2494,7 @@ msgstr "Two"
 msgid "Type"
 msgstr "Type"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:82
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:90
 msgid "Unattached Elastic IPs"
 msgstr "Unattached Elastic IPs"
 
@@ -2423,19 +2511,19 @@ msgstr "Unattached Elastic IPs"
 msgid "Undefined"
 msgstr "Undefined"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:94
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:102
 msgid "Underutilized"
 msgstr "Underutilized"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:40
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:48
 msgid "Unencrypted Database Storage"
 msgstr "Unencrypted Database Storage"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:35
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:43
 msgid "Unencrypted EBS Volumes"
 msgstr "Unencrypted EBS Volumes"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:103
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:111
 msgid "Unused Database Instances"
 msgstr "Unused Database Instances"
 
@@ -2450,6 +2538,10 @@ msgstr "Update Password"
 #: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:37
 msgid "Updated"
 msgstr "Updated"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:153
+msgid "Updated in the last 7 days"
+msgstr "Updated in the last 7 days"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:159
 msgid "Upgrade"
@@ -2495,6 +2587,30 @@ msgstr "Version"
 #: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:33
 msgid "Vulnerable"
 msgstr "Vulnerable"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:179
+msgid "Vulnerable in the last 24 hours"
+msgstr "Vulnerable in the last 24 hours"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:199
+msgid "Vulnerable in the last 31 days"
+msgstr "Vulnerable in the last 31 days"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:189
+msgid "Vulnerable in the last 7 days"
+msgstr "Vulnerable in the last 7 days"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:180
+msgid "Vulnerable Resources detected in the last 24 hours."
+msgstr "Vulnerable Resources detected in the last 24 hours."
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:200
+msgid "Vulnerable Resources detected in the last 31 days."
+msgstr "Vulnerable Resources detected in the last 31 days."
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:190
+msgid "Vulnerable Resources detected in the last 7 days."
+msgstr "Vulnerable Resources detected in the last 7 days."
 
 #: src/pages/panel/inventory/DownloadCSVButton.tsx:90
 msgid "Warning"
