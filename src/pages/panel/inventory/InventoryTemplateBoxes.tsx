@@ -120,12 +120,10 @@ const templateHistoryData = (): TemplateData[] => {
   const aDay = 24 * 60 * 60 * 1000
   const aWeek = 7 * aDay
   const aMonth = 30 * aDay
-  const thirtyOneDays = 30 * aDay
   const currentDate = new Date()
   const sevenDaysAgo = new Date(currentDate.getTime() - aWeek)
   const twentyFourHoursAgo = new Date(currentDate.getTime() - aDay)
   const thirtyDaysAgo = new Date(currentDate.getTime() - aMonth)
-  const thirtyOneDaysAgo = new Date(currentDate.getTime() - thirtyOneDays)
   return [
     {
       header: t`Resource Changes`,
@@ -196,12 +194,12 @@ const templateHistoryData = (): TemplateData[] => {
           },
         },
         {
-          title: t`Vulnerable in the last 31 days`,
-          description: t`Vulnerable Resources detected in the last 31 days.`,
+          title: t`Vulnerable in the last 30 days`,
+          description: t`Vulnerable Resources detected in the last 30 days.`,
           search: 'all',
           history: {
             changes: ['node_vulnerable'],
-            after: thirtyOneDaysAgo.toISOString(),
+            after: thirtyDaysAgo.toISOString(),
             before: currentDate.toISOString(),
           },
         },

@@ -379,11 +379,11 @@ msgstr "Alerting Settings"
 msgid "All"
 msgstr "All"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:135
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:133
 msgid "All Changes"
 msgstr "All Changes"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:136
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:134
 msgid "All changes over all resources."
 msgstr "All changes over all resources."
 
@@ -597,7 +597,7 @@ msgstr "Cannot enable this account"
 msgid "Change"
 msgstr "Change"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:225
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:223
 msgid "Change count by Resource Kind"
 msgstr "Change count by Resource Kind"
 
@@ -741,15 +741,15 @@ msgstr "Compliance"
 msgid "Compliant"
 msgstr "Compliant"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:209
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:207
 msgid "Compliant in the last 7 days"
 msgstr "Compliant in the last 7 days"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:255
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:253
 msgid "Compute Changes"
 msgstr "Compute Changes"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:256
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:254
 msgid "Compute changes in the last 30 days."
 msgstr "Compute changes in the last 30 days."
 
@@ -876,7 +876,7 @@ msgstr "Created"
 msgid "Created At"
 msgstr "Created At"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:143
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:141
 msgid "Created in the last 7 days"
 msgstr "Created in the last 7 days"
 
@@ -982,7 +982,7 @@ msgstr "Delete Provider"
 msgid "Deleted"
 msgstr "Deleted"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:163
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:161
 msgid "Deleted in the last 7 days"
 msgstr "Deleted in the last 7 days"
 
@@ -1075,7 +1075,7 @@ msgstr "Downgrade"
 msgid "Download CSV"
 msgstr "Download CSV"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:221
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:219
 msgid "Drill Down"
 msgstr "Drill Down"
 
@@ -1155,7 +1155,7 @@ msgstr "Everything in Free, and"
 msgid "Everything in Plus, and"
 msgstr "Everything in Plus, and"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:284
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:282
 msgid "Example searches"
 msgstr "Example searches"
 
@@ -1331,11 +1331,11 @@ msgstr "How to fix"
 msgid "IAM"
 msgstr "IAM"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:245
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:243
 msgid "IAM Role changes"
 msgstr "IAM Role changes"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:246
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:244
 msgid "IAM Role changes in the last 30 days."
 msgstr "IAM Role changes in the last 30 days."
 
@@ -1719,11 +1719,11 @@ msgstr "Now, switch to the organization or folder that holds the resources you w
 msgid "Number Of Account Charged"
 msgstr "Number Of Account Charged"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:226
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:224
 msgid "Number of changes in the last 7 days counted by kind."
 msgstr "Number of changes in the last 7 days counted by kind."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:266
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:264
 msgid "Number of Resources changed, broken down by owner tag in the last 30 days."
 msgstr "Number of Resources changed, broken down by owner tag in the last 30 days."
 
@@ -2078,11 +2078,11 @@ msgstr "Reset Password"
 msgid "Resource"
 msgstr "Resource"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:131
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:129
 msgid "Resource Changes"
 msgstr "Resource Changes"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:265
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:263
 msgid "Resource changes with owner tag"
 msgstr "Resource changes with owner tag"
 
@@ -2098,19 +2098,19 @@ msgstr "Resource deleted"
 msgid "Resources"
 msgstr "Resources"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:210
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:208
 msgid "Resources became compliant in the last 7 days."
 msgstr "Resources became compliant in the last 7 days."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:144
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:142
 msgid "Resources Created in the last 7 days."
 msgstr "Resources Created in the last 7 days."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:164
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:162
 msgid "Resources Deleted in the last 7 days."
 msgstr "Resources Deleted in the last 7 days."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:154
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:152
 msgid "Resources Updated in the last 7 days."
 msgstr "Resources Updated in the last 7 days."
 
@@ -2172,7 +2172,7 @@ msgstr "Security"
 msgid "Security benchmarks"
 msgstr "Security benchmarks"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:175
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:173
 msgid "Security Changes"
 msgstr "Security Changes"
 
@@ -2254,11 +2254,11 @@ msgstr "Select User Impersonation permission:"
 msgid "Send Invite"
 msgstr "Send Invite"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:235
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:233
 msgid "Serverless function changes"
 msgstr "Serverless function changes"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:236
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:234
 msgid "Serverless function changes in the last 30 days."
 msgstr "Serverless function changes in the last 30 days."
 
@@ -2539,7 +2539,7 @@ msgstr "Update Password"
 msgid "Updated"
 msgstr "Updated"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:153
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:151
 msgid "Updated in the last 7 days"
 msgstr "Updated in the last 7 days"
 
@@ -2588,27 +2588,27 @@ msgstr "Version"
 msgid "Vulnerable"
 msgstr "Vulnerable"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:179
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:177
 msgid "Vulnerable in the last 24 hours"
 msgstr "Vulnerable in the last 24 hours"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:199
-msgid "Vulnerable in the last 31 days"
-msgstr "Vulnerable in the last 31 days"
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:197
+msgid "Vulnerable in the last 30 days"
+msgstr "Vulnerable in the last 30 days"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:189
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:187
 msgid "Vulnerable in the last 7 days"
 msgstr "Vulnerable in the last 7 days"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:180
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:178
 msgid "Vulnerable Resources detected in the last 24 hours."
 msgstr "Vulnerable Resources detected in the last 24 hours."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:200
-msgid "Vulnerable Resources detected in the last 31 days."
-msgstr "Vulnerable Resources detected in the last 31 days."
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:198
+msgid "Vulnerable Resources detected in the last 30 days."
+msgstr "Vulnerable Resources detected in the last 30 days."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:190
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:188
 msgid "Vulnerable Resources detected in the last 7 days."
 msgstr "Vulnerable Resources detected in the last 7 days."
 
