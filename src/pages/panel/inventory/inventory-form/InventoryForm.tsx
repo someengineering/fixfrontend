@@ -8,7 +8,6 @@ import { getWorkspaceInventorySearchStartQuery } from 'src/pages/panel/shared/qu
 import { sendInventoryError } from 'src/pages/panel/shared/utils'
 import { DefaultPropertiesKeys, Predicate, useFixQueryParser } from 'src/shared/fix-query-parser'
 import { InventoryFormAccount } from './InventoryFormAccount'
-import { InventoryFormChanges } from './InventoryFormChanges'
 import { InventoryFormCloud } from './InventoryFormCloud'
 import { InventoryFormFullTextSearches } from './InventoryFormFullTextSearch'
 import { InventoryFormKind } from './InventoryFormKind'
@@ -193,7 +192,6 @@ export const InventoryForm = ({ withChanges }: InventoryFormProps) => {
   return (
     <Stack direction="row" width="100%" flexWrap="wrap" gap={1} overflow="auto" py={1}>
       <InventoryFormReset />
-      {withChanges ? <InventoryFormChanges /> : null}
       {withChanges ? null : <InventoryFormFullTextSearches />}
       <InventoryFormKind preItems={filteredStartData} />
       <InventoryFormCloud preItems={filteredStartData} />

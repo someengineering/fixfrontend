@@ -1,4 +1,3 @@
-import { Box, Divider } from '@mui/material'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { WorkspaceInventorySearchTableHistory } from 'src/shared/types/server'
 import { InventoryFormChangeValue } from './InventoryFormChangesValue'
@@ -22,9 +21,6 @@ export const InventoryFormChanges = () => {
         searchParamsBefore={history.before ?? null}
         searchParamsChanges={history.changes}
       />
-      <Box width="100%" flexGrow={1}>
-        <Divider flexItem />
-      </Box>
     </>
   )
 }
