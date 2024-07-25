@@ -1,9 +1,5 @@
-import { t } from '@lingui/macro'
-import CheckIcon from '@mui/icons-material/Check'
-import CloseIcon from '@mui/icons-material/Close'
-import QuestionMarkIcon from '@mui/icons-material/QuestionMark'
 import { Box, ButtonBase, Stack, Tooltip, Typography } from '@mui/material'
-import { GridColDef, GridRow, GridRowProps, GridSortItem } from '@mui/x-data-grid-premium'
+import { GridRow, GridRowProps, GridSortItem } from '@mui/x-data-grid-premium'
 import { useQuery } from '@tanstack/react-query'
 import { usePostHog } from 'posthog-js/react'
 import { useEffect, useRef, useState } from 'react'
@@ -17,7 +13,6 @@ import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { PostHogEvent } from 'src/shared/posthog'
 import {
   PostWorkspaceInventorySearchTableResponse,
-  WorkspaceInventorySearchTableColumn,
   WorkspaceInventorySearchTableHistory,
   WorkspaceInventorySearchTableRow,
   WorkspaceInventorySearchTableSort,
@@ -26,6 +21,8 @@ import { isAuthenticated } from 'src/shared/utils/cookie'
 import { usePersistState } from 'src/shared/utils/usePersistState'
 import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { DownloadCSVButton } from './DownloadCSVButton'
+import { ColType } from './utils'
+import { inventoryTableRenderCell } from './utils/inventoryTableRenderCell'
 
 interface InventoryTableProps {
   searchCrit: string
@@ -35,8 +32,6 @@ interface InventoryTableProps {
 type RowType = WorkspaceInventorySearchTableRow['row'] & {
   INTERNAL_ID: string
 }
-
-type ColType = GridColDef & WorkspaceInventorySearchTableColumn
 
 export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => {
   const postHog = usePostHog()
@@ -135,22 +130,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
                   : i.kind === 'boolean'
                     ? (value) => (typeof value === 'boolean' ? value : value === 'true' ? true : value === 'false' ? false : null)
                     : undefined,
-              renderCell: (params) =>
-                params.colDef?.type === 'boolean' ? (
-                  params.value === null || params.value === undefined || params.value === 'null' ? (
-                    <Tooltip title={t`Undefined`} arrow>
-                      <QuestionMarkIcon fontSize="small" />
-                    </Tooltip>
-                  ) : params.value && params.value !== 'false' ? (
-                    <Tooltip title={t`Yes`} arrow>
-                      <CheckIcon fontSize="small" />
-                    </Tooltip>
-                  ) : (
-                    <Tooltip title={t`No`} arrow>
-                      <CloseIcon fontSize="small" />
-                    </Tooltip>
-                  )
-                ) : undefined,
+              renderCell: inventoryTableRenderCell(i),
               minWidth: 150,
               renderHeader: (value) => (
                 <Tooltip
