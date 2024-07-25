@@ -14,7 +14,7 @@ interface InventoryAdvanceSearchProps {
 export const InventoryAdvanceSearchTextField = ({ hasError }: InventoryAdvanceSearchProps) => {
   const [focused, setIsFocused] = useState(false)
   const [hasTextError, setHasTextError] = useState(false)
-  const { updateQuery, reset, error, q } = useFixQueryParser()
+  const { updateQuery, reset, onHistoryChange, error, q } = useFixQueryParser()
 
   const [searchCritValue, setSearchCritValue] = useState(q ?? '')
 
@@ -64,6 +64,7 @@ export const InventoryAdvanceSearchTextField = ({ hasError }: InventoryAdvanceSe
 
   const handleReset = () => {
     reset()
+    onHistoryChange({ changes: [] })
     setSearchCritValue('')
     updateQuery('')
     setHasTextError(false)
