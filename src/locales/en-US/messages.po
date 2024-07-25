@@ -194,7 +194,7 @@ msgstr "<0>Step 1: Scan the QR Code</0><1>First up, see this QR code on your scr
 msgid "<0>Thank you</0> for exploring the capabilities of Fix Security during your trial period!<1/>You've seen firsthand how our platform transforms cloud security with continuous, comprehensive monitoring and protection.<2/><3/>We have stopped synchronizing your cloud accounts and moved your workspace into the Free Tier.<4/>One account will be synchronized on a monthly base, while no additional user is allowed to access this workspace."
 msgstr "<0>Thank you</0> for exploring the capabilities of Fix Security during your trial period!<1/>You've seen firsthand how our platform transforms cloud security with continuous, comprehensive monitoring and protection.<2/><3/>We have stopped synchronizing your cloud accounts and moved your workspace into the Free Tier.<4/>One account will be synchronized on a monthly base, while no additional user is allowed to access this workspace."
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:50
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:52
 msgid "<0>This search is complex.</0>The combo boxes below may not display all filter details but can help narrow your results. For full control, please use the Advanced tab."
 msgstr "<0>This search is complex.</0>The combo boxes below may not display all filter details but can help narrow your results. For full control, please use the Advanced tab."
 
@@ -350,11 +350,11 @@ msgstr "Added accounts"
 msgid "Admin"
 msgstr "Admin"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:75
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:77
 msgid "Advanced"
 msgstr "Advanced"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:83
+#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:84
 msgid "Advanced search query"
 msgstr "Advanced search query"
 
@@ -753,6 +753,7 @@ msgstr "Compute Changes"
 msgid "Compute changes in the last 30 days."
 msgstr "Compute changes in the last 30 days."
 
+#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:33
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:32
 msgid "Configuration changed"
 msgstr "Configuration changed"
@@ -1253,8 +1254,8 @@ msgstr "Forget your password? Click here to reset your password."
 msgid "Forgot Password"
 msgstr "Forgot Password"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:63
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:66
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:65
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:68
 msgid "Form"
 msgstr "Form"
 
@@ -1678,7 +1679,7 @@ msgstr "Next Sync"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:42
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:68
-#: src/pages/panel/inventory/InventoryTable.tsx:149
+#: src/pages/panel/inventory/utils/inventoryTableRenderCell.tsx:26
 msgid "No"
 msgstr "No"
 
@@ -1776,8 +1777,8 @@ msgstr "One time"
 msgid "Oops, the username or password doesn't seem to match our records. Please try again."
 msgstr "Oops, the username or password doesn't seem to match our records. Please try again."
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:97
-#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:112
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:99
+#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:113
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Oops! It looks like your query didn't match our format. Please check and try again."
 
@@ -2086,13 +2087,19 @@ msgstr "Resource Changes"
 msgid "Resource changes with owner tag"
 msgstr "Resource changes with owner tag"
 
+#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:22
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:30
 msgid "Resource created"
 msgstr "Resource created"
 
+#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:44
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:34
 msgid "Resource deleted"
 msgstr "Resource deleted"
+
+#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:55
+msgid "Resource Secured"
+msgstr "Resource Secured"
 
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:68
 msgid "Resources"
@@ -2180,6 +2187,7 @@ msgstr "Security Changes"
 msgid "Security Issues"
 msgstr "Security Issues"
 
+#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:66
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:41
 msgid "Security posture changed"
 msgstr "Security posture changed"
@@ -2507,7 +2515,7 @@ msgstr "Unattached Elastic IPs"
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:329
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:149
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:155
-#: src/pages/panel/inventory/InventoryTable.tsx:141
+#: src/pages/panel/inventory/utils/inventoryTableRenderCell.tsx:18
 msgid "Undefined"
 msgstr "Undefined"
 
@@ -2691,7 +2699,7 @@ msgstr "Yearly"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:39
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:65
-#: src/pages/panel/inventory/InventoryTable.tsx:145
+#: src/pages/panel/inventory/utils/inventoryTableRenderCell.tsx:22
 msgid "Yes"
 msgstr "Yes"
 

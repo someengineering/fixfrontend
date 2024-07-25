@@ -63,7 +63,7 @@ export const inventoryRenderNodeChangeCell = (params: GridRenderCellParams<Works
             <GppMaybeIcon fontSize="small" />
           </TimelineDot>
           <span>
-            <Trans>Security Posture Changed</Trans>
+            <Trans>Security posture changed</Trans>
           </span>
         </Stack>
       )
