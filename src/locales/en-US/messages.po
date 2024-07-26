@@ -376,7 +376,7 @@ msgstr "Alerting integrations (PD, Slack, Discord, Teams)"
 msgid "Alerting Settings"
 msgstr "Alerting Settings"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:123
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:142
 msgid "All"
 msgstr "All"
 
@@ -615,8 +615,8 @@ msgstr "Change Payment method"
 msgid "Change Product Tier"
 msgstr "Change Product Tier"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:86
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:106
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:105
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:125
 msgid "Change Type"
 msgstr "Change Type"
 
@@ -645,7 +645,7 @@ msgstr "Check the detail"
 msgid "Check the newly created role assignment"
 msgstr "Check the newly created role assignment"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:147
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:161
 msgid "Clear"
 msgstr "Clear"
 
@@ -738,7 +738,7 @@ msgstr "Community support"
 msgid "Compliance"
 msgstr "Compliance"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:31
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:25
 msgid "Compliant"
 msgstr "Compliant"
 
@@ -869,7 +869,7 @@ msgstr "Create new API Token"
 msgid "Create Service Account"
 msgstr "Create Service Account"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:35
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:29
 #: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:27
 msgid "Created"
 msgstr "Created"
@@ -980,7 +980,7 @@ msgstr "Delete"
 msgid "Delete Provider"
 msgstr "Delete Provider"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:39
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:33
 msgid "Deleted"
 msgstr "Deleted"
 
@@ -2074,9 +2074,9 @@ msgstr "Rename"
 msgid "Reset Password"
 msgstr "Reset Password"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:35
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:37
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:39
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:29
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:31
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:33
 msgid "Resource"
 msgstr "Resource"
 
@@ -2169,8 +2169,8 @@ msgstr "Secure read-only access"
 msgid "Secure Your Cloud, Elevate Your Peace of Mind"
 msgstr "Secure Your Cloud, Elevate Your Peace of Mind"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:31
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:33
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:25
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:27
 #: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:33
 #: src/shared/layouts/panel-layout/menuList.tsx:62
 msgid "Security"
@@ -2211,7 +2211,7 @@ msgstr "Security Score"
 msgid "See this Resource in AWS Console"
 msgstr "See this Resource in AWS Console"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:147
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:166
 msgid "Select All"
 msgstr "Select All"
 
@@ -2544,7 +2544,7 @@ msgstr "Update Email"
 msgid "Update Password"
 msgstr "Update Password"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:37
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:31
 msgid "Updated"
 msgstr "Updated"
 
@@ -2593,7 +2593,7 @@ msgstr "Value"
 msgid "Version"
 msgstr "Version"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:33
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:27
 msgid "Vulnerable"
 msgstr "Vulnerable"
 
