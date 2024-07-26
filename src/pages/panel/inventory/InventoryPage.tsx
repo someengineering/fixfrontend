@@ -87,7 +87,7 @@ export default function InventoryPage({ withHistory }: InventoryPageProps) {
           <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
             <Outlet />
           </NetworkErrorBoundary>
-          {searchCrit || (withHistory && history.changes.length) || hasError ? (
+          {(!withHistory && searchCrit) || (withHistory && history.changes.length) || hasError ? (
             <>
               <NetworkErrorBoundary
                 fallbackRender={({ resetErrorBoundary }) => (
