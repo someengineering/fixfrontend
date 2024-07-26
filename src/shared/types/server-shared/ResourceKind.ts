@@ -1,3 +1,4 @@
+import { LiteralUnion } from 'src/shared/types/shared'
 import {
   ResourceComplexKindProperty,
   ResourceComplexKindPropertyKindType,
@@ -21,14 +22,14 @@ export interface ResourceComplexKind extends ResourceKindGeneric<'object'> {
     delete?: string[]
   }
   aggregate_root: boolean
-  metadata?:
-    | {
-        group?: string | null
-        icon?: string | null
-        name?: string | null
-      }
-    | object
-    | null
+  metadata?: LiteralUnion<
+    {
+      group?: string
+      icon?: string
+      name?: string
+    },
+    Record<string, string> | null
+  >
   properties: Record<string, ResourceComplexKindProperty>
   runtime_kind: string
 }

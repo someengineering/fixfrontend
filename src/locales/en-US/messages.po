@@ -363,7 +363,7 @@ msgid "Affected resources"
 msgstr "Affected resources"
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:249
-#: src/shared/charts/NetworkDiagram.tsx:409
+#: src/shared/charts/NetworkDiagram.tsx:378
 msgid "Age"
 msgstr "Age"
 
@@ -1348,7 +1348,7 @@ msgstr "Id"
 #: src/pages/panel/security/AccountCard.tsx:34
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:490
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:62
-#: src/shared/charts/NetworkDiagram.tsx:407
+#: src/shared/charts/NetworkDiagram.tsx:376
 msgid "ID"
 msgstr "ID"
 
@@ -1441,7 +1441,7 @@ msgstr "Info: Changes to your product tier will become active immediately and be
 msgid "Inspect Detection Search in Inventory"
 msgstr "Inspect Detection Search in Inventory"
 
-#: src/shared/charts/NetworkDiagram.tsx:421
+#: src/shared/charts/NetworkDiagram.tsx:390
 msgid "Instance is terminated"
 msgstr "Instance is terminated"
 
@@ -1490,7 +1490,7 @@ msgstr "kind"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:189
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:232
-#: src/shared/charts/NetworkDiagram.tsx:406
+#: src/shared/charts/NetworkDiagram.tsx:375
 msgid "Kind"
 msgstr "Kind"
 
@@ -1619,7 +1619,7 @@ msgstr "Most Non-Compliant Accounts"
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:132
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:130
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:144
-#: src/shared/charts/NetworkDiagram.tsx:408
+#: src/shared/charts/NetworkDiagram.tsx:377
 msgid "Name"
 msgstr "Name"
 
@@ -1679,7 +1679,7 @@ msgstr "Next Sync"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:42
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:68
-#: src/pages/panel/inventory/utils/inventoryTableRenderCell.tsx:26
+#: src/pages/panel/inventory/utils/inventoryTableRenderCell.tsx:31
 msgid "No"
 msgstr "No"
 
@@ -2515,7 +2515,7 @@ msgstr "Unattached Elastic IPs"
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:329
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:149
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:155
-#: src/pages/panel/inventory/utils/inventoryTableRenderCell.tsx:18
+#: src/pages/panel/inventory/utils/inventoryTableRenderCell.tsx:23
 msgid "Undefined"
 msgstr "Undefined"
 
@@ -2699,7 +2699,7 @@ msgstr "Yearly"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:39
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:65
-#: src/pages/panel/inventory/utils/inventoryTableRenderCell.tsx:22
+#: src/pages/panel/inventory/utils/inventoryTableRenderCell.tsx:27
 msgid "Yes"
 msgstr "Yes"
 

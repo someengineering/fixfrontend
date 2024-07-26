@@ -1,10 +1,10 @@
 import { Box, ButtonBase, Stack, Tooltip, Typography } from '@mui/material'
 import { GridRow, GridRowProps, GridSortItem } from '@mui/x-data-grid-premium'
-import { useQuery } from '@tanstack/react-query'
+import { useQueries } from '@tanstack/react-query'
 import { usePostHog } from 'posthog-js/react'
 import { useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
+import { getWorkspaceInventoryModelQuery, postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
@@ -17,6 +17,7 @@ import {
   WorkspaceInventorySearchTableRow,
   WorkspaceInventorySearchTableSort,
 } from 'src/shared/types/server'
+import { ResourceKind } from 'src/shared/types/server-shared'
 import { isAuthenticated } from 'src/shared/utils/cookie'
 import { usePersistState } from 'src/shared/utils/usePersistState'
 import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
@@ -58,20 +59,35 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
         ],
   )
   const initializedRef = useRef(false)
-  const { data: serverData, isLoading } = useQuery({
-    queryKey: [
-      'workspace-inventory-search-table',
-      selectedWorkspace?.id,
-      searchCrit,
-      page * rowsPerPage,
-      rowsPerPage,
-      page === 0 || dataCount === -1,
-      JSON.stringify(sorting),
-      history ? JSON.stringify(history) : '',
+  const [{ data: serverData, isLoading: isServerLoading }, { data: modelData, isLoading: isModelLoading }] = useQueries({
+    queries: [
+      {
+        queryKey: [
+          'workspace-inventory-search-table',
+          selectedWorkspace?.id,
+          searchCrit,
+          page * rowsPerPage,
+          rowsPerPage,
+          page === 0 || dataCount === -1,
+          JSON.stringify(sorting),
+          history ? JSON.stringify(history) : '',
+        ],
+        queryFn: postWorkspaceInventorySearchTableQuery,
+        enabled: !!selectedWorkspace?.id,
+      },
+      {
+        queryKey: ['workspace-inventory-model', selectedWorkspace?.id, undefined, false, false, true, false, false, true, false],
+        queryFn: getWorkspaceInventoryModelQuery,
+        enabled: !!selectedWorkspace?.id,
+        refetchInterval: false,
+        refetchOnMount: false,
+        refetchOnWindowFocus: false,
+        refetchIntervalInBackground: false,
+        refetchOnReconnect: false,
+      },
     ],
-    queryFn: postWorkspaceInventorySearchTableQuery,
-    enabled: !!selectedWorkspace?.id,
   })
+  const isLoading = isServerLoading || isModelLoading
   const [data, totalCount] = serverData ?? [[{ columns: [] }] as PostWorkspaceInventorySearchTableResponse, -1]
 
   useEffect(() => {
@@ -107,6 +123,9 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
   useEffect(() => {
     if (!isLoading) {
       const [{ columns: newColumns }, ...newRows] = data ?? [{ columns: [] }]
+      const foundModel =
+        modelData?.reduce((prev, kind) => ({ ...prev, [kind.fqn]: { ...kind } }), {} as Record<string, ResourceKind>) ??
+        ({} as Record<string, ResourceKind>)
       setColumns(
         newColumns.map(
           (i) =>
@@ -130,7 +149,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
                   : i.kind === 'boolean'
                     ? (value) => (typeof value === 'boolean' ? value : value === 'true' ? true : value === 'false' ? false : null)
                     : undefined,
-              renderCell: inventoryTableRenderCell(i),
+              renderCell: inventoryTableRenderCell(i, foundModel),
               minWidth: 150,
               renderHeader: (value) => (
                 <Tooltip
@@ -168,7 +187,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       )
       setRows(newRows.map(({ row, id }, i) => ({ INTERNAL_ID: id + '_' + i, ...row })))
     }
-  }, [data, isLoading])
+  }, [data, isLoading, modelData])
 
   return isLoading && !rows.length && !columns.length ? (
     <Box height="calc(100% - 180px)">

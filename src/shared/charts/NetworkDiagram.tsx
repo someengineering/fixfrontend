@@ -1,8 +1,6 @@
 import Dagre, { Node } from '@dagrejs/dagre'
 import { t } from '@lingui/macro'
-import { Skeleton, colors, tooltipClasses, useTheme } from '@mui/material'
-// eslint-disable-next-line no-restricted-imports
-import { alpha, blend } from '@mui/system'
+import { Skeleton, tooltipClasses, useTheme } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { BaseType, Selection, SimulationLinkDatum, SimulationNodeDatum, select, zoom, zoomIdentity } from 'd3'
 import { useCallback, useEffect, useRef } from 'react'
@@ -16,42 +14,13 @@ import { WorkspaceInventoryNodeNeighborhoodNodeType } from 'src/shared/types/ser
 import { EdgeType } from 'src/shared/types/server-shared'
 import { iso8601DurationToString, parseCustomDuration } from 'src/shared/utils/parseDuration'
 import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
+import { groupToColor } from './groupUtils'
 
 type NodesType = WorkspaceInventoryNodeNeighborhoodNodeType & SimulationNodeDatum & Node
 type LinksType = SimulationLinkDatum<NodesType> & { source: NodesType; target: NodesType }
 
 interface NetworkDiagramProps {
   mainId: string
-}
-
-type MaterialColorsType = typeof colors
-type MaterialColorKeysType = Exclude<keyof MaterialColorsType, 'common'>
-type MaterialColorKeys = keyof MaterialColorsType[MaterialColorKeysType]
-
-const groupToColorMaterial = (number: MaterialColorKeys, group?: string) => {
-  switch (group) {
-    case 'networking':
-      return colors.purple[number]
-    case 'misc':
-      return colors.green[number]
-    case 'storage':
-      return colors.yellow[number]
-    case 'access_control':
-      return colors.pink[number]
-    case 'control':
-      return colors.blue[number]
-    case 'compute':
-      return colors.orange[number]
-    case 'database':
-      return colors.cyan[number]
-    default:
-      return null
-  }
-}
-
-const groupToColor = (defaultColor: string, group?: string, disabled?: boolean) => {
-  const color = groupToColorMaterial(group === 'storage' ? 800 : 600, group) ?? defaultColor
-  return disabled ? alpha(blend(color, colors.grey[600], 0.8), 0.7) : color
 }
 
 const MAX_NODE_WIDTH = 130
