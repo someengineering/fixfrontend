@@ -36,14 +36,14 @@ export const InventoryTableKindRenderCell = ({ group, iconUrl, name }: Inventory
     <Stack direction="row" spacing={1} alignItems="center">
       {svg ? (
         <Box
-          width={32}
-          height={32}
+          width={24}
+          height={24}
           sx={{ fill: group ? groupToColor(defaultColor, group) : defaultColor }}
           nonce={nonce}
           dangerouslySetInnerHTML={{ __html: svg }}
         />
       ) : svg === null ? (
-        <Box component="img" width={32} height={32} src={iconUrl} />
+        <Box component="img" width={24} height={24} src={iconUrl} />
       ) : undefined}
       <span>{name}</span>
     </Stack>
