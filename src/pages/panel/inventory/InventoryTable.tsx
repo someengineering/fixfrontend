@@ -168,7 +168,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
                     direction="row-reverse"
                     justifyContent="start"
                     spacing={1}
-                    height={16}
+                    height={20}
                   >
                     {(value.colDef?.headerName ?? value.colDef?.field ?? '')
                       .split(' ➞ ')

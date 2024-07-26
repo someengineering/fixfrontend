@@ -1,4 +1,4 @@
-import { Box, Paper, Stack, stackClasses } from '@mui/material'
+import { Box, Paper, Stack } from '@mui/material'
 import {
   DataGridPremium,
   DataGridPremiumProps,
@@ -46,9 +46,6 @@ export function AdvancedTableView<RowType extends readonly []>({ headerToolbar, 
               bgcolor: 'background.default',
               zIndex: 1,
               top: 0,
-              [`.${gridClasses.columnHeaderTitleContainerContent} .${stackClasses.root}`]: {
-                height: 'auto',
-              },
             },
           },
           ...props.sx,
