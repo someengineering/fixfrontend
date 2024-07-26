@@ -1,8 +1,8 @@
 import { Trans } from '@lingui/macro'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
-import DeleteIcon from '@mui/icons-material/Delete'
 import GppGoodIcon from '@mui/icons-material/GppGood'
 import GppMaybeIcon from '@mui/icons-material/GppMaybe'
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
 import UpdateIcon from '@mui/icons-material/Update'
 import { TimelineDot } from '@mui/lab'
 import { Stack } from '@mui/material'
@@ -38,7 +38,7 @@ export const inventoryRenderNodeChangeCell = (params: GridRenderCellParams<Works
       return (
         <Stack direction="row" spacing={1} alignItems="center">
           <TimelineDot color="error" variant="outlined">
-            <DeleteIcon fontSize="small" />
+            <RemoveCircleIcon fontSize="small" />
           </TimelineDot>
           <span>
             <Trans>Resource deleted</Trans>
