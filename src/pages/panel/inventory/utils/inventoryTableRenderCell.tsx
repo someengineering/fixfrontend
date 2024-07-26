@@ -9,6 +9,7 @@ import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { WorkspaceInventorySearchTableColumn, WorkspaceInventorySearchTableRow } from 'src/shared/types/server'
 import { AccountCloud, ResourceKind } from 'src/shared/types/server-shared'
 import { ColType } from './ColType'
+import { InventoryTableDateRenderCell } from './InventoryTableDateRenderCell'
 import { InventoryTableKindRenderCell } from './InventoryTableKindRenderCell'
 import { inventoryRenderNodeChangeCell } from './inventoryRenderNodeChangeCell'
 
@@ -32,6 +33,9 @@ export const inventoryTableRenderCell = (
             <CloseIcon fontSize="small" />
           </Tooltip>
         )
+    case 'datetime':
+    case 'date':
+      return (params: GridRenderCellParams) => <InventoryTableDateRenderCell value={params.value as Date} />
   }
   switch (col.path) {
     case '/change':

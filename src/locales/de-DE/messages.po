@@ -67,6 +67,7 @@ msgstr "{0, plural, one {# Jahr} other {# Jahre}}"
 msgid "{0, plural, one {check} other {checks}}"
 msgstr "{0, plural, one {Prüfung} other {Prüfungen}}"
 
+#: src/pages/panel/inventory/utils/InventoryTableDateRenderCell.tsx:17
 #: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:31
 msgid "{0} ago"
 msgstr ""
@@ -1679,7 +1680,7 @@ msgstr "Nächste Synchronisierung"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:42
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:68
-#: src/pages/panel/inventory/utils/inventoryTableRenderCell.tsx:31
+#: src/pages/panel/inventory/utils/inventoryTableRenderCell.tsx:32
 msgid "No"
 msgstr ""
 
@@ -2515,7 +2516,7 @@ msgstr "Nicht angehängte elastische IPs"
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:329
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:149
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:155
-#: src/pages/panel/inventory/utils/inventoryTableRenderCell.tsx:23
+#: src/pages/panel/inventory/utils/inventoryTableRenderCell.tsx:24
 msgid "Undefined"
 msgstr ""
 
@@ -2699,7 +2700,7 @@ msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:39
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:65
-#: src/pages/panel/inventory/utils/inventoryTableRenderCell.tsx:27
+#: src/pages/panel/inventory/utils/inventoryTableRenderCell.tsx:28
 msgid "Yes"
 msgstr ""
 
