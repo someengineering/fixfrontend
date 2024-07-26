@@ -153,7 +153,7 @@ export const FixQueryProvider = memo(
       },
       reset: () => {
         window.setTimeout(() => {
-          onChange('')
+          onChange('', { changes: [] })
         })
         return undefined
       },
