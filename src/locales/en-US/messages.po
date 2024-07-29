@@ -574,8 +574,8 @@ msgid "Cannot enable this account"
 msgstr "Cannot enable this account"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:213
-#: src/pages/panel/inventory/inventory-form/InventoryFormMoreValue.tsx:125
-#: src/pages/panel/inventory/inventory-form/InventoryFormTagsValue.tsx:115
+#: src/pages/panel/inventory/inventory-form/InventoryFormMoreValue.tsx:127
+#: src/pages/panel/inventory/inventory-form/InventoryFormTagsValue.tsx:117
 msgid "Change"
 msgstr "Change"
 

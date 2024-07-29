@@ -5,7 +5,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
 import { useEvents } from 'src/core/events'
 import { useSnackbar } from 'src/core/snackbar'
-import { CollectProgressEvent, WebSocketEvent } from 'src/shared/types/server'
+import { WebSocketEvent } from 'src/shared/types/server'
 import { EventItem } from './EventItem'
 
 const PopperContainer = styled(Popper)(({ theme }) => ({
@@ -160,7 +160,7 @@ export const EventButton = () => {
                 maxHeight="calc(100vh - 90px)"
                 overflow="auto"
               >
-                <EventItem data={events.filter((i) => i.kind === 'collect-progress') as CollectProgressEvent[]} />
+                <EventItem data={events.filter((i) => i.kind === 'collect-progress')} />
               </Box>
             </Paper>
           </Fade>

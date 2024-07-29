@@ -128,7 +128,7 @@ export const InventoryForm = () => {
             )
           } else if (currentConfig.op === '=' && typeof configValue === 'string') {
             currentResult.push(
-              propertyIndex ? processedStartData[propertyIndex].find(({ name }) => name === configValue)?.cloud ?? '' : configValue,
+              propertyIndex ? (processedStartData[propertyIndex].find(({ name }) => name === configValue)?.cloud ?? '') : configValue,
             )
           } else if ((currentConfig.op === 'in' || currentConfig.op === 'not in') && Array.isArray(configValue)) {
             currentResult.push(

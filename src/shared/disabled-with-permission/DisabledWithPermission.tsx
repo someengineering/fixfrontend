@@ -25,7 +25,7 @@ export const DisabledWithPermission = ({
   ) : children ? (
     <Tooltip
       title={
-        title ?? access
+        (title ?? access)
           ? t`You don't have the permission to access this, contact the workspace owner for more information.`
           : t`You don't have the permission to change this, contact the workspace owner for more information.`
       }

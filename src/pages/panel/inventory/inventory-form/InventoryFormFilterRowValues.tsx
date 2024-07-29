@@ -139,7 +139,7 @@ export function InventoryFormFilterRowValues({
           isNumber={isNumber}
           multiple={multiple}
           networkDisabled={!!autocompleteData.length}
-          onChange={(option) => handleChangeValue(Array.isArray(option) ? option.map((i) => i.value) : option?.value ?? null)}
+          onChange={(option) => handleChangeValue(Array.isArray(option) ? option.map((i) => i.value) : (option?.value ?? null))}
           onClose={onClose}
           value={
             preItems

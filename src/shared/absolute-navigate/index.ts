@@ -1,4 +1,4 @@
 export { AbsoluteNavigateProvider } from './AbsoluteNavigateProvider'
-export { Navigate } from './Navigate'
 export { getHrefFromTo } from './getHrefFromTo'
+export { Navigate } from './Navigate'
 export { useAbsoluteNavigate } from './useAbsoluteNavigate'

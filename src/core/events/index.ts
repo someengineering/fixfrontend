@@ -1,2 +1,2 @@
-export { WebSocketEvents } from './WebSocketEvents'
 export { useEvents } from './useEvents'
+export { WebSocketEvents } from './WebSocketEvents'

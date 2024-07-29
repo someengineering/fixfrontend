@@ -14,7 +14,7 @@ const CookieConsentComp = () => {
 
   useEffect(() => {
     if (Cookies.get('cookie_consent') === 'true') {
-      postHog.opt_in_capturing({ enable_persistence: true })
+      postHog.opt_in_capturing()
     } else if (!postHog.has_opted_in_capturing()) {
       setShowConsent(Cookies.get('cookie_consent') !== 'false')
     }
@@ -75,7 +75,7 @@ const CookieConsentComp = () => {
               secure: !env.isLocal,
               expires: 365,
             })
-            postHog.opt_in_capturing({ enable_persistence: true })
+            postHog.opt_in_capturing()
           }}
         >
           <Trans>Accept</Trans>
