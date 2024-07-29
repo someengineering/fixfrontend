@@ -104,10 +104,10 @@ export const UserSettingsTotpActivationModal = ({ activationModalRef, isLoading,
   }, [data?.secret, email, primaryDarkColor])
   const buttonDisabled = !otp || otp.length !== 6
   const formError = error
-    ? ((error as AxiosError)?.response?.data as { detail: string })?.detail ?? t`Something went wrong please try again later.`
+    ? (((error as AxiosError)?.response?.data as { detail: string })?.detail ?? t`Something went wrong please try again later.`)
     : undefined
   const addMfaErrorText = addMfaError
-    ? ((addMfaError as AxiosError)?.response?.data as { detail: string })?.detail ?? t`Something went wrong please try again later.`
+    ? (((addMfaError as AxiosError)?.response?.data as { detail: string })?.detail ?? t`Something went wrong please try again later.`)
     : undefined
   return (
     <>

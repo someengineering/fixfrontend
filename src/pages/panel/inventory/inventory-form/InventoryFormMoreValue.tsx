@@ -77,7 +77,9 @@ export const InventoryFormMoreValue = ({
             onChange={({ fqn, op, property, value }) => {
               if (fqn && property) {
                 setFqn(fqn)
-                setValue(new Predicate({ path: Path.from_string(property), value: value === 'null' ? null : value ?? null, op: op || '=' }))
+                setValue(
+                  new Predicate({ path: Path.from_string(property), value: value === 'null' ? null : (value ?? null), op: op || '=' }),
+                )
               }
             }}
           />

@@ -20,7 +20,7 @@ export const UserSettingsFormPassword = ({ ...rest }: UserSettingsFormPasswordPr
   }
 
   const formError = error
-    ? ((error as AxiosError)?.response?.data as { detail: string })?.detail ?? t`Something went wrong please try again later.`
+    ? (((error as AxiosError)?.response?.data as { detail: string })?.detail ?? t`Something went wrong please try again later.`)
     : undefined
   return (
     <>

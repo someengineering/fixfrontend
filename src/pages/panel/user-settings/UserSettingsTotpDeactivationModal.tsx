@@ -36,7 +36,7 @@ export const UserSettingsTotpDeactivationModal = ({ deactivationModalRef, isLoad
   const [recoveryCode, setRecoveryCode] = useState('')
   const buttonDisabled = (!otp || otp.length !== 6) && !recoveryCode
   const formError = error
-    ? ((error as AxiosError)?.response?.data as { detail: string })?.detail ?? t`Something went wrong please try again later.`
+    ? (((error as AxiosError)?.response?.data as { detail: string })?.detail ?? t`Something went wrong please try again later.`)
     : undefined
   return (
     <Modal

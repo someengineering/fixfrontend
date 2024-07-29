@@ -260,7 +260,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
                   name: window.encodeURIComponent(rowProps.row?.name ?? '-'),
                 })
               : window.location.search
-          const href = `./resource-detail/${id}${search?.[0] === '?' || !search ? search ?? '' : `?${search}`}`
+          const href = `./resource-detail/${id}${search?.[0] === '?' || !search ? (search ?? '') : `?${search}`}`
           return (
             <ButtonBase
               href={href}

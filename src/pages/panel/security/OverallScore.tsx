@@ -56,7 +56,7 @@ export const OverallScore = ({ score, failedChecks, failedResources, availableRe
           label: typeof failedResources[name] === 'number' ? numberToShortHRT(failedResources[name] ?? 0, locale) : undefined,
           description:
             typeof failedResources[name] === 'number' && typeof value === 'number'
-              ? t`${wordToUFStr(name).toString()}: We've identified ${(failedResources[name] as number).toLocaleString(
+              ? t`${wordToUFStr(name).toString()}: We've identified ${failedResources[name].toLocaleString(
                   locale,
                 )} non-compliant resources out of ${availableResources.toLocaleString(locale)}.`
               : undefined,

@@ -63,7 +63,7 @@ export function getAutocompleteValueFromKey(
   const data = getAutocompleteDataFromKey(key, items)
   return isArray
     ? ((value as string[])
-        .map((item) => (data.find((i) => i.value === item) ?? addThemIfNotFound ? { value: item, label: item } : undefined))
+        .map((item) => ((data.find((i) => i.value === item) ?? addThemIfNotFound) ? { value: item, label: item } : undefined))
         .filter((i) => i) as AutoCompleteValue[])
     : data.find((i) => i.value === value) || (addThemIfNotFound ? { value, label: value } : undefined) || null
 }

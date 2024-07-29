@@ -46,7 +46,7 @@ export const ResourceDetailFailedChecks = ({
     if (securityIgnore !== '*') {
       const newChecksToIgnore = ignore
         ? [...(securityIgnore ?? []), currentIgnoreSecurityIssue]
-        : securityIgnore?.filter((securityIssue) => securityIssue !== currentIgnoreSecurityIssue) ?? []
+        : (securityIgnore?.filter((securityIssue) => securityIssue !== currentIgnoreSecurityIssue) ?? [])
       ignoreNode({
         workspaceId: selectedWorkspace?.id ?? '',
         nodeId: resourceDetailId,
@@ -68,7 +68,7 @@ export const ResourceDetailFailedChecks = ({
   const sortedFailingChecks =
     securityIgnore !== '*' && securityIgnore
       ? failingChecks.sort((prev, next) => (securityIgnore.includes(prev.id) ? 1 : 0) - (securityIgnore.includes(next.id) ? 1 : 0))
-      : failingChecks ?? []
+      : (failingChecks ?? [])
   const otherIgnoredChecks =
     (securityIgnore !== '*' &&
       securityIgnore

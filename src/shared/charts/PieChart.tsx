@@ -128,7 +128,7 @@ export function PieChart({ data, showLabel, colors, pieProps = {}, width = 400, 
         >
           {data.map((entry, index) => (
             <Cell
-              fill={Array.isArray(colors) ? colors[index] : colors?.[entry.name] ?? muicolors.lightBlue[600]}
+              fill={Array.isArray(colors) ? colors[index] : (colors?.[entry.name] ?? muicolors.lightBlue[600])}
               key={`cell-${index}`}
               onMouseUp={entry.onClick}
               cursor={entry.onClick ? 'pointer' : undefined}
