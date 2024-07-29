@@ -9,8 +9,8 @@ export default function BenchmarkDetailPage() {
   return benchmarkId ? (
     <Stack
       spacing={1}
-      height={{ xs: 'calc(100vh - 185px)', lg: 'calc(100vh - 185px)' }}
-      maxHeight={{ xs: 'calc(100vh - 185px)', lg: 'calc(100vh - 185px)' }}
+      height={{ xs: 'calc(100vh - 144px)', lg: 'calc(100vh - 144px)' }}
+      maxHeight={{ xs: 'calc(100vh - 144px)', lg: 'calc(100vh - 144px)' }}
       minHeight={{ xs: 300, lg: 300 }}
       width="100%"
     >

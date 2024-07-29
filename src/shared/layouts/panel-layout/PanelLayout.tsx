@@ -25,12 +25,16 @@ export function PanelLayout({ children }: PanelLayoutProps) {
   const map = groupChildrenByType(children, regions)
   const logoChild = map.get(LogoRegion)
   const contentChild = map.get(ContentRegion)
-  const bottomChild = map.get(BottomRegion)
+  // const bottomChild = map.get(BottomRegion)
 
   return (
     <Main>
       <PanelHeader>{logoChild}</PanelHeader>
-      <PanelContent bottom={bottomChild}>{contentChild}</PanelContent>
+      <PanelContent
+      // bottom={bottomChild}
+      >
+        {contentChild}
+      </PanelContent>
     </Main>
   )
 }

@@ -50,7 +50,16 @@ export const WorkspaceSettingsAccountsSetupCloudGCPUploadKey = ({ isMobile }: Wo
   const errorMessageDetail = errorResponse?.data?.detail
 
   return selectedWorkspace?.id && data ? (
-    <Dropzone onChange={handleChange} mimeType={['application/JSON']} isPending={isPending} disabled={isSuccess} minHeight={300} flex={1}>
+    <Dropzone
+      onChange={handleChange}
+      mimeType={['application/JSON']}
+      isPending={isPending}
+      disabled={isSuccess}
+      minHeight={300}
+      flex={1}
+      mb={({ spacing }) => `${spacing(3)} !important`}
+      mr={({ spacing }) => `${spacing(3)} !important`}
+    >
       <Stack p={1} alignItems="center" gap={1}>
         <Collapse in={!isSuccess}>
           <Stack direction="row" gap={1} alignItems="center">

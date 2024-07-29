@@ -159,10 +159,6 @@ msgstr "{usersLength, plural, one {# user} other {# users}}"
 msgid "/ month"
 msgstr "/ month"
 
-#: src/containers/panel/PanelContainer.tsx:34
-msgid "© 2024 Some Engineering Inc. All rights reserved."
-msgstr "© 2024 Some Engineering Inc. All rights reserved."
-
 #: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:65
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:86
 msgid "<0>{0} checks failing</0> out of {1}"
@@ -228,11 +224,11 @@ msgstr "<0>Your cloud account has been successfully added!</0><1>Thank you for d
 msgid "A few minutes to first results"
 msgstr "A few minutes to first results"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:63
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:72
 msgid "A Google Cloud Service Account is connected to this workspace. Drop file to replace it."
 msgstr "A Google Cloud Service Account is connected to this workspace. Drop file to replace it."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:67
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:76
 msgid "A Google Cloud Service Account key file has been uploaded - we are currently trying to list your projects. Please stay tuned - we will send you an Email when cloud accounts have been collected."
 msgstr "A Google Cloud Service Account key file has been uploaded - we are currently trying to list your projects. Please stay tuned - we will send you an Email when cloud accounts have been collected."
 
@@ -240,7 +236,7 @@ msgstr "A Google Cloud Service Account key file has been uploaded - we are curre
 msgid "Abandoned"
 msgstr "Abandoned"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:112
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:121
 msgid "above"
 msgstr "above"
 
@@ -442,7 +438,7 @@ msgid "API Tokens"
 msgstr "API Tokens"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:82
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:120
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:124
 msgid "Application (client) ID"
 msgstr "Application (client) ID"
 
@@ -495,8 +491,8 @@ msgstr "Azure"
 msgid "Azure Service Management"
 msgstr "Azure Service Management"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureInstructions.tsx:104
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:97
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureInstructions.tsx:106
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:98
 msgid "Back"
 msgstr "Back"
 
@@ -658,7 +654,7 @@ msgstr "Click on the Management Groups link, then navigate to the desired manage
 msgid "Click or Drop your file here"
 msgstr "Click or Drop your file here"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:74
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:83
 msgid "Click or Drop your Google Cloud Service Account file here"
 msgstr "Click or Drop your Google Cloud Service Account file here"
 
@@ -780,8 +776,8 @@ msgstr "Connected Accounts"
 msgid "Connected Services"
 msgstr "Connected Services"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureInstructions.tsx:97
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:92
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureInstructions.tsx:99
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:93
 msgid "Continue"
 msgstr "Continue"
 
@@ -959,7 +955,7 @@ msgstr "Description"
 msgid "Details"
 msgstr "Details"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:128
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:132
 msgid "Directory (tenant) ID"
 msgstr "Directory (tenant) ID"
 
@@ -1010,7 +1006,7 @@ msgid "Don't have an account? Click here to Sign up."
 msgstr "Don't have an account? Click here to Sign up."
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:58
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:113
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:117
 msgid "Done! We will now import your Azure accounts, this usually takes a couple of minutes."
 msgstr "Done! We will now import your Azure accounts, this usually takes a couple of minutes."
 
@@ -1377,7 +1373,7 @@ msgstr "Integration advice for your specific cloud environment via video call"
 msgid "Integration Key"
 msgstr "Integration Key"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:112
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:121
 msgid "Invalid file, Please follow the step-by-step instructions {0}."
 msgstr "Invalid file, Please follow the step-by-step instructions {0}."
 
@@ -1697,7 +1693,7 @@ msgstr "On the next step click Select Members:"
 msgid "On the Register an application page, fill the name of the application. Write the name down, it will be needed later. The rest can be left as is. Click the Register button."
 msgstr "On the Register an application page, fill the name of the application. Write the name down, it will be needed later. The rest can be left as is. Click the Register button."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:112
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:121
 msgid "on the right side"
 msgstr "on the right side"
 
@@ -2048,7 +2044,7 @@ msgstr "Search {0}"
 msgid "Searches for database instances with no connections over a significant period, indicating potential waste."
 msgstr "Searches for database instances with no connections over a significant period, indicating potential waste."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:136
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:140
 msgid "Secret Value"
 msgstr "Secret Value"
 
@@ -2203,7 +2199,7 @@ msgstr "Something went wrong please try again later."
 msgid "Sources"
 msgstr "Sources"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:144
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:148
 msgid "Submission Error"
 msgstr "Submission Error"
 
@@ -2242,11 +2238,11 @@ msgstr "Test"
 msgid "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 msgstr "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:120
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:129
 msgid "The Google Cloud Service Account has been updated successfully.<0/>We will process the file and add the accounts that we find.<1/>This process may take a <2>few minutes</2>.<3/>We will send you an email once the projects are ready."
 msgstr "The Google Cloud Service Account has been updated successfully.<0/>We will process the file and add the accounts that we find.<1/>This process may take a <2>few minutes</2>.<3/>We will send you an email once the projects are ready."
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:101
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:110
 msgid "The Google Cloud Service Account key file is valid but did not allow us to list available projects. It is important to ensure that it has the necessary permissions and that the required APIs are enabled to avoid this error. The following message was created by GCP when we tried to list the projects:"
 msgstr "The Google Cloud Service Account key file is valid but did not allow us to list available projects. It is important to ensure that it has the necessary permissions and that the required APIs are enabled to avoid this error. The following message was created by GCP when we tried to list the projects:"
 
@@ -2412,7 +2408,7 @@ msgstr "Upgrade"
 msgid "Upgrade to Paid Tier"
 msgstr "Upgrade to Paid Tier"
 
-#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:59
+#: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:68
 msgid "Uploading your Google Cloud Service Account file..."
 msgstr "Uploading your Google Cloud Service Account file..."
 
