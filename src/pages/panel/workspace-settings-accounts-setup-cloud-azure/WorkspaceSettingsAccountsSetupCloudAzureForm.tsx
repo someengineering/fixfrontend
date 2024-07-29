@@ -105,6 +105,10 @@ export const WorkspaceSettingsAccountsSetupCloudAzureForm = ({
       onSubmit={handleSubmit}
       noValidate
       autoComplete="off"
+      m={-3}
+      pt={3}
+      pl={{ xs: 1, sm: 3 }}
+      pr={{ xs: 1, lg: 0 }}
     >
       {selectedWorkspace?.id && data ? (
         isSuccess ? (
@@ -114,7 +118,7 @@ export const WorkspaceSettingsAccountsSetupCloudAzureForm = ({
             </Typography>
           </Stack>
         ) : (
-          <Stack width={isMobile ? '100%' : '50%'} spacing={1} justifyContent="center" alignItems="center">
+          <Stack width={isMobile ? '100%' : '50%'} spacing={1} justifyContent="center" alignItems="center" paddingBottom={3}>
             <WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput
               name="client_id"
               label={t`Application (client) ID`}
