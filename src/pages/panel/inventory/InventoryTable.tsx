@@ -53,7 +53,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
     sorts.length
       ? sorts.map((sort) => ({ direction: sort.order, path: sort.path.toString() }))
       : [
-          ...(history ? [{ direction: 'asc', path: '/changed_at' } as WorkspaceInventorySearchTableSort] : []),
+          ...(history ? [{ direction: 'desc', path: '/changed_at' } as WorkspaceInventorySearchTableSort] : []),
           { direction: 'asc', path: '/reported.kind' },
           { direction: 'asc', path: '/reported.name' },
           { direction: 'asc', path: '/reported.id' },
