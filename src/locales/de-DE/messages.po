@@ -355,7 +355,7 @@ msgstr "Admin"
 msgid "Advanced"
 msgstr ""
 
-#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:84
+#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:79
 msgid "Advanced search query"
 msgstr "Erweiterte Suchabfrage"
 
@@ -754,7 +754,7 @@ msgstr ""
 msgid "Compute changes in the last 30 days."
 msgstr ""
 
-#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:33
+#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:28
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:32
 msgid "Configuration changed"
 msgstr "Konfiguration geändert"
@@ -1779,7 +1779,7 @@ msgid "Oops, the username or password doesn't seem to match our records. Please 
 msgstr "Hoppla, der Benutzername oder das Passwort scheinen nicht mit unseren Aufzeichnungen übereinzustimmen. Bitte versuche es erneut."
 
 #: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:99
-#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:113
+#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:108
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Sie sie und versuchen Sie es erneut."
 
@@ -1944,7 +1944,7 @@ msgstr ""
 msgid "Print or copy the following recovery codes"
 msgstr "Drucken oder kopieren Sie die folgenden Wiederherstellungscodes"
 
-#: src/shared/cloud-avatar/CloudAvatar.tsx:49
+#: src/shared/cloud-avatar/CloudAvatar.tsx:64
 msgid "Privileged"
 msgstr "Privilegiert"
 
@@ -2088,17 +2088,17 @@ msgstr ""
 msgid "Resource changes with owner tag"
 msgstr ""
 
-#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:22
+#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:18
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:30
 msgid "Resource created"
 msgstr "Ressource erstellt"
 
-#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:44
+#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:38
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:34
 msgid "Resource deleted"
 msgstr "Ressource gelöscht"
 
-#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:55
+#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:48
 msgid "Resource Secured"
 msgstr ""
 
@@ -2188,7 +2188,7 @@ msgstr ""
 msgid "Security Issues"
 msgstr "Sicherheitsprobleme"
 
-#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:66
+#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:58
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:41
 msgid "Security posture changed"
 msgstr ""

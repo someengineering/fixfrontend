@@ -23,6 +23,7 @@ import { usePersistState } from 'src/shared/utils/usePersistState'
 import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { DownloadCSVButton } from './DownloadCSVButton'
 import { ColType } from './utils'
+import { inventoryTableCellHasIcon } from './utils/inventoryTableCellHasIcon'
 import { inventoryTableRenderCell } from './utils/inventoryTableRenderCell'
 
 interface InventoryTableProps {
@@ -133,7 +134,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
               ...i,
               field: i.name,
               headerName: i.display,
-              flex: 1,
+              flex: inventoryTableCellHasIcon(i) ? undefined : 1,
               type:
                 i.kind === 'boolean' || i.kind === 'date'
                   ? i.kind
@@ -150,7 +151,8 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
                     ? (value) => (typeof value === 'boolean' ? value : value === 'true' ? true : value === 'false' ? false : null)
                     : undefined,
               renderCell: inventoryTableRenderCell(i, foundModel),
-              minWidth: 150,
+              minWidth: inventoryTableCellHasIcon(i) ? 110 : 150,
+              width: inventoryTableCellHasIcon(i) ? 110 : undefined,
               renderHeader: (value) => (
                 <Tooltip
                   title={

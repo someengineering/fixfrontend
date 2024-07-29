@@ -43,7 +43,7 @@ export const inventoryTableRenderCell = (
     case '/ancestors.cloud.reported.name':
     case '/ancestors.cloud.reported.id':
       return (params: GridRenderCellParams<WorkspaceInventorySearchTableRow['row']>) => (
-        <CloudAvatar cloud={params.row.cloud as AccountCloud} small />
+        <CloudAvatar cloud={params.row.cloud as AccountCloud} small tooltip />
       )
     case '/reported.kind':
       return modelData
