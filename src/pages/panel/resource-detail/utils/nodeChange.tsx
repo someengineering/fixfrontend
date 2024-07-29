@@ -130,8 +130,8 @@ export const nodeChangeToDescription = (history: WorkspaceInventoryNodeHistory) 
     case 'node_updated': {
       const { added, removed } = diffLines(stringify(history.before), stringify(selectedHistoryReported)).reduce(
         (prev, part) => ({
-          removed: prev.removed + (part.removed ? part.count ?? 0 : 0),
-          added: prev.added + (part.added ? part.count ?? 0 : 0),
+          removed: prev.removed + (part.removed ? (part.count ?? 0) : 0),
+          added: prev.added + (part.added ? (part.count ?? 0) : 0),
         }),
         { removed: 0, added: 0 },
       )

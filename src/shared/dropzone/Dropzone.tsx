@@ -42,7 +42,7 @@ export function Dropzone<Multiple extends boolean = false>({
       e.preventDefault()
       const files = e.dataTransfer?.files ?? undefined
       onChange(
-        (multiple ? (files.length ? files : undefined) : files?.item(0) ?? undefined) as
+        (multiple ? (files.length ? files : undefined) : (files?.item(0) ?? undefined)) as
           | (Multiple extends true ? FileList : File)
           | undefined,
       )
@@ -54,7 +54,7 @@ export function Dropzone<Multiple extends boolean = false>({
     (e: ChangeEvent<HTMLInputElement>) => {
       const files = e.target.files ?? undefined
       onChange(
-        (multiple ? (files?.length ? files : undefined) : files?.item(0) ?? undefined) as
+        (multiple ? (files?.length ? files : undefined) : (files?.item(0) ?? undefined)) as
           | (Multiple extends true ? FileList : File)
           | undefined,
       )

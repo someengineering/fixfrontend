@@ -121,7 +121,7 @@ export const UserSettingsApiTokensAddToken = ({ forbiddenNames, onClose }: UserS
             size="small"
             helperText={
               hasError
-                ? hasErrorAfterSubmit ?? description
+                ? (hasErrorAfterSubmit ?? description)
                   ? t`There's already another api tokens with the same description`
                   : t`Please enter a brief description`
                 : undefined

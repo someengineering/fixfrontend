@@ -172,7 +172,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
       size="small"
       sx={{ minWidth: 250, maxWidth: '100%' }}
       onChange={(_, option) => {
-        const newTyped = typeof option === 'string' ? option : !Array.isArray(option) ? option?.label ?? '' : ''
+        const newTyped = typeof option === 'string' ? option : !Array.isArray(option) ? (option?.label ?? '') : ''
         setTyped(newTyped)
         selectedTyped.current = newTyped
         const newOption =

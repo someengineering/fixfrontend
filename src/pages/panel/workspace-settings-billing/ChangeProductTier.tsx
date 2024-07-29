@@ -52,7 +52,7 @@ export const ChangeProductTier = ({
   const noWorkspaceMethod = selectedWorkspacePaymentMethod.method === 'none'
 
   const [productTier, setProductTier] = useState<ProductTier>(() =>
-    noWorkspaceMethod ? defaultProductTier : tierFromSearchParams ?? defaultProductTier,
+    noWorkspaceMethod ? defaultProductTier : (tierFromSearchParams ?? defaultProductTier),
   )
 
   const isUpgrade =

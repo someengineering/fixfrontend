@@ -18,11 +18,11 @@ const env = {
   isTest,
   isProd: undefined as boolean | undefined,
   landingPageUrl: import.meta.env.VITE_FIX_LANDING_PAGE_URL ?? defaultOrigin,
-  apiUrl: import.meta.env.VITE_USE_PROXY === 'true' && !isTest ? defaultOrigin : import.meta.env.VITE_SERVER ?? defaultOrigin,
+  apiUrl: import.meta.env.VITE_USE_PROXY === 'true' && !isTest ? defaultOrigin : (import.meta.env.VITE_SERVER ?? defaultOrigin),
   wsUrl:
     import.meta.env.VITE_USE_PROXY === 'true' && !isTest
       ? wsOrigin
-      : import.meta.env.VITE_WS_SERVER ?? import.meta.env.VITE_SERVER?.replace('http', 'ws') ?? wsOrigin,
+      : (import.meta.env.VITE_WS_SERVER ?? import.meta.env.VITE_SERVER?.replace('http', 'ws') ?? wsOrigin),
   videosAssetsUrl: import.meta.env.VITE_VIDEOS_ASSETS_URL ?? defaultOrigin,
   imagesAssetsUrl: import.meta.env.VITE_IMAGES_ASSETS_URL ?? defaultOrigin,
   retryCount: envToNumber(import.meta.env.VITE_NETWORK_RETRY_COUNT) ?? 5,
