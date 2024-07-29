@@ -1,12 +1,10 @@
-import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { Typography } from '@mui/material'
 import { Suspense } from 'react'
 import { FixLogo } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { WebSocketEvents } from 'src/core/events'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
-import { BottomRegion, ContentRegion, LogoRegion, PanelLayout } from 'src/shared/layouts/panel-layout'
+import { ContentRegion, LogoRegion, PanelLayout } from 'src/shared/layouts/panel-layout'
 import { FullPageLoadingSuspenseFallback, LoadingSuspenseFallback } from 'src/shared/loading'
 import { PanelInitialMessageHandler } from './PanelInitialMessageHandler'
 import { PanelRoutes } from './PanelRoutes'
@@ -29,11 +27,11 @@ export default function PanelContainer() {
                 </Suspense>
               </NetworkErrorBoundary>
             </ContentRegion>
-            <BottomRegion>
+            {/* <BottomRegion>
               <Typography variant="subtitle2">
                 <Trans>© 2024 Some Engineering Inc. All rights reserved.</Trans>
               </Typography>
-            </BottomRegion>
+            </BottomRegion> */}
           </PanelLayout>
           <PanelInitialMessageHandler />
         </Suspense>
