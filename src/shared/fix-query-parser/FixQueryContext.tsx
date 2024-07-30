@@ -1,6 +1,6 @@
 import { useLingui } from '@lingui/react'
 import { PropsWithChildren, createContext, memo } from 'react'
-import { WorkspaceInventorySearchTableHistory } from 'src/shared/types/server'
+import { WorkspaceInventorySearchTableHistory, WorkspaceInventorySearchTableHistoryChanges } from 'src/shared/types/server'
 import { JsonElement, Query } from './query'
 
 type ReturnTypeWithUndefined<T> = T extends (...args: infer Args) => unknown ? (...args: Args) => ReturnType<T> | undefined : never
@@ -56,13 +56,14 @@ export const FixQueryContext = createContext<FixQueryContextValue | null>(null)
 
 interface FixQueryProviderProps extends PropsWithChildren {
   searchQuery?: string
+  withHistory?: boolean
   history: WorkspaceInventorySearchTableHistory
-  onHistoryChange: (history?: WorkspaceInventorySearchTableHistory) => void
-  onChange: (searchQuery?: string) => void
+  allHistory?: readonly WorkspaceInventorySearchTableHistoryChanges[]
+  onChange: (searchQuery?: string, history?: WorkspaceInventorySearchTableHistory) => void
 }
 
 export const FixQueryProvider = memo(
-  ({ searchQuery, onChange, history, onHistoryChange, children }: FixQueryProviderProps) => {
+  ({ searchQuery, onChange, withHistory, history, allHistory = [], children }: FixQueryProviderProps) => {
     useLingui()
     let query: Query | undefined
     let queryOrAll = query ?? Query.parse('all')
@@ -80,20 +81,21 @@ export const FixQueryProvider = memo(
       return (...params: Args) => {
         const query = fn(...params)
         const result = query.toString()
+        const newHistory = withHistory && !history.changes.length ? { changes: [...allHistory] } : history
         if (result === 'all') {
-          onChange('')
+          onChange('', newHistory)
           return undefined
         }
-        onChange(result)
+        onChange(result, newHistory)
         return query
       }
     }
 
     const { account, cloud, parts = [], region, severity, tags = {}, aggregate, sorts = [] } = query || {}
     const value = {
-      //history
+      // history
       history,
-      onHistoryChange,
+      onHistoryChange: (history?: WorkspaceInventorySearchTableHistory) => onChange(query?.toString(), history),
       // default variables
       error,
       query,
@@ -134,7 +136,7 @@ export const FixQueryProvider = memo(
           ?.delete_cloud_account_region(name)
           .set_cloud_account_region(name, op ?? prevPredicate?.op ?? 'in', newValue, true)
         const result = newQuery.toString() ?? ''
-        onChange(result)
+        onChange(result, history)
         return newQuery
       },
       updateQuery: (q: string) => {
@@ -142,7 +144,7 @@ export const FixQueryProvider = memo(
           const newQuery = q ? Query.parse(q) : undefined
           const result = newQuery?.toString() ?? ''
           window.setTimeout(() => {
-            onChange(result)
+            onChange(result, history)
           })
           return newQuery
         } else {
@@ -151,7 +153,7 @@ export const FixQueryProvider = memo(
       },
       reset: () => {
         window.setTimeout(() => {
-          onChange('')
+          onChange('', { changes: [] })
         })
         return undefined
       },
@@ -164,6 +166,5 @@ export const FixQueryProvider = memo(
     prev.history.changes.sort().join(',') === next.history.changes.sort().join(',') &&
     prev.history.after === next.history.after &&
     prev.history.before === next.history.before &&
-    prev.onChange === next.onChange &&
-    prev.onHistoryChange === next.onHistoryChange,
+    prev.onChange === next.onChange,
 )

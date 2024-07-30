@@ -10,6 +10,7 @@ import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { useNonce } from 'src/shared/providers'
 import { InventoryAdvanceSearchTextField } from './InventoryAdvanceSearchTextField'
 import { InventoryForm, InventoryFormsSkeleton } from './inventory-form'
+import { InventoryFormChanges } from './inventory-form/InventoryFormChanges'
 
 interface InventoryAdvanceSearchProps {
   hasChanges: boolean
@@ -27,6 +28,7 @@ export const InventoryAdvanceSearch = ({ hasError, hasChanges }: InventoryAdvanc
   return (
     <Box mb={2}>
       <TabContext value={error ? 'advance' : tab}>
+        {hasChanges ? <InventoryFormChanges /> : null}
         <Stack alignItems={{ xs: 'center', sm: 'end' }} borderColor="divider" borderBottom={1}>
           <TabList onChange={(_, val) => setTab(val as TabsType)} sx={{ minHeight: 'initial' }}>
             <Tab
@@ -81,8 +83,8 @@ export const InventoryAdvanceSearch = ({ hasError, hasChanges }: InventoryAdvanc
         <TabPanel value="form" sx={{ p: 0, pt: 1 }}>
           {!error ? (
             <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-              <Suspense fallback={<InventoryFormsSkeleton withChange={hasChanges} />}>
-                <InventoryForm />
+              <Suspense fallback={<InventoryFormsSkeleton withChanges={hasChanges} />}>
+                <InventoryForm withChanges={hasChanges} />
               </Suspense>
             </NetworkErrorBoundary>
           ) : null}

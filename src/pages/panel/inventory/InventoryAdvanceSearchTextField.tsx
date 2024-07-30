@@ -56,16 +56,12 @@ export const InventoryAdvanceSearchTextField = ({ hasError }: InventoryAdvanceSe
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
-    if (!value) {
-      reset()
-    }
     handleChangeValue(value)
   }
 
   const handleReset = () => {
     reset()
     setSearchCritValue('')
-    updateQuery('')
     setHasTextError(false)
   }
 
@@ -90,7 +86,7 @@ export const InventoryAdvanceSearchTextField = ({ hasError }: InventoryAdvanceSe
         onChange={handleChange}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        onReset={reset}
+        onReset={handleReset}
         InputProps={{
           startAdornment: focused || searchCritValue ? <SearchIcon /> : undefined,
           endAdornment: (

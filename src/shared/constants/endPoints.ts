@@ -94,6 +94,7 @@ export const endPoints = {
             complete: `api/workspaces/${workspaceId}/inventory/property/path/complete`,
           },
         },
+        workspaceInfo: `api/workspaces/${workspaceId}/inventory/workspace-info`,
       },
       alerting: {
         settings: `api/workspaces/${workspaceId}/alerting/setting`,

@@ -151,7 +151,7 @@ export default function ResourceDetailView() {
   const handleClose = () => {
     const search = getLocationSearchValues(window.location.search)
     const pathname = window.location.pathname.split('/').slice(0, -2).join('/')
-    navigate({ pathname, search: removeLocationSearchValues(search, 'name'), hash: window.location.hash })
+    navigate({ pathname, search: removeLocationSearchValues(search, ['name', 'cloud']), hash: window.location.hash })
   }
 
   const {

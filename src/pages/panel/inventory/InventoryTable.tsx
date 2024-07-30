@@ -1,14 +1,10 @@
-import { t } from '@lingui/macro'
-import CheckIcon from '@mui/icons-material/Check'
-import CloseIcon from '@mui/icons-material/Close'
-import QuestionMarkIcon from '@mui/icons-material/QuestionMark'
 import { Box, ButtonBase, Stack, Tooltip, Typography } from '@mui/material'
-import { GridColDef, GridRow, GridRowProps, GridSortItem } from '@mui/x-data-grid-premium'
-import { useQuery } from '@tanstack/react-query'
+import { GridRow, GridRowProps, GridSortItem } from '@mui/x-data-grid-premium'
+import { useQueries } from '@tanstack/react-query'
 import { usePostHog } from 'posthog-js/react'
 import { useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
-import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
+import { getWorkspaceInventoryModelQuery, postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
@@ -17,15 +13,18 @@ import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { PostHogEvent } from 'src/shared/posthog'
 import {
   PostWorkspaceInventorySearchTableResponse,
-  WorkspaceInventorySearchTableColumn,
   WorkspaceInventorySearchTableHistory,
   WorkspaceInventorySearchTableRow,
   WorkspaceInventorySearchTableSort,
 } from 'src/shared/types/server'
+import { ResourceKind } from 'src/shared/types/server-shared'
 import { isAuthenticated } from 'src/shared/utils/cookie'
 import { usePersistState } from 'src/shared/utils/usePersistState'
 import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { DownloadCSVButton } from './DownloadCSVButton'
+import { ColType } from './utils'
+import { inventoryTableCellHasIcon } from './utils/inventoryTableCellHasIcon'
+import { inventoryTableRenderCell } from './utils/inventoryTableRenderCell'
 
 interface InventoryTableProps {
   searchCrit: string
@@ -35,8 +34,6 @@ interface InventoryTableProps {
 type RowType = WorkspaceInventorySearchTableRow['row'] & {
   INTERNAL_ID: string
 }
-
-type ColType = GridColDef & WorkspaceInventorySearchTableColumn
 
 export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => {
   const postHog = usePostHog()
@@ -56,27 +53,42 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
     sorts.length
       ? sorts.map((sort) => ({ direction: sort.order, path: sort.path.toString() }))
       : [
-          ...(history ? [{ direction: 'asc', path: '/changed_at' } as WorkspaceInventorySearchTableSort] : []),
+          ...(history ? [{ direction: 'desc', path: '/changed_at' } as WorkspaceInventorySearchTableSort] : []),
           { direction: 'asc', path: '/reported.kind' },
           { direction: 'asc', path: '/reported.name' },
           { direction: 'asc', path: '/reported.id' },
         ],
   )
   const initializedRef = useRef(false)
-  const { data: serverData, isLoading } = useQuery({
-    queryKey: [
-      'workspace-inventory-search-table',
-      selectedWorkspace?.id,
-      searchCrit,
-      page * rowsPerPage,
-      rowsPerPage,
-      page === 0 || dataCount === -1,
-      JSON.stringify(sorting),
-      history ? JSON.stringify(history) : '',
+  const [{ data: serverData, isLoading: isServerLoading }, { data: modelData, isLoading: isModelLoading }] = useQueries({
+    queries: [
+      {
+        queryKey: [
+          'workspace-inventory-search-table',
+          selectedWorkspace?.id,
+          searchCrit,
+          page * rowsPerPage,
+          rowsPerPage,
+          page === 0 || dataCount === -1,
+          JSON.stringify(sorting),
+          history ? JSON.stringify(history) : '',
+        ],
+        queryFn: postWorkspaceInventorySearchTableQuery,
+        enabled: !!selectedWorkspace?.id,
+      },
+      {
+        queryKey: ['workspace-inventory-model', selectedWorkspace?.id, undefined, false, false, true, false, false, true, false],
+        queryFn: getWorkspaceInventoryModelQuery,
+        enabled: !!selectedWorkspace?.id,
+        refetchInterval: false,
+        refetchOnMount: false,
+        refetchOnWindowFocus: false,
+        refetchIntervalInBackground: false,
+        refetchOnReconnect: false,
+      },
     ],
-    queryFn: postWorkspaceInventorySearchTableQuery,
-    enabled: !!selectedWorkspace?.id,
   })
+  const isLoading = isServerLoading || isModelLoading
   const [data, totalCount] = serverData ?? [[{ columns: [] }] as PostWorkspaceInventorySearchTableResponse, -1]
 
   useEffect(() => {
@@ -91,6 +103,8 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
     }
   }, [sorts])
 
+  const historyStr = `${(history?.changes ?? []).join(',')}_from_${history?.after}_to_${history?.before}`
+
   useEffect(() => {
     if (initializedRef.current) {
       setDataCount(-1)
@@ -103,12 +117,16 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       user_id: currentUser?.id,
       workspace_id: selectedWorkspace?.id,
       query: searchCrit,
+      historyStr,
     })
-  }, [currentUser, postHog, searchCrit, selectedWorkspace?.id])
+  }, [currentUser, postHog, searchCrit, historyStr, selectedWorkspace?.id])
 
   useEffect(() => {
     if (!isLoading) {
       const [{ columns: newColumns }, ...newRows] = data ?? [{ columns: [] }]
+      const foundModel =
+        modelData?.reduce((prev, kind) => ({ ...prev, [kind.fqn]: { ...kind } }), {} as Record<string, ResourceKind>) ??
+        ({} as Record<string, ResourceKind>)
       setColumns(
         newColumns.map(
           (i) =>
@@ -116,7 +134,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
               ...i,
               field: i.name,
               headerName: i.display,
-              flex: 1,
+              flex: inventoryTableCellHasIcon(i) ? undefined : 1,
               type:
                 i.kind === 'boolean' || i.kind === 'date'
                   ? i.kind
@@ -132,23 +150,9 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
                   : i.kind === 'boolean'
                     ? (value) => (typeof value === 'boolean' ? value : value === 'true' ? true : value === 'false' ? false : null)
                     : undefined,
-              renderCell: (params) =>
-                params.colDef?.type === 'boolean' ? (
-                  params.value === null || params.value === undefined || params.value === 'null' ? (
-                    <Tooltip title={t`Undefined`} arrow>
-                      <QuestionMarkIcon fontSize="small" />
-                    </Tooltip>
-                  ) : params.value && params.value !== 'false' ? (
-                    <Tooltip title={t`Yes`} arrow>
-                      <CheckIcon fontSize="small" />
-                    </Tooltip>
-                  ) : (
-                    <Tooltip title={t`No`} arrow>
-                      <CloseIcon fontSize="small" />
-                    </Tooltip>
-                  )
-                ) : undefined,
-              minWidth: 150,
+              renderCell: inventoryTableRenderCell(i, foundModel),
+              minWidth: inventoryTableCellHasIcon(i) ? 110 : 150,
+              width: inventoryTableCellHasIcon(i) ? 110 : undefined,
               renderHeader: (value) => (
                 <Tooltip
                   title={
@@ -166,7 +170,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
                     direction="row-reverse"
                     justifyContent="start"
                     spacing={1}
-                    height={16}
+                    height={20}
                   >
                     {(value.colDef?.headerName ?? value.colDef?.field ?? '')
                       .split(' ➞ ')
@@ -185,10 +189,12 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
       )
       setRows(newRows.map(({ row, id }, i) => ({ INTERNAL_ID: id + '_' + i, ...row })))
     }
-  }, [data, isLoading])
+  }, [data, isLoading, modelData])
 
   return isLoading && !rows.length && !columns.length ? (
-    <LoadingSuspenseFallback />
+    <Box height="calc(100% - 180px)">
+      <LoadingSuspenseFallback />
+    </Box>
   ) : columns.length ? (
     <AdvancedTableView
       loading={Boolean(isLoading && rows.length && columns.length)}
@@ -258,6 +264,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
               ? mergeLocationSearchValues({
                   ...getLocationSearchValues(window.location.search),
                   name: window.encodeURIComponent(rowProps.row?.name ?? '-'),
+                  ...(typeof rowProps.row?.cloud === 'string' ? { cloud: window.encodeURIComponent(rowProps.row?.cloud ?? '-') } : {}),
                 })
               : window.location.search
           const href = `./resource-detail/${id}${search?.[0] === '?' || !search ? (search ?? '') : `?${search}`}`

@@ -10,76 +10,84 @@ import { InventoryAdvanceSearch } from './InventoryAdvanceSearch'
 import { InventoryTable } from './InventoryTable'
 import { InventoryTableError } from './InventoryTable.error'
 import { InventoryTemplateBoxes } from './InventoryTemplateBoxes'
+import { allHistoryChangesOptions } from './inventory-form/utils/allHistoryChangesOptions'
 
-export default function InventoryPage() {
+interface InventoryPageProps {
+  withHistory?: boolean
+}
+
+const getSearchCrit = (crit?: string, history?: WorkspaceInventorySearchTableHistory) => {
+  const searchValues = getLocationSearchValues()
+  if (!crit) {
+    delete searchValues['q']
+  } else {
+    searchValues['q'] = window.encodeURIComponent(crit)
+  }
+  if (!history || !history.changes.length) {
+    delete searchValues['changes']
+    delete searchValues['after']
+    delete searchValues['before']
+  } else {
+    searchValues['changes'] = window.encodeURIComponent(history.changes.join(','))
+    if (history.after) {
+      searchValues['after'] = window.encodeURIComponent(history.after)
+    } else {
+      delete searchValues['after']
+    }
+    if (history.before) {
+      searchValues['before'] = window.encodeURIComponent(history.before)
+    } else {
+      delete searchValues['before']
+    }
+  }
+  return mergeLocationSearchValues(searchValues)
+}
+
+export default function InventoryPage({ withHistory }: InventoryPageProps) {
   const [searchParams] = useSearchParams()
   const navigate = useAbsoluteNavigate()
   const [hasError, setHasError] = useState(false)
   const searchCrit = searchParams.get('q') || ''
-  const history = {
-    changes: (searchParams.get('changes')?.split(',') ?? []) as WorkspaceInventorySearchTableHistoryChanges[],
-    after: searchParams.get('after') || undefined,
-    before: searchParams.get('before') || undefined,
-  }
+  const history = withHistory
+    ? {
+        changes: (searchParams.get('changes')?.split(',') ?? []) as WorkspaceInventorySearchTableHistoryChanges[],
+        after: searchParams.get('after') || undefined,
+        before: searchParams.get('before') || undefined,
+      }
+    : {
+        changes: [] as WorkspaceInventorySearchTableHistoryChanges[],
+      }
 
   const handleSetSearchCrit = useCallback(
-    (crit?: string) => {
-      const searchValues = getLocationSearchValues()
+    (crit?: string, history?: WorkspaceInventorySearchTableHistory) => {
       if (!crit) {
         setHasError(false)
-        delete searchValues['q']
-      } else {
-        searchValues['q'] = window.encodeURIComponent(crit)
       }
-      const search = mergeLocationSearchValues(searchValues)
+      const search = getSearchCrit(crit, history)
       if (search !== window.location.search) {
         navigate({ pathname: window.location.pathname, search })
       }
     },
     [navigate],
   )
-
-  const handleSetHistory = useCallback(
-    (history?: WorkspaceInventorySearchTableHistory) => {
-      const searchValues = getLocationSearchValues()
-      if (!history || !history.changes.length) {
-        delete searchValues['changes']
-        delete searchValues['after']
-        delete searchValues['before']
-      } else {
-        searchValues['changes'] = window.encodeURIComponent(history.changes.join(','))
-        if (history.after) {
-          searchValues['after'] = window.encodeURIComponent(history.after)
-        } else {
-          delete searchValues['after']
-        }
-        if (history.before) {
-          searchValues['before'] = window.encodeURIComponent(history.before)
-        } else {
-          delete searchValues['before']
-        }
-      }
-      const search = mergeLocationSearchValues(searchValues)
-      if (search !== window.location.search) {
-        navigate({ pathname: window.location.pathname, search })
-      }
-    },
-    [navigate],
-  )
-
-  const hasChanges = !!history.changes.length
 
   return (
     <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
       <Suspense fallback={<LoadingSuspenseFallback />}>
-        <FixQueryProvider searchQuery={searchCrit} history={history} onHistoryChange={handleSetHistory} onChange={handleSetSearchCrit}>
+        <FixQueryProvider
+          withHistory={withHistory}
+          allHistory={allHistoryChangesOptions}
+          searchQuery={searchCrit}
+          history={history}
+          onChange={handleSetSearchCrit}
+        >
           <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-            <InventoryAdvanceSearch hasError={!!searchCrit && hasError} hasChanges={hasChanges} />
+            <InventoryAdvanceSearch hasError={!!searchCrit && hasError} hasChanges={withHistory ?? false} />
           </NetworkErrorBoundary>
           <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
             <Outlet />
           </NetworkErrorBoundary>
-          {searchCrit || hasChanges || hasError ? (
+          {(!withHistory && searchCrit) || (withHistory && history.changes.length) || hasError ? (
             <>
               <NetworkErrorBoundary
                 fallbackRender={({ resetErrorBoundary }) => (
@@ -90,7 +98,7 @@ export default function InventoryPage() {
               </NetworkErrorBoundary>
             </>
           ) : (
-            <InventoryTemplateBoxes onChange={handleSetSearchCrit} />
+            <InventoryTemplateBoxes onChange={handleSetSearchCrit} withHistory={withHistory} />
           )}
         </FixQueryProvider>
       </Suspense>

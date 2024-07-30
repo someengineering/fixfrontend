@@ -8,7 +8,6 @@ import { getWorkspaceInventorySearchStartQuery } from 'src/pages/panel/shared/qu
 import { sendInventoryError } from 'src/pages/panel/shared/utils'
 import { DefaultPropertiesKeys, Predicate, useFixQueryParser } from 'src/shared/fix-query-parser'
 import { InventoryFormAccount } from './InventoryFormAccount'
-import { InventoryFormChanges } from './InventoryFormChanges'
 import { InventoryFormCloud } from './InventoryFormCloud'
 import { InventoryFormFullTextSearches } from './InventoryFormFullTextSearch'
 import { InventoryFormKind } from './InventoryFormKind'
@@ -34,7 +33,11 @@ function removeDuplicates<T>(data?: T[], basedOn?: keyof T) {
     : []
 }
 
-export const InventoryForm = () => {
+interface InventoryFormProps {
+  withChanges: boolean
+}
+
+export const InventoryForm = ({ withChanges }: InventoryFormProps) => {
   const postHog = usePostHog()
   const { account: selectedAccount, cloud: selectedCloud, region: selectedRegion, is: selectedKinds } = useFixQueryParser()
   const { currentUser, selectedWorkspace } = useUserProfile()
@@ -189,8 +192,7 @@ export const InventoryForm = () => {
   return (
     <Stack direction="row" width="100%" flexWrap="wrap" gap={1} overflow="auto" py={1}>
       <InventoryFormReset />
-      <InventoryFormChanges />
-      <InventoryFormFullTextSearches />
+      {withChanges ? null : <InventoryFormFullTextSearches />}
       <InventoryFormKind preItems={filteredStartData} />
       <InventoryFormCloud preItems={filteredStartData} />
       <InventoryFormAccount preItems={filteredStartData} />

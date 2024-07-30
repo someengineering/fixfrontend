@@ -1,5 +1,5 @@
 export { colorFromRedToGreen } from './colorFromRedToGreen'
-export { apiMessages, panelMessages, sortedSeverities } from './consts'
+export { apiMessages, sortedSeverities } from './consts'
 export { endPoints } from './endPoints'
 export { env } from './env'
 export { langs } from './langs'

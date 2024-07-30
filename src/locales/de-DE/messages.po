@@ -63,19 +63,14 @@ msgstr "{0, plural, one {# Woche} other {# Wochen}}"
 msgid "{0, plural, one {# Year} other {# Years}}"
 msgstr "{0, plural, one {# Jahr} other {# Jahre}}"
 
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:82
+msgid "{0, plural, one {check} other {checks}}"
+msgstr "{0, plural, one {Prüfung} other {Prüfungen}}"
+
+#: src/pages/panel/inventory/utils/InventoryTableDateRenderCell.tsx:17
 #: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:31
 msgid "{0} ago"
 msgstr ""
-
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:68
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:115
-msgid "{0} checks failed."
-msgstr "{0} Prüfungen sind fehlgeschlagen."
-
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:79
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:104
-msgid "{0} checks fixed."
-msgstr "{0} Prüfungen behoben"
 
 #: src/shared/event-button/EventButton.tsx:57
 #: src/shared/event-button/EventButton.tsx:66
@@ -129,7 +124,7 @@ msgstr "{0}: Wir haben {1} nicht konforme Ressourcen von insgesamt {2}."
 msgid "{accountLength, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
 msgstr ""
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:47
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:140
 msgid "{added} configuration lines added and {removed} lines deleted."
 msgstr "{added} Konfigurationszeilen hinzugefügt und {removed} Zeilen gelöscht."
 
@@ -137,6 +132,14 @@ msgstr "{added} Konfigurationszeilen hinzugefügt und {removed} Zeilen gelöscht
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:148
 msgid "{cloudAccountsLength, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
 msgstr ""
+
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:95
+msgid "{icon}{0} {checkOrChecksStr} {fixedOrFailedStr}."
+msgstr "{icon}{0} {checkOrChecksStr} {fixedOrFailedStr}."
+
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:103
+msgid "{icon}Checks {fixedOrFailedStr}: {numberOfChecks}."
+msgstr "{icon}Checks {fixedOrFailedStr}: {numberOfChecks}."
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput.tsx:34
 msgid "{label} is not valid"
@@ -188,7 +191,7 @@ msgstr "<0>Schritt 1: Scannen Sie den QR-Code</0><1>Zuerst, sehen Sie diesen QR-
 msgid "<0>Thank you</0> for exploring the capabilities of Fix Security during your trial period!<1/>You've seen firsthand how our platform transforms cloud security with continuous, comprehensive monitoring and protection.<2/><3/>We have stopped synchronizing your cloud accounts and moved your workspace into the Free Tier.<4/>One account will be synchronized on a monthly base, while no additional user is allowed to access this workspace."
 msgstr ""
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:50
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:52
 msgid "<0>This search is complex.</0>The combo boxes below may not display all filter details but can help narrow your results. For full control, please use the Advanced tab."
 msgstr ""
 
@@ -232,7 +235,7 @@ msgstr ""
 msgid "A Google Cloud Service Account key file has been uploaded - we are currently trying to list your projects. Please stay tuned - we will send you an Email when cloud accounts have been collected."
 msgstr ""
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:57
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:65
 msgid "Abandoned"
 msgstr "Verlassen"
 
@@ -268,7 +271,7 @@ msgstr "Konto: {0}"
 #: src/pages/panel/inventory/InventoryTable.error.tsx:73
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:57
 #: src/shared/language-button/LanguageButton.stories.tsx:20
-#: src/shared/layouts/panel-layout/menuList.tsx:72
+#: src/shared/layouts/panel-layout/menuList.tsx:78
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:9
 msgid "Accounts"
 msgstr "Konten"
@@ -344,11 +347,11 @@ msgstr "Konten hinzugefügt"
 msgid "Admin"
 msgstr "Admin"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:75
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:77
 msgid "Advanced"
 msgstr ""
 
-#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:83
+#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:79
 msgid "Advanced search query"
 msgstr "Erweiterte Suchabfrage"
 
@@ -357,7 +360,7 @@ msgid "Affected resources"
 msgstr ""
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:249
-#: src/shared/charts/NetworkDiagram.tsx:409
+#: src/shared/charts/NetworkDiagram.tsx:378
 msgid "Age"
 msgstr "Alter"
 
@@ -369,6 +372,18 @@ msgstr "Alarmierungsintegrationen (PD, Slack, Discord, Teams)"
 msgid "Alerting Settings"
 msgstr "Benachrichtigungseinstellungen"
 
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:142
+msgid "All"
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:133
+msgid "All Changes"
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:134
+msgid "All changes over all resources."
+msgstr ""
+
 #: src/pages/panel/resource-detail/ResourceDetailFailedCheckIgnoredChecks.tsx:48
 msgid "All checks have been disabled for this resource"
 msgstr "Für diese Ressource wurden alle Prüfungen deaktiviert"
@@ -379,7 +394,7 @@ msgstr "Für diese Ressource wurden alle Prüfungen deaktiviert"
 msgid "All resources passed the check"
 msgstr ""
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:28
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:48
 msgid "All security issues fixed"
 msgstr "Alle Sicherheitsprobleme behoben"
 
@@ -479,7 +494,7 @@ msgstr "Automatisches Cloud Setup"
 msgid "AWS Marketplace"
 msgstr "AWS Marketplace"
 
-#: src/shared/constants/consts.ts:13
+#: src/containers/panel/PanelInitialMessageHandler.tsx:17
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
@@ -525,7 +540,7 @@ msgstr "Benchmarks"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:51
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:80
-#: src/shared/layouts/panel-layout/menuList.tsx:82
+#: src/shared/layouts/panel-layout/menuList.tsx:88
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:23
 msgid "Billing"
 msgstr "Abrechnung"
@@ -579,6 +594,10 @@ msgstr ""
 msgid "Change"
 msgstr ""
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:223
+msgid "Change count by Resource Kind"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:102
 msgid "Change payment"
 msgstr ""
@@ -592,12 +611,12 @@ msgstr ""
 msgid "Change Product Tier"
 msgstr "Produktstufe ändern"
 
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:47
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:75
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:105
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:125
 msgid "Change Type"
 msgstr ""
 
-#: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:70
+#: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:79
 msgid "Changes"
 msgstr "Änderungen"
 
@@ -620,6 +639,10 @@ msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:192
 msgid "Check the newly created role assignment"
+msgstr ""
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:161
+msgid "Clear"
 msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormReset.tsx:10
@@ -711,7 +734,24 @@ msgstr "Gemeinschaftliche Unterstützung"
 msgid "Compliance"
 msgstr "Compliance"
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:22
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:25
+msgid "Compliant"
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:207
+msgid "Compliant in the last 7 days"
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:253
+msgid "Compute Changes"
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:254
+msgid "Compute changes in the last 30 days."
+msgstr ""
+
+#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:28
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:32
 msgid "Configuration changed"
 msgstr "Konfiguration geändert"
 
@@ -825,12 +865,17 @@ msgstr ""
 msgid "Create Service Account"
 msgstr ""
 
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:29
 #: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:27
 msgid "Created"
 msgstr ""
 
 #: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:95
 msgid "Created At"
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:141
+msgid "Created in the last 7 days"
 msgstr ""
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:243
@@ -845,7 +890,7 @@ msgstr ""
 msgid "Credit or Debit Card"
 msgstr ""
 
-#: src/shared/constants/consts.ts:14
+#: src/containers/panel/PanelInitialMessageHandler.tsx:19
 msgid "Credit/Debit Card has been successfully subscribed"
 msgstr ""
 
@@ -930,6 +975,14 @@ msgstr "Löschen"
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:62
 msgid "Delete Provider"
 msgstr "Anbieter löschen"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:33
+msgid "Deleted"
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:161
+msgid "Deleted in the last 7 days"
+msgstr ""
 
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:13
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:29
@@ -1020,6 +1073,10 @@ msgstr "Downgrade"
 msgid "Download CSV"
 msgstr "CSV herunterladen"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:219
+msgid "Drill Down"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:89
 msgid "Drop Service Account Key File"
 msgstr ""
@@ -1068,7 +1125,7 @@ msgstr "Alle aktivieren"
 msgid "Enabled"
 msgstr "Ermöglicht"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:88
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:96
 msgid "Engineers like to tag their temporary resources with the string \"delete\". This performs a full-text search in names, tags and other string properties."
 msgstr "Engineers kennzeichnen ihre temporären Ressourcen gerne mit der Zeichenfolge \"delete\". Hiermit wird in Namen, Tags und anderen Zeichenfolgen nach \"delete\" gesucht."
 
@@ -1096,7 +1153,7 @@ msgstr "Alles in Free, und"
 msgid "Everything in Plus, and"
 msgstr "Alles in Plus, und"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:116
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:282
 msgid "Example searches"
 msgstr "Beispielsuchen"
 
@@ -1116,7 +1173,11 @@ msgstr "Externe Verzeichnisse"
 msgid "External Id"
 msgstr "External Id"
 
-#: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:80
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:80
+msgid "failed"
+msgstr "sind fehlgeschlagen"
+
+#: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:89
 msgid "Failed to retrieve changelog"
 msgstr "Das Änderungsprotokoll konnte nicht abgerufen werden"
 
@@ -1137,25 +1198,29 @@ msgstr ""
 msgid "Features"
 msgstr "Funktionen"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:78
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:86
 msgid "Finds CloudWatch instance alarms where the instance no longer exists."
 msgstr "Findet CloudWatch Instance Alarme, deren EC2 Instance nicht mehr existiert."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:41
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:49
 msgid "Finds databases that aren't encrypted at rest."
 msgstr "Findet Datenbanken, die im Ruhezustand nicht verschlüsselt sind."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:62
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:70
 msgid "Finds load balancers that are not associated with any running instances."
 msgstr "Findet Load Balancer, die keiner laufenden Instanz zugeordnet sind."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:72
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:80
 msgid "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
 msgstr "Findet Snapshots von Festplatten, die nicht mehr verwendet werden und möglicherweise gelöscht werden könnten, um die Speicherkosten zu senken."
 
 #: src/containers/auth/AuthContainer.tsx:50
 msgid "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
 msgstr "Fix scannt Ihre Infrastruktur- und Ressourcenkonfigurationen mithilfe des schreibgeschützten API-Zugriffs. Keine Agenten erforderlich."
+
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:80
+msgid "fixed"
+msgstr "behoben"
 
 #: src/pages/panel/resource-detail/utils/ResourceDetailChangeLogSelectedHistoryDiff.tsx:47
 msgid "Fixed issues"
@@ -1186,8 +1251,8 @@ msgstr "Passwort vergessen? Klicken Sie hier, um Ihr Passwort zurückzusetzen."
 msgid "Forgot Password"
 msgstr "Passwort vergessen"
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:63
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:66
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:65
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:68
 msgid "Form"
 msgstr ""
 
@@ -1243,6 +1308,10 @@ msgstr "Hoch"
 msgid "Highest product tier this billing cycle"
 msgstr ""
 
+#: src/shared/layouts/panel-layout/menuList.tsx:56
+msgid "History"
+msgstr ""
+
 #: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:62
 msgid "Homepage"
 msgstr "Startseite"
@@ -1260,6 +1329,14 @@ msgstr "Wie repariert man"
 msgid "IAM"
 msgstr ""
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:243
+msgid "IAM Role changes"
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:244
+msgid "IAM Role changes in the last 30 days."
+msgstr ""
+
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:171
 msgid "Id"
 msgstr ""
@@ -1268,35 +1345,35 @@ msgstr ""
 #: src/pages/panel/security/AccountCard.tsx:34
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:490
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:62
-#: src/shared/charts/NetworkDiagram.tsx:407
+#: src/shared/charts/NetworkDiagram.tsx:376
 msgid "ID"
 msgstr "ID"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:99
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:107
 msgid "Identifies compute instances and databases with low CPU usage, indicating potential over-provisioning."
 msgstr "Identifiziert Recheninstanzen und Datenbanken mit geringer CPU-Auslastung, was auf eine mögliche Überbereitstellung hinweist."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:46
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:54
 msgid "Identifies databases publicly accessible from any IP on the Internet."
 msgstr "Identifiziert Datenbanken, die von jeder IP im Internet aus öffentlich zugänglich sind."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:36
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:44
 msgid "Identifies EBS volumes that are not encrypted."
 msgstr "Identifiziert EBS-Volumes, die nicht verschlüsselt sind."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:83
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:91
 msgid "Identifies Elastic IP addresses that are allocated but not associated with any network interface."
 msgstr "Identifiziert Elastic IP-Adressen, die zugewiesen, aber keiner Netzwerkschnittstelle zugeordnet sind."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:51
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:59
 msgid "Identifies RDS snapshots that are publicly accessible."
 msgstr "Identifiziert RDS-Snapshots, die öffentlich zugänglich sind."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:30
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:38
 msgid "Identifies S3 buckets that are publicly accessible."
 msgstr "Identifiziert S3-Buckets, die öffentlich zugänglich sind."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:67
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:75
 msgid "Identifies storage volumes that are not attached to any running instance and had no read operations in the last 7 days."
 msgstr "Identifiziert Speichervolumes, die keiner laufenden Instanz zugeordnet sind und in den letzten 7 Tagen keine Lesevorgänge durchgeführt haben."
 
@@ -1361,7 +1438,7 @@ msgstr ""
 msgid "Inspect Detection Search in Inventory"
 msgstr ""
 
-#: src/shared/charts/NetworkDiagram.tsx:421
+#: src/shared/charts/NetworkDiagram.tsx:390
 msgid "Instance is terminated"
 msgstr "Instanz wird beendet"
 
@@ -1382,7 +1459,7 @@ msgstr ""
 msgid "Invalid Value"
 msgstr "Ungültiger Wert"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:40
+#: src/shared/layouts/panel-layout/menuList.tsx:42
 msgid "Inventory"
 msgstr "Inventar"
 
@@ -1410,7 +1487,7 @@ msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:189
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:232
-#: src/shared/charts/NetworkDiagram.tsx:406
+#: src/shared/charts/NetworkDiagram.tsx:375
 msgid "Kind"
 msgstr "Art"
 
@@ -1431,7 +1508,7 @@ msgstr ""
 msgid "Learn more about the associated risk"
 msgstr ""
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:61
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:69
 msgid "Load Balancers with no backends"
 msgstr "Load Balancer ohne Backends"
 
@@ -1457,7 +1534,7 @@ msgstr "Melden Sie sich bei dem AWS-Konto an, das Sie sichern möchten. Stellen 
 msgid "Low"
 msgstr "Niedrig"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:98
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:106
 msgid "Low Utilization Compute Instances and Databases"
 msgstr "Recheninstanzen und Datenbanken mit geringer Auslastung"
 
@@ -1539,7 +1616,7 @@ msgstr "Die meisten nicht konformen Konten"
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:132
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsPagerdutyService.tsx:130
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:144
-#: src/shared/charts/NetworkDiagram.tsx:408
+#: src/shared/charts/NetworkDiagram.tsx:377
 msgid "Name"
 msgstr "Name"
 
@@ -1581,7 +1658,7 @@ msgstr ""
 msgid "New registration"
 msgstr ""
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:26
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:45
 msgid "New security issues detected"
 msgstr "Neue Sicherheitsprobleme entdeckt"
 
@@ -1599,7 +1676,7 @@ msgstr "Nächste Synchronisierung"
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:42
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:68
-#: src/pages/panel/inventory/InventoryTable.tsx:146
+#: src/pages/panel/inventory/utils/inventoryTableRenderCell.tsx:32
 msgid "No"
 msgstr ""
 
@@ -1609,26 +1686,6 @@ msgstr ""
 
 #: src/shared/layouts/panel-layout/MoveToFreeAcknowledge.tsx:44
 msgid "No Thanks"
-msgstr ""
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:31
-msgid "Node Compliant"
-msgstr ""
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:15
-msgid "Node Created"
-msgstr ""
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:23
-msgid "Node Deleted"
-msgstr ""
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:19
-msgid "Node Updated"
-msgstr ""
-
-#: src/pages/panel/inventory/inventory-form/InventoryFormChangesValue.tsx:27
-msgid "Node Vulnerable"
 msgstr ""
 
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:158
@@ -1659,6 +1716,14 @@ msgstr ""
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:51
 msgid "Number Of Account Charged"
 msgstr "Anzahl der belasteten Konten"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:224
+msgid "Number of changes in the last 7 days counted by kind."
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:264
+msgid "Number of Resources changed, broken down by owner tag in the last 30 days."
+msgstr ""
 
 #: src/core/auth/WorkspaceGuard.tsx:94
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:504
@@ -1697,6 +1762,10 @@ msgstr ""
 msgid "on the right side"
 msgstr ""
 
+#: src/shared/utils/oneTwoThreeWordedNumber.ts:4
+msgid "One"
+msgstr "Eins"
+
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:127
 msgid "One time"
 msgstr "Einmal"
@@ -1705,8 +1774,8 @@ msgstr "Einmal"
 msgid "Oops, the username or password doesn't seem to match our records. Please try again."
 msgstr "Hoppla, der Benutzername oder das Passwort scheinen nicht mit unseren Aufzeichnungen übereinzustimmen. Bitte versuche es erneut."
 
-#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:97
-#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:112
+#: src/pages/panel/inventory/InventoryAdvanceSearch.tsx:99
+#: src/pages/panel/inventory/InventoryAdvanceSearchTextField.tsx:108
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Sie sie und versuchen Sie es erneut."
 
@@ -1714,7 +1783,7 @@ msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Si
 msgid "Oops! Something went wrong."
 msgstr "Hoppla! Etwas ist schief gelaufen."
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:45
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:53
 msgid "Open Database Access"
 msgstr "Öffnen Sie den Datenbankzugriff"
 
@@ -1745,15 +1814,15 @@ msgstr "Optionale professionelle Dienstleistungen"
 msgid "Or"
 msgstr "Oder"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:77
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:85
 msgid "Orphaned CloudWatch Instance Alarms"
 msgstr "Verwaiste CloudWatch Instance Alarms"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:71
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:79
 msgid "Orphaned Snapshots"
 msgstr "Verwaiste Snapshots"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:66
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:74
 msgid "Orphaned Volumes"
 msgstr "Verwaiste Volumes"
 
@@ -1871,7 +1940,7 @@ msgstr ""
 msgid "Print or copy the following recovery codes"
 msgstr "Drucken oder kopieren Sie die folgenden Wiederherstellungscodes"
 
-#: src/shared/cloud-avatar/CloudAvatar.tsx:49
+#: src/shared/cloud-avatar/CloudAvatar.tsx:64
 msgid "Privileged"
 msgstr "Privilegiert"
 
@@ -1919,11 +1988,11 @@ msgstr ""
 msgid "Property"
 msgstr "Eigentum"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:50
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:58
 msgid "Public RDS Snapshots"
 msgstr "Öffentliche RDS-Snapshots"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:29
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:37
 msgid "Public S3 Buckets"
 msgstr "Öffentliche S3-Buckets"
 
@@ -2001,19 +2070,55 @@ msgstr "Umbenennen"
 msgid "Reset Password"
 msgstr "Passwort zurücksetzen"
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:20
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:29
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:31
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:33
+msgid "Resource"
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:129
+msgid "Resource Changes"
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:263
+msgid "Resource changes with owner tag"
+msgstr ""
+
+#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:18
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:30
 msgid "Resource created"
 msgstr "Ressource erstellt"
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:24
+#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:38
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:34
 msgid "Resource deleted"
 msgstr "Ressource gelöscht"
+
+#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:48
+msgid "Resource Secured"
+msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:68
 msgid "Resources"
 msgstr "Ressourcen"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:87
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:208
+msgid "Resources became compliant in the last 7 days."
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:142
+msgid "Resources Created in the last 7 days."
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:162
+msgid "Resources Deleted in the last 7 days."
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:152
+msgid "Resources Updated in the last 7 days."
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:95
 msgid "Resources with the string \"delete\""
 msgstr "Ressourcen mit der Zeichenfolge \"delete\""
 
@@ -2036,11 +2141,15 @@ msgstr "Risiko"
 msgid "Roles"
 msgstr "Rollen"
 
+#: src/shared/layouts/panel-layout/menuList.tsx:50
+msgid "Search"
+msgstr ""
+
 #: src/pages/panel/inventory/inventory-form/InventoryFormDefaultValue.tsx:169
 msgid "Search {0}"
 msgstr ""
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:104
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:112
 msgid "Searches for database instances with no connections over a significant period, indicating potential waste."
 msgstr "Sucht nach Datenbankinstanzen ohne Verbindungen über einen längeren Zeitraum, was auf potenzielle Verschwendung hinweist."
 
@@ -2056,8 +2165,10 @@ msgstr "Sicherer Lesezugriff"
 msgid "Secure Your Cloud, Elevate Your Peace of Mind"
 msgstr ""
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:25
-#: src/shared/layouts/panel-layout/menuList.tsx:56
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:25
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:27
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:33
+#: src/shared/layouts/panel-layout/menuList.tsx:62
 msgid "Security"
 msgstr "Sicherheit"
 
@@ -2065,11 +2176,20 @@ msgstr "Sicherheit"
 msgid "Security benchmarks"
 msgstr "Sicherheitsbenchmarks"
 
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:173
+msgid "Security Changes"
+msgstr ""
+
 #: src/pages/panel/resource-detail/ResourceDetailFailedChecks.tsx:82
 msgid "Security Issues"
 msgstr "Sicherheitsprobleme"
 
-#: src/pages/panel/resource-detail/utils/nodeChange.tsx:28
+#: src/pages/panel/inventory/utils/inventoryRenderNodeChangeCell.tsx:58
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:41
+msgid "Security posture changed"
+msgstr ""
+
+#: src/pages/panel/resource-detail/utils/nodeChange.tsx:43
 msgid "Security posture improved"
 msgstr "Die Sicherheitslage wurde verbessert"
 
@@ -2086,6 +2206,10 @@ msgstr "Sicherheitsbewertung"
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:280
 msgid "See this Resource in AWS Console"
 msgstr "Sehen Sie sich diese Ressource in der AWS-Konsole an"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:166
+msgid "Select All"
+msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:70
 msgid "Select IAM and press Grant Access. Fill out the form by pasting the email address as the new principal."
@@ -2134,6 +2258,14 @@ msgstr ""
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:67
 msgid "Send Invite"
 msgstr "Sende Einladung"
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:233
+msgid "Serverless function changes"
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:234
+msgid "Serverless function changes in the last 30 days."
+msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:53
 msgid "Service Account Key"
@@ -2302,6 +2434,10 @@ msgstr ""
 msgid "This will deploy a CloudFormation stack that creates a new IAM role in your AWS account. This role will be used by FIX to perform security scans in your AWS account."
 msgstr "Hiermit wird ein CloudFormation-Stack bereitgestellt, der eine neue IAM Rolle in Ihrem AWS Konto erstellt. Diese Rolle wird von FIX verwendet, um in Ihrem AWS Konto Sicherheitsscans durchzuführen."
 
+#: src/shared/utils/oneTwoThreeWordedNumber.ts:4
+msgid "Three"
+msgstr "Drei"
+
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:48
 msgid "Tier"
 msgstr "Stufe"
@@ -2354,12 +2490,16 @@ msgstr "Probezeit"
 msgid "Try again"
 msgstr "Versuchen Sie es erneut"
 
+#: src/shared/utils/oneTwoThreeWordedNumber.ts:4
+msgid "Two"
+msgstr "Zwei"
+
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:52
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:21
 msgid "Type"
 msgstr "Typ"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:82
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:90
 msgid "Unattached Elastic IPs"
 msgstr "Nicht angehängte elastische IPs"
 
@@ -2372,23 +2512,23 @@ msgstr "Nicht angehängte elastische IPs"
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowStringValue.tsx:329
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:149
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowValues.tsx:155
-#: src/pages/panel/inventory/InventoryTable.tsx:138
+#: src/pages/panel/inventory/utils/inventoryTableRenderCell.tsx:24
 msgid "Undefined"
 msgstr ""
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:94
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:102
 msgid "Underutilized"
 msgstr "Nicht ausreichend genutzt"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:40
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:48
 msgid "Unencrypted Database Storage"
 msgstr "Unverschlüsselter Datenbankspeicher"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:35
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:43
 msgid "Unencrypted EBS Volumes"
 msgstr "Unverschlüsselte EBS-Volumes"
 
-#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:103
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:111
 msgid "Unused Database Instances"
 msgstr "Ungenutzte Datenbankinstanzen"
 
@@ -2399,6 +2539,14 @@ msgstr "E-Mail aktualisieren"
 #: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:32
 msgid "Update Password"
 msgstr "Kennwort aktualisieren"
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:31
+msgid "Updated"
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:151
+msgid "Updated in the last 7 days"
+msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:159
 msgid "Upgrade"
@@ -2427,7 +2575,7 @@ msgstr "Benachrichtigung über Benutzereinstellungen"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:27
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:68
-#: src/shared/layouts/panel-layout/menuList.tsx:77
+#: src/shared/layouts/panel-layout/menuList.tsx:83
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:19
 msgid "Users"
 msgstr "Benutzer"
@@ -2439,6 +2587,34 @@ msgstr "Wert"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:70
 msgid "Version"
+msgstr ""
+
+#: src/pages/panel/inventory/inventory-form/InventoryFormChangePicker.tsx:27
+msgid "Vulnerable"
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:177
+msgid "Vulnerable in the last 24 hours"
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:197
+msgid "Vulnerable in the last 30 days"
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:187
+msgid "Vulnerable in the last 7 days"
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:178
+msgid "Vulnerable Resources detected in the last 24 hours."
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:198
+msgid "Vulnerable Resources detected in the last 30 days."
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryTemplateBoxes.tsx:188
+msgid "Vulnerable Resources detected in the last 7 days."
 msgstr ""
 
 #: src/pages/panel/inventory/DownloadCSVButton.tsx:90
@@ -2504,7 +2680,7 @@ msgid "Workspace Name"
 msgstr "Arbeitsbereichsname"
 
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:20
-#: src/shared/layouts/panel-layout/menuList.tsx:64
+#: src/shared/layouts/panel-layout/menuList.tsx:70
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:7
 msgid "Workspace Settings"
 msgstr "Arbeitsbereichseinstellungen"
@@ -2520,7 +2696,7 @@ msgstr ""
 
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:39
 #: src/pages/panel/inventory/inventory-form/InventoryFormFilterRowBooleanValue.tsx:65
-#: src/pages/panel/inventory/InventoryTable.tsx:142
+#: src/pages/panel/inventory/utils/inventoryTableRenderCell.tsx:28
 msgid "Yes"
 msgstr ""
 
