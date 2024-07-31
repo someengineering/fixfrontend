@@ -1,107 +1,143 @@
-import { Suspense, useCallback, useState } from 'react'
-import { Outlet, useSearchParams } from 'react-router-dom'
-import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
-import { FixQueryProvider } from 'src/shared/fix-query-parser'
-import { LoadingSuspenseFallback } from 'src/shared/loading'
-import { WorkspaceInventorySearchTableHistory, WorkspaceInventorySearchTableHistoryChanges } from 'src/shared/types/server'
-import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
-import { InventoryAdvanceSearch } from './InventoryAdvanceSearch'
-import { InventoryTable } from './InventoryTable'
-import { InventoryTableError } from './InventoryTable.error'
-import { InventoryTemplateBoxes } from './InventoryTemplateBoxes'
-import { allHistoryChangesOptions } from './inventory-form/utils/allHistoryChangesOptions'
+import { t, Trans } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
+import { Stack, Typography } from '@mui/material'
+import { useSuspenseQuery } from '@tanstack/react-query'
+import { useUserProfile } from 'src/core/auth'
+import { parseISO8601Duration } from 'src/shared/utils/parseDuration'
+import { getWorkspaceInventoryWorkspaceInfoQuery } from './getWorkspaceInventoryWorkspaceInfo.query'
+import { InventoryInfoOverallScore } from './InventoryInfoOverallScore'
+import { InventoryInfoResourceChangesTable } from './InventoryInfoResourceChangesTable'
+import { InventoryInfoResourcesPerAccountTimeline } from './InventoryInfoResourcesPerAccountTimeline'
+import { InventoryInfoResourcesTable } from './InventoryInfoResourcesTable'
 
-interface InventoryPageProps {
-  withHistory?: boolean
-}
-
-const getSearchCrit = (crit?: string, history?: WorkspaceInventorySearchTableHistory) => {
-  const searchValues = getLocationSearchValues()
-  if (!crit) {
-    delete searchValues['q']
-  } else {
-    searchValues['q'] = window.encodeURIComponent(crit)
-  }
-  if (!history || !history.changes.length) {
-    delete searchValues['changes']
-    delete searchValues['after']
-    delete searchValues['before']
-  } else {
-    searchValues['changes'] = window.encodeURIComponent(history.changes.join(','))
-    if (history.after) {
-      searchValues['after'] = window.encodeURIComponent(history.after)
-    } else {
-      delete searchValues['after']
-    }
-    if (history.before) {
-      searchValues['before'] = window.encodeURIComponent(history.before)
-    } else {
-      delete searchValues['before']
-    }
-  }
-  return mergeLocationSearchValues(searchValues)
-}
-
-export default function InventoryPage({ withHistory }: InventoryPageProps) {
-  const [searchParams] = useSearchParams()
-  const navigate = useAbsoluteNavigate()
-  const [hasError, setHasError] = useState(false)
-  const searchCrit = searchParams.get('q') || ''
-  const history = withHistory
-    ? {
-        changes: (searchParams.get('changes')?.split(',') ?? []) as WorkspaceInventorySearchTableHistoryChanges[],
-        after: searchParams.get('after') || undefined,
-        before: searchParams.get('before') || undefined,
-      }
-    : {
-        changes: [] as WorkspaceInventorySearchTableHistoryChanges[],
-      }
-
-  const handleSetSearchCrit = useCallback(
-    (crit?: string, history?: WorkspaceInventorySearchTableHistory) => {
-      if (!crit) {
-        setHasError(false)
-      }
-      const search = getSearchCrit(crit, history)
-      if (search !== window.location.search) {
-        navigate({ pathname: window.location.pathname, search })
-      }
+export default function InventorySummaryPage() {
+  const { selectedWorkspace } = useUserProfile()
+  const {
+    i18n: { locale },
+  } = useLingui()
+  const {
+    data: {
+      buckets_objects_progress,
+      buckets_size_bytes_progress,
+      cores_progress,
+      databases_bytes_progress,
+      databases_progress,
+      instances_progress,
+      memory_progress,
+      resource_changes,
+      resources_per_account_timeline,
+      score_progress,
+      volume_bytes_progress,
+      volumes_progress,
     },
-    [navigate],
-  )
-
+  } = useSuspenseQuery({
+    queryFn: getWorkspaceInventoryWorkspaceInfoQuery,
+    queryKey: ['workspace-inventory-workspace-info', selectedWorkspace?.id],
+  })
+  const accountCounts = resources_per_account_timeline.groups.length
+  const duration = parseISO8601Duration(resources_per_account_timeline.granularity).duration
+  const durationName = duration > 1000 * 60 * 60 * 24 * 27 ? t`month` : t`week`
+  const isBad = !score_progress[1] ? null : score_progress[1] < 0
   return (
-    <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-      <Suspense fallback={<LoadingSuspenseFallback />}>
-        <FixQueryProvider
-          withHistory={withHistory}
-          allHistory={allHistoryChangesOptions}
-          searchQuery={searchCrit}
-          history={history}
-          onChange={handleSetSearchCrit}
-        >
-          <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-            <InventoryAdvanceSearch hasError={!!searchCrit && hasError} hasChanges={withHistory ?? false} />
-          </NetworkErrorBoundary>
-          <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-            <Outlet />
-          </NetworkErrorBoundary>
-          {(!withHistory && searchCrit) || (withHistory && history.changes.length) || hasError ? (
-            <>
-              <NetworkErrorBoundary
-                fallbackRender={({ resetErrorBoundary }) => (
-                  <InventoryTableError resetErrorBoundary={resetErrorBoundary} searchCrit={searchCrit} setHasError={setHasError} />
-                )}
-              >
-                <InventoryTable searchCrit={searchCrit} history={history.changes.length ? history : undefined} />
-              </NetworkErrorBoundary>
-            </>
-          ) : (
-            <InventoryTemplateBoxes onChange={handleSetSearchCrit} withHistory={withHistory} />
-          )}
-        </FixQueryProvider>
-      </Suspense>
-    </NetworkErrorBoundary>
+    <Stack spacing={1}>
+      <Typography variant="h3">
+        <Trans>Inventory Summary</Trans>
+      </Typography>
+      <Stack direction={{ xs: 'column', lg: 'row' }} spacing={1}>
+        <Stack spacing={1} flex={0.5}>
+          <Typography variant="h4">
+            <Trans>Workspace: "{selectedWorkspace?.name}"</Trans>
+          </Typography>
+          <Typography>
+            <Trans>
+              Fix collected information from <b>{accountCounts} cloud accounts</b>.
+            </Trans>
+          </Typography>
+          <Typography variant="h4">
+            <Trans>Security score</Trans>
+          </Typography>
+          <Typography>
+            The current weighted security score across all accounts stands at{' '}
+            <Typography component="b" fontWeight="bold" color={isBad ? 'error.main' : isBad === false ? 'success.main' : 'primary'}>
+              {score_progress[0]}
+            </Typography>
+            .<br />
+            {isBad ? (
+              <Trans>
+                This represents a decline of{' '}
+                <Typography component="b" fontWeight="bold" color="warning.main">
+                  {score_progress[1]}
+                </Typography>{' '}
+                points over the last {durationName}.<br />
+                <Typography component="b" fontWeight="bold" color="warning.main">
+                  It's time to take action!
+                </Typography>
+                The Fix dashboard provides you with detailed information about what needs to be done to improve your security score.
+              </Trans>
+            ) : isBad === false ? (
+              <Trans>
+                This marks an improvement of{' '}
+                <Typography component="b" fontWeight="bold" color="success.main">
+                  {score_progress[1]}
+                </Typography>{' '}
+                points over the last {durationName}.<br />
+                <Typography component="b" fontWeight="bold" color="success.main">
+                  Excellent progress!
+                </Typography>{' '}
+                Keep up the good work.
+              </Trans>
+            ) : (
+              <Trans>There has been no change in the score over the last {durationName}.</Trans>
+            )}
+          </Typography>
+          <InventoryInfoOverallScore score={score_progress[0]} title={t`Security Score over all ${accountCounts}`} />
+          <Stack spacing={1} flex={0.5}>
+            <Typography variant="h4">
+              <Trans>Resource Changes</Trans>
+            </Typography>
+            <Typography>
+              <Trans>Fix has recorded the following changes in your infrastructure over the past {durationName}:</Trans>
+            </Typography>
+            <InventoryInfoResourceChangesTable changes={resource_changes} />
+          </Stack>
+        </Stack>
+        <Stack spacing={1} flex={0.5}>
+          <Typography variant="h4">
+            <Trans>Resources</Trans>
+          </Typography>
+          <Typography>
+            <Trans>
+              The diagram below displays compute and database resources. This information is usually a valuable indicator, providing
+              insights into cloud usage across various scenarios.
+            </Trans>
+          </Typography>
+          <InventoryInfoResourcesTable
+            buckets_objects_progress={buckets_objects_progress}
+            buckets_size_bytes_progress={buckets_size_bytes_progress}
+            cores_progress={cores_progress}
+            databases_bytes_progress={databases_bytes_progress}
+            databases_progress={databases_progress}
+            instances_progress={instances_progress}
+            memory_progress={memory_progress}
+            volume_bytes_progress={volume_bytes_progress}
+            volumes_progress={volumes_progress}
+            locale={locale}
+          />
+        </Stack>
+      </Stack>
+      <Stack spacing={1} flex={0.5}>
+        <Typography variant="h4">
+          <Trans>Resources under control</Trans>
+        </Typography>
+        <Typography>
+          <Trans>
+            This diagram provides a breakdown of the total number of resources by cloud account over the past {durationName}. It is
+            important to analyze any spikes in the diagram to understand their origins. Additionally, please note that an increase in the
+            number of resources over time typically leads to higher costs.
+          </Trans>
+        </Typography>
+        <InventoryInfoResourcesPerAccountTimeline data={resources_per_account_timeline} />
+      </Stack>
+    </Stack>
   )
 }

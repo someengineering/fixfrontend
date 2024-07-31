@@ -40,7 +40,7 @@ export interface MenuModalListItem<T extends DefaultMenuModalListItemProps = Def
 export const menuList: MenuListItem[] = [
   {
     name: <Trans>Inventory</Trans>,
-    route: '/inventory',
+    route: '/inventory-summary',
     Icon: InventoryIcon,
     hideOnGuard: true,
     useGuard: useHasBenchmarkCheck,
@@ -49,7 +49,7 @@ export const menuList: MenuListItem[] = [
         Icon: SearchIcon,
         name: <Trans>Search</Trans>,
         // TODO: /inventory/search
-        route: '/inventory',
+        route: '/inventory/search',
       },
       {
         Icon: HistoryIcon,

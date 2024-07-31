@@ -28,18 +28,19 @@ interface DrawerMenuProps {
   open: boolean
   onClose?: (event: ReactMouseEvent<HTMLElement, MouseEvent>) => void
   indent?: number
+  bottom?: boolean
 }
 
 type DrawerMenuItemProps = DrawerMenuProps & MenuListItem
 
-const menuListMap = ({ open, onClose, indent }: DrawerMenuProps, item: MenuListItem | MenuModalListItem, index: number) =>
+const menuListMap = ({ open, onClose, indent, bottom }: DrawerMenuProps, item: MenuListItem | MenuModalListItem, index: number) =>
   item.route === 'modal' ? (
     <ErrorBoundary fallbackRender={() => null} key={index}>
-      <DrawerModalMenuItem open={open} onClose={onClose} {...(item as MenuModalListItem)} route="modal" />
+      <DrawerModalMenuItem open={open} onClose={onClose} {...(item as MenuModalListItem)} route="modal" bottom={bottom} />
     </ErrorBoundary>
   ) : (
     <ErrorBoundary fallbackRender={() => null} key={index}>
-      <DrawerMenuItem open={open} onClose={onClose} {...item} indent={indent} />
+      <DrawerMenuItem open={open} onClose={onClose} {...item} indent={indent} bottom={bottom} />
     </ErrorBoundary>
   )
 
@@ -55,6 +56,7 @@ const DrawerMenuItem = ({
   hideOnGuard,
   children,
   indent = 0,
+  bottom = false,
 }: DrawerMenuItemProps) => {
   const match = useMatch({ path: `${route}/*` })
   const [searchParams] = useSearchParams()
@@ -133,7 +135,7 @@ const DrawerMenuItem = ({
                 setCollapse((prev) => !prev)
               }}
             >
-              {collapse ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+              {(bottom ? !collapse : collapse) ? <ExpandMoreIcon /> : <ExpandLessIcon />}
             </IconButton>
           ) : null}
         </ListItemButton>
@@ -199,7 +201,7 @@ export const DrawerMenu = ({ open, onClose }: DrawerMenuProps) => {
       <Box display="flex" flexDirection="column" flexGrow={1}>
         <Divider />
       </Box>
-      <List>{bottomMenuList.map((item, index) => menuListMap({ open, onClose }, item, index))}</List>
+      <List>{bottomMenuList.map((item, index) => menuListMap({ open, onClose, bottom: true }, item, index))}</List>
     </Box>
   )
 }

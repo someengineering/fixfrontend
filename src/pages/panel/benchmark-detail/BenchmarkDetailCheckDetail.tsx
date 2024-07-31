@@ -56,7 +56,7 @@ export const BenchmarkDetailCheckDetail = ({ check, description, accountName, id
     if (accountId) {
       parser = parser.set_cloud_account_region('account', '=', accountName ?? accountId, true)
     }
-    query = `/inventory?q=${window.encodeURIComponent(parser.toString())}`
+    query = `/inventory/search?q=${window.encodeURIComponent(parser.toString())}`
   }
   const paginationSizeOption = resources?.length
     ? panelUI.tableRowsPerPages.filter((_, i, arr) => resources.length > (arr[i - 1] ?? 0))
