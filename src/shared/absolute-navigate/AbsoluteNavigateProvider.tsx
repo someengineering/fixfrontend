@@ -1,7 +1,8 @@
 import { PropsWithChildren, useCallback, useEffect, useRef } from 'react'
-import { NavigateFunction, NavigateOptions, To, useLocation, useNavigate } from 'react-router-dom'
+import { NavigateOptions, To, useLocation, useNavigate } from 'react-router-dom'
 import { isAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData } from 'src/shared/utils/localstorage'
+import { NavigateFunction } from './AbsoluteNavigateContext'
 import { AbsoluteNavigateInnerProvider } from './AbsoluteNavigateInnerProvider'
 import { getHrefObjFromTo } from './getHrefFromTo'
 
@@ -12,11 +13,11 @@ export const AbsoluteNavigateProvider = ({ children }: PropsWithChildren) => {
   const ignorePathChangeOnce = useRef(false)
 
   const handleNavigate: NavigateFunction = useCallback(
-    (to: To | number, options?: NavigateOptions) => {
+    (to: To | number, options?: NavigateOptions & { noAutoHash?: boolean }) => {
       if (typeof to === 'number') {
         return navigate(to)
       }
-      const { hasHash, ...newTo } = getHrefObjFromTo(to)
+      const { hasHash, ...newTo } = getHrefObjFromTo(to, options?.noAutoHash)
       if (hasHash) {
         ignorePathChangeOnce.current = true
       }

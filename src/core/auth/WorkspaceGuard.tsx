@@ -52,6 +52,8 @@ export const WorkspaceGuard = ({ value, children }: WorkspaceGuardProps) => {
         ? value.workspaces[0].id
         : undefined
 
+  const workspaces = value.workspaces?.filter((i) => i.user_has_access) ?? []
+
   useEffect(() => {
     if (hashWorkspaceId && currentWorkspaceId !== hashWorkspaceId) {
       void value.selectWorkspace(hashWorkspaceId)
@@ -78,8 +80,14 @@ export const WorkspaceGuard = ({ value, children }: WorkspaceGuardProps) => {
       title={<Trans>You don't have access to this workspace.</Trans>}
       description={<Trans>The workspace you requested cannot be accessed. Please request access from the workspace administrator.</Trans>}
       actions={
-        <>
-          <Stack justifySelf="start" mb={{ xs: 1, sm: 0 }} mr={{ xs: 1, sm: 0 }}>
+        <Stack direction="row" justifySelf="start" gap={1} flexWrap="wrap" mb={{ xs: 1, sm: 0 }} mr={{ xs: 1, sm: 0 }}>
+          {workspaces.length ? (
+            workspaces.map((workspace) => (
+              <Button variant="outlined" color="info" onClick={() => void value.selectWorkspace(workspace.id)}>
+                {workspace.name}
+              </Button>
+            ))
+          ) : (
             <Button
               variant={defaultWorkspaceId ? 'contained' : 'outlined'}
               color={defaultWorkspaceId ? 'primary' : 'warning'}
@@ -93,8 +101,8 @@ export const WorkspaceGuard = ({ value, children }: WorkspaceGuardProps) => {
             >
               {defaultWorkspaceId ? <Trans>Ok</Trans> : <Trans>Log Out</Trans>}
             </Button>
-          </Stack>
-        </>
+          )}
+        </Stack>
       }
     />
   )

@@ -1,5 +1,5 @@
 import { ButtonBase, Grid, Typography } from '@mui/material'
-import { NavigateFunction } from 'react-router-dom'
+import { NavigateFunction } from 'src/shared/absolute-navigate'
 import { sortedSeverities } from 'src/shared/constants'
 import { getMessage } from 'src/shared/defined-messages'
 import { FailedChecksType } from 'src/shared/types/server'

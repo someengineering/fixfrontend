@@ -65,7 +65,7 @@ export const UserProfileButton = () => {
   const handleLogout = () => {
     handleCloseUserMenu()
     startTransition(() => {
-      void logout()
+      void logout(true)
     })
   }
 

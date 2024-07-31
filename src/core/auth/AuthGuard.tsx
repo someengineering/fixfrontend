@@ -79,12 +79,16 @@ export function AuthGuard({ children }: PropsWithChildren) {
 
   const handleLogout = useCallback(
     async (noWorkspace?: boolean) => {
-      navigate({
-        pathname: '/auth/login',
-        search: window.location.search.includes('returnUrl')
-          ? window.location.search
-          : `?returnUrl=${window.encodeURIComponent(window.location.pathname + window.location.search + (noWorkspace ? '' : window.location.hash))}`,
-      })
+      navigate(
+        {
+          pathname: '/auth/login',
+          search: window.location.search.includes('returnUrl')
+            ? window.location.search
+            : `?returnUrl=${window.encodeURIComponent(window.location.pathname + window.location.search + (noWorkspace ? '' : window.location.hash))}`,
+          hash: '',
+        },
+        { noAutoHash: noWorkspace },
+      )
       postHog.reset()
       clearAllCookies()
       handleInternalSetAuth(defaultAuth)

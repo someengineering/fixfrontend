@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import { NavigateFunction } from 'react-router-dom'
+import { NavigateFunction } from 'src/shared/absolute-navigate'
 import { FailedChecksType, WorkspaceAccountReportSummary } from 'src/shared/types/server'
 import { numberToShortHRT } from 'src/shared/utils/numberToShortHRT'
 import { wordToUFStr } from 'src/shared/utils/snakeCaseToUFStr'

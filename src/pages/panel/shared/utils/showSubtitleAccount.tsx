@@ -1,5 +1,5 @@
 import { Button } from '@mui/material'
-import { NavigateFunction } from 'react-router-dom'
+import { NavigateFunction } from 'src/shared/absolute-navigate'
 import { WorkspaceAccountReportSummary, WorkspaceChangedSituation } from 'src/shared/types/server'
 import { navigateSubtitleQuery } from './navigateSubtitleQuery'
 

@@ -1,6 +1,5 @@
 import { PropsWithChildren, memo } from 'react'
-import { NavigateFunction } from 'react-router-dom'
-import { AbsoluteNavigateContext } from './AbsoluteNavigateContext'
+import { AbsoluteNavigateContext, NavigateFunction } from './AbsoluteNavigateContext'
 
 interface AbsoluteNavigateInnerProviderProps extends PropsWithChildren {
   useNavigate: NavigateFunction

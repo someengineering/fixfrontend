@@ -1,6 +1,5 @@
 import { useContext } from 'react'
-import { NavigateFunction } from 'react-router-dom'
-import { AbsoluteNavigateContext } from './AbsoluteNavigateContext'
+import { AbsoluteNavigateContext, NavigateFunction } from './AbsoluteNavigateContext'
 
 export function useAbsoluteNavigate<Force extends boolean = false>(
   force?: Force,
