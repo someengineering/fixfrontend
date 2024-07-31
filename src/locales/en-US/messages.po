@@ -277,7 +277,7 @@ msgstr "Account: {0}"
 #: src/pages/panel/inventory-search/InventoryTable.error.tsx:73
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:57
 #: src/shared/language-button/LanguageButton.stories.tsx:20
-#: src/shared/layouts/panel-layout/menuList.tsx:78
+#: src/shared/layouts/panel-layout/menuList.tsx:80
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:9
 msgid "Accounts"
 msgstr "Accounts"
@@ -546,7 +546,7 @@ msgstr "Benchmarks"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:51
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:80
-#: src/shared/layouts/panel-layout/menuList.tsx:88
+#: src/shared/layouts/panel-layout/menuList.tsx:90
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:23
 msgid "Billing"
 msgstr "Billing"
@@ -1351,7 +1351,7 @@ msgstr "High"
 msgid "Highest product tier this billing cycle"
 msgstr "Highest product tier this billing cycle"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:56
+#: src/shared/layouts/panel-layout/menuList.tsx:58
 msgid "History"
 msgstr "History"
 
@@ -1506,7 +1506,7 @@ msgstr "Invalid file, Please follow the step-by-step instructions {0}."
 msgid "Invalid Value"
 msgstr "Invalid Value"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:42
+#: src/shared/layouts/panel-layout/menuList.tsx:43
 msgid "Inventory"
 msgstr "Inventory"
 
@@ -2214,7 +2214,7 @@ msgstr "Risk"
 msgid "Roles"
 msgstr "Roles"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:50
+#: src/shared/layouts/panel-layout/menuList.tsx:52
 msgid "Search"
 msgstr "Search"
 
@@ -2241,7 +2241,7 @@ msgstr "Secure Your Cloud, Elevate Your Peace of Mind"
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormChangePicker.tsx:25
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormChangePicker.tsx:27
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:33
-#: src/shared/layouts/panel-layout/menuList.tsx:62
+#: src/shared/layouts/panel-layout/menuList.tsx:64
 msgid "Security"
 msgstr "Security"
 
@@ -2686,7 +2686,7 @@ msgstr "User Settings Notification"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:27
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:68
-#: src/shared/layouts/panel-layout/menuList.tsx:83
+#: src/shared/layouts/panel-layout/menuList.tsx:85
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:19
 msgid "Users"
 msgstr "Users"
@@ -2803,7 +2803,7 @@ msgid "Workspace Name"
 msgstr "Workspace Name"
 
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:20
-#: src/shared/layouts/panel-layout/menuList.tsx:70
+#: src/shared/layouts/panel-layout/menuList.tsx:72
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:7
 msgid "Workspace Settings"
 msgstr "Workspace Settings"
