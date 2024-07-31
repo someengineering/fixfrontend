@@ -67,9 +67,9 @@ msgstr "{0, plural, one {# Year} other {# Years}}"
 msgid "{0, plural, one {check} other {checks}}"
 msgstr "{0, plural, one {check} other {checks}}"
 
-#: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:17
-#: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:25
-#: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:33
+#: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:42
+#: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:68
+#: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:94
 msgid "{0}"
 msgstr "{0}"
 
@@ -564,7 +564,7 @@ msgstr "Billing cycle"
 msgid "Billing history"
 msgstr "Billing history"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:124
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:141
 msgid "Buckets"
 msgstr "Buckets"
 
@@ -601,7 +601,7 @@ msgstr "Cannot enable this account"
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormDefaultValue.tsx:213
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMoreValue.tsx:127
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormTagsValue.tsx:117
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:42
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:46
 msgid "Change"
 msgstr "Change"
 
@@ -753,7 +753,7 @@ msgstr "Compliant"
 msgid "Compliant in the last 7 days"
 msgstr "Compliant in the last 7 days"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:59
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:66
 msgid "Compute"
 msgstr "Compute"
 
@@ -856,7 +856,7 @@ msgstr "Copy the Secret Value of the created secret and paste it in the Secret V
 msgid "Core CSPM scanning capabilities"
 msgstr "Core CSPM scanning capabilities"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:70
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:79
 msgid "Cores"
 msgstr "Cores"
 
@@ -917,7 +917,7 @@ msgstr "Credit/Debit Card has been successfully subscribed"
 msgid "Critical"
 msgstr "Critical"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:39
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:43
 msgid "Current"
 msgstr "Current"
 
@@ -946,7 +946,7 @@ msgstr "Daily"
 msgid "Data export (CSV, JSON, PDF)"
 msgstr "Data export (CSV, JSON, PDF)"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:153
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:175
 msgid "Databases"
 msgstr "Databases"
 
@@ -1184,11 +1184,11 @@ msgstr "Everything in Plus, and"
 msgid "Example searches"
 msgstr "Example searches"
 
-#: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:30
+#: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:88
 msgid "Existing resources deleted"
 msgstr "Existing resources deleted"
 
-#: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:22
+#: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:62
 msgid "Existing resources updated"
 msgstr "Existing resources updated"
 
@@ -1248,14 +1248,6 @@ msgstr "Finds load balancers that are not associated with any running instances.
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:80
 msgid "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
 msgstr "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
-
-#: src/pages/panel/inventory/InventoryPage.tsx:52
-msgid "Fix collected information from <0>{accountCounts} cloud accounts</0>."
-msgstr "Fix collected information from <0>{accountCounts} cloud accounts</0>."
-
-#: src/pages/panel/inventory/InventoryPage.tsx:99
-msgid "Fix has recorded the following changes in your infrastructure over the past {durationName}:"
-msgstr "Fix has recorded the following changes in your infrastructure over the past {durationName}:"
 
 #: src/containers/auth/AuthContainer.tsx:50
 msgid "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
@@ -1485,7 +1477,7 @@ msgstr "Inspect Detection Search in Inventory"
 msgid "Instance is terminated"
 msgstr "Instance is terminated"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:157
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:181
 msgid "Instances"
 msgstr "Instances"
 
@@ -1513,10 +1505,6 @@ msgstr "Inventory"
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:19
 msgid "Inventory search"
 msgstr "Inventory search"
-
-#: src/pages/panel/inventory/InventoryPage.tsx:44
-msgid "Inventory Summary"
-msgstr "Inventory Summary"
 
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:54
 msgid "Invite"
@@ -1622,7 +1610,7 @@ msgstr "Medium"
 msgid "Member"
 msgstr "Member"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:77
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:86
 msgid "Memory"
 msgstr "Memory"
 
@@ -1630,7 +1618,7 @@ msgstr "Memory"
 msgid "MFA already enabled"
 msgstr "MFA already enabled"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:39
+#: src/pages/panel/inventory/InventoryPage.tsx:40
 msgid "month"
 msgstr "month"
 
@@ -1717,7 +1705,7 @@ msgstr "New Product Tier"
 msgid "New registration"
 msgstr "New registration"
 
-#: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:14
+#: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:36
 msgid "New resources created"
 msgstr "New resources created"
 
@@ -1788,7 +1776,7 @@ msgstr "Number of changes in the last 7 days counted by kind."
 msgid "Number of Resources changed, broken down by owner tag in the last 30 days."
 msgstr "Number of Resources changed, broken down by owner tag in the last 30 days."
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:128
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:147
 msgid "Objects"
 msgstr "Objects"
 
@@ -2144,7 +2132,6 @@ msgid "Resource"
 msgstr "Resource"
 
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:129
-#: src/pages/panel/inventory/InventoryPage.tsx:96
 msgid "Resource Changes"
 msgstr "Resource Changes"
 
@@ -2166,7 +2153,7 @@ msgstr "Resource deleted"
 msgid "Resource Secured"
 msgstr "Resource Secured"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:106
+#: src/pages/panel/inventory/InventoryPage.tsx:98
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:68
 msgid "Resources"
 msgstr "Resources"
@@ -2183,7 +2170,7 @@ msgstr "Resources Created in the last 7 days."
 msgid "Resources Deleted in the last 7 days."
 msgstr "Resources Deleted in the last 7 days."
 
-#: src/pages/panel/inventory/InventoryPage.tsx:130
+#: src/pages/panel/inventory/InventoryPage.tsx:122
 msgid "Resources under control"
 msgstr "Resources under control"
 
@@ -2270,7 +2257,7 @@ msgstr "Security posture improved"
 msgid "Security Scan"
 msgstr "Security Scan"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:57
+#: src/pages/panel/inventory/InventoryPage.tsx:48
 msgid "Security score"
 msgstr "Security score"
 
@@ -2279,9 +2266,9 @@ msgstr "Security score"
 msgid "Security Score"
 msgstr "Security Score"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:93
-msgid "Security Score over all {accountCounts}"
-msgstr "Security Score over all {accountCounts}"
+#: src/pages/panel/inventory/InventoryPage.tsx:84
+msgid "Security Score over all {accountCounts} cloud accounts"
+msgstr "Security Score over all {accountCounts} cloud accounts"
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:269
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:280
@@ -2390,9 +2377,9 @@ msgstr "Sign up with {formattedName}"
 msgid "Single Sign on (coming soon!)"
 msgstr "Single Sign on (coming soon!)"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:106
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:135
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:164
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:120
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:154
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:188
 msgid "Size"
 msgstr "Size"
 
@@ -2418,7 +2405,7 @@ msgstr "Something went wrong please try again later."
 msgid "Sources"
 msgstr "Sources"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:95
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:107
 msgid "Storage"
 msgstr "Storage"
 
@@ -2461,7 +2448,19 @@ msgstr "Test"
 msgid "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 msgstr "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 
-#: src/pages/panel/inventory/InventoryPage.tsx:109
+#: src/pages/panel/inventory/InventoryPage.tsx:77
+msgid "The current weighted security score did not change over the past {durationName}."
+msgstr "The current weighted security score did not change over the past {durationName}."
+
+#: src/pages/panel/inventory/InventoryPage.tsx:52
+msgid "The current weighted security score has declined by <0>{0}</0> points over the past {durationName}.<1/><2>It's time to take action!</2><3/>For more details, see the <4>Security Dashboard</4>."
+msgstr "The current weighted security score has declined by <0>{0}</0> points over the past {durationName}.<1/><2>It's time to take action!</2><3/>For more details, see the <4>Security Dashboard</4>."
+
+#: src/pages/panel/inventory/InventoryPage.tsx:65
+msgid "The current weighted security score has improved by <0>{0}</0> points over the past {durationName}.<1/><2>Excellent progress!</2> Keep up the good work."
+msgstr "The current weighted security score has improved by <0>{0}</0> points over the past {durationName}.<1/><2>Excellent progress!</2> Keep up the good work."
+
+#: src/pages/panel/inventory/InventoryPage.tsx:101
 msgid "The diagram below displays compute and database resources. This information is usually a valuable indicator, providing insights into cloud usage across various scenarios."
 msgstr "The diagram below displays compute and database resources. This information is usually a valuable indicator, providing insights into cloud usage across various scenarios."
 
@@ -2493,10 +2492,6 @@ msgstr "The token that you sent is invalid or have been expired please try again
 msgid "The workspace you requested cannot be accessed. Please request access from the workspace administrator."
 msgstr "The workspace you requested cannot be accessed. Please request access from the workspace administrator."
 
-#: src/pages/panel/inventory/InventoryPage.tsx:90
-msgid "There has been no change in the score over the last {durationName}."
-msgstr "There has been no change in the score over the last {durationName}."
-
 #: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:125
 msgid "There's already another api tokens with the same description"
 msgstr "There's already another api tokens with the same description"
@@ -2513,25 +2508,13 @@ msgstr "This account is currently in a degraded state possibly due to a misconfi
 msgid "This account is currently in a degraded state.<0/>Fix was unable to gather data from this account.<1/><2/>To resume security scans, please log into the {accountName} account ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 msgstr "This account is currently in a degraded state.<0/>Fix was unable to gather data from this account.<1/><2/>To resume security scans, please log into the {accountName} account ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 
-#: src/pages/panel/inventory/InventoryPage.tsx:133
-msgid "This diagram provides a breakdown of the total number of resources by cloud account over the past {durationName}. It is important to analyze any spikes in the diagram to understand their origins. Additionally, please note that an increase in the number of resources over time typically leads to higher costs."
-msgstr "This diagram provides a breakdown of the total number of resources by cloud account over the past {durationName}. It is important to analyze any spikes in the diagram to understand their origins. Additionally, please note that an increase in the number of resources over time typically leads to higher costs."
-
 #: src/shared/utils/getErrorMessage.ts:30
 msgid "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 msgstr "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 
-#: src/pages/panel/inventory/InventoryPage.tsx:78
-msgid "This marks an improvement of <0>{0}</0> points over the last {durationName}.<1/><2>Excellent progress!</2> Keep up the good work."
-msgstr "This marks an improvement of <0>{0}</0> points over the last {durationName}.<1/><2>Excellent progress!</2> Keep up the good work."
-
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:423
 msgid "This project is currently in a degraded state.<0/>Fix was unable to gather data from this project.<1/><2/>To resume security scans, please ensure that the service account you configured is set up correctly.<3/>You may also recreate and upload the service account definition."
 msgstr "This project is currently in a degraded state.<0/>Fix was unable to gather data from this project.<1/><2/>To resume security scans, please ensure that the service account you configured is set up correctly.<3/>You may also recreate and upload the service account definition."
-
-#: src/pages/panel/inventory/InventoryPage.tsx:66
-msgid "This represents a decline of <0>{0}</0> points over the last {durationName}.<1/><2>It's time to take action!</2>The Fix dashboard provides you with detailed information about what needs to be done to improve your security score."
-msgstr "This represents a decline of <0>{0}</0> points over the last {durationName}.<1/><2>It's time to take action!</2>The Fix dashboard provides you with detailed information about what needs to be done to improve your security score."
 
 #: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:166
 msgid "This section does not contain any controls that can be automated.<0/>Manual checks or processes are required for compliance."
@@ -2700,11 +2683,11 @@ msgstr "Value"
 msgid "Version"
 msgstr "Version"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:63
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:72
 msgid "Virtual Machines"
 msgstr "Virtual Machines"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:99
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:113
 msgid "Volumes"
 msgstr "Volumes"
 
@@ -2764,7 +2747,7 @@ msgstr "We're sorry for the inconvenience. Our team has been notified, and the i
 msgid "Webhook URL"
 msgstr "Webhook URL"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:39
+#: src/pages/panel/inventory/InventoryPage.tsx:40
 msgid "week"
 msgstr "week"
 
@@ -2812,10 +2795,6 @@ msgstr "Workspace Settings"
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:66
 msgid "Workspace Users"
 msgstr "Workspace Users"
-
-#: src/pages/panel/inventory/InventoryPage.tsx:49
-msgid "Workspace: \"{0}\""
-msgstr "Workspace: \"{0}\""
 
 #: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:24
 msgid "Yearly"

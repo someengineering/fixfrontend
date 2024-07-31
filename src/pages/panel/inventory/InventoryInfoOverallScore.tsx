@@ -1,5 +1,6 @@
 import { Stack } from '@mui/material'
 import { Gauge, gaugeClasses } from '@mui/x-charts'
+import { colorFromRedToGreen } from 'src/shared/constants'
 
 interface InventoryInfoOverallScoreProps {
   score: number
@@ -7,7 +8,7 @@ interface InventoryInfoOverallScoreProps {
 }
 
 export const InventoryInfoOverallScore = ({ score, title }: InventoryInfoOverallScoreProps) => (
-  <Stack alignItems="center">
+  <Stack>
     <Gauge
       width={300}
       height={150}
@@ -19,8 +20,11 @@ export const InventoryInfoOverallScore = ({ score, title }: InventoryInfoOverall
           fontSize: 40,
           transform: 'translate(0px, -25px)',
           text: {
-            fill: ({ palette }) => palette.primary.main,
+            fill: colorFromRedToGreen[score] ?? (({ palette }) => palette.info.main),
           },
+        },
+        [`& .${gaugeClasses.valueArc}`]: {
+          fill: colorFromRedToGreen[score] ?? (({ palette }) => palette.info.main),
         },
       }}
       title={title}

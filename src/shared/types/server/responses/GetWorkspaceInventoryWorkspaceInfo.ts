@@ -2,9 +2,9 @@ import { LiteralUnion } from 'src/shared/types/shared'
 
 export interface WorkspaceInfoResourcePerAccountTimelineGroup {
   group_name: string
-  group: string
+  group?: LiteralUnion<{ account_id: string }, Record<string, string>>
   values: Record<string, number>
-  attributes?: LiteralUnion<{ name: string }, Record<string, unknown>>
+  attributes?: LiteralUnion<{ name: string }, Record<string, string>>
 }
 
 export interface WorkspaceInfoResourcePerAccountTimeline {

@@ -3,6 +3,7 @@ import { useLingui } from '@lingui/react'
 import { Stack, Typography } from '@mui/material'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useUserProfile } from 'src/core/auth'
+import { InternalLink, InternalLinkButton } from 'src/shared/link-button'
 import { parseISO8601Duration } from 'src/shared/utils/parseDuration'
 import { getWorkspaceInventoryWorkspaceInfoQuery } from './getWorkspaceInventoryWorkspaceInfo.query'
 import { InventoryInfoOverallScore } from './InventoryInfoOverallScore'
@@ -39,66 +40,57 @@ export default function InventorySummaryPage() {
   const durationName = duration > 1000 * 60 * 60 * 24 * 27 ? t`month` : t`week`
   const isBad = !score_progress[1] ? null : score_progress[1] < 0
   return (
-    <Stack spacing={1}>
-      <Typography variant="h3">
-        <Trans>Inventory Summary</Trans>
-      </Typography>
-      <Stack direction={{ xs: 'column', lg: 'row' }} spacing={1}>
+    <Stack spacing={5}>
+      <Stack direction={{ xs: 'column', lg: 'row' }} spacing={5}>
         <Stack spacing={1} flex={0.5}>
-          <Typography variant="h4">
-            <Trans>Workspace: "{selectedWorkspace?.name}"</Trans>
-          </Typography>
-          <Typography>
-            <Trans>
-              Fix collected information from <b>{accountCounts} cloud accounts</b>.
-            </Trans>
-          </Typography>
-          <Typography variant="h4">
-            <Trans>Security score</Trans>
-          </Typography>
-          <Typography>
-            The current weighted security score across all accounts stands at{' '}
-            <Typography component="b" fontWeight="bold" color={isBad ? 'error.main' : isBad === false ? 'success.main' : 'primary'}>
-              {score_progress[0]}
-            </Typography>
-            .<br />
-            {isBad ? (
-              <Trans>
-                This represents a decline of{' '}
-                <Typography component="b" fontWeight="bold" color="warning.main">
-                  {score_progress[1]}
-                </Typography>{' '}
-                points over the last {durationName}.<br />
-                <Typography component="b" fontWeight="bold" color="warning.main">
-                  It's time to take action!
-                </Typography>
-                The Fix dashboard provides you with detailed information about what needs to be done to improve your security score.
-              </Trans>
-            ) : isBad === false ? (
-              <Trans>
-                This marks an improvement of{' '}
-                <Typography component="b" fontWeight="bold" color="success.main">
-                  {score_progress[1]}
-                </Typography>{' '}
-                points over the last {durationName}.<br />
-                <Typography component="b" fontWeight="bold" color="success.main">
-                  Excellent progress!
-                </Typography>{' '}
-                Keep up the good work.
-              </Trans>
-            ) : (
-              <Trans>There has been no change in the score over the last {durationName}.</Trans>
-            )}
-          </Typography>
-          <InventoryInfoOverallScore score={score_progress[0]} title={t`Security Score over all ${accountCounts}`} />
           <Stack spacing={1} flex={0.5}>
             <Typography variant="h4">
-              <Trans>Resource Changes</Trans>
+              <Trans>Security score</Trans>
             </Typography>
             <Typography>
-              <Trans>Fix has recorded the following changes in your infrastructure over the past {durationName}:</Trans>
+              {isBad ? (
+                <Trans>
+                  The current weighted security score has declined by{' '}
+                  <Typography component="b" fontWeight="bold" color="warning.main">
+                    {score_progress[1]}
+                  </Typography>{' '}
+                  points over the past {durationName}.<br />
+                  <Typography component="b" fontWeight="bold" color="warning.main">
+                    It's time to take action!
+                  </Typography>
+                  <br />
+                  For more details, see the <InternalLink to="/security">Security Dashboard</InternalLink>.
+                </Trans>
+              ) : isBad === false ? (
+                <Trans>
+                  The current weighted security score has improved by{' '}
+                  <Typography component="b" fontWeight="bold" color="success.main">
+                    {score_progress[1]}
+                  </Typography>{' '}
+                  points over the past {durationName}.<br />
+                  <Typography component="b" fontWeight="bold" color="success.main">
+                    Excellent progress!
+                  </Typography>{' '}
+                  Keep up the good work.
+                </Trans>
+              ) : (
+                <Trans>The current weighted security score did not change over the past {durationName}.</Trans>
+              )}
             </Typography>
-            <InventoryInfoResourceChangesTable changes={resource_changes} />
+          </Stack>
+          <Stack spacing={1} direction={{ xs: 'column', xl: 'row' }}>
+            <Stack flex={0.5} alignItems="center">
+              <InternalLinkButton to={{ pathname: '/security' }}>
+                <InventoryInfoOverallScore score={score_progress[0]} title={t`Security Score over all ${accountCounts} cloud accounts`} />
+              </InternalLinkButton>
+            </Stack>
+            <Stack flex={0.5} alignItems="center">
+              <InventoryInfoResourceChangesTable
+                changes={resource_changes}
+                startDate={resources_per_account_timeline.start}
+                endDate={resources_per_account_timeline.end}
+              />
+            </Stack>
           </Stack>
         </Stack>
         <Stack spacing={1} flex={0.5}>
@@ -125,16 +117,9 @@ export default function InventorySummaryPage() {
           />
         </Stack>
       </Stack>
-      <Stack spacing={1} flex={0.5}>
+      <Stack spacing={5} flex={0.5}>
         <Typography variant="h4">
           <Trans>Resources under control</Trans>
-        </Typography>
-        <Typography>
-          <Trans>
-            This diagram provides a breakdown of the total number of resources by cloud account over the past {durationName}. It is
-            important to analyze any spikes in the diagram to understand their origins. Additionally, please note that an increase in the
-            number of resources over time typically leads to higher costs.
-          </Trans>
         </Typography>
         <InventoryInfoResourcesPerAccountTimeline data={resources_per_account_timeline} />
       </Stack>

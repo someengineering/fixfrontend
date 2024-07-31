@@ -1,5 +1,9 @@
 import { Trans } from '@lingui/macro'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import ComputerIcon from '@mui/icons-material/Computer'
+import KitchenIcon from '@mui/icons-material/Kitchen'
+import StorageIcon from '@mui/icons-material/Storage'
+import WarehouseIcon from '@mui/icons-material/Warehouse'
+import { Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import { InternalLink } from 'src/shared/link-button'
 import { numberToReadableBytes, numberToReadableNumber } from 'src/shared/utils/numberToReadable'
 import { mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
@@ -56,7 +60,12 @@ export const InventoryInfoResourcesTable = ({
                 }),
               }}
             >
-              <Trans>Compute</Trans>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <ComputerIcon />
+                <Typography variant="body2" fontWeight="bold">
+                  <Trans>Compute</Trans>
+                </Typography>
+              </Stack>
             </InternalLink>
           </TableCell>
           <TableCell>
@@ -92,7 +101,12 @@ export const InventoryInfoResourcesTable = ({
                 }),
               }}
             >
-              <Trans>Storage</Trans>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <WarehouseIcon />
+                <Typography variant="body2" fontWeight="bold">
+                  <Trans>Storage</Trans>
+                </Typography>
+              </Stack>
             </InternalLink>
           </TableCell>
           <TableCell>
@@ -121,7 +135,12 @@ export const InventoryInfoResourcesTable = ({
                 }),
               }}
             >
-              <Trans>Buckets</Trans>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <KitchenIcon />
+                <Typography variant="body2" fontWeight="bold">
+                  <Trans>Buckets</Trans>
+                </Typography>
+              </Stack>
             </InternalLink>
           </TableCell>
           <TableCell>
@@ -150,7 +169,12 @@ export const InventoryInfoResourcesTable = ({
                 }),
               }}
             >
-              <Trans>Databases</Trans>
+              <Stack direction="row" spacing={1} alignItems="center">
+                <StorageIcon />
+                <Typography variant="body2" fontWeight="bold">
+                  <Trans>Databases</Trans>
+                </Typography>
+              </Stack>
             </InternalLink>
           </TableCell>
           <TableCell>
