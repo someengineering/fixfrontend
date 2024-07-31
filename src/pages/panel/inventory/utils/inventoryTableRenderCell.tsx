@@ -42,9 +42,8 @@ export const inventoryTableRenderCell = (
       return inventoryRenderNodeChangeCell
     case '/ancestors.cloud.reported.name':
     case '/ancestors.cloud.reported.id':
-      return (params: GridRenderCellParams<WorkspaceInventorySearchTableRow['row']>) => (
-        <CloudAvatar cloud={params.row.cloud as AccountCloud} small tooltip />
-      )
+      return (params: GridRenderCellParams<WorkspaceInventorySearchTableRow['row']>) =>
+        params.row.cloud ? <CloudAvatar cloud={params.row.cloud as AccountCloud} small tooltip /> : '-'
     case '/reported.kind':
       return modelData
         ? (params: GridRenderCellParams<WorkspaceInventorySearchTableRow['row']>) => {
