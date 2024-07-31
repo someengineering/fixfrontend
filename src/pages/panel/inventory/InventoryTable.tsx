@@ -143,7 +143,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
                     : i.kind === 'double' || i.kind === 'float' || i.kind === 'int32' || i.kind === 'int64'
                       ? 'number'
                       : 'string',
-              display: 'flex',
+              display: inventoryTableCellHasIcon(i) ? 'flex' : undefined,
               valueGetter:
                 i.kind === 'date' || i.kind === 'datetime'
                   ? (value) => new Date(value)
