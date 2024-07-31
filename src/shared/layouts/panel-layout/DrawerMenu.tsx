@@ -50,6 +50,7 @@ const DrawerMenuItem = ({
   Icon,
   name,
   route,
+  subRoute,
   routeSearch,
   notRouteSearchMatch,
   useGuard,
@@ -58,7 +59,9 @@ const DrawerMenuItem = ({
   indent = 0,
   bottom = false,
 }: DrawerMenuItemProps) => {
-  const match = useMatch({ path: `${route}/*` })
+  const mainMatch = useMatch({ path: `${route}/*` })
+  const secondaryMatch = useMatch({ path: `${subRoute ?? 'invalid'}/*` })
+  const match = mainMatch ?? (subRoute ? secondaryMatch : null)
   const [searchParams] = useSearchParams()
   const matchRouteSearch = routeSearch
     ? routeSearch

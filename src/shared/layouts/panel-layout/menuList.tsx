@@ -17,6 +17,7 @@ import { useHasBenchmarkCheck } from './check-hooks/useHasBenchmarkCheck'
 export interface MenuListItem {
   name: ReactNode
   route: string
+  subRoute?: string
   routeSearch?: string
   notRouteSearchMatch?: boolean
   Icon: SvgIconComponent
@@ -41,6 +42,7 @@ export const menuList: MenuListItem[] = [
   {
     name: <Trans>Inventory</Trans>,
     route: '/inventory-summary',
+    subRoute: '/inventory',
     Icon: InventoryIcon,
     hideOnGuard: true,
     useGuard: useHasBenchmarkCheck,
