@@ -36,7 +36,7 @@ export const PostHogProvider = ({ children }: { children: React.ReactNode }) => 
         opt_out_capturing_by_default: true,
 
         disable_session_recording: true,
-        disable_surveys: true,
+        disable_surveys: false,
         enable_recording_console_log: false,
       })
     }
