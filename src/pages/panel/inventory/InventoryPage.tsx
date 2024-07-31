@@ -94,16 +94,8 @@ export default function InventorySummaryPage() {
           </Stack>
         </Stack>
         <Stack spacing={1} flex={0.5}>
-          <Typography variant="h4">
-            <Trans>Resources</Trans>
-          </Typography>
-          <Typography>
-            <Trans>
-              The diagram below displays compute and database resources. This information is usually a valuable indicator, providing
-              insights into cloud usage across various scenarios.
-            </Trans>
-          </Typography>
           <InventoryInfoResourcesTable
+            durationName={durationName}
             buckets_objects_progress={buckets_objects_progress}
             buckets_size_bytes_progress={buckets_size_bytes_progress}
             cores_progress={cores_progress}

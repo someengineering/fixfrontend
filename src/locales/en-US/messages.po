@@ -564,7 +564,7 @@ msgstr "Billing cycle"
 msgid "Billing history"
 msgstr "Billing history"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:141
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:145
 msgid "Buckets"
 msgstr "Buckets"
 
@@ -601,7 +601,6 @@ msgstr "Cannot enable this account"
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormDefaultValue.tsx:213
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMoreValue.tsx:127
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormTagsValue.tsx:117
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:46
 msgid "Change"
 msgstr "Change"
 
@@ -630,6 +629,10 @@ msgstr "Change Type"
 #: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:79
 msgid "Changes"
 msgstr "Changes"
+
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:50
+msgid "Changes In {0}"
+msgstr "Changes In {0}"
 
 #: src/pages/panel/security/Overview.tsx:43
 msgid "Changes in the past 7 days"
@@ -753,7 +756,7 @@ msgstr "Compliant"
 msgid "Compliant in the last 7 days"
 msgstr "Compliant in the last 7 days"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:66
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:70
 msgid "Compute"
 msgstr "Compute"
 
@@ -856,7 +859,7 @@ msgstr "Copy the Secret Value of the created secret and paste it in the Secret V
 msgid "Core CSPM scanning capabilities"
 msgstr "Core CSPM scanning capabilities"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:79
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:83
 msgid "Cores"
 msgstr "Cores"
 
@@ -917,7 +920,7 @@ msgstr "Credit/Debit Card has been successfully subscribed"
 msgid "Critical"
 msgstr "Critical"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:43
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:47
 msgid "Current"
 msgstr "Current"
 
@@ -946,7 +949,7 @@ msgstr "Daily"
 msgid "Data export (CSV, JSON, PDF)"
 msgstr "Data export (CSV, JSON, PDF)"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:175
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:179
 msgid "Databases"
 msgstr "Databases"
 
@@ -1477,7 +1480,7 @@ msgstr "Inspect Detection Search in Inventory"
 msgid "Instance is terminated"
 msgstr "Instance is terminated"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:181
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:185
 msgid "Instances"
 msgstr "Instances"
 
@@ -1610,7 +1613,7 @@ msgstr "Medium"
 msgid "Member"
 msgstr "Member"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:86
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:90
 msgid "Memory"
 msgstr "Memory"
 
@@ -1776,7 +1779,7 @@ msgstr "Number of changes in the last 7 days counted by kind."
 msgid "Number of Resources changed, broken down by owner tag in the last 30 days."
 msgstr "Number of Resources changed, broken down by owner tag in the last 30 days."
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:147
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:151
 msgid "Objects"
 msgstr "Objects"
 
@@ -2153,7 +2156,6 @@ msgstr "Resource deleted"
 msgid "Resource Secured"
 msgstr "Resource Secured"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:98
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:68
 msgid "Resources"
 msgstr "Resources"
@@ -2170,7 +2172,7 @@ msgstr "Resources Created in the last 7 days."
 msgid "Resources Deleted in the last 7 days."
 msgstr "Resources Deleted in the last 7 days."
 
-#: src/pages/panel/inventory/InventoryPage.tsx:122
+#: src/pages/panel/inventory/InventoryPage.tsx:114
 msgid "Resources under control"
 msgstr "Resources under control"
 
@@ -2377,9 +2379,9 @@ msgstr "Sign up with {formattedName}"
 msgid "Single Sign on (coming soon!)"
 msgstr "Single Sign on (coming soon!)"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:120
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:154
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:188
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:124
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:158
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:192
 msgid "Size"
 msgstr "Size"
 
@@ -2405,7 +2407,7 @@ msgstr "Something went wrong please try again later."
 msgid "Sources"
 msgstr "Sources"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:107
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:111
 msgid "Storage"
 msgstr "Storage"
 
@@ -2459,10 +2461,6 @@ msgstr "The current weighted security score has declined by <0>{0}</0> points ov
 #: src/pages/panel/inventory/InventoryPage.tsx:65
 msgid "The current weighted security score has improved by <0>{0}</0> points over the past {durationName}.<1/><2>Excellent progress!</2> Keep up the good work."
 msgstr "The current weighted security score has improved by <0>{0}</0> points over the past {durationName}.<1/><2>Excellent progress!</2> Keep up the good work."
-
-#: src/pages/panel/inventory/InventoryPage.tsx:101
-msgid "The diagram below displays compute and database resources. This information is usually a valuable indicator, providing insights into cloud usage across various scenarios."
-msgstr "The diagram below displays compute and database resources. This information is usually a valuable indicator, providing insights into cloud usage across various scenarios."
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:129
 msgid "The Google Cloud Service Account has been updated successfully.<0/>We will process the file and add the accounts that we find.<1/>This process may take a <2>few minutes</2>.<3/>We will send you an email once the projects are ready."
@@ -2683,11 +2681,11 @@ msgstr "Value"
 msgid "Version"
 msgstr "Version"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:72
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:76
 msgid "Virtual Machines"
 msgstr "Virtual Machines"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:113
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:117
 msgid "Volumes"
 msgstr "Volumes"
 

@@ -6,9 +6,11 @@ import WarehouseIcon from '@mui/icons-material/Warehouse'
 import { Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import { InternalLink } from 'src/shared/link-button'
 import { numberToReadableBytes, numberToReadableNumber } from 'src/shared/utils/numberToReadable'
+import { wordToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 import { mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 
 interface InventoryInfoResourcesTableProps {
+  durationName: string
   locale?: Intl.LocalesArgument
   instances_progress: [number, number]
   cores_progress: [number, number]
@@ -22,6 +24,7 @@ interface InventoryInfoResourcesTableProps {
 }
 
 export const InventoryInfoResourcesTable = ({
+  durationName,
   locale,
   buckets_objects_progress,
   buckets_size_bytes_progress,
@@ -37,13 +40,14 @@ export const InventoryInfoResourcesTable = ({
     <Table>
       <TableHead>
         <TableRow>
-          <TableCell />
-          <TableCell />
+          <TableCell colSpan={2}>
+            <Typography variant="h4"></Typography>
+          </TableCell>
           <TableCell>
             <Trans>Current</Trans>
           </TableCell>
           <TableCell>
-            <Trans>Change</Trans>
+            <Trans>Changes In {wordToUFStr(durationName)}</Trans>
           </TableCell>
         </TableRow>
       </TableHead>
