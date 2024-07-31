@@ -1,4 +1,4 @@
-import { Box, Stack } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import { QueryFunctionContext, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useThemeMode } from 'src/core/theme'
@@ -45,13 +45,15 @@ export const InventoryTableKindRenderCell = ({ group, iconUrl, name }: Inventory
     refetchOnReconnect: false,
   })
   return (
-    <Stack direction="row" spacing={1} alignItems="center">
+    <Stack direction="row" spacing={1} alignItems="center" height="100%">
       {svg ? (
         <Box component="img" width={24} height={24} src={`data:image/svg+xml;base64,${svg}`} alt={name} />
       ) : svg === null ? (
         <Box component="img" width={24} height={24} src={iconUrl} alt={name} />
       ) : undefined}
-      <span>{name}</span>
+      <Typography component="span" variant="caption" overflow="hidden" textOverflow="ellipsis" title={name}>
+        {name}
+      </Typography>
     </Stack>
   )
 }
