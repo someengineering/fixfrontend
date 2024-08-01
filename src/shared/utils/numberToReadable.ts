@@ -19,15 +19,16 @@ export const numberToReadable = ({
   maximumDigits = 3,
   maximumFractions = 0,
 }: NumberToReadableGenericArgumentsType & NumberToReadableGenericArgumentsUnit) => {
+  let absValue = Math.abs(value)
   let i = 0
-  while (i < units.length && value >= 1000) {
-    value = value / 1000
+  while (i < units.length && absValue >= 1000) {
+    absValue = absValue / 1000
     i++
   }
-  const [real, rest = ''] = value.toPrecision(maximumDigits).split('.')
+  const [real, rest = ''] = absValue.toPrecision(maximumDigits).split('.')
   rest.replace(/0+$/, '')
 
-  return `${Number(`${real}.${rest || 0}`).toLocaleString(locale, { maximumFractionDigits: maximumFractions })}${units[i]}`
+  return `${Number(`${value < 0 ? '-' : ''}${real}.${rest || 0}`).toLocaleString(locale, { maximumFractionDigits: maximumFractions })}${units[i]}`
 }
 
 export const numberToReadableBytes = (data: NumberToReadableGenericArgumentsType) =>
