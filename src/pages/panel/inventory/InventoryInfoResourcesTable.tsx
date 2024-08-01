@@ -1,9 +1,6 @@
 import { Trans } from '@lingui/macro'
-import ComputerIcon from '@mui/icons-material/Computer'
-import KitchenIcon from '@mui/icons-material/Kitchen'
-import StorageIcon from '@mui/icons-material/Storage'
-import WarehouseIcon from '@mui/icons-material/Warehouse'
 import { Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
+import { BucketIcon, DatabaseIcon, HardDriveDiskIcon, InstanceIcon } from 'src/assets/icons'
 import { InternalLink } from 'src/shared/link-button'
 import { numberToReadableBytes, numberToReadableNumber } from 'src/shared/utils/numberToReadable'
 import { wordToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
@@ -65,7 +62,7 @@ export const InventoryInfoResourcesTable = ({
               }}
             >
               <Stack direction="row" spacing={1} alignItems="center">
-                <ComputerIcon />
+                <InstanceIcon width={24} height={24} color="primary.main" />
                 <Typography variant="body2" fontWeight="bold">
                   <Trans>Compute</Trans>
                 </Typography>
@@ -106,7 +103,7 @@ export const InventoryInfoResourcesTable = ({
               }}
             >
               <Stack direction="row" spacing={1} alignItems="center">
-                <WarehouseIcon />
+                <HardDriveDiskIcon width={24} height={24} color="primary.main" />
                 <Typography variant="body2" fontWeight="bold">
                   <Trans>Storage</Trans>
                 </Typography>
@@ -140,7 +137,7 @@ export const InventoryInfoResourcesTable = ({
               }}
             >
               <Stack direction="row" spacing={1} alignItems="center">
-                <KitchenIcon />
+                <BucketIcon width={24} height={24} color="primary.main" />
                 <Typography variant="body2" fontWeight="bold">
                   <Trans>Buckets</Trans>
                 </Typography>
@@ -174,7 +171,7 @@ export const InventoryInfoResourcesTable = ({
               }}
             >
               <Stack direction="row" spacing={1} alignItems="center">
-                <StorageIcon />
+                <DatabaseIcon width={24} height={24} color="primary.main" />
                 <Typography variant="body2" fontWeight="bold">
                   <Trans>Databases</Trans>
                 </Typography>

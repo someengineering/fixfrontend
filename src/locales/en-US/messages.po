@@ -564,7 +564,7 @@ msgstr "Billing cycle"
 msgid "Billing history"
 msgstr "Billing history"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:145
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:142
 msgid "Buckets"
 msgstr "Buckets"
 
@@ -630,7 +630,7 @@ msgstr "Change Type"
 msgid "Changes"
 msgstr "Changes"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:50
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:47
 msgid "Changes In {0}"
 msgstr "Changes In {0}"
 
@@ -756,7 +756,7 @@ msgstr "Compliant"
 msgid "Compliant in the last 7 days"
 msgstr "Compliant in the last 7 days"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:70
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:67
 msgid "Compute"
 msgstr "Compute"
 
@@ -859,7 +859,7 @@ msgstr "Copy the Secret Value of the created secret and paste it in the Secret V
 msgid "Core CSPM scanning capabilities"
 msgstr "Core CSPM scanning capabilities"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:83
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:80
 msgid "Cores"
 msgstr "Cores"
 
@@ -920,7 +920,7 @@ msgstr "Credit/Debit Card has been successfully subscribed"
 msgid "Critical"
 msgstr "Critical"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:47
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:44
 msgid "Current"
 msgstr "Current"
 
@@ -949,7 +949,7 @@ msgstr "Daily"
 msgid "Data export (CSV, JSON, PDF)"
 msgstr "Data export (CSV, JSON, PDF)"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:179
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:176
 msgid "Databases"
 msgstr "Databases"
 
@@ -1480,7 +1480,7 @@ msgstr "Inspect Detection Search in Inventory"
 msgid "Instance is terminated"
 msgstr "Instance is terminated"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:185
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:182
 msgid "Instances"
 msgstr "Instances"
 
@@ -1613,7 +1613,7 @@ msgstr "Medium"
 msgid "Member"
 msgstr "Member"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:90
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:87
 msgid "Memory"
 msgstr "Memory"
 
@@ -1779,7 +1779,7 @@ msgstr "Number of changes in the last 7 days counted by kind."
 msgid "Number of Resources changed, broken down by owner tag in the last 30 days."
 msgstr "Number of Resources changed, broken down by owner tag in the last 30 days."
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:151
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:148
 msgid "Objects"
 msgstr "Objects"
 
@@ -2376,9 +2376,9 @@ msgstr "Sign up with {formattedName}"
 msgid "Single Sign on (coming soon!)"
 msgstr "Single Sign on (coming soon!)"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:124
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:158
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:192
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:121
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:155
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:189
 msgid "Size"
 msgstr "Size"
 
@@ -2404,7 +2404,7 @@ msgstr "Something went wrong please try again later."
 msgid "Sources"
 msgstr "Sources"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:111
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:108
 msgid "Storage"
 msgstr "Storage"
 
@@ -2678,11 +2678,11 @@ msgstr "Value"
 msgid "Version"
 msgstr "Version"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:76
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:73
 msgid "Virtual Machines"
 msgstr "Virtual Machines"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:117
+#: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:114
 msgid "Volumes"
 msgstr "Volumes"
 
