@@ -1,107 +1,121 @@
-import { Suspense, useCallback, useState } from 'react'
-import { Outlet, useSearchParams } from 'react-router-dom'
-import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
-import { FixQueryProvider } from 'src/shared/fix-query-parser'
-import { LoadingSuspenseFallback } from 'src/shared/loading'
-import { WorkspaceInventorySearchTableHistory, WorkspaceInventorySearchTableHistoryChanges } from 'src/shared/types/server'
-import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
-import { InventoryAdvanceSearch } from './InventoryAdvanceSearch'
-import { InventoryTable } from './InventoryTable'
-import { InventoryTableError } from './InventoryTable.error'
-import { InventoryTemplateBoxes } from './InventoryTemplateBoxes'
-import { allHistoryChangesOptions } from './inventory-form/utils/allHistoryChangesOptions'
+import { t, Trans } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
+import { Stack, Typography } from '@mui/material'
+import { useSuspenseQuery } from '@tanstack/react-query'
+import { useUserProfile } from 'src/core/auth'
+import { InternalLink, InternalLinkButton } from 'src/shared/link-button'
+import { getWorkspaceInventoryWorkspaceInfoQuery } from './getWorkspaceInventoryWorkspaceInfo.query'
+import { InventoryInfoOverallScore } from './InventoryInfoOverallScore'
+import { InventoryInfoResourceChangesTable } from './InventoryInfoResourceChangesTable'
+import { InventoryInfoResourcesPerAccountTimeline } from './InventoryInfoResourcesPerAccountTimeline'
+import { InventoryInfoResourcesTable } from './InventoryInfoResourcesTable'
 
-interface InventoryPageProps {
-  withHistory?: boolean
-}
-
-const getSearchCrit = (crit?: string, history?: WorkspaceInventorySearchTableHistory) => {
-  const searchValues = getLocationSearchValues()
-  if (!crit) {
-    delete searchValues['q']
-  } else {
-    searchValues['q'] = window.encodeURIComponent(crit)
-  }
-  if (!history || !history.changes.length) {
-    delete searchValues['changes']
-    delete searchValues['after']
-    delete searchValues['before']
-  } else {
-    searchValues['changes'] = window.encodeURIComponent(history.changes.join(','))
-    if (history.after) {
-      searchValues['after'] = window.encodeURIComponent(history.after)
-    } else {
-      delete searchValues['after']
-    }
-    if (history.before) {
-      searchValues['before'] = window.encodeURIComponent(history.before)
-    } else {
-      delete searchValues['before']
-    }
-  }
-  return mergeLocationSearchValues(searchValues)
-}
-
-export default function InventoryPage({ withHistory }: InventoryPageProps) {
-  const [searchParams] = useSearchParams()
-  const navigate = useAbsoluteNavigate()
-  const [hasError, setHasError] = useState(false)
-  const searchCrit = searchParams.get('q') || ''
-  const history = withHistory
-    ? {
-        changes: (searchParams.get('changes')?.split(',') ?? []) as WorkspaceInventorySearchTableHistoryChanges[],
-        after: searchParams.get('after') || undefined,
-        before: searchParams.get('before') || undefined,
-      }
-    : {
-        changes: [] as WorkspaceInventorySearchTableHistoryChanges[],
-      }
-
-  const handleSetSearchCrit = useCallback(
-    (crit?: string, history?: WorkspaceInventorySearchTableHistory) => {
-      if (!crit) {
-        setHasError(false)
-      }
-      const search = getSearchCrit(crit, history)
-      if (search !== window.location.search) {
-        navigate({ pathname: window.location.pathname, search })
-      }
+export default function InventorySummaryPage() {
+  const { selectedWorkspace } = useUserProfile()
+  const {
+    i18n: { locale },
+  } = useLingui()
+  const {
+    data: {
+      buckets_objects_progress,
+      buckets_size_bytes_progress,
+      cores_progress,
+      databases_bytes_progress,
+      databases_progress,
+      instances_progress,
+      memory_progress,
+      resource_changes,
+      resources_per_account_timeline,
+      score_progress,
+      volume_bytes_progress,
+      volumes_progress,
     },
-    [navigate],
-  )
-
+  } = useSuspenseQuery({
+    queryFn: getWorkspaceInventoryWorkspaceInfoQuery,
+    queryKey: ['workspace-inventory-workspace-info', selectedWorkspace?.id],
+  })
+  const accountCounts = resources_per_account_timeline.groups.length
+  const duration = new Date(resources_per_account_timeline.end).valueOf() - new Date(resources_per_account_timeline.start).valueOf()
+  const durationName = duration > 1000 * 60 * 60 * 24 * 27 ? t`month` : t`week`
+  const isBad = !score_progress[1] ? null : score_progress[1] < 0
   return (
-    <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-      <Suspense fallback={<LoadingSuspenseFallback />}>
-        <FixQueryProvider
-          withHistory={withHistory}
-          allHistory={allHistoryChangesOptions}
-          searchQuery={searchCrit}
-          history={history}
-          onChange={handleSetSearchCrit}
-        >
-          <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-            <InventoryAdvanceSearch hasError={!!searchCrit && hasError} hasChanges={withHistory ?? false} />
-          </NetworkErrorBoundary>
-          <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-            <Outlet />
-          </NetworkErrorBoundary>
-          {(!withHistory && searchCrit) || (withHistory && history.changes.length) || hasError ? (
-            <>
-              <NetworkErrorBoundary
-                fallbackRender={({ resetErrorBoundary }) => (
-                  <InventoryTableError resetErrorBoundary={resetErrorBoundary} searchCrit={searchCrit} setHasError={setHasError} />
-                )}
-              >
-                <InventoryTable searchCrit={searchCrit} history={history.changes.length ? history : undefined} />
-              </NetworkErrorBoundary>
-            </>
-          ) : (
-            <InventoryTemplateBoxes onChange={handleSetSearchCrit} withHistory={withHistory} />
-          )}
-        </FixQueryProvider>
-      </Suspense>
-    </NetworkErrorBoundary>
+    <Stack spacing={5}>
+      <Stack direction={{ xs: 'column', lg: 'row' }} spacing={5}>
+        <Stack spacing={1} flex={0.5}>
+          <Stack spacing={1} flex={0.5}>
+            <Typography variant="h4">
+              <Trans>Security Score</Trans>
+            </Typography>
+            <Typography>
+              {isBad ? (
+                <Trans>
+                  The current weighted security score has declined by{' '}
+                  <Typography component="b" fontWeight="bold" color="warning.main">
+                    {score_progress[1]}
+                  </Typography>{' '}
+                  points over the <b>past {durationName}</b>.<br />
+                  <Typography component="b" fontWeight="bold" color="warning.main">
+                    It's time to take action!
+                  </Typography>
+                  <br />
+                  For more details, see the <InternalLink to="/security">Security Dashboard</InternalLink>.
+                </Trans>
+              ) : isBad === false ? (
+                <Trans>
+                  The current weighted security score has improved by{' '}
+                  <Typography component="b" fontWeight="bold" color="success.main">
+                    {score_progress[1]}
+                  </Typography>{' '}
+                  points over the <b>past {durationName}</b>.<br />
+                  <Typography component="b" fontWeight="bold" color="success.main">
+                    Excellent progress!
+                  </Typography>{' '}
+                  Keep up the good work.
+                </Trans>
+              ) : (
+                <Trans>
+                  The current weighted security score did not change over the <b>past {durationName}</b>.
+                </Trans>
+              )}
+            </Typography>
+          </Stack>
+          <Stack spacing={1} direction={{ xs: 'column', xl: 'row' }}>
+            <Stack flex={0.5} alignItems="center">
+              <InternalLinkButton to={{ pathname: '/security' }}>
+                <InventoryInfoOverallScore score={score_progress[0]} title={t`Security Score over all ${accountCounts} cloud accounts`} />
+              </InternalLinkButton>
+            </Stack>
+            <Stack flex={0.5} alignItems="center">
+              <InventoryInfoResourceChangesTable
+                changes={resource_changes}
+                startDate={resources_per_account_timeline.start}
+                endDate={resources_per_account_timeline.end}
+              />
+            </Stack>
+          </Stack>
+        </Stack>
+        <Stack spacing={1} flex={0.5}>
+          <InventoryInfoResourcesTable
+            durationName={durationName}
+            buckets_objects_progress={buckets_objects_progress}
+            buckets_size_bytes_progress={buckets_size_bytes_progress}
+            cores_progress={cores_progress}
+            databases_bytes_progress={databases_bytes_progress}
+            databases_progress={databases_progress}
+            instances_progress={instances_progress}
+            memory_progress={memory_progress}
+            volume_bytes_progress={volume_bytes_progress}
+            volumes_progress={volumes_progress}
+            locale={locale}
+          />
+        </Stack>
+      </Stack>
+      <Stack spacing={5} flex={0.5}>
+        <Typography variant="h4">
+          <Trans>Resources Under Control</Trans>
+        </Typography>
+        <InventoryInfoResourcesPerAccountTimeline data={resources_per_account_timeline} />
+      </Stack>
+    </Stack>
   )
 }

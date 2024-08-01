@@ -1,7 +1,7 @@
 import { t } from '@lingui/macro'
 import { NavigateFunction } from 'react-router-dom'
 import { FailedChecksType, WorkspaceAccountReportSummary } from 'src/shared/types/server'
-import { numberToShortHRT } from 'src/shared/utils/numberToShortHRT'
+import { numberToReadableNumber } from 'src/shared/utils/numberToReadable'
 import { wordToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 import { createInventorySearchTo } from './createInventorySearchTo'
 
@@ -20,7 +20,7 @@ const createPieDataFromName = (
   return {
     value: accountFailedResource ?? 0,
     name: label,
-    label: typeof accountFailedResource === 'number' ? numberToShortHRT(accountFailedResource, locale) : undefined,
+    label: typeof accountFailedResource === 'number' ? numberToReadableNumber({ value: accountFailedResource, locale }) : undefined,
     description: noTooltip
       ? undefined
       : t`${label.toString()}: We've identified ${
