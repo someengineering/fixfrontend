@@ -52,7 +52,7 @@ const cloudDefaultTooltip = (cloud: AccountCloud) => {
 }
 
 export const CloudAvatar = ({ cloud, small, withCrown, tooltip, error, onErrorClick }: CloudAvatarProps) => (
-  <Tooltip title={tooltip === true ? cloudDefaultTooltip(cloud) : tooltip}>
+  <Tooltip title={tooltip === true ? cloudDefaultTooltip(cloud) : tooltip} arrow>
     <Box position="relative">
       <Box margin="0 auto">
         <CloudIcon cloud={cloud} small={small} withCrown={withCrown} />
@@ -70,7 +70,7 @@ export const CloudAvatar = ({ cloud, small, withCrown, tooltip, error, onErrorCl
         </>
       ) : null}
       {error ? (
-        <Tooltip title={error}>
+        <Tooltip title={error} arrow>
           <Box
             onClick={onErrorClick}
             component={Paper}

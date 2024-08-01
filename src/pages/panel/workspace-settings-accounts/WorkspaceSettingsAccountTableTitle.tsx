@@ -1,13 +1,19 @@
-import { Box, Stack, Typography } from '@mui/material'
-import { PropsWithChildren } from 'react'
-import { AddAccountButton } from 'src/shared/add-account-button'
+import { Box, Stack, Tooltip, Typography } from '@mui/material'
+import { PropsWithChildren, ReactNode } from 'react'
+import { AddAccountButton, AddAccountButtonDisabled } from 'src/shared/add-account-button'
 
 interface WorkspaceSettingsAccountTableTitleProps extends PropsWithChildren {
   isTop: boolean
   withAddButton?: boolean
+  errorModalContent?: ReactNode
 }
 
-export const WorkspaceSettingsAccountTableTitle = ({ isTop, withAddButton, children }: WorkspaceSettingsAccountTableTitleProps) =>
+export const WorkspaceSettingsAccountTableTitle = ({
+  isTop,
+  withAddButton,
+  children,
+  errorModalContent,
+}: WorkspaceSettingsAccountTableTitleProps) =>
   isTop ? (
     <Stack
       mb={{ xs: 0, sm: 1 }}
@@ -17,7 +23,15 @@ export const WorkspaceSettingsAccountTableTitle = ({ isTop, withAddButton, child
       justifyContent={isTop ? 'space-between' : undefined}
     >
       <Typography variant="h4">{children}</Typography>
-      {withAddButton ? <AddAccountButton /> : null}
+      {withAddButton ? (
+        <AddAccountButton />
+      ) : (
+        <Tooltip title={errorModalContent} slotProps={{ tooltip: { sx: { p: 0 } } }} arrow>
+          <Box>
+            <AddAccountButtonDisabled />
+          </Box>
+        </Tooltip>
+      )}
     </Stack>
   ) : (
     <Box mb={{ xs: 0, sm: 1 }}>

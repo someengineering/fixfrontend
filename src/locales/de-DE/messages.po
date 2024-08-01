@@ -21,10 +21,6 @@ msgstr "({0} max)"
 msgid "(${0} / month per additional account)"
 msgstr "(${0} / Monat pro zusätzlichem Konto)"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:48
-msgid "{0, plural, one {# cloud account} other {# cloud accounts}}"
-msgstr ""
-
 #: src/shared/utils/parseDuration.ts:171
 msgid "{0, plural, one {# Day} other {# Days}}"
 msgstr "{0, plural, one {# Tag} other {# Tage}}"
@@ -125,10 +121,6 @@ msgstr "{0}-monatige Historie"
 #: src/pages/panel/shared/utils/createPieDataFromNonCompliance.ts:26
 msgid "{0}: We've identified {1} non-compliant resources out of {2}."
 msgstr "{0}: Wir haben {1} nicht konforme Ressourcen von insgesamt {2}."
-
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:43
-msgid "{accountLength, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
-msgstr ""
 
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:140
 msgid "{added} configuration lines added and {removed} lines deleted."
@@ -264,7 +256,7 @@ msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:195
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormAccount.tsx:65
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:240
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:241
 msgid "Account"
 msgstr "Konto"
 
@@ -312,6 +304,7 @@ msgid "Add a New Credit or Debit Card"
 msgstr ""
 
 #: src/shared/add-account-button/AddAccountButton.tsx:16
+#: src/shared/add-account-button/AddAccountButtonDisabled.tsx:8
 msgid "Add an account"
 msgstr "Füge ein Konto hinzu"
 
@@ -343,7 +336,7 @@ msgstr ""
 msgid "Add Role Assignment"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:77
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:67
 msgid "Added accounts"
 msgstr "Konten hinzugefügt"
 
@@ -365,7 +358,7 @@ msgstr "Erweiterte Suchabfrage"
 msgid "Affected resources"
 msgstr ""
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:249
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:250
 #: src/shared/charts/NetworkDiagram.tsx:378
 msgid "Age"
 msgstr "Alter"
@@ -517,7 +510,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:225
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:226
 msgid "Basic Information"
 msgstr "Grundinformation"
 
@@ -724,7 +717,7 @@ msgstr "Schließen"
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:165
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormCloudValues.tsx:62
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:96
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:236
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:237
 #: src/pages/panel/security/AccountCard.tsx:37
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:493
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:59
@@ -900,7 +893,7 @@ msgstr ""
 msgid "Created in the last 7 days"
 msgstr ""
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:243
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:244
 msgid "Created Time"
 msgstr "Erstellte Zeit"
 
@@ -1034,7 +1027,7 @@ msgstr "Für die Organisation bereitstellen"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:321
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:322
 msgid "Details"
 msgstr "Einzelheiten"
 
@@ -1052,7 +1045,7 @@ msgstr "Trennen"
 msgid "Disconnect Service"
 msgstr "Dienst trennen"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:87
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:77
 msgid "Discovered but unconfigured accounts"
 msgstr "Erkannte, aber nicht konfigurierte Konten"
 
@@ -1371,7 +1364,7 @@ msgstr ""
 msgid "Id"
 msgstr ""
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:233
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:234
 #: src/pages/panel/security/AccountCard.tsx:34
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:490
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:62
@@ -1520,7 +1513,7 @@ msgid "kind"
 msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:189
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:232
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:233
 #: src/shared/charts/NetworkDiagram.tsx:375
 msgid "Kind"
 msgstr "Art"
@@ -1643,7 +1636,7 @@ msgid "Most Non-Compliant Accounts"
 msgstr "Die meisten nicht konformen Konten"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:177
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:234
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:235
 #: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:92
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:496
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:65
@@ -1666,7 +1659,7 @@ msgstr "Name"
 msgid "Neighborhood view"
 msgstr "Nachbarschaftsansicht"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:213
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:214
 msgid "Neighborhood View"
 msgstr "Nachbarschaftsansicht"
 
@@ -1837,7 +1830,7 @@ msgstr "Öffnen Sie den Datenbankzugriff"
 msgid "Open drawer"
 msgstr "Öffene die Schublade"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:258
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:259
 msgid "Open resource {name} in AWS Console"
 msgstr "Öffnen Sie die Ressource {name} in der AWS-Konsole"
 
@@ -2050,7 +2043,7 @@ msgstr "Erneut authentifizieren"
 msgid "Receipts"
 msgstr "Quittungen"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:67
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:57
 msgid "Recently added accounts"
 msgstr "Kürzlich hinzugefügte Konten"
 
@@ -2070,7 +2063,7 @@ msgstr "Regenerieren"
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:183
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:97
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegionValues.tsx:60
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:241
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:242
 msgid "Region"
 msgstr "Region"
 
@@ -2269,8 +2262,8 @@ msgstr "Sicherheitsbewertung"
 msgid "Security Score over all {accountCounts} cloud accounts"
 msgstr ""
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:269
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:280
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:270
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:281
 msgid "See this Resource in AWS Console"
 msgstr "Sehen Sie sich diese Ressource in der AWS-Konsole an"
 
@@ -2390,7 +2383,7 @@ msgstr "Snowflake-Datenexport (bald verfügbar!)"
 msgid "Some checks have been disabled for this resource"
 msgstr "Einige Prüfungen wurden für diese Ressource deaktiviert"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:296
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:297
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:33
 #: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:23
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:107
@@ -2430,7 +2423,7 @@ msgid "Successfully invited {email}"
 msgstr "{email} erfolgreich eingeladen"
 
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:98
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:306
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:307
 msgid "Tags"
 msgstr "Stichworte"
 
@@ -2471,7 +2464,7 @@ msgstr ""
 msgid "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
 msgstr "Das von Ihnen eingegebene OTP oder Wiederherstellungscode ist falsch oder das OTP ist abgelaufen. Bitte versuchen Sie es erneut einzugeben."
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:294
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:295
 msgid "The selected resource does not exist anymore."
 msgstr "Die ausgewählte Ressource existiert nicht mehr."
 
@@ -2531,7 +2524,7 @@ msgstr "Drei"
 msgid "Tier"
 msgstr "Stufe"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:275
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:276
 msgid "To access this resource, please ensure that you are logged into the AWS account: {account}"
 msgstr "Um auf diese Ressource zuzugreifen, stellen Sie bitte sicher, dass Sie beim AWS-Konto angemeldet sind: {account}"
 
@@ -2831,10 +2824,6 @@ msgstr "Sie können TOTP über den Wiederherstellungscode deaktivieren"
 msgid "You currently have {0} attached to this workspace. There must only be {1} in order to downgrade to the free tier."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:41
-msgid "You currently have {0}. There must only be {1} enabled in {2} tier. To increase your cloud account limit, you can upgrade your product tier <0>here</0>."
-msgstr ""
-
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:235
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:146
 msgid "You currently have {0}. There must only be {1} in order to downgrade to the free tier."
@@ -2858,6 +2847,10 @@ msgstr ""
 
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:147
 msgid "You don't have the permission to view this workspace, contact the workspace owner for more information."
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:41
+msgid "You have reached the maximum number of cloud accounts allowed for the {0} tier. To add more accounts, please <0>Upgrade Your Subscription</0>."
 msgstr ""
 
 #: src/pages/auth/login/LoginPage.tsx:204

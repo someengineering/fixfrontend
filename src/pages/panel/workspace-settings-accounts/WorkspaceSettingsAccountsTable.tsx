@@ -1,4 +1,4 @@
-import { plural, t, Trans } from '@lingui/macro'
+import { t, Trans } from '@lingui/macro'
 import { Alert, AlertTitle } from '@mui/material'
 import { useSuspenseQueries } from '@tanstack/react-query'
 import { useUserProfile } from 'src/core/auth'
@@ -39,18 +39,8 @@ export const WorkspaceSettingsAccountsTable = () => {
     <Alert severity="warning">
       <AlertTitle>
         <Trans>
-          You currently have{' '}
-          {plural(accountLength, {
-            one: '# enabled cloud account',
-            other: '# enabled cloud accounts',
-          })}
-          . There must only be{' '}
-          {plural(accountLimit ?? 1, {
-            one: '# cloud account',
-            other: '# cloud accounts',
-          })}{' '}
-          enabled in {selectedWorkspace?.tier} tier. To increase your cloud account limit, you can upgrade your product tier{' '}
-          <InternalLink to="/workspace-settings/billing-receipts">here</InternalLink>.
+          You have reached the maximum number of cloud accounts allowed for the {selectedWorkspace?.tier} tier. To add more accounts, please{' '}
+          <InternalLink to="/workspace-settings/billing-receipts">Upgrade Your Subscription</InternalLink>.
         </Trans>
       </AlertTitle>
     </Alert>

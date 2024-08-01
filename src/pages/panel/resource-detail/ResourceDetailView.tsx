@@ -86,6 +86,7 @@ const GridItem = ({ property, value, color, isReactNode }: GridItemProps) => {
           (value as ReactNode)
         ) : (
           <Tooltip
+            arrow
             slotProps={{ tooltip: { sx: { maxWidth: '100vw', maxHeight: '100vh', overflow: 'auto', p: 1 } } }}
             title={
               isSimpleValue ? (

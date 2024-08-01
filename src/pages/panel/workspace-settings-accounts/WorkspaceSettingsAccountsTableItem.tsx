@@ -38,7 +38,7 @@ export const WorkspaceSettingsAccountsTableItem = ({
   )
   return (
     <Box mb={isBottom ? undefined : { xs: 8, sm: 5 }} mt={isTop ? undefined : { sm: 3 }}>
-      <WorkspaceSettingsAccountTableTitle isTop={isTop} withAddButton={canInviteBasedOnTier}>
+      <WorkspaceSettingsAccountTableTitle isTop={isTop} withAddButton={canInviteBasedOnTier} errorModalContent={enableErrorModalContent}>
         {title}
       </WorkspaceSettingsAccountTableTitle>
       <TableView
