@@ -1188,11 +1188,11 @@ msgid "Example searches"
 msgstr "Beispielsuchen"
 
 #: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:88
-msgid "Existing resources deleted"
+msgid "Existing Resources Deleted"
 msgstr ""
 
 #: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:62
-msgid "Existing resources updated"
+msgid "Existing Resources Updated"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:112
@@ -1621,7 +1621,7 @@ msgstr ""
 msgid "MFA already enabled"
 msgstr ""
 
-#: src/pages/panel/inventory/InventoryPage.tsx:40
+#: src/pages/panel/inventory/InventoryPage.tsx:39
 msgid "month"
 msgstr ""
 
@@ -1709,7 +1709,7 @@ msgid "New registration"
 msgstr ""
 
 #: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:36
-msgid "New resources created"
+msgid "New Resources Created"
 msgstr ""
 
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:45
@@ -2172,8 +2172,8 @@ msgstr ""
 msgid "Resources Deleted in the last 7 days."
 msgstr ""
 
-#: src/pages/panel/inventory/InventoryPage.tsx:114
-msgid "Resources under control"
+#: src/pages/panel/inventory/InventoryPage.tsx:113
+msgid "Resources Under Control"
 msgstr ""
 
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:152
@@ -2259,16 +2259,13 @@ msgstr "Die Sicherheitslage wurde verbessert"
 msgid "Security Scan"
 msgstr "Sicherheitsscan"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:48
-msgid "Security score"
-msgstr ""
-
+#: src/pages/panel/inventory/InventoryPage.tsx:47
 #: src/pages/panel/security/Overview.tsx:29
 #: src/pages/panel/security/Overview.tsx:53
 msgid "Security Score"
 msgstr "Sicherheitsbewertung"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:84
+#: src/pages/panel/inventory/InventoryPage.tsx:83
 msgid "Security Score over all {accountCounts} cloud accounts"
 msgstr ""
 
@@ -2450,15 +2447,15 @@ msgstr "Prüfen"
 msgid "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 msgstr "Die Änderung wird ab dem nächsten Sicherheitsscan aktiv. Bis zum nächsten Scan zeigt die Ressource weiterhin die fehlgeschlagene Prüfung an."
 
-#: src/pages/panel/inventory/InventoryPage.tsx:77
+#: src/pages/panel/inventory/InventoryPage.tsx:76
 msgid "The current weighted security score did not change over the past {durationName}."
 msgstr ""
 
-#: src/pages/panel/inventory/InventoryPage.tsx:52
+#: src/pages/panel/inventory/InventoryPage.tsx:51
 msgid "The current weighted security score has declined by <0>{0}</0> points over the past {durationName}.<1/><2>It's time to take action!</2><3/>For more details, see the <4>Security Dashboard</4>."
 msgstr ""
 
-#: src/pages/panel/inventory/InventoryPage.tsx:65
+#: src/pages/panel/inventory/InventoryPage.tsx:64
 msgid "The current weighted security score has improved by <0>{0}</0> points over the past {durationName}.<1/><2>Excellent progress!</2> Keep up the good work."
 msgstr ""
 
@@ -2745,7 +2742,7 @@ msgstr "Wir entschuldigen uns für die Unannehmlichkeiten. Unser Team wurde bena
 msgid "Webhook URL"
 msgstr "Webhook-URL"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:40
+#: src/pages/panel/inventory/InventoryPage.tsx:39
 msgid "week"
 msgstr ""
 

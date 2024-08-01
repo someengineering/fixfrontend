@@ -44,7 +44,7 @@ export default function InventorySummaryPage() {
         <Stack spacing={1} flex={0.5}>
           <Stack spacing={1} flex={0.5}>
             <Typography variant="h4">
-              <Trans>Security score</Trans>
+              <Trans>Security Score</Trans>
             </Typography>
             <Typography>
               {isBad ? (
@@ -110,7 +110,7 @@ export default function InventorySummaryPage() {
       </Stack>
       <Stack spacing={5} flex={0.5}>
         <Typography variant="h4">
-          <Trans>Resources under control</Trans>
+          <Trans>Resources Under Control</Trans>
         </Typography>
         <InventoryInfoResourcesPerAccountTimeline data={resources_per_account_timeline} />
       </Stack>

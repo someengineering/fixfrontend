@@ -1188,12 +1188,12 @@ msgid "Example searches"
 msgstr "Example searches"
 
 #: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:88
-msgid "Existing resources deleted"
-msgstr "Existing resources deleted"
+msgid "Existing Resources Deleted"
+msgstr "Existing Resources Deleted"
 
 #: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:62
-msgid "Existing resources updated"
-msgstr "Existing resources updated"
+msgid "Existing Resources Updated"
+msgstr "Existing Resources Updated"
 
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:112
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:52
@@ -1621,7 +1621,7 @@ msgstr "Memory"
 msgid "MFA already enabled"
 msgstr "MFA already enabled"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:40
+#: src/pages/panel/inventory/InventoryPage.tsx:39
 msgid "month"
 msgstr "month"
 
@@ -1709,8 +1709,8 @@ msgid "New registration"
 msgstr "New registration"
 
 #: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:36
-msgid "New resources created"
-msgstr "New resources created"
+msgid "New Resources Created"
+msgstr "New Resources Created"
 
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:45
 msgid "New security issues detected"
@@ -2172,9 +2172,9 @@ msgstr "Resources Created in the last 7 days."
 msgid "Resources Deleted in the last 7 days."
 msgstr "Resources Deleted in the last 7 days."
 
-#: src/pages/panel/inventory/InventoryPage.tsx:114
-msgid "Resources under control"
-msgstr "Resources under control"
+#: src/pages/panel/inventory/InventoryPage.tsx:113
+msgid "Resources Under Control"
+msgstr "Resources Under Control"
 
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:152
 msgid "Resources Updated in the last 7 days."
@@ -2259,16 +2259,13 @@ msgstr "Security posture improved"
 msgid "Security Scan"
 msgstr "Security Scan"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:48
-msgid "Security score"
-msgstr "Security score"
-
+#: src/pages/panel/inventory/InventoryPage.tsx:47
 #: src/pages/panel/security/Overview.tsx:29
 #: src/pages/panel/security/Overview.tsx:53
 msgid "Security Score"
 msgstr "Security Score"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:84
+#: src/pages/panel/inventory/InventoryPage.tsx:83
 msgid "Security Score over all {accountCounts} cloud accounts"
 msgstr "Security Score over all {accountCounts} cloud accounts"
 
@@ -2450,15 +2447,15 @@ msgstr "Test"
 msgid "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 msgstr "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 
-#: src/pages/panel/inventory/InventoryPage.tsx:77
+#: src/pages/panel/inventory/InventoryPage.tsx:76
 msgid "The current weighted security score did not change over the past {durationName}."
 msgstr "The current weighted security score did not change over the past {durationName}."
 
-#: src/pages/panel/inventory/InventoryPage.tsx:52
+#: src/pages/panel/inventory/InventoryPage.tsx:51
 msgid "The current weighted security score has declined by <0>{0}</0> points over the past {durationName}.<1/><2>It's time to take action!</2><3/>For more details, see the <4>Security Dashboard</4>."
 msgstr "The current weighted security score has declined by <0>{0}</0> points over the past {durationName}.<1/><2>It's time to take action!</2><3/>For more details, see the <4>Security Dashboard</4>."
 
-#: src/pages/panel/inventory/InventoryPage.tsx:65
+#: src/pages/panel/inventory/InventoryPage.tsx:64
 msgid "The current weighted security score has improved by <0>{0}</0> points over the past {durationName}.<1/><2>Excellent progress!</2> Keep up the good work."
 msgstr "The current weighted security score has improved by <0>{0}</0> points over the past {durationName}.<1/><2>Excellent progress!</2> Keep up the good work."
 
@@ -2745,7 +2742,7 @@ msgstr "We're sorry for the inconvenience. Our team has been notified, and the i
 msgid "Webhook URL"
 msgstr "Webhook URL"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:40
+#: src/pages/panel/inventory/InventoryPage.tsx:39
 msgid "week"
 msgstr "week"
 

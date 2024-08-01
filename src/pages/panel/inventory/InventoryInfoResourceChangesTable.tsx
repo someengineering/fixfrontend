@@ -33,7 +33,7 @@ export const InventoryInfoResourceChangesTable = ({ changes, endDate, startDate 
                 <AddCircleIcon fontSize="small" color="action" />
               </TimelineDot>
               <Typography variant="body2" fontWeight="bold">
-                <Trans>New resources created</Trans>
+                <Trans>New Resources Created</Trans>
               </Typography>
             </Stack>
           </InternalLink>
@@ -59,7 +59,7 @@ export const InventoryInfoResourceChangesTable = ({ changes, endDate, startDate 
                 <UpdateIcon fontSize="small" color="action" />
               </TimelineDot>
               <Typography variant="body2" fontWeight="bold">
-                <Trans>Existing resources updated</Trans>
+                <Trans>Existing Resources Updated</Trans>
               </Typography>
             </Stack>
           </InternalLink>
@@ -85,7 +85,7 @@ export const InventoryInfoResourceChangesTable = ({ changes, endDate, startDate 
                 <RemoveCircleIcon fontSize="small" color="action" />
               </TimelineDot>
               <Typography variant="body2" fontWeight="bold">
-                <Trans>Existing resources deleted</Trans>
+                <Trans>Existing Resources Deleted</Trans>
               </Typography>
             </Stack>
           </InternalLink>
