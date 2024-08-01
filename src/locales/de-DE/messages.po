@@ -1187,14 +1187,6 @@ msgstr "Alles in Plus, und"
 msgid "Example searches"
 msgstr "Beispielsuchen"
 
-#: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:88
-msgid "Existing Resources Deleted"
-msgstr ""
-
-#: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:62
-msgid "Existing Resources Updated"
-msgstr ""
-
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:112
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:52
 msgid "Expires"
@@ -1708,10 +1700,6 @@ msgstr ""
 msgid "New registration"
 msgstr ""
 
-#: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:36
-msgid "New Resources Created"
-msgstr ""
-
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:45
 msgid "New security issues detected"
 msgstr "Neue Sicherheitsprobleme entdeckt"
@@ -2164,16 +2152,28 @@ msgstr "Ressourcen"
 msgid "Resources became compliant in the last 7 days."
 msgstr ""
 
+#: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:36
+msgid "Resources Created"
+msgstr ""
+
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:142
 msgid "Resources Created in the last 7 days."
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:88
+msgid "Resources Deleted"
 msgstr ""
 
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:162
 msgid "Resources Deleted in the last 7 days."
 msgstr ""
 
-#: src/pages/panel/inventory/InventoryPage.tsx:113
+#: src/pages/panel/inventory/InventoryPage.tsx:115
 msgid "Resources Under Control"
+msgstr ""
+
+#: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:62
+msgid "Resources Updated"
 msgstr ""
 
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:152
@@ -2265,7 +2265,7 @@ msgstr "Sicherheitsscan"
 msgid "Security Score"
 msgstr "Sicherheitsbewertung"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:83
+#: src/pages/panel/inventory/InventoryPage.tsx:85
 msgid "Security Score over all {accountCounts} cloud accounts"
 msgstr ""
 
@@ -2448,15 +2448,15 @@ msgid "The change will be active from the next security scan onwards. Until the 
 msgstr "Die Änderung wird ab dem nächsten Sicherheitsscan aktiv. Bis zum nächsten Scan zeigt die Ressource weiterhin die fehlgeschlagene Prüfung an."
 
 #: src/pages/panel/inventory/InventoryPage.tsx:76
-msgid "The current weighted security score did not change over the past {durationName}."
+msgid "The current weighted security score did not change over the <0>past {durationName}</0>."
 msgstr ""
 
 #: src/pages/panel/inventory/InventoryPage.tsx:51
-msgid "The current weighted security score has declined by <0>{0}</0> points over the past {durationName}.<1/><2>It's time to take action!</2><3/>For more details, see the <4>Security Dashboard</4>."
+msgid "The current weighted security score has declined by <0>{0}</0> points over the <1>past {durationName}</1>.<2/><3>It's time to take action!</3><4/>For more details, see the <5>Security Dashboard</5>."
 msgstr ""
 
 #: src/pages/panel/inventory/InventoryPage.tsx:64
-msgid "The current weighted security score has improved by <0>{0}</0> points over the past {durationName}.<1/><2>Excellent progress!</2> Keep up the good work."
+msgid "The current weighted security score has improved by <0>{0}</0> points over the <1>past {durationName}</1>.<2/><3>Excellent progress!</3> Keep up the good work."
 msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:129

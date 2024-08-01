@@ -53,7 +53,7 @@ export default function InventorySummaryPage() {
                   <Typography component="b" fontWeight="bold" color="warning.main">
                     {score_progress[1]}
                   </Typography>{' '}
-                  points over the past {durationName}.<br />
+                  points over the <b>past {durationName}</b>.<br />
                   <Typography component="b" fontWeight="bold" color="warning.main">
                     It's time to take action!
                   </Typography>
@@ -66,14 +66,16 @@ export default function InventorySummaryPage() {
                   <Typography component="b" fontWeight="bold" color="success.main">
                     {score_progress[1]}
                   </Typography>{' '}
-                  points over the past {durationName}.<br />
+                  points over the <b>past {durationName}</b>.<br />
                   <Typography component="b" fontWeight="bold" color="success.main">
                     Excellent progress!
                   </Typography>{' '}
                   Keep up the good work.
                 </Trans>
               ) : (
-                <Trans>The current weighted security score did not change over the past {durationName}.</Trans>
+                <Trans>
+                  The current weighted security score did not change over the <b>past {durationName}</b>.
+                </Trans>
               )}
             </Typography>
           </Stack>
