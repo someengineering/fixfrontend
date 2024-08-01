@@ -4,7 +4,6 @@ import { Stack, Typography } from '@mui/material'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useUserProfile } from 'src/core/auth'
 import { InternalLink, InternalLinkButton } from 'src/shared/link-button'
-import { parseISO8601Duration } from 'src/shared/utils/parseDuration'
 import { getWorkspaceInventoryWorkspaceInfoQuery } from './getWorkspaceInventoryWorkspaceInfo.query'
 import { InventoryInfoOverallScore } from './InventoryInfoOverallScore'
 import { InventoryInfoResourceChangesTable } from './InventoryInfoResourceChangesTable'
@@ -36,7 +35,7 @@ export default function InventorySummaryPage() {
     queryKey: ['workspace-inventory-workspace-info', selectedWorkspace?.id],
   })
   const accountCounts = resources_per_account_timeline.groups.length
-  const duration = parseISO8601Duration(resources_per_account_timeline.granularity).duration
+  const duration = new Date(resources_per_account_timeline.end).valueOf() - new Date(resources_per_account_timeline.start).valueOf()
   const durationName = duration > 1000 * 60 * 60 * 24 * 27 ? t`month` : t`week`
   const isBad = !score_progress[1] ? null : score_progress[1] < 0
   return (
