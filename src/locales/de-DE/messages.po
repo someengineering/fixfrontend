@@ -21,10 +21,6 @@ msgstr "({0} max)"
 msgid "(${0} / month per additional account)"
 msgstr "(${0} / Monat pro zusätzlichem Konto)"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:48
-msgid "{0, plural, one {# cloud account} other {# cloud accounts}}"
-msgstr ""
-
 #: src/shared/utils/parseDuration.ts:171
 msgid "{0, plural, one {# Day} other {# Days}}"
 msgstr "{0, plural, one {# Tag} other {# Tage}}"
@@ -119,10 +115,6 @@ msgstr "{0}-monatige Historie"
 #: src/pages/panel/shared/utils/createPieDataFromNonCompliance.ts:26
 msgid "{0}: We've identified {1} non-compliant resources out of {2}."
 msgstr "{0}: Wir haben {1} nicht konforme Ressourcen von insgesamt {2}."
-
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:43
-msgid "{accountLength, plural, one {# enabled cloud account} other {# enabled cloud accounts}}"
-msgstr ""
 
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:140
 msgid "{added} configuration lines added and {removed} lines deleted."
@@ -338,7 +330,7 @@ msgstr ""
 msgid "Add Role Assignment"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:77
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:67
 msgid "Added accounts"
 msgstr "Konten hinzugefügt"
 
@@ -1023,7 +1015,7 @@ msgstr "Trennen"
 msgid "Disconnect Service"
 msgstr "Dienst trennen"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:87
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:77
 msgid "Discovered but unconfigured accounts"
 msgstr "Erkannte, aber nicht konfigurierte Konten"
 
@@ -2005,7 +1997,7 @@ msgstr "Erneut authentifizieren"
 msgid "Receipts"
 msgstr "Quittungen"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:67
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:57
 msgid "Recently added accounts"
 msgstr "Kürzlich hinzugefügte Konten"
 
@@ -2731,10 +2723,6 @@ msgstr "Sie können TOTP über den Wiederherstellungscode deaktivieren"
 msgid "You currently have {0} attached to this workspace. There must only be {1} in order to downgrade to the free tier."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:41
-msgid "You currently have {0}. There must only be {1} enabled in {2} tier. To increase your cloud account limit, you can upgrade your product tier <0>here</0>."
-msgstr ""
-
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:235
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:146
 msgid "You currently have {0}. There must only be {1} in order to downgrade to the free tier."
@@ -2758,6 +2746,10 @@ msgstr ""
 
 #: src/shared/layouts/panel-layout/UserProfileButton.tsx:147
 msgid "You don't have the permission to view this workspace, contact the workspace owner for more information."
+msgstr ""
+
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:41
+msgid "You have reached the maximum number of cloud accounts allowed for the {0} tier. To add more accounts, please <0>Upgrade Your Subscription</0>."
 msgstr ""
 
 #: src/pages/auth/login/LoginPage.tsx:204
