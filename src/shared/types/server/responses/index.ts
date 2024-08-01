@@ -54,6 +54,11 @@ export type {
   WorkspaceInventorySearchStart,
   WorkspaceInventorySearchStartProperty,
 } from './GetWorkspaceInventorySearchStart'
+export type {
+  GetWorkspaceInventoryWorkspaceInfoResponse,
+  WorkspaceInfoResourcePerAccountTimeline,
+  WorkspaceInfoResourcePerAccountTimelineGroup,
+} from './GetWorkspaceInventoryWorkspaceInfo'
 export type { GetWorkspaceInvitesResponse, WorkspaceInvite } from './GetWorkspaceInvites'
 export type { GetWorkspaceNotificationsResponse } from './GetWorkspaceNotifications'
 export type { GetWorkspaceProductTier, GetWorkspaceProductTiersResponse } from './GetWorkspaceProductTiers'

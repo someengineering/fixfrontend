@@ -1,5 +1,5 @@
 export const panelUI = {
-  homePage: '/inventory',
+  homePage: '/inventory-summary',
   drawerWidth: 300,
   drawerWidthMobile: 57,
   drawerWidthClosed: 65,

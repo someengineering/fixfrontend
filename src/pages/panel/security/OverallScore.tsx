@@ -5,7 +5,7 @@ import { useRef, useState } from 'react'
 import { PieResourceCheckScore, createInventorySearchTo } from 'src/pages/panel/shared/utils'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { FailedChecksType } from 'src/shared/types/server'
-import { numberToShortHRT } from 'src/shared/utils/numberToShortHRT'
+import { numberToReadableNumber } from 'src/shared/utils/numberToReadable'
 import { wordToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 
 interface OverallScoreProps {
@@ -53,7 +53,8 @@ export const OverallScore = ({ score, failedChecks, failedResources, availableRe
         data={Object.entries(failedChecks).map(([name, value]) => ({
           name: wordToUFStr(name),
           value: failedResources[name] ?? 0,
-          label: typeof failedResources[name] === 'number' ? numberToShortHRT(failedResources[name] ?? 0, locale) : undefined,
+          label:
+            typeof failedResources[name] === 'number' ? numberToReadableNumber({ value: failedResources[name] ?? 0, locale }) : undefined,
           description:
             typeof failedResources[name] === 'number' && typeof value === 'number'
               ? t`${wordToUFStr(name).toString()}: We've identified ${failedResources[name].toLocaleString(
