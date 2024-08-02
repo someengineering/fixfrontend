@@ -36,7 +36,7 @@ export const ProductTierComp = ({ productTier, productTierData }: ProductTierCom
     return null
   }
   return (
-    <Stack spacing={4} width={216} height="100%">
+    <Stack spacing={4} height="100%">
       <Typography component={Stack} direction="row" alignContent="center" variant="h4" color="primary.main">
         <Box mr={1.5} display="inline-block">
           <desc.icon />
@@ -56,7 +56,7 @@ export const ProductTierComp = ({ productTier, productTierData }: ProductTierCom
       <Stack direction="column" my={1.5} spacing={0.25} alignItems="baseline">
         <Stack direction="row" spacing={0.5} alignItems="center">
           <Typography variant="h3" fontWeight={700} lineHeight="1.5rem" letterSpacing="-.025em" fontSize="1.875rem !important">
-            ${((productTierData.price_per_account_cents / 100) * productTierData.accounts_included).toLocaleString(locale)}
+            ${(productTierData.price_per_account_cents / 100).toLocaleString(locale)}
           </Typography>
           {desc.monthly ? (
             <Typography variant="h6" fontWeight={600} lineHeight="1.5rem" fontSize="1.125rem !important" marginTop=".125rem !important">
@@ -64,7 +64,7 @@ export const ProductTierComp = ({ productTier, productTierData }: ProductTierCom
             </Typography>
           ) : null}
         </Stack>
-        {productTierData.account_limit !== null ? (
+        {/* {productTierData.account_limit !== null ? (
           <Typography
             variant="subtitle1"
             fontSize="1rem !important"
@@ -86,7 +86,7 @@ export const ProductTierComp = ({ productTier, productTierData }: ProductTierCom
           </Typography>
         ) : (
           <Box height="1.5rem" />
-        )}
+        )} */}
         {productTierData.price_per_account_cents ? (
           <Typography
             variant="subtitle1"
@@ -95,7 +95,7 @@ export const ProductTierComp = ({ productTier, productTierData }: ProductTierCom
             fontWeight={400}
             color={({ palette }) => (palette.mode === 'dark' ? palette.grey[400] : palette.grey[700])}
           >
-            {t`($${(productTierData.price_per_account_cents / 100).toLocaleString(locale)} / month per additional account)`}
+            <Trans>(per additional account)</Trans>
           </Typography>
         ) : (
           <Box height="calc(1.5rem + 2px)" />
