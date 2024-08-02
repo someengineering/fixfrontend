@@ -25,7 +25,7 @@ interface ChangeProductTierProps {
   nextBillingCycle: Date
 }
 
-const allProductTiers: readonly ProductTier[] = ['Free', 'Plus', 'Business', 'Enterprise'] as const
+const allProductTiers: readonly ProductTier[] = ['Free', 'Business'] as const
 
 export const ChangeProductTier = ({
   defaultProductTier,
@@ -62,7 +62,13 @@ export const ChangeProductTier = ({
 
   return data ? (
     <>
-      <Stack direction={{ xs: 'column', sm: 'row' }} flexWrap="wrap" alignItems={{ xs: 'center', sm: 'stretch' }} justifyContent="center">
+      <Stack
+        direction={{ xs: 'column', md: 'row' }}
+        flexWrap="wrap"
+        alignItems={{ xs: 'center', md: 'stretch' }}
+        gap={{ xs: 0, md: 5, xl: 15 }}
+        justifyContent="center"
+      >
         {allProductTiers.map((curProductTier, i) => {
           const selectedProductTier = curProductTier === productTier || (productTier === 'Trial' && curProductTier === 'Free')
           return data[curProductTier] ? (
@@ -71,11 +77,13 @@ export const ChangeProductTier = ({
               {selectedProductTier || !hasPermission ? (
                 <Stack
                   sx={{
+                    width: 350,
+                    maxWidth: '100%',
                     alignItems: 'baseline',
                     textAlign: 'left',
                     justifyContent: 'stretch',
-                    px: { xs: 2, lg: 4 },
-                    py: { xs: 2, lg: 4 },
+                    px: { xs: 2, md: 4 },
+                    py: { xs: 2, md: 4 },
                     bgcolor: selectedProductTier
                       ? ({
                           palette: {
@@ -94,11 +102,13 @@ export const ChangeProductTier = ({
                 <ButtonBase
                   LinkComponent={Stack}
                   sx={{
+                    width: 350,
+                    maxWidth: '100%',
                     alignItems: 'baseline',
                     textAlign: 'left',
                     justifyContent: 'stretch',
-                    px: { xs: 2, lg: 4 },
-                    py: { xs: 2, lg: 4 },
+                    px: { xs: 2, md: 4 },
+                    py: { xs: 2, md: 4 },
                     borderRadius: 2,
                     transition: (theme) => theme.transitions.create(['box-shadow', 'background-color']),
                   }}
@@ -125,9 +135,9 @@ export const ChangeProductTier = ({
                     account_limit: 0,
                     accounts_included: 0,
                     price_per_account_cents: 0,
-                    retention_period: 'P0s',
+                    // retention_period: 'P0s',
                     scan_interval: 'P0s',
-                    seats_included: 0,
+                    // seats_included: 0,
                     seats_max: 0,
                   }
                 }
@@ -155,9 +165,9 @@ export const ChangeProductTier = ({
                     account_limit: 0,
                     accounts_included: 0,
                     price_per_account_cents: 0,
-                    retention_period: 'P0s',
+                    // retention_period: 'P0s',
                     scan_interval: 'P0s',
-                    seats_included: 0,
+                    // seats_included: 0,
                     seats_max: 0,
                   }
                 }
@@ -167,9 +177,9 @@ export const ChangeProductTier = ({
             <Stack alignItems="center" spacing={2} pt={4}>
               {noWorkspaceMethod ? null : (
                 <>
-                  <Stack py={1} spacing={1} alignItems="center">
+                  <Stack py={1} spacing={1} alignItems="center" width="100%">
                     {awsMarketPlacePaymentMethod ? (
-                      <Stack direction="row" spacing={1} alignItems="center">
+                      <Stack spacing={1} alignItems="center" width="100%">
                         <ExternalLinkLoadingButton
                           startIcon={
                             <Box py={1} height={48}>
@@ -188,14 +198,14 @@ export const ChangeProductTier = ({
                       </Stack>
                     ) : null}
                     {stripePaymentMethod ? (
-                      <Stack direction="row" spacing={1} alignItems="center">
+                      <Stack spacing={1} alignItems="center" width="100%">
                         <ExternalLinkLoadingButton
                           startIcon={<CreditCardIcon fontSize="large" sx={{ fontSize: '48px!important' }} />}
                           endIcon={null}
                           loadingPosition="start"
                           sx={{
                             maxWidth: '100%',
-                            width: 580,
+                            width: { xs: '100%', sm: 350, md: 580 },
                           }}
                           variant="outlined"
                           href={`${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').subscription.stripe}`}

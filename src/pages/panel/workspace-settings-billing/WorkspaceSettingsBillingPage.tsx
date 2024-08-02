@@ -43,9 +43,9 @@ export default function WorkspaceSettingsBillingPage() {
   const endOfTheMonth = new Date(nextBillingCycle)
   endOfTheMonth.setMilliseconds(-1)
   const title = productTierToLabel(selected_product_tier)
-  const desc = productTierToDescription(selected_product_tier)
+  const desc = productTierToDescription(selected_product_tier) ?? { monthly: true }
 
-  return desc ? (
+  return (
     <Stack spacing={2}>
       <Typography variant="h3">
         <Trans>Billing</Trans>
@@ -146,5 +146,5 @@ export default function WorkspaceSettingsBillingPage() {
       <WorkspaceSettingsBillingTable />
       <ConfirmChangePaymentModal paymentModalShowRef={paymentModalShowRef} currentPaymentMethod={workspace_payment_method} />
     </Stack>
-  ) : null
+  )
 }
