@@ -465,11 +465,11 @@ msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:36
 msgid "Audit History"
-msgstr ""
+msgstr "Audit-Historie"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:30
 msgid "Automate cloud infrastructure security."
-msgstr ""
+msgstr "Automatisieren Sie die Sicherheit Ihrer Cloud-Infrastruktur."
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:39
 #: src/shared/tabs/Tabs.tsx:45
@@ -920,7 +920,7 @@ msgstr "Benutzerdefinierte Benachrichtigungs-Webhooks"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:39
 msgid "Custom Integrations"
-msgstr ""
+msgstr "Benutzerdefinierte Integrationen"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:42
 msgid "Custom policies (coming soon!)"
@@ -2352,7 +2352,7 @@ msgstr "Quellen"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:11
 msgid "Start your cloud compliance journey.\\n"
-msgstr ""
+msgstr "Beginnen Sie mit der Cloud-Compliance.\\n"
 
 #: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:108
 msgid "Storage"
