@@ -10,19 +10,11 @@ export const productTierToDescription = (productTier: ProductTier) => {
     case 'Trial':
     case 'Free':
       return {
-        description: t`For solo software engineers who want to secure a single cloud account.\n`,
+        description: t`Start your cloud compliance journey.\n`,
         icon: AccessibilityNewIcon,
         monthly: false,
         featuresTitle: t`Features`,
-        features: [
-          t`Asset inventory`,
-          t`Inventory search`,
-          t`Neighborhood view`,
-          t`Security benchmarks`,
-          t`Monthly email report`,
-          t`Remediation recommendations`,
-          t`Core CSPM scanning capabilities`,
-        ],
+        features: [t`Cloud Inventory`, t`Compliance Benchmarks`],
         support: [t`Community support`],
         mostPopular: false,
       }
@@ -38,16 +30,12 @@ export const productTierToDescription = (productTier: ProductTier) => {
       }
     case 'Business':
       return {
-        description: t`For engineering teams looking to automate their cloud infrastructure security.`,
+        description: t`Automate cloud infrastructure security.\n`,
         icon: ApartmentIcon,
         monthly: true,
-        featuresTitle: t`Everything in Plus, and`,
-        features: [
-          t`Custom policies (coming soon!)`,
-          t`Alerting integrations (PD, Slack, Discord, Teams)`,
-          t`Task management integrations (coming soon!)`,
-        ],
-        support: [t`Product support via email and live chat`],
+        featuresTitle: t`Everything in Free, and`,
+        features: [t`Audit History`, t`Alerting Integrations`, t`Data export`, t`Custom Integrations`],
+        support: [t`Product support via email and live chat, and video calls`, t`Optional professional services`],
         mostPopular: true,
       }
     case 'Enterprise':

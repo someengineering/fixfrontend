@@ -106,7 +106,7 @@ export const ProductTierComp = ({ productTier, productTierData }: ProductTierCom
         <Typography>
           <Trans>{scanIntervalStr} scans</Trans>
         </Typography>
-        <Typography>
+        {/* <Typography>
           {productTierData.seats_included > 1 ? (
             <Trans>
               {productTierData.seats_included} seats included {productTierData.seats_max ? t`(${productTierData.seats_max} max)` : ''}
@@ -114,7 +114,7 @@ export const ProductTierComp = ({ productTier, productTierData }: ProductTierCom
           ) : productTierData.seats_max ? (
             <Trans>{productTierData.seats_max} seat max</Trans>
           ) : null}
-        </Typography>
+        </Typography> */}
       </Stack>
       <Stack spacing={0.75}>
         <Typography fontWeight={600}>{desc.featuresTitle}:</Typography>

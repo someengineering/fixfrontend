@@ -25,7 +25,7 @@ interface ChangeProductTierProps {
   nextBillingCycle: Date
 }
 
-const allProductTiers: readonly ProductTier[] = ['Free', 'Plus', 'Business', 'Enterprise'] as const
+const allProductTiers: readonly ProductTier[] = ['Free', 'Business'] as const
 
 export const ChangeProductTier = ({
   defaultProductTier,
@@ -127,7 +127,6 @@ export const ChangeProductTier = ({
                     price_per_account_cents: 0,
                     retention_period: 'P0s',
                     scan_interval: 'P0s',
-                    seats_included: 0,
                     seats_max: 0,
                   }
                 }
@@ -157,7 +156,6 @@ export const ChangeProductTier = ({
                     price_per_account_cents: 0,
                     retention_period: 'P0s',
                     scan_interval: 'P0s',
-                    seats_included: 0,
                     seats_max: 0,
                   }
                 }
