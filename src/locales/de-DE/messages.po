@@ -922,6 +922,10 @@ msgstr "Benutzerdefinierte Benachrichtigungs-Webhooks"
 msgid "Custom Integrations"
 msgstr ""
 
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:42
+msgid "Custom policies (coming soon!)"
+msgstr "Benutzerdefinierte Richtlinien (in Kürze verfügbar!)"
+
 #: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:28
 msgid "Daily"
 msgstr "Tägliche"
@@ -1433,7 +1437,7 @@ msgstr "Instanz wird beendet"
 msgid "Instances"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:48
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:50
 msgid "Integration advice for your specific cloud environment via video call"
 msgstr "Integrationsberatung für Ihre spezifische Cloud-Umgebung per Videoanruf"
 
@@ -1799,7 +1803,7 @@ msgstr ""
 msgid "Opened at"
 msgstr "Geöffnet um"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:49
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:51
 msgid "Optional professional services"
 msgstr "Optionale professionelle Dienstleistungen"
 
@@ -1944,7 +1948,7 @@ msgstr "Privilegiert"
 msgid "Privileged account"
 msgstr "Privilegiertes Konto"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:47
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:49
 msgid "Product support via email, live chat, and video call"
 msgstr "Produktsupport per E-Mail, Live-Chat und Videoanruf"
 
@@ -2314,7 +2318,7 @@ msgstr "Melden Sie sich an"
 msgid "Sign up with {formattedName}"
 msgstr "Melden Sie sich mit {formattedName} an"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:42
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:44
 msgid "Single Sign on (coming soon!)"
 msgstr "Single Sign-on (bald verfügbar!)"
 
@@ -2324,7 +2328,7 @@ msgstr "Single Sign-on (bald verfügbar!)"
 msgid "Size"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:44
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:46
 msgid "Snowflake data export (coming soon!)"
 msgstr "Snowflake-Datenexport (bald verfügbar!)"
 
@@ -2379,6 +2383,10 @@ msgstr "{email} erfolgreich eingeladen"
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:307
 msgid "Tags"
 msgstr "Stichworte"
+
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:43
+msgid "Task management integrations (coming soon!)"
+msgstr "Integrationen zur Aufgabenverwaltung (bald verfügbar!)"
 
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTestService.tsx:36
 msgid "Test"
@@ -2709,7 +2717,7 @@ msgstr ""
 msgid "Workspace Alerting Settings"
 msgstr "Workspace-Benachrichtigungseinstellungen"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:43
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:45
 msgid "Workspace analytics (coming soon!)"
 msgstr "Arbeitsbereichsanalyse (bald verfügbar!)"
 

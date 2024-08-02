@@ -39,6 +39,8 @@ export const productTierToDescription = (productTier: ProductTier) => {
           t`Custom Integrations`,
           t`Custom alerting webhooks`,
           t`API access`,
+          t`Custom policies (coming soon!)`,
+          t`Task management integrations (coming soon!)`,
           t`Single Sign on (coming soon!)`,
           t`Workspace analytics (coming soon!)`,
           t`Snowflake data export (coming soon!)`,
