@@ -43,7 +43,7 @@ export default function WorkspaceSettingsBillingPage() {
   const endOfTheMonth = new Date(nextBillingCycle)
   endOfTheMonth.setMilliseconds(-1)
   const title = productTierToLabel(selected_product_tier)
-  const desc = productTierToDescription(selected_product_tier)
+  const desc = productTierToDescription(selected_product_tier) ?? { monthly: false }
 
   return desc ? (
     <Stack spacing={2}>
