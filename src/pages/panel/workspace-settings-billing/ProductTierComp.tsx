@@ -18,7 +18,7 @@ export const ProductTierComp = ({ productTier, productTierData }: ProductTierCom
     i18n: { locale },
   } = useLingui()
   const scanInterval = getISO8601DurationFromTimestamp(parseISO8601Duration(productTierData.scan_interval).duration)
-  const historyMax = getISO8601DurationFromTimestamp(parseISO8601Duration(productTierData.retention_period).duration)
+  // const historyMax = getISO8601DurationFromTimestamp(parseISO8601Duration(productTierData.retention_period).duration)
   const scanIntervalStr =
     scanInterval.years === 1
       ? t`Yearly`
@@ -29,7 +29,7 @@ export const ProductTierComp = ({ productTier, productTierData }: ProductTierCom
           : scanInterval.hours === 1
             ? t`Hourly`
             : t`${iso8601DurationToString(scanInterval, 2)} per`
-  const historyMaxStr = t`${historyMax.years * 12 + historyMax.months}-month history`
+  // const historyMaxStr = t`${historyMax.years * 12 + historyMax.months}-month history`
   const label = productTierToLabel(productTier)
   const desc = productTierToDescription(productTier)
   if (!desc) {
@@ -119,14 +119,14 @@ export const ProductTierComp = ({ productTier, productTierData }: ProductTierCom
       <Stack spacing={0.75}>
         <Typography fontWeight={600}>{desc.featuresTitle}:</Typography>
         <List dense>
-          <ListItem sx={{ p: 0 }}>
+          {/* <ListItem sx={{ p: 0 }}>
             <ListItemIcon sx={{ minWidth: 36 }}>
               <DoneIcon color="primary" />
             </ListItemIcon>
             <ListItemText>
               <Typography variant="body2">{historyMaxStr}</Typography>
             </ListItemText>
-          </ListItem>
+          </ListItem> */}
           {desc.features.map((feature, i) => (
             <ListItem key={i} sx={{ p: 0 }}>
               <ListItemIcon sx={{ minWidth: 36 }}>

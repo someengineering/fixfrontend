@@ -125,8 +125,9 @@ export const ChangeProductTier = ({
                     account_limit: 0,
                     accounts_included: 0,
                     price_per_account_cents: 0,
-                    retention_period: 'P0s',
+                    // retention_period: 'P0s',
                     scan_interval: 'P0s',
+                    // seats_included: 0,
                     seats_max: 0,
                   }
                 }
@@ -154,8 +155,9 @@ export const ChangeProductTier = ({
                     account_limit: 0,
                     accounts_included: 0,
                     price_per_account_cents: 0,
-                    retention_period: 'P0s',
+                    // retention_period: 'P0s',
                     scan_interval: 'P0s',
+                    // seats_included: 0,
                     seats_max: 0,
                   }
                 }

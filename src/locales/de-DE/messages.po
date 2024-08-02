@@ -101,10 +101,6 @@ msgstr "{0} Millisekunden"
 msgid "{0} per"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:32
-msgid "{0}-month history"
-msgstr "{0}-monatige Historie"
-
 #: src/pages/panel/security/OverallScore.tsx:60
 #: src/pages/panel/shared/utils/createPieDataFromNonCompliance.ts:26
 msgid "{0}: We've identified {1} non-compliant resources out of {2}."
@@ -1554,11 +1550,11 @@ msgstr "Recheninstanzen und Datenbanken mit geringer Auslastung"
 msgid "Make sure that you are already logged into the correct AWS account, before pressing the DEPLOY STACK button."
 msgstr "Stellen Sie sicher, dass Sie bereits beim richtigen AWS Konto angemeldet sind, bevor Sie auf die Schaltfläche DEPLOY STACK klicken."
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:183
+#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:185
 msgid "Manage AWS Market place payment method"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:202
+#: src/pages/panel/workspace-settings-billing/ChangeProductTier.tsx:204
 msgid "Manage Card Details"
 msgstr ""
 
