@@ -13,10 +13,6 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:98
-msgid "(per additional account)"
-msgstr "(per additional account)"
-
 #: src/shared/utils/parseDuration.ts:171
 msgid "{0, plural, one {# Day} other {# Days}}"
 msgstr "{0, plural, one {# Day} other {# Days}}"
@@ -137,8 +133,8 @@ msgid "{usersLength, plural, one {# user} other {# users}}"
 msgstr "{usersLength, plural, one {# user} other {# users}}"
 
 #: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:63
-msgid "/ month"
-msgstr "/ month"
+msgid "/ month / cloud account"
+msgstr "/ month / cloud account"
 
 #: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:65
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:86
@@ -343,10 +339,6 @@ msgstr "Affected resources"
 msgid "Age"
 msgstr "Age"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:37
-msgid "Alerting Integrations"
-msgstr "Alerting Integrations"
-
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:36
 msgid "Alerting Settings"
 msgstr "Alerting Settings"
@@ -418,9 +410,9 @@ msgstr "An error occurred, please try again later.{0}"
 msgid "and"
 msgstr "and"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:41
-msgid "API access"
-msgstr "API access"
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:39
+msgid "API Access"
+msgstr "API Access"
 
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsOpsgenieService.tsx:143
 msgid "API Key"
@@ -454,10 +446,6 @@ msgstr "Are you sure you want to remove the {name} account {0}?"
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:107
 msgid "Are you sure?"
 msgstr "Are you sure?"
-
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:16
-msgid "Asset inventory"
-msgstr "Asset inventory"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:107
 msgid "Assign permission to the App"
@@ -644,6 +632,10 @@ msgstr "Clear"
 msgid "Clear the search"
 msgstr "Clear the search"
 
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:40
+msgid "CLI Access"
+msgstr "CLI Access"
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:114
 msgid "Click Add permission:"
 msgstr "Click Add permission:"
@@ -712,6 +704,10 @@ msgstr "Close"
 msgid "Cloud"
 msgstr "Cloud"
 
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:16
+msgid "Cloud Inventory"
+msgstr "Cloud Inventory"
+
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:11
 msgid "Cloud Setup"
 msgstr "Cloud Setup"
@@ -728,6 +724,10 @@ msgstr "Community support"
 #: src/pages/panel/security/OverallCard.tsx:77
 msgid "Compliance"
 msgstr "Compliance"
+
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:17
+msgid "Compliance Benchmarks"
+msgstr "Compliance Benchmarks"
 
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormChangePicker.tsx:25
 msgid "Compliant"
@@ -836,10 +836,6 @@ msgstr "Copy"
 msgid "Copy the Secret Value of the created secret and paste it in the Secret Value field {0}, but don't press the submit button yet."
 msgstr "Copy the Secret Value of the created secret and paste it in the Secret Value field {0}, but don't press the submit button yet."
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:22
-msgid "Core CSPM scanning capabilities"
-msgstr "Core CSPM scanning capabilities"
-
 #: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:80
 msgid "Cores"
 msgstr "Cores"
@@ -914,25 +910,13 @@ msgstr "Current Product Tier"
 msgid "Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is necessary to configure alerting settings."
 msgstr "Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is necessary to configure alerting settings."
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:40
-msgid "Custom alerting webhooks"
-msgstr "Custom alerting webhooks"
-
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:39
-msgid "Custom Integrations"
-msgstr "Custom Integrations"
-
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:42
-msgid "Custom policies (coming soon!)"
-msgstr "Custom policies (coming soon!)"
-
 #: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:28
 msgid "Daily"
 msgstr "Daily"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:38
-msgid "Data export"
-msgstr "Data export"
+msgid "Data Export"
+msgstr "Data Export"
 
 #: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:176
 msgid "Databases"
@@ -1121,10 +1105,6 @@ msgstr "Email"
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:48
 msgid "Email Address"
 msgstr "Email Address"
-
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:23
-msgid "Email alerts"
-msgstr "Email alerts"
 
 #: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:70
 msgid "Enable"
@@ -1437,7 +1417,7 @@ msgstr "Instance is terminated"
 msgid "Instances"
 msgstr "Instances"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:50
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:49
 msgid "Integration advice for your specific cloud environment via video call"
 msgstr "Integration advice for your specific cloud environment via video call"
 
@@ -1457,10 +1437,6 @@ msgstr "Invalid Value"
 #: src/shared/layouts/panel-layout/menuList.tsx:43
 msgid "Inventory"
 msgstr "Inventory"
-
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:17
-msgid "Inventory search"
-msgstr "Inventory search"
 
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:54
 msgid "Invite"
@@ -1570,6 +1546,10 @@ msgstr "Memory"
 msgid "MFA already enabled"
 msgstr "MFA already enabled"
 
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:37
+msgid "Monitoring and Alerting"
+msgstr "Monitoring and Alerting"
+
 #: src/pages/panel/inventory/InventoryPage.tsx:39
 msgid "month"
 msgstr "month"
@@ -1578,10 +1558,6 @@ msgstr "month"
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:127
 msgid "Monthly"
 msgstr "Monthly"
-
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:20
-msgid "Monthly email report"
-msgstr "Monthly email report"
 
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:251
 msgid "More info"
@@ -1620,7 +1596,6 @@ msgid "Name"
 msgstr "Name"
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:214
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:18
 msgid "Neighborhood View"
 msgstr "Neighborhood View"
 
@@ -1803,7 +1778,7 @@ msgstr "Open the Manage section and go to the App permissions page:"
 msgid "Opened at"
 msgstr "Opened at"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:51
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:50
 msgid "Optional professional services"
 msgstr "Optional professional services"
 
@@ -1948,7 +1923,7 @@ msgstr "Privileged"
 msgid "Privileged account"
 msgstr "Privileged account"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:49
+#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:48
 msgid "Product support via email, live chat, and video call"
 msgstr "Product support via email, live chat, and video call"
 
@@ -2040,10 +2015,6 @@ msgstr "Register an application"
 #: src/shared/cookie-consent/CookieConsent.tsx:95
 msgid "Reject"
 msgstr "Reject"
-
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:21
-msgid "Remediation recommendations"
-msgstr "Remediation recommendations"
 
 #: src/pages/panel/workspace-settings-billing/changeProductTierErrorResponseToMessage.ts:9
 msgid "Removal of payment method not permitted: Active payment is essential for paid product tiers. Consider switching to the free product tier or contact support for further guidance."
@@ -2180,10 +2151,6 @@ msgstr "Secure Your Cloud, Elevate Your Peace of Mind"
 msgid "Security"
 msgstr "Security"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:19
-msgid "Security benchmarks"
-msgstr "Security benchmarks"
-
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:173
 msgid "Security Changes"
 msgstr "Security Changes"
@@ -2318,19 +2285,11 @@ msgstr "Sign up"
 msgid "Sign up with {formattedName}"
 msgstr "Sign up with {formattedName}"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:44
-msgid "Single Sign on (coming soon!)"
-msgstr "Single Sign on (coming soon!)"
-
 #: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:121
 #: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:155
 #: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:189
 msgid "Size"
 msgstr "Size"
-
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:46
-msgid "Snowflake data export (coming soon!)"
-msgstr "Snowflake data export (coming soon!)"
 
 #: src/pages/panel/resource-detail/ResourceDetailFailedCheckIgnoredChecks.tsx:51
 msgid "Some checks have been disabled for this resource"
@@ -2383,10 +2342,6 @@ msgstr "Successfully invited {email}"
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:307
 msgid "Tags"
 msgstr "Tags"
-
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:43
-msgid "Task management integrations (coming soon!)"
-msgstr "Task management integrations (coming soon!)"
 
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTestService.tsx:36
 msgid "Test"
@@ -2696,10 +2651,6 @@ msgstr "Webhook URL"
 msgid "week"
 msgstr "week"
 
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:35
-msgid "Weekly email report"
-msgstr "Weekly email report"
-
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:56
 msgid "Weekly Report"
 msgstr "Weekly Report"
@@ -2716,10 +2667,6 @@ msgstr "Within a billing cycle you will be charged for the highest product tier 
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:156
 msgid "Workspace Alerting Settings"
 msgstr "Workspace Alerting Settings"
-
-#: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:45
-msgid "Workspace analytics (coming soon!)"
-msgstr "Workspace analytics (coming soon!)"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:146
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:47

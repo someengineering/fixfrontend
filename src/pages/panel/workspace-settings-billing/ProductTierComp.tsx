@@ -60,7 +60,7 @@ export const ProductTierComp = ({ productTier, productTierData }: ProductTierCom
           </Typography>
           {desc.monthly ? (
             <Typography variant="h6" fontWeight={600} lineHeight="1.5rem" fontSize="1.125rem !important" marginTop=".125rem !important">
-              <Trans>/ month</Trans>
+              <Trans>/ month / cloud account</Trans>
             </Typography>
           ) : null}
         </Stack>
@@ -87,7 +87,7 @@ export const ProductTierComp = ({ productTier, productTierData }: ProductTierCom
         ) : (
           <Box height="1.5rem" />
         )} */}
-        {productTierData.price_per_account_cents ? (
+        {/* {productTierData.price_per_account_cents ? (
           <Typography
             variant="subtitle1"
             fontSize="1rem !important"
@@ -99,7 +99,7 @@ export const ProductTierComp = ({ productTier, productTierData }: ProductTierCom
           </Typography>
         ) : (
           <Box height="calc(1.5rem + 2px)" />
-        )}
+        )} */}
       </Stack>
       <Divider />
       <Stack mt={1.5} spacing={0.75}>
