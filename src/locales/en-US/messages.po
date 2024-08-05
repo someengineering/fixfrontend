@@ -292,7 +292,7 @@ msgstr "Add Directory"
 msgid "Add external directory"
 msgstr "Add external directory"
 
-#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:64
+#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:65
 msgid "Add Filter"
 msgstr "Add Filter"
 
@@ -469,7 +469,7 @@ msgstr "Automatic Cloud Setup"
 msgid "AWS Marketplace"
 msgstr "AWS Marketplace"
 
-#: src/containers/panel/PanelInitialMessageHandler.tsx:17
+#: src/containers/panel/PanelInitialMessageHandler.tsx:18
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace has been successfully subscribed"
 
@@ -696,7 +696,7 @@ msgstr "Close"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:165
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormCloudValues.tsx:62
-#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:96
+#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:97
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:237
 #: src/pages/panel/security/AccountCard.tsx:37
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:493
@@ -889,7 +889,7 @@ msgstr "Creation Date"
 msgid "Credit or Debit Card"
 msgstr "Credit or Debit Card"
 
-#: src/containers/panel/PanelInitialMessageHandler.tsx:19
+#: src/containers/panel/PanelInitialMessageHandler.tsx:20
 msgid "Credit/Debit Card has been successfully subscribed"
 msgstr "Credit/Debit Card has been successfully subscribed"
 
@@ -1283,7 +1283,7 @@ msgstr "Highest product tier this billing cycle"
 msgid "History"
 msgstr "History"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:62
+#: src/shared/error-boundary-fallback/index.tsx:63
 msgid "Homepage"
 msgstr "Homepage"
 
@@ -1615,8 +1615,8 @@ msgstr "New issues"
 msgid "new non compliant resources in the past {since}"
 msgstr "new non compliant resources in the past {since}"
 
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:28
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:44
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:27
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:43
 msgid "New Password"
 msgstr "New Password"
 
@@ -1754,7 +1754,7 @@ msgstr "Oops, the username or password doesn't seem to match our records. Please
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Oops! It looks like your query didn't match our format. Please check and try again."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:38
+#: src/shared/error-boundary-fallback/index.tsx:39
 msgid "Oops! Something went wrong."
 msgstr "Oops! Something went wrong."
 
@@ -1947,7 +1947,7 @@ msgstr "Product tier downgrade not available: User count exceeds the limits for 
 msgid "Profile"
 msgstr "Profile"
 
-#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:99
+#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:100
 msgid "Properties"
 msgstr "Properties"
 
@@ -1989,7 +1989,7 @@ msgid "Regenerate"
 msgstr "Regenerate"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:183
-#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:97
+#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:98
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegionValues.tsx:60
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:242
 msgid "Region"
@@ -2297,7 +2297,7 @@ msgstr "Some checks have been disabled for this resource"
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:297
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:33
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:23
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:22
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:107
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:110
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:39
@@ -2338,7 +2338,7 @@ msgstr "Subscription successfully added to {0}"
 msgid "Successfully invited {email}"
 msgstr "Successfully invited {email}"
 
-#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:98
+#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:99
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:307
 msgid "Tags"
 msgstr "Tags"
@@ -2480,7 +2480,7 @@ msgstr "TOTP Setup"
 msgid "Trial"
 msgstr "Trial"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:76
+#: src/shared/error-boundary-fallback/index.tsx:77
 msgid "Try again"
 msgstr "Try again"
 
@@ -2530,7 +2530,7 @@ msgstr "Unused Database Instances"
 msgid "Update Email"
 msgstr "Update Email"
 
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:32
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:31
 msgid "Update Password"
 msgstr "Update Password"
 
@@ -2639,7 +2639,7 @@ msgstr "We use cookies and other tracking technologies to analyze site usage and
 msgid "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 msgstr "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:40
+#: src/shared/error-boundary-fallback/index.tsx:41
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 
