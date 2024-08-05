@@ -69,19 +69,19 @@ export const ChangeProductTierToFreeModal = ({
   const { mutate: changeBilling, isPending: changeBillingIsPending } = useMutation({
     mutationFn: putWorkspaceBillingMutation,
     onSuccess: () => {
-      void showSnackbar(t`Product tier changed to Free`, { severity: 'success' })
+      showSnackbar(t`Product tier changed to Free`, { severity: 'success' })
     },
     onError: (error) => {
       const errorMessageDetail = changeProductTierErrorResponseToMessage(error as AxiosError<PutWorkspaceBillingErrorResponse>)
-      void showSnackbar(errorMessageDetail ?? t`An error occurred, please try again later.`, {
+      showSnackbar(errorMessageDetail ?? t`An error occurred, please try again later.`, {
         severity: 'error',
       })
     },
     onSettled: () => {
-      void queryClient.invalidateQueries({
+      queryClient.invalidateQueries({
         queryKey: ['workspace-billing'],
       })
-      void refreshWorkspaces()
+      refreshWorkspaces()
       showModalRef.current?.(false)
     },
   })

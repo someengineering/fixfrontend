@@ -21,9 +21,9 @@ export const WorkspaceSettingsConnectedServices = () => {
   useEffect(() => {
     if (message === 'discord_added' || message === 'slack_added') {
       if (outcome === 'success') {
-        void showSnackbar(t`${message === 'discord_added' ? 'Discord' : 'Slack'} has been connected`, { severity: 'success' })
+        showSnackbar(t`${message === 'discord_added' ? 'Discord' : 'Slack'} has been connected`, { severity: 'success' })
       } else {
-        void showSnackbar(t`An error occurred while connecting to ${message === 'discord_added' ? 'Discord' : 'Slack'}`, {
+        showSnackbar(t`An error occurred while connecting to ${message === 'discord_added' ? 'Discord' : 'Slack'}`, {
           severity: 'error',
           autoHideDuration: null,
         })

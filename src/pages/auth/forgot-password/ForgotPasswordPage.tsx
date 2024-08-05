@@ -27,7 +27,7 @@ export default function ForgotPasswordPage() {
     e.preventDefault()
     if (email) {
       setIsLoading(true)
-      void forgotPassword({ email, redirectUrl: window.encodeURIComponent(getSearch.get('returnUrl') ?? '/') }).finally(() =>
+      forgotPassword({ email, redirectUrl: window.encodeURIComponent(getSearch.get('returnUrl') ?? '/') }).finally(() =>
         setIsLoading(false),
       )
     }

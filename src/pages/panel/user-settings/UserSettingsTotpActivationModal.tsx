@@ -58,7 +58,7 @@ export const UserSettingsTotpActivationModal = ({ activationModalRef, isLoading,
         newData.is_mfa_active = true
         return newData
       })
-      void queryClient.invalidateQueries({
+      queryClient.invalidateQueries({
         predicate: (query) => query.queryKey[0] === 'users-me',
       })
       codesModalRef.current?.(true)
@@ -68,7 +68,7 @@ export const UserSettingsTotpActivationModal = ({ activationModalRef, isLoading,
   useEffect(() => {
     activationModalRef.current = (show?: boolean) => {
       if (show) {
-        void addMfaMutation()
+        addMfaMutation()
       }
       modalRef.current?.(show)
     }
@@ -78,7 +78,7 @@ export const UserSettingsTotpActivationModal = ({ activationModalRef, isLoading,
   }, [activationModalRef, addMfaMutation])
   useEffect(() => {
     if (qrCodeBoxRef.current && data?.secret) {
-      void QrCode.toCanvas(qrCodeBoxRef.current, `otpauth://totp/${email}?secret=${data.secret}&issuer=FIX%20Inventory`, {
+      QrCode.toCanvas(qrCodeBoxRef.current, `otpauth://totp/${email}?secret=${data.secret}&issuer=FIX%20Inventory`, {
         color: { dark: rgbToHex(primaryDarkColor), light: '#fff' },
         toSJISFunc,
       }).then(() => {
@@ -113,7 +113,7 @@ export const UserSettingsTotpActivationModal = ({ activationModalRef, isLoading,
     <>
       <Modal
         openRef={modalRef}
-        onSubmit={() => void mutateAsync({ otp })}
+        onSubmit={() => mutateAsync({ otp })}
         title={<Trans>TOTP Setup</Trans>}
         actions={
           <>
@@ -220,7 +220,7 @@ export const UserSettingsTotpActivationModal = ({ activationModalRef, isLoading,
                 const value = e.target.value ?? ''
                 setOtp(value)
                 if (value.length === 6) {
-                  void mutateAsync({ otp: value })
+                  mutateAsync({ otp: value })
                 }
               }}
             />

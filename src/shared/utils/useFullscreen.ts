@@ -54,7 +54,7 @@ export const useFullscreen = (fullScreenRef: RefObject<HTMLElement | null>, init
   )
   useEffect(() => {
     if (initialFullscreen) {
-      void makeFullscreen(fullScreenRef.current)
+      makeFullscreen(fullScreenRef.current)
     }
     const handleFullscreenChange = () => setHasFullscreen(!!window.document.fullscreenElement)
     window.document.addEventListener('fullscreenchange', handleFullscreenChange)

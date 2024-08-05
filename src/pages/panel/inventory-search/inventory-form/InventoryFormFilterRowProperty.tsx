@@ -171,7 +171,7 @@ export const InventoryFormFilterRowProperty = ({
       e.currentTarget.scrollHeight - e.currentTarget.offsetHeight - (e.currentTarget.scrollTop + panelUI.offsetHeightToLoad) <= 0 &&
       !isFetchingNextPage
     ) {
-      void fetchNextPage()
+      fetchNextPage()
     }
   }
   const handleInputKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {

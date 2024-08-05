@@ -89,7 +89,7 @@ export const WorkspaceAlertingSettings = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: putWorkspaceAlertingSettingsQuery,
     onSettled: () => {
-      void queryClient.invalidateQueries({
+      queryClient.invalidateQueries({
         predicate: (query) => query.queryKey[0] === 'workspace-alerting-settings',
       })
     },

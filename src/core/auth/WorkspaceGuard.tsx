@@ -54,14 +54,14 @@ export const WorkspaceGuard = ({ value, children }: WorkspaceGuardProps) => {
 
   useEffect(() => {
     if (hashWorkspaceId && currentWorkspaceId !== hashWorkspaceId) {
-      void value.selectWorkspace(hashWorkspaceId)
+      value.selectWorkspace(hashWorkspaceId)
     } else if (currentWorkspaceId) {
       window.location.hash = currentWorkspaceId
     }
     if (!hashWorkspaceId) {
       const persistedWorkspaceId = getAuthData()?.selectedWorkspaceId || defaultWorkspaceId
       if (persistedWorkspaceId) {
-        void value.selectWorkspace(persistedWorkspaceId)
+        value.selectWorkspace(persistedWorkspaceId)
       }
     }
   }, [hashWorkspaceId, currentWorkspaceId, value, defaultWorkspaceId])
@@ -85,9 +85,9 @@ export const WorkspaceGuard = ({ value, children }: WorkspaceGuardProps) => {
               color={defaultWorkspaceId ? 'primary' : 'warning'}
               onClick={() => {
                 if (defaultWorkspaceId) {
-                  void value.selectWorkspace(defaultWorkspaceId)
+                  value.selectWorkspace(defaultWorkspaceId)
                 } else {
-                  void value.logout()
+                  value.logout()
                 }
               }}
             >

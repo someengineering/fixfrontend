@@ -40,7 +40,7 @@ export const UserSettingsApiTokensAddToken = ({ forbiddenNames, onClose }: UserS
       ])
     },
     onSettled: () => {
-      void queryClient.invalidateQueries({ queryKey: ['api-token'] })
+      queryClient.invalidateQueries({ queryKey: ['api-token'] })
     },
   })
 

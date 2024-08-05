@@ -37,7 +37,7 @@ export const WorkspaceSettingsOpsgenieService = ({ isConnected, defaultName, isL
       { workspaceId: selectedWorkspace?.id ?? '', api_key: apiKey, name, channel: 'opsgenie' },
       {
         onSettled: () => {
-          void queryClient.invalidateQueries({
+          queryClient.invalidateQueries({
             predicate: (query) => query.queryKey[0] === 'workspace-notifications',
           })
           modalRef.current?.(false)

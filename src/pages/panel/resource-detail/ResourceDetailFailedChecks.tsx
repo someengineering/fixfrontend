@@ -37,7 +37,7 @@ export const ResourceDetailFailedChecks = ({
       })
     },
     onSettled: () => {
-      void queryClient.invalidateQueries({
+      queryClient.invalidateQueries({
         predicate: (query) => query.queryKey[0] === 'workspace-inventory-node',
       })
     },

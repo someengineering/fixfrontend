@@ -65,14 +65,14 @@ export const UserProfileButton = () => {
   const handleLogout = () => {
     handleCloseUserMenu()
     startTransition(() => {
-      void logout()
+      logout()
     })
   }
 
   const handleSelectWorkspace = (id: string) => {
     handleCloseUserMenu()
     startTransition(() => {
-      void selectWorkspace(id).then((workspace) => {
+      selectWorkspace(id).then((workspace) => {
         if (workspace?.id) {
           window.setTimeout(() => {
             navigate({ pathname: panelUI.homePage, hash: `#${workspace.id}`, search: '' }, { replace: true })

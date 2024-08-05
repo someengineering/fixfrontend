@@ -25,10 +25,10 @@ export const UserSettingsTotpDeactivationModal = ({ deactivationModalRef, isLoad
         newData.is_mfa_active = false
         return newData
       })
-      void queryClient.invalidateQueries({
+      queryClient.invalidateQueries({
         predicate: (query) => query.queryKey[0] === 'users-me',
       })
-      void showSnackbar.showSnackbar(t`TOTP disabled successfully`, { autoHideDuration: null })
+      showSnackbar.showSnackbar(t`TOTP disabled successfully`, { autoHideDuration: null })
       deactivationModalRef.current?.(false)
     },
   })
@@ -41,7 +41,7 @@ export const UserSettingsTotpDeactivationModal = ({ deactivationModalRef, isLoad
   return (
     <Modal
       openRef={deactivationModalRef}
-      onSubmit={() => void mutateAsync(otp ? { otp } : { recoveryCode })}
+      onSubmit={() => mutateAsync(otp ? { otp } : { recoveryCode })}
       title={<Trans>TOTP Deactivation</Trans>}
       actions={
         <>
@@ -78,7 +78,7 @@ export const UserSettingsTotpDeactivationModal = ({ deactivationModalRef, isLoad
             const value = e.target.value ?? ''
             setOtp(value)
             if (value.length === 6) {
-              void mutateAsync({ otp: value })
+              mutateAsync({ otp: value })
             }
           }}
         />
