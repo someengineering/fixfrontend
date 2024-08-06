@@ -84,9 +84,6 @@ export const WorkspaceSettingsAccountsTableItem = ({
                   ) : null}
                 </>
               )}
-              <TableCell>
-                <Trans>Errors</Trans>
-              </TableCell>
               {hasPermission ? (
                 <TableCell>
                   <Trans>Actions</Trans>

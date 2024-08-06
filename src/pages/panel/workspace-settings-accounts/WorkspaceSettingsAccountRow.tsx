@@ -373,39 +373,37 @@ export const WorkspaceSettingsAccountRow = ({
         </>
       )}
       <TableCell>
-        {account.errors ? (
-          <Tooltip
-            title={
-              <Typography color="warning.main">
-                {plural(account.errors, { one: 'One error reported', two: 'Two errors reported', other: '# errors reported' })}
-              </Typography>
-            }
-          >
-            <Badge badgeContent={account.errors} color="warning">
-              <ButtonBase onClick={() => showErrorModalRef.current?.(true)}>
-                <WarningAmberIcon color="warning" />
-              </ButtonBase>
-            </Badge>
-          </Tooltip>
-        ) : (
-          '-'
-        )}
-      </TableCell>
-      {hasPermission ? (
-        <TableCell>
-          {deleteAccountIsPending ? (
-            <IconButton aria-label={t`Delete`} disabled>
-              <DeleteIcon />
-            </IconButton>
-          ) : (
-            <Tooltip title={<Trans>Delete</Trans>} arrow>
-              <IconButton aria-label={t`Delete`} color="error" onClick={handleDeleteModal}>
+        <Stack direction="row" spacing={1} alignItems="center">
+          {hasPermission ? (
+            deleteAccountIsPending ? (
+              <IconButton aria-label={t`Delete`} disabled>
                 <DeleteIcon />
               </IconButton>
+            ) : (
+              <Tooltip title={<Trans>Delete</Trans>} arrow>
+                <IconButton aria-label={t`Delete`} color="error" onClick={handleDeleteModal}>
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
+            )
+          ) : null}
+          {account.errors ? (
+            <Tooltip
+              title={
+                <Typography color="warning.main">
+                  {plural(account.errors, { one: 'One error reported', two: 'Two errors reported', other: '# errors reported' })}
+                </Typography>
+              }
+            >
+              <Badge badgeContent={account.errors} color="warning">
+                <ButtonBase onClick={() => showErrorModalRef.current?.(true)}>
+                  <WarningAmberIcon color="warning" />
+                </ButtonBase>
+              </Badge>
             </Tooltip>
-          )}
-        </TableCell>
-      ) : null}
+          ) : null}
+        </Stack>
+      </TableCell>
       <Modal
         title={<Trans>Access to your account is broken</Trans>}
         width={550}
