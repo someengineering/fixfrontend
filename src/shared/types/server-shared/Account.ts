@@ -19,4 +19,5 @@ export interface Account {
   last_scan_started_at: string | null
   last_scan_finished_at: string | null
   cf_stack_version: number | null
+  errors: number
 }

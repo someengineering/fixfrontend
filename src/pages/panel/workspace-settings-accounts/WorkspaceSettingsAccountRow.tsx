@@ -1,11 +1,13 @@
-import { Trans, t } from '@lingui/macro'
+import { Trans, plural, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import CancelIcon from '@mui/icons-material/Cancel'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import SendIcon from '@mui/icons-material/Send'
+import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import { LoadingButton } from '@mui/lab'
 import {
+  Badge,
   Button,
   ButtonBase,
   Checkbox,
@@ -20,10 +22,12 @@ import {
 } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { FormEvent, ReactNode, useCallback, useEffect, useRef, useState } from 'react'
+import { FormEvent, ReactNode, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
+import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { InternalLinkButton } from 'src/shared/link-button'
+import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { Modal } from 'src/shared/modal'
 import { useNonce } from 'src/shared/providers'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
@@ -36,6 +40,7 @@ import { patchAccountEnableMutation } from './patchAccountEnable.mutation'
 import { patchAccountScanDisableMutation } from './patchAccountScanDisable.mutation'
 import { patchAccountScanEnableMutation } from './patchAccountScanEnable.mutation'
 import { replaceRowByAccount } from './replaceRowByAccount'
+import { WorkspaceSettingsAccountErrorLog } from './WorkspaceSettingsAccountErrorLog'
 
 interface WorkspaceSettingsAccountRowProps {
   account: Account
@@ -56,6 +61,7 @@ export const WorkspaceSettingsAccountRow = ({
   const showCannotEnableModalRef = useRef<(show?: boolean) => void>()
   const showDeleteModalRef = useRef<(show?: boolean) => void>()
   const showDegradedModalRef = useRef<(show?: boolean) => void>()
+  const showErrorModalRef = useRef<(show?: boolean) => void>()
   const { selectedWorkspace, checkPermission } = useUserProfile()
   const hasPermission = checkPermission('updateCloudAccounts')
   const queryClient = useQueryClient()
@@ -366,6 +372,25 @@ export const WorkspaceSettingsAccountRow = ({
           ) : null}
         </>
       )}
+      <TableCell>
+        {account.errors ? (
+          <Tooltip
+            title={
+              <Typography color="warning.main">
+                {plural(account.errors, { one: 'One error reported', two: 'Two errors reported', other: '# errors reported' })}
+              </Typography>
+            }
+          >
+            <Badge badgeContent={account.errors} color="warning">
+              <ButtonBase onClick={() => showErrorModalRef.current?.(true)}>
+                <WarningAmberIcon color="warning" />
+              </ButtonBase>
+            </Badge>
+          </Tooltip>
+        ) : (
+          '-'
+        )}
+      </TableCell>
       {hasPermission ? (
         <TableCell>
           {deleteAccountIsPending ? (
@@ -449,6 +474,22 @@ export const WorkspaceSettingsAccountRow = ({
             </Trans>
           )}
         </Typography>
+      </Modal>
+      <Modal
+        openRef={showErrorModalRef}
+        width={600}
+        title={<Trans>{accountName} Error logs</Trans>}
+        actions={
+          <Button color="primary" variant="contained" onClick={() => showErrorModalRef.current?.(false)}>
+            <Trans>Ok</Trans>
+          </Button>
+        }
+      >
+        <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+          <Suspense fallback={<LoadingSuspenseFallback />}>
+            <WorkspaceSettingsAccountErrorLog accountId={account.id} />
+          </Suspense>
+        </NetworkErrorBoundary>
       </Modal>
       <Modal
         title={<Trans>Are you sure?</Trans>}
