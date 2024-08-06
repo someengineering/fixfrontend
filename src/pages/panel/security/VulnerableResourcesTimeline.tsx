@@ -7,10 +7,9 @@ import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { sortedSeverities } from 'src/shared/constants'
 import { VulnerableResources } from 'src/shared/types/server'
 import { SeverityType } from 'src/shared/types/server-shared'
+import { getNumberFormatter } from 'src/shared/utils/getNumberFormatter'
 import { parseISO8601Duration } from 'src/shared/utils/parseDuration'
 import { snakeCaseToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
-
-const getNumberFormatter = (locale: string) => (value: number | null) => (value ? Math.round(value).toLocaleString(locale) : '-')
 
 interface VulnerableResourcesTimelineProps {
   data: VulnerableResources

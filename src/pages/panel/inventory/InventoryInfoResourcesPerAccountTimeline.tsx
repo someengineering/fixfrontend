@@ -5,6 +5,7 @@ import dayjs from 'dayjs'
 import { useMemo } from 'react'
 import { useThemeMode } from 'src/core/theme'
 import { WorkspaceInfoResourcePerAccountTimeline } from 'src/shared/types/server'
+import { getNumberFormatter } from 'src/shared/utils/getNumberFormatter'
 import { parseISO8601Duration } from 'src/shared/utils/parseDuration'
 
 const { common: _, ...realColors } = colors
@@ -18,8 +19,6 @@ const getColor = (previousJson: Record<string, string>, group: string, isDark: b
   }
   return previousJson[group]
 }
-
-const getNumberFormatter = (locale: string) => (value: number | null) => (value ? Math.round(value).toLocaleString(locale) : '-')
 
 interface InventoryInfoResourcesPerAccountTimelineProps {
   data: WorkspaceInfoResourcePerAccountTimeline

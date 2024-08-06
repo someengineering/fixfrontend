@@ -15,6 +15,7 @@ export type {
   PostAuthRegisterResponse,
 } from './PostAuthRegister'
 export type { PostAuthResetPasswordRequest } from './PostAuthResetPassword'
+export type { PostWorkspaceInventoryHistoryTimelineRequest } from './PostWorkspaceInventoryHistoryTimeline'
 export type { PostWorkspaceInventoryPropertyAttributesRequest } from './PostWorkspaceInventoryPropertyAttributes'
 export type { PostWorkspaceInventoryPropertyPathCompleteRequest } from './PostWorkspaceInventoryPropertyPathComplete'
 export type { PostWorkspaceInventoryPropertyValuesRequest } from './PostWorkspaceInventoryPropertyValues'

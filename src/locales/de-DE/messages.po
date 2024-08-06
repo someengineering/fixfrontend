@@ -749,7 +749,7 @@ msgstr ""
 msgid "Compute changes in the last 30 days."
 msgstr ""
 
-#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:28
+#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:17
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:32
 msgid "Configuration changed"
 msgstr "Konfiguration geändert"
@@ -2047,17 +2047,17 @@ msgstr ""
 msgid "Resource changes with owner tag"
 msgstr ""
 
-#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:18
+#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:15
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:30
 msgid "Resource created"
 msgstr "Ressource erstellt"
 
-#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:38
+#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:19
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:34
 msgid "Resource deleted"
 msgstr "Ressource gelöscht"
 
-#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:48
+#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:23
 msgid "Resource Secured"
 msgstr ""
 
@@ -2159,7 +2159,7 @@ msgstr ""
 msgid "Security Issues"
 msgstr "Sicherheitsprobleme"
 
-#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:58
+#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:21
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:41
 msgid "Security posture changed"
 msgstr ""
