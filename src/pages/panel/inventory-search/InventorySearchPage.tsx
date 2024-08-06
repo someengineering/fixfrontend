@@ -88,7 +88,7 @@ export default function InventorySearchPage({ withHistory }: InventorySearchPage
           <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
             <Outlet />
           </NetworkErrorBoundary>
-          {history.changes.length ? <InventoryChangesTimeline searchCrit={searchCrit} history={history} /> : undefined}
+          {history.changes.length ? <InventoryChangesTimeline searchCrit={searchCrit} /> : undefined}
           {(!withHistory && searchCrit) || (withHistory && history.changes.length) || hasError ? (
             <>
               <NetworkErrorBoundary

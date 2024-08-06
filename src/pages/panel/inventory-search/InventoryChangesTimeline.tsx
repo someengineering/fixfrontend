@@ -6,14 +6,15 @@ import dayjs from 'dayjs'
 import { useMemo } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { useThemeMode } from 'src/core/theme'
-import { WorkspaceInventoryNodeHistoryChanges, WorkspaceInventorySearchTableHistory } from 'src/shared/types/server'
+import { useFixQueryParser } from 'src/shared/fix-query-parser'
+import { LoadingSuspenseFallback } from 'src/shared/loading'
+import { WorkspaceInventoryNodeHistoryChanges } from 'src/shared/types/server'
 import { getNumberFormatter } from 'src/shared/utils/getNumberFormatter'
 import { postWorkspaceInventoryHistoryTimelineQuery } from './postWorkspaceInventoryHistoryTimeline.query'
 import { inventoryRenderNodeChangeCellToString } from './utils/inventoryRenderNodeChangeCell'
 
 interface InventoryChangesTimelineProps {
   searchCrit: string
-  history: WorkspaceInventorySearchTableHistory
 }
 
 const getColorFromHistoryChange = (change: WorkspaceInventoryNodeHistoryChanges, isDark?: boolean) => {
@@ -31,7 +32,11 @@ const getColorFromHistoryChange = (change: WorkspaceInventoryNodeHistoryChanges,
   }
 }
 
-export const InventoryChangesTimeline = ({ searchCrit, history: { changes, after, before } }: InventoryChangesTimelineProps) => {
+export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelineProps) => {
+  const {
+    history: { changes, after, before },
+    onHistoryChange,
+  } = useFixQueryParser()
   const beforeDate = useMemo(() => (before ? new Date(before) : new Date()), [before])
   const afterDate = useMemo(() => (after ? new Date(after) : new Date(new Date().setMonth(new Date().getMonth() - 1))), [after])
   const { selectedWorkspace } = useUserProfile()
@@ -39,7 +44,7 @@ export const InventoryChangesTimeline = ({ searchCrit, history: { changes, after
   const {
     i18n: { locale },
   } = useLingui()
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: [
       'workspace-inventory-history-timeline',
       selectedWorkspace?.id,
@@ -88,47 +93,68 @@ export const InventoryChangesTimeline = ({ searchCrit, history: { changes, after
   const granularity = labels.length
     ? Math.max(Math.abs((beforeDate.valueOf() - afterDate.valueOf()) / labels.length), 60 * 60 * 1000)
     : 24 * 60 * 60 * 1000
-  return (
+  return !isLoading && !data ? null : (
     <Box width="100%" overflow="auto">
-      <Box width="100%" maxWidth={labels.length * 62 + 150} minWidth={labels.length * 20 + 150} height={500}>
-        <BarChart
-          slotProps={{
-            legend: {
-              direction: 'row',
-              position: {
-                vertical: 'top',
-                horizontal: labels.length < 6 ? 'right' : 'middle',
+      <Box width="100%" maxWidth={!labels.length ? '100%' : labels.length * 62 + 150} minWidth={labels.length * 20 + 150} height={500}>
+        {isLoading ? (
+          <LoadingSuspenseFallback />
+        ) : (
+          <BarChart
+            slotProps={{
+              legend: {
+                direction: 'row',
+                position: {
+                  vertical: 'top',
+                  horizontal: labels.length < 6 ? 'right' : 'middle',
+                },
+                itemMarkWidth: 10,
+                itemMarkHeight: 5,
+                labelStyle: {
+                  fontSize: 12,
+                  fontWeight: 'bold',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                },
+                itemGap: 5,
+                markGap: 5,
+                padding: 5,
               },
-              itemMarkWidth: 10,
-              itemMarkHeight: 5,
-              labelStyle: {
-                fontSize: 12,
-                fontWeight: 'bold',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
+            }}
+            margin={{ top: 50 }}
+            borderRadius={4}
+            series={series}
+            yAxis={[{ scaleType: 'sqrt' }]}
+            xAxis={[
+              {
+                scaleType: 'band',
+                data: labels,
+                valueFormatter: (val: Date, ctx) =>
+                  ctx.location === 'tick'
+                    ? dayjs(val).locale(locale).format('L')
+                    : dayjs(val).format(granularity >= 24 * 60 * 60 * 1000 ? 'dddd, LL' : 'llll'),
+                // @ts-expect-error something
+                categoryGapRatio: 0.5,
               },
-              itemGap: 5,
-              markGap: 5,
-              padding: 5,
-            },
-          }}
-          margin={{ top: 50 }}
-          borderRadius={4}
-          series={series}
-          yAxis={[{ scaleType: 'sqrt' }]}
-          xAxis={[
-            {
-              scaleType: 'band',
-              data: labels,
-              valueFormatter: (val: Date, ctx) =>
-                ctx.location === 'tick'
-                  ? dayjs(val).locale(locale).format('L')
-                  : dayjs(val).format(granularity >= 24 * 60 * 60 * 1000 ? 'dddd, LL' : 'llll'),
-              // @ts-expect-error something
-              categoryGapRatio: 0.5,
-            },
-          ]}
-        />
+            ]}
+            onAxisClick={(_, axisData) => {
+              if (axisData && axisData.axisValue && typeof axisData.axisValue === 'object') {
+                const after = new Date(axisData.axisValue.valueOf())
+                after.setHours(0)
+                after.setMinutes(0)
+                after.setSeconds(0)
+                after.setMilliseconds(0)
+                const before = new Date(after.valueOf())
+                before.setDate(before.getDate() + 1)
+                onHistoryChange({
+                  changes,
+                  after: after.toISOString(),
+                  before: before.toISOString(),
+                })
+              }
+            }}
+            onItemClick={() => {}}
+          />
+        )}
       </Box>
     </Box>
   )
