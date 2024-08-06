@@ -41,6 +41,7 @@ import { YamlHighlighter } from 'src/shared/yaml-highlighter'
 import { stringify } from 'yaml'
 import { ResourceDetailChangeLog } from './ResourceDetailChangeLog'
 import { ResourceDetailFailedChecks } from './ResourceDetailFailedChecks'
+import { cloudDefaultTooltip } from 'src/shared/cloud-avatar/CloudAvatar'
 
 const Modal = styled(MuiModal)(({ theme }) => ({
   position: 'fixed',
@@ -164,8 +165,9 @@ export default function ResourceDetailView() {
     tags,
   } = data?.resource.reported ?? {}
   const cloud =
-    data?.resource.ancestors?.cloud?.reported?.name ??
-    (window.decodeURIComponent(getLocationSearchValues(window.location.search)?.cloud || '') || '-')
+    (data?.resource.ancestors?.cloud?.reported?.name ??
+    (window.decodeURIComponent(getLocationSearchValues(window.location.search)?.cloud || '') || '-'))
+  const cloudName = cloudDefaultTooltip(cloud)
   const accountObj = data?.resource.ancestors?.account?.reported
   const account = accountObj ? `${accountObj?.name} (${accountObj?.id})` : '-'
   const region = data?.resource.ancestors?.region?.reported?.name ?? '-'
@@ -235,7 +237,7 @@ export default function ResourceDetailView() {
                     <GridItem property={<Trans>Name</Trans>} value={name} />
                     <GridItem
                       property={<Trans>Cloud</Trans>}
-                      value={cloud !== '-' ? <Typography>{cloud.toUpperCase()}</Typography> : '-'}
+                      value={cloud !== '-' ? <Typography>{cloudName}</Typography> : '-'}
                       isReactNode={cloud !== '-'}
                     />
                     <GridItem property={<Trans>Account</Trans>} value={account} />
@@ -256,7 +258,7 @@ export default function ResourceDetailView() {
                       <>
                         <PopupModal
                           openRef={openResourceModalRef}
-                          title={<Trans>Open resource {name} in AWS Console</Trans>}
+                          title={<Trans>Open resource {name} in {cloudName} Console</Trans>}
                           width={panelUI.minLargeModalWidth}
                           actions={
                             <Button
@@ -267,18 +269,18 @@ export default function ResourceDetailView() {
                               onClick={() => openResourceModalRef.current?.(false)}
                               endIcon={<OpenInNewIcon />}
                             >
-                              <Trans>See this Resource in AWS Console</Trans>
+                              <Trans>See this Resource in {cloudName} Console</Trans>
                             </Button>
                           }
                         >
                           <Alert severity="warning">
                             <AlertTitle>
-                              <Trans>To access this resource, please ensure that you are logged into the AWS account: {account}</Trans>
+                              <Trans>To access this resource, please ensure that you are logged into the {cloudName} account: {account}</Trans>
                             </AlertTitle>
                           </Alert>
                         </PopupModal>
                         <Button variant="contained" onClick={() => openResourceModalRef.current?.(true)} endIcon={<OpenInNewIcon />}>
-                          <Trans>See this Resource in AWS Console</Trans>
+                          <Trans>See this Resource in {cloudName} Console</Trans>
                         </Button>
                       </>
                     ) : null}

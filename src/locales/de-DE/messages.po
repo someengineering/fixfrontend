@@ -2184,8 +2184,8 @@ msgstr ""
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:270
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:281
-msgid "See this Resource in AWS Console"
-msgstr "Sehen Sie sich diese Ressource in der AWS-Konsole an"
+msgid "See this Resource in {cloud} Console"
+msgstr "Sehen Sie sich diese Ressource in der {cloud}-Konsole an"
 
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormChangePicker.tsx:166
 msgid "Select All"

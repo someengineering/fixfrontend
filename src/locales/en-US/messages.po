@@ -2184,8 +2184,8 @@ msgstr "Security Score over all {accountCounts} cloud accounts"
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:270
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:281
-msgid "See this Resource in AWS Console"
-msgstr "See this Resource in AWS Console"
+msgid "See this Resource in {cloud} Console"
+msgstr "See this Resource in {cloud} Console"
 
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormChangePicker.tsx:166
 msgid "Select All"
