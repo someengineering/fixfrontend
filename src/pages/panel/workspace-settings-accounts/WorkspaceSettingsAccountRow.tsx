@@ -260,7 +260,10 @@ export const WorkspaceSettingsAccountRow = ({
       )
     }
   }
-  const [nextScanStr, nextScanDurStr] = getDateStr(account.next_scan, locale)
+  const [nextScanStr, nextScanDurStr] =
+    !account.is_configured || !account.enabled || account.state === 'degraded'
+      ? [undefined, undefined]
+      : getDateStr(account.next_scan, locale)
   const [lastScanStr, lastScanDurStr] = getDateStr(account.last_scan_finished_at, locale)
   return (
     <TableRow>
