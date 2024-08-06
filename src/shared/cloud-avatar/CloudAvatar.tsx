@@ -36,7 +36,7 @@ const CloudIcon = ({ cloud, small, withCrown }: CloudAvatarProps) => {
   }
 }
 
-const cloudDefaultTooltip = (cloud: AccountCloud) => {
+export const cloudDefaultTooltip = (cloud: AccountCloud) => {
   switch (cloud) {
     case 'aws':
       return 'AWS'
