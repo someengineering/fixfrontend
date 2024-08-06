@@ -7,6 +7,7 @@ import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventorySearchStartQuery } from 'src/pages/panel/shared/queries'
 import { sendInventoryError } from 'src/pages/panel/shared/utils'
 import { DefaultPropertiesKeys, Predicate, useFixQueryParser } from 'src/shared/fix-query-parser'
+import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
 import { InventoryFormAccount } from './InventoryFormAccount'
 import { InventoryFormCloud } from './InventoryFormCloud'
 import { InventoryFormFullTextSearches } from './InventoryFormFullTextSearch'
@@ -16,7 +17,6 @@ import { InventoryFormRegion } from './InventoryFormRegion'
 import { InventoryFormReset } from './InventoryFormReset'
 import { InventoryFormRest } from './InventoryFormRest'
 import { InventoryFormSeverity } from './InventoryFormSeverity'
-import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
 
 function removeStringDuplicates(data?: string[]) {
   return data ? Array.from(new Set(data)) : []

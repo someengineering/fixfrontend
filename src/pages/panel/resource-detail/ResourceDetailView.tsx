@@ -30,12 +30,13 @@ import { getWorkspaceInventoryNodeQuery } from 'src/pages/panel/shared/queries'
 import { sendInventoryError } from 'src/pages/panel/shared/utils'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { NetworkDiagram } from 'src/shared/charts'
-import { CloudAvatar, cloudDefaultTooltip } from 'src/shared/cloud-avatar'
+import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { panelUI } from 'src/shared/constants'
 import { ExternalLinkButton } from 'src/shared/link-button'
 import { Modal as PopupModal } from 'src/shared/modal'
 import { StickyAccordionSummaryWithIcon } from 'src/shared/sticky-accordion-summary'
 import { AccountCloud, FailedCheck } from 'src/shared/types/server-shared'
+import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
 import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
 import { getLocationSearchValues, removeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { YamlHighlighter } from 'src/shared/yaml-highlighter'
@@ -179,7 +180,7 @@ export default function ResourceDetailView() {
   const cloud =
     data?.resource.ancestors?.cloud?.reported?.name ??
     (window.decodeURIComponent(getLocationSearchValues(window.location.search)?.cloud || '') || '-')
-  const cloudName = cloudDefaultTooltip(cloud)
+  const cloudName = getAccountCloudName(cloud)
   const buttonName = getOpenResourceButtonText(cloud)
   const accountObj = data?.resource.ancestors?.account?.reported
   const account = accountObj ? `${accountObj?.name} (${accountObj?.id})` : '-'

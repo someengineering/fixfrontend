@@ -28,6 +28,7 @@ import { Modal } from 'src/shared/modal'
 import { useNonce } from 'src/shared/providers'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { Account } from 'src/shared/types/server-shared'
+import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
 import { getAccountName } from 'src/shared/utils/getAccountName'
 import { deleteAccountMutation } from './deleteAccount.mutation'
 import { patchAccountMutation } from './patchAccount.mutation'
@@ -36,7 +37,6 @@ import { patchAccountEnableMutation } from './patchAccountEnable.mutation'
 import { patchAccountScanDisableMutation } from './patchAccountScanDisable.mutation'
 import { patchAccountScanEnableMutation } from './patchAccountScanEnable.mutation'
 import { replaceRowByAccount } from './replaceRowByAccount'
-import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
 
 interface WorkspaceSettingsAccountRowProps {
   account: Account

@@ -6,8 +6,8 @@ import { useEffect, useRef, useState } from 'react'
 import { useEvents } from 'src/core/events'
 import { useSnackbar } from 'src/core/snackbar'
 import { WebSocketEvent } from 'src/shared/types/server'
-import { EventItem } from './EventItem'
 import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
+import { EventItem } from './EventItem'
 
 const PopperContainer = styled(Popper)(({ theme }) => ({
   marginTop: 45,
@@ -91,7 +91,9 @@ export const EventButton = () => {
           void queryClient.invalidateQueries({
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
-          void showSnackbar(t`${getAccountCloudName(ev.data.cloud)} Cloud account discovered, id: ${ev.data.account_id}`, { severity: 'info' })
+          void showSnackbar(t`${getAccountCloudName(ev.data.cloud)} Cloud account discovered, id: ${ev.data.account_id}`, {
+            severity: 'info',
+          })
           break
         case 'aws_account_discovered':
           void queryClient.invalidateQueries({
