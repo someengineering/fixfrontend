@@ -127,7 +127,7 @@ msgstr "{label} is not valid"
 msgid "{label} is required"
 msgstr "{label} is required"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:356
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:353
 msgid "{lastScanDurStr} Ago"
 msgstr "{lastScanDurStr} Ago"
 
@@ -233,7 +233,7 @@ msgstr "Accept"
 msgid "Access Control (IAM)"
 msgstr "Access Control (IAM)"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:280
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:276
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:440
 msgid "Access to your account is broken"
 msgstr "Access to your account is broken"
@@ -553,9 +553,9 @@ msgstr "Business"
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:68
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:121
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:49
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:322
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:326
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:330
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:331
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:327
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:544
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:92
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:154
@@ -1088,8 +1088,8 @@ msgstr "Drill Down"
 msgid "Drop Service Account Key File"
 msgstr "Drop Service Account Key File"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:342
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:343
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:338
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:339
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:175
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:176
 msgid "Edit"
@@ -1381,7 +1381,7 @@ msgstr "Ignored"
 msgid "Improved"
 msgstr "Improved"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:367
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:366
 msgid "In {nextScanDurStr}"
 msgstr "In {nextScanDurStr}"
 
@@ -1940,7 +1940,7 @@ msgstr "Print or copy the following recovery codes"
 msgid "Privileged"
 msgstr "Privileged"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:275
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:271
 msgid "Privileged account"
 msgstr "Privileged account"
 
@@ -2343,9 +2343,9 @@ msgid "Submission Error"
 msgstr "Submission Error"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzurePage.tsx:17
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:315
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:316
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:321
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:311
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:312
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:317
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:147
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:148
 msgid "Submit"

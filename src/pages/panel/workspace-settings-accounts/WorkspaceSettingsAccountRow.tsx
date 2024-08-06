@@ -45,20 +45,16 @@ import { WorkspaceSettingsAccountErrorLog } from './WorkspaceSettingsAccountErro
 
 const getDateStr = (date?: string | null, locale?: Intl.LocalesArgument) => {
   if (!date) {
-    return [, ,] as const
+    return [undefined, undefined] as const
   }
 
   const nextScanDate = new Date(date)
   if (Number.isNaN(nextScanDate.valueOf())) {
-    return [, ,] as const
+    return [undefined, undefined] as const
   }
-  const nextScanDateStr = nextScanDate?.toLocaleDateString(locale)
-  const nextScanStr = nextScanDateStr
-    ? `${new Date().toLocaleDateString(locale) === nextScanDateStr ? '' : `${nextScanDateStr} `}${nextScanDate?.toLocaleTimeString(locale)}`
-    : undefined
-  const nextScanDurStr = nextScanDate
-    ? iso8601DurationToString(diffDateTimeToDuration(new Date(), nextScanDate), 1).toLocaleLowerCase()
-    : undefined
+  const nextScanDateStr = nextScanDate.toLocaleDateString(locale)
+  const nextScanStr = `${new Date().toLocaleDateString(locale) === nextScanDateStr ? '' : `${nextScanDateStr} `}${nextScanDate?.toLocaleTimeString(locale)}`
+  const nextScanDurStr = iso8601DurationToString(diffDateTimeToDuration(new Date(), nextScanDate), 1).toLocaleLowerCase()
   return [nextScanStr, nextScanDurStr] as const
 }
 
@@ -353,7 +349,9 @@ export const WorkspaceSettingsAccountRow = ({
       <TableCell>
         {lastScanStr ? (
           <Tooltip title={lastScanStr}>
-            <Typography><Trans>{lastScanDurStr} Ago</Trans></Typography>
+            <Typography>
+              <Trans>{lastScanDurStr} Ago</Trans>
+            </Typography>
           </Tooltip>
         ) : (
           '-'
@@ -364,7 +362,9 @@ export const WorkspaceSettingsAccountRow = ({
           <TableCell>
             {nextScanStr ? (
               <Tooltip title={nextScanStr}>
-                <Typography><Trans>In {nextScanDurStr}</Trans></Typography>
+                <Typography>
+                  <Trans>In {nextScanDurStr}</Trans>
+                </Typography>
               </Tooltip>
             ) : (
               '-'
