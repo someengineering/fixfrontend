@@ -1,4 +1,4 @@
-import { Trans } from '@lingui/macro'
+import { t, Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import CloseIcon from '@mui/icons-material/Close'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
@@ -16,9 +16,9 @@ import {
   Skeleton,
   Slide,
   Stack,
+  styled,
   Tooltip,
   Typography,
-  styled,
 } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
@@ -31,17 +31,18 @@ import { sendInventoryError } from 'src/pages/panel/shared/utils'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { NetworkDiagram } from 'src/shared/charts'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
+import { cloudDefaultTooltip } from 'src/shared/cloud-avatar/CloudAvatar'
 import { panelUI } from 'src/shared/constants'
+import { ExternalLinkButton } from 'src/shared/link-button'
 import { Modal as PopupModal } from 'src/shared/modal'
 import { StickyAccordionSummaryWithIcon } from 'src/shared/sticky-accordion-summary'
-import { FailedCheck } from 'src/shared/types/server-shared'
+import { AccountCloud, FailedCheck } from 'src/shared/types/server-shared'
 import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
 import { getLocationSearchValues, removeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { YamlHighlighter } from 'src/shared/yaml-highlighter'
 import { stringify } from 'yaml'
 import { ResourceDetailChangeLog } from './ResourceDetailChangeLog'
 import { ResourceDetailFailedChecks } from './ResourceDetailFailedChecks'
-import { cloudDefaultTooltip } from 'src/shared/cloud-avatar/CloudAvatar'
 
 const Modal = styled(MuiModal)(({ theme }) => ({
   position: 'fixed',
@@ -87,7 +88,6 @@ const GridItem = ({ property, value, color, isReactNode }: GridItemProps) => {
           (value as ReactNode)
         ) : (
           <Tooltip
-            arrow
             slotProps={{ tooltip: { sx: { maxWidth: '100vw', maxHeight: '100vh', overflow: 'auto', p: 1 } } }}
             title={
               isSimpleValue ? (
@@ -116,6 +116,19 @@ const GridItem = ({ property, value, color, isReactNode }: GridItemProps) => {
       </Grid>
     </>
   )
+}
+
+const getOpenResourceButtonText = (cloud: AccountCloud) => {
+  switch (cloud) {
+    case 'aws':
+      return t`in AWS Console`
+    case 'azure':
+      return t`in Azure Portal`
+    case 'gcp':
+      return t`in Google Cloud Console`
+    default:
+      return ''
+  }
 }
 
 export default function ResourceDetailView() {
@@ -165,9 +178,10 @@ export default function ResourceDetailView() {
     tags,
   } = data?.resource.reported ?? {}
   const cloud =
-    (data?.resource.ancestors?.cloud?.reported?.name ??
-    (window.decodeURIComponent(getLocationSearchValues(window.location.search)?.cloud || '') || '-'))
+    data?.resource.ancestors?.cloud?.reported?.name ??
+    (window.decodeURIComponent(getLocationSearchValues(window.location.search)?.cloud || '') || '-')
   const cloudName = cloudDefaultTooltip(cloud)
+  const buttonName = getOpenResourceButtonText(cloud)
   const accountObj = data?.resource.ancestors?.account?.reported
   const account = accountObj ? `${accountObj?.name} (${accountObj?.id})` : '-'
   const region = data?.resource.ancestors?.region?.reported?.name ?? '-'
@@ -255,34 +269,42 @@ export default function ResourceDetailView() {
                   </Grid>
                   <Stack direction="row" justifyContent="end" mt={2}>
                     {provider_link ? (
-                      <>
-                        <PopupModal
-                          openRef={openResourceModalRef}
-                          title={<Trans>Open resource {name} in {cloudName} Console</Trans>}
-                          width={panelUI.minLargeModalWidth}
-                          actions={
-                            <Button
-                              variant="outlined"
-                              href={provider_link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={() => openResourceModalRef.current?.(false)}
-                              endIcon={<OpenInNewIcon />}
-                            >
-                              <Trans>See this Resource in {cloudName} Console</Trans>
-                            </Button>
-                          }
-                        >
-                          <Alert severity="warning">
-                            <AlertTitle>
-                              <Trans>To access this resource, please ensure that you are logged into the {cloudName} account: {account}</Trans>
-                            </AlertTitle>
-                          </Alert>
-                        </PopupModal>
-                        <Button variant="contained" onClick={() => openResourceModalRef.current?.(true)} endIcon={<OpenInNewIcon />}>
-                          <Trans>See this Resource in {cloudName} Console</Trans>
-                        </Button>
-                      </>
+                      cloud === 'aws' ? (
+                        <>
+                          <PopupModal
+                            openRef={openResourceModalRef}
+                            title={<Trans>See this resource {buttonName}</Trans>}
+                            width={panelUI.minLargeModalWidth}
+                            actions={
+                              <Button
+                                variant="outlined"
+                                href={provider_link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => openResourceModalRef.current?.(false)}
+                                endIcon={<OpenInNewIcon />}
+                              >
+                                <Trans>See this resource {buttonName}</Trans>
+                              </Button>
+                            }
+                          >
+                            <Alert severity="warning">
+                              <AlertTitle>
+                                <Trans>
+                                  To access this resource, please ensure that you are logged into the {cloudName} account: {account}
+                                </Trans>
+                              </AlertTitle>
+                            </Alert>
+                          </PopupModal>
+                          <Button variant="contained" onClick={() => openResourceModalRef.current?.(true)} endIcon={<OpenInNewIcon />}>
+                            <Trans>See this resource {buttonName}</Trans>
+                          </Button>
+                        </>
+                      ) : (
+                        <ExternalLinkButton href={provider_link} variant="contained">
+                          <Trans>See this resource {buttonName}</Trans>
+                        </ExternalLinkButton>
+                      )
                     ) : null}
                   </Stack>
                 </>

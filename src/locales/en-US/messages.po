@@ -232,7 +232,7 @@ msgstr "Access to your account is broken"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:195
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormAccount.tsx:65
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:243
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:257
 msgid "Account"
 msgstr "Account"
 
@@ -334,7 +334,7 @@ msgstr "Advanced search query"
 msgid "Affected resources"
 msgstr "Affected resources"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:252
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:266
 #: src/shared/charts/NetworkDiagram.tsx:378
 msgid "Age"
 msgstr "Age"
@@ -486,7 +486,7 @@ msgstr "Azure Service Management"
 msgid "Back"
 msgstr "Back"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:228
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:242
 msgid "Basic Information"
 msgstr "Basic Information"
 
@@ -697,7 +697,7 @@ msgstr "Close"
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:165
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormCloudValues.tsx:62
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:96
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:239
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:253
 #: src/pages/panel/security/AccountCard.tsx:37
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:493
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:59
@@ -877,7 +877,7 @@ msgstr "Created At"
 msgid "Created in the last 7 days"
 msgstr "Created in the last 7 days"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:246
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:260
 msgid "Created Time"
 msgstr "Created Time"
 
@@ -1003,7 +1003,7 @@ msgstr "Deploy to organization"
 msgid "Description"
 msgstr "Description"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:324
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:346
 msgid "Details"
 msgstr "Details"
 
@@ -1312,7 +1312,7 @@ msgstr "IAM Role changes in the last 30 days."
 msgid "Id"
 msgstr "Id"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:236
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:250
 #: src/pages/panel/security/AccountCard.tsx:34
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:490
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:62
@@ -1372,6 +1372,18 @@ msgstr "Improved"
 #: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:110
 msgid "in account"
 msgstr "in account"
+
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:124
+msgid "in AWS Console"
+msgstr "in AWS Console"
+
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:126
+msgid "in Azure Portal"
+msgstr "in Azure Portal"
+
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:128
+msgid "in Google Cloud Console"
+msgstr "in Google Cloud Console"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:73
 msgid "In the Azure console search, type App Registrations and go to App Registrations page."
@@ -1457,7 +1469,7 @@ msgid "kind"
 msgstr "kind"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:189
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:235
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:249
 #: src/shared/charts/NetworkDiagram.tsx:375
 msgid "Kind"
 msgstr "Kind"
@@ -1576,7 +1588,7 @@ msgid "Most Non-Compliant Accounts"
 msgstr "Most Non-Compliant Accounts"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:177
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:237
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:251
 #: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:92
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:496
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:65
@@ -1595,7 +1607,7 @@ msgstr "Most Non-Compliant Accounts"
 msgid "Name"
 msgstr "Name"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:216
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:230
 msgid "Neighborhood View"
 msgstr "Neighborhood View"
 
@@ -1765,10 +1777,6 @@ msgstr "Open Database Access"
 #: src/shared/layouts/panel-layout/PanelAppBar.tsx:71
 msgid "Open drawer"
 msgstr "Open drawer"
-
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:261
-msgid "Open resource {name} in {cloudName} Console"
-msgstr "Open resource {name} in {cloudName} Console"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:109
 msgid "Open the Manage section and go to the App permissions page:"
@@ -1991,7 +1999,7 @@ msgstr "Regenerate"
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:183
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:97
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegionValues.tsx:60
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:244
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:258
 msgid "Region"
 msgstr "Region"
 
@@ -2182,10 +2190,12 @@ msgstr "Security Score"
 msgid "Security Score over all {accountCounts} cloud accounts"
 msgstr "Security Score over all {accountCounts} cloud accounts"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:272
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:283
-msgid "See this Resource in {cloudName} Console"
-msgstr "See this Resource in {cloudName} Console"
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:276
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:287
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:300
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:305
+msgid "See this resource {buttonName}"
+msgstr "See this resource {buttonName}"
 
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormChangePicker.tsx:166
 msgid "Select All"
@@ -2295,7 +2305,7 @@ msgstr "Size"
 msgid "Some checks have been disabled for this resource"
 msgstr "Some checks have been disabled for this resource"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:299
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:321
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:33
 #: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:23
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:107
@@ -2339,7 +2349,7 @@ msgid "Successfully invited {email}"
 msgstr "Successfully invited {email}"
 
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:98
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:309
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:331
 msgid "Tags"
 msgstr "Tags"
 
@@ -2376,7 +2386,7 @@ msgstr "The Google Cloud Service Account key file is valid but did not allow us 
 msgid "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
 msgstr "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:297
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:319
 msgid "The selected resource does not exist anymore."
 msgstr "The selected resource does not exist anymore."
 
@@ -2436,7 +2446,7 @@ msgstr "Three"
 msgid "Tier"
 msgstr "Tier"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:278
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:293
 msgid "To access this resource, please ensure that you are logged into the {cloudName} account: {account}"
 msgstr "To access this resource, please ensure that you are logged into the {cloudName} account: {account}"
 

@@ -232,7 +232,7 @@ msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:195
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormAccount.tsx:65
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:243
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:257
 msgid "Account"
 msgstr "Konto"
 
@@ -334,7 +334,7 @@ msgstr "Erweiterte Suchabfrage"
 msgid "Affected resources"
 msgstr ""
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:252
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:266
 #: src/shared/charts/NetworkDiagram.tsx:378
 msgid "Age"
 msgstr "Alter"
@@ -486,7 +486,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:228
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:242
 msgid "Basic Information"
 msgstr "Grundinformation"
 
@@ -697,7 +697,7 @@ msgstr "Schließen"
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:165
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormCloudValues.tsx:62
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:96
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:239
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:253
 #: src/pages/panel/security/AccountCard.tsx:37
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:493
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:59
@@ -877,7 +877,7 @@ msgstr ""
 msgid "Created in the last 7 days"
 msgstr ""
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:246
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:260
 msgid "Created Time"
 msgstr "Erstellte Zeit"
 
@@ -1003,7 +1003,7 @@ msgstr "Für die Organisation bereitstellen"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:324
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:346
 msgid "Details"
 msgstr "Einzelheiten"
 
@@ -1312,7 +1312,7 @@ msgstr ""
 msgid "Id"
 msgstr ""
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:236
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:250
 #: src/pages/panel/security/AccountCard.tsx:34
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:490
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:62
@@ -1371,6 +1371,18 @@ msgstr "Verbessert"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:110
 msgid "in account"
+msgstr ""
+
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:124
+msgid "in AWS Console"
+msgstr ""
+
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:126
+msgid "in Azure Portal"
+msgstr ""
+
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:128
+msgid "in Google Cloud Console"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:73
@@ -1457,7 +1469,7 @@ msgid "kind"
 msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:189
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:235
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:249
 #: src/shared/charts/NetworkDiagram.tsx:375
 msgid "Kind"
 msgstr "Art"
@@ -1576,7 +1588,7 @@ msgid "Most Non-Compliant Accounts"
 msgstr "Die meisten nicht konformen Konten"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:177
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:237
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:251
 #: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:92
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:496
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:65
@@ -1595,7 +1607,7 @@ msgstr "Die meisten nicht konformen Konten"
 msgid "Name"
 msgstr "Name"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:216
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:230
 msgid "Neighborhood View"
 msgstr "Nachbarschaftsansicht"
 
@@ -1765,10 +1777,6 @@ msgstr "Öffnen Sie den Datenbankzugriff"
 #: src/shared/layouts/panel-layout/PanelAppBar.tsx:71
 msgid "Open drawer"
 msgstr "Öffene die Schublade"
-
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:261
-msgid "Open resource {name} in {cloudName} Console"
-msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:109
 msgid "Open the Manage section and go to the App permissions page:"
@@ -1991,7 +1999,7 @@ msgstr "Regenerieren"
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:183
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:97
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegionValues.tsx:60
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:244
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:258
 msgid "Region"
 msgstr "Region"
 
@@ -2182,9 +2190,11 @@ msgstr "Sicherheitsbewertung"
 msgid "Security Score over all {accountCounts} cloud accounts"
 msgstr ""
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:272
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:283
-msgid "See this Resource in {cloudName} Console"
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:276
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:287
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:300
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:305
+msgid "See this resource {buttonName}"
 msgstr ""
 
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormChangePicker.tsx:166
@@ -2295,7 +2305,7 @@ msgstr ""
 msgid "Some checks have been disabled for this resource"
 msgstr "Einige Prüfungen wurden für diese Ressource deaktiviert"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:299
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:321
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:33
 #: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:23
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:107
@@ -2339,7 +2349,7 @@ msgid "Successfully invited {email}"
 msgstr "{email} erfolgreich eingeladen"
 
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:98
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:309
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:331
 msgid "Tags"
 msgstr "Stichworte"
 
@@ -2376,7 +2386,7 @@ msgstr ""
 msgid "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
 msgstr "Das von Ihnen eingegebene OTP oder Wiederherstellungscode ist falsch oder das OTP ist abgelaufen. Bitte versuchen Sie es erneut einzugeben."
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:297
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:319
 msgid "The selected resource does not exist anymore."
 msgstr "Die ausgewählte Ressource existiert nicht mehr."
 
@@ -2436,7 +2446,7 @@ msgstr "Drei"
 msgid "Tier"
 msgstr "Stufe"
 
-#: src/pages/panel/resource-detail/ResourceDetailView.tsx:278
+#: src/pages/panel/resource-detail/ResourceDetailView.tsx:293
 msgid "To access this resource, please ensure that you are logged into the {cloudName} account: {account}"
 msgstr ""
 
