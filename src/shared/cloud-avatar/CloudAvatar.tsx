@@ -5,6 +5,7 @@ import { ReactNode } from 'react'
 import { AwsLogo, AzureLogo, Crown, FixLogo, GcpLogo } from 'src/assets/icons'
 import { useNonce } from 'src/shared/providers'
 import { AccountCloud } from 'src/shared/types/server-shared'
+import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
 
 export interface CloudAvatarProps {
   cloud: AccountCloud
@@ -36,23 +37,8 @@ const CloudIcon = ({ cloud, small, withCrown }: CloudAvatarProps) => {
   }
 }
 
-const cloudDefaultTooltip = (cloud: AccountCloud) => {
-  switch (cloud) {
-    case 'aws':
-      return 'AWS'
-    case 'azure':
-      return 'Azure'
-    case 'fix':
-      return 'FIX'
-    case 'gcp':
-      return 'GCP'
-    default:
-      return cloud
-  }
-}
-
 export const CloudAvatar = ({ cloud, small, withCrown, tooltip, error, onErrorClick }: CloudAvatarProps) => (
-  <Tooltip title={tooltip === true ? cloudDefaultTooltip(cloud) : tooltip} arrow>
+  <Tooltip title={tooltip === true ? getAccountCloudName(cloud) : tooltip} arrow>
     <Box position="relative">
       <Box margin="0 auto">
         <CloudIcon cloud={cloud} small={small} withCrown={withCrown} />

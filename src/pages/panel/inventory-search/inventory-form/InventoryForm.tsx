@@ -7,6 +7,7 @@ import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventorySearchStartQuery } from 'src/pages/panel/shared/queries'
 import { sendInventoryError } from 'src/pages/panel/shared/utils'
 import { DefaultPropertiesKeys, Predicate, useFixQueryParser } from 'src/shared/fix-query-parser'
+import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
 import { InventoryFormAccount } from './InventoryFormAccount'
 import { InventoryFormCloud } from './InventoryFormCloud'
 import { InventoryFormFullTextSearches } from './InventoryFormFullTextSearch'
@@ -184,8 +185,8 @@ export const InventoryForm = ({ withChanges }: InventoryFormProps) => {
       severities: processedStartData.severity.map((severity) => ({ label: severity, value: severity, id: severity })),
       clouds:
         (!numberOfCloudFilterSelected && selectedClouds.length) || (numberOfCloudFilterSelected && numberOfCloudSelected)
-          ? selectedClouds.map((cloud) => ({ label: cloud.toUpperCase(), value: cloud, id: cloud }))
-          : processedStartData.clouds.map((cloud) => ({ value: cloud, label: cloud.toUpperCase(), id: cloud })),
+          ? selectedClouds.map((cloud) => ({ label: getAccountCloudName(cloud), value: cloud, id: cloud }))
+          : processedStartData.clouds.map((cloud) => ({ value: cloud, label: getAccountCloudName(cloud), id: cloud })),
     }),
     [processedStartData, selectedClouds, numberOfCloudFilterSelected, numberOfCloudSelected],
   )
