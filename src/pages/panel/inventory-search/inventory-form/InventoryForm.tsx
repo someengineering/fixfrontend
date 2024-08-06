@@ -16,6 +16,7 @@ import { InventoryFormRegion } from './InventoryFormRegion'
 import { InventoryFormReset } from './InventoryFormReset'
 import { InventoryFormRest } from './InventoryFormRest'
 import { InventoryFormSeverity } from './InventoryFormSeverity'
+import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
 
 function removeStringDuplicates(data?: string[]) {
   return data ? Array.from(new Set(data)) : []
@@ -184,8 +185,8 @@ export const InventoryForm = ({ withChanges }: InventoryFormProps) => {
       severities: processedStartData.severity.map((severity) => ({ label: severity, value: severity, id: severity })),
       clouds:
         (!numberOfCloudFilterSelected && selectedClouds.length) || (numberOfCloudFilterSelected && numberOfCloudSelected)
-          ? selectedClouds.map((cloud) => ({ label: cloud.toUpperCase(), value: cloud, id: cloud }))
-          : processedStartData.clouds.map((cloud) => ({ value: cloud, label: cloud.toUpperCase(), id: cloud })),
+          ? selectedClouds.map((cloud) => ({ label: getAccountCloudName(cloud), value: cloud, id: cloud }))
+          : processedStartData.clouds.map((cloud) => ({ value: cloud, label: getAccountCloudName(cloud), id: cloud })),
     }),
     [processedStartData, selectedClouds, numberOfCloudFilterSelected, numberOfCloudSelected],
   )

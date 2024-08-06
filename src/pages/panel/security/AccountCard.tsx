@@ -2,6 +2,7 @@ import { Trans } from '@lingui/macro'
 import { Card, CardContent, CardHeader, Tooltip, Typography, TypographyProps, cardHeaderClasses, styled } from '@mui/material'
 import { colorFromRedToGreen } from 'src/shared/constants'
 import { WorkspaceAccountReportSummary } from 'src/shared/types/server'
+import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
 import { shouldForwardProp } from 'src/shared/utils/shouldForwardProp'
 
 const AccountCardContainer = styled(Card, { shouldForwardProp })<{ score?: number }>(({ theme, score }) => ({
@@ -34,7 +35,7 @@ export const AccountCard = ({ account }: AccountCardProps) => {
           <Trans>ID</Trans>: {account.id}
         </CardText>
         <CardText>
-          <Trans>Cloud</Trans>: {account.cloud?.toUpperCase()}
+          <Trans>Cloud</Trans>: {account.cloud ? getAccountCloudName(account.cloud) : '-'}
         </CardText>
         {account.score !== undefined ? <CardText>Score: {account.score}</CardText> : undefined}
       </CardContent>

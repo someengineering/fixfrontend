@@ -36,6 +36,7 @@ import { patchAccountEnableMutation } from './patchAccountEnable.mutation'
 import { patchAccountScanDisableMutation } from './patchAccountScanDisable.mutation'
 import { patchAccountScanEnableMutation } from './patchAccountScanEnable.mutation'
 import { replaceRowByAccount } from './replaceRowByAccount'
+import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
 
 interface WorkspaceSettingsAccountRowProps {
   account: Account
@@ -490,7 +491,7 @@ export const WorkspaceSettingsAccountRow = ({
           <Trans>ID</Trans>: {account.account_id}
         </Typography>
         <Typography>
-          <Trans>Cloud</Trans>: {account.cloud.toUpperCase()}
+          <Trans>Cloud</Trans>: {getAccountCloudName(account.cloud)}
         </Typography>
         <Typography>
           <Trans>Name</Trans>: {accountName}

@@ -7,6 +7,7 @@ import { useEvents } from 'src/core/events'
 import { useSnackbar } from 'src/core/snackbar'
 import { WebSocketEvent } from 'src/shared/types/server'
 import { EventItem } from './EventItem'
+import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
 
 const PopperContainer = styled(Popper)(({ theme }) => ({
   marginTop: 45,
@@ -54,7 +55,7 @@ export const EventButton = () => {
           void queryClient.invalidateQueries({
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
-          void showSnackbar(t`${ev.data.cloud.toUpperCase()} Cloud account configured, id: ${ev.data.account_id}`, {
+          void showSnackbar(t`${getAccountCloudName(ev.data.cloud)} Cloud account configured, id: ${ev.data.account_id}`, {
             severity: 'success',
             autoHideDuration: null,
           })
@@ -72,7 +73,7 @@ export const EventButton = () => {
           void queryClient.invalidateQueries({
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
-          void showSnackbar(t`${ev.data.cloud.toUpperCase()} Cloud account degraded, id: ${ev.data.account_id}`, {
+          void showSnackbar(t`${getAccountCloudName(ev.data.cloud)} Cloud account degraded, id: ${ev.data.account_id}`, {
             severity: 'warning',
             autoHideDuration: null,
           })
@@ -81,7 +82,7 @@ export const EventButton = () => {
           void queryClient.invalidateQueries({
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
-          void showSnackbar(t`${ev.data.cloud.toUpperCase()} Cloud account degraded, id: ${ev.data.account_id}`, {
+          void showSnackbar(t`${getAccountCloudName(ev.data.cloud)} Cloud account degraded, id: ${ev.data.account_id}`, {
             severity: 'warning',
             autoHideDuration: null,
           })
@@ -90,7 +91,7 @@ export const EventButton = () => {
           void queryClient.invalidateQueries({
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
-          void showSnackbar(t`${ev.data.cloud.toUpperCase()} Cloud account discovered, id: ${ev.data.account_id}`, { severity: 'info' })
+          void showSnackbar(t`${getAccountCloudName(ev.data.cloud)} Cloud account discovered, id: ${ev.data.account_id}`, { severity: 'info' })
           break
         case 'aws_account_discovered':
           void queryClient.invalidateQueries({
