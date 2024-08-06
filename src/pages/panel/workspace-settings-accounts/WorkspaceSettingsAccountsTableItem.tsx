@@ -67,6 +67,9 @@ export const WorkspaceSettingsAccountsTableItem = ({
               <TableCell>
                 <Trans>Resources</Trans>
               </TableCell>
+              <TableCell>
+                <Trans>Last scan</Trans>
+              </TableCell>
               {isNotConfigured ? null : (
                 <>
                   <TableCell>

@@ -33,6 +33,7 @@ import { useNonce } from 'src/shared/providers'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { Account } from 'src/shared/types/server-shared'
 import { getAccountName } from 'src/shared/utils/getAccountName'
+import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
 import { deleteAccountMutation } from './deleteAccount.mutation'
 import { patchAccountMutation } from './patchAccount.mutation'
 import { patchAccountDisableMutation } from './patchAccountDisable.mutation'
@@ -41,6 +42,25 @@ import { patchAccountScanDisableMutation } from './patchAccountScanDisable.mutat
 import { patchAccountScanEnableMutation } from './patchAccountScanEnable.mutation'
 import { replaceRowByAccount } from './replaceRowByAccount'
 import { WorkspaceSettingsAccountErrorLog } from './WorkspaceSettingsAccountErrorLog'
+
+const getDateStr = (date?: string | null, locale?: Intl.LocalesArgument) => {
+  if (!date) {
+    return [, ,] as const
+  }
+
+  const nextScanDate = new Date(date)
+  if (Number.isNaN(nextScanDate.valueOf())) {
+    return [, ,] as const
+  }
+  const nextScanDateStr = nextScanDate?.toLocaleDateString(locale)
+  const nextScanStr = nextScanDateStr
+    ? `${new Date().toLocaleDateString(locale) === nextScanDateStr ? '' : `${nextScanDateStr} `}${nextScanDate?.toLocaleTimeString(locale)}`
+    : undefined
+  const nextScanDurStr = nextScanDate
+    ? iso8601DurationToString(diffDateTimeToDuration(new Date(), nextScanDate), 1).toLocaleLowerCase()
+    : undefined
+  return [nextScanStr, nextScanDurStr] as const
+}
 
 interface WorkspaceSettingsAccountRowProps {
   account: Account
@@ -243,13 +263,8 @@ export const WorkspaceSettingsAccountRow = ({
       )
     }
   }
-
-  const nextScanDate = account.next_scan ? new Date(account.next_scan) : undefined
-  const nextScanDateStr = nextScanDate?.toLocaleDateString(locale)
-  const nextScanStr = nextScanDateStr
-    ? `${new Date().toLocaleDateString(locale) === nextScanDateStr ? '' : `${nextScanDateStr} `}${nextScanDate?.toLocaleTimeString(locale)}`
-    : undefined
-
+  const [nextScanStr, nextScanDurStr] = getDateStr(account.next_scan, locale)
+  const [lastScanStr, lastScanDurStr] = getDateStr(account.last_scan_finished_at, locale)
   return (
     <TableRow>
       <TableCell>
@@ -335,9 +350,26 @@ export const WorkspaceSettingsAccountRow = ({
         )}
       </TableCell>
       <TableCell>{account.resources ?? '-'}</TableCell>
+      <TableCell>
+        {lastScanStr ? (
+          <Tooltip title={lastScanStr}>
+            <Typography><Trans>{lastScanDurStr} Ago</Trans></Typography>
+          </Tooltip>
+        ) : (
+          '-'
+        )}
+      </TableCell>
       {isNotConfigured ? null : (
         <>
-          <TableCell>{nextScanStr ?? '-'}</TableCell>
+          <TableCell>
+            {nextScanStr ? (
+              <Tooltip title={nextScanStr}>
+                <Typography><Trans>In {nextScanDurStr}</Trans></Typography>
+              </Tooltip>
+            ) : (
+              '-'
+            )}
+          </TableCell>
           {hasPermission ? (
             <>
               <TableCell>
@@ -475,8 +507,8 @@ export const WorkspaceSettingsAccountRow = ({
       </Modal>
       <Modal
         openRef={showErrorModalRef}
-        width={600}
-        title={<Trans>{accountName} Error logs</Trans>}
+        width={1000}
+        title={<Trans>Errors reported during the last collect of account {accountName}</Trans>}
         actions={
           <Button color="primary" variant="contained" onClick={() => showErrorModalRef.current?.(false)}>
             <Trans>Ok</Trans>
