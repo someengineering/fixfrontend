@@ -90,14 +90,14 @@ export const InventoryChangesTimeline = ({ searchCrit, history: { changes, after
     : 24 * 60 * 60 * 1000
   return (
     <Box width="100%" overflow="auto">
-      <Box width="100%" minWidth={labels.length * 20 + 150} height={500}>
+      <Box width="100%" maxWidth={labels.length * 62 + 150} minWidth={labels.length * 20 + 150} height={500}>
         <BarChart
           slotProps={{
             legend: {
               direction: 'row',
               position: {
                 vertical: 'top',
-                horizontal: 'middle',
+                horizontal: labels.length < 6 ? 'right' : 'middle',
               },
               itemMarkWidth: 10,
               itemMarkHeight: 5,
@@ -107,10 +107,15 @@ export const InventoryChangesTimeline = ({ searchCrit, history: { changes, after
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
               },
+              itemGap: 5,
+              markGap: 5,
+              padding: 5,
             },
           }}
+          margin={{ top: 50 }}
           borderRadius={4}
           series={series}
+          yAxis={[{ scaleType: 'sqrt' }]}
           xAxis={[
             {
               scaleType: 'band',
