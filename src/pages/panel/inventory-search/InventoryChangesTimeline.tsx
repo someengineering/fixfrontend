@@ -8,7 +8,7 @@ import { useUserProfile } from 'src/core/auth'
 import { useThemeMode } from 'src/core/theme'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
-import { WorkspaceInventoryNodeHistoryChanges } from 'src/shared/types/server'
+import { PostWorkspaceInventoryHistoryTimelineResponse, WorkspaceInventoryNodeHistoryChanges } from 'src/shared/types/server'
 import { getNumberFormatter } from 'src/shared/utils/getNumberFormatter'
 import { postWorkspaceInventoryHistoryTimelineQuery } from './postWorkspaceInventoryHistoryTimeline.query'
 import { inventoryRenderNodeChangeCellToString } from './utils/inventoryRenderNodeChangeCell'
@@ -32,6 +32,142 @@ const getColorFromHistoryChange = (change: WorkspaceInventoryNodeHistoryChanges,
   }
 }
 
+const fakeData = [
+  {
+    at: '2024-05-22T18:14:24.000Z',
+    group: {
+      change: 'node_updated',
+    },
+    v: 1,
+  },
+  {
+    at: '2024-05-23T17:16:48.000Z',
+    group: {
+      change: 'node_created',
+    },
+    v: 6,
+  },
+  {
+    at: '2024-05-23T17:16:48.000Z',
+    group: {
+      change: 'node_deleted',
+    },
+    v: 6,
+  },
+  {
+    at: '2024-05-23T17:16:48.000Z',
+    group: {
+      change: 'node_vulnerable',
+    },
+    v: 2,
+  },
+  {
+    at: '2024-05-23T17:16:48.000Z',
+    group: {
+      change: 'node_compliant',
+    },
+    v: 2,
+  },
+  {
+    at: '2024-05-23T17:16:48.000Z',
+    group: {
+      change: 'node_updated',
+    },
+    v: 6,
+  },
+  {
+    at: '2024-05-24T04:48:00.000Z',
+    group: {
+      change: 'node_created',
+    },
+    v: 24,
+  },
+  {
+    at: '2024-05-24T04:48:00.000Z',
+    group: {
+      change: 'node_deleted',
+    },
+    v: 18,
+  },
+  {
+    at: '2024-05-24T16:19:12.000Z',
+    group: {
+      change: 'node_updated',
+    },
+    v: 1,
+  },
+  {
+    at: '2024-05-28T00:57:36.000Z',
+    group: {
+      change: 'node_created',
+    },
+    v: 2,
+  },
+  {
+    at: '2024-05-28T00:57:36.000Z',
+    group: {
+      change: 'node_updated',
+    },
+    v: 5,
+  },
+  {
+    at: '2024-05-29T11:31:12.000Z',
+    group: {
+      change: 'node_updated',
+    },
+    v: 4524,
+  },
+  {
+    at: '2024-05-29T11:31:12.000Z',
+    group: {
+      change: 'node_created',
+    },
+    v: 4859,
+  },
+  {
+    at: '2024-05-30T10:33:36.000Z',
+    group: {
+      change: 'node_updated',
+    },
+    v: 230,
+  },
+  {
+    at: '2024-05-31T09:36:00.000Z',
+    group: {
+      change: 'node_updated',
+    },
+    v: 11,
+  },
+  {
+    at: '2024-05-31T21:07:12.000Z',
+    group: {
+      change: 'node_updated',
+    },
+    v: 1,
+  },
+  {
+    at: '2024-06-01T20:09:36.000Z',
+    group: {
+      change: 'node_updated',
+    },
+    v: 73,
+  },
+  {
+    at: '2024-06-02T07:40:48.000Z',
+    group: {
+      change: 'node_updated',
+    },
+    v: 150,
+  },
+  {
+    at: '2024-06-02T19:12:00.000Z',
+    group: {
+      change: 'node_updated',
+    },
+    v: 21,
+  },
+] as PostWorkspaceInventoryHistoryTimelineResponse
+
 export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelineProps) => {
   const {
     history: { changes, after, before },
@@ -44,7 +180,7 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
   const {
     i18n: { locale },
   } = useLingui()
-  const { data, isLoading } = useQuery({
+  const { isLoading } = useQuery({
     queryKey: [
       'workspace-inventory-history-timeline',
       selectedWorkspace?.id,
@@ -56,26 +192,32 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
     ],
     queryFn: postWorkspaceInventoryHistoryTimelineQuery,
   })
+  const data = fakeData
   const { series, labels } = useMemo(() => {
     if (data) {
       const numberFormatter = getNumberFormatter(locale)
       const processedLabels = {} as Record<string, Date>
+      let index = -1
       const series = {} as Record<WorkspaceInventoryNodeHistoryChanges, BarChartProps['series'][number]>
       data.forEach(({ at, group: { change }, v }) => {
         if (!processedLabels[at]) {
           processedLabels[at] = new Date(at)
+          index++
         }
-        if (!series[change]) {
+        if (!series[change] || !series[change].data) {
+          const seriesData = [] as number[]
+          seriesData[index] = v
           series[change] = {
             valueFormatter: numberFormatter,
-            data: [v],
+            data: [...seriesData],
             label: inventoryRenderNodeChangeCellToString(change),
             stack: 'total',
             color: getColorFromHistoryChange(change, mode === 'dark'),
             stackOffset: 'none',
           }
         } else {
-          series[change].data?.push(v)
+          series[change].data[index] = v
+          series[change].data = [...series[change].data]
         }
       })
       const labels = Object.entries(processedLabels).sort(([, a], [, b]) => a.valueOf() - b.valueOf())
