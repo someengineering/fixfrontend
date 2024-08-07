@@ -1,5 +1,6 @@
 import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+import AutoModeIcon from '@mui/icons-material/AutoMode'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import PersonIcon from '@mui/icons-material/Person'
 import VisibilityIcon from '@mui/icons-material/Visibility'
@@ -24,15 +25,13 @@ export default function AuthContainer() {
                 avatar={<PersonIcon />}
                 title={
                   <Typography variant="h4">
-                    <Trans>Connect your AWS account</Trans>
+                    <Trans>Connect your cloud provider</Trans>
                   </Typography>
                 }
               />
               <CardContent>
                 <Typography variant="body1">
-                  <Trans>
-                    Login into the AWS account you want to secure. Deploy a CloudFormation stack that creates a new IAM role for FIX.
-                  </Trans>
+                  <Trans>Connect Fix with all your accounts across AWS, Azure, and Google Cloud.</Trans>
                 </Typography>
               </CardContent>
             </Card>
@@ -58,15 +57,28 @@ export default function AuthContainer() {
                 avatar={<NotificationsIcon />}
                 title={
                   <Typography variant="h4">
-                    <Trans>A few minutes to first results</Trans>
+                    <Trans>Minutes to first results</Trans>
                   </Typography>
                 }
               />
               <CardContent>
                 <Typography variant="body1">
-                  <Trans>
-                    Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes.
-                  </Trans>
+                  <Trans>Get your inventory, security posture, and top 5 recommendations for improvement in minutes.</Trans>
+                </Typography>
+              </CardContent>
+            </Card>
+            <Card elevation={24}>
+              <CardHeader
+                avatar={<AutoModeIcon />}
+                title={
+                  <Typography variant="h4">
+                    <Trans>Continuous Monitoring</Trans>
+                  </Typography>
+                }
+              />
+              <CardContent>
+                <Typography variant="body1">
+                  <Trans>Fix will constantly monitor your infrastructure and alert you in case of any incidents.</Trans>
                 </Typography>
               </CardContent>
             </Card>
