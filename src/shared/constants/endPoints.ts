@@ -53,6 +53,7 @@ export const endPoints = {
             enable: `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}/scan/enable`,
             disable: `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}/scan/disable`,
           },
+          logs: `api/workspaces/${workspaceId}/cloud_account/${cloudAccountId}/logs`,
         }),
         self: `api/workspaces/${workspaceId}/cloud_accounts`,
         lastScan: `api/workspaces/${workspaceId}/cloud_accounts/lastScan`,
