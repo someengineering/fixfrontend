@@ -142,7 +142,7 @@ export function InventoryFormFilterRowValues({
           onChange={(option) => handleChangeValue(Array.isArray(option) ? option.map((i) => i.value) : (option?.value ?? null))}
           onClose={onClose}
           value={
-            preItems
+            (preItems
               ? getAutocompleteValueFromKey(data.path.toString() || '', preItems, currentValue, true)
               : Array.isArray(currentValue)
                 ? currentValue?.map((value) => ({
@@ -155,7 +155,7 @@ export function InventoryFormFilterRowValues({
                       currentValue.toLowerCase() === 'null' || currentValue.toLowerCase() === 'undefined' ? t`Undefined` : currentValue,
                     value: currentValue,
                     id: currentValue,
-                  } || null
+                  }) || null
           }
           defaultOptions={preItems ? getAutocompleteDataFromKey(data.path.toString() || '', preItems) : undefined}
           propertyName={data.path.toString() || ''}

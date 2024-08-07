@@ -1,4 +1,4 @@
-import { TrackJS } from 'trackjs'
+import type { TrackJS } from 'trackjs'
 
 declare global {
   interface Window {

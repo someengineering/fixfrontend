@@ -129,7 +129,7 @@ export function InventoryFormFilterRowStringValue<Multiple extends boolean, Netw
       e.currentTarget.scrollHeight - e.currentTarget.offsetHeight - (e.currentTarget.scrollTop + panelUI.offsetHeightToLoad) <= 0 &&
       !isFetchingNextPage
     ) {
-      void fetchNextPage()
+      fetchNextPage()
     }
   }
   const rawOptions = (networkDisabled ? defaultOptions : flatData) ?? []

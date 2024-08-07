@@ -23,7 +23,7 @@ const getIcon = ({
               const svgWithColor = res.data.replace(/fill=("|')#fff("|')/g, `fill=$1${fill}$2`)
               return window.btoa(svgWithColor)
             }
-          } catch (err) {
+          } catch {
             /* empty */
           }
           return null

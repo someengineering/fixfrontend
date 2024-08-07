@@ -27,14 +27,14 @@ export default function ChooseWorkspacePage() {
     mutationFn: putWorkspaceSubscriptionMutation,
     onSuccess: () => {
       afterSubmit()
-      void showSnackbar(t`Subscription successfully added to ${selectedWorkspace?.name}`, {
+      showSnackbar(t`Subscription successfully added to ${selectedWorkspace?.name}`, {
         severity: 'success',
         snackbarProps: { sx: { zIndex: ({ zIndex: { tooltip } }) => tooltip + 4 } },
       })
     },
     onError: (err) => {
       const { response, message } = err as AxiosError
-      void showSnackbar(
+      showSnackbar(
         response?.data && typeof response.data === 'object' && 'message' in response.data && typeof response.data.message === 'string'
           ? response.data.message
           : typeof response?.data === 'string'
@@ -50,7 +50,7 @@ export default function ChooseWorkspacePage() {
   useEffect(() => {
     if (subscriptionId) {
       if (workspaces?.length === 1) {
-        void mutateAsync({ workspaceId: workspaces[0].id ?? '', subscriptionId: subscriptionId ?? '' })
+        mutateAsync({ workspaceId: workspaces[0].id ?? '', subscriptionId: subscriptionId ?? '' })
       }
       setSubscriptionId(subscriptionId)
     } else {
@@ -61,7 +61,7 @@ export default function ChooseWorkspacePage() {
   const handleSubmit = async (id: string) => {
     await selectWorkspace(id)
     window.setTimeout(() => {
-      void mutateAsync({ workspaceId: selectedWorkspace?.id ?? '', subscriptionId: subscriptionId ?? '' })
+      mutateAsync({ workspaceId: selectedWorkspace?.id ?? '', subscriptionId: subscriptionId ?? '' })
     })
   }
   const handleCancel = () => {
@@ -85,7 +85,7 @@ export default function ChooseWorkspacePage() {
           <Grid item key={item.id}>
             <LoadingButton
               onClick={() => {
-                void handleSubmit(item.id)
+                handleSubmit(item.id)
               }}
               disabled={isPending}
               loading={item.id === selectedWorkspace?.id && isPending}

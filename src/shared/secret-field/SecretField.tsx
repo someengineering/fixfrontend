@@ -27,7 +27,7 @@ export const SecretField = ({
   const copyString = useCopyString()
   const handleCopy = () => {
     if (secret) {
-      void copyString(secret)
+      copyString(secret)
     }
   }
   const handleToggleShowSecret = () => {

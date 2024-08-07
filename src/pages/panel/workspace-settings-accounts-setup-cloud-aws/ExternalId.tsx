@@ -20,7 +20,7 @@ export const ExternalId = () => {
   const copyString = useCopyString()
   const handleCopy = () => {
     if (ExternalIdData) {
-      void copyString(ExternalIdData)
+      copyString(ExternalIdData)
     }
   }
   const handleToggleShowExternalId = () => {

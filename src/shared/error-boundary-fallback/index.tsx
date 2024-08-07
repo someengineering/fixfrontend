@@ -10,9 +10,10 @@ import { env, panelUI } from 'src/shared/constants'
 import { PostHogEvent } from 'src/shared/posthog'
 import { isAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData } from 'src/shared/utils/localstorage'
+import { NetworkErrorBoundary } from './ErrorBoundary'
 import { ErrorModal } from './ErrorModal'
 
-export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
+const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   const postHog = usePostHog()
   const navigate = useAbsoluteNavigate(true)
 
@@ -80,3 +81,5 @@ export const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackPro
     />
   )
 }
+
+export { ErrorBoundaryFallback, ErrorModal, NetworkErrorBoundary }

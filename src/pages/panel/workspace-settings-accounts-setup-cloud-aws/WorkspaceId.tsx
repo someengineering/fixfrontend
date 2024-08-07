@@ -13,7 +13,7 @@ export const WorkspaceId = () => {
       window.navigator.clipboard
         .writeText(selectedWorkspace?.id || '')
         .then(() => {
-          void showSnackbar(t`Copied to Clipboard!`)
+          showSnackbar(t`Copied to Clipboard!`)
         })
         .catch(() => {})
     } catch {

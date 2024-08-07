@@ -3,7 +3,7 @@ import { PropsWithChildren, useState } from 'react'
 import { PanelAppBar } from './PanelAppBar'
 import { PanelDrawer } from './PanelDrawer'
 
-interface PanelContentProps extends PropsWithChildren {}
+type PanelContentProps = PropsWithChildren
 
 export const PanelHeader = ({ children }: PanelContentProps) => {
   const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('lg'))

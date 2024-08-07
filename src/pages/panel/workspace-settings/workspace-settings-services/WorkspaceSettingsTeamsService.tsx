@@ -42,7 +42,7 @@ export const WorkspaceSettingsTeamsService = ({ isConnected, defaultName, isLoad
       { workspaceId: selectedWorkspace?.id ?? '', webhook_url: webhookUrl, name, channel: 'teams' },
       {
         onSettled: () => {
-          void queryClient.invalidateQueries({
+          queryClient.invalidateQueries({
             predicate: (query) => query.queryKey[0] === 'workspace-notifications',
           })
           modalRef.current?.(false)

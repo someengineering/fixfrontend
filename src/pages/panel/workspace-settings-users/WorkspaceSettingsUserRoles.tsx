@@ -96,8 +96,8 @@ export const WorkspaceSettingsUserRoles = ({ role, userId }: WorkspaceSettingsUs
       })
     },
     onSettled: () => {
-      void queryClient.invalidateQueries({ queryKey: ['workspace-users'] })
-      void queryClient.invalidateQueries({ queryKey: ['workspace-roles'] })
+      queryClient.invalidateQueries({ queryKey: ['workspace-users'] })
+      queryClient.invalidateQueries({ queryKey: ['workspace-roles'] })
       setIsEdit(false)
     },
   })

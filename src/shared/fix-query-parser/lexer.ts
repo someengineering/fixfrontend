@@ -214,7 +214,6 @@ export class FixLexer implements Lexer<T> {
 
   public parseNextAvailable(input: string, index: number, rowBegin: number, columnBegin: number): LexerToken | undefined {
     let token: LexerToken | undefined
-    // eslint-disable-next-line no-constant-condition
     while (true) {
       token = this.parseNext(
         input,

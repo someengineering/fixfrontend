@@ -18,11 +18,10 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  argTypes: {},
 } satisfies Meta<typeof PieChart>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof PieChart>
 
 export const Default: Story = {
   args: {

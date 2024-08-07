@@ -23,7 +23,7 @@ export const UserSettingsApiTokensRow = ({ item }: UserSettingsApiTokensRowProps
   const { mutate, isPending } = useMutation({
     mutationFn: deleteApiTokenMutation,
     onSettled: () => {
-      void queryClient.invalidateQueries({ queryKey: ['api-token'] })
+      queryClient.invalidateQueries({ queryKey: ['api-token'] })
     },
   })
   const createdAt = new Date(item.created_at)

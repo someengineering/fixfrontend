@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { ErrorBoundaryFallback } from './ErrorBoundaryFallback'
+import { ErrorBoundaryFallback } from './index'
 
 const meta = {
   title: 'shared/error-boundary-fallback/ErrorBoundaryFallback',

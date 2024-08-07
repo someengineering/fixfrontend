@@ -483,7 +483,6 @@ export const NetworkDiagram = ({ mainId }: NetworkDiagramProps) => {
         svg
           .transition()
           .duration(750) // Adjust duration for the zoom transition
-          // eslint-disable-next-line @typescript-eslint/unbound-method
           .call(zoomFn.transform, zoomIdentity.translate(translate[0], translate[1]).scale(scale))
       }
 

@@ -6,17 +6,16 @@ import { PasswordTextField, PasswordTextFieldProps } from 'src/shared/password-t
 import { UserSettingsFormContentContainer } from './UserSettingsFormContentContainer'
 import { patchUsersMeMutation } from './patchUsersMe.mutation'
 
-interface UserSettingsFormPasswordProps
-  extends Omit<
-    PasswordTextFieldProps,
-    'onChange' | 'fullWidth' | 'variant' | 'label' | 'autoComplete' | 'name' | 'id' | 'required' | 'value'
-  > {}
+type UserSettingsFormPasswordProps = Omit<
+  PasswordTextFieldProps,
+  'onChange' | 'fullWidth' | 'variant' | 'label' | 'autoComplete' | 'name' | 'id' | 'required' | 'value'
+>
 
 export const UserSettingsFormPassword = ({ ...rest }: UserSettingsFormPasswordProps) => {
   const { mutateAsync, isPending, error } = useMutation({ mutationFn: patchUsersMeMutation })
   const [password, setPassword] = useState('')
   const handleSubmit = () => {
-    void mutateAsync({ password })
+    mutateAsync({ password })
   }
 
   const formError = error

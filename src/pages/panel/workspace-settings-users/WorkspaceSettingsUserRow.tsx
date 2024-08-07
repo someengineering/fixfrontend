@@ -53,7 +53,7 @@ export const WorkspaceSettingsUserRow = ({ workspaceUser }: WorkspaceSettingsUse
             })
           },
           onError: () => {
-            void queryClient.invalidateQueries({
+            queryClient.invalidateQueries({
               queryKey: ['workspace-users'],
             })
           },

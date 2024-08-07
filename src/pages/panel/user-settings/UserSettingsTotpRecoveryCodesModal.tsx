@@ -36,7 +36,7 @@ export const UserSettingsTotpRecoveryCodesModal = ({
               <Trans>Close</Trans>
             </Button>
           </Stack>
-          <Button variant="contained" color="primary" onClick={() => void copy(recoveryCodes.join('\n'))}>
+          <Button variant="contained" color="primary" onClick={() => copy(recoveryCodes.join('\n'))}>
             Copy
           </Button>
           <Button

@@ -47,64 +47,64 @@ export const EventButton = () => {
           break
         }
         case 'tenant_accounts_collected':
-          void queryClient.invalidateQueries({
+          queryClient.invalidateQueries({
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace'),
           })
           break
         case 'cloud_account_configured':
-          void queryClient.invalidateQueries({
+          queryClient.invalidateQueries({
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
-          void showSnackbar(t`${getAccountCloudName(ev.data.cloud)} Cloud account configured, id: ${ev.data.account_id}`, {
+          showSnackbar(t`${getAccountCloudName(ev.data.cloud)} Cloud account configured, id: ${ev.data.account_id}`, {
             severity: 'success',
             autoHideDuration: null,
           })
           break
         case 'aws_account_configured': // TODO: remove aws specific events
-          void queryClient.invalidateQueries({
+          queryClient.invalidateQueries({
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
-          void showSnackbar(t`${ev.data.aws_account_id ? 'AWS ' : ''} Cloud account configured, id: ${ev.data.aws_account_id}`, {
+          showSnackbar(t`${ev.data.aws_account_id ? 'AWS ' : ''} Cloud account configured, id: ${ev.data.aws_account_id}`, {
             severity: 'success',
             autoHideDuration: null,
           })
           break
         case 'cloud_account_degraded':
-          void queryClient.invalidateQueries({
+          queryClient.invalidateQueries({
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
-          void showSnackbar(t`${getAccountCloudName(ev.data.cloud)} Cloud account degraded, id: ${ev.data.account_id}`, {
+          showSnackbar(t`${getAccountCloudName(ev.data.cloud)} Cloud account degraded, id: ${ev.data.account_id}`, {
             severity: 'warning',
             autoHideDuration: null,
           })
           break
         case 'aws_account_degraded':
-          void queryClient.invalidateQueries({
+          queryClient.invalidateQueries({
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
-          void showSnackbar(t`${getAccountCloudName(ev.data.cloud)} Cloud account degraded, id: ${ev.data.account_id}`, {
+          showSnackbar(t`${getAccountCloudName(ev.data.cloud)} Cloud account degraded, id: ${ev.data.account_id}`, {
             severity: 'warning',
             autoHideDuration: null,
           })
           break
         case 'cloud_account_discovered':
-          void queryClient.invalidateQueries({
+          queryClient.invalidateQueries({
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
-          void showSnackbar(t`${getAccountCloudName(ev.data.cloud)} Cloud account discovered, id: ${ev.data.account_id}`, {
+          showSnackbar(t`${getAccountCloudName(ev.data.cloud)} Cloud account discovered, id: ${ev.data.account_id}`, {
             severity: 'info',
           })
           break
         case 'aws_account_discovered':
-          void queryClient.invalidateQueries({
+          queryClient.invalidateQueries({
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
-          void showSnackbar(t`${ev.data.aws_account_id ? 'AWS' : ''} Cloud account discovered, id: ${ev.data.aws_account_id}`, {
+          showSnackbar(t`${ev.data.aws_account_id ? 'AWS' : ''} Cloud account discovered, id: ${ev.data.aws_account_id}`, {
             severity: 'info',
           })
           break
         case 'collect-error':
-          void queryClient.invalidateQueries({
+          queryClient.invalidateQueries({
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace'),
           })
           //   showSnackbar(t`Task "${ev.data.task}" with workflow "${ev.data.workflow}" failed: ${ev.data.message}`, {

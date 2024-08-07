@@ -229,7 +229,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
       )
       setAxiosWithAuth(instance)
       setIsFetching(true)
-      void Promise.all([
+      Promise.all([
         handleRefreshWorkspaces(instance, true),
         getCurrentUserQuery(instance).then((currentUser) => {
           handleInternalSetAuth((prev) => ({ ...prev, currentUser }))

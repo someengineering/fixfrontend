@@ -13,7 +13,7 @@ export const SetupTemplateButton = () => {
   const copyString = useCopyString()
   const handleCopy = () => {
     if (cfTemplateUrl) {
-      void copyString(cfTemplateUrl)
+      copyString(cfTemplateUrl)
     }
   }
   return <SetupTemplateButtonComponent url={cfTemplateUrl} onClick={handleCopy} />

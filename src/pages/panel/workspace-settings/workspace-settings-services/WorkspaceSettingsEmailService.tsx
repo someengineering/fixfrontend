@@ -46,7 +46,7 @@ export const WorkspaceSettingsEmailService = ({
       { workspaceId: selectedWorkspace?.id ?? '', email, name, channel: 'email' },
       {
         onSettled: () => {
-          void queryClient.invalidateQueries({
+          queryClient.invalidateQueries({
             predicate: (query) => query.queryKey[0] === 'workspace-notifications',
           })
           modalRef.current?.(false)
