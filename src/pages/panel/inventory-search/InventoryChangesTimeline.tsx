@@ -10,6 +10,7 @@ import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { WorkspaceInventoryNodeHistoryChanges } from 'src/shared/types/server'
 import { getNumberFormatter } from 'src/shared/utils/getNumberFormatter'
+import { durationToCustomDurationString } from 'src/shared/utils/parseDuration'
 import { postWorkspaceInventoryHistoryTimelineQuery } from './postWorkspaceInventoryHistoryTimeline.query'
 import { inventoryRenderNodeChangeCellToString } from './utils/inventoryRenderNodeChangeCell'
 
@@ -32,15 +33,33 @@ const getColorFromHistoryChange = (change: WorkspaceInventoryNodeHistoryChanges,
   }
 }
 
+const DEFAULT_LABELS_LENGTH = 26
+
 export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelineProps) => {
   const {
     history: { changes, after, before },
     onHistoryChange,
   } = useFixQueryParser()
-  const beforeDate = useMemo(() => (before ? new Date(before) : new Date()), [before])
+  const beforeDate = useMemo(
+    () => (before ? (new Date(before).valueOf() > new Date().valueOf() ? new Date() : new Date(before)) : new Date()),
+    [before],
+  )
   const afterDate = useMemo(() => (after ? new Date(after) : new Date(new Date().setMonth(new Date().getMonth() - 1))), [after])
   const { selectedWorkspace } = useUserProfile()
   const { mode } = useThemeMode()
+
+  const { labelsDur, granularity } = useMemo(() => {
+    const granularity = Math.max(Math.abs((beforeDate.valueOf() - afterDate.valueOf()) / DEFAULT_LABELS_LENGTH), 60 * 60 * 1000)
+    const labelsDur = []
+    const end = beforeDate.valueOf()
+    for (let current = afterDate.valueOf(); current < end; current += granularity) {
+      labelsDur.push(current)
+    }
+    return { labelsDur, granularity }
+  }, [afterDate, beforeDate])
+
+  const isGranularityMoreThanADay = granularity >= 24 * 60 * 60 * 1000
+
   const {
     i18n: { locale },
   } = useLingui()
@@ -52,52 +71,51 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
       changes.sort().join(','),
       afterDate.toISOString(),
       beforeDate.toISOString(),
-      '',
+      durationToCustomDurationString({ duration: granularity }),
     ],
     queryFn: postWorkspaceInventoryHistoryTimelineQuery,
   })
-  const { series, labels } = useMemo(() => {
+
+  const dummySeries = useMemo(() => {
+    const numberFormatter = getNumberFormatter(locale)
+    return changes.reduce(
+      (prev, change) => ({
+        ...prev,
+        [change]: {
+          valueFormatter: numberFormatter,
+          data: labelsDur.map(() => 0),
+          label: inventoryRenderNodeChangeCellToString(change),
+          stack: 'total',
+          color: getColorFromHistoryChange(change, mode === 'dark'),
+          stackOffset: 'none',
+        },
+      }),
+      {} as Record<WorkspaceInventoryNodeHistoryChanges, BarChartProps['series'][number]>,
+    )
+  }, [changes, labelsDur, locale, mode])
+
+  const [series, labels] = useMemo(() => {
+    const labels = labelsDur.map((item) => new Date(item))
     if (data) {
-      const numberFormatter = getNumberFormatter(locale)
-      const processedLabels = {} as Record<string, Date>
-      let index = -1
-      const series = {} as Record<WorkspaceInventoryNodeHistoryChanges, BarChartProps['series'][number]>
+      const [series, seriesChanges] = (Object.keys(dummySeries) as WorkspaceInventoryNodeHistoryChanges[]).reduce(
+        (prev, change) => [
+          [...prev[0], dummySeries[change]],
+          [...prev[1], change],
+        ],
+        [[], []] as [BarChartProps['series'], WorkspaceInventoryNodeHistoryChanges[]],
+      )
       data.forEach(({ at, group: { change }, v }) => {
-        if (!processedLabels[at]) {
-          processedLabels[at] = new Date(at)
-          index++
-        }
-        if (!series[change] || !series[change].data) {
-          const seriesData = [] as number[]
-          seriesData[index] = v
-          series[change] = {
-            valueFormatter: numberFormatter,
-            data: [...seriesData],
-            label: inventoryRenderNodeChangeCellToString(change),
-            stack: 'total',
-            color: getColorFromHistoryChange(change, mode === 'dark'),
-            stackOffset: 'none',
-          }
-        } else {
-          series[change].data[index] = v
-          series[change].data = [...series[change].data]
+        const foundSeriesIndex = seriesChanges.indexOf(change)
+        const foundDataIndex = labelsDur.indexOf(new Date(at).valueOf())
+        if (foundDataIndex > -1 && foundSeriesIndex > -1 && series[foundSeriesIndex] && series[foundSeriesIndex].data) {
+          series[foundSeriesIndex].data = [...series[foundSeriesIndex].data]
+          series[foundSeriesIndex].data[foundDataIndex] = v
         }
       })
-      const labels = Object.entries(processedLabels).sort(([, a], [, b]) => a.valueOf() - b.valueOf())
-      return {
-        series: Object.values(series),
-        labels: labels.map(([_, date]) => date),
-      }
+      return [series, labels]
     }
-    return {
-      series: [],
-      labels: [],
-    }
-  }, [data, locale, mode])
-
-  const granularity = labels.length
-    ? Math.max(Math.abs((beforeDate.valueOf() - afterDate.valueOf()) / labels.length), 60 * 60 * 1000)
-    : 24 * 60 * 60 * 1000
+    return [[] as BarChartProps['series'], labels]
+  }, [data, dummySeries, labelsDur])
   return !isLoading && !data ? null : (
     <Box width="100%" overflow="auto">
       <Box width="100%" maxWidth={!labels.length ? '100%' : labels.length * 62 + 150} minWidth={labels.length * 20 + 150} height={500}>
@@ -136,7 +154,7 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
                 valueFormatter: (val: Date, ctx) =>
                   ctx.location === 'tick'
                     ? dayjs(val).locale(locale).format('L')
-                    : dayjs(val).format(granularity >= 24 * 60 * 60 * 1000 ? 'dddd, LL' : 'llll'),
+                    : dayjs(val).format(isGranularityMoreThanADay ? 'dddd, LL' : 'llll'),
                 // @ts-expect-error something
                 categoryGapRatio: 0.5,
               },
@@ -144,12 +162,18 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
             onAxisClick={(_, axisData) => {
               if (axisData && axisData.axisValue && typeof axisData.axisValue === 'object') {
                 const after = new Date(axisData.axisValue.valueOf())
-                after.setHours(0)
+                if (isGranularityMoreThanADay) {
+                  after.setHours(0)
+                }
                 after.setMinutes(0)
                 after.setSeconds(0)
                 after.setMilliseconds(0)
                 const before = new Date(after.valueOf())
-                before.setDate(before.getDate() + 1)
+                if (isGranularityMoreThanADay) {
+                  before.setDate(after.getDate() + 1)
+                } else {
+                  before.setHours(after.getHours() + 1)
+                }
                 onHistoryChange({
                   changes,
                   after: after.toISOString(),
