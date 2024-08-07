@@ -1,11 +1,13 @@
-import { Trans, t } from '@lingui/macro'
+import { Trans, plural, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import CancelIcon from '@mui/icons-material/Cancel'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import SendIcon from '@mui/icons-material/Send'
+import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import { LoadingButton } from '@mui/lab'
 import {
+  Badge,
   Button,
   ButtonBase,
   Checkbox,
@@ -20,16 +22,19 @@ import {
 } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { FormEvent, ReactNode, useCallback, useEffect, useRef, useState } from 'react'
+import { FormEvent, ReactNode, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
+import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { InternalLinkButton } from 'src/shared/link-button'
+import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { Modal } from 'src/shared/modal'
 import { useNonce } from 'src/shared/providers'
 import { GetWorkspaceInventoryReportSummaryResponse } from 'src/shared/types/server'
 import { Account } from 'src/shared/types/server-shared'
 import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
 import { getAccountName } from 'src/shared/utils/getAccountName'
+import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
 import { deleteAccountMutation } from './deleteAccount.mutation'
 import { patchAccountMutation } from './patchAccount.mutation'
 import { patchAccountDisableMutation } from './patchAccountDisable.mutation'
@@ -37,6 +42,22 @@ import { patchAccountEnableMutation } from './patchAccountEnable.mutation'
 import { patchAccountScanDisableMutation } from './patchAccountScanDisable.mutation'
 import { patchAccountScanEnableMutation } from './patchAccountScanEnable.mutation'
 import { replaceRowByAccount } from './replaceRowByAccount'
+import { WorkspaceSettingsAccountErrorLog } from './WorkspaceSettingsAccountErrorLog'
+
+const getDateStr = (date?: string | null, locale?: Intl.LocalesArgument) => {
+  if (!date) {
+    return [undefined, undefined] as const
+  }
+
+  const nextScanDate = new Date(date)
+  if (Number.isNaN(nextScanDate.valueOf())) {
+    return [undefined, undefined] as const
+  }
+  const nextScanDateStr = nextScanDate.toLocaleDateString(locale)
+  const nextScanStr = `${new Date().toLocaleDateString(locale) === nextScanDateStr ? '' : `${nextScanDateStr} `}${nextScanDate?.toLocaleTimeString(locale)}`
+  const nextScanDurStr = iso8601DurationToString(diffDateTimeToDuration(new Date(), nextScanDate), 1).toLocaleLowerCase()
+  return [nextScanStr, nextScanDurStr] as const
+}
 
 interface WorkspaceSettingsAccountRowProps {
   account: Account
@@ -57,6 +78,7 @@ export const WorkspaceSettingsAccountRow = ({
   const showCannotEnableModalRef = useRef<(show?: boolean) => void>()
   const showDeleteModalRef = useRef<(show?: boolean) => void>()
   const showDegradedModalRef = useRef<(show?: boolean) => void>()
+  const showErrorModalRef = useRef<(show?: boolean) => void>()
   const { selectedWorkspace, checkPermission } = useUserProfile()
   const hasPermission = checkPermission('updateCloudAccounts')
   const queryClient = useQueryClient()
@@ -238,13 +260,11 @@ export const WorkspaceSettingsAccountRow = ({
       )
     }
   }
-
-  const nextScanDate = account.next_scan ? new Date(account.next_scan) : undefined
-  const nextScanDateStr = nextScanDate?.toLocaleDateString(locale)
-  const nextScanStr = nextScanDateStr
-    ? `${new Date().toLocaleDateString(locale) === nextScanDateStr ? '' : `${nextScanDateStr} `}${nextScanDate?.toLocaleTimeString(locale)}`
-    : undefined
-
+  const [nextScanStr, nextScanDurStr] =
+    !account.is_configured || !account.enabled || account.state === 'degraded'
+      ? [undefined, undefined]
+      : getDateStr(account.next_scan, locale)
+  const [lastScanStr, lastScanDurStr] = getDateStr(account.last_scan_finished_at, locale)
   return (
     <TableRow>
       <TableCell>
@@ -330,9 +350,30 @@ export const WorkspaceSettingsAccountRow = ({
         )}
       </TableCell>
       <TableCell>{account.resources ?? '-'}</TableCell>
+      <TableCell>
+        {lastScanStr ? (
+          <Tooltip title={lastScanStr}>
+            <Typography>
+              <Trans>{lastScanDurStr} Ago</Trans>
+            </Typography>
+          </Tooltip>
+        ) : (
+          '-'
+        )}
+      </TableCell>
       {isNotConfigured ? null : (
         <>
-          <TableCell>{nextScanStr ?? '-'}</TableCell>
+          <TableCell>
+            {nextScanStr ? (
+              <Tooltip title={nextScanStr}>
+                <Typography>
+                  <Trans>In {nextScanDurStr}</Trans>
+                </Typography>
+              </Tooltip>
+            ) : (
+              '-'
+            )}
+          </TableCell>
           {hasPermission ? (
             <>
               <TableCell>
@@ -367,21 +408,38 @@ export const WorkspaceSettingsAccountRow = ({
           ) : null}
         </>
       )}
-      {hasPermission ? (
-        <TableCell>
-          {deleteAccountIsPending ? (
-            <IconButton aria-label={t`Delete`} disabled>
-              <DeleteIcon />
-            </IconButton>
-          ) : (
-            <Tooltip title={<Trans>Delete</Trans>} arrow>
-              <IconButton aria-label={t`Delete`} color="error" onClick={handleDeleteModal}>
+      <TableCell>
+        <Stack direction="row" spacing={1} alignItems="center">
+          {hasPermission ? (
+            deleteAccountIsPending ? (
+              <IconButton aria-label={t`Delete`} disabled>
                 <DeleteIcon />
               </IconButton>
+            ) : (
+              <Tooltip title={<Trans>Delete</Trans>} arrow>
+                <IconButton aria-label={t`Delete`} color="error" onClick={handleDeleteModal}>
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
+            )
+          ) : null}
+          {account.errors ? (
+            <Tooltip
+              title={
+                <Typography color="warning.main">
+                  {plural(account.errors, { one: 'One error reported', two: 'Two errors reported', other: '# errors reported' })}
+                </Typography>
+              }
+            >
+              <Badge badgeContent={account.errors} color="warning">
+                <ButtonBase onClick={() => showErrorModalRef.current?.(true)}>
+                  <WarningAmberIcon color="warning" />
+                </ButtonBase>
+              </Badge>
             </Tooltip>
-          )}
-        </TableCell>
-      ) : null}
+          ) : null}
+        </Stack>
+      </TableCell>
       <Modal
         title={<Trans>Access to your account is broken</Trans>}
         width={550}
@@ -450,6 +508,22 @@ export const WorkspaceSettingsAccountRow = ({
             </Trans>
           )}
         </Typography>
+      </Modal>
+      <Modal
+        openRef={showErrorModalRef}
+        width={1000}
+        title={<Trans>Errors reported during the last collect of account {accountName}</Trans>}
+        actions={
+          <Button color="primary" variant="contained" onClick={() => showErrorModalRef.current?.(false)}>
+            <Trans>Ok</Trans>
+          </Button>
+        }
+      >
+        <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+          <Suspense fallback={<LoadingSuspenseFallback />}>
+            <WorkspaceSettingsAccountErrorLog accountId={account.id} />
+          </Suspense>
+        </NetworkErrorBoundary>
       </Modal>
       <Modal
         title={<Trans>Are you sure?</Trans>}
