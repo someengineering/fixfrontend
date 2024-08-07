@@ -27,7 +27,7 @@ export const UserSettingsFormEmail = ({ ...rest }: UserSettingsFormEmailProps) =
     }
   }, [data])
   const handleSubmit = () => {
-    void mutateAsync({ email })
+    mutateAsync({ email })
   }
   const formError = error
     ? (((error as AxiosError)?.response?.data as { detail: string })?.detail ?? t`Something went wrong please try again later.`)

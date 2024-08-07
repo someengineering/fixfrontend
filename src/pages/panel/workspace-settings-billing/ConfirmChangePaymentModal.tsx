@@ -29,16 +29,16 @@ export const ConfirmChangePaymentModal = ({ paymentModalShowRef, currentPaymentM
   const { mutate: changeBilling, isPending: changeBillingIsPending } = useMutation({
     mutationFn: putWorkspaceBillingMutation,
     onSuccess: () => {
-      void showSnackbar(t`Payment method changed to ${paymentMethodToLabel(paymentMethod.method)}`, { severity: 'success' })
+      showSnackbar(t`Payment method changed to ${paymentMethodToLabel(paymentMethod.method)}`, { severity: 'success' })
     },
     onError: (error) => {
       const errorMessageDetail = changeProductTierErrorResponseToMessage(error as AxiosError<PutWorkspaceBillingErrorResponse>)
-      void showSnackbar(errorMessageDetail ?? t`An error occurred, please try again later.`, {
+      showSnackbar(errorMessageDetail ?? t`An error occurred, please try again later.`, {
         severity: 'error',
       })
     },
     onSettled: () => {
-      void queryClient.invalidateQueries({
+      queryClient.invalidateQueries({
         queryKey: ['workspace-billing'],
       })
       showModalRef.current?.(false)

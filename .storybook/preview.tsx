@@ -3,15 +3,14 @@ import { langs } from 'src/shared/constants'
 import { WithProviders } from './WithProviders'
 
 const preview: Preview = {
-  parameters: {
-    actions: { argTypesRegex: '^on.*' },
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
-      },
-    },
-  },
+  // parameters: {
+  //   controls: {
+  //     matchers: {
+  //       color: /(background|color)$/i,
+  //       date: /Date$/i,
+  //     },
+  //   },
+  // },
   globalTypes: {
     theme: {
       name: 'Theme',

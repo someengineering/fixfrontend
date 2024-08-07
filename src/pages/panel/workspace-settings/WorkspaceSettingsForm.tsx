@@ -19,13 +19,13 @@ export const WorkspaceSettingsForm = () => {
         queryClient.setQueryData(['workspace-settings', selectedWorkspace?.id ?? ''], () => data)
         queryClient.setQueryData(['workspace-external-id', selectedWorkspace?.id ?? ''], () => data.external_id)
       } else {
-        void queryClient.invalidateQueries({
+        queryClient.invalidateQueries({
           predicate: (query) => query.queryKey[0] === 'workspace-settings' || query.queryKey[0] === 'workspace-external-id',
         })
       }
     },
     onSettled: () => {
-      void refreshWorkspaces()
+      refreshWorkspaces()
     },
   })
   const { data, isLoading } = useQuery({
@@ -47,7 +47,7 @@ export const WorkspaceSettingsForm = () => {
         label={<Trans>Workspace Id</Trans>}
         buttonName={<Trans>Copy</Trans>}
         isLoading={isLoading}
-        onSubmit={(id) => void copyString(id)}
+        onSubmit={(id) => copyString(id)}
         readonly
         value={data?.id ?? ''}
         noDisabledPermission
@@ -62,7 +62,7 @@ export const WorkspaceSettingsForm = () => {
             { name: data?.name ?? '', generate_new_external_id: true, workspaceId: selectedWorkspace?.id ?? '' },
             {
               onSuccess: (data) => {
-                void copyString(data.external_id)
+                copyString(data.external_id)
                 focusedRef.current?.(true)
               },
             },

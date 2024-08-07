@@ -26,13 +26,13 @@ export const InviteExternalUser = ({ preInvite }: InviteExternalUserProps) => {
   const { mutate: postWorkspaceInvite, isPending: postWorkspaceInviteIsPending } = useMutation({
     mutationFn: postWorkspaceInviteMutation,
     onSuccess: () => {
-      void showSnackbar(t`Successfully invited ${email}`, { severity: 'success' })
+      showSnackbar(t`Successfully invited ${email}`, { severity: 'success' })
     },
     onError: () => {
-      void showSnackbar(t`An error occurred, please try again later.`, { severity: 'error' })
+      showSnackbar(t`An error occurred, please try again later.`, { severity: 'error' })
     },
     onSettled: () => {
-      void queryClient.invalidateQueries({
+      queryClient.invalidateQueries({
         queryKey: ['workspace-invites'],
       })
       showModalRef.current?.(false)

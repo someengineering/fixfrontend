@@ -300,7 +300,7 @@ msgstr "Verzeichnis hinzufügen"
 msgid "Add external directory"
 msgstr "Externes Verzeichnis hinzufügen"
 
-#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:64
+#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:65
 msgid "Add Filter"
 msgstr ""
 
@@ -477,7 +477,7 @@ msgstr "Automatisches Cloud Setup"
 msgid "AWS Marketplace"
 msgstr "AWS Marketplace"
 
-#: src/containers/panel/PanelInitialMessageHandler.tsx:17
+#: src/containers/panel/PanelInitialMessageHandler.tsx:18
 msgid "AWS Marketplace has been successfully subscribed"
 msgstr "AWS Marketplace wurde erfolgreich abonniert"
 
@@ -704,7 +704,7 @@ msgstr "Schließen"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:165
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormCloudValues.tsx:62
-#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:96
+#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:97
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:253
 #: src/pages/panel/security/AccountCard.tsx:38
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:568
@@ -897,7 +897,7 @@ msgstr ""
 msgid "Credit or Debit Card"
 msgstr ""
 
-#: src/containers/panel/PanelInitialMessageHandler.tsx:19
+#: src/containers/panel/PanelInitialMessageHandler.tsx:20
 msgid "Credit/Debit Card has been successfully subscribed"
 msgstr ""
 
@@ -1295,7 +1295,7 @@ msgstr ""
 msgid "History"
 msgstr ""
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:62
+#: src/shared/error-boundary-fallback/index.tsx:63
 msgid "Homepage"
 msgstr "Startseite"
 
@@ -1647,8 +1647,8 @@ msgstr "Neue Ausgaben"
 msgid "new non compliant resources in the past {since}"
 msgstr "neue nicht konforme Ressourcen in der Vergangenheit {since}"
 
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:28
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:44
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:27
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:43
 msgid "New Password"
 msgstr "Neues Kennwort"
 
@@ -1787,7 +1787,7 @@ msgstr "Hoppla, der Benutzername oder das Passwort scheinen nicht mit unseren Au
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Sie sie und versuchen Sie es erneut."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:38
+#: src/shared/error-boundary-fallback/index.tsx:39
 msgid "Oops! Something went wrong."
 msgstr "Hoppla! Etwas ist schief gelaufen."
 
@@ -1976,7 +1976,7 @@ msgstr ""
 msgid "Profile"
 msgstr "Profil"
 
-#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:99
+#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:100
 msgid "Properties"
 msgstr ""
 
@@ -2018,7 +2018,7 @@ msgid "Regenerate"
 msgstr "Regenerieren"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:183
-#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:97
+#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:98
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegionValues.tsx:60
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:258
 msgid "Region"
@@ -2328,7 +2328,7 @@ msgstr "Einige Prüfungen wurden für diese Ressource deaktiviert"
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:321
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:33
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:23
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:22
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:107
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:110
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:39
@@ -2369,7 +2369,7 @@ msgstr "Abonnement erfolgreich zu {0} hinzugefügt"
 msgid "Successfully invited {email}"
 msgstr "{email} erfolgreich eingeladen"
 
-#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:98
+#: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:99
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:331
 msgid "Tags"
 msgstr "Stichworte"
@@ -2511,7 +2511,7 @@ msgstr "TOTP-Setup"
 msgid "Trial"
 msgstr "Probezeit"
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:76
+#: src/shared/error-boundary-fallback/index.tsx:77
 msgid "Try again"
 msgstr "Versuchen Sie es erneut"
 
@@ -2561,7 +2561,7 @@ msgstr "Ungenutzte Datenbankinstanzen"
 msgid "Update Email"
 msgstr "E-Mail aktualisieren"
 
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:32
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:31
 msgid "Update Password"
 msgstr "Kennwort aktualisieren"
 
@@ -2670,7 +2670,7 @@ msgstr ""
 msgid "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 msgstr "Es tut uns leid, dass Sie herunterstufen, aber wir sind dankbar, Sie weiterhin in unserer kostenlosen Stufe zu haben. Wenn Ihnen etwas Bestimmtes fehlt, wenden Sie sich bitte direkt an mich, <0>lars@some.engineering</0>. Ich würde gerne von Ihnen hören und Ihnen so gut wie möglich helfen."
 
-#: src/shared/error-boundary-fallback/ErrorBoundaryFallback.tsx:40
+#: src/shared/error-boundary-fallback/index.tsx:41
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "Wir entschuldigen uns für die Unannehmlichkeiten. Unser Team wurde benachrichtigt und das Problem wird untersucht. Bitte versuchen Sie es in ein paar Minuten noch einmal. Wenn das Problem weiterhin besteht, können Sie uns gerne <0>auf Discord</0> kontaktieren. Danke für Ihre Geduld!"
 

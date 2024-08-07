@@ -22,7 +22,7 @@ export const WorkspaceSettingsDisconnectServiceModal = ({ name, channel, isLoadi
   const { mutate, isPending } = useMutation({
     mutationFn: deleteWorkspaceNotificationMutation,
     onSettled: () => {
-      void queryClient.invalidateQueries({
+      queryClient.invalidateQueries({
         predicate: (query) => query.queryKey[0] === 'workspace-notifications',
       })
       disconnectModalRef.current?.(false)

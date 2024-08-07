@@ -45,7 +45,7 @@ export const UserSettingsSocialNetworkDeleteButton = ({ providerId, email, name 
         )
       },
       onSettled: () => {
-        void queryClient.invalidateQueries({
+        queryClient.invalidateQueries({
           predicate: (query) => query.queryKey[0] === 'oauth-associate',
         })
         openRef.current?.(false)

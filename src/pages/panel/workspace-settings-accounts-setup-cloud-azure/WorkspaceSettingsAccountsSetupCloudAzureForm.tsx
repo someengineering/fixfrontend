@@ -55,10 +55,10 @@ export const WorkspaceSettingsAccountsSetupCloudAzureForm = ({
       setHasError(true)
     },
     onSuccess: () => {
-      void showSnackbar(t`Done! We will now import your Azure accounts, this usually takes a couple of minutes.`, { severity: 'success' })
+      showSnackbar(t`Done! We will now import your Azure accounts, this usually takes a couple of minutes.`, { severity: 'success' })
     },
     onSettled: () => {
-      void queryClient.invalidateQueries({
+      queryClient.invalidateQueries({
         predicate: (query) => query.queryKey[0] === 'workspace-cloud-account-azure-credentials',
       })
     },

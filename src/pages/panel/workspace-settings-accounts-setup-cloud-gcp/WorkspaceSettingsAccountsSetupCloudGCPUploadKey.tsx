@@ -28,7 +28,7 @@ export const WorkspaceSettingsAccountsSetupCloudGCPUploadKey = ({ isMobile }: Wo
     mutationFn: putWorkspaceCloudAccountGCPKeyMutation,
     onSettled: () => {
       handleSetProgress.current = undefined
-      void queryClient.invalidateQueries({
+      queryClient.invalidateQueries({
         predicate: (query) => query.queryKey[0] === 'workspace-cloud-account-gcp-key',
       })
       setProgress(0)

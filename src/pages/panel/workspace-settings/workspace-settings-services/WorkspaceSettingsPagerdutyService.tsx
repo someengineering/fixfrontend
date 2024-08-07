@@ -38,7 +38,7 @@ export const WorkspaceSettingsPagerdutyService = ({ isConnected, defaultName, is
       { workspaceId: selectedWorkspace?.id ?? '', integration_key: integrationKey, name, channel: 'pagerduty' },
       {
         onSettled: () => {
-          void queryClient.invalidateQueries({
+          queryClient.invalidateQueries({
             predicate: (query) => query.queryKey[0] === 'workspace-notifications',
           })
           modalRef.current?.(false)

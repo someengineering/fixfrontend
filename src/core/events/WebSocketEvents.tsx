@@ -131,7 +131,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
           })
         }
         if (ev.code === WS_SERVER_CLOSE_CODE_NO_RETRY) {
-          void showSnackbar(
+          showSnackbar(
             ev.reason === apiMessages.paymentOnHold
               ? t`Payment is required for your workspace, Please contact the workspace owner`
               : t`You don't have access to this workspace`,
@@ -140,7 +140,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
               autoHideDuration: null,
             },
           )
-          void logout(true)
+          logout(true)
         } else if (ev.code !== WS_CLOSE_CODE_NO_RETRY && !noRetry.current) {
           if (isAuthenticated && selectedWorkspace?.id) {
             window.setTimeout(createWebSocket, retryTimeout)

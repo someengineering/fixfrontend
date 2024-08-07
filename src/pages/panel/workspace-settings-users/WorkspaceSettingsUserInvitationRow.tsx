@@ -50,7 +50,7 @@ export const WorkspaceSettingsUserInvitationRow = ({ workspaceInvite }: Workspac
             })
           },
           onError: () => {
-            void queryClient.invalidateQueries({
+            queryClient.invalidateQueries({
               queryKey: ['workspace-users'],
             })
           },

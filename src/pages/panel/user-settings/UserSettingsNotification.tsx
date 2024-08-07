@@ -28,7 +28,7 @@ export const UserSettingsNotification = () => {
       queryClient.setQueryData(['notification-user', currentUser?.id], data)
     },
     onSettled: () => {
-      void queryClient.invalidateQueries({
+      queryClient.invalidateQueries({
         predicate: (query) => query.queryKey[0] === 'notification-user',
       })
     },

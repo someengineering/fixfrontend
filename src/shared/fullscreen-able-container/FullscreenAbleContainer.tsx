@@ -33,10 +33,7 @@ export const FullscreenAbleContainer = forwardRef<HTMLDivElement, FullscreenAble
       }}
       position="relative"
     >
-      <Fab
-        onClick={(e) => void fullscreenHandler(e)}
-        sx={({ spacing }) => ({ bottom: spacing(2), right: spacing(2), position: 'absolute' })}
-      >
+      <Fab onClick={fullscreenHandler} sx={({ spacing }) => ({ bottom: spacing(2), right: spacing(2), position: 'absolute' })}>
         {hasFullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
       </Fab>
     </Box>

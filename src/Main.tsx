@@ -33,7 +33,7 @@ nonce = undefined
 // to log results (for example: reportWebVitals(console.info))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 if (env.isLocal) {
-  void import(
+  import(
     /* webpackChunkName: "reportWebVitals" */
     './reportWebVitals'
   ).then((reportWebVitals) => {

@@ -2,7 +2,7 @@ import { Metric, ReportOpts } from 'web-vitals'
 
 const reportWebVitals = (onPerfEntry?: (metric: Metric) => void, opts?: ReportOpts | undefined) => {
   if (onPerfEntry && onPerfEntry instanceof Function) {
-    void import('web-vitals').then(({ onCLS, onINP, onFCP, onLCP, onTTFB }) => {
+    import('web-vitals').then(({ onCLS, onINP, onFCP, onLCP, onTTFB }) => {
       onCLS(onPerfEntry, opts)
       onINP(onPerfEntry, opts)
       onFCP(onPerfEntry, opts)

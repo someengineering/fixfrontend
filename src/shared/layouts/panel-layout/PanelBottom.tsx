@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react'
 import { panelUI } from 'src/shared/constants'
 import { shouldForwardPropWithWhiteList } from 'src/shared/utils/shouldForwardProp'
 
-interface PanelAppBarProps extends PropsWithChildren {}
+type PanelAppBarProps = PropsWithChildren
 
 const BottomRegion = styled(Stack<'footer'>, { shouldForwardProp: shouldForwardPropWithWhiteList(['component']) })(({ theme }) => ({
   display: 'flex',
