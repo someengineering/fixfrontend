@@ -55,6 +55,10 @@ msgstr "{0, plural, one {# Year} other {# Years}}"
 msgid "{0, plural, one {check} other {checks}}"
 msgstr "{0, plural, one {check} other {checks}}"
 
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:430
+msgid "{0, plural, one {One error reported} two {Two errors reported} other {# errors reported}}"
+msgstr "{0, plural, one {One error reported} two {Two errors reported} other {# errors reported}}"
+
 #: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:42
 #: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:68
 #: src/pages/panel/inventory/InventoryInfoResourceChangesTable.tsx:94
@@ -122,6 +126,10 @@ msgstr "{label} is not valid"
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput.tsx:30
 msgid "{label} is required"
 msgstr "{label} is required"
+
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:357
+msgid "{lastScanDurStr} Ago"
+msgstr "{lastScanDurStr} Ago"
 
 #: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:107
 msgid "{scanIntervalStr} scans"
@@ -225,8 +233,8 @@ msgstr "Accept"
 msgid "Access Control (IAM)"
 msgstr "Access Control (IAM)"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:260
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:386
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:280
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:444
 msgid "Access to your account is broken"
 msgstr "Access to your account is broken"
 
@@ -258,7 +266,7 @@ msgstr "Accounts Summary"
 msgid "Action"
 msgstr "Action"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:89
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:92
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:91
 msgid "Actions"
 msgstr "Actions"
@@ -441,7 +449,7 @@ msgid "Are you sure you want to remove the {name} account {0}?"
 msgstr "Are you sure you want to remove the {name} account {0}?"
 
 #: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:52
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:455
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:529
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:85
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:107
 msgid "Are you sure?"
@@ -545,10 +553,10 @@ msgstr "Business"
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:68
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:121
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:49
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:306
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:310
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:311
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:474
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:326
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:330
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:331
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:548
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:92
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:154
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:158
@@ -563,7 +571,7 @@ msgstr "Business"
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:501
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:575
 msgid "Cannot enable this account"
 msgstr "Cannot enable this account"
 
@@ -690,7 +698,7 @@ msgstr "Client secret"
 
 #: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:84
 #: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:36
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:392
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:450
 msgid "Close"
 msgstr "Close"
 
@@ -699,7 +707,7 @@ msgstr "Close"
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:96
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:253
 #: src/pages/panel/security/AccountCard.tsx:38
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:494
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:568
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:59
 msgid "Cloud"
 msgstr "Cloud"
@@ -761,7 +769,7 @@ msgstr "Configuration changed"
 msgid "Configure"
 msgstr "Configure"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:404
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:462
 msgid "Configure Service Principal"
 msgstr "Configure Service Principal"
 
@@ -787,7 +795,7 @@ msgstr "Congratulations on your subscription"
 msgid "Connect"
 msgstr "Connect"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:402
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:460
 msgid "Connect GCP Service Account"
 msgstr "Connect GCP Service Account"
 
@@ -956,10 +964,10 @@ msgstr "Delayed Effect"
 #: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:45
 #: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:86
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:79
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:373
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:377
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:378
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:485
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:415
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:419
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:420
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:559
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:73
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:77
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:78
@@ -985,7 +993,7 @@ msgstr "Deleted in the last 7 days"
 
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:13
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:29
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:400
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:458
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
@@ -1037,7 +1045,7 @@ msgstr "Do not show me again"
 msgid "Do not show this message again."
 msgstr "Do not show this message again."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:458
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:532
 msgid "Do you want to delete this account?"
 msgstr "Do you want to delete this account?"
 
@@ -1080,8 +1088,8 @@ msgstr "Drill Down"
 msgid "Drop Service Account Key File"
 msgstr "Drop Service Account Key File"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:322
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:323
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:342
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:343
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:175
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:176
 msgid "Edit"
@@ -1116,7 +1124,7 @@ msgid "Enable all"
 msgstr "Enable all"
 
 #: src/pages/panel/user-settings/UserSettingsNotification.tsx:49
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:78
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:81
 msgid "Enabled"
 msgstr "Enabled"
 
@@ -1131,6 +1139,10 @@ msgstr "Enter the secret description and set the expiration date:"
 #: src/pages/panel/workspace-settings-billing/utils/productTierToLabel.ts:15
 msgid "Enterprise"
 msgstr "Enterprise"
+
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:515
+msgid "Errors reported during the last collect of account {accountName}"
+msgstr "Errors reported during the last collect of account {accountName}"
 
 #: src/shared/event-button/EventButton.tsx:138
 msgid "Events"
@@ -1314,7 +1326,7 @@ msgstr "Id"
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:250
 #: src/pages/panel/security/AccountCard.tsx:35
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:491
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:565
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:62
 #: src/shared/charts/NetworkDiagram.tsx:376
 msgid "ID"
@@ -1368,6 +1380,10 @@ msgstr "Ignored"
 #: src/pages/panel/security/OverallCard.tsx:149
 msgid "Improved"
 msgstr "Improved"
+
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:370
+msgid "In {nextScanDurStr}"
+msgstr "In {nextScanDurStr}"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:110
 msgid "in account"
@@ -1482,6 +1498,10 @@ msgstr "Kinds"
 msgid "Last login"
 msgstr "Last login"
 
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:71
+msgid "Last scan"
+msgstr "Last scan"
+
 #: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:30
 #: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:98
 msgid "Last used"
@@ -1590,7 +1610,7 @@ msgstr "Most Non-Compliant Accounts"
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:177
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:251
 #: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:92
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:497
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:571
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:65
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
@@ -1649,7 +1669,7 @@ msgstr "New security issues detected"
 msgid "Next invoice will be available"
 msgstr "Next invoice will be available"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:73
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:76
 msgid "Next scan"
 msgstr "Next scan"
 
@@ -1675,7 +1695,7 @@ msgstr "No Thanks"
 msgid "Non-Compliant Resources"
 msgstr "Non-Compliant Resources"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:461
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:535
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 
@@ -1713,7 +1733,8 @@ msgid "Objects"
 msgstr "Objects"
 
 #: src/core/auth/WorkspaceGuard.tsx:94
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:505
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:518
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:579
 msgid "Ok"
 msgstr "Ok"
 
@@ -1927,7 +1948,7 @@ msgstr "Print or copy the following recovery codes"
 msgid "Privileged"
 msgstr "Privileged"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:255
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:275
 msgid "Privileged account"
 msgstr "Privileged account"
 
@@ -2176,7 +2197,7 @@ msgstr "Security posture changed"
 msgid "Security posture improved"
 msgstr "Security posture improved"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:81
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:84
 msgid "Security Scan"
 msgstr "Security Scan"
 
@@ -2265,7 +2286,7 @@ msgstr "Service Account Key"
 msgid "Setting Up Email Notifications"
 msgstr "Setting Up Email Notifications"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:406
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:464
 msgid "Setup cloud"
 msgstr "Setup cloud"
 
@@ -2332,9 +2353,9 @@ msgid "Submission Error"
 msgstr "Submission Error"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzurePage.tsx:17
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:295
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:296
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:301
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:315
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:316
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:321
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:147
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:148
 msgid "Submit"
@@ -2410,11 +2431,11 @@ msgstr "There's already another api tokens with the same description"
 msgid "There's no account configured for this workspace."
 msgstr "There's no account configured for this workspace."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:446
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:504
 msgid "This account is currently in a degraded state possibly due to a misconfiguration.<0/>Fix was unable to gather data from this account."
 msgstr "This account is currently in a degraded state possibly due to a misconfiguration.<0/>Fix was unable to gather data from this account."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:414
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:472
 msgid "This account is currently in a degraded state.<0/>Fix was unable to gather data from this account.<1/><2/>To resume security scans, please log into the {accountName} account ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 msgstr "This account is currently in a degraded state.<0/>Fix was unable to gather data from this account.<1/><2/>To resume security scans, please log into the {accountName} account ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 
@@ -2422,7 +2443,7 @@ msgstr "This account is currently in a degraded state.<0/>Fix was unable to gath
 msgid "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 msgstr "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:424
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:482
 msgid "This project is currently in a degraded state.<0/>Fix was unable to gather data from this project.<1/><2/>To resume security scans, please ensure that the service account you configured is set up correctly.<3/>You may also recreate and upload the service account definition."
 msgstr "This project is currently in a degraded state.<0/>Fix was unable to gather data from this project.<1/><2/>To resume security scans, please ensure that the service account you configured is set up correctly.<3/>You may also recreate and upload the service account definition."
 
@@ -2430,7 +2451,7 @@ msgstr "This project is currently in a degraded state.<0/>Fix was unable to gath
 msgid "This section does not contain any controls that can be automated.<0/>Manual checks or processes are required for compliance."
 msgstr "This section does not contain any controls that can be automated.<0/>Manual checks or processes are required for compliance."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:435
+#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:493
 msgid "This subscription is currently in a degraded state.<0/>Fix was unable to gather data from this subscription.<1/><2/>To resume security scans, please ensure that the application permissions are set up correctly.<3/>You may also recreate and redefine the access credentials."
 msgstr "This subscription is currently in a degraded state.<0/>Fix was unable to gather data from this subscription.<1/><2/>To resume security scans, please ensure that the application permissions are set up correctly.<3/>You may also recreate and redefine the access credentials."
 
