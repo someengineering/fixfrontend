@@ -161,7 +161,7 @@ msgstr "<0>Important</0>: Copy and securely store this token immediately.<1/>You
 msgid "<0>Open Your Authenticator App:</0> Head over to your authenticator app and choose to add a new account manually.<1>Enter Account Details:</1> You'll need to type in your account's email address or username, and the key provided below.<2>Your Key:</2> <3/><4>Verification Type:</4> Make sure to select \"Time-based\" as the verification type.<5>Enter the Code:</5> Once your account is added manually, the app will show a 6-digit code. Pop that code into the box below and hit \"Activate\"."
 msgstr "<0>Open Your Authenticator App:</0> Head over to your authenticator app and choose to add a new account manually.<1>Enter Account Details:</1> You'll need to type in your account's email address or username, and the key provided below.<2>Your Key:</2> <3/><4>Verification Type:</4> Make sure to select \"Time-based\" as the verification type.<5>Enter the Code:</5> Once your account is added manually, the app will show a 6-digit code. Pop that code into the box below and hit \"Activate\"."
 
-#: src/containers/auth/AuthContainer.tsx:82
+#: src/containers/auth/AuthContainer.tsx:94
 msgid "<0>Privacy policy</0> | <1>Terms and conditions</1>"
 msgstr "<0>Privacy policy</0> | <1>Terms and conditions</1>"
 
@@ -204,10 +204,6 @@ msgstr "<0>You need to assign three roles for Fix Security to work:</0><1>{0}</1
 #: src/shared/layouts/panel-layout/BenchmarkCheckGuard.tsx:25
 msgid "<0>Your cloud account has been successfully added!</0><1>Thank you for deploying the CloudFormation stack in your AWS account.</1><2>Here’s what’s happening behind the scenes:</2><3><4>Initial Trust Establishment (5-15 minutes): After deployment, a cross-account trust for the role included in the stack is established between your and Fix's AWS accounts. Due to AWS's distributed infrastructure, this step can take anywhere from 5 to 15 minutes as we wait for the trust to become active across their network. During this time, our backend continuously probes to confirm when the trust is operational.</4><5>First Security Scan (2-10 minutes): Once the trust is established, we proceed with the initial security scan of your environment. Depending on the size and complexity of your cloud account, this scan can take anywhere from 2 to 10 minutes.</5><6>Email Notification: You won't have to wait in front of your browser to know when we're done. After the first security scan is completed, we'll notify you by email.</6></3><7>What to Expect Next:</7><8><9>Dashboard Availability: Your dashboard and inventory will be available shortly after the completion of the initial security scan. This gives you a comprehensive view of your security posture and any findings we have identified.</9><10>Subsequent Scans: After the initial scan, subsequent security scans will also take 2 to 10 minutes each, without the initial delay, since the trust has to be established only once.</10></8><11>We appreciate your patience during this setup process. If you have any questions or need assistance, please do not hesitate to contact us directly <12>on our Discord server<13/></12>.</11>"
 msgstr "<0>Your cloud account has been successfully added!</0><1>Thank you for deploying the CloudFormation stack in your AWS account.</1><2>Here’s what’s happening behind the scenes:</2><3><4>Initial Trust Establishment (5-15 minutes): After deployment, a cross-account trust for the role included in the stack is established between your and Fix's AWS accounts. Due to AWS's distributed infrastructure, this step can take anywhere from 5 to 15 minutes as we wait for the trust to become active across their network. During this time, our backend continuously probes to confirm when the trust is operational.</4><5>First Security Scan (2-10 minutes): Once the trust is established, we proceed with the initial security scan of your environment. Depending on the size and complexity of your cloud account, this scan can take anywhere from 2 to 10 minutes.</5><6>Email Notification: You won't have to wait in front of your browser to know when we're done. After the first security scan is completed, we'll notify you by email.</6></3><7>What to Expect Next:</7><8><9>Dashboard Availability: Your dashboard and inventory will be available shortly after the completion of the initial security scan. This gives you a comprehensive view of your security posture and any findings we have identified.</9><10>Subsequent Scans: After the initial scan, subsequent security scans will also take 2 to 10 minutes each, without the initial delay, since the trust has to be established only once.</10></8><11>We appreciate your patience during this setup process. If you have any questions or need assistance, please do not hesitate to contact us directly <12>on our Discord server<13/></12>.</11>"
-
-#: src/containers/auth/AuthContainer.tsx:61
-msgid "A few minutes to first results"
-msgstr "A few minutes to first results"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:72
 msgid "A Google Cloud Service Account is connected to this workspace. Drop file to replace it."
@@ -769,6 +765,10 @@ msgstr "Configuration changed"
 msgid "Configure"
 msgstr "Configure"
 
+#: src/containers/auth/AuthContainer.tsx:34
+msgid "Configure Fix to monitor all your accounts across AWS, Azure, and Google Cloud."
+msgstr "Configure Fix to monitor all your accounts across AWS, Azure, and Google Cloud."
+
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:462
 msgid "Configure Service Principal"
 msgstr "Configure Service Principal"
@@ -811,9 +811,9 @@ msgstr "Connect PagerDuty"
 msgid "Connect Teams"
 msgstr "Connect Teams"
 
-#: src/containers/auth/AuthContainer.tsx:27
-msgid "Connect your AWS account"
-msgstr "Connect your AWS account"
+#: src/containers/auth/AuthContainer.tsx:28
+msgid "Connect your cloud accounts"
+msgstr "Connect your cloud accounts"
 
 #: src/pages/panel/user-settings/UserSettingsPage.tsx:34
 msgid "Connected Accounts"
@@ -827,6 +827,10 @@ msgstr "Connected Services"
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:93
 msgid "Continue"
 msgstr "Continue"
+
+#: src/containers/auth/AuthContainer.tsx:75
+msgid "Continuous monitoring"
+msgstr "Continuous monitoring"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceId.tsx:16
 #: src/shared/utils/useCopyString.ts:18
@@ -1213,7 +1217,11 @@ msgstr "Finds load balancers that are not associated with any running instances.
 msgid "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
 msgstr "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
 
-#: src/containers/auth/AuthContainer.tsx:50
+#: src/containers/auth/AuthContainer.tsx:81
+msgid "Fix continuously monitors your infrastructure and alerts you of any incidents."
+msgstr "Fix continuously monitors your infrastructure and alerts you of any incidents."
+
+#: src/containers/auth/AuthContainer.tsx:49
 msgid "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
 msgstr "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
 
@@ -1251,9 +1259,9 @@ msgstr "Free"
 msgid "Full-text search"
 msgstr "Full-text search"
 
-#: src/containers/auth/AuthContainer.tsx:67
-msgid "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
-msgstr "Get your top 5 recommendations to improve your security once the first scan is complete, usually within 10 minutes."
+#: src/containers/auth/AuthContainer.tsx:66
+msgid "Get your inventory, security posture, and top 5 recommendations for improvement in minutes."
+msgstr "Get your inventory, security posture, and top 5 recommendations for improvement in minutes."
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:119
 msgid "Go to Azure Service Management:"
@@ -1529,10 +1537,6 @@ msgstr "Log in with {formattedName}"
 msgid "Log Out"
 msgstr "Log Out"
 
-#: src/containers/auth/AuthContainer.tsx:33
-msgid "Login into the AWS account you want to secure. Deploy a CloudFormation stack that creates a new IAM role for FIX."
-msgstr "Login into the AWS account you want to secure. Deploy a CloudFormation stack that creates a new IAM role for FIX."
-
 #: src/shared/defined-messages/getMessage.ts:14
 msgid "Low"
 msgstr "Low"
@@ -1577,6 +1581,10 @@ msgstr "Memory"
 #: src/shared/utils/getErrorMessage.ts:22
 msgid "MFA already enabled"
 msgstr "MFA already enabled"
+
+#: src/containers/auth/AuthContainer.tsx:60
+msgid "Minutes to first results"
+msgstr "Minutes to first results"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:37
 msgid "Monitoring and Alerting"
@@ -2165,7 +2173,7 @@ msgstr "Searches for database instances with no connections over a significant p
 msgid "Secret Value"
 msgstr "Secret Value"
 
-#: src/containers/auth/AuthContainer.tsx:44
+#: src/containers/auth/AuthContainer.tsx:43
 msgid "Secure read-only access"
 msgstr "Secure read-only access"
 
