@@ -765,6 +765,10 @@ msgstr "Configuration changed"
 msgid "Configure"
 msgstr "Configure"
 
+#: src/containers/auth/AuthContainer.tsx:34
+msgid "Configure Fix to monitor all your accounts across AWS, Azure, and Google Cloud."
+msgstr "Configure Fix to monitor all your accounts across AWS, Azure, and Google Cloud."
+
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:462
 msgid "Configure Service Principal"
 msgstr "Configure Service Principal"
@@ -791,10 +795,6 @@ msgstr "Congratulations on your subscription"
 msgid "Connect"
 msgstr "Connect"
 
-#: src/containers/auth/AuthContainer.tsx:34
-msgid "Connect Fix with all your accounts across AWS, Azure, and Google Cloud."
-msgstr "Connect Fix with all your accounts across AWS, Azure, and Google Cloud."
-
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:460
 msgid "Connect GCP Service Account"
 msgstr "Connect GCP Service Account"
@@ -812,8 +812,8 @@ msgid "Connect Teams"
 msgstr "Connect Teams"
 
 #: src/containers/auth/AuthContainer.tsx:28
-msgid "Connect your cloud provider"
-msgstr "Connect your cloud provider"
+msgid "Connect your cloud accounts"
+msgstr "Connect your cloud accounts"
 
 #: src/pages/panel/user-settings/UserSettingsPage.tsx:34
 msgid "Connected Accounts"
@@ -829,8 +829,8 @@ msgid "Continue"
 msgstr "Continue"
 
 #: src/containers/auth/AuthContainer.tsx:75
-msgid "Continuous Monitoring"
-msgstr "Continuous Monitoring"
+msgid "Continuous monitoring"
+msgstr "Continuous monitoring"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceId.tsx:16
 #: src/shared/utils/useCopyString.ts:18
@@ -1217,13 +1217,13 @@ msgstr "Finds load balancers that are not associated with any running instances.
 msgid "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
 msgstr "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
 
+#: src/containers/auth/AuthContainer.tsx:81
+msgid "Fix continuously monitors your infrastructure and alerts you of any incidents."
+msgstr "Fix continuously monitors your infrastructure and alerts you of any incidents."
+
 #: src/containers/auth/AuthContainer.tsx:49
 msgid "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
 msgstr "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
-
-#: src/containers/auth/AuthContainer.tsx:81
-msgid "Fix will constantly monitor your infrastructure and alert you in case of any incidents."
-msgstr "Fix will constantly monitor your infrastructure and alert you in case of any incidents."
 
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:80
 msgid "fixed"

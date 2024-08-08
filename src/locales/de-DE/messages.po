@@ -765,6 +765,10 @@ msgstr "Konfiguration geändert"
 msgid "Configure"
 msgstr "Konfigurieren"
 
+#: src/containers/auth/AuthContainer.tsx:34
+msgid "Configure Fix to monitor all your accounts across AWS, Azure, and Google Cloud."
+msgstr "Verbinden Sie Fix mit all Ihren Konten bei AWS, Azure und Google Cloud."
+
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:462
 msgid "Configure Service Principal"
 msgstr ""
@@ -791,10 +795,6 @@ msgstr "Herzlichen Glückwunsch zu Ihrem Abonnement"
 msgid "Connect"
 msgstr "Verbinden"
 
-#: src/containers/auth/AuthContainer.tsx:34
-msgid "Connect Fix with all your accounts across AWS, Azure, and Google Cloud."
-msgstr "Verbinden Sie Fix mit allen Ihren Konten über AWS, Azure und Google Cloud."
-
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:460
 msgid "Connect GCP Service Account"
 msgstr ""
@@ -812,8 +812,8 @@ msgid "Connect Teams"
 msgstr "Verbinden Sie Teams"
 
 #: src/containers/auth/AuthContainer.tsx:28
-msgid "Connect your cloud provider"
-msgstr "Verbinden Sie Ihren Cloud-Anbieter"
+msgid "Connect your cloud accounts"
+msgstr "Stellen Sie eine Verbindung zu Ihren Cloud-Accounts her"
 
 #: src/pages/panel/user-settings/UserSettingsPage.tsx:34
 msgid "Connected Accounts"
@@ -829,7 +829,7 @@ msgid "Continue"
 msgstr ""
 
 #: src/containers/auth/AuthContainer.tsx:75
-msgid "Continuous Monitoring"
+msgid "Continuous monitoring"
 msgstr "Kontinuierliche Überwachung"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceId.tsx:16
@@ -1217,13 +1217,13 @@ msgstr "Findet Load Balancer, die keiner laufenden Instanz zugeordnet sind."
 msgid "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
 msgstr "Findet Snapshots von Festplatten, die nicht mehr verwendet werden und möglicherweise gelöscht werden könnten, um die Speicherkosten zu senken."
 
+#: src/containers/auth/AuthContainer.tsx:81
+msgid "Fix continuously monitors your infrastructure and alerts you of any incidents."
+msgstr "Fix überwacht ständig Ihre Infrastruktur und benachrichtigt Sie im Falle von Vorfällen."
+
 #: src/containers/auth/AuthContainer.tsx:49
 msgid "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
-msgstr "Fix scannt Ihre Infrastruktur- und Ressourcenkonfigurationen mithilfe des schreibgeschützten API-Zugriffs. Keine Agenten erforderlich."
-
-#: src/containers/auth/AuthContainer.tsx:81
-msgid "Fix will constantly monitor your infrastructure and alert you in case of any incidents."
-msgstr "Fix wird Ihre Infrastruktur ständig überwachen und Sie im Falle von Vorfällen alarmieren."
+msgstr "Fix überprüft Ihre Infrastruktur und Ressourcenkonfigurationen mit schreibgeschütztem API-Zugriff. Keine Agenten erforderlich."
 
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:80
 msgid "fixed"
@@ -1261,7 +1261,7 @@ msgstr ""
 
 #: src/containers/auth/AuthContainer.tsx:66
 msgid "Get your inventory, security posture, and top 5 recommendations for improvement in minutes."
-msgstr "Erhalten Sie Ihr Inventar, Ihre Sicherheitslage und die Top 5 Empfehlungen zur Verbesserung innerhalb von Minuten."
+msgstr "Erhalten Sie Ihr Inventar mit allen Sicherheitsprüfungen und die Top 5 Verbesserungsempfehlungen in Minuten."
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:119
 msgid "Go to Azure Service Management:"
@@ -1584,7 +1584,7 @@ msgstr ""
 
 #: src/containers/auth/AuthContainer.tsx:60
 msgid "Minutes to first results"
-msgstr "Minuten bis zu den ersten Ergebnissen"
+msgstr "Ergebnisse in Minuten"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:37
 msgid "Monitoring and Alerting"
@@ -2175,7 +2175,7 @@ msgstr ""
 
 #: src/containers/auth/AuthContainer.tsx:43
 msgid "Secure read-only access"
-msgstr "Sicherer Lesezugriff"
+msgstr "Gesicherte schreibgeschützte Zugriffe"
 
 #: src/shared/layouts/panel-layout/MoveToFreeAcknowledge.tsx:50
 msgid "Secure Your Cloud, Elevate Your Peace of Mind"

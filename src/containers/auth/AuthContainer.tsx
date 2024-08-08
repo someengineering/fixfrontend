@@ -25,13 +25,13 @@ export default function AuthContainer() {
                 avatar={<PersonIcon />}
                 title={
                   <Typography variant="h4">
-                    <Trans>Connect your cloud provider</Trans>
+                    <Trans>Connect your cloud accounts</Trans>
                   </Typography>
                 }
               />
               <CardContent>
                 <Typography variant="body1">
-                  <Trans>Connect Fix with all your accounts across AWS, Azure, and Google Cloud.</Trans>
+                  <Trans>Configure Fix to monitor all your accounts across AWS, Azure, and Google Cloud.</Trans>
                 </Typography>
               </CardContent>
             </Card>
@@ -72,13 +72,13 @@ export default function AuthContainer() {
                 avatar={<AutoModeIcon />}
                 title={
                   <Typography variant="h4">
-                    <Trans>Continuous Monitoring</Trans>
+                    <Trans>Continuous monitoring</Trans>
                   </Typography>
                 }
               />
               <CardContent>
                 <Typography variant="body1">
-                  <Trans>Fix will constantly monitor your infrastructure and alert you in case of any incidents.</Trans>
+                  <Trans>Fix continuously monitors your infrastructure and alerts you of any incidents.</Trans>
                 </Typography>
               </CardContent>
             </Card>
