@@ -6,11 +6,7 @@ import { axiosWithAuth } from 'src/shared/utils/axios'
 const getDefaultValue = () =>
   ({
     account_check_summary: {
-      available_checks: 0,
-      failed_checks: 0,
-      failed_checks_by_severity: {},
       available_resources: 0,
-      failed_resources: 0,
       failed_resources_by_severity: {},
     },
     accounts: [],
@@ -28,11 +24,7 @@ const getDefaultValue = () =>
       since: '',
     },
     check_summary: {
-      available_checks: 0,
-      failed_checks: 0,
-      failed_checks_by_severity: {},
       available_resources: 0,
-      failed_resources: 0,
       failed_resources_by_severity: {},
     },
     overall_score: 0,

@@ -19,11 +19,7 @@ export type WorkspaceAccountReportSummary = {
 }
 
 export interface WorkspaceCheckSummary {
-  available_checks: number
   available_resources: number
-  failed_checks: number
-  failed_checks_by_severity: Partial<FailedChecksType>
-  failed_resources: number
   failed_resources_by_severity: Partial<FailedChecksType>
 }
 

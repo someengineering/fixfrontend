@@ -254,7 +254,7 @@ msgstr "Konto: {0}"
 msgid "Accounts"
 msgstr "Konten"
 
-#: src/pages/panel/security/Overview.tsx:104
+#: src/pages/panel/security/Overview.tsx:102
 msgid "Accounts Summary"
 msgstr "Zusammenfassung der Konten"
 
@@ -607,7 +607,7 @@ msgstr "Änderungen"
 msgid "Changes In {0}"
 msgstr ""
 
-#: src/pages/panel/security/Overview.tsx:43
+#: src/pages/panel/security/Overview.tsx:42
 msgid "Changes in the past 7 days"
 msgstr "Änderungen in den letzten 7 Tagen"
 
@@ -1188,7 +1188,7 @@ msgstr "Das Änderungsprotokoll konnte nicht abgerufen werden"
 msgid "Failing benchmarks"
 msgstr "Fehlgeschlagene Benchmarks"
 
-#: src/pages/panel/security/Overview.tsx:93
+#: src/pages/panel/security/Overview.tsx:91
 msgid "Failing Check Timeline"
 msgstr "Fehler bei der Überprüfung des Zeitplans"
 
@@ -2220,7 +2220,7 @@ msgstr "Sicherheitsscan"
 
 #: src/pages/panel/inventory/InventoryPage.tsx:47
 #: src/pages/panel/security/Overview.tsx:29
-#: src/pages/panel/security/Overview.tsx:53
+#: src/pages/panel/security/Overview.tsx:52
 msgid "Security Score"
 msgstr "Sicherheitsbewertung"
 
@@ -2503,8 +2503,8 @@ msgstr ""
 msgid "Top Non-Compliant Resources"
 msgstr "Top Ressourcen mit Compliance-Verstößen"
 
-#: src/pages/panel/security/Overview.tsx:63
-#: src/pages/panel/security/Overview.tsx:79
+#: src/pages/panel/security/Overview.tsx:61
+#: src/pages/panel/security/Overview.tsx:77
 msgid "Top Security Enhancements"
 msgstr "Top-Sicherheitsverbesserungen"
 
