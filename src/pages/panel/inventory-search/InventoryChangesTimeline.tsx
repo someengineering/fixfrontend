@@ -81,7 +81,6 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
   }, [afterDate, beforeDate])
 
   const isGranularityMoreThanADay = granularity >= 24 * 60 * 60 * 1000
-  const isGranularityOneHour = granularity <= 60 * 60 * 1000
 
   const {
     i18n: { locale },
@@ -177,7 +176,9 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
                 data: labels,
                 valueFormatter: (val: Date, ctx) => {
                   if (ctx.location === 'tick') {
-                    return dayjs(val).locale(locale).format('L')
+                    return dayjs(val)
+                      .locale(locale)
+                      .format(isGranularityMoreThanADay ? 'L' : 'l LT')
                   } else {
                     const after = dayjs(val.valueOf())
                     const before = dayjs(val.valueOf() + granularity)
@@ -189,7 +190,7 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
               },
             ]}
             onAxisClick={
-              isGranularityOneHour
+              labels.length === 1
                 ? undefined
                 : (_, axisData) => {
                     if (axisData && axisData.axisValue && typeof axisData.axisValue === 'object') {
@@ -205,7 +206,7 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
                     }
                   }
             }
-            onItemClick={isGranularityOneHour ? undefined : () => {}}
+            onItemClick={labels.length === 1 ? undefined : () => {}}
           />
         )}
       </Box>
