@@ -40,16 +40,40 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
     history: { changes, after, before },
     onHistoryChange,
   } = useFixQueryParser()
-  const beforeDate = useMemo(
-    () => (before ? (new Date(before).valueOf() > new Date().valueOf() ? new Date() : new Date(before)) : new Date()),
-    [before],
-  )
-  const afterDate = useMemo(() => (after ? new Date(after) : new Date(new Date().setMonth(new Date().getMonth() - 1))), [after])
+  const beforeDate = useMemo(() => {
+    const now = new Date()
+    now.setMilliseconds(0)
+    if (!before) {
+      return now
+    }
+    const beforeDate = new Date(before)
+    beforeDate.setMilliseconds(0)
+    if (beforeDate.valueOf() > now.valueOf()) {
+      return now
+    }
+    return beforeDate
+  }, [before])
+  const afterDate = useMemo(() => {
+    if (!after) {
+      const now = new Date()
+      now.setMilliseconds(0)
+      const aDayBefore = new Date(now.valueOf())
+      aDayBefore.setMonth(now.getMonth() - 1)
+      return aDayBefore
+    } else {
+      const afterDate = new Date(after)
+      afterDate.setMilliseconds(0)
+      return afterDate
+    }
+  }, [after])
   const { selectedWorkspace } = useUserProfile()
   const { mode } = useThemeMode()
 
   const { labelsDur, granularity } = useMemo(() => {
-    const granularity = Math.max(Math.abs((beforeDate.valueOf() - afterDate.valueOf()) / DEFAULT_LABELS_LENGTH), 60 * 60 * 1000)
+    const granularity = Math.max(
+      Math.floor(Math.abs((beforeDate.valueOf() / 1000 - afterDate.valueOf() / 1000) / DEFAULT_LABELS_LENGTH)) * 1000,
+      60 * 60 * 1000,
+    )
     const labelsDur = []
     const end = beforeDate.valueOf()
     for (let current = afterDate.valueOf(); current < end; current += granularity) {
