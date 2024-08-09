@@ -65,6 +65,9 @@ export const endPoints = {
         },
       },
       inventory: {
+        history: {
+          timeline: `api/workspaces/${workspaceId}/inventory/history/timeline`,
+        },
         reportSummary: `api/workspaces/${workspaceId}/inventory/report-summary`,
         report: {
           benchmark: (benchmarkName: string) => ({

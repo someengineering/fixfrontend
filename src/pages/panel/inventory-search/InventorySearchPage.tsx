@@ -6,11 +6,12 @@ import { FixQueryProvider } from 'src/shared/fix-query-parser'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { WorkspaceInventorySearchTableHistory, WorkspaceInventorySearchTableHistoryChanges } from 'src/shared/types/server'
 import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
+import { allHistoryChangesOptions } from './inventory-form/utils/allHistoryChangesOptions'
 import { InventoryAdvanceSearch } from './InventoryAdvanceSearch'
+import { InventoryChangesTimeline } from './InventoryChangesTimeline'
 import { InventoryTable } from './InventoryTable'
 import { InventoryTableError } from './InventoryTable.error'
 import { InventoryTemplateBoxes } from './InventoryTemplateBoxes'
-import { allHistoryChangesOptions } from './inventory-form/utils/allHistoryChangesOptions'
 
 interface InventorySearchPageProps {
   withHistory?: boolean
@@ -87,6 +88,7 @@ export default function InventorySearchPage({ withHistory }: InventorySearchPage
           <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
             <Outlet />
           </NetworkErrorBoundary>
+          {history.changes.length ? <InventoryChangesTimeline searchCrit={searchCrit} /> : undefined}
           {(!withHistory && searchCrit) || (withHistory && history.changes.length) || hasError ? (
             <>
               <NetworkErrorBoundary
