@@ -66,6 +66,10 @@ export type { GetWorkspaceResponse, GetWorkspacesResponse } from './GetWorkspace
 export type { GetWorkspaceSettingsResponse } from './GetWorkspaceSettings'
 export type { GetWorkspaceUsersResponse, WorkspaceUser } from './GetWorkspaceUsers'
 export type { PostApiTokenErrorResponse, PostApiTokenResponse } from './PostApiToken'
+export type {
+  PostWorkspaceInventoryHistoryTimelineItem,
+  PostWorkspaceInventoryHistoryTimelineResponse,
+} from './PostWorkspaceInventoryHistoryTimeline'
 export type { PostWorkspaceInventoryPropertyAttributesResponse } from './PostWorkspaceInventoryPropertyAttributes'
 export type { PostWorkspaceInventoryPropertyPathCompleteResponse } from './PostWorkspaceInventoryPropertyPathComplete'
 export type { PostWorkspaceInventoryPropertyValuesResponse } from './PostWorkspaceInventoryPropertyValues'
