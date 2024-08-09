@@ -4,18 +4,18 @@ import { Stack, useTheme } from '@mui/material'
 import { useRef, useState } from 'react'
 import { PieResourceCheckScore, createInventorySearchTo } from 'src/pages/panel/shared/utils'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
+import { sortedSeverities } from 'src/shared/constants'
 import { FailedChecksType } from 'src/shared/types/server'
 import { numberToReadableNumber } from 'src/shared/utils/numberToReadable'
 import { wordToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 
 interface OverallScoreProps {
   score: number
-  failedChecks: Partial<FailedChecksType>
   failedResources: Partial<FailedChecksType>
   availableResources: number
 }
 
-export const OverallScore = ({ score, failedChecks, failedResources, availableResources }: OverallScoreProps) => {
+export const OverallScore = ({ score, failedResources, availableResources }: OverallScoreProps) => {
   const theme = useTheme()
   const navigate = useAbsoluteNavigate()
   const [showPieChart, setShowPieChart] = useState(false)
@@ -50,13 +50,13 @@ export const OverallScore = ({ score, failedChecks, failedResources, availableRe
   return (
     <Stack mb={4} direction="row" justifyContent="center">
       <PieResourceCheckScore
-        data={Object.entries(failedChecks).map(([name, value]) => ({
+        data={sortedSeverities.map((name) => ({
           name: wordToUFStr(name),
           value: failedResources[name] ?? 0,
           label:
             typeof failedResources[name] === 'number' ? numberToReadableNumber({ value: failedResources[name] ?? 0, locale }) : undefined,
           description:
-            typeof failedResources[name] === 'number' && typeof value === 'number'
+            typeof failedResources[name] === 'number' && typeof failedResources[name] === 'number'
               ? t`${wordToUFStr(name).toString()}: We've identified ${failedResources[name].toLocaleString(
                   locale,
                 )} non-compliant resources out of ${availableResources.toLocaleString(locale)}.`

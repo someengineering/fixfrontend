@@ -254,7 +254,7 @@ msgstr "Account: {0}"
 msgid "Accounts"
 msgstr "Accounts"
 
-#: src/pages/panel/security/Overview.tsx:104
+#: src/pages/panel/security/Overview.tsx:102
 msgid "Accounts Summary"
 msgstr "Accounts Summary"
 
@@ -607,7 +607,7 @@ msgstr "Changes"
 msgid "Changes In {0}"
 msgstr "Changes In {0}"
 
-#: src/pages/panel/security/Overview.tsx:43
+#: src/pages/panel/security/Overview.tsx:42
 msgid "Changes in the past 7 days"
 msgstr "Changes in the past 7 days"
 
@@ -1188,7 +1188,7 @@ msgstr "Failed to retrieve changelog"
 msgid "Failing benchmarks"
 msgstr "Failing benchmarks"
 
-#: src/pages/panel/security/Overview.tsx:93
+#: src/pages/panel/security/Overview.tsx:91
 msgid "Failing Check Timeline"
 msgstr "Failing Check Timeline"
 
@@ -2211,7 +2211,7 @@ msgstr "Security Scan"
 
 #: src/pages/panel/inventory/InventoryPage.tsx:47
 #: src/pages/panel/security/Overview.tsx:29
-#: src/pages/panel/security/Overview.tsx:53
+#: src/pages/panel/security/Overview.tsx:52
 msgid "Security Score"
 msgstr "Security Score"
 
@@ -2494,8 +2494,8 @@ msgstr "Token"
 msgid "Top Non-Compliant Resources"
 msgstr "Top Non-Compliant Resources"
 
-#: src/pages/panel/security/Overview.tsx:63
-#: src/pages/panel/security/Overview.tsx:79
+#: src/pages/panel/security/Overview.tsx:61
+#: src/pages/panel/security/Overview.tsx:77
 msgid "Top Security Enhancements"
 msgstr "Top Security Enhancements"
 
