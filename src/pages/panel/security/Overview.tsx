@@ -30,7 +30,6 @@ export const Overview = () => {
                 </Typography>
                 <OverallScore
                   score={data.overall_score}
-                  failedChecks={data.check_summary.failed_checks_by_severity}
                   failedResources={data.check_summary.failed_resources_by_severity}
                   availableResources={data.check_summary.available_resources}
                 />
@@ -54,7 +53,6 @@ export const Overview = () => {
                 </Typography>
                 <OverallScore
                   score={data.overall_score}
-                  failedChecks={data.check_summary.failed_checks_by_severity}
                   failedResources={data.check_summary.failed_resources_by_severity}
                   availableResources={data.check_summary.available_resources}
                 />
