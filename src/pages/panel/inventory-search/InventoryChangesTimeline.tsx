@@ -70,10 +70,8 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
   const { mode } = useThemeMode()
 
   const { labelsDur, granularity } = useMemo(() => {
-    const granularity = Math.max(
-      Math.floor(Math.abs((beforeDate.valueOf() / 1000 - afterDate.valueOf() / 1000) / DEFAULT_LABELS_LENGTH)) * 1000,
-      60 * 60 * 1000,
-    )
+    const granularity =
+      Math.max(Math.floor(Math.abs((beforeDate.valueOf() / 1000 - afterDate.valueOf() / 1000) / DEFAULT_LABELS_LENGTH)), 60 * 60) * 1000
     const labelsDur = []
     const end = beforeDate.valueOf()
     for (let current = afterDate.valueOf(); current < end; current += granularity) {
@@ -83,6 +81,7 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
   }, [afterDate, beforeDate])
 
   const isGranularityMoreThanADay = granularity >= 24 * 60 * 60 * 1000
+  const isGranularityOneHour = granularity <= 60 * 60 * 1000
 
   const {
     i18n: { locale },
@@ -140,6 +139,7 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
     }
     return [[] as BarChartProps['series'], labels]
   }, [data, dummySeries, labelsDur])
+
   return !isLoading && !data ? null : (
     <Box width="100%" overflow="auto">
       <Box width="100%" maxWidth={!labels.length ? '100%' : labels.length * 62 + 150} minWidth={labels.length * 20 + 150} height={500}>
@@ -175,37 +175,37 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
               {
                 scaleType: 'band',
                 data: labels,
-                valueFormatter: (val: Date, ctx) =>
-                  ctx.location === 'tick'
-                    ? dayjs(val).locale(locale).format('L')
-                    : dayjs(val).format(isGranularityMoreThanADay ? 'dddd, LL' : 'llll'),
+                valueFormatter: (val: Date, ctx) => {
+                  if (ctx.location === 'tick') {
+                    return dayjs(val).locale(locale).format('L')
+                  } else {
+                    const after = dayjs(val.valueOf())
+                    const before = dayjs(val.valueOf() + granularity)
+                    return `${after.format(isGranularityMoreThanADay ? 'dddd, LL' : 'llll')} - ${before.format(isGranularityMoreThanADay ? 'dddd, LL' : 'llll')}`
+                  }
+                },
                 // @ts-expect-error something
                 categoryGapRatio: 0.5,
               },
             ]}
-            onAxisClick={(_, axisData) => {
-              if (axisData && axisData.axisValue && typeof axisData.axisValue === 'object') {
-                const after = new Date(axisData.axisValue.valueOf())
-                if (isGranularityMoreThanADay) {
-                  after.setHours(0)
-                }
-                after.setMinutes(0)
-                after.setSeconds(0)
-                after.setMilliseconds(0)
-                const before = new Date(after.valueOf())
-                if (isGranularityMoreThanADay) {
-                  before.setDate(after.getDate() + 1)
-                } else {
-                  before.setHours(after.getHours() + 1)
-                }
-                onHistoryChange({
-                  changes,
-                  after: after.toISOString(),
-                  before: before.toISOString(),
-                })
-              }
-            }}
-            onItemClick={() => {}}
+            onAxisClick={
+              isGranularityOneHour
+                ? undefined
+                : (_, axisData) => {
+                    if (axisData && axisData.axisValue && typeof axisData.axisValue === 'object') {
+                      const afterValue = axisData.axisValue.valueOf()
+                      const beforeValue = axisData.axisValue.valueOf() + granularity
+                      const after = new Date(afterValue)
+                      const before = new Date(beforeValue)
+                      onHistoryChange({
+                        changes,
+                        after: after.toISOString(),
+                        before: before.toISOString(),
+                      })
+                    }
+                  }
+            }
+            onItemClick={isGranularityOneHour ? undefined : () => {}}
           />
         )}
       </Box>
