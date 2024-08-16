@@ -25,6 +25,9 @@ export const postWorkspaceInventoryHistoryTimelineQuery = ({
     string | undefined, // granularity
   ]
 >) => {
+  if (new Date(after) > new Date(before)) {
+    return [] as PostWorkspaceInventoryHistoryTimelineResponse
+  }
   const data: PostWorkspaceInventoryHistoryTimelineRequest = {
     query,
     after,

@@ -1,5 +1,5 @@
 import { Stack } from '@mui/material'
-import { Gauge, gaugeClasses } from '@mui/x-charts'
+import { Gauge, gaugeClasses } from '@mui/x-charts-pro'
 import { colorFromRedToGreen } from 'src/shared/constants'
 
 interface InventoryInfoOverallScoreProps {

@@ -1,7 +1,7 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Box, colors } from '@mui/material'
-import { BarChart, BarChartProps } from '@mui/x-charts'
+import { BarChart, BarSeriesType } from '@mui/x-charts'
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useMemo } from 'react'
@@ -30,6 +30,7 @@ const colorValues = Object.values([
 
 const createCloudAccountData = (name: AccountCloud, numberFormatter: (value: number | null) => string, isDark: boolean) =>
   ({
+    type: 'bar',
     valueFormatter: numberFormatter,
     data: [],
     label: name === 'aws' || name === 'azure' || name === 'gcp' ? t`Other ${getAccountCloudName(name)} accounts` : name,
@@ -39,9 +40,9 @@ const createCloudAccountData = (name: AccountCloud, numberFormatter: (value: num
       isDark ? 700 : 400
     ],
     stackOffset: 'none',
-  }) as BarChartProps['series'][number]
+  }) as BarSeriesType
 
-const addData = (baseData: BarChartProps['series'][number], dataToAdd: BarChartProps['series'][number]['data']) => {
+const addData = (baseData: BarSeriesType, dataToAdd: BarSeriesType['data']) => {
   if (baseData?.data?.length) {
     baseData.data = baseData.data.map((value, index) => (value ?? 0) + (dataToAdd?.[index] ?? 0))
   } else {
@@ -91,6 +92,7 @@ export const InventoryInfoResourcesPerAccountTimeline = ({ data }: InventoryInfo
         group?.account_id ||
         group_name.split('=')[1]
       return {
+        type: 'bar',
         valueFormatter: numberFormatter,
         data: data.ats.map((i) => values[i]),
         label,
@@ -99,7 +101,7 @@ export const InventoryInfoResourcesPerAccountTimeline = ({ data }: InventoryInfo
         stack: 'total',
         color: getColor(colorMap, group_name, mode === 'dark'),
         stackOffset: 'none',
-      } as BarChartProps['series'][number] & { accountId?: string }
+      } as BarSeriesType & { accountId?: string }
     })
     return {
       series,
