@@ -1838,7 +1838,7 @@ msgstr "Orphaned Snapshots"
 msgid "Orphaned Volumes"
 msgstr "Orphaned Volumes"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesPerAccountTimeline.tsx:35
+#: src/pages/panel/inventory/InventoryInfoResourcesPerAccountTimeline.tsx:36
 msgid "Other {0} accounts"
 msgstr "Other {0} accounts"
 
@@ -1846,8 +1846,8 @@ msgstr "Other {0} accounts"
 msgid "Other Workspace Settings"
 msgstr "Other Workspace Settings"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesPerAccountTimeline.tsx:137
-#: src/pages/panel/inventory/InventoryInfoResourcesPerAccountTimeline.tsx:160
+#: src/pages/panel/inventory/InventoryInfoResourcesPerAccountTimeline.tsx:139
+#: src/pages/panel/inventory/InventoryInfoResourcesPerAccountTimeline.tsx:162
 msgid "Others"
 msgstr "Others"
 

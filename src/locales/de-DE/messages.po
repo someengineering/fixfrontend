@@ -1838,7 +1838,7 @@ msgstr "Verwaiste Snapshots"
 msgid "Orphaned Volumes"
 msgstr "Verwaiste Volumes"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesPerAccountTimeline.tsx:35
+#: src/pages/panel/inventory/InventoryInfoResourcesPerAccountTimeline.tsx:36
 msgid "Other {0} accounts"
 msgstr ""
 
@@ -1846,8 +1846,8 @@ msgstr ""
 msgid "Other Workspace Settings"
 msgstr "Andere Arbeitsbereichseinstellungen"
 
-#: src/pages/panel/inventory/InventoryInfoResourcesPerAccountTimeline.tsx:137
-#: src/pages/panel/inventory/InventoryInfoResourcesPerAccountTimeline.tsx:160
+#: src/pages/panel/inventory/InventoryInfoResourcesPerAccountTimeline.tsx:139
+#: src/pages/panel/inventory/InventoryInfoResourcesPerAccountTimeline.tsx:162
 msgid "Others"
 msgstr ""
 
