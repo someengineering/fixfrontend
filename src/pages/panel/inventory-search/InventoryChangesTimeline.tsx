@@ -1,6 +1,6 @@
 import { useLingui } from '@lingui/react'
-import { Box, colors } from '@mui/material'
-import { BarChart, BarChartProps } from '@mui/x-charts'
+import { Box, colors, Theme, useMediaQuery } from '@mui/material'
+import { BarChart, BarSeriesType } from '@mui/x-charts-pro'
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useMemo } from 'react'
@@ -104,6 +104,7 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
       (prev, change) => ({
         ...prev,
         [change]: {
+          type: 'bar',
           valueFormatter: numberFormatter,
           data: labelsDur.map(() => 0),
           label: inventoryRenderNodeChangeCellToString(change),
@@ -112,7 +113,7 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
           stackOffset: 'none',
         },
       }),
-      {} as Record<WorkspaceInventoryNodeHistoryChanges, BarChartProps['series'][number]>,
+      {} as Record<WorkspaceInventoryNodeHistoryChanges, BarSeriesType>,
     )
   }, [changes, labelsDur, locale, mode])
 
@@ -124,7 +125,7 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
           [...prev[0], dummySeries[change]],
           [...prev[1], change],
         ],
-        [[], []] as [BarChartProps['series'], WorkspaceInventoryNodeHistoryChanges[]],
+        [[], []] as [BarSeriesType[], WorkspaceInventoryNodeHistoryChanges[]],
       )
       data.forEach(({ at, group: { change }, v }) => {
         const foundSeriesIndex = seriesChanges.indexOf(change)
@@ -136,38 +137,41 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
       })
       return [series, labels]
     }
-    return [[] as BarChartProps['series'], labels]
+    return [[] as BarSeriesType[], labels]
   }, [data, dummySeries, labelsDur])
+
+  const isLessThanMinWidth = useMediaQuery<Theme>(({ breakpoints: { down } }) => down(labels.length * 20 + (labels.length < 6 ? 300 : 150)))
+  const isMobile = useMediaQuery<Theme>(({ breakpoints: { down } }) => down('md'))
 
   return !isLoading && !data ? null : (
     <Box width="100%" overflow="auto">
-      <Box width="100%" maxWidth={!labels.length ? '100%' : labels.length * 62 + 150} minWidth={labels.length * 20 + 150} height={500}>
+      <Box
+        width="100%"
+        maxWidth={!labels.length ? '100%' : labels.length * 62 + (labels.length < 6 ? 300 : 150)}
+        minWidth={labels.length * 20 + (labels.length < 6 ? 300 : 150)}
+        height={500}
+        sx={isLessThanMinWidth || isMobile ? { pointerEvents: 'none' } : undefined}
+      >
         {isLoading ? (
           <LoadingSuspenseFallback />
         ) : (
           <BarChart
-            slotProps={{
-              legend: {
-                direction: 'row',
-                position: {
-                  vertical: 'top',
-                  horizontal: labels.length < 6 ? 'right' : 'middle',
-                },
-                itemMarkWidth: 10,
-                itemMarkHeight: 5,
-                labelStyle: {
-                  fontSize: 12,
-                  fontWeight: 'bold',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                },
-                itemGap: 5,
-                markGap: 5,
-                padding: 5,
-              },
-            }}
-            margin={{ top: 50 }}
-            borderRadius={4}
+            disableAxisListener
+            // zoom={[
+            //   {
+            //     axisId: 'zoom-to-change-date',
+            //     end: 100,
+            //     start: 0,
+            //   },
+            // ]}
+            margin={
+              labels.length < 6
+                ? {
+                    right: 200,
+                  }
+                : undefined
+            }
+            height={500}
             series={series}
             yAxis={[{ scaleType: 'sqrt' }]}
             xAxis={[
@@ -187,6 +191,9 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
                 },
                 // @ts-expect-error something
                 categoryGapRatio: 0.5,
+                zoom: {
+                  panning: false,
+                },
               },
             ]}
             onAxisClick={
@@ -206,6 +213,27 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
                     }
                   }
             }
+            slotProps={{
+              legend: {
+                direction: labels.length < 6 ? 'column' : 'row',
+                position: {
+                  vertical: 'top',
+                  horizontal: labels.length < 6 ? 'right' : 'middle',
+                },
+                itemMarkWidth: 10,
+                itemMarkHeight: 5,
+                labelStyle: {
+                  fontSize: 12,
+                  fontWeight: 'bold',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                },
+                itemGap: 5,
+                markGap: 5,
+                padding: 5,
+              },
+            }}
+            borderRadius={4}
             onItemClick={labels.length === 1 ? undefined : () => {}}
           />
         )}
