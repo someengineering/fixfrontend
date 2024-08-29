@@ -16,7 +16,7 @@ type AllErrors =
   | PostAuthMfaEnableErrorResponse
   | PostAuthMfaDisableErrorResponse
 
-export const getErrorDetailMessage = (detail: LiteralUnion<AllErrors['detail'], string>, withTryAgain?: boolean) => {
+export const getErrorDetailMessage = (detail: LiteralUnion<AllErrors['detail'], string> | Error, withTryAgain?: boolean) => {
   switch (detail) {
     case 'MFA already enabled':
       return t`MFA already enabled`
@@ -31,7 +31,9 @@ export const getErrorDetailMessage = (detail: LiteralUnion<AllErrors['detail'], 
     case 'Disposable email domains are not allowed':
       return t`Disposable email domains are not allowed`
     default:
-      return withTryAgain ? t`An error occurred, please try again later.${detail ? ` Error: ${detail}` : ''}` : detail
+      return withTryAgain
+        ? t`An error occurred, please try again later.${detail ? ` Error: ${detail}` : ''}`
+        : t`An error occurred.${detail ? ` Error: ${detail}` : ''}`
   }
 }
 

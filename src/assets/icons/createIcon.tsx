@@ -1,9 +1,9 @@
 import { Palette, useTheme } from '@mui/material'
-import { FC, FunctionComponent, SVGProps, forwardRef } from 'react'
+import { FC, SVGProps, forwardRef } from 'react'
 
-type SvgIconProps = SVGProps<SVGSVGElement> & { title?: string; nonce?: string }
+export type SvgIconProps = SVGProps<SVGSVGElement> & { title?: string; nonce?: string }
 
-export const createIcon = (Icon: FunctionComponent<SvgIconProps>, colors?: [string, string?]) => {
+export const createIcon = (Icon: FC<SvgIconProps>, colors?: [string, string?]) => {
   const whiteColor = colors?.[0]
   const darkColor = colors?.[1]
   const SvgIconComp: FC<SvgIconProps> = forwardRef(({ color, fill, ...props }, ref) => {

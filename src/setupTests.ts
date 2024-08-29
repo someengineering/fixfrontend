@@ -45,8 +45,6 @@ global.window = {
   encodeURIComponent: (uriComponent: string | number | boolean) => querystring.stringify({ query: uriComponent }).substring(6),
   document: { ...global.document },
   name: '',
-  particlesJS: () => {},
-  pJSDom: [],
   _load_page_timeout: 0,
 }
 

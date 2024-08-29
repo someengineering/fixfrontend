@@ -1,11 +1,12 @@
-import { colors } from '@mui/material'
+import { buttonClasses, ButtonProps } from '@mui/material'
+import { panelUI } from 'src/shared/constants'
 import { OAuthProviderNames } from 'src/shared/types/server-shared'
 
-export const getColorFromOAuthType = (name: OAuthProviderNames) => {
+export const getColorFromOAuthType = (name: OAuthProviderNames): ButtonProps => {
   switch (name) {
     case 'github':
-      return { isDark: true, backgroundColor: colors.grey[800] }
+      return { color: 'inherit', sx: { [`.${buttonClasses.icon} svg`]: { fill: panelUI.uiThemePalette.accent.darkGray } } }
     case 'google':
-      return { isDark: false, backgroundColor: '#fff' }
+      return {} as const
   }
 }

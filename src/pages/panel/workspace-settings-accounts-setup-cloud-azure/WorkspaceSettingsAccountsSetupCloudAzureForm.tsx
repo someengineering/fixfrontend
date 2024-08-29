@@ -55,7 +55,7 @@ export const WorkspaceSettingsAccountsSetupCloudAzureForm = ({
       setHasError(true)
     },
     onSuccess: () => {
-      showSnackbar(t`Done! We will now import your Azure accounts, this usually takes a couple of minutes.`, { severity: 'success' })
+      showSnackbar(t`Done! We will now import your Azure accounts, this usually takes a couple of minutes.`, { alertColor: 'success' })
     },
     onSettled: () => {
       queryClient.invalidateQueries({

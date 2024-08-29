@@ -1,33 +1,69 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta property="csp-nonce" content="{{ nonce }}" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows."
-    />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="196x196" href="/favicon-196.png">
+    <meta name="msapplication-square70x70logo" content="/mstile-icon-128.png">
+    <meta name="msapplication-square150x150logo" content="/mstile-icon-270.png">
+    <meta name="msapplication-square310x310logo" content="/mstile-icon-558.png">
+    <meta name="msapplication-wide310x150logo" content="/mstile-icon-558-270.png">
+    <link rel="apple-touch-icon" href="/apple-icon-180.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-startup-image" href="/apple-splash-2048-2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-2732-2048.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-1668-2388.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-2388-1668.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-1536-2048.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-2048-1536.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-1488-2266.jpg" media="(device-width: 744px) and (device-height: 1133px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-2266-1488.jpg" media="(device-width: 744px) and (device-height: 1133px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-1640-2360.jpg" media="(device-width: 820px) and (device-height: 1180px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-2360-1640.jpg" media="(device-width: 820px) and (device-height: 1180px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-1668-2224.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-2224-1668.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-1620-2160.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-2160-1620.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-1290-2796.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-2796-1290.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-1179-2556.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-2556-1179.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-1284-2778.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-2778-1284.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-1170-2532.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-2532-1170.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-1125-2436.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-2436-1125.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-1242-2688.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-2688-1242.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-828-1792.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-1792-828.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-1242-2208.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-2208-1242.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-750-1334.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-1334-750.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-640-1136.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="/apple-splash-1136-640.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="csp-nonce" content="{{ nonce }}">
+    <meta name="theme-color" content="#7640EB">
+    <meta name="description" content="Fix is an open-source Wiz alternative for cloud infrastructure security. Take control of cloud risks with an asset inventory, compliance scans, and remediation workflows.">
+
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href="/manifest.json">
     <style nonce="{{ nonce }}">
       body {
         margin: 0;
       }
-
-      .particles {
-        background: mix(#2b357d, #648de5, 70%);
-        background-image: -moz-linear-gradient(45deg, #2b357d 2%, #1e234d 100%);
-        background-image: -webkit-linear-gradient(45deg, #2b357d 2%, #1e234d 100%);
-        background-image: linear-gradient(45deg, #2b357d 2%, #1e234d 100%);
+      .default-background {
+        background: mix(#5D0BC5, #9D70FF, 70%);
+        background-image: -moz-linear-gradient(45deg, #5D0BC5 2%, #111827 100%);
+        background-image: -webkit-linear-gradient(45deg, #5D0BC5 2%, #111827 100%);
+        background-image: linear-gradient(45deg, #5D0BC5 2%, #111827 100%);
       }
-
       .vertical-centered-box {
         position: fixed;
         width: 100%;
@@ -48,10 +84,9 @@
         text-align: left;
         font-size: 0px;
       }
-
       .loader-circle {
         position: absolute;
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(17, 24, 39, 0.2);
         left: 50%;
         top: 50%;
         width: 110px;
@@ -61,7 +96,6 @@
         margin-left: -55px;
         margin-top: -55px;
       }
-
       .loader-line-mask {
         position: absolute;
         left: 50%;
@@ -76,14 +110,12 @@
         -webkit-mask-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
         animation: rotate 1.2s infinite linear;
       }
-
       .loader-line-mask .loader-line {
         width: 110px;
         height: 110px;
         border-radius: 50%;
         box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.5);
       }
-
       @keyframes rotate {
         0% {
           transform: rotate(0deg);
@@ -102,21 +134,19 @@
         if (!isLocalhost && window.TrackJS && '%VITE_TRACKJS_TOKEN%') {
           // for offline support
           var offlineErrors = []
-
-          var sendOrQueueError = function (errorPayload) {
+          var sendOrQueueError = function(errorPayload) {
             var xhr = new XMLHttpRequest()
             xhr.open('POST', 'https://capture.trackjs.com/capture?token=%VITE_TRACKJS_TOKEN%&v=' + window.TrackJS.version, true)
-            xhr.onerror = function () {
+            xhr.onerror = function() {
               offlineErrors.push(errorPayload)
             }
             xhr.setRequestHeader('Content-type', 'text/plain')
             xhr.send(JSON.stringify(errorPayload).substring(0, 100 * 1024))
           }
-
           window.addEventListener('online', () => {
             while (offlineErrors.length) {
               window.setTimeout(
-                function (offlineError) {
+                function(offlineError) {
                   sendOrQueueError(offlineError)
                 },
                 0,
@@ -124,14 +154,13 @@
               )
             }
           })
-
           // observe for resource
           var Observer = window.MutationObserver || window.WebKitMutationObserver
           if (Observer) {
-            var listenForLoadError = function (node) {
+            var listenForLoadError = function(node) {
               if (['SCRIPT', 'LINK', 'IMG'].indexOf(node.tagName) >= 0) {
                 var origOnError = node.onerror
-                node.onerror = function (evt) {
+                node.onerror = function(evt) {
                   if (!evt || !evt.srcElement) {
                     return
                   }
@@ -164,37 +193,38 @@
                 }
               }
             }
-
-            new Observer(function (mutations) {
-              [].forEach.call(mutations, function (mutation) {
+            new Observer(function(mutations) {
+              [].forEach.call(mutations, function(mutation) {
                 [].forEach.call(mutation.addedNodes, listenForLoadError)
               })
-            }).observe(window.document, { childList: true, subtree: true })
+            }).observe(window.document, {
+              childList: true,
+              subtree: true
+            })
           }
-
           // if it's not installed, install it
           if (!window.TrackJS.isInstalled()) {
             window.TrackJS.install({
               token: '%VITE_TRACKJS_TOKEN%',
               version: '%VITE_VERSION%',
               application: isDev ? 'fixdev' : 'fix',
-              console: { display: isDev },
-              onError: function (payload) {
+              console: {
+                display: isDev
+              },
+              onError: function(payload) {
                 sendOrQueueError(payload)
                 return false
               },
             })
           }
         }
-
         var timeout
         try {
           timeout = parseInt('%VITE_LOAD_PAGE_TIMEOUT%') || 30_000
         } catch {
           timeout = 30_000
         }
-
-        window._load_page_timeout = window.setTimeout(function () {
+        window._load_page_timeout = window.setTimeout(function() {
           delete window._load_page_timeout
           if (window.TrackJS && window.TrackJS.isInstalled()) {
             window.TrackJS.track(new Error('It took more than ' + timeout / 1000 + 's to load the page'))
@@ -212,11 +242,10 @@
               track: () => {}
             }
           }
-          window.setTimeout(function () {
+          window.setTimeout(function() {
             window.location.reload()
           }, 3_000)
         }, timeout)
-
         // vite preload error
         window.addEventListener('vite:preloadError', (event) => {
           if (window.TrackJS && window.TrackJS.isInstalled()) {
@@ -226,20 +255,18 @@
             window.clearTimeout(window._load_page_timeout)
             delete window._load_page_timeout
           }
-          window.setTimeout(function () {
+          window.setTimeout(function() {
             window.location.reload()
           }, 3_000)
         })
       })()
     </script>
-    <script type="text/javascript" src="/particles.min.js"></script>
     <title>Fix by Some Engineering Inc.</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
-      <div id="particles" class="vertical-centered-box particles"></div>
-
+      <div id="default-background" class="vertical-centered-box default-background"></div>
       <div class="vertical-centered-box">
         <div class="content">
           <div class="loader-circle"></div>
@@ -248,50 +275,18 @@
           </div>
           <svg width="69" height="69" viewBox="0 0 418 418" fill="#fff" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_7_3075)">
-              <path
-                d="M57.8086 278.37V138.74H155.948V164.91H87.3384V194.419H154.5V220.588H87.3384V278.37H57.8086Z" />
-              <path d="M176.533 278.37V138.74H206.063V278.37H176.533Z" />
-              <path
-                d="M323.943 278.37L289.226 227.287L254.289 278.37H219.15L269.466 206.784L222.266 138.74H257.405L289.208 186.465L320.625 138.74H356.186L308.986 206.562L359.302 278.37H323.961H323.943Z"
-              />
+              <path d="M57.8086 278.37V138.74H155.948V164.91H87.3384V194.419H154.5V220.588H87.3384V278.37H57.8086Z"></path>
+              <path d="M176.533 278.37V138.74H206.063V278.37H176.533Z"></path>
+              <path d="M323.943 278.37L289.226 227.287L254.289 278.37H219.15L269.466 206.784L222.266 138.74H257.405L289.208 186.465L320.625 138.74H356.186L308.986 206.562L359.302 278.37H323.961H323.943Z"></path>
             </g>
             <defs>
               <clipPath id="clip0_7_3075">
-                <rect width="301.494" height="139.63" transform="translate(57.8086 138.74)" />
+                <rect width="301.494" height="139.63" transform="translate(57.8086 138.74)"></rect>
               </clipPath>
             </defs>
           </svg>
         </div>
       </div>
-      <script nonce="{{ nonce }}">
-        particlesJS('particles', {
-          particles: {
-            number: {
-              value: 350,
-              density: { enable: true, value_area: 1920 },
-            },
-            color: { value: '#ffffff' },
-            opacity: { value: 1 },
-            size: { value: 1, random: true },
-            line_linked: { enable: true, distance: 100, color: '#ffffff', opacity: 0.5, width: 1 },
-            move: {
-              enable: true,
-              speed: 0.5,
-              direction: 'left',
-              random: true,
-              out_mode: 'out',
-            },
-          },
-          interactivity: {
-            detect_on: 'window',
-            events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' }, resize: true },
-            modes: {
-              grab: { distance: 210, line_linked: { opacity: 0.5 } },
-              push: { particles_nb: 1 },
-            },
-          },
-        }, '{{ nonce }}')
-      </script>
     </div>
     <script type="module" src="/src/Main.tsx"></script>
     <script nonce="{{ nonce }}"></script>

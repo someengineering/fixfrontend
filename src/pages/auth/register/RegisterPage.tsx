@@ -1,14 +1,17 @@
 import { t, Trans } from '@lingui/macro'
 import SendIcon from '@mui/icons-material/Send'
 import { LoadingButton } from '@mui/lab'
-import { Alert, Divider, Grid, styled, TextField, Typography } from '@mui/material'
+import { Collapse, Divider, Stack, TextField, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { FormEvent, Suspense, useState } from 'react'
-import { Link, Location, useLocation, useSearchParams } from 'react-router-dom'
+import { FormEvent, Suspense, useEffect, useState } from 'react'
+import { Location, useLocation, useSearchParams } from 'react-router-dom'
+import { MailIcon, PasswordIcon } from 'src/assets/icons'
+import { useSnackbar } from 'src/core/snackbar'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
+import { InternalLink } from 'src/shared/link-button'
 import { LoginSocialMedia } from 'src/shared/login-social-media'
 import { PasswordTextField } from 'src/shared/password-text-field'
 import { SocialMediaButtonSkeleton } from 'src/shared/social-media-button'
@@ -17,10 +20,6 @@ import { getErrorDetailMessage } from 'src/shared/utils/getErrorMessage'
 import { registerMutation } from './register.mutation'
 
 const REGISTER_SUSPENSE_NUMBER_OF_SOCIAL_MEDIA_BUTTON = 2
-
-const RegisterButton = styled(LoadingButton)({
-  minHeight: 50,
-})
 
 export default function RegisterPage() {
   const { mutateAsync: register, isPending: isRegisterLoading, error } = useMutation({ mutationFn: registerMutation })
@@ -56,93 +55,110 @@ export default function RegisterPage() {
       ? getErrorDetailMessage(registerErrorDetail)
       : registerErrorDetail.reason
     : undefined
+  const { showSnackbar, closeSnackbar } = useSnackbar()
+  useEffect(() => {
+    if (registerError) {
+      let id: number
+      showSnackbar(registerError, {
+        alertColor: 'error',
+        autoHideDuration: 2400,
+      }).then((val) => (id = val))
+      return () => {
+        if (id) {
+          closeSnackbar(id)
+        }
+      }
+    }
+  }, [showSnackbar, registerError, closeSnackbar])
   return (
     <>
-      <Grid
+      <Stack
         component="form"
-        container
-        rowSpacing={3}
-        maxWidth={350}
+        spacing={2.5}
+        width="100%"
         m="0 auto"
         alignItems="stretch"
-        direction="column"
         noValidate
         autoComplete="off"
         onSubmit={handleSubmit}
       >
-        <Grid item>
-          <Typography variant="h3" color="primary.main">
-            <Trans>Register</Trans>
+        <Stack spacing={2}>
+          <Typography variant="h3">
+            <Trans>Create an account</Trans>
           </Typography>
-        </Grid>
-        <Grid item>
-          <TextField
-            required
-            id="email"
-            name="email"
-            autoComplete="email"
-            label={t`Email`}
-            variant="outlined"
-            fullWidth
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value ?? '')}
-          />
-        </Grid>
-        <Grid item>
+          <Typography variant="body2">
+            <Trans>
+              Already have an account?{' '}
+              <InternalLink options={{ state }} to={{ pathname: '/auth/login', search }}>
+                Sign in
+              </InternalLink>
+            </Trans>
+          </Typography>
+        </Stack>
+        <Stack direction={{ xs: 'column', md: 'row' }} width="100%" spacing={2} pt={2.5}>
+          <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+            <Suspense
+              fallback={new Array(REGISTER_SUSPENSE_NUMBER_OF_SOCIAL_MEDIA_BUTTON).fill('').map((_, i) => (
+                <SocialMediaButtonSkeleton key={i} />
+              ))}
+            >
+              <LoginSocialMedia isLoading={isLoadingGeneric} />
+            </Suspense>
+          </NetworkErrorBoundary>
+        </Stack>
+        <Divider>
+          <Trans>or sign up with email</Trans>
+        </Divider>
+        <TextField
+          required
+          id="email"
+          name="email"
+          autoComplete="email"
+          placeholder={t`name@example.com`}
+          slotProps={{
+            input: {
+              startAdornment: (
+                <MailIcon width={24} height={24} fill={email ? `${panelUI.uiThemePalette.text.darkGray} !important` : undefined} />
+              ),
+            },
+          }}
+          variant="outlined"
+          fullWidth
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value ?? '')}
+        />
+        <Collapse in={!!email}>
           <PasswordTextField
             required
             id="password"
             name="password"
             autoComplete="new-password"
-            label={t`Password`}
+            placeholder={t`Password`}
+            InputProps={{
+              startAdornment: (
+                <PasswordIcon width={24} height={24} fill={email ? `${panelUI.uiThemePalette.text.darkGray} !important` : undefined} />
+              ),
+            }}
             variant="outlined"
             fullWidth
             value={password}
             onChange={(e) => setPassword(e.target.value ?? '')}
           />
-        </Grid>
-        {registerError && (
-          <Grid item>
-            <Alert severity="error">{registerError}</Alert>
-          </Grid>
-        )}
-        <Grid item>
-          <RegisterButton
-            type="submit"
-            variant="contained"
-            fullWidth
-            size="large"
-            disabled={!password || !email}
-            loading={isLoadingGeneric}
-            loadingPosition={isLoadingGeneric ? 'start' : undefined}
-            startIcon={isLoadingGeneric ? <SendIcon /> : undefined}
-          >
-            <Trans>Sign up</Trans>
-          </RegisterButton>
-        </Grid>
-        <Grid item>
-          <Link to={{ pathname: '/auth/login', search }} state={state}>
-            <Trans>Already have an account? Click here to Log in.</Trans>
-          </Link>
-        </Grid>
-        <Grid item>
-          <Divider>
-            <Trans>Or</Trans>
-          </Divider>
-        </Grid>
-        <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
-          <Suspense
-            fallback={new Array(REGISTER_SUSPENSE_NUMBER_OF_SOCIAL_MEDIA_BUTTON).fill('').map((_, i) => (
-              <Grid item key={i}>
-                <SocialMediaButtonSkeleton />
-              </Grid>
-            ))}
-          >
-            <LoginSocialMedia isLoading={isLoadingGeneric} />
-          </Suspense>
-        </NetworkErrorBoundary>
-      </Grid>
+        </Collapse>
+        <LoadingButton
+          type="submit"
+          variant="contained"
+          fullWidth
+          size="large"
+          disabled={!password || !email}
+          loading={isLoadingGeneric}
+          loadingPosition={isLoadingGeneric ? 'start' : undefined}
+          startIcon={isLoadingGeneric ? <SendIcon /> : undefined}
+        >
+          <Trans>Sign up with email</Trans>
+        </LoadingButton>
+      </Stack>
     </>
   )
 }

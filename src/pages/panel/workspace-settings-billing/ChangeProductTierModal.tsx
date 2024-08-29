@@ -85,12 +85,12 @@ export const ChangeProductTierModal = ({
   const { mutate: changeBilling, isPending: changeBillingIsPending } = useMutation({
     mutationFn: putWorkspaceBillingMutation,
     onSuccess: () => {
-      showSnackbar(t`Product tier changed to ${selectedProductTier}`, { severity: 'success' })
+      showSnackbar(t`Product tier changed to ${selectedProductTier}`, { alertColor: 'success' })
     },
     onError: (error) => {
       const errorMessageDetail = changeProductTierErrorResponseToMessage(error as AxiosError<PutWorkspaceBillingErrorResponse>)
       showSnackbar(errorMessageDetail ?? t`An error occurred, please try again later.`, {
-        severity: 'error',
+        alertColor: 'error',
         autoHideDuration: null,
       })
       onClose?.()

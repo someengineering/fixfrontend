@@ -56,7 +56,7 @@ export const EventButton = () => {
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
           showSnackbar(t`${getAccountCloudName(ev.data.cloud)} Cloud account configured, id: ${ev.data.account_id}`, {
-            severity: 'success',
+            alertColor: 'success',
             autoHideDuration: null,
           })
           break
@@ -65,7 +65,7 @@ export const EventButton = () => {
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
           showSnackbar(t`${ev.data.aws_account_id ? 'AWS ' : ''} Cloud account configured, id: ${ev.data.aws_account_id}`, {
-            severity: 'success',
+            alertColor: 'success',
             autoHideDuration: null,
           })
           break
@@ -74,7 +74,7 @@ export const EventButton = () => {
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
           showSnackbar(t`${getAccountCloudName(ev.data.cloud)} Cloud account degraded, id: ${ev.data.account_id}`, {
-            severity: 'warning',
+            alertColor: 'warning',
             autoHideDuration: null,
           })
           break
@@ -83,7 +83,7 @@ export const EventButton = () => {
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
           showSnackbar(t`${getAccountCloudName(ev.data.cloud)} Cloud account degraded, id: ${ev.data.account_id}`, {
-            severity: 'warning',
+            alertColor: 'warning',
             autoHideDuration: null,
           })
           break
@@ -92,7 +92,7 @@ export const EventButton = () => {
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
           showSnackbar(t`${getAccountCloudName(ev.data.cloud)} Cloud account discovered, id: ${ev.data.account_id}`, {
-            severity: 'info',
+            alertColor: 'info',
           })
           break
         case 'aws_account_discovered':
@@ -100,7 +100,7 @@ export const EventButton = () => {
             predicate: (query) => typeof query.queryKey[0] === 'string' && query.queryKey[0].startsWith('workspace-cloud-account'),
           })
           showSnackbar(t`${ev.data.aws_account_id ? 'AWS' : ''} Cloud account discovered, id: ${ev.data.aws_account_id}`, {
-            severity: 'info',
+            alertColor: 'info',
           })
           break
         case 'collect-error':

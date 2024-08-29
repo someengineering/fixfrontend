@@ -1,17 +1,15 @@
 import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import AutoModeIcon from '@mui/icons-material/AutoMode'
-import NotificationsIcon from '@mui/icons-material/Notifications'
-import PersonIcon from '@mui/icons-material/Person'
-import VisibilityIcon from '@mui/icons-material/Visibility'
-import { Card, CardContent, CardHeader, Link, Typography } from '@mui/material'
+import { Link, Stack, Typography } from '@mui/material'
 import { Suspense } from 'react'
-import { FixBetaLogo } from 'src/assets/icons'
-import { env } from 'src/shared/constants'
+import { FixLogo } from 'src/assets/icons'
+import { env, panelUI } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
-import { AuthLayout, BrandRegion, ContentRegion, FooterRegion, LeftRegion } from 'src/shared/layouts/auth-layout'
+import { AuthLayout, BrandRegion, ContentRegion, FooterRegion, SideRegion } from 'src/shared/layouts/auth-layout'
 import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
+import { AuthCarousel } from './AuthCarousel'
 import { AuthRoutes } from './AuthRoutes'
+import IsoComp from './iso.svg?react'
 
 export default function AuthContainer() {
   useLingui()
@@ -19,88 +17,31 @@ export default function AuthContainer() {
     <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
       <Suspense fallback={<FullPageLoadingSuspenseFallback forceFullPage />}>
         <AuthLayout>
-          <LeftRegion>
-            <Card elevation={24}>
-              <CardHeader
-                avatar={<PersonIcon />}
-                title={
-                  <Typography variant="h4">
-                    <Trans>Connect your cloud accounts</Trans>
-                  </Typography>
-                }
-              />
-              <CardContent>
-                <Typography variant="body1">
-                  <Trans>Configure Fix to monitor all your accounts across AWS, Azure, and Google Cloud.</Trans>
-                </Typography>
-              </CardContent>
-            </Card>
-            <Card elevation={24}>
-              <CardHeader
-                avatar={<VisibilityIcon />}
-                title={
-                  <Typography variant="h4">
-                    <Trans>Secure read-only access</Trans>
-                  </Typography>
-                }
-              />
-              <CardContent>
-                <Typography variant="body1">
-                  <Trans>
-                    Fix scans your infrastructure and resource configurations by using read-only API access. No agents required.
-                  </Trans>
-                </Typography>
-              </CardContent>
-            </Card>
-            <Card elevation={24}>
-              <CardHeader
-                avatar={<NotificationsIcon />}
-                title={
-                  <Typography variant="h4">
-                    <Trans>Minutes to first results</Trans>
-                  </Typography>
-                }
-              />
-              <CardContent>
-                <Typography variant="body1">
-                  <Trans>Get your inventory, security posture, and top 5 recommendations for improvement in minutes.</Trans>
-                </Typography>
-              </CardContent>
-            </Card>
-            <Card elevation={24}>
-              <CardHeader
-                avatar={<AutoModeIcon />}
-                title={
-                  <Typography variant="h4">
-                    <Trans>Continuous monitoring</Trans>
-                  </Typography>
-                }
-              />
-              <CardContent>
-                <Typography variant="body1">
-                  <Trans>Fix continuously monitors your infrastructure and alerts you of any incidents.</Trans>
-                </Typography>
-              </CardContent>
-            </Card>
-          </LeftRegion>
+          <SideRegion>
+            <AuthCarousel />
+          </SideRegion>
           <BrandRegion>
-            <FixBetaLogo width={128} height={128} />
+            <FixLogo color="primary.main" />
           </BrandRegion>
           <ContentRegion>
             <AuthRoutes />
           </ContentRegion>
           <FooterRegion>
-            <Typography variant="subtitle2">
-              <Trans>
-                <Link target="_blank" href={`${env.landingPageUrl}/privacy-policy`}>
-                  Privacy policy
-                </Link>{' '}
-                |{' '}
-                <Link target="_blank" href={`${env.landingPageUrl}/terms-and-conditions`}>
-                  Terms and conditions
-                </Link>
-              </Trans>
-            </Typography>
+            <Stack spacing={5} flexGrow={{ xs: 1, sm: 0 }} justifyContent={{ xs: 'space-between', sm: 'start' }}>
+              <Typography variant="subtitle2">
+                <Trans>
+                  By signing in, you agree to our{' '}
+                  <Link target="_blank" href={`${env.landingPageUrl}/privacy-policy`} variant="subtitle2" color="common.black">
+                    Privacy policy
+                  </Link>{' '}
+                  and{' '}
+                  <Link target="_blank" href={`${env.landingPageUrl}/terms-and-conditions`} variant="subtitle2" color="common.black">
+                    Terms & Conditions.
+                  </Link>
+                </Trans>
+              </Typography>
+              <IsoComp fill={panelUI.uiThemePalette.text.darkGray} />
+            </Stack>
           </FooterRegion>
         </AuthLayout>
       </Suspense>

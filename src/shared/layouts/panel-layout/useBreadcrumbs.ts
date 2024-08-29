@@ -39,6 +39,7 @@ export const useBreadcrumbs = () => {
       },
       [] as { title: string; to: string }[],
     )
+  const lastTitle = paths.splice(-1, 1)[0]?.title
 
-  return paths
+  return { paths, lastTitle }
 }

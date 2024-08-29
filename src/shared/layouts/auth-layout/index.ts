@@ -1,1 +1,1 @@
-export { AuthLayout, BrandRegion, ContentRegion, FooterRegion, LeftRegion } from './AuthLayout'
+export { AuthLayout, BrandRegion, ContentRegion, FooterRegion, SideRegion } from './AuthLayout'

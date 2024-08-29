@@ -28,7 +28,7 @@ export default function ChooseWorkspacePage() {
     onSuccess: () => {
       afterSubmit()
       showSnackbar(t`Subscription successfully added to ${selectedWorkspace?.name}`, {
-        severity: 'success',
+        alertColor: 'success',
         snackbarProps: { sx: { zIndex: ({ zIndex: { tooltip } }) => tooltip + 4 } },
       })
     },
@@ -40,7 +40,7 @@ export default function ChooseWorkspacePage() {
           : typeof response?.data === 'string'
             ? response.data
             : message,
-        { severity: 'error', snackbarProps: { sx: { zIndex: ({ zIndex: { tooltip } }) => tooltip + 4 } } },
+        { alertColor: 'error', snackbarProps: { sx: { zIndex: ({ zIndex: { tooltip } }) => tooltip + 4 } } },
       )
     },
   })

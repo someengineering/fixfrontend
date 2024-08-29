@@ -1,31 +1,38 @@
 import {
   Alert,
   AlertColor,
-  AlertTitle,
   AlertProps as MuiAlertProps,
   Snackbar as MuiSnackbar,
   SnackbarProps as MuiSnackbarProps,
   Slide,
   SnackbarOrigin,
   styled,
+  Typography,
+  TypographyProps,
   useTheme,
 } from '@mui/material'
-import { PropsWithChildren, ReactNode, SyntheticEvent, createContext, useCallback, useMemo, useState } from 'react'
+import { createContext, PropsWithChildren, ReactNode, SyntheticEvent, useCallback, useMemo, useState } from 'react'
 import { panelUI } from 'src/shared/constants'
 import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
 
 interface SnackbarOptions {
   snackbarProps: Omit<MuiSnackbarProps, 'open' | 'onClose' | 'autoHideDuration' | 'anchorOrigin'>
   alertProps: Omit<MuiAlertProps, 'onClose' | 'severity'>
-  severity: AlertColor
   autoHideDuration: number | null
+  typographyProps: TypographyProps
+  alertColor: AlertColor | undefined
+  bgcolor: TypographyProps['color']
+  textColor: TypographyProps['color']
   anchorOrigin: SnackbarOrigin
 }
 
 const DEFAULT_SNACKBAR_OPTIONS: SnackbarOptions = {
   snackbarProps: {},
+  typographyProps: {},
   alertProps: {},
-  severity: 'info',
+  alertColor: undefined,
+  bgcolor: panelUI.uiThemePalette.accent.darkGray,
+  textColor: panelUI.uiThemePalette.primary.white,
   autoHideDuration: panelUI.snackbarAutoHideDuration,
   anchorOrigin: { horizontal: 'center', vertical: 'bottom' },
 }
@@ -49,6 +56,21 @@ const Snackbar = styled(MuiSnackbar, { shouldForwardProp: shouldForwardPropWithB
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    minHeight: 56,
+    width: '100%',
+    padding: theme.spacing(2.5),
+    bottom: '0!important',
+    borderRadius: '6px',
+    [theme.breakpoints.down('sm')]: {
+      left: '0!important',
+      right: '0!important',
+    },
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing(3.75),
+    },
+    [theme.breakpoints.up('lg')]: {
+      padding: theme.spacing(7.5),
+    },
   }),
 )
 
@@ -79,13 +101,33 @@ export function SnackbarElement({
       index={index}
       open={open}
       TransitionComponent={Slide}
-      autoHideDuration={options?.autoHideDuration}
+      TransitionProps={{}}
+      autoHideDuration={options.autoHideDuration}
       onClose={handleClose}
-      anchorOrigin={options?.anchorOrigin}
+      anchorOrigin={options.anchorOrigin}
+      sx={
+        options.alertColor
+          ? undefined
+          : {
+              bgcolor: options.bgcolor,
+            }
+      }
     >
-      <Alert {...(options?.alertProps ?? {})} onClose={handleClose} severity={options?.severity}>
-        <AlertTitle fontSize={18}>{message}</AlertTitle>
-      </Alert>
+      {options.alertColor ? (
+        <Alert
+          variant="filled"
+          {...(options.alertProps ?? {})}
+          sx={{ borderRadius: '6px', color: options.textColor, ...options.alertProps.sx }}
+          onClose={handleClose}
+          severity={options.alertColor}
+        >
+          {message}
+        </Alert>
+      ) : (
+        <Typography {...options.typographyProps} color={options.textColor} width="100%" height="100%">
+          {message}
+        </Typography>
+      )}
     </Snackbar>
   )
 }
@@ -125,16 +167,20 @@ export function SnackbarProvider({ children }: PropsWithChildren) {
     (
       message: ReactNode,
       {
-        alertProps = { ...DEFAULT_SNACKBAR_OPTIONS.alertProps },
         anchorOrigin = { ...DEFAULT_SNACKBAR_OPTIONS.anchorOrigin },
         autoHideDuration = DEFAULT_SNACKBAR_OPTIONS.autoHideDuration,
-        severity = DEFAULT_SNACKBAR_OPTIONS.severity,
         snackbarProps = { ...DEFAULT_SNACKBAR_OPTIONS.snackbarProps },
+        alertProps = { ...DEFAULT_SNACKBAR_OPTIONS.alertProps },
+        typographyProps = DEFAULT_SNACKBAR_OPTIONS.typographyProps,
+        bgcolor = DEFAULT_SNACKBAR_OPTIONS.bgcolor,
+        textColor = DEFAULT_SNACKBAR_OPTIONS.textColor,
+        alertColor = undefined,
       }: Partial<SnackbarOptions> = {
         ...DEFAULT_SNACKBAR_OPTIONS,
         alertProps: { ...DEFAULT_SNACKBAR_OPTIONS.alertProps },
         anchorOrigin: { ...DEFAULT_SNACKBAR_OPTIONS.anchorOrigin },
         snackbarProps: { ...DEFAULT_SNACKBAR_OPTIONS.snackbarProps },
+        typographyProps: { ...DEFAULT_SNACKBAR_OPTIONS.typographyProps },
       },
     ) => {
       return new Promise<number>((resolve) => {
@@ -148,11 +194,14 @@ export function SnackbarProvider({ children }: PropsWithChildren) {
               open: true,
               message,
               options: {
-                alertProps,
                 anchorOrigin,
                 autoHideDuration,
-                severity,
                 snackbarProps,
+                bgcolor,
+                textColor,
+                typographyProps,
+                alertColor,
+                alertProps,
               },
             },
           }

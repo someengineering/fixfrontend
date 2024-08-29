@@ -1,7 +1,6 @@
-import VisibilityIcon from '@mui/icons-material/Visibility'
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
-import { IconButton, InputAdornment, InputProps, TextField, TextFieldProps } from '@mui/material'
+import { IconButton, InputProps, TextField, TextFieldProps } from '@mui/material'
 import { useState } from 'react'
+import { ShowIcon, VisibilityOffIcon } from 'src/assets/icons'
 
 export interface PasswordTextFieldProps extends Omit<TextFieldProps, 'type' | 'InputProps'> {
   InputProps?: Omit<InputProps, 'endAdornment'>
@@ -22,11 +21,9 @@ export const PasswordTextField = (props: PasswordTextFieldProps) => {
       InputProps={{
         ...props.InputProps,
         endAdornment: (
-          <InputAdornment position="end">
-            <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
-              {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-            </IconButton>
-          </InputAdornment>
+          <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
+            {showPassword ? <VisibilityOffIcon /> : <ShowIcon />}
+          </IconButton>
         ),
       }}
     />
