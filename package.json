@@ -44,6 +44,7 @@
     "@mui/material": "^6.0.0",
     "@mui/system": "^6.0.0",
     "@mui/x-charts": "^7.14.0",
+    "@mui/x-charts-pro": "^7.0.0-alpha.3",
     "@mui/x-data-grid-premium": "^7.14.0",
     "@mui/x-date-pickers-pro": "^7.14.0",
     "@mui/x-tree-view": "^7.14.0",
