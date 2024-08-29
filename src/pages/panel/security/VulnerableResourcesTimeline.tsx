@@ -1,6 +1,6 @@
 import { useLingui } from '@lingui/react'
 import { Box, useTheme } from '@mui/material'
-import { LineChart, LineChartProps } from '@mui/x-charts'
+import { LineChart, LineSeriesType } from '@mui/x-charts-pro'
 import dayjs from 'dayjs'
 import { useMemo } from 'react'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
@@ -47,6 +47,7 @@ export const VulnerableResourcesTimeline = ({ data }: VulnerableResourcesTimelin
           const data = new Array(newLabels.length).fill(null)
           data[currentDataIndex] = cur.v
           newSeries[cur.group.severity] = {
+            type: 'line',
             label: currentLabel,
             color: currentColor,
             valueFormatter: numberFormatter,
@@ -71,7 +72,7 @@ export const VulnerableResourcesTimeline = ({ data }: VulnerableResourcesTimelin
         return { series: newSeries, labels: newLabels }
       },
       {
-        series: {} as Record<SeverityType, LineChartProps['series'][number]>,
+        series: {} as Record<SeverityType, LineSeriesType>,
         labels: [] as Date[],
       },
     )
@@ -85,7 +86,7 @@ export const VulnerableResourcesTimeline = ({ data }: VulnerableResourcesTimelin
               }
             : undefined,
         )
-        .filter((i) => i) as LineChartProps['series'],
+        .filter((i) => i) as LineSeriesType[],
       labels,
     }
   }, [data.data, infoColor, locale])
