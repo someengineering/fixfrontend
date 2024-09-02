@@ -41,16 +41,7 @@ export const PanelBreadcrumbs = () => {
             </Button>
           ),
         )}
-        <Typography
-          variant="button"
-          textTransform="none"
-          color="text.primary"
-          p={1}
-          fontWeight={700}
-          lineHeight={1.26}
-          justifyContent="center"
-          display="flex"
-        >
+        <Typography variant="button" color="text.primary" p={1} fontWeight={700} lineHeight={1.26} justifyContent="center" display="flex">
           {lastTitle}
         </Typography>
       </Breadcrumbs>

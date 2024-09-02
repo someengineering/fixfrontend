@@ -749,7 +749,7 @@ msgid "Community support"
 msgstr "Community support"
 
 #: src/pages/panel/security/OverallCard.tsx:77
-#: src/shared/layouts/panel-layout/menuList.tsx:46
+#: src/shared/layouts/panel-layout/menuList.tsx:43
 msgid "Compliance"
 msgstr "Compliance"
 
@@ -954,7 +954,7 @@ msgstr "Currently, there are no connected services available for configuration. 
 msgid "Daily"
 msgstr "Daily"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:31
+#: src/shared/layouts/panel-layout/menuList.tsx:28
 msgid "Dashboard"
 msgstr "Dashboard"
 
@@ -1194,7 +1194,7 @@ msgstr "Example searches"
 msgid "Expires"
 msgstr "Expires"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:41
+#: src/shared/layouts/panel-layout/menuList.tsx:38
 msgid "Explore"
 msgstr "Explore"
 
@@ -1335,9 +1335,9 @@ msgstr "High"
 msgid "Highest product tier this billing cycle"
 msgstr "Highest product tier this billing cycle"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:58
-#~ msgid "History"
-#~ msgstr "History"
+#: src/shared/layouts/panel-layout/menuList.tsx:38
+msgid "History"
+msgstr "History"
 
 #: src/shared/error-boundary-fallback/index.tsx:63
 msgid "Homepage"
@@ -1514,7 +1514,7 @@ msgstr "Invalid file, Please follow the step-by-step instructions {0}."
 msgid "Invalid Value"
 msgstr "Invalid Value"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:36
+#: src/shared/layouts/panel-layout/menuList.tsx:33
 msgid "Inventory"
 msgstr "Inventory"
 

@@ -22,6 +22,7 @@ import HomeIconComp from './home-icon.svg?react'
 import InfoIconComp from './info-icon.svg?react'
 import InstanceIconComp from './instance-icon.svg?react'
 import KeyboardArrowDownIconComp from './keyboard-arrow-down-icon.svg?react'
+import LabProfileIconComp from './lab-profile-icon.svg?react'
 import LocalPoliceIconComp from './local-police-icon.svg?react'
 import LogoWhiteNoBackgroundComp from './logo-white-no-background.svg?react'
 import MailIconComp from './mail-icon.svg?react'
@@ -71,7 +72,7 @@ export const TickSmallIcon = createIcon(TickSmallIconComp)
 export const MeetingRoomIcon = createIcon(MeetingRoomIconComp)
 export const KeyboardArrowDownIcon = createIcon(KeyboardArrowDownIconComp)
 export const DashboardIcon = createIcon(DashboardIconComp)
-export const LabProfileIcon = createIcon(SearchIconComp)
+export const LabProfileIcon = createIcon(LabProfileIconComp)
 export const SearchIcon = createIcon(SearchIconComp)
 export const LocalPoliceIcon = createIcon(LocalPoliceIconComp)
 

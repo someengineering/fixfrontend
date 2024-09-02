@@ -112,7 +112,7 @@ export function Theme({ children, emotionCache }: ThemeProps) {
     body2: { fontSize: '1rem', fontWeight: 400, lineHeight: 1.375 },
     subtitle1: { fontSize: '0.875rem', fontWeight: 400, lineHeight: 1.28571 },
     subtitle2: { fontSize: '0.75rem', fontWeight: 400, lineHeight: 1.5 },
-    button: { fontSize: '0.875rem', fontWeight: 500, fontFamily, lineHeight: 1.4286 },
+    button: { fontSize: '0.875rem', fontWeight: 500, fontFamily, lineHeight: 1.4286, textTransform: 'none' },
     subMenu: { fontSize: '0.75rem', fontWeight: 500, lineHeight: 1.26 },
     buttonLarge: { fontSize: '0.875rem', fontWeight: 700, lineHeight: 1.26 },
     buttonSmall: { fontSize: '0.75rem', fontWeight: 700, lineHeight: 1.26 },

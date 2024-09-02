@@ -114,7 +114,7 @@ export const WorkspacesButton = () => {
         renderValue={() => (
           <Stack direction="row" spacing={1} alignItems="center" justifyContent="center">
             <MeetingRoomIcon color={open ? 'primary.main' : undefined} />
-            <Typography variant="button" textTransform="none" color={open ? 'primary.main' : undefined}>
+            <Typography variant="button" color={open ? 'primary.main' : undefined}>
               {selectedWorkspace?.name}
             </Typography>
           </Stack>

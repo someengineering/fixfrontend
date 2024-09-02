@@ -5,13 +5,10 @@ import { DashboardIcon, LabProfileIcon, LocalPoliceIcon, SearchIcon, SvgIconProp
 export interface MenuListItem {
   name: ReactNode
   route: string
-  subRoute?: string
-  routeSearch?: string
   notRouteSearchMatch?: boolean
   Icon: FC<SvgIconProps>
   useGuard?: () => boolean
   hideOnGuard?: boolean
-  children?: MenuListItem[]
 }
 
 type DefaultMenuModalListItemProps = {
@@ -29,22 +26,22 @@ export interface MenuModalListItem<T extends DefaultMenuModalListItemProps = Def
 export const mainMenuList: MenuListItem[] = [
   {
     name: <Trans>Dashboard</Trans>,
-    route: '/dashboard',
+    route: '/inventory-summary',
     Icon: DashboardIcon,
   },
   {
     name: <Trans>Inventory</Trans>,
-    route: '/inventory',
+    route: '/inventory/search',
     Icon: LabProfileIcon,
   },
   {
-    name: <Trans>Explore</Trans>,
-    route: '/explore',
+    name: window ? <Trans>History</Trans> : <Trans>Explore</Trans>,
+    route: '/inventory/history',
     Icon: SearchIcon,
   },
   {
     name: <Trans>Compliance</Trans>,
-    route: '/compliance',
+    route: '/security',
     Icon: LocalPoliceIcon,
   },
 ]

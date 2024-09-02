@@ -749,7 +749,7 @@ msgid "Community support"
 msgstr "Gemeinschaftliche Unterstützung"
 
 #: src/pages/panel/security/OverallCard.tsx:77
-#: src/shared/layouts/panel-layout/menuList.tsx:46
+#: src/shared/layouts/panel-layout/menuList.tsx:43
 msgid "Compliance"
 msgstr "Compliance"
 
@@ -954,7 +954,7 @@ msgstr "Derzeit stehen keine verbundenen Dienste zur Konfiguration zur Verfügun
 msgid "Daily"
 msgstr "Tägliche"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:31
+#: src/shared/layouts/panel-layout/menuList.tsx:28
 msgid "Dashboard"
 msgstr ""
 
@@ -1194,7 +1194,7 @@ msgstr "Beispielsuchen"
 msgid "Expires"
 msgstr "Läuft ab"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:41
+#: src/shared/layouts/panel-layout/menuList.tsx:38
 msgid "Explore"
 msgstr ""
 
@@ -1335,9 +1335,9 @@ msgstr "Hoch"
 msgid "Highest product tier this billing cycle"
 msgstr ""
 
-#: src/shared/layouts/panel-layout/menuList.tsx:58
-#~ msgid "History"
-#~ msgstr ""
+#: src/shared/layouts/panel-layout/menuList.tsx:38
+msgid "History"
+msgstr ""
 
 #: src/shared/error-boundary-fallback/index.tsx:63
 msgid "Homepage"
@@ -1514,7 +1514,7 @@ msgstr ""
 msgid "Invalid Value"
 msgstr "Ungültiger Wert"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:36
+#: src/shared/layouts/panel-layout/menuList.tsx:33
 msgid "Inventory"
 msgstr "Inventar"
 
