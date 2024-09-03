@@ -1,11 +1,15 @@
 // import { AppBar, Theme, Toolbar, useMediaQuery } from '@mui/material'
-import { AppBar, ButtonBase, Divider, Slide, Stack, Theme, useMediaQuery, useScrollTrigger } from '@mui/material'
+import { AppBar, ButtonBase, Divider, IconButton, Slide, Stack, Theme, useMediaQuery, useScrollTrigger } from '@mui/material'
 import { cloneElement, PropsWithChildren, ReactElement, RefObject } from 'react'
+import { HelpIcon, MenuIcon } from 'src/assets/icons'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { panelUI } from 'src/shared/constants'
+import { env, panelUI } from 'src/shared/constants'
 import { MainMenu } from './MainMenu'
 import { PanelBreadcrumbs } from './PanelBreadcrumbs'
+import { PanelHeaderButton, PanelHeaderLinkButton } from './PanelHeaderButton'
 import { PanelToolbar } from './PanelToolbar'
+import { SettingsButton } from './SettingsButton'
+import { UserButton } from './UserButton'
 import { WorkspacesButton } from './WorkspacesButton'
 // import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 
@@ -55,16 +59,28 @@ export const PanelHeader = ({ children, scrollRef }: PanelHeaderProps) => {
             <Stack direction="row" spacing={1} height="100%" alignItems="center">
               <MainMenu />
               <Divider orientation="vertical" sx={{ m: 1, height: 24 }} />
-              <Stack direction="row" spacing={1.5} height="100%" alignItems="center">
+              <Stack direction="row" spacing={1} height="100%" alignItems="center">
                 <Stack direction="row" height="100%" alignItems="center">
-                  question settings
+                  <PanelHeaderLinkButton component={IconButton} href={env.docsUrl} color="primary" noEndIcon>
+                    <HelpIcon />
+                  </PanelHeaderLinkButton>
+                  <SettingsButton />
                 </Stack>
-                user
+                <UserButton />
               </Stack>
             </Stack>
           ) : (
             <Stack direction="row" spacing={0.5} height="100%" alignItems="center">
-              question mobile-menu
+              <PanelHeaderButton color="primary">
+                <Stack width={40} height={40} alignItems="center" justifyContent="center">
+                  <HelpIcon />
+                </Stack>
+              </PanelHeaderButton>
+              <PanelHeaderButton color="primary">
+                <Stack width={40} height={40} alignItems="center" justifyContent="center">
+                  <MenuIcon />
+                </Stack>
+              </PanelHeaderButton>
             </Stack>
           )}
         </PanelToolbar>

@@ -17,7 +17,7 @@ export const useSwipe = ({
   ref,
   minThreshold = 100,
   threshold = 150,
-  allowedTime = 200,
+  allowedTime = Number.POSITIVE_INFINITY,
   onSwipe,
 }: {
   ref?: RefObject<HTMLElement>

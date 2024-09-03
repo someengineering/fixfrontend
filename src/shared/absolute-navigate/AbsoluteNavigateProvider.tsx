@@ -1,18 +1,22 @@
 import { PropsWithChildren, useCallback, useEffect, useRef } from 'react'
-import { NavigateFunction, NavigateOptions, To, useLocation, useNavigate } from 'react-router-dom'
+import { NavigateFunction, useLocation, useNavigate } from 'react-router-dom'
 import { isAuthenticated } from 'src/shared/utils/cookie'
 import { getAuthData } from 'src/shared/utils/localstorage'
 import { AbsoluteNavigateInnerProvider } from './AbsoluteNavigateInnerProvider'
 import { getHrefObjFromTo } from './getHrefFromTo'
 
+const removeHash = () =>
+  window.history.replaceState(window.history.state, window.document.title, window.location.pathname + window.location.search)
+
 export const AbsoluteNavigateProvider = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate()
   const location = useLocation()
 
+  const shouldRemoveHash = useRef(false)
   const ignorePathChangeOnce = useRef(false)
 
-  const handleNavigate: NavigateFunction = useCallback(
-    (to: To | number, options?: NavigateOptions) => {
+  const handleNavigate = useCallback<NavigateFunction>(
+    ((to, options) => {
       if (typeof to === 'number') {
         return navigate(to)
       }
@@ -20,8 +24,12 @@ export const AbsoluteNavigateProvider = ({ children }: PropsWithChildren) => {
       if (hasHash) {
         ignorePathChangeOnce.current = true
       }
+      if (!newTo.hash) {
+        delete newTo.hash
+        shouldRemoveHash.current = true
+      }
       return navigate(newTo, options)
-    },
+    }) as NavigateFunction,
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   )
@@ -40,6 +48,10 @@ export const AbsoluteNavigateProvider = ({ children }: PropsWithChildren) => {
       }
     }
     ignorePathChangeOnce.current = false
+    if (shouldRemoveHash.current) {
+      shouldRemoveHash.current = false
+      window.setTimeout(removeHash)
+    }
   }, [location.hash, location.pathname, location.search, location.state, handleNavigate])
 
   return (

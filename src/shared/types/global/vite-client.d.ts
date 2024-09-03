@@ -2,6 +2,7 @@
 
 interface ImportMetaEnv {
   readonly VITE_FIX_LANDING_PAGE_URL?: string
+  readonly VITE_FIX_DOCS_URL?: string
   readonly VITE_SERVER?: string
   readonly VITE_WS_SERVER?: string
   readonly VITE_VIDEOS_ASSETS_URL?: string

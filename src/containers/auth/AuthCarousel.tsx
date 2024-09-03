@@ -46,12 +46,12 @@ const QuoteComponent = ({ quote, active }: { quote: QuoteType; active?: boolean 
     }
   }, [active, standard])
   return show ? (
-    <QuoteContainer active={active}>
+    <QuoteContainer active={active} spacing={5}>
       <Typography variant="bodyBigger" fontWeight="bold" color={panelUI.uiThemePalette.primary.white}>
         “{quote.text}”
       </Typography>
       <Stack width="100%" direction="row" alignItems="center">
-        <Avatar alt={quote.name} src={quote.src} />
+        <Avatar alt={quote.name} src={quote.src} sx={{ width: 60, height: 60 }} />
         <Stack py={1.75} px={2}>
           <Typography variant="body2" fontWeight={700} color={panelUI.uiThemePalette.primary.white}>
             {quote.name}
@@ -104,7 +104,17 @@ export const AuthCarousel = () => {
   })
   const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
   return isMobile ? null : (
-    <Stack width="100%" height="100%" px={10} py={10} alignItems="center" justifyContent="center" spacing={5} ref={containerRef}>
+    <Stack
+      width="100%"
+      height="100%"
+      px={10}
+      py={10}
+      alignItems="center"
+      justifyContent="center"
+      spacing={12.5}
+      ref={containerRef}
+      sx={{ cursor: 'grab', ':active': { cursor: 'grabbing' } }}
+    >
       <Stack width="100%" position="relative">
         {quotes.map((quote, i) => (
           <QuoteComponent quote={quote} key={i} active={slide === i} />
@@ -117,6 +127,7 @@ export const AuthCarousel = () => {
           value={100}
           sx={{
             color: panelUI.uiThemePalette.primary.white,
+            height: 2,
             width: 150,
             [`.${linearProgressClasses.bar}`]: { width: `${100 / quotes.length}%`, transform: `translateX(${100 * slide}%)!important` },
           }}

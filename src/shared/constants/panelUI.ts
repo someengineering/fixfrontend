@@ -24,7 +24,7 @@ export const panelUI = {
       darkPurple: '#5D0BC5',
       lightPurple: '#9D70FF',
       white: '#FFFFFF',
-      divider: '#CCCEDD',
+      divider: '#D9D9D9',
     },
     accent: {
       purple: '#7640EB',
@@ -46,10 +46,10 @@ export const panelUI = {
       disabled: '#9B9DA9',
     },
     input: {
-      border: '#CCCEDD',
+      border: '#D9D9D9',
       hover: '#766E86',
       active: '#7640EB',
-      disabled: '#CCCEDD',
+      disabled: '#D9D9D9',
       disabledBorder: '#9B9DA9',
     },
     background: {

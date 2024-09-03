@@ -190,6 +190,17 @@ export function Theme({ children, emotionCache }: ThemeProps) {
             },
           },
         },
+        MuiAvatar: {
+          styleOverrides: {
+            root: {
+              width: 32,
+              height: 32,
+              padding: '2px',
+              ...typography.linkBold,
+              textDecoration: 'none',
+            },
+          },
+        },
         MuiTypography: {
           defaultProps: {
             variantMapping: {
@@ -235,6 +246,12 @@ export function Theme({ children, emotionCache }: ThemeProps) {
           },
         },
         MuiButton: {
+          defaultProps: {
+            disableRipple: true,
+            disableFocusRipple: true,
+            disableTouchRipple: true,
+            disableElevation: true,
+          },
           styleOverrides: {
             root: {
               textTransform: 'none',
@@ -265,6 +282,11 @@ export function Theme({ children, emotionCache }: ThemeProps) {
               backgroundColor: panelUI.uiThemePalette.primary.purple,
               ':hover,:focus,:active': { backgroundColor: panelUI.uiThemePalette.primary.darkPurple },
               boxShadow: 'none !important',
+            },
+            textPrimary: {
+              ':hover,:focus,:active': {
+                backgroundColor: panelUI.uiThemePalette.background.bgPurple,
+              },
             },
           },
         },

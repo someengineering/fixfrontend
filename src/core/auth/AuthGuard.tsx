@@ -84,6 +84,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
         search: window.location.search.includes('returnUrl')
           ? window.location.search
           : `?returnUrl=${window.encodeURIComponent(window.location.pathname + window.location.search + (noWorkspace ? '' : window.location.hash))}`,
+        hash: noWorkspace ? '' : undefined,
       })
       postHog.reset()
       clearAllCookies()

@@ -2,7 +2,7 @@ import { alpha, buttonClasses, Container, Stack, styled, Theme, useMediaQuery } 
 import { ComponentType, PropsWithChildren } from 'react'
 import { useLocation } from 'react-router-dom'
 import { DescriptionIcon } from 'src/assets/icons'
-import { panelUI } from 'src/shared/constants'
+import { env, panelUI } from 'src/shared/constants'
 import { ExternalLinkButton } from 'src/shared/link-button'
 import { groupChildrenByType } from 'src/shared/utils/groupChildrenByType'
 
@@ -89,7 +89,7 @@ export function AuthLayout({ children }: AuthLayoutProps) {
 
   const documentation = isResetPassword ? null : (
     <ExternalLinkButton
-      href="https://docs.fix.security"
+      href={env.docsUrl}
       endIcon={undefined}
       startIcon={<DescriptionIcon />}
       variant="outlined"

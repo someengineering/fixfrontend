@@ -13,7 +13,7 @@ export default function SubscriptionContainer() {
       <Suspense fallback={<FullPageLoadingSuspenseFallback forceFullPage />}>
         <SubscriptionLayout>
           <BrandRegion>
-            <FixLogo width={46} height={46} />
+            <FixLogo color="primary.main" width={46} height={46} />
           </BrandRegion>
           <ContentRegion>
             <SubscriptionRoutes />
