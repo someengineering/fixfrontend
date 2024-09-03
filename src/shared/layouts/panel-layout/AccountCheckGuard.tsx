@@ -1,12 +1,11 @@
 import { Trans } from '@lingui/macro'
-import { Button, Stack, Typography } from '@mui/material'
+import { Box, Button, Stack, Typography } from '@mui/material'
 import { useCallback, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
-import { AddAccountButton } from 'src/shared/add-account-button'
+import { panelUI } from 'src/shared/constants'
 import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
-import { getInitiated } from 'src/shared/utils/localstorage'
 import { useHasAccountsCheck } from './check-hooks/useHasAccountsCheck'
 
 export const AccountCheckGuard = () => {
@@ -23,15 +22,10 @@ export const AccountCheckGuard = () => {
   }, [navigate])
 
   useEffect(() => {
-    if (haveError) {
-      if (paymentOnHold) {
-        handleGoToPaymentPage()
-      }
+    if (haveError && paymentOnHold) {
+      handleGoToPaymentPage()
     }
-    if (doesNotHaveAccount && !getInitiated()) {
-      handleGoToSetupCloudPage()
-    }
-  }, [paymentOnHold, doesNotHaveAccount, handleGoToPaymentPage, handleGoToSetupCloudPage, haveError])
+  }, [paymentOnHold, handleGoToPaymentPage, haveError])
 
   if (!selectedWorkspace?.id) {
     return <FullPageLoadingSuspenseFallback />
@@ -39,23 +33,79 @@ export const AccountCheckGuard = () => {
 
   if (doesNotHaveAccount) {
     return (
-      <Stack flexGrow={1} flexDirection="column" width="100%" height="100%" justifyContent="center" alignItems="center">
-        <Stack alignSelf="start" alignItems="end" flexGrow={0} flexShrink={0} width="100%">
-          <AddAccountButton />
-        </Stack>
-        <Stack flexDirection="column" width="100%" height="100%" justifyContent="center" alignItems="center" flexGrow={1} flexShrink={0}>
-          <Typography variant="h3" textAlign="center">
-            <Trans>There's no account configured for this workspace.</Trans>
-          </Typography>
-          <Typography variant="h5" textAlign="center">
-            <Trans>
-              Please go to{' '}
-              <Button variant="text" onClick={handleGoToSetupCloudPage}>
-                Setup Accounts
-              </Button>{' '}
-              page to setup your account first
-            </Trans>
-          </Typography>
+      <Stack
+        flexGrow={1}
+        flexDirection="column"
+        width="100%"
+        height="100%"
+        justifyContent="center"
+        alignItems="center"
+        spacing={{ xs: 4.625, md: 7 }}
+      >
+        <Box width={256} height={201}>
+          <svg width="256" height="201" viewBox="0 0 256 201" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
+            <path
+              d="M162.455 84.1103C154.223 69.0561 138.859 57.7131 121.949 54.6301C102.938 51.1571 86.1943 59.7059 73.4578 73.3955C71.6167 75.3738 68.873 76.2186 66.252 75.5399C56.0209 72.9117 30.353 69.2222 26.4829 96.8902C26.1364 99.345 24.2591 101.381 21.797 101.663C18.8728 101.995 15.1399 103.424 12.9522 108.11C10.7933 112.739 12.3096 117.193 15.7825 120.125C18.7573 122.638 19.0389 127.121 16.1291 129.706C13.6887 131.872 11.5587 134.255 10.0352 136.269C-1.25002 151.208 -5.17061 189.1 17.5082 196.407C26.1291 199.187 35.9775 196.038 43.9343 192.594C44.6202 192.298 49.039 189.656 52.7357 187.562C55.6599 185.901 59.2123 185.844 62.1798 187.432C74.1943 193.858 87.6095 197.894 101.133 199.446C114.808 201.02 128.353 199.172 141.48 195.237C148.209 193.215 154.678 189.916 161.422 188.103C167.494 186.472 169.4 188.775 175.155 190.696C185.328 194.082 198.086 196.927 208.628 192.508C224.231 185.966 228.614 167.1 227.661 151.793C226.549 133.894 219.834 119.41 203.408 111.641C201.509 110.739 200.144 109.013 199.74 106.948C198.224 99.2295 192.31 81.6554 170.382 87.5111C167.27 88.3414 164.007 86.9334 162.462 84.1031L162.455 84.1103Z"
+              fill={panelUI.uiThemePalette.primary.white}
+              stroke={panelUI.uiThemePalette.text.darkGray}
+              strokeMiterlimit="10"
+            />
+            <path
+              d="M111.198 137.28C118.563 138.501 126.072 137.88 133.379 136.4C134.779 136.118 136.108 137.057 136.353 138.465C137.083 142.609 136.375 147.288 134.05 151.605C129.241 160.537 119.335 164.515 111.927 160.494C108.259 158.501 105.891 154.833 105.032 150.804C104.31 147.439 103.783 141.54 106.267 138.753C106.7 138.27 108.664 136.775 109.393 136.934C109.992 137.064 110.591 137.179 111.205 137.28H111.198Z"
+              fill="#EBDCFF"
+            />
+            <path
+              d="M182.989 135.779C176.866 136.883 170.614 136.457 164.505 135.309C163.336 135.093 162.245 135.894 162.05 137.064C161.494 140.522 162.137 144.414 164.122 147.981C168.231 155.36 176.534 158.559 182.657 155.114C185.689 153.41 187.617 150.327 188.289 146.963C188.845 144.154 189.22 139.237 187.112 136.941C186.744 136.544 185.09 135.324 184.491 135.468C183.993 135.584 183.494 135.685 182.989 135.779Z"
+              fill="#EBDCFF"
+            />
+            <path
+              d="M137.09 128.175C134.057 128.818 131.393 129.482 128.758 129.944C126.144 130.414 123.617 130.71 121.126 130.804C118.635 130.89 116.18 130.782 113.667 130.428C111.14 130.082 108.599 129.446 105.66 128.623L105.429 128.558C103.826 128.11 102.209 129.056 101.819 130.666C101.617 131.497 101.79 132.356 102.216 133.042C104.216 136.233 107.335 138.71 110.808 140.305C114.296 141.901 118.151 142.601 121.884 142.464C125.624 142.327 129.242 141.374 132.447 139.749C135.646 138.111 138.476 135.843 140.455 132.869C141.364 131.497 140.989 129.605 139.61 128.638C138.895 128.132 138.043 127.981 137.263 128.139L137.083 128.175H137.09Z"
+              fill={panelUI.uiThemePalette.primary.purple}
+            />
+            <path
+              d="M161.711 127.692C164.469 128.277 166.895 128.883 169.285 129.302C171.66 129.728 173.964 129.995 176.231 130.082C178.498 130.161 180.729 130.06 183.01 129.735C185.307 129.418 187.617 128.84 190.296 128.096L190.505 128.038C191.964 127.634 193.429 128.493 193.79 129.952C193.978 130.71 193.819 131.49 193.429 132.111C191.61 135.013 188.772 137.266 185.61 138.717C182.433 140.168 178.931 140.804 175.538 140.681C172.137 140.558 168.844 139.685 165.927 138.212C163.018 136.724 160.447 134.659 158.642 131.952C157.812 130.71 158.158 128.984 159.408 128.103C160.057 127.641 160.83 127.504 161.537 127.649L161.704 127.685L161.711 127.692Z"
+              fill={panelUI.uiThemePalette.primary.purple}
+            />
+            <path
+              d="M167.465 162.58C165.935 162.378 164.584 162.038 163.191 161.757C161.819 161.453 160.447 161.193 159.097 160.955C157.74 160.739 156.397 160.536 155.068 160.428C154.404 160.392 153.74 160.349 153.083 160.334C152.75 160.32 152.426 160.32 152.101 160.334L151.032 160.356C148.368 160.37 145.588 160.71 142.902 161.092C140.209 161.497 137.48 161.98 135.104 162.955L135.025 162.991C134.534 163.193 133.963 162.955 133.761 162.464C133.61 162.089 133.703 161.677 133.978 161.41C135.14 160.269 136.519 159.511 137.898 158.89C139.285 158.269 140.714 157.814 142.151 157.425C143.595 157.071 145.054 156.767 146.527 156.594C147.263 156.5 148 156.414 148.743 156.37L149.299 156.341C149.523 156.327 149.754 156.327 149.927 156.327H151.003L152.072 156.32C152.462 156.32 152.852 156.32 153.234 156.349C154.007 156.37 154.765 156.464 155.516 156.565C157.018 156.782 158.483 157.107 159.906 157.526C161.335 157.923 162.714 158.443 164.065 158.984C165.4 159.533 166.743 160.168 167.949 160.739L168.007 160.767C168.491 160.991 168.693 161.569 168.469 162.053C168.288 162.443 167.877 162.652 167.473 162.601L167.465 162.58Z"
+              fill={panelUI.uiThemePalette.primary.purple}
+            />
+            <path
+              d="M195.395 74.3735L194.966 74.4348V74.4427L182.657 76.222L182.656 76.2222C181.336 76.4175 180.1 77.0112 179.13 77.9272L164.746 91.4853C164.734 91.4818 164.718 91.4724 164.702 91.4539C164.687 91.4351 164.68 91.4156 164.679 91.4016C164.678 91.3928 164.679 91.3789 164.692 91.3571L178.998 72.3751L179.007 72.3636L179.015 72.3515C179.113 72.2049 179.272 72.0973 179.453 72.0581C179.453 72.058 179.454 72.0578 179.455 72.0577L185.681 70.7806L185.682 70.7805C187.075 70.4937 187.514 68.7314 186.43 67.8212L186.428 67.8201L178.32 61.0624C178.32 61.0623 178.32 61.0622 178.32 61.0622C178.039 60.8266 177.99 60.4108 178.206 60.1196L178.206 60.1193C178.316 59.9718 178.436 59.81 178.564 59.6366C178.996 59.0537 179.525 58.3399 180.076 57.6001C181.686 55.4397 180.556 52.3437 177.93 51.7039L177.93 51.7038C166.381 48.8945 156.718 37.9988 154.556 26.3869L154.556 26.3868C153.54 20.9334 155.188 13.6072 158.834 8.12707C162.471 2.65885 167.999 -0.849378 174.74 1.01079C176.437 1.47907 178.028 2.35056 179.656 3.3001C179.858 3.41779 180.06 3.53679 180.264 3.65629C181.683 4.49027 183.144 5.34836 184.683 5.95434C194.689 9.89528 205.639 10.0416 216.191 10.1826C217.62 10.2017 219.041 10.2207 220.452 10.249C221.211 10.2645 221.978 10.2765 222.75 10.2887C227.204 10.3586 231.844 10.4314 236.264 11.1966C241.438 12.0924 246.251 13.9295 250.033 17.7817C253.291 21.101 254.829 24.5061 255.123 27.7923C255.418 31.0829 254.47 34.3062 252.664 37.2638C249.041 43.1936 242.006 47.9804 234.951 49.9168C230.574 51.1161 225.313 51.1571 219.901 51.1992C219.187 51.2047 218.471 51.2103 217.754 51.2186C211.648 51.2888 205.477 51.5546 200.545 53.7846C198.369 54.7668 196.919 56.0523 196.007 57.5614C195.098 59.0664 194.749 60.7532 194.707 62.4997C194.664 64.2422 194.927 66.0676 195.258 67.8646C195.385 68.5507 195.521 69.2273 195.655 69.8952C195.876 70.9991 196.093 72.0793 196.257 73.1396L196.257 73.1409C196.354 73.759 195.958 74.2929 195.395 74.3735Z"
+              fill={panelUI.uiThemePalette.input.hover}
+              stroke={panelUI.uiThemePalette.text.darkGray}
+            />
+            <text
+              fill={panelUI.uiThemePalette.primary.white}
+              fontFamily="Plus Jakarta Sans Variable"
+              fontSize={14}
+              fontWeight={700}
+              textAnchor="middle"
+            >
+              <tspan x="200" y="28">
+                Connect
+              </tspan>
+              <tspan x="200" dy="16">
+                Me!
+              </tspan>
+            </text>
+          </svg>
+        </Box>
+
+        <Stack flexDirection="column" justifyContent="center" alignItems="center" spacing={3.75}>
+          <Stack flexDirection="column" justifyContent="center" alignItems="center" spacing={1}>
+            <Typography variant="h4" textAlign="center">
+              <Trans>No account configured for this workspace</Trans>
+            </Typography>
+            <Typography variant="subtitle1" textAlign="center" color={panelUI.uiThemePalette.text.sub}>
+              <Trans>
+                Please go to <b>Cloud Accounts</b> page to setup your account first.
+              </Trans>
+            </Typography>
+          </Stack>
+          <Button sx={{ height: 44, fontSize: 14 }} variant="contained" onClick={handleGoToSetupCloudPage}>
+            <Trans>Go to Cloud Accounts</Trans>
+          </Button>
         </Stack>
       </Stack>
     )
