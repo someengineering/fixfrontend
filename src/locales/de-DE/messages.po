@@ -779,12 +779,6 @@ msgstr "Konfiguration geändert"
 msgid "Configure"
 msgstr "Konfigurieren"
 
-
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:462
-#: src/containers/auth/AuthContainer.tsx:34
-msgid "Configure Fix to monitor all your accounts across AWS, Azure, and Google Cloud."
-msgstr "Verbinden Sie Fix mit all Ihren Konten bei AWS, Azure und Google Cloud."
-
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:452
 msgid "Configure Service Principal"
 msgstr ""
@@ -2478,11 +2472,6 @@ msgstr ""
 #: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:125
 msgid "There's already another api tokens with the same description"
 msgstr ""
-
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:504
-#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:48
-msgid "There's no account configured for this workspace."
-msgstr "Für diesen Arbeitsbereich ist kein Konto konfiguriert."
 
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:494
 msgid "This account is currently in a degraded state possibly due to a misconfiguration.<0/>Fix was unable to gather data from this account."

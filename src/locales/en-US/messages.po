@@ -779,11 +779,6 @@ msgstr "Configuration changed"
 msgid "Configure"
 msgstr "Configure"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:462
-#: src/containers/auth/AuthContainer.tsx:34
-msgid "Configure Fix to monitor all your accounts across AWS, Azure, and Google Cloud."
-msgstr "Configure Fix to monitor all your accounts across AWS, Azure, and Google Cloud."
-
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:452
 msgid "Configure Service Principal"
 msgstr "Configure Service Principal"
@@ -2477,11 +2472,6 @@ msgstr "The workspace you requested cannot be accessed. Please request access fr
 #: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:125
 msgid "There's already another api tokens with the same description"
 msgstr "There's already another api tokens with the same description"
-
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:504
-#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:48
-msgid "There's no account configured for this workspace."
-msgstr "There's no account configured for this workspace."
 
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:494
 msgid "This account is currently in a degraded state possibly due to a misconfiguration.<0/>Fix was unable to gather data from this account."
