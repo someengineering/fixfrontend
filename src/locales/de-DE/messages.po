@@ -1265,6 +1265,10 @@ msgstr ""
 msgid "Go to Azure Service Management:"
 msgstr ""
 
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:107
+msgid "Go to Cloud Accounts"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:45
 msgid "Go To IAM and select Service Accounts."
 msgstr ""
@@ -1705,6 +1709,10 @@ msgstr ""
 msgid "No {label} found for {typed}"
 msgstr ""
 
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:98
+msgid "No account configured for this workspace"
+msgstr ""
+
 #: src/shared/layouts/panel-layout/MoveToFreeAcknowledge.tsx:44
 msgid "No Thanks"
 msgstr ""
@@ -1801,7 +1809,7 @@ msgid "Oops, the username or password doesn't seem to match our records. Please 
 msgstr "Hoppla, der Benutzername oder das Passwort scheinen nicht mit unseren Aufzeichnungen übereinzustimmen. Bitte versuche es erneut."
 
 #: src/pages/panel/inventory-search/InventoryAdvanceSearch.tsx:99
-#: src/pages/panel/inventory-search/InventoryAdvanceSearchTextField.tsx:108
+#: src/pages/panel/inventory-search/InventoryAdvanceSearchTextField.tsx:116
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Sie sie und versuchen Sie es erneut."
 
@@ -1940,9 +1948,9 @@ msgstr ""
 msgid "Please enter your One-Time-Password or one of your Recovery code."
 msgstr "Bitte geben Sie Ihr One-Time-Passwort oder einen Ihrer Wiederherstellungscodes ein."
 
-#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:51
-msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
-msgstr "Bitte gehen Sie zur Seite <0>Setup Accounts</0>, um zunächst Ihr Konto einzurichten"
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:101
+msgid "Please go to <0>Cloud Accounts</0> page to setup your account first."
+msgstr ""
 
 #: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:80
 msgid "Please select the workspace where you would like to activate this subscription."
@@ -2464,10 +2472,6 @@ msgstr ""
 #: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:125
 msgid "There's already another api tokens with the same description"
 msgstr ""
-
-#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:48
-msgid "There's no account configured for this workspace."
-msgstr "Für diesen Arbeitsbereich ist kein Konto konfiguriert."
 
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:504
 msgid "This account is currently in a degraded state possibly due to a misconfiguration.<0/>Fix was unable to gather data from this account."
