@@ -354,7 +354,7 @@ export const WorkspaceSettingsAccountRow = ({
         {lastScanStr ? (
           <Tooltip title={lastScanStr}>
             <Typography>
-              <Trans>{lastScanDurStr} Ago</Trans>
+              <Trans>{lastScanDurStr} ago</Trans>
             </Typography>
           </Tooltip>
         ) : (
