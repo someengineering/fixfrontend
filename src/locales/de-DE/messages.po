@@ -128,7 +128,7 @@ msgid "{label} is required"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:357
-msgid "{lastScanDurStr} Ago"
+msgid "{lastScanDurStr} ago"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:107
