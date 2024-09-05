@@ -1655,8 +1655,8 @@ msgstr "Neue Ausgaben"
 msgid "new non compliant resources in the past {since}"
 msgstr "neue nicht konforme Ressourcen in der Vergangenheit {since}"
 
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:27
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:43
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:29
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:45
 msgid "New Password"
 msgstr "Neues Kennwort"
 
@@ -2345,7 +2345,7 @@ msgstr "Einige Prüfungen wurden für diese Ressource deaktiviert"
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:321
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:33
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:22
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:24
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:107
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:110
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:39
@@ -2578,7 +2578,7 @@ msgstr "Ungenutzte Datenbankinstanzen"
 msgid "Update Email"
 msgstr "E-Mail aktualisieren"
 
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:31
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:33
 msgid "Update Password"
 msgstr "Kennwort aktualisieren"
 

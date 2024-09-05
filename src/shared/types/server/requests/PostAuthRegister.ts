@@ -13,7 +13,7 @@ export type PostAuthRegisterLiteralErrorResponse = GenericServerError<
 >
 
 export type PostAuthRegisterObjectErrorResponse = GenericServerError<
-  [[400, [{ code: 'REGISTER_INVALID_PASSWORD'; reason: LiteralUnion<'Invalid', string> }]]]
+  [[400, [{ code: 'REGISTER_INVALID_PASSWORD' | 'UPDATE_USER_INVALID_PASSWORD'; reason: LiteralUnion<'Invalid', string> }]]]
 >
 
 export type PostAuthRegisterErrorResponse = PostAuthRegisterLiteralErrorResponse | PostAuthRegisterObjectErrorResponse
