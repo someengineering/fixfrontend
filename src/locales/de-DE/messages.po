@@ -236,7 +236,7 @@ msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 msgid "Account"
 msgstr "Konto"
 
-#: src/pages/panel/shared/utils/HeatmapCard.tsx:39
+#: src/pages/panel/shared/utils/HeatmapCard.tsx:38
 msgid "Account: {0}"
 msgstr "Konto: {0}"
 
@@ -506,7 +506,7 @@ msgstr ""
 msgid "Benchmark"
 msgstr "Benchmark"
 
-#: src/pages/panel/shared/utils/HeatmapCard.tsx:42
+#: src/pages/panel/shared/utils/HeatmapCard.tsx:41
 msgid "Benchmark: {0}"
 msgstr "Benchmark: {0}"
 

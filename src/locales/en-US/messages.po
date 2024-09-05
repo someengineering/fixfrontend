@@ -236,7 +236,7 @@ msgstr "Access to your account is broken"
 msgid "Account"
 msgstr "Account"
 
-#: src/pages/panel/shared/utils/HeatmapCard.tsx:39
+#: src/pages/panel/shared/utils/HeatmapCard.tsx:38
 msgid "Account: {0}"
 msgstr "Account: {0}"
 
@@ -506,7 +506,7 @@ msgstr "below"
 msgid "Benchmark"
 msgstr "Benchmark"
 
-#: src/pages/panel/shared/utils/HeatmapCard.tsx:42
+#: src/pages/panel/shared/utils/HeatmapCard.tsx:41
 msgid "Benchmark: {0}"
 msgstr "Benchmark: {0}"
 

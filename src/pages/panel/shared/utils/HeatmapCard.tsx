@@ -27,13 +27,12 @@ export const HeatmapCard = ({ data }: HeatmapCardProps) => {
           data: data.benchmarks.map((benchmark) => ({
             title: benchmark.title,
             titleHref: `/benchmark/${benchmark.id}`,
-            cells: data.accounts
-              .filter((account) => (benchmark.account_summary[account.id]?.score ?? -1) >= 0)
-              .map((account) => ({
-                name: account.name ?? account.id,
-                value: benchmark.account_summary[account.id]?.score ?? -1,
-                title: benchmark.account_summary[account.id]?.score ?? -1,
-                tooltip: (
+            cells: data.accounts.map((account) => ({
+              name: account.name ?? account.id,
+              value: benchmark.account_summary[account.id]?.score ?? -1,
+              title: benchmark.account_summary[account.id]?.score ?? -1,
+              tooltip:
+                (benchmark.account_summary[account.id]?.score ?? -1) >= 0 ? (
                   <Stack spacing={1} p={1}>
                     <Typography>
                       <Trans>Account: {account.name ? `${account.name} (${account.id})` : account.id}</Trans>
@@ -44,14 +43,14 @@ export const HeatmapCard = ({ data }: HeatmapCardProps) => {
                     <Divider />
                     <PieResourceCheckScore
                       data={createPieDataFromNonCompliance(account, locale, navigate, true, true)}
-                      score={benchmark.account_summary[account.id]?.score ?? -1}
+                      score={benchmark.account_summary[account.id]?.score}
                       showPieChart
                       noAnimation
                     />
                   </Stack>
-                ),
-                href: `/benchmark/${benchmark.id}/${account.id}`,
-              })),
+                ) : undefined,
+              href: `/benchmark/${benchmark.id}/${account.id}`,
+            })),
           })),
         }
   }, [data, locale, navigate])
