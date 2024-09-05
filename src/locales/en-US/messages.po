@@ -128,8 +128,8 @@ msgid "{label} is required"
 msgstr "{label} is required"
 
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:357
-msgid "{lastScanDurStr} Ago"
-msgstr "{lastScanDurStr} Ago"
+msgid "{lastScanDurStr} ago"
+msgstr "{lastScanDurStr} ago"
 
 #: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:107
 msgid "{scanIntervalStr} scans"
@@ -1665,8 +1665,8 @@ msgstr "New issues"
 msgid "new non compliant resources in the past {since}"
 msgstr "new non compliant resources in the past {since}"
 
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:27
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:43
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:29
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:45
 msgid "New Password"
 msgstr "New Password"
 
@@ -2370,7 +2370,7 @@ msgstr "Some checks have been disabled for this resource"
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:321
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:33
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:22
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:24
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:107
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:110
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:39
@@ -2603,7 +2603,7 @@ msgstr "Unused Database Instances"
 msgid "Update Email"
 msgstr "Update Email"
 
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:31
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:33
 msgid "Update Password"
 msgstr "Update Password"
 

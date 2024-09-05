@@ -1,4 +1,5 @@
 export type { DeleteApiTokenRequest } from './DeleteApiToken'
+export type { PatchCurrentUserErrorResponse, PatchCurrentUserRequest, PatchCurrentUserResponse } from './PatchCurrentUser'
 export type { PatchWorkspaceInventoryNodeSecurityIgnoreRequest } from './PatchWorkspaceInventoryNodeSecurityIgnore'
 export type { PatchWorkspaceSettingsRequest } from './PatchWorkspaceSetting'
 export type { PostApiTokenRequest } from './PostApiToken'
