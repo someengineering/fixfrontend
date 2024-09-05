@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/macro'
-import { Box, Divider, Grid, Stack, Theme, Typography, useMediaQuery } from '@mui/material'
+import { Box, Divider, Grid2, Stack, Theme, Typography, useMediaQuery } from '@mui/material'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryReportSummaryQuery } from 'src/pages/panel/shared/queries'
@@ -19,9 +19,9 @@ export const Overview = () => {
 
   return (
     <>
-      <Grid container my={2}>
+      <Grid2 container my={2}>
         {isMobile ? (
-          <Grid item xs={12}>
+          <Grid2 size={12}>
             <Stack display="flex" direction="row">
               <Divider orientation="vertical" sx={{ display: { xs: 'none', md: 'block' }, mx: 2 }} flexItem />
               <Stack width="100%">
@@ -35,19 +35,19 @@ export const Overview = () => {
                 />
               </Stack>
             </Stack>
-          </Grid>
+          </Grid2>
         ) : null}
-        <Grid item xs={12} md={6}>
+        <Grid2 size={{ xs: 12, md: 6 }}>
           <Typography variant="h3" mb={2}>
             <Trans>Changes in the past 7 days</Trans>
           </Typography>
           <OverallCard data={data} />
-        </Grid>
+        </Grid2>
         {!isMobile ? (
-          <Grid item md={6}>
+          <Grid2 size={{ xs: 12, md: 6 }}>
             <Stack display="flex" direction="row">
               <Divider orientation="vertical" sx={{ display: { xs: 'none', md: 'block' }, mx: 2 }} flexItem />
-              <Stack>
+              <Stack width="calc(100% - 37px) !important">
                 <Typography variant="h3" mb={{ xs: 0, md: 2 }} mt={{ xs: 4, md: 0 }}>
                   <Trans>Security Score</Trans>
                 </Typography>
@@ -63,11 +63,11 @@ export const Overview = () => {
                 <TopFiveChecksCard failedChecks={data.top_checks} />
               </Stack>
             </Stack>
-          </Grid>
+          </Grid2>
         ) : (
           false
         )}
-      </Grid>
+      </Grid2>
       {isMobile ? (
         <>
           <Box p={4}>
@@ -90,9 +90,9 @@ export const Overview = () => {
           <Typography variant="h3" mb={2}>
             <Trans>Failing Check Timeline</Trans>
           </Typography>
-          <Grid item>
+          <Grid2>
             <VulnerableResourcesTimeline data={data.vulnerable_resources} />
-          </Grid>
+          </Grid2>
         </>
       ) : null}
       <Box p={4}>

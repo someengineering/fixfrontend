@@ -35,7 +35,7 @@ export const InventoryFormField = ({
         spacing={0.5}
         alignItems="center"
         sx={{
-          minHeight: 42,
+          minHeight: 52,
           ...(onClick
             ? {}
             : {
