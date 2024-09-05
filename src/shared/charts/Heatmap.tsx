@@ -29,7 +29,7 @@ const HeatmapCell = ({ title, value, tooltip, href }: HeatmapData) => {
   let comp = (
     <Stack
       color="#fff"
-      bgcolor={value >= 0 ? getColors(Math.floor(value / (100 / NUMBER_OF_COLORS))) : 'gray'}
+      bgcolor={value >= 0 ? getColors(Math.floor(value / (100 / NUMBER_OF_COLORS))) : '#e6e6e6'}
       width={CELL_WIDTH}
       height={CELL_WIDTH}
       alignItems="center"
@@ -37,7 +37,7 @@ const HeatmapCell = ({ title, value, tooltip, href }: HeatmapData) => {
       component={href ? ButtonBase : 'div'}
       sx={{ textDecoration: 'none' }}
     >
-      {value >= 0 ? title : 'N/A'}
+      {value >= 0 ? title : ''}
     </Stack>
   )
   if (href) {
