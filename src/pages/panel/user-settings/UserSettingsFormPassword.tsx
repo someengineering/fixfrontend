@@ -3,6 +3,7 @@ import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useState } from 'react'
 import { PasswordTextField, PasswordTextFieldProps } from 'src/shared/password-text-field'
+import { PatchCurrentUserErrorResponse } from 'src/shared/types/server'
 import { UserSettingsFormContentContainer } from './UserSettingsFormContentContainer'
 import { patchUsersMeMutation } from './patchUsersMe.mutation'
 
@@ -19,7 +20,8 @@ export const UserSettingsFormPassword = ({ ...rest }: UserSettingsFormPasswordPr
   }
 
   const formError = error
-    ? (((error as AxiosError)?.response?.data as { detail: string })?.detail ?? t`Something went wrong please try again later.`)
+    ? ((error as AxiosError<PatchCurrentUserErrorResponse>)?.response?.data?.detail?.reason ??
+      t`Something went wrong please try again later.`)
     : undefined
   return (
     <>
