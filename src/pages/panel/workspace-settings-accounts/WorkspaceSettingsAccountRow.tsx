@@ -382,12 +382,7 @@ export const WorkspaceSettingsAccountRow = ({
                     <CircularProgress size={20} />
                   </Stack>
                 ) : (
-                  <Checkbox
-                    name={`enable-account-${account.account_id}`}
-                    disabled={!account.is_configured}
-                    checked={account.enabled}
-                    onChange={handleEnableChange}
-                  />
+                  <Checkbox name={`enable-account-${account.account_id}`} checked={account.enabled} onChange={handleEnableChange} />
                 )}
               </TableCell>
               <TableCell>
@@ -396,12 +391,7 @@ export const WorkspaceSettingsAccountRow = ({
                     <CircularProgress size={20} />
                   </Stack>
                 ) : (
-                  <Checkbox
-                    name={`enable-account-${account.account_id}`}
-                    disabled={!account.is_configured}
-                    checked={account.scan}
-                    onChange={handleEnableScanChange}
-                  />
+                  <Checkbox name={`enable-account-${account.account_id}`} checked={account.scan} onChange={handleEnableScanChange} />
                 )}
               </TableCell>
             </>
