@@ -24,6 +24,7 @@ export default tsEslint.config(
       '__mocks__',
       '**/index.html',
       'public/*.min.js',
+      'public/*.min.css',
       'dist',
       'storybook-static',
       'vite.config.ts',
