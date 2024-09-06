@@ -191,7 +191,7 @@ export const ChangeProductTier = ({
                           variant="outlined"
                           href={`${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').awsMarketplaceProduct}`}
                         >
-                          <Typography textTransform="none">
+                          <Typography>
                             <Trans>Manage AWS Market place payment method</Trans>
                           </Typography>
                         </ExternalLinkLoadingButton>
@@ -210,7 +210,7 @@ export const ChangeProductTier = ({
                           variant="outlined"
                           href={`${env.apiUrl}/${endPoints.workspaces.workspace(selectedWorkspace?.id ?? '').subscription.stripe}`}
                         >
-                          <Typography textTransform="none">
+                          <Typography>
                             <Trans>Manage Card Details</Trans>
                           </Typography>
                         </ExternalLinkLoadingButton>

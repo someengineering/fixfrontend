@@ -8,16 +8,18 @@ import {
   ThemeOptions,
   ThemeProvider,
   alpha,
+  buttonClasses,
   createTheme,
+  inputBaseClasses,
   responsiveFontSizes,
-  useMediaQuery,
 } from '@mui/material'
 import { PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
-import { langs } from 'src/shared/constants'
+import { CancelIcon, CheckIcon, InfoIcon, WarningIcon } from 'src/assets/icons'
+import { langs, panelUI } from 'src/shared/constants'
 import { getThemeMode, setThemeMode } from 'src/shared/utils/localstorage'
 import { ThemeContext } from './ThemeContext'
 
-createTheme({
+const orgTheme = createTheme({
   typography: {},
 })
 
@@ -29,7 +31,7 @@ export function Theme({ children, emotionCache }: ThemeProps) {
   const {
     i18n: { locale },
   } = useLingui()
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
+  const prefersDarkMode = false //useMediaQuery('(prefers-color-scheme: dark)')
   const [mode, setMode] = useState<'light' | 'dark'>(themeMode?.mode ?? (prefersDarkMode ? 'dark' : 'light'))
   const toggleColorMode = useCallback((themeMode?: 'light' | 'dark') => {
     setMode((prevMode) => themeMode ?? (prevMode === 'light' ? 'dark' : 'light'))
@@ -40,30 +42,41 @@ export function Theme({ children, emotionCache }: ThemeProps) {
   const palette: PaletteOptions = useMemo(
     () => ({
       primary: {
-        main: mode === 'dark' ? '#648DE5' : '#3d58d3',
+        main: panelUI.uiThemePalette.primary.purple,
+        dark: panelUI.uiThemePalette.primary.darkPurple,
+        light: panelUI.uiThemePalette.primary.lightPurple,
+        contrastText: panelUI.uiThemePalette.primary.white,
       },
-      secondary: {
-        main: '#B1C8FA',
-      },
+      divider: panelUI.uiThemePalette.input.disabled,
       error: {
-        main: '#E01A4F',
+        main: panelUI.uiThemePalette.severity.error,
+        contrastText: panelUI.uiThemePalette.primary.white,
       },
       warning: {
-        main: '#F78400',
+        main: panelUI.uiThemePalette.severity.warning,
+        contrastText: panelUI.uiThemePalette.primary.white,
       },
       success: {
-        main: '#00AC6B',
+        main: panelUI.uiThemePalette.severity.success,
+        contrastText: panelUI.uiThemePalette.primary.white,
       },
-      background: { default: mode === 'dark' ? '#242424' : '#FFFFFF' },
+      info: {
+        main: panelUI.uiThemePalette.accent.darkGray,
+        contrastText: panelUI.uiThemePalette.primary.white,
+      },
+      background:
+        mode === 'dark'
+          ? { default: panelUI.uiThemePalette.accent.darkGray, paper: panelUI.uiThemePalette.accent.gradient }
+          : { default: panelUI.uiThemePalette.background.bgPurple, paper: panelUI.uiThemePalette.background.bgGray },
       common:
         mode === 'dark'
           ? {
               black: '#FFFFFF',
-              white: '#242424',
+              white: '#111827',
             }
           : {
               white: '#FFFFFF',
-              black: '#242424',
+              black: '#111827',
             },
       mode,
     }),
@@ -86,24 +99,25 @@ export function Theme({ children, emotionCache }: ThemeProps) {
 
   const typography: ThemeOptions['typography'] = {
     fontFamily,
-    h1: { fontSize: '3rem', fontWeight: 800, lineHeight: 1 },
-    h2: { fontSize: '2.25rem', fontWeight: 700, lineHeight: 1.11 },
-    h3: { fontSize: '1.875rem', fontWeight: 700, lineHeight: 1.2 },
-    h4: { fontSize: '1.5rem', fontWeight: 700, lineHeight: 1.33 },
-    h5: { fontSize: '1.25rem', fontWeight: 600, lineHeight: 1.4 },
-    h6: { fontSize: '1.125rem', fontWeight: 500, lineHeight: 1.56 },
-    body1: { fontSize: '1rem', fontWeight: 400, lineHeight: 1.5 },
-    body2: { fontSize: '0.875rem', fontWeight: 400, lineHeight: 1.43 },
-    caption: { fontSize: '0.8125rem', fontWeight: 300, lineHeight: 1.23 },
-    subtitle1: { fontSize: '0.75rem', fontWeight: 300, lineHeight: 1.33 },
-    button: {
-      fontSize: '0.875rem',
-      fontWeight: 600,
-      fontFamily,
-      lineHeight: 1.43,
-    },
+    h1: { fontSize: '3rem', fontWeight: 700, lineHeight: 1.20833 },
+    h2: { fontSize: '2.5rem', fontWeight: 700, lineHeight: 1.25 },
+    h3: { fontSize: '2rem', fontWeight: 700, lineHeight: 1.3125 },
+    h4: { fontSize: '1.5rem', fontWeight: 700, lineHeight: 1.41667 },
+    h5: { fontSize: '1.125rem', fontWeight: 700, lineHeight: 1.4444 },
+    h6: { fontSize: '1rem', fontWeight: 700, lineHeight: 1.375 },
+    bodyBiggest: { fontSize: '2.25rem', fontWeight: 400, lineHeight: 1.16667 },
+    bodyBigger: { fontSize: '1.75rem', fontWeight: 400, lineHeight: 1.21429 },
+    bodyBig: { fontSize: '1.5rem', fontWeight: 400, lineHeight: 1.25 },
+    body1: { fontSize: '1.125rem', fontWeight: 400, lineHeight: 1.44444 },
+    body2: { fontSize: '1rem', fontWeight: 400, lineHeight: 1.375 },
+    subtitle1: { fontSize: '0.875rem', fontWeight: 400, lineHeight: 1.28571 },
+    subtitle2: { fontSize: '0.75rem', fontWeight: 400, lineHeight: 1.5 },
+    button: { fontSize: '0.875rem', fontWeight: 500, fontFamily, lineHeight: 1.4286, textTransform: 'none' },
+    subMenu: { fontSize: '0.75rem', fontWeight: 500, lineHeight: 1.26 },
+    buttonLarge: { fontSize: '0.875rem', fontWeight: 700, lineHeight: 1.26 },
+    buttonSmall: { fontSize: '0.75rem', fontWeight: 700, lineHeight: 1.26 },
+    linkBold: { fontSize: '14px', fontWeight: 700, lineHeight: 1.26, textDecoration: 'underline' },
   }
-
   const theme = createTheme(
     {
       palette,
@@ -114,9 +128,102 @@ export function Theme({ children, emotionCache }: ThemeProps) {
           long: 500,
           longer: 1000,
           longest: 2000,
+          slideShow: panelUI.slideDuration,
         },
       },
       components: {
+        MuiInputBase: {
+          styleOverrides: {
+            root: {
+              ...typography.subtitle1,
+              height: 44,
+              borderRadius: 6,
+              paddingRight: '0 !important',
+              transition: orgTheme.transitions.create(['border-color', 'box-shadow', 'fill']),
+              '::placeholder': {
+                color: panelUI.uiThemePalette.input.hover,
+              },
+              ':hover,:focus,:active': {
+                fieldset: {
+                  borderWidth: 1,
+                  borderColor: panelUI.uiThemePalette.input.hover,
+                },
+              },
+              [`&.${inputBaseClasses.focused}`]: {
+                boxShadow: `0px 0px 0px 6px ${alpha(panelUI.uiThemePalette.primary.purple, 0.2)}`,
+                fieldset: {
+                  borderWidth: '1px!important',
+                  borderColor: panelUI.uiThemePalette.primary.purple,
+                },
+                svg: {
+                  fill: panelUI.uiThemePalette.text.darkGray,
+                },
+              },
+
+              [`&.${inputBaseClasses.error}`]: {
+                backgroundColor: alpha(panelUI.uiThemePalette.severity.error, 0.1),
+              },
+            },
+            input: {
+              padding: '8px !important',
+            },
+            adornedStart: {
+              input: {
+                paddingLeft: '8px !important',
+              },
+              svg: {
+                fill: panelUI.uiThemePalette.input.hover,
+              },
+            },
+            adornedEnd: {
+              input: {
+                paddingRight: '8px !important',
+              },
+            },
+          },
+        },
+        MuiDivider: {
+          styleOverrides: {
+            root: {
+              ...typography.subtitle1,
+              color: panelUI.uiThemePalette.text.disabled,
+            },
+          },
+        },
+        MuiAvatar: {
+          styleOverrides: {
+            root: {
+              width: 32,
+              height: 32,
+              padding: '2px',
+              ...typography.linkBold,
+              textDecoration: 'none',
+            },
+          },
+        },
+        MuiTypography: {
+          defaultProps: {
+            variantMapping: {
+              bodyBiggest: 'p',
+              bodyBigger: 'p',
+              bodyBig: 'p',
+              buttonSmall: 'button',
+              buttonLarge: 'button',
+              subMenu: 'li',
+              linkBold: 'a',
+            },
+          },
+        },
+        MuiAlert: {
+          defaultProps: {
+            iconMapping: {
+              error: <CancelIcon fill={panelUI.uiThemePalette.primary.white} />,
+              success: <CheckIcon fill={panelUI.uiThemePalette.primary.white} />,
+              warning: <WarningIcon fill={panelUI.uiThemePalette.primary.white} />,
+              info: <InfoIcon fill={panelUI.uiThemePalette.primary.white} />,
+            },
+          },
+        },
         MuiTooltip: {
           styleOverrides: {
             tooltip: {
@@ -131,10 +238,55 @@ export function Theme({ children, emotionCache }: ThemeProps) {
             },
           },
         },
+        MuiLink: {
+          styleOverrides: {
+            root: {
+              fontWeight: 700,
+            },
+          },
+        },
         MuiButton: {
+          defaultProps: {
+            disableRipple: true,
+            disableFocusRipple: true,
+            disableTouchRipple: true,
+            disableElevation: true,
+          },
           styleOverrides: {
             root: {
               textTransform: 'none',
+              borderRadius: '6px',
+            },
+            sizeMedium: {
+              ...typography.buttonLarge,
+              padding: '10px 16px',
+            },
+            sizeSmall: {
+              ...typography.buttonSmall,
+              padding: '8px 16px',
+            },
+            outlined: {
+              color: panelUI.uiThemePalette.primary.purple,
+              borderColor: panelUI.uiThemePalette.primary.divider,
+              backgroundColor: panelUI.uiThemePalette.primary.white,
+              [`.${buttonClasses.icon} svg`]: {
+                fill: panelUI.uiThemePalette.primary.purple,
+              },
+              ':hover,:focus,:active': {
+                backgroundColor: panelUI.uiThemePalette.background.bgPurple,
+                borderColor: panelUI.uiThemePalette.text.sub,
+              },
+            },
+            contained: {
+              color: panelUI.uiThemePalette.primary.white,
+              backgroundColor: panelUI.uiThemePalette.primary.purple,
+              ':hover,:focus,:active': { backgroundColor: panelUI.uiThemePalette.primary.darkPurple },
+              boxShadow: 'none !important',
+            },
+            textPrimary: {
+              ':hover,:focus,:active': {
+                backgroundColor: panelUI.uiThemePalette.background.bgPurple,
+              },
             },
           },
         },

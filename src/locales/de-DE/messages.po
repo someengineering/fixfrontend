@@ -161,10 +161,6 @@ msgstr ""
 msgid "<0>Open Your Authenticator App:</0> Head over to your authenticator app and choose to add a new account manually.<1>Enter Account Details:</1> You'll need to type in your account's email address or username, and the key provided below.<2>Your Key:</2> <3/><4>Verification Type:</4> Make sure to select \"Time-based\" as the verification type.<5>Enter the Code:</5> Once your account is added manually, the app will show a 6-digit code. Pop that code into the box below and hit \"Activate\"."
 msgstr "<0>Öffnen Sie Ihre Authenticator-App:</0> Gehe zu deiner Authenticator-App und wähle, ein neues Konto manuell hinzuzufügen.<1>Gib Kontodetails ein:</1> Du musst deine E-Mail-Adresse oder Benutzernamen des Kontos eingeben und den untenstehenden Schlüssel verwenden.<2>Dein Schlüssel:</2> <3/><4>Verifizierungstyp:</4> Stelle sicher, dass du \"Zeitbasiert\" als Verifizierungstyp auswählst.<5>Gib den Code ein:</5> Sobald dein Konto manuell hinzugefügt ist, zeigt die App einen 6-stelligen Code an. Gib diesen Code in das untenstehende Feld ein und drücke auf \"Aktivieren\"."
 
-#: src/containers/auth/AuthContainer.tsx:94
-msgid "<0>Privacy policy</0> | <1>Terms and conditions</1>"
-msgstr "<0>Datenschutzerklärung</0> | <1>Allgemeine Geschäftsbedingungen</1>"
-
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:136
 msgid "<0>Step 1: Scan the QR Code</0><1>First up, see this QR code on your screen? Grab your phone and open your favorite authenticator app (like Google Authenticator).</1><2>Step 2: Add a New Account</2><3>In the app, tap on \"Add\" or \"+\" to set up a new account. Select \"Scan a QR Code\" and point your phone's camera at the QR code displayed here. This will link your account to the app.</3><4><5/></4><6>Step 3: Enter the Code</6><7>Once linked, the app will display a 6-digit code. It changes every 30 seconds, so it's super fresh! Enter that code in the box below and hit \"Activate\". And voilà, you're all set!</7>"
 msgstr "<0>Schritt 1: Scannen Sie den QR-Code</0><1>Zuerst, sehen Sie diesen QR-Code auf Ihrem Bildschirm? Nehmen Sie Ihr Handy und öffnen Sie Ihre bevorzugte Authenticator-App (wie Google Authenticator).</1><2>Schritt 2: Ein neues Konto hinzufügen</2><3>In der App, tippen Sie auf \"Hinzufügen\" oder \"+\", um ein neues Konto einzurichten. Wählen Sie \"QR-Code scannen\" und richten Sie die Kamera Ihres Handys auf den hier angezeigten QR-Code. Dies verknüpft Ihr Konto mit der App.</3><4><5/></4><6>Schritt 3: Geben Sie den Code ein</6><7>Sobald verknüpft, zeigt die App einen 6-stelligen Code an. Er ändert sich alle 30 Sekunden, also ist er super aktuell! Geben Sie diesen Code in das Feld unten ein und klicken Sie auf \"Aktivieren\". Und voilà, Sie sind fertig!</7>"
@@ -249,7 +245,6 @@ msgstr "Konto: {0}"
 #: src/pages/panel/inventory-search/InventoryTable.error.tsx:73
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:57
 #: src/shared/language-button/LanguageButton.stories.tsx:20
-#: src/shared/layouts/panel-layout/menuList.tsx:80
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:9
 msgid "Accounts"
 msgstr "Konten"
@@ -373,11 +368,14 @@ msgstr ""
 msgid "All security issues fixed"
 msgstr "Alle Sicherheitsprobleme behoben"
 
-#: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:100
-#: src/pages/auth/register/RegisterPage.tsx:126
-#: src/pages/auth/reset-password/ResetPasswordPage.tsx:124
-msgid "Already have an account? Click here to Log in."
-msgstr "Sie haben bereits ein Konto? Klicken Sie hier, um sich einzuloggen."
+#: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:105
+#: src/pages/auth/reset-password/ResetPasswordPage.tsx:120
+msgid "Already have an account? <0>Back to Sign in</0>"
+msgstr ""
+
+#: src/pages/auth/register/RegisterPage.tsx:90
+msgid "Already have an account? <0>Sign in</0>"
+msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:109
 msgid "Alternatively if you would like to deploy the stack manually, you can use the following CloudFormation template"
@@ -391,10 +389,6 @@ msgstr "Alternativ: Manuelles Cloud Setup"
 msgid "Amazon Web Services"
 msgstr ""
 
-#: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:77
-msgid "An email has been sent to your inbox with a 'Reset Password' button. Please check your email and click on it to reset your password."
-msgstr "Eine E-Mail wurde mit einem 'Passwort zurücksetzen'-Button an Ihren Posteingang gesendet. Bitte überprüfen Sie Ihre E-Mails und klicken Sie darauf, um Ihr Passwort zurückzusetzen."
-
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsConnectedServices.tsx:26
 msgid "An error occurred while connecting to {0}"
 msgstr "Beim Herstellen der Verbindung zu {0} ist ein Fehler aufgetreten."
@@ -406,8 +400,12 @@ msgstr "Beim Herstellen der Verbindung zu {0} ist ein Fehler aufgetreten."
 msgid "An error occurred, please try again later."
 msgstr "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut."
 
-#: src/shared/utils/getErrorMessage.ts:34
+#: src/shared/utils/getErrorMessage.ts:35
 msgid "An error occurred, please try again later.{0}"
+msgstr ""
+
+#: src/shared/utils/getErrorMessage.ts:36
+msgid "An error occurred.{0}"
 msgstr ""
 
 #: src/shared/utils/parseDuration.ts:204
@@ -519,7 +517,6 @@ msgstr "Benchmarks"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:51
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:80
-#: src/shared/layouts/panel-layout/menuList.tsx:90
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:23
 msgid "Billing"
 msgstr "Abrechnung"
@@ -544,6 +541,14 @@ msgstr ""
 #: src/pages/panel/workspace-settings-billing/utils/productTierToLabel.ts:13
 msgid "Business"
 msgstr "Business"
+
+#: src/containers/auth/AuthContainer.tsx:32
+msgid "By signing in, you agree to our <0>Privacy policy</0> and <1>Terms & Conditions.</1>"
+msgstr ""
+
+#: src/pages/auth/login/LoginPage.tsx:291
+msgid "Can't access OTP?"
+msgstr ""
 
 #: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:59
 #: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:68
@@ -628,6 +633,10 @@ msgstr ""
 msgid "Check the newly created role assignment"
 msgstr ""
 
+#: src/containers/auth/getQuotes.ts:14
+msgid "CISO at Lineaje at lineaje"
+msgstr ""
+
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormChangePicker.tsx:161
 msgid "Clear"
 msgstr ""
@@ -708,6 +717,10 @@ msgstr "Schließen"
 msgid "Cloud"
 msgstr "Cloud"
 
+#: src/shared/layouts/panel-layout/SettingsButton.tsx:24
+msgid "Cloud Accounts"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:16
 msgid "Cloud Inventory"
 msgstr "Cloud Inventar"
@@ -726,6 +739,7 @@ msgid "Community support"
 msgstr "Gemeinschaftliche Unterstützung"
 
 #: src/pages/panel/security/OverallCard.tsx:77
+#: src/shared/layouts/panel-layout/menuList.tsx:43
 msgid "Compliance"
 msgstr "Compliance"
 
@@ -764,10 +778,6 @@ msgstr "Konfiguration geändert"
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsTeamsService.tsx:84
 msgid "Configure"
 msgstr "Konfigurieren"
-
-#: src/containers/auth/AuthContainer.tsx:34
-msgid "Configure Fix to monitor all your accounts across AWS, Azure, and Google Cloud."
-msgstr "Verbinden Sie Fix mit all Ihren Konten bei AWS, Azure und Google Cloud."
 
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:452
 msgid "Configure Service Principal"
@@ -811,10 +821,6 @@ msgstr "Verbinden Sie PagerDuty"
 msgid "Connect Teams"
 msgstr "Verbinden Sie Teams"
 
-#: src/containers/auth/AuthContainer.tsx:28
-msgid "Connect your cloud accounts"
-msgstr "Stellen Sie eine Verbindung zu Ihren Cloud-Accounts her"
-
 #: src/pages/panel/user-settings/UserSettingsPage.tsx:34
 msgid "Connected Accounts"
 msgstr "Verbundene Konten"
@@ -827,10 +833,6 @@ msgstr "Vernetzte Dienste"
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:93
 msgid "Continue"
 msgstr ""
-
-#: src/containers/auth/AuthContainer.tsx:75
-msgid "Continuous monitoring"
-msgstr "Kontinuierliche Überwachung"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceId.tsx:16
 #: src/shared/utils/useCopyString.ts:18
@@ -858,6 +860,10 @@ msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:132
 msgid "Create a Role Assignment between the App and your Management Group"
+msgstr ""
+
+#: src/pages/auth/register/RegisterPage.tsx:87
+msgid "Create an account"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:87
@@ -925,6 +931,10 @@ msgstr "Derzeit stehen keine verbundenen Dienste zur Konfiguration zur Verfügun
 #: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:28
 msgid "Daily"
 msgstr "Tägliche"
+
+#: src/shared/layouts/panel-layout/menuList.tsx:28
+msgid "Dashboard"
+msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:38
 msgid "Data Export"
@@ -1019,6 +1029,10 @@ msgstr "Beschreibung"
 msgid "Details"
 msgstr "Einzelheiten"
 
+#: src/shared/layouts/panel-layout/UserButton.tsx:32
+msgid "Developer"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:132
 msgid "Directory (tenant) ID"
 msgstr ""
@@ -1065,10 +1079,6 @@ msgstr "Möchten Sie diese Einladung löschen?"
 msgid "Do you want to delete this user?"
 msgstr "Möchten Sie diesen Benutzer löschen?"
 
-#: src/pages/auth/login/LoginPage.tsx:224
-msgid "Don't have an account? Click here to Sign up."
-msgstr "Sie haben noch kein Konto? Klicken Sie hier, um sich anzumelden."
-
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:58
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:117
 msgid "Done! We will now import your Azure accounts, this usually takes a couple of minutes."
@@ -1099,9 +1109,6 @@ msgstr ""
 msgid "Edit"
 msgstr "Edit"
 
-#: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:62
-#: src/pages/auth/login/LoginPage.tsx:108
-#: src/pages/auth/register/RegisterPage.tsx:84
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:49
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:69
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:86
@@ -1165,6 +1172,10 @@ msgstr "Beispielsuchen"
 msgid "Expires"
 msgstr "Läuft ab"
 
+#: src/shared/layouts/panel-layout/menuList.tsx:38
+msgid "Explore"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:10
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:14
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:25
@@ -1217,14 +1228,6 @@ msgstr "Findet Load Balancer, die keiner laufenden Instanz zugeordnet sind."
 msgid "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
 msgstr "Findet Snapshots von Festplatten, die nicht mehr verwendet werden und möglicherweise gelöscht werden könnten, um die Speicherkosten zu senken."
 
-#: src/containers/auth/AuthContainer.tsx:81
-msgid "Fix continuously monitors your infrastructure and alerts you of any incidents."
-msgstr "Fix überwacht ständig Ihre Infrastruktur und benachrichtigt Sie im Falle von Vorfällen."
-
-#: src/containers/auth/AuthContainer.tsx:49
-msgid "Fix scans your infrastructure and resource configurations by using read-only API access. No agents required."
-msgstr "Fix überprüft Ihre Infrastruktur und Ressourcenkonfigurationen mit schreibgeschütztem API-Zugriff. Keine Agenten erforderlich."
-
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:80
 msgid "fixed"
 msgstr "behoben"
@@ -1233,12 +1236,11 @@ msgstr "behoben"
 msgid "Fixed issues"
 msgstr "Behobene Probleme"
 
-#: src/pages/auth/login/LoginPage.tsx:229
-msgid "Forget your password? Click here to reset your password."
-msgstr "Passwort vergessen? Klicken Sie hier, um Ihr Passwort zurückzusetzen."
+#: src/pages/auth/login/LoginPage.tsx:249
+msgid "Forget your password?"
+msgstr ""
 
-#: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:53
-#: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:95
+#: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:101
 msgid "Forgot Password"
 msgstr "Passwort vergessen"
 
@@ -1259,12 +1261,12 @@ msgstr "Free"
 msgid "Full-text search"
 msgstr ""
 
-#: src/containers/auth/AuthContainer.tsx:66
-msgid "Get your inventory, security posture, and top 5 recommendations for improvement in minutes."
-msgstr "Erhalten Sie Ihr Inventar mit allen Sicherheitsprüfungen und die Top 5 Verbesserungsempfehlungen in Minuten."
-
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:119
 msgid "Go to Azure Service Management:"
+msgstr ""
+
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:107
+msgid "Go to Cloud Accounts"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:45
@@ -1299,7 +1301,7 @@ msgstr "Hoch"
 msgid "Highest product tier this billing cycle"
 msgstr ""
 
-#: src/shared/layouts/panel-layout/menuList.tsx:58
+#: src/shared/layouts/panel-layout/menuList.tsx:38
 msgid "History"
 msgstr ""
 
@@ -1315,6 +1317,10 @@ msgstr "Stündliche"
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:111
 msgid "How to fix"
 msgstr "Wie repariert man"
+
+#: src/containers/auth/getQuotes.ts:21
+msgid "I’ve never found use in tools that just give me an asset list. With Fix Security, I get filters and scenarios, like public instances with admin rights or IAM users without MFA."
+msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:45
 msgid "IAM"
@@ -1367,6 +1373,10 @@ msgstr "Identifiziert S3-Buckets, die öffentlich zugänglich sind."
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:75
 msgid "Identifies storage volumes that are not attached to any running instance and had no read operations in the last 7 days."
 msgstr "Identifiziert Speichervolumes, die keiner laufenden Instanz zugeordnet sind und in den letzten 7 Tagen keine Lesevorgänge durchgeführt haben."
+
+#: src/pages/auth/login/LoginPage.tsx:134
+msgid "If this email address was used to create an account, instructions to reset your password will be sent to you. Please check your email."
+msgstr ""
 
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:226
 msgid "If this security check does not apply to this resource, you can safely ignore it."
@@ -1470,7 +1480,7 @@ msgstr ""
 msgid "Invalid Value"
 msgstr "Ungültiger Wert"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:43
+#: src/shared/layouts/panel-layout/menuList.tsx:33
 msgid "Inventory"
 msgstr "Inventar"
 
@@ -1523,19 +1533,17 @@ msgstr ""
 msgid "Load Balancers with no backends"
 msgstr "Load Balancer ohne Backends"
 
-#: src/pages/auth/login/LoginPage.tsx:99
-#: src/pages/auth/login/LoginPage.tsx:219
-msgid "Log in"
-msgstr "Anmeldung"
-
 #: src/shared/social-media-button/getNameFromOAuthType.ts:7
 msgid "Log in with {formattedName}"
 msgstr "Melden Sie sich mit {formattedName} an"
 
 #: src/core/auth/WorkspaceGuard.tsx:94
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:165
 msgid "Log Out"
 msgstr "Ausloggen"
+
+#: src/shared/layouts/panel-layout/UserButton.tsx:37
+msgid "Logout"
+msgstr ""
 
 #: src/shared/defined-messages/getMessage.ts:14
 msgid "Low"
@@ -1581,10 +1589,6 @@ msgstr ""
 #: src/shared/utils/getErrorMessage.ts:22
 msgid "MFA already enabled"
 msgstr ""
-
-#: src/containers/auth/AuthContainer.tsx:60
-msgid "Minutes to first results"
-msgstr "Ergebnisse in Minuten"
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:37
 msgid "Monitoring and Alerting"
@@ -1635,6 +1639,12 @@ msgstr "Die meisten nicht konformen Konten"
 msgid "Name"
 msgstr "Name"
 
+#: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:76
+#: src/pages/auth/login/LoginPage.tsx:205
+#: src/pages/auth/register/RegisterPage.tsx:117
+msgid "name@example.com"
+msgstr ""
+
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:230
 msgid "Neighborhood View"
 msgstr "Nachbarschaftsansicht"
@@ -1673,6 +1683,10 @@ msgstr ""
 msgid "New security issues detected"
 msgstr "Neue Sicherheitsprobleme entdeckt"
 
+#: src/pages/auth/login/LoginPage.tsx:178
+msgid "New to Fix? <0>Create an account</0>"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:140
 msgid "Next invoice will be available"
 msgstr ""
@@ -1693,6 +1707,10 @@ msgstr ""
 
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormDefaultValue.tsx:204
 msgid "No {label} found for {typed}"
+msgstr ""
+
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:98
+msgid "No account configured for this workspace"
 msgstr ""
 
 #: src/shared/layouts/panel-layout/MoveToFreeAcknowledge.tsx:44
@@ -1791,7 +1809,7 @@ msgid "Oops, the username or password doesn't seem to match our records. Please 
 msgstr "Hoppla, der Benutzername oder das Passwort scheinen nicht mit unseren Aufzeichnungen übereinzustimmen. Bitte versuche es erneut."
 
 #: src/pages/panel/inventory-search/InventoryAdvanceSearch.tsx:99
-#: src/pages/panel/inventory-search/InventoryAdvanceSearchTextField.tsx:108
+#: src/pages/panel/inventory-search/InventoryAdvanceSearchTextField.tsx:116
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Sie sie und versuchen Sie es erneut."
 
@@ -1802,10 +1820,6 @@ msgstr "Hoppla! Etwas ist schief gelaufen."
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:53
 msgid "Open Database Access"
 msgstr "Öffnen Sie den Datenbankzugriff"
-
-#: src/shared/layouts/panel-layout/PanelAppBar.tsx:71
-msgid "Open drawer"
-msgstr "Öffene die Schublade"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:109
 msgid "Open the Manage section and go to the App permissions page:"
@@ -1819,12 +1833,17 @@ msgstr "Geöffnet um"
 msgid "Optional professional services"
 msgstr "Optionale professionelle Dienstleistungen"
 
-#: src/pages/auth/login/LoginPage.tsx:157
-#: src/pages/auth/login/LoginPage.tsx:234
-#: src/pages/auth/register/RegisterPage.tsx:131
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:87
 msgid "Or"
 msgstr "Oder"
+
+#: src/pages/auth/login/LoginPage.tsx:198
+msgid "or sign in with email"
+msgstr ""
+
+#: src/pages/auth/register/RegisterPage.tsx:110
+msgid "or sign up with email"
+msgstr ""
 
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:85
 msgid "Orphaned CloudWatch Instance Alarms"
@@ -1851,7 +1870,6 @@ msgstr "Andere Arbeitsbereichseinstellungen"
 msgid "Others"
 msgstr ""
 
-#: src/pages/auth/login/LoginPage.tsx:140
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:215
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:73
 msgid "OTP Code"
@@ -1866,9 +1884,9 @@ msgstr "Eigentümer"
 msgid "Passed"
 msgstr ""
 
-#: src/pages/auth/login/LoginPage.tsx:123
-#: src/pages/auth/register/RegisterPage.tsx:98
-#: src/pages/auth/reset-password/ResetPasswordPage.tsx:96
+#: src/pages/auth/login/LoginPage.tsx:228
+#: src/pages/auth/register/RegisterPage.tsx:137
+#: src/pages/auth/reset-password/ResetPasswordPage.tsx:94
 msgid "Password"
 msgstr "Passwort"
 
@@ -1921,13 +1939,18 @@ msgstr ""
 msgid "Please enter a brief description"
 msgstr ""
 
-#: src/pages/auth/login/LoginPage.tsx:184
+#: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:67
+#: src/pages/auth/reset-password/ResetPasswordPage.tsx:85
+msgid "Please enter your account's email address and we'll send you a password reset link."
+msgstr ""
+
+#: src/pages/auth/login/LoginPage.tsx:145
 msgid "Please enter your One-Time-Password or one of your Recovery code."
 msgstr "Bitte geben Sie Ihr One-Time-Passwort oder einen Ihrer Wiederherstellungscodes ein."
 
-#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:51
-msgid "Please go to <0>Setup Accounts</0> page to setup your account first"
-msgstr "Bitte gehen Sie zur Seite <0>Setup Accounts</0>, um zunächst Ihr Konto einzurichten"
+#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:101
+msgid "Please go to <0>Cloud Accounts</0> page to setup your account first."
+msgstr ""
 
 #: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:80
 msgid "Please select the workspace where you would like to activate this subscription."
@@ -1989,10 +2012,6 @@ msgstr ""
 msgid "Product tier downgrade not available: User count exceeds the limits for the desired product tier. Please reduce the number of users and try again."
 msgstr ""
 
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:93
-msgid "Profile"
-msgstr "Profil"
-
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:100
 msgid "Properties"
 msgstr ""
@@ -2021,7 +2040,6 @@ msgstr "Quittungen"
 msgid "Recently added accounts"
 msgstr "Kürzlich hinzugefügte Konten"
 
-#: src/pages/auth/login/LoginPage.tsx:166
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:105
 msgid "Recovery Code"
 msgstr "Wiederherstellungscode"
@@ -2045,10 +2063,6 @@ msgstr "Region"
 #: src/pages/panel/inventory-search/inventory-form/utils/getAutoCompleteFromKey.tsx:130
 msgid "Regions"
 msgstr "Regionen"
-
-#: src/pages/auth/register/RegisterPage.tsx:75
-msgid "Register"
-msgstr "Registrieren"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:71
 msgid "Register a new App"
@@ -2074,8 +2088,12 @@ msgstr "Entfernen"
 msgid "Rename"
 msgstr "Umbenennen"
 
-#: src/pages/auth/reset-password/ResetPasswordPage.tsx:87
-#: src/pages/auth/reset-password/ResetPasswordPage.tsx:119
+#: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:64
+#: src/pages/auth/reset-password/ResetPasswordPage.tsx:82
+msgid "Reset password"
+msgstr ""
+
+#: src/pages/auth/reset-password/ResetPasswordPage.tsx:116
 msgid "Reset Password"
 msgstr "Passwort zurücksetzen"
 
@@ -2166,10 +2184,6 @@ msgstr "Risiko"
 msgid "Roles"
 msgstr "Rollen"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:52
-msgid "Search"
-msgstr ""
-
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormDefaultValue.tsx:169
 msgid "Search {0}"
 msgstr ""
@@ -2182,10 +2196,6 @@ msgstr "Sucht nach Datenbankinstanzen ohne Verbindungen über einen längeren Ze
 msgid "Secret Value"
 msgstr ""
 
-#: src/containers/auth/AuthContainer.tsx:43
-msgid "Secure read-only access"
-msgstr "Gesicherte schreibgeschützte Zugriffe"
-
 #: src/shared/layouts/panel-layout/MoveToFreeAcknowledge.tsx:50
 msgid "Secure Your Cloud, Elevate Your Peace of Mind"
 msgstr ""
@@ -2193,12 +2203,15 @@ msgstr ""
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormChangePicker.tsx:25
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormChangePicker.tsx:27
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:33
-#: src/shared/layouts/panel-layout/menuList.tsx:64
 msgid "Security"
 msgstr "Sicherheit"
 
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:173
 msgid "Security Changes"
+msgstr ""
+
+#: src/containers/auth/getQuotes.ts:20
+msgid "Security Engineer at cloudzone"
 msgstr ""
 
 #: src/pages/panel/resource-detail/ResourceDetailFailedChecks.tsx:82
@@ -2287,6 +2300,10 @@ msgstr ""
 msgid "Send Invite"
 msgstr "Sende Einladung"
 
+#: src/containers/auth/getQuotes.ts:8
+msgid "Senior Software Engineer at kavak"
+msgstr ""
+
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:233
 msgid "Serverless function changes"
 msgstr ""
@@ -2325,13 +2342,21 @@ msgstr "Schwere"
 msgid "Show resources"
 msgstr "Ressourcen anzeigen"
 
-#: src/pages/auth/register/RegisterPage.tsx:121
-msgid "Sign up"
-msgstr "Melden Sie sich an"
+#: src/pages/auth/login/LoginPage.tsx:175
+msgid "Sign in to Fix"
+msgstr ""
+
+#: src/pages/auth/login/LoginPage.tsx:305
+msgid "Sign in with email"
+msgstr ""
 
 #: src/shared/social-media-button/getNameFromOAuthType.ts:7
 msgid "Sign up with {formattedName}"
 msgstr "Melden Sie sich mit {formattedName} an"
+
+#: src/pages/auth/register/RegisterPage.tsx:159
+msgid "Sign up with email"
+msgstr ""
 
 #: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:121
 #: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:155
@@ -2420,6 +2445,10 @@ msgstr ""
 msgid "The Google Cloud Service Account key file is valid but did not allow us to list available projects. It is important to ensure that it has the necessary permissions and that the required APIs are enabled to avoid this error. The following message was created by GCP when we tried to list the projects:"
 msgstr ""
 
+#: src/containers/auth/getQuotes.ts:9
+msgid "The major ‘click’ for me was when I saw how Fix Security allows you to just search for all relationships for all resources. And that was magical, to be honest."
+msgstr ""
+
 #: src/shared/utils/getErrorMessage.ts:24
 msgid "The OTP or recovery code you entered is incorrect or the OTP has expired. Please try entering it again."
 msgstr "Das von Ihnen eingegebene OTP oder Wiederherstellungscode ist falsch oder das OTP ist abgelaufen. Bitte versuchen Sie es erneut einzugeben."
@@ -2432,7 +2461,7 @@ msgstr "Die ausgewählte Ressource existiert nicht mehr."
 msgid "The Stack requires the following parameters"
 msgstr "Der Stack erfordert die folgenden Parameter"
 
-#: src/pages/auth/reset-password/ResetPasswordPage.tsx:20
+#: src/pages/auth/reset-password/ResetPasswordPage.tsx:24
 msgid "The token that you sent is invalid or have been expired please try again"
 msgstr "Das von Ihnen gesendete Token ist ungültig oder abgelaufen. Bitte versuchen Sie es erneut"
 
@@ -2443,10 +2472,6 @@ msgstr ""
 #: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:125
 msgid "There's already another api tokens with the same description"
 msgstr ""
-
-#: src/shared/layouts/panel-layout/AccountCheckGuard.tsx:48
-msgid "There's no account configured for this workspace."
-msgstr "Für diesen Arbeitsbereich ist kein Konto konfiguriert."
 
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:494
 msgid "This account is currently in a degraded state possibly due to a misconfiguration.<0/>Fix was unable to gather data from this account."
@@ -2602,12 +2627,16 @@ msgstr ""
 msgid "Uploading your Google Cloud Service Account file..."
 msgstr ""
 
+#: src/pages/auth/login/LoginPage.tsx:291
+msgid "Use OTP instead"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:122
 msgid "User Impersonation permission"
 msgstr ""
 
 #: src/pages/panel/user-settings/UserSettingsPage.tsx:18
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:157
+#: src/shared/layouts/panel-layout/UserButton.tsx:27
 msgid "User Settings"
 msgstr "Benutzereinstellungen"
 
@@ -2617,7 +2646,6 @@ msgstr "Benachrichtigung über Benutzereinstellungen"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:27
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:68
-#: src/shared/layouts/panel-layout/menuList.tsx:85
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:19
 msgid "Users"
 msgstr "Benutzer"
@@ -2675,7 +2703,7 @@ msgstr "Warnung"
 msgid "We are currently trying to list your projects. Please stay tuned - we will send you an Email when cloud accounts have been collected"
 msgstr ""
 
-#: src/pages/auth/login/LoginPage.tsx:191
+#: src/pages/auth/login/LoginPage.tsx:109
 msgid "We have sent an email with a confirmation link to your email address. Please follow the link to activate your account."
 msgstr "Wir haben eine E-Mail mit einem Bestätigungslink an Ihre E-Mail-Adresse gesendet. Bitte folgen Sie dem Link, um Ihr Konto zu aktivieren."
 
@@ -2703,6 +2731,10 @@ msgstr ""
 msgid "Weekly Report"
 msgstr "Wöchentlicher Report"
 
+#: src/containers/auth/getQuotes.ts:15
+msgid "What I like about Fix Security is that I can actually see the test. When the rubber meets the road, what I want to know is: what’s the call you’re making on the API?"
+msgstr ""
+
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:102
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:110
 msgid "Why does it matter"
@@ -2726,13 +2758,14 @@ msgid "Workspace Name"
 msgstr "Arbeitsbereichsname"
 
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:20
-#: src/shared/layouts/panel-layout/menuList.tsx:72
+#: src/shared/layouts/panel-layout/SettingsButton.tsx:14
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:7
 msgid "Workspace Settings"
 msgstr "Arbeitsbereichseinstellungen"
 
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:44
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:66
+#: src/shared/layouts/panel-layout/SettingsButton.tsx:19
 msgid "Workspace Users"
 msgstr "Workspace-Benutzer"
 
@@ -2797,7 +2830,7 @@ msgstr ""
 msgid "You don't have the permission to change this, contact the workspace owner for more information."
 msgstr ""
 
-#: src/shared/layouts/panel-layout/UserProfileButton.tsx:147
+#: src/shared/layouts/panel-layout/WorkspacesButton.tsx:190
 msgid "You don't have the permission to view this workspace, contact the workspace owner for more information."
 msgstr ""
 
@@ -2805,11 +2838,11 @@ msgstr ""
 msgid "You have reached the maximum number of cloud accounts allowed for the {0} tier. To add more accounts, please <0>Upgrade Your Subscription</0>."
 msgstr ""
 
-#: src/pages/auth/login/LoginPage.tsx:204
+#: src/pages/auth/login/LoginPage.tsx:155
 msgid "You have successfully reset your password."
 msgstr "Sie haben Ihr Passwort erfolgreich zurückgesetzt."
 
-#: src/pages/auth/login/LoginPage.tsx:197
+#: src/pages/auth/login/LoginPage.tsx:123
 msgid "You have successfully verified your account."
 msgstr "Sie haben Ihr Konto erfolgreich verifiziert."
 

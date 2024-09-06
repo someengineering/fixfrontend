@@ -8,15 +8,15 @@ import {
   alpha,
   styled,
 } from '@mui/material'
-import { useEffect, useRef, useState } from 'react'
+import { ElementType, useEffect, useRef, useState } from 'react'
 import { colorFromRedToGreen } from 'src/shared/constants'
 import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
 
-export interface CircularScoreProps extends CircularProgressProps {
+export interface CircularScoreProps<RootComponent extends ElementType = 'div', AdditionalProps = object> extends CircularProgressProps {
   score: number
   syntheticScore?: number
   typographyProps?: TypographyProps
-  containerProps?: BoxProps
+  containerProps?: BoxProps<RootComponent, AdditionalProps>
 }
 
 const CircularLabelContainer = styled(Box, { shouldForwardProp: shouldForwardPropWithBlackList(['scoreColor']) })<{
@@ -39,7 +39,14 @@ const CircularProgress = styled(MuiCircularProgress)(({ theme }) => ({
   transition: theme.transitions.create('color'),
 }))
 
-export const CircularScore = ({ score, syntheticScore, typographyProps, containerProps, sx, ...props }: CircularScoreProps) => {
+export function CircularScore<RootComponent extends ElementType = 'div', AdditionalProps = object>({
+  score,
+  syntheticScore,
+  typographyProps,
+  containerProps,
+  sx,
+  ...props
+}: CircularScoreProps<RootComponent, AdditionalProps>) {
   const [scoreState, setScoreState] = useState(100)
   const timeoutRef = useRef<number>()
   useEffect(() => {

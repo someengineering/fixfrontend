@@ -72,7 +72,7 @@ export const InventoryAdvanceSearchTextField = ({ hasError }: InventoryAdvanceSe
         margin="dense"
         multiline
         label={
-          <Stack direction="row" gap={1} mt={!focused && !searchCritValue ? 0.5 : undefined}>
+          <Stack direction="row" gap={1} height={52} mt={0.5}>
             <Collapse in={!focused && !searchCritValue} orientation="horizontal">
               <SearchIcon />
             </Collapse>
@@ -81,25 +81,33 @@ export const InventoryAdvanceSearchTextField = ({ hasError }: InventoryAdvanceSe
         }
         fullWidth
         size="small"
-        inputProps={{ sx: { ml: 1 } }}
+        slotProps={{
+          htmlInput: {
+            sx: { py: '0 !important' },
+          },
+          input: {
+            sx: {
+              height: 'auto',
+              minHeight: 52,
+            },
+            startAdornment: focused || searchCritValue ? <SearchIcon /> : undefined,
+            endAdornment: (
+              <Stack direction="row" alignItems="center" mr={1}>
+                {searchCritValue ? (
+                  <IconButton size="small" onClick={handleReset}>
+                    <CloseIcon />
+                  </IconButton>
+                ) : null}
+                <InventoryAdvanceSearchInfo />
+              </Stack>
+            ),
+          },
+        }}
         value={searchCritValue}
         onChange={handleChange}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         onReset={handleReset}
-        InputProps={{
-          startAdornment: focused || searchCritValue ? <SearchIcon /> : undefined,
-          endAdornment: (
-            <Stack direction="row" alignItems="center" mr={-1}>
-              {searchCritValue ? (
-                <IconButton size="small" onClick={handleReset}>
-                  <CloseIcon />
-                </IconButton>
-              ) : null}
-              <InventoryAdvanceSearchInfo />
-            </Stack>
-          ),
-        }}
         error={!!error || hasError || hasTextError}
       />
       <Collapse in={!error && !hasError && hasTextError}>

@@ -9,20 +9,7 @@ interface SocialMediaButtonProps {
 
 export const SocialMediaButton = styled(LoadingButton, {
   shouldForwardProp: shouldForwardPropWithWhiteList(['startIcon', 'variant', 'loadingPosition']),
-})<SocialMediaButtonProps>(({ backgroundColor = '#ffffff', isDark }) => ({
-  border: 0,
-  borderRadius: 3,
-  color: isDark ? '#ffffff' : '#000000',
-  backgroundColor,
-  cursor: 'pointer',
-  m: 1,
-  overflow: 'hidden',
-  px: 2,
-  userSelect: 'none',
-  align: 'left',
-  minHeight: '50px',
+})<SocialMediaButtonProps>(({ theme }) => ({
+  color: theme.palette.mode === 'dark' ? '#ffffff' : '#000000',
   width: '100%',
-  '&:hover': {
-    backgroundColor,
-  },
 }))

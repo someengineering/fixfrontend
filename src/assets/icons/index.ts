@@ -1,24 +1,51 @@
+import AccountCircleIconComp from './account-circle-icon.svg?react'
 import AwsLogoComp from './aws-logo.svg?react'
 import AzureLogoComp from './azure-logo.svg?react'
 import BucketIconComp from './bucket-icon.svg?react'
+import CancelIconComp from './cancel-icon.svg?react'
+import CheckIconComp from './check-icon.svg?react'
+import CloudIconComp from './cloud-icon.svg?react'
+import CodeBlocksIconComp from './code-blocks-icon.svg?react'
 import { createIcon } from './createIcon'
 import CrownComp from './crown.svg?react'
+import DashboardIconComp from './dashboard-icon.svg?react'
 import DatabaseIconComp from './database-icon.svg?react'
+import DescriptionIconComp from './description-icon.svg?react'
 import DiscordIconComp from './discord-icon.svg?react'
 import DiscordWithTextLogoComp from './discord-with-text-logo.svg?react'
-import FixBetaLogoComp from './fix-beta-logo.svg?react'
+import DoubleArrowIconComp from './double-arrow-icon.svg?react'
+import FixLogoNoBackgroundComp from './fix-logo-no-background.svg?react'
 import FixLogoUrl from './fix-logo.svg'
 import FixLogoComp from './fix-logo.svg?react'
 import GcpLogoComp from './gcp-logo.svg?react'
 import GithubSEBIconComp from './github-seb-icon.svg?react'
 import GoogleSEBIconComp from './google-seb-icon.svg?react'
+import GroupIconComp from './group-icon.svg?react'
 import HardDriveDiskIconComp from './hard-drive-disk-icon.svg?react'
+import HelpIconComp from './help-icon.svg?react'
+import HomeIconComp from './home-icon.svg?react'
+import InfoIconComp from './info-icon.svg?react'
 import InstanceIconComp from './instance-icon.svg?react'
+import KeyboardArrowDownIconComp from './keyboard-arrow-down-icon.svg?react'
+import LabProfileIconComp from './lab-profile-icon.svg?react'
+import LocalPoliceIconComp from './local-police-icon.svg?react'
 import LogoWhiteNoBackgroundComp from './logo-white-no-background.svg?react'
+import LogoutIconComp from './logout-icon.svg?react'
+import MailIconComp from './mail-icon.svg?react'
+import MeetingRoomIconComp from './meeting-room-icon.svg?react'
+import MenuIconComp from './menu-icon.svg?react'
 import OpsgenieLogoComp from './opsgenie-logo.svg?react'
 import PagerdutyLogoComp from './pagerduty-logo.svg?react'
+import PasswordIconComp from './password-icon.svg?react'
+import SearchIconComp from './search-icon.svg?react'
+import SettingsIconComp from './settings-icon.svg?react'
+import ShowIconComp from './show-icon.svg?react'
 import SlackWithTextLogoComp from './slack-with-text-logo.svg?react'
 import TeamsLogoComp from './teams-logo.svg?react'
+import TickSmallIconComp from './tick-small-icon.svg?react'
+import VisibilityOffIconComp from './visibility-off-icon.svg?react'
+import WarningIconComp from './warning-icon.svg?react'
+import WorkspaceSettingsIconComp from './workspace-settings-icon.svg?react'
 
 export const AwsLogo = createIcon(AwsLogoComp)
 export const AzureLogo = createIcon(AzureLogoComp)
@@ -27,7 +54,6 @@ export const Crown = createIcon(CrownComp)
 export const DatabaseIcon = createIcon(DatabaseIconComp)
 export const DiscordIcon = createIcon(DiscordIconComp)
 export const DiscordWithTextLogo = createIcon(DiscordWithTextLogoComp)
-export const FixBetaLogo = createIcon(FixBetaLogoComp)
 export const FixLogo = createIcon(FixLogoComp)
 export const GcpLogo = createIcon(GcpLogoComp)
 export const GithubSEBIcon = createIcon(GithubSEBIconComp, ['#fff'])
@@ -39,4 +65,34 @@ export const OpsgenieLogo = createIcon(OpsgenieLogoComp)
 export const PagerdutyLogo = createIcon(PagerdutyLogoComp)
 export const SlackWithTextLogo = createIcon(SlackWithTextLogoComp)
 export const TeamsLogo = createIcon(TeamsLogoComp)
+export const DescriptionIcon = createIcon(DescriptionIconComp)
+export const MailIcon = createIcon(MailIconComp)
+export const PasswordIcon = createIcon(PasswordIconComp)
+export const ShowIcon = createIcon(ShowIconComp)
+export const VisibilityOffIcon = createIcon(VisibilityOffIconComp)
+export const CheckIcon = createIcon(CheckIconComp)
+export const WarningIcon = createIcon(WarningIconComp)
+export const CancelIcon = createIcon(CancelIconComp)
+export const InfoIcon = createIcon(InfoIconComp)
+export const HomeIcon = createIcon(HomeIconComp)
+export const FixLogoNoBackground = createIcon(FixLogoNoBackgroundComp)
+export const DoubleArrowIcon = createIcon(DoubleArrowIconComp)
+export const TickSmallIcon = createIcon(TickSmallIconComp)
+export const MeetingRoomIcon = createIcon(MeetingRoomIconComp)
+export const KeyboardArrowDownIcon = createIcon(KeyboardArrowDownIconComp)
+export const DashboardIcon = createIcon(DashboardIconComp)
+export const LabProfileIcon = createIcon(LabProfileIconComp)
+export const SearchIcon = createIcon(SearchIconComp)
+export const LocalPoliceIcon = createIcon(LocalPoliceIconComp)
+export const HelpIcon = createIcon(HelpIconComp)
+export const SettingsIcon = createIcon(SettingsIconComp)
+export const MenuIcon = createIcon(MenuIconComp)
+export const AccountCircleIcon = createIcon(AccountCircleIconComp)
+export const CodeBlocksIcon = createIcon(CodeBlocksIconComp)
+export const LogoutIcon = createIcon(LogoutIconComp)
+export const WorkspaceSettingsIcon = createIcon(WorkspaceSettingsIconComp)
+export const GroupIcon = createIcon(GroupIconComp)
+export const CloudIcon = createIcon(CloudIconComp)
+
+export type { SvgIconProps } from './createIcon'
 export { FixLogoUrl }

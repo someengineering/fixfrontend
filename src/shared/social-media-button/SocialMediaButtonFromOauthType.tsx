@@ -17,7 +17,7 @@ export const SocialMediaButtonFromOauthType = ({ name, authUrl, isSignup, ...pro
       href={authUrl}
       startIcon={<IconFromOAuthType name={name} />}
       loadingPosition="start"
-      variant="contained"
+      variant="outlined"
       {...getColorFromOAuthType(name)}
       {...props}
     >

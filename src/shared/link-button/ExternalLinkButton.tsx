@@ -4,16 +4,23 @@ import { ElementType } from 'react'
 
 type ExternalLinkButtonProps<RootComponent extends ElementType, AdditionalProps> = ButtonProps<RootComponent, AdditionalProps> & {
   href: string
+  noEndIcon?: boolean
 }
 
 export function ExternalLinkButton<RootComponent extends ElementType = ButtonTypeMap['defaultComponent'], AdditionalProps = unknown>({
   href,
+  component = Button,
   children,
+  noEndIcon,
   ...props
 }: ExternalLinkButtonProps<RootComponent, AdditionalProps>) {
+  const Comp = component
+  if (!noEndIcon && !props.endIcon) {
+    props.endIcon = (<OpenInNewIcon fontSize="small" />) as ExternalLinkButtonProps<RootComponent, AdditionalProps>['endIcon']
+  }
   return (
-    <Button href={href} target="_blank" rel="noopener noreferrer" endIcon={<OpenInNewIcon fontSize="small" />} {...props}>
+    <Comp href={href} target="_blank" rel="noopener noreferrer" {...props}>
       {children || href}
-    </Button>
+    </Comp>
   )
 }

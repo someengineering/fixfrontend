@@ -23,7 +23,7 @@ const CloudIcon = ({ cloud, small, withCrown }: CloudAvatarProps) => {
     case 'azure':
       return <AzureLogo nonce={nonce} width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
     case 'fix':
-      return <FixLogo nonce={nonce} width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
+      return <FixLogo color="primary.main" nonce={nonce} width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
     case 'aws':
       return <AwsLogo nonce={nonce} width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
     case 'gcp':

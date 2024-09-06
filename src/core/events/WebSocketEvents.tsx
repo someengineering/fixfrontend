@@ -136,7 +136,7 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
               ? t`Payment is required for your workspace, Please contact the workspace owner`
               : t`You don't have access to this workspace`,
             {
-              severity: 'error',
+              alertColor: 'error',
               autoHideDuration: null,
             },
           )

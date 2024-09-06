@@ -47,10 +47,10 @@ export function AuthGuard({ children }: PropsWithChildren) {
   })
   const [isFetching, setIsFetching] = useState(false)
 
-  const handleInternalSetAuth = useCallback((value: SetStateAction<UserContextRealValues>) => {
+  const handleInternalSetAuth = useCallback((value: SetStateAction<UserContextRealValues>, noWorkspaceSelected?: boolean) => {
     setAuth((prev) => {
       const newAuth = typeof value === 'function' ? value(prev) : value
-      const selectedWorkspaceId = newAuth.selectedWorkspace?.id ?? prev.selectedWorkspace?.id
+      const selectedWorkspaceId = noWorkspaceSelected ? undefined : (newAuth.selectedWorkspace?.id ?? prev.selectedWorkspace?.id)
       setPersistedAuthData({
         isAuthenticated: newAuth.isAuthenticated,
         lastWorkingWorkspaceId: newAuth.workspaces.find((workspace) => workspace.id === newAuth.selectedWorkspace?.id)
@@ -84,10 +84,11 @@ export function AuthGuard({ children }: PropsWithChildren) {
         search: window.location.search.includes('returnUrl')
           ? window.location.search
           : `?returnUrl=${window.encodeURIComponent(window.location.pathname + window.location.search + (noWorkspace ? '' : window.location.hash))}`,
+        hash: noWorkspace ? '' : undefined,
       })
       postHog.reset()
       clearAllCookies()
-      handleInternalSetAuth(defaultAuth)
+      handleInternalSetAuth(defaultAuth, true)
       try {
         await logoutMutation()
       } catch {

@@ -3,5 +3,5 @@ import { AccordionSummaryProps } from '@mui/material'
 import { StickyAccordionSummary } from './StickyAccordionSummary'
 
 export const StickyAccordionSummaryWithIcon = (props: Exclude<AccordionSummaryProps, 'expandIcon'> & { offset?: number }) => (
-  <StickyAccordionSummary {...props} expandIcon={<ExpandMoreIcon />} />
+  <StickyAccordionSummary {...props} sx={{ bgcolor: 'background.paper', ...props.sx }} expandIcon={<ExpandMoreIcon />} />
 )

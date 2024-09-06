@@ -29,8 +29,8 @@ export const InventoryFormFullTextSearchValue = ({ onChange, fullTextSearch }: I
   }, [debouncedValue, onChange])
 
   return (
-    <Stack gap={1} width={focused ? 270 : value ? 190 : 170} sx={{ transition: ({ transitions: { create } }) => create('width') }}>
-      <Box borderRadius={1} height={42}>
+    <Stack gap={1} width={focused ? 280 : value ? 200 : 180} sx={{ transition: ({ transitions: { create } }) => create('width') }}>
+      <Box borderRadius={1} height={52}>
         <TextField
           fullWidth
           focused={focused}
@@ -44,19 +44,23 @@ export const InventoryFormFullTextSearchValue = ({ onChange, fullTextSearch }: I
           value={value}
           size="small"
           color="primary"
-          InputLabelProps={{ sx: { color: 'primary.main', fontWeight: 700, fontSize: 14, top: 3 } }}
-          InputProps={{
-            sx: { height: 42, color: 'primary.main', fontWeight: 600, fontSize: 16 },
-            endAdornment: (
-              <Stack direction="row" spacing={0.5}>
-                {value ? (
-                  <ButtonBase onClick={() => setValue('')} sx={{ borderRadius: '50%' }}>
-                    <ClearIcon fontSize="small" />
-                  </ButtonBase>
-                ) : null}
-                <SearchIcon fontSize="small" />
-              </Stack>
-            ),
+          slotProps={{
+            inputLabel: {
+              sx: { color: 'primary.main', fontWeight: 700, fontSize: 14, top: 3 },
+            },
+            input: {
+              sx: { height: 52, color: 'primary.main', fontWeight: 600, fontSize: 16 },
+              endAdornment: (
+                <Stack direction="row" spacing={0.5} mx={1}>
+                  {value ? (
+                    <ButtonBase onClick={() => setValue('')} sx={{ borderRadius: '50%' }}>
+                      <ClearIcon fontSize="small" />
+                    </ButtonBase>
+                  ) : null}
+                  <SearchIcon fontSize="small" />
+                </Stack>
+              ),
+            },
           }}
           sx={{
             [`& .${outlinedInputClasses.notchedOutline}`]: {
@@ -66,7 +70,7 @@ export const InventoryFormFullTextSearchValue = ({ onChange, fullTextSearch }: I
                 },
               }) => alpha(main, 0.5),
             },
-            height: 42,
+            height: 52,
           }}
           onChange={(e) => setValue(e.target.value ?? '')}
         />

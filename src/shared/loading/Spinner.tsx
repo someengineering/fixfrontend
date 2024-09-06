@@ -1,5 +1,6 @@
-import { keyframes, styled } from '@mui/material'
+import { alpha, keyframes, styled } from '@mui/material'
 import { LogoWhiteNoBackground } from 'src/assets/icons'
+import { panelUI } from 'src/shared/constants'
 import { shouldForwardProp } from 'src/shared/utils/shouldForwardProp'
 
 const rotateAnimation = keyframes`
@@ -19,7 +20,7 @@ const Container = styled('div')({
 const SpinnerCircle = styled('div', { shouldForwardProp })<{ width: number; isLoading?: boolean; withBackground?: boolean }>(
   ({ theme, width, isLoading, withBackground }) => ({
     position: 'absolute',
-    backgroundColor: !withBackground && isLoading ? 'rgba(0, 0, 0, 0.2)' : 'rgba(28, 67, 150, 0.8)',
+    backgroundColor: !withBackground && isLoading ? alpha(panelUI.uiThemePalette.text.darkGray, 0.2) : theme.palette.primary.dark,
     left: '50%',
     top: '50%',
     width: width,

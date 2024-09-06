@@ -1,26 +1,27 @@
-import { Box, Stack } from '@mui/material'
-import { PropsWithChildren, ReactNode, useRef } from 'react'
+import { Box, Stack, Theme, useMediaQuery } from '@mui/material'
+import { forwardRef, PropsWithChildren, ReactNode } from 'react'
 import { panelUI } from 'src/shared/constants'
-import { PanelBreadcrumbs } from './PanelBreadcrumbs'
-import { PageScrollContext } from './usePageScroll'
 
 interface PanelContent extends PropsWithChildren {
   bottom?: ReactNode
 }
 
-export const PanelContent = ({ children }: PanelContent) => {
-  const mainRef = useRef<HTMLDivElement>(null)
+export const PanelContent = forwardRef<HTMLDivElement | null, PanelContent>(({ children }, mainRef) => {
+  const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('lg'))
   return (
-    <PageScrollContext.Provider value={mainRef}>
-      <Stack width="100%" flexGrow={1} overflow="hidden" height="100vh">
-        <Stack mt={panelUI.headerHeight + 'px'} flexGrow={1} position="relative" sx={{ overflowY: 'auto' }} ref={mainRef}>
-          <PanelBreadcrumbs />
-          <Box component="main" p={3} flexGrow={1}>
-            {children}
-          </Box>
-          {/* <PanelBottom>{bottom}</PanelBottom> */}
-        </Stack>
-      </Stack>
-    </PageScrollContext.Provider>
+    <Stack
+      flexGrow={1}
+      py={isDesktop ? undefined : `${panelUI.headerHeight}px`}
+      position="relative"
+      width="100%"
+      height="100%"
+      sx={{ overflowY: 'auto' }}
+      ref={mainRef}
+    >
+      <Box component="main" p={3} flexGrow={1}>
+        {children}
+      </Box>
+      {/* <PanelBottom>{bottom}</PanelBottom> */}
+    </Stack>
   )
-}
+})

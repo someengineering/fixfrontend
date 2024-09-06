@@ -1,27 +1,50 @@
-import NavigateNextIcon from '@mui/icons-material/NavigateNext'
-import { Breadcrumbs, Button, Typography } from '@mui/material'
+import { Breadcrumbs, breadcrumbsClasses, Button, IconButton, Typography } from '@mui/material'
+import { DoubleArrowIcon, HomeIcon } from 'src/assets/icons'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
+import { panelUI } from 'src/shared/constants'
+import { PanelToolbar } from './PanelToolbar'
 import { useBreadcrumbs } from './useBreadcrumbs'
 
 export const PanelBreadcrumbs = () => {
-  const paths = useBreadcrumbs()
+  const { paths, lastTitle } = useBreadcrumbs()
   const navigate = useAbsoluteNavigate()
-  const lastTitle = paths.splice(-1, 1)[0]?.title
   return paths.length ? (
-    <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} sx={{ p: 3, pb: 0, flexShrink: 0 }}>
-      {paths.map(({ title, to }, i) => (
-        <Button
-          key={i}
-          href={to}
-          onClick={(e) => {
-            e.preventDefault()
-            navigate(to)
-          }}
-        >
-          {title}
-        </Button>
-      ))}
-      <Typography color="text.primary">{lastTitle}</Typography>
-    </Breadcrumbs>
+    <PanelToolbar sx={{ minHeight: '0!important', height: 'auto!important' }}>
+      <Breadcrumbs
+        separator={<DoubleArrowIcon height={12} width={12} />}
+        sx={{ pb: 0, flexShrink: 0, height: 54, display: 'flex', [`.${breadcrumbsClasses.separator}`]: { m: 0 } }}
+      >
+        {paths.map(({ title, to }, i) =>
+          to === panelUI.homePage ? (
+            <IconButton
+              key={i}
+              href={to}
+              onClick={(e) => {
+                e.preventDefault()
+                navigate(to)
+              }}
+              sx={{ p: 1 }}
+            >
+              <HomeIcon />
+            </IconButton>
+          ) : (
+            <Button
+              key={i}
+              href={to}
+              onClick={(e) => {
+                e.preventDefault()
+                navigate(to)
+              }}
+              sx={{ p: 1 }}
+            >
+              {title}
+            </Button>
+          ),
+        )}
+        <Typography variant="button" color="text.primary" p={1} fontWeight={700} lineHeight={1.26} justifyContent="center" display="flex">
+          {lastTitle}
+        </Typography>
+      </Breadcrumbs>
+    </PanelToolbar>
   ) : null
 }

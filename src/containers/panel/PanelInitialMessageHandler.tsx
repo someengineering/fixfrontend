@@ -30,7 +30,7 @@ export const PanelInitialMessageHandler = () => {
       const foundMessage = getPanelMessages(message)
       if (foundMessage) {
         showSnackbar(foundMessage.text, {
-          severity: foundMessage.type,
+          alertColor: foundMessage.type,
         })
       }
       window.location.search = removeLocationSearchValues(getLocationSearchValues(), 'message')

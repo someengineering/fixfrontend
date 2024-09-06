@@ -1,11 +1,16 @@
 import { t, Trans } from '@lingui/macro'
 import SendIcon from '@mui/icons-material/Send'
 import { LoadingButton } from '@mui/lab'
-import { Grid, styled, TextField, Typography } from '@mui/material'
+import { Stack, styled, TextField, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { FormEvent, useState } from 'react'
-import { Link, Location, useLocation, useSearchParams } from 'react-router-dom'
+import { Location, useLocation, useSearchParams } from 'react-router-dom'
+import { MailIcon } from 'src/assets/icons'
+import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
+import { panelUI } from 'src/shared/constants'
+import { InternalLink } from 'src/shared/link-button'
+import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { forgotPasswordMutation } from './forgotPassword.mutation'
 
 const ForgotPasswordButton = styled(LoadingButton)({
@@ -13,14 +18,21 @@ const ForgotPasswordButton = styled(LoadingButton)({
 })
 
 export default function ForgotPasswordPage() {
+  const navigate = useAbsoluteNavigate()
+  const { search, state } = useLocation() as Location<unknown>
   const {
     mutateAsync: forgotPassword,
     isPending: isForgotPasswordLoading,
-    isSuccess: isForgotPasswordSuccess,
     error,
-  } = useMutation({ mutationFn: forgotPasswordMutation })
+  } = useMutation({
+    mutationFn: forgotPasswordMutation,
+    onSuccess: () => {
+      const newSearch = getLocationSearchValues(search)
+      newSearch.forget = 'true'
+      navigate({ pathname: '/auth/login', search: mergeLocationSearchValues(newSearch) }, { state })
+    },
+  })
   const [email, setEmail] = useState('')
-  const { search, state } = useLocation() as Location<unknown>
   const [getSearch] = useSearchParams()
   const [isLoading, setIsLoading] = useState(false)
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -36,52 +48,46 @@ export default function ForgotPasswordPage() {
   const forgotPasswordError = ((error as AxiosError)?.response?.data as { detail: string })?.detail
   return (
     <>
-      <Grid
+      <Stack
         component="form"
-        container
-        rowSpacing={3}
-        maxWidth={350}
+        spacing={3.75}
+        width="100%"
+        maxWidth={440}
         m="0 auto"
         alignItems="stretch"
-        direction="column"
         noValidate
         autoComplete="off"
         onSubmit={handleSubmit}
       >
-        <Grid item>
-          <Typography variant="h3" color="primary.main">
-            <Trans>Forgot Password</Trans>
+        <Stack spacing={3}>
+          <Typography variant="h3">
+            <Trans>Reset password</Trans>
           </Typography>
-        </Grid>
-        <Grid item>
+          <Typography color={panelUI.uiThemePalette.text.sub}>
+            <Trans>Please enter your account's email address and we'll send you a password reset link.</Trans>
+          </Typography>
+        </Stack>
+        <Stack spacing={2.5}>
           <TextField
             required
             id="email"
             name="email"
             autoComplete="email"
-            label={t`Email`}
+            placeholder={t`name@example.com`}
+            slotProps={{
+              input: {
+                startAdornment: (
+                  <MailIcon width={24} height={24} fill={email ? `${panelUI.uiThemePalette.text.darkGray} !important` : undefined} />
+                ),
+              },
+            }}
             variant="outlined"
             fullWidth
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value ?? '')}
           />
-        </Grid>
-        {forgotPasswordError ? (
-          <Grid item>
-            <Typography color="error.main">{forgotPasswordError}</Typography>
-          </Grid>
-        ) : isForgotPasswordSuccess ? (
-          <Grid item>
-            <Typography color="success.main">
-              <Trans>
-                An email has been sent to your inbox with a 'Reset Password' button. Please check your email and click on it to reset your
-                password.
-              </Trans>
-            </Typography>
-          </Grid>
-        ) : null}
-        <Grid item>
+          {forgotPasswordError ? <Typography color="error.main">{forgotPasswordError}</Typography> : null}
           <ForgotPasswordButton
             type="submit"
             variant="contained"
@@ -94,13 +100,16 @@ export default function ForgotPasswordPage() {
           >
             <Trans>Forgot Password</Trans>
           </ForgotPasswordButton>
-        </Grid>
-        <Grid item>
-          <Link to={{ pathname: '/auth/login', search }} state={state}>
-            <Trans>Already have an account? Click here to Log in.</Trans>
-          </Link>
-        </Grid>
-      </Grid>
+        </Stack>
+        <Typography>
+          <Trans>
+            Already have an account?{' '}
+            <InternalLink to={{ pathname: '/auth/login', search }} options={{ state }}>
+              Back to Sign in
+            </InternalLink>
+          </Trans>
+        </Typography>
+      </Stack>
     </>
   )
 }

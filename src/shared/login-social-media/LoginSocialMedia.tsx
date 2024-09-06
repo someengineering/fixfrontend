@@ -1,4 +1,3 @@
-import { Grid } from '@mui/material'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'react-router-dom'
 import { panelUI } from 'src/shared/constants'
@@ -21,16 +20,15 @@ export const LoginSocialMedia = ({ isSignup, isLoading, onClick }: LoginSocialMe
   return (
     <>
       {data.map((item, i) => (
-        <Grid item key={i}>
-          <SocialMediaButtonFromOauthType
-            authUrl={item.authUrl}
-            name={item.name}
-            fullWidth
-            isSignup={isSignup}
-            loading={isLoading}
-            onClick={onClick}
-          />
-        </Grid>
+        <SocialMediaButtonFromOauthType
+          key={i}
+          authUrl={item.authUrl}
+          name={item.name}
+          fullWidth
+          isSignup={isSignup}
+          loading={isLoading}
+          onClick={onClick}
+        />
       ))}
     </>
   )

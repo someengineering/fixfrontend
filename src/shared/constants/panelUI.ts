@@ -3,7 +3,7 @@ export const panelUI = {
   drawerWidth: 300,
   drawerWidthMobile: 57,
   drawerWidthClosed: 65,
-  headerHeight: 64,
+  headerHeight: 60,
   bottomCopyRightHeight: 39,
   tablePaginationHeight: 52,
   maxPageModalWidth: 1440,
@@ -17,4 +17,44 @@ export const panelUI = {
   minLargeModalWidth: 700,
   tableRowsPerPages: [25, 50, 100],
   maxCSVDownload: 1000,
+  slideDuration: 10000,
+  uiThemePalette: {
+    primary: {
+      purple: '#7640EB',
+      darkPurple: '#5D0BC5',
+      lightPurple: '#9D70FF',
+      white: '#FFFFFF',
+      divider: '#D9D9D9',
+    },
+    accent: {
+      purple: '#7640EB',
+      orange: '#F78400',
+      hotPink: '#E01A4F',
+      darkGray: '#111827',
+      gradient: 'linear-gradient(90deg, #9d70ff 0%, #5d0bc5 100%)',
+    },
+    severity: {
+      error: '#DB3939',
+      warning: '#F78400',
+      success: '#0DAC4D',
+    },
+    text: {
+      darkGray: '#111827',
+      white: '#FFFFFF',
+      sub: '#766E86',
+      brightPurple: '#BC88FF',
+      disabled: '#9B9DA9',
+    },
+    input: {
+      border: '#D9D9D9',
+      hover: '#766E86',
+      active: '#7640EB',
+      disabled: '#D9D9D9',
+      disabledBorder: '#9B9DA9',
+    },
+    background: {
+      bgPurple: '#F1E8FC',
+      bgGray: '#F4F4F4',
+    },
+  },
 } as const

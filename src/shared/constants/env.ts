@@ -18,6 +18,7 @@ const env = {
   isTest,
   isProd: undefined as boolean | undefined,
   landingPageUrl: import.meta.env.VITE_FIX_LANDING_PAGE_URL ?? defaultOrigin,
+  docsUrl: import.meta.env.VITE_FIX_DOCS_URL ?? defaultOrigin,
   apiUrl: import.meta.env.VITE_USE_PROXY === 'true' && !isTest ? defaultOrigin : (import.meta.env.VITE_SERVER ?? defaultOrigin),
   wsUrl:
     import.meta.env.VITE_USE_PROXY === 'true' && !isTest
