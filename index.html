@@ -125,6 +125,35 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="/outdated-browser-rework.min.css" />
+    <script src="/outdated-browser-rework.min.js"></script>
+    <script>outdatedBrowserRework({
+      browserSupport: {
+        Chrome: 450,
+        Edge: 88,
+        Safari: 14,
+        "Mobile Safari": 11,
+        Firefox: 78,
+        Opera: 50,
+        IE: false
+      },
+      requireChromeOnAndroid: false,
+      isUnknownBrowserOK: false,
+      messages: {
+        en: {
+          outOfDate: "Your browser is out of date!",
+          unsupported: "Your browser is not supported!",
+          update: {
+            web: "Update your browser to view this website correctly. ",
+            googlePlay: "Please install Chrome from Google Play",
+            appStore: "Please update iOS from the Settings App"
+          },
+          url: null,
+          close: "Close"
+        }
+      }
+    })
+    </script>
     <script type="text/javascript" src="/t.min.js"></script>
     <script nonce="{{ nonce }}">
       (function initialT() {
@@ -265,6 +294,7 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="outdated"></div>
     <div id="root">
       <div id="default-background" class="vertical-centered-box default-background"></div>
       <div class="vertical-centered-box">
