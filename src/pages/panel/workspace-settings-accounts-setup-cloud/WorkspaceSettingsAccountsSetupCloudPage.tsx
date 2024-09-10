@@ -13,22 +13,33 @@ interface SetupCloudPageItemProps<IconProps extends SvgIconProps> {
 
 function SetupCloudPageItem<IconProps extends SvgIconProps>({ Icon, iconProps, to }: SetupCloudPageItemProps<IconProps>) {
   return (
-    <Stack
+    <InternalLinkButton
+      component={Stack}
+      sx={{
+        bgcolor: 'common.white',
+        border: `1px solid ${panelUI.uiThemePalette.primary.divider}`,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        textAlign: 'left',
+        ':hover': {
+          bgcolor: 'common.white',
+        },
+        width: 440,
+        py: 2.75,
+        px: 3,
+        borderRadius: 3,
+        maxWidth: '100%',
+      }}
+      color="secondary"
+      to={to}
+      size="small"
       direction="row"
-      border={`1px solid ${panelUI.uiThemePalette.primary.divider}`}
-      width={440}
-      maxWidth="100%"
-      py={2.75}
-      px={3}
-      justifyContent="space-between"
-      alignItems="center"
-      borderRadius={3}
     >
       <Icon {...iconProps} />
       <InternalLinkButton color="secondary" to={to} size="small">
         Select
       </InternalLinkButton>
-    </Stack>
+    </InternalLinkButton>
   )
 }
 
