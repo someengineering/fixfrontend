@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import { Box, BoxProps, Tabs as MuiTabs, Tab } from '@mui/material'
+import { Box, BoxProps, Tabs as MuiTabs, TabsProps as MuiTabsProps, Tab } from '@mui/material'
 import { useState } from 'react'
 import { TabPanel, TabType } from './TabPanel'
 
@@ -13,7 +13,8 @@ interface TabsProps<TabKeyType extends number | string | undefined = undefined> 
   defaultTab?: TabKeyType extends undefined ? number : TabKeyType
   value?: TabKeyType extends undefined ? number : TabKeyType
   containerProps?: BoxProps
-  tabsProps?: BoxProps
+  tabsContainerProps?: BoxProps
+  tabsProps?: MuiTabsProps
   a11yProps?: (id: string, title: string) => TabsA11Props
   onChange?: (id: TabKeyType extends undefined ? number : TabKeyType) => void
 }
@@ -30,6 +31,7 @@ function UnControlledTabs<TabKeyType extends number | string | undefined = undef
   defaultTab,
   a11yProps = defaultA11yProps,
   containerProps,
+  tabsContainerProps,
   onChange,
   tabsProps,
 }: Omit<TabsProps<TabKeyType>, 'value'>) {
@@ -41,8 +43,8 @@ function UnControlledTabs<TabKeyType extends number | string | undefined = undef
   }
   return (
     <Box sx={{ width: '100%' }} {...containerProps}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }} {...tabsProps}>
-        <MuiTabs value={value} onChange={handleChange} aria-label={t`Automatic Cloud Setup`}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }} {...tabsContainerProps}>
+        <MuiTabs value={value} onChange={handleChange} aria-label={t`Automatic Cloud Setup`} {...tabsProps}>
           {tabs.map(({ title, id, props }, index) => (
             <Tab
               label={title}
@@ -73,6 +75,7 @@ function ControlledTabs<TabKeyType extends number | string | undefined = undefin
   a11yProps = defaultA11yProps,
   containerProps,
   onChange,
+  tabsContainerProps,
   tabsProps,
 }: Omit<TabsProps<TabKeyType>, 'defaultTab'>) {
   type CurrentTabKeyType = TabKeyType extends undefined ? number : TabKeyType
@@ -82,8 +85,15 @@ function ControlledTabs<TabKeyType extends number | string | undefined = undefin
   const valueIndex = tabs.findIndex((item) => item.id === value) ?? 0
   return (
     <Box sx={{ width: '100%' }} {...containerProps}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }} {...tabsProps}>
-        <MuiTabs value={valueIndex} onChange={handleChange} aria-label={t`Automatic Cloud Setup`}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }} {...tabsContainerProps}>
+        <MuiTabs
+          value={valueIndex}
+          onChange={handleChange}
+          aria-label={t`Automatic Cloud Setup`}
+          allowScrollButtonsMobile
+          visibleScrollbar
+          {...tabsProps}
+        >
           {tabs.map(({ title, id, props }, index) => (
             <Tab
               label={title}

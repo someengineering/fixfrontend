@@ -59,7 +59,7 @@ export function StackbarChart({ data, colors }: StackbarChartProps) {
         ),
       ].map((item) => {
         const { key, stackId, fill } = JSON.parse(item) as { key: string; stackId: string; fill: string }
-        return <Bar key={key} dataKey={key} stackId={stackId} fill={fill} />
+        return <Bar key={key} dataKey={key} stackId={stackId} color={fill} />
       }),
     [colors, rawData],
   )
@@ -78,8 +78,8 @@ export function StackbarChart({ data, colors }: StackbarChartProps) {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis angle={45} dataKey="name" textAnchor="start" height={150} fill={alpha(theme.palette.common.black, 0.8)} />
-        <YAxis domain={[0, total]} type="number" allowDataOverflow={true} fill={alpha(theme.palette.common.black, 0.8)} />
+        <XAxis angle={45} dataKey="name" textAnchor="start" height={150} color={alpha(theme.palette.common.black, 0.8)} />
+        <YAxis domain={[0, total]} type="number" allowDataOverflow={true} color={alpha(theme.palette.common.black, 0.8)} />
         <Tooltip contentStyle={{ background: theme.palette.common.white }} />
         <Legend
           content={({ payload }) => (

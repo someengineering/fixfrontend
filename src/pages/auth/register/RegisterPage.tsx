@@ -118,7 +118,7 @@ export default function RegisterPage() {
           slotProps={{
             input: {
               startAdornment: (
-                <MailIcon width={24} height={24} fill={email ? `${panelUI.uiThemePalette.text.darkGray} !important` : undefined} />
+                <MailIcon width={24} height={24} color={email ? `${panelUI.uiThemePalette.text.darkGray} !important` : undefined} />
               ),
             },
           }}
@@ -137,7 +137,7 @@ export default function RegisterPage() {
             placeholder={t`Password`}
             InputProps={{
               startAdornment: (
-                <PasswordIcon width={24} height={24} fill={email ? `${panelUI.uiThemePalette.text.darkGray} !important` : undefined} />
+                <PasswordIcon width={24} height={24} color={email ? `${panelUI.uiThemePalette.text.darkGray} !important` : undefined} />
               ),
             }}
             variant="outlined"

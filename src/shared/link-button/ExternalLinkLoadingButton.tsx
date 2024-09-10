@@ -1,7 +1,7 @@
-import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import { LoadingButton, LoadingButtonProps } from '@mui/lab'
 import { ButtonTypeMap } from '@mui/material'
 import { ElementType, useState } from 'react'
+import { OpenInNewIcon } from 'src/assets/icons'
 
 export function ExternalLinkLoadingButton<RootComponent extends ElementType = ButtonTypeMap['defaultComponent'], AdditionalProps = unknown>(
   props: LoadingButtonProps<RootComponent, AdditionalProps>,

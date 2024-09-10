@@ -1,12 +1,14 @@
 import { Trans } from '@lingui/macro'
-import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import { Link, Stack, Typography } from '@mui/material'
 import { Outlet } from 'react-router-dom'
+import { OpenInNewIcon } from 'src/assets/icons'
 import { env } from 'src/shared/constants'
+import { useNonce } from 'src/shared/providers'
 import { useHasBenchmarkCheck } from './check-hooks'
 
 export const BenchmarkCheckGuard = () => {
   const hasBenchmark = useHasBenchmarkCheck()
+  const nonce = useNonce()
 
   return hasBenchmark ? (
     <Outlet />
@@ -66,7 +68,7 @@ export const BenchmarkCheckGuard = () => {
           contact us directly{' '}
           <Link target="_blank" href={env.discordUrl} rel="noopener noreferrer">
             on our Discord server
-            <OpenInNewIcon sx={{ height: 16, mb: '-3px' }} />
+            <OpenInNewIcon style={{ height: 16, marginBottom: -3 }} nonce={nonce} />
           </Link>
           .
         </Typography>

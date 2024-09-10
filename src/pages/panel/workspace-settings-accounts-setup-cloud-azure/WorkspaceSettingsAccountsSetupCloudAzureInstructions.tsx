@@ -54,10 +54,12 @@ export const WorkspaceSettingsAccountsSetupCloudAzureInstructions = ({
       flex={1}
       minHeight={300}
       overflow={isMobile ? undefined : 'auto'}
-      pb={3}
-      pr={3}
-      // TODO: fix layout in a way that the content can be easily set to maximize height
-      height={isMobile ? undefined : 'calc(100vh - 144px)'}
+      height="100%"
+      width="100%"
+      border={`1px solid ${panelUI.uiThemePalette.primary.divider}`}
+      borderRadius="12px"
+      p={{ sx: 2.5, lg: 3.75 }}
+      spacing={2}
     >
       <Stepper activeStep={activeStep} orientation="vertical">
         {instructions.map(({ instruction, label, divComponent, image }, index) => (

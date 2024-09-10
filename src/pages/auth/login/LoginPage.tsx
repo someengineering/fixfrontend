@@ -206,7 +206,7 @@ export default function LoginPage() {
           slotProps={{
             input: {
               startAdornment: (
-                <MailIcon width={24} height={24} fill={username ? `${panelUI.uiThemePalette.text.darkGray} !important` : undefined} />
+                <MailIcon width={24} height={24} color={username ? `${panelUI.uiThemePalette.text.darkGray} !important` : undefined} />
               ),
             },
           }}
@@ -232,7 +232,7 @@ export default function LoginPage() {
                     <PasswordIcon
                       width={24}
                       height={24}
-                      fill={username ? `${panelUI.uiThemePalette.text.darkGray} !important` : undefined}
+                      color={username ? `${panelUI.uiThemePalette.text.darkGray} !important` : undefined}
                     />
                   ),
                 },

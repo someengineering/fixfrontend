@@ -1,12 +1,11 @@
 import { Trans, t } from '@lingui/macro'
-import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import PowerIcon from '@mui/icons-material/Power'
 import SettingsIcon from '@mui/icons-material/Settings'
 import { LoadingButton } from '@mui/lab'
 import { Box, Button, Stack, TextField, Typography, useTheme } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
-import { PagerdutyLogo } from 'src/assets/icons'
+import { OpenInNewIcon, PagerdutyLogo } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { Modal } from 'src/shared/modal'
 import { WorkspaceSettingsDisconnectServiceModal } from './WorkspaceSettingsDisconnectServiceModal'
@@ -56,7 +55,7 @@ export const WorkspaceSettingsPagerdutyService = ({ isConnected, defaultName, is
       gap={2}
     >
       <Box width={150}>
-        <PagerdutyLogo fill={theme.palette.common.black} width={100} />
+        <PagerdutyLogo color={theme.palette.common.black} width={100} />
       </Box>
       {hasPermission ? (
         <>

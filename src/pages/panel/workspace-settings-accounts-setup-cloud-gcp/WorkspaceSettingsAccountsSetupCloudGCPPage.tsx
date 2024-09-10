@@ -6,7 +6,7 @@ export default function WorkspaceSettingsAccountsSetupCloudGCPPage() {
   const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('lg'))
 
   return (
-    <Stack direction={isMobile ? 'column-reverse' : 'row'} margin={-3} paddingTop={3} paddingLeft={3}>
+    <Stack direction={isMobile ? 'column' : 'row'} height="100%" gap={{ xs: 2.5, lg: 3.75 }}>
       <WorkspaceSettingsAccountsSetupCloudGCPUploadKey isMobile={isMobile} />
       <WorkspaceSettingsAccountsSetupCloudGCPInstructions isMobile={isMobile} />
     </Stack>

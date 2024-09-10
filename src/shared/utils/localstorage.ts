@@ -49,7 +49,7 @@ export const getSubscriptionId = () => getStorageObject<string>(StorageKeys.subs
 
 export const setSubscriptionId = (subscriptionId?: string) => setStorageObject(StorageKeys.subscriptionId, subscriptionId)
 
-export const getThemeMode = () => getStorageObject<ThemeContextRealValues>(StorageKeys.themeMode)
+export const getThemeMode = () => ({ mode: 'light' }) as ThemeContextRealValues //getStorageObject<ThemeContextRealValues>(StorageKeys.themeMode)
 
 export const setThemeMode = (themeMode?: ThemeContextRealValues) => setStorageObject(StorageKeys.themeMode, themeMode)
 

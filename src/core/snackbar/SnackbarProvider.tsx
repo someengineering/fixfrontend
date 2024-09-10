@@ -30,7 +30,7 @@ const DEFAULT_SNACKBAR_OPTIONS: SnackbarOptions = {
   snackbarProps: {},
   typographyProps: {},
   alertProps: {},
-  alertColor: undefined,
+  alertColor: 'success',
   bgcolor: panelUI.uiThemePalette.accent.darkGray,
   textColor: panelUI.uiThemePalette.primary.white,
   autoHideDuration: panelUI.snackbarAutoHideDuration,
@@ -51,25 +51,26 @@ export const SnackbarContext = createContext<SnackbarContextValue | null>(null)
 
 const Snackbar = styled(MuiSnackbar, { shouldForwardProp: shouldForwardPropWithBlackList(['index']) })<{ index: number }>(
   ({ theme, index }) => ({
-    marginBottom: 54 * index,
+    paddingBottom: 54 * index,
     transition: theme.transitions.create(['margin-bottom', 'transform'], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
     minHeight: 56,
     width: '100%',
-    padding: theme.spacing(2.5),
+    margin: theme.spacing(2.5),
     bottom: '0!important',
+    background: 'transparent',
     borderRadius: '6px',
     [theme.breakpoints.down('sm')]: {
       left: '0!important',
       right: '0!important',
     },
     [theme.breakpoints.up('md')]: {
-      padding: theme.spacing(3.75),
+      margin: theme.spacing(3.75),
     },
     [theme.breakpoints.up('lg')]: {
-      padding: theme.spacing(7.5),
+      margin: theme.spacing(7.5),
     },
   }),
 )

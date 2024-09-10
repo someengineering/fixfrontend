@@ -94,7 +94,7 @@ export default function ResetPasswordPage() {
             placeholder={t`Password`}
             InputProps={{
               startAdornment: (
-                <PasswordIcon width={24} height={24} fill={password ? `${panelUI.uiThemePalette.text.darkGray} !important` : undefined} />
+                <PasswordIcon width={24} height={24} color={password ? `${panelUI.uiThemePalette.text.darkGray} !important` : undefined} />
               ),
             }}
             variant="outlined"

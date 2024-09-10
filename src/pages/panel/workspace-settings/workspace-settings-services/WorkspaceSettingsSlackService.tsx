@@ -28,7 +28,7 @@ export const WorkspaceSettingsSlackService = ({ isConnected, isLoading }: Worksp
       gap={2}
     >
       <Stack width={150} justifyContent="center">
-        <SlackWithTextLogo fill={theme.palette.common.black} width={100} />
+        <SlackWithTextLogo color={theme.palette.common.black} width={100} />
       </Stack>
       {hasPermission ? (
         isConnected ? (
