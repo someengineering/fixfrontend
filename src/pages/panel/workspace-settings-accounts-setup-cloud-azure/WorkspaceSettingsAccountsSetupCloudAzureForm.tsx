@@ -68,6 +68,13 @@ export const WorkspaceSettingsAccountsSetupCloudAzureForm = ({
     setIsPending(isPending)
   }, [isPending, setIsPending])
 
+  useEffect(() => {
+    if ((data.client_id, data.azure_tenant_id)) {
+      formData.current.azure_tenant_id = { value: data.azure_tenant_id, hasError: false }
+      formData.current.client_id = { value: data.client_id, hasError: false }
+    }
+  }, [data.client_id, data.azure_tenant_id])
+
   const handleSubmit = (e?: FormEvent<HTMLFormElement>) => {
     e?.preventDefault()
     if (!hasError) {
@@ -136,6 +143,7 @@ export const WorkspaceSettingsAccountsSetupCloudAzureForm = ({
             <WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput
               name="client_id"
               label={t`Application (client) ID`}
+              defaultValue={data.client_id}
               onChange={handleChange}
               onError={handleError}
               disabled={isPending}
@@ -144,6 +152,7 @@ export const WorkspaceSettingsAccountsSetupCloudAzureForm = ({
             <WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput
               name="azure_tenant_id"
               label={t`Directory (tenant) ID`}
+              defaultValue={data.azure_tenant_id}
               onChange={handleChange}
               onError={handleError}
               disabled={isPending}
