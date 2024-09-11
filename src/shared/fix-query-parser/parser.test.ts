@@ -11,7 +11,6 @@ import {
   PartP,
   PathP,
   QueryP,
-  SimpleTermP,
   SortP,
   TermP,
   WithClauseP,
@@ -45,7 +44,6 @@ import {
 const parse_variable = parse_expr(PathP)
 const parse_bool_operation = parse_expr(BoolOperationP)
 const parse_json = parse_expr(JsonElementP)
-const parse_simple_term = parse_expr(SimpleTermP)
 const parse_sort = parse_expr(SortP)
 const parse_limit = parse_expr(LimitP)
 const parse_navigation = parse_expr(NavigationP)
@@ -108,22 +106,6 @@ test(`Parse Variable`, () => {
       ],
     }),
   )
-})
-
-test(`Parse Simple Term`, () => {
-  assert.deepEqual(parse_simple_term('is(instance)'), new IsTerm({ kinds: ['instance'] }))
-  assert.deepEqual(parse_simple_term('id(test1234)'), new IdTerm({ ids: ['test1234'] }))
-  assert.deepEqual(parse_simple_term('all'), new AllTerm())
-  assert.deepEqual(parse_simple_term('foo==23'), new Predicate({ path: foo, op: '==', value: 23 }))
-  assert.deepEqual(parse_simple_term('bla!=["1", 2]'), new Predicate({ path: bla, op: '!=', value: ['1', 2] }))
-  assert.deepEqual(
-    parse_simple_term('foo.bla.bar.{test=23}'),
-    new ContextTerm({
-      path: Path.from_string('foo.bla.bar'),
-      term: new Predicate({ path: Path.from('test'), op: '=', value: 23 }),
-    }),
-  )
-  assert.deepEqual(parse_simple_term('"test"'), new FulltextTerm({ text: 'test' }))
 })
 
 test(`Parse Term`, () => {
@@ -361,6 +343,36 @@ test('Parse piped queries', () => {
     parse_query('search is(instance) or foo = 23 | search is(foo) and bla = 12').toString(),
     '(is(instance) or foo = 23) and is(foo) and bla = 12',
   )
+})
+
+test('Parse edge properties', () => {
+  function assert_query(q: string, expect_filter: boolean) {
+    const parsed = parse_query(q)
+    assert.strictEqual(parsed.parts.length, 2)
+    assert.ok(parsed.parts[0].navigation != null)
+    if (expect_filter) assert.ok(parsed.parts[0].navigation.edge_filter != null)
+  }
+
+  const start_until = ['', '[1]', '[1:2]', '[1:]']
+  const filters = [
+    '',
+    '{foo == bar}',
+    '{foo == bar and bla > 23}',
+    '{(foo == bar and bla > 23) or  boo < 42}',
+    '{permissions[*].{level=read and scope[*].source=resource}}',
+  ]
+  Object.keys(EdgeType).forEach((et) => {
+    for (const su of start_until) {
+      for (const f of filters) {
+        assert_query(`is(principal) -${et}${su}${f}-> is(resource)`, f !== '')
+        assert_query(`is(principal) <-${et}${su}${f}- is(resource)`, f !== '')
+        assert_query(`is(principal) <-${et}${su}${f}-> is(resource)`, f !== '')
+        if (su !== '' || f !== '') {
+          assert_query(`is(principal) <-${et}${su}${f}${et}-> is(resource)`, f !== '')
+        }
+      }
+    }
+  })
 })
 
 test('Parse existing queries', () => {

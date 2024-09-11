@@ -671,6 +671,7 @@ export class Navigation {
   edge_types: EdgeType[] | undefined
   direction: Direction
   maybe_two_directional_outbound_edge_type: EdgeType[] | null
+  edge_filter: Term | null
 
   constructor({
     start = 1,
@@ -678,18 +679,21 @@ export class Navigation {
     edge_types = [EdgeType.default],
     direction = Direction.outbound,
     maybe_two_directional_outbound_edge_type = null,
+    edge_filter = null,
   }: {
     start?: number
     until?: number
     edge_types?: EdgeType[]
     direction?: Direction
     maybe_two_directional_outbound_edge_type?: EdgeType[] | null
+    edge_filter?: Term | null
   } = {}) {
     this.start = start
     this.until = until
     this.edge_types = edge_types
     this.direction = direction
     this.maybe_two_directional_outbound_edge_type = maybe_two_directional_outbound_edge_type
+    this.edge_filter = edge_filter
   }
 
   toString(): string {
@@ -705,7 +709,8 @@ export class Navigation {
     }
     const et = this.edge_types === undefined || this.edge_types.every((v) => v === EdgeType.default) ? '' : this.edge_types.join(',')
     const out_nav = mo ? `(${mo.join(',')})` : ''
-    const nav = `${et}${depth}${out_nav}`
+    const fltr = this.edge_filter ? `{${this.edge_filter}}` : ''
+    const nav = `${et}${depth}${fltr}${out_nav}`
     if (this.direction === Direction.inbound) {
       return `<-${nav}-`
     } else if (this.direction === Direction.outbound) {
