@@ -913,6 +913,10 @@ msgstr "Critical"
 msgid "Current"
 msgstr "Current"
 
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:45
+msgid "Current Password"
+msgstr "Current Password"
+
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:206
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:129
 msgid "Current Product Tier"
@@ -1655,8 +1659,8 @@ msgstr "New issues"
 msgid "new non compliant resources in the past {since}"
 msgstr "new non compliant resources in the past {since}"
 
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:29
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:45
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:30
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:60
 msgid "New Password"
 msgstr "New Password"
 
@@ -2345,7 +2349,7 @@ msgstr "Some checks have been disabled for this resource"
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:321
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:33
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:24
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:25
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:107
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:110
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:39
@@ -2578,7 +2582,7 @@ msgstr "Unused Database Instances"
 msgid "Update Email"
 msgstr "Update Email"
 
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:33
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:34
 msgid "Update Password"
 msgstr "Update Password"
 

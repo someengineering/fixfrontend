@@ -119,7 +119,7 @@ export default function LoginPage() {
             required
             id="password"
             name="password"
-            autoComplete="current-password"
+            autoComplete="current-password webauthn"
             label={t`Password`}
             variant="outlined"
             fullWidth
