@@ -30,7 +30,7 @@ export const UserSettingsFormPassword = ({ ...rest }: UserSettingsFormPasswordPr
         title={<Trans>New Password</Trans>}
         onSubmit={handleSubmit}
         isPending={isPending}
-        buttonDisabled={!password}
+        buttonDisabled={!password || !currentPassword}
         buttonContent={<Trans>Update Password</Trans>}
       >
         <PasswordTextField
