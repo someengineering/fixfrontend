@@ -369,7 +369,7 @@ msgid "All security issues fixed"
 msgstr "All security issues fixed"
 
 #: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:105
-#: src/pages/auth/reset-password/ResetPasswordPage.tsx:120
+#: src/pages/auth/reset-password/ResetPasswordPage.tsx:122
 msgid "Already have an account? <0>Back to Sign in</0>"
 msgstr "Already have an account? <0>Back to Sign in</0>"
 
@@ -2097,7 +2097,7 @@ msgstr "Rename"
 msgid "Reset password"
 msgstr "Reset password"
 
-#: src/pages/auth/reset-password/ResetPasswordPage.tsx:116
+#: src/pages/auth/reset-password/ResetPasswordPage.tsx:118
 msgid "Reset Password"
 msgstr "Reset Password"
 
@@ -2358,7 +2358,7 @@ msgstr "Sign in with email"
 msgid "Sign up with {formattedName}"
 msgstr "Sign up with {formattedName}"
 
-#: src/pages/auth/register/RegisterPage.tsx:159
+#: src/pages/auth/register/RegisterPage.tsx:161
 msgid "Sign up with email"
 msgstr "Sign up with email"
 
