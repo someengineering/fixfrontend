@@ -1226,10 +1226,10 @@
     "@babel/runtime" "^7.20.13"
     "@lingui/core" "4.11.4"
 
-"@lingui/swc-plugin@^4.0.10":
-  version "4.0.10"
-  resolved "https://registry.yarnpkg.com/@lingui/swc-plugin/-/swc-plugin-4.0.10.tgz#bcc63893d7f1ab231babc138754443d024c51bc3"
-  integrity sha512-CPZkywUdG8HsEIxsRAAvx30KZmfxzh126yCvHq0suyvZZRLOVoNdlrUw1N9MfsB7YJsPLgD+XLGjRkeyo7ZduQ==
+"@lingui/swc-plugin@4.0.9":
+  version "4.0.9"
+  resolved "https://registry.yarnpkg.com/@lingui/swc-plugin/-/swc-plugin-4.0.9.tgz#9d6ed6e1017945bcc4fabb3f083ae9716f50cf90"
+  integrity sha512-FsNW9QSn2+aXxiqm9xitReJM5NKp1kfXbMGmTd1RPd/Yr3RjtZcdUh0qAn5jysaE8ND3luoMClVDG3dugnnkdw==
 
 "@lingui/vite-plugin@^4.11.4":
   version "4.11.4"
@@ -2870,10 +2870,10 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
-"@types/react@^18.3.5":
-  version "18.3.5"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.3.5.tgz#5f524c2ad2089c0ff372bbdabc77ca2c4dbadf8f"
-  integrity sha512-WeqMfGJLGuLCqHGYRGHxnKrXcTitc6L/nBUWfWPcTarG3t9PsquqUMuVeXZeca+mglY4Vo5GZjCi0A3Or2lnxA==
+"@types/react@^18.3.6":
+  version "18.3.6"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.3.6.tgz#1cb5895c5ea0d99d8bc7d659e42f72713cbd3942"
+  integrity sha512-CnGaRYNu2iZlkGXGrOYtdg5mLK8neySj0woZ4e2wF/eli2E6Sazmq5X+Nrj6OBrrFVQfJWTUFeqAzoRhWQXYvg==
   dependencies:
     "@types/prop-types" "*"
     csstype "^3.0.2"
@@ -3531,7 +3531,7 @@ brace-expansion@^2.0.1:
   dependencies:
     balanced-match "^1.0.0"
 
-braces@^3.0.2, braces@^3.0.3, braces@~3.0.2:
+braces@^3.0.3, braces@~3.0.2:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/braces/-/braces-3.0.3.tgz#490332f40919452272d55a8480adc0c441358789"
   integrity sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==
@@ -6636,20 +6636,12 @@ micromark@^4.0.0:
     micromark-util-symbol "^2.0.0"
     micromark-util-types "^2.0.0"
 
-micromatch@^4.0.2, micromatch@~4.0.8:
+micromatch@^4.0.2, micromatch@^4.0.4, micromatch@~4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-4.0.8.tgz#d66fa18f3a47076789320b9b1af32bd86d9fa202"
   integrity sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA==
   dependencies:
     braces "^3.0.3"
-    picomatch "^2.3.1"
-
-micromatch@^4.0.4:
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-4.0.5.tgz#bc8999a7cbbf77cdc89f132f6e467051b49090c6"
-  integrity sha512-DMy+ERcEW2q8Z2Po+WNXuw3c5YaUSFjAO5GsJqfEl7UjvtIuFKO6ZrKvcItdy98dwFI2N1tg3zNIdKaQT+aNdA==
-  dependencies:
-    braces "^3.0.2"
     picomatch "^2.3.1"
 
 mime-db@1.52.0:
@@ -7143,10 +7135,10 @@ postcss@^8.4.43:
     picocolors "^1.0.1"
     source-map-js "^1.2.0"
 
-posthog-js@^1.161.4:
-  version "1.161.4"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.161.4.tgz#76cb47f4c46d9832d906d22f2d1a5f2fedfdb3d2"
-  integrity sha512-1KekYpef+NL85knnlBci/QRLYj0rsbNvzCzKohYs/bgvqoHHT8quBJouni5e78ymN2eF6KAOss037z9iG1kdJw==
+posthog-js@^1.161.3:
+  version "1.161.3"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.161.3.tgz#e11e1eb18c7b6886aead5320c70d546c020ba53c"
+  integrity sha512-TQ77jtLemkUJUyJAPrwGay6tLqcAmXEM1IJgXOx5Tr4UohiTx8JTznzrCuh/SdwPIrbcSM1r2YPwb72XwTC3wg==
   dependencies:
     fflate "^0.4.8"
     preact "^10.19.3"
