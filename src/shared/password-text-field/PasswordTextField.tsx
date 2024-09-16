@@ -18,13 +18,15 @@ export const PasswordTextField = (props: PasswordTextFieldProps) => {
     <TextField
       {...props}
       type={showPassword ? 'text' : 'password'}
-      InputProps={{
-        ...props.InputProps,
-        endAdornment: (
-          <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
-            {showPassword ? <VisibilityOffIcon /> : <ShowIcon />}
-          </IconButton>
-        ),
+      slotProps={{
+        input: {
+          ...props.slotProps?.input,
+          endAdornment: (
+            <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
+              {showPassword ? <VisibilityOffIcon /> : <ShowIcon />}
+            </IconButton>
+          ),
+        },
       }}
     />
   )
