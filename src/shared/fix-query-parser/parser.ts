@@ -36,8 +36,8 @@ import {
 } from './query'
 
 export const JsonElementP = rule<T, JsonElement>()
-export const SimpleTermP = rule<T, Term>()
 export const TermP = rule<T, Term>()
+export const EdgeTermP = rule<T, Term>()
 export const PathP = rule<T, Path>()
 export const BoolOperationP = rule<T, string>()
 export const OperationP = rule<T, string>()
@@ -133,22 +133,23 @@ const list_or_simple = apply(
   alt(times_n_sep(literalP, tok(T.Comma)), kmid(tok(T.LBracket), times_n_sep(literalP, tok(T.Comma)), tok(T.RBracket))),
   (l) => l.map((t) => t.text),
 )
-SimpleTermP.setPattern(
-  alt(
-    kmid(tok(T.LParen), TermP, tok(T.RParen)),
-    apply(kright(tok(T.Not), TermP), (term) => new NotTerm({ term })),
-    apply(seq(PathP, tok(T.Dot), kmid(tok(T.LCurly), TermP, tok(T.RCurly))), ([name, _, term]) => new ContextTerm({ path: name, term })),
-    apply(seq(PathP, OperationP, JsonElementP), ([name, op, value]) => new Predicate({ path: name, op, value })),
-    apply(kright(tok(T.IS), kmid(tok(T.LParen), list_or_simple, tok(T.RParen))), (t) => new IsTerm({ kinds: t })),
-    apply(kright(tok(T.ID), kmid(tok(T.LParen), list_or_simple, tok(T.RParen))), (t) => new IdTerm({ ids: t })),
-    apply(tok(T.DoubleQuotedString), (t) => new FulltextTerm({ text: t.text.slice(1, -1).replace(/\\"/g, '"') })),
-    apply(tok(T.All), (_) => new AllTerm()),
-  ),
+const parensTerm = kmid(tok(T.LParen), TermP, tok(T.RParen))
+const notTerm = apply(kright(tok(T.Not), TermP), (term) => new NotTerm({ term }))
+const contextTerm = apply(
+  seq(PathP, tok(T.Dot), kmid(tok(T.LCurly), TermP, tok(T.RCurly))),
+  ([name, _, term]) => new ContextTerm({ path: name, term }),
 )
+const predicateTerm = apply(seq(PathP, OperationP, JsonElementP), ([name, op, value]) => new Predicate({ path: name, op, value }))
+const isTerm = apply(kright(tok(T.IS), kmid(tok(T.LParen), list_or_simple, tok(T.RParen))), (t) => new IsTerm({ kinds: t }))
+const idTerm = apply(kright(tok(T.ID), kmid(tok(T.LParen), list_or_simple, tok(T.RParen))), (t) => new IdTerm({ ids: t }))
+const fulltextTerm = apply(tok(T.DoubleQuotedString), (t) => new FulltextTerm({ text: t.text.slice(1, -1).replace(/\\"/g, '"') }))
+const allTerm = apply(tok(T.All), (_) => new AllTerm())
+const simpleTerm = alt(parensTerm, notTerm, contextTerm, predicateTerm, isTerm, idTerm, fulltextTerm, allTerm)
+const simpleEdgeTerm = alt(parensTerm, notTerm, contextTerm, predicateTerm, allTerm)
 
-TermP.setPattern(
+function combine_term(simple_term: Parser<T, Term>) {
   // simple_term <and|or> simple_term
-  apply(seq(SimpleTermP, rep_sc(seq(BoolOperationP, SimpleTermP))), ([term, op_terms]) => {
+  return apply(seq(simple_term, rep_sc(seq(BoolOperationP, simple_term))), ([term, op_terms]) => {
     // combine all terms from right to left, so the order from left to right remains
     const combine_term = (left: Term, rest: [string, Term][]): Term => {
       if (rest.length === 0) {
@@ -158,8 +159,11 @@ TermP.setPattern(
       return new CombinedTerm({ left, op, right: combine_term(next, remaining) })
     }
     return combine_term(term, op_terms)
-  }),
-)
+  })
+}
+
+TermP.setPattern(combine_term(simpleTerm))
+EdgeTermP.setPattern(combine_term(simpleEdgeTerm))
 
 MergeQueryP.setPattern(
   apply(
@@ -193,20 +197,21 @@ SortP.setPattern(
 
 const default_edge = apply(tok(T.Default), (_) => EdgeType.default)
 const delete_edge = apply(tok(T.Delete), (_) => EdgeType.delete)
-const edge_type_p = list_sc(alt(default_edge, delete_edge), tok(T.Comma))
+const edge_types_p = list_sc(alt(default_edge, delete_edge), tok(T.Comma))
 const sepa = alt(tok(T.Comma), tok(T.Colon), tok(T.DotDot))
 const range = apply(kmid(tok(T.LBracket), seq(tok(T.Integer), opt(sepa), opt(tok(T.Integer))), tok(T.RBracket)), ([start, sepa, end]) => {
   const start_num = parseInt(start.text)
   return sepa ? [start_num, end ? parseInt(end.text) : undefined] : [start_num, start_num]
 })
-const edge_detail = apply(seq(opt(edge_type_p), opt(range), opt(edge_type_p)), ([et_before, range, et_after]) => {
-  if (et_before && et_after) {
-    throw new Error('Edge type can not be specified both before and after range')
-  }
-  const start: number = range ? range[0] || 1 : 1
-  const end: number | undefined = range ? range[1] : 1
-  return new Navigation({ start: start, until: end, edge_types: et_before || et_after || [EdgeType.default] })
-})
+const edge_filter_p = kmid(tok(T.LCurly), EdgeTermP, tok(T.RCurly))
+const edge_detail = apply(
+  seq(opt(edge_types_p), opt(range), opt(edge_filter_p), opt(edge_types_p)),
+  ([et_before, range, edge_filter, et_after]) => {
+    const start: number = range ? range[0] || 1 : 1
+    const until: number | undefined = range ? range[1] : 1
+    return new Navigation({ start, until, edge_types: et_before || et_after || [EdgeType.default], edge_filter })
+  },
+)
 NavigationP.setPattern(
   alt(
     apply(kmid(tok(T.Minus), opt(edge_detail), tok(T.Outbound)), (nav) => {
@@ -224,7 +229,14 @@ NavigationP.setPattern(
 const with_filter = alt(
   apply(tok(T.Empty), (_) => new WithClauseFilter({ op: '==', num: 0 })),
   apply(tok(T.Any), (_) => new WithClauseFilter({ op: '>', num: 0 })),
-  apply(kright(tok(T.Count), seq(OperationP, tok(T.Integer))), ([op, count]) => new WithClauseFilter({ op, num: parseInt(count.text) })),
+  apply(
+    kright(tok(T.Count), seq(OperationP, tok(T.Integer))),
+    ([op, count]) =>
+      new WithClauseFilter({
+        op,
+        num: parseInt(count.text),
+      }),
+  ),
 )
 WithClauseP.setPattern(
   apply(
