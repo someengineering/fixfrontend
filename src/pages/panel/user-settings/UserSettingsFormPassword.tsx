@@ -14,9 +14,10 @@ type UserSettingsFormPasswordProps = Omit<
 
 export const UserSettingsFormPassword = ({ ...rest }: UserSettingsFormPasswordProps) => {
   const { mutateAsync, isPending, error } = useMutation({ mutationFn: patchUsersMeMutation })
+  const [currentPassword, setCurrentPassword] = useState('')
   const [password, setPassword] = useState('')
   const handleSubmit = () => {
-    mutateAsync({ password })
+    mutateAsync({ password, current_password: currentPassword })
   }
 
   const formError = error
@@ -29,9 +30,23 @@ export const UserSettingsFormPassword = ({ ...rest }: UserSettingsFormPasswordPr
         title={<Trans>New Password</Trans>}
         onSubmit={handleSubmit}
         isPending={isPending}
-        buttonDisabled={!password}
+        buttonDisabled={!password || !currentPassword}
         buttonContent={<Trans>Update Password</Trans>}
       >
+        <PasswordTextField
+          {...rest}
+          size="small"
+          error={!!error}
+          value={currentPassword}
+          required
+          id="current-password"
+          name="current-password"
+          autoComplete="current-password webauthn"
+          label={t`Current Password`}
+          variant="outlined"
+          fullWidth
+          onChange={(e) => setCurrentPassword(e.target.value ?? '')}
+        />
         <PasswordTextField
           {...rest}
           size="small"

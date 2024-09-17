@@ -92,10 +92,16 @@ export default function ResetPasswordPage() {
             name="password"
             autoComplete="new-password"
             placeholder={t`Password`}
-            InputProps={{
-              startAdornment: (
-                <PasswordIcon width={24} height={24} color={password ? `${panelUI.uiThemePalette.text.darkGray} !important` : undefined} />
-              ),
+            slotProps={{
+              input: {
+                startAdornment: (
+                  <PasswordIcon
+                    width={24}
+                    height={24}
+                    color={password ? `${panelUI.uiThemePalette.text.darkGray} !important` : undefined}
+                  />
+                ),
+              },
             }}
             variant="outlined"
             fullWidth

@@ -34,7 +34,7 @@ export const UserSettingsFormContentContainer = ({
       <Box width={150}>
         <Typography>{title}:</Typography>
       </Box>
-      <Box width={{ xs: '100%', lg: 400 }}>
+      <Stack gap={1} width={{ xs: '100%', lg: 400 }}>
         {isLoading ? (
           <Skeleton variant="rounded" width="100%">
             {children}
@@ -42,7 +42,7 @@ export const UserSettingsFormContentContainer = ({
         ) : (
           children
         )}
-      </Box>
+      </Stack>
       <LoadingButton type="submit" variant="contained" loading={isPending} disabled={isLoading || isPending || buttonDisabled}>
         {buttonContent}
       </LoadingButton>

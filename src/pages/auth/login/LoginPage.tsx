@@ -224,7 +224,7 @@ export default function LoginPage() {
               required
               id="password"
               name="password"
-              autoComplete="current-password"
+              autoComplete="current-password webauthn"
               placeholder={t`Password`}
               slotProps={{
                 input: {

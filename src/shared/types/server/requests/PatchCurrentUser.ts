@@ -3,6 +3,7 @@ import { GenericServerError } from 'src/shared/types/server-shared'
 import { LiteralUnion } from 'src/shared/types/shared'
 
 export type PatchCurrentUserRequest = {
+  current_password?: string
   password?: string
   email?: string
 }
