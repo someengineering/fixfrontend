@@ -1,80 +1,64 @@
 import { Stack, Typography } from '@mui/material'
-import { AwsLogo, AzureLogo, GcpLogo } from 'src/assets/icons'
+import { FC } from 'react'
+import { To } from 'react-router-dom'
+import { AwsLogo, AzureLogoWithText, GCPLogoWithText, SvgIconProps } from 'src/assets/icons'
+import { panelUI } from 'src/shared/constants'
 import { InternalLinkButton } from 'src/shared/link-button'
-import { useNonce } from 'src/shared/providers'
+
+interface SetupCloudPageItemProps<IconProps extends SvgIconProps> {
+  Icon: FC<IconProps>
+  iconProps: IconProps
+  to: string & To
+}
+
+function SetupCloudPageItem<IconProps extends SvgIconProps>({ Icon, iconProps, to }: SetupCloudPageItemProps<IconProps>) {
+  return (
+    <InternalLinkButton
+      component={Stack}
+      sx={{
+        bgcolor: 'common.white',
+        border: `1px solid ${panelUI.uiThemePalette.primary.divider}`,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        textAlign: 'left',
+        ':hover': {
+          bgcolor: 'common.white',
+        },
+        width: 440,
+        py: 2.75,
+        px: 3,
+        borderRadius: 3,
+        maxWidth: '100%',
+      }}
+      color="secondary"
+      to={to}
+      size="small"
+      direction="row"
+    >
+      <Icon {...iconProps} />
+      <InternalLinkButton color="secondary" to={to} size="small">
+        Select
+      </InternalLinkButton>
+    </InternalLinkButton>
+  )
+}
 
 export default function WorkspaceSettingsAccountsSetupCloudPage() {
-  const nonce = useNonce()
   return (
-    <Stack
-      height={{ xs: 'calc(100vh - 220px)', lg: 'calc(100vh - 220px)' }}
-      maxHeight={{ xs: 'calc(100vh - 220px)', lg: 'calc(100vh - 220px)' }}
-      minHeight={{ xs: 400, lg: 400 }}
-      width="100%"
-      alignItems="center"
-      justifyContent="center"
-    >
-      <Stack direction="row" width="100%" height="100%" flex={1} flexWrap="wrap" alignItems="center" justifyContent="center">
-        <Stack direction="row" width="50%" height="50%" p={1} alignItems="center" justifyContent="center">
-          <InternalLinkButton
-            to="/workspace-settings/accounts/setup-cloud/aws"
-            color="primary"
-            sx={{
-              borderRadius: 5,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 1,
-              width: '100%',
-              height: '100%',
-              alignItems: 'center',
-            }}
-          >
-            <AwsLogo nonce={nonce} style={{ maxWidth: '500px', maxHeight: '500px' }} />
-            <Typography variant="h3" textAlign="center">
-              Amazon Web Services
-            </Typography>
-          </InternalLinkButton>
-        </Stack>
-        <Stack direction="row" width="50%" height="50%" p={1} alignItems="stretch" justifyContent="center">
-          <InternalLinkButton
-            to="/workspace-settings/accounts/setup-cloud/gcp"
-            color="primary"
-            sx={{
-              borderRadius: 5,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 1,
-              width: '100%',
-              height: '100%',
-              alignItems: 'center',
-            }}
-          >
-            <GcpLogo nonce={nonce} style={{ maxWidth: '500px', maxHeight: '500px' }} />
-            <Typography variant="h3" textAlign="center">
-              Google Cloud Platform
-            </Typography>
-          </InternalLinkButton>
-        </Stack>
-        <Stack direction="row" width="50%" height="50%" p={1} alignItems="stretch" justifyContent="center">
-          <InternalLinkButton
-            to="/workspace-settings/accounts/setup-cloud/azure"
-            color="primary"
-            sx={{
-              borderRadius: 5,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 1,
-              width: '100%',
-              height: '100%',
-              alignItems: 'center',
-            }}
-          >
-            <AzureLogo nonce={nonce} style={{ maxWidth: '500px', maxHeight: '500px' }} />
-            <Typography variant="h3" textAlign="center">
-              Azure
-            </Typography>
-          </InternalLinkButton>
-        </Stack>
+    <Stack width="100%" height="100%" alignItems="center" justifyContent="center" spacing={3.125}>
+      <Typography variant="h4">Select your cloud account</Typography>
+      <Stack spacing={2}>
+        <SetupCloudPageItem Icon={AwsLogo} iconProps={{ width: 53.55, height: 32 }} to="/workspace-settings/accounts/setup-cloud/aws" />
+        <SetupCloudPageItem
+          Icon={GCPLogoWithText}
+          iconProps={{ width: 153.21, height: 24 }}
+          to="/workspace-settings/accounts/setup-cloud/gcp"
+        />
+        <SetupCloudPageItem
+          Icon={AzureLogoWithText}
+          iconProps={{ width: 107, height: 30 }}
+          to="/workspace-settings/accounts/setup-cloud/azure"
+        />
       </Stack>
     </Stack>
   )

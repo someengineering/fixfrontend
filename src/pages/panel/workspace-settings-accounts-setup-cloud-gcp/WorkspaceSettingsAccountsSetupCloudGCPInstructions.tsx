@@ -1,7 +1,8 @@
 import { Trans } from '@lingui/macro'
-import { Button, Skeleton, Stack, Step, StepContent, StepLabel, Stepper, Typography, styled } from '@mui/material'
+import { Button, IconButton, Skeleton, Stack, Step, StepContent, StepLabel, Stepper, Typography, styled } from '@mui/material'
 import { useEffect, useRef } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { ArrowBackIcon, ArrowForwardIcon } from 'src/assets/icons'
 import { panelUI } from 'src/shared/constants'
 import { useNonce } from 'src/shared/providers'
 import { usePersistState } from 'src/shared/utils/usePersistState'
@@ -31,79 +32,114 @@ export const WorkspaceSettingsAccountsSetupCloudGCPInstructions = ({
     (state) => typeof state === 'number' && state < instructions.length && state >= 0,
   )
   const timeout = useRef<number>()
+  const justMounted = useRef(true)
 
   useEffect(() => {
     if (timeout.current) {
       window.clearTimeout(timeout.current)
     }
-    timeout.current = window.setTimeout(() => {
-      const parentElement = window.document.querySelector(`#workspace-settings-accounts-setup-cloud-gcp-label-${activeStep}`)
-      if (parentElement) {
-        parentElement.scrollIntoView({ behavior: 'smooth' })
+    if (activeStep > 0 || !justMounted.current) {
+      timeout.current = window.setTimeout(() => {
+        const parentElement = window.document.querySelector(`#workspace-settings-accounts-setup-cloud-gcp-label-${activeStep}`)
+        if (parentElement) {
+          parentElement.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, panelUI.fastTooltipDelay + 50)
+      return () => {
+        window.clearTimeout(timeout.current)
       }
-    }, panelUI.fastTooltipDelay + 50)
-    return () => {
-      window.clearTimeout(timeout.current)
     }
+    justMounted.current = false
   }, [activeStep])
 
   return (
     <Stack
-      maxWidth={maxInstructionImageWidth}
-      flex={1}
-      minHeight={300}
-      overflow={isMobile ? undefined : 'auto'}
-      paddingBottom={3}
-      // TODO: fix layout in a way that the content can be easily set to maximize height
-      height={isMobile ? undefined : 'calc(100vh - 144px)'}
+      spacing={2}
+      p={{ sx: 2.5, lg: 3.75 }}
+      borderRadius="12px"
+      border={`1px solid ${panelUI.uiThemePalette.input.border}`}
+      height={isMobile ? undefined : '100%'}
+      width="100%"
+      flex={0.5}
     >
-      <Stepper activeStep={activeStep} orientation="vertical">
-        {instructions.map(({ instruction, label, divComponent, image }, index) => (
-          <Step key={index}>
-            <StepLabel id={`workspace-settings-accounts-setup-cloud-gcp-label-${index}`} onClick={() => setActiveStep(index)}>
-              {label}
-            </StepLabel>
-            <StepContent transitionDuration={panelUI.fastTooltipDelay}>
-              <Stack spacing={2}>
-                <Typography component={divComponent ? 'div' : 'p'} fontWeight={600}>
-                  {instruction}
-                </Typography>
-                {image ? (
-                  <StyledImage
-                    src={image.src}
-                    height={image.height}
-                    width={image.width}
-                    effect="opacity"
-                    placeholder={<Skeleton width={image.width} height={image.height} variant="rounded" />}
-                    wrapperProps={{
-                      nonce,
-                      style: {
-                        color: 'transparent',
-                        display: 'inline-block',
-                        height: 'auto',
-                        width: '100%',
-                        maxWidth: image.width,
-                      },
-                    }}
-                  />
-                ) : null}
-                <Stack direction="row" spacing={1}>
-                  {instructions.length - 1 > index ? (
-                    <Button onClick={() => setActiveStep(index + 1)} variant="contained">
-                      <Trans>Continue</Trans>
-                    </Button>
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        // position="sticky"
+        // top={{ xs: -20, lg: -30 }}
+        // mx={{ sx: -2.5, lg: -3.75 }}
+        // px={{ sx: 2.5, lg: 3.75 }}
+        // py={1}
+        // bgcolor="background.paper"
+        // zIndex={({ zIndex }) => zIndex.drawer + 1}
+      >
+        <Typography variant="h4">How to get the file</Typography>
+        <Stack direction="row" spacing={1.5}>
+          <IconButton
+            sx={{ border: `1px solid ${panelUI.uiThemePalette.input.border}`, borderRadius: '6px' }}
+            onClick={() => setActiveStep(activeStep - 1)}
+            disabled={activeStep < 1}
+          >
+            <ArrowBackIcon />
+          </IconButton>
+          <IconButton
+            sx={{ border: `1px solid ${panelUI.uiThemePalette.input.border}`, borderRadius: '6px' }}
+            onClick={() => setActiveStep(activeStep + 1)}
+            disabled={activeStep >= instructions.length - 1}
+          >
+            <ArrowForwardIcon />
+          </IconButton>
+        </Stack>
+      </Stack>
+      <Stack maxWidth={maxInstructionImageWidth} flex={1} minHeight={300} overflow={isMobile ? undefined : 'auto'}>
+        <Stepper activeStep={activeStep} orientation="vertical">
+          {instructions.map(({ instruction, label, divComponent, image }, index) => (
+            <Step key={index}>
+              <StepLabel id={`workspace-settings-accounts-setup-cloud-gcp-label-${index}`} onClick={() => setActiveStep(index)}>
+                {label}
+              </StepLabel>
+              <StepContent transitionDuration={panelUI.fastTooltipDelay}>
+                <Stack spacing={2}>
+                  <Typography component={divComponent ? 'div' : 'p'} fontWeight={600}>
+                    {instruction}
+                  </Typography>
+                  {image ? (
+                    <StyledImage
+                      src={image.src}
+                      height={image.height}
+                      width={image.width}
+                      effect="opacity"
+                      placeholder={<Skeleton width={image.width} height={image.height} variant="rounded" />}
+                      wrapperProps={{
+                        nonce,
+                        style: {
+                          color: 'transparent',
+                          display: 'inline-block',
+                          height: 'auto',
+                          width: '100%',
+                          maxWidth: image.width,
+                        },
+                      }}
+                    />
                   ) : null}
-                  {index ? (
-                    <Button onClick={() => setActiveStep(index - 1)}>
-                      <Trans>Back</Trans>
-                    </Button>
-                  ) : null}
+                  <Stack direction="row" spacing={1}>
+                    {instructions.length - 1 > index ? (
+                      <Button onClick={() => setActiveStep(index + 1)} variant="contained">
+                        <Trans>Continue</Trans>
+                      </Button>
+                    ) : null}
+                    {index ? (
+                      <Button onClick={() => setActiveStep(index - 1)}>
+                        <Trans>Back</Trans>
+                      </Button>
+                    ) : null}
+                  </Stack>
                 </Stack>
-              </Stack>
-            </StepContent>
-          </Step>
-        ))}
-      </Stepper>
+              </StepContent>
+            </Step>
+          ))}
+        </Stepper>
+      </Stack>
     </Stack>
   )
 }

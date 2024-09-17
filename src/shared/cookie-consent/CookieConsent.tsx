@@ -1,14 +1,16 @@
 import { Trans } from '@lingui/macro'
-import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import { Button, Drawer, Link, Stack, Typography, drawerClasses } from '@mui/material'
 import Cookies from 'js-cookie'
 import { usePostHog } from 'posthog-js/react'
 import { useEffect, useRef, useState } from 'react'
+import { OpenInNewIcon } from 'src/assets/icons'
 import { env } from 'src/shared/constants'
 import { PostHogPageView } from 'src/shared/posthog'
+import { useNonce } from 'src/shared/providers'
 
 const CookieConsentComp = () => {
   const postHog = usePostHog()
+  const nonce = useNonce()
   const containerRef = useRef<HTMLDivElement>(null)
   const [showConsent, setShowConsent] = useState(false)
 
@@ -48,7 +50,7 @@ const CookieConsentComp = () => {
         [`& .${drawerClasses.paper}`]: { p: 3, position: 'relative', borderRadius: 3 },
       }}
     >
-      <Typography paragraph textAlign="justify">
+      <Typography component="p" textAlign="justify">
         <Trans>
           We use cookies and other tracking technologies to analyze site usage and assist in marketing efforts. For details, see our{' '}
           <Link
@@ -60,7 +62,7 @@ const CookieConsentComp = () => {
             whiteSpace="nowrap"
           >
             cookie policy
-            <OpenInNewIcon fontSize="small" sx={{ ml: 0.5 }} />
+            <OpenInNewIcon fontSize="small" style={{ marginLeft: 4 }} nonce={nonce} />
           </Link>
           .
         </Trans>

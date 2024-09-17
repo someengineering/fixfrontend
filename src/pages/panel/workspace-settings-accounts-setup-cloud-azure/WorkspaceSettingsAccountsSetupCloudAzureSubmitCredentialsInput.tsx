@@ -41,7 +41,7 @@ export function WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput<N
   return (
     <TextField
       name={name}
-      label={label}
+      placeholder={label}
       defaultValue={defaultValue}
       onChange={handleChange}
       required

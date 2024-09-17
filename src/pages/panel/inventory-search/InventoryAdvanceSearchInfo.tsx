@@ -1,8 +1,9 @@
 import { Trans } from '@lingui/macro'
 import InfoRoundedIcon from '@mui/icons-material/InfoRounded'
-import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import { Button, IconButton, Link, Popover, Stack, Typography } from '@mui/material'
 import { Fragment, useId, useState } from 'react'
+import { OpenInNewIcon } from 'src/assets/icons'
+import { useNonce } from 'src/shared/providers'
 import { useCopyString } from 'src/shared/utils/useCopyString'
 
 const operators = ['<', '>', '=', '~', '!=', '~=', '<=', '>=']
@@ -16,6 +17,7 @@ const attributeOperatorValue = 'attribute operator value'
 
 export const InventoryAdvanceSearchInfo = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
+  const nonce = useNonce()
   const handleCopy = useCopyString()
   const id = useId()
   return (
@@ -131,7 +133,7 @@ export const InventoryAdvanceSearchInfo = () => {
                 whiteSpace="nowrap"
               >
                 https://docs.fix.security/search-syntax
-                <OpenInNewIcon fontSize="small" sx={{ ml: 0.5 }} />
+                <OpenInNewIcon fontSize="small" style={{ marginLeft: 4 }} nonce={nonce} />
               </Link>
             </span>
           </Trans>

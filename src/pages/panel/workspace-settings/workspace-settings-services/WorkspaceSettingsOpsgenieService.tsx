@@ -55,7 +55,7 @@ export const WorkspaceSettingsOpsgenieService = ({ isConnected, defaultName, isL
       gap={2}
     >
       <Stack width={150} justifyContent="center">
-        <OpsgenieLogo fill={theme.palette.common.black} width={120} />
+        <OpsgenieLogo color={theme.palette.common.black} width={120} />
       </Stack>
       {hasPermission ? (
         <>

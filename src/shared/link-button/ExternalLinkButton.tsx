@@ -1,6 +1,6 @@
-import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import { Button, ButtonProps, ButtonTypeMap } from '@mui/material'
 import { ElementType } from 'react'
+import { OpenInNewIcon } from 'src/assets/icons'
 
 type ExternalLinkButtonProps<RootComponent extends ElementType, AdditionalProps> = ButtonProps<RootComponent, AdditionalProps> & {
   href: string

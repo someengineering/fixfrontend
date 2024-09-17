@@ -1,11 +1,15 @@
 import AccountCircleIconComp from './account-circle-icon.svg?react'
+import ArrowBackIconComp from './arrow-back-icon.svg?react'
+import ArrowForwardIconComp from './arrow-forward-icon.svg?react'
 import AwsLogoComp from './aws-logo.svg?react'
+import AzureLogoWithTextComp from './azure-logo-with-text.svg?react'
 import AzureLogoComp from './azure-logo.svg?react'
 import BucketIconComp from './bucket-icon.svg?react'
 import CancelIconComp from './cancel-icon.svg?react'
 import CheckIconComp from './check-icon.svg?react'
 import CloudIconComp from './cloud-icon.svg?react'
 import CodeBlocksIconComp from './code-blocks-icon.svg?react'
+import CorporateFareIconComp from './corporate-fare-icon.svg?react'
 import { createIcon } from './createIcon'
 import CrownComp from './crown.svg?react'
 import DashboardIconComp from './dashboard-icon.svg?react'
@@ -17,6 +21,8 @@ import DoubleArrowIconComp from './double-arrow-icon.svg?react'
 import FixLogoNoBackgroundComp from './fix-logo-no-background.svg?react'
 import FixLogoUrl from './fix-logo.svg'
 import FixLogoComp from './fix-logo.svg?react'
+import FoundationIconComp from './foundation-icon.svg?react'
+import GCPLogoWithTextComp from './gcp-logo-with-text.svg?react'
 import GcpLogoComp from './gcp-logo.svg?react'
 import GithubSEBIconComp from './github-seb-icon.svg?react'
 import GoogleSEBIconComp from './google-seb-icon.svg?react'
@@ -28,12 +34,14 @@ import InfoIconComp from './info-icon.svg?react'
 import InstanceIconComp from './instance-icon.svg?react'
 import KeyboardArrowDownIconComp from './keyboard-arrow-down-icon.svg?react'
 import LabProfileIconComp from './lab-profile-icon.svg?react'
+import LinkIconComp from './link-icon.svg?react'
 import LocalPoliceIconComp from './local-police-icon.svg?react'
 import LogoWhiteNoBackgroundComp from './logo-white-no-background.svg?react'
 import LogoutIconComp from './logout-icon.svg?react'
 import MailIconComp from './mail-icon.svg?react'
 import MeetingRoomIconComp from './meeting-room-icon.svg?react'
 import MenuIconComp from './menu-icon.svg?react'
+import OpenInNewIconComp from './open-in-new-icon.svg?react'
 import OpsgenieLogoComp from './opsgenie-logo.svg?react'
 import PagerdutyLogoComp from './pagerduty-logo.svg?react'
 import PasswordIconComp from './password-icon.svg?react'
@@ -93,6 +101,14 @@ export const LogoutIcon = createIcon(LogoutIconComp)
 export const WorkspaceSettingsIcon = createIcon(WorkspaceSettingsIconComp)
 export const GroupIcon = createIcon(GroupIconComp)
 export const CloudIcon = createIcon(CloudIconComp)
+export const GCPLogoWithText = createIcon(GCPLogoWithTextComp)
+export const AzureLogoWithText = createIcon(AzureLogoWithTextComp)
+export const FoundationIcon = createIcon(FoundationIconComp)
+export const CorporateFareIcon = createIcon(CorporateFareIconComp)
+export const OpenInNewIcon = createIcon(OpenInNewIconComp)
+export const LinkIcon = createIcon(LinkIconComp)
+export const ArrowForwardIcon = createIcon(ArrowForwardIconComp)
+export const ArrowBackIcon = createIcon(ArrowBackIconComp)
 
 export type { SvgIconProps } from './createIcon'
 export { FixLogoUrl }

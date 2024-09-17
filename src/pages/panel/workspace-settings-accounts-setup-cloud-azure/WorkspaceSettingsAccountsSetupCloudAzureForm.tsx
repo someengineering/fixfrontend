@@ -5,6 +5,7 @@ import { AxiosError } from 'axios'
 import { Dispatch, FormEvent, PropsWithChildren, ReactNode, SetStateAction, useEffect, useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
+import { panelUI } from 'src/shared/constants'
 import { PutWorkspaceCloudAccountAzureCredentialsErrorResponse } from 'src/shared/types/server'
 import { WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput } from './WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput'
 import { getWorkspaceCloudAccountAzureCredentialsQuery } from './getWorkspaceCloudAccountAzureCredentials.query'
@@ -67,6 +68,13 @@ export const WorkspaceSettingsAccountsSetupCloudAzureForm = ({
     setIsPending(isPending)
   }, [isPending, setIsPending])
 
+  useEffect(() => {
+    if ((data.client_id, data.azure_tenant_id)) {
+      formData.current.azure_tenant_id = { value: data.azure_tenant_id, hasError: false }
+      formData.current.client_id = { value: data.client_id, hasError: false }
+    }
+  }, [data.client_id, data.azure_tenant_id])
+
   const handleSubmit = (e?: FormEvent<HTMLFormElement>) => {
     e?.preventDefault()
     if (!hasError) {
@@ -100,28 +108,42 @@ export const WorkspaceSettingsAccountsSetupCloudAzureForm = ({
   return (
     <Stack
       direction={isMobile ? 'column-reverse' : 'row'}
-      spacing={3}
       component="form"
       onSubmit={handleSubmit}
       noValidate
       autoComplete="off"
-      m={-3}
-      pt={3}
-      pl={{ xs: 1, sm: 3 }}
-      pr={{ xs: 1, lg: 0 }}
+      flex={0.5}
+      height={{ xs: undefined, lg: '100%' }}
+      width="100%"
+      gap={{ xs: 2.5, lg: 3.75 }}
     >
       {selectedWorkspace?.id && data ? (
         isSuccess ? (
-          <Stack width={isMobile ? '100%' : '50%'} justifyContent="center" alignItems="center">
+          <Stack
+            width={isMobile ? '100%' : '50%'}
+            justifyContent="center"
+            alignItems="center"
+            border={`1px dashed ${panelUI.uiThemePalette.primary.divider}`}
+            borderRadius="12px"
+          >
             <Typography maxWidth={400}>
               <Trans>Done! We will now import your Azure accounts, this usually takes a couple of minutes.</Trans>
             </Typography>
           </Stack>
         ) : (
-          <Stack width={isMobile ? '100%' : '50%'} spacing={1} justifyContent="center" alignItems="center" paddingBottom={3}>
+          <Stack
+            width={isMobile ? '100%' : '50%'}
+            spacing={1}
+            justifyContent="center"
+            alignItems="center"
+            paddingBottom={3}
+            border={`2px dashed ${panelUI.uiThemePalette.primary.divider}`}
+            borderRadius="12px"
+          >
             <WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput
               name="client_id"
               label={t`Application (client) ID`}
+              defaultValue={data.client_id}
               onChange={handleChange}
               onError={handleError}
               disabled={isPending}
@@ -130,6 +152,7 @@ export const WorkspaceSettingsAccountsSetupCloudAzureForm = ({
             <WorkspaceSettingsAccountsSetupCloudAzureSubmitCredentialsInput
               name="azure_tenant_id"
               label={t`Directory (tenant) ID`}
+              defaultValue={data.azure_tenant_id}
               onChange={handleChange}
               onError={handleError}
               disabled={isPending}

@@ -16,7 +16,7 @@ const MenuItem = ({ menuItem: { Icon, name, route } }: { menuItem: MenuListItem 
       pt={hasMatch ? '2px' : undefined}
     >
       <Button onClick={() => navigate({ pathname: route })} color="primary" sx={{ width: '100%', height: '100%', p: 1.5, borderRadius: 0 }}>
-        <Icon fill={hasMatch ? panelUI.uiThemePalette.accent.purple : panelUI.uiThemePalette.accent.darkGray} />
+        <Icon color={hasMatch ? panelUI.uiThemePalette.accent.purple : panelUI.uiThemePalette.accent.darkGray} />
         <Typography variant="button" color={hasMatch ? panelUI.uiThemePalette.accent.purple : panelUI.uiThemePalette.accent.darkGray}>
           {name}
         </Typography>

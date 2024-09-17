@@ -40,7 +40,7 @@ export default function AuthContainer() {
                   </Link>
                 </Trans>
               </Typography>
-              <IsoComp fill={panelUI.uiThemePalette.text.darkGray} />
+              <IsoComp color={panelUI.uiThemePalette.text.darkGray} />
             </Stack>
           </FooterRegion>
         </AuthLayout>

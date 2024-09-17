@@ -28,7 +28,7 @@ export const WorkspaceSettingsDiscordService = ({ isConnected, isLoading }: Work
       gap={2}
     >
       <Stack width={150} justifyContent="center">
-        <DiscordWithTextLogo fill={theme.palette.common.black} width={120} />
+        <DiscordWithTextLogo color={theme.palette.common.black} width={120} />
       </Stack>
       {hasPermission ? (
         isConnected ? (

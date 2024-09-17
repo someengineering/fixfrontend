@@ -15,10 +15,10 @@ export const PanelContent = forwardRef<HTMLDivElement | null, PanelContent>(({ c
       position="relative"
       width="100%"
       height="100%"
-      sx={{ overflowY: 'auto' }}
+      overflow="hidden"
       ref={mainRef}
     >
-      <Box component="main" p={3} flexGrow={1}>
+      <Box component="main" p={3} flexGrow={1} sx={{ overflowY: 'auto' }} height="100%">
         {children}
       </Box>
       {/* <PanelBottom>{bottom}</PanelBottom> */}

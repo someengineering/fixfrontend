@@ -12,6 +12,7 @@ import {
   createTheme,
   inputBaseClasses,
   responsiveFontSizes,
+  tabClasses,
 } from '@mui/material'
 import { PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
 import { CancelIcon, CheckIcon, InfoIcon, WarningIcon } from 'src/assets/icons'
@@ -217,10 +218,10 @@ export function Theme({ children, emotionCache }: ThemeProps) {
         MuiAlert: {
           defaultProps: {
             iconMapping: {
-              error: <CancelIcon fill={panelUI.uiThemePalette.primary.white} />,
-              success: <CheckIcon fill={panelUI.uiThemePalette.primary.white} />,
-              warning: <WarningIcon fill={panelUI.uiThemePalette.primary.white} />,
-              info: <InfoIcon fill={panelUI.uiThemePalette.primary.white} />,
+              error: <CancelIcon color={panelUI.uiThemePalette.primary.white} />,
+              success: <CheckIcon color={panelUI.uiThemePalette.primary.white} />,
+              warning: <WarningIcon color={panelUI.uiThemePalette.primary.white} />,
+              info: <InfoIcon color={panelUI.uiThemePalette.primary.white} />,
             },
           },
         },
@@ -257,6 +258,10 @@ export function Theme({ children, emotionCache }: ThemeProps) {
               textTransform: 'none',
               borderRadius: '6px',
             },
+            sizeLarge: {
+              ...typography.buttonLarge,
+              padding: '12px',
+            },
             sizeMedium: {
               ...typography.buttonLarge,
               padding: '10px 16px',
@@ -283,6 +288,14 @@ export function Theme({ children, emotionCache }: ThemeProps) {
               ':hover,:focus,:active': { backgroundColor: panelUI.uiThemePalette.primary.darkPurple },
               boxShadow: 'none !important',
             },
+            textSecondary: {
+              backgroundColor: panelUI.uiThemePalette.background.bgPurple,
+              color: panelUI.uiThemePalette.text.sub,
+              ':hover,:focus,:active': {
+                backgroundColor: panelUI.uiThemePalette.accent.purple,
+                color: panelUI.uiThemePalette.primary.white,
+              },
+            },
             textPrimary: {
               ':hover,:focus,:active': {
                 backgroundColor: panelUI.uiThemePalette.background.bgPurple,
@@ -290,10 +303,31 @@ export function Theme({ children, emotionCache }: ThemeProps) {
             },
           },
         },
+        MuiTabs: {
+          styleOverrides: {
+            root: {
+              marginBottom: '12px',
+            },
+            indicator: {
+              display: 'none',
+            },
+            flexContainer: {
+              gap: '8px',
+            },
+          },
+        },
         MuiTab: {
           styleOverrides: {
             root: {
               textTransform: 'none',
+              borderRadius: '12px',
+              padding: '10px 18px',
+              color: panelUI.uiThemePalette.text.sub,
+              transition: orgTheme.transitions.create('background-color'),
+              [`&.${tabClasses.selected}`]: {
+                backgroundColor: panelUI.uiThemePalette.background.bgPurple,
+                color: panelUI.uiThemePalette.accent.purple,
+              },
             },
           },
         },

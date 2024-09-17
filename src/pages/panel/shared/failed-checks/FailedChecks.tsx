@@ -1,6 +1,5 @@
 import { Trans } from '@lingui/macro'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import {
   Accordion,
   AccordionActions,
@@ -21,6 +20,7 @@ import {
 import { useQuery } from '@tanstack/react-query'
 import { MouseEvent, useState } from 'react'
 import { NavigateFunction } from 'react-router-dom'
+import { OpenInNewIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
 import { createInventorySearchTo, getColorBySeverity } from 'src/pages/panel/shared/utils'

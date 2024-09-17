@@ -6,15 +6,13 @@ const pathnameToTitle = (pathname: string) => {
     case '/workspace-settings':
       return t`Workspace Settings`
     case '/workspace-settings/accounts':
-      return t`Accounts`
-    case '/workspace-settings/accounts/setup-cloud':
-      return t`Cloud Setup`
+      return t`Cloud Accounts`
     case '/workspace-settings/accounts/setup-cloud/aws':
-      return t`Amazon Web Services`
+      return t`AWS Account Setup`
     case '/workspace-settings/accounts/setup-cloud/gcp':
-      return t`Google Cloud Platform`
+      return t`GCP Account Setup`
     case '/workspace-settings/accounts/setup-cloud/azure':
-      return t`Azure`
+      return t`Azure Account Setup`
     case '/workspace-settings/users':
       return t`Users`
     case '/workspace-settings/users/invitations':
@@ -35,10 +33,11 @@ export const useBreadcrumbs = () => {
       (prev, pathname) => {
         const to = `${prev.slice(-1)[0]?.to ?? ''}/${pathname}`
         const title = pathnameToTitle(to)
-        return title ? [...prev, { title, to }] : prev
+        return [...prev, { title, to }]
       },
-      [] as { title: string; to: string }[],
+      [] as { title?: string; to: string }[],
     )
+    .filter((i) => i.title)
   const lastTitle = paths.splice(-1, 1)[0]?.title
 
   return { paths, lastTitle }
