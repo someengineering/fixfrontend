@@ -97,6 +97,10 @@ msgstr "{0} Millisekunden"
 msgid "{0} per"
 msgstr ""
 
+#: src/pages/panel/dashboard/WorldMap.tsx:436
+msgid "{0} Regions"
+msgstr ""
+
 #: src/pages/panel/security/OverallScore.tsx:60
 #: src/pages/panel/shared/utils/createPieDataFromNonCompliance.ts:26
 msgid "{0}: We've identified {1} non-compliant resources out of {2}."
@@ -143,6 +147,10 @@ msgstr ""
 #: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:63
 msgid "/ month / cloud account"
 msgstr "/ Monat / Cloud-Konto"
+
+#: src/pages/panel/dashboard/WorldMap.tsx:417
+msgid "# of Resources"
+msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:65
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:86
@@ -440,6 +448,14 @@ msgstr "Sind Sie sicher, dass Sie das {name}-Konto {0} entfernen möchten?"
 msgid "Are you sure?"
 msgstr "Bist du sicher?"
 
+#: src/pages/panel/dashboard/DashboardPage.tsx:191
+msgid "Asset summary"
+msgstr ""
+
+#: src/pages/panel/dashboard/DashboardPage.tsx:222
+msgid "Assets by region"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:107
 msgid "Assign permission to the App"
 msgstr ""
@@ -712,6 +728,10 @@ msgstr "Schließen"
 msgid "Cloud"
 msgstr "Cloud"
 
+#: src/pages/panel/dashboard/DashboardCloudCards.tsx:42
+msgid "Cloud accounts"
+msgstr ""
+
 #: src/shared/layouts/panel-layout/SettingsButton.tsx:24
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:9
 msgid "Cloud Accounts"
@@ -759,8 +779,8 @@ msgstr ""
 msgid "Compute changes in the last 30 days."
 msgstr ""
 
-#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:17
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:32
+#: src/pages/panel/shared/utils/nodeChangeCell.tsx:17
 msgid "Configuration changed"
 msgstr "Konfiguration geändert"
 
@@ -844,6 +864,10 @@ msgstr ""
 
 #: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:80
 msgid "Cores"
+msgstr ""
+
+#: src/pages/panel/dashboard/WorldMap.tsx:411
+msgid "Country"
 msgstr ""
 
 #: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:97
@@ -1001,6 +1025,10 @@ msgstr ""
 msgid "Deleted in the last 7 days"
 msgstr ""
 
+#: src/pages/panel/dashboard/DashboardResourceChanges.tsx:22
+msgid "Deleted resources"
+msgstr ""
+
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:13
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:29
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:448
@@ -1021,10 +1049,6 @@ msgstr "Beschreibung"
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:346
 msgid "Details"
 msgstr "Einzelheiten"
-
-#: src/shared/layouts/panel-layout/UserButton.tsx:32
-msgid "Developer"
-msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:154
 msgid "Directory (tenant) ID"
@@ -1086,6 +1110,10 @@ msgstr "Downgrade"
 #: src/pages/panel/inventory-search/DownloadCSVButton.tsx:128
 msgid "Download CSV"
 msgstr "CSV herunterladen"
+
+#: src/pages/panel/dashboard/WorldMap.tsx:333
+msgid "Drag the map to move it. Use mouse scroll up to zoom into sections and mouse scroll down to zoom out."
+msgstr ""
 
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:219
 msgid "Drill Down"
@@ -1444,6 +1472,10 @@ msgstr "Info"
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
 msgstr ""
 
+#: src/pages/panel/dashboard/DashboardPage.tsx:180
+msgid "Infrastructure Overview"
+msgstr ""
+
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:85
 msgid "Inspect Detection Search in Inventory"
 msgstr ""
@@ -1505,6 +1537,10 @@ msgstr "Art"
 msgid "Kinds"
 msgstr "Arten"
 
+#: src/pages/panel/dashboard/DashboardResourceChanges.tsx:222
+msgid "Last {item} days"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:84
 msgid "Last login"
 msgstr "Letzte Anmeldung"
@@ -1513,9 +1549,21 @@ msgstr "Letzte Anmeldung"
 msgid "Last scan"
 msgstr ""
 
+#: src/pages/panel/dashboard/DashboardPage.tsx:186
+msgid "Last scanned on {0} @ {1} UTC"
+msgstr ""
+
 #: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:30
 #: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:98
 msgid "Last used"
+msgstr ""
+
+#: src/shared/right-slider/HelpSlider.tsx:30
+msgid "Learn more"
+msgstr ""
+
+#: src/shared/right-slider/HelpSlider.tsx:44
+msgid "Learn more about {children}"
 msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:105
@@ -1676,12 +1724,20 @@ msgstr ""
 msgid "New registration"
 msgstr ""
 
+#: src/pages/panel/dashboard/DashboardResourceChanges.tsx:20
+msgid "New resources"
+msgstr ""
+
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:45
 msgid "New security issues detected"
 msgstr "Neue Sicherheitsprobleme entdeckt"
 
 #: src/pages/auth/login/LoginPage.tsx:178
 msgid "New to Fix? <0>Create an account</0>"
+msgstr ""
+
+#: src/shared/right-slider/HelpSlider.tsx:141
+msgid "Next"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:140
@@ -1977,11 +2033,15 @@ msgstr ""
 msgid "Press: Create Service and fill out the form."
 msgstr ""
 
+#: src/shared/right-slider/HelpSlider.tsx:125
+msgid "Previous"
+msgstr ""
+
 #: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:25
 msgid "Print or copy the following recovery codes"
 msgstr "Drucken oder kopieren Sie die folgenden Wiederherstellungscodes"
 
-#: src/shared/cloud-avatar/CloudAvatar.tsx:50
+#: src/shared/cloud-avatar/CloudAvatar.tsx:49
 msgid "Privileged"
 msgstr "Privilegiert"
 
@@ -2029,6 +2089,14 @@ msgstr "Öffentliche S3-Buckets"
 msgid "Re-Authenticate"
 msgstr "Erneut authentifizieren"
 
+#: src/pages/panel/dashboard/DashboardPage.tsx:116
+msgid "Read about inventory"
+msgstr ""
+
+#: src/pages/panel/dashboard/DashboardPage.tsx:121
+msgid "Read documentation"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:41
 msgid "Receipts"
 msgstr "Quittungen"
@@ -2050,12 +2118,14 @@ msgid "Regenerate"
 msgstr "Regenerieren"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:183
+#: src/pages/panel/dashboard/WorldMap.tsx:405
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:98
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegionValues.tsx:60
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:258
 msgid "Region"
 msgstr "Region"
 
+#: src/pages/panel/dashboard/DashboardCloudCards.tsx:43
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegion.tsx:20
 #: src/pages/panel/inventory-search/inventory-form/utils/getAutoCompleteFromKey.tsx:130
 msgid "Regions"
@@ -2108,20 +2178,26 @@ msgstr ""
 msgid "Resource changes with owner tag"
 msgstr ""
 
-#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:15
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:30
+#: src/pages/panel/shared/utils/nodeChangeCell.tsx:15
 msgid "Resource created"
 msgstr "Ressource erstellt"
 
-#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:19
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:34
+#: src/pages/panel/shared/utils/nodeChangeCell.tsx:19
 msgid "Resource deleted"
 msgstr "Ressource gelöscht"
 
-#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:23
+#: src/pages/panel/shared/utils/nodeChangeCell.tsx:23
 msgid "Resource Secured"
 msgstr ""
 
+#: src/pages/panel/dashboard/DashboardCloudCards.tsx:46
+msgid "Resource types"
+msgstr ""
+
+#: src/pages/panel/dashboard/DashboardCloudCards.tsx:47
+#: src/pages/panel/dashboard/DashboardPage.tsx:217
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:68
 msgid "Resources"
 msgstr "Ressourcen"
@@ -2215,8 +2291,8 @@ msgstr ""
 msgid "Security Issues"
 msgstr "Sicherheitsprobleme"
 
-#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:21
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:41
+#: src/pages/panel/shared/utils/nodeChangeCell.tsx:21
 msgid "Security posture changed"
 msgstr ""
 
@@ -2530,6 +2606,10 @@ msgstr "Top Ressourcen mit Compliance-Verstößen"
 msgid "Top Security Enhancements"
 msgstr "Top-Sicherheitsverbesserungen"
 
+#: src/pages/panel/dashboard/DashboardResourceChanges.tsx:19
+msgid "Total resources"
+msgstr ""
+
 #: src/pages/panel/user-settings/UserSettingsTotp.tsx:24
 msgid "TOTP"
 msgstr "TOTP"
@@ -2612,6 +2692,10 @@ msgstr ""
 msgid "Updated in the last 7 days"
 msgstr ""
 
+#: src/pages/panel/dashboard/DashboardResourceChanges.tsx:21
+msgid "Updated resources"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:159
 msgid "Upgrade"
 msgstr "Aktualisierung"
@@ -2656,6 +2740,10 @@ msgstr "Wert"
 msgid "Version"
 msgstr ""
 
+#: src/pages/panel/dashboard/WorldMap.tsx:425
+msgid "View Details"
+msgstr ""
+
 #: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:73
 msgid "Virtual Machines"
 msgstr ""
@@ -2695,6 +2783,11 @@ msgstr ""
 #: src/pages/panel/inventory-search/DownloadCSVButton.tsx:90
 msgid "Warning"
 msgstr "Warnung"
+
+#: src/pages/panel/dashboard/DashboardPage.tsx:126
+#: src/pages/panel/dashboard/DashboardPage.tsx:153
+msgid "Watch Video"
+msgstr ""
 
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:311
 msgid "We are currently trying to list your projects. Please stay tuned - we will send you an Email when cloud accounts have been collected"
@@ -2827,7 +2920,7 @@ msgstr ""
 msgid "You don't have the permission to change this, contact the workspace owner for more information."
 msgstr ""
 
-#: src/shared/layouts/panel-layout/WorkspacesButton.tsx:190
+#: src/shared/layouts/panel-layout/WorkspacesButton.tsx:171
 msgid "You don't have the permission to view this workspace, contact the workspace owner for more information."
 msgstr ""
 

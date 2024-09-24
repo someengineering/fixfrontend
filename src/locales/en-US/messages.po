@@ -97,6 +97,10 @@ msgstr "{0} Milliseconds"
 msgid "{0} per"
 msgstr "{0} per"
 
+#: src/pages/panel/dashboard/WorldMap.tsx:436
+msgid "{0} Regions"
+msgstr "{0} Regions"
+
 #: src/pages/panel/security/OverallScore.tsx:60
 #: src/pages/panel/shared/utils/createPieDataFromNonCompliance.ts:26
 msgid "{0}: We've identified {1} non-compliant resources out of {2}."
@@ -143,6 +147,10 @@ msgstr "{usersLength, plural, one {# user} other {# users}}"
 #: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:63
 msgid "/ month / cloud account"
 msgstr "/ month / cloud account"
+
+#: src/pages/panel/dashboard/WorldMap.tsx:417
+msgid "# of Resources"
+msgstr "# of Resources"
 
 #: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:65
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:86
@@ -440,6 +448,14 @@ msgstr "Are you sure you want to remove the {name} account {0}?"
 msgid "Are you sure?"
 msgstr "Are you sure?"
 
+#: src/pages/panel/dashboard/DashboardPage.tsx:191
+msgid "Asset summary"
+msgstr "Asset summary"
+
+#: src/pages/panel/dashboard/DashboardPage.tsx:222
+msgid "Assets by region"
+msgstr "Assets by region"
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:107
 msgid "Assign permission to the App"
 msgstr "Assign permission to the App"
@@ -712,6 +728,10 @@ msgstr "Close"
 msgid "Cloud"
 msgstr "Cloud"
 
+#: src/pages/panel/dashboard/DashboardCloudCards.tsx:42
+msgid "Cloud accounts"
+msgstr "Cloud accounts"
+
 #: src/shared/layouts/panel-layout/SettingsButton.tsx:24
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:9
 msgid "Cloud Accounts"
@@ -759,8 +779,8 @@ msgstr "Compute Changes"
 msgid "Compute changes in the last 30 days."
 msgstr "Compute changes in the last 30 days."
 
-#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:17
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:32
+#: src/pages/panel/shared/utils/nodeChangeCell.tsx:17
 msgid "Configuration changed"
 msgstr "Configuration changed"
 
@@ -845,6 +865,10 @@ msgstr "Copy the Secret Value of the created secret and paste it in the Secret V
 #: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:80
 msgid "Cores"
 msgstr "Cores"
+
+#: src/pages/panel/dashboard/WorldMap.tsx:411
+msgid "Country"
+msgstr "Country"
 
 #: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:97
 msgid "Create"
@@ -1001,6 +1025,10 @@ msgstr "Deleted"
 msgid "Deleted in the last 7 days"
 msgstr "Deleted in the last 7 days"
 
+#: src/pages/panel/dashboard/DashboardResourceChanges.tsx:22
+msgid "Deleted resources"
+msgstr "Deleted resources"
+
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:13
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:29
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:448
@@ -1021,10 +1049,6 @@ msgstr "Description"
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:346
 msgid "Details"
 msgstr "Details"
-
-#: src/shared/layouts/panel-layout/UserButton.tsx:32
-msgid "Developer"
-msgstr "Developer"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:154
 msgid "Directory (tenant) ID"
@@ -1086,6 +1110,10 @@ msgstr "Downgrade"
 #: src/pages/panel/inventory-search/DownloadCSVButton.tsx:128
 msgid "Download CSV"
 msgstr "Download CSV"
+
+#: src/pages/panel/dashboard/WorldMap.tsx:333
+msgid "Drag the map to move it. Use mouse scroll up to zoom into sections and mouse scroll down to zoom out."
+msgstr "Drag the map to move it. Use mouse scroll up to zoom into sections and mouse scroll down to zoom out."
 
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:219
 msgid "Drill Down"
@@ -1444,6 +1472,10 @@ msgstr "Info"
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
 msgstr "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
 
+#: src/pages/panel/dashboard/DashboardPage.tsx:180
+msgid "Infrastructure Overview"
+msgstr "Infrastructure Overview"
+
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:85
 msgid "Inspect Detection Search in Inventory"
 msgstr "Inspect Detection Search in Inventory"
@@ -1505,6 +1537,10 @@ msgstr "Kind"
 msgid "Kinds"
 msgstr "Kinds"
 
+#: src/pages/panel/dashboard/DashboardResourceChanges.tsx:222
+msgid "Last {item} days"
+msgstr "Last {item} days"
+
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:84
 msgid "Last login"
 msgstr "Last login"
@@ -1513,10 +1549,22 @@ msgstr "Last login"
 msgid "Last scan"
 msgstr "Last scan"
 
+#: src/pages/panel/dashboard/DashboardPage.tsx:186
+msgid "Last scanned on {0} @ {1} UTC"
+msgstr "Last scanned on {0} @ {1} UTC"
+
 #: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:30
 #: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:98
 msgid "Last used"
 msgstr "Last used"
+
+#: src/shared/right-slider/HelpSlider.tsx:30
+msgid "Learn more"
+msgstr "Learn more"
+
+#: src/shared/right-slider/HelpSlider.tsx:44
+msgid "Learn more about {children}"
+msgstr "Learn more about {children}"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:105
 msgid "Learn more about the associated risk"
@@ -1676,6 +1724,10 @@ msgstr "New Product Tier"
 msgid "New registration"
 msgstr "New registration"
 
+#: src/pages/panel/dashboard/DashboardResourceChanges.tsx:20
+msgid "New resources"
+msgstr "New resources"
+
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:45
 msgid "New security issues detected"
 msgstr "New security issues detected"
@@ -1683,6 +1735,10 @@ msgstr "New security issues detected"
 #: src/pages/auth/login/LoginPage.tsx:178
 msgid "New to Fix? <0>Create an account</0>"
 msgstr "New to Fix? <0>Create an account</0>"
+
+#: src/shared/right-slider/HelpSlider.tsx:141
+msgid "Next"
+msgstr "Next"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:140
 msgid "Next invoice will be available"
@@ -1977,11 +2033,15 @@ msgstr "Press the submit button, and Done. 🎉🎊"
 msgid "Press: Create Service and fill out the form."
 msgstr "Press: Create Service and fill out the form."
 
+#: src/shared/right-slider/HelpSlider.tsx:125
+msgid "Previous"
+msgstr "Previous"
+
 #: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:25
 msgid "Print or copy the following recovery codes"
 msgstr "Print or copy the following recovery codes"
 
-#: src/shared/cloud-avatar/CloudAvatar.tsx:50
+#: src/shared/cloud-avatar/CloudAvatar.tsx:49
 msgid "Privileged"
 msgstr "Privileged"
 
@@ -2029,6 +2089,14 @@ msgstr "Public S3 Buckets"
 msgid "Re-Authenticate"
 msgstr "Re-Authenticate"
 
+#: src/pages/panel/dashboard/DashboardPage.tsx:116
+msgid "Read about inventory"
+msgstr "Read about inventory"
+
+#: src/pages/panel/dashboard/DashboardPage.tsx:121
+msgid "Read documentation"
+msgstr "Read documentation"
+
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:41
 msgid "Receipts"
 msgstr "Receipts"
@@ -2050,12 +2118,14 @@ msgid "Regenerate"
 msgstr "Regenerate"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:183
+#: src/pages/panel/dashboard/WorldMap.tsx:405
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:98
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegionValues.tsx:60
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:258
 msgid "Region"
 msgstr "Region"
 
+#: src/pages/panel/dashboard/DashboardCloudCards.tsx:43
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegion.tsx:20
 #: src/pages/panel/inventory-search/inventory-form/utils/getAutoCompleteFromKey.tsx:130
 msgid "Regions"
@@ -2108,20 +2178,26 @@ msgstr "Resource Changes"
 msgid "Resource changes with owner tag"
 msgstr "Resource changes with owner tag"
 
-#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:15
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:30
+#: src/pages/panel/shared/utils/nodeChangeCell.tsx:15
 msgid "Resource created"
 msgstr "Resource created"
 
-#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:19
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:34
+#: src/pages/panel/shared/utils/nodeChangeCell.tsx:19
 msgid "Resource deleted"
 msgstr "Resource deleted"
 
-#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:23
+#: src/pages/panel/shared/utils/nodeChangeCell.tsx:23
 msgid "Resource Secured"
 msgstr "Resource Secured"
 
+#: src/pages/panel/dashboard/DashboardCloudCards.tsx:46
+msgid "Resource types"
+msgstr "Resource types"
+
+#: src/pages/panel/dashboard/DashboardCloudCards.tsx:47
+#: src/pages/panel/dashboard/DashboardPage.tsx:217
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:68
 msgid "Resources"
 msgstr "Resources"
@@ -2215,8 +2291,8 @@ msgstr "Security Engineer at cloudzone"
 msgid "Security Issues"
 msgstr "Security Issues"
 
-#: src/pages/panel/inventory-search/utils/inventoryRenderNodeChangeCell.tsx:21
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:41
+#: src/pages/panel/shared/utils/nodeChangeCell.tsx:21
 msgid "Security posture changed"
 msgstr "Security posture changed"
 
@@ -2530,6 +2606,10 @@ msgstr "Top Non-Compliant Resources"
 msgid "Top Security Enhancements"
 msgstr "Top Security Enhancements"
 
+#: src/pages/panel/dashboard/DashboardResourceChanges.tsx:19
+msgid "Total resources"
+msgstr "Total resources"
+
 #: src/pages/panel/user-settings/UserSettingsTotp.tsx:24
 msgid "TOTP"
 msgstr "TOTP"
@@ -2612,6 +2692,10 @@ msgstr "Updated"
 msgid "Updated in the last 7 days"
 msgstr "Updated in the last 7 days"
 
+#: src/pages/panel/dashboard/DashboardResourceChanges.tsx:21
+msgid "Updated resources"
+msgstr "Updated resources"
+
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:159
 msgid "Upgrade"
 msgstr "Upgrade"
@@ -2656,6 +2740,10 @@ msgstr "Value"
 msgid "Version"
 msgstr "Version"
 
+#: src/pages/panel/dashboard/WorldMap.tsx:425
+msgid "View Details"
+msgstr "View Details"
+
 #: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:73
 msgid "Virtual Machines"
 msgstr "Virtual Machines"
@@ -2695,6 +2783,11 @@ msgstr "Vulnerable Resources detected in the last 7 days."
 #: src/pages/panel/inventory-search/DownloadCSVButton.tsx:90
 msgid "Warning"
 msgstr "Warning"
+
+#: src/pages/panel/dashboard/DashboardPage.tsx:126
+#: src/pages/panel/dashboard/DashboardPage.tsx:153
+msgid "Watch Video"
+msgstr "Watch Video"
 
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:311
 msgid "We are currently trying to list your projects. Please stay tuned - we will send you an Email when cloud accounts have been collected"
@@ -2827,7 +2920,7 @@ msgstr "You don't have the permission to access this, contact the workspace owne
 msgid "You don't have the permission to change this, contact the workspace owner for more information."
 msgstr "You don't have the permission to change this, contact the workspace owner for more information."
 
-#: src/shared/layouts/panel-layout/WorkspacesButton.tsx:190
+#: src/shared/layouts/panel-layout/WorkspacesButton.tsx:171
 msgid "You don't have the permission to view this workspace, contact the workspace owner for more information."
 msgstr "You don't have the permission to view this workspace, contact the workspace owner for more information."
 
