@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/macro'
 import { Avatar, Button, Divider, Stack, Typography } from '@mui/material'
-import { AccountCircleIcon, CodeBlocksIcon, LogoutIcon } from 'src/assets/icons'
+import { AccountCircleIcon, LogoutIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { stringAvatar } from 'src/shared/utils/stringAvatar'
@@ -27,11 +27,11 @@ export const UserButton = () => {
               <Trans>User Settings</Trans>
             </Typography>
           </Button>
-          <Button color="primary" startIcon={<CodeBlocksIcon />} onClick={() => navigate('/developer')}>
+          {/* <Button color="primary" startIcon={<CodeBlocksIcon />} onClick={() => navigate('/developer')}>
             <Typography pl={0.5} width="100%" textAlign="start" color="textPrimary">
               <Trans>Developer</Trans>
             </Typography>
-          </Button>
+          </Button> */}
           <Button color="primary" startIcon={<LogoutIcon />} onClick={() => logout?.(true)}>
             <Typography pl={0.5} width="100%" textAlign="start" color="textPrimary">
               <Trans>Logout</Trans>

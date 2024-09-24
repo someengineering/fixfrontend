@@ -58,7 +58,7 @@ export default function InventorySummaryPage() {
                     It's time to take action!
                   </Typography>
                   <br />
-                  For more details, see the <InternalLink to="/security">Security Dashboard</InternalLink>.
+                  For more details, see the <InternalLink to="/dashboard">Security Dashboard</InternalLink>.
                 </Trans>
               ) : isBad === false ? (
                 <Trans>
@@ -81,7 +81,7 @@ export default function InventorySummaryPage() {
           </Stack>
           <Stack spacing={1} direction={{ xs: 'column', xl: 'row' }}>
             <Stack flex={0.5} alignItems="center">
-              <InternalLinkButton to={{ pathname: '/security' }}>
+              <InternalLinkButton to={{ pathname: '/dashboard' }}>
                 <InventoryInfoOverallScore score={score_progress[0]} title={t`Security Score over all ${accountCounts} cloud accounts`} />
               </InternalLinkButton>
             </Stack>

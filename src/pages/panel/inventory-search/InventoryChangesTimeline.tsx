@@ -6,13 +6,13 @@ import dayjs from 'dayjs'
 import { useMemo } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { useThemeMode } from 'src/core/theme'
+import { postWorkspaceInventoryHistoryTimelineQuery } from 'src/pages/panel/shared/queries'
+import { nodeChangeToString } from 'src/pages/panel/shared/utils'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { WorkspaceInventoryNodeHistoryChanges } from 'src/shared/types/server'
 import { getNumberFormatter } from 'src/shared/utils/getNumberFormatter'
 import { durationToCustomDurationString } from 'src/shared/utils/parseDuration'
-import { postWorkspaceInventoryHistoryTimelineQuery } from './postWorkspaceInventoryHistoryTimeline.query'
-import { inventoryRenderNodeChangeCellToString } from './utils/inventoryRenderNodeChangeCell'
 
 interface InventoryChangesTimelineProps {
   searchCrit: string
@@ -107,7 +107,7 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
           type: 'bar',
           valueFormatter: numberFormatter,
           data: labelsDur.map(() => 0),
-          label: inventoryRenderNodeChangeCellToString(change),
+          label: nodeChangeToString(change),
           stack: 'total',
           color: getColorFromHistoryChange(change, mode === 'dark'),
           stackOffset: 'none',

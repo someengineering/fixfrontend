@@ -4,9 +4,13 @@ import ArrowForwardIconComp from './arrow-forward-icon.svg?react'
 import AwsLogoComp from './aws-logo.svg?react'
 import AzureLogoWithTextComp from './azure-logo-with-text.svg?react'
 import AzureLogoComp from './azure-logo.svg?react'
+import Book4IconComp from './book-4-icon.svg?react'
 import BucketIconComp from './bucket-icon.svg?react'
 import CancelIconComp from './cancel-icon.svg?react'
 import CheckIconComp from './check-icon.svg?react'
+import ChevronRightIconComp from './chevron-right-icon.svg?react'
+import CloseIconComp from './close-icon.svg?react'
+import CloseSmallIconComp from './close-small-icon.svg?react'
 import CloudIconComp from './cloud-icon.svg?react'
 import CodeBlocksIconComp from './code-blocks-icon.svg?react'
 import CorporateFareIconComp from './corporate-fare-icon.svg?react'
@@ -29,6 +33,7 @@ import GoogleSEBIconComp from './google-seb-icon.svg?react'
 import GroupIconComp from './group-icon.svg?react'
 import HardDriveDiskIconComp from './hard-drive-disk-icon.svg?react'
 import HelpIconComp from './help-icon.svg?react'
+import HistoryIconComp from './history-icon.svg?react'
 import HomeIconComp from './home-icon.svg?react'
 import InfoIconComp from './info-icon.svg?react'
 import InstanceIconComp from './instance-icon.svg?react'
@@ -41,10 +46,12 @@ import LogoutIconComp from './logout-icon.svg?react'
 import MailIconComp from './mail-icon.svg?react'
 import MeetingRoomIconComp from './meeting-room-icon.svg?react'
 import MenuIconComp from './menu-icon.svg?react'
+import MovieIconComp from './movie-icon.svg?react'
 import OpenInNewIconComp from './open-in-new-icon.svg?react'
 import OpsgenieLogoComp from './opsgenie-logo.svg?react'
 import PagerdutyLogoComp from './pagerduty-logo.svg?react'
 import PasswordIconComp from './password-icon.svg?react'
+import ScheduleIconComp from './schedule-icon.svg?react'
 import SearchIconComp from './search-icon.svg?react'
 import SettingsIconComp from './settings-icon.svg?react'
 import ShowIconComp from './show-icon.svg?react'
@@ -109,6 +116,13 @@ export const OpenInNewIcon = createIcon(OpenInNewIconComp)
 export const LinkIcon = createIcon(LinkIconComp)
 export const ArrowForwardIcon = createIcon(ArrowForwardIconComp)
 export const ArrowBackIcon = createIcon(ArrowBackIconComp)
+export const CloseIcon = createIcon(CloseIconComp)
+export const ChevronRightIcon = createIcon(ChevronRightIconComp)
+export const ScheduleIcon = createIcon(ScheduleIconComp)
+export const CloseSmallIcon = createIcon(CloseSmallIconComp)
+export const HistoryIcon = createIcon(HistoryIconComp)
+export const Book4Icon = createIcon(Book4IconComp)
+export const MovieIcon = createIcon(MovieIconComp)
 
 export type { SvgIconProps } from './createIcon'
 export { FixLogoUrl }

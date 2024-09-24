@@ -3,6 +3,7 @@ export type NodeReported = Record<string, string | number | boolean | Array<unkn
   node_id?: string
   cloud?: string
   ctime: string
+  mtime?: string
   name: string
   region?: string
   age: string

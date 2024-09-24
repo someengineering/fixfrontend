@@ -2,10 +2,11 @@ import { Trans } from '@lingui/macro'
 import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import { Avatar, Box, ButtonBase, Paper, Tooltip, Typography } from '@mui/material'
 import { ReactNode } from 'react'
-import { AwsLogo, AzureLogo, Crown, FixLogo, GcpLogo } from 'src/assets/icons'
+import { Crown } from 'src/assets/icons'
 import { useNonce } from 'src/shared/providers'
 import { AccountCloud } from 'src/shared/types/server-shared'
 import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
+import { CloudToIcon } from './CloudToIcon'
 
 export interface CloudAvatarProps {
   cloud: AccountCloud
@@ -19,22 +20,20 @@ export interface CloudAvatarProps {
 const CloudIcon = ({ cloud, small, withCrown }: CloudAvatarProps) => {
   const nonce = useNonce()
   const size = small ? 30 : 40
-  switch (cloud.toLowerCase()) {
-    case 'azure':
-      return <AzureLogo nonce={nonce} width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
-    case 'fix':
-      return <FixLogo color="primary.main" nonce={nonce} width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
-    case 'aws':
-      return <AwsLogo nonce={nonce} width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
-    case 'gcp':
-      return <GcpLogo nonce={nonce} width={size} height={size} style={withCrown ? { padding: 5 } : undefined} />
-    default:
-      return (
+  return (
+    <CloudToIcon
+      cloud={cloud}
+      fallback={
         <Avatar sx={{ bgcolor: 'primary.main', width: size, height: size, fontSize: size / 2 }}>
           {cloud.substring(0, 2).toUpperCase()}
         </Avatar>
-      )
-  }
+      }
+      nonce={nonce}
+      width={size}
+      height={size}
+      style={withCrown ? { padding: 5 } : undefined}
+    />
+  )
 }
 
 export const CloudAvatar = ({ cloud, small, withCrown, tooltip, error, onErrorClick }: CloudAvatarProps) => (

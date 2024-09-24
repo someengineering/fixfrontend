@@ -38,6 +38,7 @@ import UserIcon from './icon_user.svg'
 import VolumeIcon from './icon_volume.svg'
 import VolumeTypeIcon from './icon_volume_type.svg'
 import ZoneIcon from './icon_zone.svg'
+import MarkerIcon from './marker-icon.svg'
 
 export const getIconFromResource = (icon?: string) => {
   switch (icon) {
@@ -148,6 +149,7 @@ export {
   KeyIcon,
   KeyPairIcon,
   LoadBalancerIcon,
+  MarkerIcon,
   NetworkAddressIcon,
   NetworkIcon,
   NetworkInterfaceIcon,

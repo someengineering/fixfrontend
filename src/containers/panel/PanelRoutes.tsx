@@ -4,11 +4,11 @@ import { Navigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { AccountCheckGuard, BenchmarkCheckGuard, PermissionCheckGuard, PreLoadCheckGuard } from 'src/shared/layouts/panel-layout'
 
-const SecurityPage = lazy(
+const DashboardPage = lazy(
   () =>
     import(
-      /* webpackChunkName: "security" */
-      'src/pages/panel/security/SecurityPage'
+      /* webpackChunkName: "dashboard" */
+      'src/pages/panel/dashboard/DashboardPage'
     ),
 )
 
@@ -135,7 +135,7 @@ export function PanelRoutes() {
         />
         <Route element={<AccountCheckGuard />}>
           <Route element={<BenchmarkCheckGuard />}>
-            <Route path="security" element={<SecurityPage />} />
+            <Route path="dashboard" element={<DashboardPage />} />
             <Route path="inventory-summary" element={<InventoryPage key={1} />} />
             <Route path="inventory">
               <Route index element={<Navigate to={{ pathname: './search', search: window.location.search }} replace />} />

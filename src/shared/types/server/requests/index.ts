@@ -26,6 +26,7 @@ export type {
   WorkspaceInventorySearchTableHistoryChanges,
   WorkspaceInventorySearchTableSort,
 } from './PostWorkspaceInventorySearchTable'
+export type { PostWorkspaceInventoryTimeseriesRequest } from './PostWorkspaceInventoryTimeseries'
 export type { PostWorkspaceInviteRequest } from './PostWorkspaceInvite'
 export type { PutNotificationUserRequest } from './PutNotificationUser'
 export type { PutWorkspaceAlertingSettingsRequest } from './PutWorkspaceAlertingSettings'

@@ -67,6 +67,10 @@ export type { GetWorkspaceSettingsResponse } from './GetWorkspaceSettings'
 export type { GetWorkspaceUsersResponse, WorkspaceUser } from './GetWorkspaceUsers'
 export type { PostApiTokenErrorResponse, PostApiTokenResponse } from './PostApiToken'
 export type {
+  PostWorkspaceInventoryAggregateForDashboardItem,
+  PostWorkspaceInventoryAggregateForDashboardResponse,
+} from './PostWorkspaceInventoryAggregateForDashboard'
+export type {
   PostWorkspaceInventoryHistoryTimelineItem,
   PostWorkspaceInventoryHistoryTimelineResponse,
 } from './PostWorkspaceInventoryHistoryTimeline'
@@ -74,7 +78,12 @@ export type { PostWorkspaceInventoryPropertyAttributesResponse } from './PostWor
 export type { PostWorkspaceInventoryPropertyPathCompleteResponse } from './PostWorkspaceInventoryPropertyPathComplete'
 export type { PostWorkspaceInventoryPropertyValuesResponse } from './PostWorkspaceInventoryPropertyValues'
 export type {
+  PostWorkspaceInventorySearchForDashboardItem,
+  PostWorkspaceInventorySearchForDashboardResponse,
+} from './PostWorkspaceInventorySearchForDashboard'
+export type {
   PostWorkspaceInventorySearchTableResponse,
   WorkspaceInventorySearchTableColumn,
   WorkspaceInventorySearchTableRow,
 } from './PostWorkspaceInventorySearchTable'
+export type { PostWorkspaceInventoryTimeseriesItem, PostWorkspaceInventoryTimeseriesResponse } from './PostWorkspaceInventoryTimeseries'
