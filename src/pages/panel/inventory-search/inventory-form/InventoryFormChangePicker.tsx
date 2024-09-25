@@ -157,12 +157,12 @@ export const InventoryFormChangePicker = ({
         <Divider />
         <Stack direction="row" justifyContent="end" px={1} spacing={1}>
           {value.length ? (
-            <Button variant="outlined" color={'error'} size="small" onClick={() => setValue([])}>
+            <Button variant="outlined" color="error" size="small" onClick={() => setValue([])}>
               {<Trans>Clear</Trans>}
             </Button>
           ) : null}
           {!allIsSelected ? (
-            <Button variant="outlined" color={'primary'} size="small" onClick={() => setValue([...allHistoryChangesOptions])}>
+            <Button variant="outlined" color="primary" size="small" onClick={() => setValue([...allHistoryChangesOptions])}>
               {<Trans>Select All</Trans>}
             </Button>
           ) : null}

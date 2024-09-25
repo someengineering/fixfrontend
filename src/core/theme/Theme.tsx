@@ -276,9 +276,7 @@ export function Theme({ children, emotionCache }: ThemeProps) {
               padding: '8px 16px',
             },
             outlined: {
-              color: panelUI.uiThemePalette.primary.purple,
               borderColor: panelUI.uiThemePalette.primary.divider,
-              backgroundColor: panelUI.uiThemePalette.primary.white,
               ':hover,:focus,:active': {
                 backgroundColor: panelUI.uiThemePalette.background.bgPurple,
                 borderColor: panelUI.uiThemePalette.text.sub,

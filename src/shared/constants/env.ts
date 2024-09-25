@@ -20,6 +20,9 @@ const env = {
   landingPageUrl: import.meta.env.VITE_FIX_LANDING_PAGE_URL ?? defaultOrigin,
   docsUrl: import.meta.env.VITE_FIX_DOCS_URL ?? defaultOrigin,
   apiUrl: import.meta.env.VITE_USE_PROXY === 'true' && !isTest ? defaultOrigin : (import.meta.env.VITE_SERVER ?? defaultOrigin),
+  bookACallUrl: import.meta.env.VITE_BOOK_A_CALL_URL ?? '#',
+  discordUrl: import.meta.env.VITE_DISCORD_URL ?? '#',
+  githubUrl: import.meta.env.VITE_GITHUB_URL ?? '#',
   wsUrl:
     import.meta.env.VITE_USE_PROXY === 'true' && !isTest
       ? wsOrigin
@@ -28,7 +31,6 @@ const env = {
   imagesAssetsUrl: import.meta.env.VITE_IMAGES_ASSETS_URL ?? defaultOrigin,
   retryCount: envToNumber(import.meta.env.VITE_NETWORK_RETRY_COUNT) ?? 5,
   webSocketRetryTimeout: envToNumber(import.meta.env.VITE_WEBSOCKET_RETRY_TIMEOUT) ?? 5_000,
-  discordUrl: import.meta.env.VITE_DISCORD_URL ?? '#',
   muiLicenseKey: import.meta.env.VITE_MUI_LICENSE_KEY,
   loadPageTimeout: envToNumber(import.meta.env.VITE_LOAD_PAGE_TIMEOUT) ?? 30_000,
   postHogProjectApiKey: undefined as string | undefined,
