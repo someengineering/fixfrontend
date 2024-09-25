@@ -545,6 +545,10 @@ msgstr ""
 msgid "Billing history"
 msgstr ""
 
+#: src/shared/layouts/panel-layout/PanelHeader.tsx:64
+msgid "Book a call"
+msgstr ""
+
 #: src/pages/panel/inventory/InventoryInfoResourcesTable.tsx:142
 msgid "Buckets"
 msgstr ""
@@ -732,8 +736,8 @@ msgstr "Cloud"
 msgid "Cloud accounts"
 msgstr ""
 
-#: src/shared/layouts/panel-layout/SettingsButton.tsx:24
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:9
+#: src/shared/layouts/panel-layout/UserButton.tsx:43
 msgid "Cloud Accounts"
 msgstr ""
 
@@ -1582,7 +1586,7 @@ msgstr "Melden Sie sich mit {formattedName} an"
 msgid "Log Out"
 msgstr "Ausloggen"
 
-#: src/shared/layouts/panel-layout/UserButton.tsx:37
+#: src/shared/layouts/panel-layout/UserButton.tsx:56
 msgid "Logout"
 msgstr ""
 
@@ -2717,7 +2721,7 @@ msgid "User Impersonation permission"
 msgstr ""
 
 #: src/pages/panel/user-settings/UserSettingsPage.tsx:18
-#: src/shared/layouts/panel-layout/UserButton.tsx:27
+#: src/shared/layouts/panel-layout/UserButton.tsx:28
 msgid "User Settings"
 msgstr "Benutzereinstellungen"
 
@@ -2848,14 +2852,14 @@ msgid "Workspace Name"
 msgstr "Arbeitsbereichsname"
 
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:20
-#: src/shared/layouts/panel-layout/SettingsButton.tsx:14
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:7
+#: src/shared/layouts/panel-layout/UserButton.tsx:33
 msgid "Workspace Settings"
 msgstr "Arbeitsbereichseinstellungen"
 
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:44
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:66
-#: src/shared/layouts/panel-layout/SettingsButton.tsx:19
+#: src/shared/layouts/panel-layout/UserButton.tsx:38
 msgid "Workspace Users"
 msgstr "Workspace-Benutzer"
 
