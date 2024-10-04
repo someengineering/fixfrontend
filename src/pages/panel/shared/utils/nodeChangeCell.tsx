@@ -9,7 +9,7 @@ import { Stack, Tooltip } from '@mui/material'
 import { GridRenderCellParams } from '@mui/x-data-grid-premium'
 import { WorkspaceInventoryNodeHistoryChanges, WorkspaceInventorySearchTableRow } from 'src/shared/types/server'
 
-export const inventoryRenderNodeChangeCellToString = (change: WorkspaceInventoryNodeHistoryChanges) => {
+export const nodeChangeToString = (change: WorkspaceInventoryNodeHistoryChanges) => {
   switch (change) {
     case 'node_created':
       return t`Resource created`
@@ -24,13 +24,13 @@ export const inventoryRenderNodeChangeCellToString = (change: WorkspaceInventory
   }
 }
 
-export const inventoryRenderNodeChangeCell = (params: GridRenderCellParams<WorkspaceInventorySearchTableRow['row']>) => {
+export const renderNodeChangeCell = (params: GridRenderCellParams<WorkspaceInventorySearchTableRow['row']>) => {
   const change = params.row.change as WorkspaceInventoryNodeHistoryChanges
   switch (change) {
     case 'node_created':
       return (
         <Stack direction="row" spacing={1} alignItems="center">
-          <Tooltip title={inventoryRenderNodeChangeCellToString(change)} arrow>
+          <Tooltip title={nodeChangeToString(change)} arrow>
             <TimelineDot color="info" variant="outlined">
               <AddCircleIcon fontSize="small" />
             </TimelineDot>
@@ -40,7 +40,7 @@ export const inventoryRenderNodeChangeCell = (params: GridRenderCellParams<Works
     case 'node_updated':
       return (
         <Stack direction="row" spacing={1} alignItems="center">
-          <Tooltip title={inventoryRenderNodeChangeCellToString(change)} arrow>
+          <Tooltip title={nodeChangeToString(change)} arrow>
             <TimelineDot color="primary" variant="outlined">
               <UpdateIcon fontSize="small" />
             </TimelineDot>
@@ -50,7 +50,7 @@ export const inventoryRenderNodeChangeCell = (params: GridRenderCellParams<Works
     case 'node_deleted':
       return (
         <Stack direction="row" spacing={1} alignItems="center">
-          <Tooltip title={inventoryRenderNodeChangeCellToString(change)} arrow>
+          <Tooltip title={nodeChangeToString(change)} arrow>
             <TimelineDot color="error" variant="outlined">
               <RemoveCircleIcon fontSize="small" />
             </TimelineDot>
@@ -60,7 +60,7 @@ export const inventoryRenderNodeChangeCell = (params: GridRenderCellParams<Works
     case 'node_compliant':
       return (
         <Stack direction="row" spacing={1} alignItems="center">
-          <Tooltip title={inventoryRenderNodeChangeCellToString(change)} arrow>
+          <Tooltip title={nodeChangeToString(change)} arrow>
             <TimelineDot color="success" variant="outlined">
               <GppGoodIcon fontSize="small" />
             </TimelineDot>
@@ -70,7 +70,7 @@ export const inventoryRenderNodeChangeCell = (params: GridRenderCellParams<Works
     case 'node_vulnerable':
       return (
         <Stack direction="row" spacing={1} alignItems="center">
-          <Tooltip title={inventoryRenderNodeChangeCellToString(change)} arrow>
+          <Tooltip title={nodeChangeToString(change)} arrow>
             <TimelineDot color="warning" variant="outlined">
               <GppMaybeIcon fontSize="small" />
             </TimelineDot>

@@ -5,13 +5,13 @@ import QuestionMarkIcon from '@mui/icons-material/QuestionMark'
 import { Tooltip } from '@mui/material'
 import { GridRenderCellParams } from '@mui/x-data-grid-premium'
 import { getIconFromResource } from 'src/assets/raw-icons'
+import { renderNodeChangeCell } from 'src/pages/panel/shared/utils'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { WorkspaceInventorySearchTableColumn, WorkspaceInventorySearchTableRow } from 'src/shared/types/server'
 import { AccountCloud, ResourceKind } from 'src/shared/types/server-shared'
 import { ColType } from './ColType'
 import { InventoryTableDateRenderCell } from './InventoryTableDateRenderCell'
 import { InventoryTableKindRenderCell } from './InventoryTableKindRenderCell'
-import { inventoryRenderNodeChangeCell } from './inventoryRenderNodeChangeCell'
 
 export const inventoryTableRenderCell = (
   col: WorkspaceInventorySearchTableColumn,
@@ -39,7 +39,7 @@ export const inventoryTableRenderCell = (
   }
   switch (col.path) {
     case '/change':
-      return inventoryRenderNodeChangeCell
+      return renderNodeChangeCell
     case '/ancestors.cloud.reported.name':
     case '/ancestors.cloud.reported.id':
       return (params: GridRenderCellParams<WorkspaceInventorySearchTableRow['row']>) =>

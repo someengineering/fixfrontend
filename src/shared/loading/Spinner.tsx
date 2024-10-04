@@ -14,7 +14,7 @@ const rotateAnimation = keyframes`
 
 const Container = styled('div')({
   display: 'flex',
-  position: 'absolute',
+  position: 'relative',
 })
 
 const SpinnerCircle = styled('div', { shouldForwardProp })<{ width: number; isLoading?: boolean; withBackground?: boolean }>(

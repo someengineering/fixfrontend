@@ -26,7 +26,7 @@ export interface MenuModalListItem<T extends DefaultMenuModalListItemProps = Def
 export const mainMenuList: MenuListItem[] = [
   {
     name: <Trans>Dashboard</Trans>,
-    route: '/inventory-summary',
+    route: '/dashboard',
     Icon: DashboardIcon,
   },
   {
@@ -41,7 +41,7 @@ export const mainMenuList: MenuListItem[] = [
   },
   {
     name: <Trans>Compliance</Trans>,
-    route: '/security',
+    route: '/inventory-summary',
     Icon: LocalPoliceIcon,
   },
 ]

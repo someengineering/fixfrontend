@@ -1,4 +1,4 @@
-import { ButtonProps, Menu } from '@mui/material'
+import { ButtonProps, listClasses, Menu } from '@mui/material'
 import { FC, useId, useState } from 'react'
 import { panelUI } from 'src/shared/constants'
 import { PanelHeaderButton } from './PanelHeaderButton'
@@ -50,14 +50,15 @@ export function PanelHeaderMenu<IconProps extends object>({
                 : undefined,
             sx: {
               borderRadius: '12px',
-              p: 1.5,
               border: `1px solid ${panelUI.uiThemePalette.primary.divider}`,
               overflow: 'visible',
               filter: 'drop-shadow(0px 6px 8px rgba(0,0,0,0.08))',
               boxShadow: 'none',
               minWidth: 50,
               bgcolor: panelUI.uiThemePalette.primary.white,
-              mt: 1.5,
+              [`.${listClasses.root}`]: {
+                p: 0,
+              },
               '&::before':
                 arrowLeft !== null
                   ? {

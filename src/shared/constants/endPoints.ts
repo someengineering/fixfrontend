@@ -65,9 +65,11 @@ export const endPoints = {
         },
       },
       inventory: {
+        aggregate: `api/workspaces/${workspaceId}/inventory/aggregate`,
         history: {
           timeline: `api/workspaces/${workspaceId}/inventory/history/timeline`,
         },
+        timeseries: `api/workspaces/${workspaceId}/inventory/timeseries`,
         reportSummary: `api/workspaces/${workspaceId}/inventory/report-summary`,
         report: {
           benchmark: (benchmarkName: string) => ({
@@ -81,6 +83,7 @@ export const endPoints = {
           info: `api/workspaces/${workspaceId}/inventory/report/info`,
         },
         search: {
+          self: `api/workspaces/${workspaceId}/inventory/search`,
           start: `api/workspaces/${workspaceId}/inventory/search/start`,
           table: `api/workspaces/${workspaceId}/inventory/search/table`,
         },

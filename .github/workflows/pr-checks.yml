@@ -20,14 +20,16 @@ jobs:
       - name: Create env file
         run: |
           echo "VITE_FIX_LANDING_PAGE_URL=${{ vars.FIX_LANDING_PAGE_URL }}" > .env.production
-          echo "VITE_FIX_DOCS_URL=${{ vars.VITE_FIX_DOCS_URL }}" > .env.production
+          echo "VITE_FIX_DOCS_URL=${{ vars.FIX_DOCS_URL }}" > .env.production
+          echo "VITE_BOOK_A_CALL_URL=${{ vars.BOOK_A_CALL_URL }}" >> .env.production
+          echo "VITE_DISCORD_URL=${{ vars.DISCORD_URL }}" >> .env.production
+          echo "VITE_GITHUB_URL=${{ vars.NGITHUB_URL }}" >> .env.production
           echo "VITE_VIDEOS_ASSETS_URL=${{ vars.VIDEOS_ASSETS_URL }}" >> .env.production
           echo "VITE_IMAGES_ASSETS_URL=${{ vars.IMAGES_ASSETS_URL }}" >> .env.production
           echo "VITE_USE_PROXY=false" >> .env.production
           echo "VITE_NETWORK_RETRY_COUNT=${{ vars.NETWORK_RETRY_COUNT }}" >> .env.production
           echo "VITE_WEBSOCKET_RETRY_TIMEOUT=${{ vars.WEBSOCKET_RETRY_TIMEOUT }}" >> .env.production
           echo "VITE_USE_MOCK=false" >> .env.production
-          echo "VITE_DISCORD_URL=${{ vars.DISCORD_URL }}" >> .env.production
           echo "VITE_TRACKJS_TOKEN=${{ secrets.TRACKJS_TOKEN }}" >> .env.production
           echo "VITE_MUI_LICENSE_KEY=${{ secrets.MUI_LICENSE_KEY }}" >> .env.production
           echo "VITE_VERSION=${{ github.sha }}" >> .env.production

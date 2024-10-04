@@ -8,14 +8,14 @@ import {
   ThemeOptions,
   ThemeProvider,
   alpha,
-  buttonClasses,
   createTheme,
   inputBaseClasses,
+  menuItemClasses,
   responsiveFontSizes,
   tabClasses,
 } from '@mui/material'
 import { PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
-import { CancelIcon, CheckIcon, InfoIcon, WarningIcon } from 'src/assets/icons'
+import { CancelIcon, CheckIcon, InfoIcon, KeyboardArrowDownIcon, WarningIcon } from 'src/assets/icons'
 import { langs, panelUI } from 'src/shared/constants'
 import { getThemeMode, setThemeMode } from 'src/shared/utils/localstorage'
 import { ThemeContext } from './ThemeContext'
@@ -42,6 +42,9 @@ export function Theme({ children, emotionCache }: ThemeProps) {
   }, [mode])
   const palette: PaletteOptions = useMemo(
     () => ({
+      text: {
+        primary: panelUI.uiThemePalette.text.darkGray,
+      },
       primary: {
         main: panelUI.uiThemePalette.primary.purple,
         dark: panelUI.uiThemePalette.primary.darkPurple,
@@ -134,6 +137,11 @@ export function Theme({ children, emotionCache }: ThemeProps) {
       },
       components: {
         MuiInputBase: {
+          defaultProps: {
+            slotProps: {
+              input: { sx: { p: 1 } },
+            },
+          },
           styleOverrides: {
             root: {
               ...typography.subtitle1,
@@ -164,9 +172,6 @@ export function Theme({ children, emotionCache }: ThemeProps) {
               [`&.${inputBaseClasses.error}`]: {
                 backgroundColor: alpha(panelUI.uiThemePalette.severity.error, 0.1),
               },
-            },
-            input: {
-              padding: '8px !important',
             },
             adornedStart: {
               input: {
@@ -208,8 +213,8 @@ export function Theme({ children, emotionCache }: ThemeProps) {
               bodyBiggest: 'p',
               bodyBigger: 'p',
               bodyBig: 'p',
-              buttonSmall: 'button',
-              buttonLarge: 'button',
+              buttonSmall: 'p',
+              buttonLarge: 'p',
               subMenu: 'li',
               linkBold: 'a',
             },
@@ -271,12 +276,7 @@ export function Theme({ children, emotionCache }: ThemeProps) {
               padding: '8px 16px',
             },
             outlined: {
-              color: panelUI.uiThemePalette.primary.purple,
               borderColor: panelUI.uiThemePalette.primary.divider,
-              backgroundColor: panelUI.uiThemePalette.primary.white,
-              [`.${buttonClasses.icon} svg`]: {
-                fill: panelUI.uiThemePalette.primary.purple,
-              },
               ':hover,:focus,:active': {
                 backgroundColor: panelUI.uiThemePalette.background.bgPurple,
                 borderColor: panelUI.uiThemePalette.text.sub,
@@ -331,10 +331,68 @@ export function Theme({ children, emotionCache }: ThemeProps) {
             },
           },
         },
+        MuiSelect: {
+          defaultProps: {
+            IconComponent: KeyboardArrowDownIcon,
+          },
+          styleOverrides: {
+            root: {
+              fieldset: {
+                borderRadius: '6px',
+                border: `1px solid ${panelUI.uiThemePalette.input.border}`,
+                ':hover': {
+                  border: `1px solid ${panelUI.uiThemePalette.text.sub}`,
+                },
+              },
+            },
+            select: {
+              padding: '11px 55px 11px 12px',
+            },
+            icon: {
+              top: 'initial',
+              right: '6px',
+            },
+          },
+        },
+        MuiMenu: {
+          defaultProps: {
+            slotProps: {
+              paper: {
+                sx: {
+                  borderRadius: '12px',
+                },
+              },
+            },
+          },
+        },
+        MuiList: {
+          styleOverrides: {
+            root: {
+              borderRadius: '12px',
+              padding: '16px',
+            },
+          },
+        },
+        MuiMenuItem: {
+          defaultProps: {
+            sx: {
+              [`.${menuItemClasses.selected}`]: {
+                backgroundColor: panelUI.uiThemePalette.background.bgPurple,
+                color: panelUI.uiThemePalette.primary.purple,
+              },
+            },
+          },
+          styleOverrides: {
+            root: {
+              padding: '8px 12px',
+              borderRadius: '6px',
+            },
+          },
+        },
         MuiBackdrop: {
           styleOverrides: {
             root: {
-              backgroundColor: alpha('#000', 0.7),
+              backgroundColor: 'transparent',
             },
           },
         },

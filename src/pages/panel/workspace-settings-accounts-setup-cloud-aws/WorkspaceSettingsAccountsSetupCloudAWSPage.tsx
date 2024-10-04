@@ -42,7 +42,7 @@ export default function WorkspaceSettingsAccountsSetupCloudAWSPage() {
   useEffect(() => {
     return addListener('event-button', (ev) => {
       if (ev.kind === 'aws_account_discovered' || ev.kind === 'cloud_account_discovered') {
-        navigate(hasBenchmark ? '/accounts' : '/security')
+        navigate(hasBenchmark ? '/accounts' : '/dashboard')
       }
     })
   }, [addListener, navigate, hasBenchmark])

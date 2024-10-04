@@ -1,13 +1,13 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useUserProfile } from 'src/core/auth'
-import { getWorkspaceInventoryReportSummaryQuery } from 'src/pages/panel/shared/queries'
+import { getWorkspaceCloudAccountsQuery } from 'src/pages/panel/shared/queries'
 
 export const useHasBenchmarkCheck = () => {
   const { selectedWorkspace } = useUserProfile()
   const { data } = useSuspenseQuery({
-    queryKey: ['workspace-inventory-report-summary', selectedWorkspace?.id],
-    queryFn: getWorkspaceInventoryReportSummaryQuery,
+    queryKey: ['workspace-cloud-accounts', selectedWorkspace?.id, true],
+    queryFn: getWorkspaceCloudAccountsQuery,
   })
 
-  return !!data.accounts.length
+  return typeof data === 'object' && !![...data.added, ...data.discovered, ...data.recent].find((i) => i.last_scan_finished_at)
 }

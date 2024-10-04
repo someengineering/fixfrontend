@@ -12,7 +12,7 @@ import {
   Typography,
 } from '@mui/material'
 import { useState, useTransition } from 'react'
-import { KeyboardArrowDownIcon, MeetingRoomIcon, TickSmallIcon } from 'src/assets/icons'
+import { MeetingRoomIcon, TickSmallIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
@@ -135,24 +135,6 @@ export const WorkspacesButton = () => {
               : undefined,
           },
         }}
-        MenuProps={{
-          slotProps: {
-            paper: {
-              sx: {
-                borderRadius: '12px',
-              },
-            },
-            root: {
-              slotProps: {
-                backdrop: {
-                  sx: {
-                    bgcolor: 'transparent',
-                  },
-                },
-              },
-            },
-          },
-        }}
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
@@ -172,7 +154,6 @@ export const WorkspacesButton = () => {
             fill: open ? ({ palette }) => palette.primary.main : undefined,
           },
         }}
-        IconComponent={KeyboardArrowDownIcon}
       >
         <MenuItem value={selectedWorkspace?.id} sx={{ display: 'none' }}>
           <em>None</em>

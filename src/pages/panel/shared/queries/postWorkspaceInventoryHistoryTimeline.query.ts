@@ -3,7 +3,7 @@ import { endPoints } from 'src/shared/constants'
 import { PostWorkspaceInventoryHistoryTimelineRequest, PostWorkspaceInventoryHistoryTimelineResponse } from 'src/shared/types/server'
 import { axiosWithAuth } from 'src/shared/utils/axios'
 
-export const postWorkspaceInventoryHistoryTimelineQuery = ({
+export const postWorkspaceInventoryHistoryTimelineQuery = async ({
   signal,
   queryKey: [
     ,

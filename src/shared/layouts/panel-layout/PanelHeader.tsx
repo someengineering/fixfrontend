@@ -1,14 +1,15 @@
 // import { AppBar, Theme, Toolbar, useMediaQuery } from '@mui/material'
+import { Trans } from '@lingui/macro'
 import { AppBar, ButtonBase, Divider, IconButton, Slide, Stack, Theme, useMediaQuery, useScrollTrigger } from '@mui/material'
 import { cloneElement, PropsWithChildren, ReactElement, RefObject } from 'react'
-import { HelpIcon, MenuIcon } from 'src/assets/icons'
+import { CalendarMonthIcon, DiscordIcon, GithubSEBIcon } from 'src/assets/icons'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { env, panelUI } from 'src/shared/constants'
+import { ExternalLinkButton } from 'src/shared/link-button'
 import { MainMenu } from './MainMenu'
 import { PanelBreadcrumbs } from './PanelBreadcrumbs'
-import { PanelHeaderButton, PanelHeaderLinkButton } from './PanelHeaderButton'
+import { PanelHeaderLinkButton } from './PanelHeaderButton'
 import { PanelToolbar } from './PanelToolbar'
-import { SettingsButton } from './SettingsButton'
 import { UserButton } from './UserButton'
 import { WorkspacesButton } from './WorkspacesButton'
 // import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
@@ -56,33 +57,24 @@ export const PanelHeader = ({ children, scrollRef }: PanelHeaderProps) => {
             <WorkspacesButton />
           </Stack>
           {isDesktop ? (
-            <Stack direction="row" spacing={1} height="100%" alignItems="center">
+            <>
               <MainMenu />
-              <Divider orientation="vertical" sx={{ m: 1, height: 24 }} />
-              <Stack direction="row" spacing={1} height="100%" alignItems="center">
+              <Stack direction="row" spacing={1.5} height="100%" alignItems="center">
+                <ExternalLinkButton href={env.bookACallUrl} variant="outlined" startIcon={<CalendarMonthIcon />} color="info" noEndIcon>
+                  <Trans>Book a call</Trans>
+                </ExternalLinkButton>
                 <Stack direction="row" height="100%" alignItems="center">
-                  <PanelHeaderLinkButton component={IconButton} href={env.docsUrl} color="primary" noEndIcon>
-                    <HelpIcon />
+                  <PanelHeaderLinkButton size="small" component={IconButton} href={env.discordUrl} color="info" noEndIcon>
+                    <DiscordIcon width={24} height={20} />
                   </PanelHeaderLinkButton>
-                  <SettingsButton />
+                  <PanelHeaderLinkButton size="small" component={IconButton} href={env.githubUrl} color="info" noEndIcon>
+                    <GithubSEBIcon width={18} height={18} />
+                  </PanelHeaderLinkButton>
                 </Stack>
                 <UserButton />
               </Stack>
-            </Stack>
-          ) : (
-            <Stack direction="row" spacing={0.5} height="100%" alignItems="center">
-              <PanelHeaderButton color="primary">
-                <Stack width={40} height={40} alignItems="center" justifyContent="center">
-                  <HelpIcon />
-                </Stack>
-              </PanelHeaderButton>
-              <PanelHeaderButton color="primary">
-                <Stack width={40} height={40} alignItems="center" justifyContent="center">
-                  <MenuIcon />
-                </Stack>
-              </PanelHeaderButton>
-            </Stack>
-          )}
+            </>
+          ) : null}
         </PanelToolbar>
         {isDesktop ? <PanelBreadcrumbs /> : null}
       </AppBar>
