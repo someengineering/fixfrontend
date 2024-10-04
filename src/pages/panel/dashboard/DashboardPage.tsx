@@ -204,8 +204,7 @@ export default function DashboardPage() {
             <Tooltip title={`Last scanned on ${splittedLastScan[0].substring(2)} @ ${splittedLastScan[1].split('.')[0]} UTC`}>
               <span>
                 <Trans>
-                  Last scanned:{' '}
-                  <Trans>{iso8601DurationToString(diffDateTimeToDuration(new Date(), new Date(lastScan)), 1).toLowerCase()} ago</Trans>
+                  Last scanned: {iso8601DurationToString(diffDateTimeToDuration(new Date(), new Date(lastScan)), 1).toLowerCase()} ago
                 </Trans>
               </span>
             </Tooltip>
