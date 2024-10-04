@@ -97,9 +97,13 @@ msgstr "{0} Milliseconds"
 msgid "{0} per"
 msgstr "{0} per"
 
-#: src/pages/panel/dashboard/WorldMap.tsx:436
+#: src/pages/panel/dashboard/WorldMap.tsx:347
 msgid "{0} Regions"
 msgstr "{0} Regions"
+
+#: src/pages/panel/dashboard/DashboardPage.tsx:247
+msgid "{0} resources in {1} regions in {2} countries"
+msgstr "{0} resources in {1} regions in {2} countries"
 
 #: src/pages/panel/security/OverallScore.tsx:60
 #: src/pages/panel/shared/utils/createPieDataFromNonCompliance.ts:26
@@ -148,7 +152,7 @@ msgstr "{usersLength, plural, one {# user} other {# users}}"
 msgid "/ month / cloud account"
 msgstr "/ month / cloud account"
 
-#: src/pages/panel/dashboard/WorldMap.tsx:417
+#: src/pages/panel/dashboard/WorldMap.tsx:328
 msgid "# of Resources"
 msgstr "# of Resources"
 
@@ -448,11 +452,11 @@ msgstr "Are you sure you want to remove the {name} account {0}?"
 msgid "Are you sure?"
 msgstr "Are you sure?"
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:191
+#: src/pages/panel/dashboard/DashboardPage.tsx:213
 msgid "Asset summary"
 msgstr "Asset summary"
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:222
+#: src/pages/panel/dashboard/DashboardPage.tsx:245
 msgid "Assets by region"
 msgstr "Assets by region"
 
@@ -870,7 +874,7 @@ msgstr "Copy the Secret Value of the created secret and paste it in the Secret V
 msgid "Cores"
 msgstr "Cores"
 
-#: src/pages/panel/dashboard/WorldMap.tsx:411
+#: src/pages/panel/dashboard/WorldMap.tsx:322
 msgid "Country"
 msgstr "Country"
 
@@ -1115,7 +1119,7 @@ msgstr "Downgrade"
 msgid "Download CSV"
 msgstr "Download CSV"
 
-#: src/pages/panel/dashboard/WorldMap.tsx:333
+#: src/pages/panel/dashboard/WorldMap.tsx:244
 msgid "Drag the map to move it. Use mouse scroll up to zoom into sections and mouse scroll down to zoom out."
 msgstr "Drag the map to move it. Use mouse scroll up to zoom into sections and mouse scroll down to zoom out."
 
@@ -1476,7 +1480,7 @@ msgstr "Info"
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
 msgstr "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:180
+#: src/pages/panel/dashboard/DashboardPage.tsx:198
 msgid "Infrastructure Overview"
 msgstr "Infrastructure Overview"
 
@@ -1541,7 +1545,7 @@ msgstr "Kind"
 msgid "Kinds"
 msgstr "Kinds"
 
-#: src/pages/panel/dashboard/DashboardResourceChanges.tsx:222
+#: src/pages/panel/dashboard/DashboardResourceChanges.tsx:216
 msgid "Last {item} days"
 msgstr "Last {item} days"
 
@@ -1553,9 +1557,9 @@ msgstr "Last login"
 msgid "Last scan"
 msgstr "Last scan"
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:186
-msgid "Last scanned on {0} @ {1} UTC"
-msgstr "Last scanned on {0} @ {1} UTC"
+#: src/pages/panel/dashboard/DashboardPage.tsx:206
+msgid "Last scanned: {0} ago"
+msgstr "Last scanned: {0} ago"
 
 #: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:30
 #: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:98
@@ -2093,11 +2097,11 @@ msgstr "Public S3 Buckets"
 msgid "Re-Authenticate"
 msgstr "Re-Authenticate"
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:116
+#: src/pages/panel/dashboard/DashboardPage.tsx:134
 msgid "Read about inventory"
 msgstr "Read about inventory"
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:121
+#: src/pages/panel/dashboard/DashboardPage.tsx:139
 msgid "Read documentation"
 msgstr "Read documentation"
 
@@ -2122,7 +2126,7 @@ msgid "Regenerate"
 msgstr "Regenerate"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:183
-#: src/pages/panel/dashboard/WorldMap.tsx:405
+#: src/pages/panel/dashboard/WorldMap.tsx:316
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:98
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegionValues.tsx:60
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:258
@@ -2201,7 +2205,7 @@ msgid "Resource types"
 msgstr "Resource types"
 
 #: src/pages/panel/dashboard/DashboardCloudCards.tsx:47
-#: src/pages/panel/dashboard/DashboardPage.tsx:217
+#: src/pages/panel/dashboard/DashboardPage.tsx:239
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:68
 msgid "Resources"
 msgstr "Resources"
@@ -2744,7 +2748,7 @@ msgstr "Value"
 msgid "Version"
 msgstr "Version"
 
-#: src/pages/panel/dashboard/WorldMap.tsx:425
+#: src/pages/panel/dashboard/WorldMap.tsx:336
 msgid "View Details"
 msgstr "View Details"
 
@@ -2788,8 +2792,8 @@ msgstr "Vulnerable Resources detected in the last 7 days."
 msgid "Warning"
 msgstr "Warning"
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:126
-#: src/pages/panel/dashboard/DashboardPage.tsx:153
+#: src/pages/panel/dashboard/DashboardPage.tsx:144
+#: src/pages/panel/dashboard/DashboardPage.tsx:171
 msgid "Watch Video"
 msgstr "Watch Video"
 

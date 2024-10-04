@@ -97,8 +97,12 @@ msgstr "{0} Millisekunden"
 msgid "{0} per"
 msgstr ""
 
-#: src/pages/panel/dashboard/WorldMap.tsx:436
+#: src/pages/panel/dashboard/WorldMap.tsx:347
 msgid "{0} Regions"
+msgstr ""
+
+#: src/pages/panel/dashboard/DashboardPage.tsx:247
+msgid "{0} resources in {1} regions in {2} countries"
 msgstr ""
 
 #: src/pages/panel/security/OverallScore.tsx:60
@@ -148,7 +152,7 @@ msgstr ""
 msgid "/ month / cloud account"
 msgstr "/ Monat / Cloud-Konto"
 
-#: src/pages/panel/dashboard/WorldMap.tsx:417
+#: src/pages/panel/dashboard/WorldMap.tsx:328
 msgid "# of Resources"
 msgstr ""
 
@@ -448,11 +452,11 @@ msgstr "Sind Sie sicher, dass Sie das {name}-Konto {0} entfernen möchten?"
 msgid "Are you sure?"
 msgstr "Bist du sicher?"
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:191
+#: src/pages/panel/dashboard/DashboardPage.tsx:213
 msgid "Asset summary"
 msgstr ""
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:222
+#: src/pages/panel/dashboard/DashboardPage.tsx:245
 msgid "Assets by region"
 msgstr ""
 
@@ -870,7 +874,7 @@ msgstr ""
 msgid "Cores"
 msgstr ""
 
-#: src/pages/panel/dashboard/WorldMap.tsx:411
+#: src/pages/panel/dashboard/WorldMap.tsx:322
 msgid "Country"
 msgstr ""
 
@@ -1115,7 +1119,7 @@ msgstr "Downgrade"
 msgid "Download CSV"
 msgstr "CSV herunterladen"
 
-#: src/pages/panel/dashboard/WorldMap.tsx:333
+#: src/pages/panel/dashboard/WorldMap.tsx:244
 msgid "Drag the map to move it. Use mouse scroll up to zoom into sections and mouse scroll down to zoom out."
 msgstr ""
 
@@ -1476,7 +1480,7 @@ msgstr "Info"
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
 msgstr ""
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:180
+#: src/pages/panel/dashboard/DashboardPage.tsx:198
 msgid "Infrastructure Overview"
 msgstr ""
 
@@ -1541,7 +1545,7 @@ msgstr "Art"
 msgid "Kinds"
 msgstr "Arten"
 
-#: src/pages/panel/dashboard/DashboardResourceChanges.tsx:222
+#: src/pages/panel/dashboard/DashboardResourceChanges.tsx:216
 msgid "Last {item} days"
 msgstr ""
 
@@ -1553,8 +1557,8 @@ msgstr "Letzte Anmeldung"
 msgid "Last scan"
 msgstr ""
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:186
-msgid "Last scanned on {0} @ {1} UTC"
+#: src/pages/panel/dashboard/DashboardPage.tsx:206
+msgid "Last scanned: {0} ago"
 msgstr ""
 
 #: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:30
@@ -2093,11 +2097,11 @@ msgstr "Öffentliche S3-Buckets"
 msgid "Re-Authenticate"
 msgstr "Erneut authentifizieren"
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:116
+#: src/pages/panel/dashboard/DashboardPage.tsx:134
 msgid "Read about inventory"
 msgstr ""
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:121
+#: src/pages/panel/dashboard/DashboardPage.tsx:139
 msgid "Read documentation"
 msgstr ""
 
@@ -2122,7 +2126,7 @@ msgid "Regenerate"
 msgstr "Regenerieren"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:183
-#: src/pages/panel/dashboard/WorldMap.tsx:405
+#: src/pages/panel/dashboard/WorldMap.tsx:316
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:98
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegionValues.tsx:60
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:258
@@ -2201,7 +2205,7 @@ msgid "Resource types"
 msgstr ""
 
 #: src/pages/panel/dashboard/DashboardCloudCards.tsx:47
-#: src/pages/panel/dashboard/DashboardPage.tsx:217
+#: src/pages/panel/dashboard/DashboardPage.tsx:239
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:68
 msgid "Resources"
 msgstr "Ressourcen"
@@ -2744,7 +2748,7 @@ msgstr "Wert"
 msgid "Version"
 msgstr ""
 
-#: src/pages/panel/dashboard/WorldMap.tsx:425
+#: src/pages/panel/dashboard/WorldMap.tsx:336
 msgid "View Details"
 msgstr ""
 
@@ -2788,8 +2792,8 @@ msgstr ""
 msgid "Warning"
 msgstr "Warnung"
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:126
-#: src/pages/panel/dashboard/DashboardPage.tsx:153
+#: src/pages/panel/dashboard/DashboardPage.tsx:144
+#: src/pages/panel/dashboard/DashboardPage.tsx:171
 msgid "Watch Video"
 msgstr ""
 
