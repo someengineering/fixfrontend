@@ -30,6 +30,7 @@ import FoundationIconComp from './foundation-icon.svg?react'
 import GCPLogoWithTextComp from './gcp-logo-with-text.svg?react'
 import GcpLogoComp from './gcp-logo.svg?react'
 import GithubSEBIconComp from './github-seb-icon.svg?react'
+import GlobeIconComp from './globe-icon.svg?react'
 import GoogleSEBIconComp from './google-seb-icon.svg?react'
 import GroupIconComp from './group-icon.svg?react'
 import HardDriveDiskIconComp from './hard-drive-disk-icon.svg?react'
@@ -125,6 +126,8 @@ export const TickSmallIcon = createIcon(TickSmallIconComp)
 export const VisibilityOffIcon = createIcon(VisibilityOffIconComp)
 export const WarningIcon = createIcon(WarningIconComp)
 export const WorkspaceSettingsIcon = createIcon(WorkspaceSettingsIconComp)
+export const GlobeIcon = createIcon(GlobeIconComp)
 
+export { createIcon } from './createIcon'
 export type { SvgIconProps } from './createIcon'
 export { FixLogoUrl }

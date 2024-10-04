@@ -1,112 +1,30 @@
 import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { alpha, Box, Button, Divider, IconButton, Stack, Typography } from '@mui/material'
-import { BaseType, svg as d3Svg, geoMercator, geoPath, polygonContains, select, Selection, zoom, zoomTransform } from 'd3'
+import { BaseType, svg as d3Svg, geoMercator, geoPath, select, Selection, zoom, zoomTransform } from 'd3'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { ChevronRightIcon, CloseIcon } from 'src/assets/icons'
 import { MarkerIcon } from 'src/assets/raw-icons'
+import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { useNonce } from 'src/shared/providers'
 import { ToggleButton } from 'src/shared/toggle-button'
-import {
-  PostWorkspaceInventoryAggregateForDashboardItem,
-  PostWorkspaceInventoryAggregateForDashboardResponse,
-} from 'src/shared/types/server'
+import { PostWorkspaceInventoryAggregateForDashboardItem } from 'src/shared/types/server'
 import { AccountCloud } from 'src/shared/types/server-shared'
 import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
 import { stringToColor } from 'src/shared/utils/stringToColor'
-import worldJSON from './world.json'
-
-type WorldJSONFeaturesType = {
-  geometry:
-    | {
-        type: 'Polygon'
-        coordinates: [number, number][][]
-      }
-    | {
-        type: 'MultiPolygon'
-        coordinates: [number, number][][][]
-      }
-  properties: { name: string; childNum: number }
-  type: 'Feature'
-}
-
-type WorldJSONType = {
-  type: 'FeatureCollection'
-  crs: { type: 'name'; properties: { name: 'urn:ogc:def:crs:OGC:1.3:CRS84' } }
-  features: WorldJSONFeaturesType[]
-}
+import { worldJSON, WorldJSONFeaturesType, WorldJSONType } from './worldJson'
 
 type NodeType = PostWorkspaceInventoryAggregateForDashboardItem & {
   country?: string
 }
 
 interface WorldMapProps {
-  data: PostWorkspaceInventoryAggregateForDashboardResponse
+  data: NodeType[]
+  countries: string[]
 }
 
-const findCountryBasedOnCoordinates = (item: PostWorkspaceInventoryAggregateForDashboardItem) => {
-  return (
-    (worldJSON as WorldJSONType).features.find(({ geometry: { coordinates, type } }) =>
-      type === 'Polygon'
-        ? coordinates.find((coordinatesItem) => polygonContains(coordinatesItem, [item.group.longitude, item.group.latitude]))
-        : coordinates.find((coordinatesItem) =>
-            coordinatesItem.find((coordinatesItemItem) =>
-              polygonContains(coordinatesItemItem, [item.group.longitude, item.group.latitude]),
-            ),
-          ),
-    ) ??
-    (worldJSON as WorldJSONType).features.find(({ geometry: { coordinates, type } }) =>
-      type === 'Polygon'
-        ? coordinates.find((coordinatesItem) =>
-            polygonContains(
-              coordinatesItem.map(
-                (coordinatesItemItem) =>
-                  coordinatesItemItem.map((coordinatesItemItemItem) => coordinatesItemItemItem - 0.2) as [number, number],
-              ),
-              [item.group.longitude, item.group.latitude],
-            ),
-          )
-        : coordinates.find((coordinatesItem) =>
-            coordinatesItem.find((coordinatesItemItem) =>
-              polygonContains(
-                coordinatesItemItem.map(
-                  (coordinatesItemItemItem) =>
-                    coordinatesItemItemItem.map((coordinatesItemItemItemItem) => coordinatesItemItemItemItem - 0.2) as [number, number],
-                ),
-                [item.group.longitude, item.group.latitude],
-              ),
-            ),
-          ),
-    ) ??
-    (worldJSON as WorldJSONType).features.find(({ geometry: { coordinates, type } }) =>
-      type === 'Polygon'
-        ? coordinates.find((coordinatesItem) =>
-            polygonContains(
-              coordinatesItem.map(
-                (coordinatesItemItem) =>
-                  coordinatesItemItem.map((coordinatesItemItemItem) => coordinatesItemItemItem + 0.2) as [number, number],
-              ),
-              [item.group.longitude, item.group.latitude],
-            ),
-          )
-        : coordinates.find((coordinatesItem) =>
-            coordinatesItem.find((coordinatesItemItem) =>
-              polygonContains(
-                coordinatesItemItem.map(
-                  (coordinatesItemItemItem) =>
-                    coordinatesItemItemItem.map((coordinatesItemItemItemItem) => coordinatesItemItemItemItem + 0.2) as [number, number],
-                ),
-                [item.group.longitude, item.group.latitude],
-              ),
-            ),
-          ),
-    )
-  )?.properties.name
-}
-
-export const WorldMap = ({ data }: WorldMapProps) => {
+export const WorldMap = ({ data, countries }: WorldMapProps) => {
   const allClouds = useMemo(
     () => data.reduce((prev, item) => (prev.includes(item.group.cloud) ? prev : [...prev, item.group.cloud]), [] as AccountCloud[]),
     [data],
@@ -119,17 +37,10 @@ export const WorldMap = ({ data }: WorldMapProps) => {
   const mapRef = useRef<HTMLDivElement | null>(null)
   const tooltipRef = useRef<HTMLDivElement | null>(null)
   const buttonsRef = useRef<HTMLDivElement | null>(null)
-  const navigate = useNavigate()
+  const navigate = useAbsoluteNavigate()
   useEffect(() => {
     if (mapRef.current) {
-      const countries = [] as string[]
-      const dataWithCountries = data
-        .filter((i) => clouds.includes(i.group.cloud))
-        .map((item) => {
-          const country = findCountryBasedOnCoordinates(item) ?? ''
-          countries.push(country)
-          return { ...item, country } as NodeType
-        })
+      const filteredData = data.filter((i) => clouds.includes(i.group.cloud))
       let svg: Selection<SVGSVGElement, unknown, null, undefined> | undefined
       let svgG: Selection<SVGGElement, unknown, null, undefined> | undefined
       let pathCountries: Selection<SVGPathElement, WorldJSONFeaturesType, SVGGElement, unknown> | undefined
@@ -197,8 +108,8 @@ export const WorldMap = ({ data }: WorldMapProps) => {
             select(this).on('click', null)
             handleRemoveTooltip(d.group.name)
             navigate({
-              pathname: '/inventory',
-              search: `?q=/ancestors.region.reported.name in ["${d.group.name}"]`,
+              pathname: '/inventory/search',
+              search: `?q=not is(phantom_resource) and /ancestors.region.reported.name in ["${d.group.name}"] and /ancestors.cloud.reported.name in ["${d.group.cloud}"]`,
             })
           }
           thisTooltip.select('.world-map-tooltip-view-detail').on('click', handleClick)
@@ -222,7 +133,7 @@ export const WorldMap = ({ data }: WorldMapProps) => {
         if (!exited) {
           gMarkers = svgG
             ?.selectAll('.marker')
-            .data(dataWithCountries)
+            .data(filteredData)
             .enter()
             .append('g')
             .attr('class', 'marker')
@@ -325,7 +236,7 @@ export const WorldMap = ({ data }: WorldMapProps) => {
         window.removeEventListener('resize', windowResizeListener)
       }
     }
-  }, [clouds, data, locale, navigate, nonce])
+  }, [clouds, countries, data, locale, navigate, nonce])
 
   return (
     <Stack width="100%" position="relative" ref={mapRef} spacing={3.75} alignItems="center">

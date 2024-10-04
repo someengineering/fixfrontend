@@ -27,14 +27,12 @@ const getMsFromDaysDurations = (day: number) => day * 24 * 60 * 60 * 1000
 type ResourceTypeType = ReturnType<typeof getResourceTypes>[number]
 
 interface ChartProps {
-  startDate: string
-  endDate: string
   afterDate: string
   beforeDate: string
   labels: number[]
   resourceType: ResourceTypeType
 }
-const Chart = ({ startDate, endDate, afterDate, beforeDate, labels, resourceType }: ChartProps) => {
+const Chart = ({ afterDate, beforeDate, labels, resourceType }: ChartProps) => {
   const { selectedWorkspace } = useUserProfile()
   const isTotal = resourceType.value === 'total'
   const [
@@ -83,8 +81,8 @@ const Chart = ({ startDate, endDate, afterDate, beforeDate, labels, resourceType
           'workspace-inventory-timeseries',
           isTotal ? selectedWorkspace?.id : undefined,
           'resources',
-          startDate,
-          endDate,
+          afterDate,
+          beforeDate,
           '1d',
           '',
           undefined,
@@ -173,7 +171,7 @@ export const DashboardResourceChanges = () => {
   const resourceTypes = useMemo(() => getResourceTypes(locale), [locale])
   const [resourceType, setResourceType] = useState<ResourceTypeType>(resourceTypes[0])
   const [duration, setDuration] = useState<(typeof daysDuration)[number]>(daysDuration[0])
-  const [startDate, endDate, afterDate, beforeDate, labels] = useMemo(() => {
+  const [afterDate, beforeDate, labels] = useMemo(() => {
     const beforeDate = new Date()
     beforeDate.setHours(0)
     beforeDate.setMinutes(0)
@@ -187,11 +185,7 @@ export const DashboardResourceChanges = () => {
     for (let current = afterDate.valueOf(); current < end; current += daysDuration) {
       labels.push(current)
     }
-    const startDate = new Date(afterDate.valueOf())
-    startDate.setDate(startDate.getDate() - 1)
-    const endDate = new Date(beforeDate.valueOf())
-    endDate.setDate(endDate.getDate() - 1)
-    return [startDate.toISOString(), endDate.toISOString(), afterDate.toISOString(), beforeDate.toISOString(), labels] as const
+    return [afterDate.toISOString(), beforeDate.toISOString(), labels] as const
   }, [duration])
   return (
     <Stack spacing={5}>
@@ -231,14 +225,7 @@ export const DashboardResourceChanges = () => {
       <Box width="100%" height={400}>
         <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
           <Suspense fallback={<LoadingSuspenseFallback />}>
-            <Chart
-              startDate={startDate}
-              endDate={endDate}
-              afterDate={afterDate}
-              beforeDate={beforeDate}
-              labels={labels}
-              resourceType={resourceType}
-            />
+            <Chart afterDate={afterDate} beforeDate={beforeDate} labels={labels} resourceType={resourceType} />
           </Suspense>
         </NetworkErrorBoundary>
       </Box>

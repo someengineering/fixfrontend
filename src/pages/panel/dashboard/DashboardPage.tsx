@@ -1,31 +1,38 @@
 import { Trans } from '@lingui/macro'
-import { Box, Stack, Typography } from '@mui/material'
+import { useLingui } from '@lingui/react'
+import { Box, Stack, Tooltip, Typography } from '@mui/material'
 import { useSuspenseQueries } from '@tanstack/react-query'
-import { Book4Icon, MovieIcon, ScheduleIcon } from 'src/assets/icons'
+import { Book4Icon, GlobeIcon, MovieIcon, ScheduleIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceCloudAccountsQuery } from 'src/pages/panel/shared/queries'
 import { HelpSlider } from 'src/shared/right-slider'
 import {
   GetWorkspaceCloudAccountsResponse,
+  PostWorkspaceInventoryAggregateForDashboardItem,
   PostWorkspaceInventoryAggregateForDashboardResponse,
   PostWorkspaceInventorySearchForDashboardResponse,
 } from 'src/shared/types/server'
 import { AccountCloud } from 'src/shared/types/server-shared'
 import { LiteralUnion } from 'src/shared/types/shared'
+import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
 import { DashboardCard } from './DashboardCard'
 import { DashboardCloudCards } from './DashboardCloudCards'
 import { DashboardPaper } from './DashboardPaper'
 import { DashboardResourceChanges } from './DashboardResourceChanges'
 import { WorldMap } from './WorldMap'
+import { findCountryBasedOnCoordinates } from './findCountryBasedOnCoordinates'
 import { postWorkspaceInventoryAggregateForDashboardQuery } from './postWorkspaceInventoryAggregateForDashboard.query'
 import { postWorkspaceInventorySearchForDashboardQuery } from './postWorkspaceInventorySearchForDashboard.query'
 
 export default function DashboardPage() {
   const { selectedWorkspace } = useUserProfile()
+  const {
+    i18n: { locale },
+  } = useLingui()
   const [
     { data: lastScan },
     {
-      data: { worldMapData, regions },
+      data: { countries, data: worldMapDataWithCountries, regions, resources },
     },
     {
       data: {
@@ -58,13 +65,26 @@ export default function DashboardPage() {
       {
         queryKey: ['workspace-inventory-aggregate-for-dashboard', selectedWorkspace?.id],
         queryFn: postWorkspaceInventoryAggregateForDashboardQuery,
-        select: (data: PostWorkspaceInventoryAggregateForDashboardResponse) => ({
-          worldMapData: data,
-          regions: data.reduce(
-            (prev, item) => ({ ...prev, [item.group.cloud]: (prev[item.group.cloud] ?? 0) + 1 }),
-            {} as Record<AccountCloud, number | undefined>,
+        select: (data: PostWorkspaceInventoryAggregateForDashboardResponse) =>
+          data.reduce(
+            ({ data, countries, regions, resources }, item) => {
+              const country = findCountryBasedOnCoordinates(item) ?? ''
+              return {
+                data: [...data, { ...item, country }],
+                countries: countries.includes(country) ? countries : [...countries, country],
+                regions: { ...regions, [item.group.cloud]: (regions[item.group.cloud] ?? 0) + 1 },
+                resources: resources + item.resource_count,
+              }
+            },
+            {
+              data: [] as (PostWorkspaceInventoryAggregateForDashboardItem & {
+                country?: string
+              })[],
+              countries: [] as string[],
+              regions: {} as Record<AccountCloud, number | undefined>,
+              resources: 0,
+            },
           ),
-        }),
       },
       {
         queryKey: ['workspace-inventory-search-for-dashboard', selectedWorkspace?.id],
@@ -151,7 +171,7 @@ export default function DashboardPage() {
               {
                 Icon: MovieIcon,
                 text: <Trans>Watch Video</Trans>,
-                url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                url: 'https://discord.com/channels/@me/1148600794740957225/1287834370022969405',
               },
             ],
           },
@@ -182,10 +202,15 @@ export default function DashboardPage() {
       <DashboardCard
         SubtitleIcon={splittedLastScan ? ScheduleIcon : undefined}
         subtitle={
-          splittedLastScan ? (
-            <Trans>
-              Last scanned on {splittedLastScan[0].substring(2)} @ {splittedLastScan[1].split('.')[0]} UTC
-            </Trans>
+          lastScan && splittedLastScan ? (
+            <Tooltip title={`Last scanned on ${splittedLastScan[0].substring(2)} @ ${splittedLastScan[1].split('.')[0]} UTC`}>
+              <span>
+                <Trans>
+                  Last scanned{' '}
+                  <Trans>{iso8601DurationToString(diffDateTimeToDuration(new Date(), new Date(lastScan)), 1).toLowerCase()} ago</Trans>
+                </Trans>
+              </span>
+            </Tooltip>
           ) : undefined
         }
         title={<Trans>Asset summary</Trans>}
@@ -219,9 +244,18 @@ export default function DashboardPage() {
           <DashboardResourceChanges />
         </DashboardPaper>
       </DashboardCard>
-      <DashboardCard title={<Trans>Assets by region</Trans>}>
+      <DashboardCard
+        title={<Trans>Assets by region</Trans>}
+        subtitle={
+          <Trans>
+            {resources.toLocaleString(locale)} resources in {worldMapDataWithCountries.length.toLocaleString(locale)} regions in{' '}
+            {countries.length.toLocaleString(locale)} countries
+          </Trans>
+        }
+        SubtitleIcon={GlobeIcon}
+      >
         <DashboardPaper>
-          <WorldMap data={worldMapData} />
+          <WorldMap data={worldMapDataWithCountries} countries={countries} />
         </DashboardPaper>
       </DashboardCard>
     </Stack>
