@@ -12,7 +12,7 @@ export interface RowType {
   group: string | null
   icon: string | null
   name: string | null
-  service: string | null
+  base: string | null
   id: string
   cloud: string
   resources: number
@@ -29,7 +29,7 @@ export const getColumns = (locale?: string) =>
       type: 'string',
       sortable: true,
       sortComparator: (v1: unknown, v2: unknown) => (typeof v1 === 'string' && typeof v2 === 'string' ? v1.localeCompare(v2) : 0),
-      renderCell: ({ row: { id, cloud, name, service } }) => (
+      renderCell: ({ row: { id, cloud, name, base } }) => (
         <Stack direction="row" spacing={1} key={id} height="100%" alignItems="center" overflow="hidden">
           <Tooltip title={getAccountCloudName(cloud)} arrow placement="right">
             <Stack width={56} height={38} alignItems="center" justifyContent="center">
@@ -46,9 +46,9 @@ export const getColumns = (locale?: string) =>
                 {name ?? id}
               </Typography>
             </Tooltip>
-            <Tooltip title={service ?? ''} arrow placement="bottom-start" enterDelay={250} enterNextDelay={250}>
+            <Tooltip title={base ?? ''} arrow placement="bottom-start" enterDelay={250} enterNextDelay={250}>
               <Typography whiteSpace="nowrap" variant="subtitle2" color="textSecondary" overflow="hidden" textOverflow="ellipsis">
-                {service ?? ''}
+                {base ?? ''}
               </Typography>
             </Tooltip>
           </Stack>

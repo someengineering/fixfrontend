@@ -79,6 +79,16 @@ export default function InventoryPage() {
       const allData = data
         .filter((item) => counts[item.fqn]?.resources)
         .map((item) => {
+          let base: string | null = null
+          if ('bases' in item && item.bases) {
+            base = item.bases?.filter((i) => !i.includes('resource'))[0]
+            if (!base) {
+              base = item.bases?.filter((i) => i !== 'resource')[0]
+              if (!base) {
+                base = item.bases?.[0] ?? null
+              }
+            }
+          }
           const group = 'metadata' in item ? getString(item.metadata?.group) : null
           const groupItem = group ? groups.find(({ id }) => id === group) : undefined
           if (groupItem) {
@@ -151,9 +161,10 @@ export default function InventoryPage() {
                   group,
                   icon: getString(item.metadata?.icon),
                   name: getString(item.metadata?.name),
-                  service: getString(item.metadata?.service),
+                  base,
                 }
               : {
+                  base: null,
                   description: null,
                   group: null,
                   icon: null,
@@ -239,8 +250,8 @@ export default function InventoryPage() {
               filename={`modal-data-${selectedWorkspace?.id}-${new Date().toISOString()}.csv`}
               data={[
                 columns.map((item) => item.headerName),
-                ...rows.map(({ name, id, service, group, resources, accounts, regions }) => [
-                  `${name ?? id} - ${service ?? ''}`,
+                ...rows.map(({ name, id, base, group, resources, accounts, regions }) => [
+                  `${name ?? id} - ${base ?? ''}`,
                   group,
                   resources,
                   accounts,
