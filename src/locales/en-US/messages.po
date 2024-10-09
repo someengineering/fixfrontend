@@ -1173,7 +1173,7 @@ msgstr "Downgrade"
 
 #: src/pages/panel/inventory-search/DownloadCSVButton.tsx:106
 #: src/pages/panel/inventory-search/DownloadCSVButton.tsx:128
-#: src/pages/panel/inventory/DownloadCSVButton.tsx:9
+#: src/pages/panel/inventory/DownloadCSVButton.tsx:47
 msgid "Download CSV"
 msgstr "Download CSV"
 
