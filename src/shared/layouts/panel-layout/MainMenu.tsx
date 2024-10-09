@@ -4,8 +4,8 @@ import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { mainMenuList, MenuListItem } from './menuList'
 
-const MenuItem = ({ menuItem: { Icon, name, route } }: { menuItem: MenuListItem }) => {
-  const mainMatch = useMatch({ path: `${route}/*` })
+const MenuItem = ({ menuItem: { Icon, name, route, exact } }: { menuItem: MenuListItem }) => {
+  const mainMatch = useMatch({ path: exact ? route : `${route}/*` })
   const hasMatch = !!mainMatch
   const navigate = useAbsoluteNavigate()
   return (

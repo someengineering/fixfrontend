@@ -136,9 +136,8 @@ export function PanelRoutes() {
         <Route element={<AccountCheckGuard />}>
           <Route element={<BenchmarkCheckGuard />}>
             <Route path="dashboard" element={<DashboardPage />} />
-            <Route path="inventory-summary" element={<InventoryPage key={1} />} />
             <Route path="inventory">
-              <Route index element={<Navigate to={{ pathname: './search', search: window.location.search }} replace />} />
+              <Route index element={<InventoryPage key={0} />} />
               <Route path="search" element={<InventorySearchPage key={1} />}>
                 {withResourceDetailRoute}
               </Route>

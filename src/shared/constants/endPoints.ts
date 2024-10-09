@@ -28,6 +28,7 @@ export const endPoints = {
   info: 'api/info',
   users: {
     me: {
+      active: 'api/users/me/active',
       self: 'api/users/me',
       settings: {
         notifications: 'api/users/me/settings/notifications',
@@ -66,10 +67,12 @@ export const endPoints = {
       },
       inventory: {
         aggregate: `api/workspaces/${workspaceId}/inventory/aggregate`,
+        descendant: {
+          summary: `api/workspaces/${workspaceId}/inventory/descendant/summary`,
+        },
         history: {
           timeline: `api/workspaces/${workspaceId}/inventory/history/timeline`,
         },
-        timeseries: `api/workspaces/${workspaceId}/inventory/timeseries`,
         reportSummary: `api/workspaces/${workspaceId}/inventory/report-summary`,
         report: {
           benchmark: (benchmarkName: string) => ({
@@ -101,6 +104,7 @@ export const endPoints = {
             complete: `api/workspaces/${workspaceId}/inventory/property/path/complete`,
           },
         },
+        timeseries: `api/workspaces/${workspaceId}/inventory/timeseries`,
         workspaceInfo: `api/workspaces/${workspaceId}/inventory/workspace-info`,
       },
       alerting: {

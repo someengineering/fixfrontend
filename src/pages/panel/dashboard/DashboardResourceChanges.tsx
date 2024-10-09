@@ -85,7 +85,7 @@ const Chart = ({ afterDate, beforeDate, labels, resourceType }: ChartProps) => {
           beforeDate,
           '1d',
           '',
-          undefined,
+          'account_id!=null',
           'sum',
         ],
         queryFn: postWorkspaceInventoryTimeseriesQuery,

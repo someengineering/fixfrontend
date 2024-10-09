@@ -44,6 +44,8 @@ export function Theme({ children, emotionCache }: ThemeProps) {
     () => ({
       text: {
         primary: panelUI.uiThemePalette.text.darkGray,
+        disabled: panelUI.uiThemePalette.text.disabled,
+        secondary: panelUI.uiThemePalette.text.sub,
       },
       primary: {
         main: panelUI.uiThemePalette.primary.purple,
