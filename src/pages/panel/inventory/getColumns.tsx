@@ -92,10 +92,10 @@ export const getColumns = (locale?: string) =>
       flex: 1,
       type: 'string',
       sortable: true,
-      renderCell: ({ row: { resources } }) => (
+      renderCell: ({ row: { accounts } }) => (
         <Stack direction="row" height="100%" alignItems="center">
           <Typography whiteSpace="nowrap" variant="subtitle1">
-            <Trans>{resources.toLocaleString(locale)} accounts</Trans>
+            <Trans>{accounts.toLocaleString(locale)} accounts</Trans>
           </Typography>
         </Stack>
       ),
@@ -106,10 +106,10 @@ export const getColumns = (locale?: string) =>
       flex: 1,
       type: 'string',
       sortable: true,
-      renderCell: ({ row: { resources } }) => (
+      renderCell: ({ row: { regions } }) => (
         <Stack direction="row" height="100%" alignItems="center">
           <Typography whiteSpace="nowrap" variant="subtitle1">
-            {resources.toLocaleString(locale)}
+            {regions.toLocaleString(locale)}
           </Typography>
         </Stack>
       ),

@@ -235,7 +235,19 @@ export default function InventoryPage() {
           <GridFilterItem items={regions} name={t`regions`} onChange={setRegionFilter} values={regionFilter} />
           <GridFilterItem items={kinds} name={t`kinds`} onChange={setKindFilter} values={kindFilter} />
           <Stack flexGrow={1} alignItems="end">
-            <DownloadCSVButton />
+            <DownloadCSVButton
+              filename={`modal-data-${selectedWorkspace?.id}-${new Date().toISOString()}.csv`}
+              data={[
+                columns.map((item) => item.headerName),
+                ...rows.map(({ name, id, service, group, resources, accounts, regions }) => [
+                  `${name ?? id} - ${service ?? ''}`,
+                  group,
+                  resources,
+                  accounts,
+                  regions,
+                ]),
+              ]}
+            />
           </Stack>
         </Stack>
         <Box height="100%" flex={1}>
