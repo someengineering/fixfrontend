@@ -65,7 +65,7 @@ msgstr "{0, plural, one {One error reported} two {Two errors reported} other {# 
 msgid "{0}"
 msgstr "{0}"
 
-#: src/pages/panel/inventory/getColumns.tsx:98
+#: src/pages/panel/inventory/getColumns.tsx:102
 msgid "{0} accounts"
 msgstr "{0} accounts"
 
@@ -101,11 +101,15 @@ msgstr "{0} Milliseconds"
 msgid "{0} per"
 msgstr "{0} per"
 
+#: src/pages/panel/inventory/getColumns.tsx:117
+msgid "{0} regions"
+msgstr "{0} regions"
+
 #: src/pages/panel/dashboard/WorldMap.tsx:347
 msgid "{0} Regions"
 msgstr "{0} Regions"
 
-#: src/pages/panel/inventory/getColumns.tsx:84
+#: src/pages/panel/inventory/getColumns.tsx:87
 msgid "{0} resources"
 msgstr "{0} resources"
 
@@ -260,7 +264,7 @@ msgstr "Access to your account is broken"
 msgid "Account"
 msgstr "Account"
 
-#: src/pages/panel/inventory/getColumns.tsx:91
+#: src/pages/panel/inventory/getColumns.tsx:94
 msgid "Account usage"
 msgstr "Account usage"
 
@@ -1384,7 +1388,7 @@ msgstr "Go to your download folder and drop the service account JSON file in the
 msgid "Grant Access"
 msgstr "Grant Access"
 
-#: src/pages/panel/inventory/getColumns.tsx:59
+#: src/pages/panel/inventory/getColumns.tsx:60
 msgid "Group"
 msgstr "Group"
 
@@ -2241,7 +2245,7 @@ msgstr "regions"
 #: src/pages/panel/dashboard/DashboardCloudCards.tsx:43
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegion.tsx:20
 #: src/pages/panel/inventory-search/inventory-form/utils/getAutoCompleteFromKey.tsx:130
-#: src/pages/panel/inventory/getColumns.tsx:105
+#: src/pages/panel/inventory/getColumns.tsx:109
 msgid "Regions"
 msgstr "Regions"
 
@@ -2292,7 +2296,7 @@ msgstr "Resource Changes"
 msgid "Resource changes with owner tag"
 msgstr "Resource changes with owner tag"
 
-#: src/pages/panel/inventory/getColumns.tsx:77
+#: src/pages/panel/inventory/getColumns.tsx:79
 msgid "Resource count"
 msgstr "Resource count"
 

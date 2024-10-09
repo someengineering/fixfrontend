@@ -65,7 +65,7 @@ msgstr ""
 msgid "{0}"
 msgstr ""
 
-#: src/pages/panel/inventory/getColumns.tsx:98
+#: src/pages/panel/inventory/getColumns.tsx:102
 msgid "{0} accounts"
 msgstr ""
 
@@ -101,11 +101,15 @@ msgstr "{0} Millisekunden"
 msgid "{0} per"
 msgstr ""
 
+#: src/pages/panel/inventory/getColumns.tsx:117
+msgid "{0} regions"
+msgstr ""
+
 #: src/pages/panel/dashboard/WorldMap.tsx:347
 msgid "{0} Regions"
 msgstr ""
 
-#: src/pages/panel/inventory/getColumns.tsx:84
+#: src/pages/panel/inventory/getColumns.tsx:87
 msgid "{0} resources"
 msgstr ""
 
@@ -260,7 +264,7 @@ msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 msgid "Account"
 msgstr "Konto"
 
-#: src/pages/panel/inventory/getColumns.tsx:91
+#: src/pages/panel/inventory/getColumns.tsx:94
 msgid "Account usage"
 msgstr ""
 
@@ -1384,7 +1388,7 @@ msgstr ""
 msgid "Grant Access"
 msgstr ""
 
-#: src/pages/panel/inventory/getColumns.tsx:59
+#: src/pages/panel/inventory/getColumns.tsx:60
 msgid "Group"
 msgstr ""
 
@@ -2241,7 +2245,7 @@ msgstr ""
 #: src/pages/panel/dashboard/DashboardCloudCards.tsx:43
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegion.tsx:20
 #: src/pages/panel/inventory-search/inventory-form/utils/getAutoCompleteFromKey.tsx:130
-#: src/pages/panel/inventory/getColumns.tsx:105
+#: src/pages/panel/inventory/getColumns.tsx:109
 msgid "Regions"
 msgstr "Regionen"
 
@@ -2292,7 +2296,7 @@ msgstr ""
 msgid "Resource changes with owner tag"
 msgstr ""
 
-#: src/pages/panel/inventory/getColumns.tsx:77
+#: src/pages/panel/inventory/getColumns.tsx:79
 msgid "Resource count"
 msgstr ""
 

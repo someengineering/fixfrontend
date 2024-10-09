@@ -23,11 +23,12 @@ export interface RowType {
 export const getColumns = (locale?: string) =>
   [
     {
-      field: 'id',
+      field: 'name',
       headerName: t`Resource kind`,
       flex: 1,
       type: 'string',
       sortable: true,
+      sortComparator: (v1: unknown, v2: unknown) => (typeof v1 === 'string' && typeof v2 === 'string' ? v1.localeCompare(v2) : 0),
       renderCell: ({ row: { id, cloud, name, service } }) => (
         <Stack direction="row" spacing={1} key={id} height="100%" alignItems="center" overflow="hidden">
           <Tooltip title={getAccountCloudName(cloud)} arrow placement="right">
@@ -60,6 +61,7 @@ export const getColumns = (locale?: string) =>
       flex: 1,
       type: 'string',
       sortable: true,
+      sortComparator: (v1: unknown, v2: unknown) => (typeof v1 === 'string' && typeof v2 === 'string' ? v1.localeCompare(v2) : 0),
       renderCell: ({ row: { group } }) => {
         const { name, Icon } = getNameAndIconFromMetadataGroup(group ?? '')
         return (
@@ -78,6 +80,7 @@ export const getColumns = (locale?: string) =>
       flex: 1,
       type: 'string',
       sortable: true,
+      sortComparator: (v1: unknown, v2: unknown) => (typeof v1 === 'number' && typeof v2 === 'number' ? v1 - v2 : 0),
       renderCell: ({ row: { resources } }) => (
         <Stack direction="row" height="100%" alignItems="center">
           <Typography whiteSpace="nowrap" variant="subtitle1">
@@ -92,6 +95,7 @@ export const getColumns = (locale?: string) =>
       flex: 1,
       type: 'string',
       sortable: true,
+      sortComparator: (v1: unknown, v2: unknown) => (typeof v1 === 'number' && typeof v2 === 'number' ? v1 - v2 : 0),
       renderCell: ({ row: { accounts } }) => (
         <Stack direction="row" height="100%" alignItems="center">
           <Typography whiteSpace="nowrap" variant="subtitle1">
@@ -106,10 +110,11 @@ export const getColumns = (locale?: string) =>
       flex: 1,
       type: 'string',
       sortable: true,
+      sortComparator: (v1: unknown, v2: unknown) => (typeof v1 === 'number' && typeof v2 === 'number' ? v1 - v2 : 0),
       renderCell: ({ row: { regions } }) => (
         <Stack direction="row" height="100%" alignItems="center">
           <Typography whiteSpace="nowrap" variant="subtitle1">
-            {regions.toLocaleString(locale)}
+            <Trans>{regions.toLocaleString(locale)} regions</Trans>
           </Typography>
         </Stack>
       ),
