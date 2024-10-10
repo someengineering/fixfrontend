@@ -6,7 +6,7 @@ const Modal = styled(MuiModal)(({ theme }) => ({
   position: 'fixed',
   top: 0,
   right: 0,
-  left: 'auto',
+  left: 'initial',
   height: '100%',
   width: '100%',
   overflow: 'hidden',

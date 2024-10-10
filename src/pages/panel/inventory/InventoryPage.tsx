@@ -103,9 +103,13 @@ export default function InventoryPage() {
               .filter((base) => base && 'metadata' in base && base.metadata?.source === 'base') as ResourceComplexKind[]
             if (bases.length > 1) {
               const noResourceBase = bases.filter((i) => i?.fqn !== 'resource')[0]
-              base = (noResourceBase && typeof noResourceBase.metadata?.name === 'string' && noResourceBase.metadata.name) || null
+              base =
+                (noResourceBase &&
+                  typeof noResourceBase.metadata?.name === 'string' &&
+                  (noResourceBase.metadata.name ?? noResourceBase.fqn)) ||
+                null
             } else {
-              base = (bases[0] && typeof bases[0].metadata?.name === 'string' && bases[0].metadata.name) || null
+              base = (bases[0] && typeof bases[0].metadata?.name === 'string' && (bases[0].metadata.name ?? bases[0].fqn)) || null
             }
           }
           const group = 'metadata' in item ? getString(item.metadata?.group) : null
@@ -268,9 +272,11 @@ export default function InventoryPage() {
             <DownloadCSVButton
               filename={`modal-data-${selectedWorkspace?.id}-${new Date().toISOString()}.csv`}
               data={[
-                columns.map((item) => item.headerName),
-                ...rows.map(({ name, id, base, group, resources, accounts, regions }) => [
-                  `${name ?? id} - ${base ?? ''}`,
+                [t`Cloud`, t`Base kind`, ...columns.map((item) => item.headerName)],
+                ...rows.map(({ cloud, base, name, id, group, resources, accounts, regions }) => [
+                  getAccountCloudName(cloud),
+                  base,
+                  `${name ?? id}`,
                   group,
                   resources,
                   accounts,

@@ -272,7 +272,7 @@ msgstr ""
 msgid "Account: {0}"
 msgstr "Konto: {0}"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:264
+#: src/pages/panel/inventory/InventoryPage.tsx:268
 msgid "accounts"
 msgstr ""
 
@@ -543,6 +543,10 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
+#: src/pages/panel/inventory/InventoryPage.tsx:275
+msgid "Base kind"
+msgstr ""
+
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:242
 msgid "Basic Information"
 msgstr "Grundinformation"
@@ -773,6 +777,7 @@ msgstr "Schließen"
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:165
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormCloudValues.tsx:62
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:97
+#: src/pages/panel/inventory/InventoryPage.tsx:275
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:253
 #: src/pages/panel/security/AccountCard.tsx:38
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:558
@@ -793,7 +798,7 @@ msgstr ""
 msgid "Cloud Inventory"
 msgstr "Cloud Inventar"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:263
+#: src/pages/panel/inventory/InventoryPage.tsx:267
 msgid "clouds"
 msgstr ""
 
@@ -1583,7 +1588,7 @@ msgstr ""
 msgid "Invalid Value"
 msgstr "Ungültiger Wert"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:220
+#: src/pages/panel/inventory/InventoryPage.tsx:224
 #: src/shared/layouts/panel-layout/menuList.tsx:34
 msgid "Inventory"
 msgstr "Inventar"
@@ -1612,7 +1617,7 @@ msgstr ""
 msgid "Kind"
 msgstr "Art"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:266
+#: src/pages/panel/inventory/InventoryPage.tsx:270
 msgid "kinds"
 msgstr ""
 
@@ -2238,7 +2243,7 @@ msgstr "Regenerieren"
 msgid "Region"
 msgstr "Region"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:265
+#: src/pages/panel/inventory/InventoryPage.tsx:269
 msgid "regions"
 msgstr ""
 

@@ -272,7 +272,7 @@ msgstr "Account usage"
 msgid "Account: {0}"
 msgstr "Account: {0}"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:264
+#: src/pages/panel/inventory/InventoryPage.tsx:268
 msgid "accounts"
 msgstr "accounts"
 
@@ -543,6 +543,10 @@ msgstr "Azure Service Management"
 msgid "Back"
 msgstr "Back"
 
+#: src/pages/panel/inventory/InventoryPage.tsx:275
+msgid "Base kind"
+msgstr "Base kind"
+
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:242
 msgid "Basic Information"
 msgstr "Basic Information"
@@ -773,6 +777,7 @@ msgstr "Close"
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:165
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormCloudValues.tsx:62
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:97
+#: src/pages/panel/inventory/InventoryPage.tsx:275
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:253
 #: src/pages/panel/security/AccountCard.tsx:38
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:558
@@ -793,7 +798,7 @@ msgstr "Cloud Accounts"
 msgid "Cloud Inventory"
 msgstr "Cloud Inventory"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:263
+#: src/pages/panel/inventory/InventoryPage.tsx:267
 msgid "clouds"
 msgstr "clouds"
 
@@ -1583,7 +1588,7 @@ msgstr "Invalid file, Please follow the step-by-step instructions {0}."
 msgid "Invalid Value"
 msgstr "Invalid Value"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:220
+#: src/pages/panel/inventory/InventoryPage.tsx:224
 #: src/shared/layouts/panel-layout/menuList.tsx:34
 msgid "Inventory"
 msgstr "Inventory"
@@ -1612,7 +1617,7 @@ msgstr "kind"
 msgid "Kind"
 msgstr "Kind"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:266
+#: src/pages/panel/inventory/InventoryPage.tsx:270
 msgid "kinds"
 msgstr "kinds"
 
@@ -2238,7 +2243,7 @@ msgstr "Regenerate"
 msgid "Region"
 msgstr "Region"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:265
+#: src/pages/panel/inventory/InventoryPage.tsx:269
 msgid "regions"
 msgstr "regions"
 
