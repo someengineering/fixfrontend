@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/macro'
 import { Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
-import { BucketIcon, DatabaseIcon, HardDriveDiskIcon, InstanceIcon } from 'src/assets/icons'
+import { BucketIcon, DatabaseOldIcon, HardDriveDiskIcon, InstanceIcon } from 'src/assets/icons'
 import { InternalLink } from 'src/shared/link-button'
 import { numberToReadableBytes, numberToReadableNumber } from 'src/shared/utils/numberToReadable'
 import { wordToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
@@ -171,7 +171,7 @@ export const InventoryInfoResourcesTable = ({
               }}
             >
               <Stack direction="row" spacing={1} alignItems="center">
-                <DatabaseIcon width={24} height={24} color="primary.main" />
+                <DatabaseOldIcon width={24} height={24} color="primary.main" />
                 <Typography variant="body2" fontWeight="bold">
                   <Trans>Databases</Trans>
                 </Typography>

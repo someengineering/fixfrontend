@@ -9,12 +9,13 @@ export const getWorkspaceInventoryModelQuery = ({
     ,
     workspaceId,
     kind,
-    with_bases,
-    with_property_kinds,
-    aggregate_roots_only,
-    with_properties,
-    with_relatives,
-    with_metadata,
+    kindFilter,
+    withBases,
+    withPropertyKinds,
+    aggregateRootsOnly,
+    withProperties,
+    withRelatives,
+    withMetadata,
     flat,
   ],
 }: QueryFunctionContext<
@@ -22,6 +23,7 @@ export const getWorkspaceInventoryModelQuery = ({
     'workspace-inventory-model',
     string | undefined, // workspaceId
     string | undefined, // kind
+    string | undefined, // kind_filter
     boolean | undefined, // with_bases
     boolean | undefined, // with_property_kinds
     boolean | undefined, // aggregate_roots_only
@@ -33,6 +35,7 @@ export const getWorkspaceInventoryModelQuery = ({
 >) => {
   const params: {
     kind?: string
+    kind_filter?: string[]
     with_bases?: boolean
     with_property_kinds?: boolean
     aggregate_roots_only?: boolean
@@ -44,23 +47,26 @@ export const getWorkspaceInventoryModelQuery = ({
   if (kind !== undefined) {
     params.kind = kind
   }
-  if (with_bases !== undefined) {
-    params.with_bases = with_bases
+  if (kindFilter !== undefined) {
+    params.kind_filter = kindFilter.split(',')
   }
-  if (with_property_kinds !== undefined) {
-    params.with_property_kinds = with_property_kinds
+  if (withBases !== undefined) {
+    params.with_bases = withBases
   }
-  if (aggregate_roots_only !== undefined) {
-    params.aggregate_roots_only = aggregate_roots_only
+  if (withPropertyKinds !== undefined) {
+    params.with_property_kinds = withPropertyKinds
   }
-  if (with_properties !== undefined) {
-    params.with_properties = with_properties
+  if (aggregateRootsOnly !== undefined) {
+    params.aggregate_roots_only = aggregateRootsOnly
   }
-  if (with_relatives !== undefined) {
-    params.with_relatives = with_relatives
+  if (withProperties !== undefined) {
+    params.with_properties = withProperties
   }
-  if (with_metadata !== undefined) {
-    params.with_metadata = with_metadata
+  if (withRelatives !== undefined) {
+    params.with_relatives = withRelatives
+  }
+  if (withMetadata !== undefined) {
+    params.with_metadata = withMetadata
   }
   if (flat !== undefined) {
     params.flat = flat

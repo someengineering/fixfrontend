@@ -6,6 +6,6 @@ export const stringAvatar = (name: string) => {
     sx: {
       bgcolor: stringToColor(name),
     },
-    children: `${splittedName[0][0]?.toLocaleUpperCase()}${splittedName[1][0]?.toLocaleUpperCase()}`,
+    children: `${splittedName[0]?.[0]?.toLocaleUpperCase() ?? ''}${splittedName[1]?.[0]?.toLocaleUpperCase() ?? ''}`,
   }
 }

@@ -1,4 +1,5 @@
 import { AccountCloud } from 'src/shared/types/server-shared'
+import { wordToUFStr } from './snakeCaseToUFStr'
 
 export const getAccountCloudName = (cloud: AccountCloud) => {
   switch (cloud.toLowerCase()) {
@@ -11,6 +12,6 @@ export const getAccountCloudName = (cloud: AccountCloud) => {
     case 'gcp':
       return 'GCP'
     default:
-      return cloud
+      return wordToUFStr(cloud)
   }
 }

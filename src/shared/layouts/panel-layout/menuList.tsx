@@ -5,6 +5,7 @@ import { DashboardIcon, LabProfileIcon, LocalPoliceIcon, SearchIcon, SvgIconProp
 export interface MenuListItem {
   name: ReactNode
   route: string
+  exact?: boolean
   notRouteSearchMatch?: boolean
   Icon: FC<SvgIconProps>
   useGuard?: () => boolean
@@ -31,7 +32,8 @@ export const mainMenuList: MenuListItem[] = [
   },
   {
     name: <Trans>Inventory</Trans>,
-    route: '/inventory/search',
+    route: '/inventory',
+    exact: true,
     Icon: LabProfileIcon,
   },
   {
@@ -41,7 +43,7 @@ export const mainMenuList: MenuListItem[] = [
   },
   {
     name: <Trans>Compliance</Trans>,
-    route: '/inventory-summary',
+    route: '/inventory/search',
     Icon: LocalPoliceIcon,
   },
 ]

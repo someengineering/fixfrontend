@@ -29,6 +29,7 @@ const env = {
       : (import.meta.env.VITE_WS_SERVER ?? import.meta.env.VITE_SERVER?.replace('http', 'ws') ?? wsOrigin),
   videosAssetsUrl: import.meta.env.VITE_VIDEOS_ASSETS_URL ?? defaultOrigin,
   imagesAssetsUrl: import.meta.env.VITE_IMAGES_ASSETS_URL ?? defaultOrigin,
+  minActiveMinutes: envToNumber(import.meta.env.VITE_MIN_ACTIVE_MINUTES) ?? 60,
   retryCount: envToNumber(import.meta.env.VITE_NETWORK_RETRY_COUNT) ?? 5,
   webSocketRetryTimeout: envToNumber(import.meta.env.VITE_WEBSOCKET_RETRY_TIMEOUT) ?? 5_000,
   muiLicenseKey: import.meta.env.VITE_MUI_LICENSE_KEY,

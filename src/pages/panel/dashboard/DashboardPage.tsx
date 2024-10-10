@@ -32,7 +32,7 @@ export default function DashboardPage() {
   const [
     { data: lastScan },
     {
-      data: { countries, data: worldMapDataWithCountries, regions },
+      data: { countries, data: worldMapDataWithCountries, regions, resources: regionBasedResources },
     },
     {
       data: {
@@ -67,12 +67,13 @@ export default function DashboardPage() {
         queryFn: postWorkspaceInventoryAggregateForDashboardQuery,
         select: (data: PostWorkspaceInventoryAggregateForDashboardResponse) =>
           data.reduce(
-            ({ data, countries, regions }, item) => {
+            ({ data, countries, regions, resources }, item) => {
               const country = findCountryBasedOnCoordinates(item) ?? ''
               return {
                 data: [...data, { ...item, country }],
                 countries: countries.includes(country) ? countries : [...countries, country],
                 regions: { ...regions, [item.group.cloud]: (regions[item.group.cloud] ?? 0) + 1 },
+                resources: resources + item.resource_count,
               }
             },
             {
@@ -81,6 +82,7 @@ export default function DashboardPage() {
               })[],
               countries: [] as string[],
               regions: {} as Record<AccountCloud, number | undefined>,
+              resources: 0,
             },
           ),
       },
@@ -245,8 +247,8 @@ export default function DashboardPage() {
         title={<Trans>Assets by region</Trans>}
         subtitle={
           <Trans>
-            {((awsResources ?? 0) + (azureResources ?? 0) + (gcpResources ?? 0)).toLocaleString(locale)} resources in{' '}
-            {worldMapDataWithCountries.length.toLocaleString(locale)} regions in {countries.length.toLocaleString(locale)} countries
+            {regionBasedResources.toLocaleString(locale)} resources in {worldMapDataWithCountries.length.toLocaleString(locale)} regions,{' '}
+            {countries.length.toLocaleString(locale)} countries
           </Trans>
         }
         SubtitleIcon={GlobeIcon}

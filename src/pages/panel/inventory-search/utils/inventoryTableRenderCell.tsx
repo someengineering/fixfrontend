@@ -51,9 +51,11 @@ export const inventoryTableRenderCell = (
             const model = modelData?.[value]
             return model && 'metadata' in model && model.metadata && (model.metadata.icon || model.metadata.name) ? (
               <InventoryTableKindRenderCell
-                name={model.metadata.name ?? value}
-                group={model.metadata.group}
-                iconUrl={model.metadata.icon ? getIconFromResource(model.metadata.icon) : undefined}
+                name={(typeof model.metadata.name === 'string' && model.metadata.name) || value}
+                group={typeof model.metadata.group === 'string' ? model.metadata.group : ''}
+                iconUrl={
+                  typeof model.metadata.icon === 'string' && model.metadata.icon ? getIconFromResource(model.metadata.icon) : undefined
+                }
               />
             ) : (
               value
