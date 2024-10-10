@@ -197,7 +197,13 @@ export default function InventoryPage() {
           } as RowType
         })
       return {
-        data: allData,
+        data: allData.sort(
+          (a, b) =>
+            a.cloud.localeCompare(b.cloud) ||
+            a.base?.localeCompare(b.base ?? a.base) ||
+            a.name?.localeCompare(b.name ?? a.name) ||
+            a.id.localeCompare(b.id),
+        ),
         groups,
         accounts: accounts.sort((a, b) => a.title.localeCompare(b.title)),
         regions: regions.sort((a, b) => a.title.localeCompare(b.title)),
@@ -292,6 +298,11 @@ export default function InventoryPage() {
           ) : (
             <StyledDataGrid
               disableRowSelectionOnClick
+              initialState={{
+                sorting: {
+                  sortModel: [{ field: 'name', sort: 'asc' }],
+                },
+              }}
               columns={columns}
               rows={rows}
               pagination
