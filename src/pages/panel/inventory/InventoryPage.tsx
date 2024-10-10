@@ -8,6 +8,7 @@ import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryModelQuery, postWorkspaceInventoryDescendantSummaryQuery } from 'src/pages/panel/shared/queries'
 import { CloudToIcon } from 'src/shared/cloud-avatar'
 import { HelpSlider } from 'src/shared/right-slider'
+import { ResourceComplexKind } from 'src/shared/types/server-shared'
 import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
 import { DataGridPagination } from './DataGridPagination'
 import { DownloadCSVButton } from './DownloadCSVButton'
@@ -80,13 +81,15 @@ export default function InventoryPage() {
         .filter((item) => counts[item.fqn]?.resources)
         .map((item) => {
           let base: string | null = null
-          if ('bases' in item && item.bases) {
-            base = item.bases?.filter((i) => !i.includes('resource'))[0]
-            if (!base) {
-              base = item.bases?.filter((i) => i !== 'resource')[0]
-              if (!base) {
-                base = item.bases?.[0] ?? null
-              }
+          if ('bases' in item && item.bases?.length) {
+            const bases = item.bases
+              .map((base) => data.find((dataItem) => dataItem.fqn === base))
+              .filter((base) => base && 'metadata' in base && base.metadata?.source === 'base') as ResourceComplexKind[]
+            if (bases.length > 1) {
+              const noResourceBase = bases.filter((i) => i?.fqn !== 'resource')[0]
+              base = (noResourceBase && typeof noResourceBase.metadata?.name === 'string' && noResourceBase.metadata.name) || null
+            } else {
+              base = (bases[0] && typeof bases[0].metadata?.name === 'string' && bases[0].metadata.name) || null
             }
           }
           const group = 'metadata' in item ? getString(item.metadata?.group) : null
