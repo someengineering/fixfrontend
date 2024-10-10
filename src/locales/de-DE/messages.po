@@ -272,7 +272,7 @@ msgstr ""
 msgid "Account: {0}"
 msgstr "Konto: {0}"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:245
+#: src/pages/panel/inventory/InventoryPage.tsx:248
 msgid "accounts"
 msgstr ""
 
@@ -397,7 +397,7 @@ msgstr ""
 msgid "All checks have been disabled for this resource"
 msgstr "Für diese Ressource wurden alle Prüfungen deaktiviert"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:74
+#: src/pages/panel/inventory/InventoryPage.tsx:75
 msgid "All resource kinds"
 msgstr ""
 
@@ -793,7 +793,7 @@ msgstr ""
 msgid "Cloud Inventory"
 msgstr "Cloud Inventar"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:244
+#: src/pages/panel/inventory/InventoryPage.tsx:247
 msgid "clouds"
 msgstr ""
 
@@ -1583,7 +1583,7 @@ msgstr ""
 msgid "Invalid Value"
 msgstr "Ungültiger Wert"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:201
+#: src/pages/panel/inventory/InventoryPage.tsx:204
 #: src/shared/layouts/panel-layout/menuList.tsx:34
 msgid "Inventory"
 msgstr "Inventar"
@@ -1612,7 +1612,7 @@ msgstr ""
 msgid "Kind"
 msgstr "Art"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:247
+#: src/pages/panel/inventory/InventoryPage.tsx:250
 msgid "kinds"
 msgstr ""
 
@@ -2238,7 +2238,7 @@ msgstr "Regenerieren"
 msgid "Region"
 msgstr "Region"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:246
+#: src/pages/panel/inventory/InventoryPage.tsx:249
 msgid "regions"
 msgstr ""
 
