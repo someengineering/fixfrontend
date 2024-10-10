@@ -58,9 +58,9 @@ export const GridFilterItem = ({ name, items, onChange, values: orgValues }: Gri
     setValues(orgValues)
   }, [orgValues])
   const handleClose = () => {
+    setOpen(null)
     setValues(orgValues)
     setSearch('')
-    setOpen(null)
   }
   const lowerCaseSearch = search.toLowerCase()
   return (
@@ -138,8 +138,8 @@ export const GridFilterItem = ({ name, items, onChange, values: orgValues }: Gri
             <Link
               sx={{ cursor: 'pointer' }}
               onClick={() => {
-                onChange([])
                 setSearch('')
+                onChange([])
               }}
             >
               <Typography variant="buttonSmall" color="textSecondary" fontWeight={500}>
@@ -180,9 +180,9 @@ export const GridFilterItem = ({ name, items, onChange, values: orgValues }: Gri
             variant="contained"
             fullWidth
             onClick={() => {
-              onChange(values)
-              setSearch('')
               setOpen(null)
+              setSearch('')
+              onChange(values)
             }}
           >
             <Trans>Apply filters</Trans>

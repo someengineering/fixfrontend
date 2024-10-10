@@ -2,11 +2,12 @@ import { t, Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Box, ButtonBase, Divider, Stack, Typography } from '@mui/material'
 import { useSuspenseQueries } from '@tanstack/react-query'
-import { ReactNode, useMemo, useState } from 'react'
+import { Dispatch, ReactNode, SetStateAction, useCallback, useMemo, useState, useTransition } from 'react'
 import { getNameAndIconFromMetadataGroup, StacksIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryModelQuery, postWorkspaceInventoryDescendantSummaryQuery } from 'src/pages/panel/shared/queries'
 import { CloudToIcon } from 'src/shared/cloud-avatar'
+import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { HelpSlider } from 'src/shared/right-slider'
 import { ResourceComplexKind } from 'src/shared/types/server-shared'
 import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
@@ -21,13 +22,28 @@ const getString = (str?: null | string | string[]) => {
   return typeof str === 'string' && str ? str : null
 }
 
+function useTransitionState<StateType>(
+  initialState: StateType | (() => StateType),
+): [StateType, Dispatch<SetStateAction<StateType>>, boolean] {
+  const [state, setState] = useState(initialState)
+  const [isPending, startTransition] = useTransition()
+  const handleSetState = useCallback<Dispatch<SetStateAction<StateType>>>((arg) => startTransition(() => setState(arg)), [])
+  return [state, handleSetState, isPending]
+}
+
 export default function InventoryPage() {
   const { selectedWorkspace } = useUserProfile()
-  const [cloudFilter, setCloudFilter] = useState<string[]>([])
-  const [accountFilter, setAccountFilter] = useState<string[]>([])
-  const [regionFilter, setRegionFilter] = useState<string[]>([])
-  const [kindFilter, setKindFilter] = useState<string[]>([])
-  const [groupFilter, setGroupFilter] = useState('')
+  const [cloudFilter, setCloudFilter, isCloudFilterChangePending] = useTransitionState<string[]>([])
+  const [accountFilter, setAccountFilter, isAccountFilterChangePending] = useTransitionState<string[]>([])
+  const [regionFilter, setRegionFilter, isRegionFilterChangePending] = useTransitionState<string[]>([])
+  const [kindFilter, setKindFilter, isKindFilterChangePending] = useTransitionState<string[]>([])
+  const [groupFilter, setGroupFilter, isGroupFilterChangePending] = useTransitionState('')
+  const pendingTransition =
+    isCloudFilterChangePending ||
+    isAccountFilterChangePending ||
+    isRegionFilterChangePending ||
+    isKindFilterChangePending ||
+    isGroupFilterChangePending
   const {
     i18n: { locale },
   } = useLingui()
@@ -265,19 +281,23 @@ export default function InventoryPage() {
           </Stack>
         </Stack>
         <Box height="100%" flex={1}>
-          <StyledDataGrid
-            disableRowSelectionOnClick
-            columns={columns}
-            rows={rows}
-            pagination
-            autoPageSize
-            rowHeight={62}
-            disableAggregation
-            disableRowGrouping
-            disableColumnFilter
-            columnHeaderHeight={48}
-            slots={{ pagination: DataGridPagination }}
-          />
+          {pendingTransition ? (
+            <LoadingSuspenseFallback />
+          ) : (
+            <StyledDataGrid
+              disableRowSelectionOnClick
+              columns={columns}
+              rows={rows}
+              pagination
+              autoPageSize
+              rowHeight={62}
+              disableAggregation
+              disableRowGrouping
+              disableColumnFilter
+              columnHeaderHeight={48}
+              slots={{ pagination: DataGridPagination }}
+            />
+          )}
         </Box>
       </Stack>
     </Stack>

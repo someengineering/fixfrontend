@@ -272,7 +272,7 @@ msgstr "Account usage"
 msgid "Account: {0}"
 msgstr "Account: {0}"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:248
+#: src/pages/panel/inventory/InventoryPage.tsx:264
 msgid "accounts"
 msgstr "accounts"
 
@@ -397,7 +397,7 @@ msgstr "All changes over all resources."
 msgid "All checks have been disabled for this resource"
 msgstr "All checks have been disabled for this resource"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:75
+#: src/pages/panel/inventory/InventoryPage.tsx:91
 msgid "All resource kinds"
 msgstr "All resource kinds"
 
@@ -793,7 +793,7 @@ msgstr "Cloud Accounts"
 msgid "Cloud Inventory"
 msgstr "Cloud Inventory"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:247
+#: src/pages/panel/inventory/InventoryPage.tsx:263
 msgid "clouds"
 msgstr "clouds"
 
@@ -1583,7 +1583,7 @@ msgstr "Invalid file, Please follow the step-by-step instructions {0}."
 msgid "Invalid Value"
 msgstr "Invalid Value"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:204
+#: src/pages/panel/inventory/InventoryPage.tsx:220
 #: src/shared/layouts/panel-layout/menuList.tsx:34
 msgid "Inventory"
 msgstr "Inventory"
@@ -1612,7 +1612,7 @@ msgstr "kind"
 msgid "Kind"
 msgstr "Kind"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:250
+#: src/pages/panel/inventory/InventoryPage.tsx:266
 msgid "kinds"
 msgstr "kinds"
 
@@ -2238,7 +2238,7 @@ msgstr "Regenerate"
 msgid "Region"
 msgstr "Region"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:249
+#: src/pages/panel/inventory/InventoryPage.tsx:265
 msgid "regions"
 msgstr "regions"
 
