@@ -1,26 +1,26 @@
-import { t, Trans } from '@lingui/macro'
+import { plural, t } from '@lingui/macro'
 import { Avatar, Stack, Tooltip, Typography } from '@mui/material'
 import { GridColDef } from '@mui/x-data-grid-premium'
 import { getNameAndIconFromMetadataGroup } from 'src/assets/icons'
 import { CloudToIcon } from 'src/shared/cloud-avatar'
+import { ResourceComplexKind } from 'src/shared/types/server-shared'
 import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
 import { stringAvatar } from 'src/shared/utils/stringAvatar'
 
 export interface RowType {
-  categories: string | null
-  description: string | null
-  group: string | null
-  icon: string | null
-  name: string | null
-  base: string | null
   id: string
   cloud: string
   resources: number
   accounts: number
   regions: number
+  group: string | null
+  icon: string | null
+  name: string | null
+  base: string | null
+  resource: ResourceComplexKind
 }
 
-export const getColumns = (locale?: string) =>
+export const getColumns = (_locale?: string) =>
   [
     {
       field: 'name',
@@ -58,7 +58,7 @@ export const getColumns = (locale?: string) =>
     {
       field: 'group',
       headerName: t`Group`,
-      flex: 1,
+      flex: 0.5,
       type: 'string',
       sortable: true,
       sortComparator: (v1: unknown, v2: unknown) => (typeof v1 === 'string' && typeof v2 === 'string' ? v1.localeCompare(v2) : 0),
@@ -77,14 +77,17 @@ export const getColumns = (locale?: string) =>
     {
       field: 'resources',
       headerName: t`Resource count`,
-      flex: 1,
+      flex: 0.25,
       type: 'string',
       sortable: true,
       sortComparator: (v1: unknown, v2: unknown) => (typeof v1 === 'number' && typeof v2 === 'number' ? v1 - v2 : 0),
       renderCell: ({ row: { resources } }) => (
         <Stack direction="row" height="100%" alignItems="center">
           <Typography whiteSpace="nowrap" variant="subtitle1">
-            <Trans>{resources.toLocaleString(locale)} resources</Trans>
+            {plural(resources, {
+              one: '# resource',
+              other: '# resources',
+            })}
           </Typography>
         </Stack>
       ),
@@ -92,14 +95,17 @@ export const getColumns = (locale?: string) =>
     {
       field: 'accounts',
       headerName: t`Account usage`,
-      flex: 1,
+      flex: 0.25,
       type: 'string',
       sortable: true,
       sortComparator: (v1: unknown, v2: unknown) => (typeof v1 === 'number' && typeof v2 === 'number' ? v1 - v2 : 0),
       renderCell: ({ row: { accounts } }) => (
         <Stack direction="row" height="100%" alignItems="center">
           <Typography whiteSpace="nowrap" variant="subtitle1">
-            <Trans>{accounts.toLocaleString(locale)} accounts</Trans>
+            {plural(accounts, {
+              one: '# account',
+              other: '# accounts',
+            })}
           </Typography>
         </Stack>
       ),
@@ -107,14 +113,17 @@ export const getColumns = (locale?: string) =>
     {
       field: 'regions',
       headerName: t`Regions`,
-      flex: 1,
+      flex: 0.25,
       type: 'string',
       sortable: true,
       sortComparator: (v1: unknown, v2: unknown) => (typeof v1 === 'number' && typeof v2 === 'number' ? v1 - v2 : 0),
       renderCell: ({ row: { regions } }) => (
         <Stack direction="row" height="100%" alignItems="center">
           <Typography whiteSpace="nowrap" variant="subtitle1">
-            <Trans>{regions.toLocaleString(locale)} regions</Trans>
+            {plural(regions, {
+              one: '# region',
+              other: '# regions',
+            })}
           </Typography>
         </Stack>
       ),

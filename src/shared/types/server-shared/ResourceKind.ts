@@ -31,6 +31,7 @@ export interface ResourceComplexKind extends ResourceKindGeneric<'object'> {
       description?: string
       categories?: string[]
       source?: string
+      docs_url?: string
     },
     Record<string, string | string[]> | null
   >

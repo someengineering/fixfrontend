@@ -1,16 +1,7 @@
-import { alpha, keyframes, styled } from '@mui/material'
+import { alpha, styled } from '@mui/material'
 import { LogoWhiteNoBackground } from 'src/assets/icons'
 import { panelUI } from 'src/shared/constants'
 import { shouldForwardProp } from 'src/shared/utils/shouldForwardProp'
-
-const rotateAnimation = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`
 
 const Container = styled('div')({
   display: 'flex',
@@ -47,7 +38,16 @@ const SpinnerCircleMask = styled('div', { shouldForwardProp })<{ width: number }
   transformOrigin: `${width / 2}px ${width / 2}px`,
   maskImage: 'linear-gradient(top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))',
   WebkitMaskImage: '-webkit-linear-gradient(top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))',
-  animation: `${rotateAnimation} 1.2s infinite linear`,
+  animation: 'spinner-rotate-animation 1.2s infinite linear',
+
+  '@keyframes spinner-rotate-animation': {
+    from: {
+      transform: 'rotate(0deg)',
+    },
+    to: {
+      transform: 'rotate(360deg)',
+    },
+  },
 }))
 
 const SpinnerCircleMaskLine = styled('div', { shouldForwardProp })<{ width: number }>(({ width }) => ({

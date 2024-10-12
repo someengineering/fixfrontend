@@ -1,26 +1,26 @@
 import { t, Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Box, ButtonBase, Divider, Stack, Typography } from '@mui/material'
+import { GridRow, GridRowProps } from '@mui/x-data-grid-premium'
 import { useSuspenseQueries } from '@tanstack/react-query'
 import { Dispatch, ReactNode, SetStateAction, useCallback, useMemo, useState, useTransition } from 'react'
+import { Outlet } from 'react-router-dom'
 import { getNameAndIconFromMetadataGroup, StacksIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryModelQuery, postWorkspaceInventoryDescendantSummaryQuery } from 'src/pages/panel/shared/queries'
+import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { CloudToIcon } from 'src/shared/cloud-avatar'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { HelpSlider } from 'src/shared/right-slider'
 import { ResourceComplexKind } from 'src/shared/types/server-shared'
 import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
+import { getString } from 'src/shared/utils/getString'
 import { DataGridPagination } from './DataGridPagination'
 import { DownloadCSVButton } from './DownloadCSVButton'
 import { getColumns, RowType } from './getColumns'
 import { GridFilterItem } from './GridFilterItem'
 import { postWorkspaceInventorySearchForInventoryQuery } from './postWorkspaceInventorySearchForInventory.query'
 import { StyledDataGrid } from './StyledDataGrid'
-
-const getString = (str?: null | string | string[]) => {
-  return typeof str === 'string' && str ? str : null
-}
 
 function useTransitionState<StateType>(
   initialState: StateType | (() => StateType),
@@ -33,6 +33,7 @@ function useTransitionState<StateType>(
 
 export default function InventoryPage() {
   const { selectedWorkspace } = useUserProfile()
+  const navigate = useAbsoluteNavigate()
   const [cloudFilter, setCloudFilter, isCloudFilterChangePending] = useTransitionState<string[]>([])
   const [accountFilter, setAccountFilter, isAccountFilterChangePending] = useTransitionState<string[]>([])
   const [regionFilter, setRegionFilter, isRegionFilterChangePending] = useTransitionState<string[]>([])
@@ -112,7 +113,7 @@ export default function InventoryPage() {
               base = (bases[0] && typeof bases[0].metadata?.name === 'string' && (bases[0].metadata.name ?? bases[0].fqn)) || null
             }
           }
-          const group = 'metadata' in item ? getString(item.metadata?.group) : null
+          const group = 'metadata' in item ? getString(item.metadata?.group, null) : null
           const groupItem = group ? groups.find(({ id }) => id === group) : undefined
           if (groupItem) {
             groupItem.resources += counts[item.fqn]?.resources ?? 0
@@ -121,7 +122,8 @@ export default function InventoryPage() {
           }
 
           groups[0].resources += counts[item.fqn]?.resources ?? 0
-          const cloud = ('metadata' in item && getString(item.metadata?.source)) || item.fqn.split('_')[0].replace('microsoft', 'azure')
+          const cloud =
+            ('metadata' in item && getString(item.metadata?.source, null)) || item.fqn.split('_')[0].replace('microsoft', 'azure')
           const cloudItem = clouds.find(({ value }) => value === cloud)
           if (!cloudItem) {
             clouds.push({
@@ -172,27 +174,17 @@ export default function InventoryPage() {
             regions: counts[item.fqn]?.regions ?? 0,
             ...('metadata' in item
               ? {
-                  categories: getString(
-                    Array.isArray(item.metadata?.categories)
-                      ? item.metadata?.categories
-                          .map(getString)
-                          .filter((i) => i)
-                          .join(',')
-                      : null,
-                  ),
-                  description: getString(item.metadata?.description),
                   group,
-                  icon: getString(item.metadata?.icon),
-                  name: getString(item.metadata?.name),
+                  icon: getString(item.metadata?.icon, null),
+                  name: getString(item.metadata?.name, null),
                   base,
+                  metadata: item.metadata,
                 }
               : {
-                  base: null,
-                  description: null,
                   group: null,
                   icon: null,
                   name: null,
-                  service: null,
+                  base: null,
                 }),
           } as RowType
         })
@@ -215,23 +207,23 @@ export default function InventoryPage() {
   const rows = useMemo(() => (groupFilter ? data.filter(({ group }) => groupFilter === group) : data), [data, groupFilter])
   const columns = useMemo(() => getColumns(locale), [locale])
   return (
-    <Stack
-      direction="row"
-      m={-3}
-      height={({ spacing }) => `calc(100% + ${spacing(6)})`}
-      width={({ spacing }) => `calc(100% + ${spacing(6)})`}
-      flex={1}
-      overflow="hidden"
-    >
-      <Box flex={0} height="100%">
-        <Box>
+    <>
+      <Stack
+        direction="row"
+        m={-3}
+        height={({ spacing }) => `calc(100% + ${spacing(6)})`}
+        width={({ spacing }) => `calc(100% + ${spacing(6)})`}
+        flex={1}
+        overflow="hidden"
+      >
+        <Stack flex={0} height="100%">
           <Box py={3} px={3.75}>
             <HelpSlider data={[]}>
               <Trans>Inventory</Trans>
             </HelpSlider>
           </Box>
           <Divider />
-          <Stack p={2.5} spacing={0.5}>
+          <Stack flex={1} p={2.5} spacing={0.5} overflow="auto">
             {groups.map(({ Icon, id, name, resources }) => (
               <Stack
                 direction="row"
@@ -265,58 +257,80 @@ export default function InventoryPage() {
               </Stack>
             ))}
           </Stack>
-        </Box>
-      </Box>
-      <Divider orientation="vertical" />
-      <Stack height="100%" flex={1} py={3.75} px={3.75} spacing={3}>
-        <Stack direction="row" gap={2} flexWrap="wrap" flex={0}>
-          <GridFilterItem items={clouds} name={t`clouds`} onChange={setCloudFilter} values={cloudFilter} />
-          <GridFilterItem items={accounts} name={t`accounts`} onChange={setAccountFilter} values={accountFilter} />
-          <GridFilterItem items={regions} name={t`regions`} onChange={setRegionFilter} values={regionFilter} />
-          <GridFilterItem items={kinds} name={t`kinds`} onChange={setKindFilter} values={kindFilter} />
-          <Stack flexGrow={1} alignItems="end">
-            <DownloadCSVButton
-              filename={`modal-data-${selectedWorkspace?.id}-${new Date().toISOString()}.csv`}
-              data={[
-                [t`Cloud`, t`Base kind`, ...columns.map((item) => item.headerName)],
-                ...rows.map(({ cloud, base, name, id, group, resources, accounts, regions }) => [
-                  getAccountCloudName(cloud),
-                  base,
-                  `${name ?? id}`,
-                  group,
-                  resources,
-                  accounts,
-                  regions,
-                ]),
-              ]}
-            />
-          </Stack>
         </Stack>
-        <Box height="100%" flex={1}>
-          {pendingTransition ? (
-            <LoadingSuspenseFallback />
-          ) : (
-            <StyledDataGrid
-              disableRowSelectionOnClick
-              initialState={{
-                sorting: {
-                  sortModel: [{ field: 'name', sort: 'asc' }],
-                },
-              }}
-              columns={columns}
-              rows={rows}
-              pagination
-              autoPageSize
-              rowHeight={62}
-              disableAggregation
-              disableRowGrouping
-              disableColumnFilter
-              columnHeaderHeight={48}
-              slots={{ pagination: DataGridPagination }}
-            />
-          )}
-        </Box>
+        <Divider orientation="vertical" />
+        <Stack height="100%" flex={1} py={3.75} px={3.75} spacing={3}>
+          <Stack direction="row" gap={2} flexWrap="wrap" flex={0}>
+            <GridFilterItem items={clouds} name={t`clouds`} onChange={setCloudFilter} values={cloudFilter} />
+            <GridFilterItem items={accounts} name={t`accounts`} onChange={setAccountFilter} values={accountFilter} />
+            <GridFilterItem items={regions} name={t`regions`} onChange={setRegionFilter} values={regionFilter} />
+            <GridFilterItem items={kinds} name={t`kinds`} onChange={setKindFilter} values={kindFilter} />
+            <Stack flexGrow={1} alignItems="end">
+              <DownloadCSVButton
+                filename={`modal-data-${selectedWorkspace?.id}-${new Date().toISOString()}.csv`}
+                data={[
+                  [t`Cloud`, t`Base kind`, ...columns.map((item) => item.headerName)],
+                  ...rows.map(({ cloud, base, name, id, group, resources, accounts, regions }) => [
+                    getAccountCloudName(cloud),
+                    base,
+                    `${name ?? id}`,
+                    group,
+                    resources,
+                    accounts,
+                    regions,
+                  ]),
+                ]}
+              />
+            </Stack>
+          </Stack>
+          <Box height="100%" flex={1}>
+            {pendingTransition ? (
+              <LoadingSuspenseFallback />
+            ) : (
+              <StyledDataGrid
+                disableRowSelectionOnClick
+                initialState={{
+                  sorting: {
+                    sortModel: [{ field: 'name', sort: 'asc' }],
+                  },
+                }}
+                columns={columns}
+                rows={rows}
+                pagination
+                autoPageSize
+                rowHeight={62}
+                disableAggregation
+                disableRowGrouping
+                disableColumnFilter
+                columnHeaderHeight={48}
+                slots={{
+                  pagination: DataGridPagination,
+                  row: (rowProps: GridRowProps) => {
+                    const { id, resource, group, cloud, resources, accounts, regions, base } = (rowProps.row as RowType) ?? {}
+                    if (!id || id === 'null' || id === 'undefined') {
+                      return <GridRow {...rowProps} />
+                    }
+                    const href = `./detail/${id}`
+                    return (
+                      <ButtonBase
+                        href={href}
+                        onClick={(e) => {
+                          e.preventDefault()
+                          e.stopPropagation()
+                          navigate({ pathname: href }, { state: { resource, group, cloud, resources, accounts, regions, base } })
+                        }}
+                      >
+                        <GridRow {...rowProps} />
+                      </ButtonBase>
+                    )
+                  },
+                }}
+              />
+            )}
+          </Box>
+        </Stack>
       </Stack>
-    </Stack>
+      <Outlet />
+    </>
   )
 }

@@ -65,10 +65,6 @@ msgstr "{0, plural, one {One error reported} two {Two errors reported} other {# 
 msgid "{0}"
 msgstr "{0}"
 
-#: src/pages/panel/inventory/getColumns.tsx:102
-msgid "{0} accounts"
-msgstr "{0} accounts"
-
 #: src/pages/panel/inventory-search/utils/InventoryTableDateRenderCell.tsx:17
 #: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:31
 msgid "{0} ago"
@@ -101,17 +97,9 @@ msgstr "{0} Milliseconds"
 msgid "{0} per"
 msgstr "{0} per"
 
-#: src/pages/panel/inventory/getColumns.tsx:117
-msgid "{0} regions"
-msgstr "{0} regions"
-
 #: src/pages/panel/dashboard/WorldMap.tsx:347
 msgid "{0} Regions"
 msgstr "{0} Regions"
-
-#: src/pages/panel/inventory/getColumns.tsx:87
-msgid "{0} resources"
-msgstr "{0} resources"
 
 #: src/pages/panel/dashboard/DashboardPage.tsx:249
 msgid "{0} resources in {1} regions, {2} countries"
@@ -121,6 +109,10 @@ msgstr "{0} resources in {1} regions, {2} countries"
 #: src/pages/panel/shared/utils/createPieDataFromNonCompliance.ts:26
 msgid "{0}: We've identified {1} non-compliant resources out of {2}."
 msgstr "{0}: We've identified {1} non-compliant resources out of {2}."
+
+#: src/pages/panel/inventory/getColumns.tsx:105
+msgid "{accounts, plural, one {# account} other {# accounts}}"
+msgstr "{accounts, plural, one {# account} other {# accounts}}"
 
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:140
 msgid "{added} configuration lines added and {removed} lines deleted."
@@ -150,6 +142,14 @@ msgstr "{label} is required"
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:357
 msgid "{lastScanDurStr} ago"
 msgstr "{lastScanDurStr} ago"
+
+#: src/pages/panel/inventory/getColumns.tsx:123
+msgid "{regions, plural, one {# region} other {# regions}}"
+msgstr "{regions, plural, one {# region} other {# regions}}"
+
+#: src/pages/panel/inventory/getColumns.tsx:87
+msgid "{resources, plural, one {# resource} other {# resources}}"
+msgstr "{resources, plural, one {# resource} other {# resources}}"
 
 #: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:107
 msgid "{scanIntervalStr} scans"
@@ -264,7 +264,7 @@ msgstr "Access to your account is broken"
 msgid "Account"
 msgstr "Account"
 
-#: src/pages/panel/inventory/getColumns.tsx:94
+#: src/pages/panel/inventory/getColumns.tsx:97
 msgid "Account usage"
 msgstr "Account usage"
 
@@ -272,10 +272,11 @@ msgstr "Account usage"
 msgid "Account: {0}"
 msgstr "Account: {0}"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:274
+#: src/pages/panel/inventory/InventoryPage.tsx:265
 msgid "accounts"
 msgstr "accounts"
 
+#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:276
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormAccount.tsx:57
 #: src/pages/panel/inventory-search/inventory-form/utils/getAutoCompleteFromKey.tsx:125
 #: src/pages/panel/inventory-search/InventoryTable.error.tsx:73
@@ -397,7 +398,7 @@ msgstr "All changes over all resources."
 msgid "All checks have been disabled for this resource"
 msgstr "All checks have been disabled for this resource"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:91
+#: src/pages/panel/inventory/InventoryPage.tsx:92
 msgid "All resource kinds"
 msgstr "All resource kinds"
 
@@ -543,7 +544,7 @@ msgstr "Azure Service Management"
 msgid "Back"
 msgstr "Back"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:281
+#: src/pages/panel/inventory/InventoryPage.tsx:272
 msgid "Base kind"
 msgstr "Base kind"
 
@@ -777,7 +778,7 @@ msgstr "Close"
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:165
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormCloudValues.tsx:62
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:97
-#: src/pages/panel/inventory/InventoryPage.tsx:281
+#: src/pages/panel/inventory/InventoryPage.tsx:272
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:253
 #: src/pages/panel/security/AccountCard.tsx:38
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:558
@@ -798,7 +799,7 @@ msgstr "Cloud Accounts"
 msgid "Cloud Inventory"
 msgstr "Cloud Inventory"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:273
+#: src/pages/panel/inventory/InventoryPage.tsx:264
 msgid "clouds"
 msgstr "clouds"
 
@@ -1106,6 +1107,7 @@ msgstr "Deploy Stack"
 msgid "Deploy to a single account"
 msgstr "Deploy to a single account"
 
+#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:256
 #: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:24
 #: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:118
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:24
@@ -1327,6 +1329,10 @@ msgstr "Finds load balancers that are not associated with any running instances.
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:80
 msgid "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
 msgstr "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
+
+#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:303
+msgid "Fix Data Model:"
+msgstr "Fix Data Model:"
 
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:80
 msgid "fixed"
@@ -1559,6 +1565,10 @@ msgstr "Info: Changes to your product tier will become active immediately and be
 msgid "Infrastructure Overview"
 msgstr "Infrastructure Overview"
 
+#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:308
+msgid "Inheritance:"
+msgstr "Inheritance:"
+
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:85
 msgid "Inspect Detection Search in Inventory"
 msgstr "Inspect Detection Search in Inventory"
@@ -1588,7 +1598,7 @@ msgstr "Invalid file, Please follow the step-by-step instructions {0}."
 msgid "Invalid Value"
 msgstr "Invalid Value"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:230
+#: src/pages/panel/inventory/InventoryPage.tsx:222
 #: src/shared/layouts/panel-layout/menuList.tsx:34
 msgid "Inventory"
 msgstr "Inventory"
@@ -1617,7 +1627,7 @@ msgstr "kind"
 msgid "Kind"
 msgstr "Kind"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:276
+#: src/pages/panel/inventory/InventoryPage.tsx:267
 msgid "kinds"
 msgstr "kinds"
 
@@ -2167,6 +2177,10 @@ msgstr "Privileged"
 msgid "Privileged account"
 msgstr "Privileged account"
 
+#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:298
+msgid "Product Documentation"
+msgstr "Product Documentation"
+
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:48
 msgid "Product support via email, live chat, and video call"
 msgstr "Product support via email, live chat, and video call"
@@ -2243,14 +2257,15 @@ msgstr "Regenerate"
 msgid "Region"
 msgstr "Region"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:275
+#: src/pages/panel/inventory/InventoryPage.tsx:266
 msgid "regions"
 msgstr "regions"
 
 #: src/pages/panel/dashboard/DashboardCloudCards.tsx:43
+#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:283
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegion.tsx:20
 #: src/pages/panel/inventory-search/inventory-form/utils/getAutoCompleteFromKey.tsx:130
-#: src/pages/panel/inventory/getColumns.tsx:109
+#: src/pages/panel/inventory/getColumns.tsx:115
 msgid "Regions"
 msgstr "Regions"
 
@@ -2329,6 +2344,7 @@ msgstr "Resource types"
 
 #: src/pages/panel/dashboard/DashboardCloudCards.tsx:47
 #: src/pages/panel/dashboard/DashboardPage.tsx:241
+#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:269
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:68
 msgid "Resources"
 msgstr "Resources"
@@ -2880,6 +2896,10 @@ msgstr "Version"
 #: src/pages/panel/dashboard/WorldMap.tsx:336
 msgid "View Details"
 msgstr "View Details"
+
+#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:291
+msgid "View this resource kind in Explorer"
+msgstr "View this resource kind in Explorer"
 
 #: src/pages/panel/inventory-old/InventoryInfoResourcesTable.tsx:73
 msgid "Virtual Machines"

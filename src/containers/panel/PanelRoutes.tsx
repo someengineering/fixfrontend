@@ -20,6 +20,14 @@ const InventoryPage = lazy(
     ),
 )
 
+const InventoryDetailView = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "inventory-detail" */
+      'src/pages/panel/inventory-detail/InventoryDetailView'
+    ),
+)
+
 const InventorySearchPage = lazy(
   () =>
     import(
@@ -137,7 +145,9 @@ export function PanelRoutes() {
           <Route element={<BenchmarkCheckGuard />}>
             <Route path="dashboard" element={<DashboardPage />} />
             <Route path="inventory">
-              <Route index element={<InventoryPage key={0} />} />
+              <Route path="" element={<InventoryPage key={0} />}>
+                <Route path="detail/:resourceId?" element={<InventoryDetailView key={1} />} />
+              </Route>
               <Route path="search" element={<InventorySearchPage key={1} />}>
                 {withResourceDetailRoute}
               </Route>

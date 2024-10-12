@@ -56,5 +56,23 @@ export const panelUI = {
       bgPurple: '#F1E8FC',
       bgGray: '#F4F4F4',
     },
+    clouds: {
+      fix: {
+        base: '#7640EB',
+        light: '#F4F0Fd',
+      },
+      aws: {
+        base: '#F29315',
+        light: '#FEF3E3',
+      },
+      azure: {
+        base: '#2B9DD6',
+        light: '#EAF8FF',
+      },
+      gcp: {
+        base: '#00B400',
+        light: '#E7F9D0',
+      },
+    },
   },
 } as const
