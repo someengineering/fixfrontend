@@ -101,7 +101,7 @@ msgstr ""
 msgid "{0} Regions"
 msgstr ""
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:249
+#: src/pages/panel/dashboard/DashboardPage.tsx:163
 msgid "{0} resources in {1} regions, {2} countries"
 msgstr ""
 
@@ -185,12 +185,40 @@ msgstr ""
 msgid "<0>Open Your Authenticator App:</0> Head over to your authenticator app and choose to add a new account manually.<1>Enter Account Details:</1> You'll need to type in your account's email address or username, and the key provided below.<2>Your Key:</2> <3/><4>Verification Type:</4> Make sure to select \"Time-based\" as the verification type.<5>Enter the Code:</5> Once your account is added manually, the app will show a 6-digit code. Pop that code into the box below and hit \"Activate\"."
 msgstr "<0>Öffnen Sie Ihre Authenticator-App:</0> Gehe zu deiner Authenticator-App und wähle, ein neues Konto manuell hinzuzufügen.<1>Gib Kontodetails ein:</1> Du musst deine E-Mail-Adresse oder Benutzernamen des Kontos eingeben und den untenstehenden Schlüssel verwenden.<2>Dein Schlüssel:</2> <3/><4>Verifizierungstyp:</4> Stelle sicher, dass du \"Zeitbasiert\" als Verifizierungstyp auswählst.<5>Gib den Code ein:</5> Sobald dein Konto manuell hinzugefügt ist, zeigt die App einen 6-stelligen Code an. Gib diesen Code in das untenstehende Feld ein und drücke auf \"Aktivieren\"."
 
+#: src/pages/panel/inventory/getSlides.tsx:59
+msgid "<0>Resource Categories are logical groupings of cloud resources by their principal functionality.</0><1>Categories make it easy to filter the inventory to get an overview of all resources within a category, irrespective of their cloud provider. For example, an Amazon EC2 instance and a Google Cloud Function are both resource kinds within the \"Compute\" category. A resource can only be part of one category, and one category only.</1><2>Categories are a quicker way to identify the resource kinds in use, and investigate further to detect misconfigurations and compliance issues. You can easily see what cloud and account a specific resource is running in.</2>"
+msgstr ""
+
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:136
 msgid "<0>Step 1: Scan the QR Code</0><1>First up, see this QR code on your screen? Grab your phone and open your favorite authenticator app (like Google Authenticator).</1><2>Step 2: Add a New Account</2><3>In the app, tap on \"Add\" or \"+\" to set up a new account. Select \"Scan a QR Code\" and point your phone's camera at the QR code displayed here. This will link your account to the app.</3><4><5/></4><6>Step 3: Enter the Code</6><7>Once linked, the app will display a 6-digit code. It changes every 30 seconds, so it's super fresh! Enter that code in the box below and hit \"Activate\". And voilà, you're all set!</7>"
 msgstr "<0>Schritt 1: Scannen Sie den QR-Code</0><1>Zuerst, sehen Sie diesen QR-Code auf Ihrem Bildschirm? Nehmen Sie Ihr Handy und öffnen Sie Ihre bevorzugte Authenticator-App (wie Google Authenticator).</1><2>Schritt 2: Ein neues Konto hinzufügen</2><3>In der App, tippen Sie auf \"Hinzufügen\" oder \"+\", um ein neues Konto einzurichten. Wählen Sie \"QR-Code scannen\" und richten Sie die Kamera Ihres Handys auf den hier angezeigten QR-Code. Dies verknüpft Ihr Konto mit der App.</3><4><5/></4><6>Schritt 3: Geben Sie den Code ein</6><7>Sobald verknüpft, zeigt die App einen 6-stelligen Code an. Er ändert sich alle 30 Sekunden, also ist er super aktuell! Geben Sie diesen Code in das Feld unten ein und klicken Sie auf \"Aktivieren\". Und voilà, Sie sind fertig!</7>"
 
 #: src/shared/layouts/panel-layout/MoveToFreeAcknowledge.tsx:55
 msgid "<0>Thank you</0> for exploring the capabilities of Fix Security during your trial period!<1/>You've seen firsthand how our platform transforms cloud security with continuous, comprehensive monitoring and protection.<2/><3/>We have stopped synchronizing your cloud accounts and moved your workspace into the Free Tier.<4/>One account will be synchronized on a monthly base, while no additional user is allowed to access this workspace."
+msgstr ""
+
+#: src/pages/panel/dashboard/getSlides.tsx:118
+msgid "<0>The assets by region is a world map that displays active regions and resource counts and visualizes the geographical distribution of your cloud resources.</0><1><2>Use case include:</2><3><4>Ensure compliance with data residency requirements</4><5>Optimize resource placement for latency and redundancy</5><6>Identify unused or underutilized regions</6></3></1><7>For more detailed information on resources in each region, see the <8>Inventory</8> and <9>Explorer</9> tabs.</7>"
+msgstr ""
+
+#: src/pages/panel/dashboard/getSlides.tsx:11
+msgid "<0>The Infrastructure Overview dashboard provides a high-level snapshot of your multi-cloud environment, helping you understand your resource distribution and recent changes. You get a bird's eye view of the state of your infrastructure and can quickly assess the scale and complexity of your cloud(s).</0><1><2>The dashboard has three components:</2><3><4>Asset summary by cloud</4><5>Resources over time</5><6>Assets by region</6></3></1><7>With the Infrastructure Overview, you can maintain a comprehensive view of your multi-cloud environment, enabling better decision-making for security, compliance, and optimization efforts.</7><8>Click <9>\"next\"</9> to learn more about each component.</8>"
+msgstr ""
+
+#: src/pages/panel/inventory/getSlides.tsx:16
+msgid "<0>The Inventory in Fix provides visibility into all cloud services in use across your infrastructure. Fix scans cloud APIs to get a complete snapshot of your cloud infrastructure, which helps achieve two goals:</0><1><2><3>Understand cloud usage</3><4>Prevent shadow IT</4></2></1><5>Shadow IT is the unauthorized use of cloud services by your developers, bypassing official IT channels and potentially creating security, compliance, and management challenges. Full visibility into your inventory makes for better governance over what cloud services can and cannot be used, along with enforcement of related security policies.</5><6>Fix provides coverage of over 300 cloud services across AWS, Microsoft Azure and Google Cloud. For a full list of services, please visit our documentation.</6><7><8>AWS: <9>{awsDocUrl}</9></8><10>Google Cloud: <11>{gcpDocUrl}</11></10><12>Microsoft Azure: <13>{azureDocUrl}</13></12></7>"
+msgstr ""
+
+#: src/pages/panel/inventory/getSlides.tsx:80
+msgid "<0>The resource list is a complete snapshot of the resources in your cloud infrastructure, aggregated by resource kind.</0><1>A resource \"kind\" is an individual resource type, for example an Amazon S3 Bucket, or an Azure Virtual Machine. For more context on each resource kind, click on the kind in the list and a window with a resource detail view will appear.</1><2>In addition to individual kinds, Fix also uses abstractions for common cloud services such as storage buckets, databases, or IP addresses. These \"multi-cloud kinds\" are an easy way to search for a specific type of services across clouds.</2><3>For example, searching for \"bucket\" in the Explorer tab will surface storage buckets for every cloud: Amazon S3, Google Cloud Storage and Azure Blob Storage.</3>"
+msgstr ""
+
+#: src/pages/panel/dashboard/getSlides.tsx:50
+msgid "<0>The Resources chart is a chronological view of new, updated, and deleted resources, with a time-picker to zoom into certain periods. The data in the timeline chart helps you track recent changes to your infrastructure.</0><1><2>Use case include:</2><3><4>Detect unexpected resource growth</4><5>Identify potential cost optimization opportunities</5><6>Ensure compliance with account and region limits</6></3></1><7>The dashboard will show data for the cloud accounts that Fix is collecting data for. You can add more cloud accounts in <8>Workspace Settings</8>.</7>"
+msgstr ""
+
+#: src/pages/panel/dashboard/getSlides.tsx:84
+msgid "<0>The Resources chart is a chronological view of new, updated, and deleted resources, with a time-picker to zoom into certain periods. The data in the timeline chart helps you track recent changes to your infrastructure.</0><1><2>Use case include:</2><3><4>Investigate unexpected modifications</4><5>Audit resource lifecycle management</5><6>Correlate infrastructure changes with security events</6></3></1><7>For more detailed information on resources and the changes, see the <8>Explorer tab</8>.</7>"
 msgstr ""
 
 #: src/pages/panel/inventory-search/InventoryAdvanceSearch.tsx:52
@@ -272,11 +300,11 @@ msgstr ""
 msgid "Account: {0}"
 msgstr "Konto: {0}"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:265
+#: src/pages/panel/inventory/InventoryPage.tsx:266
 msgid "accounts"
 msgstr ""
 
-#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:276
+#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:238
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormAccount.tsx:57
 #: src/pages/panel/inventory-search/inventory-form/utils/getAutoCompleteFromKey.tsx:125
 #: src/pages/panel/inventory-search/InventoryTable.error.tsx:73
@@ -398,7 +426,7 @@ msgstr ""
 msgid "All checks have been disabled for this resource"
 msgstr "Für diese Ressource wurden alle Prüfungen deaktiviert"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:92
+#: src/pages/panel/inventory/InventoryPage.tsx:93
 msgid "All resource kinds"
 msgstr ""
 
@@ -493,11 +521,16 @@ msgstr "Sind Sie sicher, dass Sie das {name}-Konto {0} entfernen möchten?"
 msgid "Are you sure?"
 msgstr "Bist du sicher?"
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:215
+#: src/pages/panel/dashboard/DashboardPage.tsx:129
 msgid "Asset summary"
 msgstr ""
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:247
+#: src/pages/panel/dashboard/getSlides.tsx:47
+msgid "Asset Summary"
+msgstr ""
+
+#: src/pages/panel/dashboard/DashboardPage.tsx:161
+#: src/pages/panel/dashboard/getSlides.tsx:115
 msgid "Assets by region"
 msgstr ""
 
@@ -544,7 +577,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: src/pages/panel/inventory/InventoryPage.tsx:272
+#: src/pages/panel/inventory/InventoryPage.tsx:273
 msgid "Base kind"
 msgstr ""
 
@@ -778,7 +811,7 @@ msgstr "Schließen"
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:165
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormCloudValues.tsx:62
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:97
-#: src/pages/panel/inventory/InventoryPage.tsx:272
+#: src/pages/panel/inventory/InventoryPage.tsx:273
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:253
 #: src/pages/panel/security/AccountCard.tsx:38
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:558
@@ -799,7 +832,7 @@ msgstr ""
 msgid "Cloud Inventory"
 msgstr "Cloud Inventar"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:264
+#: src/pages/panel/inventory/InventoryPage.tsx:265
 msgid "clouds"
 msgstr ""
 
@@ -1107,7 +1140,7 @@ msgstr "Deploy Stack"
 msgid "Deploy to a single account"
 msgstr "Bereitstellung für ein einzelnes Konto"
 
-#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:256
+#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:218
 #: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:24
 #: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:118
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:24
@@ -1330,7 +1363,7 @@ msgstr "Findet Load Balancer, die keiner laufenden Instanz zugeordnet sind."
 msgid "Finds snapshots of disks that are no longer in use, which potentially could be deleted to reduce storage costs."
 msgstr "Findet Snapshots von Festplatten, die nicht mehr verwendet werden und möglicherweise gelöscht werden könnten, um die Speicherkosten zu senken."
 
-#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:303
+#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:265
 msgid "Fix Data Model:"
 msgstr ""
 
@@ -1561,11 +1594,12 @@ msgstr "Info"
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
 msgstr ""
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:200
+#: src/pages/panel/dashboard/DashboardPage.tsx:114
+#: src/pages/panel/dashboard/getSlides.tsx:8
 msgid "Infrastructure Overview"
 msgstr ""
 
-#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:308
+#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:270
 msgid "Inheritance:"
 msgstr ""
 
@@ -1598,7 +1632,8 @@ msgstr ""
 msgid "Invalid Value"
 msgstr "Ungültiger Wert"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:222
+#: src/pages/panel/inventory/getSlides.tsx:13
+#: src/pages/panel/inventory/InventoryPage.tsx:223
 #: src/shared/layouts/panel-layout/menuList.tsx:34
 msgid "Inventory"
 msgstr "Inventar"
@@ -1627,7 +1662,7 @@ msgstr ""
 msgid "Kind"
 msgstr "Art"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:267
+#: src/pages/panel/inventory/InventoryPage.tsx:268
 msgid "kinds"
 msgstr ""
 
@@ -1647,7 +1682,7 @@ msgstr "Letzte Anmeldung"
 msgid "Last scan"
 msgstr ""
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:208
+#: src/pages/panel/dashboard/DashboardPage.tsx:122
 msgid "Last scanned: {0} ago"
 msgstr ""
 
@@ -1658,10 +1693,6 @@ msgstr ""
 
 #: src/shared/right-slider/HelpSlider.tsx:30
 msgid "Learn more"
-msgstr ""
-
-#: src/shared/right-slider/HelpSlider.tsx:44
-msgid "Learn more about {children}"
 msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:105
@@ -1859,7 +1890,7 @@ msgid "New to Fix? <0>Create an account</0>"
 msgstr ""
 
 #: src/pages/panel/inventory/DataGridPagination.tsx:60
-#: src/shared/right-slider/HelpSlider.tsx:141
+#: src/shared/right-slider/HelpSlider.tsx:113
 msgid "Next"
 msgstr ""
 
@@ -2161,7 +2192,7 @@ msgid "Press: Create Service and fill out the form."
 msgstr ""
 
 #: src/pages/panel/inventory/DataGridPagination.tsx:60
-#: src/shared/right-slider/HelpSlider.tsx:125
+#: src/shared/right-slider/HelpSlider.tsx:97
 msgid "Previous"
 msgstr ""
 
@@ -2177,7 +2208,7 @@ msgstr "Privilegiert"
 msgid "Privileged account"
 msgstr "Privilegiertes Konto"
 
-#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:298
+#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:260
 msgid "Product Documentation"
 msgstr ""
 
@@ -2221,14 +2252,6 @@ msgstr "Öffentliche S3-Buckets"
 msgid "Re-Authenticate"
 msgstr "Erneut authentifizieren"
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:136
-msgid "Read about inventory"
-msgstr ""
-
-#: src/pages/panel/dashboard/DashboardPage.tsx:141
-msgid "Read documentation"
-msgstr ""
-
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:41
 msgid "Receipts"
 msgstr "Quittungen"
@@ -2257,12 +2280,12 @@ msgstr "Regenerieren"
 msgid "Region"
 msgstr "Region"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:266
+#: src/pages/panel/inventory/InventoryPage.tsx:267
 msgid "regions"
 msgstr ""
 
 #: src/pages/panel/dashboard/DashboardCloudCards.tsx:43
-#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:283
+#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:245
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegion.tsx:20
 #: src/pages/panel/inventory-search/inventory-form/utils/getAutoCompleteFromKey.tsx:130
 #: src/pages/panel/inventory/getColumns.tsx:115
@@ -2308,6 +2331,10 @@ msgstr "Passwort zurücksetzen"
 msgid "Resource"
 msgstr ""
 
+#: src/pages/panel/inventory/getSlides.tsx:56
+msgid "Resource Categories"
+msgstr ""
+
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:129
 msgid "Resource Changes"
 msgstr ""
@@ -2334,8 +2361,16 @@ msgstr "Ressource gelöscht"
 msgid "Resource kind"
 msgstr ""
 
+#: src/pages/panel/inventory/getSlides.tsx:77
+msgid "Resource List"
+msgstr ""
+
 #: src/pages/panel/shared/utils/nodeChangeCell.tsx:23
 msgid "Resource Secured"
+msgstr ""
+
+#: src/pages/panel/dashboard/getSlides.tsx:81
+msgid "Resource Timeline"
 msgstr ""
 
 #: src/pages/panel/dashboard/DashboardCloudCards.tsx:46
@@ -2343,8 +2378,8 @@ msgid "Resource types"
 msgstr ""
 
 #: src/pages/panel/dashboard/DashboardCloudCards.tsx:47
-#: src/pages/panel/dashboard/DashboardPage.tsx:241
-#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:269
+#: src/pages/panel/dashboard/DashboardPage.tsx:155
+#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:231
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:68
 msgid "Resources"
 msgstr "Ressourcen"
@@ -2897,7 +2932,7 @@ msgstr ""
 msgid "View Details"
 msgstr ""
 
-#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:291
+#: src/pages/panel/inventory-detail/InventoryDetailView.tsx:253
 msgid "View this resource kind in Explorer"
 msgstr ""
 
@@ -2940,11 +2975,6 @@ msgstr ""
 #: src/pages/panel/inventory-search/DownloadCSVButton.tsx:90
 msgid "Warning"
 msgstr "Warnung"
-
-#: src/pages/panel/dashboard/DashboardPage.tsx:146
-#: src/pages/panel/dashboard/DashboardPage.tsx:173
-msgid "Watch Video"
-msgstr ""
 
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:311
 msgid "We are currently trying to list your projects. Please stay tuned - we will send you an Email when cloud accounts have been collected"
