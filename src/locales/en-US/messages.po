@@ -498,7 +498,7 @@ msgstr "API Tokens"
 msgid "Application (client) ID"
 msgstr "Application (client) ID"
 
-#: src/pages/panel/inventory/GridFilterItem.tsx:188
+#: src/pages/panel/inventory/GridFilterItem.tsx:185
 msgid "Apply filters"
 msgstr "Apply filters"
 
@@ -738,7 +738,7 @@ msgstr "CISO at Lineaje at lineaje"
 msgid "Clear"
 msgstr "Clear"
 
-#: src/pages/panel/inventory/GridFilterItem.tsx:146
+#: src/pages/panel/inventory/GridFilterItem.tsx:143
 msgid "Clear all"
 msgstr "Clear all"
 
@@ -1343,7 +1343,7 @@ msgstr "Failing Resources"
 msgid "Features"
 msgstr "Features"
 
-#: src/pages/panel/inventory/GridFilterItem.tsx:136
+#: src/pages/panel/inventory/GridFilterItem.tsx:133
 msgid "Filter by"
 msgstr "Filter by"
 

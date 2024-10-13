@@ -116,9 +116,6 @@ export const GridFilterItem = ({ name, items, onChange, values: orgValues }: Gri
             autoComplete={`grid-filter-item-search-${name}`}
             placeholder={t`Search ${name}`}
             slotProps={{
-              htmlInput: {
-                list: `grid-filter-item-search-${name}-datalist`,
-              },
               input: {
                 startAdornment: (
                   <SearchIcon width={24} height={24} color={search ? `${panelUI.uiThemePalette.text.darkGray} !important` : undefined} />
@@ -188,11 +185,6 @@ export const GridFilterItem = ({ name, items, onChange, values: orgValues }: Gri
             <Trans>Apply filters</Trans>
           </Button>
         </Stack>
-        <datalist id={`grid-filter-item-search-${name}-datalist`}>
-          {items.map(({ title, value }) => (
-            <option value={title} key={value} />
-          ))}
-        </datalist>
       </Popover>
     </>
   )

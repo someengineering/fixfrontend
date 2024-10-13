@@ -498,7 +498,7 @@ msgstr ""
 msgid "Application (client) ID"
 msgstr ""
 
-#: src/pages/panel/inventory/GridFilterItem.tsx:188
+#: src/pages/panel/inventory/GridFilterItem.tsx:185
 msgid "Apply filters"
 msgstr ""
 
@@ -738,7 +738,7 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: src/pages/panel/inventory/GridFilterItem.tsx:146
+#: src/pages/panel/inventory/GridFilterItem.tsx:143
 msgid "Clear all"
 msgstr ""
 
@@ -1343,7 +1343,7 @@ msgstr ""
 msgid "Features"
 msgstr "Funktionen"
 
-#: src/pages/panel/inventory/GridFilterItem.tsx:136
+#: src/pages/panel/inventory/GridFilterItem.tsx:133
 msgid "Filter by"
 msgstr ""
 
