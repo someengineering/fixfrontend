@@ -18,6 +18,7 @@ import { getString } from 'src/shared/utils/getString'
 import { DataGridPagination } from './DataGridPagination'
 import { DownloadCSVButton } from './DownloadCSVButton'
 import { getColumns, RowType } from './getColumns'
+import { getSlides } from './getSlides'
 import { GridFilterItem } from './GridFilterItem'
 import { postWorkspaceInventorySearchForInventoryQuery } from './postWorkspaceInventorySearchForInventory.query'
 import { StyledDataGrid } from './StyledDataGrid'
@@ -218,7 +219,7 @@ export default function InventoryPage() {
       >
         <Stack flex={0} height="100%">
           <Box py={3} px={3.75}>
-            <HelpSlider data={[]}>
+            <HelpSlider slides={getSlides}>
               <Trans>Inventory</Trans>
             </HelpSlider>
           </Box>

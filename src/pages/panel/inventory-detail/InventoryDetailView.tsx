@@ -1,10 +1,10 @@
 import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { alpha, Box, Divider, IconButton, Modal as MuiModal, Slide, Stack, styled, Tooltip, Typography } from '@mui/material'
+import { Box, Divider, Stack, Tooltip, Typography } from '@mui/material'
 import { useQueries } from '@tanstack/react-query'
 import { useCallback, useEffect } from 'react'
 import { Location, useLocation, useParams } from 'react-router-dom'
-import { CloseIcon, getNameAndIconFromMetadataGroup } from 'src/assets/icons'
+import { getNameAndIconFromMetadataGroup } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryModelQuery, postWorkspaceInventoryDescendantSummaryQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
@@ -12,29 +12,10 @@ import { cloudToColor, CloudToIcon } from 'src/shared/cloud-avatar'
 import { env } from 'src/shared/constants'
 import { ExternalLink, InternalLink, InternalLinkButton } from 'src/shared/link-button'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
+import { RightSlider } from 'src/shared/right-slider'
 import { GetWorkspaceInventoryModelResponse, PostWorkspaceInventoryDescendantSummaryResponse } from 'src/shared/types/server'
 import { AccountCloud, ResourceComplexKind } from 'src/shared/types/server-shared'
 import { getString } from 'src/shared/utils/getString'
-
-const Modal = styled(MuiModal)(({ theme }) => ({
-  position: 'fixed',
-  top: 0,
-  right: 0,
-  left: 'auto',
-  height: '100%',
-  width: '100%',
-  borderTopLeftRadius: '12px',
-  borderBottomLeftRadius: '12px',
-
-  [theme.breakpoints.up('md')]: {
-    width: '50%',
-  },
-
-  [theme.breakpoints.up('xl')]: {
-    width: '42%',
-    maxWidth: 604,
-  },
-}))
 
 export default function InventoryDetailView() {
   const { selectedWorkspace } = useUserProfile()
@@ -190,160 +171,137 @@ export default function InventoryDetailView() {
   const cloudColors = cloudToColor(cloud ?? '')
 
   return (
-    <Modal open={!!resourceId} onClose={handleClose} slotProps={{ backdrop: { sx: { bgcolor: alpha('#000', 0.6) } } }}>
-      <Slide in={!!resourceId} direction="left" mountOnEnter unmountOnExit>
-        <Stack
-          position="absolute"
-          top={0}
-          right={0}
-          width="100%"
-          height="100%"
-          sx={{
-            bgcolor: 'common.white',
-            boxShadow: 24,
-            borderTopLeftRadius: { xs: '0', md: '12px' },
-            borderBottomLeftRadius: { xs: '0', md: '12px' },
-          }}
-          direction="column"
-          overflow="auto"
-        >
-          <Stack direction="row" p={3} position="sticky" top={-8} zIndex="modal" boxShadow={1}>
-            <Stack direction="row" alignItems="start" gap={2} flex={1}>
-              {isLoading ? (
-                '...'
-              ) : (
-                <>
-                  <Stack
-                    alignItems="center"
-                    justifyContent="center"
-                    flex={0}
-                    borderRadius="6px"
-                    border={`1px solid ${cloudColors.base}`}
-                    bgcolor={cloudColors.light}
-                    p={2}
-                  >
-                    <CloudToIcon cloud={cloud ?? ''} fallback={'N/A'} />
-                  </Stack>
-                  <Stack spacing={1}>
-                    <Typography variant="h4">{name}</Typography>
-                    <Stack direction="row" gap={2} alignItems="center">
-                      <Typography variant="subtitle1">{base}</Typography>
-                      <Divider orientation="vertical" flexItem />
-                      <Stack direction="row" spacing={0.75} alignItems="center">
-                        {group.Icon ? <group.Icon /> : null}
-                        <Typography variant="subtitle1">{group.name}</Typography>
-                      </Stack>
-                    </Stack>
-                  </Stack>
-                </>
-              )}
-            </Stack>
-            <Box>
-              <IconButton onClick={handleClose} size="small">
-                <CloseIcon width={35} height={35} />
-              </IconButton>
-            </Box>
-          </Stack>
-          <Divider />
-          <Stack p={3} mb={2.75} spacing={3}>
-            {isLoading ? (
-              <LoadingSuspenseFallback />
-            ) : (
-              <>
-                {description ? (
-                  <Stack spacing={1}>
-                    <Typography variant="h6">
-                      <Trans>Description</Trans>
-                    </Typography>
-                    <Typography variant="subtitle1">{description}</Typography>
-                  </Stack>
-                ) : null}
-                <Box>
-                  <Divider flexItem />
-                  <Stack direction="row" gap={1} justifyContent="space-evenly" width="100%" py={2}>
-                    <Stack>
-                      <Typography variant="h3" textAlign="center">
-                        {resources.toLocaleString(locale)}
-                      </Typography>
-                      <Typography variant="subtitle1" color="textSecondary">
-                        <Trans>Resources</Trans>
-                      </Typography>
-                    </Stack>
-                    <Divider orientation="vertical" flexItem />
-                    <Stack justifyContent="center" textAlign="center">
-                      <Typography variant="h3">{accounts.toLocaleString(locale)}</Typography>
-                      <Typography variant="subtitle1" color="textSecondary">
-                        <Trans>Accounts</Trans>
-                      </Typography>
-                    </Stack>
-                    <Divider orientation="vertical" flexItem />
-                    <Stack justifyContent="center" textAlign="center">
-                      <Typography variant="h3">{regions.toLocaleString(locale)}</Typography>
-                      <Typography variant="subtitle1" color="textSecondary">
-                        <Trans>Regions</Trans>
-                      </Typography>
-                    </Stack>
-                  </Stack>
-                  <Divider flexItem />
-                </Box>
-                {resourceId ? (
-                  <InternalLinkButton variant="contained" fullWidth to={`/inventory/search?q=is(${resourceId})`}>
-                    <Trans>View this resource kind in Explorer</Trans>
-                  </InternalLinkButton>
-                ) : null}
-                <Stack spacing={4} direction="row" width="100%">
-                  <Stack spacing={1.5}>
-                    {url ? (
-                      <Typography variant="subtitle1" whiteSpace="nowrap">
-                        <Trans>Product Documentation</Trans>
-                      </Typography>
-                    ) : null}
-                    {source && resourceId ? (
-                      <Typography variant="subtitle1" whiteSpace="nowrap">
-                        <Trans>Fix Data Model: </Trans>
-                      </Typography>
-                    ) : null}
-                    {allBases.length ? (
-                      <Typography variant="subtitle1" whiteSpace="nowrap">
-                        <Trans>Inheritance:</Trans>
-                      </Typography>
-                    ) : null}
-                  </Stack>
-                  <Stack spacing={1.5} overflow="hidden">
-                    {url ? (
-                      <ExternalLink href={url}>
-                        <Typography variant="subtitle1" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" color="primary">
-                          {url}
-                        </Typography>
-                      </ExternalLink>
-                    ) : null}
-                    {source && resourceId ? (
-                      <ExternalLink
-                        href={`${env.docsUrl}/resources/${source}${source == 'base' ? '' : `/${service || 'root'}`}/${resourceId}`}
-                      >
-                        <Tooltip title={resourceId}>
-                          <Typography variant="subtitle1" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" color="primary">
-                            {resourceId}
-                          </Typography>
-                        </Tooltip>
-                      </ExternalLink>
-                    ) : null}
-                    <Stack gap={0.5}>
-                      {allBases.map((base) => (
-                        <InternalLink to={`/inventory/search?q=is(${base.fqn})`} key={base.fqn}>
-                          <Typography variant="subtitle1" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" color="primary">
-                            {base.fqn}
-                          </Typography>
-                        </InternalLink>
-                      ))}
-                    </Stack>
+    <RightSlider
+      open={!!resourceId}
+      onClose={handleClose}
+      title={
+        <Stack direction="row" alignItems="start" gap={2} flex={1}>
+          {isLoading ? (
+            '...'
+          ) : (
+            <>
+              <Stack
+                alignItems="center"
+                justifyContent="center"
+                flex={0}
+                borderRadius="6px"
+                border={`1px solid ${cloudColors.base}`}
+                bgcolor={cloudColors.light}
+                p={2}
+              >
+                <CloudToIcon cloud={cloud ?? ''} fallback={'N/A'} />
+              </Stack>
+              <Stack spacing={1}>
+                <Typography variant="h4">{name}</Typography>
+                <Stack direction="row" gap={2} alignItems="center">
+                  <Typography variant="subtitle1">{base}</Typography>
+                  <Divider orientation="vertical" flexItem />
+                  <Stack direction="row" spacing={0.75} alignItems="center">
+                    {group.Icon ? <group.Icon /> : null}
+                    <Typography variant="subtitle1">{group.name}</Typography>
                   </Stack>
                 </Stack>
-              </>
-            )}
-          </Stack>
+              </Stack>
+            </>
+          )}
         </Stack>
-      </Slide>
-    </Modal>
+      }
+    >
+      <Stack p={3} mb={2.75} spacing={3}>
+        {isLoading ? (
+          <LoadingSuspenseFallback />
+        ) : (
+          <>
+            {description ? (
+              <Stack spacing={1}>
+                <Typography variant="h6">
+                  <Trans>Description</Trans>
+                </Typography>
+                <Typography variant="subtitle1">{description}</Typography>
+              </Stack>
+            ) : null}
+            <Box>
+              <Divider flexItem />
+              <Stack direction="row" gap={1} justifyContent="space-evenly" width="100%" py={2}>
+                <Stack>
+                  <Typography variant="h3" textAlign="center">
+                    {resources.toLocaleString(locale)}
+                  </Typography>
+                  <Typography variant="subtitle1" color="textSecondary">
+                    <Trans>Resources</Trans>
+                  </Typography>
+                </Stack>
+                <Divider orientation="vertical" flexItem />
+                <Stack justifyContent="center" textAlign="center">
+                  <Typography variant="h3">{accounts.toLocaleString(locale)}</Typography>
+                  <Typography variant="subtitle1" color="textSecondary">
+                    <Trans>Accounts</Trans>
+                  </Typography>
+                </Stack>
+                <Divider orientation="vertical" flexItem />
+                <Stack justifyContent="center" textAlign="center">
+                  <Typography variant="h3">{regions.toLocaleString(locale)}</Typography>
+                  <Typography variant="subtitle1" color="textSecondary">
+                    <Trans>Regions</Trans>
+                  </Typography>
+                </Stack>
+              </Stack>
+              <Divider flexItem />
+            </Box>
+            {resourceId ? (
+              <InternalLinkButton variant="contained" fullWidth to={`/inventory/search?q=is(${resourceId})`}>
+                <Trans>View this resource kind in Explorer</Trans>
+              </InternalLinkButton>
+            ) : null}
+            <Stack spacing={4} direction="row" width="100%">
+              <Stack spacing={1.5}>
+                {url ? (
+                  <Typography variant="subtitle1" whiteSpace="nowrap">
+                    <Trans>Product Documentation</Trans>
+                  </Typography>
+                ) : null}
+                {source && resourceId ? (
+                  <Typography variant="subtitle1" whiteSpace="nowrap">
+                    <Trans>Fix Data Model: </Trans>
+                  </Typography>
+                ) : null}
+                {allBases.length ? (
+                  <Typography variant="subtitle1" whiteSpace="nowrap">
+                    <Trans>Inheritance:</Trans>
+                  </Typography>
+                ) : null}
+              </Stack>
+              <Stack spacing={1.5} overflow="hidden">
+                {url ? (
+                  <ExternalLink href={url}>
+                    <Typography variant="subtitle1" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" color="primary">
+                      {url}
+                    </Typography>
+                  </ExternalLink>
+                ) : null}
+                {source && resourceId ? (
+                  <ExternalLink href={`${env.docsUrl}/resources/${source}${source == 'base' ? '' : `/${service || 'root'}`}/${resourceId}`}>
+                    <Tooltip title={resourceId}>
+                      <Typography variant="subtitle1" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" color="primary">
+                        {resourceId}
+                      </Typography>
+                    </Tooltip>
+                  </ExternalLink>
+                ) : null}
+                <Stack gap={0.5}>
+                  {allBases.map((base) => (
+                    <InternalLink to={`/inventory/search?q=is(${base.fqn})`} key={base.fqn}>
+                      <Typography variant="subtitle1" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" color="primary">
+                        {base.fqn}
+                      </Typography>
+                    </InternalLink>
+                  ))}
+                </Stack>
+              </Stack>
+            </Stack>
+          </>
+        )}
+      </Stack>
+    </RightSlider>
   )
 }
