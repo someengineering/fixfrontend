@@ -65,6 +65,7 @@ import OpenInNewIconComp from './open-in-new-icon.svg?react'
 import OpsgenieLogoComp from './opsgenie-logo.svg?react'
 import PagerdutyLogoComp from './pagerduty-logo.svg?react'
 import PasswordIconComp from './password-icon.svg?react'
+import ReceiptIconComp from './receipt-icon.svg?react'
 import ScheduleIconComp from './schedule-icon.svg?react'
 import SearchIconComp from './search-icon.svg?react'
 import SettingsIconComp from './settings-icon.svg?react'
@@ -145,6 +146,7 @@ export const OpenInNewIcon = createIcon(OpenInNewIconComp)
 export const OpsgenieLogo = createIcon(OpsgenieLogoComp)
 export const PagerdutyLogo = createIcon(PagerdutyLogoComp)
 export const PasswordIcon = createIcon(PasswordIconComp)
+export const ReceiptIcon = createIcon(ReceiptIconComp)
 export const ScheduleIcon = createIcon(ScheduleIconComp)
 export const SearchIcon = createIcon(SearchIconComp)
 export const SettingsIcon = createIcon(SettingsIconComp)

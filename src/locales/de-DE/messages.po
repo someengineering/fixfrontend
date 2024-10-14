@@ -611,6 +611,7 @@ msgstr "Benchmarks"
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:51
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:80
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:21
+#: src/shared/layouts/panel-layout/UserButton.tsx:48
 msgid "Billing"
 msgstr "Abrechnung"
 
@@ -1711,7 +1712,7 @@ msgstr "Melden Sie sich mit {formattedName} an"
 msgid "Log Out"
 msgstr "Ausloggen"
 
-#: src/shared/layouts/panel-layout/UserButton.tsx:56
+#: src/shared/layouts/panel-layout/UserButton.tsx:61
 msgid "Logout"
 msgstr ""
 
