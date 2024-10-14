@@ -40,8 +40,8 @@ export const PanelHeader = ({ children, scrollRef }: PanelHeaderProps) => {
   const ComponentToWrap = isDesktop ? ElevationScroll : HideOnScroll
   return (
     <ComponentToWrap scrollRef={scrollRef}>
-      <AppBar position={isDesktop ? 'static' : 'fixed'} elevation={0}>
-        <PanelToolbar>
+      <AppBar position={isDesktop ? 'static' : 'fixed'} elevation={0} sx={{ overflow: 'auto' }}>
+        <PanelToolbar sx={{ minWidth: 1200 }}>
           <Stack direction="row" justifyContent="center" alignItems="center">
             <ButtonBase
               href={panelUI.homePage}
@@ -56,29 +56,29 @@ export const PanelHeader = ({ children, scrollRef }: PanelHeaderProps) => {
             <Divider orientation="vertical" sx={{ m: 1, height: 24 }} />
             <WorkspacesButton />
           </Stack>
-          {isDesktop ? (
-            <>
-              <MainMenu />
-              <Stack direction="row" spacing={1.5} height="100%" alignItems="center">
-                <Tooltip title={<Trans>Get a 1-on-1 cloud security posture assessment</Trans>}>
-                  <Box>
-                    <ExternalLinkButton href={env.bookACallUrl} variant="outlined" startIcon={<CalendarMonthIcon />} color="info" noEndIcon>
-                      <Trans>Book a call</Trans>
-                    </ExternalLinkButton>
-                  </Box>
-                </Tooltip>
-                <Stack direction="row" height="100%" alignItems="center">
-                  <PanelHeaderLinkButton size="small" component={IconButton} href={env.discordUrl} color="info" noEndIcon>
-                    <DiscordIcon width={24} height={20} />
-                  </PanelHeaderLinkButton>
-                  <PanelHeaderLinkButton size="small" component={IconButton} href={env.githubUrl} color="info" noEndIcon>
-                    <GithubSEBIcon width={18} height={18} />
-                  </PanelHeaderLinkButton>
-                </Stack>
-                <UserButton />
+          {/* {isDesktop ? ( */}
+          <>
+            <MainMenu />
+            <Stack direction="row" spacing={1.5} height="100%" alignItems="center">
+              <Tooltip title={<Trans>Get a 1-on-1 cloud security posture assessment</Trans>}>
+                <Box>
+                  <ExternalLinkButton href={env.bookACallUrl} variant="outlined" startIcon={<CalendarMonthIcon />} color="info" noEndIcon>
+                    <Trans>Book a call</Trans>
+                  </ExternalLinkButton>
+                </Box>
+              </Tooltip>
+              <Stack direction="row" height="100%" alignItems="center">
+                <PanelHeaderLinkButton size="small" component={IconButton} href={env.discordUrl} color="info" noEndIcon>
+                  <DiscordIcon width={24} height={20} />
+                </PanelHeaderLinkButton>
+                <PanelHeaderLinkButton size="small" component={IconButton} href={env.githubUrl} color="info" noEndIcon>
+                  <GithubSEBIcon width={18} height={18} />
+                </PanelHeaderLinkButton>
               </Stack>
-            </>
-          ) : null}
+              <UserButton />
+            </Stack>
+          </>
+          {/* ) : null} */}
         </PanelToolbar>
         {isDesktop ? <PanelBreadcrumbs /> : null}
       </AppBar>
