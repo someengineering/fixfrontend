@@ -97,12 +97,12 @@ msgstr "{0} Millisekunden"
 msgid "{0} per"
 msgstr ""
 
-#: src/pages/panel/dashboard/WorldMap.tsx:347
+#: src/pages/panel/dashboard/WorldMap.tsx:423
 msgid "{0} Regions"
 msgstr ""
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:163
-msgid "{0} resources in {1} regions, {2} countries"
+#: src/pages/panel/dashboard/DashboardPage.tsx:161
+msgid "{0} regions, {1} countries"
 msgstr ""
 
 #: src/pages/panel/security/OverallScore.tsx:60
@@ -164,7 +164,7 @@ msgstr ""
 msgid "/ month / cloud account"
 msgstr "/ Monat / Cloud-Konto"
 
-#: src/pages/panel/dashboard/WorldMap.tsx:328
+#: src/pages/panel/dashboard/WorldMap.tsx:402
 msgid "# of Resources"
 msgstr ""
 
@@ -520,7 +520,7 @@ msgstr "Sind Sie sicher, dass Sie das {name}-Konto {0} entfernen möchten?"
 msgid "Are you sure?"
 msgstr "Bist du sicher?"
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:129
+#: src/pages/panel/dashboard/DashboardPage.tsx:127
 msgid "Asset summary"
 msgstr ""
 
@@ -528,7 +528,7 @@ msgstr ""
 msgid "Asset Summary"
 msgstr ""
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:161
+#: src/pages/panel/dashboard/DashboardPage.tsx:159
 #: src/pages/panel/dashboard/getSlides.tsx:115
 msgid "Assets by region"
 msgstr ""
@@ -961,7 +961,7 @@ msgstr ""
 msgid "Cores"
 msgstr ""
 
-#: src/pages/panel/dashboard/WorldMap.tsx:322
+#: src/pages/panel/dashboard/WorldMap.tsx:396
 msgid "Country"
 msgstr ""
 
@@ -1220,7 +1220,7 @@ msgstr "Downgrade"
 msgid "Download CSV"
 msgstr "CSV herunterladen"
 
-#: src/pages/panel/dashboard/WorldMap.tsx:244
+#: src/pages/panel/dashboard/WorldMap.tsx:317
 msgid "Drag the map to move it. Use mouse scroll up to zoom into sections and mouse scroll down to zoom out."
 msgstr ""
 
@@ -1593,7 +1593,7 @@ msgstr "Info"
 msgid "Info: Changes to your product tier will become active immediately and be applied for the current billing cycle. {0}<0/>Your next billing cycle starts: {1} UTC"
 msgstr ""
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:114
+#: src/pages/panel/dashboard/DashboardPage.tsx:112
 #: src/pages/panel/dashboard/getSlides.tsx:8
 msgid "Infrastructure Overview"
 msgstr ""
@@ -1681,7 +1681,7 @@ msgstr "Letzte Anmeldung"
 msgid "Last scan"
 msgstr ""
 
-#: src/pages/panel/dashboard/DashboardPage.tsx:122
+#: src/pages/panel/dashboard/DashboardPage.tsx:120
 msgid "Last scanned: {0} ago"
 msgstr ""
 
@@ -2268,7 +2268,7 @@ msgid "Regenerate"
 msgstr "Regenerieren"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:183
-#: src/pages/panel/dashboard/WorldMap.tsx:316
+#: src/pages/panel/dashboard/WorldMap.tsx:390
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:98
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegionValues.tsx:60
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:258
@@ -2373,7 +2373,7 @@ msgid "Resource types"
 msgstr ""
 
 #: src/pages/panel/dashboard/DashboardCloudCards.tsx:47
-#: src/pages/panel/dashboard/DashboardPage.tsx:155
+#: src/pages/panel/dashboard/DashboardPage.tsx:153
 #: src/pages/panel/inventory-detail/InventoryDetailView.tsx:231
 #: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:68
 msgid "Resources"
@@ -2922,7 +2922,7 @@ msgstr "Wert"
 msgid "Version"
 msgstr ""
 
-#: src/pages/panel/dashboard/WorldMap.tsx:336
+#: src/pages/panel/dashboard/WorldMap.tsx:410
 msgid "View Details"
 msgstr ""
 
