@@ -308,7 +308,6 @@ msgstr "accounts"
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormAccount.tsx:57
 #: src/pages/panel/inventory-search/inventory-form/utils/getAutoCompleteFromKey.tsx:125
 #: src/pages/panel/inventory-search/InventoryTable.error.tsx:73
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:57
 #: src/shared/language-button/LanguageButton.stories.tsx:20
 msgid "Accounts"
 msgstr "Accounts"
@@ -402,7 +401,7 @@ msgstr "Affected resources"
 msgid "Age"
 msgstr "Age"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:36
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:30
 msgid "Alerting Settings"
 msgstr "Alerting Settings"
 
@@ -609,7 +608,6 @@ msgid "Benchmarks"
 msgstr "Benchmarks"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:51
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:80
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:21
 #: src/shared/layouts/panel-layout/UserButton.tsx:48
 msgid "Billing"
@@ -934,7 +932,7 @@ msgstr "Connect Teams"
 msgid "Connected Accounts"
 msgstr "Connected Accounts"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:29
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:23
 msgid "Connected Services"
 msgstr "Connected Services"
 
@@ -2073,10 +2071,6 @@ msgstr "Orphaned Volumes"
 msgid "Other {0} accounts"
 msgstr "Other {0} accounts"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:45
-msgid "Other Workspace Settings"
-msgstr "Other Workspace Settings"
-
 #: src/pages/panel/inventory-old/InventoryInfoResourcesPerAccountTimeline.tsx:139
 #: src/pages/panel/inventory-old/InventoryInfoResourcesPerAccountTimeline.tsx:162
 msgid "Others"
@@ -2915,7 +2909,6 @@ msgid "User Settings Notification"
 msgstr "User Settings Notification"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:27
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:68
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:17
 msgid "Users"
 msgstr "Users"
@@ -3035,7 +3028,7 @@ msgstr "Workspace Id"
 msgid "Workspace Name"
 msgstr "Workspace Name"
 
-#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:20
+#: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:14
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:7
 #: src/shared/layouts/panel-layout/UserButton.tsx:33
 msgid "Workspace Settings"
