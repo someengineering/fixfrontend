@@ -37,13 +37,13 @@ export const mainMenuList: MenuListItem[] = [
     Icon: LabProfileIcon,
   },
   {
-    name: window ? <Trans>History</Trans> : <Trans>Explore</Trans>,
-    route: '/inventory/history',
+    name: <Trans>Explore</Trans>,
+    route: '/inventory/search',
     Icon: SearchIcon,
   },
   {
     name: <Trans>Compliance</Trans>,
-    route: '/inventory/search',
+    route: '/security',
     Icon: LocalPoliceIcon,
   },
 ]

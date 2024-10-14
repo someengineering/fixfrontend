@@ -1448,10 +1448,6 @@ msgstr "Hoch"
 msgid "Highest product tier this billing cycle"
 msgstr ""
 
-#: src/shared/layouts/panel-layout/menuList.tsx:40
-msgid "History"
-msgstr ""
-
 #: src/shared/error-boundary-fallback/index.tsx:63
 msgid "Homepage"
 msgstr "Startseite"
