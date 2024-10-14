@@ -5,6 +5,7 @@ export type NodeReported = Record<string, string | number | boolean | Array<unkn
   ctime: string
   mtime?: string
   name: string
+  long_name?: string
   region?: string
   age: string
   time_created?: string

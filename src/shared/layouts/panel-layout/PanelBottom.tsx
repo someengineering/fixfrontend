@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react'
 import { panelUI } from 'src/shared/constants'
 import { shouldForwardPropWithWhiteList } from 'src/shared/utils/shouldForwardProp'
 
-type PanelAppBarProps = PropsWithChildren
+type PanelBottomProps = PropsWithChildren
 
 const BottomRegion = styled(Stack<'footer'>, { shouldForwardProp: shouldForwardPropWithWhiteList(['component']) })(({ theme }) => ({
   display: 'flex',
@@ -19,6 +19,6 @@ const BottomRegion = styled(Stack<'footer'>, { shouldForwardProp: shouldForwardP
   boxShadow: theme.shadows[24],
 }))
 
-export const PanelBottom = ({ children }: PanelAppBarProps) => {
+export const PanelBottom = ({ children }: PanelBottomProps) => {
   return <BottomRegion component="footer">{children}</BottomRegion>
 }

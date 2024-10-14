@@ -77,7 +77,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
         enabled: !!selectedWorkspace?.id,
       },
       {
-        queryKey: ['workspace-inventory-model', selectedWorkspace?.id, undefined, false, false, true, false, false, true, false],
+        queryKey: ['workspace-inventory-model', selectedWorkspace?.id, undefined, undefined, false, false, true, false, false, true, false],
         queryFn: getWorkspaceInventoryModelQuery,
         enabled: !!selectedWorkspace?.id,
         refetchInterval: false,

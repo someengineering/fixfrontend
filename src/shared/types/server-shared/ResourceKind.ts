@@ -11,7 +11,7 @@ export interface ResourceKindGeneric<Type extends ResourceComplexKindPropertyKin
 
 export interface ResourceComplexKind extends ResourceKindGeneric<'object'> {
   fqn: string
-  bases: string[]
+  bases?: string[]
   allow_unknown_props: boolean
   predecessor_kinds?: {
     default?: string[]
@@ -27,10 +27,15 @@ export interface ResourceComplexKind extends ResourceKindGeneric<'object'> {
       group?: string
       icon?: string
       name?: string
+      service?: string
+      description?: string
+      categories?: string[]
+      source?: string
+      docs_url?: string
     },
-    Record<string, string> | null
+    Record<string, string | string[]> | null
   >
-  properties: Record<string, ResourceComplexKindProperty>
+  properties?: Record<string, ResourceComplexKindProperty>
   runtime_kind: string
 }
 

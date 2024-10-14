@@ -5,6 +5,7 @@ import { DashboardIcon, LabProfileIcon, LocalPoliceIcon, SearchIcon, SvgIconProp
 export interface MenuListItem {
   name: ReactNode
   route: string
+  exact?: boolean
   notRouteSearchMatch?: boolean
   Icon: FC<SvgIconProps>
   useGuard?: () => boolean
@@ -31,80 +32,18 @@ export const mainMenuList: MenuListItem[] = [
   },
   {
     name: <Trans>Inventory</Trans>,
-    route: '/inventory/search',
+    route: '/inventory',
+    exact: true,
     Icon: LabProfileIcon,
   },
   {
-    name: window ? <Trans>History</Trans> : <Trans>Explore</Trans>,
-    route: '/inventory/history',
+    name: <Trans>Explore</Trans>,
+    route: '/inventory/search',
     Icon: SearchIcon,
   },
   {
     name: <Trans>Compliance</Trans>,
-    route: '/inventory-summary',
+    route: '/security',
     Icon: LocalPoliceIcon,
   },
 ]
-
-// export const menuList: MenuListItem[] = [
-//   {
-//     name: <Trans>Inventory</Trans>,
-//     route: '/inventory-summary',
-//     subRoute: '/inventory',
-//     Icon: InventoryIcon,
-//     hideOnGuard: true,
-//     useGuard: useHasBenchmarkCheck,
-//     children: [
-//       {
-//         Icon: SearchIcon,
-//         name: <Trans>Search</Trans>,
-//         // TODO: /inventory/search
-//         route: '/inventory/search',
-//       },
-//       {
-//         Icon: HistoryIcon,
-//         name: <Trans>History</Trans>,
-//         route: '/inventory/history',
-//       },
-//     ],
-//   },
-//   {
-//     name: <Trans>Security</Trans>,
-//     route: '/security',
-//     Icon: SecurityIcon,
-//   },
-// ]
-
-// export const bottomMenuList: MenuListItem[] = [
-//   {
-//     name: <Trans>Workspace Settings</Trans>,
-//     route: '/workspace-settings',
-//     Icon: RoomPreferencesIcon,
-//     useGuard: () => usePermissionCheck('readSettings'),
-//     hideOnGuard: true,
-//     children: [
-//       {
-//         Icon: CloudIcon,
-//         name: <Trans>Accounts</Trans>,
-//         route: '/workspace-settings/accounts',
-//       },
-//       {
-//         Icon: PeopleIcon,
-//         name: <Trans>Users</Trans>,
-//         route: '/workspace-settings/users',
-//       },
-//       {
-//         Icon: ReceiptIcon,
-//         name: <Trans>Billing</Trans>,
-//         route: '/workspace-settings/billing-receipts',
-//         hideOnGuard: true,
-//         useGuard: () => usePermissionCheck('readBilling'),
-//       },
-//       // {
-//       //   Icon: FolderCopyIcon,
-//       //   name: <Trans>External Directories</Trans>,
-//       //   route: '/workspace-settings/external-directories',
-//       // },
-//     ],
-//   },
-// ]

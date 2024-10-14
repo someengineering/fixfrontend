@@ -1,6 +1,6 @@
 // import { AppBar, Theme, Toolbar, useMediaQuery } from '@mui/material'
 import { Trans } from '@lingui/macro'
-import { AppBar, ButtonBase, Divider, IconButton, Slide, Stack, Theme, useMediaQuery, useScrollTrigger } from '@mui/material'
+import { AppBar, Box, ButtonBase, Divider, IconButton, Slide, Stack, Theme, Tooltip, useMediaQuery, useScrollTrigger } from '@mui/material'
 import { cloneElement, PropsWithChildren, ReactElement, RefObject } from 'react'
 import { CalendarMonthIcon, DiscordIcon, GithubSEBIcon } from 'src/assets/icons'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
@@ -60,9 +60,13 @@ export const PanelHeader = ({ children, scrollRef }: PanelHeaderProps) => {
             <>
               <MainMenu />
               <Stack direction="row" spacing={1.5} height="100%" alignItems="center">
-                <ExternalLinkButton href={env.bookACallUrl} variant="outlined" startIcon={<CalendarMonthIcon />} color="info" noEndIcon>
-                  <Trans>Book a call</Trans>
-                </ExternalLinkButton>
+                <Tooltip title={<Trans>Get a 1-on-1 cloud security posture assessment</Trans>}>
+                  <Box>
+                    <ExternalLinkButton href={env.bookACallUrl} variant="outlined" startIcon={<CalendarMonthIcon />} color="info" noEndIcon>
+                      <Trans>Book a call</Trans>
+                    </ExternalLinkButton>
+                  </Box>
+                </Tooltip>
                 <Stack direction="row" height="100%" alignItems="center">
                   <PanelHeaderLinkButton size="small" component={IconButton} href={env.discordUrl} color="info" noEndIcon>
                     <DiscordIcon width={24} height={20} />

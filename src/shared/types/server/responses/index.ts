@@ -70,6 +70,7 @@ export type {
   PostWorkspaceInventoryAggregateForDashboardItem,
   PostWorkspaceInventoryAggregateForDashboardResponse,
 } from './PostWorkspaceInventoryAggregateForDashboard'
+export type { PostWorkspaceInventoryDescendantSummaryResponse } from './PostWorkspaceInventoryDescendantSummary'
 export type {
   PostWorkspaceInventoryHistoryTimelineItem,
   PostWorkspaceInventoryHistoryTimelineResponse,
@@ -81,6 +82,10 @@ export type {
   PostWorkspaceInventorySearchForDashboardItem,
   PostWorkspaceInventorySearchForDashboardResponse,
 } from './PostWorkspaceInventorySearchForDashboard'
+export type {
+  PostWorkspaceInventorySearchForInventoryItem,
+  PostWorkspaceInventorySearchForInventoryResponse,
+} from './PostWorkspaceInventorySearchForInventory'
 export type {
   PostWorkspaceInventorySearchTableResponse,
   WorkspaceInventorySearchTableColumn,

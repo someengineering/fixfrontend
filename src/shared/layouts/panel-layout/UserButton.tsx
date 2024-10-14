@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/macro'
 import { Avatar, Box, Button, Divider, Stack, Typography } from '@mui/material'
-import { AccountCircleIcon, CloudIcon, GroupIcon, LogoutIcon, WorkspaceSettingsIcon } from 'src/assets/icons'
+import { AccountCircleIcon, CloudIcon, GroupIcon, LogoutIcon, ReceiptIcon, WorkspaceSettingsIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { stringAvatar } from 'src/shared/utils/stringAvatar'
@@ -41,6 +41,11 @@ export const UserButton = () => {
         <Button color="info" startIcon={<CloudIcon />} onClick={() => navigate('/workspace-settings/accounts')}>
           <Typography pl={0.5} width="100%" textAlign="start">
             <Trans>Cloud Accounts</Trans>
+          </Typography>
+        </Button>
+        <Button color="info" startIcon={<ReceiptIcon />} onClick={() => navigate('/workspace-settings/billing-receipts')}>
+          <Typography pl={0.5} width="100%" textAlign="start">
+            <Trans>Billing</Trans>
           </Typography>
         </Button>
         {/* <Button color="info" startIcon={<CodeBlocksIcon />} onClick={() => navigate('/developer')}>
