@@ -10,7 +10,7 @@ import { getWorkspaceInventoryModelQuery, postWorkspaceInventoryDescendantSummar
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { cloudToColor, CloudToIcon } from 'src/shared/cloud-avatar'
 import { env } from 'src/shared/constants'
-import { ExternalLink, InternalLink, InternalLinkButton } from 'src/shared/link-button'
+import { ExternalLink, InternalLinkButton } from 'src/shared/link-button'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
 import { RightSlider } from 'src/shared/right-slider'
 import { GetWorkspaceInventoryModelResponse, PostWorkspaceInventoryDescendantSummaryResponse } from 'src/shared/types/server'
@@ -290,11 +290,14 @@ export default function InventoryDetailView() {
                 ) : null}
                 <Stack gap={0.5}>
                   {allBases.map((base) => (
-                    <InternalLink to={`/inventory/search?q=is(${base.fqn})`} key={base.fqn}>
+                    <ExternalLink
+                      href={`${env.docsUrl}/resources/${base.metadata?.source}${base.metadata?.source == 'base' ? '' : `/${base.metadata?.service || 'root'}`}/${base.fqn}`}
+                      key={base.fqn}
+                    >
                       <Typography variant="subtitle1" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" color="primary">
                         {base.fqn}
                       </Typography>
-                    </InternalLink>
+                    </ExternalLink>
                   ))}
                 </Stack>
               </Stack>
