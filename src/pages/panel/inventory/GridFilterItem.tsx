@@ -1,6 +1,6 @@
 import { t, Trans } from '@lingui/macro'
 import { Box, Button, ButtonBase, Checkbox, Link, Popover, Stack, styled, TextField, Typography } from '@mui/material'
-import { ReactNode, useEffect, useState } from 'react'
+import { ChangeEvent as ReactChangeEvent, MouseEvent as ReactMouseEvent, ReactNode, useEffect, useState } from 'react'
 import { KeyboardArrowDownIcon, SearchIcon } from 'src/assets/icons'
 import { panelUI } from 'src/shared/constants'
 import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
@@ -57,10 +57,22 @@ export const GridFilterItem = ({ name, items, onChange, values: orgValues }: Gri
   useEffect(() => {
     setValues(orgValues)
   }, [orgValues])
+  const handleChange = (e: ReactChangeEvent<HTMLInputElement>) => setSearch(e.target.value ?? '')
+  const handleOpen = (e: ReactMouseEvent<HTMLButtonElement, MouseEvent>) => setOpen(e.currentTarget)
+  const handleClear = () => {
+    setSearch('')
+    if (orgValues.length) {
+      onChange([])
+    } else {
+      setValues([])
+    }
+  }
   const handleClose = () => {
     setOpen(null)
-    setValues(orgValues)
     setSearch('')
+    if (JSON.stringify(values.sort((a, b) => a.localeCompare(b))) !== JSON.stringify(orgValues.sort((a, b) => a.localeCompare(b)))) {
+      onChange(values)
+    }
   }
   const lowerCaseSearch = search.toLowerCase()
   return (
@@ -78,7 +90,7 @@ export const GridFilterItem = ({ name, items, onChange, values: orgValues }: Gri
         alignItems="center"
         justifyContent="space-between"
         border={({ palette }) => `1px solid ${palette.divider}`}
-        onClick={(e) => setOpen(e.currentTarget)}
+        onClick={handleOpen}
       >
         <Typography variant="subtitle1" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">
           {values.length ? (
@@ -126,19 +138,13 @@ export const GridFilterItem = ({ name, items, onChange, values: orgValues }: Gri
             fullWidth
             type="search"
             value={search}
-            onChange={(e) => setSearch(e.target.value ?? '')}
+            onChange={handleChange}
           />
           <Stack direction="row" spacing={1} alignItems="center" justifyContent="space-between">
             <Typography variant="buttonSmall" color="textSecondary" fontWeight={500}>
               <Trans>Filter by</Trans>:
             </Typography>
-            <Link
-              sx={{ cursor: 'pointer' }}
-              onClick={() => {
-                setSearch('')
-                onChange([])
-              }}
-            >
+            <Link sx={{ cursor: 'pointer' }} onClick={handleClear}>
               <Typography variant="buttonSmall" color="textSecondary" fontWeight={500}>
                 <Trans>Clear all</Trans>
               </Typography>
@@ -173,15 +179,7 @@ export const GridFilterItem = ({ name, items, onChange, values: orgValues }: Gri
               />
             ))}
           </Stack>
-          <Button
-            variant="contained"
-            fullWidth
-            onClick={() => {
-              setOpen(null)
-              setSearch('')
-              onChange(values)
-            }}
-          >
+          <Button variant="contained" fullWidth onClick={handleClose}>
             <Trans>Apply filters</Trans>
           </Button>
         </Stack>

@@ -410,7 +410,7 @@ msgstr "Benachrichtigungseinstellungen"
 msgid "All"
 msgstr ""
 
-#: src/pages/panel/inventory/GridFilterItem.tsx:87
+#: src/pages/panel/inventory/GridFilterItem.tsx:99
 msgid "All {name}"
 msgstr ""
 
@@ -498,7 +498,7 @@ msgstr ""
 msgid "Application (client) ID"
 msgstr ""
 
-#: src/pages/panel/inventory/GridFilterItem.tsx:185
+#: src/pages/panel/inventory/GridFilterItem.tsx:183
 msgid "Apply filters"
 msgstr ""
 
@@ -738,7 +738,7 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: src/pages/panel/inventory/GridFilterItem.tsx:143
+#: src/pages/panel/inventory/GridFilterItem.tsx:149
 msgid "Clear all"
 msgstr ""
 
@@ -1343,7 +1343,7 @@ msgstr ""
 msgid "Features"
 msgstr "Funktionen"
 
-#: src/pages/panel/inventory/GridFilterItem.tsx:133
+#: src/pages/panel/inventory/GridFilterItem.tsx:145
 msgid "Filter by"
 msgstr ""
 
@@ -2447,7 +2447,7 @@ msgstr "Rollen"
 msgid "Search {0}"
 msgstr ""
 
-#: src/pages/panel/inventory/GridFilterItem.tsx:117
+#: src/pages/panel/inventory/GridFilterItem.tsx:129
 msgid "Search {name}"
 msgstr ""
 

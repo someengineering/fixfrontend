@@ -410,7 +410,7 @@ msgstr "Alerting Settings"
 msgid "All"
 msgstr "All"
 
-#: src/pages/panel/inventory/GridFilterItem.tsx:87
+#: src/pages/panel/inventory/GridFilterItem.tsx:99
 msgid "All {name}"
 msgstr "All {name}"
 
@@ -498,7 +498,7 @@ msgstr "API Tokens"
 msgid "Application (client) ID"
 msgstr "Application (client) ID"
 
-#: src/pages/panel/inventory/GridFilterItem.tsx:185
+#: src/pages/panel/inventory/GridFilterItem.tsx:183
 msgid "Apply filters"
 msgstr "Apply filters"
 
@@ -738,7 +738,7 @@ msgstr "CISO at Lineaje at lineaje"
 msgid "Clear"
 msgstr "Clear"
 
-#: src/pages/panel/inventory/GridFilterItem.tsx:143
+#: src/pages/panel/inventory/GridFilterItem.tsx:149
 msgid "Clear all"
 msgstr "Clear all"
 
@@ -1343,7 +1343,7 @@ msgstr "Failing Resources"
 msgid "Features"
 msgstr "Features"
 
-#: src/pages/panel/inventory/GridFilterItem.tsx:133
+#: src/pages/panel/inventory/GridFilterItem.tsx:145
 msgid "Filter by"
 msgstr "Filter by"
 
@@ -2447,7 +2447,7 @@ msgstr "Roles"
 msgid "Search {0}"
 msgstr "Search {0}"
 
-#: src/pages/panel/inventory/GridFilterItem.tsx:117
+#: src/pages/panel/inventory/GridFilterItem.tsx:129
 msgid "Search {name}"
 msgstr "Search {name}"
 
