@@ -1884,7 +1884,7 @@ msgstr "Neue Sicherheitsprobleme entdeckt"
 msgid "New to Fix? <0>Create an account</0>"
 msgstr ""
 
-#: src/pages/panel/inventory/DataGridPagination.tsx:60
+#: src/pages/panel/inventory/DataGridPagination.tsx:61
 #: src/shared/right-slider/HelpSlider.tsx:113
 msgid "Next"
 msgstr ""
@@ -2182,7 +2182,7 @@ msgstr ""
 msgid "Press: Create Service and fill out the form."
 msgstr ""
 
-#: src/pages/panel/inventory/DataGridPagination.tsx:60
+#: src/pages/panel/inventory/DataGridPagination.tsx:61
 #: src/shared/right-slider/HelpSlider.tsx:97
 msgid "Previous"
 msgstr ""
