@@ -197,7 +197,8 @@ SortP.setPattern(
 
 const default_edge = apply(tok(T.Default), (_) => EdgeType.default)
 const delete_edge = apply(tok(T.Delete), (_) => EdgeType.delete)
-const edge_types_p = list_sc(alt(default_edge, delete_edge), tok(T.Comma))
+const iam_edge = apply(tok(T.Iam), (_) => EdgeType.iam)
+const edge_types_p = list_sc(alt(default_edge, delete_edge, iam_edge), tok(T.Comma))
 const sepa = alt(tok(T.Comma), tok(T.Colon), tok(T.DotDot))
 const range = apply(kmid(tok(T.LBracket), seq(tok(T.Integer), opt(sepa), opt(tok(T.Integer))), tok(T.RBracket)), ([start, sepa, end]) => {
   const start_num = parseInt(start.text)

@@ -53,6 +53,7 @@ export enum T {
   Inbound, // <-
   Default, // default
   Delete, // delete
+  Iam, // iam
   SingleQuotedString, // "abc"
   DoubleQuotedString, // "abc"
   BackTickedString, // `abc`
@@ -88,6 +89,7 @@ export const FixQueryLexerRules: [boolean, RegExp, T][] = [
   [true, /^null/g, T.Null],
   [true, /^default/g, T.Default],
   [true, /^delete/g, T.Delete],
+  [true, /^iam/g, T.Iam],
   [true, /^with_usage/g, T.WithUsage],
   [true, /^\(/g, T.LParen],
   [true, /^\)/g, T.RParen],
@@ -145,7 +147,7 @@ export class LexerToken implements Token<T> {
 }
 
 const sw1 = ['is', 'id', 'in', 'with', 'any', 'empty', 'all', 'count', 'not', `with_usage`]
-const sw2 = ['and', 'or', 'limit', 'sort', 'asc', 'desc', 'true', 'false', 'null', 'default', 'delete']
+const sw2 = ['and', 'or', 'limit', 'sort', 'asc', 'desc', 'true', 'false', 'null', 'default', 'delete', 'iam']
 const sw3 = ['/', '+', '-', '*', '=', '~', '!=', '<=', '>=', '<', '>', '->', '<-']
 
 // Lexer implementation for the FixQuery language
