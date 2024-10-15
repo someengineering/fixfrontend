@@ -98,6 +98,7 @@ msgid "{0} per"
 msgstr ""
 
 #: src/pages/panel/dashboard/WorldMap.tsx:423
+#: src/pages/panel/dashboard/WorldMap.tsx:345
 msgid "{0} Regions"
 msgstr ""
 
@@ -165,6 +166,7 @@ msgid "/ month / cloud account"
 msgstr "/ Monat / Cloud-Konto"
 
 #: src/pages/panel/dashboard/WorldMap.tsx:402
+#: src/pages/panel/dashboard/WorldMap.tsx:326
 msgid "# of Resources"
 msgstr ""
 
@@ -962,6 +964,7 @@ msgid "Cores"
 msgstr ""
 
 #: src/pages/panel/dashboard/WorldMap.tsx:396
+#: src/pages/panel/dashboard/WorldMap.tsx:320
 msgid "Country"
 msgstr ""
 
@@ -2269,6 +2272,7 @@ msgstr "Regenerieren"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:183
 #: src/pages/panel/dashboard/WorldMap.tsx:390
+#: src/pages/panel/dashboard/WorldMap.tsx:314
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:98
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegionValues.tsx:60
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:258
@@ -2923,6 +2927,7 @@ msgid "Version"
 msgstr ""
 
 #: src/pages/panel/dashboard/WorldMap.tsx:410
+#: src/pages/panel/dashboard/WorldMap.tsx:334
 msgid "View Details"
 msgstr ""
 
