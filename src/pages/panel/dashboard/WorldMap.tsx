@@ -40,11 +40,31 @@ export const WorldMap = ({ data, countries }: WorldMapProps) => {
   const navigate = useAbsoluteNavigate()
   useEffect(() => {
     if (mapRef.current) {
-      const filteredData = data.filter((i) => clouds.includes(i.group.cloud))
+      const filteredData = data
+        .filter((item) => clouds.includes(item.group.cloud))
+        .reduce(
+          (prev, item) => {
+            const foundItemIndex = prev.findIndex((prevItem) =>
+              Array.isArray(prevItem)
+                ? prevItem[0].group.latitude === item.group.latitude && prevItem[0].group.longitude === item.group.longitude
+                : prevItem.group.latitude === item.group.latitude && prevItem.group.longitude === item.group.longitude,
+            )
+            if (foundItemIndex > -1) {
+              if (Array.isArray(prev[foundItemIndex])) {
+                prev[foundItemIndex].push(item)
+              } else {
+                prev[foundItemIndex] = [prev[foundItemIndex], item]
+              }
+              return [...prev]
+            }
+            return [...prev, item]
+          },
+          [] as (NodeType | NodeType[])[],
+        )
       let svg: Selection<SVGSVGElement, unknown, null, undefined> | undefined
       let svgG: Selection<SVGGElement, unknown, null, undefined> | undefined
       let pathCountries: Selection<SVGPathElement, WorldJSONFeaturesType, SVGGElement, unknown> | undefined
-      let gMarkers: Selection<SVGGElement, NodeType, SVGGElement, unknown> | undefined
+      let gMarkers: Selection<SVGGElement, NodeType | NodeType[], SVGGElement, unknown> | undefined
       let handleRemoveTooltip: (name: string) => void | undefined
       let exited = false
       const tooltipDiv = select(tooltipRef.current)
@@ -81,39 +101,87 @@ export const WorldMap = ({ data, countries }: WorldMapProps) => {
           delete tooltips[name]
         }
 
-        const handleShowTooltip = function (this: SVGGElement, _: unknown, d: NodeType) {
-          if (tooltips[d.group.name]) {
+        const handleMoveTooltip = (groupName: string) => {
+          const svgElement = svg?.node()
+          const markerElement = select<SVGGElement, unknown>(`#marker-for-${groupName}`)?.node()
+          const thisTooltip = tooltips[groupName]
+          const tooltipNode = thisTooltip?.node()
+          if (!tooltipNode || !thisTooltip || !markerElement || !svgElement) {
+            return
+          }
+          const { left: svgLeft, top: svgTop } = svgElement.getBoundingClientRect()
+          const { left: markerLeft, top: markerTop } = markerElement.getBoundingClientRect()
+          const left = markerLeft - svgLeft
+          const top = markerTop - svgTop
+          const defaultCalculatedLeft = left + 24 + 6
+          const defaultCalculatedTop = top + 5
+
+          const isLeft = defaultCalculatedLeft + tooltipNode.offsetWidth < width
+          const isTop = top + tooltipNode.offsetHeight - 6 < height
+          const calculatedLeft = isLeft ? defaultCalculatedLeft : left - tooltipNode.offsetWidth - 6
+          thisTooltip.style('left', `${calculatedLeft}px`)
+          if (isTop) {
+            thisTooltip.style('top', `${defaultCalculatedTop > 0 ? defaultCalculatedTop : 0}px`)
+            thisTooltip.style('bottom', null)
+          } else {
+            thisTooltip.style('top', null)
+            thisTooltip.style('bottom', '0')
+          }
+          thisTooltip.select('.world-map-tooltip-left-arrow').style('display', isLeft ? 'block' : 'none')
+          thisTooltip.select('.world-map-tooltip-right-arrow').style('display', isLeft ? 'none' : 'block')
+        }
+
+        const handleShowTooltip = function (this: SVGGElement, _: unknown, d: NodeType | NodeType[]) {
+          const isArray = Array.isArray(d)
+          const items = isArray ? d : [d]
+          if (!items.length) {
+            return
+          }
+          const groupName = items[0].group.name
+          const groupLongName = items[0].group.long_name
+          if (tooltips[groupName]) {
             return
           }
           Object.keys(tooltips).forEach(handleRemoveTooltip)
           const tooltipNode = tooltipClone?.cloneNode(true) as HTMLDivElement
           mapRef.current?.appendChild(tooltipNode)
           const thisTooltip = select(tooltipNode)
-          const { left, top } = this.getBoundingClientRect()
-          thisTooltip.select('.world-map-tooltip-title').text(d.group.long_name)
-          thisTooltip.select('.world-map-tooltip-region').text(d.group.name)
-          thisTooltip.select('.world-map-tooltip-country').text(d.country ?? '')
-          thisTooltip.select('.world-map-tooltip-number-of-resources').text(d.resource_count.toLocaleString(locale))
-          thisTooltip.select('.world-map-tooltip-close-button').on('click', () => handleRemoveTooltip(d.group.name))
-          thisTooltip.style('display', 'block')
-          const defaultCalculatedLeft = left + 24 + 6
-          const defaultCalculatedTop = top - 44
-          const isLeft = defaultCalculatedLeft + tooltipNode.offsetWidth < window.innerWidth
-          const isTop = top + tooltipNode.offsetHeight - 6 < window.innerHeight
-          const calculatedLeft = isLeft ? defaultCalculatedLeft : left - tooltipNode.offsetWidth - 6
-          thisTooltip.style('left', `${calculatedLeft}px`).style(isTop ? 'top' : 'bottom', isTop ? `${defaultCalculatedTop}px` : '0')
-          thisTooltip.select(isLeft ? '.world-map-tooltip-left-arrow' : '.world-map-tooltip-right-arrow').style('display', 'block')
-          tooltips[d.group.name] = thisTooltip
-
-          function handleClick(this: BaseType) {
-            select(this).on('click', null)
-            handleRemoveTooltip(d.group.name)
-            navigate({
-              pathname: '/inventory/search',
-              search: `?q=not is(phantom_resource) and /ancestors.region.reported.name in ["${d.group.name}"] and /ancestors.cloud.reported.name in ["${d.group.cloud}"]`,
-            })
+          const clonedContainerElement = thisTooltip
+            .select('.world-map-tooltip-content-container')
+            .remove()
+            .clone(true)
+            .node() as HTMLDivElement
+          if (!clonedContainerElement) {
+            return
           }
-          thisTooltip.select('.world-map-tooltip-view-detail').on('click', handleClick)
+          const titleElement = thisTooltip.select('.world-map-tooltip-title').text(groupLongName).node() as HTMLDivElement
+          tooltips[groupName] = thisTooltip
+          items.forEach((item) => {
+            const thisContainerElement = titleElement.insertAdjacentElement(
+              'afterend',
+              clonedContainerElement.cloneNode(true) as HTMLDivElement,
+            )
+            if (!thisContainerElement) {
+              return
+            }
+            const thisContainer = select(thisContainerElement)
+            thisContainer.select('.world-map-tooltip-region').text(item.group.name)
+            thisContainer.select('.world-map-tooltip-country').text(item.country ?? '')
+            thisContainer.select('.world-map-tooltip-number-of-resources').text(item.resource_count.toLocaleString(locale))
+
+            function handleClick(this: BaseType) {
+              select(this).on('click', null)
+              handleRemoveTooltip(groupName)
+              navigate({
+                pathname: '/inventory/search',
+                search: `?q=not is(phantom_resource) and /ancestors.region.reported.name in ["${item.group.name}"] and /ancestors.cloud.reported.name in ["${item.group.cloud}"]`,
+              })
+            }
+            thisContainer.select('.world-map-tooltip-view-detail').on('click', handleClick)
+          })
+          thisTooltip.select('.world-map-tooltip-close-button').on('click', () => handleRemoveTooltip(groupName))
+          thisTooltip.style('display', 'block')
+          handleMoveTooltip(groupName)
         }
 
         pathCountries = svgG
@@ -137,11 +205,14 @@ export const WorldMap = ({ data, countries }: WorldMapProps) => {
             .data(filteredData)
             .enter()
             .append('g')
+            .attr('id', (d) => `marker-for-${Array.isArray(d) ? d[0].group.name : d.group.name}`)
             .attr('class', 'marker')
             .attr('cursor', 'pointer')
-            .attr('fill', (d) => stringToColor(d.group.name))
+            .attr('fill', (d) => stringToColor(Array.isArray(d) ? d[0].group.name : d.group.name))
             .attr('transform', (d) => {
-              const sizes = projection([d.group.longitude, d.group.latitude])
+              const sizes = projection(
+                Array.isArray(d) ? [d[0].group.longitude, d[0].group.latitude] : [d.group.longitude, d.group.latitude],
+              )
               if (sizes) {
                 return `translate(${sizes[0] - 12} ${sizes[1] - 12})`
               }
@@ -161,7 +232,9 @@ export const WorldMap = ({ data, countries }: WorldMapProps) => {
             const markerWidth = (1 / k) * 24
             gMarkers
               ?.attr('transform', (d) => {
-                const sizes = projection([d.group.longitude, d.group.latitude])
+                const isArray = Array.isArray(d)
+                const { longitude, latitude } = isArray ? d[0].group : d.group
+                const sizes = projection([longitude, latitude])
                 if (sizes) {
                   return `translate(${sizes[0] - markerWidth / 2} ${sizes[1] - markerWidth / 2})`
                 }
@@ -170,6 +243,7 @@ export const WorldMap = ({ data, countries }: WorldMapProps) => {
               .select('svg')
               .attr('width', markerWidth)
               .attr('height', markerWidth)
+            Object.keys(tooltips).forEach((tooltip) => handleMoveTooltip(tooltip))
           }
 
           const handleStartZoom = function (this: BaseType) {
@@ -193,7 +267,6 @@ export const WorldMap = ({ data, countries }: WorldMapProps) => {
           const translateKDefaultZoom = 1.5
           const translateXDefaultZoom = (offsetWidth - width * translateKDefaultZoom) / 2
           const translateYDefaultZoom = (height * (1 - translateKDefaultZoom)) / 2
-          // handleZoom({ transform: { k: translateKDefaultZoom, x: translateXDefaultZoom, y: translateYDefaultZoom } })
 
           const zoomInit = zoom<SVGSVGElement, unknown>()
             .translateExtent([
@@ -240,9 +313,9 @@ export const WorldMap = ({ data, countries }: WorldMapProps) => {
   }, [clouds, countries, data, locale, navigate, nonce])
 
   return (
-    <Stack width="100%" position="relative" ref={mapRef} spacing={3.75} alignItems="center">
+    <Stack width="100%" position="relative" ref={mapRef} spacing={3.75} alignItems="center" overflow="hidden">
       <Stack
-        position="fixed"
+        position="absolute"
         boxShadow={`0px 6px 8px 0px ${alpha('#000000', 0.08)}`}
         bgcolor="common.white"
         display="none"
@@ -308,32 +381,35 @@ export const WorldMap = ({ data, countries }: WorldMapProps) => {
           <CloseIcon color="white" />
         </IconButton>
         <Typography px={2} className="world-map-tooltip-title" variant="buttonLarge" component="h5" />
-        <Stack pt={1} pb={2} px={2} spacing={1}>
-          <Stack direction="row" spacing={3} flexWrap="wrap">
-            <Typography variant="subtitle2" width={90}>
-              <Trans>Region</Trans>
-            </Typography>
-            <Typography variant="subtitle2" className="world-map-tooltip-region" />
+        <Box className="world-map-tooltip-content-container">
+          <Stack pt={1} pb={2} px={2} spacing={1}>
+            <Stack direction="row" spacing={3} flexWrap="wrap">
+              <Typography variant="subtitle2" width={90}>
+                <Trans>Region</Trans>
+              </Typography>
+              <Typography variant="subtitle2" className="world-map-tooltip-region" />
+            </Stack>
+            <Stack direction="row" spacing={3} flexWrap="wrap">
+              <Typography variant="subtitle2" width={90}>
+                <Trans>Country</Trans>
+              </Typography>
+              <Typography variant="subtitle2" className="world-map-tooltip-country" />
+            </Stack>
+            <Stack direction="row" spacing={3} flexWrap="wrap">
+              <Typography variant="subtitle2" width={90}>
+                <Trans># of Resources</Trans>
+              </Typography>
+              <Typography variant="buttonSmall" className="world-map-tooltip-number-of-resources" component="p" />
+            </Stack>
           </Stack>
-          <Stack direction="row" spacing={3} flexWrap="wrap">
-            <Typography variant="subtitle2" width={90}>
-              <Trans>Country</Trans>
-            </Typography>
-            <Typography variant="subtitle2" className="world-map-tooltip-country" />
+          <Divider />
+          <Stack alignItems="center" justifyContent="center" p={0.75}>
+            <Button className="world-map-tooltip-view-detail" size="small" endIcon={<ChevronRightIcon />}>
+              <Trans>View Details</Trans>
+            </Button>
           </Stack>
-          <Stack direction="row" spacing={3} flexWrap="wrap">
-            <Typography variant="subtitle2" width={90}>
-              <Trans># of Resources</Trans>
-            </Typography>
-            <Typography variant="buttonSmall" className="world-map-tooltip-number-of-resources" component="p" />
-          </Stack>
-        </Stack>
-        <Divider />
-        <Stack alignItems="center" justifyContent="center" p={0.75}>
-          <Button className="world-map-tooltip-view-detail" size="small" endIcon={<ChevronRightIcon />}>
-            <Trans>View Details</Trans>
-          </Button>
-        </Stack>
+          <Divider />
+        </Box>
       </Stack>
       <Stack direction="row" mb={1.25} spacing={2} alignItems="center" justifyContent="center" ref={buttonsRef}>
         {allClouds.map((cloud) => (
