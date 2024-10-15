@@ -97,7 +97,7 @@ msgstr "{0} Millisekunden"
 msgid "{0} per"
 msgstr ""
 
-#: src/pages/panel/dashboard/WorldMap.tsx:347
+#: src/pages/panel/dashboard/WorldMap.tsx:345
 msgid "{0} Regions"
 msgstr ""
 
@@ -164,7 +164,7 @@ msgstr ""
 msgid "/ month / cloud account"
 msgstr "/ Monat / Cloud-Konto"
 
-#: src/pages/panel/dashboard/WorldMap.tsx:328
+#: src/pages/panel/dashboard/WorldMap.tsx:326
 msgid "# of Resources"
 msgstr ""
 
@@ -961,7 +961,7 @@ msgstr ""
 msgid "Cores"
 msgstr ""
 
-#: src/pages/panel/dashboard/WorldMap.tsx:322
+#: src/pages/panel/dashboard/WorldMap.tsx:320
 msgid "Country"
 msgstr ""
 
@@ -1219,10 +1219,6 @@ msgstr "Downgrade"
 #: src/pages/panel/inventory/DownloadCSVButton.tsx:47
 msgid "Download CSV"
 msgstr "CSV herunterladen"
-
-#: src/pages/panel/dashboard/WorldMap.tsx:244
-msgid "Drag the map to move it. Use mouse scroll up to zoom into sections and mouse scroll down to zoom out."
-msgstr ""
 
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:219
 msgid "Drill Down"
@@ -2268,7 +2264,7 @@ msgid "Regenerate"
 msgstr "Regenerieren"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:183
-#: src/pages/panel/dashboard/WorldMap.tsx:316
+#: src/pages/panel/dashboard/WorldMap.tsx:314
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:98
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegionValues.tsx:60
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:258
@@ -2922,7 +2918,7 @@ msgstr "Wert"
 msgid "Version"
 msgstr ""
 
-#: src/pages/panel/dashboard/WorldMap.tsx:336
+#: src/pages/panel/dashboard/WorldMap.tsx:334
 msgid "View Details"
 msgstr ""
 

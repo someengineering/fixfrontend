@@ -85,6 +85,7 @@ export const WorldMap = ({ data, countries }: WorldMapProps) => {
           if (tooltips[d.group.name]) {
             return
           }
+          Object.keys(tooltips).forEach(handleRemoveTooltip)
           const tooltipNode = tooltipClone?.cloneNode(true) as HTMLDivElement
           mapRef.current?.appendChild(tooltipNode)
           const thisTooltip = select(tooltipNode)
@@ -240,9 +241,6 @@ export const WorldMap = ({ data, countries }: WorldMapProps) => {
 
   return (
     <Stack width="100%" position="relative" ref={mapRef} spacing={3.75} alignItems="center">
-      <Typography px={15.775} variant="body2" color={panelUI.uiThemePalette.text.sub}>
-        <Trans>Drag the map to move it. Use mouse scroll up to zoom into sections and mouse scroll down to zoom out.</Trans>
-      </Typography>
       <Stack
         position="fixed"
         boxShadow={`0px 6px 8px 0px ${alpha('#000000', 0.08)}`}
