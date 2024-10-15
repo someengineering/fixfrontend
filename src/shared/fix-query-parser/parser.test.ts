@@ -181,6 +181,15 @@ test(`Parse Navigation`, () => {
     }),
   )
   assert.deepEqual(
+    parse_navigation('-iam[2:3]{permission=read}->'),
+    new Navigation({
+      start: 2,
+      until: 3,
+      edge_types: [EdgeType.iam],
+      edge_filter: new Predicate({ path: Path.from('permission'), op: '=', value: 'read' }),
+    }),
+  )
+  assert.deepEqual(
     parse_navigation('<-delete[2:3]->'),
     new Navigation({
       start: 2,

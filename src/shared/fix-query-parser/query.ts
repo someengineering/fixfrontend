@@ -21,6 +21,7 @@ export enum Direction {
 export enum EdgeType {
   default = 'default',
   delete = 'delete',
+  iam = 'iam',
 }
 
 export class PathPart {
