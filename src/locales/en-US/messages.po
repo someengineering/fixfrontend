@@ -97,8 +97,7 @@ msgstr "{0} Milliseconds"
 msgid "{0} per"
 msgstr "{0} per"
 
-#: src/pages/panel/dashboard/WorldMap.tsx:423
-#: src/pages/panel/dashboard/WorldMap.tsx:345
+#: src/pages/panel/dashboard/WorldMap.tsx:421
 msgid "{0} Regions"
 msgstr "{0} Regions"
 
@@ -165,8 +164,7 @@ msgstr "{usersLength, plural, one {# user} other {# users}}"
 msgid "/ month / cloud account"
 msgstr "/ month / cloud account"
 
-#: src/pages/panel/dashboard/WorldMap.tsx:402
-#: src/pages/panel/dashboard/WorldMap.tsx:326
+#: src/pages/panel/dashboard/WorldMap.tsx:400
 msgid "# of Resources"
 msgstr "# of Resources"
 
@@ -963,8 +961,7 @@ msgstr "Copy the Secret Value of the created secret and paste it in the Secret V
 msgid "Cores"
 msgstr "Cores"
 
-#: src/pages/panel/dashboard/WorldMap.tsx:396
-#: src/pages/panel/dashboard/WorldMap.tsx:320
+#: src/pages/panel/dashboard/WorldMap.tsx:394
 msgid "Country"
 msgstr "Country"
 
@@ -1222,10 +1219,6 @@ msgstr "Downgrade"
 #: src/pages/panel/inventory/DownloadCSVButton.tsx:47
 msgid "Download CSV"
 msgstr "Download CSV"
-
-#: src/pages/panel/dashboard/WorldMap.tsx:317
-msgid "Drag the map to move it. Use mouse scroll up to zoom into sections and mouse scroll down to zoom out."
-msgstr "Drag the map to move it. Use mouse scroll up to zoom into sections and mouse scroll down to zoom out."
 
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:219
 msgid "Drill Down"
@@ -2271,8 +2264,7 @@ msgid "Regenerate"
 msgstr "Regenerate"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:183
-#: src/pages/panel/dashboard/WorldMap.tsx:390
-#: src/pages/panel/dashboard/WorldMap.tsx:314
+#: src/pages/panel/dashboard/WorldMap.tsx:388
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:98
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegionValues.tsx:60
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:258
@@ -2926,8 +2918,7 @@ msgstr "Value"
 msgid "Version"
 msgstr "Version"
 
-#: src/pages/panel/dashboard/WorldMap.tsx:410
-#: src/pages/panel/dashboard/WorldMap.tsx:334
+#: src/pages/panel/dashboard/WorldMap.tsx:408
 msgid "View Details"
 msgstr "View Details"
 
