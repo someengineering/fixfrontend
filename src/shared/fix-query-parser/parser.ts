@@ -76,6 +76,9 @@ const keywordP = alt(tok(T.All), tok(T.Count), tok(T.With), tok(T.Any), tok(T.Em
 const keywordS = apply(keywordP, (t) => t.text)
 const literalP = alt(tok(T.Literal), keywordP)
 const literalS = apply(literalP, (t) => t.text)
+const lit_or_num = apply(alt(tok(T.Dot), tok(T.Literal), tok(T.Integer), tok(T.Float)), (t) => t.text)
+const lit_combine = apply(alt(tok(T.Minus), tok(T.Colon)), (t) => t.text)
+const lit_with_combine = apply(seq(opt(lit_combine), lit_or_num), ([cb, lit]) => (cb ? cb + lit : lit))
 JsonElementP.setPattern(
   alt(
     apply(tok(T.True), () => true),
@@ -84,9 +87,7 @@ JsonElementP.setPattern(
     numberP,
     keywordS,
     apply(tok(T.DoubleQuotedString), (t) => t.text.slice(1, -1)),
-    apply(times_n(alt(tok(T.Literal), tok(T.Minus), tok(T.Dot), tok(T.Colon), tok(T.Integer), tok(T.Float))), (ts) =>
-      ts.map((t) => t.text).join(''),
-    ),
+    apply(times_n(lit_with_combine), (ts) => ts.join('')),
     apply(seq(tok(T.LBracket), tok(T.RBracket)), () => []),
     apply(seq(tok(T.LCurly), tok(T.RCurly)), () => ({})),
     kmid(tok(T.LBracket), list_sc(JsonElementP, tok(T.Comma)), tok(T.RBracket)),
@@ -208,7 +209,7 @@ const edge_filter_p = kmid(tok(T.LCurly), EdgeTermP, tok(T.RCurly))
 const edge_detail = apply(
   seq(opt(edge_types_p), opt(range), opt(edge_filter_p), opt(edge_types_p)),
   ([et_before, range, edge_filter, et_after]) => {
-    const start: number = range ? range[0] || 1 : 1
+    const start: number = range ? (range[0] ?? 1) : 1
     const until: number | undefined = range ? range[1] : 1
     return new Navigation({ start, until, edge_types: et_before || et_after || [EdgeType.default], edge_filter })
   },

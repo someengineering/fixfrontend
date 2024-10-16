@@ -164,6 +164,7 @@ test(`Parse Navigation`, () => {
   assert.deepEqual(parse_navigation('-[2]->').toString(), '-[2]->')
   assert.deepEqual(parse_navigation('-[2:]->').toString(), '-[2:]->')
   assert.deepEqual(parse_navigation('-[2:3]->'), new Navigation({ start: 2, until: 3 }))
+  assert.deepEqual(parse_navigation('-[0:3]->'), new Navigation({ start: 0, until: 3 }))
   assert.deepEqual(
     parse_navigation('-[2:3]delete->'),
     new Navigation({
@@ -555,6 +556,7 @@ test('Parse existing queries', () => {
     'is(aws_waf_web_acl) and logging_configuration==null',
     'with_usage(7d, cpu_utilization_percent) is(instance,database) and /usage.cpu_utilization_percent.max < 10',
     '/ancestors.account.reported.id="123456789012"',
+    'is(aws_iam_user) and name == matthias -->',
   ]
 
   for (const query of queries) {
