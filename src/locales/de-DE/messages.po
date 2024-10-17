@@ -1429,7 +1429,7 @@ msgstr ""
 msgid "In the Select Members window, type the name of the App you created earlier:"
 msgstr ""
 
-#: src/pages/panel/user-settings/UserSettingsNotification.tsx:77
+#: src/pages/panel/user-settings/UserSettingsNotification.tsx:70
 msgid "Inactivity reminder"
 msgstr "Inaktivitätserinnerung"
 
@@ -1567,6 +1567,10 @@ msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailTreeItem.tsx:48
 msgid "Manual"
+msgstr ""
+
+#: src/pages/panel/user-settings/UserSettingsNotification.tsx:87
+msgid "Marketing"
 msgstr ""
 
 #: src/shared/defined-messages/getMessage.ts:11
