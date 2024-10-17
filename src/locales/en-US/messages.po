@@ -1573,7 +1573,7 @@ msgstr "In the Select Members window, type the name of the App you created earli
 msgid "In this step we will set up the trust between FIX and your AWS cloud account."
 msgstr "In this step we will set up the trust between FIX and your AWS cloud account."
 
-#: src/pages/panel/user-settings/UserSettingsNotification.tsx:77
+#: src/pages/panel/user-settings/UserSettingsNotification.tsx:70
 msgid "Inactivity reminder"
 msgstr "Inactivity reminder"
 
@@ -1753,6 +1753,10 @@ msgstr "Manual"
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:144
 msgid "Manual Cloud Setup"
 msgstr "Manual Cloud Setup"
+
+#: src/pages/panel/user-settings/UserSettingsNotification.tsx:87
+msgid "Marketing"
+msgstr "Marketing"
 
 #: src/shared/defined-messages/getMessage.ts:11
 msgid "Medium"

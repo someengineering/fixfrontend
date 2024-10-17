@@ -1573,7 +1573,7 @@ msgstr ""
 msgid "In this step we will set up the trust between FIX and your AWS cloud account."
 msgstr ""
 
-#: src/pages/panel/user-settings/UserSettingsNotification.tsx:77
+#: src/pages/panel/user-settings/UserSettingsNotification.tsx:70
 msgid "Inactivity reminder"
 msgstr "Inaktivitätserinnerung"
 
@@ -1752,6 +1752,10 @@ msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:144
 msgid "Manual Cloud Setup"
+msgstr ""
+
+#: src/pages/panel/user-settings/UserSettingsNotification.tsx:87
+msgid "Marketing"
 msgstr ""
 
 #: src/shared/defined-messages/getMessage.ts:11
