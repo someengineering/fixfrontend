@@ -1429,7 +1429,7 @@ msgstr "In the search field, type Management groups:"
 msgid "In the Select Members window, type the name of the App you created earlier:"
 msgstr "In the Select Members window, type the name of the App you created earlier:"
 
-#: src/pages/panel/user-settings/UserSettingsNotification.tsx:77
+#: src/pages/panel/user-settings/UserSettingsNotification.tsx:70
 msgid "Inactivity reminder"
 msgstr "Inactivity reminder"
 
@@ -1568,6 +1568,10 @@ msgstr "Management Group or subscription"
 #: src/pages/panel/benchmark-detail/BenchmarkDetailTreeItem.tsx:48
 msgid "Manual"
 msgstr "Manual"
+
+#: src/pages/panel/user-settings/UserSettingsNotification.tsx:87
+msgid "Marketing"
+msgstr "Marketing"
 
 #: src/shared/defined-messages/getMessage.ts:11
 msgid "Medium"
