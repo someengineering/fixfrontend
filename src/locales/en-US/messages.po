@@ -1015,7 +1015,7 @@ msgstr "Create Service Account"
 msgid "Created"
 msgstr "Created"
 
-#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:96
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:95
 msgid "Created At"
 msgstr "Created At"
 
@@ -1702,7 +1702,7 @@ msgid "Last scanned: {0} ago"
 msgstr "Last scanned: {0} ago"
 
 #: src/pages/panel/user-settings-api-token/UserSettingsAPITokensPage.tsx:28
-#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:99
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:98
 msgid "Last used"
 msgstr "Last used"
 
@@ -1836,7 +1836,7 @@ msgstr "Most Non-Compliant Accounts"
 #: src/pages/panel/accounts/AccountsTableItem.tsx:65
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:177
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:251
-#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:93
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:92
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:18

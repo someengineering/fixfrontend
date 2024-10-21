@@ -1,8 +1,8 @@
-import { Divider, Modal as MuiModal, ModalProps as MuiModalProps, Stack, Typography, styled } from '@mui/material'
+import { Divider, Modal as MuiModal, ModalProps as MuiModalProps, Stack, StackProps, Typography, styled } from '@mui/material'
 import { FormEvent, MutableRefObject, ReactNode, useEffect, useState } from 'react'
 import { panelUI } from 'src/shared/constants'
 
-interface ModalProps extends Omit<MuiModalProps, 'onSubmit' | 'title' | 'onClose' | 'open'> {
+interface ModalProps extends Omit<MuiModalProps, 'onSubmit' | 'title' | 'onClose' | 'open' | 'children'> {
   title?: ReactNode
   description?: ReactNode
   actions?: ReactNode
@@ -11,6 +11,7 @@ interface ModalProps extends Omit<MuiModalProps, 'onSubmit' | 'title' | 'onClose
   defaultOpen?: boolean
   onSubmit?: (event: FormEvent<HTMLFormElement>) => void
   onClose?: () => void
+  children: StackProps['children']
 }
 
 const ModalContent = styled(Stack<'form' | 'div'>)(({ theme, width }) => ({
