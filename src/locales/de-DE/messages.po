@@ -1685,7 +1685,7 @@ msgstr ""
 msgid "Kinds"
 msgstr "Arten"
 
-#: src/pages/panel/dashboard/DashboardResourceChanges.tsx:216
+#: src/pages/panel/dashboard/DashboardResourceChanges.tsx:219
 msgid "Last {item} days"
 msgstr ""
 
