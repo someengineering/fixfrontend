@@ -37,7 +37,7 @@ export const mainMenuList: MenuListItem[] = [
     Icon: LabProfileIcon,
   },
   {
-    name: <Trans>Explore</Trans>,
+    name: <Trans>Explorer</Trans>,
     route: '/inventory/search',
     Icon: SearchIcon,
   },

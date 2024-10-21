@@ -1315,7 +1315,7 @@ msgid "Expires"
 msgstr "Läuft ab"
 
 #: src/shared/layouts/panel-layout/menuList.tsx:40
-msgid "Explore"
+msgid "Explorer"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:10

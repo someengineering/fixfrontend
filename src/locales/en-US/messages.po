@@ -1315,8 +1315,8 @@ msgid "Expires"
 msgstr "Expires"
 
 #: src/shared/layouts/panel-layout/menuList.tsx:40
-msgid "Explore"
-msgstr "Explore"
+msgid "Explorer"
+msgstr "Explorer"
 
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:10
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:14
