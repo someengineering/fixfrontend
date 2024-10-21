@@ -7,7 +7,7 @@ interface IconFromOAuthTypeProps {
   width?: number
 }
 
-export const IconFromOAuthType = ({ name, width }: IconFromOAuthTypeProps) => {
+export const IconFromOAuthType = ({ name, width = 20 }: IconFromOAuthTypeProps) => {
   switch (name) {
     case 'github':
       return <GithubSEBIcon color={panelUI.uiThemePalette.accent.darkGray} width={width} height={width} />
