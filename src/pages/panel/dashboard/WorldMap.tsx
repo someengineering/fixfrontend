@@ -6,13 +6,13 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { ChevronRightIcon, CloseIcon } from 'src/assets/icons'
 import { MarkerIcon } from 'src/assets/raw-icons'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
+import { cloudToColor } from 'src/shared/cloud-avatar'
 import { panelUI } from 'src/shared/constants'
 import { useNonce } from 'src/shared/providers'
 import { ToggleButton } from 'src/shared/toggle-button'
 import { PostWorkspaceInventoryAggregateForDashboardItem } from 'src/shared/types/server'
 import { AccountCloud } from 'src/shared/types/server-shared'
 import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
-import { stringToColor } from 'src/shared/utils/stringToColor'
 import { worldJSON, WorldJSONFeaturesType, WorldJSONType } from './worldJson'
 
 type NodeType = PostWorkspaceInventoryAggregateForDashboardItem & {
@@ -114,7 +114,10 @@ export const WorldMap = ({ data, countries }: WorldMapProps) => {
           const left = markerLeft - svgLeft
           const top = markerTop - svgTop
           const defaultCalculatedLeft = left + 24 + 6
-          const defaultCalculatedTop = top + 5
+          // 28 is the top offset of the tooltip
+          // 9 is the half of height of the tooltip close (X) button
+          // 9 is the half of height of the marker
+          const defaultCalculatedTop = top - 28 - 9 - 9
 
           const isLeft = defaultCalculatedLeft + tooltipNode.offsetWidth < width
           const isTop = top + tooltipNode.offsetHeight - 6 < height
@@ -208,7 +211,7 @@ export const WorldMap = ({ data, countries }: WorldMapProps) => {
             .attr('id', (d) => `marker-for-${Array.isArray(d) ? d[0].group.name : d.group.name}`)
             .attr('class', 'marker')
             .attr('cursor', 'pointer')
-            .attr('fill', (d) => stringToColor(Array.isArray(d) ? d[0].group.name : d.group.name))
+            .attr('fill', (d) => cloudToColor(Array.isArray(d) ? d[0].group.cloud : d.group.cloud).base)
             .attr('transform', (d) => {
               const sizes = projection(
                 Array.isArray(d) ? [d[0].group.longitude, d[0].group.latitude] : [d.group.longitude, d.group.latitude],
@@ -322,6 +325,7 @@ export const WorldMap = ({ data, countries }: WorldMapProps) => {
         ref={tooltipRef}
         pt={1.5}
         border={({ palette }) => `1px solid ${palette.divider}`}
+        borderRadius="12px"
         nonce={nonce}
         zIndex="tooltip"
       >
