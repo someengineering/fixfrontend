@@ -68,7 +68,7 @@ export const getSlides = (onClose: () => void) => [
           </LegendView>
           <Typography variant="subtitle1">
             The dashboard will show data for the cloud accounts that Fix is collecting data for. You can add more cloud accounts in{' '}
-            <InternalLink to="/workspace-settings" onClick={onClose}>
+            <InternalLink to="/settings/workspace" onClick={onClose}>
               Workspace Settings
             </InternalLink>
             .

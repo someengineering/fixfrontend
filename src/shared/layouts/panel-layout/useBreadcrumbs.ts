@@ -3,23 +3,23 @@ import { useLocation } from 'react-router-dom'
 
 const pathnameToTitle = (pathname: string) => {
   switch (pathname) {
-    case '/workspace-settings':
+    case '/settings/workspace':
       return t`Workspace Settings`
-    case '/workspace-settings/accounts':
+    case '/accounts':
       return t`Cloud Accounts`
-    case '/workspace-settings/accounts/setup-cloud/aws':
+    case '/accounts/setup-cloud/aws':
       return t`AWS Account Setup`
-    case '/workspace-settings/accounts/setup-cloud/gcp':
+    case '/accounts/setup-cloud/gcp':
       return t`GCP Account Setup`
-    case '/workspace-settings/accounts/setup-cloud/azure':
+    case '/accounts/setup-cloud/azure':
       return t`Azure Account Setup`
-    case '/workspace-settings/users':
-      return t`Users`
-    case '/workspace-settings/users/invitations':
+    case '/settings/workspace/users':
+      return t`User Invitations`
+    case '/settings/workspace/users/pending-invitations':
       return t`Pending Invitations`
-    case '/workspace-settings/billing-receipts':
+    case '/settings/workspace/billing-receipts':
       return t`Billing`
-    case '/workspace-settings/external-directories':
+    case '/settings/workspace/external-directories':
       return t`External Directories`
   }
 }

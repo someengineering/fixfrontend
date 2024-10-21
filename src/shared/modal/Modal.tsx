@@ -1,8 +1,8 @@
-import { Divider, Modal as MuiModal, Stack, Typography, styled } from '@mui/material'
-import { FormEvent, MutableRefObject, PropsWithChildren, ReactNode, useEffect, useState } from 'react'
+import { Divider, Modal as MuiModal, ModalProps as MuiModalProps, Stack, Typography, styled } from '@mui/material'
+import { FormEvent, MutableRefObject, ReactNode, useEffect, useState } from 'react'
 import { panelUI } from 'src/shared/constants'
 
-interface ModalProps extends PropsWithChildren {
+interface ModalProps extends Omit<MuiModalProps, 'onSubmit' | 'title' | 'onClose' | 'open'> {
   title?: ReactNode
   description?: ReactNode
   actions?: ReactNode
@@ -29,7 +29,7 @@ const ModalContent = styled(Stack<'form' | 'div'>)(({ theme, width }) => ({
   padding: theme.spacing(2, 3, 3),
 }))
 
-export const Modal = ({ children, actions, description, title, openRef, defaultOpen, width, onSubmit, onClose }: ModalProps) => {
+export const Modal = ({ children, actions, description, title, openRef, defaultOpen, width, onSubmit, onClose, ...reset }: ModalProps) => {
   const [open, setOpen] = useState(defaultOpen ?? false)
   useEffect(() => {
     openRef.current = (show?: boolean) => {
@@ -43,6 +43,7 @@ export const Modal = ({ children, actions, description, title, openRef, defaultO
     <MuiModal
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
+      {...reset}
       open={open}
       onClose={() => {
         setOpen(false)

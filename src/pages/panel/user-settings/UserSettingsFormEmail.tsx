@@ -1,5 +1,5 @@
 import { Trans, t } from '@lingui/macro'
-import { Alert, Stack, TextField, TextFieldProps } from '@mui/material'
+import { TextField, TextFieldProps, Typography } from '@mui/material'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useEffect, useState } from 'react'
@@ -34,39 +34,35 @@ export const UserSettingsFormEmail = ({ ...rest }: UserSettingsFormEmailProps) =
     : undefined
   return (
     <>
-      {isSuccess ? (
-        <Stack direction="row" pb={2}>
-          <Alert variant="outlined" severity="warning">
-            *{' '}
-            <Trans>
-              Your new email address will become active once you have verified it by clicking on the confirmation link we have sent to your
-              inbox.
-            </Trans>
-          </Alert>
-        </Stack>
-      ) : undefined}
       <UserSettingsFormContentContainer
-        title={<Trans>Email</Trans>}
+        title={<Trans>Update email</Trans>}
         isLoading={isLoading}
         onSubmit={handleSubmit}
         isPending={isPending}
         buttonDisabled={!email || email === data?.email}
-        buttonContent={<Trans>Update Email</Trans>}
+        buttonContent={<Trans>Update</Trans>}
       >
         <TextField
           {...rest}
-          size="small"
           error={!!error}
-          helperText={formError}
+          helperText={
+            formError ??
+            (isSuccess ? (
+              <Typography variant="subtitle1" color="success.main">
+                <Trans>
+                  Your new email address will become active once you have verified it by clicking on the confirmation link we have sent to
+                  your inbox.
+                </Trans>
+              </Typography>
+            ) : null)
+          }
           placeholder={data?.email}
-          FormHelperTextProps={{ sx: { m: 0, mt: 1 } }}
           value={email}
           required
           id="email"
           fullWidth
           name="email"
           autoComplete="email"
-          label={t`Email`}
           variant="outlined"
           type="email"
           disabled={isPending}

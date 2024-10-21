@@ -55,7 +55,7 @@ msgstr "{0, plural, one {# Year} other {# Years}}"
 msgid "{0, plural, one {check} other {checks}}"
 msgstr "{0, plural, one {check} other {checks}}"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:420
+#: src/pages/panel/accounts/AccountRow.tsx:415
 msgid "{0, plural, one {One error reported} two {Two errors reported} other {# errors reported}}"
 msgstr "{0, plural, one {One error reported} two {Two errors reported} other {# errors reported}}"
 
@@ -66,7 +66,7 @@ msgid "{0}"
 msgstr "{0}"
 
 #: src/pages/panel/inventory-search/utils/InventoryTableDateRenderCell.tsx:17
-#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:31
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:31
 msgid "{0} ago"
 msgstr "{0} ago"
 
@@ -139,7 +139,7 @@ msgstr "{label} is not valid"
 msgid "{label} is required"
 msgstr "{label} is required"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:357
+#: src/pages/panel/accounts/AccountRow.tsx:352
 msgid "{lastScanDurStr} ago"
 msgstr "{lastScanDurStr} ago"
 
@@ -173,25 +173,21 @@ msgstr "# of Resources"
 msgid "<0>{0} checks failing</0> out of {1}"
 msgstr "<0>{0} checks failing</0> out of {1}"
 
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:119
+msgid "<0><1>Step 1: Scan the QR Code</1><2>First up, see this QR code on your screen? Grab your phone and open your favorite authenticator app (like Google Authenticator).</2></0><3><4>Step 2: Add a New Account</4><5>In the app, tap on \"Add\" or \"+\" to set up a new account. Select \"Scan a QR Code\" and point your phone's camera at the QR code displayed here. This will link your account to the app.</5></3><6><7/></6><8><9>Step 3: Enter the Code</9><10>Once linked, the app will display a 6-digit code. It changes every 30 seconds, so it's super fresh! Enter that code in the box below and hit \"Activate\". And voilà, you're all set!</10></8>"
+msgstr "<0><1>Step 1: Scan the QR Code</1><2>First up, see this QR code on your screen? Grab your phone and open your favorite authenticator app (like Google Authenticator).</2></0><3><4>Step 2: Add a New Account</4><5>In the app, tap on \"Add\" or \"+\" to set up a new account. Select \"Scan a QR Code\" and point your phone's camera at the QR code displayed here. This will link your account to the app.</5></3><6><7/></6><8><9>Step 3: Enter the Code</9><10>Once linked, the app will display a 6-digit code. It changes every 30 seconds, so it's super fresh! Enter that code in the box below and hit \"Activate\". And voilà, you're all set!</10></8>"
+
 #: src/pages/panel/inventory-search/InventoryAdvanceSearchInfo.tsx:60
 msgid "<0>Fix supports full text search by encasing the search term in double quotes. For instance,<1><2><3>{searchInstance}</3></2></1>enables you to scan your entire infrastructure for a specific IP address.</0><4>Additionally, you can query for any resource attribute by utilizing the <5><6>{attributeOperatorValue}</6></5> format, where the operator can be {0}or <7><8>{1}</8></7>. For example,<9><10><11>{searchTagsOwners}</11></10></9>allows you to find all resources tagged with an <12><13>{owner}</13></12> attribute equal to <14><15>{sre}</15></14>.</4><16>Search queries can be refined using boolean operators {2}<17><18>{3}</18></17> to combine multiple terms. An example would be<19><20><21>{searchEc2InstanceCores}</21></20></19>to identify all EC2 instances possessing more than 4 cores.</16><22>For detailed search syntax guidance, visit <23>https://docs.fix.security/search-syntax<24/></23></22>"
 msgstr "<0>Fix supports full text search by encasing the search term in double quotes. For instance,<1><2><3>{searchInstance}</3></2></1>enables you to scan your entire infrastructure for a specific IP address.</0><4>Additionally, you can query for any resource attribute by utilizing the <5><6>{attributeOperatorValue}</6></5> format, where the operator can be {0}or <7><8>{1}</8></7>. For example,<9><10><11>{searchTagsOwners}</11></10></9>allows you to find all resources tagged with an <12><13>{owner}</13></12> attribute equal to <14><15>{sre}</15></14>.</4><16>Search queries can be refined using boolean operators {2}<17><18>{3}</18></17> to combine multiple terms. An example would be<19><20><21>{searchEc2InstanceCores}</21></20></19>to identify all EC2 instances possessing more than 4 cores.</16><22>For detailed search syntax guidance, visit <23>https://docs.fix.security/search-syntax<24/></23></22>"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:106
-msgid "<0>Important</0>: Copy and securely store this token immediately.<1/>You will not be able to view the token again after you navigate away from this page."
-msgstr "<0>Important</0>: Copy and securely store this token immediately.<1/>You will not be able to view the token again after you navigate away from this page."
-
-#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:165
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:149
 msgid "<0>Open Your Authenticator App:</0> Head over to your authenticator app and choose to add a new account manually.<1>Enter Account Details:</1> You'll need to type in your account's email address or username, and the key provided below.<2>Your Key:</2> <3/><4>Verification Type:</4> Make sure to select \"Time-based\" as the verification type.<5>Enter the Code:</5> Once your account is added manually, the app will show a 6-digit code. Pop that code into the box below and hit \"Activate\"."
 msgstr "<0>Open Your Authenticator App:</0> Head over to your authenticator app and choose to add a new account manually.<1>Enter Account Details:</1> You'll need to type in your account's email address or username, and the key provided below.<2>Your Key:</2> <3/><4>Verification Type:</4> Make sure to select \"Time-based\" as the verification type.<5>Enter the Code:</5> Once your account is added manually, the app will show a 6-digit code. Pop that code into the box below and hit \"Activate\"."
 
 #: src/pages/panel/inventory/getSlides.tsx:59
 msgid "<0>Resource Categories are logical groupings of cloud resources by their principal functionality.</0><1>Categories make it easy to filter the inventory to get an overview of all resources within a category, irrespective of their cloud provider. For example, an Amazon EC2 instance and a Google Cloud Function are both resource kinds within the \"Compute\" category. A resource can only be part of one category, and one category only.</1><2>Categories are a quicker way to identify the resource kinds in use, and investigate further to detect misconfigurations and compliance issues. You can easily see what cloud and account a specific resource is running in.</2>"
 msgstr "<0>Resource Categories are logical groupings of cloud resources by their principal functionality.</0><1>Categories make it easy to filter the inventory to get an overview of all resources within a category, irrespective of their cloud provider. For example, an Amazon EC2 instance and a Google Cloud Function are both resource kinds within the \"Compute\" category. A resource can only be part of one category, and one category only.</1><2>Categories are a quicker way to identify the resource kinds in use, and investigate further to detect misconfigurations and compliance issues. You can easily see what cloud and account a specific resource is running in.</2>"
-
-#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:136
-msgid "<0>Step 1: Scan the QR Code</0><1>First up, see this QR code on your screen? Grab your phone and open your favorite authenticator app (like Google Authenticator).</1><2>Step 2: Add a New Account</2><3>In the app, tap on \"Add\" or \"+\" to set up a new account. Select \"Scan a QR Code\" and point your phone's camera at the QR code displayed here. This will link your account to the app.</3><4><5/></4><6>Step 3: Enter the Code</6><7>Once linked, the app will display a 6-digit code. It changes every 30 seconds, so it's super fresh! Enter that code in the box below and hit \"Activate\". And voilà, you're all set!</7>"
-msgstr "<0>Step 1: Scan the QR Code</0><1>First up, see this QR code on your screen? Grab your phone and open your favorite authenticator app (like Google Authenticator).</1><2>Step 2: Add a New Account</2><3>In the app, tap on \"Add\" or \"+\" to set up a new account. Select \"Scan a QR Code\" and point your phone's camera at the QR code displayed here. This will link your account to the app.</3><4><5/></4><6>Step 3: Enter the Code</6><7>Once linked, the app will display a 6-digit code. It changes every 30 seconds, so it's super fresh! Enter that code in the box below and hit \"Activate\". And voilà, you're all set!</7>"
 
 #: src/shared/layouts/panel-layout/MoveToFreeAcknowledge.tsx:55
 msgid "<0>Thank you</0> for exploring the capabilities of Fix Security during your trial period!<1/>You've seen firsthand how our platform transforms cloud security with continuous, comprehensive monitoring and protection.<2/><3/>We have stopped synchronizing your cloud accounts and moved your workspace into the Free Tier.<4/>One account will be synchronized on a monthly base, while no additional user is allowed to access this workspace."
@@ -281,8 +277,8 @@ msgstr "Access Control"
 msgid "Access Control (IAM)"
 msgstr "Access Control (IAM)"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:280
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:434
+#: src/pages/panel/accounts/AccountRow.tsx:275
+#: src/pages/panel/accounts/AccountRow.tsx:429
 msgid "Access to your account is broken"
 msgstr "Access to your account is broken"
 
@@ -320,16 +316,19 @@ msgstr "Accounts Summary"
 msgid "Action"
 msgstr "Action"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:92
+#: src/pages/panel/accounts/AccountsTableItem.tsx:92
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:91
 msgid "Actions"
 msgstr "Actions"
 
-#: src/pages/panel/user-settings/UserSettingsTotp.tsx:19
-#: src/pages/panel/user-settings/UserSettingsTotp.tsx:31
-#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:129
+#: src/pages/panel/user-settings/UserSettingsTotp.tsx:26
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:225
 msgid "Activate"
 msgstr "Activate"
+
+#: src/pages/panel/user-settings/UserSettingsTotp.tsx:20
+msgid "Activate TOTP setup"
+msgstr "Activate TOTP setup"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:97
 msgid "Add a client secret"
@@ -358,10 +357,6 @@ msgstr "Add external directory"
 msgid "Add Filter"
 msgstr "Add Filter"
 
-#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:159
-msgid "Add Manually"
-msgstr "Add Manually"
-
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:112
 msgid "Add permission"
 msgstr "Add permission"
@@ -374,7 +369,7 @@ msgstr "Add Permission"
 msgid "Add Role Assignment"
 msgstr "Add Role Assignment"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:67
+#: src/pages/panel/accounts/AccountsTable.tsx:67
 msgid "Added accounts"
 msgstr "Added accounts"
 
@@ -400,6 +395,10 @@ msgstr "Affected resources"
 #: src/shared/charts/NetworkDiagram.tsx:378
 msgid "Age"
 msgstr "Age"
+
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:52
+msgid "Alert settings"
+msgstr "Alert settings"
 
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:30
 msgid "Alerting Settings"
@@ -487,8 +486,11 @@ msgstr "API Access"
 msgid "API Key"
 msgstr "API Key"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:15
-#: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:20
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:37
+msgid "API tokens"
+msgstr "API tokens"
+
+#: src/pages/panel/user-settings-api-token/UserSettingsAPITokensPage.tsx:18
 msgid "API Tokens"
 msgstr "API Tokens"
 
@@ -509,12 +511,12 @@ msgstr "Are you sure you want to change payment from <0>{0}</0> to <1>{1}</1>?"
 msgid "Are you sure you want to disconnect {name}?"
 msgstr "Are you sure you want to disconnect {name}?"
 
-#: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:85
+#: src/pages/panel/user-settings-connected-accounts/UserSettingsSocialNetworkDisconnectButton.tsx:86
 msgid "Are you sure you want to remove the {name} account {0}?"
 msgstr "Are you sure you want to remove the {name} account {0}?"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:52
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:519
+#: src/pages/panel/accounts/AccountRow.tsx:514
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:52
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:85
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:107
 msgid "Are you sure?"
@@ -593,7 +595,6 @@ msgid "below"
 msgstr "below"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailTree.tsx:106
-#: src/pages/panel/user-settings/UserSettingsNotification.tsx:46
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:160
 msgid "Benchmark"
 msgstr "Benchmark"
@@ -604,12 +605,14 @@ msgstr "Benchmark: {0}"
 
 #: src/pages/panel/resource-detail/utils/ResourceDetailChangeLogSelectedHistoryAccordion.tsx:54
 #: src/pages/panel/shared/utils/chartToShow.tsx:16
+#: src/pages/panel/user-settings-notifications/UserSettingsNotificationsPage.tsx:27
 msgid "Benchmarks"
 msgstr "Benchmarks"
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:51
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:21
-#: src/shared/layouts/panel-layout/UserButton.tsx:48
+#: src/shared/layouts/panel-layout/UserButton.tsx:47
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:56
 msgid "Billing"
 msgstr "Billing"
 
@@ -646,14 +649,15 @@ msgstr "By signing in, you agree to our <0>Privacy policy</0> and <1>Terms & Con
 msgid "Can't access OTP?"
 msgstr "Can't access OTP?"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:59
-#: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:68
-#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:121
-#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:49
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:326
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:330
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:331
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:538
+#: src/pages/panel/accounts/AccountRow.tsx:321
+#: src/pages/panel/accounts/AccountRow.tsx:325
+#: src/pages/panel/accounts/AccountRow.tsx:326
+#: src/pages/panel/accounts/AccountRow.tsx:533
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensAddToken.tsx:143
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:59
+#: src/pages/panel/user-settings-connected-accounts/UserSettingsSocialNetworkDisconnectButton.tsx:69
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:217
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:122
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:92
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:154
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:158
@@ -668,19 +672,24 @@ msgstr "Can't access OTP?"
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:565
+#: src/pages/panel/accounts/AccountRow.tsx:560
 msgid "Cannot enable this account"
 msgstr "Cannot enable this account"
 
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormDefaultValue.tsx:213
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMoreValue.tsx:127
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormTagsValue.tsx:117
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:35
 msgid "Change"
 msgstr "Change"
 
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:223
 msgid "Change count by Resource Kind"
 msgstr "Change count by Resource Kind"
+
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:31
+msgid "Change password"
+msgstr "Change password"
 
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:102
 msgid "Change payment"
@@ -801,20 +810,20 @@ msgstr "Click the service Account, go to the \"Keys\" Tab, and Click \"Add Key\"
 msgid "Client secret"
 msgstr "Client secret"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:84
-#: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:36
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:440
+#: src/pages/panel/accounts/AccountRow.tsx:435
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensAddToken.tsx:89
+#: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:37
 msgid "Close"
 msgstr "Close"
 
+#: src/pages/panel/accounts/AccountRow.tsx:553
+#: src/pages/panel/accounts/AccountsTableItem.tsx:59
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:165
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormCloudValues.tsx:62
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:97
 #: src/pages/panel/inventory/InventoryPage.tsx:273
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:253
 #: src/pages/panel/security/AccountCard.tsx:38
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:558
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:59
 msgid "Cloud"
 msgstr "Cloud"
 
@@ -823,7 +832,7 @@ msgid "Cloud accounts"
 msgstr "Cloud accounts"
 
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:9
-#: src/shared/layouts/panel-layout/UserButton.tsx:43
+#: src/shared/layouts/panel-layout/UserButton.tsx:42
 msgid "Cloud Accounts"
 msgstr "Cloud Accounts"
 
@@ -886,7 +895,7 @@ msgstr "Configuration changed"
 msgid "Configure"
 msgstr "Configure"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:452
+#: src/pages/panel/accounts/AccountRow.tsx:447
 msgid "Configure Service Principal"
 msgstr "Configure Service Principal"
 
@@ -898,7 +907,7 @@ msgstr "Confirm"
 msgid "Congratulations on your subscription"
 msgstr "Congratulations on your subscription"
 
-#: src/pages/panel/user-settings/UserSettingsSocialNetwork.tsx:17
+#: src/pages/panel/user-settings-connected-accounts/UserSettingsSocialNetwork.tsx:25
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsDiscordService.tsx:50
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:85
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsEmailService.tsx:116
@@ -912,7 +921,7 @@ msgstr "Congratulations on your subscription"
 msgid "Connect"
 msgstr "Connect"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:450
+#: src/pages/panel/accounts/AccountRow.tsx:445
 msgid "Connect GCP Service Account"
 msgstr "Connect GCP Service Account"
 
@@ -928,9 +937,13 @@ msgstr "Connect PagerDuty"
 msgid "Connect Teams"
 msgstr "Connect Teams"
 
-#: src/pages/panel/user-settings/UserSettingsPage.tsx:34
-msgid "Connected Accounts"
-msgstr "Connected Accounts"
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:33
+msgid "Connected accounts"
+msgstr "Connected accounts"
+
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:48
+msgid "Connected services"
+msgstr "Connected services"
 
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:23
 msgid "Connected Services"
@@ -953,6 +966,10 @@ msgstr "Copied to Clipboard!"
 msgid "Copy"
 msgstr "Copy"
 
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensAddToken.tsx:96
+msgid "Copy and securely store this token immediately.<0/>You will not be able to view the token again after you navigate away from this page."
+msgstr "Copy and securely store this token immediately.<0/>You will not be able to view the token again after you navigate away from this page."
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:104
 msgid "Copy the Secret Value of the created secret and paste it in the Secret Value field {0}, but don't press the submit button yet."
 msgstr "Copy the Secret Value of the created secret and paste it in the Secret Value field {0}, but don't press the submit button yet."
@@ -965,7 +982,7 @@ msgstr "Cores"
 msgid "Country"
 msgstr "Country"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:97
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensAddToken.tsx:155
 msgid "Create"
 msgstr "Create"
 
@@ -981,11 +998,11 @@ msgstr "Create an account"
 msgid "Create an App secret"
 msgstr "Create an App secret"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:73
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensAddToken.tsx:81
 msgid "Create new API token"
 msgstr "Create new API token"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:78
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensAddToken.tsx:116
 msgid "Create new API Token"
 msgstr "Create new API Token"
 
@@ -994,11 +1011,11 @@ msgid "Create Service Account"
 msgstr "Create Service Account"
 
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormChangePicker.tsx:29
-#: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:27
+#: src/pages/panel/user-settings-api-token/UserSettingsAPITokensPage.tsx:25
 msgid "Created"
 msgstr "Created"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:95
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:96
 msgid "Created At"
 msgstr "Created At"
 
@@ -1030,14 +1047,14 @@ msgstr "Critical"
 msgid "Current"
 msgstr "Current"
 
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:45
-msgid "Current Password"
-msgstr "Current Password"
-
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:206
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:129
 msgid "Current Product Tier"
 msgstr "Current Product Tier"
+
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:63
+msgid "Current users"
+msgstr "Current users"
 
 #: src/pages/panel/workspace-settings/workspace-alerting-settings/WorkspaceAlertingSettings.tsx:306
 msgid "Currently, there are no connected services available for configuration. Please be informed that connecting at least one service is necessary to configure alerting settings."
@@ -1072,10 +1089,13 @@ msgstr "Date"
 msgid "Date Time Picker"
 msgstr "Date Time Picker"
 
-#: src/pages/panel/user-settings/UserSettingsTotp.tsx:19
-#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:52
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:125
 msgid "Deactivate"
 msgstr "Deactivate"
+
+#: src/pages/panel/user-settings/UserSettingsTotp.tsx:20
+msgid "Deactivate TOTP setup"
+msgstr "Deactivate TOTP setup"
 
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:69
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:33
@@ -1091,16 +1111,15 @@ msgstr "Define Roles"
 msgid "Delayed Effect"
 msgstr "Delayed Effect"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:33
-#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:40
-#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:44
-#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:45
-#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:86
-#: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:79
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:405
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:409
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:410
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:549
+#: src/pages/panel/accounts/AccountRow.tsx:400
+#: src/pages/panel/accounts/AccountRow.tsx:404
+#: src/pages/panel/accounts/AccountRow.tsx:405
+#: src/pages/panel/accounts/AccountRow.tsx:544
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:40
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:44
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:45
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:86
+#: src/pages/panel/user-settings-connected-accounts/UserSettingsSocialNetworkDisconnectButton.tsx:80
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:73
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:77
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:78
@@ -1112,7 +1131,7 @@ msgstr "Delayed Effect"
 msgid "Delete"
 msgstr "Delete"
 
-#: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:62
+#: src/pages/panel/user-settings-connected-accounts/UserSettingsSocialNetworkDisconnectButton.tsx:63
 msgid "Delete Provider"
 msgstr "Delete Provider"
 
@@ -1128,9 +1147,9 @@ msgstr "Deleted in the last 7 days"
 msgid "Deleted resources"
 msgstr "Deleted resources"
 
+#: src/pages/panel/accounts/AccountRow.tsx:443
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:13
 #: src/pages/panel/shared/setup-cloud-button/SetupCloudButton.tsx:29
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:448
 msgid "Deploy Stack"
 msgstr "Deploy Stack"
 
@@ -1140,8 +1159,8 @@ msgid "Deploy to a single account"
 msgstr "Deploy to a single account"
 
 #: src/pages/panel/inventory-detail/InventoryDetailView.tsx:218
-#: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:24
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:118
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensAddToken.tsx:123
+#: src/pages/panel/user-settings-api-token/UserSettingsAPITokensPage.tsx:22
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:24
 msgid "Description"
 msgstr "Description"
@@ -1158,7 +1177,7 @@ msgstr "DevOps"
 msgid "Directory (tenant) ID"
 msgstr "Directory (tenant) ID"
 
-#: src/pages/panel/user-settings/UserSettingsSocialNetworkDeleteButton.tsx:59
+#: src/pages/panel/user-settings-connected-accounts/UserSettingsSocialNetworkDisconnectButton.tsx:60
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsDisconnectServiceModal.tsx:48
 #: src/pages/panel/workspace-settings/workspace-settings-services/WorkspaceSettingsDisconnectServiceModal.tsx:68
 msgid "Disconnect"
@@ -1168,7 +1187,7 @@ msgstr "Disconnect"
 msgid "Disconnect Service"
 msgstr "Disconnect Service"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:77
+#: src/pages/panel/accounts/AccountsTable.tsx:77
 msgid "Discovered but unconfigured accounts"
 msgstr "Discovered but unconfigured accounts"
 
@@ -1188,11 +1207,11 @@ msgstr "Do not show me again"
 msgid "Do not show this message again."
 msgstr "Do not show this message again."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:522
+#: src/pages/panel/accounts/AccountRow.tsx:517
 msgid "Do you want to delete this account?"
 msgstr "Do you want to delete this account?"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:53
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:53
 msgid "Do you want to delete this API Token?"
 msgstr "Do you want to delete this API Token?"
 
@@ -1228,15 +1247,13 @@ msgstr "Drill Down"
 msgid "Drop Service Account Key File"
 msgstr "Drop Service Account Key File"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:342
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:343
+#: src/pages/panel/accounts/AccountRow.tsx:337
+#: src/pages/panel/accounts/AccountRow.tsx:338
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:175
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:176
 msgid "Edit"
 msgstr "Edit"
 
-#: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:49
-#: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:69
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:86
 #: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:90
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:109
@@ -1260,8 +1277,7 @@ msgstr "Enable"
 msgid "Enable all"
 msgstr "Enable all"
 
-#: src/pages/panel/user-settings/UserSettingsNotification.tsx:49
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:81
+#: src/pages/panel/accounts/AccountsTableItem.tsx:81
 msgid "Enabled"
 msgstr "Enabled"
 
@@ -1277,7 +1293,7 @@ msgstr "Enter the secret description and set the expiration date:"
 msgid "Enterprise"
 msgstr "Enterprise"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:505
+#: src/pages/panel/accounts/AccountRow.tsx:500
 msgid "Errors reported during the last collect of account {accountName}"
 msgstr "Errors reported during the last collect of account {accountName}"
 
@@ -1476,10 +1492,10 @@ msgstr "IAM Role changes in the last 30 days."
 msgid "Id"
 msgstr "Id"
 
+#: src/pages/panel/accounts/AccountRow.tsx:550
+#: src/pages/panel/accounts/AccountsTableItem.tsx:62
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:250
 #: src/pages/panel/security/AccountCard.tsx:35
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:555
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:62
 #: src/shared/charts/NetworkDiagram.tsx:376
 msgid "ID"
 msgstr "ID"
@@ -1533,11 +1549,15 @@ msgstr "Ignore all"
 msgid "Ignored"
 msgstr "Ignored"
 
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensAddToken.tsx:86
+msgid "Important"
+msgstr "Important"
+
 #: src/pages/panel/security/OverallCard.tsx:149
 msgid "Improved"
 msgstr "Improved"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:370
+#: src/pages/panel/accounts/AccountRow.tsx:365
 msgid "In {nextScanDurStr}"
 msgstr "In {nextScanDurStr}"
 
@@ -1573,7 +1593,7 @@ msgstr "In the Select Members window, type the name of the App you created earli
 msgid "In this step we will set up the trust between FIX and your AWS cloud account."
 msgstr "In this step we will set up the trust between FIX and your AWS cloud account."
 
-#: src/pages/panel/user-settings/UserSettingsNotification.tsx:77
+#: src/pages/panel/user-settings-notifications/UserSettingsNotificationsPage.tsx:57
 msgid "Inactivity reminder"
 msgstr "Inactivity reminder"
 
@@ -1673,7 +1693,7 @@ msgstr "Last {item} days"
 msgid "Last login"
 msgstr "Last login"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:71
+#: src/pages/panel/accounts/AccountsTableItem.tsx:71
 msgid "Last scan"
 msgstr "Last scan"
 
@@ -1681,8 +1701,8 @@ msgstr "Last scan"
 msgid "Last scanned: {0} ago"
 msgstr "Last scanned: {0} ago"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokens.tsx:30
-#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:98
+#: src/pages/panel/user-settings-api-token/UserSettingsAPITokensPage.tsx:28
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:99
 msgid "Last used"
 msgstr "Last used"
 
@@ -1706,7 +1726,7 @@ msgstr "Log in with {formattedName}"
 msgid "Log Out"
 msgstr "Log Out"
 
-#: src/shared/layouts/panel-layout/UserButton.tsx:61
+#: src/shared/layouts/panel-layout/UserButton.tsx:60
 msgid "Logout"
 msgstr "Logout"
 
@@ -1753,6 +1773,10 @@ msgstr "Manual"
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:144
 msgid "Manual Cloud Setup"
 msgstr "Manual Cloud Setup"
+
+#: src/pages/panel/user-settings-notifications/UserSettingsNotificationsPage.tsx:73
+msgid "Marketing"
+msgstr "Marketing"
 
 #: src/shared/defined-messages/getMessage.ts:11
 msgid "Medium"
@@ -1808,11 +1832,11 @@ msgstr "Most Improved Resources"
 msgid "Most Non-Compliant Accounts"
 msgstr "Most Non-Compliant Accounts"
 
+#: src/pages/panel/accounts/AccountRow.tsx:556
+#: src/pages/panel/accounts/AccountsTableItem.tsx:65
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:177
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:251
-#: src/pages/panel/user-settings/UserSettingsApiTokensRow.tsx:92
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:561
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:65
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:93
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:18
@@ -1858,8 +1882,7 @@ msgstr "New issues"
 msgid "new non compliant resources in the past {since}"
 msgstr "new non compliant resources in the past {since}"
 
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:30
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:60
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:57
 msgid "New Password"
 msgstr "New Password"
 
@@ -1885,7 +1908,7 @@ msgid "New to Fix? <0>Create an account</0>"
 msgstr "New to Fix? <0>Create an account</0>"
 
 #: src/pages/panel/inventory/DataGridPagination.tsx:61
-#: src/shared/right-slider/HelpSlider.tsx:113
+#: src/shared/right-slider/HelpSlider.tsx:114
 msgid "Next"
 msgstr "Next"
 
@@ -1893,7 +1916,7 @@ msgstr "Next"
 msgid "Next invoice will be available"
 msgstr "Next invoice will be available"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:76
+#: src/pages/panel/accounts/AccountsTableItem.tsx:76
 msgid "Next scan"
 msgstr "Next scan"
 
@@ -1915,6 +1938,10 @@ msgstr "No {label} found for {typed}"
 msgid "No account configured for this workspace"
 msgstr "No account configured for this workspace"
 
+#: src/pages/panel/user-settings-api-token/UserSettingsAPITokensPage.tsx:43
+msgid "No API token has been created."
+msgstr "No API token has been created."
+
 #: src/shared/layouts/panel-layout/MoveToFreeAcknowledge.tsx:44
 msgid "No Thanks"
 msgstr "No Thanks"
@@ -1923,7 +1950,11 @@ msgstr "No Thanks"
 msgid "Non-Compliant Resources"
 msgstr "Non-Compliant Resources"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:525
+#: src/pages/panel/user-settings-connected-accounts/UserSettingsSocialNetwork.tsx:16
+msgid "Not added"
+msgstr "Not added"
+
+#: src/pages/panel/accounts/AccountRow.tsx:520
 msgid "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 msgstr "Note: You are about to delete a management or delegated admin account. Please be aware that once deleted, we will no longer have the capability to retrieve any account names, requiring you to edit them manually."
 
@@ -1936,9 +1967,9 @@ msgstr "Nothing"
 msgid "Nothing to show yet"
 msgstr "Nothing to show yet"
 
-#: src/pages/panel/user-settings/UserSettingsPage.tsx:29
-msgid "Notification"
-msgstr "Notification"
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:29
+msgid "Notifications"
+msgstr "Notifications"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:65
 msgid "Now, switch to the organization or folder that holds the resources you want to connect."
@@ -1965,10 +1996,14 @@ msgid "of {total} results"
 msgstr "of {total} results"
 
 #: src/core/auth/WorkspaceGuard.tsx:94
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:508
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:569
+#: src/pages/panel/accounts/AccountRow.tsx:503
+#: src/pages/panel/accounts/AccountRow.tsx:564
 msgid "Ok"
 msgstr "Ok"
+
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:40
+msgid "Old Password"
+msgstr "Old Password"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:194
 msgid "On the Access Control (IAM) page, you can check the newly created role assignment: it should assign a Reader role to the application you created (Fix Security in this example) with the scope of current resource (Management Group):"
@@ -2039,7 +2074,7 @@ msgstr "Opened at"
 msgid "Optional professional services"
 msgstr "Optional professional services"
 
-#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:87
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:95
 msgid "Or"
 msgstr "Or"
 
@@ -2072,8 +2107,8 @@ msgstr "Other {0} accounts"
 msgid "Others"
 msgstr "Others"
 
-#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:215
-#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:73
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:200
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:81
 msgid "OTP Code"
 msgstr "OTP Code"
 
@@ -2122,6 +2157,10 @@ msgstr "Payment method unrecognized: Ensure you are using a payment method that 
 msgid "Payment update failed: The provided payment method is unrecognized. Please verify your details and use a supported payment method."
 msgstr "Payment update failed: The provided payment method is unrecognized. Please verify your details and use a supported payment method."
 
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:67
+msgid "Pending invitations"
+msgstr "Pending invitations"
+
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:29
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:45
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:48
@@ -2137,7 +2176,7 @@ msgstr "Pick one of the recommendations to the right and improve your security"
 msgid "Please add a payment method to switch your workspace's product tier"
 msgstr "Please add a payment method to switch your workspace's product tier"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:126
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensAddToken.tsx:131
 msgid "Please enter a brief description"
 msgstr "Please enter a brief description"
 
@@ -2183,11 +2222,11 @@ msgid "Press: Create Service and fill out the form."
 msgstr "Press: Create Service and fill out the form."
 
 #: src/pages/panel/inventory/DataGridPagination.tsx:61
-#: src/shared/right-slider/HelpSlider.tsx:97
+#: src/shared/right-slider/HelpSlider.tsx:98
 msgid "Previous"
 msgstr "Previous"
 
-#: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:25
+#: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:26
 msgid "Print or copy the following recovery codes"
 msgstr "Print or copy the following recovery codes"
 
@@ -2195,7 +2234,7 @@ msgstr "Print or copy the following recovery codes"
 msgid "Privileged"
 msgstr "Privileged"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:275
+#: src/pages/panel/accounts/AccountRow.tsx:270
 msgid "Privileged account"
 msgstr "Privileged account"
 
@@ -2239,7 +2278,7 @@ msgstr "Public RDS Snapshots"
 msgid "Public S3 Buckets"
 msgstr "Public S3 Buckets"
 
-#: src/pages/panel/user-settings/UserSettingsSocialNetwork.tsx:17
+#: src/pages/panel/user-settings-connected-accounts/UserSettingsSocialNetwork.tsx:25
 msgid "Re-Authenticate"
 msgstr "Re-Authenticate"
 
@@ -2247,15 +2286,15 @@ msgstr "Re-Authenticate"
 msgid "Receipts"
 msgstr "Receipts"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:57
+#: src/pages/panel/accounts/AccountsTable.tsx:57
 msgid "Recently added accounts"
 msgstr "Recently added accounts"
 
-#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:105
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:112
 msgid "Recovery Code"
 msgstr "Recovery Code"
 
-#: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:24
+#: src/pages/panel/user-settings/UserSettingsTotpRecoveryCodesModal.tsx:25
 msgid "Recovery codes"
 msgstr "Recovery codes"
 
@@ -2368,10 +2407,10 @@ msgstr "Resource Timeline"
 msgid "Resource types"
 msgstr "Resource types"
 
+#: src/pages/panel/accounts/AccountsTableItem.tsx:68
 #: src/pages/panel/dashboard/DashboardCloudCards.tsx:47
 #: src/pages/panel/dashboard/DashboardPage.tsx:153
 #: src/pages/panel/inventory-detail/InventoryDetailView.tsx:231
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:68
 msgid "Resources"
 msgstr "Resources"
 
@@ -2478,7 +2517,7 @@ msgstr "Security posture changed"
 msgid "Security posture improved"
 msgstr "Security posture improved"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTableItem.tsx:84
+#: src/pages/panel/accounts/AccountsTableItem.tsx:84
 msgid "Security Scan"
 msgstr "Security Scan"
 
@@ -2571,7 +2610,7 @@ msgstr "Service Account Key"
 msgid "Setting Up Email Notifications"
 msgstr "Setting Up Email Notifications"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:454
+#: src/pages/panel/accounts/AccountRow.tsx:449
 msgid "Setup cloud"
 msgstr "Setup cloud"
 
@@ -2621,10 +2660,10 @@ msgstr "Some checks have been disabled for this resource"
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:321
 #: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:33
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:25
-#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:107
-#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:110
-#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:39
+#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:26
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:94
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:97
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:48
 msgid "Something went wrong please try again later."
 msgstr "Something went wrong please try again later."
 
@@ -2646,10 +2685,10 @@ msgstr "Storage"
 msgid "Submission Error"
 msgstr "Submission Error"
 
+#: src/pages/panel/accounts/AccountRow.tsx:310
+#: src/pages/panel/accounts/AccountRow.tsx:311
+#: src/pages/panel/accounts/AccountRow.tsx:316
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzurePage.tsx:17
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:315
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:316
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:321
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:147
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:148
 msgid "Submit"
@@ -2721,15 +2760,15 @@ msgstr "The token that you sent is invalid or have been expired please try again
 msgid "The workspace you requested cannot be accessed. Please request access from the workspace administrator."
 msgstr "The workspace you requested cannot be accessed. Please request access from the workspace administrator."
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:125
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensAddToken.tsx:130
 msgid "There's already another api tokens with the same description"
 msgstr "There's already another api tokens with the same description"
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:494
+#: src/pages/panel/accounts/AccountRow.tsx:489
 msgid "This account is currently in a degraded state possibly due to a misconfiguration.<0/>Fix was unable to gather data from this account."
 msgstr "This account is currently in a degraded state possibly due to a misconfiguration.<0/>Fix was unable to gather data from this account."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:462
+#: src/pages/panel/accounts/AccountRow.tsx:457
 msgid "This account is currently in a degraded state.<0/>Fix was unable to gather data from this account.<1/><2/>To resume security scans, please log into the {accountName} account ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 msgstr "This account is currently in a degraded state.<0/>Fix was unable to gather data from this account.<1/><2/>To resume security scans, please log into the {accountName} account ({0}) and re-deploy the CloudFormation stack that establishes the IAM role trust."
 
@@ -2737,7 +2776,7 @@ msgstr "This account is currently in a degraded state.<0/>Fix was unable to gath
 msgid "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 msgstr "This email address is already registered. If this is your email, please try logging in or click on forgot password in login page to reset your password."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:472
+#: src/pages/panel/accounts/AccountRow.tsx:467
 msgid "This project is currently in a degraded state.<0/>Fix was unable to gather data from this project.<1/><2/>To resume security scans, please ensure that the service account you configured is set up correctly.<3/>You may also recreate and upload the service account definition."
 msgstr "This project is currently in a degraded state.<0/>Fix was unable to gather data from this project.<1/><2/>To resume security scans, please ensure that the service account you configured is set up correctly.<3/>You may also recreate and upload the service account definition."
 
@@ -2745,7 +2784,7 @@ msgstr "This project is currently in a degraded state.<0/>Fix was unable to gath
 msgid "This section does not contain any controls that can be automated.<0/>Manual checks or processes are required for compliance."
 msgstr "This section does not contain any controls that can be automated.<0/>Manual checks or processes are required for compliance."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountRow.tsx:483
+#: src/pages/panel/accounts/AccountRow.tsx:478
 msgid "This subscription is currently in a degraded state.<0/>Fix was unable to gather data from this subscription.<1/><2/>To resume security scans, please ensure that the application permissions are set up correctly.<3/>You may also recreate and redefine the access credentials."
 msgstr "This subscription is currently in a degraded state.<0/>Fix was unable to gather data from this subscription.<1/><2/>To resume security scans, please ensure that the application permissions are set up correctly.<3/>You may also recreate and redefine the access credentials."
 
@@ -2771,7 +2810,7 @@ msgstr "To access this resource, please ensure that you are logged into the {clo
 msgid "To AWS Marketplace"
 msgstr "To AWS Marketplace"
 
-#: src/pages/panel/user-settings/UserSettingsApiTokensAddToken.tsx:113
+#: src/pages/panel/user-settings-api-token/UserSettingsApiTokensAddToken.tsx:103
 msgid "Token"
 msgstr "Token"
 
@@ -2789,19 +2828,15 @@ msgstr "Top Security Enhancements"
 msgid "Total resources"
 msgstr "Total resources"
 
-#: src/pages/panel/user-settings/UserSettingsTotp.tsx:24
-msgid "TOTP"
-msgstr "TOTP"
-
-#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:45
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:61
 msgid "TOTP Deactivation"
 msgstr "TOTP Deactivation"
 
-#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:31
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:32
 msgid "TOTP disabled successfully"
 msgstr "TOTP disabled successfully"
 
-#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:117
+#: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:111
 msgid "TOTP Setup"
 msgstr "TOTP Setup"
 
@@ -2855,13 +2890,13 @@ msgstr "Unencrypted EBS Volumes"
 msgid "Unused Database Instances"
 msgstr "Unused Database Instances"
 
-#: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:54
-msgid "Update Email"
-msgstr "Update Email"
+#: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:43
+msgid "Update"
+msgstr "Update"
 
-#: src/pages/panel/user-settings/UserSettingsFormPassword.tsx:34
-msgid "Update Password"
-msgstr "Update Password"
+#: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:38
+msgid "Update email"
+msgstr "Update email"
 
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormChangePicker.tsx:31
 msgid "Updated"
@@ -2891,21 +2926,27 @@ msgstr "Uploading your Google Cloud Service Account file..."
 msgid "Use OTP instead"
 msgstr "Use OTP instead"
 
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:25
+msgid "User details"
+msgstr "User details"
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:122
 msgid "User Impersonation permission"
 msgstr "User Impersonation permission"
 
-#: src/pages/panel/user-settings/UserSettingsPage.tsx:18
-#: src/shared/layouts/panel-layout/UserButton.tsx:28
+#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:17
+msgid "User Invitations"
+msgstr "User Invitations"
+
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:18
+msgid "User settings"
+msgstr "User settings"
+
+#: src/shared/layouts/panel-layout/UserButton.tsx:27
 msgid "User Settings"
 msgstr "User Settings"
 
-#: src/pages/panel/user-settings/UserSettingsNotification.tsx:42
-msgid "User Settings Notification"
-msgstr "User Settings Notification"
-
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:27
-#: src/shared/layouts/panel-layout/useBreadcrumbs.ts:17
 msgid "Users"
 msgstr "Users"
 
@@ -2994,9 +3035,9 @@ msgstr "Webhook URL"
 msgid "week"
 msgstr "week"
 
-#: src/pages/panel/user-settings/UserSettingsNotification.tsx:56
-msgid "Weekly Report"
-msgstr "Weekly Report"
+#: src/pages/panel/user-settings-notifications/UserSettingsNotificationsPage.tsx:41
+msgid "Weekly report"
+msgstr "Weekly report"
 
 #: src/containers/auth/getQuotes.ts:15
 msgid "What I like about Fix Security is that I can actually see the test. When the rubber meets the road, what I want to know is: what’s the call you’re making on the API?"
@@ -3015,6 +3056,10 @@ msgstr "Within a billing cycle you will be charged for the highest product tier 
 msgid "Workspace Alerting Settings"
 msgstr "Workspace Alerting Settings"
 
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:44
+msgid "Workspace details"
+msgstr "Workspace details"
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage.tsx:174
 #: src/pages/panel/workspace-settings/WorkspaceSettingsForm.tsx:47
 msgid "Workspace Id"
@@ -3024,15 +3069,23 @@ msgstr "Workspace Id"
 msgid "Workspace Name"
 msgstr "Workspace Name"
 
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:19
+msgid "Workspace settings"
+msgstr "Workspace settings"
+
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:14
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:7
-#: src/shared/layouts/panel-layout/UserButton.tsx:33
+#: src/shared/layouts/panel-layout/UserButton.tsx:32
 msgid "Workspace Settings"
 msgstr "Workspace Settings"
 
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:20
+msgid "Workspace users"
+msgstr "Workspace users"
+
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:44
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:66
-#: src/shared/layouts/panel-layout/UserButton.tsx:38
+#: src/shared/layouts/panel-layout/UserButton.tsx:37
 msgid "Workspace Users"
 msgstr "Workspace Users"
 
@@ -3063,11 +3116,11 @@ msgstr "You are currently in your trial period, which will end in {0} days.<0/>D
 msgid "You are currently subscribed to {0}, Your subscription will change to {title} by the end of the day on {1}."
 msgstr "You are currently subscribed to {0}, Your subscription will change to {title} by the end of the day on {1}."
 
-#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:59
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:68
 msgid "You can deactivate TOTP via otp code"
 msgstr "You can deactivate TOTP via otp code"
 
-#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:91
+#: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:99
 msgid "You can deactivate TOTP via recovery code"
 msgstr "You can deactivate TOTP via recovery code"
 
@@ -3101,7 +3154,7 @@ msgstr "You don't have the permission to change this, contact the workspace owne
 msgid "You don't have the permission to view this workspace, contact the workspace owner for more information."
 msgstr "You don't have the permission to view this workspace, contact the workspace owner for more information."
 
-#: src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsTable.tsx:41
+#: src/pages/panel/accounts/AccountsTable.tsx:41
 msgid "You have reached the maximum number of cloud accounts allowed for the {0} tier. To add more accounts, please <0>Upgrade Your Subscription</0>."
 msgstr "You have reached the maximum number of cloud accounts allowed for the {0} tier. To add more accounts, please <0>Upgrade Your Subscription</0>."
 
@@ -3126,6 +3179,6 @@ msgstr "You've chosen to ignore this security check for the resource. Please not
 msgid "Your email address isn't verified yet. Please check your inbox and click on the 'Verify' button to complete the process. Can't find the email? It might be in your spam folder."
 msgstr "Your email address isn't verified yet. Please check your inbox and click on the 'Verify' button to complete the process. Can't find the email? It might be in your spam folder."
 
-#: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:41
+#: src/pages/panel/user-settings/UserSettingsFormEmail.tsx:52
 msgid "Your new email address will become active once you have verified it by clicking on the confirmation link we have sent to your inbox."
 msgstr "Your new email address will become active once you have verified it by clicking on the confirmation link we have sent to your inbox."

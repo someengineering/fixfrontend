@@ -1,4 +1,5 @@
 import { Trans, t } from '@lingui/macro'
+import { Stack, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useState } from 'react'
@@ -27,41 +28,48 @@ export const UserSettingsFormPassword = ({ ...rest }: UserSettingsFormPasswordPr
   return (
     <>
       <UserSettingsFormContentContainer
-        title={<Trans>New Password</Trans>}
+        title={<Trans>Change password</Trans>}
         onSubmit={handleSubmit}
         isPending={isPending}
         buttonDisabled={!password || !currentPassword}
-        buttonContent={<Trans>Update Password</Trans>}
+        buttonContent={<Trans>Change</Trans>}
+        spacing={3}
       >
-        <PasswordTextField
-          {...rest}
-          size="small"
-          error={!!error}
-          value={currentPassword}
-          required
-          id="current-password"
-          name="current-password"
-          autoComplete="current-password webauthn"
-          label={t`Current Password`}
-          variant="outlined"
-          fullWidth
-          onChange={(e) => setCurrentPassword(e.target.value ?? '')}
-        />
-        <PasswordTextField
-          {...rest}
-          size="small"
-          error={!!error}
-          helperText={formError}
-          value={password}
-          required
-          id="password"
-          name="password"
-          autoComplete="new-password"
-          label={t`New Password`}
-          variant="outlined"
-          fullWidth
-          onChange={(e) => setPassword(e.target.value ?? '')}
-        />
+        <Stack spacing={1.5}>
+          <Typography variant="subtitle1" fontWeight={700} color="textSecondary">
+            <Trans>Old Password</Trans>
+          </Typography>
+          <PasswordTextField
+            {...rest}
+            error={!!error}
+            value={currentPassword}
+            required
+            id="current-password"
+            name="current-password"
+            autoComplete="current-password webauthn"
+            variant="outlined"
+            fullWidth
+            onChange={(e) => setCurrentPassword(e.target.value ?? '')}
+          />
+        </Stack>
+        <Stack spacing={1.5}>
+          <Typography variant="subtitle1" fontWeight={700} color="textSecondary">
+            <Trans>New Password</Trans>
+          </Typography>
+          <PasswordTextField
+            {...rest}
+            error={!!error}
+            helperText={formError}
+            value={password}
+            required
+            id="password"
+            name="password"
+            autoComplete="new-password"
+            variant="outlined"
+            fullWidth
+            onChange={(e) => setPassword(e.target.value ?? '')}
+          />
+        </Stack>
       </UserSettingsFormContentContainer>
     </>
   )

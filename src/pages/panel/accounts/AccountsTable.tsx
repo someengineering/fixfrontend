@@ -5,9 +5,9 @@ import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceCloudAccountsQuery, getWorkspaceProductTiersQuery } from 'src/pages/panel/shared/queries'
 import { InternalLink } from 'src/shared/link-button'
 import { GetWorkspaceProductTiersResponse } from 'src/shared/types/server'
-import { WorkspaceSettingsAccountsTableItem } from './WorkspaceSettingsAccountsTableItem'
+import { AccountsTableItem } from './AccountsTableItem'
 
-export const WorkspaceSettingsAccountsTable = () => {
+export const AccountsTable = () => {
   const { selectedWorkspace } = useUserProfile()
   const [{ data }, { data: currentTier }] = useSuspenseQueries({
     queries: [
@@ -40,7 +40,7 @@ export const WorkspaceSettingsAccountsTable = () => {
       <AlertTitle>
         <Trans>
           You have reached the maximum number of cloud accounts allowed for the {selectedWorkspace?.tier} tier. To add more accounts, please{' '}
-          <InternalLink to="/workspace-settings/billing-receipts">Upgrade Your Subscription</InternalLink>.
+          <InternalLink to="/settings/workspace/billing-receipts">Upgrade Your Subscription</InternalLink>.
         </Trans>
       </AlertTitle>
     </Alert>
@@ -50,7 +50,7 @@ export const WorkspaceSettingsAccountsTable = () => {
     typeof data !== 'string' && (
       <>
         {data?.recent.length ? (
-          <WorkspaceSettingsAccountsTableItem
+          <AccountsTableItem
             data={data.recent}
             isTop
             isBottom={!data.discovered.length && !data.added.length}
@@ -60,7 +60,7 @@ export const WorkspaceSettingsAccountsTable = () => {
           />
         ) : null}
         {data?.added.length ? (
-          <WorkspaceSettingsAccountsTableItem
+          <AccountsTableItem
             data={data.added}
             isTop={!data.recent.length}
             isBottom={!data.discovered.length}
@@ -70,7 +70,7 @@ export const WorkspaceSettingsAccountsTable = () => {
           />
         ) : null}
         {data?.discovered.length ? (
-          <WorkspaceSettingsAccountsTableItem
+          <AccountsTableItem
             data={data.discovered}
             isTop={!data.recent.length && !data.added.length}
             isBottom

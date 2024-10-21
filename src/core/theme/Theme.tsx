@@ -8,11 +8,13 @@ import {
   ThemeOptions,
   ThemeProvider,
   alpha,
+  buttonClasses,
   createTheme,
   inputBaseClasses,
   menuItemClasses,
   responsiveFontSizes,
   tabClasses,
+  tableCellClasses,
 } from '@mui/material'
 import { PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
 import { CancelIcon, CheckIcon, InfoIcon, KeyboardArrowDownIcon, WarningIcon } from 'src/assets/icons'
@@ -148,7 +150,7 @@ export function Theme({ children, emotionCache }: ThemeProps) {
             root: {
               ...typography.subtitle1,
               height: 44,
-              borderRadius: 6,
+              borderRadius: '6px !important',
               paddingRight: '0 !important',
               transition: orgTheme.transitions.create(['border-color', 'box-shadow', 'fill']),
               '::placeholder': {
@@ -280,29 +282,41 @@ export function Theme({ children, emotionCache }: ThemeProps) {
               padding: '8px 16px',
             },
             outlined: {
-              borderColor: panelUI.uiThemePalette.primary.divider,
-              ':hover,:focus,:active': {
-                backgroundColor: panelUI.uiThemePalette.background.bgPurple,
-                borderColor: panelUI.uiThemePalette.text.sub,
+              [`&.${buttonClasses.colorPrimary}`]: {
+                borderColor: panelUI.uiThemePalette.input.border,
+                ':hover,:focus,:active': {
+                  borderColor: panelUI.uiThemePalette.text.sub,
+                  backgroundColor: panelUI.uiThemePalette.background.bgPurple,
+                },
               },
             },
             contained: {
               color: panelUI.uiThemePalette.primary.white,
-              backgroundColor: panelUI.uiThemePalette.primary.purple,
-              ':hover,:focus,:active': { backgroundColor: panelUI.uiThemePalette.primary.darkPurple },
+              [`&.${buttonClasses.colorPrimary}`]: {
+                ':hover,:focus,:active': {
+                  backgroundColor: panelUI.uiThemePalette.primary.darkPurple,
+                },
+              },
               boxShadow: 'none !important',
             },
             textSecondary: {
-              backgroundColor: panelUI.uiThemePalette.background.bgPurple,
+              [`&.${buttonClasses.colorPrimary}`]: {
+                backgroundColor: panelUI.uiThemePalette.background.bgPurple,
+                ':hover,:focus,:active': {
+                  backgroundColor: panelUI.uiThemePalette.accent.purple,
+                  color: panelUI.uiThemePalette.primary.white,
+                },
+              },
               color: panelUI.uiThemePalette.text.sub,
               ':hover,:focus,:active': {
-                backgroundColor: panelUI.uiThemePalette.accent.purple,
                 color: panelUI.uiThemePalette.primary.white,
               },
             },
             textPrimary: {
-              ':hover,:focus,:active': {
-                backgroundColor: panelUI.uiThemePalette.background.bgPurple,
+              [`&.${buttonClasses.colorPrimary}`]: {
+                ':hover,:focus,:active': {
+                  backgroundColor: panelUI.uiThemePalette.background.bgPurple,
+                },
               },
             },
           },
@@ -331,6 +345,28 @@ export function Theme({ children, emotionCache }: ThemeProps) {
               [`&.${tabClasses.selected}`]: {
                 backgroundColor: panelUI.uiThemePalette.background.bgPurple,
                 color: panelUI.uiThemePalette.accent.purple,
+              },
+            },
+          },
+        },
+        MuiTableCell: {
+          styleOverrides: {
+            root: {
+              borderColor: panelUI.uiThemePalette.primary.divider,
+              ...typography.subtitle1,
+            },
+            head: {
+              color: panelUI.uiThemePalette.text.sub,
+            },
+          },
+        },
+        MuiTableRow: {
+          styleOverrides: {
+            root: {
+              '&:last-child': {
+                [`& .${tableCellClasses.body}`]: {
+                  border: 'none',
+                },
               },
             },
           },

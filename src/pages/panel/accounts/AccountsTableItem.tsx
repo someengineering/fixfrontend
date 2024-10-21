@@ -6,10 +6,10 @@ import { panelUI } from 'src/shared/constants'
 import { TableView } from 'src/shared/layouts/panel-layout'
 import { Account } from 'src/shared/types/server-shared'
 import { usePersistState } from 'src/shared/utils/usePersistState'
-import { WorkspaceSettingsAccountRow } from './WorkspaceSettingsAccountRow'
-import { WorkspaceSettingsAccountTableTitle } from './WorkspaceSettingsAccountTableTitle'
+import { AccountRow } from './AccountRow'
+import { AccountTableTitle } from './AccountTableTitle'
 
-interface WorkspaceSettingsAccountsTableItemProps {
+interface AccountsTableItemProps {
   data: Account[]
   title: string
   isTop: boolean
@@ -19,7 +19,7 @@ interface WorkspaceSettingsAccountsTableItemProps {
   enableErrorModalContent: ReactNode
 }
 
-export const WorkspaceSettingsAccountsTableItem = ({
+export const AccountsTableItem = ({
   data,
   title,
   isTop,
@@ -27,7 +27,7 @@ export const WorkspaceSettingsAccountsTableItem = ({
   isNotConfigured,
   canInviteBasedOnTier,
   enableErrorModalContent,
-}: WorkspaceSettingsAccountsTableItemProps) => {
+}: AccountsTableItemProps) => {
   const { checkPermission } = useUserProfile()
   const hasPermission = checkPermission('updateCloudAccounts')
   const [page, setPage] = useState(0)
@@ -38,9 +38,9 @@ export const WorkspaceSettingsAccountsTableItem = ({
   )
   return (
     <Box mb={isBottom ? undefined : { xs: 8, sm: 5 }} mt={isTop ? undefined : { sm: 3 }}>
-      <WorkspaceSettingsAccountTableTitle isTop={isTop} withAddButton={canInviteBasedOnTier} errorModalContent={enableErrorModalContent}>
+      <AccountTableTitle isTop={isTop} withAddButton={canInviteBasedOnTier} errorModalContent={enableErrorModalContent}>
         {title}
-      </WorkspaceSettingsAccountTableTitle>
+      </AccountTableTitle>
       <TableView
         stickyPagination
         paginationProps={{
@@ -98,7 +98,7 @@ export const WorkspaceSettingsAccountsTableItem = ({
             {data
               ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((account, i) => (
-                <WorkspaceSettingsAccountRow
+                <AccountRow
                   account={account}
                   key={`${account.id}_${i}`}
                   isNotConfigured={isNotConfigured}

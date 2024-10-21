@@ -5,13 +5,13 @@ import { useUserProfile } from 'src/core/auth'
 import { ExternalLink } from 'src/shared/link-button'
 import { getWorkspaceCloudAccountsLogsQuery } from './getWorkspaceCloudAccountsLogs.query'
 
-interface WorkspaceSettingsAccountErrorLogProps {
+interface AccountErrorLogProps {
   accountId: string
 }
 
 const urlRegex = /(https?:\/\/[^ ]*)/
 
-export const WorkspaceSettingsAccountErrorLog = ({ accountId }: WorkspaceSettingsAccountErrorLogProps) => {
+export const AccountErrorLog = ({ accountId }: AccountErrorLogProps) => {
   const { selectedWorkspace } = useUserProfile()
   const { data } = useSuspenseQuery({
     queryFn: getWorkspaceCloudAccountsLogsQuery,

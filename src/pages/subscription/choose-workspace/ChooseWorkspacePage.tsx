@@ -20,7 +20,7 @@ export default function ChooseWorkspacePage() {
 
   const afterSubmit = useCallback(() => {
     setSubscriptionId()
-    navigate('/workspace-settings/billing-receipts')
+    navigate('/settings/workspace/billing-receipts')
   }, [navigate])
 
   const { mutateAsync, isPending, error } = useMutation({
@@ -66,7 +66,7 @@ export default function ChooseWorkspacePage() {
   }
   const handleCancel = () => {
     setSubscriptionId()
-    navigate('/workspace-settings/billing-receipts')
+    navigate('/settings/workspace/billing-receipts')
   }
 
   return (subscriptionId && workspaces?.length && workspaces.length > 1) || error ? (

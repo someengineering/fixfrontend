@@ -37,7 +37,7 @@ export const MoveToFreeAcknowledge = ({ workspaceId }: { workspaceId: string }) 
       defaultOpen
       actions={
         <Stack direction="row" justifyContent="space-between" width="100%">
-          <InternalLinkButton variant="contained" to="/workspace-settings/billing-receipts" onClick={() => handleClose(true)}>
+          <InternalLinkButton variant="contained" to="/settings/workspace/billing-receipts" onClick={() => handleClose(true)}>
             <Trans>Upgrade to Paid Tier</Trans>
           </InternalLinkButton>
           <Button variant="text" onClick={() => handleClose(true)}>

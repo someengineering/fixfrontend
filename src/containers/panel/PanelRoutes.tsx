@@ -44,83 +44,19 @@ const InventorySearchPage = lazy(
     ),
 )
 
-const WorkspaceSettingsPage = lazy(
+const AccountsPage = lazy(
   () =>
     import(
-      /* webpackChunkName: "workspace-settings" */
-      'src/pages/panel/workspace-settings/WorkspaceSettingsPage'
+      /* webpackChunkName: "accounts" */
+      'src/pages/panel/accounts/AccountsPage'
     ),
 )
 
-const WorkspaceSettingsAccountsPage = lazy(
+const PanelSettingsContainer = lazy(
   () =>
     import(
-      /* webpackChunkName: "workspace-settings-accounts" */
-      'src/pages/panel/workspace-settings-accounts/WorkspaceSettingsAccountsPage'
-    ),
-)
-
-const WorkspaceSettingsAccountsCloudSetupPage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "workspace-settings-accounts-setup-cloud" */
-      'src/pages/panel/workspace-settings-accounts-setup-cloud/WorkspaceSettingsAccountsSetupCloudPage'
-    ),
-)
-
-const WorkspaceSettingsAccountsSetupCloudAWSPage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "workspace-settings-accounts-setup-cloud-aws" */
-      'src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage'
-    ),
-)
-
-const WorkspaceSettingsAccountsSetupCloudGCPPage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "workspace-settings-accounts-setup-cloud-gcp" */
-      'src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPPage'
-    ),
-)
-
-const WorkspaceSettingsAccountsSetupCloudAzurePage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "workspace-settings-accounts-setup-cloud-azure" */
-      'src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzurePage'
-    ),
-)
-
-const WorkspaceSettingsUsersPage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "workspace-settings-users" */
-      'src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersPage'
-    ),
-)
-
-const UserSettingsPage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "user-settings" */
-      'src/pages/panel/user-settings/UserSettingsPage'
-    ),
-)
-
-const WorkspaceSettingsBillingPage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "workspace-settings-billing" */
-      'src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage'
-    ),
-)
-
-const WorkspaceSettingsExternalDirectoryPage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "workspace-settings-external-directory" */
-      'src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage'
+      /* webpackChunkName: "panel-settings-container" */
+      'src/containers/panel-settings/PanelSettingsContainer'
     ),
 )
 
@@ -169,31 +105,10 @@ export function PanelRoutes() {
             </Route>
           </Route>
           <Route element={<PermissionCheckGuard permissionToCheck="readSettings" />}>
-            <Route path="workspace-settings">
-              <Route path="accounts" element={<WorkspaceSettingsAccountsPage />} />
-            </Route>
+            <Route path="accounts" element={<AccountsPage />} />
           </Route>
         </Route>
-        <Route path="user-settings" element={<UserSettingsPage />} />
-        <Route element={<PermissionCheckGuard permissionToCheck="readSettings" />}>
-          <Route path="workspace-settings">
-            <Route index element={<WorkspaceSettingsPage />} />
-            <Route path="users" element={<WorkspaceSettingsUsersPage />} />
-            <Route element={<PermissionCheckGuard permissionToCheck="readBilling" />}>
-              <Route path="billing-receipts" element={<WorkspaceSettingsBillingPage />} />
-            </Route>
-            <Route path="external-directories" element={<WorkspaceSettingsExternalDirectoryPage />} />
-            <Route path="accounts">
-              <Route path="setup-cloud">
-                <Route index element={<WorkspaceSettingsAccountsCloudSetupPage />} />
-                <Route path="aws" element={<WorkspaceSettingsAccountsSetupCloudAWSPage />} />
-                <Route path="gcp" element={<WorkspaceSettingsAccountsSetupCloudGCPPage />} />
-                <Route path="azure" element={<WorkspaceSettingsAccountsSetupCloudAzurePage />} />
-                <Route path="*" element={<Navigate to=".." replace />} />
-              </Route>
-            </Route>
-          </Route>
-        </Route>
+        <Route path="settings/*" element={<PanelSettingsContainer />} />
         <Route path="*" element={<Navigate to={panelUI.homePage} replace />} />
       </Route>
     </Routes>

@@ -11,17 +11,20 @@ import BucketIconComp from './bucket-icon.svg?react'
 import CalendarMonthIconComp from './calendar-month-icon.svg?react'
 import CancelIconComp from './cancel-icon.svg?react'
 import CheckIconComp from './check-icon.svg?react'
+import CheckSmallIconComp from './check-small-icon.svg?react'
 import ChevronRightIconComp from './chevron-right-icon.svg?react'
 import CloseIconComp from './close-icon.svg?react'
 import CloseSmallIconComp from './close-small-icon.svg?react'
 import CloudIconComp from './cloud-icon.svg?react'
 import CodeBlocksIconComp from './code-blocks-icon.svg?react'
+import CopyAllIconComp from './copy-all-icon.svg?react'
 import CorporateFareIconComp from './corporate-fare-icon.svg?react'
 import { createIcon } from './createIcon'
 import CrownComp from './crown.svg?react'
 import DashboardIconComp from './dashboard-icon.svg?react'
 import DatabaseIconComp from './database-icon.svg?react'
 import DatabaseOldIconComp from './database-old-icon.svg?react'
+import DeleteIconComp from './delete-icon.svg?react'
 import DescriptionIconComp from './description-icon.svg?react'
 import DiscordIconComp from './discord-icon.svg?react'
 import DiscordWithTextLogoComp from './discord-with-text-logo.svg?react'
@@ -65,7 +68,10 @@ import OpenInNewIconComp from './open-in-new-icon.svg?react'
 import OpsgenieLogoComp from './opsgenie-logo.svg?react'
 import PagerdutyLogoComp from './pagerduty-logo.svg?react'
 import PasswordIconComp from './password-icon.svg?react'
+import PowerIconComp from './power-icon.svg?react'
+import PowerOffIconComp from './power-off-icon.svg?react'
 import ReceiptIconComp from './receipt-icon.svg?react'
+import RefreshIconComp from './refresh-icon.svg?react'
 import ScheduleIconComp from './schedule-icon.svg?react'
 import SearchIconComp from './search-icon.svg?react'
 import SettingsIconComp from './settings-icon.svg?react'
@@ -76,7 +82,9 @@ import TeamsLogoComp from './teams-logo.svg?react'
 import TickSmallIconComp from './tick-small-icon.svg?react'
 import TroubleshootIconComp from './troubleshoot-icon.svg?react'
 import VerifiedUserIconComp from './verified-user-icon.svg?react'
+import VisibilityIconComp from './visibility-icon.svg?react'
 import VisibilityOffIconComp from './visibility-off-icon.svg?react'
+import VPNKeyIconComp from './vpn-key-icon.svg?react'
 import WarningIconComp from './warning-icon.svg?react'
 import WorkspaceSettingsIconComp from './workspace-settings-icon.svg?react'
 
@@ -93,16 +101,19 @@ export const BucketIcon = createIcon(BucketIconComp)
 export const CalendarMonthIcon = createIcon(CalendarMonthIconComp)
 export const CancelIcon = createIcon(CancelIconComp)
 export const CheckIcon = createIcon(CheckIconComp)
+export const CheckSmallIcon = createIcon(CheckSmallIconComp)
 export const ChevronRightIcon = createIcon(ChevronRightIconComp)
 export const CloseIcon = createIcon(CloseIconComp)
 export const CloseSmallIcon = createIcon(CloseSmallIconComp)
 export const CloudIcon = createIcon(CloudIconComp)
 export const CodeBlocksIcon = createIcon(CodeBlocksIconComp)
+export const CopyAllIcon = createIcon(CopyAllIconComp)
 export const CorporateFareIcon = createIcon(CorporateFareIconComp)
 export const Crown = createIcon(CrownComp)
 export const DashboardIcon = createIcon(DashboardIconComp)
 export const DatabaseIcon = createIcon(DatabaseIconComp)
 export const DatabaseOldIcon = createIcon(DatabaseOldIconComp)
+export const DeleteIcon = createIcon(DeleteIconComp)
 export const DescriptionIcon = createIcon(DescriptionIconComp)
 export const DiscordIcon = createIcon(DiscordIconComp)
 export const DiscordWithTextLogo = createIcon(DiscordWithTextLogoComp)
@@ -146,7 +157,10 @@ export const OpenInNewIcon = createIcon(OpenInNewIconComp)
 export const OpsgenieLogo = createIcon(OpsgenieLogoComp)
 export const PagerdutyLogo = createIcon(PagerdutyLogoComp)
 export const PasswordIcon = createIcon(PasswordIconComp)
+export const PowerIcon = createIcon(PowerIconComp)
+export const PowerOffIcon = createIcon(PowerOffIconComp)
 export const ReceiptIcon = createIcon(ReceiptIconComp)
+export const RefreshIcon = createIcon(RefreshIconComp)
 export const ScheduleIcon = createIcon(ScheduleIconComp)
 export const SearchIcon = createIcon(SearchIconComp)
 export const SettingsIcon = createIcon(SettingsIconComp)
@@ -157,6 +171,8 @@ export const TeamsLogo = createIcon(TeamsLogoComp)
 export const TickSmallIcon = createIcon(TickSmallIconComp)
 export const TroubleshootIcon = createIcon(TroubleshootIconComp)
 export const VerifiedUserIcon = createIcon(VerifiedUserIconComp)
+export const VisibilityIcon = createIcon(VisibilityIconComp)
 export const VisibilityOffIcon = createIcon(VisibilityOffIconComp)
+export const VPNKeyIcon = createIcon(VPNKeyIconComp)
 export const WarningIcon = createIcon(WarningIconComp)
 export const WorkspaceSettingsIcon = createIcon(WorkspaceSettingsIconComp)

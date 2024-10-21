@@ -44,6 +44,7 @@ export const HelpSlider = ({ children, slides }: HelpSliderProps) => {
             <Typography variant="h4">{data[slide - 1]?.header}</Typography>
           </Stack>
         }
+        titleContainerProps={{ px: 3, py: 3 }}
         overflow="initial"
         flex={1}
       >

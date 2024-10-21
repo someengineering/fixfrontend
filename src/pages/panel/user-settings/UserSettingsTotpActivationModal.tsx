@@ -1,19 +1,6 @@
 import { Trans, t } from '@lingui/macro'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { LoadingButton } from '@mui/lab'
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Button,
-  Divider,
-  Stack,
-  TextField,
-  Typography,
-  rgbToHex,
-  useTheme,
-} from '@mui/material'
+import { Box, Button, Divider, Stack, TextField, Typography, rgbToHex, useTheme } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import QrCode from 'qrcode'
@@ -21,7 +8,7 @@ import toSJISFunc from 'qrcode/helper/to-sjis'
 import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { FixLogoUrl } from 'src/assets/icons'
 import { Spinner } from 'src/shared/loading'
-import { Modal } from 'src/shared/modal'
+import { RightSlider } from 'src/shared/right-slider'
 import { SecretField } from 'src/shared/secret-field'
 import { GetCurrentUserResponse } from 'src/shared/types/server'
 import { UserSettingsTotpRecoveryCodesModal } from './UserSettingsTotpRecoveryCodesModal'
@@ -35,7 +22,7 @@ interface UserSettingsTotpActivationModalProps {
 }
 
 export const UserSettingsTotpActivationModal = ({ activationModalRef, isLoading, email }: UserSettingsTotpActivationModalProps) => {
-  const modalRef = useRef<(show?: boolean | undefined) => void>()
+  const [open, setOpen] = useState(false)
   const codesModalRef = useRef<(show?: boolean | undefined) => void>()
   const qrCodeBoxRef = useRef<HTMLCanvasElement>()
   const {
@@ -70,7 +57,7 @@ export const UserSettingsTotpActivationModal = ({ activationModalRef, isLoading,
       if (show) {
         addMfaMutation()
       }
-      modalRef.current?.(show)
+      setOpen(show ?? false)
     }
     return () => {
       activationModalRef.current = () => {}
@@ -111,56 +98,53 @@ export const UserSettingsTotpActivationModal = ({ activationModalRef, isLoading,
     : undefined
   return (
     <>
-      <Modal
-        openRef={modalRef}
-        onSubmit={() => mutateAsync({ otp })}
-        title={<Trans>TOTP Setup</Trans>}
-        actions={
-          <>
-            <Button variant="outlined" color="error" onClick={() => modalRef.current?.(false)}>
-              <Trans>Cancel</Trans>
-            </Button>
-            <LoadingButton
-              type="submit"
-              variant="contained"
-              loading={isPending || addMfaPending}
-              disabled={isLoading || isPending || addMfaPending || buttonDisabled}
-            >
-              <Trans>Activate</Trans>
-            </LoadingButton>
-          </>
+      <RightSlider
+        open={open}
+        component="form"
+        onClose={() => setOpen(false)}
+        onSubmit={(e) => {
+          e.preventDefault()
+          mutateAsync({ otp })
+        }}
+        title={
+          <Typography variant="h4">
+            <Trans>TOTP Setup</Trans>
+          </Typography>
         }
+        spacing={3}
       >
         {data ? (
-          <Stack spacing={1}>
-            <Trans>
-              <Typography variant="h5">Step 1: Scan the QR Code</Typography>
-              <Typography>
-                First up, see this QR code on your screen? Grab your phone and open your favorite authenticator app (like Google
-                Authenticator).
-              </Typography>
-              <Typography variant="h5">Step 2: Add a New Account</Typography>
-              <Typography>
-                In the app, tap on "Add" or "+" to set up a new account. Select "Scan a QR Code" and point your phone's camera at the QR
-                code displayed here. This will link your account to the app.
-              </Typography>
-              <Button href={`otpauth://totp/${email}?secret=${data.secret}&issuer=FIX%20Inventory`} target="_blank">
-                <Box ref={qrCodeBoxRef} component="canvas" />
-              </Button>
-              <Typography variant="h5">Step 3: Enter the Code</Typography>
-              <Typography>
-                Once linked, the app will display a 6-digit code. It changes every 30 seconds, so it's super fresh! Enter that code in the
-                box below and hit "Activate". And voilà, you're all set!
-              </Typography>
-            </Trans>
-            <Accordion>
-              <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="manual-setup-content" id="manual-setup-header">
-                <Typography variant="h5">
-                  <Trans>Add Manually</Trans>
-                </Typography>
-              </AccordionSummary>
+          <>
+            <Stack spacing={3} p={3}>
+              <Trans>
+                <Stack spacing={1}>
+                  <Typography variant="h6">Step 1: Scan the QR Code</Typography>
+                  <Typography variant="subtitle1">
+                    First up, see this QR code on your screen? Grab your phone and open your favorite authenticator app (like Google
+                    Authenticator).
+                  </Typography>
+                </Stack>
+                <Stack spacing={1}>
+                  <Typography variant="h6">Step 2: Add a New Account</Typography>
+                  <Typography variant="subtitle1">
+                    In the app, tap on "Add" or "+" to set up a new account. Select "Scan a QR Code" and point your phone's camera at the QR
+                    code displayed here. This will link your account to the app.
+                  </Typography>
+                </Stack>
+                <Button href={`otpauth://totp/${email}?secret=${data.secret}&issuer=FIX%20Inventory`} target="_blank">
+                  <Box ref={qrCodeBoxRef} component="canvas" />
+                </Button>
+                <Stack spacing={1}>
+                  <Typography variant="h6">Step 3: Enter the Code</Typography>
+                  <Typography variant="subtitle1">
+                    Once linked, the app will display a 6-digit code. It changes every 30 seconds, so it's super fresh! Enter that code in
+                    the box below and hit "Activate". And voilà, you're all set!
+                  </Typography>
+                </Stack>
+              </Trans>
               <Divider />
-              <AccordionDetails>
+              <Stack spacing={2}>
+                <Typography variant="h4">Add manually</Typography>
                 <Typography component={Stack} spacing={1}>
                   <Trans>
                     <Typography variant="h5" component="span">
@@ -181,8 +165,12 @@ export const UserSettingsTotpActivationModal = ({ activationModalRef, isLoading,
                         typographyContainerBox: {
                           ml: { xs: 0, md: 2 },
                           mb: { xs: 1, md: 0 },
-                          width: 350,
-                          minHeight: 40,
+                          height: 44,
+                        },
+                        copyButton: {
+                          sx: {
+                            height: 44,
+                          },
                         },
                       }}
                     />
@@ -197,34 +185,47 @@ export const UserSettingsTotpActivationModal = ({ activationModalRef, isLoading,
                     "Activate".
                   </Trans>
                 </Typography>
-              </AccordionDetails>
-            </Accordion>
-            <TextField
-              size="small"
-              error={!!error}
-              helperText={formError}
-              placeholder="123456"
-              FormHelperTextProps={{ sx: { m: 0, mt: 1 } }}
-              value={otp}
-              required
-              id="otp"
-              fullWidth
-              name="otp"
-              inputMode="numeric"
-              autoComplete="one-time-code"
-              label={t`OTP Code`}
-              variant="outlined"
-              type="text"
-              disabled={isPending}
-              onChange={(e) => {
-                const value = e.target.value ?? ''
-                setOtp(value)
-                if (value.length === 6) {
-                  mutateAsync({ otp: value })
-                }
-              }}
-            />
-          </Stack>
+                <TextField
+                  size="small"
+                  error={!!error}
+                  helperText={formError}
+                  placeholder="123456"
+                  value={otp}
+                  required
+                  id="otp"
+                  fullWidth
+                  name="otp"
+                  inputMode="numeric"
+                  autoComplete="one-time-code"
+                  label={t`OTP Code`}
+                  variant="outlined"
+                  type="text"
+                  disabled={isPending}
+                  onChange={(e) => {
+                    const value = e.target.value ?? ''
+                    setOtp(value)
+                    if (value.length === 6) {
+                      mutateAsync({ otp: value })
+                    }
+                  }}
+                />
+              </Stack>
+            </Stack>
+            <Divider />
+            <Stack direction="row" pb={3} px={3} spacing={2} justifyContent="end">
+              <Button variant="outlined" onClick={() => setOpen(false)}>
+                <Trans>Cancel</Trans>
+              </Button>
+              <LoadingButton
+                type="submit"
+                variant="contained"
+                loading={isPending || addMfaPending}
+                disabled={isLoading || isPending || addMfaPending || buttonDisabled}
+              >
+                <Trans>Activate</Trans>
+              </LoadingButton>
+            </Stack>
+          </>
         ) : addMfaErrorText ? (
           <Typography color="error.main">{addMfaErrorText}</Typography>
         ) : (
@@ -232,7 +233,7 @@ export const UserSettingsTotpActivationModal = ({ activationModalRef, isLoading,
             <Spinner isLoading />
           </Stack>
         )}
-      </Modal>
+      </RightSlider>
       <UserSettingsTotpRecoveryCodesModal
         recoveryCodes={data?.recovery_codes ?? []}
         recoveryCodesModalRef={codesModalRef}

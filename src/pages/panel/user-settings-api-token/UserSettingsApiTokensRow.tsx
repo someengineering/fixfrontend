@@ -1,10 +1,10 @@
 import { t, Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import DeleteIcon from '@mui/icons-material/Delete'
 import { LoadingButton } from '@mui/lab'
-import { Button, IconButton, TableCell, TableRow, Tooltip, Typography } from '@mui/material'
+import { Button, IconButton, Stack, TableCell, TableRow, Tooltip, Typography } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRef } from 'react'
+import { DeleteIcon } from 'src/assets/icons'
 import { Modal } from 'src/shared/modal'
 import { ApiTokenItem } from 'src/shared/types/server'
 import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
@@ -42,7 +42,7 @@ export const UserSettingsApiTokensRow = ({ item }: UserSettingsApiTokensRowProps
           </IconButton>
         ) : (
           <Tooltip title={<Trans>Delete</Trans>} arrow>
-            <IconButton aria-label={t`Delete`} color="error" onClick={() => deleteModalRef.current?.(true)}>
+            <IconButton aria-label={t`Delete`} onClick={() => deleteModalRef.current?.(true)}>
               <DeleteIcon />
             </IconButton>
           </Tooltip>
@@ -88,15 +88,17 @@ export const UserSettingsApiTokensRow = ({ item }: UserSettingsApiTokensRowProps
           </>
         }
       >
-        <Typography>
-          <Trans>Name</Trans>: {item.name}
-        </Typography>
-        <Typography>
-          <Trans>Created At</Trans>: {createdAt.toLocaleDateString(locale)} {createdAt.toLocaleTimeString(locale)}
-        </Typography>
-        <Typography>
-          <Trans>Last used</Trans>: {lastUsed}
-        </Typography>
+        <Stack>
+          <Typography>
+            <Trans>Name</Trans>: {item.name}
+          </Typography>
+          <Typography>
+            <Trans>Created At</Trans>: {createdAt.toLocaleDateString(locale)} {createdAt.toLocaleTimeString(locale)}
+          </Typography>
+          <Typography>
+            <Trans>Last used</Trans>: {lastUsed}
+          </Typography>
+        </Stack>
       </Modal>
     </TableRow>
   )

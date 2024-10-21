@@ -1,9 +1,8 @@
 import { Trans } from '@lingui/macro'
-import CopyAllIcon from '@mui/icons-material/CopyAll'
-import VisibilityIcon from '@mui/icons-material/Visibility'
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import { Box, BoxProps, Button, ButtonProps, IconButton, Stack, StackProps, Typography, TypographyProps } from '@mui/material'
 import { useState } from 'react'
+import { CopyAllIcon, VisibilityIcon, VisibilityOffIcon } from 'src/assets/icons'
+import { panelUI } from 'src/shared/constants'
 import { useCopyString } from 'src/shared/utils/useCopyString'
 
 interface SecretFieldProps {
@@ -37,7 +36,8 @@ export const SecretField = ({
     <Stack direction="row" spacing={1} {...containerStack}>
       <Box
         display="inline-flex"
-        bgcolor={({ palette }) => (palette.mode === 'light' ? 'grey.300' : 'grey.800')}
+        border={`1px solid ${panelUI.uiThemePalette.input.border}`}
+        borderRadius="6px"
         alignItems="center"
         justifyContent="space-between"
         {...typographyContainerBox}
