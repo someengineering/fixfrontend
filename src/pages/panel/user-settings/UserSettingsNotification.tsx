@@ -61,14 +61,7 @@ export const UserSettingsNotification = () => {
                   <CircularProgress size={20} />
                 </Stack>
               ) : (
-                <Checkbox
-                  checked={data?.weekly_report}
-                  onChange={(e) => {
-                    if (data) {
-                      mutate({ inactivity_reminder: data.inactivity_reminder, weekly_report: e.target.checked })
-                    }
-                  }}
-                />
+                <Checkbox checked={data?.weekly_report} onChange={(e) => data && mutate({ ...data, weekly_report: e.target.checked })} />
               )}
             </TableCell>
           </TableRow>
@@ -84,12 +77,22 @@ export const UserSettingsNotification = () => {
               ) : (
                 <Checkbox
                   checked={data?.inactivity_reminder}
-                  onChange={(e) => {
-                    if (data) {
-                      mutate({ weekly_report: data.weekly_report, inactivity_reminder: e.target.checked })
-                    }
-                  }}
+                  onChange={(e) => data && mutate({ ...data, inactivity_reminder: e.target.checked })}
                 />
+              )}
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Trans>Marketing</Trans>
+            </TableCell>
+            <TableCell>
+              {isPending ? (
+                <Stack justifyContent="center" direction="column" padding={1} margin="1px">
+                  <CircularProgress size={20} />
+                </Stack>
+              ) : (
+                <Checkbox checked={data?.marketing} onChange={(e) => data && mutate({ ...data, marketing: e.target.checked })} />
               )}
             </TableCell>
           </TableRow>
