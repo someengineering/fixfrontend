@@ -3,9 +3,9 @@ import { LoadingButton } from '@mui/lab'
 import { Button, Divider, Stack, TextField, Typography } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { MutableRefObject, useState } from 'react'
+import { MutableRefObject, useEffect, useState } from 'react'
 import { useSnackbar } from 'src/core/snackbar'
-import { Modal } from 'src/shared/modal'
+import { RightSlider } from 'src/shared/right-slider'
 import { GetCurrentUserResponse } from 'src/shared/types/server'
 import { postAuthMfaDisableMutation } from './postAuthMfaDisable.mutation'
 
@@ -15,6 +15,7 @@ interface UserSettingsTotpDeactivationModalProps {
 }
 
 export const UserSettingsTotpDeactivationModal = ({ deactivationModalRef, isLoading }: UserSettingsTotpDeactivationModalProps) => {
+  const [open, setOpen] = useState(false)
   const queryClient = useQueryClient()
   const showSnackbar = useSnackbar()
   const { mutateAsync, isPending, error } = useMutation({
@@ -29,9 +30,17 @@ export const UserSettingsTotpDeactivationModal = ({ deactivationModalRef, isLoad
         predicate: (query) => query.queryKey[0] === 'users-me',
       })
       showSnackbar.showSnackbar(t`TOTP disabled successfully`, { autoHideDuration: null })
-      deactivationModalRef.current?.(false)
+      setOpen(true)
     },
   })
+  useEffect(() => {
+    deactivationModalRef.current = (show?: boolean) => {
+      setOpen(show ?? false)
+    }
+    return () => {
+      deactivationModalRef.current = () => {}
+    }
+  }, [deactivationModalRef])
   const [otp, setOtp] = useState('')
   const [recoveryCode, setRecoveryCode] = useState('')
   const buttonDisabled = (!otp || otp.length !== 6) && !recoveryCode
@@ -39,22 +48,22 @@ export const UserSettingsTotpDeactivationModal = ({ deactivationModalRef, isLoad
     ? (((error as AxiosError)?.response?.data as { detail: string })?.detail ?? t`Something went wrong please try again later.`)
     : undefined
   return (
-    <Modal
-      openRef={deactivationModalRef}
-      onSubmit={() => mutateAsync(otp ? { otp } : { recoveryCode })}
-      title={<Trans>TOTP Deactivation</Trans>}
-      actions={
-        <>
-          <Button variant="outlined" color="error" onClick={() => deactivationModalRef.current?.(false)}>
-            <Trans>Cancel</Trans>
-          </Button>
-          <LoadingButton type="submit" variant="contained" loading={isPending} disabled={isLoading || isPending || buttonDisabled}>
-            <Trans>Deactivate</Trans>
-          </LoadingButton>
-        </>
+    <RightSlider
+      open={open}
+      component="form"
+      onClose={() => setOpen(false)}
+      onSubmit={(e) => {
+        e.preventDefault()
+        mutateAsync(otp ? { otp } : { recoveryCode })
+      }}
+      title={
+        <Typography variant="h4">
+          <Trans>TOTP Deactivation</Trans>
+        </Typography>
       }
+      spacing={3}
     >
-      <Stack spacing={1}>
+      <Stack spacing={3} p={3}>
         <Typography variant="h6">
           <Trans>You can deactivate TOTP via otp code</Trans>
         </Typography>
@@ -63,7 +72,6 @@ export const UserSettingsTotpDeactivationModal = ({ deactivationModalRef, isLoad
           error={!!error}
           helperText={formError}
           placeholder="123456"
-          FormHelperTextProps={{ sx: { m: 0, mt: 1 } }}
           value={otp}
           id="otp"
           fullWidth
@@ -95,7 +103,6 @@ export const UserSettingsTotpDeactivationModal = ({ deactivationModalRef, isLoad
           error={!!error}
           helperText={formError}
           placeholder="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-          FormHelperTextProps={{ sx: { m: 0, mt: 1 } }}
           value={recoveryCode}
           required
           id="recovery_code"
@@ -109,6 +116,15 @@ export const UserSettingsTotpDeactivationModal = ({ deactivationModalRef, isLoad
           onChange={(e) => setRecoveryCode(e.target.value ?? '')}
         />
       </Stack>
-    </Modal>
+      <Divider />
+      <Stack direction="row" pb={3} px={3} spacing={2} justifyContent="end">
+        <Button variant="outlined" color="error" onClick={() => deactivationModalRef.current?.(false)}>
+          <Trans>Cancel</Trans>
+        </Button>
+        <LoadingButton type="submit" variant="contained" loading={isPending} disabled={isLoading || isPending || buttonDisabled}>
+          <Trans>Deactivate</Trans>
+        </LoadingButton>
+      </Stack>
+    </RightSlider>
   )
 }

@@ -4,18 +4,19 @@ import { LoadingButton } from '@mui/lab'
 import { Button, Typography } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRef } from 'react'
+import { PowerOffIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { Modal } from 'src/shared/modal'
 import { GetOAuthAssociatesResponse } from 'src/shared/types/server'
 import { deleteOAuthAssociateMutation } from './deleteOAuthAssociate.mutation'
 
-interface UserSettingsSocialNetworkDeleteButtonProps {
+interface UserSettingsSocialNetworkDisconnectButtonProps {
   providerId: string
   email: string | null
   name: string
 }
 
-export const UserSettingsSocialNetworkDeleteButton = ({ providerId, email, name }: UserSettingsSocialNetworkDeleteButtonProps) => {
+export const UserSettingsSocialNetworkDisconnectButton = ({ providerId, email, name }: UserSettingsSocialNetworkDisconnectButtonProps) => {
   const { currentUser } = useUserProfile()
   const { mutate, isPending } = useMutation({ mutationFn: deleteOAuthAssociateMutation })
   const queryClient = useQueryClient()
@@ -55,7 +56,7 @@ export const UserSettingsSocialNetworkDeleteButton = ({ providerId, email, name 
 
   return (
     <>
-      <Button color="error" variant="outlined" onClick={handleDeleteModal}>
+      <Button color="error" variant="outlined" startIcon={<PowerOffIcon color="error.main" />} onClick={handleDeleteModal}>
         <Trans>Disconnect</Trans>
       </Button>
       <Modal

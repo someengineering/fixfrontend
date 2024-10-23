@@ -35,6 +35,7 @@ import { Account } from 'src/shared/types/server-shared'
 import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
 import { getAccountName } from 'src/shared/utils/getAccountName'
 import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
+import { AccountErrorLog } from './AccountErrorLog'
 import { deleteAccountMutation } from './deleteAccount.mutation'
 import { patchAccountMutation } from './patchAccount.mutation'
 import { patchAccountDisableMutation } from './patchAccountDisable.mutation'
@@ -42,7 +43,6 @@ import { patchAccountEnableMutation } from './patchAccountEnable.mutation'
 import { patchAccountScanDisableMutation } from './patchAccountScanDisable.mutation'
 import { patchAccountScanEnableMutation } from './patchAccountScanEnable.mutation'
 import { replaceRowByAccount } from './replaceRowByAccount'
-import { WorkspaceSettingsAccountErrorLog } from './WorkspaceSettingsAccountErrorLog'
 
 const getDateStr = (date?: string | null, locale?: Intl.LocalesArgument) => {
   if (!date) {
@@ -59,18 +59,13 @@ const getDateStr = (date?: string | null, locale?: Intl.LocalesArgument) => {
   return [nextScanStr, nextScanDurStr] as const
 }
 
-interface WorkspaceSettingsAccountRowProps {
+interface AccountRowProps {
   account: Account
   enableErrorModalContent?: ReactNode
   isNotConfigured?: boolean
   canEnable?: boolean
 }
-export const WorkspaceSettingsAccountRow = ({
-  account,
-  enableErrorModalContent,
-  isNotConfigured,
-  canEnable,
-}: WorkspaceSettingsAccountRowProps) => {
+export const AccountRow = ({ account, enableErrorModalContent, isNotConfigured, canEnable }: AccountRowProps) => {
   const inputRef = useRef<HTMLInputElement>()
   const {
     i18n: { locale },
@@ -441,7 +436,7 @@ export const WorkspaceSettingsAccountRow = ({
             </Button>
             <InternalLinkButton
               variant="contained"
-              to={`/workspace-settings/accounts/setup-cloud/${account.cloud}`}
+              to={`/accounts/setup-cloud/${account.cloud}`}
               onClick={() => showDegradedModalRef.current?.(false)}
             >
               {account.cloud === 'aws' ? (
@@ -511,7 +506,7 @@ export const WorkspaceSettingsAccountRow = ({
       >
         <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
           <Suspense fallback={<LoadingSuspenseFallback />}>
-            <WorkspaceSettingsAccountErrorLog accountId={account.id} />
+            <AccountErrorLog accountId={account.id} />
           </Suspense>
         </NetworkErrorBoundary>
       </Modal>

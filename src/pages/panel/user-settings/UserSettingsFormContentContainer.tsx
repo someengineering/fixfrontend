@@ -1,9 +1,10 @@
 import { LoadingButton } from '@mui/lab'
-import { Box, Skeleton, Stack, Typography } from '@mui/material'
+import { Skeleton, Stack, Typography } from '@mui/material'
 import { PropsWithChildren, ReactNode } from 'react'
 
 interface UserSettingsFormContentContainerProps extends PropsWithChildren {
   title: ReactNode
+  spacing?: number
   isLoading?: boolean
   isPending?: boolean
   onSubmit: () => void
@@ -13,6 +14,7 @@ interface UserSettingsFormContentContainerProps extends PropsWithChildren {
 
 export const UserSettingsFormContentContainer = ({
   title,
+  spacing,
   isLoading,
   onSubmit,
   children,
@@ -27,25 +29,31 @@ export const UserSettingsFormContentContainer = ({
         e.preventDefault()
         onSubmit()
       }}
-      direction={{ xs: 'column', md: 'row' }}
-      spacing={1}
-      alignItems="center"
+      spacing={spacing ?? 1.5}
+      justifyContent="center"
+      maxWidth={618}
+      width="100%"
     >
-      <Box width={150}>
-        <Typography>{title}:</Typography>
-      </Box>
-      <Stack gap={1} width={{ xs: '100%', lg: 400 }}>
-        {isLoading ? (
-          <Skeleton variant="rounded" width="100%">
-            {children}
-          </Skeleton>
-        ) : (
-          children
-        )}
+      <Typography variant="h6">{title}</Typography>
+      {isLoading ? (
+        <Skeleton variant="rounded" width="100%" height={44}>
+          {children}
+        </Skeleton>
+      ) : (
+        children
+      )}
+      <Stack alignItems="end">
+        <LoadingButton
+          size="large"
+          type="submit"
+          variant="contained"
+          loading={isPending}
+          disabled={isLoading || isPending || buttonDisabled}
+          sx={{ py: 1.5, px: 4, height: 44 }}
+        >
+          {buttonContent}
+        </LoadingButton>
       </Stack>
-      <LoadingButton type="submit" variant="contained" loading={isPending} disabled={isLoading || isPending || buttonDisabled}>
-        {buttonContent}
-      </LoadingButton>
     </Stack>
   )
 }

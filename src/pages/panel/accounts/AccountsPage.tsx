@@ -1,13 +1,13 @@
 import { Suspense } from 'react'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
-import { WorkspaceSettingsAccountsTable } from './WorkspaceSettingsAccountsTable'
+import { AccountsTable } from './AccountsTable'
 
-export default function WorkspaceSettingsAccountsPage() {
+export default function AccountsPage() {
   return (
     <NetworkErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
       <Suspense fallback={<LoadingSuspenseFallback />}>
-        <WorkspaceSettingsAccountsTable />
+        <AccountsTable />
       </Suspense>
     </NetworkErrorBoundary>
   )

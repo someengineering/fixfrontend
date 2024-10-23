@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/macro'
-import { Button, Stack, Table, TableBody, TableCell, TableRow } from '@mui/material'
+import { alpha, Button, Stack, Table, TableBody, TableCell, TableRow } from '@mui/material'
 import { MutableRefObject, useRef } from 'react'
 import { Modal } from 'src/shared/modal'
 import { useCopyString } from 'src/shared/utils/useCopyString'
@@ -20,6 +20,7 @@ export const UserSettingsTotpRecoveryCodesModal = ({
   return (
     <Modal
       onClose={onClose}
+      slotProps={{ backdrop: { sx: { bgcolor: alpha('#000000', 0.6) } } }}
       openRef={recoveryCodesModalRef}
       title={<Trans>Recovery codes</Trans>}
       description={<Trans>Print or copy the following recovery codes</Trans>}

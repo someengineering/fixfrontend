@@ -2,14 +2,13 @@ import { Trans } from '@lingui/macro'
 import { Avatar, Box, Button, Divider, Stack, Typography } from '@mui/material'
 import { AccountCircleIcon, CloudIcon, GroupIcon, LogoutIcon, ReceiptIcon, WorkspaceSettingsIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
-import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
+import { InternalLinkButton } from 'src/shared/link-button'
 import { stringAvatar } from 'src/shared/utils/stringAvatar'
 import { PanelHeaderMenu } from './PanelHeaderMenu'
 
 export const UserButton = () => {
   const { currentUser, logout } = useUserProfile(true) ?? {}
   const userEmail = currentUser?.email ?? 'N/A'
-  const navigate = useAbsoluteNavigate()
   const avatarProps = stringAvatar(userEmail)
   return (
     <PanelHeaderMenu Icon={Avatar} sx={{ width: 36, height: 36 }} color="primary" iconProps={avatarProps}>
@@ -23,36 +22,36 @@ export const UserButton = () => {
       </Box>
       <Divider flexItem />
       <Stack alignItems="stretch" px={1.5} py={1.5}>
-        <Button color="info" startIcon={<AccountCircleIcon />} onClick={() => navigate('/user-settings')}>
+        <InternalLinkButton color="info" startIcon={<AccountCircleIcon />} to={'/settings/user'}>
           <Typography pl={0.5} width="100%" textAlign="start">
             <Trans>User Settings</Trans>
           </Typography>
-        </Button>
-        <Button color="info" startIcon={<WorkspaceSettingsIcon />} onClick={() => navigate('/workspace-settings')}>
+        </InternalLinkButton>
+        <InternalLinkButton color="info" startIcon={<WorkspaceSettingsIcon />} to={'/settings/workspace'}>
           <Typography pl={0.5} width="100%" textAlign="start">
             <Trans>Workspace Settings</Trans>
           </Typography>
-        </Button>
-        <Button color="info" startIcon={<GroupIcon />} onClick={() => navigate('/workspace-settings/users')}>
+        </InternalLinkButton>
+        <InternalLinkButton color="info" startIcon={<GroupIcon />} to={'/settings/workspace-users'}>
           <Typography pl={0.5} width="100%" textAlign="start">
             <Trans>Workspace Users</Trans>
           </Typography>
-        </Button>
-        <Button color="info" startIcon={<CloudIcon />} onClick={() => navigate('/workspace-settings/accounts')}>
+        </InternalLinkButton>
+        <InternalLinkButton color="info" startIcon={<CloudIcon />} to={'/accounts'}>
           <Typography pl={0.5} width="100%" textAlign="start">
             <Trans>Cloud Accounts</Trans>
           </Typography>
-        </Button>
-        <Button color="info" startIcon={<ReceiptIcon />} onClick={() => navigate('/workspace-settings/billing-receipts')}>
+        </InternalLinkButton>
+        <InternalLinkButton color="info" startIcon={<ReceiptIcon />} to={'/settings/workspace/billing-receipts'}>
           <Typography pl={0.5} width="100%" textAlign="start">
             <Trans>Billing</Trans>
           </Typography>
-        </Button>
-        {/* <Button color="info" startIcon={<CodeBlocksIcon />} onClick={() => navigate('/developer')}>
+        </InternalLinkButton>
+        {/* <InternalLinkButton color="info" startIcon={<CodeBlocksIcon />} to={'/developer'}>
             <Typography pl={0.5} width="100%" textAlign="start">
               <Trans>Developer</Trans>
             </Typography>
-          </Button> */}
+          </InternalLinkButton> */}
       </Stack>
       <Divider />
       <Stack alignItems="stretch" px={1.5} py={1.5}>

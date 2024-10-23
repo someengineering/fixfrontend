@@ -48,17 +48,9 @@ export default function WorkspaceSettingsAccountsSetupCloudPage() {
     <Stack width="100%" height="100%" alignItems="center" justifyContent="center" spacing={3.125}>
       <Typography variant="h4">Select your cloud account</Typography>
       <Stack spacing={2}>
-        <SetupCloudPageItem Icon={AwsLogo} iconProps={{ width: 53.55, height: 32 }} to="/workspace-settings/accounts/setup-cloud/aws" />
-        <SetupCloudPageItem
-          Icon={GCPLogoWithText}
-          iconProps={{ width: 153.21, height: 24 }}
-          to="/workspace-settings/accounts/setup-cloud/gcp"
-        />
-        <SetupCloudPageItem
-          Icon={AzureLogoWithText}
-          iconProps={{ width: 107, height: 30 }}
-          to="/workspace-settings/accounts/setup-cloud/azure"
-        />
+        <SetupCloudPageItem Icon={AwsLogo} iconProps={{ width: 53.55, height: 32 }} to="/accounts/setup-cloud/aws" />
+        <SetupCloudPageItem Icon={GCPLogoWithText} iconProps={{ width: 153.21, height: 24 }} to="/accounts/setup-cloud/gcp" />
+        <SetupCloudPageItem Icon={AzureLogoWithText} iconProps={{ width: 107, height: 30 }} to="/accounts/setup-cloud/azure" />
       </Stack>
     </Stack>
   )

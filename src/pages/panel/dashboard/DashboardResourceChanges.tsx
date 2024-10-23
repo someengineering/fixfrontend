@@ -168,9 +168,12 @@ export const DashboardResourceChanges = () => {
   const {
     i18n: { locale },
   } = useLingui()
+  const { selectedWorkspace } = useUserProfile()
   const resourceTypes = useMemo(() => getResourceTypes(locale), [locale])
   const [resourceType, setResourceType] = useState<ResourceTypeType>(resourceTypes[0])
-  const [duration, setDuration] = useState<(typeof daysDuration)[number]>(daysDuration[0])
+  const [duration, setDuration] = useState<(typeof daysDuration)[number]>(
+    selectedWorkspace?.tier === 'Free' ? daysDuration[3] : daysDuration[0],
+  )
   const [afterDate, beforeDate, labels] = useMemo(() => {
     const beforeDate = new Date()
     beforeDate.setHours(0)

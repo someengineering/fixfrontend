@@ -9,7 +9,7 @@ export const AddAccountButton = () => {
   const navigate = useAbsoluteNavigate()
 
   const handleGoToSetupCloudPage = () => {
-    navigate('/workspace-settings/accounts/setup-cloud')
+    navigate('/accounts/setup-cloud')
   }
   return (
     <Button startIcon={<AddIcon />} variant={mode === 'dark' ? 'outlined' : 'contained'} onClick={handleGoToSetupCloudPage}>

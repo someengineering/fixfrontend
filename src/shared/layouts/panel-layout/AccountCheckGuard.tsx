@@ -14,11 +14,11 @@ export const AccountCheckGuard = () => {
   const navigate = useAbsoluteNavigate()
 
   const handleGoToSetupCloudPage = useCallback(() => {
-    navigate('/workspace-settings/accounts/setup-cloud')
+    navigate('/accounts/setup-cloud')
   }, [navigate])
 
   const handleGoToPaymentPage = useCallback(() => {
-    navigate('/workspace-settings/billing-receipts')
+    navigate('/settings/workspace/billing-receipts')
   }, [navigate])
 
   useEffect(() => {
