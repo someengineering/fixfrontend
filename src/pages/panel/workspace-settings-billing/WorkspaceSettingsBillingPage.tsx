@@ -47,9 +47,6 @@ export default function WorkspaceSettingsBillingPage() {
 
   return (
     <Stack spacing={2}>
-      <Typography variant="h3">
-        <Trans>Billing</Trans>
-      </Typography>
       {product_tier === 'Trial' ? (
         <Stack direction="row" justifyContent="center">
           <Alert variant="outlined" severity="success">

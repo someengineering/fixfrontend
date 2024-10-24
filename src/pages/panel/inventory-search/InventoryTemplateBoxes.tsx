@@ -284,7 +284,7 @@ export const InventoryTemplateBoxes = ({ onChange, withHistory }: InventoryTempl
       <Grid container spacing={2}>
         {(withHistory ? templateHistoryData() : templateData()).map((template, i) => (
           <Grid item xs={12} sm={6} md={4} lg={4} xl={3} key={i}>
-            <Card elevation={4}>
+            <Card elevation={4} sx={{ bgcolor: 'common.white' }}>
               <CardHeader title={template.header} avatar={<template.icon />} />
               <CardContent>
                 {template.content.map((content, i) => (

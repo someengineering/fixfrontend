@@ -1,9 +1,9 @@
 import { Trans } from '@lingui/macro'
-import PowerOffIcon from '@mui/icons-material/PowerOff'
 import { LoadingButton } from '@mui/lab'
-import { Button, Typography } from '@mui/material'
+import { alpha, Button, Typography } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRef } from 'react'
+import { PowerOffIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { Modal } from 'src/shared/modal'
 import { NotificationChannel } from 'src/shared/types/server-shared'
@@ -40,7 +40,7 @@ export const WorkspaceSettingsDisconnectServiceModal = ({ name, channel, isLoadi
         loadingPosition={isPending ? 'start' : undefined}
         startIcon={<PowerOffIcon />}
         loading={isLoading}
-        variant="contained"
+        variant="outlined"
         color="error"
         sx={{ flexShrink: 0 }}
         onClick={() => disconnectModalRef.current?.(true)}
@@ -48,6 +48,7 @@ export const WorkspaceSettingsDisconnectServiceModal = ({ name, channel, isLoadi
         <Trans>Disconnect</Trans>
       </LoadingButton>
       <Modal
+        slotProps={{ backdrop: { sx: { bgcolor: alpha('#000000', 0.6) } } }}
         title={<Trans>Disconnect Service</Trans>}
         openRef={disconnectModalRef}
         actions={

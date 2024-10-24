@@ -357,6 +357,7 @@ export function Theme({ children, emotionCache }: ThemeProps) {
             },
             head: {
               color: panelUI.uiThemePalette.text.sub,
+              backgroundColor: palette.common?.white,
             },
           },
         },
