@@ -3,6 +3,7 @@ import { Stack, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useState } from 'react'
+import { useUserProfile } from 'src/core/auth'
 import { PasswordTextField, PasswordTextFieldProps } from 'src/shared/password-text-field'
 import { PatchCurrentUserErrorResponse } from 'src/shared/types/server'
 import { UserSettingsFormContentContainer } from './UserSettingsFormContentContainer'
@@ -14,6 +15,7 @@ type UserSettingsFormPasswordProps = Omit<
 >
 
 export const UserSettingsFormPassword = ({ ...rest }: UserSettingsFormPasswordProps) => {
+  const { currentUser } = useUserProfile()
   const { mutateAsync, isPending, error } = useMutation({ mutationFn: patchUsersMeMutation })
   const [currentPassword, setCurrentPassword] = useState('')
   const [password, setPassword] = useState('')
@@ -35,6 +37,7 @@ export const UserSettingsFormPassword = ({ ...rest }: UserSettingsFormPasswordPr
         buttonContent={<Trans>Change</Trans>}
         spacing={3}
       >
+        <input id="hidden-email" name="email" autoComplete="email webauthn" hidden defaultValue={currentUser?.email} />
         <Stack spacing={1.5}>
           <Typography variant="subtitle1" fontWeight={700} color="textSecondary">
             <Trans>Old Password</Trans>

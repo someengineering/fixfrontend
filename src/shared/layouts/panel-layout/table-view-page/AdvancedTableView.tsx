@@ -1,4 +1,4 @@
-import { Box, Paper, Stack } from '@mui/material'
+import { Box, Stack } from '@mui/material'
 import {
   DataGridPremium,
   DataGridPremiumProps,
@@ -18,10 +18,9 @@ interface AdvancedTableViewProps<RowType extends readonly []> extends DataGridPr
 export function AdvancedTableView<RowType extends readonly []>({ headerToolbar, minHeight, ...props }: AdvancedTableViewProps<RowType>) {
   const apiRef = useGridApiRef()
   return (
-    <Box component={Paper} sx={{ width: '100%', minHeight }}>
+    <Box sx={{ width: '100%', minHeight }}>
       <DataGridPremium
         apiRef={apiRef}
-        autoHeight
         {...props}
         slots={{
           toolbar: headerToolbar
@@ -41,9 +40,12 @@ export function AdvancedTableView<RowType extends readonly []>({ headerToolbar, 
           [`.${gridClasses.main}`]: {
             overflow: 'initial',
             position: 'relative',
+            '*': {
+              borderColor: 'divider',
+            },
             [`.${gridClasses.columnHeader}`]: {
+              bgcolor: 'common.white',
               position: 'sticky',
-              bgcolor: 'background.default',
               zIndex: 1,
               top: 0,
             },
@@ -57,7 +59,9 @@ export function AdvancedTableView<RowType extends readonly []>({ headerToolbar, 
             sx: {
               position: 'sticky',
               bottom: 0,
-              bgcolor: 'background.default',
+              [`&.${gridClasses.withBorderColor}`]: {
+                borderColor: 'divider',
+              },
               ...props.slotProps?.footer?.sx,
             },
           },

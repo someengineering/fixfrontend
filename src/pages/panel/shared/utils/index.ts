@@ -1,6 +1,7 @@
 export { chartToShow } from './chartToShow'
 export { checkDiff } from './checkDiff'
 export { createInventorySearchTo } from './createInventorySearchTo'
+export { FrameworkIcon } from './FrameworkIcon'
 export { getColorBySeverity } from './getColorBySeverity'
 export { getIconBySeverity } from './getIconBySeverity'
 export { getMaterialColorBySeverity } from './getMaterialColorBySeverity'

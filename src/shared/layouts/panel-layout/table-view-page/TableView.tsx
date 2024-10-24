@@ -15,16 +15,14 @@ export const TableView = forwardRef<HTMLDivElement | null, TableViewProps>(
     const pages = paginationProps?.pages ?? [...panelUI.tableRowsPerPages]
     const shouldHavePagination = paginationProps && paginationProps?.dataCount > pages[0]
     return (
-      <Stack component={Paper} sx={{ width: '100%', minHeight }} flexGrow={1}>
-        {headerToolbar ? (
-          <Toolbar sx={{ height: panelUI.headerHeight, bgcolor: 'background.default', p: '0!important' }}>{headerToolbar}</Toolbar>
-        ) : null}
+      <Stack sx={{ width: '100%', minHeight }} flexGrow={1}>
+        {headerToolbar ? <Toolbar sx={{ height: panelUI.headerHeight, p: '0!important' }}>{headerToolbar}</Toolbar> : null}
         <TableContainer ref={ref} id={paginationProps?.id} sx={{ flexGrow: 1 }}>
           {children}
         </TableContainer>
         {shouldHavePagination ? (
-          <Stack height={panelUI.tablePaginationHeight + 'px'} position={stickyPagination ? 'sticky' : undefined} bottom={0}>
-            <Paper elevation={9}>
+          <Stack height={panelUI.tablePaginationHeight + 'px'} position={stickyPagination ? 'sticky' : undefined} bottom={-30}>
+            <Paper elevation={0}>
               <TablePagination {...paginationProps} pages={pages} />
             </Paper>
           </Stack>
