@@ -68,38 +68,6 @@ const WorkspaceSettingsBillingPage = lazy(
     ),
 )
 
-const WorkspaceSettingsAccountsCloudSetupPage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "workspace-settings-accounts-setup-cloud" */
-      'src/pages/panel/workspace-settings-accounts-setup-cloud/WorkspaceSettingsAccountsSetupCloudPage'
-    ),
-)
-
-const WorkspaceSettingsAccountsSetupCloudAWSPage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "workspace-settings-accounts-setup-cloud-aws" */
-      'src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage'
-    ),
-)
-
-const WorkspaceSettingsAccountsSetupCloudGCPPage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "workspace-settings-accounts-setup-cloud-gcp" */
-      'src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPPage'
-    ),
-)
-
-const WorkspaceSettingsAccountsSetupCloudAzurePage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "workspace-settings-accounts-setup-cloud-azure" */
-      'src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzurePage'
-    ),
-)
-
 const WorkspaceUsersSettingsPage = lazy(
   () =>
     import(
@@ -135,15 +103,6 @@ export function PanelSettingsRoutes() {
           </Route>
           <Route path="connected-services" element={<WorkspaceSettingsConnectedServicesPage />} />
           <Route path="alert-settings" element={<WorkspaceSettingsAlertSettingsPage />} />
-          <Route path="accounts">
-            <Route path="setup-cloud">
-              <Route index element={<WorkspaceSettingsAccountsCloudSetupPage />} />
-              <Route path="aws" element={<WorkspaceSettingsAccountsSetupCloudAWSPage />} />
-              <Route path="gcp" element={<WorkspaceSettingsAccountsSetupCloudGCPPage />} />
-              <Route path="azure" element={<WorkspaceSettingsAccountsSetupCloudAzurePage />} />
-              <Route path="*" element={<Navigate to=".." replace />} />
-            </Route>
-          </Route>
         </Route>
       </Route>
       <Route path="workspace-users">

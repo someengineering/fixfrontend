@@ -68,7 +68,7 @@ export const OverviewCard = ({
     </Stack>
   ) : null
   return (
-    <Card sx={{ height: height ? `${height}px` : undefined, minHeight: minHeight ? `${minHeight}px` : undefined }}>
+    <Card sx={{ height: height ? `${height}px` : undefined, minHeight: minHeight ? `${minHeight}px` : undefined, bgcolor: 'common.white' }}>
       <CardContent component={Stack} direction="column" height="100%">
         <Stack alignItems="flex-start" direction="row" justifyContent="space-between" spacing={3} flexGrow={1}>
           <Stack spacing={1}>

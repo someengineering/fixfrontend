@@ -1,30 +1,8 @@
-import {
-  Alert,
-  AlertColor,
-  AlertProps as MuiAlertProps,
-  Snackbar as MuiSnackbar,
-  SnackbarProps as MuiSnackbarProps,
-  Slide,
-  SnackbarOrigin,
-  styled,
-  Typography,
-  TypographyProps,
-  useTheme,
-} from '@mui/material'
-import { createContext, PropsWithChildren, ReactNode, SyntheticEvent, useCallback, useMemo, useState } from 'react'
+import { Alert, Snackbar as MuiSnackbar, Slide, styled, Typography, useTheme } from '@mui/material'
+import { PropsWithChildren, ReactNode, SyntheticEvent, useCallback, useMemo, useState } from 'react'
 import { panelUI } from 'src/shared/constants'
 import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
-
-interface SnackbarOptions {
-  snackbarProps: Omit<MuiSnackbarProps, 'open' | 'onClose' | 'autoHideDuration' | 'anchorOrigin'>
-  alertProps: Omit<MuiAlertProps, 'onClose' | 'severity'>
-  autoHideDuration: number | null
-  typographyProps: TypographyProps
-  alertColor: AlertColor | undefined
-  bgcolor: TypographyProps['color']
-  textColor: TypographyProps['color']
-  anchorOrigin: SnackbarOrigin
-}
+import { SnackbarContext, SnackbarOptions } from './SnackbarContext'
 
 const DEFAULT_SNACKBAR_OPTIONS: SnackbarOptions = {
   snackbarProps: {},
@@ -42,12 +20,6 @@ export interface SnackbarValue {
   message: ReactNode
   options: SnackbarOptions
 }
-
-export interface SnackbarContextValue {
-  showSnackbar: (message: ReactNode, options?: Partial<SnackbarOptions>) => Promise<number>
-  closeSnackbar: (key: number) => Promise<boolean>
-}
-export const SnackbarContext = createContext<SnackbarContextValue | null>(null)
 
 const Snackbar = styled(MuiSnackbar, { shouldForwardProp: shouldForwardPropWithBlackList(['index']) })<{ index: number }>(
   ({ theme, index }) => ({

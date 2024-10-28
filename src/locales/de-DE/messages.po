@@ -1098,7 +1098,7 @@ msgid "Define Roles"
 msgstr ""
 
 #: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:44
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:96
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:97
 msgid "Delayed Effect"
 msgstr "Verzögerte Wirkung"
 
@@ -1328,7 +1328,7 @@ msgstr "sind fehlgeschlagen"
 msgid "Failed to retrieve changelog"
 msgstr "Das Änderungsprotokoll konnte nicht abgerufen werden"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:200
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:201
 msgid "Failing benchmarks"
 msgstr "Fehlgeschlagene Benchmarks"
 
@@ -1459,7 +1459,7 @@ msgid "Hourly"
 msgstr "Stündliche"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:116
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:111
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:112
 msgid "How to fix"
 msgstr "Wie repariert man"
 
@@ -1523,7 +1523,7 @@ msgstr "Identifiziert Speichervolumes, die keiner laufenden Instanz zugeordnet s
 msgid "If this email address was used to create an account, instructions to reset your password will be sent to you. Please check your email."
 msgstr ""
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:226
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:227
 msgid "If this security check does not apply to this resource, you can safely ignore it."
 msgstr "Wenn diese Sicherheitsüberprüfung für diese Ressource nicht gilt, können Sie sie getrost ignorieren."
 
@@ -1536,7 +1536,7 @@ msgstr "Ignorieren"
 msgid "Ignore all"
 msgstr "Alles ignorieren"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:87
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:88
 msgid "Ignored"
 msgstr "Ignoriert"
 
@@ -1807,7 +1807,7 @@ msgstr ""
 msgid "Monthly"
 msgstr "Monatliche"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:251
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:252
 msgid "More info"
 msgstr "Mehr Info"
 
@@ -1937,7 +1937,7 @@ msgstr ""
 msgid "No Thanks"
 msgstr ""
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:158
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:159
 msgid "Non-Compliant Resources"
 msgstr ""
 
@@ -2445,7 +2445,7 @@ msgstr ""
 msgid "Review and assign (again)"
 msgstr ""
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:107
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:108
 msgid "Risk"
 msgstr "Risiko"
 
@@ -2614,7 +2614,7 @@ msgstr ""
 msgid "Severity"
 msgstr "Schwere"
 
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:247
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:248
 msgid "Show resources"
 msgstr "Ressourcen anzeigen"
 
@@ -2698,7 +2698,7 @@ msgid "Test"
 msgstr "Prüfen"
 
 #: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:50
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:100
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:101
 msgid "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 msgstr "Die Änderung wird ab dem nächsten Sicherheitsscan aktiv. Bis zum nächsten Scan zeigt die Ressource weiterhin die fehlgeschlagene Prüfung an."
 
@@ -2801,7 +2801,7 @@ msgid "Token"
 msgstr ""
 
 #: src/pages/panel/security/OverallCard.tsx:123
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:117
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:118
 msgid "Top Non-Compliant Resources"
 msgstr "Top Ressourcen mit Compliance-Verstößen"
 
@@ -3161,7 +3161,7 @@ msgid "You need a payment method to change your product tier"
 msgstr ""
 
 #: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:47
-#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:98
+#: src/pages/panel/shared/failed-checks/FailedChecks.tsx:99
 msgid "You've chosen to ignore this security check for the resource. Please note:"
 msgstr "Sie haben sich entschieden, diese Sicherheitsüberprüfung für die Ressource zu ignorieren. Bitte beachten Sie:"
 

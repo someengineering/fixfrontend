@@ -1,5 +1,5 @@
 import { useLingui } from '@lingui/react'
-import { Box, ButtonBase, Divider, Grid, Paper, Stack, Typography, styled, useTheme } from '@mui/material'
+import { Box, ButtonBase, Card, Divider, Grid, Stack, Typography, styled, useTheme } from '@mui/material'
 import { useMemo, useRef, useState } from 'react'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
@@ -9,7 +9,7 @@ import { PieResourceCheckScore } from './PieResourceCheckScore'
 import { createInventorySearchTo } from './createInventorySearchTo'
 import { createPieDataFromNonCompliance } from './createPieDataFromNonCompliance'
 
-const PieCardItemPaper = styled(Paper, { shouldForwardProp: shouldForwardPropWithBlackList(['score']) })(({ theme }) => ({
+const PieCardItemPaper = styled(Card, { shouldForwardProp: shouldForwardPropWithBlackList(['score']) })(({ theme }) => ({
   width: '100%',
   height: '100%',
   display: 'flex',

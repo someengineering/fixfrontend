@@ -1,58 +1,18 @@
 import { useLingui } from '@lingui/react'
-import { PropsWithChildren, createContext, memo } from 'react'
+import { PropsWithChildren, memo } from 'react'
 import { WorkspaceInventorySearchTableHistory, WorkspaceInventorySearchTableHistoryChanges } from 'src/shared/types/server'
+import {
+  CombineType,
+  DeleteCloudAccountRegionType,
+  DeleteIsType,
+  DeletePredicateType,
+  FixQueryContext,
+  SetCloudAccountRegionType,
+  SetIsType,
+  SetPredicateType,
+  UpdateFullTextType,
+} from './FixQueryContext'
 import { JsonElement, Query } from './query'
-
-type ReturnTypeWithUndefined<T> = T extends (...args: infer Args) => unknown ? (...args: Args) => ReturnType<T> | undefined : never
-
-type CombineType = Query['combine']
-type DeleteIsType = Query['delete_is']
-type DeletePredicateType = Query['delete_predicate']
-type DeleteCloudAccountRegionType = Query['delete_cloud_account_region']
-type SetIsType = Query['set_is']
-type SetPredicateType = Query['set_predicate']
-type SetCloudAccountRegionType = Query['set_cloud_account_region']
-type UpdateFullTextType = Query['update_fulltext']
-
-export type FixQueryContextValue = {
-  // default variables
-  error?: Error
-  query: Query | undefined
-  account?: Query['account']
-  cloud?: Query['cloud']
-  parts?: Query['parts']
-  region?: Query['region']
-  severity?: Query['severity']
-  tags: Query['tags']
-  aggregate?: Query['aggregate']
-  sorts: Query['sorts']
-  // get
-  fullTextSearches: ReturnType<Query['fulltexts']>
-  is: ReturnType<Query['is']>
-  q: string
-  predicates: ReturnType<Query['predicates']>
-  provides_security_check_details: ReturnType<Query['provides_security_check_details']>
-  uiSimpleQuery: ReturnType<Query['ui_simple_query']>
-  history: WorkspaceInventorySearchTableHistory
-  // get methods
-  findPaths: Query['find_paths']
-  // update
-  combine: ReturnTypeWithUndefined<CombineType>
-  deleteIs: ReturnTypeWithUndefined<DeleteIsType>
-  deletePredicate: ReturnTypeWithUndefined<DeletePredicateType>
-  deleteCloudAccountRegion: ReturnTypeWithUndefined<DeleteCloudAccountRegionType>
-  setIs: (kinds: string[]) => Query | undefined
-  setPredicate: (name: string, op: string, value: JsonElement) => Query | undefined
-  setCloudAccountRegion: (name: 'cloud' | 'account' | 'region', op: string, value: JsonElement, useName?: boolean) => Query | undefined
-  changeCloudAccountRegionFromIdToName: (name: 'cloud' | 'account' | 'region', newValue: JsonElement, op?: string) => Query | undefined
-  updateFullTextSearch: ReturnTypeWithUndefined<UpdateFullTextType>
-  deleteMatching: Query['delete_matching']
-  updateQuery: (q: string) => Query | undefined
-  onHistoryChange: (history?: WorkspaceInventorySearchTableHistory) => void
-  reset: () => Query | undefined
-}
-
-export const FixQueryContext = createContext<FixQueryContextValue | null>(null)
 
 interface FixQueryProviderProps extends PropsWithChildren {
   searchQuery?: string
