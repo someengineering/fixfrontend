@@ -1,8 +1,7 @@
-import VisibilityIcon from '@mui/icons-material/Visibility'
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import { LoadingButton } from '@mui/lab'
-import { Button, ButtonBase, Skeleton, Stack, TextField, Typography } from '@mui/material'
-import { FormEvent, MutableRefObject, ReactNode, useEffect, useRef, useState } from 'react'
+import { Box, Button, ButtonBase, Skeleton, Stack, TextField, Typography } from '@mui/material'
+import { FormEvent, MutableRefObject, ReactNode, useEffect, useState } from 'react'
+import { VisibilityIcon, VisibilityOffIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 
 interface WorkspaceSettingsFormItemProps {
@@ -16,6 +15,7 @@ interface WorkspaceSettingsFormItemProps {
   hide?: boolean
   focusedRef?: MutableRefObject<((focused: boolean) => void) | undefined>
   noDisabledPermission?: boolean
+  buttonStartIcon?: ReactNode
 }
 
 export const WorkspaceSettingsFormItem = ({
@@ -29,13 +29,12 @@ export const WorkspaceSettingsFormItem = ({
   hide,
   focusedRef,
   noDisabledPermission,
+  buttonStartIcon,
 }: WorkspaceSettingsFormItemProps) => {
   const { checkPermission } = useUserProfile()
   const hasUpdateSettingsPermission = checkPermission('updateSettings')
   const [inputValue, setInputValue] = useState(value)
   const [focused, setFocused] = useState(false)
-
-  const focusedInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (focusedRef) {
@@ -85,77 +84,79 @@ export const WorkspaceSettingsFormItem = ({
       </Button>
     </Stack>
   ) : (
-    <Stack
-      direction={{ xs: 'column', sm: 'row' }}
-      width={{ xs: '100%', sm: undefined }}
-      spacing={1}
-      alignItems={{ xs: 'end', sm: 'center' }}
-      component={readonly ? 'div' : 'form'}
-      onSubmit={readonly ? undefined : handleSubmit}
-    >
-      <Typography width={{ xs: '100%', sm: 150 }}>{label}</Typography>
-      <Stack width={{ xs: '100%', sm: 400 }}>
-        {!hasUpdateSettingsPermission ? (
-          <Typography
-            component={readonly ? Stack : 'p'}
-            fontFamily={readonly ? 'monospace' : undefined}
-            border={({ palette }) => `1px solid ${palette.primary.main}`}
-            borderRadius={1}
-            p={1}
-            direction={readonly ? 'row' : undefined}
-            justifyContent={readonly ? 'space-between' : undefined}
-            alignItems={readonly ? 'center' : undefined}
-          >
-            {hide && !focused ? value.replace(/[\da-zA-Z]/g, '*') : value}
-            {hide ? (
-              <ButtonBase onClick={() => setFocused((prevFocused) => !prevFocused)}>
-                {focused ? <VisibilityIcon fontSize="small" /> : <VisibilityOffIcon fontSize="small" />}
-              </ButtonBase>
-            ) : null}
-          </Typography>
-        ) : readonly ? (
-          <TextField
-            size="small"
-            value={hide && !focused ? value.replace(/[\da-zA-Z]/g, '*') : value}
-            focused={hide ? focused : undefined}
-            onFocus={hide ? () => setFocused(true) : undefined}
-            onBlur={hide ? () => setFocused(false) : undefined}
-            aria-readonly="true"
-            InputProps={{
-              readOnly: true,
-              ref: focusedInputRef,
+    <Stack width="100%" maxWidth={768} spacing={1} component={readonly ? 'div' : 'form'} onSubmit={readonly ? undefined : handleSubmit}>
+      <Typography variant="subtitle1" fontWeight={700} color="textSecondary">
+        {label}
+      </Typography>
+      <Stack direction="row" spacing={1}>
+        <Box flex={1}>
+          {!hasUpdateSettingsPermission || readonly ? (
+            <Typography
+              component={readonly ? Stack : 'p'}
+              border={({ palette }) => `1px solid ${palette.divider}`}
+              borderRadius="6px"
+              py={1.625}
+              px={2}
+              variant="body2"
+              direction={readonly ? 'row' : undefined}
+              justifyContent={readonly ? 'space-between' : undefined}
+              alignItems={readonly ? 'center' : undefined}
+              bgcolor="background.paper"
+              width="100%"
+            >
+              {hide && !focused ? value.replace(/[\da-zA-Z]/g, '*') : value}
+              {hide ? (
+                <ButtonBase onClick={() => setFocused((prevFocused) => !prevFocused)}>
+                  {focused ? <VisibilityIcon fontSize="small" /> : <VisibilityOffIcon fontSize="small" />}
+                </ButtonBase>
+              ) : null}
+            </Typography>
+          ) : (
+            <TextField
+              placeholder={value}
+              value={inputValue}
+              fullWidth
+              sx={{
+                div: { height: 48 },
+                input: {
+                  py: 1.625,
+                  px: 2,
+                },
+              }}
+              onChange={readonly ? undefined : (e) => setInputValue(e.target.value)}
+            />
+          )}
+        </Box>
+        {noDisabledPermission ? (
+          <LoadingButton
+            sx={{
+              minWidth: 142,
             }}
-          />
-        ) : (
-          <TextField
-            placeholder={value}
-            value={inputValue}
-            size="small"
-            onChange={readonly ? undefined : (e) => setInputValue(e.target.value)}
-          />
-        )}
+            variant="contained"
+            type={readonly ? 'button' : 'submit'}
+            onClick={readonly ? () => onSubmit(inputValue) : undefined}
+            disabled={(!noDisabledPermission && !hasUpdateSettingsPermission) || (!readonly && inputValue === value)}
+            startIcon={buttonStartIcon}
+            loading={isPending}
+          >
+            {buttonName}
+          </LoadingButton>
+        ) : hasUpdateSettingsPermission ? (
+          <LoadingButton
+            sx={{
+              minWidth: 142,
+            }}
+            variant="contained"
+            type={readonly ? 'button' : 'submit'}
+            onClick={readonly ? () => onSubmit(inputValue) : undefined}
+            disabled={!hasUpdateSettingsPermission || (!readonly && inputValue === value)}
+            startIcon={buttonStartIcon}
+            loading={isPending}
+          >
+            {buttonName}
+          </LoadingButton>
+        ) : null}
       </Stack>
-      {noDisabledPermission ? (
-        <LoadingButton
-          variant="contained"
-          type={readonly ? 'button' : 'submit'}
-          onClick={readonly ? () => onSubmit(inputValue) : undefined}
-          disabled={(!noDisabledPermission && !hasUpdateSettingsPermission) || (!readonly && inputValue === value)}
-          loading={isPending}
-        >
-          {buttonName}
-        </LoadingButton>
-      ) : hasUpdateSettingsPermission ? (
-        <LoadingButton
-          variant="contained"
-          type={readonly ? 'button' : 'submit'}
-          onClick={readonly ? () => onSubmit(inputValue) : undefined}
-          disabled={!hasUpdateSettingsPermission || (!readonly && inputValue === value)}
-          loading={isPending}
-        >
-          {buttonName}
-        </LoadingButton>
-      ) : null}
     </Stack>
   )
 }
