@@ -1,6 +1,5 @@
-import { PropsWithChildren, createContext } from 'react'
-
-export const NonceContext = createContext<string | undefined>(undefined)
+import { PropsWithChildren } from 'react'
+import { NonceContext } from './NonceContext'
 
 export const NonceProvider = ({ children, nonce }: PropsWithChildren<{ nonce?: string }>) => (
   <NonceContext.Provider value={nonce}>{children}</NonceContext.Provider>

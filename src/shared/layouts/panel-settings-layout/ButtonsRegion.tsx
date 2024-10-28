@@ -1,11 +1,5 @@
-import { createContext, PropsWithChildren, ReactNode, useContext, useEffect, useState } from 'react'
-
-interface ButtonRegionContextValue {
-  content: ReactNode
-  setContent: (content: ReactNode) => void
-}
-
-export const ButtonsRegionContext = createContext<ButtonRegionContextValue>({ content: null, setContent: () => {} })
+import { PropsWithChildren, ReactNode, useContext, useEffect, useState } from 'react'
+import { ButtonsRegionContext } from './ButtonsRegionContext'
 
 export const ButtonsRegionProvider = ({ children }: PropsWithChildren) => {
   const [content, setContent] = useState<ReactNode>(null)
