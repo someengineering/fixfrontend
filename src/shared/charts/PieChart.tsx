@@ -27,7 +27,7 @@ interface PieChartProps {
 
 const RADIAN = Math.PI / 180
 
-export function PieChart({ data, showLabel, colors, pieProps = {}, width = 400, height = 400 }: PieChartProps) {
+export const PieChart = ({ data, showLabel, colors, pieProps = {}, width = 400, height = 400 }: PieChartProps) => {
   const containerRef = useRef<HTMLElement | undefined>()
   const {
     i18n: { locale },
@@ -95,12 +95,7 @@ export function PieChart({ data, showLabel, colors, pieProps = {}, width = 400, 
   }
   return (
     <>
-      <RchPieChart
-        width={width}
-        height={height}
-        // @ts-expect-error // TODO: this comment should be removed after update to recharts > 2.13
-        ref={(e) => (containerRef.current = e?.container)}
-      >
+      <RchPieChart width={width} height={height} ref={(e) => (containerRef.current = e?.container)}>
         <Pie
           data={data}
           cx="50%"
@@ -134,6 +129,7 @@ export function PieChart({ data, showLabel, colors, pieProps = {}, width = 400, 
           {data.map((entry, index) => (
             <Cell
               color={Array.isArray(colors) ? colors[index] : (colors?.[entry.name] ?? muicolors.lightBlue[600])}
+              fill="currentColor"
               key={`cell-${index}`}
               onMouseUp={entry.onClick}
               cursor={entry.onClick ? 'pointer' : undefined}

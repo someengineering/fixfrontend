@@ -300,23 +300,16 @@ export function Theme({ children, emotionCache }: ThemeProps) {
               boxShadow: 'none !important',
             },
             textSecondary: {
-              [`&.${buttonClasses.colorPrimary}`]: {
-                backgroundColor: panelUI.uiThemePalette.background.bgPurple,
-                ':hover,:focus,:active': {
-                  backgroundColor: panelUI.uiThemePalette.accent.purple,
-                  color: panelUI.uiThemePalette.primary.white,
-                },
-              },
-              color: panelUI.uiThemePalette.text.sub,
+              backgroundColor: panelUI.uiThemePalette.background.bgPurple,
               ':hover,:focus,:active': {
+                backgroundColor: panelUI.uiThemePalette.accent.purple,
                 color: panelUI.uiThemePalette.primary.white,
               },
+              color: panelUI.uiThemePalette.text.sub,
             },
             textPrimary: {
-              [`&.${buttonClasses.colorPrimary}`]: {
-                ':hover,:focus,:active': {
-                  backgroundColor: panelUI.uiThemePalette.background.bgPurple,
-                },
+              ':hover,:focus,:active': {
+                backgroundColor: panelUI.uiThemePalette.background.bgPurple,
               },
             },
           },
@@ -349,10 +342,18 @@ export function Theme({ children, emotionCache }: ThemeProps) {
             },
           },
         },
+        MuiCard: {
+          styleOverrides: {
+            root: {
+              backgroundColor: panelUI.uiThemePalette.primary.white,
+            },
+          },
+        },
         MuiTableCell: {
           styleOverrides: {
             root: {
               borderColor: panelUI.uiThemePalette.primary.divider,
+              backgroundColor: panelUI.uiThemePalette.primary.white,
               ...typography.subtitle1,
             },
             head: {
