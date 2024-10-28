@@ -2148,10 +2148,6 @@ msgstr "Payment method unrecognized: Ensure you are using a payment method that 
 msgid "Payment update failed: The provided payment method is unrecognized. Please verify your details and use a supported payment method."
 msgstr "Payment update failed: The provided payment method is unrecognized. Please verify your details and use a supported payment method."
 
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:67
-msgid "Pending invitations"
-msgstr "Pending invitations"
-
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:29
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:45
 #: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:48
