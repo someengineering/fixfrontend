@@ -1,30 +1,33 @@
-import { Trans, t } from '@lingui/macro'
-import PowerIcon from '@mui/icons-material/Power'
-import SettingsIcon from '@mui/icons-material/Settings'
+import { t, Trans } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
 import { LoadingButton } from '@mui/lab'
-import { Box, Button, Stack, TextField, Typography, useTheme } from '@mui/material'
+import { alpha, Box, Button, Stack, TextField, Typography, useTheme } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
-import { OpenInNewIcon, PagerdutyLogo } from 'src/assets/icons'
+import { OpenInNewIcon, PowerIcon, SettingsIcon, TeamsLogo } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { Modal } from 'src/shared/modal'
+import { putWorkspaceNotificationAddMutation } from './putWorkspaceNotificationAdd.mutation'
+import { WorkspaceSettingsConnectedServiceItemContainer } from './WorkspaceSettingsConnectedServiceItemContainer'
 import { WorkspaceSettingsDisconnectServiceModal } from './WorkspaceSettingsDisconnectServiceModal'
 import { WorkspaceSettingsTestService } from './WorkspaceSettingsTestService'
-import { putWorkspaceNotificationAddMutation } from './putWorkspaceNotificationAdd.mutation'
 
-interface WorkspaceSettingsPagerdutyServiceProps {
+interface WorkspaceSettingsTeamsServiceProps {
   isConnected?: boolean
   defaultName?: string
   isLoading?: boolean
 }
 
-export const WorkspaceSettingsPagerdutyService = ({ isConnected, defaultName, isLoading }: WorkspaceSettingsPagerdutyServiceProps) => {
+export const WorkspaceSettingsTeamsService = ({ isConnected, defaultName, isLoading }: WorkspaceSettingsTeamsServiceProps) => {
   const theme = useTheme()
+  const {
+    i18n: { locale },
+  } = useLingui()
   const { selectedWorkspace, checkPermission } = useUserProfile()
   const hasPermission = checkPermission('updateSettings')
   const { mutate, isPending } = useMutation({ mutationFn: putWorkspaceNotificationAddMutation })
-  const [integrationKey, setIntegrationKey] = useState('')
-  const [name, setName] = useState(defaultName ?? 'Pagerduty Integration')
+  const [webhookUrl, setWebhookUrl] = useState('')
+  const [name, setName] = useState(defaultName ?? 'Teams Integration')
   useEffect(() => {
     if (defaultName) {
       setName(defaultName)
@@ -34,7 +37,7 @@ export const WorkspaceSettingsPagerdutyService = ({ isConnected, defaultName, is
   const modalRef = useRef<(show?: boolean | undefined) => void>()
   const handleConnect = () => {
     mutate(
-      { workspaceId: selectedWorkspace?.id ?? '', integration_key: integrationKey, name, channel: 'pagerduty' },
+      { workspaceId: selectedWorkspace?.id ?? '', webhook_url: webhookUrl, name, channel: 'teams' },
       {
         onSettled: () => {
           queryClient.invalidateQueries({
@@ -46,20 +49,24 @@ export const WorkspaceSettingsPagerdutyService = ({ isConnected, defaultName, is
     )
   }
   return hasPermission || isConnected ? (
-    <Stack
-      direction={{ xs: 'column', sm: 'row' }}
-      alignItems={{ xs: 'stretch', sm: 'center' }}
-      justifyContent={{ xs: 'center', sm: 'start' }}
-      minHeight={40}
-      flexWrap="wrap"
-      gap={2}
+    <WorkspaceSettingsConnectedServiceItemContainer
+      icon={
+        <Stack direction="row" spacing={1}>
+          <Box height={38}>
+            <TeamsLogo height={38} color={theme.palette.common.black} />
+          </Box>
+          <Typography variant="h4">Teams</Typography>
+        </Stack>
+      }
     >
-      <Box width={150}>
-        <PagerdutyLogo color={theme.palette.common.black} width={100} />
-      </Box>
       {hasPermission ? (
         <>
-          {isConnected ? <WorkspaceSettingsDisconnectServiceModal isLoading={isLoading} channel="pagerduty" name="PagerDuty" /> : null}
+          {isConnected ? (
+            <>
+              <WorkspaceSettingsDisconnectServiceModal isLoading={isLoading} channel="teams" name="Teams" />
+              <WorkspaceSettingsTestService channel="teams" isLoading={isLoading} />
+            </>
+          ) : null}
           <LoadingButton
             loadingPosition={isLoading && !isConnected ? 'start' : undefined}
             startIcon={isConnected ? <SettingsIcon /> : <PowerIcon />}
@@ -67,36 +74,40 @@ export const WorkspaceSettingsPagerdutyService = ({ isConnected, defaultName, is
             variant="contained"
             sx={{ flexShrink: 0 }}
             onClick={() => modalRef.current?.(true)}
+            color={isConnected ? 'primary' : 'success'}
           >
             {isConnected ? <Trans>Configure</Trans> : <Trans>Connect</Trans>}
           </LoadingButton>
-          {isConnected ? <WorkspaceSettingsTestService channel="pagerduty" isLoading={isLoading} /> : null}
           <Modal
+            slotProps={{ backdrop: { sx: { bgcolor: alpha('#000000', 0.6) } } }}
             onSubmit={handleConnect}
             openRef={modalRef}
-            title={<Trans>Connect PagerDuty</Trans>}
+            title={<Trans>Connect Teams</Trans>}
             description={
               <Trans>
                 <Typography component="div">
-                  We use the Events API V2 for notifications through PagerDuty.
+                  We utilize incoming webhooks to deliver notifications to your Microsoft Teams channels.
                   <br />
-                  To create an integration, please follow these steps:
+                  To manually add a webhook:
                   <ol>
-                    <li>Log in to PagerDuty with your account credentials.</li>
-                    <li>Navigate to the dashboard and select "Services".</li>
-                    <li>Choose the service you wish to integrate, go to the "Integrations" tab, and then click "Add Integration".</li>
-                    <li>For the integration type, select "PagerDuty Events API V2" and click "Add".</li>
-                    <li>Provide a name for the integration for easy reference and copy the "Integration Key".</li>
+                    <li>In Microsoft Teams, click on More options (⋯) next to the channel name and then select Connectors.</li>
+                    <li>Browse through the list of Connectors to find Incoming Webhook, and click Add.</li>
+                    <li>Provide a name for the webhook, upload an image to represent data from the webhook, and click Create.</li>
+                    <li>
+                      Copy the webhook URL to your clipboard and keep it safe. This URL is necessary for TrackJS to send notifications.
+                    </li>
+                    <li>Click Done.</li>
+                    <li>In the text box provided below, paste the Webhook URL you copied and enter the name of the channel.</li>
                   </ol>
-                  For more information please visit{' '}
+                  More from{' '}
                   <Button
                     size="small"
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://support.pagerduty.com/docs/services-and-integrations#section-events-API-v2"
+                    href={`https://learn.microsoft.com/${locale.toLowerCase()}/microsoftteams/platform/webhooks-and-connectors/how-to/connectors-using?tabs=cURL#setting-up-a-custom-incoming-webhook`}
                     endIcon={<OpenInNewIcon />}
                   >
-                    PagerDuty Services and Integrations
+                    Microsoft Teams Documentation
                   </Button>
                 </Typography>
               </Trans>
@@ -110,18 +121,19 @@ export const WorkspaceSettingsPagerdutyService = ({ isConnected, defaultName, is
                 )}
                 <LoadingButton
                   loadingPosition={isPending ? 'start' : undefined}
-                  startIcon={<PowerIcon />}
                   loading={isPending}
                   variant="contained"
                   type="submit"
-                  disabled={!name || !integrationKey}
+                  disabled={!name || !webhookUrl}
+                  startIcon={isConnected ? <SettingsIcon /> : <PowerIcon />}
+                  color={isConnected ? 'primary' : 'success'}
                 >
-                  <Trans>Connect</Trans>
+                  {isConnected ? <Trans>Update</Trans> : <Trans>Connect</Trans>}
                 </LoadingButton>
               </>
             }
           >
-            <Stack spacing={2} my={2}>
+            <Stack spacing={2}>
               <TextField
                 required
                 name="name"
@@ -135,19 +147,19 @@ export const WorkspaceSettingsPagerdutyService = ({ isConnected, defaultName, is
               />
               <TextField
                 required
-                name="integration_key"
-                autoComplete="text"
-                label={t`Integration Key`}
+                name="webhook_url"
+                autoComplete="url"
+                label={t`Webhook URL`}
                 variant="outlined"
                 fullWidth
                 type="text"
-                value={integrationKey}
-                onChange={(e) => setIntegrationKey(e.target.value ?? '')}
+                value={webhookUrl}
+                onChange={(e) => setWebhookUrl(e.target.value ?? '')}
               />
             </Stack>
           </Modal>
         </>
       ) : null}
-    </Stack>
+    </WorkspaceSettingsConnectedServiceItemContainer>
   ) : null
 }

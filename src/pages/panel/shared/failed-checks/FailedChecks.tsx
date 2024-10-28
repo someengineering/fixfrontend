@@ -67,6 +67,7 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, 
       <Accordion
         expanded={withResources ? expanded : undefined}
         onChange={withResources ? (_, expanded) => setExpanded(expanded) : undefined}
+        sx={{ bgcolor: 'common.white' }}
       >
         <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ height: '100%' }}>
           <Grid container spacing={2} display="flex" justifyContent="space-between" flexDirection="row" width="100%">

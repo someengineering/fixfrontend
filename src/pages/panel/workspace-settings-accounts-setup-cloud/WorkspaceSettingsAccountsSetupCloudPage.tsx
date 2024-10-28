@@ -23,6 +23,8 @@ function SetupCloudPageItem<IconProps extends SvgIconProps>({ Icon, iconProps, t
         textAlign: 'left',
         ':hover': {
           bgcolor: 'common.white',
+          borderColor: panelUI.uiThemePalette.input.hover,
+          boxShadow: '0 4px 6px 0 rgba(0,0,0,0.06)',
         },
         width: 440,
         py: 2.75,

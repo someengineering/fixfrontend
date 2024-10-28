@@ -1,16 +1,15 @@
-import { Trans, t } from '@lingui/macro'
-import EmailIcon from '@mui/icons-material/Email'
-import PowerIcon from '@mui/icons-material/Power'
-import SettingsIcon from '@mui/icons-material/Settings'
+import { t, Trans } from '@lingui/macro'
 import { LoadingButton } from '@mui/lab'
-import { Autocomplete, Box, Button, Stack, TextField, Typography } from '@mui/material'
+import { alpha, Autocomplete, Button, Stack, TextField, Typography } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
+import { EmailWithTextIcon, PowerIcon, SettingsIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { Modal } from 'src/shared/modal'
+import { putWorkspaceNotificationAddMutation } from './putWorkspaceNotificationAdd.mutation'
+import { WorkspaceSettingsConnectedServiceItemContainer } from './WorkspaceSettingsConnectedServiceItemContainer'
 import { WorkspaceSettingsDisconnectServiceModal } from './WorkspaceSettingsDisconnectServiceModal'
 import { WorkspaceSettingsTestService } from './WorkspaceSettingsTestService'
-import { putWorkspaceNotificationAddMutation } from './putWorkspaceNotificationAdd.mutation'
 
 interface WorkspaceSettingsEmailServiceProps {
   isConnected?: boolean
@@ -55,22 +54,7 @@ export const WorkspaceSettingsEmailService = ({
     )
   }
   return hasPermission || isConnected ? (
-    <Stack
-      direction={{ xs: 'column', sm: 'row' }}
-      alignItems={{ xs: 'stretch', sm: 'center' }}
-      justifyContent={{ xs: 'center', sm: 'start' }}
-      minHeight={40}
-      flexWrap="wrap"
-      gap={2}
-    >
-      <Stack width={150} direction="row" alignItems="center">
-        <Box width={40}>
-          <EmailIcon fontSize="large" color="primary" />
-        </Box>
-        <Typography variant="h4" color="primary.main">
-          Email
-        </Typography>
-      </Stack>
+    <WorkspaceSettingsConnectedServiceItemContainer icon={<EmailWithTextIcon color="primary.main" height={38} />}>
       {hasPermission ? (
         <>
           {isConnected ? <WorkspaceSettingsDisconnectServiceModal isLoading={isLoading} channel="email" name="Email" /> : null}
@@ -78,6 +62,7 @@ export const WorkspaceSettingsEmailService = ({
             loadingPosition={isLoading && !isConnected ? 'start' : undefined}
             startIcon={isConnected ? <SettingsIcon /> : <PowerIcon />}
             loading={isLoading}
+            color={isConnected ? 'primary' : 'success'}
             variant="contained"
             sx={{ flexShrink: 0 }}
             onClick={() => modalRef.current?.(true)}
@@ -86,6 +71,7 @@ export const WorkspaceSettingsEmailService = ({
           </LoadingButton>
           {isConnected ? <WorkspaceSettingsTestService channel="email" isLoading={isLoading} /> : null}
           <Modal
+            slotProps={{ backdrop: { sx: { bgcolor: alpha('#000000', 0.6) } } }}
             onSubmit={handleConnect}
             openRef={modalRef}
             title={<Trans>Setting Up Email Notifications</Trans>}
@@ -107,13 +93,14 @@ export const WorkspaceSettingsEmailService = ({
                 )}
                 <LoadingButton
                   loadingPosition={isPending ? 'start' : undefined}
-                  startIcon={<PowerIcon />}
                   loading={isPending}
                   variant="contained"
                   type="submit"
                   disabled={!name || !email.length}
+                  startIcon={isConnected ? <SettingsIcon /> : <PowerIcon />}
+                  color={isConnected ? 'primary' : 'success'}
                 >
-                  <Trans>Connect</Trans>
+                  {isConnected ? <Trans>Update</Trans> : <Trans>Connect</Trans>}
                 </LoadingButton>
               </>
             }
@@ -145,6 +132,16 @@ export const WorkspaceSettingsEmailService = ({
                     type="email"
                     value={typedEmail}
                     onChange={(e) => setTypedEmail(e.target.value)}
+                    slotProps={{
+                      htmlInput: params.inputProps,
+                      inputLabel: params.InputLabelProps,
+                      input: {
+                        ...params.InputProps,
+                        sx: {
+                          height: 'auto',
+                        },
+                      },
+                    }}
                   />
                 )}
                 onChange={(_, values) => setEmail(values)}
@@ -153,6 +150,6 @@ export const WorkspaceSettingsEmailService = ({
           </Modal>
         </>
       ) : null}
-    </Stack>
+    </WorkspaceSettingsConnectedServiceItemContainer>
   ) : null
 }

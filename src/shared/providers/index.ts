@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { NonceContext } from './NonceProvider'
+import { NonceContext } from './NonceContext'
 
 export { BasicProviders } from './BasicProviders'
 export { i18n } from './i18n'

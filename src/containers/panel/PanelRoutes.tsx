@@ -76,6 +76,38 @@ const ResourceDetailView = lazy(
     ),
 )
 
+const WorkspaceSettingsAccountsCloudSetupPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "workspace-settings-accounts-setup-cloud" */
+      'src/pages/panel/workspace-settings-accounts-setup-cloud/WorkspaceSettingsAccountsSetupCloudPage'
+    ),
+)
+
+const WorkspaceSettingsAccountsSetupCloudAWSPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "workspace-settings-accounts-setup-cloud-aws" */
+      'src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceSettingsAccountsSetupCloudAWSPage'
+    ),
+)
+
+const WorkspaceSettingsAccountsSetupCloudGCPPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "workspace-settings-accounts-setup-cloud-gcp" */
+      'src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPPage'
+    ),
+)
+
+const WorkspaceSettingsAccountsSetupCloudAzurePage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "workspace-settings-accounts-setup-cloud-azure" */
+      'src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzurePage'
+    ),
+)
+
 export function PanelRoutes() {
   const withResourceDetailRoute = <Route path="resource-detail/:resourceDetailId" element={<ResourceDetailView />} />
   return (
@@ -106,6 +138,17 @@ export function PanelRoutes() {
           </Route>
           <Route element={<PermissionCheckGuard permissionToCheck="readSettings" />}>
             <Route path="accounts" element={<AccountsPage />} />
+          </Route>
+        </Route>
+        <Route element={<PermissionCheckGuard permissionToCheck="readSettings" />}>
+          <Route path="accounts">
+            <Route path="setup-cloud">
+              <Route index element={<WorkspaceSettingsAccountsCloudSetupPage />} />
+              <Route path="aws" element={<WorkspaceSettingsAccountsSetupCloudAWSPage />} />
+              <Route path="gcp" element={<WorkspaceSettingsAccountsSetupCloudGCPPage />} />
+              <Route path="azure" element={<WorkspaceSettingsAccountsSetupCloudAzurePage />} />
+              <Route path="*" element={<Navigate to=".." replace />} />
+            </Route>
           </Route>
         </Route>
         <Route path="settings/*" element={<PanelSettingsContainer />} />
