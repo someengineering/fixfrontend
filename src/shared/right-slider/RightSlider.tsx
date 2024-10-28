@@ -26,11 +26,12 @@ const Modal = styled(MuiModal)(({ theme }) => ({
 interface RightSliderProps extends Omit<StackProps, 'title'> {
   title: ReactNode
   titleContainerProps?: StackProps
+  noTitleDivider?: boolean
   open: boolean
   onClose: () => void
 }
 
-export const RightSlider = ({ title, children, open, onClose, titleContainerProps, ...rest }: RightSliderProps) => {
+export const RightSlider = ({ title, children, open, onClose, noTitleDivider, titleContainerProps, ...rest }: RightSliderProps) => {
   return (
     <>
       <Modal open={open} onClose={onClose} slotProps={{ backdrop: { sx: { bgcolor: alpha('#000000', 0.6) } } }}>
@@ -50,7 +51,16 @@ export const RightSlider = ({ title, children, open, onClose, titleContainerProp
             direction="column"
             overflow="auto"
           >
-            <Stack direction="row" px={3} py={2.5} position="sticky" top={-8} zIndex="modal" boxShadow={1} {...titleContainerProps}>
+            <Stack
+              direction="row"
+              px={3}
+              py={2.5}
+              position="sticky"
+              top={-8}
+              zIndex="modal"
+              boxShadow={noTitleDivider ? 0 : 1}
+              {...titleContainerProps}
+            >
               <Box flex={1}>{title}</Box>
               <Box>
                 <IconButton onClick={onClose} color="info" size="small" sx={{ p: '2.5px' }}>
@@ -58,7 +68,7 @@ export const RightSlider = ({ title, children, open, onClose, titleContainerProp
                 </IconButton>
               </Box>
             </Stack>
-            <Divider />
+            {noTitleDivider ? null : <Divider />}
             <Stack overflow="auto" {...rest}>
               {children}
             </Stack>

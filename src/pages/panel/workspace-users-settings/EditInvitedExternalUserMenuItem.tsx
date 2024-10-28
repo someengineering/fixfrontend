@@ -11,12 +11,12 @@ import { roleOptions } from './roleOptions'
 
 interface EditInvitedExternalUserMenuItemProps {
   workspaceUser: WorkspaceUser
-  onClick?: () => void
+  onClose?: () => void
 }
 
 const roles = roleOptions.map(({ role }) => role)
 
-export const EditInvitedExternalUserMenuItem = ({ workspaceUser, onClick }: EditInvitedExternalUserMenuItemProps) => {
+export const EditInvitedExternalUserMenuItem = ({ workspaceUser, onClose }: EditInvitedExternalUserMenuItemProps) => {
   const [open, setOpen] = useState(false)
   const { selectedWorkspace, checkPermission } = useUserProfile()
   const hasInvitePermission = checkPermission('inviteTo')
@@ -45,6 +45,11 @@ export const EditInvitedExternalUserMenuItem = ({ workspaceUser, onClick }: Edit
     },
   })
 
+  const handleClose = () => {
+    setOpen(false)
+    onClose?.()
+  }
+
   const handleAction = (_name: string, email: string, roles: string[]) => {
     if (hasInvitePermission) {
       const userRoles = roles.reduce((rolesObj, role) => ({ ...rolesObj, [role]: roles.includes(role) }), {} as UserRole)
@@ -58,19 +63,14 @@ export const EditInvitedExternalUserMenuItem = ({ workspaceUser, onClick }: Edit
   }
   return hasInvitePermission ? (
     <>
-      <MenuItem
-        onClick={() => {
-          onClick?.()
-          setOpen(true)
-        }}
-      >
+      <MenuItem onClick={() => setOpen(true)}>
         <ListItemText>
           <Trans>Edit</Trans>
         </ListItemText>
       </MenuItem>
       <InviteExternalUserForm
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={handleClose}
         onSubmit={handleAction}
         isPending={changeRoleIsPending}
         defaultName={workspaceUser.name}

@@ -23,8 +23,8 @@ export const WorkspaceSettingsUserActionRowItem = ({ workspaceUser }: WorkspaceS
         onClose={() => setAnchorEl(null)}
         slotProps={{ paper: { sx: { bgcolor: 'common.white' } } }}
       >
-        <EditInvitedExternalUserMenuItem workspaceUser={workspaceUser} onClick={() => setAnchorEl(null)} />
-        <DeleteInvitedExternalUserMenuItem workspaceUser={workspaceUser} onClick={() => setAnchorEl(null)} />
+        <EditInvitedExternalUserMenuItem workspaceUser={workspaceUser} onClose={() => setAnchorEl(null)} />
+        <DeleteInvitedExternalUserMenuItem workspaceUserIds={[workspaceUser.id]} onClose={() => setAnchorEl(null)} />
       </Menu>
     </>
   )

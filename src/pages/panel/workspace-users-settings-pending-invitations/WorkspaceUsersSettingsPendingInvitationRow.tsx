@@ -1,8 +1,8 @@
-import { Trans, t } from '@lingui/macro'
+import { t, Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { LoadingButton } from '@mui/lab'
-import { Button, IconButton, TableCell, TableRow, Tooltip, Typography } from '@mui/material'
+import { alpha, Button, IconButton, TableCell, TableRow, Tooltip, Typography } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRef } from 'react'
 import { useUserProfile } from 'src/core/auth'
@@ -10,11 +10,11 @@ import { Modal } from 'src/shared/modal'
 import { WorkspaceInvite } from 'src/shared/types/server'
 import { deleteWorkspaceInviteMutation } from './deleteWorkspaceInvite.mutation'
 
-interface WorkspaceSettingsUserInvitationRowProps {
+interface WorkspaceUsersSettingsPendingInvitationRowProps {
   workspaceInvite: WorkspaceInvite
 }
 
-export const WorkspaceSettingsUserInvitationRow = ({ workspaceInvite }: WorkspaceSettingsUserInvitationRowProps) => {
+export const WorkspaceUsersSettingsPendingInvitationRow = ({ workspaceInvite }: WorkspaceUsersSettingsPendingInvitationRowProps) => {
   const {
     i18n: { locale },
   } = useLingui()
@@ -82,6 +82,7 @@ export const WorkspaceSettingsUserInvitationRow = ({ workspaceInvite }: Workspac
             )}
           </TableCell>
           <Modal
+            slotProps={{ backdrop: { sx: { bgcolor: alpha('#000000', 0.6) } } }}
             title={<Trans>Are you sure?</Trans>}
             description={<Trans>Do you want to delete this invitation?</Trans>}
             openRef={showDeleteModalRef}
