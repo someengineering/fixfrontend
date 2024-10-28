@@ -63,10 +63,10 @@ export const workspaceUsersSettingsMenuList: MenuListItem[] = [
     name: <Trans>Current users</Trans>,
     route: `${routes.workspaceUsersSettingsRoute}`,
   },
-  {
-    name: <Trans>Pending invitations</Trans>,
-    route: `${routes.workspaceUsersSettingsRoute}/pending-invitations`,
-  },
+  // {
+  //   name: <Trans>Pending invitations</Trans>,
+  //   route: `${routes.workspaceUsersSettingsRoute}/pending-invitations`,
+  // },
 ]
 
 export const settingsMenu = [
