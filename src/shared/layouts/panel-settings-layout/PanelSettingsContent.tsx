@@ -3,7 +3,7 @@ import { PropsWithChildren, useContext, useMemo } from 'react'
 import { matchPath, useLocation } from 'react-router-dom'
 import { CheckSmallIcon } from 'src/assets/icons'
 import { InternalLinkButton } from 'src/shared/link-button'
-import { ButtonsRegionContext } from './ButtonsRegion'
+import { ButtonsRegionContext } from './ButtonsRegionContext'
 import { MenuListItem, settingsMenu } from './settingsMenuList'
 
 const useMapRouteToSettingDetails = () => {
