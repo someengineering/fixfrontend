@@ -3,16 +3,19 @@ import AllInclusiveIconComp from './all-inclusive-icon.svg?react'
 import AnalyticsIconComp from './analytics-icon.svg?react'
 import ArrowBackIconComp from './arrow-back-icon.svg?react'
 import ArrowForwardIconComp from './arrow-forward-icon.svg?react'
+import AWSFrameworkIconComp from './aws-framework-icon.svg?react'
 import AwsLogoComp from './aws-logo.svg?react'
 import AzureLogoWithTextComp from './azure-logo-with-text.svg?react'
 import AzureLogoComp from './azure-logo.svg?react'
 import Book4IconComp from './book-4-icon.svg?react'
 import BucketIconComp from './bucket-icon.svg?react'
+import BugReportIconComp from './bug-report-icon.svg?react'
 import CalendarMonthIconComp from './calendar-month-icon.svg?react'
 import CancelIconComp from './cancel-icon.svg?react'
 import CheckIconComp from './check-icon.svg?react'
 import CheckSmallIconComp from './check-small-icon.svg?react'
 import ChevronRightIconComp from './chevron-right-icon.svg?react'
+import CISFrameworkIconComp from './cis-framework-icon.svg?react'
 import CloseIconComp from './close-icon.svg?react'
 import CloseSmallIconComp from './close-small-icon.svg?react'
 import CloudIconComp from './cloud-icon.svg?react'
@@ -31,6 +34,7 @@ import DiscordWithTextLogoComp from './discord-with-text-logo.svg?react'
 import DNSIconComp from './dns-icon.svg?react'
 import DoubleArrowIconComp from './double-arrow-icon.svg?react'
 import DownloadIconComp from './download-icon.svg?react'
+import EmailWithTextIconComp from './email-with-text-icon.svg?react'
 import FixLogoNoBackgroundComp from './fix-logo-no-background.svg?react'
 import FixLogoComp from './fix-logo.svg?react'
 import FormatListBulletedIconComp from './format-list-bulleted-icon.svg?react'
@@ -48,6 +52,7 @@ import HomeIconComp from './home-icon.svg?react'
 import HomeStorageIconComp from './home-storage-icon.svg?react'
 import InfoIconComp from './info-icon.svg?react'
 import InstanceIconComp from './instance-icon.svg?react'
+import ISO27001FrameworkIconComp from './iso-27001-framework-icon.svg?react'
 import KeyIconComp from './key-icon.svg?react'
 import KeyboardArrowDownIconComp from './keyboard-arrow-down-icon.svg?react'
 import KeyboardCommandKeyIconComp from './keyboard-command-key-icon.svg?react'
@@ -64,6 +69,7 @@ import MemoryIconComp from './memory-icon.svg?react'
 import MenuIconComp from './menu-icon.svg?react'
 import MovieIconComp from './movie-icon.svg?react'
 import NetworkNodeIconComp from './network-node-icon.svg?react'
+import NISFrameworkIconComp from './nis-framework-icon.svg?react'
 import OpenInNewIconComp from './open-in-new-icon.svg?react'
 import OpsgenieLogoComp from './opsgenie-logo.svg?react'
 import PagerdutyLogoComp from './pagerduty-logo.svg?react'
@@ -93,16 +99,19 @@ export const AllInclusiveIcon = createIcon(AllInclusiveIconComp)
 export const AnalyticsIcon = createIcon(AnalyticsIconComp)
 export const ArrowBackIcon = createIcon(ArrowBackIconComp)
 export const ArrowForwardIcon = createIcon(ArrowForwardIconComp)
+export const AWSFrameworkIcon = createIcon(AWSFrameworkIconComp)
 export const AwsLogo = createIcon(AwsLogoComp)
 export const AzureLogoWithText = createIcon(AzureLogoWithTextComp)
 export const AzureLogo = createIcon(AzureLogoComp)
 export const Book4Icon = createIcon(Book4IconComp)
 export const BucketIcon = createIcon(BucketIconComp)
+export const BugReportIcon = createIcon(BugReportIconComp)
 export const CalendarMonthIcon = createIcon(CalendarMonthIconComp)
 export const CancelIcon = createIcon(CancelIconComp)
 export const CheckIcon = createIcon(CheckIconComp)
 export const CheckSmallIcon = createIcon(CheckSmallIconComp)
 export const ChevronRightIcon = createIcon(ChevronRightIconComp)
+export const CISFrameworkIcon = createIcon(CISFrameworkIconComp)
 export const CloseIcon = createIcon(CloseIconComp)
 export const CloseSmallIcon = createIcon(CloseSmallIconComp)
 export const CloudIcon = createIcon(CloudIconComp)
@@ -120,6 +129,7 @@ export const DiscordWithTextLogo = createIcon(DiscordWithTextLogoComp)
 export const DNSIcon = createIcon(DNSIconComp)
 export const DoubleArrowIcon = createIcon(DoubleArrowIconComp)
 export const DownloadIcon = createIcon(DownloadIconComp)
+export const EmailWithTextIcon = createIcon(EmailWithTextIconComp)
 export const FixLogoNoBackground = createIcon(FixLogoNoBackgroundComp)
 export const FixLogo = createIcon(FixLogoComp)
 export const FormatListBulletedIcon = createIcon(FormatListBulletedIconComp)
@@ -137,6 +147,7 @@ export const HomeIcon = createIcon(HomeIconComp)
 export const HomeStorageIcon = createIcon(HomeStorageIconComp)
 export const InfoIcon = createIcon(InfoIconComp)
 export const InstanceIcon = createIcon(InstanceIconComp)
+export const ISO27001FrameworkIcon = createIcon(ISO27001FrameworkIconComp)
 export const KeyIcon = createIcon(KeyIconComp)
 export const KeyboardArrowDownIcon = createIcon(KeyboardArrowDownIconComp)
 export const KeyboardCommandKeyIcon = createIcon(KeyboardCommandKeyIconComp)
@@ -153,6 +164,7 @@ export const MemoryIcon = createIcon(MemoryIconComp)
 export const MenuIcon = createIcon(MenuIconComp)
 export const MovieIcon = createIcon(MovieIconComp)
 export const NetworkNodeIcon = createIcon(NetworkNodeIconComp)
+export const NISFrameworkIcon = createIcon(NISFrameworkIconComp)
 export const OpenInNewIcon = createIcon(OpenInNewIconComp)
 export const OpsgenieLogo = createIcon(OpsgenieLogoComp)
 export const PagerdutyLogo = createIcon(PagerdutyLogoComp)

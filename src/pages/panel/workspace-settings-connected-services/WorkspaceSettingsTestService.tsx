@@ -1,7 +1,7 @@
 import { Trans } from '@lingui/macro'
-import BugReportIcon from '@mui/icons-material/BugReport'
 import { LoadingButton } from '@mui/lab'
 import { useMutation } from '@tanstack/react-query'
+import { BugReportIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { NotificationChannel } from 'src/shared/types/server-shared'
 import { postWorkspaceNotificationTestMutation } from './postWorkspaceNotificationTest.mutation'
@@ -28,7 +28,7 @@ export const WorkspaceSettingsTestService = ({ channel, isLoading }: WorkspaceSe
         loadingPosition={isLoading || isPending ? 'start' : undefined}
         startIcon={<BugReportIcon />}
         loading={isLoading || isPending}
-        color="inherit"
+        color="info"
         variant="contained"
         sx={{ flexShrink: 0 }}
         onClick={handleTest}
