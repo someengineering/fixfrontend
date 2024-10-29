@@ -1,8 +1,10 @@
+import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { Checkbox, Stack, TableCell, TableRow, Typography } from '@mui/material'
+import { Checkbox, Stack, TableCell, TableRow, Tooltip, Typography } from '@mui/material'
 import { useUserProfile } from 'src/core/auth'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { WorkspaceUser } from 'src/shared/types/server'
+import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
 import { WorkspaceSettingsUserActionRowItem } from './WorkspaceSettingsUserActionRowItem'
 import { WorkspaceSettingsUserRoles } from './WorkspaceSettingsUserRoles'
 
@@ -49,7 +51,19 @@ export const WorkspaceUsersSettingsRow = ({ workspaceUser, selected, onSelect }:
           <WorkspaceSettingsUserRoles workspaceUser={workspaceUser} />
         </TableCell>
       ) : null}
-      <TableCell>{workspaceUser.last_login ? new Date(workspaceUser.last_login).toLocaleString(locale) : '-'}</TableCell>
+      <TableCell>
+        {workspaceUser.last_login ? (
+          <Tooltip title={new Date(workspaceUser.last_login).toLocaleString(locale)} arrow>
+            <Typography variant="subtitle1" component="span">
+              <Trans>
+                {iso8601DurationToString(diffDateTimeToDuration(new Date(workspaceUser.last_login), new Date()), 1).toLowerCase()} ago
+              </Trans>
+            </Typography>
+          </Tooltip>
+        ) : (
+          '-'
+        )}
+      </TableCell>
       <TableCell>-</TableCell>
       <TableCell>
         <WorkspaceSettingsUserActionRowItem workspaceUser={workspaceUser} />
