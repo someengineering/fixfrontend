@@ -76,10 +76,14 @@ export const Modal = ({ children, actions, description, title, openRef, defaultO
         )}
         {title || description ? <Divider /> : null}
         {children}
-        <Divider />
-        <Stack spacing={1} justifyContent="end" direction="row">
-          {actions}
-        </Stack>
+        {actions ? (
+          <>
+            <Divider />
+            <Stack spacing={1} justifyContent="end" direction="row">
+              {actions}
+            </Stack>
+          </>
+        ) : null}
       </ModalContent>
     </MuiModal>
   )

@@ -55,6 +55,14 @@ msgstr "{0, plural, one {# Jahr} other {# Jahre}}"
 msgid "{0, plural, one {check} other {checks}}"
 msgstr "{0, plural, one {Prüfung} other {Prüfungen}}"
 
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:69
+msgid "{0, plural, one {Delete User} other {Delete # Users}}"
+msgstr ""
+
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:57
+msgid "{0, plural, one {Do you want to delete this user} other {Do you want to delete # users}}"
+msgstr ""
+
 #: src/pages/panel/accounts/AccountRow.tsx:415
 msgid "{0, plural, one {One error reported} two {Two errors reported} other {# errors reported}}"
 msgstr ""
@@ -67,6 +75,7 @@ msgstr ""
 
 #: src/pages/panel/inventory-search/utils/InventoryTableDateRenderCell.tsx:17
 #: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:31
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsRow.tsx:60
 msgid "{0} ago"
 msgstr ""
 
@@ -317,7 +326,6 @@ msgid "Action"
 msgstr "Aktion"
 
 #: src/pages/panel/accounts/AccountsTableItem.tsx:92
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:91
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -373,9 +381,7 @@ msgstr ""
 msgid "Added accounts"
 msgstr "Konten hinzugefügt"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:59
-#: src/pages/panel/workspace-settings-users/workspaceSettingsUserRoleToString.ts:10
-#: src/pages/panel/workspace-settings-users/workspaceSettingsUserRoleToString.ts:18
+#: src/pages/panel/workspace-users-settings/roleOptions.tsx:7
 msgid "Admin"
 msgstr "Admin"
 
@@ -454,7 +460,7 @@ msgstr "Beim Herstellen der Verbindung zu {0} ist ein Fehler aufgetreten."
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:92
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:76
 #: src/pages/panel/workspace-settings-billing/ConfirmChangePaymentModal.tsx:36
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:32
+#: src/pages/panel/workspace-users-settings/InviteExternalUser.tsx:27
 msgid "An error occurred, please try again later."
 msgstr "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut."
 
@@ -513,8 +519,8 @@ msgstr "Sind Sie sicher, dass Sie das {name}-Konto {0} entfernen möchten?"
 
 #: src/pages/panel/accounts/AccountRow.tsx:514
 #: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:52
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:85
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:107
+#: src/pages/panel/workspace-users-settings-pending-invitations/WorkspaceUsersSettingsPendingInvitationRow.tsx:97
+#: src/pages/panel/workspace-users-settings/DeleteInvitedExternalUserMenuItem.tsx:97
 msgid "Are you sure?"
 msgstr "Bist du sicher?"
 
@@ -533,6 +539,10 @@ msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/getInstructions.tsx:107
 msgid "Assign permission to the App"
+msgstr ""
+
+#: src/pages/panel/workspace-users-settings/InviteExternalUserForm.tsx:99
+msgid "Assign roles"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:36
@@ -611,8 +621,7 @@ msgstr "Benchmarks"
 msgid "Billing"
 msgstr "Abrechnung"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:63
-#: src/pages/panel/workspace-settings-users/workspaceSettingsUserRoleToString.ts:13
+#: src/pages/panel/workspace-users-settings/roleOptions.tsx:8
 msgid "Billing Admin"
 msgstr "Abrechnungsadmin"
 
@@ -658,11 +667,9 @@ msgstr ""
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsOpsgenieService.tsx:102
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsPagerdutyService.tsx:99
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:119
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:92
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:154
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:158
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:159
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:118
+#: src/pages/panel/workspace-users-settings-pending-invitations/WorkspaceUsersSettingsPendingInvitationRow.tsx:104
+#: src/pages/panel/workspace-users-settings/DeleteInvitedExternalUserMenuItem.tsx:104
+#: src/pages/panel/workspace-users-settings/InviteExternalUserForm.tsx:127
 #: src/pages/subscription/choose-workspace/ChooseWorkspacePage.tsx:118
 msgid "Cancel"
 msgstr "Stornieren"
@@ -1111,16 +1118,16 @@ msgstr "Verzögerte Wirkung"
 #: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:45
 #: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:86
 #: src/pages/panel/user-settings-connected-accounts/UserSettingsSocialNetworkDisconnectButton.tsx:80
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:73
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:77
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:78
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:103
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:95
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:99
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:100
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:129
+#: src/pages/panel/workspace-users-settings-pending-invitations/WorkspaceUsersSettingsPendingInvitationRow.tsx:85
+#: src/pages/panel/workspace-users-settings-pending-invitations/WorkspaceUsersSettingsPendingInvitationRow.tsx:87
+#: src/pages/panel/workspace-users-settings-pending-invitations/WorkspaceUsersSettingsPendingInvitationRow.tsx:115
+#: src/pages/panel/workspace-users-settings/DeleteInvitedExternalUserMenuItem.tsx:72
 msgid "Delete"
 msgstr "Löschen"
+
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:67
+msgid "Delete All"
+msgstr ""
 
 #: src/pages/panel/user-settings-connected-accounts/UserSettingsSocialNetworkDisconnectButton.tsx:63
 msgid "Delete Provider"
@@ -1198,6 +1205,10 @@ msgstr "Zeig es mir nicht noch einmal"
 msgid "Do not show this message again."
 msgstr ""
 
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:55
+msgid "Do you want to delete all users?"
+msgstr ""
+
 #: src/pages/panel/accounts/AccountRow.tsx:517
 msgid "Do you want to delete this account?"
 msgstr "Möchten Sie dieses Konto löschen?"
@@ -1206,13 +1217,13 @@ msgstr "Möchten Sie dieses Konto löschen?"
 msgid "Do you want to delete this API Token?"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:86
+#: src/pages/panel/workspace-users-settings-pending-invitations/WorkspaceUsersSettingsPendingInvitationRow.tsx:98
 msgid "Do you want to delete this invitation?"
 msgstr "Möchten Sie diese Einladung löschen?"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:110
-msgid "Do you want to delete this user?"
-msgstr "Möchten Sie diesen Benutzer löschen?"
+#: src/pages/panel/workspace-users-settings/DeleteInvitedExternalUserMenuItem.tsx:25
+msgid "Do you want to delete this users?"
+msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:59
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureForm.tsx:130
@@ -1240,23 +1251,24 @@ msgstr ""
 
 #: src/pages/panel/accounts/AccountRow.tsx:337
 #: src/pages/panel/accounts/AccountRow.tsx:338
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:175
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:176
+#: src/pages/panel/workspace-users-settings/EditInvitedExternalUserMenuItem.tsx:68
 msgid "Edit"
 msgstr "Edit"
 
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsEmailService.tsx:130
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:86
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:90
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:109
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:49
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:135
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:76
+#: src/pages/panel/workspace-users-settings-pending-invitations/WorkspaceUsersSettingsPendingInvitationRow.tsx:121
+#: src/pages/panel/workspace-users-settings-pending-invitations/WorkspaceUsersSettingsPendingInvitationsPage.tsx:43
+#: src/pages/panel/workspace-users-settings/InviteExternalUserForm.tsx:82
+#: src/pages/panel/workspace-users-settings/InviteExternalUserForm.tsx:93
 msgid "Email"
 msgstr "Email"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:48
 msgid "Email Address"
+msgstr ""
+
+#: src/pages/panel/workspace-users-settings/InviteExternalUserForm.tsx:87
+msgid "Email is required"
 msgstr ""
 
 #: src/pages/panel/shared/failed-checks/FailedCheckIgnoreButton.tsx:70
@@ -1300,8 +1312,8 @@ msgstr "Alles in Free, und"
 msgid "Example searches"
 msgstr "Beispielsuchen"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationRow.tsx:112
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:52
+#: src/pages/panel/workspace-users-settings-pending-invitations/WorkspaceUsersSettingsPendingInvitationRow.tsx:124
+#: src/pages/panel/workspace-users-settings-pending-invitations/WorkspaceUsersSettingsPendingInvitationsPage.tsx:46
 msgid "Expires"
 msgstr "Läuft ab"
 
@@ -1548,6 +1560,10 @@ msgstr ""
 msgid "Improved"
 msgstr "Verbessert"
 
+#: src/pages/panel/workspace-users-settings-pending-invitations/WorkspaceUsersSettingsPendingInvitationRow.tsx:73
+msgid "In {0}"
+msgstr ""
+
 #: src/pages/panel/accounts/AccountRow.tsx:365
 msgid "In {nextScanDurStr}"
 msgstr ""
@@ -1644,17 +1660,16 @@ msgstr "Ungültiger Wert"
 msgid "Inventory"
 msgstr "Inventar"
 
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:54
+#: src/pages/panel/workspace-users-settings/InviteExternalUser.tsx:45
 msgid "Invite"
 msgstr "Einladen"
 
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:36
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:54
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:70
+#: src/pages/panel/workspace-users-settings/InviteExternalUser.tsx:45
 msgid "Invite External User"
 msgstr "Externen Benutzer einladen"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:87
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:119
 msgid "Invites"
 msgstr "Lädt ein"
 
@@ -1680,7 +1695,7 @@ msgstr "Arten"
 msgid "Last {item} days"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:84
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:116
 msgid "Last login"
 msgstr "Letzte Anmeldung"
 
@@ -1773,8 +1788,7 @@ msgstr ""
 msgid "Medium"
 msgstr "Mittel"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:65
-#: src/pages/panel/workspace-settings-users/workspaceSettingsUserRoleToString.ts:16
+#: src/pages/panel/workspace-users-settings/roleOptions.tsx:9
 msgid "Member"
 msgstr "Mitglied"
 
@@ -1835,13 +1849,19 @@ msgstr "Die meisten nicht konformen Konten"
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
 #: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
 #: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:18
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:76
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:80
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:138
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:73
+#: src/pages/panel/workspace-users-settings/InviteExternalUserForm.tsx:67
+#: src/pages/panel/workspace-users-settings/InviteExternalUserForm.tsx:77
 #: src/shared/charts/NetworkDiagram.tsx:377
 msgid "Name"
 msgstr "Name"
+
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:108
+msgid "Name & Email"
+msgstr ""
+
+#: src/pages/panel/workspace-users-settings/InviteExternalUserForm.tsx:72
+msgid "Name is required"
+msgstr ""
 
 #: src/pages/auth/forgot-password/ForgotPasswordPage.tsx:76
 #: src/pages/auth/login/LoginPage.tsx:205
@@ -2103,8 +2123,7 @@ msgstr ""
 msgid "OTP Code"
 msgstr "OTP-Code"
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:61
-#: src/pages/panel/workspace-settings-users/workspaceSettingsUserRoleToString.ts:7
+#: src/pages/panel/workspace-users-settings/roleOptions.tsx:6
 msgid "Owner"
 msgstr "Eigentümer"
 
@@ -2148,9 +2167,11 @@ msgstr ""
 msgid "Payment update failed: The provided payment method is unrecognized. Please verify your details and use a supported payment method."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:29
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:45
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:48
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:67
+msgid "Pending invitations"
+msgstr ""
+
+#: src/pages/panel/workspace-users-settings-pending-invitations/WorkspaceUsersSettingsPendingInvitationsPage.tsx:39
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:19
 msgid "Pending Invitations"
 msgstr "Ausstehende Einladungen"
@@ -2325,7 +2346,7 @@ msgstr "Ablehnen"
 msgid "Removal of payment method not permitted: Active payment is essential for paid product tiers. Consider switching to the free product tier or contact support for further guidance."
 msgstr ""
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserInvitationsTable.tsx:56
+#: src/pages/panel/workspace-users-settings-pending-invitations/WorkspaceUsersSettingsPendingInvitationsPage.tsx:50
 msgid "Remove"
 msgstr "Entfernen"
 
@@ -2445,12 +2466,13 @@ msgstr ""
 msgid "Risk"
 msgstr "Risiko"
 
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:96
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:107
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:149
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:80
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:112
 msgid "Roles"
 msgstr "Rollen"
+
+#: src/pages/panel/workspace-users-settings/InviteExternalUserForm.tsx:130
+msgid "Save changes"
+msgstr ""
 
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormDefaultValue.tsx:169
 msgid "Search {0}"
@@ -2525,6 +2547,10 @@ msgstr ""
 msgid "Select All"
 msgstr ""
 
+#: src/pages/panel/workspace-users-settings/InviteExternalUserForm.tsx:119
+msgid "Select at least one role"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:70
 msgid "Select IAM and press Grant Access. Fill out the form by pasting the email address as the new principal."
 msgstr ""
@@ -2569,7 +2595,7 @@ msgstr ""
 msgid "Select User Impersonation permission:"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:67
+#: src/pages/panel/workspace-users-settings/InviteExternalUserForm.tsx:130
 msgid "Send Invite"
 msgstr "Sende Einladung"
 
@@ -2649,8 +2675,7 @@ msgstr "Einige Prüfungen wurden für diese Ressource deaktiviert"
 msgid "Something went wrong please try again later."
 msgstr "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal."
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRow.tsx:142
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:70
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:105
 msgid "Sources"
 msgstr "Quellen"
 
@@ -2671,8 +2696,6 @@ msgstr ""
 #: src/pages/panel/accounts/AccountRow.tsx:311
 #: src/pages/panel/accounts/AccountRow.tsx:316
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzurePage.tsx:17
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:147
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUserRoles.tsx:148
 msgid "Submit"
 msgstr "Einreichen"
 
@@ -2680,9 +2703,9 @@ msgstr "Einreichen"
 msgid "Subscription successfully added to {0}"
 msgstr "Abonnement erfolgreich zu {0} hinzugefügt"
 
-#: src/pages/panel/workspace-settings-users/InviteExternalUser.tsx:29
-msgid "Successfully invited {email}"
-msgstr "{email} erfolgreich eingeladen"
+#: src/pages/panel/workspace-users-settings/InviteExternalUser.tsx:24
+msgid "Successfully invited {0}"
+msgstr ""
 
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:99
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:331
@@ -3069,8 +3092,7 @@ msgstr "Arbeitsbereichseinstellungen"
 msgid "Workspace users"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:44
-#: src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersTable.tsx:66
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:91
 #: src/shared/layouts/panel-layout/UserButton.tsx:37
 msgid "Workspace Users"
 msgstr "Workspace-Benutzer"

@@ -72,7 +72,7 @@ const WorkspaceUsersSettingsPage = lazy(
   () =>
     import(
       /* webpackChunkName: "workspace-users-settings" */
-      'src/pages/panel/workspace-settings-users/WorkspaceSettingsUsersPage'
+      'src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage'
     ),
 )
 

@@ -67,6 +67,7 @@ import ManageAccountIconComp from './manage-account-icon.svg?react'
 import MeetingRoomIconComp from './meeting-room-icon.svg?react'
 import MemoryIconComp from './memory-icon.svg?react'
 import MenuIconComp from './menu-icon.svg?react'
+import MoreVertIconComp from './more-vert-icon.svg?react'
 import MovieIconComp from './movie-icon.svg?react'
 import NetworkNodeIconComp from './network-node-icon.svg?react'
 import NISFrameworkIconComp from './nis-framework-icon.svg?react'
@@ -162,6 +163,7 @@ export const ManageAccountIcon = createIcon(ManageAccountIconComp)
 export const MeetingRoomIcon = createIcon(MeetingRoomIconComp)
 export const MemoryIcon = createIcon(MemoryIconComp)
 export const MenuIcon = createIcon(MenuIconComp)
+export const MoreVertIcon = createIcon(MoreVertIconComp)
 export const MovieIcon = createIcon(MovieIconComp)
 export const NetworkNodeIcon = createIcon(NetworkNodeIconComp)
 export const NISFrameworkIcon = createIcon(NISFrameworkIconComp)

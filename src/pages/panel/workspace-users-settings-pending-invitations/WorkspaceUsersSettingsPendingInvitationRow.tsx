@@ -1,20 +1,21 @@
-import { Trans, t } from '@lingui/macro'
+import { t, Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import DeleteIcon from '@mui/icons-material/Delete'
 import { LoadingButton } from '@mui/lab'
-import { Button, IconButton, TableCell, TableRow, Tooltip, Typography } from '@mui/material'
+import { alpha, Button, IconButton, TableCell, TableRow, Tooltip, Typography } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRef } from 'react'
+import { DeleteIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { Modal } from 'src/shared/modal'
 import { WorkspaceInvite } from 'src/shared/types/server'
+import { diffDateTimeToDuration, iso8601DurationToString } from 'src/shared/utils/parseDuration'
 import { deleteWorkspaceInviteMutation } from './deleteWorkspaceInvite.mutation'
 
-interface WorkspaceSettingsUserInvitationRowProps {
+interface WorkspaceUsersSettingsPendingInvitationRowProps {
   workspaceInvite: WorkspaceInvite
 }
 
-export const WorkspaceSettingsUserInvitationRow = ({ workspaceInvite }: WorkspaceSettingsUserInvitationRowProps) => {
+export const WorkspaceUsersSettingsPendingInvitationRow = ({ workspaceInvite }: WorkspaceUsersSettingsPendingInvitationRowProps) => {
   const {
     i18n: { locale },
   } = useLingui()
@@ -65,23 +66,34 @@ export const WorkspaceSettingsUserInvitationRow = ({ workspaceInvite }: Workspac
   return (
     <TableRow>
       <TableCell>{workspaceInvite.user_email || '-'}</TableCell>
-      <TableCell>{workspaceInvite.expires_at ? new Date(workspaceInvite.expires_at).toLocaleString(locale) : '-'}</TableCell>
+      <TableCell>
+        {workspaceInvite.expires_at ? (
+          <Tooltip title={new Date(workspaceInvite.expires_at).toLocaleString(locale)} arrow>
+            <Typography variant="subtitle1" component="span">
+              <Trans>
+                In {iso8601DurationToString(diffDateTimeToDuration(new Date(), new Date(workspaceInvite.expires_at)), 1).toLowerCase()}
+              </Trans>
+            </Typography>
+          </Tooltip>
+        ) : (
+          '-'
+        )}
+      </TableCell>
       {hasDeletePermission ? (
         <>
           <TableCell>
-            {deleteWorkspaceUserIsPending ? (
-              <IconButton aria-label={t`Delete`} disabled>
+            <Tooltip title={<Trans>Delete</Trans>} arrow>
+              <IconButton
+                aria-label={t`Delete`}
+                disabled={deleteWorkspaceUserIsPending}
+                onClick={deleteWorkspaceUserIsPending ? undefined : handleDeleteModal}
+              >
                 <DeleteIcon />
               </IconButton>
-            ) : (
-              <Tooltip title={<Trans>Delete</Trans>} arrow>
-                <IconButton aria-label={t`Delete`} color="error" onClick={handleDeleteModal}>
-                  <DeleteIcon />
-                </IconButton>
-              </Tooltip>
-            )}
+            </Tooltip>
           </TableCell>
           <Modal
+            slotProps={{ backdrop: { sx: { bgcolor: alpha('#000000', 0.6) } } }}
             title={<Trans>Are you sure?</Trans>}
             description={<Trans>Do you want to delete this invitation?</Trans>}
             openRef={showDeleteModalRef}
