@@ -55,11 +55,11 @@ msgstr "{0, plural, one {# Jahr} other {# Jahre}}"
 msgid "{0, plural, one {check} other {checks}}"
 msgstr "{0, plural, one {Prüfung} other {Prüfungen}}"
 
-#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:68
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:69
 msgid "{0, plural, one {Delete User} other {Delete # Users}}"
 msgstr ""
 
-#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:56
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:57
 msgid "{0, plural, one {Do you want to delete this user} other {Do you want to delete # users}}"
 msgstr ""
 
@@ -75,7 +75,7 @@ msgstr ""
 
 #: src/pages/panel/inventory-search/utils/InventoryTableDateRenderCell.tsx:17
 #: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:31
-#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsRow.tsx:58
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsRow.tsx:60
 msgid "{0} ago"
 msgstr ""
 
@@ -1125,7 +1125,7 @@ msgstr "Verzögerte Wirkung"
 msgid "Delete"
 msgstr "Löschen"
 
-#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:66
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:67
 msgid "Delete All"
 msgstr ""
 
@@ -1205,7 +1205,7 @@ msgstr "Zeig es mir nicht noch einmal"
 msgid "Do not show this message again."
 msgstr ""
 
-#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:54
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:55
 msgid "Do you want to delete all users?"
 msgstr ""
 
@@ -1669,7 +1669,7 @@ msgstr "Einladen"
 msgid "Invite External User"
 msgstr "Externen Benutzer einladen"
 
-#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:115
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:119
 msgid "Invites"
 msgstr "Lädt ein"
 
@@ -1695,7 +1695,7 @@ msgstr "Arten"
 msgid "Last {item} days"
 msgstr ""
 
-#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:112
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:116
 msgid "Last login"
 msgstr "Letzte Anmeldung"
 
@@ -1855,7 +1855,7 @@ msgstr "Die meisten nicht konformen Konten"
 msgid "Name"
 msgstr "Name"
 
-#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:104
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:108
 msgid "Name & Email"
 msgstr ""
 
@@ -2466,7 +2466,7 @@ msgstr ""
 msgid "Risk"
 msgstr "Risiko"
 
-#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:108
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:112
 msgid "Roles"
 msgstr "Rollen"
 
@@ -2675,7 +2675,7 @@ msgstr "Einige Prüfungen wurden für diese Ressource deaktiviert"
 msgid "Something went wrong please try again later."
 msgstr "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal."
 
-#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:101
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:105
 msgid "Sources"
 msgstr "Quellen"
 
@@ -3092,7 +3092,7 @@ msgstr "Arbeitsbereichseinstellungen"
 msgid "Workspace users"
 msgstr ""
 
-#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:89
+#: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:91
 #: src/shared/layouts/panel-layout/UserButton.tsx:37
 msgid "Workspace Users"
 msgstr "Workspace-Benutzer"

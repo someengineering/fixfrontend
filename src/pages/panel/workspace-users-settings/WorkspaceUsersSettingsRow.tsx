@@ -19,12 +19,14 @@ export const WorkspaceUsersSettingsRow = ({ workspaceUser, selected, onSelect }:
     i18n: { locale },
   } = useLingui()
   const { checkPermissions } = useUserProfile()
-  const [hasReadRolesPermission] = checkPermissions('removeFrom', 'readRoles')
+  const [hasInvitePermission, hasRemoveUserPermission, hasReadRolesPermission] = checkPermissions('inviteTo', 'removeFrom', 'readRoles')
   return (
     <TableRow>
-      <TableCell width={42} sx={{ p: 0 }}>
-        <Checkbox checked={selected} onChange={onSelect ? (_, checked) => onSelect(checked, workspaceUser) : undefined} sx={{ p: 0 }} />
-      </TableCell>
+      {hasRemoveUserPermission ? (
+        <TableCell width={42} sx={{ p: 0 }}>
+          <Checkbox checked={selected} onChange={onSelect ? (_, checked) => onSelect(checked, workspaceUser) : undefined} sx={{ p: 0 }} />
+        </TableCell>
+      ) : null}
       <TableCell>
         {workspaceUser.sources.length ? (
           <Stack direction="row" flexWrap="wrap" gap={1} minWidth={workspaceUser.sources.length > 1 ? 100 : undefined}>
@@ -65,9 +67,11 @@ export const WorkspaceUsersSettingsRow = ({ workspaceUser, selected, onSelect }:
         )}
       </TableCell>
       <TableCell>-</TableCell>
-      <TableCell>
-        <WorkspaceSettingsUserActionRowItem workspaceUser={workspaceUser} />
-      </TableCell>
+      {hasRemoveUserPermission || hasInvitePermission ? (
+        <TableCell>
+          <WorkspaceSettingsUserActionRowItem workspaceUser={workspaceUser} />
+        </TableCell>
+      ) : null}
     </TableRow>
   )
 }

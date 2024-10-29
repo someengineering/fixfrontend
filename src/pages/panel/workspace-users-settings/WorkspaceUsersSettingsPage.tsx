@@ -45,32 +45,34 @@ export default function WorkspaceUsersSettingsPage() {
       <ButtonsRegion>
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
           {hasInvitePermission && canInviteBasedOnTier ? <InviteExternalUser /> : null}
-          <Collapse in={!!selectedRows.length} orientation="horizontal">
-            <DeleteInvitedExternalUserMenuItem
-              workspaceUserIds={selectedRows}
-              ButtonComp={Button}
-              deleteConfirmText={
-                isAll ? (
-                  <Trans>Do you want to delete all users?</Trans>
-                ) : (
-                  plural(selectedRows.length, { one: 'Do you want to delete this user', other: 'Do you want to delete # users' })
-                )
-              }
-              onClose={(finished) => (finished ? setSelectedRows([]) : undefined)}
-              buttonProps={
-                {
-                  color: 'error',
-                  variant: 'outlined',
-                  sx: { whiteSpace: 'nowrap' },
-                  children: isAll ? (
-                    <Trans>Delete All</Trans>
+          {hasRemoveUserPermission ? (
+            <Collapse in={!!selectedRows.length} orientation="horizontal">
+              <DeleteInvitedExternalUserMenuItem
+                workspaceUserIds={selectedRows}
+                ButtonComp={Button}
+                deleteConfirmText={
+                  isAll ? (
+                    <Trans>Do you want to delete all users?</Trans>
                   ) : (
-                    plural(selectedRows.length, { one: 'Delete User', other: 'Delete # Users' })
-                  ),
-                } as const
-              }
-            />
-          </Collapse>
+                    plural(selectedRows.length, { one: 'Do you want to delete this user', other: 'Do you want to delete # users' })
+                  )
+                }
+                onClose={(finished) => (finished ? setSelectedRows([]) : undefined)}
+                buttonProps={
+                  {
+                    color: 'error',
+                    variant: 'outlined',
+                    sx: { whiteSpace: 'nowrap' },
+                    children: isAll ? (
+                      <Trans>Delete All</Trans>
+                    ) : (
+                      plural(selectedRows.length, { one: 'Delete User', other: 'Delete # Users' })
+                    ),
+                  } as const
+                }
+              />
+            </Collapse>
+          ) : null}
         </Stack>
       </ButtonsRegion>
       <TableView
@@ -89,14 +91,16 @@ export default function WorkspaceUsersSettingsPage() {
         <Table stickyHeader aria-label={t`Workspace Users`}>
           <TableHead>
             <TableRow>
-              <TableCell width={42} sx={{ p: 0 }}>
-                <Checkbox
-                  checked={selectedRows.length === data.length}
-                  indeterminate={!!selectedRows.length && selectedRows.length !== data.length}
-                  onChange={(_, checked) => (checked ? setSelectedRows(data.map((i) => i.id)) : setSelectedRows([]))}
-                  sx={{ p: 0 }}
-                />
-              </TableCell>
+              {hasRemoveUserPermission ? (
+                <TableCell width={42} sx={{ p: 0 }}>
+                  <Checkbox
+                    checked={selectedRows.length === data.length}
+                    indeterminate={!!selectedRows.length && selectedRows.length !== data.length}
+                    onChange={(_, checked) => (checked ? setSelectedRows(data.map((i) => i.id)) : setSelectedRows([]))}
+                    sx={{ p: 0 }}
+                  />
+                </TableCell>
+              ) : null}
               <TableCell>
                 <Trans>Sources</Trans>
               </TableCell>
@@ -114,7 +118,7 @@ export default function WorkspaceUsersSettingsPage() {
               <TableCell>
                 <Trans>Invites</Trans>
               </TableCell>
-              {hasRemoveUserPermission ? <TableCell /> : null}
+              {hasRemoveUserPermission || hasInvitePermission ? <TableCell /> : null}
             </TableRow>
           </TableHead>
           <TableBody>
