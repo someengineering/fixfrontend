@@ -13,7 +13,7 @@ export const postWorkspaceInventoryAggregateForDashboardQuery = ({
           endPoints.workspaces.workspace(workspaceId).inventory.aggregate,
           {
             query:
-              'aggregate(/ancestors.cloud.reported.name as cloud, name, long_name, latitude, longitude: sum(/metadata.descendant_count) as resource_count): is(region) and latitude!=null and /metadata.descendant_count>0',
+              'aggregate(/ancestors.cloud.reported.name as cloud, id, name, long_name, latitude, longitude: sum(/metadata.descendant_count) as resource_count): is(region) and latitude!=null and /metadata.descendant_count>0',
           },
           {
             signal,
