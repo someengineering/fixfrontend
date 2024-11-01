@@ -61,7 +61,7 @@ export const OverallScore = ({ score, failedResources, availableResources }: Ove
                   locale,
                 )} non-compliant resources out of ${availableResources.toLocaleString(locale)}.`
               : undefined,
-          onClick: () => navigate(createInventorySearchTo(`/security.has_issues=true and /security.severity=${name}`)),
+          onClick: () => navigate(createInventorySearchTo(`/security.has_issues=true and /security.issues[*].severity=${name}`)),
         }))}
         hidingPieChart={hidingPieChart}
         showPieChart={showPieChart}

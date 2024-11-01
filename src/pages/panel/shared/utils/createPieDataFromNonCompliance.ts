@@ -31,7 +31,7 @@ const createPieDataFromName = (
       : () => {
           navigate(
             createInventorySearchTo(
-              `/security.has_issues=true and /ancestors.account.reported.id="${accountId}" and /security.severity=${name}`,
+              `/security.has_issues=true and /ancestors.account.reported.id="${accountId}" and /security.issues[*].severity=${name}`,
             ),
           )
         },

@@ -3,6 +3,7 @@ import { AccountCloud } from 'src/shared/types/server-shared'
 export interface PostWorkspaceInventoryAggregateForDashboardItem {
   group: {
     cloud: AccountCloud
+    id: string
     name: string
     long_name: string
     latitude: number
