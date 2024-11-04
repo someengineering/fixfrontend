@@ -5,6 +5,7 @@ import { CheckSmallIcon } from 'src/assets/icons'
 import { InternalLinkButton } from 'src/shared/link-button'
 import { ButtonsRegionContext } from './ButtonsRegionContext'
 import { MenuListItem, settingsMenu } from './settingsMenuList'
+import { usePermissionCheck } from './usePermissionCheck'
 
 const useMapRouteToSettingDetails = () => {
   const location = useLocation()
@@ -19,8 +20,9 @@ interface PanelSettingsMenuListItemProps extends MenuListItem {
   isCurrent: boolean
 }
 
-const PanelSettingsMenuListItem = ({ isCurrent, name, route }: PanelSettingsMenuListItemProps) => {
-  return (
+const PanelSettingsMenuListItem = ({ isCurrent, name, route, permissionToCheck }: PanelSettingsMenuListItemProps) => {
+  const hasPermissionToShow = usePermissionCheck(permissionToCheck)
+  return hasPermissionToShow ? (
     <Stack
       direction="row"
       p={1}
@@ -43,7 +45,7 @@ const PanelSettingsMenuListItem = ({ isCurrent, name, route }: PanelSettingsMenu
       </Typography>
       {isCurrent ? <CheckSmallIcon color="primary.main" /> : <Box width={24} height={24} />}
     </Stack>
-  )
+  ) : null
 }
 
 export const PanelSettingsContent = ({ children }: PropsWithChildren) => {

@@ -13,9 +13,9 @@ interface WorkspaceSettingsUserActionRowItemProps {
 export const WorkspaceSettingsUserActionRowItem = ({ workspaceUser }: WorkspaceSettingsUserActionRowItemProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const { checkPermissions } = useUserProfile()
-  const [hasInvitePermission, hasRemoveUserPermission] = checkPermissions('inviteTo', 'removeFrom')
+  const [hasUpdateRolePermission, hasRemoveUserPermission] = checkPermissions('updateRoles', 'removeFrom')
 
-  return hasInvitePermission || hasRemoveUserPermission ? (
+  return hasUpdateRolePermission || hasRemoveUserPermission ? (
     <>
       <IconButton onClick={(e) => setAnchorEl(e.currentTarget)}>
         <MoreVertIcon />
@@ -26,7 +26,9 @@ export const WorkspaceSettingsUserActionRowItem = ({ workspaceUser }: WorkspaceS
         onClose={() => setAnchorEl(null)}
         slotProps={{ paper: { sx: { bgcolor: 'common.white' } } }}
       >
-        {hasInvitePermission ? <EditInvitedExternalUserMenuItem workspaceUser={workspaceUser} onClose={() => setAnchorEl(null)} /> : null}
+        {hasUpdateRolePermission ? (
+          <EditInvitedExternalUserMenuItem workspaceUser={workspaceUser} onClose={() => setAnchorEl(null)} />
+        ) : null}
         {hasRemoveUserPermission ? (
           <DeleteInvitedExternalUserMenuItem workspaceUserIds={[workspaceUser.id]} onClose={() => setAnchorEl(null)} />
         ) : null}

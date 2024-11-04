@@ -1,8 +1,10 @@
 import { Trans } from '@lingui/macro'
 import { ReactNode } from 'react'
+import { Permissions } from 'src/core/auth'
 
 export interface MenuListItem {
   name: ReactNode
+  permissionToCheck?: Permissions
   route: string
 }
 
@@ -54,6 +56,7 @@ export const workspaceSettingsMenuList: MenuListItem[] = [
   },
   {
     name: <Trans>Billing</Trans>,
+    permissionToCheck: 'readBilling',
     route: `${routes.workspaceSettingsRoute}/billing-receipts`,
   },
 ]

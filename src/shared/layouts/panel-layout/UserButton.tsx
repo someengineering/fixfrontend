@@ -7,7 +7,8 @@ import { stringAvatar } from 'src/shared/utils/stringAvatar'
 import { PanelHeaderMenu } from './PanelHeaderMenu'
 
 export const UserButton = () => {
-  const { currentUser, logout } = useUserProfile(true) ?? {}
+  const { currentUser, logout, checkPermissions } = useUserProfile(true) ?? {}
+  const [hasReadSettingsPermission, hasReadBillingPermission] = checkPermissions?.('readSettings', 'readBilling') ?? [false, false]
   const userEmail = currentUser?.email ?? 'N/A'
   const avatarProps = stringAvatar(userEmail)
   return (
@@ -27,26 +28,32 @@ export const UserButton = () => {
             <Trans>User Settings</Trans>
           </Typography>
         </InternalLinkButton>
-        <InternalLinkButton color="info" startIcon={<WorkspaceSettingsIcon />} to={'/settings/workspace'}>
-          <Typography pl={0.5} width="100%" textAlign="start">
-            <Trans>Workspace Settings</Trans>
-          </Typography>
-        </InternalLinkButton>
-        <InternalLinkButton color="info" startIcon={<GroupIcon />} to={'/settings/workspace-users'}>
-          <Typography pl={0.5} width="100%" textAlign="start">
-            <Trans>Workspace Users</Trans>
-          </Typography>
-        </InternalLinkButton>
-        <InternalLinkButton color="info" startIcon={<CloudIcon />} to={'/accounts'}>
-          <Typography pl={0.5} width="100%" textAlign="start">
-            <Trans>Cloud Accounts</Trans>
-          </Typography>
-        </InternalLinkButton>
-        <InternalLinkButton color="info" startIcon={<ReceiptIcon />} to={'/settings/workspace/billing-receipts'}>
-          <Typography pl={0.5} width="100%" textAlign="start">
-            <Trans>Billing</Trans>
-          </Typography>
-        </InternalLinkButton>
+        {hasReadSettingsPermission ? (
+          <>
+            <InternalLinkButton color="info" startIcon={<WorkspaceSettingsIcon />} to={'/settings/workspace'}>
+              <Typography pl={0.5} width="100%" textAlign="start">
+                <Trans>Workspace Settings</Trans>
+              </Typography>
+            </InternalLinkButton>
+            <InternalLinkButton color="info" startIcon={<GroupIcon />} to={'/settings/workspace-users'}>
+              <Typography pl={0.5} width="100%" textAlign="start">
+                <Trans>Workspace Users</Trans>
+              </Typography>
+            </InternalLinkButton>
+            <InternalLinkButton color="info" startIcon={<CloudIcon />} to={'/accounts'}>
+              <Typography pl={0.5} width="100%" textAlign="start">
+                <Trans>Cloud Accounts</Trans>
+              </Typography>
+            </InternalLinkButton>
+          </>
+        ) : null}
+        {hasReadBillingPermission ? (
+          <InternalLinkButton color="info" startIcon={<ReceiptIcon />} to={'/settings/workspace/billing-receipts'}>
+            <Typography pl={0.5} width="100%" textAlign="start">
+              <Trans>Billing</Trans>
+            </Typography>
+          </InternalLinkButton>
+        ) : null}
         {/* <InternalLinkButton color="info" startIcon={<CodeBlocksIcon />} to={'/developer'}>
             <Typography pl={0.5} width="100%" textAlign="start">
               <Trans>Developer</Trans>

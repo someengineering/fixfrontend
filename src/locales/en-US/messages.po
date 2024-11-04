@@ -402,7 +402,7 @@ msgstr "Affected resources"
 msgid "Age"
 msgstr "Age"
 
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:52
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:54
 msgid "Alert settings"
 msgstr "Alert settings"
 
@@ -488,7 +488,7 @@ msgstr "API Access"
 msgid "API Key"
 msgstr "API Key"
 
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:37
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:39
 msgid "API tokens"
 msgstr "API tokens"
 
@@ -616,8 +616,8 @@ msgid "Benchmarks"
 msgstr "Benchmarks"
 
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:21
-#: src/shared/layouts/panel-layout/UserButton.tsx:47
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:56
+#: src/shared/layouts/panel-layout/UserButton.tsx:53
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:58
 msgid "Billing"
 msgstr "Billing"
 
@@ -834,7 +834,7 @@ msgid "Cloud accounts"
 msgstr "Cloud accounts"
 
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:9
-#: src/shared/layouts/panel-layout/UserButton.tsx:42
+#: src/shared/layouts/panel-layout/UserButton.tsx:45
 msgid "Cloud Accounts"
 msgstr "Cloud Accounts"
 
@@ -939,11 +939,11 @@ msgstr "Connect PagerDuty"
 msgid "Connect Teams"
 msgstr "Connect Teams"
 
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:33
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:35
 msgid "Connected accounts"
 msgstr "Connected accounts"
 
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:48
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:50
 msgid "Connected services"
 msgstr "Connected services"
 
@@ -1050,7 +1050,7 @@ msgstr "Current"
 msgid "Current Product Tier"
 msgstr "Current Product Tier"
 
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:63
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:66
 msgid "Current users"
 msgstr "Current users"
 
@@ -1732,7 +1732,7 @@ msgstr "Log in with {formattedName}"
 msgid "Log Out"
 msgstr "Log Out"
 
-#: src/shared/layouts/panel-layout/UserButton.tsx:60
+#: src/shared/layouts/panel-layout/UserButton.tsx:67
 msgid "Logout"
 msgstr "Logout"
 
@@ -1978,7 +1978,7 @@ msgstr "Nothing"
 msgid "Nothing to show yet"
 msgstr "Nothing to show yet"
 
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:29
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:31
 msgid "Notifications"
 msgstr "Notifications"
 
@@ -2167,7 +2167,7 @@ msgstr "Payment method unrecognized: Ensure you are using a payment method that 
 msgid "Payment update failed: The provided payment method is unrecognized. Please verify your details and use a supported payment method."
 msgstr "Payment update failed: The provided payment method is unrecognized. Please verify your details and use a supported payment method."
 
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:67
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:70
 msgid "Pending invitations"
 msgstr "Pending invitations"
 
@@ -2936,7 +2936,7 @@ msgstr "Uploading your Google Cloud Service Account file..."
 msgid "Use OTP instead"
 msgstr "Use OTP instead"
 
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:25
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:27
 msgid "User details"
 msgstr "User details"
 
@@ -2948,11 +2948,11 @@ msgstr "User Impersonation permission"
 msgid "User Invitations"
 msgstr "User Invitations"
 
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:18
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:20
 msgid "User settings"
 msgstr "User settings"
 
-#: src/shared/layouts/panel-layout/UserButton.tsx:27
+#: src/shared/layouts/panel-layout/UserButton.tsx:28
 msgid "User Settings"
 msgstr "User Settings"
 
@@ -3066,7 +3066,7 @@ msgstr "Within a billing cycle you will be charged for the highest product tier 
 msgid "Workspace Alerting Settings"
 msgstr "Workspace Alerting Settings"
 
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:44
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:46
 msgid "Workspace details"
 msgstr "Workspace details"
 
@@ -3079,21 +3079,21 @@ msgstr "Workspace Id"
 msgid "Workspace Name"
 msgstr "Workspace Name"
 
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:19
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:21
 msgid "Workspace settings"
 msgstr "Workspace settings"
 
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:7
-#: src/shared/layouts/panel-layout/UserButton.tsx:32
+#: src/shared/layouts/panel-layout/UserButton.tsx:35
 msgid "Workspace Settings"
 msgstr "Workspace Settings"
 
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:20
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:22
 msgid "Workspace users"
 msgstr "Workspace users"
 
 #: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsPage.tsx:91
-#: src/shared/layouts/panel-layout/UserButton.tsx:37
+#: src/shared/layouts/panel-layout/UserButton.tsx:40
 msgid "Workspace Users"
 msgstr "Workspace Users"
 

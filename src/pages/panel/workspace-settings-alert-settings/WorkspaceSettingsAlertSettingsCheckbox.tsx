@@ -2,7 +2,7 @@ import { Box, CircularProgress, IconButton, Stack } from '@mui/material'
 import { CheckIcon, CloseIcon } from 'src/assets/icons'
 import { NotificationChannel } from 'src/shared/types/server-shared'
 
-interface WorkspaceAlertingSettingsCheckboxProps {
+interface WorkspaceSettingsAlertSettingsCheckboxProps {
   benchmark: string
   checked: boolean
   isPending: boolean
@@ -11,14 +11,14 @@ interface WorkspaceAlertingSettingsCheckboxProps {
   hasPermission: boolean
 }
 
-export const WorkspaceAlertingSettingsCheckbox = ({
+export const WorkspaceSettingsAlertSettingsCheckbox = ({
   benchmark,
   checked,
   isPending,
   name,
   onChange,
   hasPermission,
-}: WorkspaceAlertingSettingsCheckboxProps) => {
+}: WorkspaceSettingsAlertSettingsCheckboxProps) => {
   const checkedIcon = checked ? (
     <CloseIcon height={24} width={24} color="text.secondary" />
   ) : (
