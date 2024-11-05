@@ -402,7 +402,7 @@ msgstr "Affected resources"
 msgid "Age"
 msgstr "Age"
 
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:54
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:65
 msgid "Alert settings"
 msgstr "Alert settings"
 
@@ -617,7 +617,7 @@ msgstr "Benchmarks"
 
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:21
 #: src/shared/layouts/panel-layout/UserButton.tsx:53
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:58
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:70
 msgid "Billing"
 msgstr "Billing"
 
@@ -943,7 +943,7 @@ msgstr "Connect Teams"
 msgid "Connected accounts"
 msgstr "Connected accounts"
 
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:50
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:60
 msgid "Connected services"
 msgstr "Connected services"
 
@@ -1050,7 +1050,7 @@ msgstr "Current"
 msgid "Current Product Tier"
 msgstr "Current Product Tier"
 
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:66
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:78
 msgid "Current users"
 msgstr "Current users"
 
@@ -2167,7 +2167,7 @@ msgstr "Payment method unrecognized: Ensure you are using a payment method that 
 msgid "Payment update failed: The provided payment method is unrecognized. Please verify your details and use a supported payment method."
 msgstr "Payment update failed: The provided payment method is unrecognized. Please verify your details and use a supported payment method."
 
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:70
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:82
 msgid "Pending invitations"
 msgstr "Pending invitations"
 
@@ -2769,6 +2769,10 @@ msgstr "The workspace you requested cannot be accessed. Please request access fr
 msgid "There's already another api tokens with the same description"
 msgstr "There's already another api tokens with the same description"
 
+#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsConnectedServicesPage.tsx:42
+msgid "There's no connected services"
+msgstr "There's no connected services"
+
 #: src/pages/panel/accounts/AccountRow.tsx:489
 msgid "This account is currently in a degraded state possibly due to a misconfiguration.<0/>Fix was unable to gather data from this account."
 msgstr "This account is currently in a degraded state possibly due to a misconfiguration.<0/>Fix was unable to gather data from this account."
@@ -3066,7 +3070,7 @@ msgstr "Within a billing cycle you will be charged for the highest product tier 
 msgid "Workspace Alerting Settings"
 msgstr "Workspace Alerting Settings"
 
-#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:46
+#: src/shared/layouts/panel-settings-layout/settingsMenuList.tsx:56
 msgid "Workspace details"
 msgstr "Workspace details"
 

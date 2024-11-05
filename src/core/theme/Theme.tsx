@@ -233,6 +233,22 @@ export function Theme({ children, emotionCache }: ThemeProps) {
               info: <InfoIcon color={panelUI.uiThemePalette.primary.white} />,
             },
           },
+          styleOverrides: {
+            root: {
+              borderRadius: '12px',
+              color: panelUI.uiThemePalette.primary.white,
+              backgroundColor: panelUI.uiThemePalette.text.darkGray,
+            },
+            standardError: {
+              backgroundColor: panelUI.uiThemePalette.severity.error,
+            },
+            standardSuccess: {
+              backgroundColor: panelUI.uiThemePalette.severity.success,
+            },
+            standardWarning: {
+              backgroundColor: panelUI.uiThemePalette.severity.warning,
+            },
+          },
         },
         MuiTooltip: {
           styleOverrides: {
