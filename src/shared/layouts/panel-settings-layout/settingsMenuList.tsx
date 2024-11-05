@@ -1,8 +1,10 @@
 import { Trans } from '@lingui/macro'
 import { ReactNode } from 'react'
+import { useHasAccountsCheck, usePermissionCheck } from 'src/shared/layouts/panel-layout'
 
 export interface MenuListItem {
   name: ReactNode
+  useGuard?: () => boolean
   route: string
 }
 
@@ -39,6 +41,16 @@ export const userSettingsMenuList: MenuListItem[] = [
   },
 ]
 
+const useGuardForAlertSettings = () => {
+  const { doesNotHaveAccount, haveError, paymentOnHold } = useHasAccountsCheck()
+  return !doesNotHaveAccount && !haveError && !paymentOnHold
+}
+
+const useGuardForBilling = () => {
+  const hasPermission = usePermissionCheck('readBilling')
+  return hasPermission
+}
+
 export const workspaceSettingsMenuList: MenuListItem[] = [
   {
     name: <Trans>Workspace details</Trans>,
@@ -46,14 +58,17 @@ export const workspaceSettingsMenuList: MenuListItem[] = [
   },
   {
     name: <Trans>Connected services</Trans>,
+    useGuard: useGuardForAlertSettings,
     route: `${routes.workspaceSettingsRoute}/connected-services`,
   },
   {
     name: <Trans>Alert settings</Trans>,
+    useGuard: useGuardForAlertSettings,
     route: `${routes.workspaceSettingsRoute}/alert-settings`,
   },
   {
     name: <Trans>Billing</Trans>,
+    useGuard: useGuardForBilling,
     route: `${routes.workspaceSettingsRoute}/billing-receipts`,
   },
 ]

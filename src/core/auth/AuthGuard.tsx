@@ -254,7 +254,7 @@ export function AuthGuard({ children }: PropsWithChildren) {
   )
 
   const handleCheckPermissions = useCallback(
-    (...permission: Permissions[]) => permission.map((permission) => handleCheckPermission(permission)),
+    (...permissions: Permissions[]) => permissions.map((permission) => handleCheckPermission(permission)),
     [handleCheckPermission],
   )
 

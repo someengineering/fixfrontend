@@ -11,7 +11,7 @@ import { SeverityDropDown, SeverityItem } from 'src/shared/severity'
 import { NotificationChannel, SeverityType } from 'src/shared/types/server-shared'
 import { getWorkspaceAlertingSettingsQuery } from './getWorkspaceAlertingSettings.query'
 import { putWorkspaceAlertingSettingsQuery } from './putWorkspaceAlertingSettings.query'
-import { WorkspaceAlertingSettingsCheckbox } from './WorkspaceAlertingSettingsCheckbox'
+import { WorkspaceSettingsAlertSettingsCheckbox } from './WorkspaceSettingsAlertSettingsCheckbox'
 
 export default function WorkspaceSettingsAlertSettingsPage() {
   const { selectedWorkspace, checkPermission } = useUserProfile()
@@ -179,7 +179,7 @@ export default function WorkspaceSettingsAlertSettingsPage() {
               </TableCell>
               {notifications?.email ? (
                 <TableCell width={100} sx={{ p: 0 }}>
-                  <WorkspaceAlertingSettingsCheckbox
+                  <WorkspaceSettingsAlertSettingsCheckbox
                     benchmark={benchmarkId}
                     checked={(alertingSettings?.[benchmarkId]?.channels.indexOf('email') ?? -1) > -1}
                     isPending={isPending}
@@ -191,7 +191,7 @@ export default function WorkspaceSettingsAlertSettingsPage() {
               ) : undefined}
               {notifications?.slack ? (
                 <TableCell width={100} sx={{ p: 0 }}>
-                  <WorkspaceAlertingSettingsCheckbox
+                  <WorkspaceSettingsAlertSettingsCheckbox
                     benchmark={benchmarkId}
                     checked={(alertingSettings?.[benchmarkId]?.channels.indexOf('slack') ?? -1) > -1}
                     isPending={isPending}
@@ -203,7 +203,7 @@ export default function WorkspaceSettingsAlertSettingsPage() {
               ) : undefined}
               {notifications?.teams ? (
                 <TableCell width={100} sx={{ p: 0 }}>
-                  <WorkspaceAlertingSettingsCheckbox
+                  <WorkspaceSettingsAlertSettingsCheckbox
                     benchmark={benchmarkId}
                     checked={(alertingSettings?.[benchmarkId]?.channels.indexOf('teams') ?? -1) > -1}
                     isPending={isPending}
@@ -215,7 +215,7 @@ export default function WorkspaceSettingsAlertSettingsPage() {
               ) : undefined}
               {notifications?.discord ? (
                 <TableCell width={100} sx={{ p: 0 }}>
-                  <WorkspaceAlertingSettingsCheckbox
+                  <WorkspaceSettingsAlertSettingsCheckbox
                     benchmark={benchmarkId}
                     checked={(alertingSettings?.[benchmarkId]?.channels.indexOf('discord') ?? -1) > -1}
                     isPending={isPending}
@@ -227,7 +227,7 @@ export default function WorkspaceSettingsAlertSettingsPage() {
               ) : undefined}
               {notifications?.pagerduty ? (
                 <TableCell width={100} sx={{ p: 0 }}>
-                  <WorkspaceAlertingSettingsCheckbox
+                  <WorkspaceSettingsAlertSettingsCheckbox
                     benchmark={benchmarkId}
                     checked={(alertingSettings?.[benchmarkId]?.channels.indexOf('pagerduty') ?? -1) > -1}
                     isPending={isPending}
@@ -239,7 +239,7 @@ export default function WorkspaceSettingsAlertSettingsPage() {
               ) : undefined}
               {notifications?.opsgenie ? (
                 <TableCell width={100} sx={{ p: 0 }}>
-                  <WorkspaceAlertingSettingsCheckbox
+                  <WorkspaceSettingsAlertSettingsCheckbox
                     benchmark={benchmarkId}
                     checked={(alertingSettings?.[benchmarkId]?.channels.indexOf('opsgenie') ?? -1) > -1}
                     isPending={isPending}

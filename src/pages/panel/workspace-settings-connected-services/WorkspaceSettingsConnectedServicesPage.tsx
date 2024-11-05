@@ -1,5 +1,5 @@
-import { t } from '@lingui/macro'
-import { Stack } from '@mui/material'
+import { t, Trans } from '@lingui/macro'
+import { Alert, Stack } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
@@ -36,7 +36,12 @@ export default function WorkspaceSettingsConnectedServicesPage() {
     queryFn: getWorkspaceNotificationsQuery,
     enabled: !!selectedWorkspace,
   })
-  return (
+  const noConnected = !data?.slack && !data?.discord && !data?.teams && !data?.pagerduty && !data?.email && !data?.opsgenie
+  return noConnected ? (
+    <Alert severity="info">
+      <Trans>There's no connected services</Trans>
+    </Alert>
+  ) : (
     <Stack direction="row" flexWrap="wrap" gap={3} width="100%">
       <WorkspaceSettingsSlackService isLoading={isLoading} isConnected={!!data?.slack} />
       <WorkspaceSettingsDiscordService isLoading={isLoading} isConnected={!!data?.discord} />

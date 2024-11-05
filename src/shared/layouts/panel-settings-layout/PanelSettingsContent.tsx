@@ -19,8 +19,9 @@ interface PanelSettingsMenuListItemProps extends MenuListItem {
   isCurrent: boolean
 }
 
-const PanelSettingsMenuListItem = ({ isCurrent, name, route }: PanelSettingsMenuListItemProps) => {
-  return (
+const PanelSettingsMenuListItem = ({ isCurrent, name, route, useGuard }: PanelSettingsMenuListItemProps) => {
+  const hasPermissionToShow = useGuard?.() ?? true
+  return hasPermissionToShow ? (
     <Stack
       direction="row"
       p={1}
@@ -43,7 +44,7 @@ const PanelSettingsMenuListItem = ({ isCurrent, name, route }: PanelSettingsMenu
       </Typography>
       {isCurrent ? <CheckSmallIcon color="primary.main" /> : <Box width={24} height={24} />}
     </Stack>
-  )
+  ) : null
 }
 
 export const PanelSettingsContent = ({ children }: PropsWithChildren) => {
