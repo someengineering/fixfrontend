@@ -5,7 +5,7 @@ export type ThemeContextRealValues = {
 }
 
 export interface ThemeContextValue extends Partial<ThemeContextRealValues> {
-  toggleColorMode: (mode: ThemeContextRealValues['mode']) => void
+  toggleColorMode: (mode?: ThemeContextRealValues['mode']) => void
 }
 
 export const ThemeContext = createContext<ThemeContextValue | null>(null)
