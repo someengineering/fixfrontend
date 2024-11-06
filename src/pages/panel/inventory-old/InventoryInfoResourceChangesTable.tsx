@@ -1,9 +1,7 @@
 import { Trans } from '@lingui/macro'
-import AddCircleIcon from '@mui/icons-material/AddCircle'
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
-import UpdateIcon from '@mui/icons-material/Update'
 import { TimelineDot } from '@mui/lab'
 import { Stack, Table, TableBody, TableCell, TableRow, Typography } from '@mui/material'
+import { AddCircleFilledIcon, DoNotDisturbOnIcon, UpdateIcon } from 'src/assets/icons'
 import { InternalLink } from 'src/shared/link-button'
 import { mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 
@@ -30,7 +28,7 @@ export const InventoryInfoResourceChangesTable = ({ changes, endDate, startDate 
           >
             <Stack direction="row" spacing={1} alignItems="center">
               <TimelineDot color="info" variant="outlined">
-                <AddCircleIcon fontSize="small" color="action" />
+                <AddCircleFilledIcon width={20} height={20} color="action" />
               </TimelineDot>
               <Typography variant="body2" fontWeight="bold">
                 <Trans>Resources Created</Trans>
@@ -56,7 +54,7 @@ export const InventoryInfoResourceChangesTable = ({ changes, endDate, startDate 
           >
             <Stack direction="row" spacing={1} alignItems="center">
               <TimelineDot color="primary" variant="outlined">
-                <UpdateIcon fontSize="small" color="action" />
+                <UpdateIcon width={20} height={20} color="action" />
               </TimelineDot>
               <Typography variant="body2" fontWeight="bold">
                 <Trans>Resources Updated</Trans>
@@ -82,7 +80,7 @@ export const InventoryInfoResourceChangesTable = ({ changes, endDate, startDate 
           >
             <Stack direction="row" spacing={1} alignItems="center">
               <TimelineDot color="error" variant="outlined">
-                <RemoveCircleIcon fontSize="small" color="action" />
+                <DoNotDisturbOnIcon width={20} height={20} color="action" />
               </TimelineDot>
               <Typography variant="body2" fontWeight="bold">
                 <Trans>Resources Deleted</Trans>

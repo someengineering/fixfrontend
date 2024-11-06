@@ -1,4 +1,3 @@
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import {
   Accordion,
   AccordionDetails,
@@ -14,6 +13,7 @@ import {
   accordionSummaryClasses,
 } from '@mui/material'
 import { ReactNode } from 'react'
+import { KeyboardArrowDownIcon } from 'src/assets/icons'
 
 interface OverviewCardProps {
   height?: number
@@ -45,7 +45,7 @@ export const OverviewCard = ({
           <AccordionSummary
             expandIcon={
               <Icon fontSize="small">
-                <ExpandMoreIcon />
+                <KeyboardArrowDownIcon />
               </Icon>
             }
             sx={{ p: 0, minHeight: 0, [`.${accordionSummaryClasses.content}`]: { m: 0 } }}

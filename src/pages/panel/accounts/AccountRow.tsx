@@ -1,10 +1,5 @@
 import { Trans, plural, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import CancelIcon from '@mui/icons-material/Cancel'
-import DeleteIcon from '@mui/icons-material/Delete'
-import EditIcon from '@mui/icons-material/Edit'
-import SendIcon from '@mui/icons-material/Send'
-import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import { LoadingButton } from '@mui/lab'
 import {
   Badge,
@@ -23,6 +18,7 @@ import {
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { FormEvent, ReactNode, Suspense, useCallback, useEffect, useRef, useState } from 'react'
+import { CancelIcon, DeleteIcon, EditFilledIcon, SendFilledIcon, WarningIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
@@ -309,12 +305,12 @@ export const AccountRow = ({ account, enableErrorModalContent, isNotConfigured, 
             ) : editedName !== accountName ? (
               <Tooltip title={<Trans>Submit</Trans>} arrow>
                 <IconButton aria-label={t`Submit`} color="success" type="submit">
-                  <SendIcon />
+                  <SendFilledIcon />
                 </IconButton>
               </Tooltip>
             ) : (
               <IconButton aria-label={t`Submit`} disabled type="submit">
-                <SendIcon />
+                <SendFilledIcon />
               </IconButton>
             )}
             {renameAccountIsPending ? (
@@ -336,7 +332,7 @@ export const AccountRow = ({ account, enableErrorModalContent, isNotConfigured, 
             </Typography>
             <Tooltip title={<Trans>Edit</Trans>} arrow>
               <IconButton aria-label={t`Edit`} color="primary" onClick={() => setIsEdit(true)}>
-                <EditIcon />
+                <EditFilledIcon />
               </IconButton>
             </Tooltip>
           </Stack>
@@ -418,7 +414,7 @@ export const AccountRow = ({ account, enableErrorModalContent, isNotConfigured, 
             >
               <Badge badgeContent={account.errors} color="warning">
                 <ButtonBase onClick={() => showErrorModalRef.current?.(true)}>
-                  <WarningAmberIcon color="warning" />
+                  <WarningIcon color="warning" />
                 </ButtonBase>
               </Badge>
             </Tooltip>

@@ -1,23 +1,21 @@
-import GppBadIcon from '@mui/icons-material/GppBad'
-import GppGoodIcon from '@mui/icons-material/GppGood'
-import GppMaybeIcon from '@mui/icons-material/GppMaybe'
+import { GppBadFilledIcon, GppMaybeFilledIcon, VerifiedUserFilledIcon } from 'src/assets/icons'
 import { SeverityType } from 'src/shared/types/server-shared'
 
-export function getIconBySeverity(failedChecks: SeverityType): typeof GppGoodIcon
-export function getIconBySeverity(failedChecks: string): typeof GppGoodIcon
+export function getIconBySeverity(failedChecks: SeverityType): typeof VerifiedUserFilledIcon
+export function getIconBySeverity(failedChecks: string): typeof VerifiedUserFilledIcon
 export function getIconBySeverity(failedChecks: string) {
   switch (failedChecks.toLowerCase()) {
     case 'critical':
-      return GppBadIcon
+      return GppBadFilledIcon
     case 'high':
-      return GppBadIcon
+      return GppBadFilledIcon
     case 'medium':
-      return GppMaybeIcon
+      return GppMaybeFilledIcon
     case 'low':
-      return GppMaybeIcon
+      return GppMaybeFilledIcon
     case 'passed':
-      return GppGoodIcon
+      return VerifiedUserFilledIcon
     default:
-      return GppMaybeIcon
+      return GppMaybeFilledIcon
   }
 }

@@ -1,8 +1,8 @@
 import { Trans, t } from '@lingui/macro'
-import AddIcon from '@mui/icons-material/Add'
 import { LoadingButton } from '@mui/lab'
 import { Button, MenuItem, Select, Stack, TextField, Typography } from '@mui/material'
 import { useRef, useState } from 'react'
+import { AddIcon } from 'src/assets/icons'
 import { Modal } from 'src/shared/modal'
 
 export const AddExternalDirectory = () => {

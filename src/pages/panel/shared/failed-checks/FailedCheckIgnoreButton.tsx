@@ -1,8 +1,8 @@
 import { Trans } from '@lingui/macro'
-import BlockIcon from '@mui/icons-material/Block'
 import { LoadingButton, LoadingButtonProps } from '@mui/lab'
 import { Button, Checkbox, Divider, FormControlLabel, Typography } from '@mui/material'
 import { forwardRef, useRef } from 'react'
+import { BlockIcon } from 'src/assets/icons'
 import { Modal } from 'src/shared/modal'
 import { usePersistState } from 'src/shared/utils/usePersistState'
 

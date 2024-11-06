@@ -1,6 +1,4 @@
 import { t } from '@lingui/macro'
-// import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-// import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 import { useCallback, useMemo, useState } from 'react'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { InventoryFormDefaultValue } from './InventoryFormDefaultValue'

@@ -1,12 +1,10 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import GppGoodIcon from '@mui/icons-material/GppGood'
-import SearchIcon from '@mui/icons-material/Search'
 import { Button, ButtonBase, Divider, Stack, Typography } from '@mui/material'
 import { DataGridPremium, GridRow, GridToolbar } from '@mui/x-data-grid-premium'
 import { useRef } from 'react'
 import { useParams } from 'react-router-dom'
-import { OpenInNewIcon } from 'src/assets/icons'
+import { OpenInNewIcon, SearchIcon, VerifiedUserFilledIcon } from 'src/assets/icons'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { panelUI } from 'src/shared/constants'
@@ -227,7 +225,7 @@ export const BenchmarkDetailCheckDetail = ({ check, description, accountName, id
       ) : detectType !== 'text' ? (
         <>
           <Stack flex={1} justifyContent="center" alignItems="center" spacing={1} pb={2}>
-            <GppGoodIcon fontSize="large" color="success" sx={{ fontSize: 48 }} />
+            <VerifiedUserFilledIcon width={48} height={48} color="success" />
             <Typography color="success.main" variant="h5" textAlign="center">
               <Trans>All resources passed the check</Trans>
             </Typography>

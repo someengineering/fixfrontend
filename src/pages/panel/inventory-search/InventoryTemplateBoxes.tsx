@@ -1,11 +1,8 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import BrokenImageIcon from '@mui/icons-material/BrokenImage'
-import DynamicFormIcon from '@mui/icons-material/DynamicForm'
-import HistoryIcon from '@mui/icons-material/History'
-import SecurityIcon from '@mui/icons-material/Security'
 import { Box, Card, CardContent, CardHeader, Divider, Grid, Link, Stack, Typography } from '@mui/material'
 import { FC, Fragment } from 'react'
+import { BrokenImageIcon, DynamicFormIcon, HistoryIcon, SecurityIcon } from 'src/assets/icons'
 import { WorkspaceInventorySearchTableHistoryChanges } from 'src/shared/types/server'
 
 interface InventoryTemplateBoxesProps {

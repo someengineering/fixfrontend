@@ -1,8 +1,8 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import DoneIcon from '@mui/icons-material/Done'
 import { Box, Divider, List, ListItem, ListItemIcon, ListItemText, Stack, Typography } from '@mui/material'
 import { Fragment } from 'react'
+import { CheckIcon } from 'src/assets/icons'
 import { GetWorkspaceProductTier } from 'src/shared/types/server'
 import { ProductTier } from 'src/shared/types/server-shared'
 import { getISO8601DurationFromTimestamp, iso8601DurationToString, parseISO8601Duration } from 'src/shared/utils/parseDuration'
@@ -121,7 +121,7 @@ export const ProductTierComp = ({ productTier, productTierData }: ProductTierCom
         <List dense>
           {/* <ListItem sx={{ p: 0 }}>
             <ListItemIcon sx={{ minWidth: 36 }}>
-              <DoneIcon color="primary" />
+              <CheckIcon color="primary" />
             </ListItemIcon>
             <ListItemText>
               <Typography variant="body2">{historyMaxStr}</Typography>
@@ -130,7 +130,7 @@ export const ProductTierComp = ({ productTier, productTierData }: ProductTierCom
           {desc.features.map((feature, i) => (
             <ListItem key={i} sx={{ p: 0 }}>
               <ListItemIcon sx={{ minWidth: 36 }}>
-                <DoneIcon color="primary" />
+                <CheckIcon color="primary" />
               </ListItemIcon>
               <ListItemText>
                 <Typography variant="body2">{feature}</Typography>
@@ -146,7 +146,7 @@ export const ProductTierComp = ({ productTier, productTierData }: ProductTierCom
             {desc.support.map((support, i) => (
               <ListItem key={i} sx={{ p: 0 }}>
                 <ListItemIcon sx={{ minWidth: 36 }}>
-                  <DoneIcon color="primary" />
+                  <CheckIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText>
                   <Typography variant="body2">{support}</Typography>

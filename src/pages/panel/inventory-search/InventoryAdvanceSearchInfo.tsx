@@ -1,8 +1,7 @@
 import { Trans } from '@lingui/macro'
-import InfoRoundedIcon from '@mui/icons-material/InfoRounded'
 import { Button, IconButton, Link, Popover, Stack, Typography } from '@mui/material'
 import { Fragment, useId, useState } from 'react'
-import { OpenInNewIcon } from 'src/assets/icons'
+import { InfoFilledIcon, OpenInNewIcon } from 'src/assets/icons'
 import { useNonce } from 'src/shared/providers'
 import { useCopyString } from 'src/shared/utils/useCopyString'
 
@@ -23,7 +22,7 @@ export const InventoryAdvanceSearchInfo = () => {
   return (
     <>
       <IconButton size="small" color="info" onClick={(e) => setAnchorEl(e.currentTarget)} aria-describedby={id}>
-        <InfoRoundedIcon />
+        <InfoFilledIcon />
       </IconButton>
       <Popover
         id={id}

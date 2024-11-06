@@ -1,10 +1,8 @@
 import { Trans } from '@lingui/macro'
-import InfoIcon from '@mui/icons-material/Info'
-import ListAltIcon from '@mui/icons-material/ListAlt'
-import ManageSearchIcon from '@mui/icons-material/ManageSearch'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Alert, AlertTitle, Badge, Box, Collapse, FormHelperText, Stack, Tab, Tooltip, Typography } from '@mui/material'
 import { Suspense, useState } from 'react'
+import { InfoFilledIcon, ListAltIcon, ManageSearchIcon } from 'src/assets/icons'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { useNonce } from 'src/shared/providers'
@@ -58,7 +56,7 @@ export const InventoryAdvanceSearch = ({ hasError, hasChanges }: InventoryAdvanc
                         }
                         arrow
                       >
-                        <InfoIcon color="info" />
+                        <InfoFilledIcon color="info" />
                       </Tooltip>
                     }
                   >

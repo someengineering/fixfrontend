@@ -1,7 +1,7 @@
 import { useLingui } from '@lingui/react'
-import CloseIcon from '@mui/icons-material/Close'
 import { Box, Divider, IconButton, Popover, Stack, Typography, alpha, colors } from '@mui/material'
 import { diffLines } from 'diff'
+import { CloseIcon } from 'src/assets/icons'
 import { WorkspaceInventoryNodeHistory } from 'src/shared/types/server'
 import { YamlHighlighter } from 'src/shared/yaml-highlighter'
 import { stringify } from 'yaml'

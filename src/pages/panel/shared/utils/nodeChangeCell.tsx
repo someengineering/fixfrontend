@@ -1,12 +1,8 @@
 import { t } from '@lingui/macro'
-import AddCircleIcon from '@mui/icons-material/AddCircle'
-import GppGoodIcon from '@mui/icons-material/GppGood'
-import GppMaybeIcon from '@mui/icons-material/GppMaybe'
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
-import UpdateIcon from '@mui/icons-material/Update'
 import { TimelineDot } from '@mui/lab'
 import { Stack, Tooltip } from '@mui/material'
 import { GridRenderCellParams } from '@mui/x-data-grid-premium'
+import { AddCircleFilledIcon, DoNotDisturbOnIcon, GppMaybeFilledIcon, UpdateIcon, VerifiedUserFilledIcon } from 'src/assets/icons'
 import { WorkspaceInventoryNodeHistoryChanges, WorkspaceInventorySearchTableRow } from 'src/shared/types/server'
 
 export const nodeChangeToString = (change: WorkspaceInventoryNodeHistoryChanges) => {
@@ -32,7 +28,7 @@ export const renderNodeChangeCell = (params: GridRenderCellParams<WorkspaceInven
         <Stack direction="row" spacing={1} alignItems="center">
           <Tooltip title={nodeChangeToString(change)} arrow>
             <TimelineDot color="info" variant="outlined">
-              <AddCircleIcon fontSize="small" />
+              <AddCircleFilledIcon width={20} height={20} />
             </TimelineDot>
           </Tooltip>
         </Stack>
@@ -42,7 +38,7 @@ export const renderNodeChangeCell = (params: GridRenderCellParams<WorkspaceInven
         <Stack direction="row" spacing={1} alignItems="center">
           <Tooltip title={nodeChangeToString(change)} arrow>
             <TimelineDot color="primary" variant="outlined">
-              <UpdateIcon fontSize="small" />
+              <UpdateIcon width={20} height={20} />
             </TimelineDot>
           </Tooltip>
         </Stack>
@@ -52,7 +48,7 @@ export const renderNodeChangeCell = (params: GridRenderCellParams<WorkspaceInven
         <Stack direction="row" spacing={1} alignItems="center">
           <Tooltip title={nodeChangeToString(change)} arrow>
             <TimelineDot color="error" variant="outlined">
-              <RemoveCircleIcon fontSize="small" />
+              <DoNotDisturbOnIcon width={20} height={20} />
             </TimelineDot>
           </Tooltip>
         </Stack>
@@ -62,7 +58,7 @@ export const renderNodeChangeCell = (params: GridRenderCellParams<WorkspaceInven
         <Stack direction="row" spacing={1} alignItems="center">
           <Tooltip title={nodeChangeToString(change)} arrow>
             <TimelineDot color="success" variant="outlined">
-              <GppGoodIcon fontSize="small" />
+              <VerifiedUserFilledIcon width={20} height={20} />
             </TimelineDot>
           </Tooltip>
         </Stack>
@@ -72,7 +68,7 @@ export const renderNodeChangeCell = (params: GridRenderCellParams<WorkspaceInven
         <Stack direction="row" spacing={1} alignItems="center">
           <Tooltip title={nodeChangeToString(change)} arrow>
             <TimelineDot color="warning" variant="outlined">
-              <GppMaybeIcon fontSize="small" />
+              <GppMaybeFilledIcon width={20} height={20} />
             </TimelineDot>
           </Tooltip>
         </Stack>

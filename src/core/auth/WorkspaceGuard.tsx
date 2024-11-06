@@ -1,8 +1,8 @@
 import { Trans } from '@lingui/macro'
-import DoNotDisturbIcon from '@mui/icons-material/DoNotDisturb'
 import { Button, Stack } from '@mui/material'
 import { PropsWithChildren, memo, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import { BlockIcon } from 'src/assets/icons'
 import { ErrorModal } from 'src/shared/error-boundary-fallback'
 import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
 import { getAuthData } from 'src/shared/utils/localstorage'
@@ -74,7 +74,7 @@ export const WorkspaceGuard = ({ value, children }: WorkspaceGuardProps) => {
     <WorkspaceInnerComp value={value}>{children}</WorkspaceInnerComp>
   ) : (
     <ErrorModal
-      errorIcon={<DoNotDisturbIcon color="error" />}
+      errorIcon={<BlockIcon color="error" />}
       title={<Trans>You don't have access to this workspace.</Trans>}
       description={<Trans>The workspace you requested cannot be accessed. Please request access from the workspace administrator.</Trans>}
       actions={

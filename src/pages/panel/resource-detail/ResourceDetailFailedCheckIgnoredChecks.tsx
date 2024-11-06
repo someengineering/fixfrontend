@@ -1,7 +1,7 @@
 import { Trans } from '@lingui/macro'
-import DoneAllIcon from '@mui/icons-material/DoneAll'
 import { Alert, FormControlLabel, Stack, Switch } from '@mui/material'
 import { useEffect, useState } from 'react'
+import { DoneAllIcon } from 'src/assets/icons'
 import { FailedCheckIgnoreButton } from 'src/pages/panel/shared/failed-checks'
 
 interface ResourceDetailFailedCheckIgnoredChecksProps {

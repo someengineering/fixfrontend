@@ -1,7 +1,6 @@
 import { Trans } from '@lingui/macro'
-import ErrorIcon from '@mui/icons-material/Error'
-import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon'
 import { Button, Divider, Grid, Stack, Typography } from '@mui/material'
+import { ErrorFilledIcon, MoodIcon } from 'src/assets/icons'
 import { navigateSubtitleQuery, showSubtitle, showSubtitleAccount } from 'src/pages/panel/shared/utils'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { OverviewCard } from 'src/shared/overview-card'
@@ -92,7 +91,7 @@ export const OverallCard = ({ data }: OverallCardProps) => {
             )
           }
           iconBackgroundColor="error.main"
-          icon={<ErrorIcon />}
+          icon={<ErrorFilledIcon />}
           bottomContent={
             hasChangedVulnerable ? (
               <Grid container direction="row" alignItems="center" spacing={1} width="100%" pb={1}>
@@ -167,7 +166,7 @@ export const OverallCard = ({ data }: OverallCardProps) => {
             )
           }
           iconBackgroundColor="success.main"
-          icon={<InsertEmoticonIcon />}
+          icon={<MoodIcon />}
           bottomContent={
             hasChangedCompliant ? (
               <Stack direction="row" alignItems="center" spacing={1} width="100%" height={20}>

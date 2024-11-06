@@ -1,12 +1,7 @@
 import { t } from '@lingui/macro'
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
-import CloudCircleOutlinedIcon from '@mui/icons-material/CloudCircleOutlined'
-import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined'
-import OtherHousesOutlinedIcon from '@mui/icons-material/OtherHousesOutlined'
-import SouthAmericaOutlinedIcon from '@mui/icons-material/SouthAmericaOutlined'
-import type { SvgIcon } from '@mui/material'
 import { Fab, IconButton, Popover, Stack, Tooltip, Typography, alpha, backdropClasses } from '@mui/material'
-import { useState } from 'react'
+import { FC, useState } from 'react'
+import { AddCircleIcon, CloudCircleIcon, OtherHousesIcon, SellIcon, SouthAmericaIcon, SvgIconProps } from 'src/assets/icons'
 import { panelUI } from 'src/shared/constants'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { InventoryFormCloudValues } from './InventoryFormCloudValues'
@@ -21,7 +16,7 @@ const InventoryFormMoreFab = ({
   onClick,
 }: {
   label: string
-  Icon: typeof SvgIcon
+  Icon: FC<SvgIconProps>
   onClick: (el: HTMLButtonElement) => void
 }) => {
   return (
@@ -70,7 +65,7 @@ export const InventoryFormMore = ({ preItems }: { preItems: AutoCompletePreDefin
             component={Stack}
             sx={{ boxShadow: 0, borderColor: ({ palette }) => alpha(palette.success.main, 0.5), borderStyle: 'solid', borderWidth: 1 }}
           >
-            <AddCircleOutlineIcon fontSize="small" />
+            <AddCircleIcon width={20} height={20} />
           </IconButton>
         </Tooltip>
         <Popover
@@ -94,10 +89,10 @@ export const InventoryFormMore = ({ preItems }: { preItems: AutoCompletePreDefin
           }}
         >
           <Stack spacing={1} alignItems="start" p={2}>
-            <InventoryFormMoreFab Icon={CloudCircleOutlinedIcon} onClick={openFab(setOpenClouds)} label={t`Cloud`} />
-            <InventoryFormMoreFab Icon={SouthAmericaOutlinedIcon} onClick={openFab(setOpenRegions)} label={t`Region`} />
-            <InventoryFormMoreFab Icon={LocalOfferOutlinedIcon} onClick={openFab(setOpenTags)} label={t`Tags`} />
-            <InventoryFormMoreFab Icon={OtherHousesOutlinedIcon} onClick={openFab(setOpenProperty)} label={t`Properties`} />
+            <InventoryFormMoreFab Icon={CloudCircleIcon} onClick={openFab(setOpenClouds)} label={t`Cloud`} />
+            <InventoryFormMoreFab Icon={SouthAmericaIcon} onClick={openFab(setOpenRegions)} label={t`Region`} />
+            <InventoryFormMoreFab Icon={SellIcon} onClick={openFab(setOpenTags)} label={t`Tags`} />
+            <InventoryFormMoreFab Icon={OtherHousesIcon} onClick={openFab(setOpenProperty)} label={t`Properties`} />
           </Stack>
         </Popover>
       </Stack>
