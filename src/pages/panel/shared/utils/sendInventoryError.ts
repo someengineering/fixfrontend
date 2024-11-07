@@ -56,14 +56,6 @@ export const sendInventoryError = ({
   id?: string
   postHog: PostHog
 }) => {
-  if (window.TrackJS?.isInstalled()) {
-    const data = error?.response?.data
-    if (data) {
-      window.TrackJS.console.info(data)
-    }
-    window.TrackJS.track(error)
-  }
-
   if (postHog) {
     const selectedWorkspaceId = workspaceId || getAuthData()?.selectedWorkspaceId || undefined
 

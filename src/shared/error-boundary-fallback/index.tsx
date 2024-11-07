@@ -19,9 +19,6 @@ const ErrorBoundaryFallback = ({ error, resetErrorBoundary }: FallbackProps) => 
 
   useEffect(() => {
     if (!('isAxiosError' in error) || !(error as AxiosError).isAxiosError) {
-      if (window.TrackJS?.isInstalled()) {
-        window.TrackJS.track(error as Error)
-      }
       const { name: error_name, message: error_message, stack: error_stack } = error as Error
       postHog.capture(PostHogEvent.Error, {
         authenticated: isAuthenticated(),

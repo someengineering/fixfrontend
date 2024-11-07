@@ -61,9 +61,6 @@ export const DownloadCSVButton = forwardRef(
         })
         .catch((error) => {
           if (!axios.isAxiosError(error)) {
-            if (window.TrackJS?.isInstalled()) {
-              window.TrackJS.track(error as Error)
-            }
             const { name: error_name, message: error_message, stack: error_stack } = (error as Error) ?? {}
             postHog.capture(PostHogEvent.Error, {
               $set: { ...currentUser },

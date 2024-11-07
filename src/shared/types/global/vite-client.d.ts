@@ -12,7 +12,6 @@ interface ImportMetaEnv {
   readonly VITE_NETWORK_RETRY_COUNT?: string
   readonly VITE_WEBSOCKET_RETRY_TIMEOUT?: string
   readonly VITE_DISCORD_URL?: string
-  readonly VITE_TRACKJS_TOKEN?: string
   readonly VITE_MUI_LICENSE_KEY?: string
   readonly VITE_LOAD_PAGE_TIMEOUT?: string
   readonly VITE_POSTHOG_DEV_PROJECT_API_KEY?: string

@@ -28,9 +28,6 @@ const FullPageLoadingContainer = ({ setLoadingStateRef }: FullPageLoadingContain
   useEffect(() => {
     if (firstTimeShown.current === undefined) {
       firstTimeShown.current = window.setTimeout(() => {
-        if (window.TrackJS?.isInstalled()) {
-          window.TrackJS.track(new Error(`It took more than ${env.loadPageTimeout / 1000}s to load the page`))
-        }
         window.setTimeout(function () {
           window.location.reload()
         }, 3_000)

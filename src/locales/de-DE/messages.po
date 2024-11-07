@@ -233,8 +233,8 @@ msgid "<0>We use the Events API V2 for notifications through PagerDuty.<1/>To cr
 msgstr "<0>Wir verwenden die Events API V2 für Benachrichtigungen über PagerDuty.<1/>Um eine Integration zu erstellen, befolgen Sie bitte diese Schritte:<2><3>Melden Sie sich mit Ihren Kontoanmeldeinformationen bei PagerDuty an.</3><4> Navigieren Sie zum Dashboard und wählen Sie „Dienste“ aus.</4><5>Wählen Sie den Dienst aus, den Sie integrieren möchten, gehen Sie zur Registerkarte „Integrationen“ und klicken Sie dann auf „Integration hinzufügen“.</5><6>Wählen Sie als Integrationstyp „PagerDuty Events API V2“ aus und klicken Sie auf „Hinzufügen“.</6><7>Geben Sie einen Namen für die Integration ein, damit Sie sie leichter nachschlagen können, und kopieren Sie den „Integrationsschlüssel“.</7></2>Weitere Informationen finden Sie unter <8>PagerDuty-Dienste und Integrationen</8></0>"
 
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:87
-msgid "<0>We utilize incoming webhooks to deliver notifications to your Microsoft Teams channels.<1/>To manually add a webhook:<2><3>In Microsoft Teams, click on More options (⋯) next to the channel name and then select Connectors.</3><4>Browse through the list of Connectors to find Incoming Webhook, and click Add.</4><5>Provide a name for the webhook, upload an image to represent data from the webhook, and click Create.</5><6>Copy the webhook URL to your clipboard and keep it safe. This URL is necessary for TrackJS to send notifications.</6><7>Click Done.</7><8>In the text box provided below, paste the Webhook URL you copied and enter the name of the channel.</8></2>More from <9>Microsoft Teams Documentation</9></0>"
-msgstr "<0>Wir nutzen eingehende Webhooks, um Benachrichtigungen an Ihre Microsoft Teams-Kanäle zu übermitteln.<1/>So fügen Sie manuell einen Webhook hinzu:<2><3>Klicken Sie in Microsoft Teams auf Weitere Optionen (⋯) neben dem Kanalnamen und dann Wählen Sie Connectors aus.</3><4>Durchsuchen Sie die Liste der Connectors, um den eingehenden Webhook zu finden, und klicken Sie auf Hinzufügen.</4><5>Geben Sie einen Namen für den Webhook ein, laden Sie ein Bild hoch, um die Daten vom Webhook darzustellen, und Klicken Sie auf „Erstellen“.</5><6>Kopieren Sie die Webhook-URL in Ihre Zwischenablage und bewahren Sie sie sicher auf. Diese URL ist erforderlich, damit TrackJS Benachrichtigungen senden kann.</6><7>Klicken Sie auf „Fertig“.</7><8>Fügen Sie in das unten bereitgestellte Textfeld die Webhook-URL ein, die Sie kopiert haben, und geben Sie den Namen des Kanals ein.</8></2>Mehr aus der <9>Microsoft Teams-Dokumentation</9></0>"
+msgid "<0>We utilize incoming webhooks to deliver notifications to your Microsoft Teams channels.<1/>To manually add a webhook:<2><3>In Microsoft Teams, click on More options (⋯) next to the channel name and then select Connectors.</3><4>Browse through the list of Connectors to find Incoming Webhook, and click Add.</4><5>Provide a name for the webhook, upload an image to represent data from the webhook, and click Create.</5><6>Copy the webhook URL to your clipboard and keep it safe.</6><7>Click Done.</7><8>In the text box provided below, paste the Webhook URL you copied and enter the name of the channel.</8></2>More from <9>Microsoft Teams Documentation</9></0>"
+msgstr "<0>Wir nutzen eingehende Webhooks, um Benachrichtigungen an Ihre Microsoft Teams-Kanäle zu übermitteln.<1/>So fügen Sie manuell einen Webhook hinzu:<2><3>Klicken Sie in Microsoft Teams auf Weitere Optionen (⋯) neben dem Kanalnamen und dann Wählen Sie Connectors aus.</3><4>Durchsuchen Sie die Liste der Connectors, um den eingehenden Webhook zu finden, und klicken Sie auf Hinzufügen.</4><5>Geben Sie einen Namen für den Webhook ein, laden Sie ein Bild hoch, um die Daten vom Webhook darzustellen, und Klicken Sie auf „Erstellen“.</5><6>Kopieren Sie die Webhook-URL in Ihre Zwischenablage und bewahren Sie sie sicher auf.</6><7>Klicken Sie auf „Fertig“.</7><8>Fügen Sie in das unten bereitgestellte Textfeld die Webhook-URL ein, die Sie kopiert haben, und geben Sie den Namen des Kanals ein.</8></2>Mehr aus der <9>Microsoft Teams-Dokumentation</9></0>"
 
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsOpsgenieService.tsx:70
 msgid "<0>We utilize the OpsGenie API integration for notifications and alerts.<1/>To set up this Integration, please follow these instructions:<2><3><4>Navigate to the Dashboard:</4> Find and click on the “Teams” section from the sidebar once logged in.</3><5><6>Select Your Team:</6> Choose the team you want to integrate with. Within the team dashboard, go to the “Integrations” tab.</5><7><8>Add Integration:</8> Click on the “+ New Integration” button. Select “API” as the integration type, give it the name “Fix,” and press Continue.</7><9><10>Turn Integration on:</10> When the Integration has been created, it is disabled by default - click “Turn on Integration”.</9><11><12>Copy API Key:</12> Find and copy the API Key in the integration settings.</11></2></0>"
@@ -574,7 +574,7 @@ msgstr ""
 msgid "Basic Information"
 msgstr "Grundinformation"
 
-#: src/pages/panel/inventory-search/DownloadCSVButton.tsx:113
+#: src/pages/panel/inventory-search/DownloadCSVButton.tsx:110
 msgid "Because the data is over {0} Only first {1} items will be downloaded"
 msgstr "Da die Daten über {0} liegen, werden nur die ersten {1} Elemente heruntergeladen"
 
@@ -644,7 +644,7 @@ msgstr ""
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsEmailService.tsx:91
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsOpsgenieService.tsx:102
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsPagerdutyService.tsx:99
-#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:119
+#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:117
 #: src/pages/panel/workspace-users-settings-pending-invitations/WorkspaceUsersSettingsPendingInvitationRow.tsx:104
 #: src/pages/panel/workspace-users-settings/DeleteInvitedExternalUserMenuItem.tsx:104
 #: src/pages/panel/workspace-users-settings/InviteExternalUserForm.tsx:127
@@ -891,7 +891,7 @@ msgstr "Herzlichen Glückwunsch zu Ihrem Abonnement"
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsPagerdutyService.tsx:111
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsSlackService.tsx:40
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:79
-#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:131
+#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:129
 msgid "Connect"
 msgstr "Verbinden"
 
@@ -1189,8 +1189,8 @@ msgstr ""
 msgid "Downgrade"
 msgstr "Downgrade"
 
-#: src/pages/panel/inventory-search/DownloadCSVButton.tsx:106
-#: src/pages/panel/inventory-search/DownloadCSVButton.tsx:128
+#: src/pages/panel/inventory-search/DownloadCSVButton.tsx:103
+#: src/pages/panel/inventory-search/DownloadCSVButton.tsx:125
 #: src/pages/panel/inventory/DownloadCSVButton.tsx:47
 msgid "Download CSV"
 msgstr "CSV herunterladen"
@@ -1410,7 +1410,7 @@ msgstr "Hoch"
 msgid "Highest product tier this billing cycle"
 msgstr ""
 
-#: src/shared/error-boundary-fallback/index.tsx:63
+#: src/shared/error-boundary-fallback/index.tsx:60
 msgid "Homepage"
 msgstr "Startseite"
 
@@ -1779,7 +1779,7 @@ msgstr "Die meisten nicht konformen Konten"
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsEmailService.tsx:113
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsOpsgenieService.tsx:124
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsPagerdutyService.tsx:121
-#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:141
+#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:139
 #: src/pages/panel/workspace-users-settings/InviteExternalUserForm.tsx:67
 #: src/pages/panel/workspace-users-settings/InviteExternalUserForm.tsx:77
 #: src/shared/charts/NetworkDiagram.tsx:377
@@ -1988,7 +1988,7 @@ msgstr "Hoppla, der Benutzername oder das Passwort scheinen nicht mit unseren Au
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Ups! Ihre Eingabe entspricht nicht unserem Format. Bitte überprüfen Sie sie und versuchen Sie es erneut."
 
-#: src/shared/error-boundary-fallback/index.tsx:39
+#: src/shared/error-boundary-fallback/index.tsx:36
 msgid "Oops! Something went wrong."
 msgstr "Hoppla! Etwas ist schief gelaufen."
 
@@ -2051,7 +2051,7 @@ msgstr ""
 msgid "Password"
 msgstr "Passwort"
 
-#: src/core/events/WebSocketEvents.tsx:136
+#: src/core/events/WebSocketEvents.tsx:127
 msgid "Payment is required for your workspace, Please contact the workspace owner"
 msgstr ""
 
@@ -2727,7 +2727,7 @@ msgstr "TOTP-Setup"
 msgid "Trial"
 msgstr "Probezeit"
 
-#: src/shared/error-boundary-fallback/index.tsx:77
+#: src/shared/error-boundary-fallback/index.tsx:74
 msgid "Try again"
 msgstr "Versuchen Sie es erneut"
 
@@ -2772,7 +2772,7 @@ msgstr "Ungenutzte Datenbankinstanzen"
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsEmailService.tsx:103
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsOpsgenieService.tsx:114
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsPagerdutyService.tsx:111
-#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:131
+#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:129
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:42
 msgid "Update"
 msgstr ""
@@ -2874,7 +2874,7 @@ msgstr ""
 msgid "Vulnerable Resources detected in the last 7 days."
 msgstr ""
 
-#: src/pages/panel/inventory-search/DownloadCSVButton.tsx:90
+#: src/pages/panel/inventory-search/DownloadCSVButton.tsx:87
 msgid "Warning"
 msgstr "Warnung"
 
@@ -2894,11 +2894,11 @@ msgstr ""
 msgid "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 msgstr "Es tut uns leid, dass Sie herunterstufen, aber wir sind dankbar, Sie weiterhin in unserer kostenlosen Stufe zu haben. Wenn Ihnen etwas Bestimmtes fehlt, wenden Sie sich bitte direkt an mich, <0>lars@some.engineering</0>. Ich würde gerne von Ihnen hören und Ihnen so gut wie möglich helfen."
 
-#: src/shared/error-boundary-fallback/index.tsx:41
+#: src/shared/error-boundary-fallback/index.tsx:38
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "Wir entschuldigen uns für die Unannehmlichkeiten. Unser Team wurde benachrichtigt und das Problem wird untersucht. Bitte versuchen Sie es in ein paar Minuten noch einmal. Wenn das Problem weiterhin besteht, können Sie uns gerne <0>auf Discord</0> kontaktieren. Danke für Ihre Geduld!"
 
-#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:152
+#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:150
 msgid "Webhook URL"
 msgstr "Webhook-URL"
 
@@ -2999,7 +2999,7 @@ msgstr ""
 msgid "You currently have {0}. There must only be {1} in order to downgrade to the free tier."
 msgstr ""
 
-#: src/core/events/WebSocketEvents.tsx:137
+#: src/core/events/WebSocketEvents.tsx:128
 msgid "You don't have access to this workspace"
 msgstr ""
 
