@@ -6,7 +6,7 @@ type MaterialColorsType = typeof colors
 type MaterialColorKeysType = Exclude<keyof MaterialColorsType, 'common'>
 type MaterialColorKeys = keyof MaterialColorsType[MaterialColorKeysType]
 
-export const groupToColorMaterial = (number: MaterialColorKeys, group?: string) => {
+const groupToColorMaterial = (number: MaterialColorKeys, group?: string) => {
   switch (group) {
     case 'networking':
       return colors.purple[number]

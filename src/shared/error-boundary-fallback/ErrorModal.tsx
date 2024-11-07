@@ -1,6 +1,6 @@
-import BuildIcon from '@mui/icons-material/Build'
 import { Divider, Modal, Stack, Typography, styled } from '@mui/material'
 import { ReactNode } from 'react'
+import { BuildFilledIcon } from 'src/assets/icons'
 
 const ModalContent = styled(Stack)(({ theme }) => ({
   position: 'absolute',
@@ -28,7 +28,7 @@ export const ErrorModal = ({ onReset, actions, description, title, errorIcon }: 
     <Modal open onClose={onReset} aria-labelledby="modal-error-title" aria-describedby="modal-error-description">
       <ModalContent spacing={2}>
         <Typography id="modal-error-title" variant="h5" component={Stack} alignItems="center" direction="row" gap={1}>
-          {errorIcon ?? <BuildIcon color="error" />}
+          {errorIcon ?? <BuildFilledIcon color="error" />}
           {title}
         </Typography>
         <Typography id="modal-error-description" textAlign="justify" mb={1}>

@@ -1,5 +1,4 @@
 import { Trans } from '@lingui/macro'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import {
   Accordion,
   AccordionActions,
@@ -20,7 +19,7 @@ import {
 import { useQuery } from '@tanstack/react-query'
 import { MouseEvent, useState } from 'react'
 import { NavigateFunction } from 'react-router-dom'
-import { OpenInNewIcon } from 'src/assets/icons'
+import { KeyboardArrowDownIcon, OpenInNewIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
 import { createInventorySearchTo, getColorBySeverity } from 'src/pages/panel/shared/utils'
@@ -69,7 +68,7 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, 
         onChange={withResources ? (_, expanded) => setExpanded(expanded) : undefined}
         sx={{ bgcolor: 'common.white' }}
       >
-        <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ height: '100%' }}>
+        <AccordionSummary expandIcon={<KeyboardArrowDownIcon />} sx={{ height: '100%' }}>
           <Grid container spacing={2} display="flex" justifyContent="space-between" flexDirection="row" width="100%">
             <Grid item>
               <Typography variant={smallText ? 'h6' : 'h5'}>{failedCheck.title}</Typography>
@@ -107,11 +106,11 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, 
           <Typography variant={smallText ? 'h6' : 'h5'} fontWeight={smallText ? 800 : undefined} mt={2}>
             <Trans>Risk</Trans>
           </Typography>
-          <Typography>{failedCheck.risk}</Typography>
+          <Typography sx={{ wordWrap: 'break-word' }}>{failedCheck.risk}</Typography>
           <Typography variant={smallText ? 'h6' : 'h5'} fontWeight={smallText ? 800 : undefined} mt={2}>
             <Trans>How to fix</Trans>
           </Typography>
-          <Typography>{failedCheck.remediation.text}</Typography>
+          <Typography sx={{ wordWrap: 'break-word' }}>{failedCheck.remediation.text}</Typography>
           {withResources ? (
             <>
               <Typography variant={smallText ? 'h6' : 'h5'} fontWeight={smallText ? 800 : undefined} mt={2}>
@@ -160,7 +159,7 @@ export const FailedChecks = ({ failedCheck, navigate, smallText, withResources, 
               </Typography>
               {Object.entries(failedCheck.resources_failing_by_account).map(([accountId, resources]) => (
                 <Accordion key={accountId}>
-                  <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="manual-setup-content" id="manual-setup-header">
+                  <AccordionSummary expandIcon={<KeyboardArrowDownIcon />} aria-controls="manual-setup-content" id="manual-setup-header">
                     <Typography variant="h5">
                       {resources.find((resource) => typeof resource.account === 'string')?.account ?? accountId}
                     </Typography>

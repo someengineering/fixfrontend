@@ -12,24 +12,24 @@ export type ResourceComplexKindSimpleTypeDefinitions =
 
 export type ResourceComplexKindPropertyKindType = 'object' | 'array' | 'dictionary' | 'simple'
 
-export interface ResourceComplexKindPropertyKindGeneric<Type extends ResourceComplexKindPropertyKindType> {
+interface ResourceComplexKindPropertyKindGeneric<Type extends ResourceComplexKindPropertyKindType> {
   type: Type
 }
 
-export interface ResourceComplexKindPropertyKindObject extends ResourceComplexKindPropertyKindGeneric<'object'> {
+interface ResourceComplexKindPropertyKindObject extends ResourceComplexKindPropertyKindGeneric<'object'> {
   fqn: string
 }
 
-export interface ResourceComplexKindPropertyKindArray extends ResourceComplexKindPropertyKindGeneric<'array'> {
+interface ResourceComplexKindPropertyKindArray extends ResourceComplexKindPropertyKindGeneric<'array'> {
   items: ResourceComplexKindPropertyKind
 }
 
-export interface ResourceComplexKindPropertyKindDictionary extends ResourceComplexKindPropertyKindGeneric<'dictionary'> {
+interface ResourceComplexKindPropertyKindDictionary extends ResourceComplexKindPropertyKindGeneric<'dictionary'> {
   key: ResourceComplexKindPropertyKind
   value: ResourceComplexKindPropertyKind
 }
 
-export interface ResourceComplexKindPropertyKindSimple extends ResourceComplexKindPropertyKindGeneric<'simple'> {
+interface ResourceComplexKindPropertyKindSimple extends ResourceComplexKindPropertyKindGeneric<'simple'> {
   fqn: ResourceComplexKindSimpleTypeDefinitions
 }
 

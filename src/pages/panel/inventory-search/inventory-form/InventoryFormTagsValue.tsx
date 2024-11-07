@@ -1,7 +1,7 @@
 import { Trans } from '@lingui/macro'
-import EditIcon from '@mui/icons-material/Edit'
 import { Button, Popover, Skeleton, Stack, backdropClasses } from '@mui/material'
 import { useState } from 'react'
+import { EditFilledIcon } from 'src/assets/icons'
 import { panelUI } from 'src/shared/constants'
 import { Path, Predicate, useFixQueryParser } from 'src/shared/fix-query-parser'
 import { ResourceComplexKindSimpleTypeDefinitions } from 'src/shared/types/server-shared'
@@ -112,7 +112,7 @@ export const InventoryFormTagsValue = ({ onChange, onClose, open, defaultValue, 
               onChange(value)
               handleSubmit()
             }}
-            startIcon={<EditIcon fontSize="small" />}
+            startIcon={<EditFilledIcon width={20} height={20} />}
           >
             <Trans>Change</Trans>
           </Button>

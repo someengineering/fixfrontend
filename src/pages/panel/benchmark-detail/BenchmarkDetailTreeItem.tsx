@@ -1,7 +1,7 @@
 import { t } from '@lingui/macro'
-import InfoIcon from '@mui/icons-material/Info'
 import { Stack, Typography } from '@mui/material'
 import { TreeItem } from '@mui/x-tree-view'
+import { InfoFilledIcon } from 'src/assets/icons'
 import { getColorBySeverity, getIconBySeverity } from 'src/pages/panel/shared/utils'
 import { getMessage } from 'src/shared/defined-messages'
 import { BenchmarkCheckCollectionNode, BenchmarkCheckResultNode } from 'src/shared/types/server'
@@ -26,7 +26,7 @@ export interface BenchmarkDetailTreeItemProps {
 const BenchmarkDetailTreeItemLabel = ({ item, withDot }: BenchmarkDetailTreeItemProps) => {
   const severity = item.numberOfResourceFailing && item.severity ? item.severity : 'passed'
   const color = item.isManual ? 'grey.500' : getColorBySeverity(severity)
-  const Comp = item.isManual ? InfoIcon : getIconBySeverity(severity)
+  const Comp = item.isManual ? InfoFilledIcon : getIconBySeverity(severity)
   return (
     <Stack
       direction="row"
@@ -47,7 +47,7 @@ const BenchmarkDetailTreeItemLabel = ({ item, withDot }: BenchmarkDetailTreeItem
         <Typography color={color} variant="caption" fontWeight={700}>
           {item.isManual ? t`Manual` : getMessage(snakeCaseToUFStr(severity))}
         </Typography>
-        <Comp fontSize="small" sx={{ color }} />
+        <Comp width={20} height={20} color={color} />
       </Stack>
     </Stack>
   )

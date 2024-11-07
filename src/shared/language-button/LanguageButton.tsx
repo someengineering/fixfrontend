@@ -1,8 +1,8 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import LanguageIcon from '@mui/icons-material/Language'
 import { Box, IconButton, IconButtonProps, Menu, MenuItem, MenuProps, Tooltip, Typography, styled } from '@mui/material'
 import { MouseEvent as MouseEventReact, useState } from 'react'
+import { LanguageIcon } from 'src/assets/icons'
 import { langs } from 'src/shared/constants'
 import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
 

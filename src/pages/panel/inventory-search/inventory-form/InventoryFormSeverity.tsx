@@ -1,6 +1,4 @@
 import { t } from '@lingui/macro'
-// import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-// import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 import { Typography } from '@mui/material'
 import { useCallback, useMemo, useState } from 'react'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'

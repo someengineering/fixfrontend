@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro'
-import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import { IconButton, Stack, Tooltip, alpha } from '@mui/material'
+import { CancelIcon } from 'src/assets/icons'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 
 export const InventoryFormReset = () => {
@@ -13,7 +13,7 @@ export const InventoryFormReset = () => {
           color="info"
           sx={{ boxShadow: 0, borderColor: ({ palette }) => alpha(palette.info.main, 0.5), borderStyle: 'solid', borderWidth: 1 }}
         >
-          <HighlightOffIcon fontSize="small" />
+          <CancelIcon width={20} height={20} />
         </IconButton>
       </Tooltip>
     </Stack>

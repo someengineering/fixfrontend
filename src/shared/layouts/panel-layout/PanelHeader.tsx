@@ -5,6 +5,7 @@ import { cloneElement, PropsWithChildren, ReactElement, RefObject } from 'react'
 import { CalendarMonthIcon, DiscordIcon, GithubSEBIcon } from 'src/assets/icons'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { env, panelUI } from 'src/shared/constants'
+import { EventButton } from 'src/shared/event-button'
 import { ExternalLinkButton } from 'src/shared/link-button'
 import { MainMenu } from './MainMenu'
 import { PanelBreadcrumbs } from './PanelBreadcrumbs'
@@ -67,6 +68,7 @@ export const PanelHeader = ({ children, scrollRef }: PanelHeaderProps) => {
                   </ExternalLinkButton>
                 </Box>
               </Tooltip>
+              <EventButton />
               <Stack direction="row" height="100%" alignItems="center">
                 <PanelHeaderLinkButton size="small" component={IconButton} href={env.discordUrl} color="info" noEndIcon>
                   <DiscordIcon width={24} height={20} />

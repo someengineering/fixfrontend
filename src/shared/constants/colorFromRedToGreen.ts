@@ -5,7 +5,7 @@ const RED: Color = [224, 26, 79]
 const GREEN: Color = [0, 172, 107]
 const YELLOW: Color = [255, 179, 0]
 
-export const getColor = () => {
+const getColor = () => {
   function createGradient(colors: ColorList, steps: number = 255): ColorList {
     function gradientBetween(color1: Color, color2: Color, steps: number): ColorList {
       const gradient: ColorList = []

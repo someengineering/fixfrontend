@@ -1,7 +1,4 @@
 import { Trans } from '@lingui/macro'
-import ClearIcon from '@mui/icons-material/Clear'
-import EditIcon from '@mui/icons-material/Edit'
-import SearchIcon from '@mui/icons-material/Search'
 import {
   Button,
   ButtonBase,
@@ -24,6 +21,7 @@ import {
 } from '@mui/material'
 import { useDebounce } from '@uidotdev/usehooks'
 import { ReactNode, useEffect, useId, useRef, useState } from 'react'
+import { CloseSmallIcon, EditFilledIcon, SearchIcon } from 'src/assets/icons'
 import { panelUI } from 'src/shared/constants'
 import { AutoCompleteValue } from 'src/shared/types/shared'
 
@@ -172,10 +170,10 @@ export const InventoryFormDefaultValue = ({
               <Stack direction="row" spacing={0.5}>
                 {typed ? (
                   <ButtonBase onClick={() => setTyped('')} sx={{ borderRadius: '50%' }}>
-                    <ClearIcon fontSize="small" />
+                    <CloseSmallIcon width={20} height={20} />
                   </ButtonBase>
                 ) : null}
-                <SearchIcon fontSize="small" />
+                <SearchIcon width={20} height={20} />
               </Stack>
             ),
           }}
@@ -209,7 +207,7 @@ export const InventoryFormDefaultValue = ({
         )}
         <Divider sx={{ flexGrow: 0, flexShrink: 0 }} />
         <Stack alignItems="end" position="sticky" top={0} left={0} flexGrow={0} flexShrink={0}>
-          <Button variant="contained" color="primary" onClick={onSubmit} size="small" startIcon={<EditIcon fontSize="small" />}>
+          <Button variant="contained" color="primary" onClick={onSubmit} size="small" startIcon={<EditFilledIcon width={20} height={20} />}>
             <Trans>Change</Trans>
           </Button>
         </Stack>

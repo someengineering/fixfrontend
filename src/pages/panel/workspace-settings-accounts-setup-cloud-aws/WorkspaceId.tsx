@@ -1,6 +1,6 @@
 import { Trans, t } from '@lingui/macro'
-import CopyAllIcon from '@mui/icons-material/CopyAll'
 import { Box, Button, Stack, Typography } from '@mui/material'
+import { CopyAllIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
 import { panelUI } from 'src/shared/constants'

@@ -13,15 +13,10 @@ export type { PaymentMethod, PaymentMethodWithoutNone, PaymentMethods, ProductTi
 export type {
   ResourceComplexKindProperty,
   ResourceComplexKindPropertyKind,
-  ResourceComplexKindPropertyKindArray,
-  ResourceComplexKindPropertyKindDictionary,
-  ResourceComplexKindPropertyKindGeneric,
-  ResourceComplexKindPropertyKindObject,
-  ResourceComplexKindPropertyKindSimple,
   ResourceComplexKindPropertyKindType,
   ResourceComplexKindSimpleTypeDefinitions,
 } from './ResourceComplexKindProperty'
-export type { ResourceComplexKind, ResourceKind, ResourceKindGeneric, ResourceSimpleKind } from './ResourceKind'
+export type { ResourceComplexKind, ResourceKind } from './ResourceKind'
 export type { SeverityType } from './SeverityType'
 export type { User } from './User'
 export type { UserRole } from './UserRole'

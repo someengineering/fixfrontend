@@ -102,15 +102,6 @@ export const Overview = () => {
         <Trans>Accounts Summary</Trans>
       </Typography>
       <PieCard data={data} />
-      {/* <Grid container spacing={2} my={2}>
-        {data?.accounts
-          .sort((prev, cur) => prev.score - cur.score)
-          .map((account, i) => (
-            <Grid item key={`${account.id}_${i}`} width={300}>
-              <AccountCard account={account} />
-            </Grid>
-          ))}
-      </Grid> */}
     </>
   )
 }

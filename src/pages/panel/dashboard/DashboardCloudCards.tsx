@@ -37,7 +37,7 @@ const DashboardCloudCardItem = ({ title, value }: DashboardCloudCardItemProps) =
 export const DashboardCloudCards = ({ accounts, cloud, regions, resourceTypes, resources }: DashboardCloudCardProps) => {
   return (
     <DashboardPaper spacing={2}>
-      <CloudToIcon cloud={cloud} withText height="32px" />
+      <CloudToIcon cloud={cloud} withText height="32px" width="" />
       <Stack direction="row" spacing={2}>
         <DashboardCloudCardItem title={<Trans>Cloud accounts</Trans>} value={accounts} />
         <DashboardCloudCardItem title={<Trans>Regions</Trans>} value={regions} />

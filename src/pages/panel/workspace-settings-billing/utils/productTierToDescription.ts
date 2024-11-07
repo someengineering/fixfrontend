@@ -1,6 +1,5 @@
 import { t } from '@lingui/macro'
-import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew'
-import ApartmentIcon from '@mui/icons-material/Apartment'
+import { AccessibilityNewIcon, ApartmentIcon } from 'src/assets/icons'
 import { ProductTier } from 'src/shared/types/server-shared'
 
 export const productTierToDescription = (productTier: ProductTier) => {

@@ -1,11 +1,11 @@
 import { Trans, t } from '@lingui/macro'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { Autocomplete, AutocompleteRenderOptionState, CircularProgress, ListItemButton, Stack, TextField, Typography } from '@mui/material'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useDebounce } from '@uidotdev/usehooks'
 import { AxiosError } from 'axios'
 import { usePostHog } from 'posthog-js/react'
 import { ChangeEvent, HTMLAttributes, KeyboardEvent, UIEvent as ReactUIEvent, useEffect, useMemo, useRef, useState } from 'react'
+import { ArrowForwardIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { postWorkspaceInventoryPropertyPathCompleteQuery } from 'src/pages/panel/shared/queries'
 import { isValidProp, sendInventoryError } from 'src/pages/panel/shared/utils'
@@ -320,7 +320,7 @@ export const InventoryFormFilterRowProperty = ({
               <Typography overflow="hidden" flexGrow={1} textOverflow="ellipsis" color={isSimple ? undefined : 'info.main'}>
                 {option.key}
               </Typography>
-              {isSimple ? null : <ArrowForwardIcon fontSize="small" color="info" />}
+              {isSimple ? null : <ArrowForwardIcon width={20} height={20} color="info" />}
             </Stack>
           </ListItemButton>
         )

@@ -1,16 +1,18 @@
 import { plural, t, Trans } from '@lingui/macro'
-import AddIcon from '@mui/icons-material/Add'
-import DeleteIcon from '@mui/icons-material/Delete'
-import GppBadIcon from '@mui/icons-material/GppBad'
-import GppGoodIcon from '@mui/icons-material/GppGood'
-import GppMaybeIcon from '@mui/icons-material/GppMaybe'
-import ThumbDownIcon from '@mui/icons-material/ThumbDown'
-import ThumbUpIcon from '@mui/icons-material/ThumbUp'
-import UpdateIcon from '@mui/icons-material/Update'
 import { TimelineDot } from '@mui/lab'
-import { IconButton, Theme, Typography } from '@mui/material'
+import { Box, IconButton, Theme, Typography } from '@mui/material'
 import { diffLines } from 'diff'
 import { Fragment, MouseEventHandler } from 'react'
+import {
+  AddIcon,
+  DeleteIcon,
+  GppBadFilledIcon,
+  GppMaybeFilledIcon,
+  ThumbDownFilledIcon,
+  ThumbUpFilledIcon,
+  UpdateIcon,
+  VerifiedUserFilledIcon,
+} from 'src/assets/icons'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { sortedSeverities } from 'src/shared/constants'
 import { getMessage } from 'src/shared/defined-messages'
@@ -84,10 +86,10 @@ const getNodeElement = (securityIssueWithNumbers?: Record<SeverityType, number>,
     other: 'checks',
   })
 
-  const icon = fixed ? (
-    <ThumbUpIcon color="success" fontSize="small" sx={{ fontSize: '1rem', mr: 1 }} />
-  ) : (
-    <ThumbDownIcon color="error" fontSize="small" sx={{ fontSize: '1rem', mr: 1 }} />
+  const icon = (
+    <Box mr={1}>
+      {fixed ? <ThumbUpFilledIcon color="success" width={20} height={20} /> : <ThumbDownFilledIcon color="error" width={20} height={20} />}
+    </Box>
   )
 
   if (isOneSecurityIssue) {
@@ -151,7 +153,7 @@ export const nodeChangeToDescription = (history: WorkspaceInventoryNodeHistory) 
   }
 }
 
-export const nodeChangeToColorName = (history: WorkspaceInventoryNodeHistory) => {
+const nodeChangeToColorName = (history: WorkspaceInventoryNodeHistory) => {
   switch (history.change) {
     case 'node_created':
       return 'info'
@@ -210,7 +212,15 @@ export const nodeChangeToIcon = (history: WorkspaceInventoryNodeHistory, onClick
       )
     case 'node_compliant':
     case 'node_vulnerable': {
-      const icon = history.security.has_issues ? history.diff.node_compliant?.length ? <GppMaybeIcon /> : <GppBadIcon /> : <GppGoodIcon />
+      const icon = history.security.has_issues ? (
+        history.diff.node_compliant?.length ? (
+          <GppMaybeFilledIcon />
+        ) : (
+          <GppBadFilledIcon />
+        )
+      ) : (
+        <VerifiedUserFilledIcon />
+      )
       return (
         <TimelineDot color={nodeChangeToColorName(history)} variant="outlined">
           {onClick ? (
@@ -218,7 +228,7 @@ export const nodeChangeToIcon = (history: WorkspaceInventoryNodeHistory, onClick
               {icon}
             </IconButton>
           ) : (
-            <GppBadIcon />
+            <GppBadFilledIcon />
           )}
         </TimelineDot>
       )

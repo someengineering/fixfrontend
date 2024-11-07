@@ -1,9 +1,8 @@
 import { t } from '@lingui/macro'
-import ClearIcon from '@mui/icons-material/Clear'
-import SearchIcon from '@mui/icons-material/Search'
 import { Box, ButtonBase, Stack, TextField, alpha, outlinedInputClasses } from '@mui/material'
 import { useDebounce } from '@uidotdev/usehooks'
 import { useEffect, useRef, useState } from 'react'
+import { CloseSmallIcon, SearchIcon } from 'src/assets/icons'
 import { panelUI } from 'src/shared/constants'
 
 interface InventoryFormFullTextSearchValueProps {
@@ -54,10 +53,10 @@ export const InventoryFormFullTextSearchValue = ({ onChange, fullTextSearch }: I
                 <Stack direction="row" spacing={0.5} mx={1}>
                   {value ? (
                     <ButtonBase onClick={() => setValue('')} sx={{ borderRadius: '50%' }}>
-                      <ClearIcon fontSize="small" />
+                      <CloseSmallIcon width={20} height={20} />
                     </ButtonBase>
                   ) : null}
-                  <SearchIcon fontSize="small" />
+                  <SearchIcon width={20} height={20} />
                 </Stack>
               ),
             },

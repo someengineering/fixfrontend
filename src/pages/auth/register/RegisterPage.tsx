@@ -1,12 +1,11 @@
 import { t, Trans } from '@lingui/macro'
-import SendIcon from '@mui/icons-material/Send'
 import { LoadingButton } from '@mui/lab'
 import { Collapse, Divider, Stack, TextField, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { FormEvent, Suspense, useEffect, useState } from 'react'
 import { Location, useLocation, useSearchParams } from 'react-router-dom'
-import { MailIcon, PasswordIcon } from 'src/assets/icons'
+import { MailIcon, PasswordIcon, SendFilledIcon } from 'src/assets/icons'
 import { useSnackbar } from 'src/core/snackbar'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
@@ -156,7 +155,7 @@ export default function RegisterPage() {
           disabled={!password || !email}
           loading={isLoadingGeneric}
           loadingPosition={isLoadingGeneric ? 'start' : undefined}
-          startIcon={isLoadingGeneric ? <SendIcon /> : undefined}
+          startIcon={isLoadingGeneric ? <SendFilledIcon /> : undefined}
         >
           <Trans>Sign up with email</Trans>
         </LoadingButton>

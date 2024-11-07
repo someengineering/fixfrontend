@@ -1,6 +1,6 @@
-import ClearIcon from '@mui/icons-material/Clear'
 import { Box, Button, Chip, IconButton, Stack, Typography, alpha } from '@mui/material'
 import { MouseEventHandler, PropsWithChildren, ReactNode } from 'react'
+import { CloseSmallIcon } from 'src/assets/icons'
 import { Term, termValueToString } from 'src/shared/fix-query-parser'
 
 interface InventoryFormFieldProps extends PropsWithChildren {
@@ -82,7 +82,7 @@ export const InventoryFormField = ({
               }}
               size="small"
             >
-              <ClearIcon fontSize="small" />
+              <CloseSmallIcon width={20} height={20} />
             </IconButton>
           ) : (
             endIcon

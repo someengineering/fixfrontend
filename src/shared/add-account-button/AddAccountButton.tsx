@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/macro'
-import AddIcon from '@mui/icons-material/Add'
 import { Button } from '@mui/material'
+import { AddIcon } from 'src/assets/icons'
 import { useThemeMode } from 'src/core/theme'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 

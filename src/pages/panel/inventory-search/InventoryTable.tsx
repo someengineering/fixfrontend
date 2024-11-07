@@ -1,11 +1,10 @@
-import { Box, ButtonBase, Stack, Tooltip, Typography } from '@mui/material'
-import { GridRow, GridRowProps, GridSortItem } from '@mui/x-data-grid-premium'
+import { Box, Stack, Tooltip, Typography } from '@mui/material'
+import { GridSortItem } from '@mui/x-data-grid-premium'
 import { useQueries } from '@tanstack/react-query'
 import { usePostHog } from 'posthog-js/react'
 import { useEffect, useRef, useState } from 'react'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryModelQuery, postWorkspaceInventorySearchTableQuery } from 'src/pages/panel/shared/queries'
-import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { useFixQueryParser } from 'src/shared/fix-query-parser'
 import { AdvancedTableView } from 'src/shared/layouts/panel-layout'
@@ -20,8 +19,8 @@ import {
 import { ResourceKind } from 'src/shared/types/server-shared'
 import { isAuthenticated } from 'src/shared/utils/cookie'
 import { usePersistState } from 'src/shared/utils/usePersistState'
-import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { DownloadCSVButton } from './DownloadCSVButton'
+import { InventoryTableRow } from './InventoryTableRow'
 import { ColType } from './utils'
 import { inventoryTableCellHasIcon } from './utils/inventoryTableCellHasIcon'
 import { inventoryTableRenderCell } from './utils/inventoryTableRenderCell'
@@ -31,7 +30,7 @@ interface InventoryTableProps {
   history?: WorkspaceInventorySearchTableHistory
 }
 
-type RowType = WorkspaceInventorySearchTableRow['row'] & {
+export type RowType = WorkspaceInventorySearchTableRow['row'] & {
   INTERNAL_ID: string
 }
 
@@ -39,7 +38,6 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
   const postHog = usePostHog()
   const { sorts } = useFixQueryParser()
   const [dataCount, setDataCount] = useState(-1)
-  const navigate = useAbsoluteNavigate()
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = usePersistState<number>(
     'InventoryTable.rowsPerPage',
@@ -253,35 +251,7 @@ export const InventoryTable = ({ searchCrit, history }: InventoryTableProps) => 
           <DownloadCSVButton query={searchCrit} hasWarning={dataCount > panelUI.maxCSVDownload} history={history} sort={sorting} />
         </Stack>
       }
-      slots={{
-        row: (rowProps: GridRowProps) => {
-          const id = (rowProps.row as RowType)?.INTERNAL_ID.split('_').slice(0, -1).join('_')
-          if (!id || id === 'null' || id === 'undefined') {
-            return <GridRow {...rowProps} />
-          }
-          const search =
-            typeof rowProps.row?.name === 'string'
-              ? mergeLocationSearchValues({
-                  ...getLocationSearchValues(window.location.search),
-                  name: window.encodeURIComponent(rowProps.row?.name ?? '-'),
-                  ...(typeof rowProps.row?.cloud === 'string' ? { cloud: window.encodeURIComponent(rowProps.row?.cloud ?? '-') } : {}),
-                })
-              : window.location.search
-          const href = `./resource-detail/${id}${search?.[0] === '?' || !search ? (search ?? '') : `?${search}`}`
-          return (
-            <ButtonBase
-              href={href}
-              onClick={(e) => {
-                e.preventDefault()
-                e.stopPropagation()
-                navigate(href)
-              }}
-            >
-              <GridRow {...rowProps} />
-            </ButtonBase>
-          )
-        },
-      }}
+      slots={{ row: InventoryTableRow }}
     />
   ) : null
 }

@@ -1,9 +1,7 @@
 import { t } from '@lingui/macro'
-import CheckIcon from '@mui/icons-material/Check'
-import CloseIcon from '@mui/icons-material/Close'
-import QuestionMarkIcon from '@mui/icons-material/QuestionMark'
 import { Tooltip } from '@mui/material'
 import { GridRenderCellParams } from '@mui/x-data-grid-premium'
+import { CheckIcon, CloseIcon, QuestionMarkIcon } from 'src/assets/icons'
 import { getIconFromResource } from 'src/assets/raw-icons'
 import { renderNodeChangeCell } from 'src/pages/panel/shared/utils'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
@@ -22,15 +20,15 @@ export const inventoryTableRenderCell = (
       return (params: GridRenderCellParams) =>
         params.value === null || params.value === undefined || params.value === 'null' ? (
           <Tooltip title={t`Undefined`} arrow>
-            <QuestionMarkIcon fontSize="small" />
+            <QuestionMarkIcon width={20} height={20} />
           </Tooltip>
         ) : params.value && params.value !== 'false' ? (
           <Tooltip title={t`Yes`} arrow>
-            <CheckIcon fontSize="small" />
+            <CheckIcon width={20} height={20} />
           </Tooltip>
         ) : (
           <Tooltip title={t`No`} arrow>
-            <CloseIcon fontSize="small" />
+            <CloseIcon width={20} height={20} />
           </Tooltip>
         )
     case 'datetime':

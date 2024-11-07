@@ -1,12 +1,11 @@
 import { t, Trans } from '@lingui/macro'
-import SendIcon from '@mui/icons-material/Send'
 import { LoadingButton } from '@mui/lab'
 import { Stack, styled, TextField, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { FormEvent, useState } from 'react'
 import { Location, useLocation, useSearchParams } from 'react-router-dom'
-import { MailIcon } from 'src/assets/icons'
+import { MailIcon, SendFilledIcon } from 'src/assets/icons'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { InternalLink } from 'src/shared/link-button'
@@ -96,7 +95,7 @@ export default function ForgotPasswordPage() {
             disabled={!email}
             loading={isLoadingGeneric}
             loadingPosition={isLoadingGeneric ? 'start' : undefined}
-            startIcon={isLoadingGeneric ? <SendIcon /> : undefined}
+            startIcon={isLoadingGeneric ? <SendFilledIcon /> : undefined}
           >
             <Trans>Forgot Password</Trans>
           </ForgotPasswordButton>

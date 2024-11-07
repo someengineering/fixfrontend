@@ -1,6 +1,5 @@
 import { t, Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import CloseIcon from '@mui/icons-material/Close'
 import {
   Accordion,
   AccordionDetails,
@@ -24,7 +23,7 @@ import { AxiosError } from 'axios'
 import { usePostHog } from 'posthog-js/react'
 import { ReactNode, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
-import { OpenInNewIcon } from 'src/assets/icons'
+import { CloseIcon, OpenInNewIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryNodeQuery } from 'src/pages/panel/shared/queries'
 import { sendInventoryError } from 'src/pages/panel/shared/utils'

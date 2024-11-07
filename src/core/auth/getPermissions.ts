@@ -1,4 +1,4 @@
-export const workspacePermissions = {
+const workspacePermissions = {
   create: 1 << 0, // Not currently used.
   read: 1 << 1, // Required to read any content in the workspace; without this, the workspace is effectively disabled.
   update: 1 << 2, // Update general workspace properties; not directly related to deletion or invitations.

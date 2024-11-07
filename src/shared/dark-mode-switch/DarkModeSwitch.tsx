@@ -1,6 +1,5 @@
-import Brightness4Icon from '@mui/icons-material/Brightness4'
-import Brightness7Icon from '@mui/icons-material/Brightness7'
 import { Box, IconButton, styled } from '@mui/material'
+import { DarkModeIcon, LightModeIcon } from 'src/assets/icons'
 import { useThemeMode } from 'src/core/theme'
 import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
 
@@ -21,7 +20,7 @@ export const DarkModeSwitch = ({ whiteMode }: DarkModeSwitchProps) => {
   return (
     <Box display="flex" justifyContent="center" alignItems="center" px={2}>
       <DarkModeIconButton onClick={() => toggleColorMode()} whiteMode={whiteMode ?? false}>
-        {isDark ? <Brightness7Icon fontSize="large" /> : <Brightness4Icon fontSize="large" />}
+        {isDark ? <DarkModeIcon fontSize="large" /> : <LightModeIcon fontSize="large" />}
       </DarkModeIconButton>
     </Box>
   )

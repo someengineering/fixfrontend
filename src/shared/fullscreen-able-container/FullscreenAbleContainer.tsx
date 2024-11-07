@@ -1,7 +1,6 @@
-import FullscreenIcon from '@mui/icons-material/Fullscreen'
-import FullscreenExitIcon from '@mui/icons-material/FullscreenExit'
 import { Box, Fab } from '@mui/material'
 import { forwardRef, useEffect, useRef } from 'react'
+import { FullscreenExitIcon, FullscreenIcon } from 'src/assets/icons'
 import { useFullscreen } from 'src/shared/utils/useFullscreen'
 
 interface FullscreenAbleContainerProps {

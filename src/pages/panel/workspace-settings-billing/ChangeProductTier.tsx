@@ -1,9 +1,8 @@
 import { Trans } from '@lingui/macro'
-import CreditCardIcon from '@mui/icons-material/CreditCard'
 import { Box, ButtonBase, Divider, Stack, Typography, alpha } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { Fragment, useRef, useState } from 'react'
-import { AwsLogo } from 'src/assets/icons'
+import { AwsLogo, CreditCardIcon } from 'src/assets/icons'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceProductTiersQuery } from 'src/pages/panel/shared/queries'
 import { endPoints, env } from 'src/shared/constants'
@@ -200,7 +199,7 @@ export const ChangeProductTier = ({
                     {stripePaymentMethod ? (
                       <Stack spacing={1} alignItems="center" width="100%">
                         <ExternalLinkLoadingButton
-                          startIcon={<CreditCardIcon fontSize="large" sx={{ fontSize: '48px!important' }} />}
+                          startIcon={<CreditCardIcon width={48} height={48} />}
                           endIcon={null}
                           loadingPosition="start"
                           sx={{

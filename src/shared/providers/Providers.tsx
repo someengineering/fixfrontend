@@ -1,7 +1,8 @@
 import { QueryClientProvider } from '@tanstack/react-query'
 import { PropsWithChildren, Suspense } from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import { AuthGuard } from 'src/core/auth'
+// eslint-disable-next-line no-restricted-imports
+import { AuthGuard } from 'src/core/auth/AuthGuard'
 import { AbsoluteNavigateProvider } from 'src/shared/absolute-navigate'
 import { env } from 'src/shared/constants'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'

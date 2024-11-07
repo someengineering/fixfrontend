@@ -1,12 +1,11 @@
 import { t, Trans } from '@lingui/macro'
-import SendIcon from '@mui/icons-material/Send'
 import { LoadingButton } from '@mui/lab'
 import { Collapse, Divider, Link, Stack, TextField, Typography } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { FormEvent, Suspense, useEffect, useRef, useState } from 'react'
 import { Location, useLocation, useSearchParams } from 'react-router-dom'
-import { MailIcon, PasswordIcon } from 'src/assets/icons'
+import { MailIcon, PasswordIcon, SendFilledIcon } from 'src/assets/icons'
 import { allPermissions, maxPermissionNumber, useUserProfile } from 'src/core/auth'
 import { useSnackbar } from 'src/core/snackbar'
 import { panelUI } from 'src/shared/constants'
@@ -299,7 +298,7 @@ export default function LoginPage() {
           disabled={!password || !username}
           loading={isLoadingGeneric}
           loadingPosition={isLoadingGeneric ? 'start' : undefined}
-          startIcon={isLoadingGeneric ? <SendIcon /> : undefined}
+          startIcon={isLoadingGeneric ? <SendFilledIcon /> : undefined}
           sx={{ py: 2, px: 4 }}
         >
           <Trans>Sign in with email</Trans>

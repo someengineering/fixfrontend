@@ -1,8 +1,7 @@
 import { Trans } from '@lingui/macro'
-import WarningAmberIcon from '@mui/icons-material/WarningAmber'
 import { Avatar, Box, ButtonBase, Paper, Tooltip, Typography } from '@mui/material'
 import { ReactNode } from 'react'
-import { Crown } from 'src/assets/icons'
+import { Crown, WarningIcon } from 'src/assets/icons'
 import { useNonce } from 'src/shared/providers'
 import { AccountCloud } from 'src/shared/types/server-shared'
 import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
@@ -68,7 +67,7 @@ export const CloudAvatar = ({ cloud, small, withCrown, tooltip, error, onErrorCl
             sx={{ opacity: 0.8, '&:hover': { opacity: 1 } }}
           >
             <ButtonBase onClick={onErrorClick}>
-              <WarningAmberIcon width={24} height={24} color="warning" />
+              <WarningIcon width={24} height={24} color="warning" />
             </ButtonBase>
           </Box>
         </Tooltip>

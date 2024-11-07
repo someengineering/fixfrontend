@@ -1,8 +1,8 @@
 import { Trans } from '@lingui/macro'
-import SendIcon from '@mui/icons-material/Send'
 import { LoadingButton } from '@mui/lab'
 import { Theme, useMediaQuery } from '@mui/material'
 import { Suspense, useState } from 'react'
+import { SendFilledIcon } from 'src/assets/icons'
 import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
 import { WorkspaceSettingsAccountsSetupCloudAzureForm } from './WorkspaceSettingsAccountsSetupCloudAzureForm'
 import { WorkspaceSettingsAccountsSetupCloudAzureInstructions } from './WorkspaceSettingsAccountsSetupCloudAzureInstructions'
@@ -13,7 +13,14 @@ export default function WorkspaceSettingsAccountsSetupCloudAzurePage() {
   const [isPending, setIsPending] = useState(true)
 
   const submitButton = (
-    <LoadingButton type="submit" variant="contained" loading={isPending} loadingPosition="end" endIcon={<SendIcon />} disabled={hasError}>
+    <LoadingButton
+      type="submit"
+      variant="contained"
+      loading={isPending}
+      loadingPosition="end"
+      endIcon={<SendFilledIcon />}
+      disabled={hasError}
+    >
       <Trans>Submit</Trans>
     </LoadingButton>
   )

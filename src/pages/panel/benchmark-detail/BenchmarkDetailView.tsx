@@ -1,8 +1,8 @@
 import { Trans, t } from '@lingui/macro'
-import GppGoodIcon from '@mui/icons-material/GppGood'
 import { Box, ButtonBase, Divider, Stack, Typography } from '@mui/material'
 import { DataGridPremium, GridRow, GridToolbar } from '@mui/x-data-grid-premium'
 import { useRef } from 'react'
+import { VerifiedUserFilledIcon } from 'src/assets/icons'
 import { getColorBySeverity } from 'src/pages/panel/shared/utils'
 import { panelUI, sortedSeverities } from 'src/shared/constants'
 import { getMessage } from 'src/shared/defined-messages'
@@ -182,7 +182,7 @@ export const BenchmarkDetailView = ({ id, benchmarkDetail, child, onSelect }: Be
         </>
       ) : (
         <Stack flex={1} justifyContent="center" alignItems="center" spacing={1}>
-          <GppGoodIcon fontSize="large" color="success" sx={{ fontSize: 48 }} />
+          <VerifiedUserFilledIcon width={48} height={48} color="success" />
           <Typography color="success.main" variant="h5" textAlign="center">
             <Trans>All resources passed the check</Trans>
           </Typography>

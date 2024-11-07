@@ -128,10 +128,6 @@ export default tsEslint.config(
 
           paths: [
             {
-              name: '@mui/icons-material',
-              message: 'Only import usage of @mui/icons-material/Icon is allowed (do not named import icons).',
-            },
-            {
               name: '.',
               message:
                 'No import should be getting from "." (index.ts). This makes so sense, the import should point to the file in the same folder EG. "./Component"',

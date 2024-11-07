@@ -1,5 +1,5 @@
-export const byteUnits = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB'] as const
-export const numberUnits = ['', 'K', 'M', 'G', 'T', 'P'] as const
+const byteUnits = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB'] as const
+const numberUnits = ['', 'K', 'M', 'G', 'T', 'P'] as const
 
 interface NumberToReadableGenericArgumentsType {
   value: number

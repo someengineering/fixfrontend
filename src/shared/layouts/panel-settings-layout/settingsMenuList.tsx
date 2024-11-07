@@ -8,21 +8,21 @@ export interface MenuListItem {
   route: string
 }
 
-export const settingsRoute = `/settings`
+const settingsRoute = `/settings`
 
-export const routes = {
+const routes = {
   userSettingsRoute: `${settingsRoute}/user`,
   workspaceSettingsRoute: `${settingsRoute}/workspace`,
   workspaceUsersSettingsRoute: `${settingsRoute}/workspace-users`,
 }
 
-export const titles = {
+const titles = {
   userSettings: <Trans>User settings</Trans>,
   workspaceSettings: <Trans>Workspace settings</Trans>,
   workspaceUsersSettings: <Trans>Workspace users</Trans>,
 }
 
-export const userSettingsMenuList: MenuListItem[] = [
+const userSettingsMenuList: MenuListItem[] = [
   {
     name: <Trans>User details</Trans>,
     route: `${routes.userSettingsRoute}`,
@@ -51,7 +51,7 @@ const useGuardForBilling = () => {
   return hasPermission
 }
 
-export const workspaceSettingsMenuList: MenuListItem[] = [
+const workspaceSettingsMenuList: MenuListItem[] = [
   {
     name: <Trans>Workspace details</Trans>,
     route: `${routes.workspaceSettingsRoute}`,
@@ -73,7 +73,7 @@ export const workspaceSettingsMenuList: MenuListItem[] = [
   },
 ]
 
-export const workspaceUsersSettingsMenuList: MenuListItem[] = [
+const workspaceUsersSettingsMenuList: MenuListItem[] = [
   {
     name: <Trans>Current users</Trans>,
     route: `${routes.workspaceUsersSettingsRoute}`,
