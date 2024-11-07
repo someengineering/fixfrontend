@@ -2,7 +2,7 @@ import { RefObject, useCallback, useEffect, useRef, useState } from 'react'
 
 export type SwipeDirection = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT'
 
-export const getPointerCoordinates = (event: TouchEvent | MouseEvent): [number, number] => {
+const getPointerCoordinates = (event: TouchEvent | MouseEvent): [number, number] => {
   if ('touches' in event) {
     const { clientX, clientY } = event.touches[0]
     return [clientX, clientY]

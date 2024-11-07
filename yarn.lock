@@ -1056,26 +1056,26 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@lingui/babel-plugin-extract-messages@4.13.0":
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/@lingui/babel-plugin-extract-messages/-/babel-plugin-extract-messages-4.13.0.tgz#deff7f51280b024fff57f00dfb657242ae1b9f3e"
-  integrity sha512-7tvSw/768RU52NYJ9CtdcoPfkR6fF9+1uX7mXkhvcjOHAdZJReOu+8MLTusjjOtcSPYHc3yoercTbNo1k32gQQ==
+"@lingui/babel-plugin-extract-messages@4.14.0":
+  version "4.14.0"
+  resolved "https://registry.yarnpkg.com/@lingui/babel-plugin-extract-messages/-/babel-plugin-extract-messages-4.14.0.tgz#453b6676292bebdad05016098cd5c0b1ce0fe4cf"
+  integrity sha512-lLabYkUsiF0un4ezColFm9Yf23c+efPR/5DRM9cFwW9uZJ5ajN4Ic00dBxJK9HOpy6fpaANnaHFmrm4NScijvQ==
 
-"@lingui/cli@4.13.0", "@lingui/cli@^4.13.0":
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/@lingui/cli/-/cli-4.13.0.tgz#e138fbbfdfa7b9d6b9e71b2e1e15fa88116bb452"
-  integrity sha512-NqQJmm2b3sf+Fb/blhcS2C6kqzkHVmS4m9VzQZZT0UvxN0Mw5S6hu0aAy/ndXBfRelNqMpdTFGBlrJn/IC6GjQ==
+"@lingui/cli@4.14.0", "@lingui/cli@^4.14.0":
+  version "4.14.0"
+  resolved "https://registry.yarnpkg.com/@lingui/cli/-/cli-4.14.0.tgz#88e5c9a406c36d2100128d40ded30a2d9c905e5a"
+  integrity sha512-g9aJ76wpl6Fj06SEGiGnilAErEuZG6/woAU1HM81E0ZZ8ib1DF+cf81PJE+8Lwoxc0yMqY8qMScwhwcUhnR0aA==
   dependencies:
     "@babel/core" "^7.21.0"
     "@babel/generator" "^7.21.1"
     "@babel/parser" "^7.22.0"
     "@babel/runtime" "^7.21.0"
     "@babel/types" "^7.21.2"
-    "@lingui/babel-plugin-extract-messages" "4.13.0"
-    "@lingui/conf" "4.13.0"
-    "@lingui/core" "4.13.0"
-    "@lingui/format-po" "4.13.0"
-    "@lingui/message-utils" "4.13.0"
+    "@lingui/babel-plugin-extract-messages" "4.14.0"
+    "@lingui/conf" "4.14.0"
+    "@lingui/core" "4.14.0"
+    "@lingui/format-po" "4.14.0"
+    "@lingui/message-utils" "4.14.0"
     babel-plugin-macros "^3.0.1"
     chalk "^4.1.0"
     chokidar "3.5.1"
@@ -1096,10 +1096,10 @@
     ramda "^0.27.1"
     source-map "^0.8.0-beta.0"
 
-"@lingui/conf@4.13.0":
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/@lingui/conf/-/conf-4.13.0.tgz#5c63b45cee12fc3fbb0c5a340cbf986e5eb3845a"
-  integrity sha512-7NSinlzgSMKBezLsSM7DMwr0IpTHKr8nuSDpTZpI79+BhW+Xq38jPRQqMXdzItW8Cl/Lsdr3Y3MnYJIl8tADsQ==
+"@lingui/conf@4.14.0":
+  version "4.14.0"
+  resolved "https://registry.yarnpkg.com/@lingui/conf/-/conf-4.14.0.tgz#4c78f15125de5c0e9bae0aa8b6e5c08daaa4adb5"
+  integrity sha512-wHZ4s79wqPnROa3xEoUTNep7sjqwbDHCMLBhsHbcvk/3ACDKgm0TMvDnIRjMRwrPRsK98yxSmWaE+NKhT0Ggyw==
   dependencies:
     "@babel/runtime" "^7.20.13"
     chalk "^4.1.0"
@@ -1108,64 +1108,64 @@
     jiti "^1.17.1"
     lodash.get "^4.4.2"
 
-"@lingui/core@4.13.0":
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/@lingui/core/-/core-4.13.0.tgz#d21c062b4e7cec198dd602caf07fe212a98c0b2c"
-  integrity sha512-kRqQWeEVoqNrDtEdyHPWGsAHRStN8ObYc5a1gdyuBhoj1zaoUS/DMK5C7B1ZeTtj6rCCmZRs6d2tN12hsZ2zJA==
+"@lingui/core@4.14.0":
+  version "4.14.0"
+  resolved "https://registry.yarnpkg.com/@lingui/core/-/core-4.14.0.tgz#108276abe5ce1d528886a6d3d562b1700a4ac787"
+  integrity sha512-rsuBKG3mupWpfP5RYacufu0ToavrqgFPnEI/zOcuvMNL24IlZ38O2/P3POZCEA8XCyhON70FICy8xs3ZvQ+uWg==
   dependencies:
     "@babel/runtime" "^7.20.13"
-    "@lingui/message-utils" "4.13.0"
+    "@lingui/message-utils" "4.14.0"
     unraw "^3.0.0"
 
-"@lingui/format-po@4.13.0":
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/@lingui/format-po/-/format-po-4.13.0.tgz#9e6f244231ff2957d7cef04e40a008a8690f8acd"
-  integrity sha512-G//WCCXi0cZ9SGuZ0gwm7JCZEiKvENZViqceX8Qjid0r/Lwom3SGeZhVaqzWGQR5YoA8KBQ9elJrbcVJnKh97g==
+"@lingui/format-po@4.14.0":
+  version "4.14.0"
+  resolved "https://registry.yarnpkg.com/@lingui/format-po/-/format-po-4.14.0.tgz#fc8a361a29804964dc9eaf94ae072d202e8abbc2"
+  integrity sha512-3Bmk9f7lRuBoZsBG5c5hq5ipgAqeux+nDVnAIXSfsp4f8jj+z+cHwW0xuHcW48mHQFwfcTGAYZcKnwhuwwut6Q==
   dependencies:
-    "@lingui/conf" "4.13.0"
-    "@lingui/message-utils" "4.13.0"
+    "@lingui/conf" "4.14.0"
+    "@lingui/message-utils" "4.14.0"
     date-fns "^3.6.0"
     pofile "^1.1.4"
 
-"@lingui/macro@^4.13.0":
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/@lingui/macro/-/macro-4.13.0.tgz#c63c0b69da92fcd6c1a322ac957b2ab288f10a9b"
-  integrity sha512-OjhaWOWbTCXHOOHNaGI0shMP3qrPjNZ19tpEx/iStAmJq64fkevx/HbDPI0uuqLX8v1NFWG/SzBMIQzJb5YOvA==
+"@lingui/macro@^4.14.0":
+  version "4.14.0"
+  resolved "https://registry.yarnpkg.com/@lingui/macro/-/macro-4.14.0.tgz#daaabf67d789aee6c5d0c46fa3ae446f060aff1f"
+  integrity sha512-zZNPYVwCMvKcDtaPzYDhkfogbUMEKCsCEIqvXrKI2DujLjV7DWGJ97U99h9iGDeBrEIZqFHnimsAwbb2lfRPaQ==
   dependencies:
     "@babel/runtime" "^7.20.13"
     "@babel/types" "^7.20.7"
-    "@lingui/conf" "4.13.0"
-    "@lingui/core" "4.13.0"
-    "@lingui/message-utils" "4.13.0"
+    "@lingui/conf" "4.14.0"
+    "@lingui/core" "4.14.0"
+    "@lingui/message-utils" "4.14.0"
 
-"@lingui/message-utils@4.13.0":
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/@lingui/message-utils/-/message-utils-4.13.0.tgz#ebf64c5c47857dc4d39fde673804c9966ae8c8d8"
-  integrity sha512-tI/WBVZym+APwqk0O3xTaF0k+RQIv5E4PqGHdXqwbofycHly2C+izH+hg6UeNctc6jd19GRwqu/4ga9knkdAlQ==
+"@lingui/message-utils@4.14.0":
+  version "4.14.0"
+  resolved "https://registry.yarnpkg.com/@lingui/message-utils/-/message-utils-4.14.0.tgz#c4c1cdaca3e47fe6383826db1f74fb9d9e6553ab"
+  integrity sha512-izZod/6P2cXtqZt06r+VcbG3oCskPY8A1dVA8hyx0UZBCaufrZk6NgzCMYTMRXyOuXt6MafQyUfBJSrE4n3FIw==
   dependencies:
     "@messageformat/parser" "^5.0.0"
     js-sha256 "^0.10.1"
 
-"@lingui/react@^4.13.0":
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/@lingui/react/-/react-4.13.0.tgz#19d86560bcb0514738d8087eb567d6cc5caadc25"
-  integrity sha512-5remR9rVwosiiX/RnEWETHA8cpqQiP7U87OXXMPz67LuyG3XP8RP+ic75rVn284DHLHgpjDbauz7vYIz855ZoQ==
+"@lingui/react@^4.14.0":
+  version "4.14.0"
+  resolved "https://registry.yarnpkg.com/@lingui/react/-/react-4.14.0.tgz#7af9dcbd16e98018d8ae3d9b0e4e06b9da2b4224"
+  integrity sha512-20gk22E3RZar4Wcdt/gBtHfi1UZTQvEX5XaCDZF9iAyIlwIWxA+eTquNwg08tYl4Ne6o8jjUGEWcNBJ3ZnlXhg==
   dependencies:
     "@babel/runtime" "^7.20.13"
-    "@lingui/core" "4.13.0"
+    "@lingui/core" "4.14.0"
 
 "@lingui/swc-plugin@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@lingui/swc-plugin/-/swc-plugin-4.1.0.tgz#aa69d73d1a2c77697cda77d3ea90126ad9e83ab3"
   integrity sha512-LBiSbDJoYlB5pT3qtOwZzmqAXSSuhSTx9Zxfhfmfo2NZ6otCDYULCYj0YoXjOCyL1WOWQ72CwAhdxUS8WIt/OQ==
 
-"@lingui/vite-plugin@^4.13.0":
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/@lingui/vite-plugin/-/vite-plugin-4.13.0.tgz#8ccd9c5b0a18ac14c0301586913f882155be2cea"
-  integrity sha512-PuyMQwVYhwoWva+rNyiMQFoit9WAFqcMP/8c8fL3fFJlSaAXa+Roy4RfnoixfPoqe++qEOkjvDF0vKSAjiX0iA==
+"@lingui/vite-plugin@^4.14.0":
+  version "4.14.0"
+  resolved "https://registry.yarnpkg.com/@lingui/vite-plugin/-/vite-plugin-4.14.0.tgz#df6f106c988954f2cbe640e4f77ce6a1fb2518d5"
+  integrity sha512-1UilkYXIA8xfexlndsbsfS7AQi0Qm0VRSf92DWw5YCACFuk8Exb1su/CYrQu/YWk0MfcDY6/7rJDEOPWGgBRWA==
   dependencies:
-    "@lingui/cli" "4.13.0"
-    "@lingui/conf" "4.13.0"
+    "@lingui/cli" "4.14.0"
+    "@lingui/conf" "4.14.0"
 
 "@mdx-js/react@^3.0.0":
   version "3.0.1"
@@ -1340,20 +1340,6 @@
   version "7.22.0"
   resolved "https://registry.yarnpkg.com/@mui/x-charts/-/x-charts-7.22.0.tgz#b4b7237e6e7d42607c1084c9ed106dc3c30eca22"
   integrity sha512-B70ix8keyww9CpfdwbsHygQGsgEySCXuHhGrDRiVyFgK+Be4edBWNswbL3ngIp37CHBbWegaYkPp/Q9GDas0AA==
-  dependencies:
-    "@babel/runtime" "^7.25.7"
-    "@mui/utils" "^5.16.6 || ^6.0.0"
-    "@mui/x-charts-vendor" "7.20.0"
-    "@mui/x-internals" "7.21.0"
-    "@react-spring/rafz" "^9.7.5"
-    "@react-spring/web" "^9.7.5"
-    clsx "^2.1.1"
-    prop-types "^15.8.1"
-
-"@mui/x-charts@^7.22.1":
-  version "7.22.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-charts/-/x-charts-7.22.1.tgz#f4137d2626bd75a4a50be1bd412a8974cfd8696c"
-  integrity sha512-zgr8CN4yLen5puqaX7Haj5+AoVG7E13HHsIiDoEAuQvuFDF0gKTxTTdLSKXqhd1qJUIIzJaztZtrr3YCVrENqw==
   dependencies:
     "@babel/runtime" "^7.25.7"
     "@mui/utils" "^5.16.6 || ^6.0.0"
@@ -1555,10 +1541,10 @@
     "@react-spring/shared" "~9.7.5"
     "@react-spring/types" "~9.7.5"
 
-"@remix-run/router@1.20.0":
-  version "1.20.0"
-  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.20.0.tgz#03554155b45d8b529adf635b2f6ad1165d70d8b4"
-  integrity sha512-mUnk8rPJBI9loFDZ+YzPGdeniYK+FTmRD1TMCz7ev2SNIozyKKpnGgsxO34u6Z4z/t0ITuu7voi/AshfsGsgFg==
+"@remix-run/router@1.21.0":
+  version "1.21.0"
+  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.21.0.tgz#c65ae4262bdcfe415dbd4f64ec87676e4a56e2b5"
+  integrity sha512-xfSkCAchbdG5PnbrKqFWwia4Bi61nH+wm8wLEqfHDyp7Y3dZzgqS2itV8i4gAq9pC2HsTpwyBC6Ds8VHZ96JlA==
 
 "@rollup/pluginutils@^4.2.0":
   version "4.2.1"
@@ -1782,7 +1768,7 @@
   dependencies:
     memoizerific "^1.11.3"
 
-"@storybook/blocks@8.4.2", "@storybook/blocks@^8.4.2":
+"@storybook/blocks@8.4.2":
   version "8.4.2"
   resolved "https://registry.yarnpkg.com/@storybook/blocks/-/blocks-8.4.2.tgz#69f4458e4aeab1265ae6a304052c5239a0cb82da"
   integrity sha512-yAAvmOWaD8gIrepOxCh/RxQqd/1xZIwd/V+gsvAhW/thawN+SpI+zK63gmcqAPLX84hJ3Dh5pegRk0SoHNuDVA==
@@ -2079,17 +2065,17 @@
   dependencies:
     "@swc/counter" "^0.1.3"
 
-"@tanstack/query-core@5.59.17":
-  version "5.59.17"
-  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.59.17.tgz#bda3bb678be48e2f6ee692abd1cfc2db3d455e4b"
-  integrity sha512-jWdDiif8kaqnRGHNXAa9CnudtxY5v9DUxXhodgqX2Rwzj+1UwStDHEbBd9IA5C7VYAaJ2s+BxFR6PUBs8ERorA==
+"@tanstack/query-core@5.59.20":
+  version "5.59.20"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.59.20.tgz#356718976536727b9af0ad1163a21fd6a44ee0a9"
+  integrity sha512-e8vw0lf7KwfGe1if4uPFhvZRWULqHjFcz3K8AebtieXvnMOz5FSzlZe3mTLlPuUBcydCnBRqYs2YJ5ys68wwLg==
 
-"@tanstack/react-query@^5.59.19":
-  version "5.59.19"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.59.19.tgz#309ae0d75844e331ea72762bfe0e11fb829a69d3"
-  integrity sha512-xLRfyFyQOFcLltKCds0LijfC6/HQJrrTTnZB8ciyn74LIkVAm++vZJ6eUVG20RmJtdP8REdy7vSOYW4M3//XLA==
+"@tanstack/react-query@^5.59.20":
+  version "5.59.20"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.59.20.tgz#bacf1983f44c5690bb99b518f2ef71dc2fa875a4"
+  integrity sha512-Zly0egsK0tFdfSbh5/mapSa+Zfc3Et0Zkar7Wo5sQkFzWyB3p3uZWOHR2wrlAEEV2L953eLuDBtbgFvMYiLvUw==
   dependencies:
-    "@tanstack/query-core" "5.59.17"
+    "@tanstack/query-core" "5.59.20"
 
 "@testing-library/dom@10.4.0":
   version "10.4.0"
@@ -6663,20 +6649,20 @@ react-refresh@^0.14.2:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.14.2.tgz#3833da01ce32da470f1f936b9d477da5c7028bf9"
   integrity sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==
 
-react-router-dom@^6.27.0:
-  version "6.27.0"
-  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.27.0.tgz#8d7972a425fd75f91c1e1ff67e47240c5752dc3f"
-  integrity sha512-+bvtFWMC0DgAFrfKXKG9Fc+BcXWRUO1aJIihbB79xaeq0v5UzfvnM5houGUm1Y461WVRcgAQ+Clh5rdb1eCx4g==
+react-router-dom@^6.28.0:
+  version "6.28.0"
+  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.28.0.tgz#f73ebb3490e59ac9f299377062ad1d10a9f579e6"
+  integrity sha512-kQ7Unsl5YdyOltsPGl31zOjLrDv+m2VcIEcIHqYYD3Lp0UppLjrzcfJqDJwXxFw3TH/yvapbnUvPlAj7Kx5nbg==
   dependencies:
-    "@remix-run/router" "1.20.0"
-    react-router "6.27.0"
+    "@remix-run/router" "1.21.0"
+    react-router "6.28.0"
 
-react-router@6.27.0:
-  version "6.27.0"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.27.0.tgz#db292474926c814c996c0ff3ef0162d1f9f60ed4"
-  integrity sha512-YA+HGZXz4jaAkVoYBE98VQl+nVzI+cVI2Oj/06F5ZM+0u3TgedN9Y9kmMRo2mnkSK2nCpNQn0DVob4HCsY/WLw==
+react-router@6.28.0:
+  version "6.28.0"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.28.0.tgz#29247c86d7ba901d7e5a13aa79a96723c3e59d0d"
+  integrity sha512-HrYdIFqdrnhDw0PqG/AKjAqEqM7AvxCz0DQ4h2W8k6nqmc5uRBYDag0SBxx9iYz5G8gnuNVLzUe13wl9eAsXXg==
   dependencies:
-    "@remix-run/router" "1.20.0"
+    "@remix-run/router" "1.21.0"
 
 react-smooth@^4.0.0:
   version "4.0.0"

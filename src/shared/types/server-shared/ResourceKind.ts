@@ -5,7 +5,7 @@ import {
   ResourceComplexKindSimpleTypeDefinitions,
 } from './ResourceComplexKindProperty'
 
-export interface ResourceKindGeneric<Type extends ResourceComplexKindPropertyKindType> {
+interface ResourceKindGeneric<Type extends ResourceComplexKindPropertyKindType> {
   type: Type
 }
 
@@ -39,7 +39,7 @@ export interface ResourceComplexKind extends ResourceKindGeneric<'object'> {
   runtime_kind: string
 }
 
-export interface ResourceSimpleKind extends ResourceKindGeneric<'simple'> {
+interface ResourceSimpleKind extends ResourceKindGeneric<'simple'> {
   fqn: string
   runtime_kind: ResourceComplexKindSimpleTypeDefinitions
   enum?: string[]

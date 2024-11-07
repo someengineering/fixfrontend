@@ -1,26 +1,11 @@
 import { Trans } from '@lingui/macro'
-import { ComponentType, FC, ReactNode } from 'react'
+import { FC, ReactNode } from 'react'
 import { DashboardIcon, LabProfileIcon, LocalPoliceIcon, SearchIcon, SvgIconProps } from 'src/assets/icons'
 
 export interface MenuListItem {
   name: ReactNode
   route: string
   exact?: boolean
-  notRouteSearchMatch?: boolean
-  Icon: FC<SvgIconProps>
-  useGuard?: () => boolean
-  hideOnGuard?: boolean
-}
-
-type DefaultMenuModalListItemProps = {
-  onModalClose: () => void
-}
-
-export interface MenuModalListItem<T extends DefaultMenuModalListItemProps = DefaultMenuModalListItemProps> {
-  name: ReactNode
-  route: 'modal'
-  props: Partial<T>
-  Component: ComponentType<T>
   Icon: FC<SvgIconProps>
 }
 

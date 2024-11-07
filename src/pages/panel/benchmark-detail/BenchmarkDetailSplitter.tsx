@@ -18,7 +18,7 @@ const getChildSizes = (children: BenchmarkDetailSplitterProps['children']) => {
   return children.map((i) => (i ? childSize : 0))
 }
 
-export const BenchmarkDetailDesktopSplitter = ({ children, isMobile }: BenchmarkDetailSplitterProps) => {
+const BenchmarkDetailDesktopSplitter = ({ children, isMobile }: BenchmarkDetailSplitterProps) => {
   const nonce = useNonce()
   const [sizes, setSizes] = usePersistState<number[] | undefined>(
     'BenchmarkDetailDesktopSplitter.initialSizes',

@@ -47,7 +47,7 @@ const Snackbar = styled(MuiSnackbar, { shouldForwardProp: shouldForwardPropWithB
   }),
 )
 
-export function SnackbarElement({
+function SnackbarElement({
   id,
   message,
   open,

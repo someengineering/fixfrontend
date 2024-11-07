@@ -67,30 +67,24 @@ msgstr ""
 msgid "{0, plural, one {One error reported} two {Two errors reported} other {# errors reported}}"
 msgstr ""
 
-#: src/pages/panel/inventory-old/InventoryInfoResourceChangesTable.tsx:40
-#: src/pages/panel/inventory-old/InventoryInfoResourceChangesTable.tsx:66
-#: src/pages/panel/inventory-old/InventoryInfoResourceChangesTable.tsx:92
-msgid "{0}"
-msgstr ""
-
 #: src/pages/panel/inventory-search/utils/InventoryTableDateRenderCell.tsx:17
 #: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:31
 #: src/pages/panel/workspace-users-settings/WorkspaceUsersSettingsRow.tsx:60
 msgid "{0} ago"
 msgstr ""
 
-#: src/shared/event-button/EventButton.tsx:58
-#: src/shared/event-button/EventButton.tsx:67
+#: src/shared/event-button/EventButton.tsx:55
+#: src/shared/event-button/EventButton.tsx:64
 msgid "{0} Cloud account configured, id: {1}"
 msgstr "{0} Cloud-Konto konfiguriert, ID: {1}"
 
-#: src/shared/event-button/EventButton.tsx:76
-#: src/shared/event-button/EventButton.tsx:85
+#: src/shared/event-button/EventButton.tsx:73
+#: src/shared/event-button/EventButton.tsx:82
 msgid "{0} Cloud account degraded, id: {1}"
 msgstr "{0} Cloud-Konto beeinträchtigt, ID: {1}"
 
-#: src/shared/event-button/EventButton.tsx:94
-#: src/shared/event-button/EventButton.tsx:102
+#: src/shared/event-button/EventButton.tsx:91
+#: src/shared/event-button/EventButton.tsx:99
 msgid "{0} Cloud account discovered, id: {1}"
 msgstr "{0} Cloud-Konto entdeckt, ID: {1}"
 
@@ -321,10 +315,6 @@ msgstr "Konten"
 msgid "Accounts Summary"
 msgstr "Zusammenfassung der Konten"
 
-#: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:36
-msgid "Action"
-msgstr "Aktion"
-
 #: src/pages/panel/accounts/AccountsTableItem.tsx:92
 msgid "Actions"
 msgstr "Aktionen"
@@ -352,14 +342,6 @@ msgstr ""
 #: src/shared/add-account-button/AddAccountButtonDisabled.tsx:8
 msgid "Add an account"
 msgstr "Füge ein Konto hinzu"
-
-#: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:33
-msgid "Add Directory"
-msgstr "Verzeichnis hinzufügen"
-
-#: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:20
-msgid "Add external directory"
-msgstr "Externes Verzeichnis hinzufügen"
 
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:60
 msgid "Add Filter"
@@ -637,10 +619,6 @@ msgstr ""
 msgid "Book a call"
 msgstr ""
 
-#: src/pages/panel/inventory-old/InventoryInfoResourcesTable.tsx:142
-msgid "Buckets"
-msgstr ""
-
 #: src/pages/panel/workspace-settings-billing/utils/productTierToLabel.ts:13
 msgid "Business"
 msgstr "Business"
@@ -714,10 +692,6 @@ msgstr ""
 #: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:79
 msgid "Changes"
 msgstr "Änderungen"
-
-#: src/pages/panel/inventory-old/InventoryInfoResourcesTable.tsx:47
-msgid "Changes In {0}"
-msgstr ""
 
 #: src/pages/panel/security/Overview.tsx:42
 msgid "Changes in the past 7 days"
@@ -825,7 +799,6 @@ msgstr "Schließen"
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:92
 #: src/pages/panel/inventory/InventoryPage.tsx:273
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:252
-#: src/pages/panel/security/AccountCard.tsx:38
 msgid "Cloud"
 msgstr "Cloud"
 
@@ -856,7 +829,7 @@ msgid "Community support"
 msgstr "Gemeinschaftliche Unterstützung"
 
 #: src/pages/panel/security/OverallCard.tsx:76
-#: src/shared/layouts/panel-layout/menuList.tsx:45
+#: src/shared/layouts/panel-layout/menuList.tsx:30
 msgid "Compliance"
 msgstr "Compliance"
 
@@ -873,7 +846,6 @@ msgid "Compliant in the last 7 days"
 msgstr ""
 
 #: src/assets/icons/getNameAndIconFromMetadataGroup.ts:22
-#: src/pages/panel/inventory-old/InventoryInfoResourcesTable.tsx:67
 msgid "Compute"
 msgstr ""
 
@@ -972,10 +944,6 @@ msgstr ""
 msgid "Copy the Secret Value of the created secret and paste it in the Secret Value field {0}, but don't press the submit button yet."
 msgstr ""
 
-#: src/pages/panel/inventory-old/InventoryInfoResourcesTable.tsx:80
-msgid "Cores"
-msgstr ""
-
 #: src/pages/panel/dashboard/WorldMap.tsx:398
 msgid "Country"
 msgstr ""
@@ -1041,10 +1009,6 @@ msgstr ""
 msgid "Critical"
 msgstr "Kritisch"
 
-#: src/pages/panel/inventory-old/InventoryInfoResourcesTable.tsx:44
-msgid "Current"
-msgstr ""
-
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:206
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:129
 msgid "Current Product Tier"
@@ -1062,7 +1026,7 @@ msgstr "Derzeit stehen keine verbundenen Dienste zur Konfiguration zur Verfügun
 msgid "Daily"
 msgstr "Tägliche"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:29
+#: src/shared/layouts/panel-layout/menuList.tsx:14
 msgid "Dashboard"
 msgstr ""
 
@@ -1072,10 +1036,6 @@ msgstr "Datenexport"
 
 #: src/assets/icons/getNameAndIconFromMetadataGroup.ts:28
 msgid "Database"
-msgstr ""
-
-#: src/pages/panel/inventory-old/InventoryInfoResourcesTable.tsx:176
-msgid "Databases"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingTable.tsx:45
@@ -1094,11 +1054,6 @@ msgstr "Deaktivieren"
 #: src/pages/panel/user-settings/UserSettingsTotp.tsx:20
 msgid "Deactivate TOTP setup"
 msgstr ""
-
-#: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:69
-#: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:33
-msgid "Default Role"
-msgstr "Standardrolle"
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:73
 msgid "Define Roles"
@@ -1159,7 +1114,6 @@ msgstr "Bereitstellung für ein einzelnes Konto"
 #: src/pages/panel/inventory-detail/InventoryDetailView.tsx:218
 #: src/pages/panel/user-settings-api-token/UserSettingsApiTokensAddToken.tsx:123
 #: src/pages/panel/user-settings-api-token/UserSettingsAPITokensPage.tsx:22
-#: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:24
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -1300,10 +1254,6 @@ msgstr "Unternehmen"
 msgid "Errors reported during the last collect of account {accountName}"
 msgstr ""
 
-#: src/shared/event-button/EventButton.tsx:138
-msgid "Events"
-msgstr "Veranstaltungen"
-
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:32
 msgid "Everything in Free, and"
 msgstr "Alles in Free, und"
@@ -1317,12 +1267,10 @@ msgstr "Beispielsuchen"
 msgid "Expires"
 msgstr "Läuft ab"
 
-#: src/shared/layouts/panel-layout/menuList.tsx:40
+#: src/shared/layouts/panel-layout/menuList.tsx:25
 msgid "Explorer"
 msgstr ""
 
-#: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:10
-#: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:14
 #: src/shared/layouts/panel-layout/useBreadcrumbs.ts:23
 msgid "External Directories"
 msgstr "Externe Verzeichnisse"
@@ -1498,7 +1446,6 @@ msgstr ""
 #: src/pages/panel/accounts/AccountRow.tsx:546
 #: src/pages/panel/accounts/AccountsTableItem.tsx:62
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:249
-#: src/pages/panel/security/AccountCard.tsx:35
 #: src/shared/charts/NetworkDiagram.tsx:376
 msgid "ID"
 msgstr "ID"
@@ -1633,10 +1580,6 @@ msgstr ""
 msgid "Instance is terminated"
 msgstr "Instanz wird beendet"
 
-#: src/pages/panel/inventory-old/InventoryInfoResourcesTable.tsx:182
-msgid "Instances"
-msgstr ""
-
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:48
 msgid "Integration advice for your specific cloud environment via video call"
 msgstr "Integrationsberatung für Ihre spezifische Cloud-Umgebung per Videoanruf"
@@ -1656,7 +1599,7 @@ msgstr "Ungültiger Wert"
 
 #: src/pages/panel/inventory/getSlides.tsx:13
 #: src/pages/panel/inventory/InventoryPage.tsx:223
-#: src/shared/layouts/panel-layout/menuList.tsx:34
+#: src/shared/layouts/panel-layout/menuList.tsx:19
 msgid "Inventory"
 msgstr "Inventar"
 
@@ -1664,7 +1607,6 @@ msgstr "Inventar"
 msgid "Invite"
 msgstr "Einladen"
 
-#: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:36
 #: src/pages/panel/workspace-users-settings/InviteExternalUser.tsx:45
 msgid "Invite External User"
 msgstr "Externen Benutzer einladen"
@@ -1792,10 +1734,6 @@ msgstr "Mittel"
 msgid "Member"
 msgstr "Mitglied"
 
-#: src/pages/panel/inventory-old/InventoryInfoResourcesTable.tsx:87
-msgid "Memory"
-msgstr ""
-
 #: src/shared/utils/getErrorMessage.ts:22
 msgid "MFA already enabled"
 msgstr ""
@@ -1811,10 +1749,6 @@ msgstr ""
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:36
 msgid "Monitoring and Alerting"
 msgstr "Monitoring und Alarmierung"
-
-#: src/pages/panel/inventory-old/InventoryPage.tsx:39
-msgid "month"
-msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/ProductTierComp.tsx:26
 #: src/pages/panel/workspace-settings-billing/WorkspaceSettingsBillingPage.tsx:124
@@ -1846,9 +1780,6 @@ msgstr "Die meisten nicht konformen Konten"
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsOpsgenieService.tsx:124
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsPagerdutyService.tsx:121
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:141
-#: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:42
-#: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:46
-#: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:18
 #: src/pages/panel/workspace-users-settings/InviteExternalUserForm.tsx:67
 #: src/pages/panel/workspace-users-settings/InviteExternalUserForm.tsx:77
 #: src/shared/charts/NetworkDiagram.tsx:377
@@ -1931,10 +1862,6 @@ msgstr ""
 msgid "Next scan"
 msgstr "Nächster Scan"
 
-#: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:30
-msgid "Next Sync"
-msgstr "Nächste Synchronisierung"
-
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormFilterRowBooleanValue.tsx:42
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormFilterRowBooleanValue.tsx:68
 #: src/pages/panel/inventory-search/utils/inventoryTableRenderCell.tsx:30
@@ -1996,10 +1923,6 @@ msgstr ""
 
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:261
 msgid "Number of Resources changed, broken down by owner tag in the last 30 days."
-msgstr ""
-
-#: src/pages/panel/inventory-old/InventoryInfoResourcesTable.tsx:148
-msgid "Objects"
 msgstr ""
 
 #: src/pages/panel/inventory/DataGridPagination.tsx:25
@@ -2108,15 +2031,6 @@ msgstr "Verwaiste Snapshots"
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:71
 msgid "Orphaned Volumes"
 msgstr "Verwaiste Volumes"
-
-#: src/pages/panel/inventory-old/InventoryInfoResourcesPerAccountTimeline.tsx:36
-msgid "Other {0} accounts"
-msgstr ""
-
-#: src/pages/panel/inventory-old/InventoryInfoResourcesPerAccountTimeline.tsx:139
-#: src/pages/panel/inventory-old/InventoryInfoResourcesPerAccountTimeline.tsx:162
-msgid "Others"
-msgstr ""
 
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:200
 #: src/pages/panel/user-settings/UserSettingsTotpDeactivationModal.tsx:81
@@ -2422,28 +2336,12 @@ msgstr "Ressourcen"
 msgid "Resources became compliant in the last 7 days."
 msgstr ""
 
-#: src/pages/panel/inventory-old/InventoryInfoResourceChangesTable.tsx:34
-msgid "Resources Created"
-msgstr ""
-
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:139
 msgid "Resources Created in the last 7 days."
 msgstr ""
 
-#: src/pages/panel/inventory-old/InventoryInfoResourceChangesTable.tsx:86
-msgid "Resources Deleted"
-msgstr ""
-
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:159
 msgid "Resources Deleted in the last 7 days."
-msgstr ""
-
-#: src/pages/panel/inventory-old/InventoryPage.tsx:115
-msgid "Resources Under Control"
-msgstr ""
-
-#: src/pages/panel/inventory-old/InventoryInfoResourceChangesTable.tsx:60
-msgid "Resources Updated"
 msgstr ""
 
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:149
@@ -2526,15 +2424,10 @@ msgstr "Die Sicherheitslage wurde verbessert"
 msgid "Security Scan"
 msgstr "Sicherheitsscan"
 
-#: src/pages/panel/inventory-old/InventoryPage.tsx:47
 #: src/pages/panel/security/Overview.tsx:29
 #: src/pages/panel/security/Overview.tsx:52
 msgid "Security Score"
 msgstr "Sicherheitsbewertung"
-
-#: src/pages/panel/inventory-old/InventoryPage.tsx:85
-msgid "Security Score over all {accountCounts} cloud accounts"
-msgstr ""
 
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:275
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:286
@@ -2656,12 +2549,6 @@ msgstr "Melden Sie sich mit {formattedName} an"
 msgid "Sign up with email"
 msgstr ""
 
-#: src/pages/panel/inventory-old/InventoryInfoResourcesTable.tsx:121
-#: src/pages/panel/inventory-old/InventoryInfoResourcesTable.tsx:155
-#: src/pages/panel/inventory-old/InventoryInfoResourcesTable.tsx:189
-msgid "Size"
-msgstr ""
-
 #: src/pages/panel/resource-detail/ResourceDetailFailedCheckIgnoredChecks.tsx:51
 msgid "Some checks have been disabled for this resource"
 msgstr "Einige Prüfungen wurden für diese Ressource deaktiviert"
@@ -2684,7 +2571,6 @@ msgid "Start your cloud compliance journey.\\n"
 msgstr "Beginnen Sie mit der Cloud-Compliance."
 
 #: src/assets/icons/getNameAndIconFromMetadataGroup.ts:24
-#: src/pages/panel/inventory-old/InventoryInfoResourcesTable.tsx:108
 msgid "Storage"
 msgstr ""
 
@@ -2720,18 +2606,6 @@ msgstr "Prüfen"
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:100
 msgid "The change will be active from the next security scan onwards. Until the next scan, the resource will still show the failing check."
 msgstr "Die Änderung wird ab dem nächsten Sicherheitsscan aktiv. Bis zum nächsten Scan zeigt die Ressource weiterhin die fehlgeschlagene Prüfung an."
-
-#: src/pages/panel/inventory-old/InventoryPage.tsx:76
-msgid "The current weighted security score did not change over the <0>past {durationName}</0>."
-msgstr ""
-
-#: src/pages/panel/inventory-old/InventoryPage.tsx:51
-msgid "The current weighted security score has declined by <0>{0}</0> points over the <1>past {durationName}</1>.<2/><3>It's time to take action!</3><4/>For more details, see the <5>Security Dashboard</5>."
-msgstr ""
-
-#: src/pages/panel/inventory-old/InventoryPage.tsx:64
-msgid "The current weighted security score has improved by <0>{0}</0> points over the <1>past {durationName}</1>.<2/><3>Excellent progress!</3> Keep up the good work."
-msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPUploadKey.tsx:154
 msgid "The Google Cloud Service Account has been updated successfully.<0/>We will process the file and add the accounts that we find.<1/>This process may take a <2>few minutes</2>.<3/>We will send you an email once the projects are ready."
@@ -2861,11 +2735,6 @@ msgstr "Versuchen Sie es erneut"
 msgid "Two"
 msgstr "Zwei"
 
-#: src/pages/panel/workspace-settings-external-directory/AddExternalDirectory.tsx:52
-#: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:21
-msgid "Type"
-msgstr "Typ"
-
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:87
 msgid "Unattached Elastic IPs"
 msgstr "Nicht angehängte elastische IPs"
@@ -2960,10 +2829,6 @@ msgstr "Benutzereinstellungen"
 msgid "User Settings"
 msgstr "Benutzereinstellungen"
 
-#: src/pages/panel/workspace-settings-external-directory/WorkspaceSettingsExternalDirectoryPage.tsx:27
-msgid "Users"
-msgstr "Benutzer"
-
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormFilterRowValues.tsx:195
 #: src/pages/panel/inventory-search/inventory-form/utils/getAutoCompleteFromKey.tsx:160
 msgid "Value"
@@ -2979,14 +2844,6 @@ msgstr ""
 
 #: src/pages/panel/inventory-detail/InventoryDetailView.tsx:253
 msgid "View this resource kind in Explorer"
-msgstr ""
-
-#: src/pages/panel/inventory-old/InventoryInfoResourcesTable.tsx:73
-msgid "Virtual Machines"
-msgstr ""
-
-#: src/pages/panel/inventory-old/InventoryInfoResourcesTable.tsx:114
-msgid "Volumes"
 msgstr ""
 
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormChangePicker.tsx:27
@@ -3044,10 +2901,6 @@ msgstr "Wir entschuldigen uns für die Unannehmlichkeiten. Unser Team wurde bena
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:152
 msgid "Webhook URL"
 msgstr "Webhook-URL"
-
-#: src/pages/panel/inventory-old/InventoryPage.tsx:39
-msgid "week"
-msgstr ""
 
 #: src/pages/panel/user-settings-notifications/UserSettingsNotificationsPage.tsx:41
 msgid "Weekly report"

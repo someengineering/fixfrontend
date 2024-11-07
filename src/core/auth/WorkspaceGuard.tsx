@@ -12,7 +12,7 @@ interface WorkspaceGuardProps extends PropsWithChildren {
   value: UserContextValue
 }
 
-export const WorkspaceInnerComp = memo(
+const WorkspaceInnerComp = memo(
   ({ value, children }: WorkspaceGuardProps) => {
     return <UserContext.Provider value={value}>{children}</UserContext.Provider>
   },

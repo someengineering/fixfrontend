@@ -1,7 +1,7 @@
 import { i18n } from '@lingui/core'
 import { defineMessage } from '@lingui/macro'
 
-export const Messages = [
+const Messages = [
   defineMessage({
     message: 'Critical',
   }),

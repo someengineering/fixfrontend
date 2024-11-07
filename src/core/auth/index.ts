@@ -1,6 +1,6 @@
 export { AuthGuard } from './AuthGuard'
 export { getCurrentUserQuery } from './getCurrentUser.query'
-export { allPermissions, getPermissions, maxPermissionNumber, workspacePermissions } from './getPermissions'
+export { allPermissions, getPermissions, maxPermissionNumber } from './getPermissions'
 export type { Permissions } from './getPermissions'
 export { RequireAuth } from './RequireAuth'
 export type { UserContextRealValues, UserContextValue, UserContextWorkspace } from './UserContext'

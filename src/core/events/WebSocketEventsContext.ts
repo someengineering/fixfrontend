@@ -1,7 +1,7 @@
 import { MutableRefObject, createContext } from 'react'
 import { WebSocketEvent } from 'src/shared/types/server'
 
-export type WebSocketEventsContextRealValues = {
+type WebSocketEventsContextRealValues = {
   websocket: MutableRefObject<WebSocket | undefined>
 }
 

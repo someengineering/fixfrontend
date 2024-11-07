@@ -153,7 +153,7 @@ export const nodeChangeToDescription = (history: WorkspaceInventoryNodeHistory) 
   }
 }
 
-export const nodeChangeToColorName = (history: WorkspaceInventoryNodeHistory) => {
+const nodeChangeToColorName = (history: WorkspaceInventoryNodeHistory) => {
   switch (history.change) {
     case 'node_created':
       return 'info'

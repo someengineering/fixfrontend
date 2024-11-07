@@ -1,23 +1,20 @@
 import { t } from '@lingui/macro'
-import { Box, Fade, IconButton, Paper, Popper, Tooltip, styled } from '@mui/material'
 import { useQueryClient } from '@tanstack/react-query'
-import { useEffect, useRef, useState } from 'react'
-import { EventIcon } from 'src/assets/icons'
+import { useEffect, useState } from 'react'
 import { useEvents } from 'src/core/events'
 import { useSnackbar } from 'src/core/snackbar'
 import { WebSocketEvent } from 'src/shared/types/server'
 import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
-import { EventItem } from './EventItem'
 
-const PopperContainer = styled(Popper)(({ theme }) => ({
-  marginTop: 45,
-  zIndex: theme.zIndex.tooltip,
-}))
+// const PopperContainer = styled(Popper)(({ theme }) => ({
+//   marginTop: 45,
+//   zIndex: theme.zIndex.tooltip,
+// }))
 
 export const EventButton = () => {
-  const [openEvents, setOpenEvents] = useState(false)
+  // const [openEvents, setOpenEvents] = useState(false)
   const queryClient = useQueryClient()
-  const anchorEl = useRef<HTMLButtonElement>(null)
+  // const anchorEl = useRef<HTMLButtonElement>(null)
   const { showSnackbar } = useSnackbar()
   const { addListener, send } = useEvents()
   const [events, setEvents] = useState<WebSocketEvent[]>([])
@@ -119,56 +116,57 @@ export const EventButton = () => {
 
   const hasNoEvents = !events.length
 
-  useEffect(() => {
-    if (!hasNoEvents) {
-      setOpenEvents(false)
-    }
-  }, [hasNoEvents])
+  // useEffect(() => {
+  //   if (!hasNoEvents) {
+  //     setOpenEvents(false)
+  //   }
+  // }, [hasNoEvents])
 
-  const handleToggleUserMenu = () => {
-    if (events.length && !openEvents) {
-      setOpenEvents(true)
-    } else {
-      setOpenEvents(false)
-    }
-  }
+  // const handleToggleUserMenu = () => {
+  //   if (events.length && !openEvents) {
+  //     setOpenEvents(true)
+  //   } else {
+  //     setOpenEvents(false)
+  //   }
+  // }
 
-  return hasNoEvents ? null : (
-    <Box display="inline-flex" alignItems="center" justifyContent="center">
-      <Tooltip title={t`Events`} arrow>
-        <IconButton sx={{ p: 0, color: 'white', mr: 2 }} size="large" onClick={handleToggleUserMenu} ref={anchorEl}>
-          <EventIcon fontSize="large" />
-        </IconButton>
-      </Tooltip>
-      <PopperContainer
-        id="event-menu"
-        anchorEl={anchorEl.current}
-        open={openEvents}
-        transition
-        placement="bottom-start"
-        modifiers={[
-          {
-            name: 'arrow',
-            enabled: true,
-          },
-        ]}
-      >
-        {({ TransitionProps }) => (
-          <Fade {...TransitionProps} timeout={350}>
-            <Paper elevation={10}>
-              <Box
-                display="flex"
-                flexDirection="column"
-                height={!events.length ? '360px' : 'auto'}
-                maxHeight="calc(100vh - 90px)"
-                overflow="auto"
-              >
-                <EventItem data={events.filter((i) => i.kind === 'collect-progress')} />
-              </Box>
-            </Paper>
-          </Fade>
-        )}
-      </PopperContainer>
-    </Box>
-  )
+  return hasNoEvents
+    ? null
+    : // <Box display="inline-flex" alignItems="center" justifyContent="center">
+      //   <Tooltip title={t`Events`} arrow>
+      //     <IconButton sx={{ p: 0, color: 'white', mr: 2 }} size="large" onClick={handleToggleUserMenu} ref={anchorEl}>
+      //       <EventIcon fontSize="large" />
+      //     </IconButton>
+      //   </Tooltip>
+      //   <PopperContainer
+      //     id="event-menu"
+      //     anchorEl={anchorEl.current}
+      //     open={openEvents}
+      //     transition
+      //     placement="bottom-start"
+      //     modifiers={[
+      //       {
+      //         name: 'arrow',
+      //         enabled: true,
+      //       },
+      //     ]}
+      //   >
+      //     {({ TransitionProps }) => (
+      //       <Fade {...TransitionProps} timeout={350}>
+      //         <Paper elevation={10}>
+      //           <Box
+      //             display="flex"
+      //             flexDirection="column"
+      //             height={!events.length ? '360px' : 'auto'}
+      //             maxHeight="calc(100vh - 90px)"
+      //             overflow="auto"
+      //           >
+      //             <EventItem data={events.filter((i) => i.kind === 'collect-progress')} />
+      //           </Box>
+      //         </Paper>
+      //       </Fade>
+      //     )}
+      //   </PopperContainer>
+      // </Box>
+      null
 }
