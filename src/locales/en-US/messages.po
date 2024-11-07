@@ -615,7 +615,7 @@ msgstr "Billing cycle"
 msgid "Billing history"
 msgstr "Billing history"
 
-#: src/shared/layouts/panel-layout/PanelHeader.tsx:66
+#: src/shared/layouts/panel-layout/PanelHeader.tsx:67
 msgid "Book a call"
 msgstr "Book a call"
 
@@ -1366,7 +1366,7 @@ msgstr "Full-text search"
 msgid "GCP Account Setup"
 msgstr "GCP Account Setup"
 
-#: src/shared/layouts/panel-layout/PanelHeader.tsx:63
+#: src/shared/layouts/panel-layout/PanelHeader.tsx:64
 msgid "Get a 1-on-1 cloud security posture assessment"
 msgstr "Get a 1-on-1 cloud security posture assessment"
 

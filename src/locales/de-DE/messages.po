@@ -615,7 +615,7 @@ msgstr ""
 msgid "Billing history"
 msgstr ""
 
-#: src/shared/layouts/panel-layout/PanelHeader.tsx:66
+#: src/shared/layouts/panel-layout/PanelHeader.tsx:67
 msgid "Book a call"
 msgstr ""
 
@@ -1366,7 +1366,7 @@ msgstr ""
 msgid "GCP Account Setup"
 msgstr ""
 
-#: src/shared/layouts/panel-layout/PanelHeader.tsx:63
+#: src/shared/layouts/panel-layout/PanelHeader.tsx:64
 msgid "Get a 1-on-1 cloud security posture assessment"
 msgstr ""
 
