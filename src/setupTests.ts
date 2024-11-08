@@ -18,7 +18,6 @@ global.location = {
   ...location,
 }
 
-// @ts-expect-error for minimal implementation of window
 global.window = {
   ...global,
   location: {
@@ -45,6 +44,7 @@ global.window = {
   encodeURIComponent: (uriComponent: string | number | boolean) => querystring.stringify({ query: uriComponent }).substring(6),
   document: { ...global.document },
   name: '',
+  // @ts-expect-error Load page timeout must be a number
   _load_page_timeout: 0,
 }
 
