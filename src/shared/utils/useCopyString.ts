@@ -18,9 +18,6 @@ export const useCopyString = (withSnackbar = true) => {
           await showSnackbar(t`Copied to Clipboard!`)
         }
       } catch (err) {
-        if (window.TrackJS?.isInstalled()) {
-          window.TrackJS.track(err as Error)
-        }
         const { name: error_name, message: error_message, stack: error_stack } = err as Error
         const { isAuthenticated, selectedWorkspaceId } = getAuthData() || {}
         postHog.capture(PostHogEvent.Error, {

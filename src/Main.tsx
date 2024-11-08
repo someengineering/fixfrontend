@@ -15,7 +15,7 @@ if (nonceEl) {
   nonceEl = undefined
 }
 
-if (window._load_page_timeout) {
+if ('_load_page_timeout' in window && typeof window._load_page_timeout === 'number') {
   try {
     window.clearTimeout(window._load_page_timeout)
   } catch {

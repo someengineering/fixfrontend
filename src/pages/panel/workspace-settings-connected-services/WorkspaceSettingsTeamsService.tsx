@@ -93,9 +93,7 @@ export const WorkspaceSettingsTeamsService = ({ isConnected, defaultName, isLoad
                     <li>In Microsoft Teams, click on More options (⋯) next to the channel name and then select Connectors.</li>
                     <li>Browse through the list of Connectors to find Incoming Webhook, and click Add.</li>
                     <li>Provide a name for the webhook, upload an image to represent data from the webhook, and click Create.</li>
-                    <li>
-                      Copy the webhook URL to your clipboard and keep it safe. This URL is necessary for TrackJS to send notifications.
-                    </li>
+                    <li>Copy the webhook URL to your clipboard and keep it safe.</li>
                     <li>Click Done.</li>
                     <li>In the text box provided below, paste the Webhook URL you copied and enter the name of the channel.</li>
                   </ol>

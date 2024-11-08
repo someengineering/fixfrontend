@@ -37,9 +37,6 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
           const message = JSON.parse(ev.data) as WebSocketEvent
           onMessage(message)
         } catch (err) {
-          if (window.TrackJS?.isInstalled()) {
-            window.TrackJS.track(err as Error)
-          }
           const { name: error_name, message: error_message, stack: error_stack } = err as Error
           const workspaceId = getAuthData()?.selectedWorkspaceId || undefined
           postHog.capture(PostHogEvent.WebsocketError, {
@@ -81,9 +78,6 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
             messagesToSend.current.push({ message, resolve, reject })
           }
         } catch (err) {
-          if (window.TrackJS?.isInstalled()) {
-            window.TrackJS.track(err as Error)
-          }
           const { name: error_name, message: error_message, stack: error_stack } = err as Error
           const workspaceId = getAuthData()?.selectedWorkspaceId || undefined
           postHog.capture(PostHogEvent.WebsocketError, {
@@ -111,9 +105,6 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
       const onClose = (ev: CloseEvent) => {
         if (ev.code !== 1000) {
           const err = new Error('Websocket connection closed')
-          if (window.TrackJS?.isInstalled()) {
-            window.TrackJS.track(err)
-          }
           const workspaceId = getAuthData()?.selectedWorkspaceId || undefined
           postHog.capture(PostHogEvent.WebsocketError, {
             $set: { ...currentUser },
@@ -154,9 +145,6 @@ export const WebSocketEvents = ({ children }: PropsWithChildren) => {
             websocket.current?.send(message)
             resolve(message)
           } catch (err) {
-            if (window.TrackJS?.isInstalled()) {
-              window.TrackJS.track(err as Error)
-            }
             const { name: error_name, message: error_message, stack: error_stack } = err as Error
             const workspaceId = getAuthData()?.selectedWorkspaceId || undefined
             postHog.capture(PostHogEvent.WebsocketError, {

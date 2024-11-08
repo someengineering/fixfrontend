@@ -233,8 +233,8 @@ msgid "<0>We use the Events API V2 for notifications through PagerDuty.<1/>To cr
 msgstr "<0>We use the Events API V2 for notifications through PagerDuty.<1/>To create an integration, please follow these steps:<2><3>Log in to PagerDuty with your account credentials.</3><4>Navigate to the dashboard and select \"Services\".</4><5>Choose the service you wish to integrate, go to the \"Integrations\" tab, and then click \"Add Integration\".</5><6>For the integration type, select \"PagerDuty Events API V2\" and click \"Add\".</6><7>Provide a name for the integration for easy reference and copy the \"Integration Key\".</7></2>For more information please visit <8>PagerDuty Services and Integrations</8></0>"
 
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:87
-msgid "<0>We utilize incoming webhooks to deliver notifications to your Microsoft Teams channels.<1/>To manually add a webhook:<2><3>In Microsoft Teams, click on More options (⋯) next to the channel name and then select Connectors.</3><4>Browse through the list of Connectors to find Incoming Webhook, and click Add.</4><5>Provide a name for the webhook, upload an image to represent data from the webhook, and click Create.</5><6>Copy the webhook URL to your clipboard and keep it safe. This URL is necessary for TrackJS to send notifications.</6><7>Click Done.</7><8>In the text box provided below, paste the Webhook URL you copied and enter the name of the channel.</8></2>More from <9>Microsoft Teams Documentation</9></0>"
-msgstr "<0>We utilize incoming webhooks to deliver notifications to your Microsoft Teams channels.<1/>To manually add a webhook:<2><3>In Microsoft Teams, click on More options (⋯) next to the channel name and then select Connectors.</3><4>Browse through the list of Connectors to find Incoming Webhook, and click Add.</4><5>Provide a name for the webhook, upload an image to represent data from the webhook, and click Create.</5><6>Copy the webhook URL to your clipboard and keep it safe. This URL is necessary for TrackJS to send notifications.</6><7>Click Done.</7><8>In the text box provided below, paste the Webhook URL you copied and enter the name of the channel.</8></2>More from <9>Microsoft Teams Documentation</9></0>"
+msgid "<0>We utilize incoming webhooks to deliver notifications to your Microsoft Teams channels.<1/>To manually add a webhook:<2><3>In Microsoft Teams, click on More options (⋯) next to the channel name and then select Connectors.</3><4>Browse through the list of Connectors to find Incoming Webhook, and click Add.</4><5>Provide a name for the webhook, upload an image to represent data from the webhook, and click Create.</5><6>Copy the webhook URL to your clipboard and keep it safe.</6><7>Click Done.</7><8>In the text box provided below, paste the Webhook URL you copied and enter the name of the channel.</8></2>More from <9>Microsoft Teams Documentation</9></0>"
+msgstr "<0>We utilize incoming webhooks to deliver notifications to your Microsoft Teams channels.<1/>To manually add a webhook:<2><3>In Microsoft Teams, click on More options (⋯) next to the channel name and then select Connectors.</3><4>Browse through the list of Connectors to find Incoming Webhook, and click Add.</4><5>Provide a name for the webhook, upload an image to represent data from the webhook, and click Create.</5><6>Copy the webhook URL to your clipboard and keep it safe.</6><7>Click Done.</7><8>In the text box provided below, paste the Webhook URL you copied and enter the name of the channel.</8></2>More from <9>Microsoft Teams Documentation</9></0>"
 
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsOpsgenieService.tsx:70
 msgid "<0>We utilize the OpsGenie API integration for notifications and alerts.<1/>To set up this Integration, please follow these instructions:<2><3><4>Navigate to the Dashboard:</4> Find and click on the “Teams” section from the sidebar once logged in.</3><5><6>Select Your Team:</6> Choose the team you want to integrate with. Within the team dashboard, go to the “Integrations” tab.</5><7><8>Add Integration:</8> Click on the “+ New Integration” button. Select “API” as the integration type, give it the name “Fix,” and press Continue.</7><9><10>Turn Integration on:</10> When the Integration has been created, it is disabled by default - click “Turn on Integration”.</9><11><12>Copy API Key:</12> Find and copy the API Key in the integration settings.</11></2></0>"
@@ -574,7 +574,7 @@ msgstr "Base kind"
 msgid "Basic Information"
 msgstr "Basic Information"
 
-#: src/pages/panel/inventory-search/DownloadCSVButton.tsx:113
+#: src/pages/panel/inventory-search/DownloadCSVButton.tsx:110
 msgid "Because the data is over {0} Only first {1} items will be downloaded"
 msgstr "Because the data is over {0} Only first {1} items will be downloaded"
 
@@ -644,7 +644,7 @@ msgstr "Can't access OTP?"
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsEmailService.tsx:91
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsOpsgenieService.tsx:102
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsPagerdutyService.tsx:99
-#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:119
+#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:117
 #: src/pages/panel/workspace-users-settings-pending-invitations/WorkspaceUsersSettingsPendingInvitationRow.tsx:104
 #: src/pages/panel/workspace-users-settings/DeleteInvitedExternalUserMenuItem.tsx:104
 #: src/pages/panel/workspace-users-settings/InviteExternalUserForm.tsx:127
@@ -891,7 +891,7 @@ msgstr "Congratulations on your subscription"
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsPagerdutyService.tsx:111
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsSlackService.tsx:40
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:79
-#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:131
+#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:129
 msgid "Connect"
 msgstr "Connect"
 
@@ -1189,8 +1189,8 @@ msgstr "Done! We will now import your Azure accounts, this usually takes a coupl
 msgid "Downgrade"
 msgstr "Downgrade"
 
-#: src/pages/panel/inventory-search/DownloadCSVButton.tsx:106
-#: src/pages/panel/inventory-search/DownloadCSVButton.tsx:128
+#: src/pages/panel/inventory-search/DownloadCSVButton.tsx:103
+#: src/pages/panel/inventory-search/DownloadCSVButton.tsx:125
 #: src/pages/panel/inventory/DownloadCSVButton.tsx:47
 msgid "Download CSV"
 msgstr "Download CSV"
@@ -1410,7 +1410,7 @@ msgstr "High"
 msgid "Highest product tier this billing cycle"
 msgstr "Highest product tier this billing cycle"
 
-#: src/shared/error-boundary-fallback/index.tsx:63
+#: src/shared/error-boundary-fallback/index.tsx:60
 msgid "Homepage"
 msgstr "Homepage"
 
@@ -1779,7 +1779,7 @@ msgstr "Most Non-Compliant Accounts"
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsEmailService.tsx:113
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsOpsgenieService.tsx:124
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsPagerdutyService.tsx:121
-#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:141
+#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:139
 #: src/pages/panel/workspace-users-settings/InviteExternalUserForm.tsx:67
 #: src/pages/panel/workspace-users-settings/InviteExternalUserForm.tsx:77
 #: src/shared/charts/NetworkDiagram.tsx:377
@@ -1988,7 +1988,7 @@ msgstr "Oops, the username or password doesn't seem to match our records. Please
 msgid "Oops! It looks like your query didn't match our format. Please check and try again."
 msgstr "Oops! It looks like your query didn't match our format. Please check and try again."
 
-#: src/shared/error-boundary-fallback/index.tsx:39
+#: src/shared/error-boundary-fallback/index.tsx:36
 msgid "Oops! Something went wrong."
 msgstr "Oops! Something went wrong."
 
@@ -2051,7 +2051,7 @@ msgstr "Passed"
 msgid "Password"
 msgstr "Password"
 
-#: src/core/events/WebSocketEvents.tsx:136
+#: src/core/events/WebSocketEvents.tsx:127
 msgid "Payment is required for your workspace, Please contact the workspace owner"
 msgstr "Payment is required for your workspace, Please contact the workspace owner"
 
@@ -2727,7 +2727,7 @@ msgstr "TOTP Setup"
 msgid "Trial"
 msgstr "Trial"
 
-#: src/shared/error-boundary-fallback/index.tsx:77
+#: src/shared/error-boundary-fallback/index.tsx:74
 msgid "Try again"
 msgstr "Try again"
 
@@ -2772,7 +2772,7 @@ msgstr "Unused Database Instances"
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsEmailService.tsx:103
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsOpsgenieService.tsx:114
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsPagerdutyService.tsx:111
-#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:131
+#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:129
 #: src/pages/panel/workspace-settings/WorkspaceSettingsPage.tsx:42
 msgid "Update"
 msgstr "Update"
@@ -2874,7 +2874,7 @@ msgstr "Vulnerable Resources detected in the last 30 days."
 msgid "Vulnerable Resources detected in the last 7 days."
 msgstr "Vulnerable Resources detected in the last 7 days."
 
-#: src/pages/panel/inventory-search/DownloadCSVButton.tsx:90
+#: src/pages/panel/inventory-search/DownloadCSVButton.tsx:87
 msgid "Warning"
 msgstr "Warning"
 
@@ -2894,11 +2894,11 @@ msgstr "We use cookies and other tracking technologies to analyze site usage and
 msgid "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 msgstr "We're sad to see you downgrade, but we're grateful to still have you with us on the free tier. If there's anything specific you're missing, please reach out to me personally at <0>lars@some.engineering</0>. I'd love to hear from you and help in any way I can."
 
-#: src/shared/error-boundary-fallback/index.tsx:41
+#: src/shared/error-boundary-fallback/index.tsx:38
 msgid "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 msgstr "We're sorry for the inconvenience. Our team has been notified, and the issue is being looked into. Please try again in a few minutes. If the problem persists, feel free to contact us <0>on Discord</0>. Thanks for your patience!"
 
-#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:152
+#: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsTeamsService.tsx:150
 msgid "Webhook URL"
 msgstr "Webhook URL"
 
@@ -2999,7 +2999,7 @@ msgstr "You currently have {0} attached to this workspace. There must only be {1
 msgid "You currently have {0}. There must only be {1} in order to downgrade to the free tier."
 msgstr "You currently have {0}. There must only be {1} in order to downgrade to the free tier."
 
-#: src/core/events/WebSocketEvents.tsx:137
+#: src/core/events/WebSocketEvents.tsx:128
 msgid "You don't have access to this workspace"
 msgstr "You don't have access to this workspace"
 

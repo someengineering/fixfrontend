@@ -31,7 +31,6 @@ jobs:
           echo "VITE_NETWORK_RETRY_COUNT=${{ vars.NETWORK_RETRY_COUNT }}" >> .env.production
           echo "VITE_WEBSOCKET_RETRY_TIMEOUT=${{ vars.WEBSOCKET_RETRY_TIMEOUT }}" >> .env.production
           echo "VITE_USE_MOCK=false" >> .env.production
-          echo "VITE_TRACKJS_TOKEN=${{ secrets.TRACKJS_TOKEN }}" >> .env.production
           echo "VITE_MUI_LICENSE_KEY=${{ secrets.MUI_LICENSE_KEY }}" >> .env.production
           echo "VITE_VERSION=${{ github.sha }}" >> .env.production
           echo "VITE_LOAD_PAGE_TIMEOUT=${{ vars.LOAD_PAGE_TIMEOUT }}" >> .env.production
