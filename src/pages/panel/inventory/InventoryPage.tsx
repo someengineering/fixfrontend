@@ -215,7 +215,7 @@ export default function InventoryPage() {
         height={({ spacing }) => `calc(100% + ${spacing(6)})`}
         width={({ spacing }) => `calc(100% + ${spacing(6)})`}
         flex={1}
-        overflow="hidden"
+        overflow="auto"
       >
         <Stack flex={0} height="100%">
           <Box py={3} px={3.75}>
@@ -260,7 +260,7 @@ export default function InventoryPage() {
           </Stack>
         </Stack>
         <Divider orientation="vertical" />
-        <Stack height="100%" flex={1} py={3.75} px={3.75} spacing={3} minWidth={0}>
+        <Stack height="100%" flex={1} py={3.75} px={3.75} spacing={3} minWidth={0} minHeight={450}>
           <Stack direction="row" gap={2} flexWrap="wrap" flex={0}>
             <GridFilterItem items={clouds} name={t`clouds`} onChange={setCloudFilter} values={cloudFilter} />
             <GridFilterItem items={accounts} name={t`accounts`} onChange={setAccountFilter} values={accountFilter} />
@@ -284,7 +284,7 @@ export default function InventoryPage() {
               />
             </Stack>
           </Stack>
-          <Box flex={1} minHeight={0} height="100%" overflow="auto">
+          <Box flex={1} minHeight={0} height="100%">
             {pendingTransition ? (
               <LoadingSuspenseFallback />
             ) : (

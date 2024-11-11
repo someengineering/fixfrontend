@@ -11,7 +11,7 @@ export const PanelContent = forwardRef<HTMLDivElement | null, PanelContent>(({ c
   return (
     <Stack
       flexGrow={1}
-      py={isDesktop ? undefined : `${panelUI.headerHeight}px`}
+      pt={isDesktop ? undefined : `${panelUI.headerHeight}px`}
       position="relative"
       width="100%"
       height="100%"
