@@ -20,7 +20,7 @@ export const DataGridPagination = () => {
   return (
     <Stack direction="row" spacing={3} alignItems="center" flexWrap="nowrap" overflow="auto" maxWidth="100%">
       <Typography variant="subtitle1" fontWeight={500} whiteSpace="nowrap">
-        {page * size}-{(page + 1) * size > total ? total : (page + 1) * size}{' '}
+        {page * size + 1}-{(page + 1) * size > total ? total : (page + 1) * size}{' '}
         <Typography component="span" variant="subtitle1" fontWeight={400} color="textSecondary">
           <Trans>of {total} results</Trans>
         </Typography>
