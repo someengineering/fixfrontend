@@ -260,8 +260,8 @@ export default function InventoryPage() {
           </Stack>
         </Stack>
         <Divider orientation="vertical" />
-        <Stack height="100%" flex={1} py={3.75} px={3.75} spacing={3} minWidth={0} minHeight={450}>
-          <Stack direction="row" gap={2} flexWrap="wrap" flex={0}>
+        <Stack height="100%" flex={1} p={{ xs: 0.5, lg: 3.75 }} spacing={3} minWidth={0}>
+          <Stack direction="row" gap={2} flexShrink={0} flexGrow={0} overflow="auto">
             <GridFilterItem items={clouds} name={t`clouds`} onChange={setCloudFilter} values={cloudFilter} />
             <GridFilterItem items={accounts} name={t`accounts`} onChange={setAccountFilter} values={accountFilter} />
             <GridFilterItem items={regions} name={t`regions`} onChange={setRegionFilter} values={regionFilter} />

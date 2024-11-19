@@ -31,6 +31,7 @@ export const DataGridPagination = () => {
           variant="outlined"
           shape="rounded"
           page={page + 1}
+          sx={{ ul: { flexWrap: 'nowrap' } }}
           count={pageCount}
           renderItem={(props2) => {
             return ['start-ellipsis', 'end-ellipsis', 'page'].includes(props2.type) ? (
