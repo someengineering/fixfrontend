@@ -8,7 +8,7 @@ const awsDocUrl = `${env.docsUrl}/resources/aws`
 const gcpDocUrl = `${env.docsUrl}/resources/google-cloud`
 const azureDocUrl = `${env.docsUrl}/resources/azure`
 
-export const getSlides = [
+export const slides = [
   {
     header: <Trans>Inventory</Trans>,
     content: (

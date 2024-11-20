@@ -1,5 +1,17 @@
 import { Trans } from '@lingui/macro'
-import { Box, Button, Divider, IconButton, LinearProgress, linearProgressClasses, Slide, Stack, Tooltip, Typography } from '@mui/material'
+import {
+  Box,
+  Button,
+  Divider,
+  IconButton,
+  IconButtonProps,
+  LinearProgress,
+  linearProgressClasses,
+  Slide,
+  Stack,
+  Tooltip,
+  Typography,
+} from '@mui/material'
 import { PropsWithChildren, ReactNode, useCallback, useMemo, useRef, useState } from 'react'
 import { ArrowBackIcon, ArrowForwardIcon, HelpIcon } from 'src/assets/icons'
 import { panelUI } from 'src/shared/constants'
@@ -10,11 +22,14 @@ interface HelpSliderPropsPageItem {
   content: ReactNode
 }
 
-interface HelpSliderProps extends PropsWithChildren {
+export interface HelpSliderProps extends PropsWithChildren {
   slides: HelpSliderPropsPageItem[] | ((onClose: () => void) => HelpSliderPropsPageItem[])
+  slotProps?: {
+    iconButtonProps?: IconButtonProps
+  }
 }
 
-export const HelpSlider = ({ children, slides }: HelpSliderProps) => {
+export const HelpSlider = ({ children, slides, slotProps: { iconButtonProps } = {} }: HelpSliderProps) => {
   const [open, setOpen] = useState(false)
   const [slide, setSlide] = useState(1)
   const handleClose = useCallback(() => {
@@ -26,9 +41,9 @@ export const HelpSlider = ({ children, slides }: HelpSliderProps) => {
   return (
     <>
       <Stack direction="row" alignItems="center">
-        <Typography variant="h4">{children}</Typography>
+        {children ? <Typography variant="h4">{children}</Typography> : null}
         <Tooltip title={<Trans>Learn more</Trans>} arrow>
-          <IconButton size="small" color="info" onClick={() => setOpen(true)}>
+          <IconButton size="small" color="info" onClick={() => setOpen(true)} {...iconButtonProps}>
             <HelpIcon width={32} height={32} />
           </IconButton>
         </Tooltip>

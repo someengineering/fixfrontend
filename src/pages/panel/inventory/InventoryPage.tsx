@@ -1,6 +1,6 @@
 import { t, Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { Box, ButtonBase, Divider, Stack, Typography } from '@mui/material'
+import { Box, ButtonBase, Stack } from '@mui/material'
 import { GridRow, GridRowProps } from '@mui/x-data-grid-premium'
 import { useSuspenseQueries } from '@tanstack/react-query'
 import { Dispatch, ReactNode, SetStateAction, useCallback, useMemo, useState, useTransition } from 'react'
@@ -10,17 +10,17 @@ import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryModelQuery, postWorkspaceInventoryDescendantSummaryQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { CloudToIcon } from 'src/shared/cloud-avatar'
+import { PanelLeftMenuLayout } from 'src/shared/layouts/panel-left-menu-layout'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
-import { HelpSlider } from 'src/shared/right-slider'
 import { ResourceComplexKind } from 'src/shared/types/server-shared'
 import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
 import { getString } from 'src/shared/utils/getString'
 import { DataGridPagination } from './DataGridPagination'
 import { DownloadCSVButton } from './DownloadCSVButton'
 import { getColumns, RowType } from './getColumns'
-import { getSlides } from './getSlides'
 import { GridFilterItem } from './GridFilterItem'
 import { postWorkspaceInventorySearchForInventoryQuery } from './postWorkspaceInventorySearchForInventory.query'
+import { slides } from './slides'
 import { StyledDataGrid } from './StyledDataGrid'
 
 function useTransitionState<StateType>(
@@ -209,58 +209,19 @@ export default function InventoryPage() {
   const columns = useMemo(() => getColumns(locale), [locale])
   return (
     <>
-      <Stack
-        direction="row"
-        m={-3}
-        height={({ spacing }) => `calc(100% + ${spacing(6)})`}
-        width={({ spacing }) => `calc(100% + ${spacing(6)})`}
-        flex={1}
-        overflow="auto"
+      <PanelLeftMenuLayout
+        title={<Trans>Inventory</Trans>}
+        helpSliderProps={{ slides: slides }}
+        menuList={groups.map(({ Icon, id, name, resources }) => ({
+          Icon,
+          id,
+          label: name,
+          count: resources,
+          selected: id === groupFilter,
+          onClick: () => setGroupFilter(id),
+        }))}
       >
-        <Stack flex={0} height="100%">
-          <Box py={3} px={3.75}>
-            <HelpSlider slides={getSlides}>
-              <Trans>Inventory</Trans>
-            </HelpSlider>
-          </Box>
-          <Divider />
-          <Stack flex={1} p={2.5} spacing={0.5} overflow="auto">
-            {groups.map(({ Icon, id, name, resources }) => (
-              <Stack
-                direction="row"
-                key={id}
-                py={1}
-                px={1.5}
-                spacing={1}
-                bgcolor={id === groupFilter ? 'background.default' : undefined}
-                borderRadius="6px"
-                component={ButtonBase}
-                onClick={() => setGroupFilter(id)}
-              >
-                <Icon color={id === groupFilter ? 'primary.main' : undefined} />
-                <Typography
-                  variant="subtitle2"
-                  fontWeight={id === groupFilter ? 500 : 400}
-                  color={id === groupFilter ? 'primary.main' : undefined}
-                  flex={1}
-                  whiteSpace="nowrap"
-                  textAlign="left"
-                >
-                  {name}
-                </Typography>
-                <Typography
-                  variant="subtitle2"
-                  fontWeight={id === groupFilter ? 500 : 400}
-                  color={id === groupFilter ? 'primary.main' : undefined}
-                >
-                  {resources.toLocaleString(locale)}
-                </Typography>
-              </Stack>
-            ))}
-          </Stack>
-        </Stack>
-        <Divider orientation="vertical" />
-        <Stack height="100%" flex={1} p={{ xs: 0.5, lg: 3.75 }} spacing={3} minWidth={0}>
+        <Stack height="100%" flex={1} p={{ xs: 0.5, sm: 1, md: 2, lg: 3.75 }} spacing={3} minWidth={0}>
           <Stack direction="row" gap={2} flexShrink={0} flexGrow={0} overflow="auto">
             <GridFilterItem items={clouds} name={t`clouds`} onChange={setCloudFilter} values={cloudFilter} />
             <GridFilterItem items={accounts} name={t`accounts`} onChange={setAccountFilter} values={accountFilter} />
@@ -331,7 +292,7 @@ export default function InventoryPage() {
             )}
           </Box>
         </Stack>
-      </Stack>
+      </PanelLeftMenuLayout>
       <Outlet />
     </>
   )
