@@ -1,6 +1,6 @@
 // import { AppBar, Theme, Toolbar, useMediaQuery } from '@mui/material'
 import { Trans } from '@lingui/macro'
-import { AppBar, Box, ButtonBase, Divider, IconButton, Slide, Stack, Theme, Tooltip, useMediaQuery, useScrollTrigger } from '@mui/material'
+import { AppBar, Box, ButtonBase, Divider, IconButton, Slide, Stack, Tooltip, useMediaQuery, useScrollTrigger } from '@mui/material'
 import { cloneElement, PropsWithChildren, ReactElement, RefObject } from 'react'
 import { CalendarMonthIcon, DiscordIcon, GithubSEBIcon } from 'src/assets/icons'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
@@ -36,7 +36,7 @@ const HideOnScroll = ({ children, scrollRef }: PanelHeaderWrapperProps) => (
 )
 
 export const PanelHeader = ({ children, scrollRef }: PanelHeaderProps) => {
-  const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('lg'))
+  const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('lg'))
   const navigate = useAbsoluteNavigate()
   const ComponentToWrap = isDesktop ? ElevationScroll : HideOnScroll
   return (
@@ -86,7 +86,7 @@ export const PanelHeader = ({ children, scrollRef }: PanelHeaderProps) => {
       </AppBar>
     </ComponentToWrap>
   )
-  // const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('lg'))
+  // const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('lg'))
   // const navigate = useAbsoluteNavigate()
   // const Content = (
   //   <AppBar position="fixed">

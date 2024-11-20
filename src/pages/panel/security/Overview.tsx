@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/macro'
-import { Box, Divider, Grid2, Stack, Theme, Typography, useMediaQuery } from '@mui/material'
+import { Box, Divider, Grid2, Stack, Typography, useMediaQuery } from '@mui/material'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryReportSummaryQuery } from 'src/pages/panel/shared/queries'
@@ -11,7 +11,7 @@ import { VulnerableResourcesTimeline } from './VulnerableResourcesTimeline'
 
 export const Overview = () => {
   const { selectedWorkspace } = useUserProfile()
-  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('md'))
   const { data } = useSuspenseQuery({
     queryKey: ['workspace-inventory-report-summary', selectedWorkspace?.id],
     queryFn: getWorkspaceInventoryReportSummaryQuery,

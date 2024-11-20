@@ -1,7 +1,7 @@
-import { Divider, Theme, useMediaQuery } from '@mui/material'
+import { Divider, useMediaQuery } from '@mui/material'
 
 export const ProductTierDivider = () => {
-  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('sm'))
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'))
 
   return (
     <Divider

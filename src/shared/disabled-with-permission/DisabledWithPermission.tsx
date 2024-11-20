@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import { Badge, BadgeProps, Theme, Tooltip, TooltipProps, useMediaQuery } from '@mui/material'
+import { Badge, BadgeProps, Tooltip, TooltipProps, useMediaQuery } from '@mui/material'
 import { PropsWithChildren, ReactNode } from 'react'
 import { WarningFilledIcon } from 'src/assets/icons'
 
@@ -19,7 +19,7 @@ export const DisabledWithPermission = ({
   badgeProps,
   ...props
 }: DisabledWithPermissionProps) => {
-  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('md'))
   return hasPermission ? (
     children
   ) : children ? (

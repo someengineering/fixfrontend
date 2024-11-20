@@ -1,4 +1,4 @@
-import { Stack, Theme, useMediaQuery } from '@mui/material'
+import { Stack, useMediaQuery } from '@mui/material'
 import { ReactNode, useMemo } from 'react'
 import { useThemeMode } from 'src/core/theme'
 import { useNonce } from 'src/shared/providers'
@@ -44,7 +44,7 @@ const BenchmarkDetailDesktopSplitter = ({ children, isMobile }: BenchmarkDetailS
 }
 
 export const BenchmarkDetailSplitter = ({ children }: BenchmarkDetailSplitterProps) => {
-  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('lg'))
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('lg'))
   const memoizedChildren = useMemo(() => {
     const result = children.map((item, index) =>
       item ? (
