@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/macro'
 import { LoadingButton } from '@mui/lab'
-import { Theme, useMediaQuery } from '@mui/material'
+import { useMediaQuery } from '@mui/material'
 import { Suspense, useState } from 'react'
 import { SendFilledIcon } from 'src/assets/icons'
 import { FullPageLoadingSuspenseFallback } from 'src/shared/loading'
@@ -8,7 +8,7 @@ import { WorkspaceSettingsAccountsSetupCloudAzureForm } from './WorkspaceSetting
 import { WorkspaceSettingsAccountsSetupCloudAzureInstructions } from './WorkspaceSettingsAccountsSetupCloudAzureInstructions'
 
 export default function WorkspaceSettingsAccountsSetupCloudAzurePage() {
-  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('lg'))
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('lg'))
   const [hasError, setHasError] = useState(true)
   const [isPending, setIsPending] = useState(true)
 

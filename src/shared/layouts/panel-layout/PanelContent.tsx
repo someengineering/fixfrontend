@@ -1,4 +1,4 @@
-import { Box, Stack, Theme, useMediaQuery } from '@mui/material'
+import { Box, Stack, useMediaQuery } from '@mui/material'
 import { forwardRef, PropsWithChildren, ReactNode } from 'react'
 import { panelUI } from 'src/shared/constants'
 
@@ -7,7 +7,7 @@ interface PanelContent extends PropsWithChildren {
 }
 
 export const PanelContent = forwardRef<HTMLDivElement | null, PanelContent>(({ children }, mainRef) => {
-  const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('lg'))
+  const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('lg'))
   return (
     <Stack
       flexGrow={1}

@@ -1,5 +1,5 @@
 import { useLingui } from '@lingui/react'
-import { Avatar, LinearProgress, linearProgressClasses, Stack, styled, Theme, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { Avatar, LinearProgress, linearProgressClasses, Stack, styled, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { panelUI } from 'src/shared/constants'
 import { shouldForwardPropWithBlackList } from 'src/shared/utils/shouldForwardProp'
@@ -102,7 +102,7 @@ export const AuthCarousel = () => {
     ref: containerRef,
     onSwipe: handleSwipe,
   })
-  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('md'))
   return isMobile ? null : (
     <Stack
       width="100%"

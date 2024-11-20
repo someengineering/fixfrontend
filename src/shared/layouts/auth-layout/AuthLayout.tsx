@@ -1,4 +1,4 @@
-import { alpha, buttonClasses, Container, Stack, styled, Theme, useMediaQuery } from '@mui/material'
+import { alpha, buttonClasses, Container, Stack, styled, useMediaQuery } from '@mui/material'
 import { ComponentType, PropsWithChildren } from 'react'
 import { useLocation } from 'react-router-dom'
 import { DescriptionIcon } from 'src/assets/icons'
@@ -78,7 +78,7 @@ const AuthWrapper = styled(Container)(({ theme }) => ({
 }))
 
 export function AuthLayout({ children }: AuthLayoutProps) {
-  const isMobile = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'))
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('md'))
   const { pathname } = useLocation()
   const isResetPassword = pathname === '/auth/forgot-password' || pathname === '/auth/reset-password'
   const map = groupChildrenByType(children, regions)

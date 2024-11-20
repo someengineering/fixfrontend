@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Stack, Theme, Tooltip, Typography, useMediaQuery } from '@mui/material'
+import { Box, Button, Divider, Stack, Tooltip, Typography, useMediaQuery } from '@mui/material'
 import { FC, Key, PropsWithChildren, ReactNode } from 'react'
 import { SvgIconProps } from 'src/assets/icons'
 import { HelpSlider, HelpSliderProps } from 'src/shared/right-slider'
@@ -19,7 +19,7 @@ interface PanelLeftMenuLayoutProps extends PropsWithChildren {
 }
 
 export const PanelLeftMenuLayout = ({ menuList, helpSliderProps, title, children }: PanelLeftMenuLayoutProps) => {
-  const isDesktop = useMediaQuery<Theme>((theme) => theme.breakpoints.up('lg'))
+  const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('lg'))
   return (
     <Stack
       direction="row"

@@ -1,5 +1,5 @@
 import { useLingui } from '@lingui/react'
-import { Box, colors, Theme, useMediaQuery } from '@mui/material'
+import { Box, colors, useMediaQuery } from '@mui/material'
 import { BarChart, BarSeriesType } from '@mui/x-charts-pro'
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
@@ -140,8 +140,8 @@ export const InventoryChangesTimeline = ({ searchCrit }: InventoryChangesTimelin
     return [[] as BarSeriesType[], labels]
   }, [data, dummySeries, labelsDur])
 
-  const isLessThanMinWidth = useMediaQuery<Theme>(({ breakpoints: { down } }) => down(labels.length * 20 + (labels.length < 6 ? 300 : 150)))
-  const isMobile = useMediaQuery<Theme>(({ breakpoints: { down } }) => down('md'))
+  const isLessThanMinWidth = useMediaQuery(({ breakpoints: { down } }) => down(labels.length * 20 + (labels.length < 6 ? 300 : 150)))
+  const isMobile = useMediaQuery(({ breakpoints: { down } }) => down('md'))
 
   return !isLoading && !data ? null : (
     <Box width="100%" overflow="auto">
