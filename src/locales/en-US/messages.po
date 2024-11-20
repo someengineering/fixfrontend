@@ -188,7 +188,7 @@ msgstr "<0>Fix supports full text search by encasing the search term in double q
 msgid "<0>Open Your Authenticator App:</0> Head over to your authenticator app and choose to add a new account manually.<1>Enter Account Details:</1> You'll need to type in your account's email address or username, and the key provided below.<2>Your Key:</2> <3/><4>Verification Type:</4> Make sure to select \"Time-based\" as the verification type.<5>Enter the Code:</5> Once your account is added manually, the app will show a 6-digit code. Pop that code into the box below and hit \"Activate\"."
 msgstr "<0>Open Your Authenticator App:</0> Head over to your authenticator app and choose to add a new account manually.<1>Enter Account Details:</1> You'll need to type in your account's email address or username, and the key provided below.<2>Your Key:</2> <3/><4>Verification Type:</4> Make sure to select \"Time-based\" as the verification type.<5>Enter the Code:</5> Once your account is added manually, the app will show a 6-digit code. Pop that code into the box below and hit \"Activate\"."
 
-#: src/pages/panel/inventory/getSlides.tsx:59
+#: src/pages/panel/inventory/slides.tsx:59
 msgid "<0>Resource Categories are logical groupings of cloud resources by their principal functionality.</0><1>Categories make it easy to filter the inventory to get an overview of all resources within a category, irrespective of their cloud provider. For example, an Amazon EC2 instance and a Google Cloud Function are both resource kinds within the \"Compute\" category. A resource can only be part of one category, and one category only.</1><2>Categories are a quicker way to identify the resource kinds in use, and investigate further to detect misconfigurations and compliance issues. You can easily see what cloud and account a specific resource is running in.</2>"
 msgstr "<0>Resource Categories are logical groupings of cloud resources by their principal functionality.</0><1>Categories make it easy to filter the inventory to get an overview of all resources within a category, irrespective of their cloud provider. For example, an Amazon EC2 instance and a Google Cloud Function are both resource kinds within the \"Compute\" category. A resource can only be part of one category, and one category only.</1><2>Categories are a quicker way to identify the resource kinds in use, and investigate further to detect misconfigurations and compliance issues. You can easily see what cloud and account a specific resource is running in.</2>"
 
@@ -204,11 +204,11 @@ msgstr "<0>The assets by region is a world map that displays active regions and 
 msgid "<0>The Infrastructure Overview dashboard provides a high-level snapshot of your multi-cloud environment, helping you understand your resource distribution and recent changes. You get a bird's eye view of the state of your infrastructure and can quickly assess the scale and complexity of your cloud(s).</0><1><2>The dashboard has three components:</2><3><4>Asset summary by cloud</4><5>Resources over time</5><6>Assets by region</6></3></1><7>With the Infrastructure Overview, you can maintain a comprehensive view of your multi-cloud environment, enabling better decision-making for security, compliance, and optimization efforts.</7><8>Click <9>\"next\"</9> to learn more about each component.</8>"
 msgstr "<0>The Infrastructure Overview dashboard provides a high-level snapshot of your multi-cloud environment, helping you understand your resource distribution and recent changes. You get a bird's eye view of the state of your infrastructure and can quickly assess the scale and complexity of your cloud(s).</0><1><2>The dashboard has three components:</2><3><4>Asset summary by cloud</4><5>Resources over time</5><6>Assets by region</6></3></1><7>With the Infrastructure Overview, you can maintain a comprehensive view of your multi-cloud environment, enabling better decision-making for security, compliance, and optimization efforts.</7><8>Click <9>\"next\"</9> to learn more about each component.</8>"
 
-#: src/pages/panel/inventory/getSlides.tsx:16
+#: src/pages/panel/inventory/slides.tsx:16
 msgid "<0>The Inventory in Fix provides visibility into all cloud services in use across your infrastructure. Fix scans cloud APIs to get a complete snapshot of your cloud infrastructure, which helps achieve two goals:</0><1><2><3>Understand cloud usage</3><4>Prevent shadow IT</4></2></1><5>Shadow IT is the unauthorized use of cloud services by your developers, bypassing official IT channels and potentially creating security, compliance, and management challenges. Full visibility into your inventory makes for better governance over what cloud services can and cannot be used, along with enforcement of related security policies.</5><6>Fix provides coverage of over 300 cloud services across AWS, Microsoft Azure and Google Cloud. For a full list of services, please visit our documentation.</6><7><8>AWS: <9>{awsDocUrl}</9></8><10>Google Cloud: <11>{gcpDocUrl}</11></10><12>Microsoft Azure: <13>{azureDocUrl}</13></12></7>"
 msgstr "<0>The Inventory in Fix provides visibility into all cloud services in use across your infrastructure. Fix scans cloud APIs to get a complete snapshot of your cloud infrastructure, which helps achieve two goals:</0><1><2><3>Understand cloud usage</3><4>Prevent shadow IT</4></2></1><5>Shadow IT is the unauthorized use of cloud services by your developers, bypassing official IT channels and potentially creating security, compliance, and management challenges. Full visibility into your inventory makes for better governance over what cloud services can and cannot be used, along with enforcement of related security policies.</5><6>Fix provides coverage of over 300 cloud services across AWS, Microsoft Azure and Google Cloud. For a full list of services, please visit our documentation.</6><7><8>AWS: <9>{awsDocUrl}</9></8><10>Google Cloud: <11>{gcpDocUrl}</11></10><12>Microsoft Azure: <13>{azureDocUrl}</13></12></7>"
 
-#: src/pages/panel/inventory/getSlides.tsx:80
+#: src/pages/panel/inventory/slides.tsx:80
 msgid "<0>The resource list is a complete snapshot of the resources in your cloud infrastructure, aggregated by resource kind.</0><1>A resource \"kind\" is an individual resource type, for example an Amazon S3 Bucket, or an Azure Virtual Machine. For more context on each resource kind, click on the kind in the list and a window with a resource detail view will appear.</1><2>In addition to individual kinds, Fix also uses abstractions for common cloud services such as storage buckets, databases, or IP addresses. These \"multi-cloud kinds\" are an easy way to search for a specific type of services across clouds.</2><3>For example, searching for \"bucket\" in the Explorer tab will surface storage buckets for every cloud: Amazon S3, Google Cloud Storage and Azure Blob Storage.</3>"
 msgstr "<0>The resource list is a complete snapshot of the resources in your cloud infrastructure, aggregated by resource kind.</0><1>A resource \"kind\" is an individual resource type, for example an Amazon S3 Bucket, or an Azure Virtual Machine. For more context on each resource kind, click on the kind in the list and a window with a resource detail view will appear.</1><2>In addition to individual kinds, Fix also uses abstractions for common cloud services such as storage buckets, databases, or IP addresses. These \"multi-cloud kinds\" are an easy way to search for a specific type of services across clouds.</2><3>For example, searching for \"bucket\" in the Explorer tab will surface storage buckets for every cloud: Amazon S3, Google Cloud Storage and Azure Blob Storage.</3>"
 
@@ -299,7 +299,7 @@ msgstr "Account usage"
 msgid "Account: {0}"
 msgstr "Account: {0}"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:266
+#: src/pages/panel/inventory/InventoryPage.tsx:227
 msgid "accounts"
 msgstr "accounts"
 
@@ -566,7 +566,7 @@ msgstr "Azure Service Management"
 msgid "Back"
 msgstr "Back"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:273
+#: src/pages/panel/inventory/InventoryPage.tsx:234
 msgid "Base kind"
 msgstr "Base kind"
 
@@ -797,7 +797,7 @@ msgstr "Close"
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:163
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormCloudValues.tsx:62
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:92
-#: src/pages/panel/inventory/InventoryPage.tsx:273
+#: src/pages/panel/inventory/InventoryPage.tsx:234
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:252
 msgid "Cloud"
 msgstr "Cloud"
@@ -815,7 +815,7 @@ msgstr "Cloud Accounts"
 msgid "Cloud Inventory"
 msgstr "Cloud Inventory"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:265
+#: src/pages/panel/inventory/InventoryPage.tsx:226
 msgid "clouds"
 msgstr "clouds"
 
@@ -1597,8 +1597,8 @@ msgstr "Invalid file, Please follow the step-by-step instructions {0}."
 msgid "Invalid Value"
 msgstr "Invalid Value"
 
-#: src/pages/panel/inventory/getSlides.tsx:13
-#: src/pages/panel/inventory/InventoryPage.tsx:223
+#: src/pages/panel/inventory/InventoryPage.tsx:213
+#: src/pages/panel/inventory/slides.tsx:13
 #: src/shared/layouts/panel-layout/menuList.tsx:19
 msgid "Inventory"
 msgstr "Inventory"
@@ -1625,7 +1625,7 @@ msgstr "kind"
 msgid "Kind"
 msgstr "Kind"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:268
+#: src/pages/panel/inventory/InventoryPage.tsx:229
 msgid "kinds"
 msgstr "kinds"
 
@@ -1654,7 +1654,7 @@ msgstr "Last scanned: {0} ago"
 msgid "Last used"
 msgstr "Last used"
 
-#: src/shared/right-slider/HelpSlider.tsx:30
+#: src/shared/right-slider/HelpSlider.tsx:45
 msgid "Learn more"
 msgstr "Learn more"
 
@@ -1849,8 +1849,8 @@ msgstr "New security issues detected"
 msgid "New to Fix? <0>Create an account</0>"
 msgstr "New to Fix? <0>Create an account</0>"
 
-#: src/pages/panel/inventory/DataGridPagination.tsx:61
-#: src/shared/right-slider/HelpSlider.tsx:114
+#: src/pages/panel/inventory/DataGridPagination.tsx:62
+#: src/shared/right-slider/HelpSlider.tsx:129
 msgid "Next"
 msgstr "Next"
 
@@ -2143,8 +2143,8 @@ msgstr "Press the submit button, and Done. 🎉🎊"
 msgid "Press: Create Service and fill out the form."
 msgstr "Press: Create Service and fill out the form."
 
-#: src/pages/panel/inventory/DataGridPagination.tsx:61
-#: src/shared/right-slider/HelpSlider.tsx:98
+#: src/pages/panel/inventory/DataGridPagination.tsx:62
+#: src/shared/right-slider/HelpSlider.tsx:113
 msgid "Previous"
 msgstr "Previous"
 
@@ -2232,7 +2232,7 @@ msgstr "Regenerate"
 msgid "Region"
 msgstr "Region"
 
-#: src/pages/panel/inventory/InventoryPage.tsx:267
+#: src/pages/panel/inventory/InventoryPage.tsx:228
 msgid "regions"
 msgstr "regions"
 
@@ -2279,7 +2279,7 @@ msgstr "Reset Password"
 msgid "Resource"
 msgstr "Resource"
 
-#: src/pages/panel/inventory/getSlides.tsx:56
+#: src/pages/panel/inventory/slides.tsx:56
 msgid "Resource Categories"
 msgstr "Resource Categories"
 
@@ -2309,7 +2309,7 @@ msgstr "Resource deleted"
 msgid "Resource kind"
 msgstr "Resource kind"
 
-#: src/pages/panel/inventory/getSlides.tsx:77
+#: src/pages/panel/inventory/slides.tsx:77
 msgid "Resource List"
 msgstr "Resource List"
 

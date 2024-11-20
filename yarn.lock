@@ -842,9 +842,9 @@
   integrity sha512-BsWiH1yFGjXXS2yvrf5LyuoSIIbPrGUWob917o+BTKuZ7qJdxX8aJLRxs1fS9n6r7vESrq1OUqb68dANcFXuQQ==
 
 "@eslint/plugin-kit@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@eslint/plugin-kit/-/plugin-kit-0.2.0.tgz#8712dccae365d24e9eeecb7b346f85e750ba343d"
-  integrity sha512-vH9PiIMMwvhCx31Af3HiGzsVNULDbyVkHXwlemn/B0TFj/00ho3y55efXrUZTfQipxoHC5u4xq6zblww1zm1Ig==
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@eslint/plugin-kit/-/plugin-kit-0.2.3.tgz#812980a6a41ecf3a8341719f92a6d1e784a2e0e8"
+  integrity sha512-2b/g5hRmpbb1o4GnTZax9N9m0FXzz9OV42ZzI4rDDMDuHUqigAiQCEWChBWCY4ztAGVRjoWT19v0yMmc5/L5kA==
   dependencies:
     levn "^0.4.1"
 
@@ -1299,14 +1299,14 @@
     prop-types "^15.8.1"
     react-is "^18.3.1"
 
-"@mui/x-charts-pro@^7.0.0-beta.6":
-  version "7.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/@mui/x-charts-pro/-/x-charts-pro-7.0.0-beta.6.tgz#d37aaa1c5842955815c5fe48bcc014ac75377cb0"
-  integrity sha512-YPLC+fs2pJPpt6aTNHzTQq/h2P/EM5c46LC1ggl/SUGT2EVmZIoKZFc5t9xBbkkaRnrrgo/kKDZBNIFN9LQoAg==
+"@mui/x-charts-pro@^7.0.0-beta.7":
+  version "7.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/@mui/x-charts-pro/-/x-charts-pro-7.0.0-beta.7.tgz#5173b5ed9d2769da5148bb15ffd917f0e9a52709"
+  integrity sha512-arwMABGKFKmgSsbakHk52x2td7rSneMyPvXN2rArVR3OARFv2giG3EdskXY7e9lk5KF2Qk+4bEp+fTYD2htYsg==
   dependencies:
     "@babel/runtime" "^7.25.7"
     "@mui/utils" "^5.16.6 || ^6.0.0"
-    "@mui/x-charts" "7.22.0"
+    "@mui/x-charts" "7.22.2"
     "@mui/x-charts-vendor" "7.20.0"
     "@mui/x-internals" "7.21.0"
     "@mui/x-license" "7.21.0"
@@ -1336,10 +1336,10 @@
     delaunator "^5.0.1"
     robust-predicates "^3.0.2"
 
-"@mui/x-charts@7.22.0":
-  version "7.22.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-charts/-/x-charts-7.22.0.tgz#b4b7237e6e7d42607c1084c9ed106dc3c30eca22"
-  integrity sha512-B70ix8keyww9CpfdwbsHygQGsgEySCXuHhGrDRiVyFgK+Be4edBWNswbL3ngIp37CHBbWegaYkPp/Q9GDas0AA==
+"@mui/x-charts@7.22.2":
+  version "7.22.2"
+  resolved "https://registry.yarnpkg.com/@mui/x-charts/-/x-charts-7.22.2.tgz#9768629d1b5bf949cd4f86da8e1c423dfbf36729"
+  integrity sha512-0Y2du4Ed7gOT53l8vVJ4vKT+Jz4Dh/iHnLy8TtL3+XhbPH9Ndu9Q30WwyyzOn84yt37hSUru/njQ1BWaSvVPHw==
   dependencies:
     "@babel/runtime" "^7.25.7"
     "@mui/utils" "^5.16.6 || ^6.0.0"
@@ -1350,15 +1350,15 @@
     clsx "^2.1.1"
     prop-types "^15.8.1"
 
-"@mui/x-data-grid-premium@^7.22.1":
-  version "7.22.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-premium/-/x-data-grid-premium-7.22.1.tgz#b162a8c86f8278f62f2b172645e63b318f729ce0"
-  integrity sha512-Pdd2nCM+1cMprIO3PotKNWvXqu/ePjDfsVM2h/JLOkpeWvwv/PJRuaB87s/bKawXeqXosY67WKkYwIeoqG4/lQ==
+"@mui/x-data-grid-premium@^7.22.2":
+  version "7.22.2"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-premium/-/x-data-grid-premium-7.22.2.tgz#f5ff97c03d143ac779ee504bee36944669c0c33d"
+  integrity sha512-HgofS4yodKXhFeiC/JwEG60KneNRiVI29piBsDcYLTsmn6kE1n9n48tPESKls6uYyqcM4upWc2WepizlNUIryw==
   dependencies:
     "@babel/runtime" "^7.25.7"
     "@mui/utils" "^5.16.6 || ^6.0.0"
-    "@mui/x-data-grid" "7.22.1"
-    "@mui/x-data-grid-pro" "7.22.1"
+    "@mui/x-data-grid" "7.22.2"
+    "@mui/x-data-grid-pro" "7.22.2"
     "@mui/x-internals" "7.21.0"
     "@mui/x-license" "7.21.0"
     "@types/format-util" "^1.0.4"
@@ -1367,14 +1367,14 @@
     prop-types "^15.8.1"
     reselect "^5.1.1"
 
-"@mui/x-data-grid-pro@7.22.1":
-  version "7.22.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-7.22.1.tgz#3e4e3abeb4089aaca3100f4c998c2c47cb875b18"
-  integrity sha512-zKvPxfnovqrMCUrmraTTG7Mr/pGaYjlUTeyp9pptbIrxqpjiD2d+LQF1L7qhOdbRHTqucqFUVy1hhxwlkkzNHw==
+"@mui/x-data-grid-pro@7.22.2":
+  version "7.22.2"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-7.22.2.tgz#f139ffc2e66dd182c69bfba1f4ad68e83bb16a35"
+  integrity sha512-i6GlRDzP0ySqKUxuPo3rw3L8AZkXUvU3xuoHd+Cpi5OJoQWyrOG2IkTjj3weyemFkUcaJZU5r8hDBD5WjEyguQ==
   dependencies:
     "@babel/runtime" "^7.25.7"
     "@mui/utils" "^5.16.6 || ^6.0.0"
-    "@mui/x-data-grid" "7.22.1"
+    "@mui/x-data-grid" "7.22.2"
     "@mui/x-internals" "7.21.0"
     "@mui/x-license" "7.21.0"
     "@types/format-util" "^1.0.4"
@@ -1382,10 +1382,10 @@
     prop-types "^15.8.1"
     reselect "^5.1.1"
 
-"@mui/x-data-grid@7.22.1":
-  version "7.22.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-7.22.1.tgz#de1b711cf314fedadacfeb30ce5ec049c12355f4"
-  integrity sha512-YHF96MEv7ACG/VuiycZjEAPH7cZLNuV2+bi/MyR1t/e6E6LTolYFykvjSFq+Imz1mYbW4+9mEvrHZsIKL5KKIQ==
+"@mui/x-data-grid@7.22.2":
+  version "7.22.2"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-7.22.2.tgz#2c7fce281b25785cde1af07698c4e555028d46d9"
+  integrity sha512-yfy2s5A6tbajQZiEdsba49T4FYb9F0WPrzbbG30dl1+sIiX4ZRX7ma44UIDGPZrsZv8xkkE+p8qeJxZ7OaMteA==
   dependencies:
     "@babel/runtime" "^7.25.7"
     "@mui/utils" "^5.16.6 || ^6.0.0"
@@ -1394,24 +1394,24 @@
     prop-types "^15.8.1"
     reselect "^5.1.1"
 
-"@mui/x-date-pickers-pro@^7.22.1":
-  version "7.22.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-date-pickers-pro/-/x-date-pickers-pro-7.22.1.tgz#88c3ae4343bbcf9370607eb20f98b66bad910c11"
-  integrity sha512-emulNSSUlEQXYYexf9MwMMusi9d980Oj0Sp3V6pl96QBcz9jGAcizzqzAPBUQ+aw8CtIdzDjo4/IPVuJMKpfSQ==
+"@mui/x-date-pickers-pro@^7.22.2":
+  version "7.22.2"
+  resolved "https://registry.yarnpkg.com/@mui/x-date-pickers-pro/-/x-date-pickers-pro-7.22.2.tgz#e7f25ef1637c57393490fb6728fb6fd645cfe032"
+  integrity sha512-nyCdTYqYTU+QiVLeBIpzuMvAXAH49Pobj+8Gb2GwG4M0lHbUr2uJVh0QYIzxg6Ah2eeJhOj9pjB4nJ1K5k+FIw==
   dependencies:
     "@babel/runtime" "^7.25.7"
     "@mui/utils" "^5.16.6 || ^6.0.0"
-    "@mui/x-date-pickers" "7.22.1"
+    "@mui/x-date-pickers" "7.22.2"
     "@mui/x-internals" "7.21.0"
     "@mui/x-license" "7.21.0"
     clsx "^2.1.1"
     prop-types "^15.8.1"
     react-transition-group "^4.4.5"
 
-"@mui/x-date-pickers@7.22.1":
-  version "7.22.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-date-pickers/-/x-date-pickers-7.22.1.tgz#3abe7ad0b5816051fdcef4ffbe5343965e7dfc8e"
-  integrity sha512-VBgicE+7PvJrdHSL6HyieHT6a/0dENH8RaMIM2VwUFrGoZzvik50WNwY5U+Hip1BwZLIEvlqtNRQIIj6kgBR6Q==
+"@mui/x-date-pickers@7.22.2":
+  version "7.22.2"
+  resolved "https://registry.yarnpkg.com/@mui/x-date-pickers/-/x-date-pickers-7.22.2.tgz#99ebf6ff3d5f926c8bceb43324c9d91022d79852"
+  integrity sha512-1KHSlIlnSoY3oHm820By8X344pIdGYqPvCCvfVHrEeeIQ/pHdxDD8tjZFWkFl4Jgm9oVFK90fMcqNZAzc+WaCw==
   dependencies:
     "@babel/runtime" "^7.25.7"
     "@mui/utils" "^5.16.6 || ^6.0.0"
@@ -3186,9 +3186,9 @@ camelcase@^6.2.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001541:
-  version "1.0.30001620"
-  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001620.tgz"
-  integrity sha512-WJvYsOjd1/BYUY6SNGUosK9DUidBPDTnOARHp3fSmFO1ekdxaY6nKRttEVrfMmYi80ctS0kz1wiWmm14fVc3ew==
+  version "1.0.30001680"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001680.tgz"
+  integrity sha512-rPQy70G6AGUMnbwS1z6Xg+RkHYPAi18ihs47GH0jcxIG7wArmPgY3XbS2sRdBbxJljp3thdT8BIqv9ccCypiPA==
 
 ccount@^2.0.0:
   version "2.0.1"
@@ -7636,10 +7636,10 @@ util@^0.12.5:
     is-typed-array "^1.1.3"
     which-typed-array "^1.1.2"
 
-uuid@^11.0.2:
-  version "11.0.2"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-11.0.2.tgz#a8d68ba7347d051e7ea716cc8dcbbab634d66875"
-  integrity sha512-14FfcOJmqdjbBPdDjFQyk/SdT4NySW4eM0zcG+HqbHP5jzuH56xO3J1DGhgs/cEMCfwYi3HQI1gnTO62iaG+tQ==
+uuid@^11.0.3:
+  version "11.0.3"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-11.0.3.tgz#248451cac9d1a4a4128033e765d137e2b2c49a3d"
+  integrity sha512-d0z310fCWv5dJwnX1Y/MncBAqGMKEzlBb1AOf7z9K8ALnd0utBX/msg/fA0+sbyN1ihbMsLhrBlnl1ak7Wa0rg==
 
 uuid@^8.3.0:
   version "8.3.2"
@@ -7754,10 +7754,10 @@ vite@^5.0.0:
   optionalDependencies:
     fsevents "~2.3.3"
 
-vite@^5.4.10:
-  version "5.4.10"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.10.tgz#d358a7bd8beda6cf0f3b7a450a8c7693a4f80c18"
-  integrity sha512-1hvaPshuPUtxeQ0hsVH3Mud0ZanOLwVTneA1EgbAM5LhaZEqyPWGRQ7BtaMvUrTDeEaC8pxtj6a6jku3x4z6SQ==
+vite@^5.4.11:
+  version "5.4.11"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.11.tgz#3b415cd4aed781a356c1de5a9ebafb837715f6e5"
+  integrity sha512-c7jFQRklXua0mTzneGW9QVyxFjUgwcihC4bXEtujIo2ouWCe1Ajt/amn2PCxYnhYfd5k09JX3SB7OYWFKYqj8Q==
   dependencies:
     esbuild "^0.21.3"
     postcss "^8.4.43"
