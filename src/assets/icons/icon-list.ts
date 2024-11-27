@@ -47,6 +47,7 @@ import DynamicFormIconComp from './dynamic-form-icon.svg?react'
 import EditFilledIconComp from './edit-filled-icon.svg?react'
 import EmailWithTextIconComp from './email-with-text-icon.svg?react'
 import ErrorFilledIconComp from './error-filled-icon.svg?react'
+import ErrorIconComp from './error-icon.svg?react'
 import FixLogoNoBackgroundComp from './fix-logo-no-background.svg?react'
 import FixLogoComp from './fix-logo.svg?react'
 import FormatListBulletedIconComp from './format-list-bulleted-icon.svg?react'
@@ -124,6 +125,8 @@ import VPNKeyIconComp from './vpn-key-icon.svg?react'
 import WarningFilledIconComp from './warning-filled-icon.svg?react'
 import WarningIconComp from './warning-icon.svg?react'
 import WorkspaceSettingsIconComp from './workspace-settings-icon.svg?react'
+import ZoomInMapIconComp from './zoom-in-map-icon.svg?react'
+import ZoomOutMapIconComp from './zoom-out-map-icon.svg?react'
 
 export const AccessibilityNewIcon = createIcon(AccessibilityNewIconComp)
 export const AccountCircleIcon = createIcon(AccountCircleIconComp)
@@ -173,6 +176,7 @@ export const DynamicFormIcon = createIcon(DynamicFormIconComp)
 export const EditFilledIcon = createIcon(EditFilledIconComp)
 export const EmailWithTextIcon = createIcon(EmailWithTextIconComp)
 export const ErrorFilledIcon = createIcon(ErrorFilledIconComp)
+export const ErrorIcon = createIcon(ErrorIconComp)
 export const FixLogoNoBackground = createIcon(FixLogoNoBackgroundComp)
 export const FixLogo = createIcon(FixLogoComp)
 export const FormatListBulletedIcon = createIcon(FormatListBulletedIconComp)
@@ -250,3 +254,5 @@ export const VPNKeyIcon = createIcon(VPNKeyIconComp)
 export const WarningFilledIcon = createIcon(WarningFilledIconComp)
 export const WarningIcon = createIcon(WarningIconComp)
 export const WorkspaceSettingsIcon = createIcon(WorkspaceSettingsIconComp)
+export const ZoomInMapIcon = createIcon(ZoomInMapIconComp)
+export const ZoomOutMapIcon = createIcon(ZoomOutMapIconComp)
