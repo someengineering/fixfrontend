@@ -73,6 +73,10 @@ msgstr "{0, plural, one {One error reported} two {Two errors reported} other {# 
 msgid "{0} ago"
 msgstr "{0} ago"
 
+#: src/pages/panel/compliance/ComplianceDetail.tsx:149
+msgid "{0} categories"
+msgstr "{0} categories"
+
 #: src/shared/event-button/EventButton.tsx:55
 #: src/shared/event-button/EventButton.tsx:64
 msgid "{0} Cloud account configured, id: {1}"
@@ -87,6 +91,10 @@ msgstr "{0} Cloud account degraded, id: {1}"
 #: src/shared/event-button/EventButton.tsx:99
 msgid "{0} Cloud account discovered, id: {1}"
 msgstr "{0} Cloud account discovered, id: {1}"
+
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:59
+msgid "{0} Fail"
+msgstr "{0} Fail"
 
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsConnectedServicesPage.tsx:25
 msgid "{0} has been connected"
@@ -107,6 +115,10 @@ msgstr "{0} Regions"
 #: src/pages/panel/dashboard/DashboardPage.tsx:161
 msgid "{0} regions, {1} countries"
 msgstr "{0} regions, {1} countries"
+
+#: src/pages/panel/compliance/ComplianceDetail.tsx:169
+msgid "{0}_{accountName}_{1}.json"
+msgstr "{0}_{accountName}_{1}.json"
 
 #: src/pages/panel/security/OverallScore.tsx:60
 #: src/pages/panel/shared/utils/createPieDataFromNonCompliance.ts:26
@@ -146,6 +158,18 @@ msgstr "{label} is required"
 msgid "{lastScanDurStr} ago"
 msgstr "{lastScanDurStr} ago"
 
+#: src/pages/panel/compliance/CompliancePassedChecksCard.tsx:21
+msgid "{passedChecks} passed out of {totalChecks} checks"
+msgstr "{passedChecks} passed out of {totalChecks} checks"
+
+#: src/pages/panel/compliance/ComplianceDetailTreeItemLabel.tsx:30
+msgid "{passingChecks} of {0}"
+msgstr "{passingChecks} of {0}"
+
+#: src/pages/panel/compliance/CompliancePostureCard.tsx:43
+msgid "{percentage}% average compliance posture"
+msgstr "{percentage}% average compliance posture"
+
 #: src/pages/panel/inventory/getColumns.tsx:123
 msgid "{regions, plural, one {# region} other {# regions}}"
 msgstr "{regions, plural, one {# region} other {# regions}}"
@@ -183,6 +207,10 @@ msgstr "<0><1>Step 1: Scan the QR Code</1><2>First up, see this QR code on your 
 #: src/pages/panel/inventory-search/InventoryAdvanceSearchInfo.tsx:59
 msgid "<0>Fix supports full text search by encasing the search term in double quotes. For instance,<1><2><3>{searchInstance}</3></2></1>enables you to scan your entire infrastructure for a specific IP address.</0><4>Additionally, you can query for any resource attribute by utilizing the <5><6>{attributeOperatorValue}</6></5> format, where the operator can be {0}or <7><8>{1}</8></7>. For example,<9><10><11>{searchTagsOwners}</11></10></9>allows you to find all resources tagged with an <12><13>{owner}</13></12> attribute equal to <14><15>{sre}</15></14>.</4><16>Search queries can be refined using boolean operators {2}<17><18>{3}</18></17> to combine multiple terms. An example would be<19><20><21>{searchEc2InstanceCores}</21></20></19>to identify all EC2 instances possessing more than 4 cores.</16><22>For detailed search syntax guidance, visit <23>https://docs.fix.security/search-syntax<24/></23></22>"
 msgstr "<0>Fix supports full text search by encasing the search term in double quotes. For instance,<1><2><3>{searchInstance}</3></2></1>enables you to scan your entire infrastructure for a specific IP address.</0><4>Additionally, you can query for any resource attribute by utilizing the <5><6>{attributeOperatorValue}</6></5> format, where the operator can be {0}or <7><8>{1}</8></7>. For example,<9><10><11>{searchTagsOwners}</11></10></9>allows you to find all resources tagged with an <12><13>{owner}</13></12> attribute equal to <14><15>{sre}</15></14>.</4><16>Search queries can be refined using boolean operators {2}<17><18>{3}</18></17> to combine multiple terms. An example would be<19><20><21>{searchEc2InstanceCores}</21></20></19>to identify all EC2 instances possessing more than 4 cores.</16><22>For detailed search syntax guidance, visit <23>https://docs.fix.security/search-syntax<24/></23></22>"
+
+#: src/pages/panel/compliance/slides.tsx:9
+msgid "<0>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</0><1>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</1><2>It as popularized in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.</2>"
+msgstr "<0>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</0><1>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</1><2>It as popularized in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.</2>"
 
 #: src/pages/panel/user-settings/UserSettingsTotpActivationModal.tsx:149
 msgid "<0>Open Your Authenticator App:</0> Head over to your authenticator app and choose to add a new account manually.<1>Enter Account Details:</1> You'll need to type in your account's email address or username, and the key provided below.<2>Your Key:</2> <3/><4>Verification Type:</4> Make sure to select \"Time-based\" as the verification type.<5>Enter the Code:</5> Once your account is added manually, the app will show a 6-digit code. Pop that code into the box below and hit \"Activate\"."
@@ -291,6 +319,10 @@ msgstr "Access to your account is broken"
 msgid "Account"
 msgstr "Account"
 
+#: src/pages/panel/compliance/ComplianceDetail.tsx:183
+msgid "Account name"
+msgstr "Account name"
+
 #: src/pages/panel/inventory/getColumns.tsx:97
 msgid "Account usage"
 msgstr "Account usage"
@@ -395,6 +427,10 @@ msgstr "All"
 #: src/pages/panel/inventory/GridFilterItem.tsx:99
 msgid "All {name}"
 msgstr "All {name}"
+
+#: src/pages/panel/compliance/CompliancePage.tsx:77
+msgid "All accounts"
+msgstr "All accounts"
 
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:130
 msgid "All Changes"
@@ -623,6 +659,14 @@ msgstr "Book a call"
 msgid "Business"
 msgstr "Business"
 
+#: src/pages/panel/compliance/CompliancePage.tsx:73
+msgid "By account"
+msgstr "By account"
+
+#: src/pages/panel/compliance/CompliancePage.tsx:61
+msgid "By framework"
+msgstr "By framework"
+
 #: src/containers/auth/AuthContainer.tsx:32
 msgid "By signing in, you agree to our <0>Privacy policy</0> and <1>Terms & Conditions.</1>"
 msgstr "By signing in, you agree to our <0>Privacy policy</0> and <1>Terms & Conditions.</1>"
@@ -828,6 +872,7 @@ msgstr "Clouds"
 msgid "Community support"
 msgstr "Community support"
 
+#: src/pages/panel/compliance/CompliancePage.tsx:56
 #: src/pages/panel/security/OverallCard.tsx:76
 #: src/shared/layouts/panel-layout/menuList.tsx:30
 msgid "Compliance"
@@ -836,6 +881,14 @@ msgstr "Compliance"
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:16
 msgid "Compliance Benchmarks"
 msgstr "Compliance Benchmarks"
+
+#: src/pages/panel/compliance/ComplianceDetail.tsx:186
+msgid "Compliance posture"
+msgstr "Compliance posture"
+
+#: src/pages/panel/compliance/CompliancePostureCard.tsx:45
+msgid "Compliance Posture"
+msgstr "Compliance Posture"
 
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormChangePicker.tsx:25
 msgid "Compliant"
@@ -856,6 +909,10 @@ msgstr "Compute Changes"
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:251
 msgid "Compute changes in the last 30 days."
 msgstr "Compute changes in the last 30 days."
+
+#: src/pages/panel/compliance/ComplianceDetail.tsx:161
+msgid "Condense all"
+msgstr "Condense all"
 
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:34
 #: src/pages/panel/shared/utils/nodeChangeCell.tsx:13
@@ -1189,6 +1246,10 @@ msgstr "Done! We will now import your Azure accounts, this usually takes a coupl
 msgid "Downgrade"
 msgstr "Downgrade"
 
+#: src/pages/panel/compliance/ComplianceDownloadButton.tsx:31
+msgid "Download"
+msgstr "Download"
+
 #: src/pages/panel/inventory-search/DownloadCSVButton.tsx:103
 #: src/pages/panel/inventory-search/DownloadCSVButton.tsx:125
 #: src/pages/panel/inventory/DownloadCSVButton.tsx:47
@@ -1262,6 +1323,10 @@ msgstr "Everything in Free, and"
 msgid "Example searches"
 msgstr "Example searches"
 
+#: src/pages/panel/compliance/ComplianceDetail.tsx:164
+msgid "Expand all"
+msgstr "Expand all"
+
 #: src/pages/panel/workspace-users-settings-pending-invitations/WorkspaceUsersSettingsPendingInvitationRow.tsx:124
 #: src/pages/panel/workspace-users-settings-pending-invitations/WorkspaceUsersSettingsPendingInvitationsPage.tsx:46
 msgid "Expires"
@@ -1283,6 +1348,10 @@ msgstr "External Id"
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:82
 msgid "failed"
 msgstr "failed"
+
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:92
+msgid "Failed"
+msgstr "Failed"
 
 #: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:89
 msgid "Failed to retrieve changelog"
@@ -1658,6 +1727,10 @@ msgstr "Last used"
 msgid "Learn more"
 msgstr "Learn more"
 
+#: src/pages/panel/compliance/slides.tsx:6
+msgid "Learn more about Compliance"
+msgstr "Learn more about Compliance"
+
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:103
 msgid "Learn more about the associated risk"
 msgstr "Learn more about the associated risk"
@@ -1880,6 +1953,10 @@ msgstr "No account configured for this workspace"
 msgid "No API token has been created."
 msgstr "No API token has been created."
 
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:79
+msgid "No resources"
+msgstr "No resources"
+
 #: src/shared/layouts/panel-layout/MoveToFreeAcknowledge.tsx:44
 msgid "No Thanks"
 msgstr "No Thanks"
@@ -2041,9 +2118,15 @@ msgstr "OTP Code"
 msgid "Owner"
 msgstr "Owner"
 
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:85
 #: src/shared/defined-messages/getMessage.ts:20
 msgid "Passed"
 msgstr "Passed"
+
+#: src/pages/panel/compliance/ComplianceDetail.tsx:189
+#: src/pages/panel/compliance/CompliancePassedChecksCard.tsx:26
+msgid "Passed checks"
+msgstr "Passed checks"
 
 #: src/pages/auth/login/LoginPage.tsx:227
 #: src/pages/auth/register/RegisterPage.tsx:136
@@ -2305,6 +2388,7 @@ msgstr "Resource created"
 msgid "Resource deleted"
 msgstr "Resource deleted"
 
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:22
 #: src/pages/panel/inventory/getColumns.tsx:27
 msgid "Resource kind"
 msgstr "Resource kind"
@@ -2326,6 +2410,7 @@ msgid "Resource types"
 msgstr "Resource types"
 
 #: src/pages/panel/accounts/AccountsTableItem.tsx:68
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:28
 #: src/pages/panel/dashboard/DashboardCloudCards.tsx:47
 #: src/pages/panel/dashboard/DashboardPage.tsx:153
 #: src/pages/panel/inventory-detail/InventoryDetailView.tsx:231
@@ -2523,11 +2608,16 @@ msgstr "Severities"
 
 #: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:80
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:102
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:25
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormSeverity.tsx:52
 #: src/pages/panel/inventory-search/inventory-form/utils/getAutoCompleteFromKey.tsx:156
 #: src/pages/panel/workspace-settings-alert-settings/WorkspaceSettingsAlertSettingsPage.tsx:110
 msgid "Severity"
 msgstr "Severity"
+
+#: src/pages/panel/compliance/ComplianceDetail.tsx:156
+msgid "Show empty categories"
+msgstr "Show empty categories"
 
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:247
 msgid "Show resources"
