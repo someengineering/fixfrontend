@@ -2,6 +2,7 @@ import { Trans } from '@lingui/macro'
 import { alpha, Box, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
 import { CheckIcon, ErrorIcon } from 'src/assets/icons'
 import { CloudToIcon } from 'src/shared/cloud-avatar'
+import { SeverityItemWithText } from 'src/shared/severity'
 import { BenchmarkCheckResultNode } from 'src/shared/types/server'
 import { snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 import { ComplianceCheckCollectionNodeWithChildren } from './ComplianceDetailTreeItem'
@@ -49,11 +50,7 @@ export const ComplianceDetailTreeItemTable = ({ item, accountName }: ComplianceD
                   </Stack>
                 </Stack>
               </TableCell>
-              <TableCell>
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <Typography variant="subtitle1">{check.reported.severity}</Typography>
-                </Stack>
-              </TableCell>
+              <TableCell>{check.severity ? <SeverityItemWithText severity={check.severity} /> : null}</TableCell>
               <TableCell>
                 <Typography variant="subtitle1">
                   <Trans>{check.reported.number_of_resources_failing} Fail</Trans>

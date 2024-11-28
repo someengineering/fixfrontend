@@ -92,7 +92,7 @@ msgstr "{0} Cloud account degraded, id: {1}"
 msgid "{0} Cloud account discovered, id: {1}"
 msgstr "{0} Cloud account discovered, id: {1}"
 
-#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:59
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:56
 msgid "{0} Fail"
 msgstr "{0} Fail"
 
@@ -1349,7 +1349,7 @@ msgstr "External Id"
 msgid "failed"
 msgstr "failed"
 
-#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:92
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:89
 msgid "Failed"
 msgstr "Failed"
 
@@ -1953,7 +1953,7 @@ msgstr "No account configured for this workspace"
 msgid "No API token has been created."
 msgstr "No API token has been created."
 
-#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:79
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:76
 msgid "No resources"
 msgstr "No resources"
 
@@ -2118,7 +2118,7 @@ msgstr "OTP Code"
 msgid "Owner"
 msgstr "Owner"
 
-#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:85
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:82
 #: src/shared/defined-messages/getMessage.ts:20
 msgid "Passed"
 msgstr "Passed"
@@ -2388,7 +2388,7 @@ msgstr "Resource created"
 msgid "Resource deleted"
 msgstr "Resource deleted"
 
-#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:22
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:23
 #: src/pages/panel/inventory/getColumns.tsx:27
 msgid "Resource kind"
 msgstr "Resource kind"
@@ -2410,7 +2410,7 @@ msgid "Resource types"
 msgstr "Resource types"
 
 #: src/pages/panel/accounts/AccountsTableItem.tsx:68
-#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:28
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:29
 #: src/pages/panel/dashboard/DashboardCloudCards.tsx:47
 #: src/pages/panel/dashboard/DashboardPage.tsx:153
 #: src/pages/panel/inventory-detail/InventoryDetailView.tsx:231
@@ -2608,7 +2608,7 @@ msgstr "Severities"
 
 #: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:80
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:102
-#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:25
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:26
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormSeverity.tsx:52
 #: src/pages/panel/inventory-search/inventory-form/utils/getAutoCompleteFromKey.tsx:156
 #: src/pages/panel/workspace-settings-alert-settings/WorkspaceSettingsAlertSettingsPage.tsx:110
