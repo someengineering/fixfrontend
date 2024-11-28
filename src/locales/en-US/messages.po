@@ -73,7 +73,7 @@ msgstr "{0, plural, one {One error reported} two {Two errors reported} other {# 
 msgid "{0} ago"
 msgstr "{0} ago"
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:149
+#: src/pages/panel/compliance/ComplianceDetail.tsx:146
 msgid "{0} categories"
 msgstr "{0} categories"
 
@@ -116,7 +116,7 @@ msgstr "{0} Regions"
 msgid "{0} regions, {1} countries"
 msgstr "{0} regions, {1} countries"
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:169
+#: src/pages/panel/compliance/ComplianceDetail.tsx:166
 msgid "{0}_{accountName}_{1}.json"
 msgstr "{0}_{accountName}_{1}.json"
 
@@ -319,7 +319,7 @@ msgstr "Access to your account is broken"
 msgid "Account"
 msgstr "Account"
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:183
+#: src/pages/panel/compliance/ComplianceDetail.tsx:180
 msgid "Account name"
 msgstr "Account name"
 
@@ -882,7 +882,7 @@ msgstr "Compliance"
 msgid "Compliance Benchmarks"
 msgstr "Compliance Benchmarks"
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:186
+#: src/pages/panel/compliance/ComplianceDetail.tsx:183
 msgid "Compliance posture"
 msgstr "Compliance posture"
 
@@ -910,7 +910,7 @@ msgstr "Compute Changes"
 msgid "Compute changes in the last 30 days."
 msgstr "Compute changes in the last 30 days."
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:161
+#: src/pages/panel/compliance/ComplianceDetail.tsx:158
 msgid "Condense all"
 msgstr "Condense all"
 
@@ -1323,7 +1323,7 @@ msgstr "Everything in Free, and"
 msgid "Example searches"
 msgstr "Example searches"
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:164
+#: src/pages/panel/compliance/ComplianceDetail.tsx:161
 msgid "Expand all"
 msgstr "Expand all"
 
@@ -2123,7 +2123,7 @@ msgstr "Owner"
 msgid "Passed"
 msgstr "Passed"
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:189
+#: src/pages/panel/compliance/ComplianceDetail.tsx:186
 #: src/pages/panel/compliance/CompliancePassedChecksCard.tsx:26
 msgid "Passed checks"
 msgstr "Passed checks"
@@ -2615,7 +2615,7 @@ msgstr "Severities"
 msgid "Severity"
 msgstr "Severity"
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:156
+#: src/pages/panel/compliance/ComplianceDetail.tsx:153
 msgid "Show empty categories"
 msgstr "Show empty categories"
 

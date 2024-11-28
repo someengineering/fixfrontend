@@ -73,7 +73,7 @@ msgstr ""
 msgid "{0} ago"
 msgstr ""
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:149
+#: src/pages/panel/compliance/ComplianceDetail.tsx:146
 msgid "{0} categories"
 msgstr ""
 
@@ -116,7 +116,7 @@ msgstr ""
 msgid "{0} regions, {1} countries"
 msgstr ""
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:169
+#: src/pages/panel/compliance/ComplianceDetail.tsx:166
 msgid "{0}_{accountName}_{1}.json"
 msgstr ""
 
@@ -319,7 +319,7 @@ msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 msgid "Account"
 msgstr "Konto"
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:183
+#: src/pages/panel/compliance/ComplianceDetail.tsx:180
 msgid "Account name"
 msgstr ""
 
@@ -882,7 +882,7 @@ msgstr "Compliance"
 msgid "Compliance Benchmarks"
 msgstr "Compliance-Benchmarks"
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:186
+#: src/pages/panel/compliance/ComplianceDetail.tsx:183
 msgid "Compliance posture"
 msgstr ""
 
@@ -910,7 +910,7 @@ msgstr ""
 msgid "Compute changes in the last 30 days."
 msgstr ""
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:161
+#: src/pages/panel/compliance/ComplianceDetail.tsx:158
 msgid "Condense all"
 msgstr ""
 
@@ -1323,7 +1323,7 @@ msgstr "Alles in Free, und"
 msgid "Example searches"
 msgstr "Beispielsuchen"
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:164
+#: src/pages/panel/compliance/ComplianceDetail.tsx:161
 msgid "Expand all"
 msgstr ""
 
@@ -2123,7 +2123,7 @@ msgstr "Eigentümer"
 msgid "Passed"
 msgstr ""
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:189
+#: src/pages/panel/compliance/ComplianceDetail.tsx:186
 #: src/pages/panel/compliance/CompliancePassedChecksCard.tsx:26
 msgid "Passed checks"
 msgstr ""
@@ -2615,7 +2615,7 @@ msgstr ""
 msgid "Severity"
 msgstr "Schwere"
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:156
+#: src/pages/panel/compliance/ComplianceDetail.tsx:153
 msgid "Show empty categories"
 msgstr ""
 
