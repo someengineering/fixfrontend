@@ -27,12 +27,7 @@ export const ComplianceDetailTreeItemTableMenu = ({ check, accountName }: Compli
   }
   const handleCopyLink = () => {
     handleClose()
-    const selectedId = check.parent?.nodeId
-    let expandedId = ''
-    for (let checkParent: ComplianceCheckCollectionNodeWithChildren = check; checkParent.parent; checkParent = checkParent.parent) {
-      expandedId = `${checkParent.nodeId},${expandedId}`
-    }
-    copy(`${window.location.href.split('?')[0]}?selected-id=${selectedId}&expanded-items=${expandedId}`)
+    copy(`${window.location.href.split('?')[0].split('/check-detail')[0]}/check-detail/${check.reported.id}`)
   }
   let query: string | undefined
   if (check.reported.detect.fix) {
