@@ -22,7 +22,7 @@ export default function CompliancePage() {
         queryKey: ['workspace-inventory-report-benchmarks', selectedWorkspace?.id, undefined, true, false, false, true],
         queryFn: getWorkspaceInventoryReportBenchmarksQuery,
         select: (data: GetWorkspaceInventoryReportBenchmarksResponse) =>
-          data.map((benchmark) => ({ title: benchmark.title, value: benchmark.id })),
+          data.map((benchmark) => ({ title: benchmark.title, value: benchmark.id, clouds: benchmark.clouds })),
       },
       {
         queryKey: ['workspace-cloud-accounts', selectedWorkspace?.id, true],
@@ -32,6 +32,7 @@ export default function CompliancePage() {
             ? [...data.added, ...data.discovered, ...data.recent].map((account) => ({
                 title: getAccountName(account),
                 value: account.account_id,
+                cloud: account.cloud,
               }))
             : [],
       },
@@ -49,6 +50,11 @@ export default function CompliancePage() {
   }
   const setFramework = (framework: string) => changeParams(framework)
   const setAccount = (account: string) => changeParams(undefined, account)
+  const currentFrameworkClouds = benchmarks.find((benchmark) => benchmark.value === benchmarkId)?.clouds ?? []
+  const cloudFilteredAccounts = currentFrameworkClouds.length
+    ? accounts.filter((account) => currentFrameworkClouds.includes(account.cloud))
+    : accounts
+
   return benchmarkId ? (
     <Stack spacing={3}>
       <Stack direction="row" flexWrap="wrap" gap={3.75} justifyContent="space-between">
@@ -61,7 +67,7 @@ export default function CompliancePage() {
               <Trans>By framework</Trans>
             </Typography>
             <Select value={benchmarkId} onChange={(e) => setFramework(e.target.value)} sx={{ minWidth: 180 }}>
-              {benchmarks?.map((benchmark) => (
+              {benchmarks.map((benchmark) => (
                 <MenuItem key={benchmark.value} value={benchmark.value}>
                   {benchmark.title}
                 </MenuItem>
@@ -76,7 +82,7 @@ export default function CompliancePage() {
               <MenuItem value="">
                 <Trans>All accounts</Trans>
               </MenuItem>
-              {accounts?.map((account) => (
+              {cloudFilteredAccounts.map((account) => (
                 <MenuItem key={account.value} value={account.value}>
                   {account.title}
                 </MenuItem>

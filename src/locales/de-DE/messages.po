@@ -428,7 +428,7 @@ msgstr ""
 msgid "All {name}"
 msgstr ""
 
-#: src/pages/panel/compliance/CompliancePage.tsx:77
+#: src/pages/panel/compliance/CompliancePage.tsx:83
 msgid "All accounts"
 msgstr ""
 
@@ -659,11 +659,11 @@ msgstr ""
 msgid "Business"
 msgstr "Business"
 
-#: src/pages/panel/compliance/CompliancePage.tsx:73
+#: src/pages/panel/compliance/CompliancePage.tsx:79
 msgid "By account"
 msgstr ""
 
-#: src/pages/panel/compliance/CompliancePage.tsx:61
+#: src/pages/panel/compliance/CompliancePage.tsx:67
 msgid "By framework"
 msgstr ""
 
@@ -872,7 +872,7 @@ msgstr "Clouds"
 msgid "Community support"
 msgstr "Gemeinschaftliche Unterstützung"
 
-#: src/pages/panel/compliance/CompliancePage.tsx:56
+#: src/pages/panel/compliance/CompliancePage.tsx:62
 #: src/pages/panel/security/OverallCard.tsx:76
 #: src/shared/layouts/panel-layout/menuList.tsx:30
 msgid "Compliance"
