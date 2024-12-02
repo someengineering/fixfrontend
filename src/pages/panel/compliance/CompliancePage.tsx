@@ -48,8 +48,18 @@ export default function CompliancePage() {
   const changeParams = (framework?: string, account: string | undefined = accountId) => {
     navigate(`/compliance/${framework ?? benchmarkId}${account ? `/${account}` : ''}`)
   }
-  const setFramework = (framework: string) => changeParams(framework)
+
+  const setFramework = (framework: string) => {
+    const newFrameworkClouds = benchmarks.find((benchmark) => benchmark.value === framework)?.clouds ?? []
+    const currentAccountCloud = accounts.find((account) => account.value === accountId)?.cloud
+    if (currentAccountCloud && newFrameworkClouds.includes(currentAccountCloud)) {
+      changeParams(framework)
+    } else {
+      changeParams(framework, '')
+    }
+  }
   const setAccount = (account: string) => changeParams(undefined, account)
+
   const currentFrameworkClouds = benchmarks.find((benchmark) => benchmark.value === benchmarkId)?.clouds ?? []
   const cloudFilteredAccounts = currentFrameworkClouds.length
     ? accounts.filter((account) => currentFrameworkClouds.includes(account.cloud))
