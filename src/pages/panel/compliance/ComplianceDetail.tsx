@@ -1,5 +1,5 @@
 import { t, Trans } from '@lingui/macro'
-import { Button, FormControlLabel, Stack, Typography } from '@mui/material'
+import { Button, FormControlLabel, Stack, stackClasses, Typography } from '@mui/material'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -32,7 +32,7 @@ export const ComplianceDetail = () => {
     queryFn: getWorkspaceInventoryReportBenchmarkResultQuery,
     select: (data) => {
       let benchmarkDetail: NodeType<{ reported: BenchmarkReportNode }> | undefined
-      let accountName = accountId
+      let accountName: string | undefined = accountId ?? t`All accounts`
       const workingData: Record<string, ComplianceCheckCollectionNodeWithChildren> = {}
       let passedChecks = 0
       let totalChecks = 0
@@ -135,72 +135,81 @@ export const ComplianceDetail = () => {
     }
   }
   return (
-    <Stack spacing={2}>
+    <Stack spacing={2} width="100%">
       <Stack spacing={3} direction={{ xs: 'column', lg: 'row' }}>
         <CompliancePassedChecksCard passedChecks={passedChecks ?? 0} totalChecks={totalChecks ?? 0} />
         <CompliancePostureCard passedChecks={passedChecks ?? 0} totalChecks={totalChecks ?? 0} />
       </Stack>
-      <Stack sx={{ overFlowX: 'auto' }} minWidth={1380}>
-        <Stack direction="row" py={2} spacing={1} alignItems="center" justifyContent="space-between" color="textPrimary">
-          <Typography variant="h4">
-            <Trans>{dataWithChildren.length} categories</Trans>
-          </Typography>
-          <Stack direction="row" alignItems="center" spacing={3.75}>
-            <FormControlLabel
-              control={<IOSSwitch checked={showEmpty} onChange={(e) => setShowEmpty(e.target.checked)} />}
-              label={
-                <Typography variant="subtitle1" fontWeight={500}>
-                  <Trans>Show empty categories</Trans>
-                </Typography>
-              }
-            />
-            <Button startIcon={<ZoomInMapIcon />} color="inherit" sx={{ p: 0 }} onClick={condenseAll}>
-              <Trans>Condense all</Trans>
-            </Button>
-            <Button startIcon={<ZoomOutMapIcon />} color="inherit" sx={{ p: 0 }} onClick={expandAll}>
-              <Trans>Expand all</Trans>
-            </Button>
-            {originalData && (
-              <ComplianceDownloadButton
-                data={originalData}
-                filename={t`${benchmarkDetail?.reported.framework}_${accountName}_${new Date().toISOString()}.json`}
+      <Stack
+        sx={{ overflowX: 'auto', [`&.${stackClasses.root}`]: { mx: -3 } }}
+        width={({ spacing }) => `calc(100% + ${spacing(6)})`}
+        ml={-3}
+        px={3}
+      >
+        <Stack minWidth={1380}>
+          <Stack direction="row" py={2} spacing={1} alignItems="center" justifyContent="space-between" color="textPrimary">
+            <Typography variant="h4">
+              <Trans>{dataWithChildren.length} categories</Trans>
+            </Typography>
+            <Stack direction="row" alignItems="center" spacing={3.75}>
+              <FormControlLabel
+                control={<IOSSwitch checked={showEmpty} onChange={(e) => setShowEmpty(e.target.checked)} />}
+                label={
+                  <Typography variant="subtitle1" fontWeight={500}>
+                    <Trans>Show empty categories</Trans>
+                  </Typography>
+                }
               />
+              <Button startIcon={<ZoomInMapIcon />} color="inherit" sx={{ p: 0 }} onClick={condenseAll}>
+                <Trans>Condense all</Trans>
+              </Button>
+              <Button startIcon={<ZoomOutMapIcon />} color="inherit" sx={{ p: 0 }} onClick={expandAll}>
+                <Trans>Expand all</Trans>
+              </Button>
+              {originalData && (
+                <ComplianceDownloadButton
+                  data={originalData}
+                  filename={t`${benchmarkDetail?.reported.framework}_${accountName}_${new Date().toISOString()}.json`}
+                />
+              )}
+            </Stack>
+          </Stack>
+          <Stack
+            direction="row"
+            alignItems="center"
+            color="textSecondary"
+            overflow="auto"
+            width="100%"
+            spacing={1}
+            py={1.5}
+            borderTop={({ palette }) => `1px solid ${palette.divider}`}
+          >
+            <Typography variant="subtitle1" color="textSecondary" flex={1} flexShrink={0}>
+              {accountName}
+            </Typography>
+            <Typography variant="subtitle1" color="textSecondary" flex={0} flexShrink={0} minWidth={360}>
+              <Trans>Compliance posture</Trans>
+            </Typography>
+            <Typography variant="subtitle1" color="textSecondary" flex={0} flexShrink={0} minWidth={224}>
+              <Trans>Passed checks</Trans>
+            </Typography>
+          </Stack>
+          <Stack>
+            {allData && dataWithChildren ? (
+              <ComplianceDetailTree
+                allData={allData}
+                dataWithChildren={
+                  dataWithChildren.length === 1 && dataWithChildren[0].children ? dataWithChildren[0].children : dataWithChildren
+                }
+                accountId={accountId}
+                benchmarkId={benchmarkId}
+                checkId={checkId}
+                showEmpty={showEmpty}
+              />
+            ) : (
+              <LoadingSuspenseFallback />
             )}
           </Stack>
-        </Stack>
-        <Stack
-          direction="row"
-          alignItems="center"
-          color="textSecondary"
-          spacing={1}
-          py={1.5}
-          borderTop={({ palette }) => `1px solid ${palette.divider}`}
-        >
-          <Typography variant="subtitle1" color="textSecondary" flex={1} flexShrink={0}>
-            <Trans>Account name</Trans>
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary" flex={0} flexShrink={0} minWidth={360}>
-            <Trans>Compliance posture</Trans>
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary" flex={0} flexShrink={0} minWidth={224}>
-            <Trans>Passed checks</Trans>
-          </Typography>
-        </Stack>
-        <Stack>
-          {allData && dataWithChildren ? (
-            <ComplianceDetailTree
-              allData={allData}
-              dataWithChildren={
-                dataWithChildren.length === 1 && dataWithChildren[0].children ? dataWithChildren[0].children : dataWithChildren
-              }
-              accountId={accountId}
-              benchmarkId={benchmarkId}
-              checkId={checkId}
-              showEmpty={showEmpty}
-            />
-          ) : (
-            <LoadingSuspenseFallback />
-          )}
         </Stack>
       </Stack>
     </Stack>

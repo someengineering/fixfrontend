@@ -73,7 +73,7 @@ msgstr ""
 msgid "{0} ago"
 msgstr ""
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:146
+#: src/pages/panel/compliance/ComplianceDetail.tsx:152
 msgid "{0} categories"
 msgstr ""
 
@@ -116,7 +116,7 @@ msgstr ""
 msgid "{0} regions, {1} countries"
 msgstr ""
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:166
+#: src/pages/panel/compliance/ComplianceDetail.tsx:172
 msgid "{0}_{accountName}_{1}.json"
 msgstr ""
 
@@ -319,10 +319,6 @@ msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 msgid "Account"
 msgstr "Konto"
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:180
-msgid "Account name"
-msgstr ""
-
 #: src/pages/panel/inventory/getColumns.tsx:97
 msgid "Account usage"
 msgstr ""
@@ -428,7 +424,8 @@ msgstr ""
 msgid "All {name}"
 msgstr ""
 
-#: src/pages/panel/compliance/CompliancePage.tsx:93
+#: src/pages/panel/compliance/ComplianceDetail.tsx:35
+#: src/pages/panel/compliance/ComplianceSummary.tsx:87
 msgid "All accounts"
 msgstr ""
 
@@ -627,6 +624,7 @@ msgstr "Benchmark"
 msgid "Benchmark: {0}"
 msgstr "Benchmark: {0}"
 
+#: src/pages/panel/compliance/CompliancePage.tsx:22
 #: src/pages/panel/resource-detail/utils/ResourceDetailChangeLogSelectedHistoryAccordion.tsx:54
 #: src/pages/panel/shared/utils/chartToShow.tsx:16
 #: src/pages/panel/user-settings-notifications/UserSettingsNotificationsPage.tsx:27
@@ -659,11 +657,11 @@ msgstr ""
 msgid "Business"
 msgstr "Business"
 
-#: src/pages/panel/compliance/CompliancePage.tsx:89
+#: src/pages/panel/compliance/ComplianceSummary.tsx:83
 msgid "By account"
 msgstr ""
 
-#: src/pages/panel/compliance/CompliancePage.tsx:77
+#: src/pages/panel/compliance/ComplianceSummary.tsx:71
 msgid "By framework"
 msgstr ""
 
@@ -872,7 +870,7 @@ msgstr "Clouds"
 msgid "Community support"
 msgstr "Gemeinschaftliche Unterstützung"
 
-#: src/pages/panel/compliance/CompliancePage.tsx:72
+#: src/pages/panel/compliance/ComplianceSummary.tsx:66
 #: src/pages/panel/security/OverallCard.tsx:76
 #: src/shared/layouts/panel-layout/menuList.tsx:30
 msgid "Compliance"
@@ -882,7 +880,7 @@ msgstr "Compliance"
 msgid "Compliance Benchmarks"
 msgstr "Compliance-Benchmarks"
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:183
+#: src/pages/panel/compliance/ComplianceDetail.tsx:191
 msgid "Compliance posture"
 msgstr ""
 
@@ -910,7 +908,7 @@ msgstr ""
 msgid "Compute changes in the last 30 days."
 msgstr ""
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:158
+#: src/pages/panel/compliance/ComplianceDetail.tsx:164
 msgid "Condense all"
 msgstr ""
 
@@ -1323,7 +1321,7 @@ msgstr "Alles in Free, und"
 msgid "Example searches"
 msgstr "Beispielsuchen"
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:161
+#: src/pages/panel/compliance/ComplianceDetail.tsx:167
 msgid "Expand all"
 msgstr ""
 
@@ -2123,7 +2121,7 @@ msgstr "Eigentümer"
 msgid "Passed"
 msgstr ""
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:186
+#: src/pages/panel/compliance/ComplianceDetail.tsx:194
 #: src/pages/panel/compliance/CompliancePassedChecksCard.tsx:26
 msgid "Passed checks"
 msgstr ""
@@ -2615,7 +2613,7 @@ msgstr ""
 msgid "Severity"
 msgstr "Schwere"
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:153
+#: src/pages/panel/compliance/ComplianceDetail.tsx:159
 msgid "Show empty categories"
 msgstr ""
 
