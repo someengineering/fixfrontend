@@ -120,18 +120,18 @@ export const ComplianceDetailTree = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useEffect(() => {
-    if (selectedId) {
-      window.document.getElementById(selectedId)?.scrollIntoView({ behavior: 'smooth' })
-      const timeout = window.setTimeout(
-        () => window.document.getElementById(`item-${selectedId}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' }),
-        500,
-      )
-      return () => {
-        window.clearTimeout(timeout)
-      }
-    }
-  }, [selectedId])
+  // useEffect(() => {
+  //   if (selectedId) {
+  //     window.document.getElementById(selectedId)?.scrollIntoView({ behavior: 'smooth' })
+  //     const timeout = window.setTimeout(
+  //       () => window.document.getElementById(`item-${selectedId}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' }),
+  //       500,
+  //     )
+  //     return () => {
+  //       window.clearTimeout(timeout)
+  //     }
+  //   }
+  // }, [selectedId])
 
   return (
     <SimpleTreeView

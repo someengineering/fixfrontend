@@ -2,7 +2,7 @@ import { Trans } from '@lingui/macro'
 import { MenuItem, Select, Stack, Typography } from '@mui/material'
 import { useSuspenseQueries } from '@tanstack/react-query'
 import { Suspense } from 'react'
-import { useParams } from 'react-router-dom'
+import { Outlet, useParams } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceCloudAccountsQuery, getWorkspaceInventoryReportBenchmarksQuery } from 'src/pages/panel/shared/queries'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
@@ -16,7 +16,7 @@ import { slides } from './slides'
 
 export const ComplianceSummary = () => {
   const { selectedWorkspace } = useUserProfile()
-  const [{ data: benchmarks }, { data: accounts }] = useSuspenseQueries({
+  const [{ data: benchmarks, isLoading: isBenchmarksLoading }, { data: accounts, isLoading: isAccountsLoading }] = useSuspenseQueries({
     queries: [
       {
         queryKey: ['workspace-inventory-report-benchmarks', selectedWorkspace?.id, undefined, true, false, false, true],
@@ -38,6 +38,7 @@ export const ComplianceSummary = () => {
       },
     ],
   })
+  const isLoading = isBenchmarksLoading || isAccountsLoading
   const navigate = useAbsoluteNavigate()
   const { accountId = '', benchmarkId } = useParams<'benchmarkId' | 'accountId'>()
   const changeParams = (framework?: string, account: string | undefined = accountId) => {
@@ -65,12 +66,20 @@ export const ComplianceSummary = () => {
       <HelpSlider slides={slides}>
         <Trans>Compliance</Trans>
       </HelpSlider>
-      <Stack direction="row" gap={3.75} alignItems="center" sx={{ overflowX: 'auto', overflowY: 'hidden' }} width="100%">
+      <Stack direction="row" gap={3.75} alignItems="center" sx={{ overflowX: 'auto', overflowY: 'hidden' }} flexWrap="wrap">
         <Stack direction="row" gap={3} alignItems="center">
           <Typography variant="subtitle1" color="textSecondary">
             <Trans>By framework</Trans>
           </Typography>
-          <Select value={benchmarkId} onChange={(e) => setFramework(e.target.value)} sx={{ minWidth: 180 }}>
+          <Select
+            value={benchmarkId ?? ''}
+            onChange={(e) => setFramework(e.target.value)}
+            sx={{ minWidth: 180, color: !benchmarkId ? ({ palette }) => palette.text.disabled : undefined }}
+            displayEmpty
+          >
+            <MenuItem value="" disabled>
+              <Trans>Select one</Trans>
+            </MenuItem>
             {benchmarks.map((benchmark) => (
               <MenuItem key={benchmark.value} value={benchmark.value}>
                 {benchmark.title}
@@ -94,15 +103,16 @@ export const ComplianceSummary = () => {
           </Select>
         </Stack>
       </Stack>
-      {benchmarks && accounts && benchmarkId ? (
+      {isLoading ? (
+        <LoadingSuspenseFallback />
+      ) : benchmarks && accounts && benchmarkId ? (
         <NetworkErrorBoundary key={`${accounts}_${benchmarkId}`} FallbackComponent={ErrorBoundaryFallback}>
           <Suspense fallback={<LoadingSuspenseFallback />}>
             <ComplianceDetail />
           </Suspense>
         </NetworkErrorBoundary>
-      ) : (
-        <LoadingSuspenseFallback />
-      )}
+      ) : null}
+      {benchmarkId ? <Outlet /> : null}
     </Stack>
   )
 }

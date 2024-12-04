@@ -141,9 +141,8 @@ export const ComplianceDetail = () => {
         <CompliancePostureCard passedChecks={passedChecks ?? 0} totalChecks={totalChecks ?? 0} />
       </Stack>
       <Stack
-        sx={{ overflowX: 'auto', [`&.${stackClasses.root}`]: { mx: -3 } }}
+        sx={{ overflowX: 'auto', [`&.${stackClasses.root}`]: { ml: -3 } }}
         width={({ spacing }) => `calc(100% + ${spacing(6)})`}
-        ml={-3}
         px={3}
       >
         <Stack minWidth={1380}>

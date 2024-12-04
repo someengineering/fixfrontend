@@ -1,10 +1,9 @@
 import { Trans } from '@lingui/macro'
-import { Stack, Typography } from '@mui/material'
+import { Stack, stackClasses, Typography } from '@mui/material'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryReportSummaryQuery } from 'src/pages/panel/shared/queries'
-import { HeatmapCard } from 'src/pages/panel/shared/utils'
+import { Heatmap } from 'src/shared/charts'
 import { ComplianceSummary } from './ComplianceSummary'
 
 export default function CompliancePage() {
@@ -12,17 +11,42 @@ export default function CompliancePage() {
   const { data } = useSuspenseQuery({
     queryKey: ['workspace-inventory-report-summary', selectedWorkspace?.id],
     queryFn: getWorkspaceInventoryReportSummaryQuery,
+    select: (data) =>
+      data.benchmarks.map((benchmark) => ({
+        title: benchmark.title,
+        titleHref: `/compliance/${benchmark.id}`,
+        cells: data.accounts.map((account) => {
+          const failedChecks = benchmark.account_summary[account.id]?.failed_checks
+          const allFailedChecks = failedChecks ? Object.values(failedChecks).reduce((sum, current) => sum + current, 0) : -1
+          const percentage = failedChecks ? ((benchmark.nr_of_checks - allFailedChecks) * 100) / benchmark.nr_of_checks : -1
+          return {
+            name: account.name ?? account.id,
+            value: percentage,
+            title: Math.round(percentage) + '%',
+            href: `/compliance/${benchmark.id}/${account.id}`,
+          }
+        }),
+      })),
   })
-  const { benchmarkId } = useParams<'benchmarkId'>()
 
   return (
     <>
       <Stack spacing={3}>
-        <Typography variant="h3" mb={2}>
+        <Typography variant="h3">
           <Trans>Benchmarks</Trans>
         </Typography>
-        <HeatmapCard data={data} />
-        {benchmarkId ? <ComplianceSummary /> : null}
+        <Stack>
+          <Stack
+            sx={{ overflowX: 'auto', [`&.${stackClasses.root}`]: { ml: -3 } }}
+            width={({ spacing }) => `calc(100% + ${spacing(6)})`}
+            p={3}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Heatmap data={data} />
+          </Stack>
+        </Stack>
+        <ComplianceSummary />
       </Stack>
     </>
   )

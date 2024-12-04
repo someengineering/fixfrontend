@@ -139,7 +139,9 @@ export function PanelRoutes() {
                 {withResourceDetailRoute}
               </Route>
             </Route>
-            <Route path="compliance/:benchmarkId?/:accountId?/check-detail?/:checkId?" element={<CompliancePage />} />
+            <Route path="compliance/:benchmarkId?/:accountId?/check-detail?/:checkId?" element={<CompliancePage />}>
+              {withResourceDetailRoute}
+            </Route>
             <Route element={<PermissionCheckGuard permissionToCheck="readSettings" />}>
               <Route path="accounts" element={<AccountsPage />} />
             </Route>
