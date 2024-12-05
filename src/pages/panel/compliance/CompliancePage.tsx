@@ -25,7 +25,7 @@ export default function CompliancePage() {
             name: account.name ?? account.id,
             value: percentage,
             title: Math.round(percentage) + '%',
-            href: `/compliance/${benchmark.id}/${account.id}`,
+            href: failedChecks ? `/compliance/${benchmark.id}/${account.id}` : undefined,
           }
         }),
       })),
