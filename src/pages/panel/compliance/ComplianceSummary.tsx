@@ -8,11 +8,9 @@ import { getWorkspaceCloudAccountsQuery, getWorkspaceInventoryReportBenchmarksQu
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { ErrorBoundaryFallback, NetworkErrorBoundary } from 'src/shared/error-boundary-fallback'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
-import { HelpSlider } from 'src/shared/right-slider'
 import { GetWorkspaceCloudAccountsResponse, GetWorkspaceInventoryReportBenchmarksResponse } from 'src/shared/types/server'
 import { getAccountName } from 'src/shared/utils/getAccountName'
 import { ComplianceDetail } from './ComplianceDetail'
-import { slides } from './slides'
 
 export const ComplianceSummary = () => {
   const { selectedWorkspace } = useUserProfile()
@@ -62,46 +60,48 @@ export const ComplianceSummary = () => {
     : accounts
 
   return (
-    <Stack direction="row" flexWrap="wrap" gap={3.75} justifyContent="space-between" width="100%">
-      <HelpSlider slides={slides}>
-        <Trans>Compliance</Trans>
-      </HelpSlider>
-      <Stack direction="row" gap={3.75} alignItems="center" sx={{ overflowX: 'auto', overflowY: 'hidden' }} flexWrap="wrap">
-        <Stack direction="row" gap={3} alignItems="center">
-          <Typography variant="subtitle1" color="textSecondary">
-            <Trans>By framework</Trans>
-          </Typography>
-          <Select
-            value={benchmarkId ?? ''}
-            onChange={(e) => setFramework(e.target.value)}
-            sx={{ minWidth: 180, color: !benchmarkId ? ({ palette }) => palette.text.disabled : undefined }}
-            displayEmpty
-          >
-            <MenuItem value="" disabled>
-              <Trans>Select one</Trans>
+    <Stack
+      direction="row"
+      gap={3.75}
+      alignItems="center"
+      justifyContent="end"
+      sx={{ overflowX: 'auto', overflowY: 'hidden' }}
+      flexWrap="wrap"
+    >
+      <Stack direction="row" gap={3} alignItems="center">
+        <Typography variant="subtitle1" color="textSecondary">
+          <Trans>By framework</Trans>
+        </Typography>
+        <Select
+          value={benchmarkId ?? ''}
+          onChange={(e) => setFramework(e.target.value)}
+          sx={{ minWidth: 180, color: !benchmarkId ? ({ palette }) => palette.text.disabled : undefined }}
+          displayEmpty
+        >
+          <MenuItem value="" disabled>
+            <Trans>Select one</Trans>
+          </MenuItem>
+          {benchmarks.map((benchmark) => (
+            <MenuItem key={benchmark.value} value={benchmark.value}>
+              {benchmark.title}
             </MenuItem>
-            {benchmarks.map((benchmark) => (
-              <MenuItem key={benchmark.value} value={benchmark.value}>
-                {benchmark.title}
-              </MenuItem>
-            ))}
-          </Select>
-        </Stack>
-        <Stack direction="row" gap={3} alignItems="center">
-          <Typography variant="subtitle1" color="textSecondary">
-            <Trans>By account</Trans>
-          </Typography>
-          <Select value={accountId} onChange={(e) => setAccount(e.target.value)} sx={{ minWidth: 180 }} displayEmpty>
-            <MenuItem value="">
-              <Trans>All accounts</Trans>
+          ))}
+        </Select>
+      </Stack>
+      <Stack direction="row" gap={3} alignItems="center">
+        <Typography variant="subtitle1" color="textSecondary">
+          <Trans>By account</Trans>
+        </Typography>
+        <Select value={accountId} onChange={(e) => setAccount(e.target.value)} sx={{ minWidth: 180 }} displayEmpty>
+          <MenuItem value="">
+            <Trans>All accounts</Trans>
+          </MenuItem>
+          {cloudFilteredAccounts.map((account) => (
+            <MenuItem key={account.value} value={account.value}>
+              {account.title}
             </MenuItem>
-            {cloudFilteredAccounts.map((account) => (
-              <MenuItem key={account.value} value={account.value}>
-                {account.title}
-              </MenuItem>
-            ))}
-          </Select>
-        </Stack>
+          ))}
+        </Select>
       </Stack>
       {isLoading ? (
         <LoadingSuspenseFallback />

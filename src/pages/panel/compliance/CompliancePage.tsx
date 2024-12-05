@@ -1,10 +1,12 @@
 import { Trans } from '@lingui/macro'
-import { Stack, stackClasses, Typography } from '@mui/material'
+import { Stack, stackClasses } from '@mui/material'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useUserProfile } from 'src/core/auth'
 import { getWorkspaceInventoryReportSummaryQuery } from 'src/pages/panel/shared/queries'
 import { Heatmap } from 'src/shared/charts'
+import { HelpSlider } from 'src/shared/right-slider'
 import { ComplianceSummary } from './ComplianceSummary'
+import { slides } from './slides'
 
 export default function CompliancePage() {
   const { selectedWorkspace } = useUserProfile()
@@ -32,9 +34,9 @@ export default function CompliancePage() {
   return (
     <>
       <Stack spacing={3}>
-        <Typography variant="h3">
-          <Trans>Benchmarks</Trans>
-        </Typography>
+        <HelpSlider slides={slides}>
+          <Trans>Compliance</Trans>
+        </HelpSlider>
         <Stack>
           <Stack
             sx={{ overflowX: 'auto', [`&.${stackClasses.root}`]: { ml: -3 } }}
