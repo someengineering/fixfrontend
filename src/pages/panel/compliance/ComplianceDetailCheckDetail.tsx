@@ -1,7 +1,7 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Button, ButtonBase, Divider, Stack, Typography } from '@mui/material'
-import { DataGridPremium, GridRow, GridToolbar } from '@mui/x-data-grid-premium'
+import { GridRow, GridToolbar } from '@mui/x-data-grid-premium'
 import { useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { OpenInNewIcon, SearchIcon, VerifiedUserFilledIcon } from 'src/assets/icons'
@@ -9,6 +9,7 @@ import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { CloudAvatar } from 'src/shared/cloud-avatar'
 import { panelUI } from 'src/shared/constants'
 import { FixQueryParser } from 'src/shared/fix-query-parser'
+import { StyledDataGrid } from 'src/shared/styled-data-grid'
 import { BenchmarkCheckResultNode } from 'src/shared/types/server'
 import { usePersistState } from 'src/shared/utils/usePersistState'
 
@@ -61,8 +62,7 @@ export const ComplianceDetailCheckDetail = ({ check, description, accountName, i
     <Stack id={id} spacing={1} height={resources?.length ? 'auto' : '100%'}>
       {query ? (
         <Stack justifyContent="space-between" flexWrap="wrap" gap={1} width="100%">
-          <Typography variant="h4">{check.title ?? check.name}</Typography>
-          {description ? <Typography variant="h6">{description}</Typography> : undefined}
+          {description ? <Typography variant="subtitle1">{description}</Typography> : undefined}
           <Button
             href={query}
             sx={{ ml: 'auto', mr: 0 }}
@@ -77,16 +77,15 @@ export const ComplianceDetailCheckDetail = ({ check, description, accountName, i
             <Trans>Inspect Detection Search in Inventory</Trans>
           </Button>
         </Stack>
-      ) : (
+      ) : description ? (
         <Stack spacing={1}>
-          <Typography variant="h4">{check.title ?? check.name}</Typography>
-          {description ? <Typography variant="h6">{description}</Typography> : undefined}
+          <Typography variant="subtitle1">{description}</Typography>
         </Stack>
-      )}
+      ) : null}
       <Divider flexItem />
       {check.url ? (
         <Stack direction="row" justifyContent="space-between" flexWrap="wrap" alignItems="center" gap={1} width="100%">
-          <Typography variant="h5">
+          <Typography variant="h6">
             <Trans>Why does it matter</Trans>
           </Typography>
           <Button href={check.url} target="_blank" rel="noopener noreferrer" endIcon={<OpenInNewIcon />} sx={{ ml: 'auto', mr: 0 }}>
@@ -94,16 +93,16 @@ export const ComplianceDetailCheckDetail = ({ check, description, accountName, i
           </Button>
         </Stack>
       ) : (
-        <Typography variant="h5">
+        <Typography variant="h6">
           <Trans>Why does it matter</Trans>
         </Typography>
       )}
-      <Typography>{check.risk}</Typography>
+      <Typography variant="subtitle1">{check.risk}</Typography>
       <Divider flexItem />
-      <Typography variant="h5">
+      <Typography variant="h6">
         <Trans>How to fix</Trans>
       </Typography>
-      <Typography>{check.remediation.text}</Typography>
+      <Typography variant="subtitle1">{check.remediation.text}</Typography>
       {check.remediation.url ? (
         <Stack direction="row" justifyContent="end" width="100%">
           <Button
@@ -120,10 +119,10 @@ export const ComplianceDetailCheckDetail = ({ check, description, accountName, i
       <Divider flexItem />
       {resources?.length ? (
         <>
-          <Typography variant="h5">
+          <Typography variant="h6">
             <Trans>Affected resources</Trans>
           </Typography>
-          <DataGridPremium
+          <StyledDataGrid
             slots={{
               toolbar: GridToolbar,
               row: (rowProps) => (
@@ -144,7 +143,6 @@ export const ComplianceDetailCheckDetail = ({ check, description, accountName, i
             }}
             sx={{ minHeight: 300, minWidth: 100 }}
             disableRowSelectionOnClick
-            autoHeight
             pagination={resources.length > panelUI.tableRowsPerPages[0]}
             pageSizeOptions={paginationSizeOption}
             columns={[
@@ -216,7 +214,7 @@ export const ComplianceDetailCheckDetail = ({ check, description, accountName, i
         <>
           <Stack flex={1} justifyContent="center" alignItems="center" spacing={1} pb={2}>
             <VerifiedUserFilledIcon width={48} height={48} color="success" />
-            <Typography color="success.main" variant="h5" textAlign="center">
+            <Typography color="success.main" variant="h6" textAlign="center">
               <Trans>All resources passed the check</Trans>
             </Typography>
           </Stack>

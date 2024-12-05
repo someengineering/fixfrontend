@@ -314,7 +314,7 @@ msgid "Access to your account is broken"
 msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:193
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:183
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:181
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormAccount.tsx:63
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:256
 msgid "Account"
@@ -405,7 +405,7 @@ msgid "Advanced search query"
 msgstr "Erweiterte Suchabfrage"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:134
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:124
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:123
 msgid "Affected resources"
 msgstr ""
 
@@ -450,7 +450,7 @@ msgstr ""
 #: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:176
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:230
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:187
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:220
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:218
 msgid "All resources passed the check"
 msgstr ""
 
@@ -840,7 +840,7 @@ msgstr "Schließen"
 #: src/pages/panel/accounts/AccountRow.tsx:549
 #: src/pages/panel/accounts/AccountsTableItem.tsx:59
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:163
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:153
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:151
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormCloudValues.tsx:62
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:92
 #: src/pages/panel/inventory/InventoryPage.tsx:234
@@ -1053,7 +1053,7 @@ msgid "Created Time"
 msgstr "Erstellte Zeit"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:199
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:189
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:187
 msgid "Creation Date"
 msgstr ""
 
@@ -1491,7 +1491,7 @@ msgid "Hourly"
 msgstr "Stündliche"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:114
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:104
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:103
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:111
 msgid "How to fix"
 msgstr "Wie repariert man"
@@ -1513,7 +1513,7 @@ msgid "IAM Role changes in the last 30 days."
 msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:169
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:159
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:157
 msgid "Id"
 msgstr ""
 
@@ -1695,7 +1695,7 @@ msgid "kind"
 msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:187
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:177
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:175
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:248
 #: src/shared/charts/NetworkDiagram.tsx:375
 msgid "Kind"
@@ -1739,7 +1739,7 @@ msgid "Learn more about Compliance"
 msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:103
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:93
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:92
 msgid "Learn more about the associated risk"
 msgstr ""
 
@@ -1855,7 +1855,7 @@ msgstr "Die meisten nicht konformen Konten"
 #: src/pages/panel/accounts/AccountRow.tsx:552
 #: src/pages/panel/accounts/AccountsTableItem.tsx:65
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:175
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:165
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:163
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:250
 #: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:92
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsEmailService.tsx:113
@@ -2216,7 +2216,7 @@ msgid "Plus"
 msgstr "Plus"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:126
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:116
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:115
 msgid "Practical remediation guidance"
 msgstr ""
 
@@ -2318,7 +2318,7 @@ msgid "Regenerate"
 msgstr "Regenerieren"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:181
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:171
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:169
 #: src/pages/panel/dashboard/WorldMap.tsx:392
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:93
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegionValues.tsx:60
@@ -3017,8 +3017,8 @@ msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:100
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:108
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:90
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:98
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:89
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:97
 msgid "Why does it matter"
 msgstr ""
 

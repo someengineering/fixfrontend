@@ -1,0 +1,1 @@
+export { StyledDataGrid } from './StyledDataGrid'

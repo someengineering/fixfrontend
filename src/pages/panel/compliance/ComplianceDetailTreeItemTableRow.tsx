@@ -96,7 +96,11 @@ export const ComplianceDetailTreeItemTableRow = ({ check, accountName }: Complia
           py={1}
           my={1}
         >
-          <ComplianceDetailCheckDetail check={check.reported} accountName={accountName} description={check.reported.title} />
+          <ComplianceDetailCheckDetail
+            check={check.reported}
+            accountName={accountName}
+            description={check?.parent?.reported?.kind === 'report_check_collection' ? check?.parent.reported.description : undefined}
+          />
         </Stack>
       </Collapse>
     </>
