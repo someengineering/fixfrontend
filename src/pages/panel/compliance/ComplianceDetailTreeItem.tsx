@@ -46,7 +46,7 @@ export const ComplianceDetailTreeItem = ({ item, firstItem, accountName, framewo
   const resultChildren = item.children?.filter(
     (child) => child.reported.kind === 'report_check_result',
   ) as (ComplianceCheckCollectionNodeWithChildren & { reported: BenchmarkCheckResultNode })[]
-  return showEmpty || !item.isManual ? (
+  return showEmpty || (!item.isManual && item.children?.length) ? (
     <StyledTreeItem
       firstItem={firstItem}
       itemId={item.nodeId}
@@ -54,7 +54,13 @@ export const ComplianceDetailTreeItem = ({ item, firstItem, accountName, framewo
       endItem={!collectionChildren?.length}
     >
       {collectionChildren?.map((child) => <ComplianceDetailTreeItem key={child.nodeId} item={child} showEmpty={showEmpty} />)}
-      {resultChildren?.length ? <ComplianceDetailTreeItemTable item={resultChildren} accountName={accountName} /> : null}
+      {resultChildren?.length ? (
+        <ComplianceDetailTreeItemTable
+          item={resultChildren}
+          accountName={accountName}
+          description={item.reported.kind === 'report_check_collection' ? item.reported.description : undefined}
+        />
+      ) : null}
     </StyledTreeItem>
   ) : null
 }

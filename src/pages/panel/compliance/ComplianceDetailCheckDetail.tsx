@@ -15,12 +15,11 @@ import { usePersistState } from 'src/shared/utils/usePersistState'
 
 interface ComplianceDetailCheckDetailProps {
   check: BenchmarkCheckResultNode
-  description?: string
   accountName?: string
   id?: string
 }
 
-export const ComplianceDetailCheckDetail = ({ check, description, accountName, id }: ComplianceDetailCheckDetailProps) => {
+export const ComplianceDetailCheckDetail = ({ check, accountName, id }: ComplianceDetailCheckDetailProps) => {
   const page = useRef(0)
   const [pageSize, setPageSize] = usePersistState<number>(
     'ComplianceDetailCheckDetail.rowsPerPage',
@@ -62,7 +61,6 @@ export const ComplianceDetailCheckDetail = ({ check, description, accountName, i
     <Stack id={id} spacing={1} height={resources?.length ? 'auto' : '100%'}>
       {query ? (
         <Stack justifyContent="space-between" flexWrap="wrap" gap={1} width="100%">
-          {description ? <Typography variant="subtitle1">{description}</Typography> : undefined}
           <Button
             href={query}
             sx={{ ml: 'auto', mr: 0 }}
@@ -77,34 +75,26 @@ export const ComplianceDetailCheckDetail = ({ check, description, accountName, i
             <Trans>Inspect Detection Search in Inventory</Trans>
           </Button>
         </Stack>
-      ) : description ? (
-        <Stack spacing={1}>
-          <Typography variant="subtitle1">{description}</Typography>
-        </Stack>
       ) : null}
-      <Divider flexItem />
-      {check.url ? (
-        <Stack direction="row" justifyContent="space-between" flexWrap="wrap" alignItems="center" gap={1} width="100%">
-          <Typography variant="h6">
-            <Trans>Why does it matter</Trans>
-          </Typography>
-          <Button href={check.url} target="_blank" rel="noopener noreferrer" endIcon={<OpenInNewIcon />} sx={{ ml: 'auto', mr: 0 }}>
-            <Trans>Learn more about the associated risk</Trans>
-          </Button>
-        </Stack>
-      ) : (
+      <Stack direction="row" justifyContent="space-between" flexWrap="wrap" alignItems="center" gap={1} width="100%">
         <Typography variant="h6">
           <Trans>Why does it matter</Trans>
         </Typography>
-      )}
-      <Typography variant="subtitle1">{check.risk}</Typography>
-      <Divider flexItem />
-      <Typography variant="h6">
-        <Trans>How to fix</Trans>
+        {check.url ? (
+          <Button href={check.url} target="_blank" rel="noopener noreferrer" endIcon={<OpenInNewIcon />} sx={{ ml: 'auto', mr: 0 }}>
+            <Trans>Learn more about the associated risk</Trans>
+          </Button>
+        ) : null}
+      </Stack>
+      <Typography variant="subtitle1" whiteSpace="pre">
+        {check.risk}
       </Typography>
-      <Typography variant="subtitle1">{check.remediation.text}</Typography>
-      {check.remediation.url ? (
-        <Stack direction="row" justifyContent="end" width="100%">
+      <Divider flexItem />
+      <Stack direction="row" justifyContent="space-between" flexWrap="wrap" alignItems="center" gap={1} width="100%">
+        <Typography variant="h6">
+          <Trans>How to fix</Trans>
+        </Typography>
+        {check.remediation.url ? (
           <Button
             href={check.remediation.url}
             target="_blank"
@@ -114,11 +104,14 @@ export const ComplianceDetailCheckDetail = ({ check, description, accountName, i
           >
             <Trans>Practical remediation guidance</Trans>
           </Button>
-        </Stack>
-      ) : null}
-      <Divider flexItem />
+        ) : null}
+      </Stack>
+      <Typography variant="subtitle1" whiteSpace="pre">
+        {check.remediation.text}
+      </Typography>
       {resources?.length ? (
         <>
+          <Divider flexItem />
           <Typography variant="h6">
             <Trans>Affected resources</Trans>
           </Typography>
@@ -212,6 +205,7 @@ export const ComplianceDetailCheckDetail = ({ check, description, accountName, i
         </>
       ) : detectType !== 'text' ? (
         <>
+          <Divider flexItem />
           <Stack flex={1} justifyContent="center" alignItems="center" spacing={1} pb={2}>
             <VerifiedUserFilledIcon width={48} height={48} color="success" />
             <Typography color="success.main" variant="h6" textAlign="center">

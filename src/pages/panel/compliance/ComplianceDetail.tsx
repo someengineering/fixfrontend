@@ -39,7 +39,7 @@ export const ComplianceDetail = () => {
       data?.forEach((item) => {
         if (item.type === 'node') {
           if (item.reported.kind === 'report_check_collection' || item.reported.kind === 'report_check_result') {
-            if (item.reported.kind === 'report_check_result') {
+            if (item.reported.kind === 'report_check_result' && !item.reported.detect.manual) {
               totalChecks++
               if (item.reported.number_of_resources_failing === 0) {
                 passedChecks++
@@ -148,7 +148,9 @@ export const ComplianceDetail = () => {
         <Stack minWidth={1380}>
           <Stack direction="row" py={2} spacing={1} alignItems="center" justifyContent="space-between" color="textPrimary">
             <Typography variant="h4">
-              <Trans>{dataWithChildren.length} categories</Trans>
+              <Trans>
+                {(showEmpty ? dataWithChildren : dataWithChildren.filter((i) => i.children?.length && !i.isManual)).length} categories
+              </Trans>
             </Typography>
             <Stack direction="row" alignItems="center" spacing={3.75}>
               <FormControlLabel

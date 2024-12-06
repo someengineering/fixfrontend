@@ -60,14 +60,7 @@ export const ComplianceSummary = () => {
     : accounts
 
   return (
-    <Stack
-      direction="row"
-      gap={3.75}
-      alignItems="center"
-      justifyContent="end"
-      sx={{ overflowX: 'auto', overflowY: 'hidden' }}
-      flexWrap="wrap"
-    >
+    <Stack direction="row" gap={3.75} alignItems="center" justifyContent="end" flexWrap="wrap">
       <Stack direction="row" gap={3} alignItems="center">
         <Typography variant="subtitle1" color="textSecondary">
           <Trans>By framework</Trans>

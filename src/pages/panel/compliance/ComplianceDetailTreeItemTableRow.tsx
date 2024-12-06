@@ -8,7 +8,6 @@ import { BenchmarkCheckResultNode } from 'src/shared/types/server'
 import { snakeCaseWordsToUFStr } from 'src/shared/utils/snakeCaseToUFStr'
 import { ComplianceDetailCheckDetail } from './ComplianceDetailCheckDetail'
 import { ComplianceCheckCollectionNodeWithChildren } from './ComplianceDetailTreeItem'
-import { ComplianceDetailTreeItemTableMenu } from './ComplianceDetailTreeItemTableMenu'
 
 export interface ComplianceDetailTreeItemTableRowProps {
   check: ComplianceCheckCollectionNodeWithChildren & { reported: BenchmarkCheckResultNode }
@@ -63,7 +62,7 @@ export const ComplianceDetailTreeItemTableRow = ({ check, accountName }: Complia
           >
             {check.isManual ? (
               <Typography variant="subtitle1" whiteSpace="nowrap">
-                <Trans>No resources</Trans>
+                <Trans>Manual</Trans>
               </Typography>
             ) : check.reported.number_of_resources_failing === 0 ? (
               <>
@@ -83,7 +82,7 @@ export const ComplianceDetailTreeItemTableRow = ({ check, accountName }: Complia
           </Stack>
         </Box>
         <Box p={2} flexShrink={0} width={94}>
-          <ComplianceDetailTreeItemTableMenu check={check} accountName={accountName} />
+          {/* <ComplianceDetailTreeItemTableMenu check={check} accountName={accountName} /> */}
         </Box>
       </Stack>
       <Collapse in={expanded}>
@@ -96,11 +95,7 @@ export const ComplianceDetailTreeItemTableRow = ({ check, accountName }: Complia
           py={1}
           my={1}
         >
-          <ComplianceDetailCheckDetail
-            check={check.reported}
-            accountName={accountName}
-            description={check?.parent?.reported?.kind === 'report_check_collection' ? check?.parent.reported.description : undefined}
-          />
+          <ComplianceDetailCheckDetail check={check.reported} accountName={accountName} />
         </Stack>
       </Collapse>
     </>

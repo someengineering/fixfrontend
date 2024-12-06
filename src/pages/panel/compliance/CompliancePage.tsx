@@ -43,7 +43,7 @@ export default function CompliancePage() {
             width={({ spacing }) => `calc(100% + ${spacing(6)})`}
             p={3}
             justifyContent="center"
-            alignItems="center"
+            alignItems={{ xs: 'baseline', sm: 'center' }}
           >
             <Heatmap data={data} />
           </Stack>

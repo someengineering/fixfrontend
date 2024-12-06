@@ -92,7 +92,7 @@ msgstr "{0} Cloud-Konto beeinträchtigt, ID: {1}"
 msgid "{0} Cloud account discovered, id: {1}"
 msgstr "{0} Cloud-Konto entdeckt, ID: {1}"
 
-#: src/pages/panel/compliance/ComplianceDetailTreeItemTableRow.tsx:47
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTableRow.tsx:46
 msgid "{0} Fail"
 msgstr ""
 
@@ -116,7 +116,7 @@ msgstr ""
 msgid "{0} regions, {1} countries"
 msgstr ""
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:171
+#: src/pages/panel/compliance/ComplianceDetail.tsx:173
 msgid "{0}_{accountName}_{1}.json"
 msgstr ""
 
@@ -314,7 +314,7 @@ msgid "Access to your account is broken"
 msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:193
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:181
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:174
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormAccount.tsx:63
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:256
 msgid "Account"
@@ -405,7 +405,7 @@ msgid "Advanced search query"
 msgstr "Erweiterte Suchabfrage"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:134
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:123
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:116
 msgid "Affected resources"
 msgstr ""
 
@@ -427,7 +427,7 @@ msgid "All {name}"
 msgstr ""
 
 #: src/pages/panel/compliance/ComplianceDetail.tsx:35
-#: src/pages/panel/compliance/ComplianceSummary.tsx:97
+#: src/pages/panel/compliance/ComplianceSummary.tsx:90
 msgid "All accounts"
 msgstr ""
 
@@ -450,7 +450,7 @@ msgstr ""
 #: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:176
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:230
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:187
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:218
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:212
 msgid "All resources passed the check"
 msgstr ""
 
@@ -659,11 +659,11 @@ msgstr ""
 msgid "Business"
 msgstr "Business"
 
-#: src/pages/panel/compliance/ComplianceSummary.tsx:93
+#: src/pages/panel/compliance/ComplianceSummary.tsx:86
 msgid "By account"
 msgstr ""
 
-#: src/pages/panel/compliance/ComplianceSummary.tsx:73
+#: src/pages/panel/compliance/ComplianceSummary.tsx:66
 msgid "By framework"
 msgstr ""
 
@@ -839,7 +839,7 @@ msgstr "Schließen"
 #: src/pages/panel/accounts/AccountRow.tsx:549
 #: src/pages/panel/accounts/AccountsTableItem.tsx:59
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:163
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:151
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:144
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormCloudValues.tsx:62
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:92
 #: src/pages/panel/inventory/InventoryPage.tsx:234
@@ -883,7 +883,7 @@ msgstr "Compliance"
 msgid "Compliance Benchmarks"
 msgstr "Compliance-Benchmarks"
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:190
+#: src/pages/panel/compliance/ComplianceDetail.tsx:192
 msgid "Compliance posture"
 msgstr ""
 
@@ -911,7 +911,7 @@ msgstr ""
 msgid "Compute changes in the last 30 days."
 msgstr ""
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:163
+#: src/pages/panel/compliance/ComplianceDetail.tsx:165
 msgid "Condense all"
 msgstr ""
 
@@ -980,6 +980,10 @@ msgstr "Vernetzte dienste"
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureInstructions.tsx:101
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:128
 msgid "Continue"
+msgstr ""
+
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:24
+msgid "Control"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceId.tsx:16
@@ -1052,7 +1056,7 @@ msgid "Created Time"
 msgstr "Erstellte Zeit"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:199
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:187
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:180
 msgid "Creation Date"
 msgstr ""
 
@@ -1325,7 +1329,7 @@ msgstr "Alles in Free, und"
 msgid "Example searches"
 msgstr "Beispielsuchen"
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:166
+#: src/pages/panel/compliance/ComplianceDetail.tsx:168
 msgid "Expand all"
 msgstr ""
 
@@ -1351,7 +1355,7 @@ msgstr "External Id"
 msgid "failed"
 msgstr "sind fehlgeschlagen"
 
-#: src/pages/panel/compliance/ComplianceDetailTreeItemTableRow.tsx:79
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTableRow.tsx:78
 msgid "Failed"
 msgstr ""
 
@@ -1490,7 +1494,7 @@ msgid "Hourly"
 msgstr "Stündliche"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:114
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:103
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:95
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:111
 msgid "How to fix"
 msgstr "Wie repariert man"
@@ -1512,7 +1516,7 @@ msgid "IAM Role changes in the last 30 days."
 msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:169
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:157
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:150
 msgid "Id"
 msgstr ""
 
@@ -1646,7 +1650,7 @@ msgid "Inheritance:"
 msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:83
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:77
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:75
 msgid "Inspect Detection Search in Inventory"
 msgstr ""
 
@@ -1694,7 +1698,7 @@ msgid "kind"
 msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:187
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:175
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:168
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:248
 #: src/shared/charts/NetworkDiagram.tsx:375
 msgid "Kind"
@@ -1738,7 +1742,7 @@ msgid "Learn more about Compliance"
 msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:103
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:92
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:85
 msgid "Learn more about the associated risk"
 msgstr ""
 
@@ -1795,6 +1799,7 @@ msgid "Management Group or subscription"
 msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailTreeItem.tsx:48
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTableRow.tsx:65
 msgid "Manual"
 msgstr ""
 
@@ -1854,7 +1859,7 @@ msgstr "Die meisten nicht konformen Konten"
 #: src/pages/panel/accounts/AccountRow.tsx:552
 #: src/pages/panel/accounts/AccountsTableItem.tsx:65
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:175
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:163
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:156
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:250
 #: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:92
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsEmailService.tsx:113
@@ -1959,10 +1964,6 @@ msgstr ""
 
 #: src/pages/panel/user-settings-api-token/UserSettingsAPITokensPage.tsx:43
 msgid "No API token has been created."
-msgstr ""
-
-#: src/pages/panel/compliance/ComplianceDetailTreeItemTableRow.tsx:66
-msgid "No resources"
 msgstr ""
 
 #: src/shared/layouts/panel-layout/MoveToFreeAcknowledge.tsx:44
@@ -2126,12 +2127,12 @@ msgstr "OTP-Code"
 msgid "Owner"
 msgstr "Eigentümer"
 
-#: src/pages/panel/compliance/ComplianceDetailTreeItemTableRow.tsx:72
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTableRow.tsx:71
 #: src/shared/defined-messages/getMessage.ts:20
 msgid "Passed"
 msgstr ""
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:193
+#: src/pages/panel/compliance/ComplianceDetail.tsx:195
 #: src/pages/panel/compliance/CompliancePassedChecksCard.tsx:26
 msgid "Passed checks"
 msgstr ""
@@ -2215,7 +2216,7 @@ msgid "Plus"
 msgstr "Plus"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:126
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:115
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:105
 msgid "Practical remediation guidance"
 msgstr ""
 
@@ -2317,7 +2318,7 @@ msgid "Regenerate"
 msgstr "Regenerieren"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:181
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:169
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:162
 #: src/pages/panel/dashboard/WorldMap.tsx:392
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:93
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegionValues.tsx:60
@@ -2398,7 +2399,6 @@ msgstr "Ressource erstellt"
 msgid "Resource deleted"
 msgstr "Ressource gelöscht"
 
-#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:15
 #: src/pages/panel/inventory/getColumns.tsx:27
 msgid "Resource kind"
 msgstr ""
@@ -2420,7 +2420,7 @@ msgid "Resource types"
 msgstr ""
 
 #: src/pages/panel/accounts/AccountsTableItem.tsx:68
-#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:21
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:30
 #: src/pages/panel/dashboard/DashboardCloudCards.tsx:47
 #: src/pages/panel/dashboard/DashboardPage.tsx:153
 #: src/pages/panel/inventory-detail/InventoryDetailView.tsx:231
@@ -2559,7 +2559,7 @@ msgstr ""
 msgid "Select Members (3)"
 msgstr ""
 
-#: src/pages/panel/compliance/ComplianceSummary.tsx:82
+#: src/pages/panel/compliance/ComplianceSummary.tsx:75
 msgid "Select one"
 msgstr ""
 
@@ -2622,14 +2622,14 @@ msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:80
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:102
-#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:18
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:27
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormSeverity.tsx:52
 #: src/pages/panel/inventory-search/inventory-form/utils/getAutoCompleteFromKey.tsx:156
 #: src/pages/panel/workspace-settings-alert-settings/WorkspaceSettingsAlertSettingsPage.tsx:110
 msgid "Severity"
 msgstr "Schwere"
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:158
+#: src/pages/panel/compliance/ComplianceDetail.tsx:160
 msgid "Show empty categories"
 msgstr ""
 
@@ -3016,8 +3016,7 @@ msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:100
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:108
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:89
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:97
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:81
 msgid "Why does it matter"
 msgstr ""
 

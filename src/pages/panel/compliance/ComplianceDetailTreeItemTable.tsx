@@ -1,18 +1,27 @@
 import { Trans } from '@lingui/macro'
-import { Box, Stack, Typography } from '@mui/material'
+import { Box, Divider, Stack, Typography } from '@mui/material'
 import { ComplianceDetailTreeItemTableRow, ComplianceDetailTreeItemTableRowProps } from './ComplianceDetailTreeItemTableRow'
 
 interface ComplianceDetailTreeItemTableProps {
   item: ComplianceDetailTreeItemTableRowProps['check'][]
   accountName?: string
+  description?: string
 }
 
-export const ComplianceDetailTreeItemTable = ({ item, accountName }: ComplianceDetailTreeItemTableProps) => {
+export const ComplianceDetailTreeItemTable = ({ item, accountName, description }: ComplianceDetailTreeItemTableProps) => {
   return (
     <Stack borderRadius="12px" border={({ palette }) => `1px solid ${palette.divider}`} width="100%" overflow="hidden" px={3} py={1} my={1}>
+      {description ? (
+        <>
+          <Typography variant="subtitle1" py={2}>
+            {description}
+          </Typography>
+          <Divider />
+        </>
+      ) : null}
       <Stack direction="row" alignItems="center">
         <Typography variant="subtitle1" p={2} flexGrow={1} color="textSecondary">
-          <Trans>Resource kind</Trans>
+          <Trans>Control</Trans>
         </Typography>
         <Typography variant="subtitle1" p={2} flexShrink={0} width={160} color="textSecondary">
           <Trans>Severity</Trans>
