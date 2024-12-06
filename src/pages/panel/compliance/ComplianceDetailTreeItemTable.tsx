@@ -13,7 +13,7 @@ export const ComplianceDetailTreeItemTable = ({ item, accountName, description }
     <Stack borderRadius="12px" border={({ palette }) => `1px solid ${palette.divider}`} width="100%" overflow="hidden" px={3} py={1} my={1}>
       {description ? (
         <>
-          <Typography variant="subtitle1" py={2}>
+          <Typography variant="subtitle1" py={2} maxWidth={600}>
             {description}
           </Typography>
           <Divider />

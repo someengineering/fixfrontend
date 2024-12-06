@@ -86,7 +86,7 @@ export const ComplianceDetailCheckDetail = ({ check, accountName, id }: Complian
           </Button>
         ) : null}
       </Stack>
-      <Typography variant="subtitle1" whiteSpace="pre">
+      <Typography variant="subtitle1" whiteSpace="pre-wrap" maxWidth={800}>
         {check.risk}
       </Typography>
       <Divider flexItem />
@@ -106,7 +106,7 @@ export const ComplianceDetailCheckDetail = ({ check, accountName, id }: Complian
           </Button>
         ) : null}
       </Stack>
-      <Typography variant="subtitle1" whiteSpace="pre">
+      <Typography variant="subtitle1" whiteSpace="pre-wrap" maxWidth={800}>
         {check.remediation.text}
       </Typography>
       {resources?.length ? (
