@@ -1,4 +1,4 @@
-import { t, Trans } from '@lingui/macro'
+import { plural, t, Trans } from '@lingui/macro'
 import { Button, FormControlLabel, Stack, stackClasses, Typography } from '@mui/material'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useState } from 'react'
@@ -134,6 +134,8 @@ export const ComplianceDetail = () => {
       navigate({ pathname: newPathname, search: newSearch })
     }
   }
+  const data = dataWithChildren.length === 1 && dataWithChildren[0].children ? dataWithChildren[0].children : dataWithChildren
+  const categoriesLength = (showEmpty ? data : data.filter((i) => i.children?.length && !i.isManual)).length
   return (
     <Stack spacing={2} width="100%">
       <Stack spacing={3} direction={{ xs: 'column', lg: 'row' }}>
@@ -148,9 +150,7 @@ export const ComplianceDetail = () => {
         <Stack minWidth={1380}>
           <Stack direction="row" py={2} spacing={1} alignItems="center" justifyContent="space-between" color="textPrimary">
             <Typography variant="h4">
-              <Trans>
-                {(showEmpty ? dataWithChildren : dataWithChildren.filter((i) => i.children?.length && !i.isManual)).length} categories
-              </Trans>
+              {plural(categoriesLength, { one: 'One category', 2: 'Two categories', 3: 'Three categories', other: '# categories' })}
             </Typography>
             <Stack direction="row" alignItems="center" spacing={3.75}>
               <FormControlLabel
@@ -199,9 +199,7 @@ export const ComplianceDetail = () => {
             {allData && dataWithChildren ? (
               <ComplianceDetailTree
                 allData={allData}
-                dataWithChildren={
-                  dataWithChildren.length === 1 && dataWithChildren[0].children ? dataWithChildren[0].children : dataWithChildren
-                }
+                dataWithChildren={data}
                 accountId={accountId}
                 benchmarkId={benchmarkId}
                 checkId={checkId}

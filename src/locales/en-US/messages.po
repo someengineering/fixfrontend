@@ -73,10 +73,6 @@ msgstr "{0, plural, one {One error reported} two {Two errors reported} other {# 
 msgid "{0} ago"
 msgstr "{0} ago"
 
-#: src/pages/panel/compliance/ComplianceDetail.tsx:151
-msgid "{0} categories"
-msgstr "{0} categories"
-
 #: src/shared/event-button/EventButton.tsx:55
 #: src/shared/event-button/EventButton.tsx:64
 msgid "{0} Cloud account configured, id: {1}"
@@ -132,6 +128,10 @@ msgstr "{accounts, plural, one {# account} other {# accounts}}"
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:142
 msgid "{added} configuration lines added and {removed} lines deleted."
 msgstr "{added} configuration lines added and {removed} lines deleted."
+
+#: src/pages/panel/compliance/ComplianceDetail.tsx:153
+msgid "{categoriesLength, plural, one {One category} =2 {Two categories} =3 {Three categories} other {# categories}}"
+msgstr "{categoriesLength, plural, one {One category} =2 {Two categories} =3 {Three categories} other {# categories}}"
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:237
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:148
