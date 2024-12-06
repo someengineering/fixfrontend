@@ -159,7 +159,7 @@ msgid "{lastScanDurStr} ago"
 msgstr ""
 
 #: src/pages/panel/compliance/CompliancePassedChecksCard.tsx:21
-msgid "{passedChecks} passed out of {totalChecks} checks"
+msgid "{passedChecks} passed out of {totalChecks} controls"
 msgstr ""
 
 #: src/pages/panel/compliance/ComplianceDetailTreeItemLabel.tsx:30
@@ -450,8 +450,11 @@ msgstr ""
 #: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:176
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:230
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:187
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:212
 msgid "All resources passed the check"
+msgstr ""
+
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:212
+msgid "All resources passed the control"
 msgstr ""
 
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:50
@@ -2134,7 +2137,7 @@ msgstr ""
 
 #: src/pages/panel/compliance/ComplianceDetail.tsx:195
 #: src/pages/panel/compliance/CompliancePassedChecksCard.tsx:26
-msgid "Passed checks"
+msgid "Passed controls"
 msgstr ""
 
 #: src/pages/auth/login/LoginPage.tsx:227

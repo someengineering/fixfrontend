@@ -159,8 +159,8 @@ msgid "{lastScanDurStr} ago"
 msgstr "{lastScanDurStr} ago"
 
 #: src/pages/panel/compliance/CompliancePassedChecksCard.tsx:21
-msgid "{passedChecks} passed out of {totalChecks} checks"
-msgstr "{passedChecks} passed out of {totalChecks} checks"
+msgid "{passedChecks} passed out of {totalChecks} controls"
+msgstr "{passedChecks} passed out of {totalChecks} controls"
 
 #: src/pages/panel/compliance/ComplianceDetailTreeItemLabel.tsx:30
 msgid "{passingChecks} of {0}"
@@ -450,9 +450,12 @@ msgstr "All resource kinds"
 #: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:176
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:230
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:187
-#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:212
 msgid "All resources passed the check"
 msgstr "All resources passed the check"
+
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:212
+msgid "All resources passed the control"
+msgstr "All resources passed the control"
 
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:50
 msgid "All security issues fixed"
@@ -2134,8 +2137,8 @@ msgstr "Passed"
 
 #: src/pages/panel/compliance/ComplianceDetail.tsx:195
 #: src/pages/panel/compliance/CompliancePassedChecksCard.tsx:26
-msgid "Passed checks"
-msgstr "Passed checks"
+msgid "Passed controls"
+msgstr "Passed controls"
 
 #: src/pages/auth/login/LoginPage.tsx:227
 #: src/pages/auth/register/RegisterPage.tsx:136

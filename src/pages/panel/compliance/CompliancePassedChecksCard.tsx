@@ -19,11 +19,11 @@ export const CompliancePassedChecksCard = ({ passedChecks, totalChecks }: Compli
       color="primary"
       description={
         <Trans>
-          {passedChecks} passed out of {totalChecks} checks
+          {passedChecks} passed out of {totalChecks} controls
         </Trans>
       }
       percentage={percentage}
-      title={<Trans>Passed checks</Trans>}
+      title={<Trans>Passed controls</Trans>}
     />
   )
 }

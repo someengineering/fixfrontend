@@ -192,7 +192,7 @@ export const ComplianceDetail = () => {
               <Trans>Compliance posture</Trans>
             </Typography>
             <Typography variant="subtitle1" color="textSecondary" flex={0} flexShrink={0} minWidth={224}>
-              <Trans>Passed checks</Trans>
+              <Trans>Passed controls</Trans>
             </Typography>
           </Stack>
           <Stack>

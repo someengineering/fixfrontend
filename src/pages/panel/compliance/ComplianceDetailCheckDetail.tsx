@@ -209,7 +209,7 @@ export const ComplianceDetailCheckDetail = ({ check, accountName, id }: Complian
           <Stack flex={1} justifyContent="center" alignItems="center" spacing={1} pb={2}>
             <VerifiedUserFilledIcon width={48} height={48} color="success" />
             <Typography color="success.main" variant="h6" textAlign="center">
-              <Trans>All resources passed the check</Trans>
+              <Trans>All resources passed the control</Trans>
             </Typography>
           </Stack>
         </>
