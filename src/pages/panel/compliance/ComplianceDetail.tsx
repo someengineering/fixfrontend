@@ -204,6 +204,7 @@ export const ComplianceDetail = () => {
                 benchmarkId={benchmarkId}
                 checkId={checkId}
                 showEmpty={showEmpty}
+                accountName={accountName}
               />
             ) : (
               <LoadingSuspenseFallback />

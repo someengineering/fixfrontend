@@ -50,7 +50,7 @@ export const ComplianceDetailCheckDetail = ({ check, accountName, id }: Complian
   if (check.detect.fix) {
     let parser = FixQueryParser.parse(check.detect.fix, check.default_values ?? undefined)
     if (accountId) {
-      parser = parser.set_cloud_account_region('account', '=', accountName ?? accountId, true)
+      parser = parser.set_cloud_account_region('account', '=', accountName || accountId, !!accountName)
     }
     query = `/inventory/search?q=${window.encodeURIComponent(parser.toString())}`
   }

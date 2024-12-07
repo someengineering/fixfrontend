@@ -13,6 +13,7 @@ interface ComplianceDetailTreeProps {
   benchmarkId?: string
   accountId?: string
   checkId?: string
+  accountName?: string
   showEmpty: boolean
 }
 
@@ -22,6 +23,7 @@ export const ComplianceDetailTree = ({
   accountId,
   benchmarkId,
   checkId,
+  accountName,
   showEmpty,
 }: ComplianceDetailTreeProps) => {
   const navigate = useAbsoluteNavigate()
@@ -153,6 +155,7 @@ export const ComplianceDetailTree = ({
           firstItem
           frameworkIcon={benchmarkId && <FrameworkIcon frameworkId={benchmarkId} width={40} height={40} />}
           showEmpty={showEmpty}
+          accountName={accountName}
         />
       ))}
     </SimpleTreeView>
