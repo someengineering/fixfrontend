@@ -26,7 +26,7 @@ export const HeatmapCard = ({ data }: HeatmapCardProps) => {
       : {
           data: data.benchmarks.map((benchmark) => ({
             title: benchmark.title,
-            titleHref: `/benchmark/${benchmark.id}`,
+            titleHref: `/compliance/${benchmark.id}`,
             cells: data.accounts.map((account) => ({
               name: account.name ?? account.id,
               value: benchmark.account_summary[account.id]?.score ?? -1,
@@ -49,7 +49,7 @@ export const HeatmapCard = ({ data }: HeatmapCardProps) => {
                     />
                   </Stack>
                 ) : undefined,
-              href: `/benchmark/${benchmark.id}/${account.id}`,
+              href: `/compliance/${benchmark.id}/${account.id}`,
             })),
           })),
         }

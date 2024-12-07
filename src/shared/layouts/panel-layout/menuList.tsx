@@ -28,7 +28,7 @@ export const mainMenuList: MenuListItem[] = [
   },
   {
     name: <Trans>Compliance</Trans>,
-    route: '/security',
+    route: '/compliance',
     Icon: LocalPoliceIcon,
   },
 ]

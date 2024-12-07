@@ -1,4 +1,4 @@
-import { ButtonBase, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip, Typography } from '@mui/material'
+import { ButtonBase, Stack, Table, TableBody, TableCell, TableHead, TableRow, Tooltip, Typography } from '@mui/material'
 import { ReactNode, useMemo } from 'react'
 import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { useScaleSequentialRdYwGn } from 'src/shared/utils/useScaleSequentialRdYwGn'
@@ -9,7 +9,7 @@ interface HeatmapData {
   name: ReactNode
   value: number
   title: ReactNode
-  tooltip: ReactNode
+  tooltip?: ReactNode
   href?: string
 }
 
@@ -30,7 +30,7 @@ const HeatmapCell = ({ title, value, tooltip, href }: HeatmapData) => {
     <Stack
       color="#fff"
       bgcolor={value >= 0 ? getColors(Math.floor(value / (100 / NUMBER_OF_COLORS))) : '#e6e6e6'}
-      width={CELL_WIDTH}
+      width={CELL_WIDTH * 1.5}
       height={CELL_WIDTH}
       alignItems="center"
       justifyContent="center"
@@ -56,7 +56,7 @@ const HeatmapCell = ({ title, value, tooltip, href }: HeatmapData) => {
   }
   if (tooltip) {
     comp = (
-      <Tooltip title={tooltip} arrow PopperProps={{ sx: { pointerEvents: 'none' } }}>
+      <Tooltip title={tooltip} arrow slotProps={{ popper: { sx: { pointerEvents: 'none' } } }}>
         {comp}
       </Tooltip>
     )
@@ -67,9 +67,11 @@ const HeatmapCell = ({ title, value, tooltip, href }: HeatmapData) => {
 const HeatmapRow = ({ cells, title, titleHref }: HeatmapProps['data'][number]) => {
   const navigate = useAbsoluteNavigate()
   let compTitle = (
-    <Typography pr={1} width={200}>
-      {title}
-    </Typography>
+    <Tooltip title={title} arrow placement="right">
+      <Typography pr={1} width={200} overflow="hidden" textOverflow="ellipsis" whiteSpace="nowrap">
+        {title}
+      </Typography>
+    </Tooltip>
   )
   if (titleHref) {
     compTitle = (
@@ -108,29 +110,27 @@ export const Heatmap = ({ data }: HeatmapProps) => {
     [data],
   )
   return (
-    <TableContainer>
-      <Table size="small" padding="none" stickyHeader sx={{ maxWidth: '100%', width: 'auto', pb: 2 }}>
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            {[...columns].map((column, i) => (
-              <TableCell key={i} align="center" sx={{ verticalAlign: 'bottom', textAlign: '-webkit-center' }} width={CELL_WIDTH}>
-                <Typography
-                  whiteSpace="nowrap"
-                  sx={{ writingMode: 'vertical-lr', textOrientation: 'sideways', transform: 'rotate(180deg)', mb: 1 }}
-                >
-                  {column}
-                </Typography>
-              </TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((data, i) => (
-            <HeatmapRow key={i} {...data} />
+    <Table size="small" padding="none" stickyHeader sx={{ maxWidth: '100%', width: 'auto', pb: 2 }}>
+      <TableHead>
+        <TableRow>
+          <TableCell />
+          {[...columns].map((column, i) => (
+            <TableCell key={i} align="center" sx={{ verticalAlign: 'bottom', textAlign: '-webkit-center' }} width={CELL_WIDTH}>
+              <Typography
+                whiteSpace="nowrap"
+                sx={{ writingMode: 'vertical-lr', textOrientation: 'sideways', transform: 'rotate(180deg)', mb: 1 }}
+              >
+                {column}
+              </Typography>
+            </TableCell>
           ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {data.map((data, i) => (
+          <HeatmapRow key={i} {...data} />
+        ))}
+      </TableBody>
+    </Table>
   )
 }

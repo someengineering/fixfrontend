@@ -12,6 +12,7 @@ import { useAbsoluteNavigate } from 'src/shared/absolute-navigate'
 import { CloudToIcon } from 'src/shared/cloud-avatar'
 import { PanelLeftMenuLayout } from 'src/shared/layouts/panel-left-menu-layout'
 import { LoadingSuspenseFallback } from 'src/shared/loading'
+import { StyledDataGrid } from 'src/shared/styled-data-grid'
 import { ResourceComplexKind } from 'src/shared/types/server-shared'
 import { getAccountCloudName } from 'src/shared/utils/getAccountCloudName'
 import { getString } from 'src/shared/utils/getString'
@@ -21,7 +22,6 @@ import { getColumns, RowType } from './getColumns'
 import { GridFilterItem } from './GridFilterItem'
 import { postWorkspaceInventorySearchForInventoryQuery } from './postWorkspaceInventorySearchForInventory.query'
 import { slides } from './slides'
-import { StyledDataGrid } from './StyledDataGrid'
 
 function useTransitionState<StateType>(
   initialState: StateType | (() => StateType),

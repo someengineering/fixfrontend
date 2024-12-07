@@ -21,7 +21,7 @@ export default function AuthContainer() {
             <AuthCarousel />
           </SideRegion>
           <BrandRegion>
-            <FixLogo color="primary.main" />
+            <FixLogo color="primary.main" width={48} height={48} />
           </BrandRegion>
           <ContentRegion>
             <AuthRoutes />
