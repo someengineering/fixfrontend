@@ -4,14 +4,6 @@ import { Navigate } from 'src/shared/absolute-navigate'
 import { panelUI } from 'src/shared/constants'
 import { AccountCheckGuard, BenchmarkCheckGuard, PermissionCheckGuard, PreLoadCheckGuard } from 'src/shared/layouts/panel-layout'
 
-const SecurityPage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "security" */
-      'src/pages/panel/security/SecurityPage'
-    ),
-)
-
 const DashboardPage = lazy(
   () =>
     import(
@@ -44,6 +36,22 @@ const InventorySearchPage = lazy(
     ),
 )
 
+const ResourceDetailView = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "resource-detail" */
+      'src/pages/panel/resource-detail/ResourceDetailView'
+    ),
+)
+
+const CompliancePage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "compliance" */
+      'src/pages/panel/compliance/CompliancePage'
+    ),
+)
+
 const AccountsPage = lazy(
   () =>
     import(
@@ -57,22 +65,6 @@ const PanelSettingsContainer = lazy(
     import(
       /* webpackChunkName: "panel-settings-container" */
       'src/containers/panel-settings/PanelSettingsContainer'
-    ),
-)
-
-const BenchmarkDetailPage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "benchmark-detail" */
-      'src/pages/panel/benchmark-detail/BenchmarkDetailPage'
-    ),
-)
-
-const ResourceDetailView = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "resource-detail" */
-      'src/pages/panel/resource-detail/ResourceDetailView'
     ),
 )
 
@@ -108,6 +100,22 @@ const WorkspaceSettingsAccountsSetupCloudAzurePage = lazy(
     ),
 )
 
+const SecurityPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "security" */
+      'src/pages/panel/security/SecurityPage'
+    ),
+)
+
+const BenchmarkDetailPage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "benchmark-detail" */
+      'src/pages/panel/benchmark-detail/BenchmarkDetailPage'
+    ),
+)
+
 export function PanelRoutes() {
   const withResourceDetailRoute = <Route path="resource-detail/:resourceDetailId" element={<ResourceDetailView />} />
   return (
@@ -119,7 +127,6 @@ export function PanelRoutes() {
         />
         <Route element={<AccountCheckGuard />}>
           <Route element={<BenchmarkCheckGuard />}>
-            <Route path="security" element={<SecurityPage />} />
             <Route path="dashboard" element={<DashboardPage />} />
             <Route path="inventory">
               <Route path="" element={<InventoryPage key={0} />}>
@@ -132,12 +139,16 @@ export function PanelRoutes() {
                 {withResourceDetailRoute}
               </Route>
             </Route>
+            <Route path="compliance/:benchmarkId?/:accountId?/check-detail?/:checkId?" element={<CompliancePage />}>
+              {withResourceDetailRoute}
+            </Route>
+            <Route element={<PermissionCheckGuard permissionToCheck="readSettings" />}>
+              <Route path="accounts" element={<AccountsPage />} />
+            </Route>
+            <Route path="security" element={<SecurityPage />} />
             <Route path="benchmark/:benchmarkId/:accountId?/check-detail?/:checkId?" element={<BenchmarkDetailPage />}>
               {withResourceDetailRoute}
             </Route>
-          </Route>
-          <Route element={<PermissionCheckGuard permissionToCheck="readSettings" />}>
-            <Route path="accounts" element={<AccountsPage />} />
           </Route>
         </Route>
         <Route element={<PermissionCheckGuard permissionToCheck="readSettings" />}>

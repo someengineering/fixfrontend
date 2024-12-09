@@ -47,6 +47,9 @@ export const settingsStorageKeys = {
   BenchmarkDetailView: {
     rowsPerPage: 'BenchmarkDetailView.rowsPerPage',
   },
+  ComplianceDetailCheckDetail: {
+    rowsPerPage: 'ComplianceDetailCheckDetail.rowsPerPage',
+  },
 } as const
 
 export type SettingsStorageKey = RecursiveValueExtractor<typeof settingsStorageKeys>

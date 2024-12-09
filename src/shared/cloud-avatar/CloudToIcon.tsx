@@ -10,6 +10,7 @@ export interface CloudToIconProps extends SvgIconProps {
 
 export const CloudToIcon = ({ cloud, fallback, withText, ...props }: CloudToIconProps) => {
   switch (cloud.toLowerCase()) {
+    case 'microsoft':
     case 'azure': {
       const Icon = withText ? AzureLogoWithText : AzureLogo
       return <Icon {...props} />

@@ -12,7 +12,7 @@ import { NodeType } from 'src/shared/types/server-shared'
 import { getLocationSearchValues, mergeLocationSearchValues } from 'src/shared/utils/windowLocationSearch'
 import { BenchmarkCheckCollectionNodeWithChildren } from './BenchmarkDetailTreeItem'
 import { BenchmarkDetailTreeWithDetail } from './BenchmarkDetailTreeWithDetail'
-import { getWorkspaceInventoryReportBenchmarkQuery } from './getWorkspaceInventoryReportBenchmarkResult.query'
+import { getWorkspaceInventoryReportBenchmarkResultQuery } from './getWorkspaceInventoryReportBenchmarkResult.query'
 
 export const BenchmarkDetailTree = () => {
   const navigate = useAbsoluteNavigate()
@@ -20,8 +20,8 @@ export const BenchmarkDetailTree = () => {
   const { accountId, benchmarkId, checkId } = useParams<'benchmarkId' | 'accountId' | 'checkId'>()
 
   const { data, isLoading } = useQuery({
-    queryFn: getWorkspaceInventoryReportBenchmarkQuery,
-    queryKey: ['workspace-inventory-report-benchmark', selectedWorkspace?.id, benchmarkId, accountId, undefined, undefined],
+    queryFn: getWorkspaceInventoryReportBenchmarkResultQuery,
+    queryKey: ['workspace-inventory-report-benchmark-result', selectedWorkspace?.id, benchmarkId, accountId, undefined, undefined],
     enabled: !!(selectedWorkspace?.id && benchmarkId),
   })
 

@@ -88,6 +88,10 @@ msgstr "{0} Cloud-Konto beeinträchtigt, ID: {1}"
 msgid "{0} Cloud account discovered, id: {1}"
 msgstr "{0} Cloud-Konto entdeckt, ID: {1}"
 
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTableRow.tsx:46
+msgid "{0} Fail"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsConnectedServicesPage.tsx:25
 msgid "{0} has been connected"
 msgstr "{0} wurde verbunden"
@@ -108,6 +112,10 @@ msgstr ""
 msgid "{0} regions, {1} countries"
 msgstr ""
 
+#: src/pages/panel/compliance/ComplianceDetail.tsx:173
+msgid "{0}_{accountName}_{1}.json"
+msgstr ""
+
 #: src/pages/panel/security/OverallScore.tsx:60
 #: src/pages/panel/shared/utils/createPieDataFromNonCompliance.ts:26
 msgid "{0}: We've identified {1} non-compliant resources out of {2}."
@@ -120,6 +128,10 @@ msgstr ""
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:142
 msgid "{added} configuration lines added and {removed} lines deleted."
 msgstr "{added} Konfigurationszeilen hinzugefügt und {removed} Zeilen gelöscht."
+
+#: src/pages/panel/compliance/ComplianceDetail.tsx:153
+msgid "{categoriesLength, plural, one {One category} =2 {Two categories} =3 {Three categories} other {# categories}}"
+msgstr ""
 
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierModal.tsx:237
 #: src/pages/panel/workspace-settings-billing/ChangeProductTierToFreeModal.tsx:148
@@ -144,6 +156,18 @@ msgstr ""
 
 #: src/pages/panel/accounts/AccountRow.tsx:348
 msgid "{lastScanDurStr} ago"
+msgstr ""
+
+#: src/pages/panel/compliance/CompliancePassedChecksCard.tsx:21
+msgid "{passedChecks} passed out of {totalChecks} controls"
+msgstr ""
+
+#: src/pages/panel/compliance/ComplianceDetailTreeItemLabel.tsx:30
+msgid "{passingChecks} of {0}"
+msgstr ""
+
+#: src/pages/panel/compliance/CompliancePostureCard.tsx:43
+msgid "{percentage}% average compliance posture"
 msgstr ""
 
 #: src/pages/panel/inventory/getColumns.tsx:123
@@ -199,6 +223,22 @@ msgstr ""
 #: src/pages/panel/dashboard/getSlides.tsx:118
 msgid "<0>The assets by region is a world map that displays active regions and resource counts and visualizes the geographical distribution of your cloud resources.</0><1><2>Use case include:</2><3><4>Ensure compliance with data residency requirements</4><5>Optimize resource placement for latency and redundancy</5><6>Identify unused or underutilized regions</6></3></1><7>For more detailed information on resources in each region, see the <8>Inventory</8> and <9>Explorer</9> tabs.</7>"
 msgstr ""
+
+#: src/pages/panel/compliance/slides.tsx:9
+#~ msgid "<0>The Compliance tab evaluates your infrastructure against various compliance frameworks and standards by running a series of controls. </0><1>Cloud security standards are structured guidelines and regulations designed to safeguard cloud computing environments. These standards are developed by international standards organizations, governmental agencies, and industry leaders. </1><2>The frameworks include built-in controls and cloud configuration rules mapped to the control lists and recommendations of each framework. Fix calculates an overall compliance score for each framework and highlights the individual controls that passed or failed.</2><3>You can explore a specific framework in detail to better understand your compliance score and identify weak areas. This allows you to view the different categories within the framework and the status of each rule. You can refine your analysis by selecting a specific cloud account to verify its security posture. </3>"
+#~ msgstr ""
+
+#: src/pages/panel/compliance/slides.tsx:9
+msgid "<0>The Compliance tab evaluates your infrastructure against various compliance frameworks and standards by running a series of controls.</0><1>Cloud security standards are structured guidelines and regulations designed to safeguard cloud computing environments. These standards are developed by international standards organizations, governmental agencies, and industry leaders.</1><2>The frameworks include built-in controls and cloud configuration rules mapped to the control lists and recommendations of each framework. Fix calculates an overall compliance score for each framework and highlights the individual controls that passed or failed.</2><3>You can explore a specific framework in detail to better understand your compliance score and identify weak areas. This allows you to view the different categories within the framework and the status of each rule. You can refine your analysis by selecting a specific cloud account to verify its security posture.</3>"
+msgstr ""
+
+#: src/pages/panel/compliance/slides.tsx:9
+#~ msgid "<0>The Compliance tab evaluates your infrastructure against various compliance frameworks and standards by running a series of controls.The compliance tab runs checks against your infrastructure for different compliance frameworks and standards.</0><1>Cloud security standards are structured guidelines and regulations designed to safeguard cloud computing environments. These standards are developed by international standards organizations, governmental agencies, and industry leaders. </1><2>The frameworks include built-in controls and cloud configuration rules mapped to the control lists and recommendations of each framework. Fix calculates an overall compliance score for each framework and highlights the individual controls that passed or failed.</2><3>You can explore a specific framework in detail to better understand your compliance score and identify weak areas. This allows you to view the different categories within the framework and the status of each rule. You can refine your analysis by selecting a specific cloud account to verify its security posture. </3>"
+#~ msgstr ""
+
+#: src/pages/panel/compliance/slides.tsx:9
+#~ msgid "<0>The compliance tab runs checks against your infrastructure for different compliance frameworks and standards.</0><1>Cloud security standards are structured guidelines and regulations crafted to secure cloud computing environments, developed by international standards bodies, governmental agencies, and industry leaders.</1><2>The frameworks consist of built-in controls and cloud configuration rules that are mapped to the control lists and recommendations of each framework. Fix calculates your overall compliance score for each one of the frameworks and shows you the individual checks that passed or failed.</2><3>To gain a deeper understanding of your compliance score and understand where your weak areas are, you can drill down into a specific framework and see the different categories that constitute the framework and the status of each one of the rules. You can further narrow down by picking a specific cloud account and verify the security posture for that account.</3>"
+#~ msgstr ""
 
 #: src/pages/panel/dashboard/getSlides.tsx:11
 msgid "<0>The Infrastructure Overview dashboard provides a high-level snapshot of your multi-cloud environment, helping you understand your resource distribution and recent changes. You get a bird's eye view of the state of your infrastructure and can quickly assess the scale and complexity of your cloud(s).</0><1><2>The dashboard has three components:</2><3><4>Asset summary by cloud</4><5>Resources over time</5><6>Assets by region</6></3></1><7>With the Infrastructure Overview, you can maintain a comprehensive view of your multi-cloud environment, enabling better decision-making for security, compliance, and optimization efforts.</7><8>Click <9>\"next\"</9> to learn more about each component.</8>"
@@ -286,6 +326,7 @@ msgid "Access to your account is broken"
 msgstr "Der Zugriff auf Ihr Konto ist unterbrochen"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:193
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:174
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormAccount.tsx:63
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:256
 msgid "Account"
@@ -376,6 +417,7 @@ msgid "Advanced search query"
 msgstr "Erweiterte Suchabfrage"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:134
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:116
 msgid "Affected resources"
 msgstr ""
 
@@ -394,6 +436,11 @@ msgstr ""
 
 #: src/pages/panel/inventory/GridFilterItem.tsx:99
 msgid "All {name}"
+msgstr ""
+
+#: src/pages/panel/compliance/ComplianceDetail.tsx:35
+#: src/pages/panel/compliance/ComplianceSummary.tsx:90
+msgid "All accounts"
 msgstr ""
 
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:130
@@ -416,6 +463,10 @@ msgstr ""
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:230
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:187
 msgid "All resources passed the check"
+msgstr ""
+
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:212
+msgid "All resources passed the control"
 msgstr ""
 
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:50
@@ -623,6 +674,14 @@ msgstr ""
 msgid "Business"
 msgstr "Business"
 
+#: src/pages/panel/compliance/ComplianceSummary.tsx:86
+msgid "By account"
+msgstr ""
+
+#: src/pages/panel/compliance/ComplianceSummary.tsx:66
+msgid "By framework"
+msgstr ""
+
 #: src/containers/auth/AuthContainer.tsx:32
 msgid "By signing in, you agree to our <0>Privacy policy</0> and <1>Terms & Conditions.</1>"
 msgstr ""
@@ -795,6 +854,7 @@ msgstr "Schließen"
 #: src/pages/panel/accounts/AccountRow.tsx:549
 #: src/pages/panel/accounts/AccountsTableItem.tsx:59
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:163
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:144
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormCloudValues.tsx:62
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:92
 #: src/pages/panel/inventory/InventoryPage.tsx:234
@@ -828,6 +888,7 @@ msgstr "Clouds"
 msgid "Community support"
 msgstr "Gemeinschaftliche Unterstützung"
 
+#: src/pages/panel/compliance/CompliancePage.tsx:38
 #: src/pages/panel/security/OverallCard.tsx:76
 #: src/shared/layouts/panel-layout/menuList.tsx:30
 msgid "Compliance"
@@ -836,6 +897,14 @@ msgstr "Compliance"
 #: src/pages/panel/workspace-settings-billing/utils/productTierToDescription.ts:16
 msgid "Compliance Benchmarks"
 msgstr "Compliance-Benchmarks"
+
+#: src/pages/panel/compliance/ComplianceDetail.tsx:192
+msgid "Compliance posture"
+msgstr ""
+
+#: src/pages/panel/compliance/CompliancePostureCard.tsx:45
+msgid "Compliance Posture"
+msgstr ""
 
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormChangePicker.tsx:25
 msgid "Compliant"
@@ -855,6 +924,10 @@ msgstr ""
 
 #: src/pages/panel/inventory-search/InventoryTemplateBoxes.tsx:251
 msgid "Compute changes in the last 30 days."
+msgstr ""
+
+#: src/pages/panel/compliance/ComplianceDetail.tsx:165
+msgid "Condense all"
 msgstr ""
 
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:34
@@ -922,6 +995,10 @@ msgstr "Vernetzte dienste"
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-azure/WorkspaceSettingsAccountsSetupCloudAzureInstructions.tsx:101
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/WorkspaceSettingsAccountsSetupCloudGCPInstructions.tsx:128
 msgid "Continue"
+msgstr ""
+
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:24
+msgid "Control"
 msgstr ""
 
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-aws/WorkspaceId.tsx:16
@@ -994,6 +1071,7 @@ msgid "Created Time"
 msgstr "Erstellte Zeit"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:199
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:180
 msgid "Creation Date"
 msgstr ""
 
@@ -1189,6 +1267,10 @@ msgstr ""
 msgid "Downgrade"
 msgstr "Downgrade"
 
+#: src/pages/panel/compliance/ComplianceDownloadButton.tsx:31
+msgid "Download"
+msgstr ""
+
 #: src/pages/panel/inventory-search/DownloadCSVButton.tsx:103
 #: src/pages/panel/inventory-search/DownloadCSVButton.tsx:125
 #: src/pages/panel/inventory/DownloadCSVButton.tsx:47
@@ -1262,6 +1344,10 @@ msgstr "Alles in Free, und"
 msgid "Example searches"
 msgstr "Beispielsuchen"
 
+#: src/pages/panel/compliance/ComplianceDetail.tsx:168
+msgid "Expand all"
+msgstr ""
+
 #: src/pages/panel/workspace-users-settings-pending-invitations/WorkspaceUsersSettingsPendingInvitationRow.tsx:124
 #: src/pages/panel/workspace-users-settings-pending-invitations/WorkspaceUsersSettingsPendingInvitationsPage.tsx:46
 msgid "Expires"
@@ -1283,6 +1369,10 @@ msgstr "External Id"
 #: src/pages/panel/resource-detail/utils/nodeChange.tsx:82
 msgid "failed"
 msgstr "sind fehlgeschlagen"
+
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTableRow.tsx:78
+msgid "Failed"
+msgstr ""
 
 #: src/pages/panel/resource-detail/ResourceDetailChangeLog.tsx:89
 msgid "Failed to retrieve changelog"
@@ -1419,6 +1509,7 @@ msgid "Hourly"
 msgstr "Stündliche"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:114
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:95
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:111
 msgid "How to fix"
 msgstr "Wie repariert man"
@@ -1440,6 +1531,7 @@ msgid "IAM Role changes in the last 30 days."
 msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:169
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:150
 msgid "Id"
 msgstr ""
 
@@ -1573,6 +1665,7 @@ msgid "Inheritance:"
 msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:83
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:75
 msgid "Inspect Detection Search in Inventory"
 msgstr ""
 
@@ -1620,6 +1713,7 @@ msgid "kind"
 msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:187
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:168
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:248
 #: src/shared/charts/NetworkDiagram.tsx:375
 msgid "Kind"
@@ -1658,7 +1752,12 @@ msgstr ""
 msgid "Learn more"
 msgstr ""
 
+#: src/pages/panel/compliance/slides.tsx:6
+msgid "Learn more about Compliance"
+msgstr ""
+
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:103
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:85
 msgid "Learn more about the associated risk"
 msgstr ""
 
@@ -1715,6 +1814,7 @@ msgid "Management Group or subscription"
 msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailTreeItem.tsx:48
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTableRow.tsx:65
 msgid "Manual"
 msgstr ""
 
@@ -1774,6 +1874,7 @@ msgstr "Die meisten nicht konformen Konten"
 #: src/pages/panel/accounts/AccountRow.tsx:552
 #: src/pages/panel/accounts/AccountsTableItem.tsx:65
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:175
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:156
 #: src/pages/panel/resource-detail/ResourceDetailView.tsx:250
 #: src/pages/panel/user-settings-api-token/UserSettingsApiTokensRow.tsx:92
 #: src/pages/panel/workspace-settings-connected-services/WorkspaceSettingsEmailService.tsx:113
@@ -2041,8 +2142,14 @@ msgstr "OTP-Code"
 msgid "Owner"
 msgstr "Eigentümer"
 
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTableRow.tsx:71
 #: src/shared/defined-messages/getMessage.ts:20
 msgid "Passed"
+msgstr ""
+
+#: src/pages/panel/compliance/ComplianceDetail.tsx:195
+#: src/pages/panel/compliance/CompliancePassedChecksCard.tsx:26
+msgid "Passed controls"
 msgstr ""
 
 #: src/pages/auth/login/LoginPage.tsx:227
@@ -2124,6 +2231,7 @@ msgid "Plus"
 msgstr "Plus"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:126
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:105
 msgid "Practical remediation guidance"
 msgstr ""
 
@@ -2225,6 +2333,7 @@ msgid "Regenerate"
 msgstr "Regenerieren"
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:181
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:162
 #: src/pages/panel/dashboard/WorldMap.tsx:392
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormMore.tsx:93
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormRegionValues.tsx:60
@@ -2326,6 +2435,7 @@ msgid "Resource types"
 msgstr ""
 
 #: src/pages/panel/accounts/AccountsTableItem.tsx:68
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:30
 #: src/pages/panel/dashboard/DashboardCloudCards.tsx:47
 #: src/pages/panel/dashboard/DashboardPage.tsx:153
 #: src/pages/panel/inventory-detail/InventoryDetailView.tsx:231
@@ -2464,6 +2574,10 @@ msgstr ""
 msgid "Select Members (3)"
 msgstr ""
 
+#: src/pages/panel/compliance/ComplianceSummary.tsx:75
+msgid "Select one"
+msgstr ""
+
 #: src/pages/panel/workspace-settings-accounts-setup-cloud-gcp/getInstructions.tsx:63
 msgid "Select Organization"
 msgstr ""
@@ -2523,11 +2637,16 @@ msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkCheckCollectionDetail.tsx:80
 #: src/pages/panel/benchmark-detail/BenchmarkDetailView.tsx:102
+#: src/pages/panel/compliance/ComplianceDetailTreeItemTable.tsx:27
 #: src/pages/panel/inventory-search/inventory-form/InventoryFormSeverity.tsx:52
 #: src/pages/panel/inventory-search/inventory-form/utils/getAutoCompleteFromKey.tsx:156
 #: src/pages/panel/workspace-settings-alert-settings/WorkspaceSettingsAlertSettingsPage.tsx:110
 msgid "Severity"
 msgstr "Schwere"
+
+#: src/pages/panel/compliance/ComplianceDetail.tsx:160
+msgid "Show empty categories"
+msgstr ""
 
 #: src/pages/panel/shared/failed-checks/FailedChecks.tsx:247
 msgid "Show resources"
@@ -2912,6 +3031,7 @@ msgstr ""
 
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:100
 #: src/pages/panel/benchmark-detail/BenchmarkDetailCheckDetail.tsx:108
+#: src/pages/panel/compliance/ComplianceDetailCheckDetail.tsx:81
 msgid "Why does it matter"
 msgstr ""
 

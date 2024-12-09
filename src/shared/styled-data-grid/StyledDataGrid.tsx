@@ -16,6 +16,11 @@ export const StyledDataGrid = styled(DataGridPremium)(({ theme }) => ({
     color: theme.palette.text.secondary,
     ...theme.typography.subtitle1,
   },
+  [`.${gridClasses.cell}`]: {
+    display: 'flex',
+    alignItems: 'center',
+    ...theme.typography.subtitle1,
+  },
   [`.${gridClasses.footerContainer}`]: {
     borderTop: 'none',
   },
