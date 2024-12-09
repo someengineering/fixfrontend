@@ -8,21 +8,22 @@ export const slides = [
       <Stack spacing={2.5}>
         <Trans>
           <Typography variant="subtitle1">
-            The compliance tab runs checks against your infrastructure for different compliance frameworks and standards.
+            The Compliance tab evaluates your infrastructure against various compliance frameworks and standards by running a series of
+            controls.
           </Typography>
           <Typography variant="subtitle1">
-            Cloud security standards are structured guidelines and regulations crafted to secure cloud computing environments, developed by
-            international standards bodies, governmental agencies, and industry leaders.
+            Cloud security standards are structured guidelines and regulations designed to safeguard cloud computing environments. These
+            standards are developed by international standards organizations, governmental agencies, and industry leaders.
           </Typography>
           <Typography variant="subtitle1">
-            The frameworks consist of built-in controls and cloud configuration rules that are mapped to the control lists and
-            recommendations of each framework. Fix calculates your overall compliance score for each one of the frameworks and shows you the
-            individual checks that passed or failed.
+            The frameworks include built-in controls and cloud configuration rules mapped to the control lists and recommendations of each
+            framework. Fix calculates an overall compliance score for each framework and highlights the individual controls that passed or
+            failed.
           </Typography>
           <Typography variant="subtitle1">
-            To gain a deeper understanding of your compliance score and understand where your weak areas are, you can drill down into a
-            specific framework and see the different categories that constitute the framework and the status of each one of the rules. You
-            can further narrow down by picking a specific cloud account and verify the security posture for that account.
+            You can explore a specific framework in detail to better understand your compliance score and identify weak areas. This allows
+            you to view the different categories within the framework and the status of each rule. You can refine your analysis by selecting
+            a specific cloud account to verify its security posture.
           </Typography>
         </Trans>
       </Stack>
